@@ -1,5 +1,7 @@
 # genshin_artifacts
 
+[网站](http://39.107.68.17:5000/#/calculate)
+
 ## Project setup
 ```
 npm install
