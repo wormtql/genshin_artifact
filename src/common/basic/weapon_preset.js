@@ -104,6 +104,7 @@ let _preset = {
 };
 
 const support = supportedWeapons();
+// window.console.log(support);
 for (let i = 0; i < support.length; i++) {
     let item = support[i];
     let temp = item.split("-");
