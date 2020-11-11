@@ -1,28 +1,43 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <el-container id="app">
+        <el-aside width="300px" style="border-right: 1px solid #eee">
+            <side-bar></side-bar>
+        </el-aside>
+
+        <el-main style="">
+            <keep-alive>
+                <router-view v-if="$route.meta.keepAlive"></router-view>
+            </keep-alive>
+            <router-view v-if="!$route.meta.keepAlive"></router-view>
+        </el-main>
+    </el-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HeadBar from "./pages/main_page/HeadBar"
+import SideBar from "./pages/main_page/SideBar"
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {
+        // HeadBar,
+        SideBar,
+    },
+    data: function() {
+        return {
+            // items: [
+            //     { name: "intro", text: "首页", icon: "el-icon-menu" },
+            //     { name: "artifacts", text: "圣遗物", icon: "el-icon-s-help" },
+            //     { name: "characters", text: "角色", icon: "el-icon-user-solid" },
+            //     { name: "calculate", text: "计算", icon: "el-icon-cpu" }
+            // ]
+        }
+    }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    height: 100vh;
 }
 </style>
