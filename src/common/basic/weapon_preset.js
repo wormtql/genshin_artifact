@@ -1,105 +1,153 @@
 import { supportedWeapons } from "genshin_panel";
 import { chsWeapon } from "@/common/chs";
 
-// export const preset = {
-//     "sword1": {
-//         "chs": "单手剑",
-//         "weapons": {
-//             "antiejian": {
-//                 "chs": "暗铁剑",
-//                 "presets": [
-//                     {
-//                         value: "antiejian-20-0",
-//                         title: "暗铁剑20级未突破",
-//                     },
-//                 ],
-//             },
-//             "chihuyudao": {
-//                 "chs": "吃虎鱼刀",
-//                 "presets": [
-//                     {
-//                         value: "chihuyudao-70-0",
-//                         title: "吃虎鱼刀70级未突破",
-//                     },
-//                 ],
-//             },
-//             "dijian": {
-//                 "chs": "笛剑",
-//                 "presets": [
-//                     {
-//                         value: "dijian-70-0",
-//                         title: "笛剑70级未突破",
-//                     },
-//                 ],
-//             },
-//             "feitianyujian": {
-//                 "chs": "飞天御剑",
-//                 "presets": [
-//                     {
-//                         value: "feitianyujian-40-0",
-//                         title: "飞天御剑40级未突破",
-//                     },
-//                 ],
-//             },
-//             "fengyingjian": {
-//                 "chs": "飞天御剑",
-//                 "presets": [
-//                     {
-//                         value: "feitianyujian-40-0",
-//                         title: "飞天御剑40级未突破",
-//                     },
-//                 ],
-//             },
-//             "heijian": {
-//                 "chs": "黑剑",
-//                 "presets": [
-//                     {
-//                         value: "heijian-70-0",
-//                         title: "黑剑70级未突破",
-//                     },
-//                 ],
-//             },
-//             "limingshenjian": {
-//                 "chs": "黎明神剑",
-//                 "presets": [
-//                     {
-//                         value: "limingshenjian-70-0",
-//                         title: "黎明神剑70级未突破"
-//                     },
-//                 ]
-//             },
-//             "xialilongyin": {
-//                 "chs": "匣里龙吟",
-//                 "presets": [
-//                     {
-//                         value: "xialilongyin-70-0",
-//                         title: "匣里龙吟70级未突破"
-//                     },
-//                     // {
-//                     //     value: "xialilongyin-70-0-b",
-//                     //     title: "匣里龙吟70级未突破，计入效果"
-//                     // }
-//                 ]
-//             },
-//             "xifengjian": {
-//                 "chs": "西风剑",
-//                 "presets": [
-//                     {
-//                         value: "xifengjian-70-0",
-//                         title: "西风剑70级未突破"
-//                     },
-//                 ]
-//             }
-//         }
-//     }
-// };
+
+let sword = new Set([
+    "wufengjian",
+    "yinjian",
+    "antiejian",
+    "lengren",
+    "feitianyujian",
+    "chihuyudao",
+    "limingshenjian",
+    "lvxingjian",
+    "tiefengci",
+    "dijian",
+    "xialilongyin",
+    "jilijian",
+    "heijian",
+    "shizuozhanyan",
+    "jianglinzhijian",
+    "xifengjian",
+    "heiyanchangjian",
+    "anxiangshanguang",
+    "zongshichangjian",
+    "tiankongzhiren",
+    "fengyingjian",
+]);
+
+let sword2 = new Set([
+    "xunliandajian",
+    "yongbingzhongjian",
+    "feitiandayujian",
+    "yilifuren",
+    "muyulongxiedejian",
+    "baitiedajian",
+    "tieyingkuojian",
+    "xifengdajian",
+    "zhongjian",
+    "yucai",
+    "zongshidajian",
+    "baiyingjian",
+    "heiyanzhandao",
+    "shizuoguhua",
+    "jilidajian",
+    "chigujian",
+    "tiankongzhiao",
+    "langdemolu",
+]);
+
+let stick = new Set([
+    "xinshouchangqiang",
+    "tiejianqiang",
+    "yuemao",
+    "baiyingqiang",
+    "heiyingqiang",
+    "heiyanciqiang",
+    "shizuoxinglian",
+    "xifengchangqiang",
+    "liuyuezhen",
+    "xialimiechen",
+    "juedouzhiqiang",
+    "tiankongzhiji",
+    "hepuyuan",
+]);
+
+let book = new Set([
+    "xuetubiji",
+    "koudaimodaoshu",
+    "jiajibaojue",
+    "feiyufaqiu",
+    "yishijiexingji",
+    "taolongyingjietan",
+    "modaoxulun",
+    "xifengmidian",
+    "liulangyuezhang",
+    "shizuojinpo",
+    "zongshimifalu",
+    "zhaoxin",
+    "wanguozhuhaitupu",
+    "xialiriyue",
+    "heiyanfeiyu",
+    "jilicanzhang",
+    "chenshizhisuo",
+    "tiankongzhijuan",
+    "sifengyuandian",
+]);
+
+let bow = new Set([
+    "liegong",
+    "liliandeliegong",
+    "yayugong",
+    "heitangong",
+    "shensheshouzhishi",
+    "fanqugong",
+    "tangong",
+    "xinshi",
+    "gongcang",
+    "zongshichanggong",
+    "shizuodanyue",
+    "xifengliegong",
+    "heiyanzhangong",
+    "ganglungong",
+    "juexian",
+    "cangcuiliegong",
+    "jiligong",
+    "gangcang",
+    "amosizhigong",
+    "tiankongzhiyi",
+]);
+
+function getType(name) {
+    if (sword.has(name)) {
+        return "sword";
+    }
+    if (sword2.has(name)) {
+        return "sword2";
+    }
+    if (stick.has(name)) {
+        return "stick";
+    }
+    if (book.has(name)) {
+        return "book";
+    }
+    if (bow.has(name)) {
+        return "bow";
+    }
+}
 
 let _preset = {
-    "preset": {
-        "chs": "预设",
+    "sword": {
+        "chs": "单手剑",
         "weapons": {
 
         }
+    },
+    "sword2": {
+        "chs": "双手剑",
+        "weapons": {}
+    },
+    "stick": {
+        "chs": "长柄武器",
+        "weapons": {}
+    },
+    "book": {
+        "chs": "法器",
+        "weapons": {}
+    },
+    "bow": {
+        "chs": "弓",
+        "weapons": {}
     }
 };
 
@@ -108,9 +156,13 @@ const support = supportedWeapons();
 for (let i = 0; i < support.length; i++) {
     let item = support[i];
     let temp = item.split("-");
-    // window.console.log(temp);
+
     let chs = chsWeapon(temp[0]);
-    let weapons = _preset.preset.weapons;
+    let type = getType(temp[0]);
+    if (type === undefined) {
+        window.console.log(temp[0]);
+    }
+    let weapons = _preset[type].weapons;
 
     let s1 = chs;
     let s2 = temp[1] + "级";

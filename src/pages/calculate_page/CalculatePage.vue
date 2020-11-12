@@ -5,6 +5,7 @@
             @close="showResultDialog = false"
             :combo="resultCombo"
             :resultValue="resultValue"
+            :deritive="resultDeritive"
         ></result-dialog>
 
         <el-breadcrumb>
@@ -102,6 +103,7 @@ export default {
             resultCombo: [],
             resultValue: -1,
             resultAttribute: {},
+            resultDeritive: [],
 
             // 是否正在计算
             isComputing: false,
@@ -154,7 +156,7 @@ export default {
             
             // let targetFunction = getTargetFunction(this.selectedTargetFunction);
             let maxCombo = [];
-            let maxValue = -Infinity;
+            let maxValue = { value: -Infinity };
             let maxAttribute = {};
             for (let flower = 0; flower < flowerSize; flower++) {
                 for (let feather = 0; feather < featherSize; feather++) {
@@ -179,7 +181,8 @@ export default {
                                 );
 
                                 let newValue = this.targetFunction(attribute);
-                                if (newValue > maxValue) {
+                                // window.console.log(newValue.directives);
+                                if (newValue.value > maxValue.value) {
                                     maxValue = newValue;
                                     maxCombo = arts;
                                     maxAttribute = attribute;
@@ -252,7 +255,8 @@ export default {
                 // window.console.log(combo);
                 this.showResultDialog = true;
                 this.resultCombo = combo;
-                this.resultValue = value;
+                this.resultValue = value.value;
+                this.resultDeritive = value.deritives || [];
                 this.resultAttribute = attribute;
 
                 this.isCalculated = true;

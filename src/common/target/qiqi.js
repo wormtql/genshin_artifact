@@ -6,7 +6,9 @@ function normalQiqi(attribute) {
     let b = attack * 1.35 + 996;
     let ab = qRatio * a + (1 - qRatio) * b;
     
-    return ab * (1 + attribute.cureEffect);
+    return {
+        value: ab * (1 + attribute.cureEffect)
+    }
 }
 
 export const plans = [

@@ -7,6 +7,12 @@
 
         <el-row :gutter="16">
             <el-col :span="17">
+                <h3>梯度</h3>
+                <div>
+                    <deritive :data="deritives" style="width: 100%" v-if="deritives.length > 0"></deritive>
+                    <el-alert v-else :closable="false">该目标函数没有梯度信息</el-alert>
+                </div>
+
                 <h3>装备</h3>
                 <el-radio-group v-model="current" style="margin-bottom: 16px">
                     <el-radio-button label="character">角色</el-radio-button>
@@ -27,6 +33,9 @@
             <el-col :span="7">
                 <h3>目标数值</h3>
                 {{ finalTargetValue }}
+
+                
+
                 <h3>
                     面板
                 </h3>
@@ -44,6 +53,7 @@ import SelectCharacter from "@/components/SelectCharacter";
 import SelectWeapon from "@/components/SelectWeapon";
 import SelectTarget from "@/components/SelectTarget";
 import SelectArtifact from "@/components/select_artifact/SelectArtifact";
+import Deritive from "@/components/Deritive";
 // import PreviewItem from "@/components/PreviewItem";
 
 import { plans as plansPreset, getTargetFunction } from "@/common/target";
@@ -62,6 +72,7 @@ export default {
         SelectWeapon,
         SelectTarget,
         SelectArtifact,
+        Deritive,
         // PreviewItem,
     },
     data: function() {
@@ -120,7 +131,11 @@ export default {
             return compose(this.selectedCharacterAttribute, this.selectedWeaponAttribute, this.finalArtifacts);
         },
         finalTargetValue() {
-            return this.targetFunction(this.finalAttribute);
+            return this.targetFunction(this.finalAttribute).value;
+        },
+        deritives() {
+            let v = this.targetFunction(this.finalAttribute);
+            return v.deritives || [];
         },
         ...mapState([
             "flower",

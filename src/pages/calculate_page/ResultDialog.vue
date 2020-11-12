@@ -5,6 +5,11 @@
         width="80%"
         :before-close="close"
     >
+        <h3>
+            数值
+        </h3>
+        {{ resultValue }}
+
         <h3>最佳搭配</h3>
         <div class="result">
             <artifact
@@ -17,11 +22,11 @@
                 
             </artifact>
         </div>
-
-        <h3>
-            数值
-        </h3>
-        {{ resultValue }}
+        
+            <h3>属性梯度</h3>
+            <div style="text-align: center">
+                <deritive :data="deritive" style="width: 100%"></deritive>
+            </div>
 
         <div slot="footer">
             <!-- <el-button>
@@ -36,11 +41,13 @@
 
 <script>
 import Artifact from "@/components/Artifact";
+import Deritive from "@/components/Deritive";
 
 export default {
     name: "ResultDialog",
     components: {
-        Artifact
+        Artifact,
+        Deritive,
     },
     props: {
         combo: {
@@ -52,6 +59,9 @@ export default {
         show: {
             type: Boolean,
         },
+        deritive: {
+            type: Array,
+        }
     },
     methods: {
         close() {

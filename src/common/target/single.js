@@ -1,19 +1,21 @@
 function createSingle(property) {
     return function(attribute) {
-        return attribute[property];
+        return {
+            value: attribute[property]
+        };
     }
 }
 
 function attack(attribute) {
-    return attribute.attack1 + attribute.attack2;
+    return { value: attribute.attack1 + attribute.attack2 };
 }
 
 function defend(attribute) {
-    return attribute.defend1 + attribute.defend2;
+    return { value: attribute.defend1 + attribute.defend2 };
 }
 
 function life(attribute) {
-    return attribute.life1 + attribute.life2;
+    return { value: attribute.life1 + attribute.life2 };
 }
 
 function expected(attribute) {
@@ -21,7 +23,10 @@ function expected(attribute) {
 
     const a = Math.max(1, attribute.critical) * (1 + attribute.criticalDamage);
     const b = Math.max(1 - attribute.critical, 0);
-    return (a + b) * (attribute.attack1 + attribute.attack2) * (1 + bonus);
+
+    return {
+        value: (a + b) * (attribute.attack1 + attribute.attack2) * (1 + bonus)
+    }
 }
 
 export const plans = [
