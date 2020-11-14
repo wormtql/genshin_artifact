@@ -34,7 +34,7 @@ export default {
             return {
                 series: {
                     type: "pie",
-                    data: this.data.map(item => ({
+                    data: this.data.filter(item => item.d > 0).map(item => ({
                         name: item.chs,
                         value: item.d
                     })),

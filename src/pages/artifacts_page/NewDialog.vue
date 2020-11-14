@@ -6,17 +6,18 @@
         :before-close="onCancel"
     >
 
-        <h2>套装 已选择【{{ toChinese[setName] }}】</h2>
+        <h3>套装</h3>
         <set-choose :value="setName" @input="changeSet"></set-choose>
 
-        <h2>位置 已选择【{{ detailName[setName][position] }}】</h2>
+        <h3>位置</h3>
         <position-choose
             :value="position"
             @input="changePosition"
             :setName="setName"
         ></position-choose>        
 
-        <h2>主属性</h2>
+        <h3>主属性</h3>
+        <el-tag style="margin-bottom: 8px">注意百分数应写为小数，例如3%应写成0.03</el-tag>
         <el-input v-model="primaryTagValue">
             <el-select
                 v-model="primaryTagName"
@@ -33,11 +34,11 @@
             </el-select>
         </el-input>
 
-        <h2>副属性</h2>
+        <h3>副属性</h3>
         <secondary-choose v-model="secondaryTags"></secondary-choose>
 
 
-        <h2>摘要</h2>
+        <h3>摘要</h3>
         <el-alert :closable="false"
             class="summary"
             :title="setName ? `套装「${toChinese[setName]}」` : '未选择套装'"

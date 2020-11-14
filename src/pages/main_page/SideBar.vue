@@ -48,11 +48,25 @@
                 </template>
                 <el-menu-item index="calculate">
                     <i class="el-icon-cpu"></i>
-                    最佳圣遗物搭配
+                    Arts Planner
                 </el-menu-item>
                 <el-menu-item index="panel-calculate">
                     <i class="el-icon-cpu"></i>
                     <span>面板计算</span>
+                </el-menu-item>
+            </el-menu-item-group>
+
+            <el-menu-item-group>
+                <template #title>
+                    帮助
+                </template>
+                <el-menu-item index="use-case">
+                    <i class="el-icon-question"></i>
+                    完整使用示例
+                </el-menu-item>
+                <el-menu-item index="alg">
+                    <i class="el-icon-s-opportunity"></i>
+                    算法
                 </el-menu-item>
             </el-menu-item-group>
             <!-- <el-menu-item v-for="item in items" :key=item.index :index="item.name">

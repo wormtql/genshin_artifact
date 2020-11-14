@@ -49,7 +49,7 @@
                     type="primary"
                     style="margin-top: 32px; width: 100%"
                     @click="doCalc"
-                    :loading="isComputing"
+                    :loading.sync="isComputing"
                 >
                     计算
                 </el-button>
@@ -229,7 +229,7 @@ export default {
             cupCount = Math.max(cupCount, 1);
             headCount = Math.max(headCount, 1);
             let c = flowerCount * featherCount * sandCount * cupCount * headCount;
-            if (c >= 5000000) {
+            if (c >= 1000000) {
                 return [false, "圣遗物数量过多，请禁用明显更次的圣遗物"];
             }
 
@@ -265,6 +265,7 @@ export default {
             }).finally(() => {
                 this.isComputing = false;
             });
+            // window.console.log("aaa");
         }
     },
     computed: {

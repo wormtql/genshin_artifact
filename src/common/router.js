@@ -6,6 +6,8 @@ import CustomCharacterPage from "@/pages/custom_character_page/CustomCharacterPa
 import CustomWeaponPage from "@/pages/custom_weapon_page/CustomWeaponPage";
 import CustomTargetPage from "@/pages/custom_target_page/CustomTargetPage";
 import PanelCalculatePage from "@/pages/panel_calculate_page/PanelCalculatePage";
+import UseCasePage from "@/pages/use_case_page/UseCasePage";
+import AlgPage from "@/pages/alg_page/AlgPage";
 
 import VueRouter from "vue-router";
 
@@ -19,10 +21,10 @@ const routes = [
         path: "/artifacts",
         component: ArtifactsPage
     },
-    // {
-    //     path: "/characters",
-    //     component: CharacterPage
-    // },
+    {
+        path: "/use-case",
+        component: UseCasePage,
+    },
     {
         path: "/calculate",
         component: CalculatePage,
@@ -48,6 +50,10 @@ const routes = [
         meta: {
             keepAlive: true,
         }
+    },
+    {
+        path: "/alg",
+        component: AlgPage,
     }
 ]
 

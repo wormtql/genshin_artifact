@@ -1,3 +1,5 @@
+import { all } from "./base";
+
 function createSingle(property) {
     return function(attribute) {
         return {
@@ -26,6 +28,22 @@ function expected(attribute) {
 
     return {
         value: (a + b) * (attribute.attack1 + attribute.attack2) * (1 + bonus)
+    }
+}
+
+function basicConfig(element) {
+    return {
+        element,
+        aFreq: 80,
+        aRatio: 0.1,
+        aTimes: 0.9,
+        bFreq: 0,
+        bRatio: 0,
+        bTimes: 0,
+        eFreq: 10,
+        eTimes: 2,
+        qFreq: 10,
+        qTimes: 7
     }
 }
 
@@ -87,5 +105,41 @@ export const plans = [
             "仅考虑物理伤害",
             "考虑暴击和爆伤"
         ]
-    }
+    },
+    {
+        value: "thunder",
+        name: "雷元素期望输出",
+        calc: all(basicConfig("thunder")),
+        description: "雷元素主C的期望输出，不苛刻的情况下可以选择次目标函数",
+    },
+    {
+        value: "fire",
+        name: "火元素期望输出",
+        calc: all(basicConfig("fire")),
+        description: "火元素主C的期望输出，不苛刻的情况下可以选择次目标函数",
+    },
+    {
+        value: "water",
+        name: "水元素期望输出",
+        calc: all(basicConfig("water")),
+        description: "水元素主C的期望输出，不苛刻的情况下可以选择次目标函数",
+    },
+    {
+        value: "ice",
+        name: "冰元素期望输出",
+        calc: all(basicConfig("ice")),
+        description: "冰元素主C的期望输出，不苛刻的情况下可以选择次目标函数",
+    },
+    {
+        value: "wind",
+        name: "风元素期望输出",
+        calc: all(basicConfig("wind")),
+        description: "风元素主C的期望输出，不苛刻的情况下可以选择次目标函数",
+    },
+    {
+        value: "rock",
+        name: "岩元素期望输出",
+        calc: all(basicConfig("rock")),
+        description: "岩元素主C的期望输出，不苛刻的情况下可以选择次目标函数",
+    },
 ]

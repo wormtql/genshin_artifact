@@ -98,6 +98,8 @@
                 </el-col>
             </el-row>
         </div>
+
+        <!-- <el-tag v-show="!checkAll[0]">{{ checkAll[1] }} </el-tag> -->
         
 
         <template #footer>
@@ -124,7 +126,11 @@ export default {
             this.$emit("close");
         },
         onConfirm() {
-            this.$emit("confirm", this.compact());
+            if (!this.checkAll[0]) {
+                this.$message.error(this.checkAll[1]);
+            } else {
+                this.$emit("confirm", this.compact());
+            }
         },
         compact() {
             return {
@@ -155,21 +161,21 @@ export default {
 
             element: "fire",
 
-            aFreq: 0,
+            aFreq: 0.25,
             aRatio: 0,
-            aTimes: 0,
+            aTimes: 1,
 
             bFreq: 0,
             bRatio: 0,
-            bTimes: 0,
+            bTimes: 2,
 
-            eFreq: 0,
+            eFreq: 0.25,
             // eRatio: 1,
-            eTimes: 0,
+            eTimes: 3,
 
-            qFreq: 0,
+            qFreq: 0.25,
             // qRatio: 1,
-            qTimes: 0
+            qTimes: 6
         }
     },
     computed: {
@@ -189,9 +195,24 @@ export default {
             return [true];
         },
 
+        checkValue() {
+            let sum = this.aFreq + this.bFreq;
+            if (!this.isPhysical) {
+                sum += this.eFreq + this.qFreq;
+            }
+            if (sum === 0) {
+                return [false, "频率之和不能为0"];
+            }
+
+            return [true];
+        },
+
         checkAll() {
             if (!this.checkName[0]) {
                 return this.checkName;
+            }
+            if (!this.checkValue[0]) {
+                return this.checkValue;
             }
 
             return [true];

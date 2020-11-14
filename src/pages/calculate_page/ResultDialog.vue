@@ -22,12 +22,12 @@
                 
             </artifact>
         </div>
-        
+        <div v-show="deritive.length > 0">
             <h3>属性梯度</h3>
             <div style="text-align: center">
                 <deritive :data="deritive" style="width: 100%"></deritive>
             </div>
-
+        </div>
         <div slot="footer">
             <!-- <el-button>
                 导出JSON

@@ -106,6 +106,7 @@ const _weapon = {
     "liulangyuezhang": "流浪乐章",
     "sifengyuandian": "四风原典",
     "tiankongzhijuan": "天空之卷",
+    "chenshizhisuo": "尘世之锁",
 
     "xinshouchangqiang": "新手长枪",
     "tiejianqiang": "铁尖枪",
@@ -128,6 +129,7 @@ const _character = {
     "anbo": "安柏",
     "bannite": "班尼特",
     "xiangling": "香菱",
+    // "xinyan": "辛"
     
     "mona": "莫娜",
     "dadaliya": "达达利亚",
