@@ -4,6 +4,8 @@
             :usedNames="usedWeaponNames"
             @cancel="showNewItemDialog=false"
             @confirm="onDialogConfirm"
+            primaryName="基础属性"
+            secondaryName="副属性"
         >
         </new-item-dialog>
         
@@ -11,6 +13,14 @@
             <el-breadcrumb-item>自定义武器</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
+
+        <el-alert :closable="false" style="margin-bottom: 16px" show-icon>
+            <template #title>
+                由于武器预设并不包含所有武器，且不包含特效效果，如果一定要追求准确，可以在此添加自定义武器<br>
+                “基础属性”一栏填写武器的基础攻击力<br>
+                “副属性”一栏填写武器副属性以及特效等
+            </template>
+        </el-alert>
 
         <el-button @click="showNewItemDialog = true" type="primary" icon="el-icon-plus"
             style="margin-bottom: 16px"

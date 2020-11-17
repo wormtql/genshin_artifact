@@ -19,6 +19,7 @@
                     <el-radio-button label="character">角色</el-radio-button>
                     <el-radio-button label="weapon">武器</el-radio-button>
                     <el-radio-button label="target">目标函数</el-radio-button>
+                    <el-radio-button label="artifact">圣遗物</el-radio-button>
                 </el-radio-group>
 
                 <select-character v-model="selectedCharacter" v-show="current === 'character'"></select-character>
@@ -27,6 +28,15 @@
 
                 <select-target v-model="selectedTarget" v-show="current === 'target'"></select-target>
 
+                <el-alert show-icon v-show="current === 'artifact'" :closable="false"
+                    style="margin-bottom: 16px"
+                >
+                    <template #title>
+                        此处选择的圣遗物将会固定<br>
+                        例如，“生之花”选择了某一个圣遗物，则“生之花”这个位置固定使用这个圣遗物
+                    </template>
+                </el-alert>
+                <select-artifact v-model="selectedArtifact" v-show="current === 'artifact'"></select-artifact>
 
                 <el-divider></el-divider>
                 <div style="box-shadow: 0 2px 4px rgba(0,0,0,.12), 0 0 6px rgba(0,0,0,.04); padding: 16px; border: 1px solid #DCDFE6">
@@ -73,6 +83,7 @@
 import SelectCharacter from "@/components/SelectCharacter";
 import SelectWeapon from "@/components/SelectWeapon";
 import SelectTarget from "@/components/SelectTarget";
+import SelectArtifact from "@/components/select_artifact/SelectArtifact";
 import ResultDialog from "./ResultDialog";
 import AttributePanel from "@/components/AttributePanel";
 import PreviewItem from "@/components/PreviewItem";
@@ -91,6 +102,7 @@ export default {
         SelectCharacter,
         SelectWeapon,
         SelectTarget,
+        SelectArtifact,
         PreviewItem,
     },
     data: function() {
@@ -116,6 +128,7 @@ export default {
             selectedCharacter: "keqing-70-0",
             selectedWeapon: "heijian-70-0",
             selectedTarget: "keqing-normal",
+            selectedArtifact: [-1, -1, -1, -1, -1],
 
             current: "character",
         }
@@ -123,15 +136,50 @@ export default {
     methods: {
         // 计算最优解
         calc() {
-            const storeState = this.$store.state;
-
+            // 最终要参与计算的圣遗物列表
             let tempArts = {
-                "flower": storeState.flower.filter(item => !item.omit).map(item => convertArtifact(item)),
-                "feather": storeState.feather.filter(item => !item.omit).map(item => convertArtifact(item)),
-                "cup": storeState.cup.filter(item => !item.omit).map(item => convertArtifact(item)),
-                "head": storeState.head.filter(item => !item.omit).map(item => convertArtifact(item)),
-                "sand": storeState.sand.filter(item => !item.omit).map(item => convertArtifact(item)),
+                "flower": [],
+                "feather": [],
+                "cup": [],
+                "head": [],
+                "sand": []
             };
+
+            if (this.selectedArtifact[0] !== -1) {
+                // 固定该处圣遗物
+                tempArts.flower.push(convertArtifact(this.flower[this.selectedArtifact[0]]));
+            } else {
+                tempArts.flower = this.flower.filter(item => !item.omit).map(item => convertArtifact(item));
+            }
+
+            if (this.selectedArtifact[1] !== -1) {
+                // 固定该处圣遗物
+                tempArts.feather.push(convertArtifact(this.feather[this.selectedArtifact[1]]));
+            } else {
+                tempArts.feather = this.feather.filter(item => !item.omit).map(item => convertArtifact(item));
+            }
+
+            if (this.selectedArtifact[2] !== -1) {
+                // 固定该处圣遗物
+                tempArts.sand.push(convertArtifact(this.sand[this.selectedArtifact[2]]));
+            } else {
+                tempArts.sand = this.sand.filter(item => !item.omit).map(item => convertArtifact(item));
+            }
+
+            if (this.selectedArtifact[3] !== -1) {
+                // 固定该处圣遗物
+                tempArts.cup.push(convertArtifact(this.cup[this.selectedArtifact[3]]));
+            } else {
+                tempArts.cup = this.cup.filter(item => !item.omit).map(item => convertArtifact(item));
+            }
+
+            if (this.selectedArtifact[4] !== -1) {
+                // 固定该处圣遗物
+                tempArts.head.push(convertArtifact(this.head[this.selectedArtifact[4]]));
+            } else {
+                tempArts.head = this.head.filter(item => !item.omit).map(item => convertArtifact(item));
+            }
+
             if (tempArts.flower.length === 0) {
                 tempArts.flower.push(null);
             }
@@ -214,11 +262,31 @@ export default {
                 return [false, "未指定角色"];
             }
 
-            let flowerCount = this.$store.state.flower.filter(item => !item.omit).length;
-            let featherCount = this.$store.state.feather.filter(item => !item.omit).length;
-            let sandCount = this.$store.state.sand.filter(item => !item.omit).length;
-            let cupCount = this.$store.state.cup.filter(item => !item.omit).length;
-            let headCount = this.$store.state.head.filter(item => !item.omit).length;
+            let flowerCount = this.flower.filter(item => !item.omit).length;
+            if (this.selectedArtifact[0] !== -1) {
+                flowerCount = 1;
+            }
+
+            let featherCount = this.feather.filter(item => !item.omit).length;
+            if (this.selectedArtifact[1] !== -1) {
+                featherCount = 1;
+            }
+
+            let sandCount = this.sand.filter(item => !item.omit).length;
+            if (this.selectedArtifact[2] !== -1) {
+                sandCount = 1;
+            }
+
+            let cupCount = this.cup.filter(item => !item.omit).length;
+            if (this.selectedArtifact[3] !== -1) {
+                cupCount = 1;
+            }
+
+            let headCount = this.head.filter(item => !item.omit).length;
+            if (this.selectedArtifact[4] !== -1) {
+                headCount = 1;
+            }
+
             if (flowerCount + featherCount + sandCount + cupCount + headCount === 0) {
                 return [false, "未指定圣遗物"];
             }
@@ -291,12 +359,12 @@ export default {
             }
         },
         ...mapState([
-            // "selectedCharacter",
-            // "selectedWeapon",
-            // "selectedWeaponAttribute",
-            // "selectedCharacterAttribute",
-            // "customWeapon",
-            // "customCharacter",
+            "cup",
+            "flower",
+            "feather",
+            "sand",
+            "head",
+
             "customedCharacters",
             "customedWeapons",
             "customedTargets",

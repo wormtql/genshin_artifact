@@ -4,6 +4,8 @@
             :usedNames="usedCharacterNames"
             @cancel="showNewItemDialog=false"
             @confirm="onDialogConfirm"
+            primaryName="基础属性"
+            secondaryName="突破加成属性"
         >
         </new-item-dialog>
         
@@ -11,6 +13,14 @@
             <el-breadcrumb-item>自定义角色</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
+
+        <el-alert :closable="false" style="margin-bottom: 16px" show-icon>
+            <template #title>
+                由于角色预设并不包含所有角色等级，如果一定要追求准确，可以在此添加自定义角色<br>
+                “基础属性”一栏填写角色的基础攻击力、防御力、生命值（除去所有装备和圣遗物加成）<br>
+                “突破加成属性”一栏填写角色的突破加成属性（如果是暴击率，则要减去初始暴击率0.05）
+            </template>
+        </el-alert>
 
         <el-button @click="showNewItemDialog = true" type="primary" icon="el-icon-plus"
             style="margin-bottom: 16px"

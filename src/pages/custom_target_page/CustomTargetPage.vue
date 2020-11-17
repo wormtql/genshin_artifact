@@ -13,6 +13,13 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
+        <el-alert :closable="false" style="margin-bottom: 16px" show-icon>
+            <template #title>
+                由于目标函数预设并不包含所有角色，虽然有近似的通用目标函数，但是如果要追求准确，可以在此自定义<br>
+                各项参数的具体意义请参考“算法”页面
+            </template>
+        </el-alert>
+
         <el-button @click="showCustomTargetDialog = true" type="primary" icon="el-icon-plus"
             style="margin-bottom: 16px"
         >添加</el-button>

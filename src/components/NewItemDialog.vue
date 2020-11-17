@@ -11,7 +11,7 @@
         <el-input v-model="name" class="input"></el-input>
         <el-tag v-show="!checkName[0]" type="danger">{{ checkName[1] }}</el-tag>
 
-        <h2>主属性</h2>
+        <h2>{{ primaryName }}</h2>
         <div><el-tag style="margin-bottom: 8px">注意百分数应写为小数，例如3%应写成0.03</el-tag></div>
         <el-button
             icon="el-icon-plus"
@@ -40,7 +40,7 @@
         </el-input>
 
 
-        <h2>副属性</h2>
+        <h2>{{ secondaryName }}</h2>
         <el-button
             icon="el-icon-plus"
             circle
@@ -93,6 +93,14 @@ export default {
         usedNames: {
             type: Array,
             default: () => [],
+        },
+        primaryName: {
+            type: String,
+            default: "基础属性",
+        },
+        secondaryName: {
+            type: String,
+            default: "副属性",
         }
     },
     data: function() {

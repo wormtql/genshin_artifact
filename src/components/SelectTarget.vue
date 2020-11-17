@@ -3,7 +3,7 @@
         <el-tab-pane label="角色预设">
             <el-collapse
                 :value="value"
-                @input="$emit('input', $event)"
+                @input="onInput"
                 accordion
             >
                 <el-collapse-item
@@ -93,6 +93,13 @@ export default {
     data: function() {
         return {
             plansPreset,
+        }
+    },
+    methods: {
+        onInput(e) {
+            if (e !== "") {
+                this.$emit("input", e);
+            }
         }
     },
     computed: {
