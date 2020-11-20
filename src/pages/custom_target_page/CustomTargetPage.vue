@@ -8,6 +8,13 @@
         >
         </custom-target-dialog>
 
+        <el-dialog :visible.sync="exportJsonDialogVisible" title="导出JSON">
+            <p style="max-height: 300px; overflow: auto">{{ json }}</p>
+            <span slot="footer">
+                <el-button class="clip" @click="clipJson">复制</el-button>
+            </span>
+        </el-dialog>
+
         <el-breadcrumb>
             <el-breadcrumb-item>自定义目标函数</el-breadcrumb-item>
         </el-breadcrumb>
@@ -20,9 +27,16 @@
             </template>
         </el-alert>
 
-        <el-button @click="showCustomTargetDialog = true" type="primary" icon="el-icon-plus"
-            style="margin-bottom: 16px"
-        >添加</el-button>
+        <div class="bar">
+            <el-button @click="showCustomTargetDialog = true" type="primary" icon="el-icon-plus"
+            >添加</el-button>
+
+            <div style="vertical-align: top">
+                <el-button @click="exportJson">导出Json</el-button>
+                <el-button @click="importJson">导入Json</el-button>
+            </div>
+        </div>
+        
 
         <el-tabs
             type="border-card"
@@ -54,6 +68,8 @@ import PreviewTarget from "./PreviewTarget";
 import { mapState } from "vuex";
 import { all } from "@/common/target/base";
 
+import Clipboard from "clipboard";
+
 export default {
     name: "CustomTargetPage",
     components: {
@@ -63,6 +79,9 @@ export default {
     data: function() {
         return {
             showCustomTargetDialog: false,
+
+            exportJsonDialogVisible: false,
+            json: "",
         }
     },
     methods: {
@@ -78,6 +97,54 @@ export default {
         },
         deleteCustomTarget(name) {
             this.$store.commit("deleteCustomedTarget", name);
+        },
+        exportJson() {
+            this.json = JSON.stringify(this.customedTargets);
+            this.exportJsonDialogVisible = true;
+        },
+        importJson() {
+            this.$prompt("输入JSON", "导入JSON", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消"
+            }).then(({ value }) => {
+                if (value === "") {
+                    return;
+                }
+                return new Promise((resolve, reject) => {
+                    let obj = JSON.parse(value);
+                    if (typeof obj !== "object") {
+                        reject("wrong_format");
+                    }
+
+                    for (let key in obj) {
+                        this.$store.commit("addCustomedTarget", {
+                            name: key,
+                            calc: all(obj[key].config),
+                            config: obj[key].config,
+                        });
+                    }
+                })
+            }).catch((e) => {
+                if (e !== "cancel") {
+                    this.$message.error("请输入正确的json字符串");
+                }
+            })
+        },
+        clipJson() {
+            let s = this.json;
+            let clipboard = new Clipboard(".clip", {
+                text: function() {
+                    return s;
+                }
+            });
+            clipboard.on("success", () => {
+                this.$message({ message: "复制成功", type: "success" });
+                clipboard.destroy();
+            });
+            clipboard.on("error", () => {
+                this.$message({ message: "复制失败", type: "error" });
+                clipboard.destroy();
+            });
         }
     },
     computed: {
@@ -91,3 +158,13 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 16px;
+}
+</style>

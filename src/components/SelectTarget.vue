@@ -32,7 +32,7 @@
         <el-tab-pane label="基础属性">
             <el-collapse
                 :value="value"
-                @input="$emit('input', $event)"
+                @input="onInput"
                 accordion
             >
                 <el-collapse-item

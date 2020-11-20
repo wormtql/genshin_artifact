@@ -16,7 +16,7 @@
         <el-alert
             v-for="key in filteredSecondaryTags"
             :key="key"
-            :title="chsSecondaryTag(key) + '：' + value.secondary[key]"
+            :title="displayTag(key, value.secondary[key])"
             :closable="false"
             class="item"
         >
@@ -28,6 +28,7 @@
 
 <script>
 import { chsPrimaryTag, chsSecondaryTag } from "@/common/chs";
+import { displayTag } from "@/utils";
 
 export default {
     name: "PreviewItem2",
@@ -39,6 +40,7 @@ export default {
     methods: {
         chsPrimaryTag,
         chsSecondaryTag,
+        displayTag,
     },
     computed: {
         filteredPrimaryTags() {

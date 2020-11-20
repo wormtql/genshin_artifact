@@ -34,7 +34,7 @@
                 ></el-image>
             </el-col>
             <el-col :span="14">
-                <h3 class="primaryTag">{{ `${tagToChs[item.primary.tag]}: ${item.primary.value}` }}</h3>
+                <h3 class="primaryTag">{{ displayTag(item.primary.tag, item.primary.value) }}</h3>
 
                 <el-tag
                     size="mini"
@@ -42,7 +42,7 @@
                     v-for="(tag, index) in item.secondary"
                     :key="index"
                 >
-                    {{ `${tagToChs[tag.tag]}: ${tag.value}` }}
+                    {{ displayTag(tag.tag, tag.value) }}
                 </el-tag>
             </el-col>
         </el-row>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { toChinese as tagToChs } from "@/common/artifacts_tag";
+import { displayTag } from "@/utils";
 
 export default {
     name: "Artifact",
@@ -89,10 +89,12 @@ export default {
     data: function() {
         return {
             publicPath: process.env.BASE_URL,
-            tagToChs,
 
             // omitState: false,
         }
+    },
+    methods: {
+        displayTag,
     },
     computed: {
         cardStyle: function() {

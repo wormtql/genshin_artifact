@@ -31,3 +31,19 @@ export function convertArtifact(art) {
 
     return temp;
 }
+
+export function recommendAttribute(d) {
+    let temp = deepCopy(d);
+    temp.sort((a, b) => {
+        return b.d - a.d;
+    });
+
+    // window.console.log(temp);
+
+    let chs = [];
+    for (let i = 0; i < Math.min(3, temp.length); i++) {
+        chs.push(temp[i].chs);
+    }
+    
+    return chs;
+}

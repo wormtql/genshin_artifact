@@ -14,10 +14,10 @@
             :value="position"
             @input="changePosition"
             :setName="setName"
-        ></position-choose>        
+        ></position-choose>
 
         <h3>主属性</h3>
-        <el-tag style="margin-bottom: 8px">注意百分数应写为小数，例如3%应写成0.03</el-tag>
+        <!-- <el-tag style="margin-bottom: 8px">注意百分数应写为小数，例如3%应写成0.03</el-tag> -->
         <el-input v-model="primaryTagValue">
             <el-select
                 v-model="primaryTagName"
@@ -80,7 +80,7 @@ import SetChoose from "./SetChoose";
 import PositionChoose from "./PositionChoose";
 import SecondaryChoose from "./SecondaryChoose";
 
-import { deepCopy } from "@/utils/common";
+import { deepCopy, toRealValue } from "@/utils";
 
 export default {
     name: "NewDialog",
@@ -128,16 +128,20 @@ export default {
                 this.primaryTagName = PRIMARY_TAG[name][0];
             }
         },
-        compact: function() { 
+        compact: function() {
+            // window.console.log(this.secondaryTags);
             return {
                 setName: this.setName,
                 position: this.position,
                 detailName: DETAIL_NAME[this.setName][this.position],
                 primary: {
                     tag: this.primaryTagName,
-                    value: this.primaryTagValue,
+                    value: toRealValue(this.primaryTagName, Number(this.primaryTagValue)),
                 },
-                secondary: deepCopy(this.secondaryTags),
+                secondary: deepCopy(this.secondaryTags).map(item => ({
+                    tag: item.tag,
+                    value: toRealValue(item.tag, Number(item.value)),
+                })),
                 omit: false,
             }
         },

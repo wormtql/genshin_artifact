@@ -8,6 +8,13 @@
             secondaryName="突破加成属性"
         >
         </new-item-dialog>
+
+        <el-dialog :visible.sync="exportJsonDialogVisible" title="导出JSON">
+            <p style="max-height: 300px; overflow: auto">{{ json }}</p>
+            <span slot="footer">
+                <el-button class="clip" @click="clipJson">复制</el-button>
+            </span>
+        </el-dialog>
         
         <el-breadcrumb>
             <el-breadcrumb-item>自定义角色</el-breadcrumb-item>
@@ -22,9 +29,16 @@
             </template>
         </el-alert>
 
-        <el-button @click="showNewItemDialog = true" type="primary" icon="el-icon-plus"
-            style="margin-bottom: 16px"
-        >添加</el-button>
+        <div class="bar">
+            <el-button @click="showNewItemDialog = true" type="primary" icon="el-icon-plus"
+            >添加</el-button>
+
+            <div style="vertical-align: top">
+                <el-button @click="exportJson">导出Json</el-button>
+                <el-button @click="importJson">导入Json</el-button>
+            </div>
+        </div>
+        
 
         <el-tabs
             type="border-card"
@@ -67,6 +81,8 @@ import PreviewItem2 from "@/components/PreviewItem2";
 
 import { mapState } from "vuex";
 
+import Clipboard from "clipboard";
+
 export default {
     name: "CustomCharacterPage",
     components: {
@@ -76,6 +92,9 @@ export default {
     data: function() {
         return {
             showNewItemDialog: false,
+
+            exportJsonDialogVisible: false,
+            json: "",
         }
     },
     methods: {
@@ -86,6 +105,50 @@ export default {
         },
         deleteCustomCharacter(name) {
             this.$store.commit("deleteCustomedCharacter", name);
+        },
+        exportJson() {
+            this.json = JSON.stringify(this.customedCharacters);
+            this.exportJsonDialogVisible = true;
+        },
+        importJson() {
+            this.$prompt("输入JSON", "导入JSON", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消"
+            }).then(({ value }) => {
+                return new Promise((resolve, reject) => {
+                    let obj = JSON.parse(value);
+                    if (typeof obj !== "object") {
+                        reject("wrong_format");
+                    }
+
+                    for (let key in obj) {
+                        this.$store.commit("addCustomedCharacter", {
+                            name: key,
+                            item: obj[key],
+                        });
+                    }
+                })
+            }).catch((e) => {
+                if (e !== "cancel") {
+                    this.$message.error("请输入正确的json字符串");
+                }
+            })
+        },
+        clipJson() {
+            let s = this.json;
+            let clipboard = new Clipboard(".clip", {
+                text: function() {
+                    return s;
+                }
+            });
+            clipboard.on("success", () => {
+                this.$message({ message: "复制成功", type: "success" });
+                clipboard.destroy();
+            });
+            clipboard.on("error", () => {
+                this.$message({ message: "复制失败", type: "error" });
+                clipboard.destroy();
+            });
         }
     },
     computed: {
@@ -108,3 +171,13 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 16px;
+}
+</style>

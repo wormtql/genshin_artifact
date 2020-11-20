@@ -12,7 +12,7 @@
                 ></el-image>
             </el-col>
             <el-col :span="14">
-                <h3 class="primaryTag">{{ `${chsSecondaryTag(item.primary.tag)}: ${item.primary.value}` }}</h3>
+                <h3 class="primaryTag">{{ displayTag(item.primary.tag, item.primary.value) }}</h3>
 
                 <el-tag
                     size="mini"
@@ -20,7 +20,7 @@
                     v-for="(tag, index) in item.secondary"
                     :key="index"
                 >
-                    {{ `${chsSecondaryTag(tag.tag)}: ${tag.value}` }}
+                    {{ displayTag(tag.tag, tag.value) }}
                 </el-tag>
             </el-col>
         </el-row>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { chsSecondaryTag } from "@/common/chs";
+import { displayTag } from "@/utils";
 
 export default {
     name: "ArtifactItem",
@@ -62,7 +62,7 @@ export default {
         }
     },
     methods: {
-        chsSecondaryTag,
+        displayTag,
     },
     computed: {
         cardStyle: function() {

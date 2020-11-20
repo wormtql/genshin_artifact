@@ -98,9 +98,9 @@ export default {
     justify-content: center;
 }
 
-.root {
-    /* background: #123456; */
-}
+/* .root {
+    background: #123456;
+} */
 
 .item {
     padding: 0 32px;

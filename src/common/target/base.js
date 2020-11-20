@@ -2,7 +2,7 @@ function d_all(config, attribute) {
     const bonusProperty = config.element + "Bonus";
 
     let fBonus = attribute[bonusProperty];
-    let attack = attribute.attack1 + attribute.attack2;
+    let attack = attribute.attack1 + attribute.attack2 + attribute.attack3;
     let attack1 = attribute.attack1;
 
     let aRatio = config.aRatio;
@@ -108,31 +108,39 @@ export function all(config) {
         let eFreq = config.eFreq / sum;
         qFreq = qFreq / sum;
 
-        const attack = attribute.attack1 + attribute.attack2;
+        const attack = attribute.attack1 + attribute.attack2 + attribute.attack3;
         const critical = Math.max(attribute.critical, 1);
+        const bCritical = Math.max(attribute.bCritical, 1);
+        const eCritical = Math.max(attribute.eCritical, 1);
+        const qCritical = Math.max(attribute.qCritical, 1);
 
         let a 
             = (1 - config.aRatio) * (1 + attribute.physicalBonus + attribute.aBonus + attribute.bonus) * config.aTimes         // 物理伤害
             + (config.aRatio) * (1 + attribute[bonusProperty] + attribute.aBonus + attribute.bonus) * config.aTimes            // 元素伤害
         ;
+        a = critical * (1 + attribute.criticalDamage) + (1 - critical) * 1;
+
         let b
             = (1 - config.bRatio) * (1 + attribute.physicalBonus + attribute.bBonus + attribute.bonus) * config.bTimes
             + (config.bRatio) * (1 + attribute[bonusProperty] + attribute.bBonus + attribute.bonus) * config.bTimes
         ;
+        b = bCritical * (1 + attribute.criticalDamage) + (1 - bCritical) * 1;
+
         let e
             = (1 + attribute[bonusProperty] + attribute.eBonus + attribute.bonus) * config.eTimes
         ;
+        e = eCritical * (1 + attribute.criticalDamage) + (1 - eCritical) * 1;
+
         let q
             = (1 + attribute[bonusProperty] + attribute.qBonus + attribute.bonus) * config.qTimes
         ;
+        q = qCritical * (1 + attribute.criticalDamage) + (1 - qCritical) * 1;
 
-        let expect = a * aFreq + b * bFreq + e * eFreq + q * qFreq;
-        let crit = critical * (1 + attribute.criticalDamage) * expect * attack;
-        let nonCrit = (1 - critical) * expect * attack;
+        let expect = (a * aFreq + b * bFreq + e * eFreq + q * qFreq) * attack;
 
         let ret = {
             "deritives": d_all(config, attribute),
-            "value": crit + nonCrit
+            "value": expect,
         }
 
         return ret;

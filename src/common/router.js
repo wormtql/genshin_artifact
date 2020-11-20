@@ -1,13 +1,31 @@
-import IntroPage from "@/pages/intro_page/IntroPage";
-import ArtifactsPage from "@/pages/artifacts_page/ArtifactsPage";
-// import CharacterPage from "@/pages/character_page/CharacterPage";
-import CalculatePage from "@/pages/calculate_page/CalculatePage";
-import CustomCharacterPage from "@/pages/custom_character_page/CustomCharacterPage";
-import CustomWeaponPage from "@/pages/custom_weapon_page/CustomWeaponPage";
-import CustomTargetPage from "@/pages/custom_target_page/CustomTargetPage";
-import PanelCalculatePage from "@/pages/panel_calculate_page/PanelCalculatePage";
-import UseCasePage from "@/pages/use_case_page/UseCasePage";
-import AlgPage from "@/pages/alg_page/AlgPage";
+// import IntroPage from "@/pages/intro_page/IntroPage";
+// import ArtifactsPage from "@/pages/artifacts_page/ArtifactsPage";
+// import CalculatePage from "@/pages/calculate_page/CalculatePage";
+// import CustomCharacterPage from "@/pages/custom_character_page/CustomCharacterPage";
+// import CustomWeaponPage from "@/pages/custom_weapon_page/CustomWeaponPage";
+// import CustomTargetPage from "@/pages/custom_target_page/CustomTargetPage";
+// import PanelCalculatePage from "@/pages/panel_calculate_page/PanelCalculatePage";
+// import UseCasePage from "@/pages/use_case_page/UseCasePage";
+// import AlgPage from "@/pages/alg_page/AlgPage";
+
+// import LoadingComponent from "@/components/LoadingComponent";
+
+const IntroPage = () => import("@/pages/intro_page/IntroPage");
+const ArtifactsPage = () => import("@/pages/artifacts_page/ArtifactsPage");
+const CalculatePage = () => import("@/pages/calculate_page/CalculatePage");
+const CustomCharacterPage = () => import("@/pages/custom_character_page/CustomCharacterPage");
+const CustomWeaponPage = () => import("@/pages/custom_weapon_page/CustomWeaponPage");
+const CustomTargetPage = () => import("@/pages/custom_target_page/CustomTargetPage");
+// const PanelCalculatePage = () => ({
+//     component: import("@/pages/panel_calculate_page/PanelCalculatePage"),
+//     loading: LoadingComponent,
+//     error: LoadingComponent,
+//     delay: 200,
+//     timeout: 3000,
+// });
+const PanelCalculatePage = () => import("@/pages/panel_calculate_page/PanelCalculatePage");
+const UseCasePage = () => import("@/pages/use_case_page/UseCasePage");
+const AlgPage = () => import("@/pages/alg_page/AlgPage");
 
 import VueRouter from "vue-router";
 

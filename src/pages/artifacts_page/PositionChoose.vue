@@ -1,7 +1,7 @@
 <template>
     <div class="positionChoose">
         <div
-            v-for="(item) in Object.keys(detailName[setName])"
+            v-for="item in Object.keys(detailName[setName])"
             :key="item"
             :class="{chooseItem: true, active: item === value}"
             @click="choose(item)"

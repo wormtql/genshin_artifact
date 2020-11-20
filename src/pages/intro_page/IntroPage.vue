@@ -5,13 +5,15 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
-        <p class="title">原神圣遗物HUB V1.0.1</p>
+        <p class="title">原神圣遗物HUB V1.1.0</p>
         <!-- <p>Artifacts HUB</p> -->
         <p style="margin-bottom: 32px">
             <span style="color: #409EFF">圣遗物自动配装</span> / 
             <span style="color: #67C23A">角色养成方向推荐</span> / 
             <span style="color: #E6A23C">面板计算</span>
         </p>
+
+        <!-- <el-alert title="注意：所有数值不用换算，均照游戏中的"></el-alert> -->
 
         <!-- <h3>介绍</h3>
         <ul>
@@ -115,10 +117,10 @@
                     <p style="font-size: 1.2rem; margin: 0 0 16px 0">捐助</p>
                     <el-row :gutter="16">
                         <el-col :span="12">
-                            <el-image src="./wechat.jpg"></el-image>
+                            <el-image :src="wechat"></el-image>
                         </el-col>
                         <el-col :span="12">
-                            <el-image src="./alipay.jpg"></el-image>
+                            <el-image :src="alipay"></el-image>
                         </el-col>
                     </el-row>
                 </el-card>
@@ -134,6 +136,9 @@
 </template>
 
 <script>
+import wechat from "./wechat.jpg";
+import alipay from "./alipay.jpg";
+
 export default {
     name: "IntroPage",
     data: function() {
@@ -143,6 +148,9 @@ export default {
             issue: "https://github.com/wormtql/genshin_artifact/issues",
             nga: "https://bbs.nga.cn/read.php?tid=24184608",
             wiki: "https://wiki.biligame.com/ys/%E9%A6%96%E9%A1%B5",
+
+            wechat,
+            alipay,
         }
     },
     methods: {

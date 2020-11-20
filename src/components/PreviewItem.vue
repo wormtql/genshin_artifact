@@ -16,7 +16,7 @@
             v-for="key in filteredSecondaryTags"
             :key="'secondary' + key"
         >
-            {{ chsSecondaryTag(key) + "：" + value.secondary[key] }}
+            {{ displayTag(key, value.secondary[key]) }}
         </el-tag>
     <!-- </el-card> -->
     </div>
@@ -24,6 +24,7 @@
 
 <script>
 import { chsPrimaryTag, chsSecondaryTag } from "@/common/chs";
+import { displayTag } from "@/utils";
 
 export default {
     name: "PreviewItem",
@@ -35,6 +36,7 @@ export default {
     methods: {
         chsPrimaryTag,
         chsSecondaryTag,
+        displayTag,
     },
     computed: {
         filteredPrimaryTags() {

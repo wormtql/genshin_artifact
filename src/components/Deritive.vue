@@ -1,11 +1,25 @@
 <template>
-    <v-chart :options="options"></v-chart>
+    <div class="root">
+        <v-chart :options="options"></v-chart>
+        <div>
+            <span class="recommend-title">效益最大的属性（降序）：</span>
+            <el-tag
+                v-for="attr in recommendation"
+                :key="attr"
+                class="recommend"
+            >
+                {{ attr }}
+            </el-tag>
+        </div>
+    </div>
 </template>
 
 <script>
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/polar'
+
+import { recommendAttribute } from "@/utils";
 
 export default {
     name: "Deritive",
@@ -40,7 +54,28 @@ export default {
                     })),
                 }
             }
+        },
+        recommendation() {
+            return recommendAttribute(this.data);
         }
     }
 }
 </script>
+
+<style scoped>
+.root {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.recommend {
+    margin: 8px 8px 0 0;
+}
+
+.recommend-title {
+    font-size: 14px;
+    color: #606266;
+    /* border: 1px solid gray; */
+}
+</style>

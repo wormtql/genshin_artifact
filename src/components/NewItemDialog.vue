@@ -12,7 +12,7 @@
         <el-tag v-show="!checkName[0]" type="danger">{{ checkName[1] }}</el-tag>
 
         <h2>{{ primaryName }}</h2>
-        <div><el-tag style="margin-bottom: 8px">注意百分数应写为小数，例如3%应写成0.03</el-tag></div>
+        <!-- <div><el-tag style="margin-bottom: 8px">注意百分数应写为小数，例如3%应写成0.03</el-tag></div> -->
         <el-button
             icon="el-icon-plus"
             circle
@@ -78,6 +78,7 @@
 <script>
 import { primaryTagsList, secondaryTagsList } from "@/common/const/tags";
 import { chsPrimaryTag, chsSecondaryTag } from "@/common/chs";
+import { toRealValue } from "@/utils";
 // import { mapState } from "vuex";
 
 export default {
@@ -115,7 +116,7 @@ export default {
             })),
 
             primaryTags: [{tag: "attack", value: "100"}],
-            secondaryTags: [{tag: "attack2", value: "0.2"}],
+            secondaryTags: [{tag: "attack2", value: "20"}],
             name: "",
         }
     },
@@ -154,7 +155,7 @@ export default {
             let primary = {};
             for (let i = 0; i < this.primaryTags.length; i++) {
                 let name = this.primaryTags[i].tag;
-                let value = Number(this.primaryTags[i].value);
+                let value = toRealValue(name, Number(this.primaryTags[i].value));
                 if (primary[name]) {
                     primary[name] += value;
                 } else {
@@ -165,7 +166,7 @@ export default {
             let secondary = {};
             for (let i = 0; i < this.secondaryTags.length; i++) {
                 let name = this.secondaryTags[i].tag;
-                let value = Number(this.secondaryTags[i].value);
+                let value = toRealValue(name, Number(this.secondaryTags[i].value));
                 if (secondary[name]) {
                     secondary[name] += value;
                 } else {

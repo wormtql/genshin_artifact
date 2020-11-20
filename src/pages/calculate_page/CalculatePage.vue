@@ -20,6 +20,7 @@
                     <el-radio-button label="weapon">武器</el-radio-button>
                     <el-radio-button label="target">目标函数</el-radio-button>
                     <el-radio-button label="artifact">圣遗物</el-radio-button>
+                    <el-radio-button label="artifact-param">圣遗物参数</el-radio-button>
                 </el-radio-group>
 
                 <select-character v-model="selectedCharacter" v-show="current === 'character'"></select-character>
@@ -37,6 +38,8 @@
                     </template>
                 </el-alert>
                 <select-artifact v-model="selectedArtifact" v-show="current === 'artifact'"></select-artifact>
+
+                <select-artifact-param v-model="artifactParam" v-show="current === 'artifact-param'"></select-artifact-param>
 
                 <el-divider></el-divider>
                 <div style="box-shadow: 0 2px 4px rgba(0,0,0,.12), 0 0 6px rgba(0,0,0,.04); padding: 16px; border: 1px solid #DCDFE6">
@@ -84,6 +87,7 @@ import SelectCharacter from "@/components/SelectCharacter";
 import SelectWeapon from "@/components/SelectWeapon";
 import SelectTarget from "@/components/SelectTarget";
 import SelectArtifact from "@/components/select_artifact/SelectArtifact";
+import SelectArtifactParam from "@/components/SelectArtifactParam";
 import ResultDialog from "./ResultDialog";
 import AttributePanel from "@/components/AttributePanel";
 import PreviewItem from "@/components/PreviewItem";
@@ -92,7 +96,7 @@ import { plans as plansPreset, getTargetFunction } from "@/common/target";
 import { compose, getCharacterAttribute, getWeaponAttribute } from "genshin_panel";
 import { convertArtifact } from "@/utils/common";
 import { mapState } from "vuex";
-import { characterPreset, weaponPreset } from "@/common/basic";
+// import { characterPreset, weaponPreset } from "@/common/basic";
 
 export default {
     name: "CalculatePage",
@@ -103,19 +107,21 @@ export default {
         SelectWeapon,
         SelectTarget,
         SelectArtifact,
-        PreviewItem,
+        SelectArtifactParam,
+        PreviewItem
     },
     data: function() {
         return {
+            // 目标函数预设
             plansPreset,
 
             showResultDialog: false,
 
             // 计算结果
-            resultCombo: [],
-            resultValue: -1,
-            resultAttribute: {},
-            resultDeritive: [],
+            resultCombo: [],            // 最佳组合
+            resultValue: -1,            // 最大目标值
+            resultAttribute: {},        // 结果属性值
+            resultDeritive: [],         // 结果梯度
 
             // 是否正在计算
             isComputing: false,
@@ -123,12 +129,13 @@ export default {
             // 是否已经计算过
             isCalculated: false,
 
-            characterPreset, weaponPreset,
+            // characterPreset, weaponPreset,
 
             selectedCharacter: "keqing-70-0",
             selectedWeapon: "heijian-70-0",
             selectedTarget: "keqing-normal",
             selectedArtifact: [-1, -1, -1, -1, -1],
+            artifactParam: {},
 
             current: "character",
         }
@@ -180,6 +187,7 @@ export default {
                 tempArts.head = this.head.filter(item => !item.omit).map(item => convertArtifact(item));
             }
 
+            // 填充数量为0的位置
             if (tempArts.flower.length === 0) {
                 tempArts.flower.push(null);
             }
@@ -196,13 +204,13 @@ export default {
                 tempArts.sand.push(null);
             }
 
+            // 各位置的数量
             let cupSize = tempArts.cup.length;
             let flowerSize = tempArts.flower.length;
             let featherSize = tempArts.feather.length;
             let sandSize = tempArts.sand.length;
             let headSize = tempArts.head.length;
             
-            // let targetFunction = getTargetFunction(this.selectedTargetFunction);
             let maxCombo = [];
             let maxValue = { value: -Infinity };
             let maxAttribute = {};
@@ -225,7 +233,7 @@ export default {
                                 // applyArtifacts(attribute, arts);
                                 // window.console.log(attribute);
                                 let attribute = compose(
-                                    this.selectedCharacterAttribute, this.selectedWeaponAttribute, arts
+                                    this.selectedCharacterAttribute, this.selectedWeaponAttribute, arts, this.artifactParam
                                 );
 
                                 let newValue = this.targetFunction(attribute);
@@ -320,7 +328,7 @@ export default {
                     reject(e);
                 }
             }).then(({combo, value, attribute}) => {
-                // window.console.log(combo);
+                // window.console.log(attribute);
                 this.showResultDialog = true;
                 this.resultCombo = combo;
                 this.resultValue = value.value;
@@ -337,6 +345,7 @@ export default {
         }
     },
     computed: {
+        // 选中的角色的属性
         selectedCharacterAttribute() {
             if (this.customedCharacters[this.selectedCharacter]) {
                 return this.customedCharacters[this.selectedCharacter];
@@ -344,6 +353,7 @@ export default {
                 return getCharacterAttribute(this.selectedCharacter);
             }
         },
+        // 选中的武器的属性
         selectedWeaponAttribute() {
             if (this.customedWeapons[this.selectedWeapon]) {
                 return this.customedWeapons[this.selectedWeapon];
@@ -351,6 +361,7 @@ export default {
                 return getWeaponAttribute(this.selectedWeapon);
             }
         },
+        // 选中的目标函数的真正的函数
         targetFunction() {
             if (this.customedTargets[this.selectedTarget]) {
                 return this.customedTargets[this.selectedTarget].calc;
