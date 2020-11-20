@@ -5,7 +5,7 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
-        <p class="title">原神圣遗物HUB V1.1.0</p>
+        <p class="title">原神圣遗物HUB V1.1.1</p>
         <!-- <p>Artifacts HUB</p> -->
         <p style="margin-bottom: 32px">
             <span style="color: #409EFF">圣遗物自动配装</span> / 

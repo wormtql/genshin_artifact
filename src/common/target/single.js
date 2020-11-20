@@ -9,25 +9,26 @@ function createSingle(property) {
 }
 
 function attack(attribute) {
-    return { value: attribute.attack1 + attribute.attack2 };
+    return { value: attribute.attack1 + attribute.attack2 + attribute.attack3 };
 }
 
 function defend(attribute) {
-    return { value: attribute.defend1 + attribute.defend2 };
+    return { value: attribute.defend1 + attribute.defend2 + attribute.defend3 };
 }
 
 function life(attribute) {
-    return { value: attribute.life1 + attribute.life2 };
+    return { value: attribute.life1 + attribute.life2 + attribute.life3 };
 }
 
 function expected(attribute) {
     const bonus = attribute.physicalBonus + attribute.bonus + attribute.aBonus;
+    const attack = attribute.attack1 + attribute.attack2 + attribute.attack3;
 
     const a = Math.max(1, attribute.critical) * (1 + attribute.criticalDamage);
     const b = Math.max(1 - attribute.critical, 0);
 
     return {
-        value: (a + b) * (attribute.attack1 + attribute.attack2) * (1 + bonus)
+        value: (a + b) * attack * (1 + bonus),
     }
 }
 
