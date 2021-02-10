@@ -1,177 +1,104 @@
 import Vuex from "vuex";
 import Vue from "vue";
-import { getCharacterAttribute, getWeaponAttribute } from "genshin_panel";
 
 Vue.use(Vuex);
 
-export const store = new Vuex.Store({
+let id = 0;
+let flower = [];
+let feather = [];
+let sand = [];
+let cup = [];
+let head = [];
+let localStoredArtifacts = localStorage.getItem("artifacts");
+if (localStoredArtifacts) {
+    let obj = JSON.parse(localStoredArtifacts);
+
+    flower = obj.flower;
+    feather = obj.feather;
+    sand = obj.sand;
+    cup = obj.cup;
+    head = obj.head;
+
+    let temp = flower.concat(feather).concat(sand).concat(cup).concat(head);
+    for (let item of temp) {
+        id = Math.max(id, item.id);
+    }
+    id++;
+}
+
+let _store = new Vuex.Store({
     state: {
-        flower: [],
-        feather: [],
-        sand: [],
-        cup: [],
-        head: [],
-
-        id: 0,
-
-        // 是否自定义武器
-        customWeapon: false,
-        // 是否自定义角色
-        customCharacter: false,
-        selectedCharacter: "keqing-70-0",
-        selectedWeapon: "heijian-70-0",
-        selectedWeaponAttribute: getWeaponAttribute("heijian-70-0"),
-        selectedCharacterAttribute: getCharacterAttribute("keqing-70-0"),
-        selectedCustomWeapon: "",
-        selectedCustomCharacter: "",
-
-        // 当前选择的目标函数名称
-        selectedTargetFunction: "keqing_normal",
-
-        customedWeapons: {},
-        customedCharacters: {},
-
-        customedTargets: {},
+        flower,
+        feather,
+        sand,
+        cup,
+        head,
     },
     mutations: {
-        addCustomedTarget(state, target) {
-            Vue.set(state.customedTargets, target.name, target);
+        removeArtifact(state, obj) {
+            console.log(obj);
+            state[obj.position].splice(obj.index, 1);
         },
 
-        deleteCustomedTarget(state, name) {
-            Vue.delete(state.customedTargets, name);
+        addArtifact(state, item) {
+            item.id = id++;
+            state[item.position].push(item);
         },
 
-        addCustomedWeapon(state, weapon) {
-            Vue.set(state.customedWeapons, weapon.name, weapon.item);
+        toggleArtifact(state, obj) {
+            let art = state[obj.position][obj.index];
+            art.omit = !art.omit;
+        },
+    },
+    getters: {
+        flowerCount: state => {
+            return state.flower.length;
         },
 
-        deleteCustomedWeapon(state, name) {
-            Vue.delete(state.customedWeapons, name);
+        featherCount: state => {
+            return state.feather.length;
         },
 
-        addCustomedCharacter(state, ch) {
-            // state.customedCharacters[ch.name] = ch.item;
-            Vue.set(state.customedCharacters, ch.name, ch.item);
-            // window.console.log(state.customedCharacters);
+        sandCount: state => {
+            return state.sand.length;
         },
 
-        deleteCustomedCharacter(state, name) {
-            // delete state.customedCharacters[name]
-            Vue.delete(state.customedCharacters, name);
+        cupCount: state => {
+            return state.cup.length;
         },
 
-        setSelectedTargetFunction(state, target) {
-            state.selectedTargetFunction = target;
+        headCount: state => {
+            return state.head.length;
         },
 
-        setSelectedWeapon(state, weapon) {
-            state.selectedCustomWeapon = "";
-            state.customWeapon = false;
-            state.selectedWeapon = weapon;
-            state.selectedWeaponAttribute = getWeaponAttribute(weapon);
+        iterCount: (state, getters) => {
+            let a = Math.max(getters.flowerCount, 1);
+            let b = Math.max(getters.featherCount, 1);
+            let c = Math.max(getters.sandCount, 1);
+            let d = Math.max(getters.cupCount, 1);
+            let e = Math.max(getters.headCount, 1);
+
+            let prod = a * b * c * d * e;
+            return prod;
         },
 
-        setSelectedCharacter(state, character) {
-            state.selectedCustomCharacter = "";
-            state.customCharacter = false;
-            state.selectedCharacter = character;
-            state.selectedCharacterAttribute = getCharacterAttribute(character);
-        },
-
-        setSelectedCustomWeapon(state, weapon) {
-            state.selectedWeapon = "";
-            state.customWeapon = true;
-            state.selectedCustomWeapon = weapon;
-            state.selectedWeaponAttribute = state.customedWeapons[weapon];
-        },
-
-        setSelectedCustomCharacter(state, character) {
-            state.selectedCharacter = "";
-            state.customCharacter = true;
-            state.selectedCustomCharacter = character;
-            state.selectedCharacterAttribute = state.customedCharacters[character];
-        },
-
-        setSelectedWeaponAttribute(state, attr) {
-            state.customWeapon = true;
-            state.selectedWeaponAttribute = attr;
-        },
-
-        setSelectedCharacterAttribute(state, attr) {
-            state.customCharacter = true;
-            state.selectedCharacterAttribute = attr;
-        },
-
-        addFlower(state, item) {
-            // id no need to be reactive
-            item["id"] = state.id++;
-            state.flower.push(item);
-        },
-
-        deleteFlower(state, item) {
-            let index = state.flower.indexOf(item);
-            state.flower.splice(index, 1);
-        },
-        
-        setFlower(state, item) {
-            state.flower = item;
-        },
-
-        addFeather(state, item) {
-            item["id"] = state.id++;
-            state.feather.push(item);
-        },
-
-        deleteFeather(state, item) {
-            let index = state.feather.indexOf(item);
-            state.feather.splice(index, 1);
-        },
-
-        setFeather(state, item) {
-            state.feather = item;
-        },
-
-        addSand(state, item) {
-            item["id"] = state.id++;
-            state.sand.push(item);
-        },
-        
-        deleteSand(state, item) {
-            let index = state.sand.indexOf(item);
-            state.sand.splice(index, 1);
-        },
-
-        setSand(state, item) {
-            state.sand = item;
-        },
-
-        addCup(state, item) {
-            item["id"] = state.id++;
-            state.cup.push(item);
-        },
-
-        deleteCup(state, item) {
-            let index = state.cup.indexOf(item);
-            state.cup.splice(index, 1);
-        },
-
-        setCup(state, item) {
-            state.cup = item;
-        },
-
-        addHead(state, item) {
-            item["id"] = state.id++;
-            state.head.push(item);
-        },
-
-        deleteHead(state, item) {
-            let index = state.head.indexOf(item);
-            state.head.splice(index, 1);
-        },
-
-        setHead(state, item) {
-            state.head = item;
+        valid: (state, getters) => {
+            return getters.iterCount < 1500000;
         }
     }
 })
+
+_store.watch(
+    state => ({
+        flower: state.flower,
+        feather: state.feather,
+        sand: state.sand,
+        cup: state.cup,
+        head: state.head,
+    }),
+    newValue => {
+        localStorage.setItem("artifacts", JSON.stringify(newValue));
+    }
+);
+
+export default _store;

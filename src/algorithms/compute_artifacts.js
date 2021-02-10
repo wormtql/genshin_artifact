@@ -1,0 +1,146 @@
+import * as genshin from "genshin_panel";
+
+// interface Config {
+//     character: {
+//         name: string,
+//         level: number,
+//         ascend: boolean,
+//     },
+//     weapon: {
+//         name: string,
+//         level: number,
+//         ascend: boolean,
+//         refine: number
+//     },
+//     config: {
+//         artifactConfig: {...}             
+//     }
+//     target: {}
+// }
+
+function getCharacter(config) {
+    let c = config.character;
+    return new genshin.Character(c.name, c.level, c.ascend, 0);
+}
+
+function getWeapon(config) {
+    let w = config.weapon;
+    return new genshin.Weapon(w.name, w.level, w.ascend, w.refine);
+}
+
+function getArtifact(myArtifact) {
+    let temp = new genshin.ArtifactBuilder()
+        .setName(myArtifact.setName)
+        .position(myArtifact.position)
+        .mainTag(myArtifact.mainTag.name, myArtifact.mainTag.value)
+    ;
+
+    for (let tag of myArtifact.normalTags) {
+        temp.tag(tag.name, tag.value);
+    }
+
+    return temp.build();
+}
+
+export function computeArtifacts(artifacts, config) {
+    const character = getCharacter(config);
+    const weapon = getWeapon(config);
+
+    const flowerCount = Math.max(artifacts.flower.length, 1);
+    const featherCount = Math.max(artifacts.feather.length, 1);
+    const sandCount = Math.max(artifacts.sand.length, 1);
+    const cupCount = Math.max(artifacts.cup.length, 1);
+    const headCount = Math.max(artifacts.head.length, 1);
+
+    const targetFunc = config.targetFunction.func;
+    const check = config.check;
+
+    let maxValue = -Infinity;
+    let maxCombo = [];
+    let maxAttribute = {};
+    for (let floweri = 0; floweri < flowerCount; floweri++) {
+        let flower = artifacts.flower[floweri] || null;
+
+        for (let featheri = 0; featheri < featherCount; featheri++) {
+            let feather = artifacts.feather[featheri] || null;
+
+            if (!check([flower, feather])) {
+                continue;
+            }
+
+            for (let sandi = 0; sandi < sandCount; sandi++) {
+                let sand = artifacts.sand[sandi] || null;
+
+                if (!check([flower, feather, sand])) {
+                    continue;
+                }
+
+                for (let cupi = 0; cupi < cupCount; cupi++) {
+                    let cup = artifacts.cup[cupi] || null;
+
+                    if (!check([flower, feather, sand, cup])) {
+                        continue;
+                    }
+
+                    for (let headi = 0; headi < headCount; headi++) {
+                        let head = artifacts.head[headi] || null;
+
+                        if (!check([flower, feather, sand, cup, head])) {
+                            continue;
+                        }
+
+                        let builder = new genshin.AttributeBuilder();
+                        builder
+                            .character(character)
+                            .weapon(weapon)
+                        ;
+                        if (flower) {
+                            builder.artifact(getArtifact(flower));
+                        }
+                        if (feather) {
+                            builder.artifact(getArtifact(feather));
+                        }
+                        if (sand) {
+                            builder.artifact(getArtifact(sand));
+                        }
+                        if (cup) {
+                            builder.artifact(getArtifact(cup));
+                        }
+                        if (head) {
+                            builder.artifact(getArtifact(head));
+                        }
+                        let attribute = builder.build();
+
+                        let value = targetFunc(attribute);
+                        if (value > maxValue) {
+                            maxCombo = [flower, feather, sand, cup, head];
+                            maxAttribute = attribute;
+                            maxValue = value;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // console.log(maxCombo);
+
+    return {
+        value: maxValue,
+        combo: {
+            flower: maxCombo[0],
+            feather: maxCombo[1],
+            sand: maxCombo[2],
+            cup: maxCombo[3],
+            head: maxCombo[4]
+        },
+        attribute: maxAttribute,
+    };
+}
+
+// function _test() {
+//     let character = new genshin.Character("keqing", 90, false, 0);
+//     console.log(character);
+// }
+
+export default computeArtifacts;

@@ -1,0 +1,88 @@
+<template>
+    <div class="choose-artifact-set">
+        <div
+            v-for="(artData) in artifactsData"
+            :key="artData.eng"
+            :class="{active: artData.eng === value}"
+            class="item"
+            @click="$emit('input', artData.eng)"
+        >
+            <el-image
+                class="image"
+                :src="getArtifactThumbnailURL(artData.eng)"
+            >
+            </el-image>
+            <p class="text">
+                {{ artData.chs }}
+            </p>
+        </div>
+        
+        
+    </div>
+</template>
+
+<script>
+import { artifactsData } from "../../assets/artifacts";
+import { getArtifactThumbnailURL } from "../../utils/utils";
+
+export default {
+    name: "SetChoose",
+    created: function () {
+        this.artifactsData = Object.values(artifactsData);
+        this.artifactsData.sort((a, b) => {
+            return b.maxStar - a.maxStar;
+        });
+        this.getArtifactThumbnailURL = getArtifactThumbnailURL;
+    },
+    props: {
+        value: {
+            type: String
+        }
+    },
+    methods: {
+    }
+}
+</script>
+
+<style scoped>
+.image {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 5px #00000022;
+}
+
+.text {
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    width: 64px;
+}
+
+.choose-artifact-set {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item {
+    margin-right: 12px;
+    padding: 8px;
+    color: #777777;
+}
+
+.item:hover {
+    background: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border-radius: 3px;
+    transition: 300ms;
+}
+
+.item.active {
+    /* background: rgba(0, 0, 0, 0.1); */
+    border-radius: 3px;
+    /* color: white; */
+    background: none;
+    box-shadow: 0 0 20px 1px #00000033;
+}
+</style>

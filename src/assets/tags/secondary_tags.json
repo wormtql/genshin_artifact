@@ -1,0 +1,92 @@
+{
+    "cureEffect": {
+        "name": "cureEffect",
+        "chs": "治疗加成",
+        "percentage": true
+    },
+    "criticalDamage": {
+        "name": "criticalDamage",
+        "chs": "暴击伤害",
+        "percentage": true
+    },
+    "critical": {
+        "name": "critical",
+        "chs": "暴击率",
+        "percentage": true
+    },
+    "attackStatic": {
+        "name": "attackStatic",
+        "chs": "固定攻击力",
+        "percentage": false
+    },
+    "attackPercentage": {
+        "name": "attackPercentage",
+        "chs": "百分比攻击力",
+        "percentage": true
+    },
+    "elementalMastery": {
+        "name": "elementalMastery",
+        "chs": "元素精通",
+        "percentage": false
+    },
+    "recharge": {
+        "name": "recharge",
+        "chs": "元素充能效率",
+        "percentage": true
+    },
+    "lifePercentage": {
+        "name": "lifePercentage",
+        "chs": "百分比生命值",
+        "percentage": true
+    },
+    "defendPercentage": {
+        "name": "defendPercentage",
+        "chs": "百分比防御力",
+        "percentage": true
+    },
+    "lifeStatic": {
+        "name": "lifeStatic",
+        "chs": "固定生命值",
+        "percentage": false
+    },
+    "defendStatic": {
+        "name": "defendStatic",
+        "chs": "固定防御力",
+        "percentage": false
+    },
+    "thunderBonus": {
+        "name": "thunderBonus",
+        "chs": "雷元素伤害加成",
+        "percentage": true
+    },
+    "fireBonus": {
+        "name": "fireBonus",
+        "chs": "火元素伤害加成",
+        "percentage": true
+    },
+    "waterBonus": {
+        "name": "waterBonus",
+        "chs": "水元素伤害加成",
+        "percentage": true
+    },
+    "iceBonus": {
+        "name": "iceBonus",
+        "chs": "冰元素伤害加成",
+        "percentage": true
+    },
+    "windBonus": {
+        "name": "windBonus",
+        "chs": "风元素伤害加成",
+        "percentage": true
+    },
+    "rockBonus": {
+        "name": "rockBonus",
+        "chs": "岩元素伤害加成",
+        "percentage": true
+    },
+    "physicalBonus": {
+        "name": "physicalBonus",
+        "chs": "物理伤害加成",
+        "percentage": true
+    }
+}

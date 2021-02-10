@@ -38,8 +38,14 @@ import {
   MenuItemGroup,
   Breadcrumb,
   BreadcrumbItem,
+  Steps,
+  Step,
+  Loading,
 } from "element-ui";
 
+Vue.use(Loading);
+Vue.use(Step);
+Vue.use(Steps);
 Vue.use(Dialog);
 Vue.use(Menu);
 Vue.use(MenuItem);
@@ -93,7 +99,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Router from "./common/router";
-import { store } from "./common/store";
+import store from "./common/store";
 
 import App from './App.vue';
 
