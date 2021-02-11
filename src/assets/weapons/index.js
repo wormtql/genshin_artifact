@@ -8,5 +8,4 @@ function importAll(r) {
 }
 
 importAll(require.context("./data", true, /index\.js$/));
-console.log(cache);
 export const weaponsData = cache;

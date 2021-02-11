@@ -1,10 +1,10 @@
-const IntroPage = () => import("@/pages/intro_page/IntroPage");
-const ArtifactsPage = () => import("@/pages/artifacts_page/ArtifactsPage");
+const IntroPage = () => import("@page/IntroPage");
+const ArtifactsPage = () => import("@page/ArtifactsPage");
 
 // const UseCasePage = () => import("@/pages/use_case_page/UseCasePage");
 // const AlgPage = () => import("@/pages/alg_page/AlgPage");
 
-const ArtifactsPlanPage = () => import(/* webpackChunkName: "artifacts-plan-page" */ "@/pages/artifacts_plan_page");
+const ArtifactsPlanPage = () => import(/* webpackChunkName: "artifacts-plan-page" */ "@page/ArtifactsPlanPage");
 
 import VueRouter from "vue-router";
 
