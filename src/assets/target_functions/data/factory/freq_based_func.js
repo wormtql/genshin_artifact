@@ -23,23 +23,23 @@ export default function (config) {
             = (1 - config.aRatio) * (1 + attribute.physicalBonus + attribute.aBonus + attribute.bonus) * config.aTimes         // 物理伤害
             + (config.aRatio) * (1 + attribute[bonusProperty] + attribute.aBonus + attribute.bonus) * config.aTimes            // 元素伤害
         ;
-        a = critical * (1 + attribute.criticalDamage) + (1 - critical) * 1;
+        a = (critical * attribute.criticalDamage + 1) * a;
 
         let b
             = (1 - config.bRatio) * (1 + attribute.physicalBonus + attribute.bBonus + attribute.bonus) * config.bTimes
             + (config.bRatio) * (1 + attribute[bonusProperty] + attribute.bBonus + attribute.bonus) * config.bTimes
         ;
-        b = bCritical * (1 + attribute.criticalDamage) + (1 - bCritical) * 1;
+        b = (bCritical * attribute.criticalDamage + 1) * b;
 
         let e
             = (1 + attribute[bonusProperty] + attribute.eBonus + attribute.bonus) * config.eTimes
         ;
-        e = eCritical * (1 + attribute.criticalDamage) + (1 - eCritical) * 1;
+        e = (eCritical * attribute.criticalDamage + 1) * e;
 
         let q
             = (1 + attribute[bonusProperty] + attribute.qBonus + attribute.bonus) * config.qTimes
         ;
-        q = qCritical * (1 + attribute.criticalDamage) + (1 - qCritical) * 1;
+        q = (qCritical * attribute.criticalDamage + 1) * q;
 
         let expect = (a * aFreq + b * bFreq + e * eFreq + q * qFreq) * attack;
 

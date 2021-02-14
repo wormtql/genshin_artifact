@@ -5,8 +5,9 @@
         >
             <div
                 :key="'title' + step"
-                class="title hand"
+                class="title"
                 :class="{current: index === pointer, past: index < pointer, future: index > pointer}"
+                @click="handleClick(index)"
             >
                 {{ step }}
             </div>
@@ -31,6 +32,13 @@ export default {
             type: Number,
             default: 0,
         }
+    },
+    methods: {
+        handleClick(index) {
+            if (index < this.pointer) {
+                this.$emit("navigate", index);
+            }
+        }
     }
 }
 </script>
@@ -38,9 +46,9 @@ export default {
 <style scoped>
 .my-step {
     display: flex;
-    background: rgba(0, 0, 0, 0.05);
+    background: #f5f7fa;
     border-radius: 3px;
-    height: 32px;
+    height: 48px;
 }
 
 .title {
@@ -51,15 +59,15 @@ export default {
     margin: 0;
     text-align: center;
     font-size: 14px;
-    line-height: 32px;
+    line-height: 48px;
     transition: 150ms;
     color: #555;
+    margin: 0 16px;
 }
 
 
 .divider {
-    background: red;
-    width: 32px;
+    width: 12px;
     position: relative;
 }
 
@@ -68,7 +76,7 @@ export default {
     border-bottom: 1px solid #888;
     position: absolute;
     left: 0;
-    top: 0;
+    top: 50%;
     width: 12px;
     transform: translateY(-4.24px) rotateZ(45deg);
 }
@@ -78,20 +86,29 @@ export default {
     border-bottom: 1px solid #888;
     position: absolute;
     left: 0;
-    top: 0;
+    top: 50%;
     width: 12px;
     transform: translateY(4.24px) rotateZ(-45deg);
 }
 
 .current {
-    color: green;
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+    background: #f5f7fa;
+    color: #303133;
+    border-radius: 3px;
 }
 
 .past {
-    color: blue;
+    color: #409eff;
+    cursor: pointer;
+}
+
+.past:hover {
+    color: #6eb7ff;
 }
 
 .future {
-    color: gray;
+    color: #c0c4cc;
 }
 </style>

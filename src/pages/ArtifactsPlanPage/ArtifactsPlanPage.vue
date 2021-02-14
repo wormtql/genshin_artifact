@@ -7,22 +7,11 @@
 
         <div v-loading.fullscreen.lock="calculating"></div>
 
-        <!-- <el-steps simple :active="currentstep">
-            <el-step title="角色"></el-step>
-            <el-step title="角色等级"></el-step>
-            <el-step title="武器"></el-step>
-            <el-step title="武器等级"></el-step>
-            <el-step title="目标"></el-step>
-            <el-step title="配置"></el-step>
-            <el-step title="结果"></el-step>
-        </el-steps> -->
         <my-step
             :steps="['角色', '角色等级', '武器', '武器等级', '目标', '配置', '结果']"
+            :pointer="currentstep"
+            @navigate="currentstep = $event"
         ></my-step>
-
-        <div class="tool">
-            <el-button @click="goBack">上一步</el-button>
-        </div>
 
         <div class="choose-div">
             <transition name="fade" mode="out-in">
@@ -46,6 +35,7 @@
                 ></select-weapon>
 
                 <select-weapon-level
+                    :star="selectedWeaponData.star"
                     @select="handleSelectWeaponLevel"
                     v-else-if="currentstep === 3"
                     class="step-div"
@@ -77,6 +67,7 @@
 
 <script>
 import { charactersData } from "@asset/characters";
+import { weaponsData } from "@asset/weapons";
 import { targetFunctionsData } from "@asset/target_functions";
 import compute from "@alg/compute_artifacts";
 
@@ -228,6 +219,7 @@ export default {
                         artifacts: Object.values(result.combo),
                         value: result.value,
                         attribute: result.attribute,
+                        error: result.error,
                     };
                     this.calculating = false;
                 }, 200);
@@ -259,19 +251,14 @@ export default {
                 head,
             };
         },
-
-        /**
-         * go back to previous step
-         */
-        goBack() {
-            if (this.currentstep > 0) {
-                this.currentstep -= 1;
-            }
-        }
     },
     computed: {
         selectedCharacterData() {
             return charactersData[this.selected.characterName];
+        },
+
+        selectedWeaponData() {
+            return weaponsData[this.selected.weaponName];
         },
 
         characterWeapon() {
@@ -302,9 +289,5 @@ export default {
 .fade-leave-to {
     opacity: 0;
     /* transform: translateX(-100%); */
-}
-
-.tool {
-    margin-top: 16px;
 }
 </style>

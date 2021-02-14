@@ -1,15 +1,17 @@
 <template>
     <div>
-        <h3 class="title">精炼等级</h3>
-        <div class="refine-div">
-            <span
-                v-for="i in 5"
-                :key="i"
-                class="item"
-                :class="{active: refine === i}"
-                @click="refine = i"
-            >{{ i }}</span>
-        </div>
+        <template v-if="star >= 3">
+            <h3 class="title">精炼等级</h3>
+            <div class="refine-div">
+                <span
+                    v-for="i in 5"
+                    :key="i"
+                    class="item"
+                    :class="{active: refine === i}"
+                    @click="refine = i"
+                >{{ i }}</span>
+            </div>
+        </template>
 
         <h3 class="title">武器等级</h3>
         <div class="panel">
@@ -63,35 +65,44 @@
                 class="item"
                 @click="handleClickLevel(i + 60)"
             >{{ i + 60 }}</span>
-            <span class="item special" @click="handleClickLevel('70-')">70-</span>
+            <span class="item special" @click="handleClickLevel('70-')" v-if="star >= 3">70-</span>
+            <span class="item" @click="handleClickLevel('70')" v-else>70</span>
         </div>
 
-        <div class="panel">
-            <span class="item special" @click="handleClickLevel('70+')">70+</span>
-            <span
-                v-for="i in 9"
-                :key="i + 70"
-                class="item"
-                @click="handleClickLevel(i + 70)"
-            >{{ i + 70 }}</span>
-            <span class="item special" @click="handleClickLevel('80-')">80-</span>
-        </div>
+        <template v-if="star >= 3">
+            <div class="panel">
+                <span class="item special" @click="handleClickLevel('70+')">70+</span>
+                <span
+                    v-for="i in 9"
+                    :key="i + 70"
+                    class="item"
+                    @click="handleClickLevel(i + 70)"
+                >{{ i + 70 }}</span>
+                <span class="item special" @click="handleClickLevel('80-')">80-</span>
+            </div>
 
-        <div class="panel">
-            <span class="item special" @click="handleClickLevel('80+')">80+</span>
-            <span
-                v-for="i in 10"
-                :key="i + 80"
-                class="item"
-                @click="handleClickLevel(i + 80)"
-            >{{ i + 80 }}</span>
-        </div>
+            <div class="panel">
+                <span class="item special" @click="handleClickLevel('80+')">80+</span>
+                <span
+                    v-for="i in 10"
+                    :key="i + 80"
+                    class="item"
+                    @click="handleClickLevel(i + 80)"
+                >{{ i + 80 }}</span>
+            </div>
+        </template>
     </div>
 </template>
 
 <script>
 export default {
     name: "SelectWeaponLevel",
+    props: {
+        star: {
+            type: Number,
+            required: true,
+        }
+    },
     data: function() {
         return {
             refine: 1,

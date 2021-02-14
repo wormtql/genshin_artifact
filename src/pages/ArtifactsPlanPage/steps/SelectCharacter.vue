@@ -29,6 +29,7 @@
                 v-for="character in elementCharData['rock']"
                 :key="character.name"
                 class="character-item"
+                @click="handleClickCharacter(character)"
             >
                 <img :src="character.cardURL" class="image">
                 <span class="text">{{ character.chs }}</span>

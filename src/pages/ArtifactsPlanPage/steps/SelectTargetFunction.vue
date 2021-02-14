@@ -115,7 +115,7 @@ export default {
 }
 
 .image {
-    width: 100px;
+    width: 64px;
     display: inline-block;
     vertical-align: top;
 }

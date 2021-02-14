@@ -13,6 +13,8 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
+        <el-alert title="在同一个浏览器下，正常情况下，数据会自动保存，只需录入一次圣遗物即可。推荐只录入20级圣遗物"></el-alert>
+
         <el-alert
             type="error"
             v-show="!$store.getters.valid"

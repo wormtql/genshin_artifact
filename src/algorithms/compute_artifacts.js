@@ -125,6 +125,15 @@ export function computeArtifacts(artifacts, config) {
 
     // console.log(maxCombo);
 
+    if (maxValue < 0) {
+        return {
+            value: -1,
+            combo: {},
+            attribute: null,
+            error: true,
+        }
+    }
+
     return {
         value: maxValue,
         combo: {
@@ -135,6 +144,7 @@ export function computeArtifacts(artifacts, config) {
             head: maxCombo[4]
         },
         attribute: maxAttribute,
+        error: false,
     };
 }
 

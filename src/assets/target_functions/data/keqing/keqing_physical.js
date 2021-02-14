@@ -15,13 +15,13 @@ let args = {
     eFreq: 10,
     eTimes: 3.276,
 
-    qFreq: 10,
+    qFreq: 5,
     qTimes: 6.558
 }
 
 export default {
     name: "keqingPhysical",
-    chs: "物理刻晴",
+    chs: "刻晴-物晴",
     description: [
         "1段E+重击",
         "平均1A3重击",

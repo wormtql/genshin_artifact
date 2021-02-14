@@ -84,8 +84,6 @@ Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$message = Message;
 
 import "element-ui/lib/theme-chalk/index.css";
-import ECharts from "vue-echarts";
-import "echarts/lib/chart/pie";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
@@ -110,7 +108,6 @@ library.add(faGithub, faQuestionCircle, faPercent, faComment, faDatabase);
 // new Clipboard(".clip");
 
 Vue.use(VueRouter);
-Vue.component("v-chart", ECharts);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false
@@ -120,3 +117,14 @@ new Vue({
   router: Router,
   store,
 }).$mount('#app')
+
+// console.log("刻师傅天下第一");
+console.log(`／ ￣￣ ＼
+|  ー  ー \\   /￣￣￣￣￣￣￣￣￣￣＼
+|   ◉  ◉ |  /                      \\
+\\     ▱  / ∠     刻师傅天下第一    /
+ ＼      イ   \\                     /
+／       ＼    \\___________________/
+/  |       \\ \\
+|  |        | |
+|    |               | |`);

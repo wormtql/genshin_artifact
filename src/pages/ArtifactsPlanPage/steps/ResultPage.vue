@@ -1,7 +1,12 @@
 <template>
     <div>
-        <div class="main-div">
+        <div class="main-div" v-if="!resultData.error">
             <div class="left">
+                <el-alert
+                    title="由于原神战斗体系比较复杂，许多buff为动态运行时效果（例如击中敌人时效果、仅对雷元素附着的效果、叠层数的效果等），而此处运算结果仅为静态buff的最优值，因此计算结果仅供参考"
+                    :closable="false"
+                >
+                </el-alert>
                 <h3 class="title">最佳搭配</h3>
                 <div class="artifact-div" v-if="!calculating">
                     <artifact-display
@@ -12,12 +17,15 @@
                     ></artifact-display>
                 </div>
 
-                <h3 class="title">最大值</h3>
-                <p class="max-value" v-if="!calculating">{{ resultData.value.toFixed(3) }}</p>
+                <!-- <h3 class="title">最大值</h3>
+                <p class="max-value" v-if="!calculating">{{ resultData.value.toFixed(3) }}</p> -->
             </div>
             <div class="right">
                 <attribute-panel :panel="resultData.attribute" style="width: 300px" v-if="!calculating"></attribute-panel>
             </div>
+        </div>
+        <div v-else>
+            没有合适的圣遗物
         </div>
     </div>
 </template>
@@ -78,6 +86,7 @@ export default {
 
 .left {
     flex: 1;
+    margin-right: 16px;
 }
 
 .main-div {

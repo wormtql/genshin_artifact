@@ -4,7 +4,7 @@ import createFreqBasedDamageFunction from "../factory/freq_based_func";
 let args = {
     element: "thunder",
 
-    aFreq: 60,
+    aFreq: 70,
     aRatio: 0.7,
     aTimes: 0.8522,
 
@@ -12,7 +12,7 @@ let args = {
     bRatio: 0.9,
     bTimes: 2.57,
 
-    eFreq: 15,
+    eFreq: 20,
     eTimes: 3.276,
 
     qFreq: 5,
@@ -39,9 +39,8 @@ let args = {
 
 export default {
     name: "keqingNormal",
-    chs: "雷伤刻晴",
+    chs: "刻晴-斩尽牛杂",
     description: [
-        "非常普通的输出手法",
         "2段E",
         "平均3A1重击",
     ],
