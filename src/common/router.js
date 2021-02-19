@@ -1,6 +1,21 @@
-const IntroPage = () => import(/* webpackChunkName: "intro-page" */ "@page/IntroPage");
-const ArtifactsPage = () => import(/* webpackChunkName: "artifacts-page" */"@page/ArtifactsPage");
-const ArtifactsPlanPage = () => import(/* webpackChunkName: "artifacts-plan-page" */ "@page/ArtifactsPlanPage");
+import LoadingComponent from "@c/LoadingComponent";
+import ErrorComponent from "@c/ErrorComponent";
+
+const IntroPage = () => ({
+    component: import(/* webpackChunkName: "intro-page" */ "@page/IntroPage"),
+    loading: LoadingComponent,
+    error: ErrorComponent,
+});
+const ArtifactsPage = () => ({
+    component: import(/* webpackChunkName: "artifacts-page" */"@page/ArtifactsPage"),
+    loading: LoadingComponent,
+    error: ErrorComponent,
+});
+const ArtifactsPlanPage = () => ({
+    component: import(/* webpackChunkName: "artifacts-plan-page" */ "@page/ArtifactsPlanPage"),
+    loading: LoadingComponent,
+    error: ErrorComponent,
+});
 
 import VueRouter from "vue-router";
 

@@ -117,15 +117,18 @@ export default {
     },
     computed: {
         attack() {
-            return this.panel.attack();
+            let p = this.panel;
+            return p.attackStatic + p.attackBasic + p.attackPercentage;
         },
 
         defend() {
-            return this.panel.defend();
+            let p = this.panel;
+            return p.defendStatic + p.defendBasic + p.defendPercentage;
         },
 
         life() {
-            return this.panel.life();
+            let p = this.panel;
+            return p.lifeStatic + p.lifeBasic + p.lifePercentage;
         }
     }
 }

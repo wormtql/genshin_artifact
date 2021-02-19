@@ -64,26 +64,12 @@
                 </el-select>
             </div>
         </div>
-
-        <!-- <h3 class="title">时之沙主词条</h3>
-        <div>
-            <div class="row">
-                <el-radio label="any" v-model="sandTag.mode" class="radio"></el-radio>
-            </div>
-            <div class="row">
-                <el-radio label="res" v-model="sandTag.mode" class="radio"></el-radio>
-                <el-select>
-
-                </el-select>
-            </div>
-        </div> -->
-
         <el-button type="primary" class="confirm-button" @click="handleConfirm">确定</el-button>
     </div>
 </template>
 
 <script>
-import { artifactsData } from "../../../assets/artifacts";
+import { artifactsData } from "@asset/artifacts";
 
 let allArtifactsName = Object.values(artifactsData).map(item => {
     return {
@@ -91,46 +77,6 @@ let allArtifactsName = Object.values(artifactsData).map(item => {
         chs: item.chs,
     };
 });
-
-function createCheckFunction(config) {
-    if (config.mode === "any") {
-        return function () {
-            return true;
-        };
-    }
-
-    let h;
-    if (config.mode === "2") {
-        h = {
-            [config.setName1]: 2,
-        };
-    } else if (config.mode === "22") {
-        h = {
-            [config.setName1]: 2,
-            [config.setName2]: 2,
-        };
-    } else if (config.mode === "4") {
-        h = {
-            [config.setName1]: 4
-        };
-    }
-
-    return function (currentSelected) {
-        let temp = Object.assign({}, h);
-        for (let art of currentSelected) {
-            // art might be null, indicating this position is empty
-            if (!art) {
-                continue;
-            }
-            if (temp[art.setName] && temp[art.setName] > 0) {
-                temp[art.setName]--;
-            }
-        }
-        let sum = Object.values(temp).reduce((a, b) => a + b);
-        let left = 5 - currentSelected.length;
-        return left >= sum;
-    };
-}
 
 export default {
     name: "Config",
@@ -144,11 +90,6 @@ export default {
             setName2: "archaicPetra",
             setName3: "archaicPetra",
             setName4: "archaicPetra",
-            
-            // sandTag: {
-            //     mode: "any",
-            //     tagName: "",
-            // }
         }
     },
     methods: {
@@ -165,8 +106,7 @@ export default {
                 temp.setName1 = this.setName4;
             }
 
-            let checkFunction = createCheckFunction(temp);
-            this.$emit("select", checkFunction);
+            this.$emit("select", temp);
         }
     }
 }

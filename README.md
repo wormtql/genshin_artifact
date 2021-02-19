@@ -1,4 +1,4 @@
-# genshin_artifacts
+# 莫娜占卜铺
   
 ## 简介
 《原神》圣遗物自动搭配
@@ -11,25 +11,8 @@
 ## 使用策略
 + 可以查看你的圣遗物能够最高堆到多少攻击、暴击率、暴击伤害等
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
+## 本地运行
+该网站没有后端，可以本地运行
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

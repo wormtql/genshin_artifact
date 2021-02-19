@@ -1,8 +1,7 @@
-import card from "./card.png";
+import card from "./card.jpg";
 
 export default {
     cardURL: card,
-    detailURL: "",
     name: "dadaliya",
     chs: "达达利亚",
     element: "water",

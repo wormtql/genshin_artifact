@@ -38,14 +38,10 @@ import {
   MenuItemGroup,
   Breadcrumb,
   BreadcrumbItem,
-  Steps,
-  Step,
   Loading,
 } from "element-ui";
 
 Vue.use(Loading);
-Vue.use(Step);
-Vue.use(Steps);
 Vue.use(Dialog);
 Vue.use(Menu);
 Vue.use(MenuItem);
@@ -95,13 +91,15 @@ import {
   faComment,
   faDatabase,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import VueAxios from "vue-axios";
 
 import Router from "./common/router";
 import store from "./common/store";
 
 import App from './App.vue';
 
-
+Vue.use(VueAxios, axios);
 library.add(faGithub, faQuestionCircle, faPercent, faComment, faDatabase);
 // import Clipboard from "clipboard";
 

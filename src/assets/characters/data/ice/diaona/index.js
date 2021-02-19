@@ -1,4 +1,4 @@
-import card from "./card.png";
+import card from "./card.jpg";
 
 export default {
     cardURL: card,

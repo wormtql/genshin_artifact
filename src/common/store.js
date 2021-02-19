@@ -13,11 +13,11 @@ let localStoredArtifacts = localStorage.getItem("artifacts");
 if (localStoredArtifacts) {
     let obj = JSON.parse(localStoredArtifacts);
 
-    flower = obj.flower;
-    feather = obj.feather;
-    sand = obj.sand;
-    cup = obj.cup;
-    head = obj.head;
+    flower = obj.flower || [];
+    feather = obj.feather || [];
+    sand = obj.sand || [];
+    cup = obj.cup || [];
+    head = obj.head || [];
 
     let temp = flower.concat(feather).concat(sand).concat(cup).concat(head);
     for (let item of temp) {
@@ -49,6 +49,12 @@ let _store = new Vuex.Store({
             let art = state[obj.position][obj.index];
             art.omit = !art.omit;
         },
+
+        setArtifacts(state, obj) {
+            ["flower", "feather", "sand", "cup", "head"].forEach(item => {
+                state[item] = obj[item];
+            })
+        }
     },
     getters: {
         flowerCount: state => {

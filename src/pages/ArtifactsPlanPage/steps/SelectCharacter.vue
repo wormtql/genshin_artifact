@@ -107,7 +107,7 @@ export default {
 
 <style scoped>
 .character-item {
-    width: 140px;
+    width: 96px;
     cursor: pointer;
     margin-right: 12px;
     padding: 8px;
@@ -129,7 +129,7 @@ export default {
 
 .image {
     border-radius: 5px;
-    width: 140px;
+    width: 96px;
     /* height: 250px; */
     display: block;
 }

@@ -7,6 +7,19 @@
             @confirm="handleAddArtifact"
         ></add-artifact-dialog>
 
+        <import-json-dialog
+            :visible="importJsonDialogVisible"
+            @close="importJsonDialogVisible = false"
+            @confirm="(e) => { importJsonDialogVisible = false; handleImportJson(e) }"
+        >
+        </import-json-dialog>
+
+        <output-json-dialog
+            :visible="outputJsonDialogVisible"
+            @close="outputJsonDialogVisible = false"
+        >
+        </output-json-dialog>
+
         <!-- bread crumb -->
         <el-breadcrumb>
             <el-breadcrumb-item>圣遗物</el-breadcrumb-item>
@@ -31,6 +44,15 @@
             >
                 添加圣遗物
             </el-button>
+
+            <div class="tool-right">
+                <el-button @click="handleImportJsonClicked">
+                    导入json
+                </el-button>
+                <el-button @click="handleOutputJsonClicked">
+                    导出json
+                </el-button>
+            </div>
         </div>
 
         <!-- artifacts display -->
@@ -60,6 +82,8 @@
 
 <script>
 import AddArtifactDialog from "./AddArtifactDialog";
+import ImportJsonDialog from "./ImportJsonDialog";
+import OutputJsonDialog from "./OutputJsonDialog";
 import Artifact from "./Artifact";
 
 import { artifactsIcon } from "../../assets/artifacts";
@@ -68,6 +92,8 @@ export default {
     name: "ArtifactsPage",
     components: {
         AddArtifactDialog,
+        ImportJsonDialog,
+        OutputJsonDialog,
         Artifact,
     },
     created: function () {
@@ -106,6 +132,8 @@ export default {
             activeName: "flower",
 
             newDialogVisible: false,
+            importJsonDialogVisible: false,
+            outputJsonDialogVisible: false,
         }
     },
     methods: {
@@ -136,6 +164,23 @@ export default {
 
             this.$store.commit("addArtifact", item);
         },
+
+        handleImportJsonClicked() {
+            this.importJsonDialogVisible = true;
+        },
+
+        handleImportJson(json) {
+            try {
+                let obj = JSON.parse(json);
+                this.$store.commit("setArtifacts", obj);
+            } catch (_) {
+                this.$message.error("解析json出错，请检查json来源或格式");
+            }
+        },
+
+        handleOutputJsonClicked() {
+            this.outputJsonDialogVisible = true;
+        },
     }
 }
 </script>
@@ -154,5 +199,9 @@ export default {
 .tool-bar {
     margin-bottom: 16px;
     margin-top: 16px;
+}
+
+.tool-bar .tool-right {
+    float: right;
 }
 </style>

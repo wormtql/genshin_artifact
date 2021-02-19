@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { weaponsData } from "../../../assets/weapons";
+import { weaponsData } from "@asset/weapons";
 
 let weaponTypeMap = {
     "sword": [],
@@ -68,18 +68,19 @@ export default {
 
 <style scoped>
 .image {
-    width: 128px;
-    height: 128px;
+    width: 80%;
+    /* height: 64px; */
     border-radius: 50%;
-    display: block;
+    /* display: block; */
     /* background: rgba(240, 198, 62, 0.781); */
     /* border: 2px solid rgba(240, 198, 62, 0.781); */
-    border: 1px solid #00000022;
+    border: 1px solid #00000011;
+    transition: 300ms;
 }
 
 .text {
     display: block;
-    width: 128px;
+    width: 100%;
     box-sizing: border-box;
     text-align: center;
     font-size: 12px;
@@ -92,18 +93,21 @@ export default {
 }
 
 .item {
-    margin: 8px 20px 0 0;
-    padding: 8px;
+    width: 12.5%;
+    /* margin: 8px 20px 0 0; */
+    /* padding: 8px; */
     cursor: pointer;
     transition: 300ms;
     border-radius: 3px;
+    text-align: center;
+    padding: 8px 0;
     /* width: 11%; */
     /* min-width: 128px; */
 }
 
 .item:hover {
     /* background: rgba(240, 198, 62, 0.3); */
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .select-weapon {

@@ -12,10 +12,12 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/vue-fontawesome": "^2.0.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.14.0",
     "genshin_panel": "^2.0.2",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-axios": "^3.2.4"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
@@ -26,9 +28,12 @@
     "babel-plugin-component": "^1.1.1",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "image-minimizer-webpack-plugin": "^2.2.0",
+    "imagemin": "^7.0.1",
     "vue-router": "^3.4.8",
     "vue-template-compiler": "^2.6.11",
-    "vuex": "^3.5.1"
+    "vuex": "^3.5.1",
+    "worker-plugin": "^5.0.0"
   },
   "eslintConfig": {
     "root": true,

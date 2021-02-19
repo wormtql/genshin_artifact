@@ -68,8 +68,9 @@
 <script>
 import { charactersData } from "@asset/characters";
 import { weaponsData } from "@asset/weapons";
-import { targetFunctionsData } from "@asset/target_functions";
-import compute from "@alg/compute_artifacts";
+// import { targetFunctionsData } from "@asset/target_functions";
+// import compute from "@alg/compute_artifacts";
+import compute from "@alg/compute_artifacts_promise";
 
 import SelectCharacter from "./steps/SelectCharacter";
 import SelectCharacterLevel from "./steps/SelectCharacterLevel";
@@ -99,12 +100,15 @@ export default {
                 characterName: "",
                 characterLevel: 1,
                 characterAscend: false,
+
                 weaponName: "",
                 weaponLevel: 1,
                 weaponAscend: false,
                 weaponRefine: 1,
-                targetFunction: "",
-                checkFunction: null,
+
+                targetFuncName: "",
+
+                checkFunctionConfig: null,
             },
 
             resultData: {},
@@ -161,7 +165,7 @@ export default {
          * when target function is selected
          */
         handleSelectTargetFunction(name) {
-            this.selected.targetFunction = name;
+            this.selected.targetFuncName = name;
 
             this.currentstep++;
         },
@@ -169,8 +173,8 @@ export default {
         /**
          * when resctrictions are determined
          */
-        handleConfig(checkFunction) {
-            this.selected.checkFunction = checkFunction;
+        handleConfig(config) {
+            this.selected.checkFunctionConfig = config;
 
             if (!this.$store.getters.valid) {
                 this.$message.error("圣遗物数量过多，请禁用或删除明显更次的圣遗物");
@@ -186,43 +190,34 @@ export default {
          * start to compute
          */
         startCalculating() {
-            
-
-
-            let targetFunction = targetFunctionsData[this.selected.targetFunction];
-            let finalConfig = {
-                character: {
-                    name: this.selected.characterName,
-                    level: this.selected.characterLevel,
-                    ascend: this.selected.characterAscend,
-                },
-                weapon: {
-                    name: this.selected.weaponName,
-                    level: this.selected.weaponLevel,
-                    ascend: this.selected.weaponAscend,
-                    refine: this.selected.weaponRefine,
-                },
-                check: this.selected.checkFunction,
-                targetFunction,
-            }
-            // console.log(finalConfig);
-
+            let character = {
+                name: this.selected.characterName,
+                level: this.selected.characterLevel,
+                ascend: this.selected.characterAscend,
+            };
+            let weapon = {
+                name: this.selected.weaponName,
+                level: this.selected.weaponLevel,
+                ascend: this.selected.weaponAscend,
+                refine: this.selected.weaponRefine,
+            };
             let artifacts = this.getArtifacts();
-            // console.log(artifacts);
+            let checkFuncConfig = this.selected.checkFunctionConfig;
+            let targetFuncName = this.selected.targetFuncName;
 
             this.calculating = true;
 
-            this.$nextTick(() => {
-                setTimeout(() => {
-                    let result = compute(artifacts, finalConfig);
-                    this.resultData = {
-                        artifacts: Object.values(result.combo),
-                        value: result.value,
-                        attribute: result.attribute,
-                        error: result.error,
-                    };
-                    this.calculating = false;
-                }, 200);
+            // this is a web worker wrapped by a promise
+            compute(artifacts, character, weapon, targetFuncName, checkFuncConfig).then(result => {
+                this.resultData = {
+                    artifacts: Object.values(result.combo),
+                    value: result.value,
+                    attribute: result.attribute,
+                    error: result.error,
+                };
+                this.calculating = false;
+            }).catch(reason => {
+                this.$message.error("计算过程发生错误：" + reason);
             })
         },
 

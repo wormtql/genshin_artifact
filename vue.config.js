@@ -3,6 +3,8 @@ const fs = require("fs");
 const packageJson = fs.readFileSync("./package.json");
 const version = JSON.parse(packageJson).version || "no version";
 const webpack = require("webpack");
+const WorkerPlugin = require("worker-plugin");
+
 
 module.exports = {
     configureWebpack: {
@@ -13,6 +15,7 @@ module.exports = {
                 "@util": path.resolve(__dirname, "src/utils"),
                 "@alg": path.resolve(__dirname, "src/algorithms"),
                 "@page": path.resolve(__dirname, "src/pages"),
+                "@worker": path.resolve(__dirname, "src/workers"),
             }
         },
         plugins: [
@@ -20,7 +23,30 @@ module.exports = {
                 "process.env": {
                     VERSION: `"${version}"`
                 }
-            })
-        ]
-    }
+            }),
+            new WorkerPlugin(),
+        ],
+        // module: {
+        //     rules: [
+        //         {
+        //             test: /\.worker\.js$/,
+        //             use: [
+        //                 {
+        //                     loader: "worker-loader",
+        //                     options: {
+        //                         filename: "[hash].worker.js",
+        //                     }
+        //                 },
+        //                 "babel-loader"
+        //             ],
+        //         }
+        //     ]
+        // }
+        // externals: {
+        //     vue: "Vue",
+        //     "vue-router": "VueRouter",
+        //     vuex: "Vuex",
+        // }
+    },
+    productionSourceMap: false,
 }

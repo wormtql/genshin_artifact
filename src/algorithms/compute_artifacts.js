@@ -1,32 +1,6 @@
 import * as genshin from "genshin_panel";
-
-// interface Config {
-//     character: {
-//         name: string,
-//         level: number,
-//         ascend: boolean,
-//     },
-//     weapon: {
-//         name: string,
-//         level: number,
-//         ascend: boolean,
-//         refine: number
-//     },
-//     config: {
-//         artifactConfig: {...}             
-//     }
-//     target: {}
-// }
-
-function getCharacter(config) {
-    let c = config.character;
-    return new genshin.Character(c.name, c.level, c.ascend, 0);
-}
-
-function getWeapon(config) {
-    let w = config.weapon;
-    return new genshin.Weapon(w.name, w.level, w.ascend, w.refine);
-}
+import { targetFunctionsData } from "@asset/target_functions";
+import createCheckFunction from "./create_check_function";
 
 function getArtifact(myArtifact) {
     let temp = new genshin.ArtifactBuilder()
@@ -42,9 +16,11 @@ function getArtifact(myArtifact) {
     return temp.build();
 }
 
-export function computeArtifacts(artifacts, config) {
-    const character = getCharacter(config);
-    const weapon = getWeapon(config);
+function computeArtifacts(artifacts, c, w, targetFuncName, checkFuncConfig) {
+    const character = new genshin.Character(c.name, c.level, c.ascend, 0);
+    const weapon = new genshin.Weapon(w.name, w.level, w.ascend, w.refine);
+    const targetFunc = targetFunctionsData[targetFuncName].func;
+    const check = createCheckFunction(checkFuncConfig);
 
     const flowerCount = Math.max(artifacts.flower.length, 1);
     const featherCount = Math.max(artifacts.feather.length, 1);
@@ -52,8 +28,6 @@ export function computeArtifacts(artifacts, config) {
     const cupCount = Math.max(artifacts.cup.length, 1);
     const headCount = Math.max(artifacts.head.length, 1);
 
-    const targetFunc = config.targetFunction.func;
-    const check = config.check;
 
     let maxValue = -Infinity;
     let maxCombo = [];

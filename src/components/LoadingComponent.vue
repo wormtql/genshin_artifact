@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-alert title="loading"></el-alert>
+        加载中
     </div>
 </template>
 
