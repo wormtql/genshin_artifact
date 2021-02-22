@@ -41,7 +41,7 @@ export function convertDisplayTagValue(name, value) {
     }
 
     if (tagData.percentage) {
-        return value * 100;
+        return (value * 100).toFixed(1);
     }
     return value;
 }

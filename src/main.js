@@ -39,8 +39,14 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   Loading,
+  Drawer,
+  Timeline,
+  TimelineItem,
 } from "element-ui";
 
+Vue.use(Timeline);
+Vue.use(TimelineItem);
+Vue.use(Drawer);
 Vue.use(Loading);
 Vue.use(Dialog);
 Vue.use(Menu);

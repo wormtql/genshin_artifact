@@ -21,6 +21,15 @@
                     class="mybutton"
                     @click="$emit('toggle')"
                 ></el-button>
+                <el-button
+                    icon="el-icon-edit"
+                    circle
+                    size="mini"
+                    type="text"
+                    title="编辑"
+                    class="mybutton"
+                    @click="$emit('edit')"
+                ></el-button>
             </div>
         </div>
         <div class="down">
@@ -30,7 +39,7 @@
             <div class="detail-div">
                 <p class="main-tag">{{ mainDisplayTag }}</p>
                 <p
-                    v-for="(tag, index) in secTags"
+                    v-for="(tag, index) in normalTags"
                     :key="index"
                     class="sec-tag"
                 >
@@ -45,47 +54,9 @@
 import { displayedTag } from "../../utils/utils";
 import { artifactsData } from "../../assets/artifacts";
 
-function displayedTitle(setName, position) {
-    let item = artifactsData[setName];
-    if (!item) {
-        throw "no artifact";
-    }
-
-    if (item[position]) {
-        return item[position].chs;
-    }
-
-    throw "error no position";
-}
-
-function imageSrc(setName, position) {
-    let item = artifactsData[setName];
-    if (!item) {
-        throw "no artifact";
-    }
-
-    if (item[position]) {
-        return item[position].url;
-    }
-
-    throw "error no position";
-}
 
 export default {
     name: "Artifact",
-    created: function () {
-        let setName = this.item.setName;
-        let position = this.item.position;
-        this.displayedTitle = displayedTitle(setName, position);
-        this.imageSrc = imageSrc(setName, position);
-
-        this.mainDisplayTag = displayedTag(this.item.mainTag.name, this.item.mainTag.value);
-        let secTags = [];
-        for (let tag of this.item.normalTags) {
-            secTags.push(displayedTag(tag.name, tag.value));
-        }
-        this.secTags = secTags;
-    },
     props: {
         item: {
             type: Object,
@@ -107,6 +78,35 @@ export default {
             })
         },
     },
+    computed: {
+        displayedTitle() {
+            let item = artifactsData[this.item.setName];
+            if (item[this.item.position]) {
+                return item[this.item.position].chs;
+            }
+            return "not exist";
+        },
+
+        imageSrc() {
+            let item = artifactsData[this.item.setName];
+            if (item[this.item.position]) {
+                return item[this.item.position].url;
+            }
+            return ""; // todo
+        },
+
+        mainDisplayTag() {
+            return displayedTag(this.item.mainTag.name, this.item.mainTag.value);
+        },
+
+        normalTags() {
+            let temp = [];
+            for (let tag of this.item.normalTags) {
+                temp.push(displayedTag(tag.name, tag.value));
+            }
+            return temp;
+        }
+    }
 }
 </script>
 
@@ -165,9 +165,6 @@ export default {
 .buttons button {
     padding: 0;
     margin: 0;
-}
-
-.buttons button:last-child {
     margin-left: 8px;
 }
 

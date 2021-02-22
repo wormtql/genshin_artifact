@@ -13,6 +13,15 @@
             <span style="color: #E6A23C">面板计算</span> -->
         </p>
 
+        <div class="update-banner">
+            <p style="font-size: 24px; margin: 0;">V{{ version }}更新内容</p>
+            <ul>
+                <li
+                    v-for="(item, index) in lastestVersion.changes"
+                    :key="index"
+                >{{ item }}</li>
+            </ul>
+        </div>
 
         <el-card style="margin-bottom: 16px">
             <p class="big-card-title">功能</p>
@@ -75,7 +84,19 @@
 
                 <el-card style="margin-bottom: 16px">
                     <p class="card-title">请莫娜吃饭</p>
-                    暂未开通
+                    <el-alert
+                        :closable="false"
+                        title="访问量变得有那么一丢丢大，各位老板可以请莫娜吃饭，莫娜会帮我支付服务器费用（手动狗头）"
+                    ></el-alert>
+                    <!-- 暂未开通 -->
+                    <div class="pay">
+                        <span>微信支付：</span>
+                        <img src="./wechat.png">
+                    </div>
+                    <div class="pay">
+                        <span>支付宝：</span>
+                        <img src="./alipay.png">
+                    </div>
                 </el-card>
             </el-col>
             <el-col :span="12">
@@ -106,6 +127,8 @@
 </template>
 
 <script>
+import changelogs from "../ChangeLogPage/changelog";
+
 export default {
     name: "IntroPage",
     created: function() {
@@ -120,6 +143,8 @@ export default {
         };
 
         this.version = process.env.VERSION;
+
+        this.lastestVersion = changelogs[changelogs.length - 1];
     },
     methods: {
         navigateTo(des) {
@@ -133,6 +158,31 @@ export default {
 </script>
 
 <style scoped>
+.pay {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pay span {
+    width: 100px;
+}
+
+.pay img {
+    width: 96px;
+    height: 96px;
+    display: block;
+}
+
+.update-banner {
+    padding: 20px;
+    color: #303133;
+    background: rgba(225, 243, 216, 0.5);
+    border: 1px solid #67c23a;
+    margin-bottom: 16px;
+    border-radius: 3px;
+}
+
 .title {
     font-size: 3rem;
     margin: 0;

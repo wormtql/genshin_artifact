@@ -1,6 +1,11 @@
 <template>
     <div>
         <h3 class="title">圣遗物套装（计算结果将限定在套装之内）</h3>
+        <el-alert
+            :closable="false"
+            title="某些动态的加成不会考虑，所以对于非常适合某个角色的圣遗物，可以考虑限定套装，例如迪卢克限定魔女4，甘雨限定冰4"
+            style="margin-bottom: 16px"
+        ></el-alert>
         <div>
             <div class="row">
                 <el-radio
@@ -11,57 +16,17 @@
             </div>
             <div class="row">
                 <el-radio v-model="artifactMode" label="2" class="radio">2</el-radio>
-                <el-select
-                    :disabled="artifactMode !== '2'"
-                    v-model="setName1"
-                >
-                    <el-option
-                        v-for="item in allArtifactsName"
-                        :key="item.name"
-                        :label="item.chs"
-                        :value="item.name"
-                    ></el-option>
-                </el-select>
+                <select-artifact-set v-model="setName1" :disabled="artifactMode !== '2'"></select-artifact-set>
             </div>
             <div class="row">
                 <el-radio v-model="artifactMode" label="22" class="radio">2+2</el-radio>
-                <el-select
-                    :disabled="artifactMode !== '22'"
-                    v-model="setName2"
-                >
-                    <el-option
-                        v-for="item in allArtifactsName"
-                        :key="item.name"
-                        :label="item.chs"
-                        :value="item.name"
-                    ></el-option>
-                </el-select>
+                <select-artifact-set v-model="setName2" :disabled="artifactMode !== '22'"></select-artifact-set>
                 <span class="plus">+</span>
-                <el-select
-                    :disabled="artifactMode !== '22'"
-                    v-model="setName3"
-                >
-                    <el-option
-                        v-for="item in allArtifactsName"
-                        :key="item.name"
-                        :label="item.chs"
-                        :value="item.name"
-                    ></el-option>
-                </el-select>
+                <select-artifact-set v-model="setName3" :disabled="artifactMode !== '22'"></select-artifact-set>
             </div>
             <div class="row">
                 <el-radio v-model="artifactMode" label="4" class="radio">4</el-radio>
-                <el-select
-                    :disabled="artifactMode !== '4'"
-                    v-model="setName4"
-                >
-                    <el-option
-                        v-for="item in allArtifactsName"
-                        :key="item.name"
-                        :label="item.chs"
-                        :value="item.name"
-                    ></el-option>
-                </el-select>
+                <select-artifact-set v-model="setName4" :disabled="artifactMode !== '4'"></select-artifact-set>
             </div>
         </div>
         <el-button type="primary" class="confirm-button" @click="handleConfirm">确定</el-button>
@@ -70,6 +35,8 @@
 
 <script>
 import { artifactsData } from "@asset/artifacts";
+
+import SelectArtifactSet from "@c/SelectArtifactSet";
 
 let allArtifactsName = Object.values(artifactsData).map(item => {
     return {
@@ -80,6 +47,9 @@ let allArtifactsName = Object.values(artifactsData).map(item => {
 
 export default {
     name: "Config",
+    components: {
+        SelectArtifactSet,
+    },
     created: function () {
         this.allArtifactsName = allArtifactsName;
     },

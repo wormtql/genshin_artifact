@@ -16,6 +16,11 @@ const ArtifactsPlanPage = () => ({
     loading: LoadingComponent,
     error: ErrorComponent,
 });
+const ChangeLogPage = () => ({
+    component: import(/* webpackChunkName: "about-page" */ "@page/ChangeLogPage"),
+    loading: LoadingComponent,
+    error: ErrorComponent,
+});
 
 import VueRouter from "vue-router";
 
@@ -46,6 +51,13 @@ const routes = [
             title: "星命定轨 | " + webName,
         }
     },
+    {
+        path: "/changelog",
+        component: ChangeLogPage,
+        meta: {
+            title: "更新记录有 | " + webName,
+        }
+    }
 ]
 
 const router = new VueRouter({

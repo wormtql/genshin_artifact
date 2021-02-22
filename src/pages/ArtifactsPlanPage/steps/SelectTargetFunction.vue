@@ -8,7 +8,9 @@
                 class="hand item"
                 @click="handleClick(target.name)"
             >
-                <img :src="target.badge" class="image">
+                <div>
+                    <img :src="target.badge" class="image">
+                </div>
                 <div class="detail">
                     <span class="target-title">{{ target.chs }}</span>
                     <div class="description">
@@ -40,7 +42,9 @@
             class="hand item"
             @click="handleClick(target.name)"
         >
-            <img :src="target.badge" class="image">
+            <div>
+                <img :src="target.badge" class="image">
+            </div>
             <div class="detail">
                 <span class="target-title">{{ target.chs }}</span>
                 <div class="description">

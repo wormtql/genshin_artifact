@@ -3,7 +3,12 @@
 function helper(element) {
     return function(attribute) {
         let atk = attribute.attack();
-        let bonus = attribute.bonus + attribute.aBonus + attribute[element + "Bonus"];
+        let bonus = attribute.bonus + attribute[element + "Bonus"];
+        if (element === "physical") {
+            bonus += attribute.aBonus;
+        } else {
+            bonus += attribute.eBonus;
+        }
 
         let baseDmg = atk * (1 + bonus);
         return (1 + attribute.criticalDamage) * baseDmg;

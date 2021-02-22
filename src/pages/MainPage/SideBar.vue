@@ -30,6 +30,16 @@
                 </el-menu-item>
             </el-menu-item-group>
 
+            <el-menu-item-group>
+                <template #title>
+                    关于本站
+                </template>
+                <el-menu-item index="changelog">
+                    <i class="el-icon-date"></i>
+                    更新记录
+                </el-menu-item>
+            </el-menu-item-group>
+
             <!-- <el-menu-item-group>
                 <template #title>
                     帮助

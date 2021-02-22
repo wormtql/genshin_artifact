@@ -1,6 +1,7 @@
 import Vuex from "vuex";
 import Vue from "vue";
 
+
 Vue.use(Vuex);
 
 let id = 0;
@@ -50,13 +51,34 @@ let _store = new Vuex.Store({
             art.omit = !art.omit;
         },
 
+        /**
+         * set every artifacts
+         */
         setArtifacts(state, obj) {
             ["flower", "feather", "sand", "cup", "head"].forEach(item => {
                 state[item] = obj[item];
             })
+        },
+
+        /**
+         * set a single artifact
+         */
+        setArtifact(state, obj) {
+            let n = obj.artifact;
+            Vue.set(state[obj.position], obj.index, n);
         }
     },
     getters: {
+        allArtifacts: state => {
+            return {
+                flower: state.flower,
+                feather: state.feather,
+                sand: state.sand,
+                cup: state.cup,
+                head: state.head,
+            };
+        },
+
         flowerCount: state => {
             return state.flower.length;
         },
@@ -89,7 +111,7 @@ let _store = new Vuex.Store({
         },
 
         valid: (state, getters) => {
-            return getters.iterCount < 1500000;
+            return getters.iterCount < 5000000;
         }
     }
 })
@@ -102,8 +124,11 @@ _store.watch(
         cup: state.cup,
         head: state.head,
     }),
-    newValue => {
-        localStorage.setItem("artifacts", JSON.stringify(newValue));
+    {
+        handler: newValue => {
+            localStorage.setItem("artifacts", JSON.stringify(newValue));
+        },
+        deep: true,
     }
 );
 

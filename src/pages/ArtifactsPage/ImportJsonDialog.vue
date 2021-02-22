@@ -5,6 +5,8 @@
         width="80%"
         :before-close="handleClose"
     >
+        <h3 class="text">欢迎大佬开发第三方导出工具，json接口请参考：<a target="_blank" href="https://wormtql.gitbook.io/mona-uranai/">文档</a></h3>
+        <p></p>
         <el-input
             type="textarea"
             placeholder="输入json"
@@ -56,5 +58,9 @@ export default {
 
 .cancel-button {
     margin-right: 10px;
+}
+
+.text {
+    margin: 0;
 }
 </style>

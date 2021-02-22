@@ -20,6 +20,13 @@
         >
         </output-json-dialog>
 
+        <edit-artifact-drawer
+            :visible="editArtifactDrawerVisible"
+            @close="editArtifactDrawerVisible = false"
+            :args="editArtifactArgs"
+        >
+        </edit-artifact-drawer>
+
         <!-- bread crumb -->
         <el-breadcrumb>
             <el-breadcrumb-item>圣遗物</el-breadcrumb-item>
@@ -27,6 +34,7 @@
         <el-divider></el-divider>
 
         <el-alert title="在同一个浏览器下，正常情况下，数据会自动保存，只需录入一次圣遗物即可。推荐只录入20级圣遗物"></el-alert>
+        <el-alert title="小贴士：圣遗物面板上三个按钮作用分别是：删除、禁用/启用、编辑"></el-alert>
 
         <el-alert
             type="error"
@@ -69,11 +77,12 @@
                 </div>
                 <artifact
                     class="artifact-panel"
-                    v-for="(item, index) in $store.state[artType.name]"
-                    :key="item.id"
+                    v-for="(item, index) in allArtifacts[artType.name]"
+                    :key="artType.name + item.id"
                     :item="item"
                     @delete="removeArtifact(artType.name, index)"
                     @toggle="toggleArtifact(artType.name, index)"
+                    @edit="editArtifact(artType.name, index)"
                 ></artifact>
             </el-tab-pane>
         </el-tabs>
@@ -85,8 +94,10 @@ import AddArtifactDialog from "./AddArtifactDialog";
 import ImportJsonDialog from "./ImportJsonDialog";
 import OutputJsonDialog from "./OutputJsonDialog";
 import Artifact from "./Artifact";
+import EditArtifactDrawer from "./EditArtifactDrawer";
 
-import { artifactsIcon } from "../../assets/artifacts";
+import { artifactsIcon } from "@asset/artifacts";
+import { checkImportJson } from "@util/checkImportJson";
 
 export default {
     name: "ArtifactsPage",
@@ -95,6 +106,7 @@ export default {
         ImportJsonDialog,
         OutputJsonDialog,
         Artifact,
+        EditArtifactDrawer,
     },
     created: function () {
         this.artifactsIcon = artifactsIcon;
@@ -134,6 +146,12 @@ export default {
             newDialogVisible: false,
             importJsonDialogVisible: false,
             outputJsonDialogVisible: false,
+            editArtifactDrawerVisible: false,
+
+            editArtifactArgs: {
+                position: "flower",
+                index: -1,
+            }
         }
     },
     methods: {
@@ -155,6 +173,15 @@ export default {
             });
         },
 
+        /**
+         * edit an artifact
+         */
+        editArtifact: function(position, index) {
+            this.editArtifactDrawerVisible = true;
+            this.editArtifactArgs.position = position;
+            this.editArtifactArgs.index = index;
+        },
+
         add: function() {
             this.newDialogVisible = true;
         },
@@ -171,16 +198,22 @@ export default {
 
         handleImportJson(json) {
             try {
-                let obj = JSON.parse(json);
+                let obj = checkImportJson(json);
+                // let obj = JSON.parse(json);
                 this.$store.commit("setArtifacts", obj);
-            } catch (_) {
-                this.$message.error("解析json出错，请检查json来源或格式");
+            } catch (e) {
+                this.$message.error(e.message);
             }
         },
 
         handleOutputJsonClicked() {
             this.outputJsonDialogVisible = true;
         },
+    },
+    computed: {
+        allArtifacts() {
+            return this.$store.getters.allArtifacts;
+        }
     }
 }
 </script>
