@@ -1,6 +1,7 @@
 import Vuex from "vuex";
 import Vue from "vue";
 
+const positions = ["flower", "feather", "sand", "cup", "head"];
 
 Vue.use(Vuex);
 
@@ -22,9 +23,8 @@ if (localStoredArtifacts) {
 
     let temp = flower.concat(feather).concat(sand).concat(cup).concat(head);
     for (let item of temp) {
-        id = Math.max(id, item.id);
+        item.id = id++;
     }
-    id++;
 }
 
 let _store = new Vuex.Store({
@@ -37,7 +37,6 @@ let _store = new Vuex.Store({
     },
     mutations: {
         removeArtifact(state, obj) {
-            console.log(obj);
             state[obj.position].splice(obj.index, 1);
         },
 
@@ -51,12 +50,23 @@ let _store = new Vuex.Store({
             art.omit = !art.omit;
         },
 
-        /**
-         * set every artifacts
-         */
-        setArtifacts(state, obj) {
-            ["flower", "feather", "sand", "cup", "head"].forEach(item => {
-                state[item] = obj[item];
+        disableArtifactById(state, obj) {
+            let id = obj.id;
+            positions.forEach(item => {
+                let arr = state[item];
+                for (let art of arr) {
+                    if (art.id === id) {
+                        art.omit = true;
+                    }
+                }
+            })
+        },
+
+        unlockAll(state) {
+            positions.forEach(pos => {
+                for (let art of state[pos]) {
+                    art.omit = false;
+                }
             })
         },
 
@@ -66,6 +76,23 @@ let _store = new Vuex.Store({
         setArtifact(state, obj) {
             let n = obj.artifact;
             Vue.set(state[obj.position], obj.index, n);
+        },
+
+        appendArtifacts(state, obj) {
+            positions.forEach(pos => {
+                for (let art of obj[pos]) {
+                    art.id = id++;
+                    state[pos].push(art);
+                }
+            })
+        },
+
+        removeAllArtifacts(state) {
+            state.flower = [];
+            state.feather = [];
+            state.sand = [];
+            state.cup = [];
+            state.head = [];
         }
     },
     getters: {

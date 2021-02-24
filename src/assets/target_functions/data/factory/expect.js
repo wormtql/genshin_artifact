@@ -4,8 +4,6 @@ function helper(element) {
         let bonus = attribute.bonus + attribute[element + "Bonus"];
         if (element === "physical") {
             bonus += attribute.aBonus;
-        } else {
-            bonus += attribute.eBonus;
         }
         let crit = Math.min(attribute.critical, 1);
 

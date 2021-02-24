@@ -18,7 +18,7 @@ function getArtifact(myArtifact) {
 
 function computeArtifacts(artifacts, c, w, targetFuncName, checkFuncConfig) {
     const character = new genshin.Character(c.name, c.level, c.ascend, 0);
-    const weapon = new genshin.Weapon(w.name, w.level, w.ascend, w.refine);
+    const weapon = new genshin.Weapon(w.name, w.level, w.ascend, w.refine, w.args);
     const targetFunc = targetFunctionsData[targetFuncName].func;
     const check = createCheckFunction(checkFuncConfig);
 

@@ -1,0 +1,23 @@
+.select-int {
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+    text-align: center;
+    line-height: 32px;
+    color: #444444;
+    margin-right: 12px;
+    margin-top: 12px;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 12px;
+    transition: 300ms;
+}
+
+.select-int:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.select-int.active {
+    background: #79bbff;
+    color: white;
+}

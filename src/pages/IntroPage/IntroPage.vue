@@ -80,6 +80,10 @@
                         QQ(584130248)
                         <font-awesome-icon icon="comment"></font-awesome-icon>
                     </el-button>
+                    <el-button>
+                        QQ群(801106595)
+                        <font-awesome-icon icon="comment"></font-awesome-icon>
+                    </el-button>
                 </el-card>
 
                 <el-card style="margin-bottom: 16px">

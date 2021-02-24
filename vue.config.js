@@ -49,5 +49,11 @@ module.exports = {
             "element-ui": "ELEMENT",
         }
     },
+    // chainWebpack: config => {
+    //     config.plugin("html").tag(args => {
+    //         args[0].template = "";
+    //         return args;
+    //     })
+    // },
     productionSourceMap: false,
 }

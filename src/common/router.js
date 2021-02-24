@@ -21,6 +21,11 @@ const ChangeLogPage = () => ({
     loading: LoadingComponent,
     error: ErrorComponent,
 });
+const AlgorithmPage = () => ({
+    component: import(/* webpackChunkName: "about-page" */ "@page/AlgorithmPage"),
+    loading: LoadingComponent,
+    error: ErrorComponent,
+})
 
 import VueRouter from "vue-router";
 
@@ -55,7 +60,14 @@ const routes = [
         path: "/changelog",
         component: ChangeLogPage,
         meta: {
-            title: "更新记录有 | " + webName,
+            title: "更新记录 | " + webName,
+        }
+    },
+    {
+        path: "/algorithm",
+        component: AlgorithmPage,
+        meta: {
+            title: "算法说明 | " + webName,
         }
     }
 ]

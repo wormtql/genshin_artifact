@@ -1,4 +1,5 @@
 import "./styles/global.css";
+import "./styles/select.css";
 
 import Vue from 'vue';
 import VueRouter from "vue-router";
@@ -42,8 +43,10 @@ import {
   Drawer,
   Timeline,
   TimelineItem,
+  Switch
 } from "element-ui";
 
+Vue.use(Switch);
 Vue.use(Timeline);
 Vue.use(TimelineItem);
 Vue.use(Drawer);

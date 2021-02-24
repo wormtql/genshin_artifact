@@ -10,7 +10,6 @@
         <import-json-dialog
             :visible="importJsonDialogVisible"
             @close="importJsonDialogVisible = false"
-            @confirm="(e) => { importJsonDialogVisible = false; handleImportJson(e) }"
         >
         </import-json-dialog>
 
@@ -63,6 +62,16 @@
             </div>
         </div>
 
+        <div class="small-toolbar" style="margin-bottom: 16px">
+            <el-button
+                size="mini"
+                icon="el-icon-unlock"
+                circle
+                title="启用全部"
+                @click="$store.commit('unlockAll')"
+            ></el-button>
+        </div>
+
         <!-- artifacts display -->
         <el-tabs v-model="activeName" type="card">
             <el-tab-pane
@@ -97,7 +106,6 @@ import Artifact from "./Artifact";
 import EditArtifactDrawer from "./EditArtifactDrawer";
 
 import { artifactsIcon } from "@asset/artifacts";
-import { checkImportJson } from "@util/checkImportJson";
 
 export default {
     name: "ArtifactsPage",
@@ -194,16 +202,6 @@ export default {
 
         handleImportJsonClicked() {
             this.importJsonDialogVisible = true;
-        },
-
-        handleImportJson(json) {
-            try {
-                let obj = checkImportJson(json);
-                // let obj = JSON.parse(json);
-                this.$store.commit("setArtifacts", obj);
-            } catch (e) {
-                this.$message.error(e.message);
-            }
         },
 
         handleOutputJsonClicked() {

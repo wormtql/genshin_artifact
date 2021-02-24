@@ -7,6 +7,9 @@
                     :closable="false"
                 >
                 </el-alert>
+
+                
+
                 <h3 class="title">最佳搭配</h3>
                 <div class="artifact-div" v-if="!calculating">
                     <artifact-display
@@ -16,9 +19,18 @@
                         class="artifact"
                     ></artifact-display>
                 </div>
+                <div>
+                    <el-button size="small" @click="disableArtifacts">禁用以上圣遗物</el-button>
+                </div>
 
-                <!-- <h3 class="title">最大值</h3>
-                <p class="max-value" v-if="!calculating">{{ resultData.value.toFixed(3) }}</p> -->
+                <h3 class="title">最大值</h3>
+                <el-alert
+                    title="不同目标函数的最大值不可相互比较；输出类型的最大值也并不是最终期望伤害，因此仅供参考"
+                    type="warning"
+                    :closable="false"
+                    style="margin-bottom: 12px"
+                ></el-alert>
+                <p class="max-value" v-if="!calculating">{{ resultData.value.toFixed(3) }}</p>
             </div>
             <div class="right">
                 <attribute-panel :panel="resultData.attribute" style="width: 300px" v-if="!calculating"></attribute-panel>
@@ -47,6 +59,14 @@ export default {
         },
         resultData: {
             type: Object
+        }
+    },
+    methods: {
+        disableArtifacts() {
+            for (let art of this.filteredArtifacts) {
+                this.$store.commit("disableArtifactById", { id: art.id });
+            }
+            this.$message("操作成功");
         }
     },
     computed: {

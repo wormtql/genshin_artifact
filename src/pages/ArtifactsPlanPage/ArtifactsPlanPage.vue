@@ -8,7 +8,7 @@
         <div v-loading.fullscreen.lock="calculating"></div>
 
         <my-step
-            :steps="['角色', '角色等级', '武器', '武器等级', '目标', '配置', '结果']"
+            :steps="['角色', '角色参数', '武器', '武器参数', '目标', '配置', '结果']"
             :pointer="currentstep"
             @navigate="currentstep = $event"
         ></my-step>
@@ -35,7 +35,7 @@
                 ></select-weapon>
 
                 <select-weapon-level
-                    :star="selectedWeaponData.star"
+                    :weaponName="selected.weaponName"
                     @select="handleSelectWeaponLevel"
                     v-else-if="currentstep === 3"
                     class="step-div"
@@ -105,6 +105,7 @@ export default {
                 weaponLevel: 1,
                 weaponAscend: false,
                 weaponRefine: 1,
+                weaponArgs: {},
 
                 targetFuncName: "",
 
@@ -134,6 +135,8 @@ export default {
             this.selected.characterLevel = parseInt(item);
             if (item.indexOf("+") !== -1) {
                 this.selected.characterAscend = true;  
+            } else {
+                this.selected.characterAscend = false;
             }
 
             this.currentstep++;
@@ -151,12 +154,11 @@ export default {
         /**
          * when weapon level is selected
          */
-        handleSelectWeaponLevel(item, refine) {
-            this.selected.weaponLevel = parseInt(item);
-            if (item.indexOf("+") !== -1) {
-                this.selected.weaponAscend = true;
-            }
-            this.selected.weaponRefine = refine;
+        handleSelectWeaponLevel(config) {
+            this.selected.weaponLevel = config.level;
+            this.selected.weaponAscend = config.ascend;
+            this.selected.weaponRefine = config.refine;
+            this.selected.weaponArgs = config.args;
 
             this.currentstep++;
         },
@@ -200,6 +202,7 @@ export default {
                 level: this.selected.weaponLevel,
                 ascend: this.selected.weaponAscend,
                 refine: this.selected.weaponRefine,
+                args: this.selected.weaponArgs,
             };
             let artifacts = this.getArtifacts();
             let checkFuncConfig = this.selected.checkFunctionConfig;

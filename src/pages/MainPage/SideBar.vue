@@ -38,6 +38,10 @@
                     <i class="el-icon-date"></i>
                     更新记录
                 </el-menu-item>
+                <el-menu-item index="algorithm">
+                    <i class="el-icon-ice-cream"></i>
+                    算法说明
+                </el-menu-item>
             </el-menu-item-group>
 
             <!-- <el-menu-item-group>

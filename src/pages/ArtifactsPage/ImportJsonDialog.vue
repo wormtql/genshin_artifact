@@ -16,13 +16,30 @@
         </el-input>
 
         <div class="buttons">
-            <el-button type="primary" class="confirm-button" @click="handleConfirm">确定</el-button>
+            <el-button
+                type="primary"
+                class="confirm-button"
+                @click="handleOverwrite"
+                style="margin-left: 20px"
+            >
+                覆盖导入<i class="el-icon-document-delete"></i>
+            </el-button>
+            <el-button
+                type="primary"
+                class="confirm-button"
+                @click="handleAppend"
+                style="margin-left: 20px"
+            >
+                追加导入<i class="el-icon-document-add"></i>
+            </el-button>
             <el-button class="cancel-button" @click="handleClose">取消</el-button>
         </div>
     </el-dialog>
 </template>
 
 <script>
+import checkImportJson from "@util/checkImportJson";
+
 export default {
     name: "ImportJsonDialog",
     props: {
@@ -40,10 +57,34 @@ export default {
             this.$emit("close");
         },
 
-        handleConfirm() {
-            if (this.json) {
-                this.$emit("confirm", this.json)
+        appendArtifacts() {
+            let { artifacts, invalidCount } = checkImportJson(this.json);
+            if (invalidCount > 0) {
+                this.$message({
+                    type: "warning",
+                    message: `有${invalidCount}个圣遗物无法识别，这些圣遗物已舍弃`
+                });
             }
+
+            this.$store.commit("appendArtifacts", artifacts);
+        },
+
+        handleAppend() {
+            if (this.json) {
+                this.appendArtifacts();
+            }
+
+            this.$emit("close");
+        },
+
+        handleOverwrite() {
+            if (this.json) {
+                this.$store.commit("removeAllArtifacts");
+
+                this.appendArtifacts();
+            }
+
+            this.$emit("close");
         }
     }
 }
@@ -54,10 +95,6 @@ export default {
     margin-top: 32px;
     display: flex;
     flex-direction: row-reverse;
-}
-
-.cancel-button {
-    margin-right: 10px;
 }
 
 .text {

@@ -16,16 +16,20 @@ const alias = {
  * @return a string if error, or true if ok 
  */
 function checkTag(tag) {
+    // check tag name
     if (!tag.name) {
         return "expecting tag name";
     }
+    // check if tag name exists
     if (!secondaryTags[tag.name]) {
         return `tag name "${tag.name}" not found`;
     }
 
+    // check tag value
     if (!tag.value) {
         return "expecting tag value";
     }
+    // check value type
     if (!(typeof tag.value === "number")) {
         return "tag value not right";
     }
@@ -39,16 +43,20 @@ function checkTag(tag) {
  * @return a string if error, or true if ok 
  */
 function checkArtifact(art) {
+    // check set name
     if (!art.setName) {
         return "expecting set name";
     }
+    // check if set name exists
     if (!artifactsData[art.setName]) {
         return `artifact name "${art.setName}" not found`;
     }
 
+    // check position
     if (!art.position) {
         return "expecting position";
     }
+    // convert aliases
     for (let key in alias) {
         for (let a of alias[key]) {
             if (art.position === a) {
@@ -57,18 +65,22 @@ function checkArtifact(art) {
             }
         }
     }
+    // check if position exists
     if (positions.indexOf(art.position) === -1) {
         return `position ${art.position} not expected`;
     }
 
+    // check main tag
     if (!art.mainTag) {
         return "expecting main tag";
     }
+    // check if tag is valid
     let chk = checkTag(art.mainTag);
     if (chk !== true) {
         return chk;
     }
 
+    // check 副词条
     if (!art.normalTags || !Array.isArray(art.normalTags)) {
         return "expecting normal tags";
     }
@@ -79,12 +91,9 @@ function checkArtifact(art) {
         }
     }
 
+    // omit default to false
     if (!Object.prototype.hasOwnProperty.call(art, "omit")) {
-        return "expecting omit";
-    }
-
-    if (!Object.prototype.hasOwnProperty.call(art, "id")) {
-        return "expecting id";
+        art.omit = false;
     }
 
     return true;
@@ -92,7 +101,7 @@ function checkArtifact(art) {
 
 
 
-export function checkImportJson(str) {
+export default function checkImportJson(str) {
     let json = JSON.parse(str);
 
     for (let key in alias) {
@@ -105,22 +114,25 @@ export function checkImportJson(str) {
         json[key] = json[key] || [];
     }
 
-
+    let invalidCount = 0;
+    let ret = {};
     positions.forEach(pos => {
-        if (json[pos]) {
-            if (!Array.isArray(json[pos])) {
-                throw new Error(`position "${pos}" is not an array`);
+        ret[pos] = [];
+        if (!Array.isArray(json[pos])) {
+            throw new Error(`position "${pos}" is not an array`);
+        }
+        for (let item of json[pos]) {
+            let chk = checkArtifact(item);
+            if (typeof chk === "string") {
+                invalidCount++;
+            } else {
+                ret[pos].push(item);
             }
-            for (let item of json[pos]) {
-                let chk = checkArtifact(item);
-                if (typeof chk === "string") {
-                    throw new Error(chk);
-                }
-            }
-        } else {
-            throw new Error("expecting " + pos);
         }
     })
     
-    return json;
+    return {
+        artifacts: ret,
+        invalidCount,
+    };
 }
