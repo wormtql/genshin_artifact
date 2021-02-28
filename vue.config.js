@@ -16,6 +16,7 @@ module.exports = {
                 "@alg": path.resolve(__dirname, "src/algorithms"),
                 "@page": path.resolve(__dirname, "src/pages"),
                 "@worker": path.resolve(__dirname, "src/workers"),
+                // "genshin_panel": path.resolve(__dirname, "../../ts/genshin/dist"),
             }
         },
         plugins: [
@@ -50,6 +51,7 @@ module.exports = {
         }
     },
     // chainWebpack: config => {
+    //     config.plugin("")
     //     config.plugin("html").tag(args => {
     //         args[0].template = "";
     //         return args;

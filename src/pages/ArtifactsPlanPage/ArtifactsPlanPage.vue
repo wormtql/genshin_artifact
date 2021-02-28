@@ -100,6 +100,10 @@ export default {
                 characterName: "",
                 characterLevel: 1,
                 characterAscend: false,
+                characterSkill1: 6,
+                characterSkill2: 6,
+                characterSkill3: 6,
+                characterConstellation: 0,
 
                 weaponName: "",
                 weaponLevel: 1,
@@ -132,12 +136,12 @@ export default {
          * when character level is selected
          */
         handleSelectCharacterLevel(item) {
-            this.selected.characterLevel = parseInt(item);
-            if (item.indexOf("+") !== -1) {
-                this.selected.characterAscend = true;  
-            } else {
-                this.selected.characterAscend = false;
-            }
+            this.selected.characterLevel = item.level;
+            this.selected.characterAscend = item.ascend;
+            this.selected.characterSkill1 = item.skill1;
+            this.selected.characterSkill2 = item.skill2;
+            this.selected.characterSkill3 = item.skill3;
+            this.selected.characterConstellation = item.constellation;
 
             this.currentstep++;
         },
@@ -196,6 +200,10 @@ export default {
                 name: this.selected.characterName,
                 level: this.selected.characterLevel,
                 ascend: this.selected.characterAscend,
+                skill1: this.selected.characterSkill1,
+                skill2: this.selected.characterSkill2,
+                skill3: this.selected.characterSkill3,
+                constellation: this.selected.characterConstellation,
             };
             let weapon = {
                 name: this.selected.weaponName,

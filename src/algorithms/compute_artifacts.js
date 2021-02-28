@@ -16,10 +16,42 @@ function getArtifact(myArtifact) {
     return temp.build();
 }
 
+function getArtifactsSetInfo(arts) {
+    let temp = {};
+    for (let i of arts) {
+        if (i) {
+            if (temp[i.setName]) {
+                temp[i.setName]++;
+            } else {
+                temp[i.setName] = 1;
+            }
+        }
+    }
+
+    return temp;
+}
+
 function computeArtifacts(artifacts, c, w, targetFuncName, checkFuncConfig) {
     const character = new genshin.Character(c.name, c.level, c.ascend, 0);
     const weapon = new genshin.Weapon(w.name, w.level, w.ascend, w.refine, w.args);
-    const targetFunc = targetFunctionsData[targetFuncName].func;
+
+    let targetFunc = targetFunctionsData[targetFuncName];
+    const needContext = targetFunc.needContext;
+    if (targetFunc.needConfig) {
+        // the target function need configuration by character and weapon information
+        targetFunc = targetFunc.func({
+            character,
+            weapon,
+            cArgs: {
+                skill1: c.skill1,
+                skill2: c.skill2,
+                skill3: c.skill3,
+                constellation: c.constellation,
+            }
+        });
+    } else {
+        targetFunc = targetFunc.func;
+    }
     const check = createCheckFunction(checkFuncConfig);
 
     const flowerCount = Math.max(artifacts.flower.length, 1);
@@ -85,7 +117,16 @@ function computeArtifacts(artifacts, c, w, targetFuncName, checkFuncConfig) {
                         }
                         let attribute = builder.build();
 
-                        let value = targetFunc(attribute);
+                        let value;
+                        if (needContext) {
+                            let context = {
+                                artifactSet: getArtifactsSetInfo([flower, feather, sand, cup, head]),
+                            };
+                            value = targetFunc(attribute, context);
+                        } else {
+                            value = targetFunc(attribute);
+                        }
+                        
                         if (value > maxValue) {
                             maxCombo = [flower, feather, sand, cup, head];
                             maxAttribute = attribute;

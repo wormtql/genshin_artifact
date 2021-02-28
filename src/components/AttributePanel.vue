@@ -17,12 +17,83 @@
 
         <h3 class="class">暴击</h3>
         <div class="item">
-            <span class="title">暴击率</span>
-            <span class="value">{{ (panel.critical * 100).toFixed(1) + "%" }}</span>
+            <span class="title">普通攻击暴击率</span>
+            <span class="value">{{ mul100(panel.critical) }}</span>
+        </div>
+        <div class="item">
+            <span class="title">重击暴击率</span>
+            <span class="value">{{ mul100(panel.bCritical) }}</span>
+        </div>
+        <div class="item">
+            <span class="title">元素战技暴击率</span>
+            <span class="value">{{ mul100(panel.eCritical) }}</span>
+        </div>
+        <div class="item">
+            <span class="title">元素爆发暴击率</span>
+            <span class="value">{{ mul100(panel.qCritical) }}</span>
+        </div>
+        <div class="item">
+            <span class="title">下落攻击暴击率</span>
+            <span class="value">{{ mul100(panel.airCritical) }}</span>
         </div>
         <div class="item">
             <span class="title">暴击伤害</span>
-            <span class="value">{{ (panel.criticalDamage * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100(panel.criticalDamage) }}</span>
+        </div>
+
+
+        <h3 class="class">伤害加成</h3>
+        <div class="item">
+            <span class="title">雷元素伤害加成</span>
+            <span class="value">{{ (panel.thunderBonus * 100).toFixed(1) + "%" }}</span>
+        </div>
+        <div class="item">
+            <span class="title">火元素伤害加成</span>
+            <span class="value">{{ (panel.fireBonus * 100).toFixed(1) + "%" }}</span>
+        </div>
+        <div class="item">
+            <span class="title">冰元素伤害加成</span>
+            <span class="value">{{ (panel.iceBonus * 100).toFixed(1) + "%" }}</span>
+        </div>
+        <div class="item">
+            <span class="title">水元素伤害加成</span>
+            <span class="value">{{ (panel.waterBonus * 100).toFixed(1) + "%" }}</span>
+        </div>
+        <div class="item">
+            <span class="title">风元素伤害加成</span>
+            <span class="value">{{ (panel.windBonus * 100).toFixed(1) + "%" }}</span>
+        </div>
+        <div class="item">
+            <span class="title">岩元素伤害加成</span>
+            <span class="value">{{ (panel.rockBonus * 100).toFixed(1) + "%" }}</span>
+        </div>
+        <div class="item">
+            <span class="title">物理伤害加成</span>
+            <span class="value">{{ (panel.physicalBonus * 100).toFixed(1) + "%" }}</span>
+        </div>
+        <div class="item">
+            <span class="title">普通攻击伤害加成</span>
+            <span class="value">{{ mul100(panel.aBonus) }}</span>
+        </div>
+        <div class="item">
+            <span class="title">重击伤害加成</span>
+            <span class="value">{{ mul100(panel.bBonus) }}</span>
+        </div>
+        <div class="item">
+            <span class="title">元素战技伤害加成</span>
+            <span class="value">{{ mul100(panel.eBonus) }}</span>
+        </div>
+        <div class="item">
+            <span class="title">元素爆发伤害加成</span>
+            <span class="value">{{ mul100(panel.qBonus) }}</span>
+        </div>
+        <div class="item">
+            <span class="title">下落攻击伤害加成</span>
+            <span class="value">{{ mul100(panel.airBonus) }}</span>
+        </div>
+        <div class="item">
+            <span class="title">伤害加成</span>
+            <span class="value">{{ mul100(panel.bonus) }}</span>
         </div>
 
 
@@ -64,37 +135,6 @@
         </div>
 
 
-        <h3 class="class">伤害加成</h3>
-        <div class="item">
-            <span class="title">雷元素伤害加成</span>
-            <span class="value">{{ (panel.thunderBonus * 100).toFixed(1) + "%" }}</span>
-        </div>
-        <div class="item">
-            <span class="title">火元素伤害加成</span>
-            <span class="value">{{ (panel.fireBonus * 100).toFixed(1) + "%" }}</span>
-        </div>
-        <div class="item">
-            <span class="title">冰元素伤害加成</span>
-            <span class="value">{{ (panel.iceBonus * 100).toFixed(1) + "%" }}</span>
-        </div>
-        <div class="item">
-            <span class="title">水元素伤害加成</span>
-            <span class="value">{{ (panel.waterBonus * 100).toFixed(1) + "%" }}</span>
-        </div>
-        <div class="item">
-            <span class="title">风元素伤害加成</span>
-            <span class="value">{{ (panel.windBonus * 100).toFixed(1) + "%" }}</span>
-        </div>
-        <div class="item">
-            <span class="title">岩元素伤害加成</span>
-            <span class="value">{{ (panel.rockBonus * 100).toFixed(1) + "%" }}</span>
-        </div>
-        <div class="item">
-            <span class="title">物理伤害加成</span>
-            <span class="value">{{ (panel.physicalBonus * 100).toFixed(1) + "%" }}</span>
-        </div>
-
-
         <h3 class="class">其他</h3>
         <div class="item">
             <span class="title">治疗加成</span>
@@ -114,6 +154,11 @@ export default {
         panel: {
             type: Object,
         },
+    },
+    methods: {
+        mul100(value) {
+            return (value * 100).toFixed(1) + "%";
+        }
     },
     computed: {
         attack() {
@@ -150,7 +195,7 @@ export default {
     font-size: 12px;
     color: #555555;
     display: inline-block;
-    width: 100px;
+    width: 120px;
     /* background: rgba(0, 0, 0, 0.5); */
     /* color: white; */
 }

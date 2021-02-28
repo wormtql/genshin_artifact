@@ -1,6 +1,6 @@
 {
   "name": "genshin_artifacts",
-  "version": "2.2.0",
+  "version": "2.3.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -15,7 +15,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.14.0",
-    "genshin_panel": "^2.1.1",
+    "genshin_panel": "^2.1.7",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4"
   },

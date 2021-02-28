@@ -6,4 +6,12 @@ export default {
     url: tn,
     star: 4,
     type: "stick",
+    args: [
+        {
+            name: "enemyAbove2",
+            chs: "身边有2个及以上敌人",
+            type: "bool",
+            default: true,
+        }
+    ]
 }

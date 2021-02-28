@@ -1,5 +1,5 @@
 import badge from "./badge.png";
-import createFreqBasedDamageFunction from "../factory/freq_based_func";
+import createFreqBasedDamageFunction from "../../factory/freq_based_func";
 
 let args = {
     element: "fire",

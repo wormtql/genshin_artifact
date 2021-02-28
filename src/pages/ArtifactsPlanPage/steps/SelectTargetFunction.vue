@@ -47,6 +47,7 @@
             </div>
             <div class="detail">
                 <span class="target-title">{{ target.chs }}</span>
+                <span class="formula" v-if="target.formula">{{ target.formula }}</span>
                 <div class="description">
                     <span
                         v-for="(des, index) in target.description"
@@ -76,7 +77,7 @@ import { targetFunctionsData } from "../../../assets/target_functions";
 let targetGroup = {};
 Object.values(targetFunctionsData).forEach(item => {
     if (!targetGroup[item["for"]]) {
-        targetGroup[item["for"]] = [];   
+        targetGroup[item["for"]] = [];
     }
 
     targetGroup[item["for"]].push(item);
@@ -107,6 +108,17 @@ export default {
 </script>
 
 <style scoped>
+.formula {
+    display: inline-block;
+    background: #d9ecff;
+    font-size: 12px;
+    color: #444444;
+    border-radius: 3px;
+    padding: 0 8px;
+    /* margin-bottom: 4px; */
+    margin-top: 4px;
+}
+
 .title {
     /* background:rgb(74, 99, 211); */
     padding: 0px 16px;
@@ -134,6 +146,7 @@ export default {
 .target-title {
     font-weight: bold;
     font-size: 14px;
+    display: block;
 }
 
 .description span {

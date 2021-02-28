@@ -31,6 +31,7 @@
                 <li>如何使单次打出的伤害最高？</li>
                 <li>如何使期望伤害最高？</li>
                 <li>暴击、爆伤、攻击力要多少比例？</li>
+                <li>诺艾尔的防御收益到底怎么样</li>
                 <li>...</li>
             </ul>
             <!-- <p>以上都不是问题，一次输入圣遗物，即可自动计算</p> -->
@@ -38,6 +39,11 @@
 
         <el-card style="margin-bottom: 16px">
             <p class="big-card-title">github地址（求star(/doge)）</p>
+            <el-alert
+                title="该工具全部免费且开源"
+                :closable="false"
+                style="margin-bottom: 16px"
+            ></el-alert>
             <el-row :gutter="16">
                 <el-col :span="12">
                     <el-card
@@ -90,7 +96,7 @@
                     <p class="card-title">请莫娜吃饭</p>
                     <el-alert
                         :closable="false"
-                        title="访问量变得有那么一丢丢大，各位老板可以请莫娜吃饭，莫娜会帮我支付服务器费用（手动狗头）"
+                        title="莫娜多可怜，各位老板若觉得工具好用，可以请莫娜吃饭，莫娜会帮我支付服务器费用（手动狗头）"
                     ></el-alert>
                     <!-- 暂未开通 -->
                     <div class="pay">
