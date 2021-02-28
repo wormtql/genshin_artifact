@@ -6,4 +6,12 @@ export default {
     url: tn,
     star: 3,
     type: "sword",
+    args: [
+        {
+            name: "lifeAbove90",
+            chs: "生命值高于90%",
+            type: "bool",
+            default: true,
+        }
+    ]
 }

@@ -1,6 +1,30 @@
 <template>
     <div>
         <div class="config-item">
+            <h3 class="title">技能等级（包含命之座加成）</h3>
+            <custom-form
+                :config="{type: 'int', min: 1, max: 13}"
+                v-model="skill1"
+            ></custom-form>
+            <custom-form
+                :config="{type: 'int', min: 1, max: 13}"
+                v-model="skill2"
+            ></custom-form>
+            <custom-form
+                :config="{type: 'int', min: 1, max: 13}"
+                v-model="skill3"
+            ></custom-form>
+        </div>
+
+        <div class="config-item">
+            <h3 class="title">命之座</h3>
+            <custom-form
+                :config="{ type: 'int', min: 0, max: 6 }"
+                v-model="constellation"
+            ></custom-form>
+        </div>
+
+        <div class="config-item">
             <h3 class="title">角色等级</h3>
             <div class="panel">
                 <span
@@ -81,11 +105,37 @@
 </template>
 
 <script>
+import CustomForm from "../CustomForm";
+
 export default {
     name: "SelectCharacterLevel",
+    components: {
+        CustomForm,
+    },
+    data: function () {
+        return {
+            skill1: 6,
+            skill2: 6,
+            skill3: 6,
+            constellation: 0,
+        }
+    },
     methods: {
         handleClickLevel(key) {
-            this.$emit("select", key.toString());
+            let s = key.toString();
+            let level = parseInt(s);
+            let ascend = s.indexOf("+") !== -1;
+
+            let ret = {
+                level,
+                ascend,
+                skill1: this.skill1,
+                skill2: this.skill2,
+                skill3: this.skill3,
+                constellation: this.constellation,
+            }
+
+            this.$emit("select", ret);
         }
     }
 }

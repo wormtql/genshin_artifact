@@ -1,5 +1,5 @@
 import badge from "./badge.png";
-import createFreqBasedDamageFunction from "../factory/freq_based_func";
+import createFreqBasedDamageFunction from "../../factory/freq_based_func";
 
 let args = {
     element: "thunder",
@@ -18,24 +18,6 @@ let args = {
     qFreq: 5,
     qTimes: 6.558
 }
-
-// let args = {
-//     element: "thunder",
-
-//     aFreq: 1,
-//     aRatio: 0,
-//     aTimes: 0.8522,
-
-//     bFreq: 0,
-//     bRatio: 0.9,
-//     bTimes: 2.57,
-
-//     eFreq: 0,
-//     eTimes: 3.276,
-
-//     qFreq: 0,
-//     qTimes: 6.558
-// }
 
 export default {
     name: "keqingNormal",

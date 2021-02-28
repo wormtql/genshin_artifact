@@ -7,6 +7,7 @@
                 class="character-item"
                 @click="handleClickCharacter(character)"
             >
+                <span v-if="character.test" class="test">测试</span>
                 <img :src="character.cardURL" class="image">
                 <span class="text">{{ character.chs }}</span>
             </div>
@@ -19,6 +20,7 @@
                 class="character-item"
                 @click="handleClickCharacter(character)"
             >
+                <span v-if="character.test" class="test fs-12">非正式服</span>
                 <img :src="character.cardURL" class="image">
                 <span class="text">{{ character.chs }}</span>
             </div>
@@ -113,10 +115,21 @@ export default {
     padding: 8px;
     transition: 300ms;
     border-radius: 3px;
+    position: relative;
 }
 
 .character-item:hover {
     background: rgba(0, 0, 0, 0.1);
+}
+
+.character-item .test {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    color: white;
+    border-radius: 3px;
+    background: rgb(243, 183, 18);
+    padding: 4px;
 }
 
 .text {

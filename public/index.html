@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="keywords" content="原神,圣遗物,圣遗物搭配,圣遗物配装,自动配装,莫娜占卜铺">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>莫娜占卜铺</title>
 
@@ -13,14 +14,24 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/vuex/3.5.1/vuex.min.js"></script>
     <script src="https://unpkg.com/element-ui@2.14.0/lib/index.js"></script>
     
-    
+    <style>
+      .loading {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
     <noscript>
       <strong>好家伙，这年头还有不开启javascript的人吗</strong>
     </noscript>
     <div id="app">
-      加载中（由于该网站较多数据，首次加载可能耗时较长）
+      <div class="loading">
+        <span>莫娜正在仰望星空，请稍安勿躁（狗头）</span>
+      </div>
     </div>
     <!-- built files will be auto injected -->
   </body>

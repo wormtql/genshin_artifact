@@ -1,28 +1,35 @@
 import badge from "./badge.png";
 
-function zhongliQ(attribute) {
+import skill from "./skill";
 
-    let attack = attribute.attack();
-    let bonus = attribute.bonus + attribute.rockBonus + attribute.qBonus;
-    let extraDmg = attribute.life() * 0.33;
-    let baseDmg = 6.4 * attack * (1 + bonus) + extraDmg;
+function zhongliQ(config) {
+    let qLevel = config.cArgs.skill3;
+    let dmg = skill.q.dmg[qLevel - 1];
+    let hasTalent2 = config.character.hasTalent2;
 
-    let critDmg = (1 + attribute.criticalDamage) * baseDmg;
-    return critDmg;
+    return function (attribute) {
+        let atk = attribute.attack();
+        let bonus = attribute.bonus + attribute.rockBonus + attribute.qBonus;
+        let extraDmg = attribute.life() * 0.33;
+        let baseDmg = dmg * atk * (1 + bonus) + (hasTalent2 ? extraDmg : 0);
+        let crit = Math.min(1, attribute.qCritical);
+
+        return (1 + attribute.criticalDamage * crit) * baseDmg;
+    };
 }
 
 export default {
     name: "zhongliQ",
     chs: "钟离-天动万象",
     description: [
-        "使得钟离Q技能的伤害最大值最高（在天赋：炊金馔玉的加成下）",
-        "假设技能6级（不同技能等级差别不大）",
+        "使得钟离Q技能的伤害期望最高",
+        "若等级不足会忽略第二天赋",
     ],
     tags: [
         "钟离",
-        "赌狗",
     ],
     func: zhongliQ,
     "for": "zhongli",
     badge,
+    needConfig: true,
 }

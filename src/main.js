@@ -119,13 +119,16 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false
 
-new Vue({
-  render: h => h(App),
-  router: Router,
-  store,
-}).$mount('#app')
+async function mount() {
+  new Vue({
+    render: h => h(App),
+    router: Router,
+    store,
+  }).$mount('#app');
+}
 
-// console.log("刻师傅天下第一");
+mount();
+
 console.log(`／ ￣￣ ＼
 |  ー  ー \\   /￣￣￣￣￣￣￣￣￣￣＼
 |   ◉  ◉ |  /                      \\
