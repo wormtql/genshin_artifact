@@ -6,7 +6,7 @@
             :key="arg.name"
             class="config-item"
         >
-            <h3 class="title">{{ arg.chs }}</h3>
+            <h3 class="config-title">{{ arg.chs }}</h3>
             <custom-form
                 :config="arg"
                 :value="args[arg.name]"
@@ -15,7 +15,7 @@
         </div>
 
         <div v-if="star >= 3" class="config-item">
-            <h3 class="title">精炼等级</h3>
+            <h3 class="config-title">精炼等级</h3>
             <div class="refine-div">
                 <span
                     v-for="i in 5"
@@ -28,7 +28,7 @@
         </div>
 
         <div class="config-item">
-            <h3 class="title">武器等级</h3>
+            <h3 class="config-title">武器等级</h3>
             <div class="panel">
                 <span
                     v-for="i in 19"
@@ -171,22 +171,6 @@ export default {
 </script>
 
 <style scoped>
-.config-item {
-    /* border-left: 5px solid #a0cfff; */
-    /* padding-left: 20px; */
-    padding: 18px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-}
-
-.title {
-    font-size: 16px;
-    color: #555555;
-    margin: 0;
-    margin-bottom: 12px;
-}
-
 .special {
     background: #123456;
     color: white;

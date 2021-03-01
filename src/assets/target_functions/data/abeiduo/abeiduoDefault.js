@@ -1,4 +1,5 @@
 import badge from "./badge.png";
+import config from "./abeiduoDefaultConfig";
 
 import skill from "./skill";
 
@@ -12,6 +13,11 @@ function f(config) {
     let qDmg1 = skill.q.dmg1[qLevel - 1];
     let qDmg2 = skill.q.dmg2[qLevel - 1];
 
+    let eCount = config.tArgs.eCount;
+    let qCount = config.tArgs.qCount;
+    let qFreq = config.tArgs.qFreq;
+    let c2Count = config.tArgs.c2Count;
+
     return function (attribute) {
         let def = attribute.defend();
         let atk = attribute.attack();
@@ -20,17 +26,17 @@ function f(config) {
         let eBonus = attribute.eBonus + attribute.bonus + attribute.rockBonus;
         let e
             = atk * eDmg1 * (1 + eBonus) * (1 + eCrit * attribute.criticalDamage)
-            + def * eDmg2 * (1 + eBonus) * (1 + eCrit * attribute.criticalDamage) * 4
+            + def * eDmg2 * (1 + eBonus) * (1 + eCrit * attribute.criticalDamage) * eCount
         ;
 
         let qCrit = Math.min(attribute.qCritical, 1);
         let qBonus = attribute.qBonus + attribute.bonus + attribute.rockBonus;
-        let q = atk * (1 + qBonus) * (1 + qCrit * attribute.criticalDamage) * (qDmg1 + qDmg2 * 7);
+        let q = atk * (1 + qBonus) * (1 + qCrit * attribute.criticalDamage) * (qDmg1 + qDmg2 * qCount);
         if (isConste2) {
-            q += def * 0.6;
+            q += def * 0.3 * c2Count;
         }
 
-        return e * 0.8 + q;
+        return e * (1 - qFreq) + q * qFreq;
     };
 }
 
@@ -50,4 +56,5 @@ export default {
     "for": "abeiduo",
     badge,
     needConfig: true,
+    config,
 }

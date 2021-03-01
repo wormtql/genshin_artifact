@@ -31,14 +31,17 @@ function getArtifactsSetInfo(arts) {
     return temp;
 }
 
-function computeArtifacts(artifacts, c, w, targetFuncName, checkFuncConfig) {
+function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, checkFuncConfig) {
+    // get character and weapon
     const character = new genshin.Character(c.name, c.level, c.ascend, 0);
     const weapon = new genshin.Weapon(w.name, w.level, w.ascend, w.refine, w.args);
 
+    // construct target function, given name and args
     let targetFunc = targetFunctionsData[targetFuncName];
+    // if need context, artifacts info will be passed as argument during computing
     const needContext = targetFunc.needContext;
     if (targetFunc.needConfig) {
-        // the target function need configuration by character and weapon information
+        // the target function need configuration
         targetFunc = targetFunc.func({
             character,
             weapon,
@@ -47,11 +50,15 @@ function computeArtifacts(artifacts, c, w, targetFuncName, checkFuncConfig) {
                 skill2: c.skill2,
                 skill3: c.skill3,
                 constellation: c.constellation,
-            }
+            },
+            // target function args
+            tArgs: targetFuncArgs,
         });
     } else {
         targetFunc = targetFunc.func;
     }
+
+    // check(or constraint) function
     const check = createCheckFunction(checkFuncConfig);
 
     const flowerCount = Math.max(artifacts.flower.length, 1);

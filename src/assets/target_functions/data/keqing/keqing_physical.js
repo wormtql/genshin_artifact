@@ -1,37 +1,64 @@
 import badge from "./badge.png";
-import createFreqBasedDamageFunction from "../../factory/freq_based_func";
+import config from "./KeqingPhysicalConfig";
 
-let args = {
-    element: "thunder",
+function f(config) {
+    let aFreq = config.tArgs.aFreq;
+    let bFreq = config.tArgs.bFreq;
+    let eFreq = config.tArgs.eFreq;
+    let qFreq = config.tArgs.qFreq;
 
-    aFreq: 25,
-    aRatio: 0,
-    aTimes: 0.8522,
+    let thunderFreq = config.tArgs.thunderFreq;
 
-    bFreq: 55,
-    bRatio: 0,
-    bTimes: 2.57,
+    let isXiali = config.weapon.name === "xialilongyin";
+    let xialiBonus = isXiali ? (config.weapon.refine * 0.04 + 0.16) : 0;
 
-    eFreq: 10,
-    eTimes: 3.276,
+    return function (attribute, context) {
+        let isTS4 = (context.artifactSet.thunderSmoother || 0) >= 4;
 
-    qFreq: 5,
-    qTimes: 6.558
+        let otherBonus = (isTS4 ? (thunderFreq * 0.35) : 0) + xialiBonus * thunderFreq;
+
+        const attack = attribute.attack();
+        const critical = Math.min(attribute.critical, 1);
+        const bCritical = Math.min(attribute.bCritical, 1);
+        const eCritical = Math.min(attribute.eCritical, 1);
+        const qCritical = Math.min(attribute.qCritical, 1);
+
+        const commonBonus = 1 + attribute.thunderBonus + attribute.bonus + otherBonus;
+        const commonBonus2 = 1 + attribute.physicalBonus + attribute.bonus;
+
+        let a = 1 + attribute.aBonus + commonBonus2;
+        a = (critical * attribute.criticalDamage + 1) * a * 0.8522;
+
+        let b = 1 + attribute.bBonus + commonBonus2;
+        b = (bCritical * attribute.criticalDamage + 1) * b * 2.57;
+
+        let e = 1 + attribute.eBonus + commonBonus;
+        e = (eCritical * attribute.criticalDamage + 1) * e * 3.276;
+
+        let q = 1 + attribute.qBonus + commonBonus;
+        q = (qCritical * attribute.criticalDamage + 1) * q * 6.558;
+
+        let expect = (a * aFreq + b * bFreq + e * eFreq + q * qFreq) * attack;
+
+        return expect;
+    }
 }
 
 export default {
     name: "keqingPhysical",
     chs: "刻晴-物晴",
     description: [
-        "1段E+重击",
-        "平均1A3重击",
+        "物理刻晴",
+        "1段E",
     ],
     tags: [
         "输出",
         "刻晴",
-        "物理",
     ],
-    func: createFreqBasedDamageFunction(args),
+    func: f,
     "for": "keqing",
     badge,
+    needConfig: true,
+    needContext: true,
+    config,
 }

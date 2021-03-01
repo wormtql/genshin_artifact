@@ -8,7 +8,7 @@
         <div v-loading.fullscreen.lock="calculating"></div>
 
         <my-step
-            :steps="['角色', '角色参数', '武器', '武器参数', '目标', '配置', '结果']"
+            :steps="['角色', '角色参数', '武器', '武器参数', '目标', '目标参数', '配置', '结果']"
             :pointer="currentstep"
             @navigate="currentstep = $event"
         ></my-step>
@@ -48,18 +48,23 @@
                     @select="handleSelectTargetFunction"
                 ></select-target-function>
 
-                <config
+                <config-target-function
+                    :target-func-name="selected.targetFuncName"
                     v-else-if="currentstep === 5"
+                    class="step-div"
+                    @select="handleConfigTargetFunc"
+                ></config-target-function>
+
+                <config
+                    v-else-if="currentstep === 6"
                     @select="handleConfig"
-                >
-                </config>
+                ></config>
 
                 <result-page
-                    v-else-if="currentstep === 6"
+                    v-else-if="currentstep === 7"
                     :calculating="calculating"
                     :result-data="resultData"
-                >
-                </result-page>
+                ></result-page>
             </transition>
         </div>
     </div>
@@ -77,6 +82,7 @@ import SelectCharacterLevel from "./steps/SelectCharacterLevel";
 import SelectWeapon from "./steps/SelectWeapon";
 import SelectWeaponLevel from "./steps/SelectWeaponLevel";
 import SelectTargetFunction from "./steps/SelectTargetFunction";
+import ConfigTargetFunction from "./steps/ConfigTargetFunction";
 import Config from "./steps/Config";
 import ResultPage from "./steps/ResultPage";
 
@@ -90,6 +96,7 @@ export default {
         SelectWeapon,
         SelectWeaponLevel,
         SelectTargetFunction,
+        ConfigTargetFunction,
         Config,
         ResultPage,
         MyStep
@@ -112,6 +119,7 @@ export default {
                 weaponArgs: {},
 
                 targetFuncName: "",
+                targetFuncArgs: {},
 
                 checkFunctionConfig: null,
             },
@@ -177,6 +185,15 @@ export default {
         },
 
         /**
+         * when config target function
+         */
+        handleConfigTargetFunc(configData) {
+            this.selected.targetFuncArgs = configData;
+
+            this.currentstep++;
+        },
+
+        /**
          * when resctrictions are determined
          */
         handleConfig(config) {
@@ -215,11 +232,12 @@ export default {
             let artifacts = this.getArtifacts();
             let checkFuncConfig = this.selected.checkFunctionConfig;
             let targetFuncName = this.selected.targetFuncName;
+            let targetFuncArgs = this.selected.targetFuncArgs;
 
             this.calculating = true;
 
             // this is a web worker wrapped by a promise
-            compute(artifacts, character, weapon, targetFuncName, checkFuncConfig).then(result => {
+            compute(artifacts, character, weapon, targetFuncName, targetFuncArgs, checkFuncConfig).then(result => {
                 this.resultData = {
                     artifacts: Object.values(result.combo),
                     value: result.value,

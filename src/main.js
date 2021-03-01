@@ -43,9 +43,11 @@ import {
   Drawer,
   Timeline,
   TimelineItem,
-  Switch
+  Switch,
+  InputNumber,
 } from "element-ui";
 
+Vue.use(InputNumber);
 Vue.use(Switch);
 Vue.use(Timeline);
 Vue.use(TimelineItem);

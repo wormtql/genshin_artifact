@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="config-item">
-            <h3 class="title">技能等级（包含命之座加成）</h3>
+            <h3 class="config-title">技能等级（包含命之座加成）</h3>
             <custom-form
                 :config="{type: 'int', min: 1, max: 13}"
                 v-model="skill1"
@@ -17,7 +17,7 @@
         </div>
 
         <div class="config-item">
-            <h3 class="title">命之座</h3>
+            <h3 class="config-title">命之座</h3>
             <custom-form
                 :config="{ type: 'int', min: 0, max: 6 }"
                 v-model="constellation"
@@ -25,7 +25,7 @@
         </div>
 
         <div class="config-item">
-            <h3 class="title">角色等级</h3>
+            <h3 class="config-title">角色等级</h3>
             <div class="panel">
                 <span
                     v-for="i in 19"
@@ -142,22 +142,6 @@ export default {
 </script>
 
 <style scoped>
-.config-item {
-    /* border-left: 5px solid #a0cfff; */
-    /* padding-left: 20px; */
-    padding: 18px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-}
-
-.title {
-    font-size: 16px;
-    color: #555555;
-    margin: 0;
-    margin-bottom: 12px;
-}
-
 .special {
     background: #123456;
     color: white;

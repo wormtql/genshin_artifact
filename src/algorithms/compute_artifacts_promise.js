@@ -1,4 +1,4 @@
-export default function (artifacts, character, weapon, targetFuncName, checkFuncConfig) {
+export default function (artifacts, character, weapon, targetFuncName, targetFuncArgs, checkFuncConfig) {
     return new Promise((resolve, reject) => {
         let worker = new Worker("@worker/compute.worker.js", { type: "module" });
         worker.addEventListener("message", event => {
@@ -11,7 +11,7 @@ export default function (artifacts, character, weapon, targetFuncName, checkFunc
         });
         worker.postMessage({
             method: "computeArtifacts",
-            args: [artifacts, character, weapon, targetFuncName, checkFuncConfig],
+            args: [artifacts, character, weapon, targetFuncName, targetFuncArgs, checkFuncConfig],
         });
     });
 }

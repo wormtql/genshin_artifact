@@ -1,13 +1,24 @@
 import badge from "./badge.png";
 
+import config from "./GanyuConfig";
+
 function f(config) {
     let isAmos = config.weapon.name === "amosizhigong";
     let hasTalent1 = config.character.hasTalent1;
     let hasTalent2 = config.character.hasTalent2;
 
+    let ice4Crit = config.tArgs.ice4Crit;
+    let talent1Crit = config.tArgs.talent1Crit;
+    let talent2Bonus = config.tArgs.talent2Bonus;
+    let ele2I = config.tArgs.talent2Bonus;
+    let ele2ICrit = config.tArgs.ele2ICrit;
+
     return function (attribute, context) {
         let attack = attribute.attack();
         let crit = attribute.bCritical;
+        if (ele2I) {
+            crit += ele2ICrit;
+        }
 
         let bonus = attribute.bBonus + attribute.bonus + attribute.iceBonus;
         if (isAmos) {
@@ -16,14 +27,13 @@ function f(config) {
 
         let isBS4 = (context.artifactSet.blizzardStrayer || 0) >= 4;
         if (isBS4) {
-            // 4冰套折合20暴击率
-            crit += 0.2
+            crit += ice4Crit;
         }
         if (hasTalent1) {
-            crit += 0.1;
+            crit += talent1Crit;
         }
         if (hasTalent2) {
-            bonus += 0.1;
+            bonus += talent2Bonus;
         }
 
         return attack * (1 + bonus) * (1 + Math.min(crit, 1) * attribute.criticalDamage);
@@ -32,11 +42,9 @@ function f(config) {
 
 export default {
     name: "ganyuB",
-    chs: "甘雨-二段蓄力",
+    chs: "甘雨-霜华",
     description: [
         "靠二段蓄力输出",
-        "4冰套折合20暴击率",
-        "自动根据等级计算天赋，天赋1折合10%暴击率，天赋2折合10%伤害加成",
         "如果带了阿莫斯之弓，折合0.3秒buff"
     ],
     tags: [
@@ -48,4 +56,5 @@ export default {
     badge,
     needConfig: true,
     needContext: true,
+    config,
 }

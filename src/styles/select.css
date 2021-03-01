@@ -21,3 +21,17 @@
     background: #79bbff;
     color: white;
 }
+
+.config-item {
+    padding: 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.config-title {
+    font-size: 16px;
+    color: #555555;
+    margin: 0;
+    margin-bottom: 12px;
+}
