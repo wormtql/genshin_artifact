@@ -64,6 +64,7 @@
                     v-else-if="currentstep === 7"
                     :calculating="calculating"
                     :result-data="resultData"
+                    :config="config"
                 ></result-page>
             </transition>
         </div>
@@ -213,22 +214,8 @@ export default {
          * start to compute
          */
         startCalculating() {
-            let character = {
-                name: this.selected.characterName,
-                level: this.selected.characterLevel,
-                ascend: this.selected.characterAscend,
-                skill1: this.selected.characterSkill1,
-                skill2: this.selected.characterSkill2,
-                skill3: this.selected.characterSkill3,
-                constellation: this.selected.characterConstellation,
-            };
-            let weapon = {
-                name: this.selected.weaponName,
-                level: this.selected.weaponLevel,
-                ascend: this.selected.weaponAscend,
-                refine: this.selected.weaponRefine,
-                args: this.selected.weaponArgs,
-            };
+            let character = this.characterInfo;
+            let weapon = this.weaponInfo;
             let artifacts = this.getArtifacts();
             let checkFuncConfig = this.selected.checkFunctionConfig;
             let targetFuncName = this.selected.targetFuncName;
@@ -291,6 +278,34 @@ export default {
             }
 
             return "";
+        },
+
+        characterInfo() {
+            return {
+                name: this.selected.characterName,
+                level: this.selected.characterLevel,
+                ascend: this.selected.characterAscend,
+                skill1: this.selected.characterSkill1,
+                skill2: this.selected.characterSkill2,
+                skill3: this.selected.characterSkill3,
+                constellation: this.selected.characterConstellation,
+            };
+        },
+
+        weaponInfo() {
+            return {
+                name: this.selected.weaponName,
+                level: this.selected.weaponLevel,
+                ascend: this.selected.weaponAscend,
+                refine: this.selected.weaponRefine,
+                args: this.selected.weaponArgs,
+            };
+        },
+
+        config() {
+            return {
+                cArgs: this.characterInfo,
+            }
         }
     }
 }

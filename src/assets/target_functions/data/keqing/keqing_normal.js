@@ -25,8 +25,8 @@ function f(config) {
         const eCritical = Math.min(attribute.eCritical, 1);
         const qCritical = Math.min(attribute.qCritical, 1);
 
-        const commonBonus = 1 + attribute.thunderBonus + attribute.bonus + otherBonus;
-        const commonBonus2 = 1 + attribute.physicalBonus + attribute.bonus;
+        const commonBonus = attribute.thunderBonus + attribute.bonus + otherBonus;
+        const commonBonus2 = attribute.physicalBonus + attribute.bonus;
 
         let a 
             = (1 - aEle) * (1 + attribute.aBonus + commonBonus2)

@@ -8,8 +8,6 @@
                 >
                 </el-alert>
 
-                
-
                 <h3 class="title">最佳搭配</h3>
                 <div class="artifact-div" v-if="!calculating">
                     <artifact-display
@@ -59,7 +57,10 @@ export default {
         },
         resultData: {
             type: Object
-        }
+        },
+        // config: {
+        //     type: Object,
+        // },
     },
     methods: {
         disableArtifacts() {

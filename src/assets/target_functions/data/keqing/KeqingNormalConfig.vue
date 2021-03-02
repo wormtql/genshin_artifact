@@ -42,21 +42,21 @@ export default {
     name: "KeqingNormalConfig",
     data: function () {
         return {
-            thunderFreq: "0.5",
+            thunderFreq: "0.9",
             aFreq: "0.4",
             bFreq: "0.4",
             eFreq: "0.15",
             qFreq: "0.05",
-            aEle: "0.5",
-            bEle: "0.5",
+            aEle: "0.8",
+            bEle: "0.8",
         }
     },
     methods: {
         compact() {
-            let aFreq = parseFloat(this.aFreq) || 0.4;
-            let bFreq = parseFloat(this.bFreq) || 0.4;
-            let eFreq = parseFloat(this.eFreq) || 0.15;
-            let qFreq = parseFloat(this.qFreq) || 0.05;
+            let aFreq = parseFloat(this.aFreq);
+            let bFreq = parseFloat(this.bFreq);
+            let eFreq = parseFloat(this.eFreq);
+            let qFreq = parseFloat(this.qFreq);
 
             let sum = aFreq + bFreq + eFreq + qFreq;
             if (sum === 0) {
@@ -72,15 +72,15 @@ export default {
             }
 
             return {
-                thunderFreq: parseFloat(this.thunderFreq) || 0.5,
+                thunderFreq: parseFloat(this.thunderFreq),
 
                 aFreq,
                 bFreq,
                 eFreq,
                 qFreq,
 
-                aEle: parseFloat(this.aEle) || 0.5,
-                bEle: parseFloat(this.bEle) || 0.5,
+                aEle: parseFloat(this.aEle),
+                bEle: parseFloat(this.bEle),
             }
         },
     }

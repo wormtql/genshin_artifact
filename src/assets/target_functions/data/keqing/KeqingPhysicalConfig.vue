@@ -41,10 +41,10 @@ export default {
     },
     methods: {
         compact() {
-            let aFreq = parseFloat(this.aFreq) || 0.3;
-            let bFreq = parseFloat(this.bFreq) || 0.5;
-            let eFreq = parseFloat(this.eFreq) || 0.15;
-            let qFreq = parseFloat(this.qFreq) || 0.05;
+            let aFreq = parseFloat(this.aFreq);
+            let bFreq = parseFloat(this.bFreq);
+            let eFreq = parseFloat(this.eFreq);
+            let qFreq = parseFloat(this.qFreq);
 
             let sum = aFreq + bFreq + eFreq + qFreq;
             if (sum === 0) {
@@ -60,7 +60,7 @@ export default {
             }
 
             return {
-                thunderFreq: parseFloat(this.thunderFreq) || 0.5,
+                thunderFreq: parseFloat(this.thunderFreq),
 
                 aFreq,
                 bFreq,

@@ -1,5 +1,6 @@
 import badge from "./badge.png";
 import config from "./HutaoConfig";
+// import result from "./HutaoResult";
 
 import skill from "./skill";
 
@@ -13,12 +14,17 @@ function f(config) {
     let hpBelow50 = config.tArgs.hpBelow50;
     let talentBonus = (hasTalent2 && hpBelow50) ? 0.33 : 0;
 
-    return function (attribute) {
+    return function (attribute, context) {
+        let isCW4 = (context.artifactSet.crimsonWitch || 0) >= 4;
+
         let atkBonus = attribute.life() * atkInc;
         atkBonus = Math.min(atkBonus, 4 * baseAtk);
 
         let atk = attribute.attack() + atkBonus;
-        let bonus = attribute.aBonus + attribute.bonus + attribute.fireBonus +talentBonus;
+        let bonus = attribute.aBonus + attribute.bonus + attribute.fireBonus + talentBonus;
+        if (isCW4) {
+            bonus += 0.075;
+        }
 
         let crit = Math.min(1, attribute.critical);
 
@@ -40,5 +46,7 @@ export default {
     "for": "hutao",
     badge,
     needConfig: true,
+    needContext: true,
     config,
+    // result,
 }

@@ -7,5 +7,4 @@ export default {
     element: "fire",
     weapon: "stick",
     star: 5,
-    test: true,
 }
