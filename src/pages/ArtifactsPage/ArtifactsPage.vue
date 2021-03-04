@@ -32,6 +32,7 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
+        <el-alert title="请注意保存圣遗物数据至本地，以防意外导致数据丢失" type="warning" :closable="false"></el-alert>
         <el-alert title="在同一个浏览器下，正常情况下，数据会自动保存，只需录入一次圣遗物即可。推荐只录入20级圣遗物"></el-alert>
         <el-alert title="小贴士：圣遗物面板上三个按钮作用分别是：删除、禁用/启用、编辑"></el-alert>
 

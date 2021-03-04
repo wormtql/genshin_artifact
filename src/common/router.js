@@ -25,7 +25,12 @@ const AlgorithmPage = () => ({
     component: import(/* webpackChunkName: "about-page" */ "@page/AlgorithmPage"),
     loading: LoadingComponent,
     error: ErrorComponent,
-})
+});
+const ExternalLinkPage = () => ({
+    component: import(/* webpackChunkName: "about-page" */ "@page/ExternalLinkPage"),
+    loading: LoadingComponent,
+    error: ErrorComponent,
+});
 
 import VueRouter from "vue-router";
 
@@ -68,6 +73,13 @@ const routes = [
         component: AlgorithmPage,
         meta: {
             title: "算法说明 | " + webName,
+        }
+    },
+    {
+        path: "/tomodachi",
+        component: ExternalLinkPage,
+        meta: {
+            title: "友情链接 | " + webName,
         }
     }
 ]

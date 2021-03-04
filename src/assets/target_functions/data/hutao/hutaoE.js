@@ -4,6 +4,10 @@ import config from "./HutaoConfig";
 
 import skill from "./skill";
 
+import reaction from "@/elemental_reaction/reaction_bonus";
+
+let ampFunc = reaction.amp;
+
 function f(config) {
     let baseAtk = config.character.baseAtk + config.weapon.baseAtk;
     let eLevel = config.cArgs.skill2;
@@ -39,7 +43,7 @@ function f(config) {
         let commonBonus = attribute.bonus + attribute.fireBonus + talentBonus;
 
         let em = attribute.elementalMastery;
-        let amp = 20 * em / (3 * (em + 1400));
+        let amp = ampFunc(em);
         if (isCW4) {
             commonBonus += 0.075;
             amp += 0.15;

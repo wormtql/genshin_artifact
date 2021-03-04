@@ -3,7 +3,7 @@
         <div class="main-div" v-if="!resultData.error">
             <div class="left">
                 <el-alert
-                    title="由于原神战斗体系比较复杂，许多buff为动态运行时效果（例如击中敌人时效果、仅对雷元素附着的效果、叠层数的效果等），而此处运算结果仅为静态buff的最优值，因此计算结果仅供参考"
+                    title="由于原神战斗体系比较复杂，buff体系繁多，因此计算结果仅供参考"
                     :closable="false"
                 >
                 </el-alert>

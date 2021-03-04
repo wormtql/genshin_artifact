@@ -42,6 +42,10 @@
                     <i class="el-icon-ice-cream"></i>
                     算法说明
                 </el-menu-item>
+                <el-menu-item index="tomodachi">
+                    <i class="el-icon-link"></i>
+                    友情链接
+                </el-menu-item>
             </el-menu-item-group>
 
             <!-- <el-menu-item-group>
