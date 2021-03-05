@@ -17,11 +17,21 @@
         <div>
             <div class="tag-panel">
                 <h3>主属性</h3>
-                <choose-main-tag v-model="mainTag" :position="position"></choose-main-tag>
+                <!-- <choose-main-tag v-model="mainTag" :position="position"></choose-main-tag> -->
+                <select-artifact-main-tag v-model="mainTag" :position="position"></select-artifact-main-tag>
             </div>
             <div class="tag-panel">
-                <h3>副属性</h3>
-                <choose-normal-tag v-model="normalTags"></choose-normal-tag>
+                <div class="flex-row">
+                    <h3 style="margin-right: 8px">副属性</h3>
+                    <el-button
+                        icon="el-icon-refresh"
+                        circle size="mini"
+                        @click="shuffleNormalTags"
+                        title="随机"
+                    ></el-button>
+                </div>
+                
+                <select-artifact-normal-tag v-model="normalTags"></select-artifact-normal-tag>
             </div>
         </div>
 
@@ -35,10 +45,14 @@
 <script>
 import ChooseArtifactSet from "./ChooseArtifactSet";
 import ChooseArtifactPosition from "./ChooseArtifactPosition";
-import ChooseMainTag from "./ChooseMainTag";
-import ChooseNormalTag from "./ChooseNormalTag";
+// import ChooseMainTag from "./ChooseMainTag";
+// import ChooseNormalTag from "./ChooseNormalTag";
+import SelectArtifactNormalTag from "@c/SelectArtifactNormalTag";
+import SelectArtifactMainTag from "@c/SelectArtifactMainTag";
 
-import { getDetailName, getArtifactRealValue } from "../../utils/utils";
+import { getDetailName, getArtifactRealValue } from "@util/utils";
+import randomNormalTag from "@/artifacts_numeric/random_normal_tag";
+import { convertDisplayTagValue } from '../../../utils/utils';
 
 function convertPercentage(item) {
     item.value = getArtifactRealValue(item.name, item.value);
@@ -52,8 +66,10 @@ export default {
     components: {
         ChooseArtifactSet,
         ChooseArtifactPosition,
-        ChooseMainTag,
-        ChooseNormalTag,
+        // ChooseMainTag,
+        // ChooseNormalTag,
+        SelectArtifactNormalTag,
+        SelectArtifactMainTag,
     },
     props: {
         visible: {
@@ -72,19 +88,7 @@ export default {
                 value: "1000",
             },
             // 副属性
-            normalTags: [{
-                name: "",
-                value: "0",
-            },{
-                name: "",
-                value: "0",
-            },{
-                name: "",
-                value: "0",
-            },{
-                name: "",
-                value: "0",
-            }],
+            normalTags: [],
         }
     },
     methods: {
@@ -135,8 +139,17 @@ export default {
             this.$emit("confirm", result);
         },
         
-        onCancel: function() {
+        onCancel() {
             this.$emit("close");
+        },
+
+        shuffleNormalTags() {
+            let temp = randomNormalTag(5, 20, [this.mainTag.name]);
+            for (let i = 0, l = temp.length; i < l; i++) {
+                temp[i].value = convertDisplayTagValue(temp[i].name, temp[i].value);
+            }
+
+            this.normalTags = temp;
         }
     },
 }

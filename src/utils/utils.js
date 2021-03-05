@@ -1,6 +1,10 @@
-import { secondaryTags } from "../assets/tags";
-import { artifactsData } from "../assets/artifacts";
+import { secondaryTags } from "@asset/tags";
+import { artifactsData } from "@asset/artifacts";
 
+/**
+ * attackPercentage, 0.2 => "攻击力+20%"
+ * attackStatic, 20 => "攻击力+20"
+ */
 export function displayedTag(name, value) {
     let tagData = secondaryTags[name];
     if (!tagData) {
@@ -34,6 +38,10 @@ export function displayedTag(name, value) {
     }
 }
 
+/**
+ * attackPercentage, 0.1 -> "10"
+ * attackStatic, 10 -> "10"
+ */
 export function convertDisplayTagValue(name, value) {
     let tagData = secondaryTags[name];
     if (!tagData) {

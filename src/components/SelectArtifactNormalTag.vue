@@ -150,9 +150,6 @@ export default {
     width: 150px;
 }
 
-.input {
-}
-
 .item {
     display: flex;
     align-items: center;
@@ -162,7 +159,5 @@ export default {
 .del-button {
     padding: 0;
     margin-left: 8px;
-    
-
 }
 </style>

@@ -29,6 +29,7 @@
 <script>
 import { artifactsTagMap } from "@asset/artifacts";
 import { secondaryTags } from "@asset/tags";
+import { convertDisplayTagValue } from "@util/utils";
 
 const tagData = {
     flower: artifactsTagMap["flower"].map(item => secondaryTags[item]),
@@ -90,6 +91,14 @@ export default {
                 temp.name = autoSelectedTagName;
                 this.$emit("input", temp);
             }
+        },
+
+        "value.name"() {
+            let maxValue = secondaryTags[this.value.name].max[5];
+            let temp = Object.assign({}, this.value);
+
+            temp.value = convertDisplayTagValue(temp.name, maxValue);
+            this.$emit("input", temp);
         }
     }
 }

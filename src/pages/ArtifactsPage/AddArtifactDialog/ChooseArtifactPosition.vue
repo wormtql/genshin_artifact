@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { artifactsData } from "../../assets/artifacts";
+import { artifactsData } from "../../../assets/artifacts";
 
 export default {
     name: "PositionChoose",

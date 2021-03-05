@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import { artifactsData } from "../../assets/artifacts";
-import { getArtifactThumbnailURL } from "../../utils/utils";
+import { artifactsData } from "../../../assets/artifacts";
+import { getArtifactThumbnailURL } from "../../../utils/utils";
 
 export default {
     name: "SetChoose",
