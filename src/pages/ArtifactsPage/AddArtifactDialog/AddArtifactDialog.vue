@@ -25,9 +25,18 @@
                     <h3 style="margin-right: 8px">副属性</h3>
                     <el-button
                         icon="el-icon-refresh"
-                        circle size="mini"
+                        circle
+                        size="mini"
                         @click="shuffleNormalTags"
                         title="随机"
+                    ></el-button>
+                    <el-button
+                        icon="el-icon-question"
+                        circle
+                        style="padding: 0"
+                        title="帮助"
+                        type="text"
+                        @click="openHelp"
                     ></el-button>
                 </div>
                 
@@ -150,6 +159,11 @@ export default {
             }
 
             this.normalTags = temp;
+        },
+
+        openHelp() {
+            let text = "使用随机副词条，可以快速构建大量合理的圣遗物，可以方便地确定某个角色适合什么圣遗物。例如，快速构建角斗士、乐团、魔女4件套，从而计算胡桃适合什么样的圣遗物组合";
+            this.$alert(text, "帮助");
         }
     },
 }
