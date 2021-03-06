@@ -1,4 +1,8 @@
 # 莫娜占卜铺
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3a2fc38c-d9dd-4257-98d5-11891cf9b064/deploy-status)](https://app.netlify.com/sites/jovial-chandrasekhar-293ccd/deploys)
+![GitHub Repo stars](https://img.shields.io/github/stars/wormtql/genshin_artifact)
+![GitHub forks](https://img.shields.io/github/forks/wormtql/genshin_artifact)
+
 原神圣遗物自动搭配，[网址在这里](https://www.genshin.art)  
 该README有以下语言：  
 [english](./README_en.md)
