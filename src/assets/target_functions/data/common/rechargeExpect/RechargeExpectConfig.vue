@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import SelectElementType from "@c/SelectElementType";
-import SelectSkillType from "@c/SelectSkillType";
+import SelectElementType from "@c/select/SelectElementType";
+import SelectSkillType from "@c/select/SelectSkillType";
 import InputWithAppend from "@c/InputWithAppend";
 
 export default {

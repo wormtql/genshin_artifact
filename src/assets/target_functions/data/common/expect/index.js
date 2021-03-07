@@ -1,4 +1,4 @@
-import badge from "../badges/thunder_slime.png";
+import badge from "../badges/fire_slime.png";
 import config from "./expectConfig";
 
 
