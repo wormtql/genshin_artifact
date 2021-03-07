@@ -122,7 +122,7 @@ export default {
                 targetFuncName: "",
                 targetFuncArgs: {},
 
-                checkFunctionConfig: null,
+                constraintConfig: null,
             },
 
             resultData: {},
@@ -198,7 +198,7 @@ export default {
          * when resctrictions are determined
          */
         handleConfig(config) {
-            this.selected.checkFunctionConfig = config;
+            this.selected.constraintConfig = config;
 
             if (!this.$store.getters.valid) {
                 this.$message.error("圣遗物数量过多，请禁用或删除明显更次的圣遗物");
@@ -217,14 +217,14 @@ export default {
             let character = this.characterInfo;
             let weapon = this.weaponInfo;
             let artifacts = this.getArtifacts();
-            let checkFuncConfig = this.selected.checkFunctionConfig;
+            let constraintConfig = this.selected.constraintConfig;
             let targetFuncName = this.selected.targetFuncName;
             let targetFuncArgs = this.selected.targetFuncArgs;
 
             this.calculating = true;
 
             // this is a web worker wrapped by a promise
-            compute(artifacts, character, weapon, targetFuncName, targetFuncArgs, checkFuncConfig).then(result => {
+            compute(artifacts, character, weapon, targetFuncName, targetFuncArgs, constraintConfig).then(result => {
                 this.resultData = {
                     artifacts: Object.values(result.combo),
                     value: result.value,
