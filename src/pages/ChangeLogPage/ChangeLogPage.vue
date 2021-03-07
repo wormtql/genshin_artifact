@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import changelogs from "./changelog";
+import changelogs from "@/changelog/changelog";
 
 export default {
     name: "ChangeLogPage",
