@@ -5,7 +5,7 @@
 
 原神圣遗物自动搭配，[网址在这里](https://www.genshin.art)  
 该README有以下语言：  
-[english](./README_en.md)
+[English](./README_en.md)
 <!-- [日本語](./README_jp.md) -->
 ## 简介
 《原神》圣遗物自动搭配
@@ -20,6 +20,10 @@
 - 诺艾尔的防御和攻击怎么平衡？
 - ...
 ## 本地运行
+首次运行需要先安装相关依赖
+```
+npm install
+```
 该网站没有后端，可以本地运行
 ```
 npm run serve
