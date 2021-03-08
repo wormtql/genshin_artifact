@@ -1,4 +1,6 @@
 export default function (config) {
+    config = config.constraintSet;
+
     if (config.mode === "any") {
         return function () {
             return true;

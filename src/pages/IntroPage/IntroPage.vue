@@ -137,7 +137,7 @@
 </template>
 
 <script>
-import changelogs from "../ChangeLogPage/changelog";
+import changelogs from "@/changelog/changelog";
 
 export default {
     name: "IntroPage",

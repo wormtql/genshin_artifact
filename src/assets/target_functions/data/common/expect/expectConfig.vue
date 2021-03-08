@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import SelectElementType from "@c/SelectElementType";
-import SelectSkillType from "@c/SelectSkillType";
+import SelectElementType from "@c/select/SelectElementType";
+import SelectSkillType from "@c/select/SelectSkillType";
 
 export default {
     name: "ExpectConfig",
@@ -25,14 +25,6 @@ export default {
         return {
             element: "fire",
             skill: "a",
-        }
-    },
-    methods: {
-        compact() {
-            return {
-                element: this.element,
-                skill: this.skill,
-            }
         }
     }
 }

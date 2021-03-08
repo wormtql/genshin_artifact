@@ -1,4 +1,4 @@
-import badge from "../badges/thunder_slime.png";
+import badge from "../badges/rock_slime.png";
 import config from "./singleConfig";
 
 

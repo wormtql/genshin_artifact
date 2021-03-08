@@ -29,6 +29,23 @@
                 <select-artifact-set v-model="setName4" :disabled="artifactMode !== '4'"></select-artifact-set>
             </div>
         </div>
+
+        <div>
+            <h3 class="title">限定主词条</h3>
+            <div class="flex-row row">
+                <span class="cmt-label fs-14 color-normal">时之沙</span>
+                <select-art-main-tag-without-val position="sand" v-model="constrainMainTag.sand"></select-art-main-tag-without-val>
+            </div>
+            <div class="flex-row row">
+                <span class="cmt-label fs-14 color-normal">空之杯</span>
+                <select-art-main-tag-without-val position="cup" v-model="constrainMainTag.cup"></select-art-main-tag-without-val>
+            </div>
+            <div class="flex-row row">
+                <span class="cmt-label fs-14 color-normal">理之冠</span>
+                <select-art-main-tag-without-val position="head" v-model="constrainMainTag.head"></select-art-main-tag-without-val>
+            </div>
+        </div>
+
         <el-button type="primary" class="confirm-button" @click="handleConfirm">确定</el-button>
     </div>
 </template>
@@ -37,6 +54,7 @@
 import { artifactsData } from "@asset/artifacts";
 
 import SelectArtifactSet from "@c/SelectArtifactSet";
+import SelectArtMainTagWithoutVal from '@c/SelectArtMainTagWithoutVal.vue';
 
 let allArtifactsName = Object.values(artifactsData).map(item => {
     return {
@@ -49,6 +67,7 @@ export default {
     name: "Config",
     components: {
         SelectArtifactSet,
+        SelectArtMainTagWithoutVal,
     },
     created: function () {
         this.allArtifactsName = allArtifactsName;
@@ -60,6 +79,12 @@ export default {
             setName2: "archaicPetra",
             setName3: "archaicPetra",
             setName4: "archaicPetra",
+
+            constrainMainTag: {
+                sand: "any",
+                cup: "any",
+                head: "any",
+            }
         }
     },
     methods: {
@@ -76,13 +101,20 @@ export default {
                 temp.setName1 = this.setName4;
             }
 
-            this.$emit("select", temp);
+            this.$emit("select", {
+                constraintSet: temp,
+                constraintMainTag: this.constrainMainTag,
+            });
         }
     }
 }
 </script>
 
 <style scoped>
+.cmt-label {
+    width: 110px;
+}
+
 .title {
     /* background:rgb(74, 99, 211); */
     padding: 0px 16px;

@@ -1,6 +1,7 @@
 import * as genshin from "genshin_panel";
 import { targetFunctionsData } from "@asset/target_functions";
 import createCheckFunction from "./create_check_function";
+import createFilterFunction from "./create_filter_function";
 
 function getArtifact(myArtifact) {
     let temp = new genshin.ArtifactBuilder()
@@ -31,7 +32,12 @@ function getArtifactsSetInfo(arts) {
     return temp;
 }
 
-function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, checkFuncConfig) {
+function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, constraintConfig) {
+    // filter artifacts
+    let filterFunc = createFilterFunction(constraintConfig);
+    artifacts = filterFunc(artifacts);
+
+
     // get character and weapon
     const character = new genshin.Character(c.name, c.level, c.ascend, 0);
     const weapon = new genshin.Weapon(w.name, w.level, w.ascend, w.refine, w.args);
@@ -59,7 +65,7 @@ function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, check
     }
 
     // check(or constraint) function
-    const check = createCheckFunction(checkFuncConfig);
+    const check = createCheckFunction(constraintConfig);
 
     const flowerCount = Math.max(artifacts.flower.length, 1);
     const featherCount = Math.max(artifacts.feather.length, 1);
