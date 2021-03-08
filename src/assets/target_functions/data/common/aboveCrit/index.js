@@ -15,9 +15,9 @@ function halfCrit(config) {
 
 export default {
     name: "aboveCrit",
-    chs: "名字真难取",
+    chs: "固定暴击率",
     description: [
-        "暴击率高于${threshold}时，堆攻击和爆伤，否则堆暴击率",
+        "优先堆暴击率到给定阈值，再堆攻击和爆伤",
     ],
     tags: [
         "输出",

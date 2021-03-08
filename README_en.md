@@ -1,19 +1,25 @@
-# mona's
-Genshin Impact automatic artifacts composition, here's [website](https://www.genshin.art)  
+# Mona's Divination Shop
+Genshin Impact artifacts automatic combination, the website is [here](https://www.genshin.art)  
+This README is also available in:  
 [中文](./README.md)
 <!-- [日本語](./README_jp.md) -->
-## description
-*Genshin Impact* Artifacts automatic composition  
-## features
-- support all characters and weapons
-- multi composition target. different characters, different targets
-- pure frontend
+## Description
+*Genshin Impact* artifacts automatic combination
+## Features
+- Support all characters and weapons
+- Characters have their customized optimization targets
+- Pure frontend, can be used locally
 - ...  
-## abilities
-- what's the highest ATK my artifacts can achieve?
-- what's the highest expect damage my artifacts can achieve?
-- how to balance DEF and ATK for my *Noelle*?  
-## run locally
+## Use Cases
+- What are the highest ATK, CRIT, CDMG my artifacts can achieve?
+- What is the highest expect damage my artifacts can achieve?
+- How to balance my *Noelle*'s DEF and ATK?
+## Run Locally
+Run the following to install dependencies
+```
+npm install
+```
+This website does not have a backend, run the following to start the website locally
 ```bash
 npm run serve
 ```
