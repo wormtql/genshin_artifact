@@ -2,7 +2,7 @@ import LoadingComponent from "@c/LoadingComponent";
 import ErrorComponent from "@c/ErrorComponent";
 
 const IntroPage = () => ({
-    component: import(/* webpackChunkName: "intro-page" */ "@page/IntroPage"),
+    component: import(/* webpackChunkName: "intro-page" */ "@page/about/IntroPage"),
     loading: LoadingComponent,
     error: ErrorComponent,
 });
@@ -17,17 +17,27 @@ const ArtifactsPlanPage = () => ({
     error: ErrorComponent,
 });
 const ChangeLogPage = () => ({
-    component: import(/* webpackChunkName: "about-page" */ "@page/ChangeLogPage"),
+    component: import(/* webpackChunkName: "about-page" */ "@page/about/ChangeLogPage"),
     loading: LoadingComponent,
     error: ErrorComponent,
 });
 const AlgorithmPage = () => ({
-    component: import(/* webpackChunkName: "about-page" */ "@page/AlgorithmPage"),
+    component: import(/* webpackChunkName: "about-page" */ "@page/about/AlgorithmPage"),
     loading: LoadingComponent,
     error: ErrorComponent,
 });
 const ExternalLinkPage = () => ({
-    component: import(/* webpackChunkName: "about-page" */ "@page/ExternalLinkPage"),
+    component: import(/* webpackChunkName: "about-page" */ "@page/about/ExternalLinkPage"),
+    loading: LoadingComponent,
+    error: ErrorComponent,
+});
+const ArtifactPotentialPage = () => ({
+    component: import(/* webpackChunkName: "artifact-potential-page" */ "@page/ArtifactPotentialPage"),
+    loading: LoadingComponent,
+    error: ErrorComponent,
+});
+const PotentialFuncPage = () => ({
+    component: import(/* webpackChunkName: "about-page" */ "@page/about/PotentialFuncPage"),
     loading: LoadingComponent,
     error: ErrorComponent,
 });
@@ -69,10 +79,17 @@ const routes = [
         }
     },
     {
-        path: "/algorithm",
+        path: "/algorithm-target",
         component: AlgorithmPage,
         meta: {
-            title: "算法说明 | " + webName,
+            title: "目标函数 | " + webName,
+        }
+    },
+    {
+        path: "/algorithm-potential",
+        component: PotentialFuncPage,
+        meta: {
+            title: "潜力函数 | " + webName,
         }
     },
     {
@@ -80,6 +97,14 @@ const routes = [
         component: ExternalLinkPage,
         meta: {
             title: "友情链接 | " + webName,
+        }
+    },
+    {
+        path: "/potential",
+        component: ArtifactPotentialPage,
+        meta: {
+            keepAlive: true,
+            title: "圣遗物潜力 | " + webName,
         }
     }
 ]

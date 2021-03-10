@@ -46,8 +46,8 @@ export default {
 
 <style scoped>
 .image {
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     box-shadow: 0 0 10px 5px #00000022;
 }
@@ -57,7 +57,7 @@ export default {
     padding: 0;
     margin: 0;
     text-align: center;
-    width: 64px;
+    width: 48px;
 }
 
 .choose-artifact-set {
@@ -66,7 +66,7 @@ export default {
 }
 
 .item {
-    margin-right: 12px;
+    margin-right: 4px;
     padding: 8px;
     color: #777777;
 }

@@ -6,7 +6,7 @@
         :before-close="onCancel"
     >
         <h3>套装</h3>
-        <choose-artifact-set v-model="setName"></choose-artifact-set>
+        <choose-artifact-set :value="setName" @input="handleSetNameChange"></choose-artifact-set>
 
         <h3>位置</h3>
         <choose-artifact-position
@@ -14,13 +14,43 @@
             :setName="setName"
         ></choose-artifact-position>
 
-        <div>
-            <div class="tag-panel">
+        <el-row :gutter="16">
+            <el-col :span="12">
+                <h3>品质</h3>
+                <el-rate
+                    @input="handleStarChange"
+                    :value="star"
+                    :max="artifactData.maxStar"
+                ></el-rate>
+            </el-col>
+            <el-col :span="12">
+                <div class="flex-row">
+                    <h3 style="margin-right: 8px">等级</h3>
+                    <el-button icon="el-icon-d-arrow-left" circle size="mini" title="0级"
+                        @click="level = 0"
+                    ></el-button>
+                    <el-button icon="el-icon-d-arrow-right" circle size="mini" title="满级"
+                        @click="level = star * 4"
+                    ></el-button>
+                </div>
+                
+                <el-input-number
+                    v-model="level"
+                    :max="star * 4"
+                    :min="0"
+                    size="small"
+                ></el-input-number>
+                
+            </el-col>
+        </el-row>
+
+        <el-row :gutter="16">
+            <el-col :span="12">
                 <h3>主属性</h3>
                 <!-- <choose-main-tag v-model="mainTag" :position="position"></choose-main-tag> -->
                 <select-artifact-main-tag v-model="mainTag" :position="position"></select-artifact-main-tag>
-            </div>
-            <div class="tag-panel">
+            </el-col>
+            <el-col :span="12">
                 <div class="flex-row">
                     <h3 style="margin-right: 8px">副属性</h3>
                     <el-button
@@ -41,8 +71,8 @@
                 </div>
                 
                 <select-artifact-normal-tag v-model="normalTags"></select-artifact-normal-tag>
-            </div>
-        </div>
+            </el-col>
+        </el-row>
 
         <template #footer>
             <el-button @click="onCancel">取消</el-button>
@@ -61,7 +91,8 @@ import SelectArtifactMainTag from "@c/SelectArtifactMainTag";
 
 import { getDetailName, getArtifactRealValue } from "@util/utils";
 import randomNormalTag from "@/artifacts_numeric/random_normal_tag";
-import { convertDisplayTagValue } from '../../../utils/utils';
+import { convertDisplayTagValue } from '@util/utils';
+import { artifactsData } from "@asset/artifacts";
 
 function convertPercentage(item) {
     item.value = getArtifactRealValue(item.name, item.value);
@@ -75,8 +106,6 @@ export default {
     components: {
         ChooseArtifactSet,
         ChooseArtifactPosition,
-        // ChooseMainTag,
-        // ChooseNormalTag,
         SelectArtifactNormalTag,
         SelectArtifactMainTag,
     },
@@ -98,9 +127,25 @@ export default {
             },
             // 副属性
             normalTags: [],
+            // 星级
+            star: 5,
+            level: 20,
         }
     },
     methods: {
+        handleStarChange(e) {
+            if (e >= this.artifactData.minStar && e <= this.artifactData.maxStar) {
+                this.star = e;
+                this.level = this.star * 4;
+            }
+        },
+
+        handleSetNameChange(e) {
+            this.setName = e;
+            this.star = this.artifactData.maxStar;
+            this.level = this.star * 4;
+        },
+
         /**
          * return the final artifact object
          */
@@ -112,6 +157,8 @@ export default {
                 mainTag: this.getArtifactMainTag(),
                 normalTags: this.getArtifactNormalTags(),
                 omit: false,
+                star: this.star,
+                level: this.level,
                 id: 0,  // it's a placeholder, id is determined in Vuex store
             }
         },
@@ -166,23 +213,14 @@ export default {
             this.$alert(text, "帮助");
         }
     },
+    computed: {
+        artifactData() {
+            return artifactsData[this.setName];
+        }
+    }
 }
 </script>
 
 <style scoped>
-.summary {
-    margin-bottom: 8px;
-}
 
-.tag-panel {
-    width: 50%;
-    display: inline-block;
-    vertical-align: top;
-    
-    box-sizing: border-box;
-}
-
-.tag-panel:nth-of-type(1) {
-    padding-right: 16px;
-}
 </style>

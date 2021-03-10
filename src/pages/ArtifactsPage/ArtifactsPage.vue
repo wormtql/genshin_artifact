@@ -23,6 +23,7 @@
             :visible="editArtifactDrawerVisible"
             @close="editArtifactDrawerVisible = false"
             :args="editArtifactArgs"
+            ref="editDrawer"
         >
         </edit-artifact-drawer>
 
@@ -189,6 +190,10 @@ export default {
             this.editArtifactDrawerVisible = true;
             this.editArtifactArgs.position = position;
             this.editArtifactArgs.index = index;
+
+            let art = this.$store.getters.allArtifacts[position][index];
+
+            this.$refs.editDrawer.setInit(art);
         },
 
         add: function() {

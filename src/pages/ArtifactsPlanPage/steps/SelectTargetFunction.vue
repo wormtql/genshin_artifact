@@ -13,7 +13,7 @@
                 </div>
                 <div class="detail">
                     <span class="target-title">{{ target.chs }}</span>
-                    <div class="description">
+                    <div class="description fs-12">
                         <span
                             v-for="(des, index) in target.description"
                             :key="index"
@@ -48,7 +48,7 @@
             <div class="detail">
                 <span class="target-title">{{ target.chs }}</span>
                 <span class="formula" v-if="target.formula">{{ target.formula }}</span>
-                <div class="description">
+                <div class="description fs-12">
                     <span
                         v-for="(des, index) in target.description"
                         :key="index"
@@ -151,7 +151,6 @@ export default {
 
 .description span {
     display: block;
-    font-size: 12px;
     color: #555555;
     padding-top: 3px;
 }

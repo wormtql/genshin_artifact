@@ -1,15 +1,17 @@
 <template>
-    <el-container id="app">
+    <el-container id="container">
         <el-aside width="300px" style="border-right: 1px solid #eee">
             <side-bar></side-bar>
         </el-aside>
 
-        <el-main style="">
-            <keep-alive>
-                <router-view v-if="$route.meta.keepAlive"></router-view>
-            </keep-alive>
-            <router-view v-if="!$route.meta.keepAlive"></router-view>
-        </el-main>
+        <el-container>
+            <el-main style="position: relative">
+                <keep-alive>
+                    <router-view v-if="$route.meta.keepAlive"></router-view>
+                </keep-alive>
+                <router-view v-if="!$route.meta.keepAlive"></router-view>
+            </el-main>
+        </el-container>
     </el-container>
 </template>
 
@@ -25,7 +27,7 @@ export default {
 </script>
 
 <style>
-#app {
+#container {
     height: 100vh;
 }
 </style>

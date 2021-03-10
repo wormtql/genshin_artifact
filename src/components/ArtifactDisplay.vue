@@ -1,7 +1,12 @@
 <template>
-    <div class="artifact">
+    <div
+        class="artifact"
+        :class="{ selectable }"
+        @click="handleClick"
+    >
         <div class="up">
             <span class="name">{{ displayedTitle }}</span>
+            <span class="extra fs-12" v-if="this.extra">{{ extra }}</span>
         </div>
         <div class="down">
             <div>
@@ -25,47 +30,8 @@
 import { displayedTag } from "@util/utils";
 import { artifactsData } from "@asset/artifacts";
 
-function displayedTitle(setName, position) {
-    let item = artifactsData[setName];
-    if (!item) {
-        throw "no artifact";
-    }
-
-    if (item[position]) {
-        return item[position].chs;
-    }
-
-    throw "error no position";
-}
-
-function imageSrc(setName, position) {
-    let item = artifactsData[setName];
-    if (!item) {
-        throw "no artifact";
-    }
-
-    if (item[position]) {
-        return item[position].url;
-    }
-
-    throw "error no position";
-}
-
 export default {
     name: "ArtifactDisplay",
-    created: function () {
-        let setName = this.item.setName;
-        let position = this.item.position;
-        this.displayedTitle = displayedTitle(setName, position);
-        this.imageSrc = imageSrc(setName, position);
-
-        this.mainDisplayTag = displayedTag(this.item.mainTag.name, this.item.mainTag.value);
-        let secTags = [];
-        for (let tag of this.item.normalTags) {
-            secTags.push(displayedTag(tag.name, tag.value));
-        }
-        this.secTags = secTags;
-    },
     props: {
         item: {
             type: Object,
@@ -86,11 +52,80 @@ export default {
                 omit: false,
             })
         },
+
+        selectable: {
+            type: Boolean,
+            default: false,
+        },
+
+        extra: {
+            type: String,
+            default: "",
+        }
     },
+    methods: {
+        handleClick() {
+            if (this.selectable) {
+                this.$emit("click");
+            }
+        }
+    },
+    computed: {
+        displayedTitle() {
+            let item = artifactsData[this.item.setName];
+            if (!item) {
+                throw "no artifact";
+            }
+
+            let title = "not exist"
+            if (item[this.item.position]) {
+                title = item[this.item.position].chs;
+                if (Object.prototype.hasOwnProperty.call(this.item, "level")) {
+                    title += "+" + (this.item.level);
+                } else {
+                    title += "+??";
+                }
+            }
+            title += `(${"*" + (this.item.star || "??")})`;
+
+            return title;
+        },
+
+        imageSrc() {
+            let item = artifactsData[this.item.setName];
+            if (!item) {
+                throw "no artifact";
+            }
+
+            if (item[this.item.position]) {
+                return item[this.item.position].url;
+            }
+
+            throw "error no position";
+        },
+
+        mainDisplayTag() {
+            return displayedTag(this.item.mainTag.name, this.item.mainTag.value);
+        },
+
+        secTags() {
+            let temp = [];
+            for (let tag of this.item.normalTags) {
+                temp.push(displayedTag(tag.name, tag.value));
+            }
+            return temp;
+        }
+    }
 }
 </script>
 
 <style scoped>
+.extra {
+    color: #e7bf4f;
+    line-height: 32px;
+    margin-left: 32px;
+}
+
 .sec-tag {
     font-size: 12px;
     margin: 0;
@@ -116,6 +151,8 @@ export default {
     height: 32px;
     padding: 0 8px;
     border-bottom: 1px solid #e9e9e9;
+    display: flex;
+    justify-content: space-between;
 }
 
 .down {
@@ -138,5 +175,11 @@ export default {
     border-radius: 50%;
     display: block;
     margin-right: 8px;
+}
+
+.selectable:hover {
+    background: #12345622;
+    /* border: 1px solid #123456; */
+    cursor: pointer;
 }
 </style>

@@ -71,7 +71,7 @@ export default {
 .item {
     padding: 8px;
     color: #777777;
-    margin-right: 12px;
+    margin-right: 4px;
 }
 
 .item:hover {
@@ -94,12 +94,12 @@ export default {
     margin: 0;
     font-size: 12px;
     text-align: center;
-    width: 64px;
+    width: 48px;
 }
 
 .image {
-    height: 64px;
-    width: 64px;
+    height: 48px;
+    width: 48px;
     border-radius: 50%;
 }
 </style>

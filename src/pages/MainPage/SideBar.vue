@@ -28,6 +28,10 @@
                     <i class="el-icon-cpu"></i>
                     Arts Planner
                 </el-menu-item>
+                <el-menu-item index="potential">
+                    <i class="el-icon-magic-stick"></i>
+                    圣遗物潜力
+                </el-menu-item>
             </el-menu-item-group>
 
             <el-menu-item-group>
@@ -38,10 +42,21 @@
                     <i class="el-icon-date"></i>
                     更新记录
                 </el-menu-item>
-                <el-menu-item index="algorithm">
-                    <i class="el-icon-ice-cream"></i>
-                    算法说明
-                </el-menu-item>
+                <el-submenu>
+                    <template slot="title">
+                        <i class="el-icon-ice-cream"></i>
+                        算法说明
+                    </template>
+                    <el-menu-item index="algorithm-target">
+                        <i class="el-icon-chicken"></i>
+                        目标函数
+                    </el-menu-item>
+                    <el-menu-item index="algorithm-potential">
+                        <i class="el-icon-sugar"></i>
+                        潜力函数
+                    </el-menu-item>
+                </el-submenu>
+                
                 <el-menu-item index="tomodachi">
                     <i class="el-icon-link"></i>
                     友情链接

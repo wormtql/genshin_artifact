@@ -25,8 +25,13 @@ module.exports = {
                     VERSION: `"${version}"`
                 }
             }),
-            new WorkerPlugin(),
+            new WorkerPlugin({
+                globalObject: "self",
+            }),
         ],
+        // output: {
+        //     filename: "[name].[hash].js"
+        // },
         // module: {
         //     rules: [
         //         {
@@ -35,14 +40,14 @@ module.exports = {
         //                 {
         //                     loader: "worker-loader",
         //                     options: {
-        //                         filename: "[hash].worker.js",
+        //                         filename: "js/[contenthash].[name].js",
         //                     }
         //                 },
         //                 "babel-loader"
         //             ],
         //         }
         //     ]
-        // }
+        // },
         externals: {
             vue: "Vue",
             "vue-router": "VueRouter",
@@ -51,11 +56,12 @@ module.exports = {
         }
     },
     // chainWebpack: config => {
-    //     config.plugin("")
-    //     config.plugin("html").tag(args => {
-    //         args[0].template = "";
-    //         return args;
-    //     })
+    //     config.module
+    //         .rule("worker")
+    //             .test(/\.worker\.js$/)
+    //             .use("babel")
+    //                 .loader("babel-loader")
+
     // },
     productionSourceMap: false,
 }

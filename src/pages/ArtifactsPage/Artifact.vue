@@ -13,11 +13,11 @@
                     @click="$emit('delete')"
                 ></el-button>
                 <el-button
-                    icon="el-icon-crop"
+                    :icon="item.omit ? 'el-icon-unlock' : 'el-icon-lock'"
                     circle
                     size="mini"
                     type="text"
-                    title="禁用/启用"
+                    :title="item.omit ? '启用' : '禁用'"
                     class="mybutton"
                     @click="$emit('toggle')"
                 ></el-button>
@@ -51,8 +51,8 @@
 </template>
 
 <script>
-import { displayedTag } from "../../utils/utils";
-import { artifactsData } from "../../assets/artifacts";
+import { displayedTag } from "@util/utils";
+import { artifactsData } from "@asset/artifacts";
 
 
 export default {
@@ -74,6 +74,8 @@ export default {
                     { name: "attackPercentage", value: 0.3 },
                     { name: "attackPercentage", value: 0.3 },
                 ],
+                star: 5,
+                level: 20,
                 omit: false,
             })
         },
@@ -81,10 +83,17 @@ export default {
     computed: {
         displayedTitle() {
             let item = artifactsData[this.item.setName];
+            let title = "not exist";
             if (item[this.item.position]) {
-                return item[this.item.position].chs;
+                title = item[this.item.position].chs;
+                if (Object.prototype.hasOwnProperty.call(this.item, "level")) {
+                    title += "+" + (this.item.level);
+                } else {
+                    title += "+??";
+                }
             }
-            return "not exist";
+            title += `(${"*" + (this.item.star || "??")})`;
+            return title;
         },
 
         imageSrc() {

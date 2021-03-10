@@ -7,6 +7,6 @@ function importAll(r) {
     })
 }
 
-importAll(require.context("./data", true, /\.js$/));
+importAll(require.context("./data", true, /\.tf\.js$/));
 
 export const targetFunctionsData = cache;

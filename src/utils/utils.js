@@ -75,3 +75,14 @@ export function getArtifactRealValue(name, value) {
 export function getDetailName(setName, position) {
     return artifactsData[setName][position].chs;
 }
+
+export function getArtifactUpCount(artifact) {
+    let star = artifact.star || 5;
+    let level = 20;
+    if (Object.prototype.hasOwnProperty.call(artifact, "level")) {
+        level = artifact.level;
+    }
+    let max = star * 4;
+
+    return Math.floor((max - level + 1) / 4);
+}
