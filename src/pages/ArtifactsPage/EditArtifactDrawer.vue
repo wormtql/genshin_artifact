@@ -50,7 +50,8 @@
             <p class="title">词条</p>
             <select-artifact-main-tag
                 :position="artifact.position"
-                v-model="mainTag"
+                :value="mainTag"
+                @input="handleMainTagChange"
             ></select-artifact-main-tag>
         </div>
 
@@ -82,6 +83,7 @@
 import { artifactsData } from "@asset/artifacts";
 import { convertDisplayTagValue, getArtifactRealValue } from "@util/utils";
 import deepCopy from "@util/deepcopy";
+import { secondaryTags } from "@asset/tags";
 
 import SelectArtifactMainTag from "@c/SelectArtifactMainTag";
 import SelectArtifactNormalTag from "@c/SelectArtifactNormalTag";
@@ -125,6 +127,17 @@ export default {
             }
         },
 
+        handleMainTagChange(e) {
+            if (e.name !== this.mainTag.name) {
+                let maxValue = secondaryTags[e.name].max[5];
+
+                this.mainTag.value = convertDisplayTagValue(e.name, maxValue);
+                this.mainTag.name = e.name;
+            } else {
+                this.mainTag = e;
+            }
+        },
+
         setInit(item) {
             this.mainTag.name = item.mainTag.name;
             this.mainTag.value = convertDisplayTagValue(item.mainTag.name, item.mainTag.value);
@@ -137,8 +150,11 @@ export default {
                 });
             }
 
-            this.star = item.star || 5;
-            this.level = item.level || 20;
+            this.star = 5;
+            if (Object.prototype.hasOwnProperty.call(item, "star")) {
+                this.star = item.star;
+            }
+            this.level = item.level ?? 20;
         },
 
         handleConfirm() {

@@ -29,7 +29,7 @@
 <script>
 import { artifactsTagMap } from "@asset/artifacts";
 import { secondaryTags } from "@asset/tags";
-import { convertDisplayTagValue } from "@util/utils";
+// import { convertDisplayTagValue } from "@util/utils";
 
 const tagData = {
     flower: artifactsTagMap["flower"].map(item => secondaryTags[item]),
@@ -48,7 +48,7 @@ export default {
         },
         position: {
             type: String,
-        }
+        },
     },
     methods: {
         handleTagChange(event) {
@@ -93,13 +93,13 @@ export default {
             }
         },
 
-        "value.name"() {
-            let maxValue = secondaryTags[this.value.name].max[5];
-            let temp = Object.assign({}, this.value);
+        // "value.name"() {
+        //     let maxValue = secondaryTags[this.value.name].max[5];
+        //     let temp = Object.assign({}, this.value);
 
-            temp.value = convertDisplayTagValue(temp.name, maxValue);
-            this.$emit("input", temp);
-        }
+        //     temp.value = convertDisplayTagValue(temp.name, maxValue);
+        //     this.$emit("input", temp);
+        // }
     }
 }
 </script>

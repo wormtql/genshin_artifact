@@ -48,7 +48,11 @@
             <el-col :span="12">
                 <h3>主属性</h3>
                 <!-- <choose-main-tag v-model="mainTag" :position="position"></choose-main-tag> -->
-                <select-artifact-main-tag v-model="mainTag" :position="position"></select-artifact-main-tag>
+                <select-artifact-main-tag
+                    :value="mainTag"
+                    :position="position"
+                    @input="handleMainTagChange"
+                ></select-artifact-main-tag>
             </el-col>
             <el-col :span="12">
                 <div class="flex-row">
@@ -93,6 +97,7 @@ import { getDetailName, getArtifactRealValue } from "@util/utils";
 import randomNormalTag from "@/artifacts_numeric/random_normal_tag";
 import { convertDisplayTagValue } from '@util/utils';
 import { artifactsData } from "@asset/artifacts";
+import { secondaryTags } from "@asset/tags";
 
 function convertPercentage(item) {
     item.value = getArtifactRealValue(item.name, item.value);
@@ -123,7 +128,7 @@ export default {
             // 主属性名
             mainTag: {
                 name: "lifeStatic",
-                value: "1000",
+                value: "4780",
             },
             // 副属性
             normalTags: [],
@@ -137,6 +142,17 @@ export default {
             if (e >= this.artifactData.minStar && e <= this.artifactData.maxStar) {
                 this.star = e;
                 this.level = this.star * 4;
+            }
+        },
+
+        handleMainTagChange(e) {
+            if (e.name !== this.mainTag.name) {
+                let maxValue = secondaryTags[e.name].max[5];
+
+                this.mainTag.value = convertDisplayTagValue(e.name, maxValue);
+                this.mainTag.name = e.name;
+            } else {
+                this.mainTag = e;
             }
         },
 
