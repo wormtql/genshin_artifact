@@ -1,4 +1,4 @@
-import computeArtifacts from "@alg/compute_artifacts";
+import computeArtifacts from "@alg/attribute_target/compute_artifacts";
 
 const calcs = {
     computeArtifacts,

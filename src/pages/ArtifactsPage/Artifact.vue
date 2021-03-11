@@ -1,7 +1,12 @@
 <template>
     <div class="artifact" :class="{omit: item.omit}">
         <div class="up">
-            <span class="name">{{ displayedTitle }}</span>
+            <span class="name">
+                {{ displayedTitle }}
+                <span style="color: #e7bf4f">
+                    <i class="el-icon-star-on"></i>{{ displayedStar }}
+                </span>
+            </span>
             <div class="buttons">
                 <el-button
                     icon="el-icon-delete"
@@ -92,8 +97,11 @@ export default {
                     title += "+??";
                 }
             }
-            title += `(${"*" + (this.item.star || "??")})`;
             return title;
+        },
+
+        displayedStar() {
+            return this.item.star || "??";
         },
 
         imageSrc() {

@@ -1,5 +1,5 @@
 import * as genshin from "genshin_panel";
-import { targetFunctionsData } from "@asset/target_functions";
+import targetFunctionsFunc from "@asset/target_functions/func";
 import createCheckFunction from "./create_check_function";
 import createFilterFunction from "./create_filter_function";
 
@@ -43,7 +43,7 @@ function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, const
     const weapon = new genshin.Weapon(w.name, w.level, w.ascend, w.refine, w.args);
 
     // construct target function, given name and args
-    let targetFunc = targetFunctionsData[targetFuncName];
+    let targetFunc = targetFunctionsFunc[targetFuncName];
     // if need context, artifacts info will be passed as argument during computing
     const needContext = targetFunc.needContext;
     if (targetFunc.needConfig) {
@@ -72,7 +72,6 @@ function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, const
     const sandCount = Math.max(artifacts.sand.length, 1);
     const cupCount = Math.max(artifacts.cup.length, 1);
     const headCount = Math.max(artifacts.head.length, 1);
-
 
     let maxValue = -Infinity;
     let maxCombo = [];

@@ -76,7 +76,7 @@ import { charactersData } from "@asset/characters";
 import { weaponsData } from "@asset/weapons";
 // import { targetFunctionsData } from "@asset/target_functions";
 // import compute from "@alg/compute_artifacts";
-import compute from "@alg/compute_artifacts_promise";
+import compute from "@alg/attribute_target/compute_artifacts_promise";
 
 import SelectCharacter from "./steps/SelectCharacter";
 import SelectCharacterLevel from "./steps/SelectCharacterLevel";

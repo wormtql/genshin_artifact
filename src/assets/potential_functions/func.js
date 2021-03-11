@@ -7,6 +7,6 @@ function importAll(r) {
     }
 }
 
-importAll(require.context(".", true, /\.po\.config\.js$/));
+importAll(require.context(".", true, /\.po\.func\.js$/));
 
 export default cache;

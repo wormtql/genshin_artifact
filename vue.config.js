@@ -29,8 +29,9 @@ module.exports = {
                 globalObject: "self",
             }),
         ],
-        // output: {
-        //     filename: "[name].[hash].js"
+        // entry: {
+        //     "compute-worker": "./src/workers/compute.worker.js",
+        //     "potential-worker": "./src/workers/compute_potential.worker.js",
         // },
         // module: {
         //     rules: [
@@ -39,11 +40,11 @@ module.exports = {
         //             use: [
         //                 {
         //                     loader: "worker-loader",
-        //                     options: {
-        //                         filename: "js/[contenthash].[name].js",
-        //                     }
+        //                     // options: {
+        //                     //     filename: "js/[contenthash].[name].js",
+        //                     // }
         //                 },
-        //                 "babel-loader"
+        //                 // "babel-loader"
         //             ],
         //         }
         //     ]

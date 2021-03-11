@@ -8,7 +8,7 @@
         <p class="title"><span class="mona">莫娜占卜铺</span> V{{ version }} Welcome</p>
         <p style="padding: 0; margin: 0; font-size: 10px;">该网站处处透露着贫穷，欢迎有志者参与开发（美术等）</p>
         <p style="margin-bottom: 32px">
-            <span style="color: #409EFF">圣遗物自动配装</span>
+            <span style="color: #409EFF">圣遗物自动配装/圣遗物分数与潜力值</span>
             <!-- <span style="color: #67C23A">角色养成方向推荐</span> / 
             <span style="color: #E6A23C">面板计算</span> -->
         </p>
@@ -32,6 +32,7 @@
                 <li>如何使期望伤害最高？</li>
                 <li>暴击、爆伤、攻击力要多少比例？</li>
                 <li>诺艾尔的防御收益到底怎么样</li>
+                <li>多方向圣遗物评分与潜力计算</li>
                 <li>...</li>
             </ul>
             <!-- <p>以上都不是问题，一次输入圣遗物，即可自动计算</p> -->

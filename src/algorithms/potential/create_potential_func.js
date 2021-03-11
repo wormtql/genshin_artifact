@@ -1,7 +1,7 @@
-import pfData from "@asset/potential_functions/data";
+import pfFunc from "@asset/potential_functions/func";
 
 export default function (name, args) {
-    let item = pfData[name];
+    let item = pfFunc[name];
     if (!item) {
         throw "fatal error";
     }

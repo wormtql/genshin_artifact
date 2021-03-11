@@ -1,6 +1,6 @@
 <template>
     <div>
-        <component v-if="targetFunc.config" :is="targetFunc.config" ref="config">
+        <component v-if="needConfig" :is="targetFunc.config" ref="config">
         </component>
         <div v-else>
             <el-alert
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { targetFunctionsData } from "@asset/target_functions";
+import targetFunctionsData from "@asset/target_functions/data";
 
 export default {
     name: "ConfigTargetFunction",
@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         handleNextStep() {
-            if (!this.targetFunc.config) {
+            if (!this.needConfig) {
                 this.$emit("select", {});
                 return;
             }
@@ -43,6 +43,10 @@ export default {
     computed: {
         targetFunc() {
             return targetFunctionsData[this.targetFuncName];
+        },
+
+        needConfig() {
+            return !!this.targetFunc.config;
         }
     }
 }

@@ -7,7 +7,7 @@
         <el-divider></el-divider>
 
         <my-step
-            :steps="['潜力函数', '参数', '计算面板']"
+            :steps="['潜力函数', '参数', '结果']"
             :pointer="step"
             @navigate="step = $event"
         ></my-step>

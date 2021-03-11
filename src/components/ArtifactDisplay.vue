@@ -5,7 +5,12 @@
         @click="handleClick"
     >
         <div class="up">
-            <span class="name">{{ displayedTitle }}</span>
+            <span class="name">
+                {{ displayedTitle }}
+                <span style="color: #e7bf4f">
+                    <i class="el-icon-star-on"></i>{{ displayedStar }}
+                </span>
+            </span>
             <span class="extra fs-12" v-if="this.extra">{{ extra }}</span>
         </div>
         <div class="down">
@@ -86,9 +91,13 @@ export default {
                     title += "+??";
                 }
             }
-            title += `(${"*" + (this.item.star || "??")})`;
+            
 
             return title;
+        },
+
+        displayedStar() {
+            return this.item.star || "??";
         },
 
         imageSrc() {

@@ -82,7 +82,6 @@ export function getArtifactUpCount(artifact) {
     if (Object.prototype.hasOwnProperty.call(artifact, "level")) {
         level = artifact.level;
     }
-    let max = star * 4;
 
-    return Math.floor((max - level + 1) / 4);
+    return star - Math.floor(level / 4);
 }

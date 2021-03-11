@@ -1,19 +1,5 @@
 import badge from "@asset/badges/fire_slime.png";
-import config from "./maxConfig";
-
-
-function f(config) {
-    let element = config.tArgs.element;
-    let skill = config.tArgs.skill;
-
-    return function(attribute) {
-        let atk = attribute.attack();
-        let bonus = attribute.bonus + attribute[element + "Bonus"] + attribute[skill + "Bonus"];
-
-        let baseDmg = atk * (1 + bonus);
-        return (attribute.criticalDamage + 1) * baseDmg;
-    };
-}
+import config from "./MaxConfig";
 
 export default {
     name: "max",
@@ -25,7 +11,6 @@ export default {
     tags: [
         "上限",
     ],
-    func: f,
     "for": "common",
     badge,
     needConfig: true,

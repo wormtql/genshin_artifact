@@ -1,13 +1,5 @@
 import badge from "@asset/badges/abeiduo.png";
 
-function f(attribute) {
-    let def = attribute.defend();
-    let crit = Math.min(attribute.eCritical, 1);
-    let bonus = attribute.eBonus + attribute.bonus + attribute.rockBonus;
-
-    return def * (1 + bonus) * (1 + crit * attribute.criticalDamage);
-}
-
 export default {
     name: "abeiduoE",
     chs: "阿贝多-刹那之花",
@@ -17,7 +9,6 @@ export default {
     tags: [
         "阿贝多",
     ],
-    func: f,
     "for": "abeiduo",
     badge,
 }

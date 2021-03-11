@@ -6,7 +6,7 @@
         >
         </el-alert>
         <el-alert
-            title="目前对非5星圣遗物支持不好，因此，尽量使用5星圣遗物"
+            title="目前对非5星圣遗物支持不好，因此，尽量使用5星圣遗物；未指定等级和星级的默认为5星20级"
             :closable="false"
             type="warning"
             style="margin-bottom: 20px"

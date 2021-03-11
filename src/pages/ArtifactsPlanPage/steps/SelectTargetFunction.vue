@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { targetFunctionsData } from "../../../assets/target_functions";
+import targetFunctionsData from "@asset/target_functions/data";
 
 let targetGroup = {};
 Object.values(targetFunctionsData).forEach(item => {

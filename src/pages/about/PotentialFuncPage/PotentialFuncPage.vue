@@ -10,7 +10,7 @@
             <h1>影响因素</h1>
             <p>众所周知，输出向副词条的影响基本可以用以下这个公式概括：</p>
             <p v-katex="'atk*(1+crit*cd)'"></p>
-            <p v-katex="'atk=baseAtk*p+s'"></p>
+            <p v-katex="'atk=baseAtk*(1+p)+s'"></p>
             <p>其中，<span v-katex="'baseAtk'"></span>为基础攻击力，<span v-katex="'p'"></span>为百分比攻击力加成，<span v-katex="'s'"></span>为固定攻击力加成</p>
 
             <h1>期望</h1>

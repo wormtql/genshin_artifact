@@ -1,8 +1,8 @@
 <template>
     <div>
         <component
-            v-if="funcName && potentialFunc.needConfig"
-            :is="config"
+            v-if="needConfig"
+            :is="potentialFunc.config"
             ref="config"
         ></component>
         <div v-else>
@@ -28,7 +28,6 @@
 
 <script>
 import potentialFuncData from "@asset/potential_functions/data";
-import pfConfigs from "@asset/potential_functions/config";
 
 export default {
     name: "PotentialFuncArgs",
@@ -42,13 +41,13 @@ export default {
             return potentialFuncData[this.funcName];
         },
 
-        config() {
-            return pfConfigs[this.funcName].config;
+        needConfig() {
+            return this.potentialFunc && this.potentialFunc.config;
         }
     },
     methods: {
         getPArgs() {
-            if (!this.potentialFunc.needConfig) {
+            if (!this.needConfig) {
                 return {};
             }
 
