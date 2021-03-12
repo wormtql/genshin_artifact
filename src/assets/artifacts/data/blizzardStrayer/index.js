@@ -5,7 +5,7 @@ import head from "./head.png";
 import sand from "./sand.png";
 
 export default {
-    cup: {
+    flower: {
         chs: "历经风雪的思念",
         url: cup,
     },
@@ -13,15 +13,15 @@ export default {
         chs: "摧冰而行的执望",
         url: feather,
     },
-    flower: {
+    sand: {
         chs: "冰雪故园的终期",
         url: flower,
     },
-    head: {
+    cup: {
         chs: "遍结寒霜的傲骨",
         url: head,
     },
-    sand: {
+    head: {
         chs: "破冰踏雪的回音",
         url: sand,
     },
