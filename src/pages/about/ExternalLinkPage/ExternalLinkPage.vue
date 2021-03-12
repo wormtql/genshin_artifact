@@ -20,9 +20,10 @@
                     >{{ tag }}</span>
                 </div>
                 <div class="link-footer">
-                    <el-button @click="navigateTo(link.url)">
+                    <a class="el-button link-button" :href="link.url" target="_blank">
                         <i class="el-icon-connection" style="margin-right: 4px"></i>
-                    {{ link.url }}</el-button>
+                        {{ link.url }}
+                    </a>
                 </div>
             </div>
             
@@ -48,8 +49,14 @@ export default {
 </script>
 
 <style scoped>
+.link-button {
+    text-decoration: none;
+}
+
 .container {
     display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
 }
 
 .link-item {
@@ -57,6 +64,7 @@ export default {
     box-shadow: 0 0 10px 1px #00000011;
     padding: 20px;
     width: 28%;
+    margin-right: 20px;
 }
 
 .link-title {
@@ -67,6 +75,7 @@ export default {
 
 .link-tags {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .link-tag {
