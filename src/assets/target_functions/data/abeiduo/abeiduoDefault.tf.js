@@ -6,7 +6,6 @@ export default {
     chs: "阿贝多-白垩之子",
     description: [
         "兼顾E和Q",
-        "2命加成算作两次计数",
         "仅供参考",
     ],
     tags: [
@@ -15,6 +14,5 @@ export default {
     ],
     "for": "abeiduo",
     badge,
-    needConfig: true,
     config,
 }

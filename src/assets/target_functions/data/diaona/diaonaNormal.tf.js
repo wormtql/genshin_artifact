@@ -13,5 +13,4 @@ export default {
     ],
     "for": "diaona",
     badge,
-    needConfig: true,
 }

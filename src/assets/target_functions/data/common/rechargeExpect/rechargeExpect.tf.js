@@ -12,6 +12,5 @@ export default {
     ],
     "for": "common",
     badge,
-    needConfig: true,
     config,
 }

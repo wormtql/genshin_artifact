@@ -35,12 +35,13 @@ export default {
     },
     methods: {
         compact() {
-            let freq = parseFloat(this.qFreq) || 0.4;
+            let freq = parseFloat(this.qFreq);
 
             return {
                 eCount: this.eCount,
                 qCount: this.qCount,
                 qFreq: freq,
+                c2Count: this.c2Count,
             };
         }
     }

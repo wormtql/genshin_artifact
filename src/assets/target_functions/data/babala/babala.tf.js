@@ -12,5 +12,4 @@ export default {
     ],
     "for": "babala",
     badge,
-    needConfig: true,
 }
