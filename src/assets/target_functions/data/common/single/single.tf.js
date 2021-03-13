@@ -1,5 +1,5 @@
 import badge from "@asset/badges/rock_slime.png";
-import config from "./SingleConfig";
+import config from "./SingleTargetFuncConfig";
 
 export default {
     name: "single",
@@ -11,6 +11,6 @@ export default {
         "单值",
     ],
     "for": "common",
-    badge,
     config,
+    badge,
 }

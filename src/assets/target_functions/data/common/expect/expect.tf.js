@@ -1,5 +1,5 @@
 import badge from "@asset/badges/fire_slime.png";
-import config from "./ExpectConfig";
+import config from "./ExpectTargetFuncConfig";
 
 export default {
     name: "expect",
@@ -12,6 +12,6 @@ export default {
         "期望",
     ],
     "for": "common",
-    badge,
     config,
+    badge,
 }
