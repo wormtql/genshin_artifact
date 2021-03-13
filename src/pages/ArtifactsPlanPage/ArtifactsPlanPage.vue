@@ -77,6 +77,7 @@ import { weaponsData } from "@asset/weapons";
 // import { targetFunctionsData } from "@asset/target_functions";
 // import compute from "@alg/compute_artifacts";
 import compute from "@alg/attribute_target/compute_artifacts_promise";
+import timer from "@util/timer";
 
 import SelectCharacter from "./steps/SelectCharacter";
 import SelectCharacterLevel from "./steps/SelectCharacterLevel";
@@ -224,7 +225,7 @@ export default {
             this.calculating = true;
 
             // this is a web worker wrapped by a promise
-            compute(artifacts, character, weapon, targetFuncName, targetFuncArgs, constraintConfig).then(result => {
+            let promise = compute(artifacts, character, weapon, targetFuncName, targetFuncArgs, constraintConfig).then(result => {
                 this.resultData = {
                     artifacts: Object.values(result.combo),
                     value: result.value,
@@ -234,7 +235,10 @@ export default {
                 this.calculating = false;
             }).catch(reason => {
                 this.$message.error("计算过程发生错误：" + reason);
-            })
+            });
+            timer(promise).then(time => {
+                console.log(`complete after ${time}ms`);
+            });
         },
 
         /**

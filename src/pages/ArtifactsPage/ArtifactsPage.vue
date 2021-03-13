@@ -34,6 +34,10 @@
         <el-divider></el-divider>
 
         <el-alert title="请注意保存圣遗物数据至本地，以防意外导致数据丢失" type="warning" :closable="false"></el-alert>
+        <el-alert
+            :title="`预计配装计算时间：${estimatedTime}，迭代次数：${$store.getters.iterCount}`"
+            type="warning" :closable="false"
+        ></el-alert>
         <el-alert title="在同一个浏览器下，正常情况下，数据会自动保存，只需录入一次圣遗物即可。推荐只录入20级圣遗物"></el-alert>
         <el-alert title="小贴士：圣遗物面板上三个按钮作用分别是：删除、禁用/启用、编辑"></el-alert>
 
@@ -217,6 +221,20 @@ export default {
     computed: {
         allArtifacts() {
             return this.$store.getters.allArtifacts;
+        },
+
+        estimatedTime() {
+            let iterCount = this.$store.getters.iterCount;
+            let time = Math.floor(0.006 * iterCount / 1000);
+            if (time < 1) {
+                return "不到1秒";
+            } else {
+                let min = Math.floor(time / 60);
+                if (min === 0) {
+                    return `${time}秒`;
+                }
+                return `${min}分${Math.floor(time - 60 * min)}秒`;
+            }
         }
     }
 }

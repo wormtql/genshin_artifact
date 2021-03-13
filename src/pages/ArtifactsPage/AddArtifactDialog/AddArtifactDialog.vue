@@ -172,7 +172,7 @@ export default {
                 detailName: getDetailName(this.setName, this.position),
                 mainTag: this.getArtifactMainTag(),
                 normalTags: this.getArtifactNormalTags(),
-                omit: false,
+                omit: this.level < 16,
                 star: this.star,
                 level: this.level,
                 id: 0,  // it's a placeholder, id is determined in Vuex store

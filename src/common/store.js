@@ -138,7 +138,7 @@ let _store = new Vuex.Store({
         },
 
         valid: (state, getters) => {
-            return getters.iterCount < 5000000;
+            return getters.iterCount < 100000000;
         }
     }
 })
