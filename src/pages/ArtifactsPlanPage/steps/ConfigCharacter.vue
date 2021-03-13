@@ -2,26 +2,14 @@
     <div>
         <div class="config-item">
             <h3 class="config-title">技能等级（包含命之座加成）</h3>
-            <custom-form
-                :config="{type: 'int', min: 1, max: 13}"
-                v-model="skill1"
-            ></custom-form>
-            <custom-form
-                :config="{type: 'int', min: 1, max: 13}"
-                v-model="skill2"
-            ></custom-form>
-            <custom-form
-                :config="{type: 'int', min: 1, max: 13}"
-                v-model="skill3"
-            ></custom-form>
+            <el-input-number class="skill" v-model="skill1" :min="1" :max="13"></el-input-number>
+            <el-input-number class="skill" v-model="skill2" :min="1" :max="13"></el-input-number>
+            <el-input-number class="skill" v-model="skill3" :min="1" :max="13"></el-input-number>
         </div>
 
         <div class="config-item">
             <h3 class="config-title">命之座</h3>
-            <custom-form
-                :config="{ type: 'int', min: 0, max: 6 }"
-                v-model="constellation"
-            ></custom-form>
+            <el-input-number v-model="constellation" :min="0" :max="6"></el-input-number>
         </div>
 
         <div class="config-item">
@@ -105,12 +93,12 @@
 </template>
 
 <script>
-import CustomForm from "../CustomForm";
+// import CustomForm from "../CustomForm";
 
 export default {
-    name: "SelectCharacterLevel",
+    name: "ConfigCharacter",
     components: {
-        CustomForm,
+        // CustomForm,
     },
     data: function () {
         return {
@@ -149,5 +137,9 @@ export default {
 
 .special:hover {
     background: #345678;
+}
+
+.skill {
+    margin-right: 18px;
 }
 </style>

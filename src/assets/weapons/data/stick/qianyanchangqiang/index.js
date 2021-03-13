@@ -1,4 +1,5 @@
 import tn from "./tn.png";
+import config from "./QianyanchangqiangConfig.wcfg";
 
 export default {
     name: "qianyanchangqiang",
@@ -6,14 +7,5 @@ export default {
     url: tn,
     star: 4,
     type: "stick",
-    args: [
-        {
-            name: "liyueCount",
-            chs: "队伍中的璃月角色数量",
-            type: "int",
-            min: 0,
-            max: 4,
-            default: 0,
-        }
-    ]
+    config,
 }

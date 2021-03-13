@@ -5,8 +5,6 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
-        <div v-loading.fullscreen.lock="calculating"></div>
-
         <my-step
             :steps="['角色', '角色参数', '武器', '武器参数', '目标', '目标参数', '配置', '结果']"
             :pointer="currentstep"
@@ -14,59 +12,60 @@
         ></my-step>
 
         <div class="choose-div">
-            <transition name="fade" mode="out-in">
+            <!-- <transition name="fade" mode="out-in"> -->
                 <select-character
                     @select="handleSelectCharacter"
-                    v-if="currentstep === 0"
+                    v-show="currentstep === 0"
                     class="step-div"
                 ></select-character>
 
-                <select-character-level
+                <config-character
                     @select="handleSelectCharacterLevel"
-                    v-else-if="currentstep === 1"
+                    v-show="currentstep === 1"
                     class="step-div"
-                ></select-character-level>
+                ></config-character>
 
                 <select-weapon
                     :allow="characterWeapon"
                     @select="handleSelectWeapon"
-                    v-else-if="currentstep === 2"
+                    v-show="currentstep === 2"
                     class="step-div"
                 ></select-weapon>
 
-                <select-weapon-level
+                <config-weapon
                     :weaponName="selected.weaponName"
                     @select="handleSelectWeaponLevel"
-                    v-else-if="currentstep === 3"
+                    v-show="currentstep === 3"
                     class="step-div"
-                ></select-weapon-level>
+                ></config-weapon>
 
                 <select-target-function
                     :character-name="selected.characterName"
-                    v-else-if="currentstep === 4"
+                    v-show="currentstep === 4"
                     class="step-div"
                     @select="handleSelectTargetFunction"
                 ></select-target-function>
 
                 <config-target-function
                     :target-func-name="selected.targetFuncName"
-                    v-else-if="currentstep === 5"
+                    v-show="currentstep === 5"
                     class="step-div"
                     @select="handleConfigTargetFunc"
                 ></config-target-function>
 
                 <config
-                    v-else-if="currentstep === 6"
+                    v-show="currentstep === 6"
                     @select="handleConfig"
                 ></config>
 
                 <result-page
-                    v-else-if="currentstep === 7"
+                    v-show="currentstep === 7"
                     :calculating="calculating"
                     :result-data="resultData"
                     :config="config"
+                    ref="resultPage"
                 ></result-page>
-            </transition>
+            <!-- </transition> -->
         </div>
     </div>
 </template>
@@ -76,13 +75,14 @@ import { charactersData } from "@asset/characters";
 import { weaponsData } from "@asset/weapons";
 // import { targetFunctionsData } from "@asset/target_functions";
 // import compute from "@alg/compute_artifacts";
-import compute from "@alg/attribute_target/compute_artifacts_promise";
-import timer from "@util/timer";
+// import compute from "@alg/attribute_target/compute_artifacts_promise";
+// import timer from "@util/timer";
+import { toChs as estimateToChs } from "@util/time_estimate";
 
 import SelectCharacter from "./steps/SelectCharacter";
-import SelectCharacterLevel from "./steps/SelectCharacterLevel";
+import ConfigCharacter from "./steps/ConfigCharacter";
 import SelectWeapon from "./steps/SelectWeapon";
-import SelectWeaponLevel from "./steps/SelectWeaponLevel";
+import ConfigWeapon from "./steps/ConfigWeapon";
 import SelectTargetFunction from "./steps/SelectTargetFunction";
 import ConfigTargetFunction from "./steps/ConfigTargetFunction";
 import Config from "./steps/Config";
@@ -94,9 +94,9 @@ export default {
     name: "ArtifactsPlanPage",
     components: {
         SelectCharacter,
-        SelectCharacterLevel,
+        ConfigCharacter,
         SelectWeapon,
-        SelectWeaponLevel,
+        ConfigWeapon,
         SelectTargetFunction,
         ConfigTargetFunction,
         Config,
@@ -106,7 +106,7 @@ export default {
     data: function () {
         return {
             selected: {
-                characterName: "",
+                characterName: "anbo",
                 characterLevel: 1,
                 characterAscend: false,
                 characterSkill1: 6,
@@ -114,20 +114,19 @@ export default {
                 characterSkill3: 6,
                 characterConstellation: 0,
 
-                weaponName: "",
+                weaponName: "liegong",
                 weaponLevel: 1,
                 weaponAscend: false,
                 weaponRefine: 1,
                 weaponArgs: {},
 
-                targetFuncName: "",
-                targetFuncArgs: {},
+                targetFuncName: "single",
+                targetFuncArgs: { fieldName: "attack" },
 
                 constraintConfig: null,
             },
 
             resultData: {},
-            calculating: false,
 
             currentstep: 0,
         }
@@ -201,44 +200,30 @@ export default {
         handleConfig(config) {
             this.selected.constraintConfig = config;
 
-            if (!this.$store.getters.valid) {
-                this.$message.error("圣遗物数量过多，请禁用或删除明显更次的圣遗物");
-                return;
+            let iterCount = this.$store.getters.iterCount;
+            if (iterCount >= 5000000) {
+                this.$confirm(`计算将会非常耗时（约 ${estimateToChs(iterCount)}）,是否继续？`, "警告", {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    type: "warning",
+                }).then(() => {
+                    this.currentstep++;
+                    this.startCalculating();
+                }).catch(() => {
+                    return;
+                })
+            } else {
+                this.currentstep++;
+                this.startCalculating();
             }
-
-            this.currentstep++;
-            this.startCalculating();
         },
 
         /**
-         * every config is ready,
+         * all configs are ready,
          * start to compute
          */
         startCalculating() {
-            let character = this.characterInfo;
-            let weapon = this.weaponInfo;
-            let artifacts = this.getArtifacts();
-            let constraintConfig = this.selected.constraintConfig;
-            let targetFuncName = this.selected.targetFuncName;
-            let targetFuncArgs = this.selected.targetFuncArgs;
-
-            this.calculating = true;
-
-            // this is a web worker wrapped by a promise
-            let promise = compute(artifacts, character, weapon, targetFuncName, targetFuncArgs, constraintConfig).then(result => {
-                this.resultData = {
-                    artifacts: Object.values(result.combo),
-                    value: result.value,
-                    attribute: result.attribute,
-                    error: result.error,
-                };
-                this.calculating = false;
-            }).catch(reason => {
-                this.$message.error("计算过程发生错误：" + reason);
-            });
-            timer(promise).then(time => {
-                console.log(`complete after ${time}ms`);
-            });
+            this.$refs.resultPage.doCompute();
         },
 
         /**
@@ -276,12 +261,13 @@ export default {
             return weaponsData[this.selected.weaponName];
         },
 
+        // which weapon type the selected character will use
         characterWeapon() {
             if (this.selectedCharacterData) {
                 return this.selectedCharacterData.weapon;
             }
 
-            return "";
+            return "none";
         },
 
         characterInfo() {

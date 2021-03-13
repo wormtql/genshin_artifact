@@ -4,8 +4,16 @@
             <h3 class="config-title">计算模式</h3>
             <el-radio-group v-model="mode">
                 <el-radio-button label="expect">期望伤害</el-radio-button>
-                <el-radio-button label="max">最大平A伤害</el-radio-button>
-                <el-radio-button label="max-reaction">最大平A反应伤害</el-radio-button>
+                <el-radio-button label="max">最大伤害</el-radio-button>
+                <el-radio-button label="max-reaction">最大反应伤害</el-radio-button>
+            </el-radio-group>
+        </div>
+
+        <div class="config-item" v-if="mode === 'max' || mode === 'max-reaction'">
+            <h3 class="config-title">技能类型</h3>
+            <el-radio-group v-model="skill">
+                <el-radio-button label="a">平A</el-radio-button>
+                <el-radio-button label="b">重击</el-radio-button>
             </el-radio-group>
         </div>
 
@@ -53,6 +61,7 @@ export default {
             bFreq: "0.7",
             mode: "expect",
             lw4: false,
+            skill: "a",
         }
     },
     methods: {
@@ -64,6 +73,7 @@ export default {
                 melt: parseFloat(this.melt),
                 bFreq: parseFloat(this.bFreq),
                 mode: this.mode,
+                skill: this.skill,
             };
         }
     }

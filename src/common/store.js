@@ -126,15 +126,13 @@ let _store = new Vuex.Store({
             return state.head.length;
         },
 
-        iterCount: (state, getters) => {
-            let a = Math.max(getters.flowerCount, 1);
-            let b = Math.max(getters.featherCount, 1);
-            let c = Math.max(getters.sandCount, 1);
-            let d = Math.max(getters.cupCount, 1);
-            let e = Math.max(getters.headCount, 1);
+        iterCount: (state) => {
+            let count = 1;
+            positions.forEach(pos => {
+                count *= Math.max(1, state[pos].filter(art => !art.omit).length);
+            });
 
-            let prod = a * b * c * d * e;
-            return prod;
+            return count;
         },
 
         valid: (state, getters) => {

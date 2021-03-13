@@ -1,4 +1,5 @@
 import tn from "./tn.png";
+import config from "./HumoConfig.wcfg";
 
 export default {
     name: "humozhizhang",
@@ -6,12 +7,5 @@ export default {
     url: tn,
     star: 5,
     type: "stick",
-    args: [
-        {
-            name: "lifeBelow50",
-            chs: "生命值低于50%",
-            type: "bool",
-            default: false,
-        }
-    ]
+    config,
 }

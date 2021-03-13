@@ -112,6 +112,7 @@ import Artifact from "./Artifact";
 import EditArtifactDrawer from "./EditArtifactDrawer";
 
 import { artifactsIcon } from "@asset/artifacts";
+import { toChs as estimateToChs } from "@util/time_estimate";
 
 export default {
     name: "ArtifactsPage",
@@ -225,16 +226,7 @@ export default {
 
         estimatedTime() {
             let iterCount = this.$store.getters.iterCount;
-            let time = Math.floor(0.006 * iterCount / 1000);
-            if (time < 1) {
-                return "不到1秒";
-            } else {
-                let min = Math.floor(time / 60);
-                if (min === 0) {
-                    return `${time}秒`;
-                }
-                return `${min}分${Math.floor(time - 60 * min)}秒`;
-            }
+            return estimateToChs(iterCount);
         }
     }
 }

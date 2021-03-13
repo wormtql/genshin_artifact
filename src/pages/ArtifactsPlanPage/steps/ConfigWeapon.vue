@@ -1,30 +1,12 @@
 <template>
     <div>
         <!-- 其他参数 -->
-        <div
-            v-for="arg in argConfigs"
-            :key="arg.name"
-            class="config-item"
-        >
-            <h3 class="config-title">{{ arg.chs }}</h3>
-            <custom-form
-                :config="arg"
-                :value="args[arg.name]"
-                @input="$set(args, arg.name, $event)"
-            ></custom-form>
-        </div>
+        <component :if="needExtraConfig" :is="w.config" ref="extraConfig">
+        </component>
 
         <div v-if="star >= 3" class="config-item">
             <h3 class="config-title">精炼等级</h3>
-            <div class="refine-div">
-                <span
-                    v-for="i in 5"
-                    :key="i"
-                    class="select-int"
-                    :class="{active: refine === i}"
-                    @click="refine = i"
-                >{{ i }}</span>
-            </div>
+            <el-input-number v-model="refine" :min="1" :max="5"></el-input-number>
         </div>
 
         <div class="config-item">
@@ -141,9 +123,22 @@ export default {
             config.refine = this.refine;
             config.level = parseInt(levelStr);
             config.ascend = levelStr.indexOf("+") !== -1;
-            config.args = this.args;
+            config.args = this.getExtraConfig();
 
             this.$emit("select", config);
+        },
+
+        getExtraConfig() {
+            if (!this.needExtraConfig) {
+                return {};
+            }
+
+            let vm = this.$refs.extraConfig;
+            if (vm.compact) {
+                return vm.compact();
+            } else {
+                return Object.assign({}, vm.$data);
+            }
         }
     },
     computed: {
@@ -152,21 +147,13 @@ export default {
         },
 
         star() {
-            return this.w.star;
+            return this.w ? this.w.star : 0;
         },
 
-        argConfigs() {
-            return this.w.args || [];
+        needExtraConfig() {
+            return this.w ? !!this.w.config : false;
         }
     },
-    beforeMount() {
-        this.args = {};
-        if (this.w.args) {
-            for (let argConfig of this.w.args) {
-                this.$set(this.args, argConfig.name, argConfig.default);
-            }
-        }
-    }
 }
 </script>
 

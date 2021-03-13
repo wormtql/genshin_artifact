@@ -97,7 +97,7 @@
                     <p class="card-title">请莫娜吃饭</p>
                     <el-alert
                         :closable="false"
-                        title="莫娜多可怜，各位老板若觉得工具好用，可以请莫娜吃饭，莫娜会帮我支付服务器费用（手动狗头）"
+                        title="才...才不是因为交不起服务器费呢。"
                     ></el-alert>
                     <!-- 暂未开通 -->
                     <div class="pay">

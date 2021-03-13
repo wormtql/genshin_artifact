@@ -20,6 +20,7 @@ function f(config) {
     let melt = config.tArgs.melt;
     let mode = config.tArgs.mode;
     let lw4 = config.tArgs.lw4;
+    let skillType = config.tArgs.skill;
     let normal = 1 - evaporate - melt;
     let bFreq = config.tArgs.bFreq;
     let aFreq = 1 - bFreq;
@@ -63,7 +64,7 @@ function f(config) {
             atkBonus = Math.min(atkBonus, 4 * baseAtk);
 
             let atk = attribute.attack() + atkBonus;
-            let commonBonus = attribute.bonus + attribute.fireBonus + talentBonus + attribute.aBonus;
+            let commonBonus = attribute.bonus + attribute.fireBonus + talentBonus + attribute[skillType + "Bonus"];
             let otherBonus = isLW4 && lw4 ? 0.35 : 0;
 
             return atk * (1 + commonBonus + otherBonus) * (1 + attribute.criticalDamage);
@@ -77,7 +78,7 @@ function f(config) {
             atkBonus = Math.min(atkBonus, 4 * baseAtk);
 
             let atk = attribute.attack() + atkBonus;
-            let commonBonus = attribute.bonus + attribute.fireBonus + talentBonus + attribute.aBonus;
+            let commonBonus = attribute.bonus + attribute.fireBonus + talentBonus + attribute[skillType + "Bonus"];
 
             let em = attribute.elementalMastery;
             let amp = ampFunc(em);

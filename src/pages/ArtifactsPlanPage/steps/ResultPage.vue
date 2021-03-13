@@ -1,6 +1,9 @@
 <template>
     <div>
-        <div class="main-div" v-if="!resultData.error">
+        <div v-if="calculating">
+            计算中
+        </div>
+        <div class="main-div" v-else-if="!calculating && !resultData.error">
             <div class="left">
                 <el-alert
                     title="由于原神战斗体系比较复杂，buff体系繁多，因此计算结果仅供参考"
@@ -9,7 +12,7 @@
                 </el-alert>
 
                 <h3 class="title">最佳搭配</h3>
-                <div class="artifact-div" v-if="!calculating">
+                <div class="artifact-div">
                     <artifact-display
                         v-for="(art, index) in filteredArtifacts"
                         :key="index"
@@ -28,13 +31,13 @@
                     :closable="false"
                     style="margin-bottom: 12px"
                 ></el-alert>
-                <p class="max-value" v-if="!calculating">{{ resultData.value.toFixed(3) }}</p>
+                <p class="max-value">{{ resultData.value.toFixed(3) }}</p>
             </div>
             <div class="right">
                 <attribute-panel :panel="resultData.attribute" style="width: 300px" v-if="!calculating"></attribute-panel>
             </div>
         </div>
-        <div v-else>
+        <div v-else-if="!calculating && resultData.error">
             没有合适的圣遗物
         </div>
     </div>
@@ -44,6 +47,9 @@
 import ArtifactDisplay from "@c/ArtifactDisplay";
 import AttributePanel from "@c/AttributePanel";
 
+import compute from "@alg/attribute_target/compute_artifacts_promise";
+import timer from "@util/timer";
+
 export default {
     name: "ResultPage",
     components: {
@@ -51,16 +57,17 @@ export default {
         AttributePanel,
     },
     props: {
-        calculating: {
-            type: Boolean,
-            default: true,
-        },
-        resultData: {
-            type: Object
-        },
-        // config: {
-        //     type: Object,
-        // },
+    },
+    data: function () {
+        return {
+            resultData: {
+                error: false,
+                value: 0,
+                artifacts: [],
+            },
+
+            calculating: true,
+        }
     },
     methods: {
         disableArtifacts() {
@@ -68,11 +75,45 @@ export default {
                 this.$store.commit("disableArtifactById", { id: art.id });
             }
             this.$message("操作成功");
+        },
+
+        doCompute() {
+            let character = this.$parent.characterInfo;
+            let weapon = this.$parent.weaponInfo;
+            let artifacts = this.$parent.getArtifacts();
+            let constraintConfig = this.$parent.selected.constraintConfig;
+            let targetFuncName = this.$parent.selected.targetFuncName;
+            let targetFuncArgs = this.$parent.selected.targetFuncArgs;
+
+            let loading = this.$loading({
+                lock: true,
+                text: "莫娜占卜中",
+            });
+            this.calculating = true;
+
+            // this is a web worker wrapped by a promise
+            let promise = compute(artifacts, character, weapon, targetFuncName, targetFuncArgs, constraintConfig).then(result => {
+                this.resultData = {
+                    artifacts: Object.values(result.combo),
+                    value: result.value,
+                    attribute: result.attribute,
+                    error: result.error,
+                };
+                loading.close();
+                this.calculating = false;
+            }).catch(reason => {
+                this.$message.error("计算过程发生错误：" + reason);
+            });
+
+            // record time
+            timer(promise).then(time => {
+                console.log(`complete after ${time}ms`);
+            });
         }
     },
     computed: {
         filteredArtifacts() {
-            return this.resultData.artifacts.filter(item => item);
+            return this.resultData.artifacts.filter(item => !!item);
         }
     }
 }

@@ -27,11 +27,13 @@ let weaponTypeMap = {
     "book": [],
     "stick": [],
     "bow": [],
+    "none": [],
 };
 Object.values(weaponsData).forEach(item => {
     weaponTypeMap[item.type].push(item);
 })
 
+// sort by star
 for (let weaponType in weaponTypeMap) {
     weaponTypeMap[weaponType].sort((a, b) => {
         return b.star - a.star;

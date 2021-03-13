@@ -1,4 +1,5 @@
 import tn from "./tn.png";
+import config from "./HeiyingqiangConfig.wcfg";
 
 export default {
     name: "heiyingqiang",
@@ -6,12 +7,5 @@ export default {
     url: tn,
     star: 3,
     type: "stick",
-    args: [
-        {
-            name: "slime",
-            chs: "是否攻击史莱姆",
-            type: "bool",
-            default: true,
-        }
-    ]
+    config,
 }
