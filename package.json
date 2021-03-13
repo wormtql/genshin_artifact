@@ -1,6 +1,6 @@
 {
   "name": "genshin_artifacts",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
