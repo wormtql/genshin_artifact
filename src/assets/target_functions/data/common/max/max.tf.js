@@ -1,5 +1,5 @@
 import badge from "@asset/badges/fire_slime.png";
-import config from "./MaxTargetFuncConfig";
+import config from "./Max.tcfg";
 
 export default {
     name: "max",

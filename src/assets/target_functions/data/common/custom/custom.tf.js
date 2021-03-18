@@ -1,5 +1,5 @@
 import badge from "@asset/badges/dendro_slime_small.png";
-import config from "./CustomConfig";
+import config from "./Custom.tcfg";
 
 export default {
     name: "code",

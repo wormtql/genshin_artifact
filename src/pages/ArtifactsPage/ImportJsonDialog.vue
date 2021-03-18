@@ -66,7 +66,7 @@ export default {
                 });
             }
 
-            this.$store.commit("appendArtifacts", artifacts);
+            this.$store.commit("artifacts/appendArtifacts", artifacts);
         },
 
         handleAppend() {
@@ -79,7 +79,7 @@ export default {
 
         handleOverwrite() {
             if (this.json) {
-                this.$store.commit("removeAllArtifacts");
+                this.$store.commit("artifacts/removeAllArtifacts");
 
                 this.appendArtifacts();
             }

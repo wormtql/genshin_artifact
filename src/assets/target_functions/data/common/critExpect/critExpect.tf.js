@@ -1,5 +1,5 @@
 import badge from "@asset/badges/fire_slime.png";
-import config from "./CritExpectConfig";
+import config from "./CritExpect.tcfg";
 
 export default {
     name: "critExpect",

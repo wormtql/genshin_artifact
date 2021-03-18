@@ -1,5 +1,5 @@
 import badge from "@asset/badges/keqing.png";
-import config from "./KeqingPhysicalConfig";
+import config from "./KeqingPhysical.tcfg";
 
 export default {
     name: "keqingPhysical",

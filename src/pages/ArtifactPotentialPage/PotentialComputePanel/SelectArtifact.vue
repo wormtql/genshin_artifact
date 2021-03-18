@@ -56,7 +56,7 @@ export default {
     },
     computed: {
         filteredArtifacts() {
-            let allArtifacts = this.$store.getters.allArtifacts;
+            let allArtifacts = this.$store.getters["artifacts/allArtifacts"];
             let fil = art => (art.star || 5) === 5;
             let temp = {};
             for (let i in allArtifacts) {

@@ -1,5 +1,5 @@
 import badge from "@asset/badges/sword.png";
-import config from "./AboveCritConfig";
+import config from "./AboveCrit.tcfg";
 
 export default {
     name: "aboveCrit",

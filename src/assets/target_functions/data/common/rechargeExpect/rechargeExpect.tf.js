@@ -1,5 +1,5 @@
 import badge from "@asset/badges/thunder_slime.png";
-import config from "./RechargeExpectConfig";
+import config from "./RechargeExpect.tcfg";
 
 export default {
     name: "rechargeExpect",

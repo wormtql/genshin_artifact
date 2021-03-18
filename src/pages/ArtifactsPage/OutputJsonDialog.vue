@@ -51,7 +51,7 @@ export default {
         outputJson() {
             let obj = {};
             ["flower", "feather", "sand", "cup", "head"].forEach(item => {
-                obj[item] = this.$store.state[item];
+                obj[item] = this.$store.state.artifacts[item];
             });
 
             return JSON.stringify(obj);

@@ -9,24 +9,36 @@
         <div>
             <div class="row">
                 <el-radio
-                    v-model="artifactMode"
+                    v-model="value.constraintSet.mode"
                     label="any"
                     class="radio"
                 >任意</el-radio>
             </div>
             <div class="row">
-                <el-radio v-model="artifactMode" label="2" class="radio">2</el-radio>
-                <select-artifact-set v-model="setName1" :disabled="artifactMode !== '2'"></select-artifact-set>
+                <el-radio v-model="value.constraintSet.mode" label="2" class="radio">2</el-radio>
+                <select-artifact-set
+                    v-model="value.constraintSet.setName1"
+                    :disabled="value.constraintSet.mode !== '2'"
+                ></select-artifact-set>
             </div>
             <div class="row">
-                <el-radio v-model="artifactMode" label="22" class="radio">2+2</el-radio>
-                <select-artifact-set v-model="setName2" :disabled="artifactMode !== '22'"></select-artifact-set>
+                <el-radio v-model="value.constraintSet.mode" label="22" class="radio">2+2</el-radio>
+                <select-artifact-set
+                    v-model="value.constraintSet.setName2"
+                    :disabled="value.constraintSet.mode !== '22'"
+                ></select-artifact-set>
                 <span class="plus">+</span>
-                <select-artifact-set v-model="setName3" :disabled="artifactMode !== '22'"></select-artifact-set>
+                <select-artifact-set
+                    v-model="value.constraintSet.setName3"
+                    :disabled="value.constraintSet.mode !== '22'"
+                ></select-artifact-set>
             </div>
             <div class="row">
-                <el-radio v-model="artifactMode" label="4" class="radio">4</el-radio>
-                <select-artifact-set v-model="setName4" :disabled="artifactMode !== '4'"></select-artifact-set>
+                <el-radio v-model="value.constraintSet.mode" label="4" class="radio">4</el-radio>
+                <select-artifact-set
+                    v-model="value.constraintSet.setName4"
+                    :disabled="value.constraintSet.mode !== '4'"
+                ></select-artifact-set>
             </div>
         </div>
 
@@ -34,19 +46,28 @@
             <h3 class="title">限定主词条</h3>
             <div class="flex-row row">
                 <span class="cmt-label fs-14 color-normal">时之沙</span>
-                <select-art-main-tag-without-val position="sand" v-model="constrainMainTag.sand"></select-art-main-tag-without-val>
+                <select-art-main-tag-without-val
+                    position="sand"
+                    v-model="value.constraintMainTag.sand"
+                ></select-art-main-tag-without-val>
             </div>
             <div class="flex-row row">
                 <span class="cmt-label fs-14 color-normal">空之杯</span>
-                <select-art-main-tag-without-val position="cup" v-model="constrainMainTag.cup"></select-art-main-tag-without-val>
+                <select-art-main-tag-without-val
+                    position="cup"
+                    v-model="value.constraintMainTag.cup"
+                ></select-art-main-tag-without-val>
             </div>
             <div class="flex-row row">
                 <span class="cmt-label fs-14 color-normal">理之冠</span>
-                <select-art-main-tag-without-val position="head" v-model="constrainMainTag.head"></select-art-main-tag-without-val>
+                <select-art-main-tag-without-val
+                    position="head"
+                    v-model="value.constraintMainTag.head"
+                ></select-art-main-tag-without-val>
             </div>
         </div>
 
-        <el-button type="primary" class="confirm-button" @click="handleConfirm">确定</el-button>
+        <!-- <el-button type="primary" class="confirm-button" @click="handleConfirm">确定</el-button> -->
     </div>
 </template>
 
@@ -72,40 +93,8 @@ export default {
     created: function () {
         this.allArtifactsName = allArtifactsName;
     },
-    data: function () {
-        return {
-            artifactMode: "any",
-            setName1: "berserker",
-            setName2: "archaicPetra",
-            setName3: "archaicPetra",
-            setName4: "archaicPetra",
-
-            constrainMainTag: {
-                sand: "any",
-                cup: "any",
-                head: "any",
-            }
-        }
-    },
+    props: ["value"],
     methods: {
-        handleConfirm() {
-            let temp = {
-                mode: this.artifactMode,
-            }
-            if (this.artifactMode === "2") {
-                temp.setName1 = this.setName1;
-            } else if (this.artifactMode === "22") {
-                temp.setName1 = this.setName2;
-                temp.setName2 = this.setName3;
-            } else if (this.artifactMode === "4") {
-                temp.setName1 = this.setName4;
-            }
-
-            this.$emit("select", {
-                constraintSet: temp,
-                constraintMainTag: this.constrainMainTag,
-            });
-        }
     }
 }
 </script>

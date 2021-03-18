@@ -1,4 +1,5 @@
 import card from "./card.jpg";
+import avatar from "@asset/badges/ningguang.png";
 
 export default {
     cardURL: card,
@@ -8,4 +9,5 @@ export default {
     element: "rock",
     weapon: "book",
     star: 4,
+    avatar,
 }

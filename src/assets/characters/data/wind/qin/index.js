@@ -1,4 +1,5 @@
 import card from "./card.jpg";
+import avatar from "@asset/badges/qin.png";
 
 export default {
     cardURL: card,
@@ -8,4 +9,5 @@ export default {
     element: "wind",
     weapon: "sword",
     star: 5,
+    avatar,
 }

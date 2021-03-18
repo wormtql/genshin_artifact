@@ -1,5 +1,5 @@
 import badge from "@asset/badges/water_slime.png";
-import config from "./AmpReactionConfig";
+import config from "./AmpReaction.tcfg";
 
 export default {
     name: "reactionAmp",

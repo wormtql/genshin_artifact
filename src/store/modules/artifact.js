@@ -1,11 +1,8 @@
-import Vuex from "vuex";
-import Vue from "vue";
-
 const positions = ["flower", "feather", "sand", "cup", "head"];
 
-Vue.use(Vuex);
-
+// id can only be changed in store mutations
 let id = 0;
+
 let flower = [];
 let feather = [];
 let sand = [];
@@ -23,11 +20,18 @@ if (localStoredArtifacts) {
 
     let temp = flower.concat(feather).concat(sand).concat(cup).concat(head);
     for (let item of temp) {
-        item.id = id++;
+        id = Math.max(id, item.id ?? -1);
+    }
+    id++;
+    for (let item of temp) {
+        if (Object.prototype.hasOwnProperty.call(item, "id")) {
+            item.id = id++;
+        }
     }
 }
 
-let _store = new Vuex.Store({
+let _store = {
+    namespaced: true,
     state: {
         flower,
         feather,
@@ -73,10 +77,10 @@ let _store = new Vuex.Store({
         /**
          * set a single artifact
          */
-        setArtifact(state, obj) {
-            let n = obj.artifact;
-            Vue.set(state[obj.position], obj.index, n);
-        },
+        // setArtifact(state, obj) {
+        //     let n = obj.artifact;
+        //     Vue.set(state[obj.position], obj.index, n);
+        // },
 
         appendArtifacts(state, obj) {
             positions.forEach(pos => {
@@ -139,22 +143,8 @@ let _store = new Vuex.Store({
             return getters.iterCount < 100000000;
         }
     }
-})
+};
 
-_store.watch(
-    state => ({
-        flower: state.flower,
-        feather: state.feather,
-        sand: state.sand,
-        cup: state.cup,
-        head: state.head,
-    }),
-    {
-        handler: newValue => {
-            localStorage.setItem("artifacts", JSON.stringify(newValue));
-        },
-        deep: true,
-    }
-);
+
 
 export default _store;

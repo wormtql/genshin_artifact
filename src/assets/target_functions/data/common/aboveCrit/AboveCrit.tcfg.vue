@@ -2,25 +2,29 @@
     <div>
         <div class="config-item">
             <h3 class="config-title" style="margin-bottom: 24px">阈值（0-1）</h3>
-            <el-input v-model="threshold"></el-input>
+            <el-input v-model="value.threshold"></el-input>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "AboveCritConfig",
-    data: function () {
+    name: "AboveCrit.tcfg",
+    props: {
+        value: {
+            type: Object,
+        }
+    },
+    
+    first() {
         return {
             threshold: "0.5",
         }
     },
-    methods: {
-        compact() {
-            let threshold = parseFloat(this.threshold) || 0.5;
-            return {
-                threshold,
-            }
+
+    compact(obj) {
+        return {
+            threshold: parseFloat(obj.threshold) ?? 0.5,
         }
     }
 }

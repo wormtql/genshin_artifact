@@ -5,6 +5,7 @@
                 v-for="character in elementCharData['thunder']"
                 :key="character.name"
                 class="character-item"
+                :class="{active: character.name === value}"
                 @click="handleClickCharacter(character)"
             >
                 <span v-if="character.test" class="test">测试</span>
@@ -18,6 +19,7 @@
                 v-for="character in elementCharData['fire']"
                 :key="character.name"
                 class="character-item"
+                :class="{active: character.name === value}"
                 @click="handleClickCharacter(character)"
             >
                 <span v-if="character.test" class="test fs-12">非正式服</span>
@@ -31,6 +33,7 @@
                 v-for="character in elementCharData['rock']"
                 :key="character.name"
                 class="character-item"
+                :class="{active: character.name === value}"
                 @click="handleClickCharacter(character)"
             >
                 <img :src="character.cardURL" class="image">
@@ -43,6 +46,7 @@
                 v-for="character in elementCharData['wind']"
                 :key="character.name"
                 class="character-item"
+                :class="{active: character.name === value}"
                 @click="handleClickCharacter(character)"
             >
                 <img :src="character.cardURL" class="image">
@@ -55,6 +59,7 @@
                 v-for="character in elementCharData['ice']"
                 :key="character.name"
                 class="character-item"
+                :class="{active: character.name === value}"
                 @click="handleClickCharacter(character)"
             >
                 <img :src="character.cardURL" class="image">
@@ -67,6 +72,7 @@
                 v-for="character in elementCharData['water']"
                 :key="character.name"
                 class="character-item"
+                :class="{active: character.name === value}"
                 @click="handleClickCharacter(character)"
             >
                 <img :src="character.cardURL" class="image">
@@ -77,7 +83,7 @@
 </template>
 
 <script>
-import { charactersData } from "../../../assets/characters";
+import { charactersData } from "@asset/characters";
 
 let elementCharData = {
     thunder: [],
@@ -94,17 +100,21 @@ for (let charData of Object.values(charactersData)) {
 
 export default {
     name: "SelectCharacter",
-    components: {
-    },
     created: function () {
         this.elementCharData = elementCharData;
     },
+    props: {
+        value: {
+            type: String,
+            required: true,
+        }
+    },
     methods: {
         handleClickCharacter(character) {
-            this.$emit("select", character.name);
+            this.$emit("input", character.name);
         }
     }
-}
+};
 </script>
 
 <style scoped>
@@ -158,5 +168,9 @@ export default {
 
 .character-panel::-webkit-scrollbar {
     display: none;
+}
+
+.active {
+    background: #12345622;
 }
 </style>

@@ -6,7 +6,7 @@
             <div
                 :key="'title' + step"
                 class="title"
-                :class="{current: index === pointer, past: index < pointer, future: index > pointer}"
+                :class="getClass(index)"
                 @click="handleClick(index)"
             >
                 {{ step }}
@@ -31,12 +31,33 @@ export default {
         pointer: {
             type: Number,
             default: 0,
+        },
+        lock: {
+            type: Boolean,
+            default: true,
         }
     },
     methods: {
         handleClick(index) {
-            if (index < this.pointer) {
+            if (!this.lock && index !== this.pointer) {
                 this.$emit("navigate", index);
+            } else if (index < this.pointer) {
+                this.$emit("navigate", index);
+            }
+        },
+
+        getClass(index) {
+            if (this.lock) {
+                return {
+                    current: index === this.pointer,
+                    past: index < this.pointer,
+                    future: index > this.pointer,
+                };
+            } else {
+                return {
+                    current: index === this.pointer,
+                    past: index !== this.pointer,
+                };
             }
         }
     }

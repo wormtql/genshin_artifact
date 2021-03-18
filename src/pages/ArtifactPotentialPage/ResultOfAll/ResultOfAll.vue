@@ -70,7 +70,7 @@ export default {
     },
     methods: {
         getArtifactsLinear() {
-            let arts = this.$store.getters.allArtifacts;
+            let arts = this.$store.getters["artifacts/allArtifacts"];
 
             let temp = [];
             ["flower", "feather", "cup", "sand", "head"].forEach(pos => {

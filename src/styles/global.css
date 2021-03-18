@@ -39,3 +39,11 @@ body {
 .color-normal {
     color: #606266;
 }
+
+.br-3 {
+    border-radius: 3px;
+}
+
+.br-50p {
+    border-radius: 50%;
+}

@@ -50,6 +50,8 @@ import AttributePanel from "@c/AttributePanel";
 import compute from "@alg/attribute_target/compute_artifacts_promise";
 import timer from "@util/timer";
 
+import targetFunctionsData from "@asset/target_functions/data";
+
 export default {
     name: "ResultPage",
     components: {
@@ -72,9 +74,17 @@ export default {
     methods: {
         disableArtifacts() {
             for (let art of this.filteredArtifacts) {
-                this.$store.commit("disableArtifactById", { id: art.id });
+                this.$store.commit("artifacts/disableArtifactById", { id: art.id });
             }
             this.$message("操作成功");
+        },
+
+        convertTArgs(name, args) {
+            let data = targetFunctionsData[name];
+            if (data && data.config && data.config.compact) {
+                return data.config.compact(args);
+            }
+            return args;
         },
 
         doCompute() {
@@ -83,7 +93,8 @@ export default {
             let artifacts = this.$parent.getArtifacts();
             let constraintConfig = this.$parent.selected.constraintConfig;
             let targetFuncName = this.$parent.selected.targetFuncName;
-            let targetFuncArgs = this.$parent.selected.targetFuncArgs;
+            let targetFuncArgs = this.convertTArgs(targetFuncName, this.$parent.selected.targetFuncArgs);
+            // console.log(targetFuncArgs);
 
             let loading = this.$loading({
                 lock: true,

@@ -14,12 +14,12 @@ export default function (config) {
         };
     } else if (config.mode === "22") {
         h = {
-            [config.setName1]: 2,
             [config.setName2]: 2,
+            [config.setName3]: 2,
         };
     } else if (config.mode === "4") {
         h = {
-            [config.setName1]: 4
+            [config.setName4]: 4
         };
     }
 

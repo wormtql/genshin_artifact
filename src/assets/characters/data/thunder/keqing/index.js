@@ -1,4 +1,5 @@
 import card from "./card.jpg";
+import avatar from "@asset/badges/keqing.png";
 
 export default {
     cardURL: card,
@@ -7,4 +8,5 @@ export default {
     element: "thunder",
     weapon: "sword",
     star: 5,
+    avatar
 }

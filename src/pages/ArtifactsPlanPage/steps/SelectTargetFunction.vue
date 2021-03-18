@@ -6,7 +6,8 @@
                 v-for="target in specificCharacterTargets"
                 :key="target.name"
                 class="hand item"
-                @click="handleClick(target.name)"
+                :class="{ active: target.name === value }"
+                @click="$emit('input', target.name)"
             >
                 <div>
                     <img :src="target.badge" class="image">
@@ -40,7 +41,8 @@
             v-for="target in commonTargets"
             :key="target.name"
             class="hand item"
-            @click="handleClick(target.name)"
+            :class="{ active: target.name === value }"
+            @click="$emit('input', target.name)"
         >
             <div>
                 <img :src="target.badge" class="image">
@@ -75,11 +77,15 @@
 import targetFunctionsData from "@asset/target_functions/data";
 
 let targetGroup = {};
+let commonTargetNames = new Set();
 Object.values(targetFunctionsData).forEach(item => {
     if (!targetGroup[item["for"]]) {
         targetGroup[item["for"]] = [];
     }
 
+    if (item["for"] === "common") {
+        commonTargetNames.add(item.name);
+    }
     targetGroup[item["for"]].push(item);
 })
 
@@ -92,16 +98,38 @@ export default {
         characterName: {
             type: String,
             required: true,
+        },
+
+        value: {
+            type: String,
+            required: true,
         }
     },
     methods: {
-        handleClick(targetFunctionName) {
-            this.$emit("select", targetFunctionName);
-        }
+
     },
     computed: {
         specificCharacterTargets() {
             return targetGroup[this.characterName];
+        }
+    },
+    watch: {
+        characterName(name) {
+            if (commonTargetNames.has(this.value)) {
+                return;
+            }
+            if (this.$parent.lock) {
+                return;
+            }
+
+            if (Object.prototype.hasOwnProperty.call(targetGroup, name)) {
+                let target = targetGroup[name][0];
+                this.$emit("input", target.name);
+            } else {
+                // character does not have own target functions
+                let target = targetGroup.common[0];
+                this.$emit("input", target.name);
+            }
         }
     }
 }
@@ -160,6 +188,7 @@ export default {
     transition: 300ms;
     border-radius: 3px;
     display: flex;
+    border: 1px solid transparent;
 }
 
 .item:hover {
@@ -174,5 +203,10 @@ export default {
     border-radius: 3px;
     margin-left: 8px;
     display: inline-block;
+}
+
+.active {
+    background: #12345611;
+    border: 1px solid #12345633;
 }
 </style>

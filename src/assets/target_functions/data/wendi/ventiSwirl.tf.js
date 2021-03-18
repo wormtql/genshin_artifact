@@ -1,5 +1,5 @@
 import badge from "@asset/badges/wendi.png";
-import config from "./VentiSwirlConfig";
+import config from "./VentiSwirl.tcfg";
 
 export default {
     name: "ventiSwirl",

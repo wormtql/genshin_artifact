@@ -4,6 +4,7 @@
             v-for="weapon in weaponTypeMap[allow]"
             :key="weapon.name"
             class="item"
+            :class="{ active: weapon.name === value }"
             @click="handleClickWeapon(weapon)"
         >
             <img
@@ -58,11 +59,27 @@ export default {
         allow: {
             type: String,
             required: true,
+        },
+
+        value: {
+            type: String,
+            required: true,
         }
     },
     methods: {
         handleClickWeapon(weapon) {
-            this.$emit("select", weapon.name);
+            this.$emit("input", weapon.name);
+        }
+    },
+    watch: {
+        allow(n) {
+            // console.log(this.$parent.lock);
+            if (this.$parent.lock) {
+                // console.log("lock");
+                return;
+            }
+            let name = this.weaponTypeMap[n][0].name;
+            this.$emit("input", name);
         }
     }
 }
@@ -116,6 +133,10 @@ export default {
     display: flex;
     flex-flow: row wrap;
     /* justify-content: space-between; */
+}
+
+.active {
+    background: #12345622;
 }
 
 /* .select-weapon::after {

@@ -1,4 +1,5 @@
 import card from "./card.jpg";
+import avatar from "@asset/badges/lisha.png";
 
 export default {
     cardURL: card,
@@ -8,4 +9,5 @@ export default {
     element: "thunder",
     weapon: "book",
     star: 4,
+    avatar,
 }

@@ -1,5 +1,5 @@
 import badge from "@asset/badges/hutao.png";
-import config from "./HutaoConfig";
+import config from "./Hutao.tcfg";
 
 export default {
     name: "hutaoE",

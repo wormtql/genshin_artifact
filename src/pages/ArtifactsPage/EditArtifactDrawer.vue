@@ -178,7 +178,7 @@ export default {
             newArtifact.level = this.level;
             newArtifact.star = this.star;
 
-            this.$store.commit("setArtifact", {
+            this.$store.commit("artifacts/setArtifact", {
                 position: this.args.position,
                 index: this.args.index,
                 artifact: newArtifact,
@@ -194,7 +194,7 @@ export default {
             if (this.args.index < 0) {
                 return null;
             }
-            let x = this.$store.state[this.args.position][this.args.index];
+            let x = this.$store.state.artifacts[this.args.position][this.args.index];
             return x;
         },
 

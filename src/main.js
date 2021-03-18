@@ -8,12 +8,16 @@ import "./vendors/vue-katex";
 
 import Vue from 'vue';
 
-import Router from "./common/router";
-import store from "./common/store";
+import Router from "./router/router";
+import store from "./store/store";
 
 import App from './App.vue';
 
 Vue.config.productionTip = false
+
+Vue.filter("str", function (value) {
+  return value.toString();
+});
 
 async function mount() {
   new Vue({

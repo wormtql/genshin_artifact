@@ -1,5 +1,5 @@
 import badge from "@asset/badges/abeiduo.png";
-import config from "./abeiduoDefaultConfig";
+import config from "./abeiduoDefault.tcfg.vue";
 
 export default {
     name: "abeiduoDefault",

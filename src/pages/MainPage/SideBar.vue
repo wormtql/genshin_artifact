@@ -12,11 +12,15 @@
 
             <el-menu-item-group>
                 <template #title>
-                    圣遗物
+                    我的仓库
                 </template>
                 <el-menu-item index="artifacts">
                     <i class="el-icon-s-help"></i>
                     添加圣遗物
+                </el-menu-item>
+                <el-menu-item index="character-presets">
+                    <i class="el-icon-menu"></i>
+                    角色预设
                 </el-menu-item>
             </el-menu-item-group>
 

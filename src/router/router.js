@@ -41,6 +41,13 @@ const PotentialFuncPage = () => ({
     loading: LoadingComponent,
     error: ErrorComponent,
 });
+const CharacterPresetsPage = () => (
+    {
+        component: import(/* webpackChunkName: "character-presets-page" */ "@page/CharacterPresetsPage"),
+        loading: LoadingComponent,
+        error: ErrorComponent,
+    }
+)
 
 import VueRouter from "vue-router";
 
@@ -105,6 +112,14 @@ const routes = [
         meta: {
             keepAlive: true,
             title: "圣遗物潜力 | " + webName,
+        }
+    },
+    {
+        path: "/character-presets",
+        component: CharacterPresetsPage,
+        meta: {
+            keepAlive: true,
+            title: "角色预设 | " + webName,
         }
     }
 ]

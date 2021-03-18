@@ -35,19 +35,19 @@
 
         <el-alert title="请注意保存圣遗物数据至本地，以防意外导致数据丢失" type="warning" :closable="false"></el-alert>
         <el-alert
-            :title="`预计配装计算时间：${estimatedTime}，迭代次数：${$store.getters.iterCount}`"
+            :title="`预计配装计算时间：${estimatedTime}，迭代次数：${$store.getters['artifacts/iterCount']}`"
             type="warning" :closable="false"
         ></el-alert>
         <el-alert title="在同一个浏览器下，正常情况下，数据会自动保存，只需录入一次圣遗物即可。推荐只录入20级圣遗物"></el-alert>
         <el-alert title="小贴士：圣遗物面板上三个按钮作用分别是：删除、禁用/启用、编辑"></el-alert>
 
-        <el-alert
+        <!-- <el-alert
             type="error"
             v-show="!$store.getters.valid"
             title="圣遗物数量过多，请禁用或者删除明显更次的圣遗物"
             :closable="false"
         >
-        </el-alert>
+        </el-alert> -->
 
         <!-- tool bar -->
         <div class="tool-bar">
@@ -74,7 +74,7 @@
                 icon="el-icon-unlock"
                 circle
                 title="启用全部"
-                @click="$store.commit('unlockAll')"
+                @click="$store.commit('artifacts/unlockAll')"
             ></el-button>
         </div>
 
@@ -174,7 +174,7 @@ export default {
          * remove artifacts of type: position and index: index
          */
         removeArtifact: function(position, index) {
-            this.$store.commit("removeArtifact", {
+            this.$store.commit("artifacts/removeArtifact", {
                 position, index
             });
         },
@@ -183,7 +183,7 @@ export default {
          * toggle enabled
          */
         toggleArtifact: function(position, index) {
-            this.$store.commit("toggleArtifact", {
+            this.$store.commit("artifacts/toggleArtifact", {
                 position, index
             });
         },
@@ -196,7 +196,7 @@ export default {
             this.editArtifactArgs.position = position;
             this.editArtifactArgs.index = index;
 
-            let art = this.$store.getters.allArtifacts[position][index];
+            let art = this.$store.getters["artifacts/allArtifacts"][position][index];
 
             this.$refs.editDrawer.setInit(art);
         },
@@ -208,7 +208,7 @@ export default {
         handleAddArtifact: function(item) {
             this.newDialogVisible = false;
 
-            this.$store.commit("addArtifact", item);
+            this.$store.commit("artifacts/addArtifact", item);
         },
 
         handleImportJsonClicked() {
@@ -221,11 +221,11 @@ export default {
     },
     computed: {
         allArtifacts() {
-            return this.$store.getters.allArtifacts;
+            return this.$store.getters["artifacts/allArtifacts"];
         },
 
         estimatedTime() {
-            let iterCount = this.$store.getters.iterCount;
+            let iterCount = this.$store.getters["artifacts/iterCount"];
             return estimateToChs(iterCount);
         }
     }

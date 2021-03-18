@@ -1,46 +1,46 @@
 <template>
     <div>
         <div class="config-item">
-            <h3 class="config-title">阈值</h3>
-            <el-input v-model="threshold"></el-input>
+            <h3 class="config-title">元素充能效率</h3>
+            <input-with-append v-model="value.recharge"></input-with-append>
         </div>
-
         <div class="config-item">
             <h3 class="config-title">伤害类型</h3>
-            <select-element-type v-model="element"></select-element-type>
+            <select-element-type v-model="value.element"></select-element-type>
         </div>
-
         <div class="config-item">
             <h3 class="config-title">技能类型</h3>
-            <select-skill-type v-model="skill"></select-skill-type>
+            <select-skill-type v-model="value.skill"></select-skill-type>
         </div>
+
     </div>
 </template>
 
 <script>
 import SelectElementType from "@c/select/SelectElementType";
 import SelectSkillType from "@c/select/SelectSkillType";
+import InputWithAppend from "@c/InputWithAppend";
 
 export default {
-    name: "CritExpectConfig",
+    name: "RechargeExpect.tcfg",
     components: {
         SelectElementType,
         SelectSkillType,
+        InputWithAppend,
     },
-    data: function () {
+    props: ["value"],
+    first() {
         return {
-            threshold: "0.5",
             element: "fire",
             skill: "a",
+            recharge: "120",
         }
     },
-    methods: {
-        compact() {
-            return {
-                threshold: parseFloat(this.threshold),
-                element: this.element,
-                skill: this.skill,
-            }
+    compact(obj) {
+        return {
+            element: obj.element,
+            skill: obj.skill,
+            recharge: (parseFloat(obj.recharge) ?? 100) / 100,
         }
     }
 }

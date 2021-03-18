@@ -5,57 +5,89 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
+        <apply-preset-dialog ref="applyPresetDialog" @confirm="handleConfirmApplyPreset">
+        </apply-preset-dialog>
+
+        <div class="tool-bar">
+            <el-button
+                @click="saveAsPreset"
+                size="small"
+            >
+                <i class="el-icon-folder-add"></i>
+                存为预设
+            </el-button>
+            <el-button
+                @click="$refs.applyPresetDialog.open()"
+                size="small"
+            >
+                <i class="el-icon-truck"></i>
+                应用预设
+            </el-button>
+
+            <div style="float: right">
+                <el-button
+                    size="small"
+                    @click="startCalculating"
+                    type="primary"
+                >
+                    <i class="el-icon-cpu"></i>
+                    开始计算
+                </el-button>
+            </div>
+        </div>
+
         <my-step
             :steps="['角色', '角色参数', '武器', '武器参数', '目标', '目标参数', '配置', '结果']"
             :pointer="currentstep"
+            :lock="false"
             @navigate="currentstep = $event"
         ></my-step>
 
         <div class="choose-div">
             <!-- <transition name="fade" mode="out-in"> -->
                 <select-character
-                    @select="handleSelectCharacter"
+                    v-model="selected.characterName"
                     v-show="currentstep === 0"
                     class="step-div"
                 ></select-character>
 
                 <config-character
-                    @select="handleSelectCharacterLevel"
+                    v-model="characterInfo"
                     v-show="currentstep === 1"
                     class="step-div"
                 ></config-character>
 
                 <select-weapon
                     :allow="characterWeapon"
-                    @select="handleSelectWeapon"
+                    v-model="selected.weaponName"
                     v-show="currentstep === 2"
                     class="step-div"
                 ></select-weapon>
 
                 <config-weapon
                     :weaponName="selected.weaponName"
-                    @select="handleSelectWeaponLevel"
+                    v-model="weaponInfo"
                     v-show="currentstep === 3"
                     class="step-div"
                 ></config-weapon>
 
                 <select-target-function
                     :character-name="selected.characterName"
+                    v-model="selected.targetFuncName"
                     v-show="currentstep === 4"
                     class="step-div"
-                    @select="handleSelectTargetFunction"
                 ></select-target-function>
 
                 <config-target-function
                     :target-func-name="selected.targetFuncName"
                     v-show="currentstep === 5"
                     class="step-div"
-                    @select="handleConfigTargetFunc"
+                    v-model="targetFuncInfo"
                 ></config-target-function>
 
                 <config
+                    v-model="selected.constraintConfig"
                     v-show="currentstep === 6"
-                    @select="handleConfig"
                 ></config>
 
                 <result-page
@@ -73,13 +105,10 @@
 <script>
 import { charactersData } from "@asset/characters";
 import { weaponsData } from "@asset/weapons";
-// import { targetFunctionsData } from "@asset/target_functions";
-// import compute from "@alg/compute_artifacts";
-// import compute from "@alg/attribute_target/compute_artifacts_promise";
-// import timer from "@util/timer";
+import deepCopy from "@util/deepcopy"; 
 import { toChs as estimateToChs } from "@util/time_estimate";
 
-import SelectCharacter from "./steps/SelectCharacter";
+// import SelectCharacter from "./steps/SelectCharacter";
 import ConfigCharacter from "./steps/ConfigCharacter";
 import SelectWeapon from "./steps/SelectWeapon";
 import ConfigWeapon from "./steps/ConfigWeapon";
@@ -90,10 +119,12 @@ import ResultPage from "./steps/ResultPage";
 
 import MyStep from "@c/MyStep";
 
+import ApplyPresetDialog from "./ApplyPresetDialog";
+
 export default {
     name: "ArtifactsPlanPage",
     components: {
-        SelectCharacter,
+        "select-character": () => import(/* webpackChunkName: "steps-select-c" */ "./steps/SelectCharacter"),
         ConfigCharacter,
         SelectWeapon,
         ConfigWeapon,
@@ -101,7 +132,11 @@ export default {
         ConfigTargetFunction,
         Config,
         ResultPage,
-        MyStep
+        MyStep,
+        ApplyPresetDialog,
+    },
+    created() {
+        this.lock = false;
     },
     data: function () {
         return {
@@ -123,99 +158,112 @@ export default {
                 targetFuncName: "single",
                 targetFuncArgs: { fieldName: "attack" },
 
-                constraintConfig: null,
+                constraintConfig: {
+                    constraintSet: {
+                        mode: "any",
+                        setName1: "berserker",
+                        setName2: "berserker",
+                        setName3: "berserker",
+                        setName4: "berserker",
+                    },
+                    constraintMainTag: {
+                        sand: "any",
+                        cup: "any",
+                        head: "any",
+                    }
+                },
             },
 
-            resultData: {},
+            // resultData: {},
 
             currentstep: 0,
+            // lock: false,
         }
     },
     methods: {
-        /**
-         * when a character is selected
-         */
-        handleSelectCharacter(name) {
-            this.selected.characterName = name;
-
-            this.currentstep++;
+        handleConfirmApplyPreset(name) {
+            // console.log(name);
+            this.applyPreset(name);
         },
 
-        /**
-         * when character level is selected
-         */
-        handleSelectCharacterLevel(item) {
-            this.selected.characterLevel = item.level;
-            this.selected.characterAscend = item.ascend;
-            this.selected.characterSkill1 = item.skill1;
-            this.selected.characterSkill2 = item.skill2;
-            this.selected.characterSkill3 = item.skill3;
-            this.selected.characterConstellation = item.constellation;
+        applyPreset(name) {
+            this.lock = true;
 
-            this.currentstep++;
+            let preset = this.$store.getters["presets/all"][name];
+            this.selected.characterName = preset.cName;
+            this.selected.characterLevel = preset.cLevel;
+            this.selected.characterAscend = preset.cAscend;
+            this.selected.characterSkill1 = preset.cS1;
+            this.selected.characterSkill2 = preset.cS2;
+            this.selected.characterSkill3 = preset.cS3;
+            this.selected.characterConstellation = preset.cC;
+
+            this.selected.weaponName = preset.wName;
+            this.selected.weaponLevel = preset.wLevel;
+            this.selected.weaponAscend = preset.sAscend;
+            this.selected.weaponRefine = preset.wRefine;
+            this.selected.weaponArgs = deepCopy(preset.wArgs);
+
+            this.selected.targetFuncName = preset.tName;
+            this.selected.targetFuncArgs = deepCopy(preset.tArgs);
+
+            this.$message({
+                type: "success",
+                message: "应用成功",
+            });
+
+            this.$nextTick(() => {
+                this.lock = false;
+            });
         },
 
-        /**
-         * when a weapon is selected
-         */
-        handleSelectWeapon(name) {
-            this.selected.weaponName = name;
+        getPresetObject() {
+            return {
+                cName: this.selected.characterName,
+                cLevel: this.selected.characterLevel,
+                cAscend: this.selected.characterAscend,
+                cS1: this.selected.characterSkill1,
+                cS2: this.selected.characterSkill2,
+                cS3: this.selected.characterSkill3,
+                cC: this.selected.characterConstellation,
 
-            this.currentstep++;
+                wName: this.selected.weaponName,
+                wLevel: this.selected.weaponLevel,
+                wAscend: this.selected.weaponAscend,
+                wRefine: this.selected.weaponRefine,
+                wArgs: deepCopy(this.selected.weaponArgs),
+
+                tName: this.selected.targetFuncName,
+                tArgs: deepCopy(this.selected.targetFuncArgs),
+            };
         },
 
-        /**
-         * when weapon level is selected
-         */
-        handleSelectWeaponLevel(config) {
-            this.selected.weaponLevel = config.level;
-            this.selected.weaponAscend = config.ascend;
-            this.selected.weaponRefine = config.refine;
-            this.selected.weaponArgs = config.args;
-
-            this.currentstep++;
+        checkPresetNameDuplicate(name) {
+            let presets = this.$store.getters["presets/all"];
+            return !Object.prototype.hasOwnProperty.call(presets, name)
         },
 
-        /**
-         * when target function is selected
-         */
-        handleSelectTargetFunction(name) {
-            this.selected.targetFuncName = name;
-
-            this.currentstep++;
-        },
-
-        /**
-         * when config target function
-         */
-        handleConfigTargetFunc(configData) {
-            this.selected.targetFuncArgs = configData;
-
-            this.currentstep++;
-        },
-
-        /**
-         * when resctrictions are determined
-         */
-        handleConfig(config) {
-            this.selected.constraintConfig = config;
-
-            let iterCount = this.$store.getters.iterCount;
-            if (iterCount >= 5000000) {
-                this.$confirm(`计算将会非常耗时（约 ${estimateToChs(iterCount)}）,是否继续？`, "警告", {
-                    confirmButtonText: "确定",
-                    cancelButtonText: "取消",
-                    type: "warning",
-                }).then(() => {
-                    this.currentstep++;
-                    this.startCalculating();
-                }).catch(() => {
+        saveAsPreset() {
+            this.$prompt("取个名字吧", "存为预设", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+            }).then(({ value }) => {
+                if (!value) {
+                    this.$message.error("名字不能为空哦");
                     return;
+                }
+                if (!this.checkPresetNameDuplicate(value)) {
+                    this.$message.error("名字已经存在");
+                    return;
+                }
+
+                let preset = this.getPresetObject();
+                preset.name = value;
+                this.$store.commit("presets/add", {
+                    name: value,
+                    value: preset,
                 })
-            } else {
-                this.currentstep++;
-                this.startCalculating();
-            }
+            }).catch(() => {});
         },
 
         /**
@@ -223,18 +271,36 @@ export default {
          * start to compute
          */
         startCalculating() {
-            this.$refs.resultPage.doCompute();
+            let start = () => {
+                this.currentstep = 7;
+                this.$refs.resultPage.doCompute();
+            };
+
+            let iterCount = this.$store.getters["artifacts/iterCount"];
+            if (iterCount >= 5000000) {
+                this.$confirm(`计算将会非常耗时（约 ${estimateToChs(iterCount)}）,是否继续？`, "警告", {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    type: "warning",
+                }).then(() => {
+                    start();
+                }).catch(() => {
+                    return;
+                })
+            } else {
+                start();
+            }
         },
 
         /**
          * return an object representing all not omited artifacts
          */
         getArtifacts() {
-            let allFlower = this.$store.state.flower;
-            let allFeather = this.$store.state.feather;
-            let allSand = this.$store.state.sand;
-            let allCup = this.$store.state.cup;
-            let allHead = this.$store.state.head;
+            let allFlower = this.$store.state.artifacts.flower;
+            let allFeather = this.$store.state.artifacts.feather;
+            let allSand = this.$store.state.artifacts.sand;
+            let allCup = this.$store.state.artifacts.cup;
+            let allHead = this.$store.state.artifacts.head;
 
             let fil = (item) => !item.omit;
             let flower = allFlower.filter(fil);
@@ -270,26 +336,59 @@ export default {
             return "none";
         },
 
-        characterInfo() {
-            return {
-                name: this.selected.characterName,
-                level: this.selected.characterLevel,
-                ascend: this.selected.characterAscend,
-                skill1: this.selected.characterSkill1,
-                skill2: this.selected.characterSkill2,
-                skill3: this.selected.characterSkill3,
-                constellation: this.selected.characterConstellation,
-            };
+        characterInfo: {
+            get() {
+                return {
+                    name: this.selected.characterName,
+                    level: this.selected.characterLevel,
+                    ascend: this.selected.characterAscend,
+                    skill1: this.selected.characterSkill1,
+                    skill2: this.selected.characterSkill2,
+                    skill3: this.selected.characterSkill3,
+                    constellation: this.selected.characterConstellation,
+                };
+            },
+            set(value) {
+                // console.log(value);
+                this.selected.characterLevel = value.level;
+                this.selected.characterAscend = value.ascend;
+                this.selected.characterSkill1 = value.skill1;
+                this.selected.characterSkill2 = value.skill2;
+                this.selected.characterSkill3 = value.skill3;
+                this.selected.characterConstellation = value.constellation;
+            }
         },
 
-        weaponInfo() {
-            return {
-                name: this.selected.weaponName,
-                level: this.selected.weaponLevel,
-                ascend: this.selected.weaponAscend,
-                refine: this.selected.weaponRefine,
-                args: this.selected.weaponArgs,
-            };
+        weaponInfo: {
+            get() {
+                let temp = {
+                    name: this.selected.weaponName,
+                    level: this.selected.weaponLevel,
+                    ascend: this.selected.weaponAscend,
+                    refine: this.selected.weaponRefine,
+                    args: this.selected.weaponArgs,
+                };
+                return temp;
+            },
+            set(value) {
+                this.selected.weaponLevel = value.level;
+                this.selected.weaponAscend = value.ascend;
+                this.selected.weaponRefine = value.refine;
+                this.selected.weaponArgs = value.args;
+            }
+        },
+
+        targetFuncInfo: {
+            get() {
+                return {
+                    name: this.selected.targetFuncName,
+                    args: this.selected.targetFuncArgs,
+                }
+            },
+
+            set(value) {
+                this.selected.targetFuncArgs = value.args;
+            }
         },
 
         config() {
@@ -302,6 +401,10 @@ export default {
 </script>
 
 <style scoped>
+.tool-bar {
+    margin-bottom: 16px;
+}
+
 .choose-div {
     margin-top: 24px;
 }

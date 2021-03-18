@@ -1,5 +1,5 @@
 import badge from "@asset/badges/ganyu.png";
-import config from "./GanyuConfig";
+import config from "./Ganyu.tcfg";
 
 export default {
     name: "ganyuB",
