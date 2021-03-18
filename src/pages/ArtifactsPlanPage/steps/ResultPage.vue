@@ -94,7 +94,7 @@ export default {
             let constraintConfig = this.$parent.selected.constraintConfig;
             let targetFuncName = this.$parent.selected.targetFuncName;
             let targetFuncArgs = this.convertTArgs(targetFuncName, this.$parent.selected.targetFuncArgs);
-            // console.log(targetFuncArgs);
+            // console.log(weapon);
 
             let loading = this.$loading({
                 lock: true,
