@@ -15,15 +15,15 @@ export default {
     },
     sand: {
         chs: "冰雪故园的终期",
-        url: cup,
+        url: sand,
     },
     cup: {
         chs: "遍结寒霜的傲骨",
-        url: head,
+        url: cup,
     },
     head: {
         chs: "破冰踏雪的回音",
-        url: sand,
+        url: head,
     },
     chs: "征服寒冬的勇士",
     eng: "blizzardStrayer",
