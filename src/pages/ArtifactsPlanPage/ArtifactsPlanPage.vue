@@ -109,11 +109,11 @@ import deepCopy from "@util/deepcopy";
 import { toChs as estimateToChs } from "@util/time_estimate";
 
 // import SelectCharacter from "./steps/SelectCharacter";
-import ConfigCharacter from "./steps/ConfigCharacter";
-import SelectWeapon from "./steps/SelectWeapon";
-import ConfigWeapon from "./steps/ConfigWeapon";
-import SelectTargetFunction from "./steps/SelectTargetFunction";
-import ConfigTargetFunction from "./steps/ConfigTargetFunction";
+// import ConfigCharacter from "./steps/ConfigCharacter";
+// import SelectWeapon from "./steps/SelectWeapon";
+// import ConfigWeapon from "./steps/ConfigWeapon";
+// import SelectTargetFunction from "./steps/SelectTargetFunction";
+// import ConfigTargetFunction from "./steps/ConfigTargetFunction";
 import Config from "./steps/Config";
 import ResultPage from "./steps/ResultPage";
 
@@ -125,11 +125,11 @@ export default {
     name: "ArtifactsPlanPage",
     components: {
         "select-character": () => import(/* webpackChunkName: "steps-select-c" */ "./steps/SelectCharacter"),
-        ConfigCharacter,
-        SelectWeapon,
-        ConfigWeapon,
-        SelectTargetFunction,
-        ConfigTargetFunction,
+        "ConfigCharacter": () => import(/* webpackChunkName: "steps-select-c" */ "./steps/ConfigCharacter"),
+        "SelectWeapon": () => import(/* webpackChunkName: "steps-select-w" */ "./steps/SelectWeapon"),
+        "ConfigWeapon": () => import(/* webpackChunkName: "steps-select-w" */ "./steps/ConfigWeapon"),
+        "SelectTargetFunction": () => import(/* webpackChunkName: "steps-select-t" */ "./steps/SelectTargetFunction"),
+        "ConfigTargetFunction": () => import(/* webpackChunkName: "steps-select-t" */ "./steps/ConfigTargetFunction"),
         Config,
         ResultPage,
         MyStep,

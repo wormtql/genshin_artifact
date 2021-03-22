@@ -15,8 +15,15 @@ export default function (name, args) {
         });
     }
 
+    let valid = null;
+    if (typeof item.valid === "function") {
+        valid = item.valid({ pArgs: args });
+    } else if (Array.isArray(item.valid)) {
+        valid = item.valid;
+    }
+
     return {
         f,
-        valid: item.valid,
+        valid,
     };
 }

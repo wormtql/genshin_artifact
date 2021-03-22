@@ -1,3 +1,5 @@
+import Vue from "vue";
+
 const positions = ["flower", "feather", "sand", "cup", "head"];
 
 // id can only be changed in store mutations
@@ -30,6 +32,19 @@ if (localStoredArtifacts) {
     }
 }
 
+function findArtifact(state, id) {
+    for (let pos of positions) {
+        let arr = state[pos];
+        for (let art of arr) {
+            if (art.id === id) {
+                return art;
+            }
+        }
+    }
+
+    throw new Error("id not found");
+}
+
 let _store = {
     namespaced: true,
     state: {
@@ -51,6 +66,11 @@ let _store = {
 
         toggleArtifact(state, obj) {
             let art = state[obj.position][obj.index];
+            art.omit = !art.omit;
+        },
+
+        toggleById(state, payload) {
+            let art = findArtifact(state, payload.id);
             art.omit = !art.omit;
         },
 
@@ -77,10 +97,10 @@ let _store = {
         /**
          * set a single artifact
          */
-        // setArtifact(state, obj) {
-        //     let n = obj.artifact;
-        //     Vue.set(state[obj.position], obj.index, n);
-        // },
+        setArtifact(state, obj) {
+            let n = obj.artifact;
+            Vue.set(state[obj.position], obj.index, n);
+        },
 
         appendArtifacts(state, obj) {
             positions.forEach(pos => {
@@ -108,6 +128,17 @@ let _store = {
                 cup: state.cup,
                 head: state.head,
             };
+        },
+
+        artifactsById: state => {
+            let temp = {};
+            positions.forEach(pos => {
+                for (let art of state[pos]) {
+                    temp[art.id] = art;
+                }
+            });
+
+            return temp;
         },
 
         flowerCount: state => {

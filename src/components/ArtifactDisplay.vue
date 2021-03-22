@@ -1,7 +1,7 @@
 <template>
     <div
         class="artifact"
-        :class="{ selectable }"
+        :class="{ selectable, omit: item.omit }"
         @click="handleClick"
     >
         <div class="up">
@@ -12,6 +12,18 @@
                 </span>
             </span>
             <span class="extra fs-12" v-if="this.extra">{{ extra }}</span>
+
+            <div class="buttons" v-if="buttons">
+                <el-button
+                    :icon="item.omit ? 'el-icon-unlock' : 'el-icon-lock'"
+                    circle
+                    size="mini"
+                    type="text"
+                    :title="item.omit ? '启用' : '禁用'"
+                    class="mybutton"
+                    @click="$emit('toggle')"
+                ></el-button>
+            </div>
         </div>
         <div class="down">
             <div>
@@ -66,6 +78,11 @@ export default {
         extra: {
             type: String,
             default: "",
+        },
+
+        buttons: {
+            type: Boolean,
+            default: false,
         }
     },
     methods: {
@@ -129,6 +146,19 @@ export default {
 </script>
 
 <style scoped>
+.buttons {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    float: right;
+}
+
+.buttons button {
+    padding: 0;
+    margin: 0;
+    margin-left: 8px;
+}
+
 .extra {
     color: #e7bf4f;
     line-height: 32px;
@@ -190,5 +220,9 @@ export default {
     background: #12345622;
     /* border: 1px solid #123456; */
     cursor: pointer;
+}
+
+.omit {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 </style>

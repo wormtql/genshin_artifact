@@ -13,13 +13,20 @@
         </div> -->
 
         <div class="body">
-            <preset-item
-                v-for="(item, name) in all"
-                :key="name"
-                :item="item"
-                @delete="deletePreset(name)"
-                class="item"
-            ></preset-item>
+            <template v-if="!isEmpty">
+                <preset-item
+                    v-for="(item, name) in all"
+                    :key="name"
+                    :item="item"
+                    @delete="deletePreset(name)"
+                    class="item"
+                ></preset-item>
+            </template>
+            <el-alert
+                v-else
+                title="请去Artifacts Planner页面添加预设"
+                :closable="false"
+            ></el-alert>
         </div>
     </div>
 </template>
@@ -43,6 +50,9 @@ export default {
     },
     computed: {
         ...mapGetters("presets", ["all"]),
+        isEmpty() {
+            return Object.keys(this.all).length === 0;
+        }
     }
 }
 </script>

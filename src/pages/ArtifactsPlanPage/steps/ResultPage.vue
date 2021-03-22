@@ -14,10 +14,12 @@
                 <h3 class="title">最佳搭配</h3>
                 <div class="artifact-div">
                     <artifact-display
-                        v-for="(art, index) in filteredArtifacts"
-                        :key="index"
+                        v-for="art in artifacts"
+                        :key="art.id"
+                        :buttons="true"
                         :item="art"
                         class="artifact"
+                        @toggle="toggle(art.id)"
                     ></artifact-display>
                 </div>
                 <div>
@@ -66,17 +68,22 @@ export default {
                 error: false,
                 value: 0,
                 artifacts: [],
+                attribute: {},
             },
 
             calculating: true,
         }
     },
     methods: {
+        toggle(id) {
+            this.$store.commit("artifacts/toggleById", { id });
+        },
+
         disableArtifacts() {
-            for (let art of this.filteredArtifacts) {
-                this.$store.commit("artifacts/disableArtifactById", { id: art.id });
+            for (let id of this.artifactsId) {
+                this.$store.commit("artifacts/disableArtifactById", { id });
             }
-            this.$message("操作成功");
+            // this.$message("操作成功");
         },
 
         convertTArgs(name, args) {
@@ -125,6 +132,21 @@ export default {
     computed: {
         filteredArtifacts() {
             return this.resultData.artifacts.filter(item => !!item);
+        },
+
+        artifactsId() {
+            return this.filteredArtifacts.map(item => item.id);
+        },
+
+        artifacts() {
+            let temp = [];
+            let map = this.$store.getters["artifacts/artifactsById"];
+
+            for (let id of this.artifactsId) {
+                temp.push(map[id]);
+            }
+
+            return temp;
         }
     }
 }
