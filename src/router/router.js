@@ -47,13 +47,41 @@ const CharacterPresetsPage = () => (
         loading: LoadingComponent,
         error: ErrorComponent,
     }
-)
+);
+const HelpBasicPage = () => ({
+    component: import(/* webpackChunkName: "help-page" */ "@page/helps/HelpBasicPage"),
+    loading: LoadingComponent,
+    error: ErrorComponent,
+});
+const FAQPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/FAQPage");
+const TargetFuncExplanationPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/TargetFuncExplanationPage");
 
 import VueRouter from "vue-router";
 
 const webName = "莫娜占卜铺"
 
 const routes = [
+    {
+        path: "/help/target-func-explanation",
+        component: TargetFuncExplanationPage,
+        meta: {
+            title: "目标函数参数说明 | 帮助 | " + webName,
+        }
+    },
+    {
+        path: "/help/basic",
+        component: HelpBasicPage,
+        meta: {
+            title: "基本使用 | 帮助 | " + webName,
+        }
+    },
+    {
+        path: "/help/faq",
+        component: FAQPage,
+        meta: {
+            title: "FAQ | 帮助 | " + webName,
+        }
+    },
     {
         path: "/intro",
         component: IntroPage,

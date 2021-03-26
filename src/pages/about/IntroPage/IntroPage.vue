@@ -8,7 +8,7 @@
         <p class="title"><span class="mona">莫娜占卜铺</span> V{{ version }} Welcome</p>
         <p style="padding: 0; margin: 0; font-size: 10px;">该网站处处透露着贫穷，欢迎有志者参与开发（美术等）</p>
         <p style="margin-bottom: 32px">
-            <span style="color: #409EFF">圣遗物自动配装/圣遗物分数与潜力值</span>
+            <span style="color: #409EFF">多方向圣遗物自动配装/多方向圣遗物评分与潜力</span>
             <!-- <span style="color: #67C23A">角色养成方向推荐</span> / 
             <span style="color: #E6A23C">面板计算</span> -->
         </p>
@@ -24,7 +24,7 @@
         </div>
 
         <el-card style="margin-bottom: 16px">
-            <p class="big-card-title">功能</p>
+            <p class="big-card-title">用例</p>
             <ul>
                 <li>我的圣遗物最高能到多少暴击伤害？</li>
                 <li>我的圣遗物最高能堆到多少生命值？</li>
@@ -39,7 +39,7 @@
         </el-card>
 
         <el-card style="margin-bottom: 16px">
-            <p class="big-card-title">github地址（求star(/doge)）</p>
+            <p class="big-card-title">开源地址</p>
             <el-alert
                 title="该工具全部免费且开源"
                 :closable="false"
@@ -69,10 +69,10 @@
             </el-row>
         </el-card>
 
-        <el-row :gutter="16">
+        <el-row :gutter="16" style="margin-bottom: 16px">
             <el-col :span="12">
-                <el-card style="margin-bottom: 16px">
-                    <p class="card-title">提交bug</p>
+                <el-card style="height: 180px">
+                    <p class="card-title">提交bug/功能请求</p>
                     <el-alert
                         title="如果出现了明显不合理的结果，请务必提交bug"
                         style="margin-bottom: 16px"
@@ -92,7 +92,28 @@
                         <font-awesome-icon icon="comment"></font-awesome-icon>
                     </el-button>
                 </el-card>
+            </el-col>
+            <el-col :span="12">
+                <el-card style="height: 180px">
+                    <p class="card-title">数据来源</p>
+                    <el-button @click="newPage(urls.wiki)" class="data-source">
+                        bilibili原神wiki
+                        <font-awesome-icon icon="database"></font-awesome-icon>
+                    </el-button>
+                    <el-button @click="newPage(urls.wiki2)" class="data-source">
+                        Genshin Impact Wiki | Fandom
+                        <font-awesome-icon icon="database"></font-awesome-icon>
+                    </el-button>
+                    <el-button @click="newPage(urls.wiki3)" class="data-source">
+                        旅行者创作平台-观测枢-原神wiki
+                        <font-awesome-icon icon="database"></font-awesome-icon>
+                    </el-button>
+                </el-card>
+            </el-col>
+        </el-row>
 
+        <el-row :gutter="16">
+            <el-col :span="12">
                 <el-card style="margin-bottom: 16px">
                     <p class="card-title">请莫娜吃饭</p>
                     <el-alert
@@ -112,18 +133,14 @@
             </el-col>
             <el-col :span="12">
                 <el-card>
-                    <p class="card-title">数据来源</p>
-                    <el-button @click="newPage(urls.wiki)" class="data-source">
-                        bilibili原神wiki
-                        <font-awesome-icon icon="database"></font-awesome-icon>
+                    <p class="card-title">第一次使用？</p>
+                    <el-button @click="$router.push('/help/basic')">
+                        基本使用帮助
+                        <i class="el-icon-question"></i>
                     </el-button>
-                    <el-button @click="newPage(urls.wiki2)" class="data-source">
-                        Genshin Impact Wiki | Fandom
-                        <font-awesome-icon icon="database"></font-awesome-icon>
-                    </el-button>
-                    <el-button @click="newPage(urls.wiki3)" class="data-source">
-                        旅行者创作平台-观测枢-原神wiki
-                        <font-awesome-icon icon="database"></font-awesome-icon>
+                    <el-button @click="$router.push('/help/faq')">
+                        FAQ
+                        <i class="el-icon-question"></i>
                     </el-button>
                 </el-card>
             </el-col>
@@ -228,8 +245,8 @@ export default {
 
 .data-source {
     margin: 0;
-    margin-right: 16px;
-    margin-top: 16px;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 
 .mona {
