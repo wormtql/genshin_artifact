@@ -7,6 +7,7 @@ const WorkerPlugin = require("worker-plugin");
 
 
 module.exports = {
+    publicPath: process.env.PublicPath || '/',
     configureWebpack: {
         resolve: {
             alias: {
