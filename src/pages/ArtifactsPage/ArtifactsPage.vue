@@ -208,6 +208,8 @@ export default {
         handleAddArtifact: function(item) {
             this.newDialogVisible = false;
 
+            this.activeName = item.position;
+
             this.$store.commit("artifacts/addArtifact", item);
         },
 
