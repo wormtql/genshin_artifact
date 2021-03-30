@@ -96,6 +96,7 @@ import SelectArtifactMainTag from "@c/SelectArtifactMainTag";
 import { getDetailName, getArtifactRealValue } from "@util/utils";
 import randomNormalTag from "@/artifacts_numeric/random_normal_tag";
 import { convertDisplayTagValue } from '@util/utils';
+import isArtifactUnique from "@util/isArtifactUnique";
 import { artifactsData } from "@asset/artifacts";
 import { secondaryTags } from "@asset/tags";
 
@@ -208,7 +209,18 @@ export default {
 
         onConfirm() {
             let result = this.getArtifact();
-            this.$emit("confirm", result);
+
+            if (!isArtifactUnique(this.$store.getters["artifacts/allFlat"], result)) {
+                this.$confirm("检测到已有相同圣遗物，是否继续？", "提示", {
+                    confirmButtonText: "继续",
+                    cancelButtonText: "取消",
+                    type: "warning",
+                }).then(() => {
+                    this.$emit("confirm", result);
+                }).catch(() => {});
+            } else {
+                this.$emit("confirm", result);
+            }
         },
         
         onCancel() {

@@ -130,6 +130,13 @@ let _store = {
             };
         },
 
+        allFlat: state => {
+            let temp = [];
+            positions.forEach(pos => temp = temp.concat(state[pos]));
+
+            return temp;
+        },
+
         artifactsById: state => {
             let temp = {};
             positions.forEach(pos => {
