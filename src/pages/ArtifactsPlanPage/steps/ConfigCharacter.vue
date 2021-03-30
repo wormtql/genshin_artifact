@@ -35,7 +35,7 @@
             ></el-input-number>
         </div>
 
-        <select-level :value="value | levelText" @input="handleChangeLevel"></select-level>
+        <select-level title="角色等级" :value="value | levelText" @input="handleChangeLevel"></select-level>
     </div>
 </template>
 
