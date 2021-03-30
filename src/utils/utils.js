@@ -65,9 +65,9 @@ export function getArtifactThumbnailURL(setName) {
 }
 
 export function getArtifactRealValue(name, value) {
-    let temp = parseFloat(value);
+    let temp = typeof value === 'string' ? parseFloat(value) : value;
     if (secondaryTags[name].percentage) {
-        return temp / 100;
+        return temp * 10 / 1000;
     }
     return temp;
 }
