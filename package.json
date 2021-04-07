@@ -1,12 +1,13 @@
 {
   "name": "genshin_artifacts",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "inspect": "vue inspect > inspect.js"
+    "inspect": "vue inspect > inspect.js",
+    "myserve": "serve ./dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -16,7 +17,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.14.0",
-    "genshin_panel": "^2.1.9",
+    "genshin_panel": "^2.2.0",
     "katex": "^0.13.0",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4",
