@@ -1,13 +1,14 @@
 {
   "name": "genshin_artifacts",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "inspect": "vue inspect > inspect.js",
-    "myserve": "serve ./dist"
+    "myserve": "serve ./dist",
+    "pack": "tar -czvf dist.tar.gz ./dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
