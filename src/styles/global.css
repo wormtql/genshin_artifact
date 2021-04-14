@@ -47,3 +47,7 @@ body {
 .br-50p {
     border-radius: 50%;
 }
+
+.no-deco {
+    text-decoration: none;
+}

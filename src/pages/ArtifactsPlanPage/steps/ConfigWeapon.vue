@@ -23,6 +23,7 @@
             :star="star"
             :value="levelText"
             @input="handleClickLevel"
+            title="武器等级"
         ></select-level>
     </div>
 </template>

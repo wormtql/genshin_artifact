@@ -138,6 +138,10 @@
                         基本使用帮助
                         <i class="el-icon-question"></i>
                     </el-button>
+                    <el-button @click="$router.push('/help/export-tools')" type="primary">
+                        导出工具
+                        <i class="el-icon-aim"></i>
+                    </el-button>
                     <el-button @click="$router.push('/help/faq')">
                         FAQ
                         <i class="el-icon-question"></i>

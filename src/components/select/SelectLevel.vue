@@ -93,6 +93,11 @@ export default {
         star: {
             type: Number,
             default: 5,
+        },
+
+        title: {
+            type: String,
+            default: "",
         }
     },
     methods: {

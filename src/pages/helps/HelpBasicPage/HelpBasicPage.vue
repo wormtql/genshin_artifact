@@ -15,7 +15,15 @@
             <p>这里的圣遗物将会是整个应用的核心数据，配装、潜力计算都依赖这里的圣遗物</p>
             <p>目前已有的与本站兼容的第三方自动圣遗物导出工具：</p>
             <ul>
-                <li><a target="_blank" href="https://github.com/ChanIok/JumpyDumpty">蹦蹦炸弹</a></li>
+                <li>
+                    椰羊（本地OCR识别）<br>
+                    <a target="_blank" href="https://github.com/YuehaiTeam/cocogoat">项目地址</a><br>
+                    <a target="_blank" href="https://77.cocogoat.work/v1/ascension/">下载地址</a>
+                </li>
+                <li>
+                    蹦蹦炸弹（百度API识别）<br>
+                    <a target="_blank" href="https://github.com/ChanIok/JumpyDumpty">项目地址</a>
+                </li>
             </ul>
 
             <h1>2. 配装</h1>

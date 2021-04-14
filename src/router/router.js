@@ -55,12 +55,20 @@ const HelpBasicPage = () => ({
 });
 const FAQPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/FAQPage");
 const TargetFuncExplanationPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/TargetFuncExplanationPage");
+const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/ExportToolPage");
 
 import VueRouter from "vue-router";
 
 const webName = "莫娜占卜铺"
 
 const routes = [
+    {
+        path: "/help/export-tools",
+        component: ExportToolPage,
+        meta: {
+            title: "导出工具汇总 | 帮助 | " + webName,
+        }
+    },
     {
         path: "/help/target-func-explanation",
         component: TargetFuncExplanationPage,

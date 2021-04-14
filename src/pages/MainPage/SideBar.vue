@@ -40,31 +40,31 @@
 
             <el-menu-item-group>
                 <template #title>
-                    帮助
-                </template>
-                <el-menu-item index="/help/basic">
-                    <i class="el-icon-question"></i>
-                    基本使用
-                </el-menu-item>
-                <el-menu-item index="/help/faq">
-                    <i class="el-icon-question"></i>
-                    FAQ
-                </el-menu-item>
-                <el-menu-item index="/help/target-func-explanation">
-                    <i class="el-icon-question"></i>
-                    目标函数参数说明
-                </el-menu-item>
-            </el-menu-item-group>
-
-            <el-menu-item-group>
-                <template #title>
                     关于本站
                 </template>
-                <el-menu-item index="/changelog">
-                    <i class="el-icon-date"></i>
-                    更新记录
-                </el-menu-item>
-                <el-submenu>
+                <el-submenu index="help">
+                    <template slot="title">
+                        <i class="el-icon-question"></i>
+                        帮助
+                    </template>
+                    <el-menu-item index="/help/basic">
+                        <i class="el-icon-question"></i>
+                        基本使用
+                    </el-menu-item>
+                    <el-menu-item index="/help/export-tools">
+                        <i class="el-icon-aim"></i>
+                        导出工具
+                    </el-menu-item>
+                    <el-menu-item index="/help/faq">
+                        <i class="el-icon-question"></i>
+                        FAQ
+                    </el-menu-item>
+                    <el-menu-item index="/help/target-func-explanation">
+                        <i class="el-icon-question"></i>
+                        目标函数参数说明
+                    </el-menu-item>
+                </el-submenu>
+                <el-submenu index="alg">
                     <template slot="title">
                         <i class="el-icon-ice-cream"></i>
                         算法说明
@@ -79,6 +79,11 @@
                     </el-menu-item>
                 </el-submenu>
                 
+                <el-menu-item index="/changelog">
+                    <i class="el-icon-date"></i>
+                    更新记录
+                </el-menu-item>
+
                 <el-menu-item index="/tomodachi">
                     <i class="el-icon-link"></i>
                     友情链接
