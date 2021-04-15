@@ -23,7 +23,7 @@
             </ul>
         </div>
 
-        <el-card style="margin-bottom: 16px">
+        <el-card class="mb16">
             <p class="big-card-title">用例</p>
             <ul>
                 <li>我的圣遗物最高能到多少暴击伤害？</li>
@@ -38,7 +38,7 @@
             <!-- <p>以上都不是问题，一次输入圣遗物，即可自动计算</p> -->
         </el-card>
 
-        <el-card style="margin-bottom: 16px">
+        <el-card class="mb16">
             <p class="big-card-title">开源地址</p>
             <el-alert
                 title="该工具全部免费且开源"
@@ -69,7 +69,7 @@
             </el-row>
         </el-card>
 
-        <el-row :gutter="16" style="margin-bottom: 16px">
+        <el-row :gutter="16" class="mb16">
             <el-col :span="12">
                 <el-card style="height: 180px">
                     <p class="card-title">提交bug/功能请求</p>
@@ -79,7 +79,7 @@
                         :closable="false"
                         type="warning"
                     ></el-alert>
-                    <el-button @click="newPage(urls.issue)">
+                    <el-button @click="newPage(links.issue)">
                         github Issue
                         <font-awesome-icon :icon="['fab', 'github']"></font-awesome-icon>
                     </el-button>
@@ -96,15 +96,15 @@
             <el-col :span="12">
                 <el-card style="height: 180px">
                     <p class="card-title">数据来源</p>
-                    <el-button @click="newPage(urls.wiki)" class="data-source">
+                    <el-button @click="newPage(links.wiki)" class="data-source">
                         bilibili原神wiki
                         <font-awesome-icon icon="database"></font-awesome-icon>
                     </el-button>
-                    <el-button @click="newPage(urls.wiki2)" class="data-source">
+                    <el-button @click="newPage(links.wiki2)" class="data-source">
                         Genshin Impact Wiki | Fandom
                         <font-awesome-icon icon="database"></font-awesome-icon>
                     </el-button>
-                    <el-button @click="newPage(urls.wiki3)" class="data-source">
+                    <el-button @click="newPage(links.wiki3)" class="data-source">
                         旅行者创作平台-观测枢-原神wiki
                         <font-awesome-icon icon="database"></font-awesome-icon>
                     </el-button>
@@ -132,7 +132,7 @@
                 </el-card>
             </el-col>
             <el-col :span="12">
-                <el-card>
+                <el-card class="mb16">
                     <p class="card-title">第一次使用？</p>
                     <el-button @click="$router.push('/help/basic')">
                         基本使用帮助
@@ -147,32 +147,28 @@
                         <i class="el-icon-question"></i>
                     </el-button>
                 </el-card>
+
+                <el-card>
+                    <p class="card-title">开发者文档</p>
+                    <a class="el-button no-deco" :href="links.doc" target="_blank">
+                        文档
+                        <i class="el-icon-connection"></i>
+                    </a>
+                </el-card>
             </el-col>
         </el-row>
-
-        <!-- <h3>数据</h3>
-        <p>网站使用的数据来源：</p>
-        <ul>
-            <li><a href="https://wiki.biligame.com/ys/%E9%A6%96%E9%A1%B5">bilibili原神wiki</a></li>
-        </ul> -->
     </div>
 </template>
 
 <script>
 import changelogs from "@/changelog/changelog";
 
+import links from "@const/links";
+
 export default {
     name: "IntroPage",
     created: function() {
-        this.urls = {
-            frontendUrl: "https://github.com/wormtql/genshin_artifact",
-            panelUrl: "https://github.com/wormtql/genshin_panel",
-            issue: "https://github.com/wormtql/genshin_artifact/issues",
-            nga: "https://bbs.nga.cn/read.php?tid=24184608",
-            wiki: "https://wiki.biligame.com/ys/%E9%A6%96%E9%A1%B5",
-            wiki2: "https://genshin-impact.fandom.com/wiki/Genshin_Impact_Wiki",
-            wiki3: "https://bbs.mihoyo.com/ys/obc/?bbs_presentation_style=no_header",
-        };
+        this.links = links;
 
         this.version = process.env.VERSION;
 
@@ -190,6 +186,10 @@ export default {
 </script>
 
 <style scoped>
+.mb16 {
+    margin-bottom: 16px;
+}
+
 .pay {
     display: flex;
     align-items: center;
