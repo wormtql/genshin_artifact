@@ -14,9 +14,9 @@
                 <h3 class="title">最佳搭配</h3>
                 <div class="artifact-div">
                     <artifact-display
-                        v-for="art in artifacts"
+                        v-for="(art, index) in artifacts"
                         :key="art.id"
-                        :buttons="true"
+                        :buttons="!artifactsDeleted[index]"
                         :item="art"
                         class="artifact"
                         @toggle="toggle(art.id)"
@@ -80,8 +80,11 @@ export default {
         },
 
         disableArtifacts() {
-            for (let id of this.artifactsId) {
-                this.$store.commit("artifacts/disableArtifactById", { id });
+            for (let i = 0; i < this.artifacts.length; i++) {
+                if (!this.artifactsDeleted[i]) {
+                    let id = this.artifacts[i].id;
+                    this.$store.commit("artifacts/disableArtifactById", { id });
+                }
             }
             // this.$message("操作成功");
         },
@@ -130,20 +133,43 @@ export default {
         }
     },
     computed: {
+        // result artifacts may contain null or undefined(which represents not put on anything in this slot
         filteredArtifacts() {
             return this.resultData.artifacts.filter(item => !!item);
         },
 
+        // artifacts Ids
         artifactsId() {
             return this.filteredArtifacts.map(item => item.id);
         },
 
+        // whether an artifact is deleted
+        artifactsDeleted() {
+            let temp = [];
+
+            let map = this.$store.getters["artifacts/artifactsById"];
+
+            for (let i = 0; i < this.artifactsId.length; i++) {
+                temp.push(!map[this.artifactsId[i]]);
+            }
+
+            return temp;
+        },
+
+        // artifacts to display
         artifacts() {
             let temp = [];
             let map = this.$store.getters["artifacts/artifactsById"];
 
-            for (let id of this.artifactsId) {
-                temp.push(map[id]);
+            for (let i = 0, l = this.filteredArtifacts.length; i < l; i++) {
+                let id = this.filteredArtifacts[i].id;
+
+                if (this.artifactsDeleted[i]) {
+                    // if the artifact has been deleted
+                    temp.push(this.filteredArtifacts[i]);
+                } else {
+                    temp.push(map[id]);
+                }
             }
 
             return temp;
