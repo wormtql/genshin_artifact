@@ -1,4 +1,5 @@
 import badge from "@asset/badges/diluke.png";
+import config from "./DilukeNormal.tcfg.vue";
 
 export default {
     name: "dilukeNormal",
@@ -13,4 +14,5 @@ export default {
     ],
     "for": "diluke",
     badge,
+    config,
 }

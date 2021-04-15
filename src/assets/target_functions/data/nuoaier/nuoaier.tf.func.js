@@ -2,13 +2,14 @@ import skill from "./skill";
 
 function f(config) {
     let qLevel = config.cArgs.skill3 || 6;
-    let dmg = skill.q.dmg2[qLevel - 1];
+    // let dmg = skill.q.dmg2[qLevel - 1];
     let atkBonus = skill.q.atkBonus[qLevel - 1];
 
     const isConste6 = config.cArgs.constellation === 6;
     if (isConste6) {
         atkBonus += 0.5;
     }
+    console.log(atkBonus);
 
     return function (attribute) {
         let def = attribute.defend();
@@ -18,7 +19,8 @@ function f(config) {
 
         let bonus = attribute.bonus + attribute.rockBonus + attribute.aBonus;
         
-        return dmg * atk * (1 + bonus) * (1 + crit * attribute.criticalDamage);
+        // return dmg * atk * (1 + bonus) * (1 + crit * attribute.criticalDamage);
+        return atk * (1 + bonus) * (1 + crit * attribute.criticalDamage);
     };
 }
 

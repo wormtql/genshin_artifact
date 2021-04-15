@@ -105,6 +105,7 @@ export default {
             this.$store.commit("artifacts/appendArtifacts", artifacts);
         },
 
+        // append clicked
         handleAppend() {
             if (this.json) {
                 this.appendArtifacts();
@@ -113,6 +114,7 @@ export default {
             this.$emit("close");
         },
 
+        // overwrite clicked
         handleOverwrite() {
             if (this.json) {
                 this.$store.commit("artifacts/removeAllArtifacts");
