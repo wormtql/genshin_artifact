@@ -17,6 +17,7 @@ module.exports = {
                 "@alg": path.resolve(__dirname, "src/algorithms"),
                 "@page": path.resolve(__dirname, "src/pages"),
                 "@worker": path.resolve(__dirname, "src/workers"),
+                "@const": path.resolve(__dirname, "src/constants"),
                 // "genshin_panel": path.resolve(__dirname, "../../ts/genshin/dist"),
             }
         },

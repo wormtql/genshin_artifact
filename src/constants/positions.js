@@ -1,0 +1,1 @@
+export default ["flower", "feather", "sand", "cup", "head"];

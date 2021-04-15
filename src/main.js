@@ -6,6 +6,9 @@ import "./vendors/fontawesome";
 import "./vendors/vuerouter";
 import "./vendors/vue-katex";
 
+// install global api
+import "./global_api";
+
 import Vue from 'vue';
 
 import Router from "./router/router";

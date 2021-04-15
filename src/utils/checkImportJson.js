@@ -102,7 +102,10 @@ function checkArtifact(art) {
 
 
 export default function checkImportJson(str) {
-    let json = JSON.parse(str);
+    let json = str;
+    if (typeof str === "string") {
+        json = JSON.parse(str);
+    }
 
     for (let key in alias) {
         alias[key].forEach(name => {
