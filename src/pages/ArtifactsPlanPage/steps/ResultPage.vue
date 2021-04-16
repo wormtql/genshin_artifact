@@ -3,44 +3,83 @@
         <div v-if="calculating">
             计算中
         </div>
-        <div class="main-div" v-else-if="!calculating && !resultData.error">
-            <div class="left">
-                <el-alert
-                    title="由于原神战斗体系比较复杂，buff体系繁多，因此计算结果仅供参考"
-                    :closable="false"
-                >
-                </el-alert>
-
-                <h3 class="title">最佳搭配</h3>
-                <div class="artifact-div">
-                    <artifact-display
-                        v-for="(art, index) in artifacts"
-                        :key="art.id"
-                        :buttons="!artifactsDeleted[index]"
-                        :item="art"
-                        class="artifact"
-                        @toggle="toggle(art.id)"
-                    ></artifact-display>
-                </div>
-                <div>
-                    <el-button size="small" @click="disableArtifacts">禁用以上圣遗物</el-button>
-                </div>
-
-                <h3 class="title">最大值</h3>
-                <el-alert
-                    title="不同目标函数的最大值不可相互比较；输出类型的最大值也并不是最终期望伤害，因此仅供参考"
-                    type="warning"
-                    :closable="false"
-                    style="margin-bottom: 12px"
-                ></el-alert>
-                <p class="max-value">{{ resultData.value.toFixed(3) }}</p>
+        <div v-else-if="!calculating && !error.isError">
+            <div style="margin-bottom: 16px">
+                <el-radio-group v-model="recordIndex" size="small">
+                    <el-radio-button :label="0" v-if="recordCount > 0">
+                        <font-awesome-icon
+                            :icon="['fas', 'crown']"
+                            class="icon"
+                            style="color: gold"
+                        ></font-awesome-icon>
+                        冠军
+                    </el-radio-button>
+                    <el-radio-button :label="1" v-if="recordCount > 1">
+                        <font-awesome-icon
+                            :icon="['fas', 'crown']"
+                            class="icon"
+                            style="color: silver"
+                        ></font-awesome-icon>
+                        亚军
+                    </el-radio-button>
+                    <el-radio-button :label="2" v-if="recordCount > 2">
+                        <font-awesome-icon
+                            :icon="['fas', 'crown']"
+                            class="icon"
+                            style="color: brown"
+                        ></font-awesome-icon>
+                        季军
+                    </el-radio-button>
+                    <el-radio-button :label="3" v-if="recordCount > 3">
+                        第四名
+                    </el-radio-button>
+                    <el-radio-button :label="4" v-if="recordCount > 4">
+                        第五名
+                    </el-radio-button>
+                </el-radio-group>
             </div>
-            <div class="right">
-                <attribute-panel :panel="resultData.attribute" style="width: 300px" v-if="!calculating"></attribute-panel>
-            </div>
+
+            <el-row :gutter="16">
+                <el-col :span="18">
+                    <el-alert
+                        title="由于原神战斗体系比较复杂，buff体系繁多，因此计算结果仅供参考"
+                        :closable="false"
+                    ></el-alert>
+
+                    <h3 class="title">最佳搭配</h3>
+                    <div class="artifact-div">
+                        <artifact-display
+                            v-for="(art, index) in artifacts"
+                            :key="art.id"
+                            :buttons="!artifactsDeleted[index]"
+                            :item="art"
+                            class="artifact"
+                            @toggle="toggle(art.id)"
+                        ></artifact-display>
+                    </div>
+                    <div>
+                        <el-button size="small" @click="disableArtifacts">禁用以上圣遗物</el-button>
+                    </div>
+
+                    <h3 class="title">最大值</h3>
+                    <el-alert
+                        title="不同目标函数的最大值不可相互比较；输出类型的最大值也并不是最终期望伤害，因此仅供参考"
+                        type="warning"
+                        :closable="false"
+                        style="margin-bottom: 12px"
+                    ></el-alert>
+                    <p class="max-value">{{ currentRecord.value.toFixed(3) }}</p>
+                </el-col>
+                <el-col :span="6">
+                    <attribute-panel
+                        :panel="currentRecord.attribute"
+                        v-if="!calculating"
+                    ></attribute-panel>
+                </el-col>
+            </el-row>
         </div>
-        <div v-else-if="!calculating && resultData.error">
-            没有合适的圣遗物
+        <div v-else-if="!calculating && error.isError">
+            {{ error.reason }}
         </div>
     </div>
 </template>
@@ -60,18 +99,13 @@ export default {
         ArtifactDisplay,
         AttributePanel,
     },
-    props: {
-    },
     data: function () {
         return {
-            resultData: {
-                error: false,
-                value: 0,
-                artifacts: [],
-                attribute: {},
-            },
+            resultRecord: [],
+            error: {},
 
             calculating: true,
+            recordIndex: 0,
         }
     },
     methods: {
@@ -113,17 +147,27 @@ export default {
             this.calculating = true;
 
             // this is a web worker wrapped by a promise
-            let promise = compute(artifacts, character, weapon, targetFuncName, targetFuncArgs, constraintConfig).then(result => {
-                this.resultData = {
-                    artifacts: Object.values(result.combo),
-                    value: result.value,
-                    attribute: result.attribute,
-                    error: result.error,
-                };
+            let promise = compute(
+                artifacts,
+                character,
+                weapon,
+                targetFuncName,
+                targetFuncArgs,
+                constraintConfig
+            ).then(({ record, error }) => {
+                console.log(record);
+                this.resultRecord = record;
+                this.error = error;
+
                 loading.close();
                 this.calculating = false;
             }).catch(reason => {
-                this.$message.error("计算过程发生错误：" + reason);
+                this.error = {
+                    isError: true,
+                    reason: "计算过程发生错误：" + reason
+                };
+                loading.close();
+                this.calculating = false;
             });
 
             // record time
@@ -135,7 +179,7 @@ export default {
     computed: {
         // result artifacts may contain null or undefined(which represents not put on anything in this slot
         filteredArtifacts() {
-            return this.resultData.artifacts.filter(item => !!item);
+            return this.currentRecord.combo.filter(item => !!item);
         },
 
         // artifacts Ids
@@ -173,6 +217,14 @@ export default {
             }
 
             return temp;
+        },
+
+        currentRecord() {
+            return this.resultRecord[this.recordIndex];
+        },
+
+        recordCount() {
+            return this.resultRecord.length;
         }
     }
 }
@@ -208,9 +260,5 @@ export default {
 .left {
     flex: 1;
     margin-right: 16px;
-}
-
-.main-div {
-    display: flex;
 }
 </style>

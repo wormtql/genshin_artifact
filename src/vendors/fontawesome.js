@@ -9,7 +9,15 @@ import {
   faPercent,
   faComment,
   faDatabase,
+  faCrown,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faGithub, faQuestionCircle, faPercent, faComment, faDatabase);
+library.add(
+  faGithub,
+  faQuestionCircle,
+  faPercent,
+  faComment,
+  faDatabase,
+  faCrown,
+  );
 Vue.component("font-awesome-icon", FontAwesomeIcon);

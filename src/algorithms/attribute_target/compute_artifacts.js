@@ -3,6 +3,8 @@ import targetFunctionsFunc from "@asset/target_functions/func";
 import createCheckFunction from "./create_check_function";
 import createFilterFunction from "./create_filter_function";
 
+const RECORD_COUNT = 5;
+
 function getArtifact(myArtifact) {
     let temp = new genshin.ArtifactBuilder()
         .setName(myArtifact.setName)
@@ -73,9 +75,12 @@ function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, const
     const cupCount = Math.max(artifacts.cup.length, 1);
     const headCount = Math.max(artifacts.head.length, 1);
 
-    let maxValue = -Infinity;
-    let maxCombo = [];
-    let maxAttribute = {};
+    // let maxValue = -Infinity;
+    // let maxCombo = [];
+    // let maxAttribute = {};
+
+    let maxRecord = [];
+    let minIndex = 0;
     for (let floweri = 0; floweri < flowerCount; floweri++) {
         let flower = artifacts.flower[floweri] || null;
 
@@ -139,11 +144,31 @@ function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, const
                             value = targetFunc(attribute);
                         }
                         
-                        if (value > maxValue) {
-                            maxCombo = [flower, feather, sand, cup, head];
-                            maxAttribute = attribute;
-                            maxValue = value;
+                        if (maxRecord.length < RECORD_COUNT) {
+                            maxRecord.push({
+                                value,
+                                combo: [flower, feather, sand, cup, head],
+                                attribute,
+                            });
+                        } else if (value > maxRecord[minIndex].value) {
+                            maxRecord[minIndex] = {
+                                value,
+                                combo: [flower, feather, sand, cup, head],
+                                attribute,
+                            };
+                            
+                            // determine new min value
+                            minIndex = 0;
+                            maxRecord.forEach((record, index, arr) => {
+                                minIndex = record.value < arr[minIndex].value ? index : minIndex;
+                            });
                         }
+
+                        // if (value > maxValue) {
+                        //     maxCombo = [flower, feather, sand, cup, head];
+                        //     maxAttribute = attribute;
+                        //     maxValue = value;
+                        // }
                     }
                 }
             }
@@ -152,26 +177,24 @@ function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, const
 
     // console.log(maxCombo);
 
-    if (maxValue < 0) {
+    if (maxRecord.length === 0) {
         return {
-            value: -1,
-            combo: {},
-            attribute: null,
-            error: true,
+            error: {
+                reason: "no artifact",
+                isError: true,
+            }
         }
     }
 
+    maxRecord.sort((a, b) => {
+        return b.value - a.value;
+    });
+
     return {
-        value: maxValue,
-        combo: {
-            flower: maxCombo[0],
-            feather: maxCombo[1],
-            sand: maxCombo[2],
-            cup: maxCombo[3],
-            head: maxCombo[4]
+        record: maxRecord,
+        error: {
+            isError: false,
         },
-        attribute: maxAttribute,
-        error: false,
     };
 }
 
