@@ -68,7 +68,18 @@
                         :closable="false"
                         style="margin-bottom: 12px"
                     ></el-alert>
-                    <p class="max-value">{{ currentRecord.value.toFixed(3) }}</p>
+
+                    <ul>
+                        <li
+                            v-for="(history, index) in historyValue"
+                            :key="index"
+                            class="history-entry fs-12"
+                        >
+                            {{ index === 0 ? "当前：" : "历史" + index + "：" }}
+                            {{ history[recordIndex].toFixed(3) }}
+                        </li>
+                    </ul>
+                    <!-- <p class="max-value">{{ currentRecord.value.toFixed(3) }}</p> -->
                 </el-col>
                 <el-col :span="6">
                     <attribute-panel
@@ -93,6 +104,8 @@ import timer from "@util/timer";
 
 import targetFunctionsData from "@asset/target_functions/data";
 
+const HISTORY_MAX_ENTRY = 5;
+
 export default {
     name: "ResultPage",
     components: {
@@ -106,9 +119,19 @@ export default {
 
             calculating: true,
             recordIndex: 0,
+
+            historyValue: [],
         }
     },
     methods: {
+        pushHistory(values) {
+            if (this.historyValue.length === HISTORY_MAX_ENTRY) {
+                this.historyValue.pop();
+            }
+
+            this.historyValue.splice(0, 0, values);
+        },
+
         toggle(id) {
             this.$store.commit("artifacts/toggleById", { id });
         },
@@ -155,9 +178,10 @@ export default {
                 targetFuncArgs,
                 constraintConfig
             ).then(({ record, error }) => {
-                console.log(record);
                 this.resultRecord = record;
                 this.error = error;
+
+                this.pushHistory(record.map(item => item.value));
 
                 loading.close();
                 this.calculating = false;
@@ -231,6 +255,18 @@ export default {
 </script>
 
 <style scoped>
+ul {
+    padding: 0;
+}
+
+.history-entry {
+    list-style: none;
+    padding: 4px;
+    background: #00000005;
+    color: #123456;
+    border-bottom: 1px solid #00000011;
+}
+
 .title {
     /* background:rgb(74, 99, 211); */
     padding: 0px 16px;
