@@ -36,69 +36,78 @@
             </div>
         </div>
 
-        <my-step
-            :steps="['角色', '角色参数', '武器', '武器参数', '目标', '目标参数', '配置', '结果']"
-            :pointer="currentstep"
-            :lock="false"
-            @navigate="currentstep = $event"
-        ></my-step>
+        <el-row :gutter="16">
+            <el-col :span="4">
+                <ul class="step" @click="handleNav">
+                    <li :class="{active: currentstep === 'character'}" x-name="character">角色</li>
+                    <li :class="{active: currentstep === 'character-config'}" x-name="character-config">角色参数</li>
+                    <li :class="{active: currentstep === 'weapon'}" x-name="weapon">武器</li>
+                    <li :class="{active: currentstep === 'weapon-config'}" x-name="weapon-config">武器参数</li>
+                    <li :class="{active: currentstep === 'target-func'}" x-name="target-func">目标函数</li>
+                    <li :class="{active: currentstep === 'target-func-config'}" x-name="target-func-config">目标函数参数</li>
+                    <li :class="{active: currentstep === 'constraint'}" x-name="constraint">限制</li>
+                    <li :class="{active: currentstep === 'buff'}" x-name="buff">全局buff</li>
+                    <li :class="{active: currentstep === 'result'}" x-name="result">计算结果</li>
+                </ul>
+            </el-col>
+            <el-col :span="20">
+                <div class="choose-div">
+                    <select-character
+                        v-model="selected.characterName"
+                        v-show="currentstep === 'character'"
+                        class="step-div"
+                    ></select-character>
 
-        <div class="choose-div">
-            <!-- <transition name="fade" mode="out-in"> -->
-                <select-character
-                    v-model="selected.characterName"
-                    v-show="currentstep === 0"
-                    class="step-div"
-                ></select-character>
+                    <config-character
+                        v-model="characterInfo"
+                        v-show="currentstep === 'character-config'"
+                        class="step-div"
+                    ></config-character>
 
-                <config-character
-                    v-model="characterInfo"
-                    v-show="currentstep === 1"
-                    class="step-div"
-                ></config-character>
+                    <select-weapon
+                        :allow="characterWeapon"
+                        v-model="selected.weaponName"
+                        v-show="currentstep === 'weapon'"
+                        class="step-div"
+                    ></select-weapon>
 
-                <select-weapon
-                    :allow="characterWeapon"
-                    v-model="selected.weaponName"
-                    v-show="currentstep === 2"
-                    class="step-div"
-                ></select-weapon>
+                    <config-weapon
+                        :weaponName="selected.weaponName"
+                        v-model="weaponInfo"
+                        v-show="currentstep === 'weapon-config'"
+                        class="step-div"
+                    ></config-weapon>
 
-                <config-weapon
-                    :weaponName="selected.weaponName"
-                    v-model="weaponInfo"
-                    v-show="currentstep === 3"
-                    class="step-div"
-                ></config-weapon>
+                    <select-target-function
+                        :character-name="selected.characterName"
+                        v-model="selected.targetFuncName"
+                        v-show="currentstep === 'target-func'"
+                        class="step-div"
+                    ></select-target-function>
 
-                <select-target-function
-                    :character-name="selected.characterName"
-                    v-model="selected.targetFuncName"
-                    v-show="currentstep === 4"
-                    class="step-div"
-                ></select-target-function>
+                    <config-target-function
+                        :target-func-name="selected.targetFuncName"
+                        v-show="currentstep === 'target-func-config'"
+                        class="step-div"
+                        v-model="targetFuncInfo"
+                    ></config-target-function>
 
-                <config-target-function
-                    :target-func-name="selected.targetFuncName"
-                    v-show="currentstep === 5"
-                    class="step-div"
-                    v-model="targetFuncInfo"
-                ></config-target-function>
+                    <config
+                        v-model="selected.constraintConfig"
+                        v-show="currentstep === 'constraint'"
+                    ></config>
 
-                <config
-                    v-model="selected.constraintConfig"
-                    v-show="currentstep === 6"
-                ></config>
-
-                <result-page
-                    v-show="currentstep === 7"
-                    :calculating="calculating"
-                    :result-data="resultData"
-                    :config="config"
-                    ref="resultPage"
-                ></result-page>
-            <!-- </transition> -->
-        </div>
+                    <result-page
+                        v-show="currentstep === 'result'"
+                        :calculating="calculating"
+                        :result-data="resultData"
+                        :config="config"
+                        ref="resultPage"
+                    ></result-page>
+                </div>
+            </el-col>
+        </el-row>
+        
     </div>
 </template>
 
@@ -117,7 +126,7 @@ import { toChs as estimateToChs } from "@util/time_estimate";
 import Config from "./steps/Config";
 import ResultPage from "./steps/ResultPage";
 
-import MyStep from "@c/MyStep";
+// import MyStep from "@c/MyStep";
 
 import ApplyPresetDialog from "./ApplyPresetDialog";
 
@@ -132,7 +141,7 @@ export default {
         "ConfigTargetFunction": () => import(/* webpackChunkName: "steps-select-t" */ "./steps/ConfigTargetFunction"),
         Config,
         ResultPage,
-        MyStep,
+        // MyStep,
         ApplyPresetDialog,
     },
     created() {
@@ -176,11 +185,15 @@ export default {
 
             // resultData: {},
 
-            currentstep: 0,
+            currentstep: "character",
             // lock: false,
         }
     },
     methods: {
+        handleNav(e) {
+            this.currentstep = e.target.attributes["x-name"].value;
+        },
+
         handleConfirmApplyPreset(name) {
             // console.log(name);
             this.applyPreset(name);
@@ -271,9 +284,19 @@ export default {
          * start to compute
          */
         startCalculating() {
+            let configObject = {
+                character: this.characterInfo,
+                weapon: this.weaponInfo,
+                targetFunc: {
+                    name: this.selected.targetFuncName,
+                    args: this.selected.targetFuncArgs,
+                },
+                constraint: this.selected.constraintConfig,
+            };
+
             let start = () => {
-                this.currentstep = 7;
-                this.$refs.resultPage.doCompute();
+                this.currentstep = "result";
+                this.$refs.resultPage.doCompute(configObject);
             };
 
             let iterCount = this.$store.getters["artifacts/iterCount"];
@@ -290,32 +313,6 @@ export default {
             } else {
                 start();
             }
-        },
-
-        /**
-         * return an object representing all not omited artifacts
-         */
-        getArtifacts() {
-            let allFlower = this.$store.state.artifacts.flower;
-            let allFeather = this.$store.state.artifacts.feather;
-            let allSand = this.$store.state.artifacts.sand;
-            let allCup = this.$store.state.artifacts.cup;
-            let allHead = this.$store.state.artifacts.head;
-
-            let fil = (item) => !item.omit;
-            let flower = allFlower.filter(fil);
-            let feather = allFeather.filter(fil);
-            let sand = allSand.filter(fil);
-            let cup = allCup.filter(fil);
-            let head = allHead.filter(fil);
-
-            return {
-                flower,
-                feather,
-                sand,
-                cup,
-                head,
-            };
         },
     },
     computed: {
@@ -401,12 +398,41 @@ export default {
 </script>
 
 <style scoped>
+.step {
+    list-style: none;
+    margin: 16px 0;
+    padding: 0;
+    background: #f5f7fa;
+    border-radius: 3px;
+}
+
+.step li {
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #409eff;
+    border-bottom: 1px solid #00000011;
+    transition: 300ms;
+}
+
+.step li:hover {
+    color: #6eb7ff;
+}
+
+.step li:last-of-type {
+    border: none;
+}
+
+.step li.active {
+    box-shadow: 0 0 20px 3px rgb(0 0 0 / 10%);
+}
+
 .tool-bar {
     margin-bottom: 16px;
 }
 
 .choose-div {
-    margin-top: 24px;
+    margin-top: 16px;
 }
 
 .fade-enter-active, .fade-leave-active {

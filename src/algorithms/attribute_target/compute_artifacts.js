@@ -34,9 +34,9 @@ function getArtifactsSetInfo(arts) {
     return temp;
 }
 
-function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, constraintConfig) {
+function computeArtifacts(artifacts, c, w, tf, constraint) {
     // filter artifacts
-    let filterFunc = createFilterFunction(constraintConfig);
+    let filterFunc = createFilterFunction(constraint);
     artifacts = filterFunc(artifacts);
 
 
@@ -45,7 +45,7 @@ function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, const
     const weapon = new genshin.Weapon(w.name, w.level, w.ascend, w.refine, w.args);
 
     // construct target function, given name and args
-    let targetFunc = targetFunctionsFunc[targetFuncName];
+    let targetFunc = targetFunctionsFunc[tf.name];
     // if need context, artifacts info will be passed as argument during computing
     const needContext = targetFunc.needContext;
     if (targetFunc.needConfig) {
@@ -60,24 +60,20 @@ function computeArtifacts(artifacts, c, w, targetFuncName, targetFuncArgs, const
                 constellation: c.constellation,
             },
             // target function args
-            tArgs: targetFuncArgs,
+            tArgs: tf.args,
         });
     } else {
         targetFunc = targetFunc.func;
     }
 
     // check(or constraint) function
-    const check = createCheckFunction(constraintConfig);
+    const check = createCheckFunction(constraint);
 
     const flowerCount = Math.max(artifacts.flower.length, 1);
     const featherCount = Math.max(artifacts.feather.length, 1);
     const sandCount = Math.max(artifacts.sand.length, 1);
     const cupCount = Math.max(artifacts.cup.length, 1);
     const headCount = Math.max(artifacts.head.length, 1);
-
-    // let maxValue = -Infinity;
-    // let maxCombo = [];
-    // let maxAttribute = {};
 
     let maxRecord = [];
     let minIndex = 0;

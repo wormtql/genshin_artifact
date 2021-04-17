@@ -154,13 +154,38 @@ export default {
             return args;
         },
 
-        doCompute() {
-            let character = this.$parent.characterInfo;
-            let weapon = this.$parent.weaponInfo;
-            let artifacts = this.$parent.getArtifacts();
-            let constraintConfig = this.$parent.selected.constraintConfig;
-            let targetFuncName = this.$parent.selected.targetFuncName;
-            let targetFuncArgs = this.convertTArgs(targetFuncName, this.$parent.selected.targetFuncArgs);
+        /**
+         * return an object representing all not omited artifacts
+         */
+        getArtifacts() {
+            let allFlower = this.$store.state.artifacts.flower;
+            let allFeather = this.$store.state.artifacts.feather;
+            let allSand = this.$store.state.artifacts.sand;
+            let allCup = this.$store.state.artifacts.cup;
+            let allHead = this.$store.state.artifacts.head;
+
+            let fil = (item) => !item.omit;
+            let flower = allFlower.filter(fil);
+            let feather = allFeather.filter(fil);
+            let sand = allSand.filter(fil);
+            let cup = allCup.filter(fil);
+            let head = allHead.filter(fil);
+
+            return {
+                flower,
+                feather,
+                sand,
+                cup,
+                head,
+            };
+        },
+
+        doCompute(veryBigConfigObject) {
+            let character = veryBigConfigObject.character;
+            let weapon = veryBigConfigObject.weapon;
+            let artifacts = this.getArtifacts();
+            let constraint = veryBigConfigObject.constraint;
+            let targetFunc = veryBigConfigObject.targetFunc;
             // console.log(weapon);
 
             let loading = this.$loading({
@@ -174,9 +199,8 @@ export default {
                 artifacts,
                 character,
                 weapon,
-                targetFuncName,
-                targetFuncArgs,
-                constraintConfig
+                targetFunc,
+                constraint
             ).then(({ record, error }) => {
                 this.resultRecord = record;
                 this.error = error;
