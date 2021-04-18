@@ -3,7 +3,7 @@
         <single-value
             title="数值"
             v-model="value"
-            percentage
+            :percentage="true"
         ></single-value>
     </div>
 </template>

@@ -3,7 +3,6 @@
         <single-value
             title="数值"
             v-model="value"
-            percentage
         ></single-value>
     </div>
 </template>

@@ -11,7 +11,13 @@ export default function (attribute, buffs) {
                 attribute.bonus += buff.value;
                 break;
             case "critical":
-                attribute.arit(buff.value);
+                attribute.crit(buff.value);
+                break;
+            case "em":
+                attribute.elementalMastery += buff.value;
+                break;
+            case "criticalDamage":
+                attribute.criticalDamage += buff.value;
                 break;
         }
     }
