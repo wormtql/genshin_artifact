@@ -35,6 +35,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "image-minimizer-webpack-plugin": "^2.2.0",
     "imagemin": "^7.0.1",
+    "sass": "^1.32.10",
+    "sass-loader": "^10.1.1",
     "vue-router": "^3.4.8",
     "vue-template-compiler": "^2.6.11",
     "vuex": "^3.5.1",

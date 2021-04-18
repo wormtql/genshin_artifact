@@ -97,6 +97,12 @@
                         v-show="currentstep === 'constraint'"
                     ></config>
 
+                    <config-buff
+                        v-show="currentstep === 'buff'"
+                        ref="configBuff"
+                    >
+                    </config-buff>
+
                     <result-page
                         v-show="currentstep === 'result'"
                         :calculating="calculating"
@@ -139,6 +145,7 @@ export default {
         "ConfigWeapon": () => import(/* webpackChunkName: "steps-select-w" */ "./steps/ConfigWeapon"),
         "SelectTargetFunction": () => import(/* webpackChunkName: "steps-select-t" */ "./steps/SelectTargetFunction"),
         "ConfigTargetFunction": () => import(/* webpackChunkName: "steps-select-t" */ "./steps/ConfigTargetFunction"),
+        "ConfigBuff": () => import(/* webpackChunkName: "steps-select-buff" */ "./steps/ConfigBuff"),
         Config,
         ResultPage,
         // MyStep,
@@ -284,6 +291,8 @@ export default {
          * start to compute
          */
         startCalculating() {
+            let buffs = this.$refs.configBuff.getStandardBuffs();
+
             let configObject = {
                 character: this.characterInfo,
                 weapon: this.weaponInfo,
@@ -292,6 +301,7 @@ export default {
                     args: this.selected.targetFuncArgs,
                 },
                 constraint: this.selected.constraintConfig,
+                buffs,
             };
 
             let start = () => {

@@ -2,6 +2,7 @@ import * as genshin from "genshin_panel";
 import targetFunctionsFunc from "@asset/target_functions/func";
 import createCheckFunction from "./create_check_function";
 import createFilterFunction from "./create_filter_function";
+import applyBuffs from "./apply_buffs";
 
 const RECORD_COUNT = 5;
 
@@ -34,7 +35,7 @@ function getArtifactsSetInfo(arts) {
     return temp;
 }
 
-function computeArtifacts(artifacts, c, w, tf, constraint) {
+function computeArtifacts(artifacts, c, w, tf, buffs, constraint) {
     // filter artifacts
     let filterFunc = createFilterFunction(constraint);
     artifacts = filterFunc(artifacts);
@@ -129,6 +130,9 @@ function computeArtifacts(artifacts, c, w, tf, constraint) {
                             builder.artifact(getArtifact(head));
                         }
                         let attribute = builder.build();
+
+                        // apply buffs
+                        applyBuffs(attribute, buffs);
 
                         let value;
                         if (needContext) {

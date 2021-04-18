@@ -186,6 +186,7 @@ export default {
             let artifacts = this.getArtifacts();
             let constraint = veryBigConfigObject.constraint;
             let targetFunc = veryBigConfigObject.targetFunc;
+            let buffs = veryBigConfigObject.buffs;
             // console.log(weapon);
 
             let loading = this.$loading({
@@ -200,6 +201,7 @@ export default {
                 character,
                 weapon,
                 targetFunc,
+                buffs,
                 constraint
             ).then(({ record, error }) => {
                 this.resultRecord = record;

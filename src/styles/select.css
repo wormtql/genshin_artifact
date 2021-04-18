@@ -35,3 +35,17 @@
     margin: 0;
     margin-bottom: 12px;
 }
+
+.buff-config-item {
+    background: #00000005;
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 3px;
+}
+
+.buff-config-title {
+    font-size: 12px;
+    color: #555555;
+    margin: 0;
+    margin-bottom: 12px;
+}
