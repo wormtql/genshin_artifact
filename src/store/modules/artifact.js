@@ -64,6 +64,10 @@ let _store = {
             state[item.position].push(item);
         },
 
+        addArtifactWithID(state, item) {
+            state[item.position].push(item);
+        },
+
         toggleArtifact(state, obj) {
             let art = state[obj.position][obj.index];
             art.omit = !art.omit;
