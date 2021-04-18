@@ -11,8 +11,18 @@
         </div>
 
         <div class="config-item">
+            <h3 class="config-title">平A附魔比例</h3>
+            <el-input v-model="value.aEle"></el-input>
+        </div>
+
+        <div class="config-item">
             <h3 class="config-title">重击频率</h3>
             <el-input v-model="value.bFreq"></el-input>
+        </div>
+
+        <div class="config-item">
+            <h3 class="config-title">重击附魔比例</h3>
+            <el-input v-model="value.bEle"></el-input>
         </div>
 
         <div class="config-item">
@@ -45,7 +55,9 @@ export default {
         return {
             fireFreq: "0.3",
             aFreq: "0.55",
+            aEle: "0.5",
             bFreq: "0",
+            bEle: "0.5",
             eFreq: "0.4",
             qFreq: "0.05",
 
@@ -59,6 +71,9 @@ export default {
         let bFreq = parseFloat(obj.bFreq) ?? 0;
         let eFreq = parseFloat(obj.eFreq) ?? 0.4;
         let qFreq = parseFloat(obj.qFreq) ?? 0.05;
+
+        let aEle = parseFloat(obj.aEle) ?? 0.5;
+        let bEle = parseFloat(obj.bEle) ?? 0.5;
 
         let sum = aFreq + bFreq + eFreq + qFreq;
         if (sum === 0) {
@@ -77,7 +92,9 @@ export default {
             fireFreq,
 
             aFreq,
+            aEle,
             bFreq,
+            bEle,
             eFreq,
             qFreq,
 

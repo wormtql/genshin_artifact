@@ -4,7 +4,9 @@ let ampFunc = reaction.amp;
 
 function f(config) {
     let aFreq = config.tArgs.aFreq;
+    let aEle = config.tArgs.aEle;
     let bFreq = config.tArgs.bFreq;
+    let bEle = config.tArgs.bEle;
     let eFreq = config.tArgs.eFreq;
     let qFreq = config.tArgs.qFreq;
 
@@ -37,13 +39,19 @@ function f(config) {
         }
 
         let a
-            = (1 + attribute.aBonus + commonBonus2)
+            = (
+                (1 - aEle) * (1 + attribute.aBonus + commonBonus2)
+                + aEle * (1 + attribute.aBonus + commonBonus)
+            )
             * (critical * attribute.criticalDamage + 1)
             * 1.44
             ;
 
         let b
-            = (1 + attribute.bBonus + commonBonus2)
+            = (
+                (1 - bEle) * (1 + attribute.bBonus + commonBonus2)
+                + bEle * (1 + attribute.bBonus + commonBonus)
+            )
             * (bCritical * attribute.criticalDamage + 1)
             * 1
             ;
