@@ -26,6 +26,12 @@ let item = {
             }
         },
 
+        update(state, preset) {
+            let name = preset.name;
+
+            Vue.set(state.presets, name, preset);
+        },
+
         delete(state, payload) {
             let name = payload.name;
             Vue.delete(state.presets, name);

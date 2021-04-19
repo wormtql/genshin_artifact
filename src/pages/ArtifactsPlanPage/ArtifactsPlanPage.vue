@@ -25,6 +25,14 @@
                 <i class="el-icon-truck"></i>
                 应用预设
             </el-button>
+            <el-button
+                v-show="isPreset"
+                @click="savePreset"
+                size="small"
+            >
+                <i class="el-icon-check"></i>
+                保存预设
+            </el-button>
 
             <div style="float: right">
                 <el-button
@@ -161,6 +169,9 @@ export default {
         return {
             currentstep: "character",
             // lock: false,
+
+            isPreset: false,
+            currentPresetName: "",
         }
     },
     methods: {
@@ -183,6 +194,9 @@ export default {
 
         handleConfirmApplyPreset(name) {
             // console.log(name);
+            this.currentPresetName = name;
+            this.isPreset = true;
+
             this.applyPreset(name);
         },
 
@@ -212,6 +226,18 @@ export default {
                 type: "success",
                 message: "应用成功",
             });
+        },
+
+        savePreset() {
+            let preset = this.getPresetObject();
+            preset.name = this.currentPresetName;
+
+            this.$store.commit("presets/update", preset);
+
+            this.$message({
+                type: "success",
+                message: "保存成功",
+            })
         },
 
         getPresetObject() {
