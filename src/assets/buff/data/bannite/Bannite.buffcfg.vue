@@ -56,6 +56,23 @@ export default {
                 type: "atk-static",
                 value: baseAtk * ratio,
             }
+        },
+
+        getBuff() {
+            return {
+                name: "bannite",
+                args: {
+                    skillLevel: this.skillLevel,
+                    baseAtk: parseFloat(this.baseAtk) ?? 900,
+                    isConste1: this.isConste1,
+                }
+            }
+        },
+
+        setBuff(buff) {
+            this.skillLevel = buff.skillLevel;
+            this.baseAtk = buff.baseAtk.toString();
+            this.isConste1 = buff.isConste1;
         }
     }
 }

@@ -2,11 +2,16 @@
     <div>
         <div class="config-item">
             <h3 class="config-title">伤害类型（指谁触发了元素反应）</h3>
-            <select-element-type v-model="value.element"></select-element-type>
+            <select-element-type
+                v-model="element"
+            ></select-element-type>
         </div>
+
         <div class="config-item">
             <h3 class="config-title">技能类型</h3>
-            <select-skill-type v-model="value.skill"></select-skill-type>
+            <select-skill-type
+                v-model="skill"
+            ></select-skill-type>
         </div>
         <!-- <div class="config-item">
             <h3 class="config-title">反应类型</h3>
@@ -33,11 +38,16 @@ export default {
         SelectElementType,
         SelectSkillType,
     },
-    props: ["value"],
-    first() {
+    data() {
         return {
             skill: "a",
             element: "fire",
+        }
+    },
+    methods: {
+        setData(d) {
+            this.skill = d.skill;
+            this.element = d.element;
         }
     }
 }

@@ -1,68 +1,71 @@
 <template>
     <div>
         <component
-            v-if="needConfig"
-            :is="targetFunc.config"
+            v-if="!!tf.config"
+            :is="tf.config"
             ref="config"
-            v-model="value.args"
         ></component>
         <div v-else>
             <el-alert
-                title="该函数无要配置的参数，请点击下一步"
+                title="该函数无要配置的参数"
                 :closable="false"
                 style="margin-bottom: 20px"
             ></el-alert>
         </div>
-
-        <!-- <el-button @click="handleNextStep">下一步</el-button> -->
     </div>
 </template>
 
 <script>
 import targetFunctionsData from "@asset/target_functions/data";
 
-import deepCopy from "@util/deepcopy";
+// import deepCopy from "@util/deepcopy";
 
 export default {
     name: "ConfigTargetFunction",
-    props: {
-        targetFuncName: {
-            type: String,
-        },
-
-        value: {
-            type: Object,
-            required: true,
+    data() {
+        return {
+            targetFuncName: "single",
         }
     },
-    watch: {
-        targetFuncName(name) {
-            if (this.$parent.lock) {
-                // console.log("lock");
-                return;
+    methods: {
+        getConfig() {
+            if (!this.tf.config) {
+                return {};
             }
-            let data = targetFunctionsData[name];
-            if (data && data.config) {
-                let temp = deepCopy(this.value);
-                temp.args = data.config.first();
 
-                this.$emit("input", temp);
+            let vm = this.$refs.config;
+            if (vm.compact) {
+                return vm.compact();
             } else {
-                let temp = deepCopy(this.value);
-                temp.args = {};
+                let temp = Object.assign({}, vm.$data);
+                return temp;
+            }
+        },
 
-                this.$emit("input", temp);
+        getTargetFuncConfig() {
+            return this.getConfig();
+        },
+
+        setTargetFuncConfig(targetFunc) {
+            this.targetFuncName = targetFunc.name;
+
+            this.$nextTick(() => {
+                if (this.tf.config) {
+                    this.$refs.config.setData(targetFunc.args);
+                }
+            });
+        },
+
+        setTargetFuncName(name) {
+            if (name !== this.targetFuncName) {
+                this.targetFuncName = name;
             }
         }
     },
     computed: {
-        targetFunc() {
+        tf() {
             return targetFunctionsData[this.targetFuncName];
         },
-
-        needConfig() {
-            return !!this.targetFunc.config;
-        }
     }
 }
 </script>

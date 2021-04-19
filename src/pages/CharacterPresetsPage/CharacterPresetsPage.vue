@@ -5,13 +5,6 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
-        <!-- <div class="tool-bar">
-            <el-button type="primary">
-                <i class="el-icon-plus"></i>
-                新建
-            </el-button>
-        </div> -->
-
         <div class="body">
             <template v-if="!isEmpty">
                 <preset-item

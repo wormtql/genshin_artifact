@@ -1,43 +1,63 @@
 <template>
     <div>
         <h3 class="title">圣遗物套装（计算结果将限定在套装之内）</h3>
+
         <el-alert
             :closable="false"
             title="某些动态的加成不会考虑，所以对于非常适合某个角色的圣遗物，可以考虑限定套装，例如迪卢克限定魔女4，甘雨限定冰4"
             style="margin-bottom: 16px"
         ></el-alert>
+
         <div>
             <div class="row">
                 <el-radio
-                    v-model="value.constraintSet.mode"
+                    v-model="constraintSet.mode"
                     label="any"
                     class="radio"
                 >任意</el-radio>
             </div>
             <div class="row">
-                <el-radio v-model="value.constraintSet.mode" label="2" class="radio">2</el-radio>
+                <el-radio
+                    v-model="constraintSet.mode"
+                    label="2"
+                    class="radio"
+                >
+                    2
+                </el-radio>
                 <select-artifact-set
-                    v-model="value.constraintSet.setName1"
-                    :disabled="value.constraintSet.mode !== '2'"
+                    v-model="constraintSet.setName1"
+                    :disabled="constraintSet.mode !== '2'"
                 ></select-artifact-set>
             </div>
             <div class="row">
-                <el-radio v-model="value.constraintSet.mode" label="22" class="radio">2+2</el-radio>
+                <el-radio
+                    v-model="constraintSet.mode"
+                    label="22"
+                    class="radio"
+                >
+                    2+2
+                </el-radio>
                 <select-artifact-set
-                    v-model="value.constraintSet.setName2"
-                    :disabled="value.constraintSet.mode !== '22'"
+                    v-model="constraintSet.setName2"
+                    :disabled="constraintSet.mode !== '22'"
                 ></select-artifact-set>
                 <span class="plus">+</span>
                 <select-artifact-set
-                    v-model="value.constraintSet.setName3"
-                    :disabled="value.constraintSet.mode !== '22'"
+                    v-model="constraintSet.setName3"
+                    :disabled="constraintSet.mode !== '22'"
                 ></select-artifact-set>
             </div>
             <div class="row">
-                <el-radio v-model="value.constraintSet.mode" label="4" class="radio">4</el-radio>
+                <el-radio
+                    v-model="constraintSet.mode"
+                    label="4"
+                    class="radio"
+                >
+                    4
+                </el-radio>
                 <select-artifact-set
-                    v-model="value.constraintSet.setName4"
-                    :disabled="value.constraintSet.mode !== '4'"
+                    v-model="constraintSet.setName4"
+                    :disabled="constraintSet.mode !== '4'"
                 ></select-artifact-set>
             </div>
         </div>
@@ -48,21 +68,21 @@
                 <span class="cmt-label fs-14 color-normal">时之沙</span>
                 <select-art-main-tag-without-val
                     position="sand"
-                    v-model="value.constraintMainTag.sand"
+                    v-model="constraintMainTag.sand"
                 ></select-art-main-tag-without-val>
             </div>
             <div class="flex-row row">
                 <span class="cmt-label fs-14 color-normal">空之杯</span>
                 <select-art-main-tag-without-val
                     position="cup"
-                    v-model="value.constraintMainTag.cup"
+                    v-model="constraintMainTag.cup"
                 ></select-art-main-tag-without-val>
             </div>
             <div class="flex-row row">
                 <span class="cmt-label fs-14 color-normal">理之冠</span>
                 <select-art-main-tag-without-val
                     position="head"
-                    v-model="value.constraintMainTag.head"
+                    v-model="constraintMainTag.head"
                 ></select-art-main-tag-without-val>
             </div>
         </div>
@@ -72,17 +92,10 @@
 </template>
 
 <script>
-import { artifactsData } from "@asset/artifacts";
-
 import SelectArtifactSet from "@c/SelectArtifactSet";
 import SelectArtMainTagWithoutVal from '@c/SelectArtMainTagWithoutVal.vue';
 
-let allArtifactsName = Object.values(artifactsData).map(item => {
-    return {
-        name: item.eng,
-        chs: item.chs,
-    };
-});
+import deepCopy from "@util/deepcopy";
 
 export default {
     name: "Config",
@@ -90,11 +103,32 @@ export default {
         SelectArtifactSet,
         SelectArtMainTagWithoutVal,
     },
-    created: function () {
-        this.allArtifactsName = allArtifactsName;
+    data() {
+        return {
+            constraintSet: {
+                mode: "any",
+                setName1: "berserker",
+                setName2: "berserker",
+                setName3: "berserker",
+                setName4: "berserker",
+            },
+
+            constraintMainTag: {
+                sand: "any",
+                cup: "any",
+                head: "any",
+            },
+        }
     },
-    props: ["value"],
     methods: {
+        getConstraint() {
+            return deepCopy(this.$data);
+        },
+
+        setConstraint(d) {
+            this.constraintSet = deepCopy(d.constraintSet);
+            this.constraintMainTag = deepCopy(d.constraintMainTag);
+        }
     }
 }
 </script>

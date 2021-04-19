@@ -21,11 +21,28 @@ export default {
         }
     },
     methods: {
+        getValue() {
+            return this.refine * 0.06 + 0.18;
+        },
+
         getStandardConfig() {
             return {
                 type: "atk-percentage",
-                value: this.refine * 0.06 + 0.18,
+                value: this.getValue(),
             }
+        },
+
+        getBuff() {
+            return {
+                name: "taolong",
+                args: {
+                    refine: this.refine
+                }
+            }
+        },
+
+        setBuff(buff) {
+            this.refine = buff.refine;
         }
     }
 }

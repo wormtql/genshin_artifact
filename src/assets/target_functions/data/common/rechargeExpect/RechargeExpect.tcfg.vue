@@ -2,17 +2,24 @@
     <div>
         <div class="config-item">
             <h3 class="config-title">元素充能效率</h3>
-            <input-with-append v-model="value.recharge"></input-with-append>
-        </div>
-        <div class="config-item">
-            <h3 class="config-title">伤害类型</h3>
-            <select-element-type v-model="value.element"></select-element-type>
-        </div>
-        <div class="config-item">
-            <h3 class="config-title">技能类型</h3>
-            <select-skill-type v-model="value.skill"></select-skill-type>
+            <input-with-append
+                v-model="recharge"
+            ></input-with-append>
         </div>
 
+        <div class="config-item">
+            <h3 class="config-title">伤害类型</h3>
+            <select-element-type
+                v-model="element"
+            ></select-element-type>
+        </div>
+
+        <div class="config-item">
+            <h3 class="config-title">技能类型</h3>
+            <select-skill-type
+                v-model="skill"
+            ></select-skill-type>
+        </div>
     </div>
 </template>
 
@@ -28,20 +35,27 @@ export default {
         SelectSkillType,
         InputWithAppend,
     },
-    props: ["value"],
-    first() {
+    data() {
         return {
             element: "fire",
             skill: "a",
             recharge: "120",
         }
     },
-    compact(obj) {
-        return {
-            element: obj.element,
-            skill: obj.skill,
-            recharge: (parseFloat(obj.recharge) ?? 100) / 100,
+    methods: {
+        compact() {
+            return {
+                element: this.element,
+                skill: this.skill,
+                recharge: (parseFloat(this.recharge) ?? 120) / 100,
+            }
+        },
+        setData(d) {
+            this.element = d.element;
+            this.skill = d.skill;
+            this.recharge = (d.recharge * 100).toString();
         }
     }
+    
 }
 </script>

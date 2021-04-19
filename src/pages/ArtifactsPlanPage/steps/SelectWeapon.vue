@@ -1,20 +1,20 @@
 <template>
     <div class="select-weapon">
         <div
-            v-for="weapon in weaponTypeMap[allow]"
-            :key="weapon.name"
+            v-for="w in allowedWeapon"
+            :key="w.name"
             class="item"
-            :class="{ active: weapon.name === value }"
-            @click="handleClickWeapon(weapon)"
+            :class="{ active: w.name === weapon }"
+            @click="handleSelectWeapon(w.name)"
         >
             <img
-                :src="weapon.url"
+                :src="w.url"
                 class="image"
             >
             <span
                 class="text"
-                :style="{color: `${colors[weapon.star - 1]}`}"
-            >{{ weapon.chs }}</span>
+                :style="{color: `${colors[w.star - 1]}`}"
+            >{{ w.chs }}</span>
         </div>
     </div>
 </template>
@@ -43,9 +43,8 @@ for (let weaponType in weaponTypeMap) {
 
 export default {
     name: "SelectWeapon",
+    inject: ["notifyChange"],
     created: function () {
-        this.weaponTypeMap = weaponTypeMap;
-
         let transparent = 1;
         this.colors = [
             `rgba(125,135,147,${transparent})`,
@@ -55,31 +54,41 @@ export default {
             `rgba(205,155,92,${transparent})`,
         ]
     },
-    props: {
-        allow: {
-            type: String,
-            required: true,
-        },
-
-        value: {
-            type: String,
-            required: true,
+    data() {
+        return {
+            allow: "bow",
+            weapon: "liegong",
         }
     },
     methods: {
-        handleClickWeapon(weapon) {
-            this.$emit("input", weapon.name);
+        handleSelectWeapon(name) {
+            if (name !== this.weapon) {
+                this.weapon = name;
+                this.notifyChange("weapon", name);
+            }
+        },
+
+        setAllow(name) {
+            if (this.allow !== name) {
+                this.allow = name;
+
+                let newName = weaponTypeMap[name][0].name;
+                this.handleSelectWeapon(newName);
+            }
+        },
+
+        getWeaponName() {
+            return this.weapon;
+        },
+
+        setWeaponName(allow, name) {
+            this.allow = allow;
+            this.weapon = name;
         }
     },
-    watch: {
-        allow(n) {
-            // console.log(this.$parent.lock);
-            if (this.$parent.lock) {
-                // console.log("lock");
-                return;
-            }
-            let name = this.weaponTypeMap[n][0].name;
-            this.$emit("input", name);
+    computed: {
+        allowedWeapon() {
+            return weaponTypeMap[this.allow];
         }
     }
 }

@@ -2,81 +2,81 @@
     <div>
         <div class="character-panel">
             <div
-                v-for="character in elementCharData['thunder']"
-                :key="character.name"
+                v-for="c in elementCharData['thunder']"
+                :key="c.name"
                 class="character-item"
-                :class="{active: character.name === value}"
-                @click="handleClickCharacter(character)"
+                :class="{active: c.name === character}"
+                @click="handleClickCharacter(c.name)"
             >
-                <span v-if="character.test" class="test">测试</span>
-                <img :src="character.cardURL" class="image">
-                <span class="text">{{ character.chs }}</span>
+                <span v-if="c.test" class="test">测试</span>
+                <img :src="c.cardURL" class="image">
+                <span class="text">{{ c.chs }}</span>
             </div>
         </div>
 
         <div class="character-panel">
             <div
-                v-for="character in elementCharData['fire']"
-                :key="character.name"
+                v-for="c in elementCharData['fire']"
+                :key="c.name"
                 class="character-item"
-                :class="{active: character.name === value}"
-                @click="handleClickCharacter(character)"
+                :class="{active: c.name === character}"
+                @click="handleClickCharacter(c.name)"
             >
-                <span v-if="character.test" class="test fs-12">非正式服</span>
-                <img :src="character.cardURL" class="image">
-                <span class="text">{{ character.chs }}</span>
+                <span v-if="c.test" class="test fs-12">非正式服</span>
+                <img :src="c.cardURL" class="image">
+                <span class="text">{{ c.chs }}</span>
             </div>
         </div>
 
         <div class="character-panel">
             <div
-                v-for="character in elementCharData['rock']"
-                :key="character.name"
+                v-for="c in elementCharData['rock']"
+                :key="c.name"
                 class="character-item"
-                :class="{active: character.name === value}"
-                @click="handleClickCharacter(character)"
+                :class="{active: c.name === character}"
+                @click="handleClickCharacter(c.name)"
             >
-                <img :src="character.cardURL" class="image">
-                <span class="text">{{ character.chs }}</span>
+                <img :src="c.cardURL" class="image">
+                <span class="text">{{ c.chs }}</span>
             </div>
         </div>
 
         <div class="character-panel">
             <div
-                v-for="character in elementCharData['wind']"
-                :key="character.name"
+                v-for="c in elementCharData['wind']"
+                :key="c.name"
                 class="character-item"
-                :class="{active: character.name === value}"
-                @click="handleClickCharacter(character)"
+                :class="{active: c.name === character}"
+                @click="handleClickCharacter(c.name)"
             >
-                <img :src="character.cardURL" class="image">
-                <span class="text">{{ character.chs }}</span>
+                <img :src="c.cardURL" class="image">
+                <span class="text">{{ c.chs }}</span>
             </div>
         </div>
 
         <div class="character-panel">
             <div
-                v-for="character in elementCharData['ice']"
-                :key="character.name"
+                v-for="c in elementCharData['ice']"
+                :key="c.name"
                 class="character-item"
-                :class="{active: character.name === value}"
-                @click="handleClickCharacter(character)"
+                :class="{active: c.name === character}"
+                @click="handleClickCharacter(c.name)"
             >
-                <img :src="character.cardURL" class="image">
-                <span class="text">{{ character.chs }}</span>
+                <img :src="c.cardURL" class="image">
+                <span class="text">{{ c.chs }}</span>
             </div>
         </div>
 
         <div class="character-panel">
             <div
-                v-for="character in elementCharData['water']"
-                :key="character.name"
+                v-for="c in elementCharData['water']"
+                :key="c.name"
                 class="character-item"
-                :class="{active: character.name === value}"
-                @click="handleClickCharacter(character)"
+                :class="{active: c.name === character}"
+                @click="handleClickCharacter(c.name)"
             >
-                <img :src="character.cardURL" class="image">
-                <span class="text">{{ character.chs }}</span>
+                <img :src="c.cardURL" class="image">
+                <span class="text">{{ c.chs }}</span>
             </div>
         </div>
     </div>
@@ -100,8 +100,14 @@ for (let charData of Object.values(charactersData)) {
 
 export default {
     name: "SelectCharacter",
+    inject: ["notifyChange"],
     created: function () {
         this.elementCharData = elementCharData;
+    },
+    data() {
+        return {
+            character: "anbo",
+        }
     },
     props: {
         value: {
@@ -110,8 +116,19 @@ export default {
         }
     },
     methods: {
-        handleClickCharacter(character) {
-            this.$emit("input", character.name);
+        handleClickCharacter(name) {
+            if (this.character !== name) {
+                this.character = name;
+                this.notifyChange("character", name);
+            }
+        },
+
+        getCharacterName() {
+            return this.character;
+        },
+
+        setCharacterName(name) {
+            this.character = name;
         }
     }
 };

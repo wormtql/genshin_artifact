@@ -15,6 +15,8 @@
 <script>
 import { charactersData } from "@asset/characters";
 
+import pathAccess from "@util/pathAccess";
+
 export default {
     name: "Mona.buffcfg",
     data: function () {
@@ -23,11 +25,28 @@ export default {
         }
     },
     methods: {
+        getValue() {
+            return pathAccess(charactersData, "mona.skill.q.bonus")[this.skillLevel - 1];
+        },
+
         getStandardConfig() {
             return {
                 type: "bonus",
-                value: charactersData["mona"].skill.q.bonus[this.skillLevel - 1],
+                value: this.getValue(),
             }
+        },
+
+        getBuff() {
+            return {
+                name: "mona",
+                args: {
+                    skillLevel: this.skillLevel,
+                }
+            }
+        },
+
+        setBuff(buff) {
+            this.skillLevel = buff.skillLevel;
         }
     }
 }

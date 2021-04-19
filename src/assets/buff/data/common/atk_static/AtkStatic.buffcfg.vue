@@ -23,6 +23,19 @@ export default {
                 type: "atk-static",
                 value: parseFloat(this.value) ?? 100,
             }
+        },
+
+        getBuff() {
+            return {
+                name: "atkStatic",
+                args: {
+                    value: parseFloat(this.value) ?? 100, 
+                }
+            }
+        },
+
+        setBuff(buff) {
+            this.value = buff.value.toString();
         }
     }
 }

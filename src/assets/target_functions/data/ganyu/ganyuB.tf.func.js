@@ -6,15 +6,10 @@ function f(config) {
     let ice4Crit = config.tArgs.ice4Crit;
     let talent1Crit = config.tArgs.talent1Crit;
     let talent2Bonus = config.tArgs.talent2Bonus;
-    let ele2I = config.tArgs.talent2Bonus;
-    let ele2ICrit = config.tArgs.ele2ICrit;
 
     return function (attribute, context) {
         let attack = attribute.attack();
         let crit = attribute.bCritical;
-        if (ele2I) {
-            crit += ele2ICrit;
-        }
 
         let bonus = attribute.bBonus + attribute.bonus + attribute.iceBonus;
         if (isAmos) {

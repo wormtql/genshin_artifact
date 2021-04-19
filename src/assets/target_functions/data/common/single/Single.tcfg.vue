@@ -3,7 +3,8 @@
         <div class="config-item">
             <h3 class="config-title">属性名</h3>
             <el-radio-group
-                v-model="value.fieldName"
+                v-model="fieldName"
+                size="small"
             >
                 <el-radio-button label="attack">攻击力</el-radio-button>
                 <el-radio-button label="life">生命值</el-radio-button>
@@ -20,10 +21,14 @@
 <script>
 export default {
     name: "Single.tcfg",
-    props: ["value"],
-    first() {
+    data() {
         return {
             fieldName: "attack",
+        }
+    },
+    methods: {
+        setData(d) {
+            this.fieldName = d.fieldName;
         }
     }
 }

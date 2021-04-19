@@ -27,6 +27,19 @@ export default {
                 type: "bonus",
                 value: (parseFloat(this.value) ?? 10) / 100,
             }
+        },
+
+        getBuff() {
+            return {
+                name: "bonus",
+                args: {
+                    value: (parseFloat(this.value) ?? 10) / 100,
+                }
+            }
+        },
+
+        setBuff(buff) {
+            this.value = (buff.value * 100).toString();
         }
     }
 }

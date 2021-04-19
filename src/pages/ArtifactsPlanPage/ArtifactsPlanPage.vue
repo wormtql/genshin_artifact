@@ -5,7 +5,9 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
-        <apply-preset-dialog ref="applyPresetDialog" @confirm="handleConfirmApplyPreset">
+        <apply-preset-dialog
+            ref="applyPresetDialog"
+            @confirm="handleConfirmApplyPreset">
         </apply-preset-dialog>
 
         <div class="tool-bar">
@@ -53,48 +55,44 @@
             <el-col :span="20">
                 <div class="choose-div">
                     <select-character
-                        v-model="selected.characterName"
                         v-show="currentstep === 'character'"
                         class="step-div"
+                        ref="selectCharacter"
                     ></select-character>
 
                     <config-character
-                        v-model="characterInfo"
                         v-show="currentstep === 'character-config'"
                         class="step-div"
+                        ref="configCharacter"
                     ></config-character>
 
                     <select-weapon
-                        :allow="characterWeapon"
-                        v-model="selected.weaponName"
                         v-show="currentstep === 'weapon'"
                         class="step-div"
+                        ref="selectWeapon"
                     ></select-weapon>
 
                     <config-weapon
-                        :weaponName="selected.weaponName"
-                        v-model="weaponInfo"
                         v-show="currentstep === 'weapon-config'"
                         class="step-div"
+                        ref="configWeapon"
                     ></config-weapon>
 
                     <select-target-function
-                        :character-name="selected.characterName"
-                        v-model="selected.targetFuncName"
                         v-show="currentstep === 'target-func'"
                         class="step-div"
+                        ref="selectTargetFunc"
                     ></select-target-function>
 
                     <config-target-function
-                        :target-func-name="selected.targetFuncName"
                         v-show="currentstep === 'target-func-config'"
                         class="step-div"
-                        v-model="targetFuncInfo"
+                        ref="configTargetFunc"
                     ></config-target-function>
 
                     <config
-                        v-model="selected.constraintConfig"
                         v-show="currentstep === 'constraint'"
+                        ref="constraint"
                     ></config>
 
                     <config-buff
@@ -119,8 +117,8 @@
 
 <script>
 import { charactersData } from "@asset/characters";
-import { weaponsData } from "@asset/weapons";
-import deepCopy from "@util/deepcopy"; 
+// import { weaponsData } from "@asset/weapons";
+// import deepCopy from "@util/deepcopy"; 
 import { toChs as estimateToChs } from "@util/time_estimate";
 
 // import SelectCharacter from "./steps/SelectCharacter";
@@ -151,52 +149,34 @@ export default {
         // MyStep,
         ApplyPresetDialog,
     },
+    provide() {
+        return {
+            notifyChange: this.notifyChange,
+        }
+    },
     created() {
         this.lock = false;
     },
     data: function () {
         return {
-            selected: {
-                characterName: "anbo",
-                characterLevel: 1,
-                characterAscend: false,
-                characterSkill1: 6,
-                characterSkill2: 6,
-                characterSkill3: 6,
-                characterConstellation: 0,
-
-                weaponName: "liegong",
-                weaponLevel: 1,
-                weaponAscend: false,
-                weaponRefine: 1,
-                weaponArgs: {},
-
-                targetFuncName: "single",
-                targetFuncArgs: { fieldName: "attack" },
-
-                constraintConfig: {
-                    constraintSet: {
-                        mode: "any",
-                        setName1: "berserker",
-                        setName2: "berserker",
-                        setName3: "berserker",
-                        setName4: "berserker",
-                    },
-                    constraintMainTag: {
-                        sand: "any",
-                        cup: "any",
-                        head: "any",
-                    }
-                },
-            },
-
-            // resultData: {},
-
             currentstep: "character",
             // lock: false,
         }
     },
     methods: {
+        notifyChange(type, value) {
+            console.log(type, value);
+            if (type === "character") {
+                let weaponType = charactersData[value].weapon;
+                this.$refs.selectWeapon.setAllow(weaponType);
+                this.$refs.selectTargetFunc.setCharacterName(value);
+            } else if (type === "weapon") {
+                this.$refs.configWeapon.setWeaponName(value);
+            } else if (type === "targetFunc") {
+                this.$refs.configTargetFunc.setTargetFuncName(value);
+            }
+        },
+
         handleNav(e) {
             this.currentstep = e.target.attributes["x-name"].value;
         },
@@ -207,55 +187,50 @@ export default {
         },
 
         applyPreset(name) {
-            this.lock = true;
-
             let preset = this.$store.getters["presets/all"][name];
-            this.selected.characterName = preset.cName;
-            this.selected.characterLevel = preset.cLevel;
-            this.selected.characterAscend = preset.cAscend;
-            this.selected.characterSkill1 = preset.cS1;
-            this.selected.characterSkill2 = preset.cS2;
-            this.selected.characterSkill3 = preset.cS3;
-            this.selected.characterConstellation = preset.cC;
+            
+            // set character
+            this.$refs.selectCharacter.setCharacterName(preset.character.name);
+            this.$refs.configCharacter.setCharacterConfig(preset.character);
 
-            this.selected.weaponName = preset.wName;
-            this.selected.weaponLevel = preset.wLevel;
-            this.selected.weaponAscend = preset.sAscend;
-            this.selected.weaponRefine = preset.wRefine;
-            this.selected.weaponArgs = deepCopy(preset.wArgs);
+            // set weapon
+            let allowWeapon = charactersData[preset.character.name].weapon;
+            this.$refs.selectWeapon.setWeaponName(allowWeapon, preset.weapon.name);
+            this.$refs.configWeapon.setWeaponConfig(preset.weapon);
 
-            this.selected.targetFuncName = preset.tName;
-            this.selected.targetFuncArgs = deepCopy(preset.tArgs);
+            // set target func
+            this.$refs.selectTargetFunc.setTargetFuncName(preset.character.name, preset.targetFunc.name);
+            this.$refs.configTargetFunc.setTargetFuncConfig(preset.targetFunc);
+
+            // set constraint
+            if (preset.constraint) {
+                this.$refs.constraint.setConstraint(preset.constraint);
+            }
+            
+            // set buffs
+            if (preset.buffs) {
+                this.$refs.configBuff.setBuffs(preset.buffs);
+            }
 
             this.$message({
                 type: "success",
                 message: "应用成功",
             });
-
-            this.$nextTick(() => {
-                this.lock = false;
-            });
         },
 
         getPresetObject() {
-            return {
-                cName: this.selected.characterName,
-                cLevel: this.selected.characterLevel,
-                cAscend: this.selected.characterAscend,
-                cS1: this.selected.characterSkill1,
-                cS2: this.selected.characterSkill2,
-                cS3: this.selected.characterSkill3,
-                cC: this.selected.characterConstellation,
-
-                wName: this.selected.weaponName,
-                wLevel: this.selected.weaponLevel,
-                wAscend: this.selected.weaponAscend,
-                wRefine: this.selected.weaponRefine,
-                wArgs: deepCopy(this.selected.weaponArgs),
-
-                tName: this.selected.targetFuncName,
-                tArgs: deepCopy(this.selected.targetFuncArgs),
+            // version 2
+            let obj = {
+                character: this.getCharacterInfo(),
+                weapon: this.getWeaponInfo(),
+                targetFunc: this.getTargetFuncInfo(),
+                constraint: this.getConstraint(),
+                buffs: this.getBuffs(),
             };
+
+            // console.log(obj);
+
+            return obj;
         },
 
         checkPresetNameDuplicate(name) {
@@ -286,23 +261,54 @@ export default {
             }).catch(() => {});
         },
 
+
+        getCharacterInfo() {
+            return {
+                name: this.$refs.selectCharacter.getCharacterName(),
+                ...this.$refs.configCharacter.getCharacterConfig(),
+            };
+        },
+
+        getWeaponInfo() {
+            return {
+                name: this.$refs.selectWeapon.getWeaponName(),
+                ...this.$refs.configWeapon.getWeaponConfig(),
+            };
+        },
+
+        getTargetFuncInfo() {
+            return {
+                name: this.$refs.selectTargetFunc.getTargetFuncName(),
+                args: this.$refs.configTargetFunc.getTargetFuncConfig(),
+            };
+        },
+
+        getConstraint() {
+            return this.$refs.constraint.getConstraint();
+        },
+
+        getStandardBuffs() {
+            return this.$refs.configBuff.getStandardBuffs();
+        },
+
+        getBuffs() {
+            return this.$refs.configBuff.getBuffs();
+        },
+
         /**
          * all configs are ready,
          * start to compute
          */
         startCalculating() {
-            let buffs = this.$refs.configBuff.getStandardBuffs();
-
             let configObject = {
-                character: this.characterInfo,
-                weapon: this.weaponInfo,
-                targetFunc: {
-                    name: this.selected.targetFuncName,
-                    args: this.selected.targetFuncArgs,
-                },
-                constraint: this.selected.constraintConfig,
-                buffs,
+                character: this.getCharacterInfo(),
+                weapon: this.getWeaponInfo(),
+                targetFunc: this.getTargetFuncInfo(),
+                constraint: this.getConstraint(),
+                buffs: this.getStandardBuffs(),
             };
+
+            // console.log(configObject);
 
             let start = () => {
                 this.currentstep = "result";
@@ -326,78 +332,6 @@ export default {
         },
     },
     computed: {
-        selectedCharacterData() {
-            return charactersData[this.selected.characterName];
-        },
-
-        selectedWeaponData() {
-            return weaponsData[this.selected.weaponName];
-        },
-
-        // which weapon type the selected character will use
-        characterWeapon() {
-            if (this.selectedCharacterData) {
-                return this.selectedCharacterData.weapon;
-            }
-
-            return "none";
-        },
-
-        characterInfo: {
-            get() {
-                return {
-                    name: this.selected.characterName,
-                    level: this.selected.characterLevel,
-                    ascend: this.selected.characterAscend,
-                    skill1: this.selected.characterSkill1,
-                    skill2: this.selected.characterSkill2,
-                    skill3: this.selected.characterSkill3,
-                    constellation: this.selected.characterConstellation,
-                };
-            },
-            set(value) {
-                // console.log(value);
-                this.selected.characterLevel = value.level;
-                this.selected.characterAscend = value.ascend;
-                this.selected.characterSkill1 = value.skill1;
-                this.selected.characterSkill2 = value.skill2;
-                this.selected.characterSkill3 = value.skill3;
-                this.selected.characterConstellation = value.constellation;
-            }
-        },
-
-        weaponInfo: {
-            get() {
-                let temp = {
-                    name: this.selected.weaponName,
-                    level: this.selected.weaponLevel,
-                    ascend: this.selected.weaponAscend,
-                    refine: this.selected.weaponRefine,
-                    args: this.selected.weaponArgs,
-                };
-                return temp;
-            },
-            set(value) {
-                this.selected.weaponLevel = value.level;
-                this.selected.weaponAscend = value.ascend;
-                this.selected.weaponRefine = value.refine;
-                this.selected.weaponArgs = value.args;
-            }
-        },
-
-        targetFuncInfo: {
-            get() {
-                return {
-                    name: this.selected.targetFuncName,
-                    args: this.selected.targetFuncArgs,
-                }
-            },
-
-            set(value) {
-                this.selected.targetFuncArgs = value.args;
-            }
-        },
-
         config() {
             return {
                 cArgs: this.characterInfo,

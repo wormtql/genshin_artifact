@@ -6,8 +6,8 @@
                 v-for="target in specificCharacterTargets"
                 :key="target.name"
                 class="hand item"
-                :class="{ active: target.name === value }"
-                @click="$emit('input', target.name)"
+                :class="{ active: target.name === targetFuncName }"
+                @click="handleChange(target.name)"
             >
                 <div>
                     <img :src="target.badge" class="image">
@@ -41,8 +41,8 @@
             v-for="target in commonTargets"
             :key="target.name"
             class="hand item"
-            :class="{ active: target.name === value }"
-            @click="$emit('input', target.name)"
+            :class="{ active: target.name === targetFuncName }"
+            @click="handleChange(target.name)"
         >
             <div>
                 <img :src="target.badge" class="image">
@@ -91,22 +91,55 @@ Object.values(targetFunctionsData).forEach(item => {
 
 export default {
     name: "SelectTargetFunction",
+    inject: ["notifyChange"],
     created: function () {
         this.commonTargets = targetGroup["common"];
     },
-    props: {
-        characterName: {
-            type: String,
-            required: true,
-        },
+    data() {
+        return {
+            characterName: "anbo",
 
-        value: {
-            type: String,
-            required: true,
+            targetFuncName: "single",
         }
     },
     methods: {
+        getTargetFuncName() {
+            return this.targetFuncName;
+        },
 
+        setTargetFuncName(characterName, targetFuncName) {
+            this.characterName = characterName;
+            this.targetFuncName = targetFuncName;
+        },
+
+        handleChange(name) {
+            if (name !== this.targetFuncName) {
+                this.targetFuncName = name;
+                this.notifyChange("targetFunc", name);
+            }
+        },
+
+        setCharacterName(name) {
+            if (name !== this.characterName) {
+                this.characterName = name;
+                let newTarget = this.targetFuncName;
+
+                if (Object.prototype.hasOwnProperty.call(targetGroup, name)) {
+                    // character has own target functions
+
+                    if (targetFunctionsData[this.targetFuncName]["for"] !== "common") {
+                        let target = targetGroup[name][0];
+                        newTarget = target.name;
+                    }
+                } else {
+                    // character does not have own target functions
+                    let target = targetGroup.common[0];
+                    newTarget = target.name;
+                }
+
+                this.handleChange(newTarget);
+            }
+        }
     },
     computed: {
         specificCharacterTargets() {

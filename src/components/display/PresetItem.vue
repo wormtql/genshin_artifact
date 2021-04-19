@@ -39,15 +39,7 @@ export default {
     props: {
         item: {
             type: Object,
-            default: () => ({
-                name: "123",
-                cName: "keqing",
-                cArgs: {},
-                wName: "heijian",
-                wArgs: {},
-                tName: "expect",
-                tArgs: {},
-            })
+            required: true,
         },
         toolbar: {
             type: Boolean,
@@ -56,15 +48,15 @@ export default {
     },
     computed: {
         characterData() {
-            return charactersData[this.item.cName];
+            return charactersData[this.item.character.name];
         },
 
         weaponData() {
-            return weaponsData[this.item.wName];
+            return weaponsData[this.item.weapon.name];
         },
 
         tfData() {
-            return targetFuncsData[this.item.tName];
+            return targetFuncsData[this.item.targetFunc.name];
         }
     }
 

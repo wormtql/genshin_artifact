@@ -5,7 +5,7 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
-        <p class="title"><span class="mona">莫娜占卜铺</span> V{{ version }} Welcome</p>
+        <p class="title"><span class="mona">莫娜占卜铺</span> V{{ version }}</p>
         <p style="padding: 0; margin: 0; font-size: 10px;">该网站处处透露着贫穷，欢迎有志者参与开发（美术等）</p>
         <p style="margin-bottom: 32px">
             <span style="color: #409EFF">多方向圣遗物自动配装/多方向圣遗物评分与潜力</span>
@@ -46,20 +46,21 @@
                 style="margin-bottom: 16px"
             ></el-alert>
             <el-row :gutter="16">
-                <el-col :span="12">
+                <el-col :xs="24" :sm="12">
                     <el-card
                         :body-style="{textAlign: 'center'}"
-                        @click.native="newPage(urls.frontendUrl)" class="item"
+                        @click.native="newPage(urls.frontendProject)"
+                        class="item mb16"
                         shadow="hover"
                     >
                         <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>
                         <p class="item-title">前端</p>
                     </el-card>
                 </el-col>
-                <el-col :span="12">
+                <el-col :xs="24" :sm="12">
                     <el-card
                         :body-style="{textAlign: 'center'}"
-                        @click.native="newPage(urls.panelUrl)" class="item"
+                        @click.native="newPage(urls.panelProject)" class="item"
                         shadow="hover"
                     >
                         <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>
@@ -69,9 +70,9 @@
             </el-row>
         </el-card>
 
-        <el-row :gutter="16" class="mb16">
-            <el-col :span="12">
-                <el-card style="height: 180px">
+        <el-row :gutter="16">
+            <el-col :xs="24" :sm="12">
+                <el-card class="mb16">
                     <p class="card-title">提交bug/功能请求</p>
                     <el-alert
                         title="如果出现了明显不合理的结果，请务必提交bug"
@@ -79,22 +80,22 @@
                         :closable="false"
                         type="warning"
                     ></el-alert>
-                    <el-button @click="newPage(links.issue)">
+                    <el-button @click="newPage(links.issue)" class="data-source">
                         github Issue
                         <font-awesome-icon :icon="['fab', 'github']"></font-awesome-icon>
                     </el-button>
-                    <el-button>
+                    <el-button class="data-source">
                         QQ(584130248)
                         <font-awesome-icon icon="comment"></font-awesome-icon>
                     </el-button>
-                    <el-button>
+                    <el-button class="data-source">
                         QQ群(801106595)
                         <font-awesome-icon icon="comment"></font-awesome-icon>
                     </el-button>
                 </el-card>
             </el-col>
-            <el-col :span="12">
-                <el-card style="height: 180px">
+            <el-col :xs="24" :sm="12">
+                <el-card class="mb16">
                     <p class="card-title">数据来源</p>
                     <el-button @click="newPage(links.wiki)" class="data-source">
                         bilibili原神wiki
@@ -113,8 +114,45 @@
         </el-row>
 
         <el-row :gutter="16">
-            <el-col :span="12">
-                <el-card style="margin-bottom: 16px">
+            <el-col :xs="24" :sm="12">
+                <el-card class="mb16">
+                    <p class="card-title">第一次使用？</p>
+                    <el-button
+                        @click="$router.push('/help/basic')"
+                        class="data-source"
+                    >
+                        基本使用帮助
+                        <i class="el-icon-question"></i>
+                    </el-button>
+                    <el-button
+                        @click="$router.push('/help/export-tools')"
+                        type="primary"
+                        class="data-source"
+                    >
+                        导出工具
+                        <i class="el-icon-aim"></i>
+                    </el-button>
+                    <el-button
+                        @click="$router.push('/help/faq')"
+                        class="data-source"
+                    >
+                        FAQ
+                        <i class="el-icon-question"></i>
+                    </el-button>
+                </el-card>
+            </el-col>
+            <el-col :xs="24" :sm="12">
+                <el-card class="mb16">
+                    <p class="card-title">开发者文档</p>
+                    <a class="el-button no-deco" :href="links.doc" target="_blank">
+                        文档
+                        <i class="el-icon-connection"></i>
+                    </a>
+                </el-card>
+            </el-col>
+        </el-row>
+
+        <el-card style="margin-bottom: 16px">
                     <p class="card-title">请莫娜吃饭</p>
                     <el-alert
                         :closable="false"
@@ -130,33 +168,6 @@
                         <img src="./alipay.png">
                     </div>
                 </el-card>
-            </el-col>
-            <el-col :span="12">
-                <el-card class="mb16">
-                    <p class="card-title">第一次使用？</p>
-                    <el-button @click="$router.push('/help/basic')">
-                        基本使用帮助
-                        <i class="el-icon-question"></i>
-                    </el-button>
-                    <el-button @click="$router.push('/help/export-tools')" type="primary">
-                        导出工具
-                        <i class="el-icon-aim"></i>
-                    </el-button>
-                    <el-button @click="$router.push('/help/faq')">
-                        FAQ
-                        <i class="el-icon-question"></i>
-                    </el-button>
-                </el-card>
-
-                <el-card>
-                    <p class="card-title">开发者文档</p>
-                    <a class="el-button no-deco" :href="links.doc" target="_blank">
-                        文档
-                        <i class="el-icon-connection"></i>
-                    </a>
-                </el-card>
-            </el-col>
-        </el-row>
     </div>
 </template>
 

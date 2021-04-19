@@ -21,11 +21,28 @@ export default {
         }
     },
     methods: {
+        getValue() {
+            return parseFloat(this.value) ?? 80;
+        },
+
         getStandardConfig() {
             return {
                 type: "em",
-                value: parseFloat(this.value) ?? 80,
+                value: this.getValue(),
             }
+        },
+
+        getBuff() {
+            return {
+                name: "em",
+                args: {
+                    value: this.getValue()
+                }
+            }
+        },
+
+        setBuff(buff) {
+            this.value = buff.value.toString();
         }
     }
 }

@@ -161,6 +161,56 @@ export default {
             }
 
             return temp;
+        },
+
+        getBuffs() {
+            let temp = [];
+
+            let iter = 0;
+            for (let i = 0; i < this.configuredBuffs.length; i++) {
+                let buff = this.configuredBuffs[i];
+
+                if (buff.config) {
+                    let comp = this.$refs.buffItem[iter++];
+
+                    let buffItem = comp.getBuff();
+                    buffItem.omit = buff.omit;
+                    temp.push(buffItem);
+                } else {
+                    let buffItem = {
+                        name: buff.name,
+                        omit: buff.omit,
+                    };
+                    temp.push(buffItem);
+                }
+            }
+
+            return temp;
+        },
+
+        setBuffs(arr) {
+            this.configuredBuffs = [];
+
+            let iter = 0;
+
+            for (let buff of arr) {
+                let buffDef = buffs[buff.name];
+
+                let temp = {
+                    name: buff.name,
+                    id: id++,
+                    chs: buffDef.chs,
+                    omit: buff.omit,
+                }
+                if (buffDef.config) {
+                    temp.config = buffDef.config;
+                    this.$nextTick(() => {
+                        this.$refs.buffItem[iter++].setBuff(buff.args);
+                    });
+                }
+
+                this.configuredBuffs.push(temp);
+            }
         }
     }
 }

@@ -4,6 +4,7 @@
             default-active="intro"
             style="border: none"
             router
+            :mode="mode"
         >
             <el-menu-item index="/intro">
                 <i class="el-icon-s-home"></i>
@@ -114,6 +115,10 @@ export default {
         items: {
             type: Array,
             default: () => [],
+        },
+        mode: {
+            type: String,
+            default: "vertical",
         }
     }
 }

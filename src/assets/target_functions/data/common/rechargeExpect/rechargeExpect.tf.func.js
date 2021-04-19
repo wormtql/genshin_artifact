@@ -3,6 +3,7 @@ function f(config) {
     let skill = config.tArgs.skill;
     let re = config.tArgs.recharge;
     let critName = skill === "a" ? "critical" : (skill + "Critical");
+    console.log(re);
 
     return function(attribute) {
         if (attribute.recharge < re) {

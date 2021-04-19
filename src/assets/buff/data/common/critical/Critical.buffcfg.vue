@@ -22,11 +22,28 @@ export default {
         }
     },
     methods: {
+        getValue() {
+            return (parseFloat(this.value) ?? 10) / 100;
+        },
+
         getStandardConfig() {
             return {
                 type: "critical",
-                value: (parseFloat(this.value) ?? 10) / 100,
+                value: this.getValue(),
             }
+        },
+
+        getBuff() {
+            return {
+                name: "critical",
+                args: {
+                    value: this.getValue(),
+                }
+            }
+        },
+
+        setBuff(buff) {
+            this.value = (buff.value * 100).toString();
         }
     }
 }
