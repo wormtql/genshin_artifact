@@ -20,14 +20,17 @@
         </el-aside>
 
         <el-container>
-            <el-header class="hidden-sm-and-up" style="background: red">
-                <el-button
-                    icon="el-icon-menu"
-                    type="text"
-                    @click="drawerVisible = true"
-                >
+            <el-header class="hidden-md-and-up" style="background: #409EFF">
+                <div class="flex-row" style="height: 100%">
+                    <el-button
+                        icon="el-icon-menu"
+                        type="text"
+                        @click="drawerVisible = true"
+                        style="color: white"
+                    >
 
-                </el-button>
+                    </el-button>
+                </div>
             </el-header>
             <el-main style="position: relative">
                 <keep-alive>

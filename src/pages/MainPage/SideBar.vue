@@ -11,7 +11,7 @@
                 <span>首页</span>
             </el-menu-item>
 
-            <el-menu-item-group>
+            <el-menu-item-group class="hidden-xs-only">
                 <template #title>
                     我的仓库
                 </template>
@@ -25,7 +25,7 @@
                 </el-menu-item>
             </el-menu-item-group>
 
-            <el-menu-item-group>
+            <el-menu-item-group class="hidden-xs-only">
                 <template #title>
                     计算
                 </template>

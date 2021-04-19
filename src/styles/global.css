@@ -57,3 +57,13 @@ body {
 .no-deco {
     text-decoration: none;
 }
+
+
+.el-drawer__body {
+    overflow: auto;
+    /* overflow-x: auto; */
+}
+
+.el-drawer__container ::-webkit-scrollbar{
+    display: none;
+}

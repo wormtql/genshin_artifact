@@ -12,14 +12,17 @@
                 :timestamp="`${change.time} ---- V${change.version}`"
                 placement="top"
             >
-                <div class="item" :class="{ active: index === changelogs.length - 1 }">
+                <el-card>
                     <ul style="list-style-type: disc">
                         <li
                             v-for="(changeitem, index) in change.changes"
                             :key="index"
                         >{{ changeitem }}</li>
                     </ul>
-                </div>
+                </el-card>
+                <!-- <div class="item" :class="{ active: index === changelogs.length - 1 }">
+                    
+                </div> -->
             </el-timeline-item>
         </el-timeline>
     </div>

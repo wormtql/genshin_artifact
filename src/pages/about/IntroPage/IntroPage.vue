@@ -49,7 +49,7 @@
                 <el-col :xs="24" :sm="12">
                     <el-card
                         :body-style="{textAlign: 'center'}"
-                        @click.native="newPage(urls.frontendProject)"
+                        @click.native="newPage(links.frontendProject)"
                         class="item mb16"
                         shadow="hover"
                     >
@@ -60,7 +60,7 @@
                 <el-col :xs="24" :sm="12">
                     <el-card
                         :body-style="{textAlign: 'center'}"
-                        @click.native="newPage(urls.panelProject)" class="item"
+                        @click.native="newPage(links.panelProject)" class="item"
                         shadow="hover"
                     >
                         <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>

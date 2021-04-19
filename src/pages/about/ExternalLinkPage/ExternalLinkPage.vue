@@ -5,29 +5,36 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
-        <div class="container">
-            <div
-                class="link-item"
+        <el-row :gutter="16">
+            <el-col
+                :xs="24"
+                :sm="8"
                 v-for="link in links"
                 :key="link.name"
             >
-                <h3 class="link-title">{{ link.name }}</h3>
-                <div class="link-tags">
-                    <span
-                        class="link-tag fs-12"
-                        v-for="(tag, index) in link.tags"
-                        :key="index"
-                    >{{ tag }}</span>
-                </div>
-                <div class="link-footer">
-                    <a class="el-button link-button" :href="link.url" target="_blank">
-                        <i class="el-icon-connection" style="margin-right: 4px"></i>
-                        {{ link.url }}
-                    </a>
-                </div>
-            </div>
+                <el-card
+                    style="margin-bottom: 16px"
+                >
+                    <!-- <div s>
+                    </div> -->
+                    <span slot="header" class="link-title">{{ link.name }}</span>
+                    <div class="link-tags">
+                        <span
+                            class="link-tag fs-12"
+                            v-for="(tag, index) in link.tags"
+                            :key="index"
+                        >{{ tag }}</span>
+                    </div>
+                    <div class="link-footer">
+                        <a class="el-button link-button" :href="link.url" target="_blank">
+                            <i class="el-icon-connection" style="margin-right: 4px"></i>
+                            {{ link.url }}
+                        </a>
+                    </div>
+                </el-card>
+            </el-col>
             
-        </div>
+        </el-row>
     </div>
 </template>
 
