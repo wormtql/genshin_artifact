@@ -5,13 +5,22 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
-        <p class="title"><span class="mona">莫娜占卜铺</span> V{{ version }}</p>
-        <p style="padding: 0; margin: 0; font-size: 10px;">该网站处处透露着贫穷，欢迎有志者参与开发（美术等）</p>
-        <p style="margin-bottom: 32px">
-            <span style="color: #409EFF">多方向圣遗物自动配装/多方向圣遗物评分与潜力</span>
-            <!-- <span style="color: #67C23A">角色养成方向推荐</span> / 
-            <span style="color: #E6A23C">面板计算</span> -->
+        <p
+            class="title"
+            style="margin-bottom: 24px"
+        >
+            <span class="mona">莫娜占卜铺</span>
+            V{{ version }}
         </p>
+        <!-- <p style="padding: 0; margin: 0; font-size: 10px;">该网站处处透露着贫穷，欢迎有志者参与开发（美术等）</p> -->
+
+        <el-alert
+            class="hidden-sm-and-up"
+            title="使用PC访问以启用全部功能，当前仅能查看信息页"
+            type="error"
+            style="margin-bottom: 16px"
+            :closable="false"
+        ></el-alert>
 
         <div class="update-banner">
             <p style="font-size: 24px; margin: 0;">V{{ version }}更新内容</p>
