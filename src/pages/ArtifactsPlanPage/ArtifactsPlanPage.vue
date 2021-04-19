@@ -16,7 +16,7 @@
                 size="small"
             >
                 <i class="el-icon-folder-add"></i>
-                存为预设
+                另存为预设
             </el-button>
             <el-button
                 @click="$refs.applyPresetDialog.open()"
@@ -29,9 +29,10 @@
                 v-show="isPreset"
                 @click="savePreset"
                 size="small"
+                type="success"
             >
                 <i class="el-icon-check"></i>
-                保存预设
+                保存预设：{{ currentPresetName }}
             </el-button>
 
             <div style="float: right">
@@ -135,7 +136,7 @@ import { toChs as estimateToChs } from "@util/time_estimate";
 // import ConfigWeapon from "./steps/ConfigWeapon";
 // import SelectTargetFunction from "./steps/SelectTargetFunction";
 // import ConfigTargetFunction from "./steps/ConfigTargetFunction";
-import Config from "./steps/Config";
+// import Config from "./steps/Config";
 import ResultPage from "./steps/ResultPage";
 
 // import MyStep from "@c/MyStep";
@@ -152,7 +153,7 @@ export default {
         "SelectTargetFunction": () => import(/* webpackChunkName: "steps-select-t" */ "./steps/SelectTargetFunction"),
         "ConfigTargetFunction": () => import(/* webpackChunkName: "steps-select-t" */ "./steps/ConfigTargetFunction"),
         "ConfigBuff": () => import(/* webpackChunkName: "steps-select-buff" */ "./steps/ConfigBuff"),
-        Config,
+        "Config": () => import(/* webpackChunkName: "steps-constraint" */ "./steps/Config"),
         ResultPage,
         // MyStep,
         ApplyPresetDialog,
@@ -279,7 +280,10 @@ export default {
                 this.$store.commit("presets/add", {
                     name: value,
                     value: preset,
-                })
+                });
+
+                this.isPreset = true;
+                this.currentPresetName = value;
             }).catch(() => {});
         },
 

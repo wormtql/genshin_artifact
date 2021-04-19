@@ -19,15 +19,23 @@ import App from './App.vue';
 Vue.config.productionTip = false
 
 Vue.filter("str", function (value) {
-  return value.toString();
+    return value.toString();
 });
 
 async function mount() {
-  new Vue({
-    render: h => h(App),
-    router: Router,
-    store,
-  }).$mount('#app');
+    let monaApp = new Vue(
+        {
+            render: h => h(App),
+            methods: {
+                message(msg) {
+                    this.$message(msg);
+            },
+        },
+        router: Router,
+        store,
+    }).$mount('#app');
+
+    window.monaApp = monaApp;
 }
 
 mount();
