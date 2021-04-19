@@ -2,6 +2,7 @@
     <el-select
         :value="value"
         @input="$emit('input', $event)"
+        size="small"
     >
         <el-option
             v-for="tagData in validTags"

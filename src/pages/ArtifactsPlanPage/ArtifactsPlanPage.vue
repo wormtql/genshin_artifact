@@ -203,14 +203,10 @@ export default {
             this.$refs.configTargetFunc.setTargetFuncConfig(preset.targetFunc);
 
             // set constraint
-            if (preset.constraint) {
-                this.$refs.constraint.setConstraint(preset.constraint);
-            }
+            this.$refs.constraint.setConstraint(preset.constraint);
             
             // set buffs
-            if (preset.buffs) {
-                this.$refs.configBuff.setBuffs(preset.buffs);
-            }
+            this.$refs.configBuff.setBuffs(preset.buffs ?? []);
 
             this.$message({
                 type: "success",

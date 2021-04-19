@@ -3,6 +3,7 @@
         @input="$emit('input', $event)"
         :value="value"
         :disabled="disabled"
+        size="small"
     >
         <el-option
             v-for="item in allArtifactsName"

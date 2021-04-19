@@ -97,6 +97,20 @@ import SelectArtMainTagWithoutVal from '@c/SelectArtMainTagWithoutVal.vue';
 
 import deepCopy from "@util/deepcopy";
 
+const DEFAULT_CONSTRAINT_SET = {
+     mode: "any",
+    setName1: "berserker",
+    setName2: "berserker",
+    setName3: "berserker",
+    setName4: "berserker",
+};
+
+const DEFAULT_CONSTRAINT_MAIN_TAG = {
+    sand: "any",
+    cup: "any",
+    head: "any",
+}
+
 export default {
     name: "Config",
     components: {
@@ -105,19 +119,9 @@ export default {
     },
     data() {
         return {
-            constraintSet: {
-                mode: "any",
-                setName1: "berserker",
-                setName2: "berserker",
-                setName3: "berserker",
-                setName4: "berserker",
-            },
+            constraintSet: deepCopy(DEFAULT_CONSTRAINT_SET),
 
-            constraintMainTag: {
-                sand: "any",
-                cup: "any",
-                head: "any",
-            },
+            constraintMainTag: deepCopy(DEFAULT_CONSTRAINT_MAIN_TAG),
         }
     },
     methods: {
@@ -126,6 +130,12 @@ export default {
         },
 
         setConstraint(d) {
+            if (!d) {
+                this.constraintSet = deepCopy(DEFAULT_CONSTRAINT_SET),
+                this.constraintMainTag = deepCopy(DEFAULT_CONSTRAINT_MAIN_TAG);
+                return;
+            }
+
             this.constraintSet = deepCopy(d.constraintSet);
             this.constraintMainTag = deepCopy(d.constraintMainTag);
         }
