@@ -59,7 +59,8 @@ const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/h
 
 import VueRouter from "vue-router";
 
-const webName = "莫娜占卜铺"
+// const webName = "莫娜占卜铺"
+const webName = process.env.WEB_TITLE;
 
 const routes = [
     {

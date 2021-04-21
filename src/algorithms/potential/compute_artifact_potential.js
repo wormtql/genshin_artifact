@@ -55,6 +55,10 @@ function helper(tags, dep, valid, func) {
 }
 
 export default function (artifact, pfName, pArgs) {
+    if ((artifact.star ?? 5) <= 3) {
+        return -1;
+    }
+
     let f = createPotentialFunc(pfName, pArgs);
 
     let upCount = getArtifactUpCount(artifact);

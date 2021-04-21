@@ -10,6 +10,7 @@ function createFilterMainTag(config) {
     if (config.sand === "any" && config.cup === "any" && config.head === "any") {
         return IDENTITY;
     }
+    console.log("123");
 
     return function (artifacts) {
         let ret = {
@@ -47,7 +48,12 @@ function createFilterLevel(config) {
         return IDENTITY;
     }
 
-    let helper = artifact => artifact.level >= config.min && artifact.level <= config.max;
+    let helper = artifact => {
+        if (!artifact.level) {
+            return true;
+        }
+        return artifact.level >= config.min && artifact.level <= config.max;
+    }
 
     return function (artifacts) {
         let temp = {
@@ -71,7 +77,7 @@ export default function (config) {
 
     return function (artifacts) {
         let temp = filterMainTagFunc(artifacts);
-        temp = filterLevelFunc(artifacts);
+        temp = filterLevelFunc(temp);
 
         return temp;
     }

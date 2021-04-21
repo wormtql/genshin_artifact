@@ -41,8 +41,10 @@ import {
     Switch,
     InputNumber,
     Rate,
+    Footer,
 } from "element-ui";
-  
+
+Vue.use(Footer);
 Vue.use(Rate);
 Vue.use(InputNumber);
 Vue.use(Switch);

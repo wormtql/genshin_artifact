@@ -77,6 +77,11 @@ export function getDetailName(setName, position) {
 }
 
 export function getArtifactUpCount(artifact) {
+    if (artifact.star > 5 || artifact.star < 1) {
+        return 0;
+    }
+
+    // historical reasons, star field may not exist, default to 5
     let star = artifact.star || 5;
     let level = 20;
     if (Object.prototype.hasOwnProperty.call(artifact, "level")) {

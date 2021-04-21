@@ -9,7 +9,7 @@
             class="title"
             style="margin-bottom: 24px"
         >
-            <span class="mona">莫娜占卜铺</span>
+            <span class="mona">{{ webTitle }}</span>
             V{{ version }}
         </p>
         <!-- <p style="padding: 0; margin: 0; font-size: 10px;">该网站处处透露着贫穷，欢迎有志者参与开发（美术等）</p> -->
@@ -191,6 +191,7 @@ export default {
         this.links = links;
 
         this.version = process.env.VERSION;
+        this.webTitle = process.env.WEB_TITLE;
 
         this.lastestVersion = changelogs[changelogs.length - 1];
     },
