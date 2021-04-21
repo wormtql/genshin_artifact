@@ -1,0 +1,17 @@
+chs:
+  webName: 莫娜占卜铺
+  intro:
+    projectUrl: 开源地址
+    projectDecl: 该工具免费且开源
+    submitBug: 提交bug/功能请求
+    submitBugDecl: 如果出现了明显不合理的结果，请务必提交bug
+    dataSource: 数据来源
+    firstTimeUse: 第一次使用？
+    basicHelp: 基本使用帮助
+    exportTool: 导出工具
+    docTitle: 开发者文档
+    doc: 文档
+    donate: 请莫娜吃饭
+    donateDecl: "才...才不是因为交不起服务器费呢。"
+    wechat: 微信支付
+    alipay: 支付宝

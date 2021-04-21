@@ -5,6 +5,7 @@ import "./vendors/element";
 import "./vendors/fontawesome";
 import "./vendors/vuerouter";
 import "./vendors/vue-katex";
+import "./vendors/vue-i18n";
 
 // install global api
 import "./global_api";
