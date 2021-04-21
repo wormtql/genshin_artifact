@@ -1,8 +1,12 @@
 import { IDENTITY } from "@util/functions";
 
-export default function (config) {
-    config = config.constraintMainTag;
-
+function createFilterMainTag(config) {
+    if (!config) {
+        return IDENTITY;
+    }
+    if (Object.keys(config).length === 0) {
+        return IDENTITY;
+    }
     if (config.sand === "any" && config.cup === "any" && config.head === "any") {
         return IDENTITY;
     }
@@ -32,5 +36,43 @@ export default function (config) {
         }
 
         return ret;
+    }
+}
+
+function createFilterLevel(config) {
+    if (!config) {
+        return IDENTITY;
+    }
+    if (Object.keys(config).length === 0) {
+        return IDENTITY;
+    }
+
+    let helper = artifact => artifact.level >= config.min && artifact.level <= config.max;
+
+    return function (artifacts) {
+        let temp = {
+            flower: artifacts.flower.filter(helper),
+            feather: artifacts.feather.filter(helper),
+            sand: artifacts.sand.filter(helper),
+            cup: artifacts.cup.filter(helper),
+            head: artifacts.head.filter(helper),
+        };
+
+        return temp;
+    }
+}
+
+export default function (config) {
+    let filterMainTagConfig = config.constraintMainTag ?? {};
+    let filterLevelConfig = config.filterLevel ?? {};
+
+    let filterMainTagFunc = createFilterMainTag(filterMainTagConfig);
+    let filterLevelFunc = createFilterLevel(filterLevelConfig);
+
+    return function (artifacts) {
+        let temp = filterMainTagFunc(artifacts);
+        temp = filterLevelFunc(artifacts);
+
+        return temp;
     }
 }

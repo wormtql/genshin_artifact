@@ -87,6 +87,28 @@
             </div>
         </div>
 
+        <div>
+            <h3 class="title">过滤等级</h3>
+            <div class="row">
+                <span class="cmt-label fs-14 color-normal">大于等于：</span>
+                <el-input-number
+                    size="small"
+                    :min="0"
+                    :max="filterLevel.max"
+                    v-model="filterLevel.min"
+                ></el-input-number>
+            </div>
+            <div class="row">
+                <span class="cmt-label fs-14 color-normal">小于等于：</span>
+                <el-input-number
+                    size="small"
+                    :min="filterLevel.min"
+                    :max="20"
+                    v-model="filterLevel.max"
+                ></el-input-number>
+            </div>
+        </div>
+
         <!-- <el-button type="primary" class="confirm-button" @click="handleConfirm">确定</el-button> -->
     </div>
 </template>
@@ -98,7 +120,7 @@ import SelectArtMainTagWithoutVal from '@c/SelectArtMainTagWithoutVal.vue';
 import deepCopy from "@util/deepcopy";
 
 const DEFAULT_CONSTRAINT_SET = {
-     mode: "any",
+    mode: "any",
     setName1: "berserker",
     setName2: "berserker",
     setName3: "berserker",
@@ -109,6 +131,11 @@ const DEFAULT_CONSTRAINT_MAIN_TAG = {
     sand: "any",
     cup: "any",
     head: "any",
+}
+
+const DEFAULT_FILTER_LEVEL = {
+    min: 20,
+    max: 20,
 }
 
 export default {
@@ -122,6 +149,8 @@ export default {
             constraintSet: deepCopy(DEFAULT_CONSTRAINT_SET),
 
             constraintMainTag: deepCopy(DEFAULT_CONSTRAINT_MAIN_TAG),
+
+            filterLevel: deepCopy(DEFAULT_FILTER_LEVEL),
         }
     },
     methods: {
@@ -131,13 +160,16 @@ export default {
 
         setConstraint(d) {
             if (!d) {
-                this.constraintSet = deepCopy(DEFAULT_CONSTRAINT_SET),
+                // if a preset does not have constraint field, set to default
+                this.constraintSet = deepCopy(DEFAULT_CONSTRAINT_SET);
                 this.constraintMainTag = deepCopy(DEFAULT_CONSTRAINT_MAIN_TAG);
+                this.filterLevel = deepCopy(DEFAULT_FILTER_LEVEL);
                 return;
             }
 
             this.constraintSet = deepCopy(d.constraintSet);
             this.constraintMainTag = deepCopy(d.constraintMainTag);
+            this.filterLevel = d.filterLevel ? deepCopy(d.filterLevel) : deepCopy(DEFAULT_FILTER_LEVEL);
         }
     }
 }
