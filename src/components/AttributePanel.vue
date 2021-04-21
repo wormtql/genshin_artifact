@@ -3,124 +3,146 @@
         <h3 class="class">基础属性</h3>
         <div class="item">
             <span class="title">生命值</span>
-            <span class="value">{{ life.toFixed(0) }}</span>
+            <span class="value">
+                {{ life.toFixed(0) }}
+                =
+                {{ panel.lifeBasic.toFixed(0) }}
+                +
+                <span class="extra">{{ (panel.lifePercentage + panel.lifeStatic).toFixed(0) }}</span>
+            </span>
         </div>
         <div class="item">
             <span class="title">攻击力</span>
-            <span class="value">{{ attack.toFixed(0) }}</span>
+            <span class="value">
+                {{ attack.toFixed(0) }}
+                =
+                {{ panel.attackBasic.toFixed(0) }}
+                +
+                <span class="extra">
+                    {{ (panel.attackPercentage + panel.attackStatic).toFixed(0) }}
+                </span>
+            </span>
         </div>
         <div class="item">
             <span class="title">防御力</span>
-            <span class="value">{{ defend.toFixed(0) }}</span>
+            <span class="value">
+                {{ defend.toFixed(0) }}
+                =
+                {{ panel.defendBasic.toFixed(0) }}
+                +
+                <span class="extra">
+                    {{ (panel.defendPercentage + panel.defendStatic).toFixed(0) }}
+                </span>
+            </span>
         </div>
 
 
         <h3 class="class">暴击</h3>
         <div class="item">
             <span class="title">普通攻击暴击率</span>
-            <span class="value">{{ mul100(panel.critical) }}</span>
+            <span class="value">{{ mul100("critical") }}</span>
         </div>
         <div class="item">
             <span class="title">重击暴击率</span>
-            <span class="value">{{ mul100(panel.bCritical) }}</span>
+            <span class="value">{{ mul100("bCritical") }}</span>
         </div>
         <div class="item">
             <span class="title">元素战技暴击率</span>
-            <span class="value">{{ mul100(panel.eCritical) }}</span>
+            <span class="value">{{ mul100("eCritical") }}</span>
         </div>
         <div class="item">
             <span class="title">元素爆发暴击率</span>
-            <span class="value">{{ mul100(panel.qCritical) }}</span>
+            <span class="value">{{ mul100("qCritical") }}</span>
         </div>
         <div class="item">
             <span class="title">下落攻击暴击率</span>
-            <span class="value">{{ mul100(panel.airCritical) }}</span>
+            <span class="value">{{ mul100("airCritical") }}</span>
         </div>
         <div class="item">
             <span class="title">暴击伤害</span>
-            <span class="value">{{ mul100(panel.criticalDamage) }}</span>
+            <span class="value">{{ mul100("criticalDamage") }}</span>
         </div>
 
 
         <h3 class="class">伤害加成</h3>
         <div class="item">
             <span class="title">雷元素伤害加成</span>
-            <span class="value">{{ (panel.thunderBonus * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("thunderBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">火元素伤害加成</span>
-            <span class="value">{{ (panel.fireBonus * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("fireBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">冰元素伤害加成</span>
-            <span class="value">{{ (panel.iceBonus * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("iceBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">水元素伤害加成</span>
-            <span class="value">{{ (panel.waterBonus * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("waterBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">风元素伤害加成</span>
-            <span class="value">{{ (panel.windBonus * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("windBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">岩元素伤害加成</span>
-            <span class="value">{{ (panel.rockBonus * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("rockBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">物理伤害加成</span>
-            <span class="value">{{ (panel.physicalBonus * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("physicalBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">普通攻击伤害加成</span>
-            <span class="value">{{ mul100(panel.aBonus) }}</span>
+            <span class="value">{{ mul100("aBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">重击伤害加成</span>
-            <span class="value">{{ mul100(panel.bBonus) }}</span>
+            <span class="value">{{ mul100("bBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">元素战技伤害加成</span>
-            <span class="value">{{ mul100(panel.eBonus) }}</span>
+            <span class="value">{{ mul100("eBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">元素爆发伤害加成</span>
-            <span class="value">{{ mul100(panel.qBonus) }}</span>
+            <span class="value">{{ mul100("qBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">下落攻击伤害加成</span>
-            <span class="value">{{ mul100(panel.airBonus) }}</span>
+            <span class="value">{{ mul100("airBonus") }}</span>
         </div>
         <div class="item">
             <span class="title">伤害加成</span>
-            <span class="value">{{ mul100(panel.bonus) }}</span>
+            <span class="value">{{ mul100("bonus") }}</span>
         </div>
 
 
         <h3 class="class">元素抗性</h3>
         <div class="item">
             <span class="title">雷元素抗性</span>
-            <span class="value">{{ (panel.thunderRes * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("thunderRes") }}</span>
         </div>
         <div class="item">
             <span class="title">火元素抗性</span>
-            <span class="value">{{ (panel.fireRes * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("fireRes") }}</span>
         </div>
         <div class="item">
             <span class="title">冰元素抗性</span>
-            <span class="value">{{ (panel.iceRes * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("iceRes") }}</span>
         </div>
         <div class="item">
             <span class="title">水元素抗性</span>
-            <span class="value">{{ (panel.waterRes * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("waterRes") }}</span>
         </div>
         <div class="item">
             <span class="title">风元素抗性</span>
-            <span class="value">{{ (panel.windRes * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("windRes") }}</span>
         </div>
         <div class="item">
             <span class="title">岩元素抗性</span>
-            <span class="value">{{ (panel.rockRes * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("rockRes") }}</span>
         </div>
 
 
@@ -131,18 +153,18 @@
         </div>
         <div class="item">
             <span class="title">元素充能效率</span>
-            <span class="value">{{ (panel.recharge * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("recharge") }}</span>
         </div>
 
 
         <h3 class="class">其他</h3>
         <div class="item">
             <span class="title">治疗加成</span>
-            <span class="value">{{ (panel.cureEffect * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("cureEffect") }}</span>
         </div>
         <div class="item">
             <span class="title">护盾强效</span>
-            <span class="value">{{ (panel.shield * 100).toFixed(1) + "%" }}</span>
+            <span class="value">{{ mul100("shield") }}</span>
         </div>
     </div>
 </template>
@@ -156,8 +178,8 @@ export default {
         },
     },
     methods: {
-        mul100(value) {
-            return (value * 100).toFixed(1) + "%";
+        mul100(field) {
+            return (this.panel[field] * 100).toFixed(1) + "%";
         }
     },
     computed: {
@@ -179,7 +201,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .attribute {
     margin-bottom: 8px;
 }
@@ -189,24 +211,30 @@ export default {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     /* background: rgba(0, 0, 0, 0.05); */
     padding: 4px;
+
+    .title {
+        font-size: 12px;
+        color: #555555;
+        display: inline-block;
+        flex: 1;
+    }
+
+    .value {
+        font-size: 12px;
+        display: inline-block;
+        color: #111111;
+        
+        flex: 1;
+
+        .extra {
+            color: #67C23A;
+        }
+    }
 }
 
-.title {
-    font-size: 12px;
-    color: #555555;
-    display: inline-block;
-    width: 120px;
-    /* background: rgba(0, 0, 0, 0.5); */
-    /* color: white; */
-}
 
-.value {
-    font-size: 12px;
-    display: inline-block;
-    color: #111111;
-    
-    flex: 1;
-}
+
+
 
 .class {
     /* background:rgb(74, 99, 211); */
