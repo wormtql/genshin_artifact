@@ -204,10 +204,11 @@ export default {
                 buffs,
                 constraint
             ).then(({ record, error }) => {
-                this.resultRecord = record;
                 this.error = error;
-
-                this.pushHistory(record.map(item => item.value));
+                if (!error.isError) {
+                    this.resultRecord = record;
+                    this.pushHistory(record.map(item => item.value));
+                }
 
                 loading.close();
                 this.calculating = false;

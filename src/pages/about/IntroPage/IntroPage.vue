@@ -162,21 +162,21 @@
         </el-row>
 
         <el-card style="margin-bottom: 16px">
-                    <p class="card-title">请莫娜吃饭</p>
-                    <el-alert
-                        :closable="false"
-                        title="才...才不是因为交不起服务器费呢。"
-                    ></el-alert>
-                    <!-- 暂未开通 -->
-                    <div class="pay">
-                        <span>微信支付：</span>
-                        <img src="./wechat.png">
-                    </div>
-                    <div class="pay">
-                        <span>支付宝：</span>
-                        <img src="./alipay.png">
-                    </div>
-                </el-card>
+            <p class="card-title">请莫娜吃饭</p>
+            <el-alert
+                :closable="false"
+                title="才...才不是因为交不起服务器费呢。"
+            ></el-alert>
+            <!-- 暂未开通 -->
+            <div class="pay">
+                <span>微信支付：</span>
+                <img src="./wechat.png">
+            </div>
+            <div class="pay">
+                <span>支付宝：</span>
+                <img src="./alipay.png">
+            </div>
+        </el-card>
     </div>
 </template>
 

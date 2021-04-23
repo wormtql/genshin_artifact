@@ -182,7 +182,7 @@ function computeArtifacts(artifacts, c, w, tf, buffs, constraint) {
             error: {
                 reason: "no artifact",
                 isError: true,
-            }
+            },
         }
     }
 

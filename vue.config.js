@@ -25,8 +25,8 @@ module.exports = {
             new webpack.DefinePlugin({
                 "process.env": {
                     VERSION: `"${version}"`,
-                    // WEB_TITLE: `"原神圣遗物工具"`,
-                    WEB_TITLE: `"莫娜占卜铺"`,
+                    WEB_TITLE: `"原神圣遗物工具"`,
+                    // WEB_TITLE: `"莫娜占卜铺"`,
                 }
             }),
             new WorkerPlugin({
