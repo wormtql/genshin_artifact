@@ -1,5 +1,7 @@
 import Vue from "vue";
 
+import { count as countArtifacts } from "@util/artifacts";
+
 const positions = ["flower", "feather", "sand", "cup", "head"];
 
 // id can only be changed in store mutations
@@ -124,6 +126,18 @@ let _store = {
         }
     },
     getters: {
+        notOmittedArtifacts: state => {
+            let fil = item => !item.omit;
+
+            return {
+                flower: state.flower.filter(fil),
+                feather: state.feather.filter(fil),
+                sand: state.sand.filter(fil),
+                cup: state.cup.filter(fil),
+                head: state.head.filter(fil),
+            };
+        },
+
         allArtifacts: state => {
             return {
                 flower: state.flower,
@@ -179,6 +193,10 @@ let _store = {
             });
 
             return count;
+        },
+
+        count: state => {
+            return countArtifacts(state);
         },
 
         valid: (state, getters) => {

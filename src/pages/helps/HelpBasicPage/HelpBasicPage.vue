@@ -15,26 +15,16 @@
                 <p>单击“导入json”按钮，可以从json批量导入圣遗物，json是一种表示数据的格式，详情请参考<a href="https://www.json.org/json-zh.html" target="_blank">json官网</a></p>
                 <p>这里的圣遗物将会是整个应用的核心数据，配装、潜力计算都依赖这里的圣遗物</p>
                 <p>目前已有的与本站兼容的第三方自动圣遗物导出工具：</p>
-                <ul>
-                    <li>
-                        椰羊（本地OCR识别）<br>
-                        <a target="_blank" href="https://github.com/YuehaiTeam/cocogoat">项目地址</a><br>
-                        <a target="_blank" href="https://77.cocogoat.work/v1/ascension/">下载地址</a>
-                    </li>
-                    <li>
-                        蹦蹦炸弹（百度API识别）<br>
-                        <a target="_blank" href="https://github.com/ChanIok/JumpyDumpty">项目地址</a>
-                    </li>
-                </ul>
+                <router-link to="/help/export-tools">导出工具汇总</router-link>
 
                 <h1>2. 配装</h1>
                 <p>选择“Arts Planner”面板，此处可以进行配装</p>
-                <p>依次选择角色、角色参数（等级、命座等）、武器、武器参数、目标、目标参数、配置，最后单击“开始计算”，进行计算</p>
+                <p>依次选择角色、角色参数（等级、命座等）、武器、武器参数、目标、目标参数等配置，最后单击“开始计算”，进行计算</p>
                 <img src="./img2.png">
 
 
                 <h1>预设</h1>
-                <p>点击“存为预设”按钮，可以保存当前设置的角色、角色参数、武器、武器参数、目标、目标参数。注意：不保存“配置”的内容</p>
+                <p>点击“存为预设”按钮，可以保存当前设置的角色、角色参数、武器、武器参数、目标、目标参数等所有参数。</p>
                 <p>点击“应用预设”按钮，可以应用已经保存了的预设，以避免重新输入参数</p>
             </el-col>
         </el-row>

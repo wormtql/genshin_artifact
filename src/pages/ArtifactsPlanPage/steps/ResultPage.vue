@@ -158,26 +158,7 @@ export default {
          * return an object representing all not omited artifacts
          */
         getArtifacts() {
-            let allFlower = this.$store.state.artifacts.flower;
-            let allFeather = this.$store.state.artifacts.feather;
-            let allSand = this.$store.state.artifacts.sand;
-            let allCup = this.$store.state.artifacts.cup;
-            let allHead = this.$store.state.artifacts.head;
-
-            let fil = (item) => !item.omit;
-            let flower = allFlower.filter(fil);
-            let feather = allFeather.filter(fil);
-            let sand = allSand.filter(fil);
-            let cup = allCup.filter(fil);
-            let head = allHead.filter(fil);
-
-            return {
-                flower,
-                feather,
-                sand,
-                cup,
-                head,
-            };
+            return this.$store.getters["artifacts/notOmittedArtifacts"];
         },
 
         doCompute(veryBigConfigObject) {

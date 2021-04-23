@@ -40,7 +40,7 @@
         <el-card class="item">
             <div slot="header">2. 椰羊（cocogoat）（推荐）</div>
 
-            <p>使用tesseract进行本地OCR自动识别，基本实现全自动</p>
+            <p>本地识别，基本实现全自动，有UI</p>
 
             <div class="footer">
                 <a target="_blank" href="https://77.cocogoat.work/v1/ascension/" class="el-button el-button--primary no-deco">

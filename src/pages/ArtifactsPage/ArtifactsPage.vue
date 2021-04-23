@@ -33,21 +33,23 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
-        <el-alert title="请注意保存圣遗物数据至本地，以防意外导致数据丢失" type="warning" :closable="false"></el-alert>
         <el-alert
+            title="请注意保存圣遗物数据至本地，以防意外导致数据丢失"
+            type="warning"
+            :closable="false"
+            style="margin-bottom: 16px"
+        ></el-alert>
+        <!-- <el-alert
             :title="`预计配装计算时间：${estimatedTime}，迭代次数：${$store.getters['artifacts/iterCount']}`"
             type="warning" :closable="false"
-        ></el-alert>
-        <el-alert title="在同一个浏览器下，正常情况下，数据会自动保存，只需录入一次圣遗物即可。推荐只录入20级圣遗物"></el-alert>
-        <el-alert title="小贴士：圣遗物面板上三个按钮作用分别是：删除、禁用/启用、编辑"></el-alert>
-
+        ></el-alert> -->
+        <!-- <el-alert title="在同一个浏览器下，正常情况下，数据会自动保存，只需录入一次圣遗物即可。推荐只录入20级圣遗物"></el-alert> -->
         <!-- <el-alert
-            type="error"
-            v-show="!$store.getters.valid"
-            title="圣遗物数量过多，请禁用或者删除明显更次的圣遗物"
-            :closable="false"
-        >
-        </el-alert> -->
+            title="小贴士：圣遗物面板上三个按钮作用分别是：删除、禁用/启用、编辑"
+            style="margin-bottom: 16px"
+        ></el-alert> -->
+
+        <el-tag>数量：{{ $store.getters["artifacts/count"] }}</el-tag>
 
         <!-- tool bar -->
         <div class="tool-bar">
