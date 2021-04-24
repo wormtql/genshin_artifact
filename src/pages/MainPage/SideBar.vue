@@ -37,6 +37,10 @@
                     <i class="el-icon-magic-stick"></i>
                     圣遗物潜力
                 </el-menu-item>
+                <el-menu-item index="/artifacts-statistics">
+                    <i class="el-icon-s-data"></i>
+                    圣遗物统计
+                </el-menu-item>
             </el-menu-item-group>
 
             <el-menu-item-group>

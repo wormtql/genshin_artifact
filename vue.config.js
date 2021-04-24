@@ -58,6 +58,7 @@ module.exports = {
             "vue-router": "VueRouter",
             vuex: "Vuex",
             "element-ui": "ELEMENT",
+            "vue-echarts": "VueECharts",
         }
     },
     // chainWebpack: config => {

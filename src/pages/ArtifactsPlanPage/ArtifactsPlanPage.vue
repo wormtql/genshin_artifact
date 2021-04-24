@@ -130,7 +130,7 @@ import { charactersData } from "@asset/characters";
 // import deepCopy from "@util/deepcopy"; 
 import { toChs as estimateToChs } from "@util/time_estimate";
 import createFilterFunction from "@alg/attribute_target/create_filter_function";
-import { count as countArtifacts } from "@util/artifacts";
+// import { count as countArtifacts } from "@util/artifacts";
 
 // import SelectCharacter from "./steps/SelectCharacter";
 // import ConfigCharacter from "./steps/ConfigCharacter";
@@ -340,8 +340,13 @@ export default {
 
             let filter = createFilterFunction(configObject.constraint);
             let filteredArtifacts = filter(rawArtifacts);
-            let iterCount = countArtifacts(filteredArtifacts);
-            console.log(iterCount);
+            let iterCount
+                = (filteredArtifacts.flower.length || 1)
+                * (filteredArtifacts.feather.length || 1)
+                * (filteredArtifacts.sand.length || 1)
+                * (filteredArtifacts.cup.length || 1)
+                * (filteredArtifacts.head.length || 1)
+                ;
             // console.log(configObject);
 
             let start = () => {
@@ -349,7 +354,7 @@ export default {
                 this.$refs.resultPage.doCompute(configObject);
             };
 
-            
+            console.log(iterCount);
             if (iterCount >= 5000000) {
                 this.$confirm(`计算将会非常耗时（约 ${estimateToChs(iterCount)}）,是否继续？`, "警告", {
                     confirmButtonText: "确定",

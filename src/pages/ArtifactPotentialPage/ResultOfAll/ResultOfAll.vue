@@ -12,6 +12,12 @@
                 :extra="'分数：' + item[1].toFixed(3)"
                 class="art"
             ></artifact-display>
+
+            <el-alert
+                v-show="finalResult.length === 0"
+                title="没有满足条件的圣遗物"
+                :closable="false"
+            ></el-alert>
         </div>
     </div>
 </template>
@@ -69,27 +75,21 @@ export default {
         }
     },
     methods: {
-        getArtifactsLinear() {
-            let arts = this.$store.getters["artifacts/allArtifacts"];
-
-            let temp = [];
-            ["flower", "feather", "cup", "sand", "head"].forEach(pos => {
-                temp = temp.concat(arts[pos]);
-            });
-
-            return temp;
-        },
-
         compute() {
             let loading = this.$loading({
                 lock: true,
                 text: "莫娜计算中",
             });
-            let arts = this.getArtifactsLinear();
+            let arts = this.$store.getters["artifacts/allFlat"];
+
+            let fil = item => (item.star ?? 5) >= 4;
+            let filteredArts = arts.filter(fil);
+            console.log(filteredArts);
+
             let name = this.$parent.$data.selected.funcName;
             let pArgs = this.$parent.$data.selected.pArgs;
 
-            computeAll(arts, name, pArgs).then(result => {
+            computeAll(filteredArts, name, pArgs).then(result => {
                 this.result = result;
                 loading.close();
                 // console.log(result);

@@ -56,6 +56,7 @@ const HelpBasicPage = () => ({
 const FAQPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/FAQPage");
 const TargetFuncExplanationPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/TargetFuncExplanationPage");
 const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/ExportToolPage");
+const ArtifactsStatisticsPage = () => import(/* webpackChunkName: "artifacts-statistics-page" */ "@page/ArtifactsStatisticsPage");
 
 import VueRouter from "vue-router";
 
@@ -63,6 +64,14 @@ import VueRouter from "vue-router";
 const webName = process.env.WEB_TITLE;
 
 const routes = [
+    {
+        path: "/artifacts-statistics",
+        component: ArtifactsStatisticsPage,
+        meta: {
+            title: "圣遗物统计 | " + webName,
+            keepAlive: true,
+        }
+    },
     {
         path: "/help/export-tools",
         component: ExportToolPage,
