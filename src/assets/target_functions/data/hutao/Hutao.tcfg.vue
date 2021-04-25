@@ -90,6 +90,17 @@
                 size="small"
             ></el-input>
         </div>
+
+        <div
+            class="config-item"
+            v-if="mode === 'expect'"
+        >
+            <h3 class="config-title">6命覆盖率（不足6命请忽略）</h3>
+            <el-input
+                v-model="conste6Rate"
+                size="small"
+            ></el-input>
+        </div>
     </div>
 </template>
 
@@ -106,6 +117,7 @@ export default {
             mode: "expect",
             lw4: false,
             skill: "a",
+            conste6Rate: "0.05",
         }
     },
     methods: {
@@ -119,6 +131,7 @@ export default {
                 mode: this.mode,
                 lw4: this.lw4,
                 skill: this.skill,
+                conste6Rate: parseFloat(this.conste6Rate) ?? 0.05,
             };
         },
         setData(d) {
@@ -130,6 +143,7 @@ export default {
             this.mode = d.mode;
             this.lw4 = d.lw4;
             this.skill = d.skill;
+            this.conste6Rate = d.conste6Rate ?? "0.05";
         }
     }
     

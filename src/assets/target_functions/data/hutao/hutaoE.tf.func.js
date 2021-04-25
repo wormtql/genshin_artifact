@@ -8,6 +8,7 @@ function f(config) {
     let eLevel = config.cArgs.skill2;
     let aLevel = config.cArgs.skill1;
     let atkInc = skill.e.hp[eLevel - 1];
+    let conste = config.cArgs.constellation;
 
     let aT = skill.a.dmg3[aLevel - 1];
     let bT = skill.b.dmg[aLevel - 1];
@@ -24,6 +25,7 @@ function f(config) {
     let normal = 1 - evaporate - melt;
     let bFreq = config.tArgs.bFreq;
     let aFreq = 1 - bFreq;
+    let conste6Rate = conste === 6 ? config.tArgs.conste6Rate : 0;
 
     let talentBonus = (hasTalent2 && hpBelow50) ? 0.33 : 0;
 
@@ -54,7 +56,12 @@ function f(config) {
             let b = atk * (1 + commonBonus + attribute.bBonus) * bFreq * bT;
 
             
-            return (a + b) * (1 + crit * attribute.criticalDamage) * (normal + (evaporate * 1.5 + melt * 2) * (1 + amp));
+            let ret
+                = (a + b)
+                * (1 + ((1 - conste6Rate) * crit + conste6Rate) * attribute.criticalDamage)
+                * (normal + (evaporate * 1.5 + melt * 2) * (1 + amp))
+
+            return ret;
         };
     } else if (mode === "max") {
         return function (attribute, context) {
