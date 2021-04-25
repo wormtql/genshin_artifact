@@ -8,14 +8,22 @@
         ></el-alert>
 
         <div class="config-item">
-            <h3 class="config-title">有效词条</h3>
-            <el-checkbox-group v-model="validTag">
-                <el-checkbox-button
-                    v-for="tag in tags"
-                    :key="tag.name"
-                    :label="tag.name"
-                >{{ tag.chs }}</el-checkbox-button>
-            </el-checkbox-group>
+            <h3 class="config-title">有效词条及其权重</h3>
+            <div
+                v-for="tag in tags"
+                :key="tag.name"
+                class="tag-item"
+            >
+                <el-switch
+                    :active-text="tag.chs"
+                    v-model="weight[tag.name][0]"
+                    class="tag-switch"
+                ></el-switch>
+                <el-input
+                    v-model="weight[tag.name][1]"
+                    size="small"
+                ></el-input>
+            </div>
         </div>
     </div>
 </template>
@@ -36,9 +44,40 @@ export default {
         this.tags = temp;
     },
     data() {
-        return {
-            validTag: ["attackPercentage", "critical", "criticalDamage"],
+        let weight = {};
+        for (let i of artifactsSecondaryTag) {
+            weight[i] = [false, 0];
         }
-    }
+        weight["attackPercentage"] = [true, 1];
+        weight["critical"] = [true, 1];
+        weight["criticalDamage"] = [true, 1];
+
+        return {
+            weight,
+            // validTag: ["attackPercentage", "critical", "criticalDamage"],
+        }
+    },
 }
 </script>
+
+<style lang="scss" scoped>
+.tag-item {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+
+    &:last-of-type {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border: none;
+    }
+
+    &:first-of-type {
+        margin-top: 16px;
+    }
+
+    .tag-switch {
+        margin-bottom: 8px;
+    }
+}
+</style>

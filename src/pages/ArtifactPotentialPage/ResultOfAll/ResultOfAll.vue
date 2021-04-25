@@ -84,7 +84,7 @@ export default {
 
             let fil = item => (item.star ?? 5) >= 4;
             let filteredArts = arts.filter(fil);
-            console.log(filteredArts);
+            // console.log(filteredArts);
 
             let name = this.$parent.$data.selected.funcName;
             let pArgs = this.$parent.$data.selected.pArgs;

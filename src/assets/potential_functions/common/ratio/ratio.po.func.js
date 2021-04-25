@@ -40,14 +40,15 @@ function getBaseValue(tagName) {
 }
 
 function f(args) {
-    let validTags = args.pArgs.validTag;
+    let weight = args.pArgs.weight;
 
     return function (tags) {
         let value = 0;
         for (let tag of tags) {
-            if (validTags.indexOf(tag.name) !== -1) {
+            if (weight[tag.name][0]) {
+                let w = weight[tag.name][1];
                 let baseValue = cache[tag.name] ?? getBaseValue(tag.name);
-                value += tag.value / baseValue;
+                value += w * tag.value / baseValue;
             }
         }
 
@@ -56,7 +57,13 @@ function f(args) {
 }
 
 function validFunc(args) {
-    let validTags = args.pArgs.validTag;
+    let validTags = [];
+    let weight = args.pArgs.weight;
+    for (let key in weight) {
+        if (weight[key][0]) {
+            validTags.push(key);
+        }
+    }
 
     return validTags;
 }
