@@ -6,7 +6,7 @@
         </div>
         <div class="container">
             <artifact-display
-                v-for="(item, index) in finalResult"
+                v-for="(item, index) in resultToDisplay"
                 :key="index"
                 :item="item[0]"
                 :extra="'分数：' + item[1].toFixed(3)"
@@ -17,7 +17,21 @@
                 v-show="finalResult.length === 0"
                 title="没有满足条件的圣遗物"
                 :closable="false"
+                type="warning"
             ></el-alert>
+        </div>
+
+        <div
+            class="pager"
+        >
+            <el-pagination
+                layout="prev, pager, next"
+                :total="resultCount"
+                background
+                :current-page.sync="currentPage"
+                hide-on-single-page
+                :page-size="pageSize"
+            ></el-pagination>
         </div>
     </div>
 </template>
@@ -27,6 +41,9 @@ import { computeAll } from "@alg/potential/compute_artifact_potential_promise";
 
 import ArtifactDisplay from "@c/ArtifactDisplay";
 
+
+const PAGE_SIZE = 10;
+
 export default {
     name: "ResultOfAll",
     components: {
@@ -35,12 +52,13 @@ export default {
     data: function () {
         return {
             result: [],
-            // filters: [],
 
             filNotFull: true,
             filFull: true,
 
-            // loading: true,
+            currentPage: 1,
+
+            pageSize: PAGE_SIZE,
         }
     },
     computed: {
@@ -54,6 +72,16 @@ export default {
             temp.sort((a, b) => b[1] - a[1]);
 
             return temp;
+        },
+
+        resultToDisplay() {
+            let offset = (this.currentPage - 1) * PAGE_SIZE;
+            let end = offset + PAGE_SIZE;
+            return this.finalResult.slice(offset, end);
+        },
+
+        resultCount() {
+            return this.finalResult.length;
         },
 
         filters() {
@@ -111,5 +139,12 @@ export default {
 
 .filter {
     margin-bottom: 24px;
+}
+
+.pager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
 }
 </style>

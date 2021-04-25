@@ -42,8 +42,10 @@ import {
     InputNumber,
     Rate,
     Footer,
+    Pagination,
 } from "element-ui";
 
+Vue.use(Pagination);
 Vue.use(Footer);
 Vue.use(Rate);
 Vue.use(InputNumber);

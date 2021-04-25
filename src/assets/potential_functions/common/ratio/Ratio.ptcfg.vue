@@ -39,7 +39,6 @@ export default {
         for (let i of artifactsSecondaryTag) {
             temp[i] = secondaryTags[i];
         }
-        console.log(temp);
 
         this.tags = temp;
     },
