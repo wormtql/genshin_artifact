@@ -45,6 +45,9 @@ function f(args) {
     return function (tags) {
         let value = 0;
         for (let tag of tags) {
+            if (!Object.prototype.hasOwnProperty.call(weight, tag.name)) {
+                continue;
+            }
             if (weight[tag.name][0]) {
                 let w = weight[tag.name][1];
                 let baseValue = cache[tag.name] ?? getBaseValue(tag.name);
