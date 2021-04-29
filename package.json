@@ -8,7 +8,9 @@
     "lint": "vue-cli-service lint",
     "inspect": "vue inspect > inspect.js",
     "myserve": "serve ./dist",
-    "pack": "tar -czvf dist.tar.gz ./dist"
+    "pack": "tar -czvf dist.tar.gz ./dist",
+    "optimize-png": "node ./script/optimize_png.js",
+    "download-artifact": "node ./script/download_artifact.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -18,7 +20,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.14.0",
-    "genshin_panel": "^2.3.2",
+    "genshin_panel": "^2.4.0",
     "katex": "^0.13.0",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4",
@@ -35,6 +37,9 @@
     "eslint-plugin-vue": "^6.2.2",
     "image-minimizer-webpack-plugin": "^2.2.0",
     "imagemin": "^7.0.1",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "node-html-parser": "^3.2.0",
     "sass": "^1.32.10",
     "sass-loader": "^10.1.1",
     "vue-router": "^3.4.8",
