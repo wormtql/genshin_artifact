@@ -13,7 +13,7 @@ export default {
     name: "Beian",
     data() {
         return {
-            number: "浙ICP备2021004987号-1",
+            number: process.env.BEIAN_NUMBER,
         }
     }
 }

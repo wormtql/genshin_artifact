@@ -41,7 +41,7 @@
                     </keep-alive>
                     <router-view v-if="!$route.meta.keepAlive" class="router-view"></router-view>
 
-                    <beian></beian>
+                    <beian v-if="needBeian"></beian>
                 </el-main>
             </el-container>
         </el-container>
@@ -61,6 +61,8 @@ export default {
     data: function () {
         return {
             drawerVisible: false,
+
+            needBeian: process.env.NEED_BEIAN,
         }
     }
 }

@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:2": "cross-env MONA_TITLE=莫娜占卜铺 MONA_NEED_BEIAN=true MONA_BEIAN_NUMBER=2 MONA_NEED_MIGRATE=false MONA_ROUTE_MODE=hash vue-cli-service build",
     "lint": "vue-cli-service lint",
     "inspect": "vue inspect > inspect.js",
     "myserve": "serve ./dist",
@@ -33,6 +34,7 @@
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-component": "^1.1.1",
+    "cross-env": "^7.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "image-minimizer-webpack-plugin": "^2.2.0",
