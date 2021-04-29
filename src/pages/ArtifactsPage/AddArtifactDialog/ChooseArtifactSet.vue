@@ -25,8 +25,11 @@
 import { artifactsData } from "../../../assets/artifacts";
 import { getArtifactThumbnailURL } from "../../../utils/utils";
 
+// import colors from "@const/quality_colors";
+
 export default {
     name: "SetChoose",
+    inject: ["star"],
     created: function () {
         this.artifactsData = Object.values(artifactsData);
         this.artifactsData.sort((a, b) => {
@@ -39,17 +42,25 @@ export default {
             type: String
         }
     },
-    methods: {
-    }
+    // computed: {
+    //     glowColor() {
+    //         return colors[this.star - 1];
+    //     },
+
+    //     boxShadow() {
+    //         console.log(this.star);
+    //         return `0 0 20px 1px ${this.glowColor}`;
+    //     }
+    // }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .image {
     width: 48px;
     height: 48px;
-    border-radius: 50%;
-    box-shadow: 0 0 10px 5px #00000022;
+    // border-radius: 50%;
+    // box-shadow: 0 0 10px 5px #00000022;
 }
 
 .text {
@@ -69,20 +80,20 @@ export default {
     margin-right: 4px;
     padding: 8px;
     color: #777777;
-}
 
-.item:hover {
-    background: rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    border-radius: 3px;
-    transition: 300ms;
-}
+    &:hover {
+        background: rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        border-radius: 3px;
+        transition: 300ms;
+    }
 
-.item.active {
-    /* background: rgba(0, 0, 0, 0.1); */
-    border-radius: 3px;
-    /* color: white; */
-    background: none;
-    box-shadow: 0 0 20px 1px #00000033;
+    &.active {
+        /* background: rgba(0, 0, 0, 0.1); */
+        border-radius: 3px;
+        /* color: white; */
+        background: none;
+        box-shadow: 0 0 20px 1px #00000033;
+    }
 }
 </style>

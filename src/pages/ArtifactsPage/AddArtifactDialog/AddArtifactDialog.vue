@@ -109,6 +109,11 @@ function convertPercentage(item) {
 
 export default {
     name: "NewDialog",
+    provide() {
+        return {
+            star: this.star,
+        }
+    },
     components: {
         ChooseArtifactSet,
         ChooseArtifactPosition,
