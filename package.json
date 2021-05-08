@@ -1,11 +1,12 @@
 {
   "name": "genshin_artifacts",
-  "version": "3.10.1",
+  "version": "3.11.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:2": "cross-env MONA_TITLE=莫娜占卜铺 MONA_NEED_BEIAN=true MONA_BEIAN_NUMBER=2 MONA_NEED_MIGRATE=false MONA_ROUTE_MODE=hash vue-cli-service build",
+    "build:1": "cross-env MONA_TITLE=原神圣遗物工具 MONA_NEED_BEIAN=true MONA_BEIAN_NUMBER=1 MONA_NEED_MIGRATE=true MONA_ROUTE_MODE=hash vue-cli-service build",
+    "build:2": "cross-env MONA_TITLE=莫娜占卜铺 MONA_NEED_BEIAN=true MONA_BEIAN_NUMBER=2 MONA_NEED_MIGRATE=false MONA_ROUTE_MODE=history vue-cli-service build",
     "lint": "vue-cli-service lint",
     "inspect": "vue inspect > inspect.js",
     "myserve": "serve ./dist",
