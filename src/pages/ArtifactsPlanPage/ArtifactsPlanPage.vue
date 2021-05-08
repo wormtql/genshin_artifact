@@ -19,7 +19,7 @@
                 另存为预设
             </el-button>
             <el-button
-                @click="$refs.applyPresetDialog.open()"
+                @click="handleClickApplyPreset"
                 size="small"
             >
                 <i class="el-icon-truck"></i>
@@ -178,6 +178,18 @@ export default {
         }
     },
     methods: {
+        handleClickApplyPreset() {
+            let count = this.$store.getters["presets/count"];
+            if (count === 0) {
+                this.$message({
+                    message: "没有可用的预设，请先保存一个预设",
+                    type: "warning",
+                });
+                return;
+            }
+            this.$refs.applyPresetDialog.open();
+        },
+
         notifyChange(type, value) {
             console.log(type, value);
             if (type === "character") {
