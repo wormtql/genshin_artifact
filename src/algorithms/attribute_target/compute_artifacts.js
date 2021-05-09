@@ -2,23 +2,11 @@ import * as genshin from "genshin_panel";
 import targetFunctionsFunc from "@asset/target_functions/func";
 import createCheckFunction from "./create_check_function";
 import createFilterFunction from "./create_filter_function";
-import applyBuffs from "./apply_buffs";
+// import applyBuffs from "./apply_buffs";
+import { getAttribute } from "@util/attribute";
 
 const RECORD_COUNT = 5;
 
-function getArtifact(myArtifact) {
-    let temp = new genshin.ArtifactBuilder()
-        .setName(myArtifact.setName)
-        .position(myArtifact.position)
-        .mainTag(myArtifact.mainTag.name, myArtifact.mainTag.value)
-    ;
-
-    for (let tag of myArtifact.normalTags) {
-        temp.tag(tag.name, tag.value);
-    }
-
-    return temp.build();
-}
 
 function getArtifactsSetInfo(arts) {
     let temp = {};
@@ -109,30 +97,8 @@ function computeArtifacts(artifacts, c, w, tf, buffs, constraint) {
                             continue;
                         }
 
-                        let builder = new genshin.AttributeBuilder();
-                        builder
-                            .character(character)
-                            .weapon(weapon)
-                        ;
-                        if (flower) {
-                            builder.artifact(getArtifact(flower));
-                        }
-                        if (feather) {
-                            builder.artifact(getArtifact(feather));
-                        }
-                        if (sand) {
-                            builder.artifact(getArtifact(sand));
-                        }
-                        if (cup) {
-                            builder.artifact(getArtifact(cup));
-                        }
-                        if (head) {
-                            builder.artifact(getArtifact(head));
-                        }
-                        let attribute = builder.build();
-
-                        // apply buffs
-                        applyBuffs(attribute, buffs);
+                        let arts = [flower, feather, sand, cup, head].filter(item => item);
+                        let attribute = getAttribute(arts, c, w, buffs);
 
                         let value;
                         if (needContext) {

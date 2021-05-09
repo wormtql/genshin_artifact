@@ -92,3 +92,18 @@ export function getArtifactUpCount(artifact) {
 
     return star - Math.floor(level / 4);
 }
+
+export function positionToLocale(name) {
+    switch (name) {
+        case "flower":
+            return "生之花";
+        case "feather":
+            return "死之羽";
+        case "sand":
+            return "时之沙";
+        case "cup":
+            return "空之杯";
+        case "head":
+            return "理之冠";
+    }
+}

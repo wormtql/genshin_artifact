@@ -43,8 +43,12 @@ import {
     Rate,
     Footer,
     Pagination,
+    Table,
+    TableColumn,
 } from "element-ui";
 
+Vue.use(Table);
+Vue.use(TableColumn);
 Vue.use(Pagination);
 Vue.use(Footer);
 Vue.use(Rate);

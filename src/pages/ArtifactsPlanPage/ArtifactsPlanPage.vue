@@ -59,6 +59,7 @@
                     <li :class="{active: currentstep === 'constraint'}" x-name="constraint">过滤/限定</li>
                     <li :class="{active: currentstep === 'buff'}" x-name="buff">全局buff</li>
                     <li :class="{active: currentstep === 'result'}" x-name="result">计算结果</li>
+                    <li :class="{active: currentstep === 'calculator'}" x-name="calculator">计算器</li>
                 </ul>
             </el-col>
             <el-col :span="20">
@@ -114,9 +115,14 @@
                         v-show="currentstep === 'result'"
                         :calculating="calculating"
                         :result-data="resultData"
-                        :config="config"
                         ref="resultPage"
                     ></result-page>
+
+                    <damage-calculator
+                        v-show="currentstep === 'calculator'"
+                        name="keqing"
+                        ref="calculator"
+                    ></damage-calculator>
                 </div>
             </el-col>
         </el-row>
@@ -132,14 +138,8 @@ import { toChs as estimateToChs } from "@util/time_estimate";
 import createFilterFunction from "@alg/attribute_target/create_filter_function";
 // import { count as countArtifacts } from "@util/artifacts";
 
-// import SelectCharacter from "./steps/SelectCharacter";
-// import ConfigCharacter from "./steps/ConfigCharacter";
-// import SelectWeapon from "./steps/SelectWeapon";
-// import ConfigWeapon from "./steps/ConfigWeapon";
-// import SelectTargetFunction from "./steps/SelectTargetFunction";
-// import ConfigTargetFunction from "./steps/ConfigTargetFunction";
-// import Config from "./steps/Config";
 import ResultPage from "./steps/ResultPage";
+import DamageCalculator from "./steps/DamageCalculator";
 
 // import MyStep from "@c/MyStep";
 
@@ -156,13 +156,16 @@ export default {
         "ConfigTargetFunction": () => import(/* webpackChunkName: "steps-select-t" */ "./steps/ConfigTargetFunction"),
         "ConfigBuff": () => import(/* webpackChunkName: "steps-select-buff" */ "./steps/ConfigBuff"),
         "Config": () => import(/* webpackChunkName: "steps-constraint" */ "./steps/Config"),
+        // "DamageCalculator": () => import(/* webpackChunkName: "damage-calculator" */)
         ResultPage,
+        DamageCalculator,
         // MyStep,
         ApplyPresetDialog,
     },
     provide() {
         return {
             notifyChange: this.notifyChange,
+            getConfigObject: this.getConfigObject,
         }
     },
     created() {
@@ -204,7 +207,11 @@ export default {
         },
 
         handleNav(e) {
-            this.currentstep = e.target.attributes["x-name"].value;
+            let navTarget = e.target.attributes["x-name"].value;
+            if (navTarget === "calculator") {
+                this.$refs.calculator.updateConfigObject();
+            }
+            this.currentstep = navTarget;
         },
 
         handleConfirmApplyPreset(name) {
@@ -335,18 +342,22 @@ export default {
             return this.$refs.configBuff.getBuffs();
         },
 
-        /**
-         * all configs are ready,
-         * start to compute
-         */
-        startCalculating() {
-            let configObject = {
+        getConfigObject() {
+            return {
                 character: this.getCharacterInfo(),
                 weapon: this.getWeaponInfo(),
                 targetFunc: this.getTargetFuncInfo(),
                 constraint: this.getConstraint(),
                 buffs: this.getStandardBuffs(),
             };
+        },
+
+        /**
+         * all configs are ready,
+         * start to compute
+         */
+        startCalculating() {
+            let configObject = this.getConfigObject();
 
             let rawArtifacts = this.$store.getters["artifacts/notOmittedArtifacts"];
 
@@ -383,11 +394,11 @@ export default {
         },
     },
     computed: {
-        config() {
-            return {
-                cArgs: this.characterInfo,
-            }
-        }
+        // config() {
+        //     return {
+        //         cArgs: this.characterInfo,
+        //     }
+        // }
     }
 }
 </script>
