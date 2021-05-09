@@ -134,7 +134,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .character-item {
     width: 96px;
     cursor: pointer;
@@ -143,49 +143,49 @@ export default {
     transition: 300ms;
     border-radius: 3px;
     position: relative;
-}
 
-.character-item:hover {
-    background: rgba(0, 0, 0, 0.1);
-}
+    &:hover {
+        background: rgba(0, 0, 0, 0.1);
+    }
 
-.character-item .test {
-    position: absolute;
-    left: 4px;
-    top: 4px;
-    color: white;
-    border-radius: 3px;
-    background: rgb(243, 183, 18);
-    padding: 4px;
-}
+    .test {
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        color: white;
+        border-radius: 3px;
+        background: rgb(243, 183, 18);
+        padding: 4px;
+    }
 
-.text {
-    display: block;
-    text-align: center;
-    font-size: 14px;
-    color: #999999;
-    padding-top: 8px;
-}
+    .text {
+        display: block;
+        text-align: center;
+        font-size: 14px;
+        color: #999999;
+        padding-top: 8px;
+    }
 
-.image {
-    border-radius: 5px;
-    width: 96px;
-    /* height: 250px; */
-    display: block;
+    .image {
+        border-radius: 5px;
+        width: 96px;
+        /* height: 250px; */
+        display: block;
+    }
 }
 
 .character-panel {
     display: flex;
-    -ms-overflow-style: none;
-    scrollbar-width: 0;
+    // -ms-overflow-style: none;
+    // scrollbar-width: 0;
     overflow: auto;
     margin-bottom: 32px;
     /* flex-wrap: wrap; */
 }
 
-.character-panel::-webkit-scrollbar {
-    display: none;
-}
+// .character-panel::-webkit-scrollbar {
+//     display: none;
+// }
 
 .active {
     background: #12345622;

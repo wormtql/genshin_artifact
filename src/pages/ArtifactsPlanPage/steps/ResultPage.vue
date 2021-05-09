@@ -90,7 +90,16 @@
             </el-row>
         </div>
         <div v-else-if="!calculating && error.isError">
-            {{ error.reason }}
+            <span v-if="isNoArtifactError">
+                <el-alert
+                    title="没有符合条件的圣遗物，请仔细检查过滤条件、限定条件（套装等），以及圣遗物导入是否有错误"
+                    :closable="false"
+                    type="warning"
+                ></el-alert>
+            </span>
+            <span v-else>
+                {{ error.reason }}
+            </span>
         </div>
     </div>
 </template>
@@ -257,6 +266,10 @@ export default {
 
         recordCount() {
             return this.resultRecord.length;
+        },
+
+        isNoArtifactError() {
+            return this.error.isError && this.error.code === 1000;
         }
     }
 }

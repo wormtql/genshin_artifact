@@ -3,10 +3,10 @@ import { getArtifactUpCount } from "@util/utils";
 
 import artifactNumeric from "@/artifacts_numeric/attribute";
 
-function helper(tags, dep, valid, func) {
+function helper(tags, dep, valid, func, star) {
     // let currentValue = func(tags);
     let value = 0;
-    let star = 5;
+    // let star = 5;
 
     if (dep === 0) {
         return func(tags.slice(1));
@@ -23,14 +23,14 @@ function helper(tags, dep, valid, func) {
         for (let i = 0; i < 4; i++) {
             for (let validTag of valid2) {
                 tags.push({ name: validTag, value: artifactNumeric[star][validTag][i] });
-                value += singleProb * helper(tags, dep - 1, valid, func);
+                value += singleProb * helper(tags, dep - 1, valid, func, star);
                 tags.pop();
                 validProb += singleProb;
             }
         }
         // push an blank tag
         tags.push({ name: "blank", value: 0 });
-        value += (1 - validProb) * helper(tags, dep - 1, valid, func);
+        value += (1 - validProb) * helper(tags, dep - 1, valid, func, star);
 
         return value;
     }
@@ -44,18 +44,19 @@ function helper(tags, dep, valid, func) {
             let bk = tags[i].value;
             for (let j = 0; j < 4; j++) {
                 tags[i].value += artifactNumeric[star][name][j];
-                value += 0.0625 * helper(tags, dep - 1, valid, func);
+                value += 0.0625 * helper(tags, dep - 1, valid, func, star);
                 validProb += 0.0625;
                 tags[i].value = bk;
             }
         }
     }
-    value += (1 - validProb) * helper(tags, dep - 1, valid, func);
+    value += (1 - validProb) * helper(tags, dep - 1, valid, func, star);
     return value;
 }
 
 export default function (artifact, pfName, pArgs) {
-    if ((artifact.star ?? 5) <= 3) {
+    let star = artifact.star ?? 5;
+    if (star <= 3) {
         return -1;
     }
 
@@ -68,5 +69,5 @@ export default function (artifact, pfName, pArgs) {
     tags.push(artifact.mainTag);
     tags = tags.concat(artifact.normalTags);
 
-    return helper(tags, upCount, f.valid, f.f);
+    return helper(tags, upCount, f.valid, f.f, star);
 }

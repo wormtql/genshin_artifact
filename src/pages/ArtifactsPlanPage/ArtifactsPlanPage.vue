@@ -19,7 +19,7 @@
                 另存为预设
             </el-button>
             <el-button
-                @click="$refs.applyPresetDialog.open()"
+                @click="handleClickApplyPreset"
                 size="small"
             >
                 <i class="el-icon-truck"></i>
@@ -56,7 +56,7 @@
                     <li :class="{active: currentstep === 'weapon-config'}" x-name="weapon-config">武器参数</li>
                     <li :class="{active: currentstep === 'target-func'}" x-name="target-func">目标函数</li>
                     <li :class="{active: currentstep === 'target-func-config'}" x-name="target-func-config">目标函数参数</li>
-                    <li :class="{active: currentstep === 'constraint'}" x-name="constraint">限制</li>
+                    <li :class="{active: currentstep === 'constraint'}" x-name="constraint">过滤/限定</li>
                     <li :class="{active: currentstep === 'buff'}" x-name="buff">全局buff</li>
                     <li :class="{active: currentstep === 'result'}" x-name="result">计算结果</li>
                 </ul>
@@ -178,6 +178,18 @@ export default {
         }
     },
     methods: {
+        handleClickApplyPreset() {
+            let count = this.$store.getters["presets/count"];
+            if (count === 0) {
+                this.$message({
+                    message: "没有可用的预设，请先保存一个预设",
+                    type: "warning",
+                });
+                return;
+            }
+            this.$refs.applyPresetDialog.open();
+        },
+
         notifyChange(type, value) {
             console.log(type, value);
             if (type === "character") {

@@ -76,7 +76,18 @@ let item = {
     getters: {
         all(state) {
             return state.presets;
-        }
+        },
+
+        count(state) {
+            return Object.keys(state.presets).length;
+        },
+
+        // firstName(state, getters) {
+        //     if (getters.count === 0) {
+        //         return "";
+        //     }
+        //     return Object.keys(state.presets)[0];
+        // }
     }
 }
 

@@ -39,10 +39,11 @@ function checkTag(tag) {
 
 /**
  * check if an artifact is valid
+ * some field will be set to default
  * @param {*} art 
  * @return a string if error, or true if ok 
  */
-function checkArtifact(art) {
+function checkArtifact(art, doDefault = false) {
     // check set name
     if (!art.setName) {
         return "expecting set name";
@@ -91,9 +92,31 @@ function checkArtifact(art) {
         }
     }
 
+    // check star and level
+    if (!Object.prototype.hasOwnProperty.call(art, "star")) {
+        if (doDefault) {
+            art.star = 5;
+        }
+    }
+    if (!Object.prototype.hasOwnProperty.call(art, "level")) {
+        if (doDefault) {
+            art.level = 20;
+        }
+    }
+    let star = art.star ?? 5;
+    let level = art.level ?? 20;
+    if (star < 1 || star > 5) {
+        return "star is invalid";
+    }
+    if (level < 0 || level > star * 4) {
+        return "level is invalid";
+    }
+
     // omit default to false
     if (!Object.prototype.hasOwnProperty.call(art, "omit")) {
-        art.omit = false;
+        if (doDefault) {
+            art.omit = false;
+        }
     }
 
     return true;

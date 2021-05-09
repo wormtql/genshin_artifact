@@ -171,7 +171,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    routes
+    mode: process.env.ROUTE_MODE,       // webpack define plugin
+    routes,
 });
 
 router.beforeEach((to, from, next) => {

@@ -39,7 +39,11 @@
         </div>
         <div class="down">
             <div>
-                <img :src="imageSrc" class="myimage">
+                <img
+                    :src="imageSrc"
+                    class="myimage"
+                    :style="{background: imageBackground}"
+                >
             </div>
             <div class="detail-div">
                 <p class="main-tag">{{ mainDisplayTag }}</p>
@@ -59,6 +63,7 @@
 import { displayedTag } from "@util/utils";
 import { artifactsData } from "@asset/artifacts";
 
+import colors from "@const/quality_colors";
 
 export default {
     name: "Artifact",
@@ -122,6 +127,11 @@ export default {
                 temp.push(displayedTag(tag.name, tag.value));
             }
             return temp;
+        },
+
+        imageBackground() {
+            let star = this.item.star ?? 5;
+            return colors[star - 1];
         }
     }
 }

@@ -19,7 +19,11 @@
 
         <template #footer>
             <el-button @click="visible = false">取消</el-button>
-            <el-button type="primary" @click="handleConfirm">确定</el-button>
+            <el-button
+                type="primary"
+                @click="handleConfirm"
+                :disabled="!isSelectedValid"
+            >确定</el-button>
         </template>
     </el-dialog>
 </template>
@@ -43,6 +47,8 @@ export default {
     methods: {
         open() {
             this.visible = true;
+
+            // this.selected = this.$store.getters["presets/firstName"];
         },
 
         handleConfirm() {
@@ -51,7 +57,11 @@ export default {
         }
     },
     computed: {
-        ...mapGetters("presets", ["all"])
+        ...mapGetters("presets", ["all"]),
+
+        isSelectedValid() {
+            return Object.prototype.hasOwnProperty.call(this.all, this.selected);
+        }
     }
 }
 </script>
