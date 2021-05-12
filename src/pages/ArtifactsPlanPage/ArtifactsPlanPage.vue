@@ -199,6 +199,7 @@ export default {
                 let weaponType = charactersData[value].weapon;
                 this.$refs.selectWeapon.setAllow(weaponType);
                 this.$refs.selectTargetFunc.setCharacterName(value);
+                this.$refs.configCharacter.setCharacterName(value);
             } else if (type === "weapon") {
                 this.$refs.configWeapon.setWeaponName(value);
             } else if (type === "targetFunc") {
@@ -243,6 +244,12 @@ export default {
             
             // set buffs
             this.$refs.configBuff.setBuffs(preset.buffs ?? []);
+
+            // update calculator
+            this.$nextTick(() => {
+                this.$refs.calculator.updateConfigObject();
+            });
+            
 
             this.$message({
                 type: "success",

@@ -1,14 +1,22 @@
 <template>
-    <div>
+    <div v-if="configObject !== null">
         <el-row :gutter="16">
             <el-col :span="18">
                 <select-artifacts
                     :selected="selectedArtifactIds"
                 ></select-artifacts>
 
+                <div
+                    class="legend"
+                    style="padding: 16px 0"
+                >
+                    <damage-display :damage="{ crit: '暴击伤害', nonCrit: '非暴击伤害', expect: '期望伤害' }"></damage-display>
+                </div>
+
                 <component
                     :is="calculator"
                     :config-object="configObject"
+                    :artifacts="selectedArtifactObjects"
                 ></component>
             </el-col>
             <el-col :span="6">
@@ -25,15 +33,17 @@ import { getAttribute } from "@util/attribute";
 
 import SelectArtifacts from "@c/select/SelectArtifacts";
 import AttributePanel from "@c/AttributePanel";
+import DamageDisplay from "@c/display/DamageDisplay";
 
 export default {
     name: "DamageCalculator",
     components: {
         SelectArtifacts,
         AttributePanel,
+        DamageDisplay,
     },
     inject: ["getConfigObject"],
-    props: ["characterName"],
+    // props: ["characterName"],
     data() {
         return {
             configObject: null,
@@ -56,8 +66,10 @@ export default {
     },
     computed: {
         calculator() {
-            let temp = calculators[this.characterName];
+            let cName = this.configObject.character.name;
+            let temp = calculators[cName];
             temp = temp ?? calculators["keqing"];
+            console.log(temp);
 
             return temp;
         },

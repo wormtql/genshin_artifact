@@ -1,5 +1,12 @@
 <template>
     <div>
+        <component
+            v-if="needExtraConfig"
+            :is="c.config"
+            ref="extraConfig"
+        >
+        </component>
+
         <div class="config-item">
             <h3 class="config-title">技能等级（包含命之座加成）</h3>
             <el-input-number
@@ -36,7 +43,7 @@
         </div>
 
         <select-level
-            :value="level | levelText"
+            :value="levelText"
             title="角色等级"
             @input="handleChangeLevel"
         ></select-level>
@@ -44,6 +51,8 @@
 </template>
 
 <script>
+import { charactersData } from "@asset/characters";
+
 import SelectLevel from "@c/select/SelectLevel";
 
 // import deepCopy from "@util/deepcopy";
@@ -69,13 +78,28 @@ export default {
             level: {
                 ascend: false,
                 level: 1,
-            }
+            },
+
+            characterName: "anbo",
         }
     },
     methods: {
         handleChangeLevel(e) {
             this.level.level = parseInt(e);
             this.level.ascend = e.indexOf("+") !== -1;
+        },
+
+        getExtraConfig() {
+            if (!this.needExtraConfig) {
+                return {};
+            }
+
+            let vm = this.$refs.extraConfig;
+            if (vm.compact) {
+                return vm.compact();
+            } else {
+                return Object.assign({}, vm.$data);
+            }
         },
 
         getCharacterConfig() {
@@ -86,10 +110,14 @@ export default {
                 constellation: this.constellation,
                 ascend: this.level.ascend,
                 level: this.level.level,
+
+                args: this.getExtraConfig(),
             }
         },
 
         setCharacterConfig(config) {
+            this.characterName = config.name;
+
             this.skill1 = config.skill1,
             this.skill2 = config.skill2;
             this.skill3 = config.skill3;
@@ -97,13 +125,20 @@ export default {
 
             this.level.ascend = config.ascend;
             this.level.level = config.level;
+
+            this.$nextTick(() => {
+                this.$refs.extraConfig.setData(config.args);
+            })
+        },
+
+        setCharacterName(name) {
+            this.characterName = name;
         }
     },
-    filters: {
-        levelText(obj) {
-            // console.log(obj);
-            let a = obj.ascend;
-            let lvl = obj.level;
+    computed: {
+        levelText() {
+            let a = this.level.ascend;
+            let lvl = this.level.level;
 
             let temp = [20, 40, 50, 60, 70, 80];
             if (temp.indexOf(lvl) === -1) {
@@ -111,8 +146,16 @@ export default {
             } else {
                 return `${lvl}${a ? "+" : "-"}`;
             }
+        },
+
+        c() {
+            return charactersData[this.characterName];
+        },
+
+        needExtraConfig() {
+            return !!this.c.config;
         }
-    },
+    }
 }
 </script>
 

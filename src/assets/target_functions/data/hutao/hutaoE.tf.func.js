@@ -1,7 +1,8 @@
-import skill from "./skill";
+import { charactersData } from "@asset/characters";
 import reaction from "@/elemental_reaction/reaction_bonus";
 
 let ampFunc = reaction.amp;
+let skill = charactersData["hutao"].skill;
 
 function f(config) {
     let baseAtk = config.character.baseAtk + config.weapon.baseAtk;
@@ -11,11 +12,9 @@ function f(config) {
     let conste = config.cArgs.constellation;
 
     let aT = skill.a.dmg3[aLevel - 1];
-    let bT = skill.b.dmg[aLevel - 1];
+    let bT = skill.a.bDmg[aLevel - 1];
 
-    let hasTalent2 = config.character.hasTalent2;
 
-    let hpBelow50 = config.tArgs.hpBelow50;
     let pyroRate = config.tArgs.pyroRate;
     let evaporate = config.tArgs.evaporate;
     let melt = config.tArgs.melt;
@@ -27,7 +26,6 @@ function f(config) {
     let aFreq = 1 - bFreq;
     let conste6Rate = conste === 6 ? config.tArgs.conste6Rate : 0;
 
-    let talentBonus = (hasTalent2 && hpBelow50) ? 0.33 : 0;
 
     if (mode === "expect") {
         return function (attribute, context) {
@@ -38,7 +36,7 @@ function f(config) {
             atkBonus = Math.min(atkBonus, 4 * baseAtk);
 
             let atk = attribute.attack() + atkBonus;
-            let commonBonus = attribute.bonus + attribute.fireBonus + talentBonus;
+            let commonBonus = attribute.bonus + attribute.fireBonus;
 
             let em = attribute.elementalMastery;
             let amp = ampFunc(em);
@@ -71,7 +69,7 @@ function f(config) {
             atkBonus = Math.min(atkBonus, 4 * baseAtk);
 
             let atk = attribute.attack() + atkBonus;
-            let commonBonus = attribute.bonus + attribute.fireBonus + talentBonus + attribute[skillType + "Bonus"];
+            let commonBonus = attribute.bonus + attribute.fireBonus + attribute[skillType + "Bonus"];
             let otherBonus = isLW4 && lw4 ? 0.35 : 0;
 
             return atk * (1 + commonBonus + otherBonus) * (1 + attribute.criticalDamage);
@@ -85,7 +83,7 @@ function f(config) {
             atkBonus = Math.min(atkBonus, 4 * baseAtk);
 
             let atk = attribute.attack() + atkBonus;
-            let commonBonus = attribute.bonus + attribute.fireBonus + talentBonus + attribute[skillType + "Bonus"];
+            let commonBonus = attribute.bonus + attribute.fireBonus + attribute[skillType + "Bonus"];
 
             let em = attribute.elementalMastery;
             let amp = ampFunc(em);

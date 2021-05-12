@@ -26,15 +26,6 @@
             </el-radio-group>
         </div>
 
-        <div class="config-item">
-            <h3 class="config-title">生命值低于50%</h3>
-            <el-switch
-                v-model="hpBelow50"
-                active-text="是"
-                inactive-text="否"
-            ></el-switch>
-        </div>
-
         <div
             class="config-item"
             v-if="mode === 'max' || mode === 'max-reaction'"
@@ -109,7 +100,6 @@ export default {
     name: "Hutao.tcfg",
     data() {
         return {
-            hpBelow50: false,
             pyroRate: "0.9",
             evaporate: "0.5",
             melt: "0",
@@ -123,7 +113,6 @@ export default {
     methods: {
         compact() {
             return {
-                hpBelow50: this.hpBelow50,
                 pyroRate: parseFloat(this.pyroRate) ?? 0.9,
                 evaporate: parseFloat(this.evaporate) ?? 0.5,
                 melt: parseFloat(this.melt) ?? 0,
@@ -135,7 +124,6 @@ export default {
             };
         },
         setData(d) {
-            this.hpBelow50 = d.hpBelow50;
             this.pyroRate = d.pyroRate.toString();
             this.evaporate = d.evaporate.toString();
             this.melt = d.melt.toString();

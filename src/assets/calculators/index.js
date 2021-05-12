@@ -8,5 +8,5 @@ function importAll(r) {
 }
 
 importAll(require.context("./data", true, /\.calculator\.vue$/));
-
+// console.log(cache);
 export default cache;

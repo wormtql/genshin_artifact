@@ -11,7 +11,7 @@ export default class Enemy {
         return (characterLevel + 100) / ((1 - defDown) * def + characterLevel + 100);
     }
 
-    getPR(element) {
+    getRR(element) {
         let attr;
         if (element === "physical") {
             attr = "phyRes";

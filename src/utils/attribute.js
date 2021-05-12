@@ -40,7 +40,7 @@ export function applyBuffs(attribute, buffs) {
 }
 
 export function getAttribute(artifacts, c, w, stdBuffs) {
-    let character = new genshin.Character(c.name, c.level, c.ascend, 0);
+    let character = new genshin.Character(c.name, c.level, c.ascend, c.constellation, c.args);
     let weapon = new genshin.Weapon(w.name, w.level, w.ascend, w.refine, w.args);
 
     let builder = new genshin.AttributeBuilder();
