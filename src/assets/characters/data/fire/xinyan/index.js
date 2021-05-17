@@ -1,5 +1,6 @@
 import card from "./card.jpg";
 import avatar from "@asset/badges/xinyan.png";
+import skill from "./xinyan.skill.js";
 
 export default {
     cardURL: card,
@@ -10,4 +11,5 @@ export default {
     weapon: "sword2",
     star: 4,
     avatar,
+    skill,
 }

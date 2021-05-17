@@ -1,6 +1,6 @@
 // import * as genshin from "genshin_panel";
 
-import { tableNormalA, tableReactionA } from "../../utils";
+import { tableNormalA, tableReactionA } from "../../../utils";
 import mergeArray from "@util/mergeArray";
 import { getAttribute } from "@util/attribute";
 // import { charactersData } from "@asset/characters";

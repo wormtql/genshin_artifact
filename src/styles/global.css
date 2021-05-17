@@ -67,3 +67,13 @@ body {
 .el-drawer__container ::-webkit-scrollbar{
     display: none;
 }
+
+.single-item {
+    font-size: 12px;
+    color: #606266;
+    /* background: #eee; */
+    padding: 8px 0;
+    border-radius: 3px;
+    border-bottom: 1px solid #EBEEF5;
+    margin: 0;
+}

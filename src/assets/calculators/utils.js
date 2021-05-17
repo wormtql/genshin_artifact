@@ -1,6 +1,7 @@
 import { getAttribute } from "@util/attribute";
 import { charactersData } from "@asset/characters";
 import reaction from "@/elemental_reaction/reaction_bonus";
+import mergeArray from "@util/mergeArray";
 
 
 function getBonus(attribute, element, skill) {
@@ -17,6 +18,7 @@ export function damageNormal(attribute, cLevel, r, enemy, element, skill) {
     let base = atk * r * defensiveRatio * resRatio * damageBonus;
 
     let crit = skill == "a" ? attribute["critical"] : attribute[skill + "Critical"];
+    crit = Math.min(crit, 1);
     let cd = attribute.criticalDamage;
 
     return {
@@ -125,4 +127,37 @@ export function tableReaction(type, artifacts, configObject, enemy, skillKeys, s
     let attribute = getAttribute(artifacts, c, w, buffs);
 
     return tableReactionA(type, attribute, configObject, enemy, skillKeys, skillId);
+}
+
+// 创建[火元素伤害、蒸发、融化的]的函数
+export function createFireFunction(skillKeys, skill) {
+    return function (artifacts, configObject, enemy) {
+        let c = configObject.character;
+        let w = configObject.weapon;
+        let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+
+        let ret = mergeArray(
+            ["chs", skillKeys.map(item => item.chs)],
+            ["fire", tableNormalA(attribute, configObject, enemy, skillKeys, skill)],
+            ["fireMelt", tableReactionA("melt", attribute, configObject, enemy, skillKeys, skill)],
+            ["fireVaporize", tableReactionA("vaporize", attribute, configObject, enemy, skillKeys, skill)],
+        );
+
+        return ret;
+    }
+}
+
+export function createPhysicalFunction(skillKeys, skill) {
+    return function (artifacts, configObject, enemy) {
+        let c = configObject.character;
+        let w = configObject.weapon;
+        let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+
+        let ret =  mergeArray(
+            ["chs", skillKeys.map(item => item.chs)],
+            ["normal", tableNormalA(attribute, configObject, enemy, skillKeys, skill)],
+        );
+        
+        return ret;
+    }
 }

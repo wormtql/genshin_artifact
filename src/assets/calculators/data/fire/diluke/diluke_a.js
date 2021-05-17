@@ -1,12 +1,8 @@
-import { tableNormal, tableNormalA, tableReactionA } from "../../utils";
+import { tableNormalA, tableReactionA } from "../../../utils";
 import mergeArray from "@util/mergeArray";
 import deepCopy from "@util/deepcopy";
 import { getAttribute } from "@util/attribute";
 
-
-import { charactersData } from "@asset/characters";
-
-const hutao = charactersData["hutao"];
 
 let skillKeys = [
     {
@@ -30,23 +26,13 @@ let skillKeys = [
         skill: "a",
     },
     {
-        key: "dmg51",
-        chs: "普攻5段-1",
-        skill: "a",
+        key: "bDmg1",
+        chs: "重击循环",
+        skill: "b",
     },
     {
-        key: "dmg52",
-        chs: "普攻5段-2",
-        skill: "a",
-    },
-    {
-        key: "dmg6",
-        chs: "普攻6段",
-        skill: "a",
-    },
-    {
-        key: "bDmg",
-        chs: "重击",
+        key: "bDmg2",
+        chs: "重击终结",
         skill: "b",
     },
     {
@@ -78,31 +64,18 @@ export default function (artifacts, configObject, enemy) {
     let buffs = configObject.buffs;
     let attribute = getAttribute(artifacts, c, w, buffs);
 
+    let hasTalent2 = c.level > 60 || (c.level === 60 && c.ascend);
+    if (hasTalent2) {
+        attribute.fireBonus += 0.2;
+    }
+
     let temp =  mergeArray(
         ["chs", skillKeys.map(item => item.chs)],
-        ["normal", tableNormal(artifacts, configObject, enemy, skillKeys1, "a")],
-        // ["thunder", tableNormal(artifacts, configObject, enemy, skillKeys2, "a")],
+        ["normal", tableNormalA(attribute, configObject, enemy, skillKeys1, "a")],
+        ["fire", tableNormalA(attribute, configObject, enemy, skillKeys2, "a")],
+        ["fireMelt", tableReactionA("melt", attribute, configObject, enemy, skillKeys2, "a")],
+        ["fireVaporize", tableReactionA("vaporize", attribute, configObject, enemy, skillKeys2, "a")],
     )
-
-    // 开E后
-    attribute.attackStatic += hutao.skill.e.hp[c.skill2 - 1] * attribute.life();
-    temp = mergeArray(
-        temp,
-        ["afterE", tableNormalA(attribute, configObject, enemy, skillKeys2, "a")],
-        ["afterEMelt", tableReactionA("melt", attribute, configObject, enemy, skillKeys2, "a")],
-        ["afterEVaporize", tableReactionA("vaporize", attribute, configObject, enemy, skillKeys2, "a")]
-    );
-
-    // 开E后融化
-
-
-    // 开E且生命值低于50
-    // attribute.fireBonus += 0.33;
-    // temp = mergeArray(
-    //     temp,
-    //     ["afterEBelow50", tableNormalA(attribute, configObject, enemy, skillKeys2, "a")],
-    // );
-    // console.log(temp);
 
     return temp;
 }

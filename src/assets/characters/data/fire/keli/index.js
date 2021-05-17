@@ -1,5 +1,6 @@
 import card from "./card.jpg";
 import avatar from "@asset/badges/keli.png";
+import skill from "./keli.skill.js";
 
 export default {
     cardURL: card,
@@ -10,4 +11,5 @@ export default {
     weapon: "book",
     star: 5,
     avatar,
+    skill,
 }
