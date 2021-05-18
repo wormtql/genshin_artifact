@@ -10,122 +10,49 @@
             <el-radio-button label="q">黎明</el-radio-button>
         </el-radio-group>
 
-        <el-table
-            :data="dilukeA"
-            v-show="showSkill === 'a'"
-            size="small"
-            stripe
-        >
-            <el-table-column
-                label="技能"
-                property="chs"
-                width="150"
-            ></el-table-column>
-            <el-table-column
-                label="伤害"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normal"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="被Q附魔"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.fire"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="被Q附魔（融化）"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.fireMelt"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="被Q附魔（蒸发）"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.fireVaporize"></damage-display>
-                </template>
-            </el-table-column>
-        </el-table>
-        <el-table
-            :data="dilukeE"
+        <div v-show="showSkill === 'a'">
+            <el-switch
+                active-text="被Q技能附魔"
+                v-model="config.afterQ"
+                class="mb-16"
+            ></el-switch>
+            <div v-if="config.afterQ">
+                <common-table-fire
+                    :data="dilukeA.a"
+                    class="mb-16"
+                ></common-table-fire>
+                <common-table-fire
+                    :data="dilukeA.b"
+                    class="mb-16"
+                ></common-table-fire>
+                <common-table-fire
+                    :data="dilukeA.air"
+                ></common-table-fire>
+            </div>
+            <div v-else>
+                <common-table-physical
+                    :data="dilukeA.a"
+                    class="mb-16"
+                ></common-table-physical>
+                <common-table-physical
+                    :data="dilukeA.b"
+                    class="mb-16"
+                ></common-table-physical>
+                <common-table-physical
+                    :data="dilukeA.air"
+                ></common-table-physical>
+            </div>
+        </div>
+
+        <common-table-fire
             v-show="showSkill === 'e'"
-            size="small"
-            stripe
-        >
-            <el-table-column
-                label="技能"
-                property="chs"
-                width="150"
-            ></el-table-column>
-            <el-table-column
-                label="伤害"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normal"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="伤害（融化）"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normalMelt"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="伤害（蒸发）"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normalVaporize"></damage-display>
-                </template>
-            </el-table-column>
-        </el-table>
-        <el-table
-            :data="dilukeQ"
+            :data="dilukeE"
+        ></common-table-fire>
+
+        <common-table-fire
             v-show="showSkill === 'q'"
-            size="small"
-            stripe
-        >
-            <el-table-column
-                label="技能"
-                property="chs"
-                width="150"
-            ></el-table-column>
-            <el-table-column
-                label="伤害"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normal"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="伤害（融化）"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normalMelt"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="伤害（蒸发）"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normalVaporize"></damage-display>
-                </template>
-            </el-table-column>
-        </el-table>
+            :data="dilukeQ"
+        ></common-table-fire>
     </div>
 </template>
 
@@ -134,13 +61,15 @@ import Enemy from "@asset/enemies/enemy";
 import dilukeA from "./diluke_a";
 import dilukeE from "./diluke_e";
 import dilukeQ from "./diluke_q";
+import CommonTableFire from '../../../CommonTableFire.vue';
+import CommonTablePhysical from '../../../CommonTablePhysical.vue';
 
-import DamageDisplay from "@c/display/DamageDisplay";
 
 export default {
     name: "Diluke.calculator",
     components: {
-        DamageDisplay,
+        CommonTableFire,
+        CommonTablePhysical,
     },
     props: {
         enemy: {
@@ -159,11 +88,14 @@ export default {
     data() {
         return {
             showSkill: "a",
+            config: {
+                afterQ: false,
+            }
         }
     },
     computed: {
         dilukeA() {
-            return dilukeA(this.artifacts, this.configObject, this.enemy);
+            return dilukeA(this.artifacts, this.configObject, this.enemy, this.config);
         },
 
         dilukeE() {

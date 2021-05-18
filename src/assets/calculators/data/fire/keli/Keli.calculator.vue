@@ -10,114 +10,35 @@
             <el-radio-button label="q">轰轰火花</el-radio-button>
         </el-radio-group>
 
-        <el-table
-            :data="keliA"
-            v-show="showSkill === 'a'"
-            size="small"
-            stripe
-        >
-            <el-table-column
-                label="技能"
-                property="chs"
-                width="150"
-            ></el-table-column>
-            <el-table-column
-                label="伤害"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normal"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="融化"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normalMelt"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="蒸发"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normalVaporize"></damage-display>
-                </template>
-            </el-table-column>
-        </el-table>
-        <el-table
-            :data="keliE"
+        <div v-show="showSkill === 'a'">
+            <el-switch
+                v-model="config.spark"
+                active-text="爆裂火花重击"
+                class="mb-16"
+            ></el-switch>
+            
+            <common-table-fire
+                :data="keliA.a"
+                class="mb-16"
+            ></common-table-fire>
+            <common-table-fire
+                :data="keliA.b"
+                class="mb-16"
+            ></common-table-fire>
+            <common-table-fire
+                :data="keliA.air"
+            ></common-table-fire>
+        </div>
+
+        <common-table-fire
             v-show="showSkill === 'e'"
-            size="small"
-            stripe
-        >
-            <el-table-column
-                label="技能"
-                property="chs"
-                width="150"
-            ></el-table-column>
-            <el-table-column
-                label="伤害"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normal"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="融化"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normalMelt"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="蒸发"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normalVaporize"></damage-display>
-                </template>
-            </el-table-column>
-        </el-table>
-        <el-table
-            :data="keliQ"
+            :data="keliE"
+        ></common-table-fire>
+
+        <common-table-fire
             v-show="showSkill === 'q'"
-            size="small"
-            stripe
-        >
-            <el-table-column
-                label="技能"
-                property="chs"
-                width="150"
-            ></el-table-column>
-            <el-table-column
-                label="伤害"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normal"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="融化"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normalMelt"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="蒸发"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normalVaporize"></damage-display>
-                </template>
-            </el-table-column>
-        </el-table>
+            :data="keliQ"
+        ></common-table-fire>
     </div>
 </template>
 
@@ -127,12 +48,12 @@ import keliA from "./keli_a";
 import keliE from "./keli_e";
 import keliQ from "./keli_q";
 
-import DamageDisplay from "@c/display/DamageDisplay";
+import CommonTableFire from '../../../CommonTableFire.vue';
 
 export default {
     name: "Keli.calculator",
     components: {
-        DamageDisplay,
+        CommonTableFire
     },
     props: {
         enemy: {
@@ -151,11 +72,14 @@ export default {
     data() {
         return {
             showSkill: "a",
+            config: {
+                spark: false,
+            }
         }
     },
     computed: {
         keliA() {
-            return keliA(this.artifacts, this.configObject, this.enemy);
+            return keliA(this.artifacts, this.configObject, this.enemy, this.config);
         },
 
         keliE() {

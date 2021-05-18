@@ -13,7 +13,7 @@
                 class="skill"
                 v-model="skill1"
                 :min="1"
-                :max="13"
+                :max="11"
                 size="small"
             ></el-input-number>
             <el-input-number

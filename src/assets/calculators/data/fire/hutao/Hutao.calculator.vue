@@ -10,142 +10,54 @@
             <el-radio-button label="q">安神秘法</el-radio-button>
         </el-radio-group>
 
-        <el-table
-            :data="hutaoA"
-            v-show="showSkill === 'a'"
-            size="small"
-            stripe
-        >
-            <el-table-column
-                label="技能"
-                property="chs"
-                width="150"
-            ></el-table-column>
-            <el-table-column
-                label="伤害"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.normal"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="开E后"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.afterE"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="开E后（蒸发）"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.afterEVaporize"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="开E后（融化）"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.afterEMelt"></damage-display>
-                </template>
-            </el-table-column>
-        </el-table>
-        <el-table
-            :data="hutaoE"
-            v-show="showSkill === 'e'"
-            size="small"
-            stripe
-        >
-            <el-table-column
-                label="技能"
-                property="chs"
-                width="150"
-            ></el-table-column>
-            <el-table-column
-                label="伤害"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.xmx"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="伤害（融化）"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.xmxMelt"></damage-display>
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="伤害（蒸发）"
-                width="200"
-            >
-                <template slot-scope="scope">
-                    <damage-display :damage="scope.row.xmxVaporize"></damage-display>
-                </template>
-            </el-table-column>
-        </el-table>
+        <div v-show="showSkill === 'a'">
+            <el-switch
+                v-model="config.afterE"
+                active-text="彼岸蝶舞"
+                class="mb-16"
+            ></el-switch>
+
+            <div v-if="config.afterE">
+                <common-table-fire
+                    :data="hutaoA.a"
+                    class="mb-16"
+                ></common-table-fire>
+                <common-table-fire
+                    :data="hutaoA.b"
+                    class="mb-16"
+                ></common-table-fire>
+                <common-table-fire
+                    :data="hutaoA.air"
+                ></common-table-fire>
+            </div>
+            <div v-else>
+                <common-table-physical
+                    :data="hutaoA.a"
+                    class="mb-16"
+                ></common-table-physical>
+                <common-table-physical
+                    :data="hutaoA.b"
+                    class="mb-16"
+                ></common-table-physical>
+                <common-table-physical
+                    :data="hutaoA.air"
+                ></common-table-physical>
+            </div>
+        </div>
+
+        <div v-show="showSkill === 'e'">
+            <common-table-fire
+                :data="hutaoE.e"
+            ></common-table-fire>
+            <p class="single-item">增加攻击力：{{ hutaoE.atkBonus }}</p>
+        </div>
+
         <div v-show="showSkill === 'q'">
-            <el-table
-                :data="hutaoQ"
-                size="small"
-                stripe
-                style="margin-bottom: 16px"
-            >
-                <el-table-column
-                    label="技能"
-                    property="chs"
-                    width="150"
-                ></el-table-column>
-                <el-table-column
-                    label="伤害"
-                    width="200"
-                >
-                    <template slot-scope="scope">
-                        <damage-display :damage="scope.row.normal"></damage-display>
-                    </template>
-                </el-table-column>
-                <el-table-column
-                    label="伤害（融化）"
-                    width="200"
-                >
-                    <template slot-scope="scope">
-                        <damage-display :damage="scope.row.normalMelt"></damage-display>
-                    </template>
-                </el-table-column>
-                <el-table-column
-                    label="伤害（蒸发）"
-                    width="200"
-                >
-                    <template slot-scope="scope">
-                        <damage-display :damage="scope.row.normalVaporize"></damage-display>
-                    </template>
-                </el-table-column>
-            </el-table>
-            <el-table
-                :data="hutaoQCure"
-                size="small"
-                stripe
-            >
-                <el-table-column
-                    label="项目"
-                    property="chs"
-                    width="150"
-                ></el-table-column>
-                <el-table-column
-                    label="治疗"
-                    width="200"
-                >
-                    <template slot-scope="scope">
-                        {{ scope.row.cure.toFixed(0) }}
-                    </template>
-                </el-table-column>
-            </el-table>
+            <common-table-fire
+                :data="hutaoQ.q"
+            ></common-table-fire>
+            <p class="single-item">治疗量：{{ hutaoQ.cure1 }}</p>
+            <p class="single-item">低血量治疗量：{{ hutaoQ.cure2 }}</p>
         </div>
     </div>
 </template>
@@ -155,14 +67,15 @@ import Enemy from "@asset/enemies/enemy";
 import hutaoA from "./hutao_a";
 import hutaoE from "./hutao_e";
 import hutaoQ from "./hutao_q";
-import hutaoQCure from "./hutao_q_cure";
+import CommonTableFire from '../../../CommonTableFire.vue';
+import CommonTablePhysical from "../../../CommonTablePhysical";
 
-import DamageDisplay from "@c/display/DamageDisplay";
 
 export default {
     name: "Hutao.calculator",
     components: {
-        DamageDisplay,
+        CommonTableFire,
+        CommonTablePhysical,
     },
     props: {
         enemy: {
@@ -181,11 +94,14 @@ export default {
     data() {
         return {
             showSkill: "a",
+            config: {
+                afterE: false,
+            }
         }
     },
     computed: {
         hutaoA() {
-            return hutaoA(this.artifacts, this.configObject, this.enemy);
+            return hutaoA(this.artifacts, this.configObject, this.enemy, this.config);
         },
 
         hutaoE() {
@@ -195,10 +111,6 @@ export default {
         hutaoQ() {
             return hutaoQ(this.artifacts, this.configObject, this.enemy);
         },
-
-        hutaoQCure() {
-            return hutaoQCure(this.artifacts, this.configObject);
-        }
     }
 }
 </script>

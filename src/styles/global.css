@@ -77,3 +77,7 @@ body {
     border-bottom: 1px solid #EBEEF5;
     margin: 0;
 }
+
+.mb-16 {
+    margin-bottom: 16px;
+}

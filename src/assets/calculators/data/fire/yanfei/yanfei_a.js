@@ -1,5 +1,8 @@
 import { rowsAir, tableFire } from "../../../utils";
 import { getAttribute } from "@util/attribute";
+import { charactersData } from "@asset/characters";
+
+let skill = charactersData["yanfei"].skill;
 
 
 let rowsA = [
@@ -20,7 +23,23 @@ let rowsA = [
 let rowsB = [
     {
         key: "bDmg1",
-        chs: "重击",
+        chs: "无印伤害",
+    },
+    {
+        key: "bDmg2",
+        chs: "1印伤害",
+    },
+    {
+        key: "bDmg3",
+        chs: "2印伤害",
+    },
+    {
+        key: "bDmg4",
+        chs: "3印伤害",
+    },
+    {
+        key: "bDmg5",
+        chs: "4印伤害",
     },
 ];
 
@@ -29,15 +48,15 @@ export default function (artifacts, configObject, enemy, otherConfig) {
     let w = configObject.weapon;
     let attribute = getAttribute(artifacts, c, w, configObject.buffs);
 
-    if (otherConfig.spark) {
-        attribute.bBonus += 0.5;
+    if (otherConfig.burn) {
+        attribute.bBonus += skill.q.bBonus[c.skill3 - 1];
     }
 
     let a = tableFire(attribute, configObject, enemy, rowsA, "a");
     let b = tableFire(attribute, configObject, enemy, rowsB, "b");
     let air = tableFire(attribute, configObject, enemy, rowsAir, "air");
-    
+
     return {
-        a, b, air
-    };
+        a, b, air,
+    }
 }

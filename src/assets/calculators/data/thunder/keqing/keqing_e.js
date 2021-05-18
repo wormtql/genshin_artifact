@@ -1,20 +1,15 @@
-import { tableFire } from "../../../utils";
-// import mergeArray from "@util/mergeArray";
+import { tableThunder } from "../../../utils";
 import { getAttribute } from "@util/attribute";
 
 let skillKeys = [
     {
         key: "dmg1",
-        chs: "箭雨单次伤害",
-        skill: "q",
-        element: "fire",
+        chs: "雷楔伤害",
     },
     {
         key: "dmg2",
-        chs: "箭雨总伤害",
-        skill: "q",
-        element: "fire",
-    },
+        chs: "斩击伤害",
+    }
 ];
 
 export default function (artifacts, configObject, enemy) {
@@ -22,5 +17,5 @@ export default function (artifacts, configObject, enemy) {
     let w = configObject.weapon;
     let attribute = getAttribute(artifacts, c, w, configObject.buffs);
 
-    return tableFire(attribute, configObject, enemy, skillKeys, "q");
+    return tableThunder(attribute, configObject, enemy, skillKeys, "e");
 }

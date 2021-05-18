@@ -12,11 +12,20 @@
 
         <div v-show="showSkill === 'a'">
             <common-table-physical
-                :data="anboNormalA"
+                :data="anboA.a"
+                class="mb-16"
+            ></common-table-physical>
+            <common-table-physical
+                :data="anboA.b"
+                class="mb-16"
             ></common-table-physical>
             <common-table-fire
-                :data="anboFireA"
+                :data="anboA.b2"
+                class="mb-16"
             ></common-table-fire>
+            <common-table-physical
+                :data="anboA.air"
+            ></common-table-physical>
         </div>
 
         <common-table-fire
@@ -33,7 +42,7 @@
 
 <script>
 import Enemy from "@asset/enemies/enemy";
-import { normalA, fireA } from "./anbo_a";
+import anboA from "./anbo_a";
 import anboE from "./anbo_e";
 import anboQ from "./anbo_q";
 
@@ -68,12 +77,8 @@ export default {
         }
     },
     computed: {
-        anboNormalA() {
-            return normalA(this.artifacts, this.configObject, this.enemy);
-        },
-
-        anboFireA() {
-            return fireA(this.artifacts, this.configObject, this.enemy);
+        anboA() {
+            return anboA(this.artifacts, this.configObject, this.enemy);
         },
 
         anboE() {

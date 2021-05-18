@@ -1,19 +1,17 @@
-import { tableNormalA, tableReactionA } from "../../../utils";
-import mergeArray from "@util/mergeArray";
+import { tableFire } from "../../../utils";
 import { getAttribute } from "@util/attribute";
+import { charactersData } from "@asset/characters";
+
+const skill = charactersData["hutao"].skill;
 
 let skillKeys = [
     {
         key: "dmg1",
         chs: "伤害",
-        skill: "q",
-        element: "fire",
     },
     {
         key: "dmg2",
         chs: "低血量伤害",
-        skill: "q",
-        element: "fire",
     },
 ];
 
@@ -22,12 +20,11 @@ export default function (artifacts, configObject, enemy) {
     let w = configObject.weapon;
     let attribute = getAttribute(artifacts, c, w, configObject.buffs);
 
-    let ret = mergeArray(
-        ["chs", skillKeys.map(item => item.chs)],
-        ["normal", tableNormalA(attribute, configObject, enemy, skillKeys, "q")],
-        ["normalMelt", tableReactionA("melt", attribute, configObject, enemy, skillKeys, "q")],
-        ["normalVaporize", tableReactionA("vaporize", attribute, configObject, enemy, skillKeys, "q")],
-    );
+    let q = tableFire(attribute, configObject, enemy, skillKeys, "q");
+    let cure1 = skill.q.cure1[c.skill3 - 1] * attribute.life();
+    let cure2 = skill.q.cure2[c.skill3 - 1] * attribute.life();
 
-    return ret;
+    return {
+        q, cure1, cure2,
+    };
 }

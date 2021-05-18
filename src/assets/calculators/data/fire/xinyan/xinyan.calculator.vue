@@ -13,16 +13,20 @@
         <div v-show="showSkill === 'a'">
             <common-table-physical
                 :data="xinyanA.a"
-                style="margin-bottom: 16px"
+                class="mb-16"
             ></common-table-physical>
             <common-table-physical
                 :data="xinyanA.b"
+                class="mb-16"
+            ></common-table-physical>
+            <common-table-physical
+                :data="xinyanA.air"
             ></common-table-physical>
         </div>
 
         <div v-show="showSkill === 'e'">
             <common-table-fire
-                :data="xinyanE.dmg"
+                :data="xinyanE.e"
             ></common-table-fire>
 
             <p class="single-item">

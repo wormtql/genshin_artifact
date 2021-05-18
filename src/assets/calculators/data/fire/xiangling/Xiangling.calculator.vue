@@ -10,10 +10,19 @@
             <el-radio-button label="q">旋火轮</el-radio-button>
         </el-radio-group>
 
-        <common-table-physical
-            :data="xianglingA"
-            v-show="showSkill === 'a'"
-        ></common-table-physical>
+        <div v-show="showSkill === 'a'">
+            <common-table-physical
+                :data="xianglingA.a"
+                class="mb-16"
+            ></common-table-physical>
+            <common-table-physical
+                :data="xianglingA.b"
+                class="mb-16"
+            ></common-table-physical>
+            <common-table-physical
+                :data="xianglingA.air"
+            ></common-table-physical>
+        </div>
 
         <common-table-fire
             v-show="showSkill === 'e'"
@@ -33,14 +42,12 @@ import xianglingA from "./xiangling_a";
 import xianglingE from "./xiangling_e";
 import xianglingQ from "./xiangling_q";
 
-// import DamageDisplay from "@c/display/DamageDisplay";
 import CommonTableFire from "../../../CommonTableFire";
 import CommonTablePhysical from "../../../CommonTablePhysical";
 
 export default {
     name: "Xiangling.calculator",
     components: {
-        // DamageDisplay,
         CommonTableFire,
         CommonTablePhysical,
     },

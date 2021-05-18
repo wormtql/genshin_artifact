@@ -12,7 +12,15 @@
 
         <div v-show="showSkill === 'a'">
             <common-table-physical
-                :data="banniteA"
+                :data="banniteA.a"
+                class="mb-16"
+            ></common-table-physical>
+            <common-table-physical
+                :data="banniteA.b"
+                class="mb-16"
+            ></common-table-physical>
+            <common-table-physical
+                :data="banniteA.air"
             ></common-table-physical>
         </div>
 
@@ -23,7 +31,7 @@
 
         <div v-show="showSkill === 'q'">
             <common-table-fire
-                :data="banniteQ.damage"
+                :data="banniteQ.q"
             ></common-table-fire>
 
             <p class="single-item">持续治疗：{{ banniteQ.cure }}</p>
@@ -34,18 +42,16 @@
 
 <script>
 import Enemy from "@asset/enemies/enemy";
-import { normalA as banniteA } from "./bannite_a";
+import banniteA from "./bannite_a";
 import banniteE from "./bannite_e";
 import banniteQ from "./bannite_q";
 
-// import DamageDisplay from "@c/display/DamageDisplay";
 import CommonTableFire from "../../../CommonTableFire";
 import CommonTablePhysical from "../../../CommonTablePhysical";
 
 export default {
     name: "Bannite.calculator",
     components: {
-        // DamageDisplay,
         CommonTableFire,
         CommonTablePhysical,
     },

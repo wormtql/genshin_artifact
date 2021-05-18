@@ -1,6 +1,5 @@
-import { rowsAir, tableFire, tablePhysical } from "../../../utils";
+import { rowsAir, tablePhysical, tableThunder } from "../../../utils";
 import { getAttribute } from "@util/attribute";
-
 
 let rowsA = [
     {
@@ -16,38 +15,36 @@ let rowsA = [
         chs: "普攻3段",
     },
     {
-        key: "dmg4",
-        chs: "普攻4段",
+        key: "dmg41",
+        chs: "普攻4段-1",
+    },
+    {
+        key: "dmg42",
+        chs: "普攻4段-2",
+    },
+    {
+        key: "dmg5",
+        chs: "普攻5段",
     },
 ];
 
 let rowsB = [
     {
         key: "bDmg1",
-        chs: "重击循环",
+        chs: "重击-1",
     },
     {
         key: "bDmg2",
-        chs: "重击终结",
+        chs: "重击-2",
     },
-];
+]
 
 export default function (artifacts, configObject, enemy, otherConfig) {
     let c = configObject.character;
     let w = configObject.weapon;
     let attribute = getAttribute(artifacts, c, w, configObject.buffs);
-
-    let hasTalent2 = c.level > 60 || (c.level === 60 && c.ascend);
-    if (hasTalent2) {
-        attribute.fireBonus += 0.2;
-    }
-
-    let f;
-    if (otherConfig.afterQ) {
-        f = tableFire;
-    } else {
-        f = tablePhysical;
-    }
+    
+    let f = otherConfig.afterE ? tableThunder : tablePhysical;
 
     let a = f(attribute, configObject, enemy, rowsA, "a");
     let b = f(attribute, configObject, enemy, rowsB, "b");
@@ -55,5 +52,5 @@ export default function (artifacts, configObject, enemy, otherConfig) {
 
     return {
         a, b, air,
-    };
+    }
 }

@@ -4,27 +4,7 @@ import { getAttribute } from "@util/attribute";
 let skillKeys = [
     {
         key: "dmg1",
-        chs: "点按伤害",
-    },
-    {
-        key: "dmg21",
-        chs: "一段蓄力-1",
-    },
-    {
-        key: "dmg22",
-        chs: "一段蓄力-2",
-    },
-    {
-        key: "dmg31",
-        chs: "二段蓄力-1",
-    },
-    {
-        key: "dmg32",
-        chs: "二段蓄力-2",
-    },
-    {
-        key: "dmg4",
-        chs: "爆炸伤害",
+        chs: "技能伤害",
     },
 ];
 

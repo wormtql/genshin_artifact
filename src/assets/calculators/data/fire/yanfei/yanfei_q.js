@@ -1,19 +1,13 @@
 import { tableFire } from "../../../utils";
-// import mergeArray from "@util/mergeArray";
 import { getAttribute } from "@util/attribute";
+import { charactersData } from "@asset/characters";
+
+let skill = charactersData["yanfei"].skill;
 
 let skillKeys = [
     {
         key: "dmg1",
-        chs: "箭雨单次伤害",
-        skill: "q",
-        element: "fire",
-    },
-    {
-        key: "dmg2",
-        chs: "箭雨总伤害",
-        skill: "q",
-        element: "fire",
+        chs: "技能伤害",
     },
 ];
 
@@ -22,5 +16,10 @@ export default function (artifacts, configObject, enemy) {
     let w = configObject.weapon;
     let attribute = getAttribute(artifacts, c, w, configObject.buffs);
 
-    return tableFire(attribute, configObject, enemy, skillKeys, "q");
+    let bBonus = skill.q.bBonus[c.skill3 - 1];
+    let q = tableFire(attribute, configObject, enemy, skillKeys, "e");
+
+    return {
+        q, bBonus,
+    }
 }

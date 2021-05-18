@@ -1,4 +1,4 @@
-import { getAttribute } from "@util/attribute";
+// import { getAttribute } from "@util/attribute";
 import { charactersData } from "@asset/characters";
 import reaction from "@/elemental_reaction/reaction_bonus";
 import mergeArray from "@util/mergeArray";
@@ -48,55 +48,52 @@ export function damageReaction(type, attribute, cLevel, r, enemy, element, skill
     };
 }
 
-export function tableNormalA(attribute, configObject, enemy, skillKeys, skillId) {
+export function colNormal(attribute, configObject, enemy, rowConfigs, skillName, element) {
     let c = configObject.character;
 
     let cName = c.name;
     let skillData = charactersData[cName].skill;
 
     let skillLevel;
-    if (skillId === "a" || skillId === "b" || skillId === "air") {
+    let skill;
+    if (skillName === "a" || skillName === "b" || skillName === "air") {
         skillLevel = c.skill1;
-    } else if (skillId === "e") {
+        skill = "a";
+    } else if (skillName === "e") {
         skillLevel = c.skill2;
+        skill = "e";
     } else {
         skillLevel = c.skill3;
+        skill = "q";
     }
 
     let ret = [];
-    for (let i = 0; i < skillKeys.length; i++) {
-        let skillItem = skillKeys[i];
+    for (let i = 0; i < rowConfigs.length; i++) {
+        let skillItem = rowConfigs[i];
         ret.push(damageNormal(
             attribute,
             c.level,
-            skillData[skillId][skillItem.key][skillLevel - 1],
+            skillData[skill][skillItem.key][skillLevel - 1],
             enemy,
-            skillItem.element,
-            skillItem.skill,
+            element,
+            skillName,
         ));
     }
 
     return ret;
 }
 
-export function tableNormal(artifacts, configObject, enemy, skillKeys, skillId) {
-    let c = configObject.character;
-    let w = configObject.weapon;
-    let buffs = configObject.buffs;
-    let attribute = getAttribute(artifacts, c, w, buffs);
-
-    return tableNormalA(attribute, configObject, enemy, skillKeys, skillId);
-}
-
-export function tableReactionA(type, attribute, configObject, enemy, skillKeys, skillId) {
+export function colReaction(type, attribute, configObject, enemy, skillKeys, skillId, element) {
     let c = configObject.character;
 
     let cName = c.name;
     let skillData = charactersData[cName].skill;
 
     let skillLevel;
+    let skill = skillId;
     if (skillId === "a" || skillId === "b" || skillId === "air") {
         skillLevel = c.skill1;
+        skill = "a";
     } else if (skillId === "e") {
         skillLevel = c.skill2;
     } else {
@@ -110,54 +107,52 @@ export function tableReactionA(type, attribute, configObject, enemy, skillKeys, 
             type,
             attribute,
             c.level,
-            skillData[skillId][skillItem.key][skillLevel - 1],
+            skillData[skill][skillItem.key][skillLevel - 1],
             enemy,
-            skillItem.element,
-            skillItem.skill,
+            element,
+            skillId,
         ));
     }
 
     return ret;
 }
 
-export function tableReaction(type, artifacts, configObject, enemy, skillKeys, skillId) {
-    let c = configObject.character;
-    let w = configObject.weapon;
-    let buffs = configObject.buffs;
-    let attribute = getAttribute(artifacts, c, w, buffs);
-
-    return tableReactionA(type, attribute, configObject, enemy, skillKeys, skillId);
+export function tableFire(attribute, configObject, enemy, rowConfigs, skillName) {
+    let ret = mergeArray(
+        ["chs", rowConfigs.map(item => item.chs)],
+        ["fire", colNormal(attribute, configObject, enemy, rowConfigs, skillName, "fire")],
+        ["fireMelt", colReaction("melt", attribute, configObject, enemy, rowConfigs, skillName, "fire")],
+        ["fireVaporize", colReaction("vaporize", attribute, configObject, enemy, rowConfigs, skillName, "fire")],
+    );
+    return ret;
 }
 
-// 创建[火元素伤害、蒸发、融化的]的函数
-export function createFireFunction(skillKeys, skill) {
-    return function (artifacts, configObject, enemy) {
-        let c = configObject.character;
-        let w = configObject.weapon;
-        let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+export function tableThunder(attribute, configObject, enemy, rowConfigs, skillName) {
+    return mergeArray(
+        ["chs", rowConfigs.map(item => item.chs)],
+        ["thunder", colNormal(attribute, configObject, enemy, rowConfigs, skillName, "thunder")],
+    );
+}
 
-        let ret = mergeArray(
-            ["chs", skillKeys.map(item => item.chs)],
-            ["fire", tableNormalA(attribute, configObject, enemy, skillKeys, skill)],
-            ["fireMelt", tableReactionA("melt", attribute, configObject, enemy, skillKeys, skill)],
-            ["fireVaporize", tableReactionA("vaporize", attribute, configObject, enemy, skillKeys, skill)],
-        );
+export function tablePhysical(attribute, configObject, enemy, rowConfigs, skillName) {
+    let ret =  mergeArray(
+        ["chs", rowConfigs.map(item => item.chs)],
+        ["normal", colNormal(attribute, configObject, enemy, rowConfigs, skillName, "physical")],
+    );
+    return ret;
+}
 
-        return ret;
+export let rowsAir = [
+    {
+        key: "airDmg1",
+        chs: "下坠期间",
+    },
+    {
+        key: "airDmg2",
+        chs: "下坠（低空）",
+    },
+    {
+        key: "airDmg3",
+        chs: "下坠（高空）",
     }
-}
-
-export function createPhysicalFunction(skillKeys, skill) {
-    return function (artifacts, configObject, enemy) {
-        let c = configObject.character;
-        let w = configObject.weapon;
-        let attribute = getAttribute(artifacts, c, w, configObject.buffs);
-
-        let ret =  mergeArray(
-            ["chs", skillKeys.map(item => item.chs)],
-            ["normal", tableNormalA(attribute, configObject, enemy, skillKeys, skill)],
-        );
-        
-        return ret;
-    }
-}
+]
