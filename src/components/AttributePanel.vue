@@ -166,6 +166,14 @@
             <span class="title">护盾强效</span>
             <span class="value">{{ mul100("shield") }}</span>
         </div>
+        <div class="item">
+            <span class="title">普通攻击攻速</span>
+            <span class="value">{{ mul100("aSpeed") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">重击攻速</span>
+            <span class="value">{{ mul100("bSpeed") }}</span>
+        </div>
     </div>
 </template>
 
