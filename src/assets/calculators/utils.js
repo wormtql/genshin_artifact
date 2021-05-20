@@ -48,7 +48,8 @@ export function damageReaction(type, attribute, cLevel, r, enemy, element, skill
     };
 }
 
-export function colNormal(attribute, configObject, enemy, rowConfigs, skillName, element) {
+// skillName: a, b, air, e, q
+export function colNormal(attribute, configObject, enemy, rowConfigs, skillName, element, as=skillName) {
     let c = configObject.character;
 
     let cName = c.name;
@@ -76,14 +77,14 @@ export function colNormal(attribute, configObject, enemy, rowConfigs, skillName,
             skillData[skill][skillItem.key][skillLevel - 1],
             enemy,
             element,
-            skillName,
+            as,
         ));
     }
 
     return ret;
 }
 
-export function colReaction(type, attribute, configObject, enemy, skillKeys, skillId, element) {
+export function colReaction(type, attribute, configObject, enemy, skillKeys, skillId, element, as=skillId) {
     let c = configObject.character;
 
     let cName = c.name;
@@ -110,7 +111,7 @@ export function colReaction(type, attribute, configObject, enemy, skillKeys, ski
             skillData[skill][skillItem.key][skillLevel - 1],
             enemy,
             element,
-            skillId,
+            as,
         ));
     }
 
@@ -131,6 +132,14 @@ export function tableThunder(attribute, configObject, enemy, rowConfigs, skillNa
     return mergeArray(
         ["chs", rowConfigs.map(item => item.chs)],
         ["thunder", colNormal(attribute, configObject, enemy, rowConfigs, skillName, "thunder")],
+    );
+}
+
+export function tableWater(attribute, configObject, enemy, rowConfigs, skillName, as=skillName) {
+    return mergeArray(
+        ["chs", rowConfigs.map(item => item.chs)],
+        ["water", colNormal(attribute, configObject, enemy, rowConfigs, skillName, "water", as)],
+        ["waterVaporize", colReaction("vaporize", attribute, configObject, enemy, rowConfigs, skillName, "water", as)],
     );
 }
 

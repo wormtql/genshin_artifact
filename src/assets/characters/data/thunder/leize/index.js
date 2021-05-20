@@ -1,5 +1,6 @@
 import card from "./card.jpg";
 import avatar from "@asset/badges/leize.png";
+import skill from "./leize.skill.js";
 
 export default {
     cardURL: card,
@@ -10,4 +11,5 @@ export default {
     weapon: "sword2",
     star: 4,
     avatar,
+    skill,
 }

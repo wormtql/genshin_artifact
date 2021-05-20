@@ -1,5 +1,6 @@
 import card from "./card.jpg";
 import avatar from "@asset/badges/dadaliya.png";
+import skill from "./dadaliya.skill.js";
 
 export default {
     cardURL: card,
@@ -8,5 +9,6 @@ export default {
     element: "water",
     weapon: "bow",
     star: 5,
-    avatar
+    avatar,
+    skill,
 }
