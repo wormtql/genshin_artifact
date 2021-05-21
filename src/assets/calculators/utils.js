@@ -128,6 +128,14 @@ export function tableFire(attribute, configObject, enemy, rowConfigs, skillName)
     return ret;
 }
 
+export function tableIce(attribute, configObject, enemy, rowConfigs, skillName) {
+    return mergeArray(
+        ["chs", rowConfigs.map(item => item.chs)],
+        ["ice", colNormal(attribute, configObject, enemy, rowConfigs, skillName, "ice")],
+        ["iceMelt", colReaction("melt", attribute, configObject, enemy, rowConfigs, skillName, "ice")]
+    );
+}
+
 export function tableThunder(attribute, configObject, enemy, rowConfigs, skillName) {
     return mergeArray(
         ["chs", rowConfigs.map(item => item.chs)],
@@ -141,6 +149,13 @@ export function tableWater(attribute, configObject, enemy, rowConfigs, skillName
         ["water", colNormal(attribute, configObject, enemy, rowConfigs, skillName, "water", as)],
         ["waterVaporize", colReaction("vaporize", attribute, configObject, enemy, rowConfigs, skillName, "water", as)],
     );
+}
+
+export function tableWind(attribute, configObject, enemy, rowConfigs, skillName, as=skillName) {
+    return mergeArray(
+        ["chs", rowConfigs.map(item => item.chs)],
+        ["wind", colNormal(attribute, configObject, enemy, rowConfigs, skillName, "wind", as)],
+    )
 }
 
 export function tablePhysical(attribute, configObject, enemy, rowConfigs, skillName) {

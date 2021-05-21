@@ -42,11 +42,18 @@ async function func() {
             
             let datas = [];
             for (let cell of cells) {
-                let matches = cell.innerHTML.match(/\d+(\.\d+)?%/g);
+                // let matches = cell.innerHTML.match(/(\d+(\.\d+)?%)|(\+\d+)/g);
+                let matches = cell.innerHTML.match(/(\d+(\.\d+)?%)/g);
                 let data = [];
                 for (let match of matches) {
-                    let value = (parseFloat(match) / 100).toFixed(4);
-                    data.push(removeZero(value));
+                    let value;
+                    if (match.indexOf("%") !== -1) {
+                        value = (parseFloat(match) / 100).toFixed(4);
+                        data.push(removeZero(value));
+                    } else {
+                        value = parseInt(match.slice(1));
+                        data.push(value);
+                    }
                 }
                 datas.push(data);
             }
