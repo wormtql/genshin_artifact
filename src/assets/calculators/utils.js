@@ -158,6 +158,13 @@ export function tableWind(attribute, configObject, enemy, rowConfigs, skillName,
     )
 }
 
+export function tableRock(attribute, configObject, enemy, rowConfigs, skillName, as=skillName) {
+    return mergeArray(
+        ["chs", rowConfigs.map(item => item.chs)],
+        ["rock", colNormal(attribute, configObject, enemy, rowConfigs, skillName, "rock", as)],
+    )
+}
+
 export function tablePhysical(attribute, configObject, enemy, rowConfigs, skillName) {
     let ret =  mergeArray(
         ["chs", rowConfigs.map(item => item.chs)],

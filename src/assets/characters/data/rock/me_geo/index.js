@@ -1,4 +1,5 @@
 import card from "./card.jpg";
+import skill from "./kong_geo.skill.js";
 
 export default {
     cardURL: card,
@@ -7,4 +8,5 @@ export default {
     element: "rock",
     weapon: "sword",
     star: 5,
+    skill,
 }
