@@ -1,5 +1,6 @@
 import card from "./card.jpg";
 import avatar from "@asset/badges/diaona.png";
+import skill from "./diaona.skill.js";
 
 export default {
     cardURL: card,
@@ -10,4 +11,5 @@ export default {
     weapon: "bow",
     star: 4,
     avatar,
+    skill,
 }

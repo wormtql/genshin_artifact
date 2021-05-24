@@ -8,14 +8,14 @@ function getBonus(attribute, element, skill) {
     return attribute[element + "Bonus"] + attribute[skill + "Bonus"] + attribute["bonus"];
 }
 
-export function damageNormal(attribute, cLevel, r, enemy, element, skill) {
-    let atk = attribute.attack();
+
+function damageDelegate(attribute, cLevel, dmg, enemy, element, skill) {
     let defensiveRatio = enemy.getDR(cLevel, attribute.defDown ?? 0);
 
     let resRatio = enemy.getRR(element);
     let damageBonus = 1 + getBonus(attribute, element, skill);
 
-    let base = atk * r * defensiveRatio * resRatio * damageBonus;
+    let base = dmg * defensiveRatio * resRatio * damageBonus;
 
     let crit = skill == "a" ? attribute["critical"] : attribute[skill + "Critical"];
     crit = Math.min(crit, 1);
@@ -26,6 +26,14 @@ export function damageNormal(attribute, cLevel, r, enemy, element, skill) {
         nonCrit: base,
         expect: base * (1 + cd * crit),
     };
+}
+
+export function damageNormal(attribute, cLevel, r, enemy, element, skill) {
+    return damageDelegate(attribute, cLevel, attribute.attack() * r, enemy, element, skill);
+}
+
+export function damageDefNormal(attribute, cLevel, r, enemy, element, skill) {
+    return damageDelegate(attribute, cLevel, attribute.defend() * r, enemy, element, skill);
 }
 
 export function damageReaction(type, attribute, cLevel, r, enemy, element, skill) {
