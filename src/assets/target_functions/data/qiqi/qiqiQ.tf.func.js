@@ -1,9 +1,12 @@
-import skill from "./skill";
+import { charactersData } from "@asset/characters";
+
+
+let skill = charactersData["qiqi"].skill;
 
 function f(config) {
     let qLevel = config.cArgs.skill3;
-    let bonus = skill.q.atk[qLevel - 1];
-    let s = skill.q.s[qLevel - 1];
+    let bonus = skill.q.cure1[qLevel - 1];
+    let s = skill.q.cure1Static[qLevel - 1];
 
     return function (attribute) {
         let atk = attribute.attack();

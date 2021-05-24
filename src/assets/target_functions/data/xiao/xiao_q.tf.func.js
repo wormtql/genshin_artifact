@@ -1,4 +1,7 @@
-import skill from "./skill";
+import { charactersData } from "@asset/characters";
+
+
+let skill = charactersData["xiao"].skill;
 
 function f(config) {
     let qLevel = config.cArgs.skill3;

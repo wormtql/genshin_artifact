@@ -1,4 +1,7 @@
-import skill from "./skill";
+import { charactersData } from "@asset/characters";
+
+
+let skill = charactersData["abeiduo"].skill;
 
 function f(config) {
     let isConste2 = config.cArgs.constellation >= 2;
