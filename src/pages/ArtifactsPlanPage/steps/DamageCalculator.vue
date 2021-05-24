@@ -60,7 +60,7 @@ export default {
     methods: {
         // called when this component is displayed
         updateConfigObject() {
-            console.log("on update");
+            // console.log("on update");
             this.configObject = this.getConfigObject();
         }
     },
@@ -69,7 +69,6 @@ export default {
             let cName = this.configObject.character.name;
             let temp = calculators[cName];
             temp = temp ?? calculators["keqing"];
-            console.log(temp);
 
             return temp;
         },
