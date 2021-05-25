@@ -39,15 +39,6 @@
             :closable="false"
             style="margin-bottom: 16px"
         ></el-alert>
-        <!-- <el-alert
-            :title="`预计配装计算时间：${estimatedTime}，迭代次数：${$store.getters['artifacts/iterCount']}`"
-            type="warning" :closable="false"
-        ></el-alert> -->
-        <!-- <el-alert title="在同一个浏览器下，正常情况下，数据会自动保存，只需录入一次圣遗物即可。推荐只录入20级圣遗物"></el-alert> -->
-        <!-- <el-alert
-            title="小贴士：圣遗物面板上三个按钮作用分别是：删除、禁用/启用、编辑"
-            style="margin-bottom: 16px"
-        ></el-alert> -->
 
         <el-tag>数量：{{ $store.getters["artifacts/count"] }}</el-tag>
 
@@ -69,6 +60,11 @@
                 </el-button>
             </div>
         </div>
+
+        <artifacts-filter
+            :filter.sync="artifactsFilter"
+            style="margin-bottom: 16px"
+        ></artifacts-filter>
 
         <div class="small-toolbar" style="margin-bottom: 16px">
             <el-button
@@ -94,7 +90,7 @@
                 </div>
                 <artifact
                     class="artifact-panel"
-                    v-for="(item, index) in allArtifacts[artType.name]"
+                    v-for="(item, index) in filteredArtifacts[artType.name]"
                     :key="artType.name + item.id"
                     :item="item"
                     @delete="removeArtifact(artType.name, index)"
@@ -112,9 +108,12 @@ import ImportJsonDialog from "./ImportJsonDialog";
 import OutputJsonDialog from "./OutputJsonDialog";
 import Artifact from "./Artifact";
 import EditArtifactDrawer from "./EditArtifactDrawer";
+import ArtifactsFilter from "@c/filter/ArtifactsFilter";
 
 import { artifactsIcon } from "@asset/artifacts";
 import { toChs as estimateToChs } from "@util/time_estimate";
+
+import positions from "@const/positions";
 
 export default {
     name: "ArtifactsPage",
@@ -124,6 +123,7 @@ export default {
         OutputJsonDialog,
         Artifact,
         EditArtifactDrawer,
+        ArtifactsFilter,
     },
     created: function () {
         this.artifactsIcon = artifactsIcon;
@@ -168,7 +168,9 @@ export default {
             editArtifactArgs: {
                 position: "flower",
                 index: -1,
-            }
+            },
+
+            artifactsFilter: () => true,
         }
     },
     methods: {
@@ -226,6 +228,14 @@ export default {
     computed: {
         allArtifacts() {
             return this.$store.getters["artifacts/allArtifacts"];
+        },
+
+        filteredArtifacts() {
+            let temp = {};
+            for (let pos of positions) {
+                temp[pos] = this.allArtifacts[pos].filter(this.artifactsFilter);
+            }
+            return temp;
         },
 
         estimatedTime() {

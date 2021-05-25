@@ -30,7 +30,6 @@
                 <attribute-panel v-if="configObject !== null" :panel="attributePanel"></attribute-panel>
             </el-col>
         </el-row>
-        
     </div>
 </template>
 
@@ -41,6 +40,7 @@ import { getAttribute } from "@util/attribute";
 import SelectArtifacts from "@c/select/SelectArtifacts";
 import AttributePanel from "@c/AttributePanel";
 import DamageDisplay from "@c/display/DamageDisplay";
+
 
 export default {
     name: "DamageCalculator",
@@ -61,6 +61,8 @@ export default {
                 cup: null,
                 head: null,
             },
+
+            artifactsFilter: () => true,
         }
     },
     methods: {
