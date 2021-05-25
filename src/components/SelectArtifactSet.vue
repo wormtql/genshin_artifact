@@ -6,6 +6,12 @@
         size="small"
     >
         <el-option
+            v-if="anyOption"
+            label="任意"
+            value="any"
+        >
+        </el-option>
+        <el-option
             v-for="item in allArtifactsName"
             :key="item.name"
             :label="item.chs"
@@ -47,6 +53,10 @@ export default {
             required: true,
         },
         disabled: {
+            type: Boolean,
+            default: false,
+        },
+        anyOption: {
             type: Boolean,
             default: false,
         }

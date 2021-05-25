@@ -1,5 +1,10 @@
 <template>
     <div>
+        <artifacts-filter
+            :filter.sync="artifactsFilter"
+            style="margin-bottom: 16px"
+        ></artifacts-filter>
+
         <el-tabs
             v-model="activePosition"
         >
@@ -11,7 +16,7 @@
                 class="artifact-panel"
             >
                 <artifact-display
-                    v-for="artifact in $store.getters['artifacts/allArtifacts'][position]"
+                    v-for="artifact in filteredArtifacts[position]"
                     :key="artifact.id"
                     selectable
                     :item="artifact"
@@ -19,6 +24,11 @@
                     :class="{ active: selected[position] === artifact.id }"
                     @click="handleClick(position, artifact.id)"
                 ></artifact-display>
+                <el-alert
+                    title="没有符合条件的圣遗物"
+                    v-if="filteredArtifacts[position].length === 0"
+                    :closable="false"
+                ></el-alert>
             </el-tab-pane>
         </el-tabs>
     </div>
@@ -29,12 +39,14 @@ import positions from "@const/positions";
 import { positionToLocale } from "@util/utils";
 
 import ArtifactDisplay from "@c/ArtifactDisplay";
+import ArtifactsFilter from "@c/filter/ArtifactsFilter";
 
 export default {
     name: "SelectArtifact",
     props: ["selected"],
     components: {
         ArtifactDisplay,
+        ArtifactsFilter,
     },
     created() {
         this.positions = positions;
@@ -42,6 +54,7 @@ export default {
     data() {
         return {
             activePosition: "flower",
+            artifactsFilter: () => true,
         }
     },
     methods: {
@@ -53,6 +66,15 @@ export default {
             } else {
                 this.selected[position] = id;
             }
+        }
+    },
+    computed: {
+        filteredArtifacts() {
+            let temp = {};
+            for (let pos of positions) {
+                temp[pos] = this.$store.getters['artifacts/allArtifacts'][pos].filter(this.artifactsFilter);
+            }
+            return temp;
         }
     }
 }
