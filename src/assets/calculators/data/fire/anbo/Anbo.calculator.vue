@@ -7,7 +7,7 @@
         >
             <el-radio-button label="a">普通攻击-神射手</el-radio-button>
             <el-radio-button label="e">爆弹玩偶</el-radio-button>
-            <el-radio-button label="q">剑雨</el-radio-button>
+            <el-radio-button label="q">箭雨</el-radio-button>
         </el-radio-group>
 
         <div v-show="showSkill === 'a'">

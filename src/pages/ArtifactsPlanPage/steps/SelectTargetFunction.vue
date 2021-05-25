@@ -146,25 +146,25 @@ export default {
             return targetGroup[this.characterName];
         }
     },
-    watch: {
-        characterName(name) {
-            if (commonTargetNames.has(this.value)) {
-                return;
-            }
-            if (this.$parent.lock) {
-                return;
-            }
+    // watch: {
+    //     characterName(name) {
+    //         if (commonTargetNames.has(this.value)) {
+    //             return;
+    //         }
+    //         if (this.$parent.lock) {
+    //             return;
+    //         }
 
-            if (Object.prototype.hasOwnProperty.call(targetGroup, name)) {
-                let target = targetGroup[name][0];
-                this.$emit("input", target.name);
-            } else {
-                // character does not have own target functions
-                let target = targetGroup.common[0];
-                this.$emit("input", target.name);
-            }
-        }
-    }
+    //         if (Object.prototype.hasOwnProperty.call(targetGroup, name)) {
+    //             let target = targetGroup[name][0];
+    //             this.$emit("input", target.name);
+    //         } else {
+    //             // character does not have own target functions
+    //             let target = targetGroup.common[0];
+    //             this.$emit("input", target.name);
+    //         }
+    //     }
+    // }
 }
 </script>
 

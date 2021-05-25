@@ -215,6 +215,19 @@ export default {
             timer(promise).then(time => {
                 console.log(`complete after ${time}ms`);
             });
+        },
+
+        getResultArtifacts() {
+            if (this.calculating) {
+                return {
+                    error: true,
+                    data: "calculating",
+                }
+            }
+            return {
+                error: false,
+                data: this.artifacts
+            };
         }
     },
     computed: {

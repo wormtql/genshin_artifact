@@ -14,17 +14,15 @@
             <el-button
                 @click="saveAsPreset"
                 size="small"
-            >
-                <i class="el-icon-folder-add"></i>
-                另存为预设
-            </el-button>
+                icon="el-icon-folder-add"
+                circle
+            ></el-button>
             <el-button
                 @click="handleClickApplyPreset"
                 size="small"
-            >
-                <i class="el-icon-truck"></i>
-                应用预设
-            </el-button>
+                icon="el-icon-truck"
+                circle
+            ></el-button>
             <el-button
                 v-show="isPreset"
                 @click="savePreset"
@@ -50,16 +48,77 @@
         <el-row :gutter="16">
             <el-col :span="4">
                 <ul class="step" @click="handleNav">
-                    <li :class="{active: currentstep === 'character'}" x-name="character">角色</li>
-                    <li :class="{active: currentstep === 'character-config'}" x-name="character-config">角色参数</li>
-                    <li :class="{active: currentstep === 'weapon'}" x-name="weapon">武器</li>
-                    <li :class="{active: currentstep === 'weapon-config'}" x-name="weapon-config">武器参数</li>
-                    <li :class="{active: currentstep === 'target-func'}" x-name="target-func">目标函数</li>
-                    <li :class="{active: currentstep === 'target-func-config'}" x-name="target-func-config">目标函数参数</li>
-                    <li :class="{active: currentstep === 'constraint'}" x-name="constraint">过滤/限定</li>
-                    <li :class="{active: currentstep === 'buff'}" x-name="buff">全局buff</li>
-                    <li :class="{active: currentstep === 'result'}" x-name="result">计算结果</li>
-                    <li :class="{active: currentstep === 'calculator'}" x-name="calculator">计算器</li>
+                    <li :class="{active: currentstep === 'character'}" x-name="character">
+                        <i class="el-icon-user"></i>
+                        角色
+                    </li>
+                    <li
+                        :class="{active: currentstep === 'character-config'}" x-name="character-config"
+                        style="margin-bottom: 16px"
+                    >
+                        <i class="el-icon-user"></i>
+                        角色参数
+                    </li>
+                    <li
+                        :class="{active: currentstep === 'weapon'}"
+                        x-name="weapon"
+                    >
+                        <i class="el-icon-knife-fork"></i>
+                        武器
+                    </li>
+                    <li
+                        :class="{active: currentstep === 'weapon-config'}"
+                        x-name="weapon-config"
+                        style="margin-bottom: 16px"
+                    >
+                        <i class="el-icon-knife-fork"></i>
+                        武器参数
+                    </li>
+                    <li
+                        :class="{active: currentstep === 'target-func'}"
+                        x-name="target-func"
+                    >
+                        <i class="el-icon-odometer"></i>
+                        目标函数
+                    </li>
+                    <li
+                        :class="{active: currentstep === 'target-func-config'}"
+                        x-name="target-func-config"
+                        style="margin-bottom: 16px"
+                    >
+                        <i class="el-icon-odometer"></i>
+                        目标函数参数
+                    </li>
+                    <li
+                        :class="{active: currentstep === 'constraint'}"
+                        x-name="constraint"
+                        style="margin-bottom: 16px"
+                    >
+                        <i class="el-icon-cold-drink"></i>
+                        过滤/限定
+                    </li>
+                    <li
+                        :class="{active: currentstep === 'buff'}"
+                        x-name="buff"
+                        style="margin-bottom: 16px"
+                    >
+                        <i class="el-icon-ice-cream-round"></i>
+                        全局buff
+                    </li>
+                    <li
+                        :class="{active: currentstep === 'result'}"
+                        x-name="result"
+                    >
+                        <i class="el-icon-cpu"></i>
+                        计算结果
+                    </li>
+                    <li
+                        :class="{active: currentstep === 'calculator'}"
+                        x-name="calculator"
+                    >
+                        <i class="el-icon-set-up"></i>
+                        计算器
+                    </li>
                 </ul>
             </el-col>
             <el-col :span="20">
@@ -166,6 +225,9 @@ export default {
         return {
             notifyChange: this.notifyChange,
             getConfigObject: this.getConfigObject,
+            getResultPage: () => {
+                return this.$refs.resultPage;
+            }
         }
     },
     created() {
@@ -410,34 +472,34 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .step {
     list-style: none;
     margin: 16px 0;
     padding: 0;
-    background: #f5f7fa;
+    /* background: #f5f7fa; */
     border-radius: 3px;
-}
 
-.step li {
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 14px;
-    color: #409eff;
-    border-bottom: 1px solid #00000011;
-    transition: 300ms;
-}
+    li {
+        padding: 8px 16px;
+        cursor: pointer;
+        font-size: 14px;
+        // color: #409eff;
+        color: #303133;
+        /* border-bottom: 1px solid #00000011; */
+        transition: 300ms;
+        // border-left: 5px solid #12345611;
 
-.step li:hover {
-    color: #6eb7ff;
-}
+        &:hover {
+            background: #ecf5ff;
+        }
 
-.step li:last-of-type {
-    border: none;
-}
-
-.step li.active {
-    box-shadow: 0 0 20px 3px rgb(0 0 0 / 10%);
+        &.active {
+            // box-shadow: 0 0 20px 3px rgb(0 0 0 / 10%);
+            color: #409eff;
+            background: #ecf5ff;
+        }
+    }
 }
 
 .tool-bar {
@@ -446,19 +508,5 @@ export default {
 
 .choose-div {
     margin-top: 16px;
-}
-
-.fade-enter-active, .fade-leave-active {
-    transition: 150ms ease;
-}
-
-.fade-enter {
-    opacity: 0;
-    /* transform: translateX(100%); */
-}
-
-.fade-leave-to {
-    opacity: 0;
-    /* transform: translateX(-100%); */
 }
 </style>

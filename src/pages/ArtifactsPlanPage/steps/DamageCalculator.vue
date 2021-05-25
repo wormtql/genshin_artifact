@@ -1,5 +1,12 @@
 <template>
     <div v-if="configObject !== null">
+        <div class="toolbar">
+            <el-button
+                size="small"
+                @click="selectArtifactFromResult"
+            >穿戴计算结果圣遗物</el-button>
+        </div>
+
         <el-row :gutter="16">
             <el-col :span="18">
                 <select-artifacts
@@ -42,8 +49,7 @@ export default {
         AttributePanel,
         DamageDisplay,
     },
-    inject: ["getConfigObject"],
-    // props: ["characterName"],
+    inject: ["getConfigObject", "getResultPage"],
     data() {
         return {
             configObject: null,
@@ -62,6 +68,24 @@ export default {
         updateConfigObject() {
             // console.log("on update");
             this.configObject = this.getConfigObject();
+        },
+
+        selectArtifactFromResult() {
+            let resultPage = this.getResultPage();
+            let { error, data } = resultPage.getResultArtifacts();
+
+            if (error) {
+                this.$message({
+                    type: "warning",
+                    message: "请先进行一个计算",
+                });
+                return;
+            }
+
+            for (let art of data) {
+                this.selectedArtifactIds[art.position] = art.id;
+            }
+            // console.log(data);
         }
     },
     computed: {
@@ -100,3 +124,9 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.toolbar {
+    margin-bottom: 16px;
+}
+</style>
