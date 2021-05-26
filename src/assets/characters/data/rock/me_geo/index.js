@@ -1,5 +1,6 @@
 import card from "./card.jpg";
 import skill from "./kong_geo.skill.js";
+import avatar from "@asset/badges/traveller.png";
 
 export default {
     cardURL: card,
@@ -9,4 +10,5 @@ export default {
     weapon: "sword",
     star: 5,
     skill,
+    avatar,
 }

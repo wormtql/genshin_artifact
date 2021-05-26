@@ -1,5 +1,6 @@
 import card from "../../rock/me_geo/card.jpg";
 import skill from "./me_anemo.skill.js";
+import avatar from "@asset/badges/traveller.png";
 
 export default {
     cardURL: card,
@@ -9,4 +10,5 @@ export default {
     weapon: "sword",
     star: 5,
     skill,
+    avatar,
 }

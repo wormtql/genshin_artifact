@@ -48,23 +48,12 @@
         <el-row :gutter="16">
             <el-col :span="4">
                 <ul class="step" @click="handleNav">
-                    <li :class="{active: currentstep === 'character'}" x-name="character">
-                        <i class="el-icon-user"></i>
-                        角色
-                    </li>
                     <li
                         :class="{active: currentstep === 'character-config'}" x-name="character-config"
                         style="margin-bottom: 16px"
                     >
                         <i class="el-icon-user"></i>
-                        角色参数
-                    </li>
-                    <li
-                        :class="{active: currentstep === 'weapon'}"
-                        x-name="weapon"
-                    >
-                        <i class="el-icon-knife-fork"></i>
-                        武器
+                        角色
                     </li>
                     <li
                         :class="{active: currentstep === 'weapon-config'}"
@@ -72,7 +61,7 @@
                         style="margin-bottom: 16px"
                     >
                         <i class="el-icon-knife-fork"></i>
-                        武器参数
+                        武器
                     </li>
                     <li
                         :class="{active: currentstep === 'target-func'}"
@@ -123,23 +112,11 @@
             </el-col>
             <el-col :span="20">
                 <div class="choose-div">
-                    <select-character
-                        v-show="currentstep === 'character'"
-                        class="step-div"
-                        ref="selectCharacter"
-                    ></select-character>
-
                     <config-character
                         v-show="currentstep === 'character-config'"
                         class="step-div"
                         ref="configCharacter"
                     ></config-character>
-
-                    <select-weapon
-                        v-show="currentstep === 'weapon'"
-                        class="step-div"
-                        ref="selectWeapon"
-                    ></select-weapon>
 
                     <config-weapon
                         v-show="currentstep === 'weapon-config'"
@@ -191,25 +168,20 @@
 
 <script>
 import { charactersData } from "@asset/characters";
-// import { weaponsData } from "@asset/weapons";
-// import deepCopy from "@util/deepcopy"; 
 import { toChs as estimateToChs } from "@util/time_estimate";
 import createFilterFunction from "@alg/attribute_target/create_filter_function";
-// import { count as countArtifacts } from "@util/artifacts";
 
 import ResultPage from "./steps/ResultPage";
 import DamageCalculator from "./steps/DamageCalculator";
-
-// import MyStep from "@c/MyStep";
-
 import ApplyPresetDialog from "./ApplyPresetDialog";
+
 
 export default {
     name: "ArtifactsPlanPage",
     components: {
-        "select-character": () => import(/* webpackChunkName: "steps-select-c" */ "./steps/SelectCharacter"),
+        // "select-character": () => import(/* webpackChunkName: "steps-select-c" */ "./steps/SelectCharacter"),
         "ConfigCharacter": () => import(/* webpackChunkName: "steps-select-c" */ "./steps/ConfigCharacter"),
-        "SelectWeapon": () => import(/* webpackChunkName: "steps-select-w" */ "./steps/SelectWeapon"),
+        // "SelectWeapon": () => import(/* webpackChunkName: "steps-select-w" */ "./steps/SelectWeapon"),
         "ConfigWeapon": () => import(/* webpackChunkName: "steps-select-w" */ "./steps/ConfigWeapon"),
         "SelectTargetFunction": () => import(/* webpackChunkName: "steps-select-t" */ "./steps/SelectTargetFunction"),
         "ConfigTargetFunction": () => import(/* webpackChunkName: "steps-select-t" */ "./steps/ConfigTargetFunction"),
@@ -218,7 +190,6 @@ export default {
         // "DamageCalculator": () => import(/* webpackChunkName: "damage-calculator" */)
         ResultPage,
         DamageCalculator,
-        // MyStep,
         ApplyPresetDialog,
     },
     provide() {
@@ -235,7 +206,7 @@ export default {
     },
     data: function () {
         return {
-            currentstep: "character",
+            currentstep: "character-config",
             // lock: false,
 
             isPreset: false,
@@ -243,27 +214,16 @@ export default {
         }
     },
     methods: {
-        handleClickApplyPreset() {
-            let count = this.$store.getters["presets/count"];
-            if (count === 0) {
-                this.$message({
-                    message: "没有可用的预设，请先保存一个预设",
-                    type: "warning",
-                });
-                return;
-            }
-            this.$refs.applyPresetDialog.open();
-        },
-
         notifyChange(type, value) {
             console.log(type, value);
             if (type === "character") {
                 let weaponType = charactersData[value].weapon;
-                this.$refs.selectWeapon.setAllow(weaponType);
+                // this.$refs.selectWeapon.setAllow(weaponType);
+                this.$refs.configWeapon.setWeaponType(weaponType);
                 this.$refs.selectTargetFunc.setCharacterName(value);
-                this.$refs.configCharacter.setCharacterName(value);
+                // this.$refs.configCharacter.setCharacterName(value);
             } else if (type === "weapon") {
-                this.$refs.configWeapon.setWeaponName(value);
+                // this.$refs.configWeapon.setWeaponName(value);
             } else if (type === "targetFunc") {
                 this.$refs.configTargetFunc.setTargetFuncName(value);
             }
@@ -275,6 +235,18 @@ export default {
                 this.$refs.calculator.updateConfigObject();
             }
             this.currentstep = navTarget;
+        },
+
+        handleClickApplyPreset() {
+            let count = this.$store.getters["presets/count"];
+            if (count === 0) {
+                this.$message({
+                    message: "没有可用的预设，请先保存一个预设",
+                    type: "warning",
+                });
+                return;
+            }
+            this.$refs.applyPresetDialog.open();
         },
 
         handleConfirmApplyPreset(name) {
@@ -289,12 +261,13 @@ export default {
             let preset = this.$store.getters["presets/all"][name];
             
             // set character
-            this.$refs.selectCharacter.setCharacterName(preset.character.name);
+            // this.$refs.selectCharacter.setCharacterName(preset.character.name);
             this.$refs.configCharacter.setCharacterConfig(preset.character);
 
             // set weapon
             let allowWeapon = charactersData[preset.character.name].weapon;
-            this.$refs.selectWeapon.setWeaponName(allowWeapon, preset.weapon.name);
+            // this.$refs.selectWeapon.setWeaponName(allowWeapon, preset.weapon.name);
+            this.$refs.configWeapon.setWeaponType(allowWeapon);
             this.$refs.configWeapon.setWeaponConfig(preset.weapon);
 
             // set target func
@@ -320,7 +293,7 @@ export default {
         },
 
         savePreset() {
-            let preset = this.getPresetObject();
+            let preset = this.getConfigObject();
             preset.name = this.currentPresetName;
 
             this.$store.commit("presets/update", preset);
@@ -329,21 +302,6 @@ export default {
                 type: "success",
                 message: "保存成功",
             })
-        },
-
-        getPresetObject() {
-            // version 2
-            let obj = {
-                character: this.getCharacterInfo(),
-                weapon: this.getWeaponInfo(),
-                targetFunc: this.getTargetFuncInfo(),
-                constraint: this.getConstraint(),
-                buffs: this.getBuffs(),
-            };
-
-            // console.log(obj);
-
-            return obj;
         },
 
         checkPresetNameDuplicate(name) {
@@ -365,7 +323,7 @@ export default {
                     return;
                 }
 
-                let preset = this.getPresetObject();
+                let preset = this.getConfigObject();
                 preset.name = value;
                 this.$store.commit("presets/add", {
                     name: value,
@@ -379,17 +337,11 @@ export default {
 
 
         getCharacterInfo() {
-            return {
-                name: this.$refs.selectCharacter.getCharacterName(),
-                ...this.$refs.configCharacter.getCharacterConfig(),
-            };
+            return this.$refs.configCharacter.getCharacterConfig();
         },
 
         getWeaponInfo() {
-            return {
-                name: this.$refs.selectWeapon.getWeaponName(),
-                ...this.$refs.configWeapon.getWeaponConfig(),
-            };
+            return this.$refs.configWeapon.getWeaponConfig();
         },
 
         getTargetFuncInfo() {
@@ -462,13 +414,6 @@ export default {
             }
         },
     },
-    computed: {
-        // config() {
-        //     return {
-        //         cArgs: this.characterInfo,
-        //     }
-        // }
-    }
 }
 </script>
 

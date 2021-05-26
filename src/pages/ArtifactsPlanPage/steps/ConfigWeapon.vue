@@ -1,12 +1,20 @@
 <template>
     <div>
+        <div class="config-item">
+            <h3 class="config-title">选择武器</h3>
+            <select-weapon
+                :value="weaponName"
+                @input="handleChangeWeapon"
+                :type="weaponType"
+            ></select-weapon>
+        </div>
+
         <!-- 其他参数 -->
         <component
             :if="!!w.config"
             :is="configComponent"
             ref="extraConfig"
-        >
-        </component>
+        ></component>
 
         <div v-if="w.star >= 3" class="config-item">
             <h3 class="config-title">精炼等级</h3>
@@ -28,16 +36,18 @@
 </template>
 
 <script>
-import { weaponsData } from "@asset/weapons";
-// import deepCopy from "@util/deepcopy";
+import { weaponsByType, weaponsData } from "@asset/weapons";
 
 import SelectLevel from "@c/select/SelectLevel";
+import SelectWeapon from "@c/select/SelectWeapon";
 
 export default {
     name: "SelectWeaponLevel",
     components: {
         SelectLevel,
+        SelectWeapon,
     },
+    inject: ["notifyChange"],
     data: function() {
         return {
             refine: 1,
@@ -48,11 +58,44 @@ export default {
             },
 
             weaponName: "liegong",
+            weaponType: "bow",
         }
     },
     methods: {
+        handleChangeWeapon(weaponName) {
+            if (weaponName === this.weaponName) {
+                return
+            }
+            this.weaponName = weaponName;
+
+            if (weaponsData[weaponName].star < 3) {
+                if (this.level.level > 70 || (this.level.level === 70 && this.level.ascend)) {
+                    this.level.level = 70;
+                    this.level.ascend = false;
+                }
+            }
+
+            this.notifyChange("weapon", weaponName);
+        },
+
+        handleClickLevel(e) {
+            this.level.level = parseInt(e);
+            this.level.ascend = e.indexOf("+") !== -1;
+        },
+
+        // called by parent
+        setWeaponType(type) {
+            if (this.weaponType === type) {
+                return;
+            }
+            this.weaponType = type;
+            this.weaponName = weaponsByType[this.weaponType][0].name;
+        },
+
+        // called by parent
         getWeaponConfig() {
             return {
+                name: this.weaponName,
                 refine: this.refine,
                 level: this.level.level,
                 ascend: this.level.ascend,
@@ -61,6 +104,7 @@ export default {
             }
         },
 
+        // called by parent
         setWeaponConfig(weapon) {
             this.refine = weapon.refine;
             this.level.level = weapon.level;
@@ -75,11 +119,6 @@ export default {
             
         },
 
-        handleClickLevel(e) {
-            this.level.level = parseInt(e);
-            this.level.ascend = e.indexOf("+") !== -1;
-        },
-
         getExtraConfig() {
             if (!this.w.config) {
                 return {};
@@ -92,20 +131,6 @@ export default {
                 return Object.assign({}, vm.$data);
             }
         },
-
-        // for parent to call
-        setWeaponName(name) {
-            if (name !== this.weaponName) {
-                this.weaponName = name;
-
-                if (weaponsData[name].star < 3) {
-                    if (this.level.level > 70 || (this.level.level === 70 && this.level.ascend)) {
-                        this.level.level = 70;
-                        this.level.ascend = false;
-                    }
-                }
-            }
-        }
     },
     computed: {
         w() {

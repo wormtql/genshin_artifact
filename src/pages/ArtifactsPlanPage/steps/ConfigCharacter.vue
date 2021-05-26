@@ -1,5 +1,13 @@
 <template>
     <div>
+        <div class="config-item">
+            <h3 class="config-title">选择角色</h3>
+            <select-character
+                :value="characterName"
+                @input="handleChangeCharacter"
+            ></select-character>
+        </div>
+
         <component
             v-if="needExtraConfig"
             :is="c.config"
@@ -54,20 +62,16 @@
 import { charactersData } from "@asset/characters";
 
 import SelectLevel from "@c/select/SelectLevel";
+import SelectCharacter from "@c/select/SelectCharacter";
 
-// import deepCopy from "@util/deepcopy";
 
 export default {
     name: "ConfigCharacter",
     components: {
         SelectLevel,
+        SelectCharacter,
     },
-    props: {
-        value: {
-            type: Object,
-            required: true,
-        }
-    },
+    inject: ["notifyChange"],
     data: function () {
         return {
             skill1: 6,
@@ -84,6 +88,14 @@ export default {
         }
     },
     methods: {
+        handleChangeCharacter(name) {
+            if (name === this.characterName) {
+                return;
+            }
+            this.characterName = name;
+            this.notifyChange("character", name);
+        },
+
         handleChangeLevel(e) {
             this.level.level = parseInt(e);
             this.level.ascend = e.indexOf("+") !== -1;
@@ -104,6 +116,7 @@ export default {
 
         getCharacterConfig() {
             return {
+                name: this.characterName,
                 skill1: this.skill1,
                 skill2: this.skill2,
                 skill3: this.skill3,
@@ -127,13 +140,11 @@ export default {
             this.level.level = config.level;
 
             this.$nextTick(() => {
-                this.$refs.extraConfig.setData(config.args);
+                if (this.needExtraConfig) {
+                    this.$refs.extraConfig.setData(config.args);
+                }
             })
         },
-
-        setCharacterName(name) {
-            this.characterName = name;
-        }
     },
     computed: {
         levelText() {
