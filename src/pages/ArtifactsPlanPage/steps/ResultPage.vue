@@ -177,7 +177,7 @@ export default {
             let constraint = veryBigConfigObject.constraint;
             let targetFunc = veryBigConfigObject.targetFunc;
             let buffs = veryBigConfigObject.buffs;
-            // console.log(weapon);
+            console.log(weapon);
 
             let loading = this.$loading({
                 lock: true,

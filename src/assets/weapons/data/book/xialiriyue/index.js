@@ -1,4 +1,5 @@
 import tn from "./tn.png";
+import config from "./Xialiriyue.wcfg.vue";
 
 export default {
     name: "xialiriyue",
@@ -6,4 +7,5 @@ export default {
     url: tn,
     star: 4,
     type: "book",
+    config,
 }

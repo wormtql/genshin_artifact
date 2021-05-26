@@ -1,5 +1,5 @@
 import tn from "./tn.png";
-import config from "./Anxianglieshou.wcfg.vue";
+import { commonConfigLevel } from "../../../common/utils";
 
 export default {
     name: "anxianglieshou",
@@ -7,5 +7,5 @@ export default {
     url: tn,
     star: 4,
     type: "bow",
-    config,
+    config: () => commonConfigLevel("暗巷猎手", 10),
 }

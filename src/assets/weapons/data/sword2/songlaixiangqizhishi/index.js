@@ -1,5 +1,5 @@
 import tn from "./tn.png";
-import config from "./Songlaixiangqizhishi.wcfg.vue";
+import { commonConfigRate } from "../../../common/utils";
 
 export default {
     name: "songlaixiangqizhishi",
@@ -7,5 +7,5 @@ export default {
     url: tn,
     star: 5,
     type: "sword2",
-    config,
+    config: () => commonConfigRate("松籁响起之时"),
 }

@@ -1,4 +1,5 @@
 import tn from "./tn.png";
+import config from "./Guanhongzhishuo.wcfg.vue";
 
 export default {
     name: "guanhongzhishuo",
@@ -6,4 +7,5 @@ export default {
     url: tn,
     star: 5,
     type: "stick",
+    config: config,
 }

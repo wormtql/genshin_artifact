@@ -1,3 +1,4 @@
+import { commonConfigRate } from "../../../common/utils";
 import tn from "./tn.png";
 
 export default {
@@ -6,4 +7,5 @@ export default {
     url: tn,
     star: 4,
     type: "sword2",
+    config: () => commonConfigRate("钟剑"),
 }

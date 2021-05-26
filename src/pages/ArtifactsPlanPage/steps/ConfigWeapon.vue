@@ -3,7 +3,7 @@
         <!-- 其他参数 -->
         <component
             :if="!!w.config"
-            :is="w.config"
+            :is="configComponent"
             ref="extraConfig"
         >
         </component>
@@ -121,6 +121,14 @@ export default {
                 return lvl.toString();
             } else {
                 return `${lvl}${a ? "+" : "-"}`;
+            }
+        },
+
+        configComponent() {
+            if (typeof this.w.config === "function") {
+                return this.w.config();
+            } else {
+                return this.w.config;
             }
         }
     },

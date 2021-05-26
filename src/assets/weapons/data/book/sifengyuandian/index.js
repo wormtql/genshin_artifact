@@ -1,3 +1,4 @@
+import { commonConfigLevel } from "../../../common/utils";
 import tn from "./tn.png";
 
 export default {
@@ -6,4 +7,5 @@ export default {
     url: tn,
     star: 5,
     type: "book",
+    config: () => commonConfigLevel("四风原典", 4),
 }

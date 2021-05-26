@@ -1,4 +1,5 @@
 import tn from "./tn.png";
+import config from "./Chenshizhisuo.wcfg.vue";
 
 export default {
     name: "chenshizhisuo",
@@ -6,4 +7,5 @@ export default {
     url: tn,
     star: 5,
     type: "book",
+    config,
 }

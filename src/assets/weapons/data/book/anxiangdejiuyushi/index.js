@@ -1,5 +1,5 @@
 import tn from "./tn.png";
-import config from "./Anxiangdejiuyushi.wcfg.vue";
+import { commonConfigRate } from "../../../common/utils";
 
 export default {
     name: "anxiangdejiuyushi",
@@ -7,5 +7,5 @@ export default {
     url: tn,
     star: 4,
     type: "book",
-    config,
+    config: () => commonConfigRate("暗巷的酒与诗"),
 }

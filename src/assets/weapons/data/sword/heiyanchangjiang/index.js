@@ -1,4 +1,5 @@
 import tn from "./tn.png";
+import { commonConfigLevel } from "../../../common/utils";
 
 export default {
     name: "heiyanchangjian",
@@ -6,4 +7,5 @@ export default {
     url: tn,
     star: 4,
     type: "sword",
+    config: () => commonConfigLevel("黑岩长剑", 3),
 }
