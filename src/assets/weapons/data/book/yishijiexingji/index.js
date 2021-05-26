@@ -6,4 +6,5 @@ export default {
     url: tn,
     star: 3,
     type: "book",
+    effect: "能量沐浴：获得元素微粒或元素晶球时，恢复1%/1.25%/1.5%/1.75%/2%生命值。"
 }

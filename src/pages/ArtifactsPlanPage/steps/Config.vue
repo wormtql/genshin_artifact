@@ -1,14 +1,10 @@
 <template>
     <div>
-        <h3 class="title">圣遗物套装（计算结果将限定在套装之内）</h3>
-
-        <el-alert
-            :closable="false"
-            title="某些动态的加成不会考虑，所以对于非常适合某个角色的圣遗物，可以考虑限定套装，例如迪卢克限定魔女4，甘雨限定冰4"
-            style="margin-bottom: 16px"
-        ></el-alert>
-
-        <div>
+        <div class="config-item">
+            <h3
+                class="config-title"
+                style="margin-bottom: 20px"
+            >限定圣遗物套装</h3>
             <div class="row">
                 <el-radio
                     v-model="constraintSet.mode"
@@ -47,7 +43,7 @@
                     :disabled="constraintSet.mode !== '22'"
                 ></select-artifact-set>
             </div>
-            <div class="row">
+            <div class="row" style="margin-bottom: 0">
                 <el-radio
                     v-model="constraintSet.mode"
                     label="4"
@@ -62,8 +58,8 @@
             </div>
         </div>
 
-        <div>
-            <h3 class="title">限定主词条</h3>
+        <div class="config-item">
+            <h3 class="config-title" style="margin-bottom: 20px">限定主词条</h3>
             <div class="flex-row row">
                 <span class="cmt-label fs-14 color-normal">时之沙</span>
                 <select-art-main-tag-without-val
@@ -78,7 +74,7 @@
                     v-model="constraintMainTag.cup"
                 ></select-art-main-tag-without-val>
             </div>
-            <div class="flex-row row">
+            <div class="flex-row row" style="margin-bottom: 0">
                 <span class="cmt-label fs-14 color-normal">理之冠</span>
                 <select-art-main-tag-without-val
                     position="head"
@@ -87,29 +83,17 @@
             </div>
         </div>
 
-        <div>
-            <h3 class="title">过滤等级</h3>
-            <div class="row">
-                <span class="cmt-label fs-14 color-normal">大于等于：</span>
-                <el-input-number
-                    size="small"
-                    :min="0"
-                    :max="filterLevel.max"
-                    v-model="filterLevel.min"
-                ></el-input-number>
-            </div>
-            <div class="row">
-                <span class="cmt-label fs-14 color-normal">小于等于：</span>
-                <el-input-number
-                    size="small"
-                    :min="filterLevel.min"
-                    :max="20"
-                    v-model="filterLevel.max"
-                ></el-input-number>
-            </div>
+        <div class="config-item">
+            <h3 class="config-title">过滤等级</h3>
+            <el-slider
+                v-model="levelDelegate"
+                range
+                :min="0"
+                :max="20"
+                :marks="marks"
+                :show-tooltip="false"
+            ></el-slider>
         </div>
-
-        <!-- <el-button type="primary" class="confirm-button" @click="handleConfirm">确定</el-button> -->
     </div>
 </template>
 
@@ -134,7 +118,7 @@ const DEFAULT_CONSTRAINT_MAIN_TAG = {
 }
 
 const DEFAULT_FILTER_LEVEL = {
-    min: 20,
+    min: 16,
     max: 20,
 }
 
@@ -143,6 +127,13 @@ export default {
     components: {
         SelectArtifactSet,
         SelectArtMainTagWithoutVal,
+    },
+    created() {
+        let marks = {};
+        for (let i = 0; i <= 20; i++) {
+            marks[i] = i.toString();
+        }
+        this.marks = marks;
     },
     data() {
         return {
@@ -155,6 +146,7 @@ export default {
     },
     methods: {
         getConstraint() {
+            console.log(this.$data);
             return deepCopy(this.$data);
         },
 
@@ -170,6 +162,18 @@ export default {
             this.constraintSet = deepCopy(d.constraintSet);
             this.constraintMainTag = deepCopy(d.constraintMainTag);
             this.filterLevel = d.filterLevel ? deepCopy(d.filterLevel) : deepCopy(DEFAULT_FILTER_LEVEL);
+        }
+    },
+    computed: {
+        levelDelegate: {
+            get() {
+                return [this.filterLevel.min, this.filterLevel.max];
+            },
+
+            set(value) {
+                this.filterLevel.min = value[0];
+                this.filterLevel.max = value[1];
+            }
         }
     }
 }

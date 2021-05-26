@@ -8,4 +8,5 @@ export default {
     star: 3,
     type: "sword",
     config: () => commonConfigRate("飞天御剑"),
+    effect: "决心：施放元素爆发后，提高12%/15%/18%/21%/24%攻击力和移动速度，持续15秒。",
 }

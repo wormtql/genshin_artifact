@@ -8,4 +8,5 @@ export default {
     star: 3,
     type: "sword",
     config,
+    effect: "激励：生命值高于90%时，暴击率提升14%/17.5%/21%/24.5%/28%",
 }

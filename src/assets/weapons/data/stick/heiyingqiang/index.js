@@ -8,4 +8,5 @@ export default {
     star: 3,
     type: "stick",
     config,
+    effect: "克柔：对史莱姆类敌人造成的伤害增加40%/50%/60%/70%/80%。"
 }

@@ -7,6 +7,9 @@
                 @input="handleChangeWeapon"
                 :type="weaponType"
             ></select-weapon>
+            <div class="weapon-effect" v-if="w.effect">
+                {{ w.effect }}
+            </div>
         </div>
 
         <!-- 其他参数 -->
@@ -168,5 +171,14 @@ export default {
 
 .special:hover {
     background: #345678;
+}
+
+.weapon-effect {
+    border-radius: 3px;
+    margin-top: 12px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #909399;
+    background: #f4f4f5;
 }
 </style>
