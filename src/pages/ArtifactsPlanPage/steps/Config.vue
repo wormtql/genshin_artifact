@@ -146,7 +146,6 @@ export default {
     },
     methods: {
         getConstraint() {
-            console.log(this.$data);
             return deepCopy(this.$data);
         },
 

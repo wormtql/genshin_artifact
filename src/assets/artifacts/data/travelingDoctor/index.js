@@ -30,4 +30,7 @@ export default {
     eng: "travelingDoctor",
     minStar: 1,
     maxStar: 3,
+    effectText: {
+        chs: { 2: "角色受到的治疗效果提高20%。", 4: "施放元素爆发时，恢复20%生命值。"}
+    }
 }

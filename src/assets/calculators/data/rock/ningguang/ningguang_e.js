@@ -12,7 +12,7 @@ let rowsE = [
 export default function (artifacts, configObject, enemy) {
     let c = configObject.character;
     let w = configObject.weapon;
-    let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+    let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
 
     let e = tableRock(attribute, configObject, enemy, rowsE, "e");
     let hp = skill.e.hp[c.skill2 - 1] * attribute.life();

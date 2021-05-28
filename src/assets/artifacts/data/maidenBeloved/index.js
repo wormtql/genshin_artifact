@@ -29,4 +29,7 @@ export default {
     eng: "maidenBeloved",
     minStar: 4,
     maxStar: 5,
+    effectText: {
+        chs: { 2: "角色造成的治疗效果提升15%", 4: "施放元素战技或元素爆发后的10秒内，队伍中所有角色受治疗效果加成提高20%。"}
+    }
 }

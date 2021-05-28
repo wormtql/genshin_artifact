@@ -29,4 +29,7 @@ export default {
     eng: "wandererTroupe",
     minStar: 4,
     maxStar: 5,
+    effectText: {
+        chs: { 2: "元素精通提高80点。", 4: "装备该圣遗物套装的角色为法器、弓箭角色时，角色重击造成的伤害提高35%。" },
+    }
 }

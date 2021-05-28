@@ -29,4 +29,7 @@ export default {
     eng: "noblesseOblige",
     minStar: 4,
     maxStar: 5,
+    effectText: {
+        chs: { 2: "元素爆发造成的伤害提升20％。", 4: "施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。"}
+    }
 }

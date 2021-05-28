@@ -30,4 +30,7 @@ export default {
     eng: "braveHeart",
     minStar: 3,
     maxStar: 4,
+    effectText: {
+        chs: { 2: "攻击力提高18%。", 4: "对生命值高于50%的敌人，造成的伤害增加30%。"}
+    }
 }

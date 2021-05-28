@@ -23,7 +23,15 @@ function getArtifactsSetInfo(arts) {
     return temp;
 }
 
-function computeArtifacts(artifacts, c, w, tf, buffs, constraint) {
+function computeArtifacts(artifacts, configObject) {
+    let {
+        character: c,
+        weapon: w,
+        targetFunc: tf,
+        buffs,
+        constraint,
+        artifactsConfig,
+    } = configObject;
     // filter artifacts
     let filterFunc = createFilterFunction(constraint);
     artifacts = filterFunc(artifacts);
@@ -98,7 +106,7 @@ function computeArtifacts(artifacts, c, w, tf, buffs, constraint) {
                         }
 
                         let arts = [flower, feather, sand, cup, head].filter(item => item);
-                        let attribute = getAttribute(arts, c, w, buffs);
+                        let attribute = getAttribute(arts, c, w, buffs, artifactsConfig);
 
                         let value;
                         if (needContext) {

@@ -39,7 +39,7 @@ export function applyBuffs(attribute, buffs) {
     }
 }
 
-export function getAttribute(artifacts, c, w, stdBuffs) {
+export function getAttribute(artifacts, c, w, stdBuffs, artifactsConfig = {}) {
     let character = new genshin.Character(c.name, c.level, c.ascend, c.constellation, c.args);
     let weapon = new genshin.Weapon(w.name, w.level, w.ascend, w.refine, w.args);
 
@@ -51,6 +51,7 @@ export function getAttribute(artifacts, c, w, stdBuffs) {
     for (let art of artifacts) {
         builder.artifact(getArtifact(art));
     }
+    builder.artifactsConfig(artifactsConfig);
 
     let attribute = builder.build();
     applyBuffs(attribute, stdBuffs);

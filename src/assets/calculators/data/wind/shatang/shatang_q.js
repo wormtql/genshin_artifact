@@ -11,7 +11,7 @@ let rowsEle = [{ key: "dmg2", chs: "附加元素伤害" }];
 export default function (artifacts, configObject, enemy) {
     let c = configObject.character;
     let w = configObject.weapon;
-    let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+    let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
 
     let q = tableWind(attribute, configObject, enemy, rowsQ, "q");
 

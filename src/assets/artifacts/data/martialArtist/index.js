@@ -29,4 +29,7 @@ export default {
     eng: "martialArtist",
     minStar: 3,
     maxStar: 4,
+    effectText: {
+        chs: { 2: "普通攻击与重击造成的伤害提高15%。", 4: "施放元素战技后的8秒内，普通攻击和重击造成的伤害提升25%。"}
+    }
 }

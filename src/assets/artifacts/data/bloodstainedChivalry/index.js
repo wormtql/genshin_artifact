@@ -29,4 +29,7 @@ export default {
     eng: "bloodstainedChivalry",
     minStar: 4,
     maxStar: 5,
+    effectText: {
+        chs: { 2: "造成的物理伤害提高25%。", 4: "击败敌人后的10秒内，施放重击时不消耗体力，且造成的伤害提升50%。"}
+    }
 }

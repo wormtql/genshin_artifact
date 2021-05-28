@@ -30,4 +30,7 @@ export default {
     eng: "berserker",
     minStar: 3,
     maxStar: 4,
+    effectText: {
+        chs: { 2: "暴击率提高12%。", 4: "生命值低于70%时，暴击率额外提高24%。"}
+    }
 }

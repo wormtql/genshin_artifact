@@ -1,6 +1,6 @@
 // import Worker from "@worker/compute.worker.js";
 
-export default function (artifacts, character, weapon, targetFunc, buffs, constraint) {
+export default function (artifacts, configObject) {
     return new Promise((resolve, reject) => {
         let worker = new Worker("@worker/compute.worker.js", { type: "module" });
         // let worker = new Worker();
@@ -14,7 +14,7 @@ export default function (artifacts, character, weapon, targetFunc, buffs, constr
         });
         worker.postMessage({
             method: "computeArtifacts",
-            args: [artifacts, character, weapon, targetFunc, buffs, constraint],
+            args: [artifacts, configObject],
         });
     });
 }

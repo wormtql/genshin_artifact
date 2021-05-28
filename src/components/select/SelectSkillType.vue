@@ -2,6 +2,7 @@
     <el-radio-group
         :value="value"
         @input="$emit('input', $event)"
+        size="small"
     >
         <el-radio-button label="a">普通攻击</el-radio-button>
         <el-radio-button label="b">重击</el-radio-button>

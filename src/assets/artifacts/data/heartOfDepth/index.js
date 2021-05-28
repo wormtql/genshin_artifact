@@ -30,4 +30,7 @@ export default {
     eng: "heartOfDepth",
     minStar: 4,
     maxStar: 5,
+    effectText: {
+        chs: { 2: "获得15%水元素伤害加成。", 4: "施放元素战技后的15秒内，普通攻击与重击造成的伤害提高30%。"}
+    }
 }

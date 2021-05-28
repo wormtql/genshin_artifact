@@ -30,4 +30,7 @@ export default {
     eng: "resolutionOfSojourner",
     minStar: 3,
     maxStar: 4,
+    effectText: {
+        chs: { 2: "攻击力提高18%。", 4: "重击的暴击率提高30%。"}
+    }
 }

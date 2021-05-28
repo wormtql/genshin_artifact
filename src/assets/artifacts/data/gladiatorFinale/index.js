@@ -29,4 +29,7 @@ export default {
     eng: "gladiatorFinale",
     minStar: 4,
     maxStar: 5,
+    effectText: {
+        chs: { 2: "攻击力提高18%。", 4: "装备该圣遗物套装的角色为单手剑、双手剑、长柄武器角色时，角色普通攻击造成的伤害提高35%。"}
+    }
 }

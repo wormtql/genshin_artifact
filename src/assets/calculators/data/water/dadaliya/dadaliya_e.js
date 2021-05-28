@@ -57,7 +57,7 @@ let rowsE = [
 export default function (artifacts, configObject, enemy) {
     let c = configObject.character;
     let w = configObject.weapon;
-    let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+    let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
 
     let a = tableWater(attribute, configObject, enemy, rowsA, "e", "a");
     let b = tableWater(attribute, configObject, enemy, rowsB, "e", "b");

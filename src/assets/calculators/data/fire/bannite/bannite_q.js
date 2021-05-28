@@ -17,7 +17,7 @@ let skillKeys = [
 export default function (artifacts, configObject, enemy) {
     let c = configObject.character;
     let w = configObject.weapon;
-    let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+    let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
 
     let conste1 = c.constellation >= 1;
     let qLevel = c.skill3 - 1;

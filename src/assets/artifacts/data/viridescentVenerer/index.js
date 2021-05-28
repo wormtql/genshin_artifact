@@ -29,4 +29,7 @@ export default {
     eng: "viridescentVenerer",
     minStar: 4,
     maxStar: 5,
+    effectText: {
+        chs: { 2: "获得15%风元素伤害加成。", 4: "扩散反应造成的伤害提升60%，根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。"}
+    }
 }

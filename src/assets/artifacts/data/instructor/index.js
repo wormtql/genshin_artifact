@@ -29,4 +29,7 @@ export default {
     eng: "instructor",
     minStar: 3,
     maxStar: 4,
+    effectText: {
+        chs: { 2: "元素精通提高80点。", 4: "触发元素反应后。队伍中所有角色元素精通提高120点，持续8秒。"}
+    }
 }

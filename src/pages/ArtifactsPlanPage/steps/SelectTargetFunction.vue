@@ -1,5 +1,10 @@
 <template>
     <div>
+        <el-alert
+            title="请注意设置目标函数参数"
+            type="warning"
+            :closable="false"
+        ></el-alert>
         <template v-if="specificCharacterTargets">
             <h3 class="title">角色专属</h3>
             <div

@@ -29,4 +29,7 @@ export default {
     eng: "gambler",
     minStar: 3,
     maxStar: 4,
+    effectText: {
+        chs: { 2: "元素战技造成的伤害提升20%", 4: "击败敌人时，有100%概率清除元素战技的冷却时间。该效果每15秒至多触发一次。"}
+    }
 }

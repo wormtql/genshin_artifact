@@ -29,4 +29,7 @@ export default {
     eng: "thunderingFury",
     minStar: 4,
     maxStar: 5,
+    effectText: {
+        chs: { 2: "获得15%雷元素伤害加成。", 4: "超载、感电、超导反应造成的伤害提升40%。触发这些元素反应时，元素战技冷却时间减少1秒。该效果每0.8秒最多触发一次。"}
+    }
 }

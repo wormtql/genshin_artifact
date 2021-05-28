@@ -29,4 +29,7 @@ export default {
     eng: "thunderSmoother",
     minStar: 4,
     maxStar: 5,
+    effectText: {
+        chs: { 2: "雷元素抗性提高40%。", 4: "对处于雷元素影响下的敌人造成的伤害提升35%。"}
+    }
 }

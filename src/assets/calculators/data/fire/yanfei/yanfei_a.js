@@ -46,7 +46,7 @@ let rowsB = [
 export default function (artifacts, configObject, enemy, otherConfig) {
     let c = configObject.character;
     let w = configObject.weapon;
-    let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+    let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
 
     if (otherConfig.burn) {
         attribute.bBonus += skill.q.bBonus[c.skill3 - 1];

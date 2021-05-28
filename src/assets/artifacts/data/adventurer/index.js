@@ -29,4 +29,7 @@ export default {
     eng: "adventurer",
     minStar: 1,
     maxStar: 3,
+    effectText: {
+        chs: { 2: "生命值上限提升1000点。", 4: "生命值上限提升1000点。"}
+    }
 }

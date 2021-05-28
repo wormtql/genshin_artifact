@@ -9,4 +9,7 @@ export default {
     eng: "prayersForIllumination",
     minStar: 3,
     maxStar: 4,
+    effectText: {
+        chs: { 1: "受到的火元素附着效果的持续时间减少40%" }
+    }
 }

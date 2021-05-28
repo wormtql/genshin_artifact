@@ -120,8 +120,9 @@ export default {
             let c = this.configObject.character;
             let w = this.configObject.weapon;
             let buffs = this.configObject.buffs;
+            let artifactsConfig = this.configObject.artifactsConfig;
             
-            return getAttribute(this.selectedArtifactObjects, c, w, buffs);
+            return getAttribute(this.selectedArtifactObjects, c, w, buffs, artifactsConfig);
         }
     }
 }

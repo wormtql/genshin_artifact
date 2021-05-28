@@ -29,4 +29,7 @@ export default {
     eng: "tinyMiracle",
     minStar: 3,
     maxStar: 4,
+    effectText: {
+        chs: { 2: "所有元素抗性提高20%。", 4: "受到某个元素类型的伤害后，相应的抗性提升30%，持续10秒。该效果每10秒只能触发一次。"}
+    }
 }

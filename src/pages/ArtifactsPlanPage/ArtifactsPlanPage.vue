@@ -50,7 +50,6 @@
                 <ul class="step" @click="handleNav">
                     <li
                         :class="{active: currentstep === 'character-config'}" x-name="character-config"
-                        style="margin-bottom: 16px"
                     >
                         <i class="el-icon-user"></i>
                         角色
@@ -73,10 +72,17 @@
                     <li
                         :class="{active: currentstep === 'target-func-config'}"
                         x-name="target-func-config"
-                        style="margin-bottom: 16px"
                     >
                         <i class="el-icon-odometer"></i>
                         目标函数参数
+                    </li>
+                    <li
+                        :class="{active: currentstep === 'config-artifacts'}"
+                        x-name="config-artifacts"
+                        style="margin-bottom: 16px"
+                    >
+                        <i class="el-icon-help"></i>
+                        圣遗物参数
                     </li>
                     <li
                         :class="{active: currentstep === 'constraint'}"
@@ -136,6 +142,11 @@
                         ref="configTargetFunc"
                     ></config-target-function>
 
+                    <config-artifacts
+                        v-show="currentstep === 'config-artifacts'"
+                        ref="configArtifacts"
+                    ></config-artifacts>
+
                     <config
                         v-show="currentstep === 'constraint'"
                         ref="constraint"
@@ -188,6 +199,7 @@ export default {
         "ConfigBuff": () => import(/* webpackChunkName: "steps-select-buff" */ "./steps/ConfigBuff"),
         "Config": () => import(/* webpackChunkName: "steps-constraint" */ "./steps/Config"),
         // "DamageCalculator": () => import(/* webpackChunkName: "damage-calculator" */)
+        "ConfigArtifacts": () => import(/* webpackChunkName: "config-artifacts" */ "./steps/ConfigArtifacts"),
         ResultPage,
         DamageCalculator,
         ApplyPresetDialog,
@@ -363,6 +375,11 @@ export default {
             return this.$refs.configBuff.getBuffs();
         },
 
+        getArtifactsConfig() {
+            let temp = this.$refs.configArtifacts.getArtifactsConfig();
+            return temp;
+        },
+
         getConfigObject() {
             return {
                 character: this.getCharacterInfo(),
@@ -370,6 +387,7 @@ export default {
                 targetFunc: this.getTargetFuncInfo(),
                 constraint: this.getConstraint(),
                 buffs: this.getStandardBuffs(),
+                artifactsConfig: this.getArtifactsConfig(),
             };
         },
 

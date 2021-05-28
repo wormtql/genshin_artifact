@@ -29,4 +29,7 @@ export default {
     eng: "defenderWill",
     minStar: 3,
     maxStar: 4,
+    effectText: {
+        chs: { 2: "防御力提高30%。", 4: "队伍里每有不同一种元素类型的自己的角色，自身获得30%相应的元素抗性。"}
+    }
 }

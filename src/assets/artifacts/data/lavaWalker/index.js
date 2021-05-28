@@ -29,4 +29,7 @@ export default {
     eng: "lavaWalker",
     minStar: 4,
     maxStar: 5,
+    effectText: {
+        chs: { 2: "火元素抗性提高40%。", 4: "对处于火元素影响下的敌人造成的伤害提升35%。"}
+    }
 }

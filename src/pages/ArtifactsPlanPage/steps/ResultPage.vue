@@ -61,6 +61,10 @@
                         <el-button size="small" @click="disableArtifacts">禁用以上圣遗物</el-button>
                     </div>
 
+                    <artifacts-set-statistics
+                        :artifacts="artifacts"
+                    ></artifacts-set-statistics>
+
                     <h3 class="title">最大值</h3>
                     <el-alert
                         title="不同目标函数的最大值不可相互比较；输出类型的最大值也并不是最终期望伤害，因此仅供参考"
@@ -107,6 +111,7 @@
 <script>
 import ArtifactDisplay from "@c/ArtifactDisplay";
 import AttributePanel from "@c/AttributePanel";
+import ArtifactsSetStatistics from "@c/display/ArtifactsSetStatistics";
 
 import compute from "@alg/attribute_target/compute_artifacts_promise";
 import timer from "@util/timer";
@@ -120,6 +125,7 @@ export default {
     components: {
         ArtifactDisplay,
         AttributePanel,
+        ArtifactsSetStatistics,
     },
     data: function () {
         return {
@@ -171,13 +177,14 @@ export default {
         },
 
         doCompute(veryBigConfigObject) {
-            let character = veryBigConfigObject.character;
-            let weapon = veryBigConfigObject.weapon;
+            // let character = veryBigConfigObject.character;
+            // let weapon = veryBigConfigObject.weapon;
             let artifacts = this.getArtifacts();
-            let constraint = veryBigConfigObject.constraint;
-            let targetFunc = veryBigConfigObject.targetFunc;
-            let buffs = veryBigConfigObject.buffs;
-            console.log(weapon);
+            // let constraint = veryBigConfigObject.constraint;
+            // let targetFunc = veryBigConfigObject.targetFunc;
+            // let buffs = veryBigConfigObject.buffs;
+            // let artifactsConfig = veryBigConfigObject.artifactsConfig;
+            // console.log(weapon);
 
             let loading = this.$loading({
                 lock: true,
@@ -188,11 +195,7 @@ export default {
             // this is a web worker wrapped by a promise
             let promise = compute(
                 artifacts,
-                character,
-                weapon,
-                targetFunc,
-                buffs,
-                constraint
+                veryBigConfigObject
             ).then(({ record, error }) => {
                 this.error = error;
                 if (!error.isError) {

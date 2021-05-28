@@ -14,7 +14,7 @@ let rowsE = [
 export default function (artifacts, configObject, enemy) {
     let c = configObject.character;
     let w = configObject.weapon;
-    let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+    let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
 
     let idx = c.skill2 - 1;
     let cure1 = attribute.life() * skill.e.cure1[idx] + skill.e.cure1Static[idx];

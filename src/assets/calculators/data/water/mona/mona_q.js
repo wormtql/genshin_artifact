@@ -14,7 +14,7 @@ let rowsQ = [
 export default function (artifacts, configObject, enemy) {
     let c = configObject.character;
     let w = configObject.weapon;
-    let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+    let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
 
     let q = tableWater(attribute, configObject, enemy, rowsQ, "q");
     let bonus = skill.q.bonus[c.skill3 - 1];

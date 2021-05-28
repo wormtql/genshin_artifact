@@ -29,4 +29,7 @@ export default {
     eng: "retracingBolide",
     minStar: 4,
     maxStar: 5,
+    effectText: {
+        chs: { 2: "护盾强效提高35%", 4: "处于护盾庇护下时，额外获得40%普通攻击和重击伤害加成。"}
+    }
 }

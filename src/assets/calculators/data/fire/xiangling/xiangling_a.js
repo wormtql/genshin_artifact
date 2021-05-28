@@ -39,7 +39,7 @@ const rowsB = [
 export default function (artifacts, configObject, enemy) {
     let c = configObject.character;
     let w = configObject.weapon;
-    let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+    let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
 
     let a = tablePhysical(attribute, configObject, enemy, rowsA, "a");
     let b = tablePhysical(attribute, configObject, enemy, rowsB, "b");

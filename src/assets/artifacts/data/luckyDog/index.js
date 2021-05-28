@@ -29,4 +29,7 @@ export default {
     eng: "luckyDog",
     minStar: 1,
     maxStar: 3,
+    effectText: {
+        chs: { 2: "防御力提高100点。", 4: "拾取摩拉时，恢复300点生命值。"}
+    }
 }

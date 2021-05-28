@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="config-item">
+        <div class="config-item select-character">
+            <img :src="c.cardURL" class="image">
             <h3 class="config-title">选择角色</h3>
             <select-character
                 :value="characterName"
@@ -170,7 +171,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.select-character {
+    position: relative;
+    overflow: hidden;
+
+    .image {
+        position: absolute;
+        right: 50px;
+        // right: 0;
+        top: -30px;
+        width: 120px;
+        // opacity: 0.5;
+        // transform: rotateZ(30deg) rotateY(10deg);
+        // box-shadow: 10px 0px 10px 1px #00000022;
+    }
+}
+
 .skill {
     margin-right: 18px;
 }

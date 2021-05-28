@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="config-item">
+        <div class="config-item select-weapon">
+            <img :src="w.url" class="image" >
             <h3 class="config-title">选择武器</h3>
             <select-weapon
                 :value="weaponName"
@@ -163,7 +164,27 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.select-weapon {
+    position: relative;
+    // overflow: hidden;
+
+    .image {
+        position: absolute;
+        right: 20px;
+        top: -20px;
+        // bottom: 0;
+        height: 180px;
+        // z-index: -1;
+        // opacity: 0.3;
+        pointer-events: none;
+    }
+
+    .weapon-effect {
+        margin-right: 180px;
+    }
+}
+
 .special {
     background: #123456;
     color: white;

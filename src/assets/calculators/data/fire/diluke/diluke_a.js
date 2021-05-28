@@ -35,7 +35,7 @@ let rowsB = [
 export default function (artifacts, configObject, enemy, otherConfig) {
     let c = configObject.character;
     let w = configObject.weapon;
-    let attribute = getAttribute(artifacts, c, w, configObject.buffs);
+    let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
 
     let hasTalent2 = c.level > 60 || (c.level === 60 && c.ascend);
     if (hasTalent2) {

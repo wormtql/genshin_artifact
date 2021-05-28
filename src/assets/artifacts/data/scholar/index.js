@@ -29,4 +29,7 @@ export default {
     eng: "scholar",
     minStar: 3,
     maxStar: 4,
+    effectText: {
+        chs: { 2: "元素充能效率提高20%", 4: "获得元素微粒或元素晶球时，队伍中所有弓箭和法器角色额外恢复3点元素能量。该效果每3秒只能触发一次。"}
+    }
 }
