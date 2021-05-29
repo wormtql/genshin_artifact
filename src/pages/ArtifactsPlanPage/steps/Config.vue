@@ -84,6 +84,52 @@
         </div>
 
         <div class="config-item">
+            <h3 class="config-title" style="margin-bottom: 20px">限定属性最小值</h3>
+            <div class="flex-row row">
+                <span class="cmt-label fs-14 color-normal">生命值</span>
+                <div>
+                    <el-input size="small" v-model="constraintAttributeMin.life"></el-input>
+                </div>
+            </div>
+            <div class="flex-row row">
+                <span class="cmt-label fs-14 color-normal">攻击力</span>
+                <div>
+                    <el-input size="small" v-model="constraintAttributeMin.attack"></el-input>
+                </div>
+            </div>
+            <div class="flex-row row">
+                <span class="cmt-label fs-14 color-normal">防御力</span>
+                <div>
+                    <el-input size="small" v-model="constraintAttributeMin.defend"></el-input>
+                </div>
+            </div>
+            <div class="flex-row row">
+                <span class="cmt-label fs-14 color-normal">充能效率（%）</span>
+                <div>
+                    <el-input size="small" v-model="constraintAttributeMin.recharge"></el-input>
+                </div>
+            </div>
+            <div class="flex-row row">
+                <span class="cmt-label fs-14 color-normal">元素精通</span>
+                <div>
+                    <el-input size="small" v-model="constraintAttributeMin.elementalMastery"></el-input>
+                </div>
+            </div>
+            <div class="flex-row row">
+                <span class="cmt-label fs-14 color-normal">暴击率（%）</span>
+                <div>
+                    <el-input size="small" v-model="constraintAttributeMin.critical"></el-input>
+                </div>
+            </div>
+            <div class="flex-row row" style="margin-bottom: 0">
+                <span class="cmt-label fs-14 color-normal">暴击伤害（%）</span>
+                <div>
+                    <el-input size="small" v-model="constraintAttributeMin.criticalDamage"></el-input>
+                </div>
+            </div>
+        </div>
+
+        <div class="config-item">
             <h3 class="config-title">过滤等级</h3>
             <el-slider
                 v-model="levelDelegate"
@@ -122,6 +168,16 @@ const DEFAULT_FILTER_LEVEL = {
     max: 20,
 }
 
+const DEFAULT_CONSTRAINT_ATTRIBUTE_MIN = {
+    life: "0",
+    attack: "0",
+    defend: "0",
+    recharge: "100",
+    elementalMastery: "0",
+    critical: "5",
+    criticalDamage: "50",
+}
+
 export default {
     name: "Config",
     components: {
@@ -138,15 +194,32 @@ export default {
     data() {
         return {
             constraintSet: deepCopy(DEFAULT_CONSTRAINT_SET),
-
             constraintMainTag: deepCopy(DEFAULT_CONSTRAINT_MAIN_TAG),
-
+            constraintAttributeMin: deepCopy(DEFAULT_CONSTRAINT_ATTRIBUTE_MIN),
             filterLevel: deepCopy(DEFAULT_FILTER_LEVEL),
         }
     },
     methods: {
         getConstraint() {
-            return deepCopy(this.$data);
+            return {
+                constraintSet: deepCopy(this.constraintSet),
+                constraintMainTag: deepCopy(this.constraintMainTag),
+                constraintAttributeMin: this.getConstraintAttributeMin(),
+                filterLevel: deepCopy(this.filterLevel),
+            };
+        },
+
+        getConstraintAttributeMin() {
+            let cam = this.constraintAttributeMin;
+            return {
+                attack: parseFloat(cam.attack) ?? 0,
+                life: parseFloat(cam.life) ?? 0,
+                defend: parseFloat(cam.defend) ?? 0,
+                recharge: (parseFloat(cam.recharge) ?? 100) / 100,
+                elementalMastery: parseFloat(cam.elementalMastery) ?? 0,
+                critical: (parseFloat(cam.critical) ?? 5) / 100,
+                criticalDamage: (parseFloat(cam.criticalDamage) ?? 50) / 100,
+            }
         },
 
         setConstraint(d) {
@@ -155,12 +228,28 @@ export default {
                 this.constraintSet = deepCopy(DEFAULT_CONSTRAINT_SET);
                 this.constraintMainTag = deepCopy(DEFAULT_CONSTRAINT_MAIN_TAG);
                 this.filterLevel = deepCopy(DEFAULT_FILTER_LEVEL);
+                this.constraintAttributeMin = deepCopy(DEFAULT_CONSTRAINT_ATTRIBUTE_MIN);
                 return;
             }
 
             this.constraintSet = deepCopy(d.constraintSet);
             this.constraintMainTag = deepCopy(d.constraintMainTag);
             this.filterLevel = d.filterLevel ? deepCopy(d.filterLevel) : deepCopy(DEFAULT_FILTER_LEVEL);
+            let cam = d.constraintAttributeMin;
+            if (cam) {
+                this.constraintAttributeMin = {
+                    life: cam.life.toString(),
+                    attack: cam.attack.toString(),
+                    defend: cam.defend.toString(),
+                    recharge: (cam.recharge * 100).toString(),
+                    elementalMastery: cam.elementalMastery.toString(),
+                    critical: (cam.critical * 100).toString(),
+                    criticalDamage: (cam.criticalDamage * 100).toString(),
+                };
+            } else {
+                this.constraintAttributeMin = deepCopy(DEFAULT_CONSTRAINT_ATTRIBUTE_MIN);
+            }
+            
         }
     },
     computed: {
@@ -178,11 +267,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.cmt-label {
-    width: 110px;
-}
-
+<style lang="scss" scoped>
 .title {
     /* background:rgb(74, 99, 211); */
     padding: 0px 16px;
@@ -200,6 +285,10 @@ export default {
 
 .row {
     margin-bottom: 18px;
+
+    .cmt-label {
+        width: 110px;
+    }
 }
 
 .plus {

@@ -393,6 +393,7 @@ export default {
         },
 
         getConfigObject() {
+            console.log(this.getConstraint());
             return {
                 character: this.getCharacterInfo(),
                 weapon: this.getWeaponInfo(),

@@ -1,5 +1,5 @@
 function f(config) {
-    let isAmos = config.weapon.name === "amosizhigong";
+    // let isAmos = config.weapon.name === "amosizhigong";
     let hasTalent1 = config.character.hasTalent1;
     let hasTalent2 = config.character.hasTalent2;
 
@@ -12,9 +12,9 @@ function f(config) {
         let crit = attribute.bCritical;
 
         let bonus = attribute.bBonus + attribute.bonus + attribute.iceBonus;
-        if (isAmos) {
-            bonus += (config.weapon.refine * 0.02 + 0.06) * 3;
-        }
+        // if (isAmos) {
+        //     bonus += (config.weapon.refine * 0.02 + 0.06) * 3;
+        // }
 
         let isBS4 = (context.artifactSet.blizzardStrayer || 0) >= 4;
         if (isBS4) {

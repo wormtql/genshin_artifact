@@ -23,6 +23,34 @@ function getArtifactsSetInfo(arts) {
     return temp;
 }
 
+function checkAttribute(config, attribute) {
+    let min = config.constraintAttributeMin;
+
+    if (attribute.attack() < min.attack) {
+        return false;
+    }
+    if (attribute.defend() < min.defend) {
+        return false;
+    }
+    if (attribute.life() < min.life) {
+        return false;
+    }
+    if (attribute.elementalMastery < min.elementalMastery) {
+        return false;
+    }
+    if (attribute.recharge < min.recharge) {
+        return false;
+    }
+    if (attribute.critical < min.critical) {
+        return false;
+    }
+    if (attribute.criticalDamage < min.criticalDamage) {
+        return false;
+    }
+
+    return true;
+}
+
 function computeArtifacts(artifacts, configObject) {
     let {
         character: c,
@@ -107,6 +135,9 @@ function computeArtifacts(artifacts, configObject) {
 
                         let arts = [flower, feather, sand, cup, head].filter(item => item);
                         let attribute = getAttribute(arts, c, w, buffs, artifactsConfig);
+                        if (!checkAttribute(constraint, attribute)) {
+                            continue;
+                        }
 
                         let value;
                         if (needContext) {

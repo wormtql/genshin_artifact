@@ -6,7 +6,7 @@ export default {
     chs: "甘雨-霜华",
     description: [
         "靠二段蓄力输出",
-        "如果带了阿莫斯之弓，折合0.3秒buff"
+        // "如果带了阿莫斯之弓，折合0.3秒buff"
     ],
     tags: [
         "输出",
