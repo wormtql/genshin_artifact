@@ -331,7 +331,19 @@ export default {
                     return;
                 }
                 if (!this.checkPresetNameDuplicate(value)) {
-                    this.$message.error("名字已经存在");
+                    this.$confirm("名字已存在，是否覆盖？", "提示", {
+                        confirmButtonText: "是",
+                        cancelButtonText: "否",
+                    }).then(() => {
+                        let preset = this.getConfigObject();
+                        preset.name = value;
+                        this.$store.commit("presets/overwrite", {
+                            name: value,
+                            preset,
+                        });
+                        this.isPreset = true;
+                        this.currentPresetName = value;
+                    });
                     return;
                 }
 

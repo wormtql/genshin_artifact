@@ -18,3 +18,9 @@ export function howManyUpgradeCount(value, tagName, star) {
     let min = Math.ceil(value / eff[3]);
     return [min, max];
 }
+
+export function getValueEff(value, tagName, star) {
+    let eff = artifactEff[star][tagName];
+
+    return value / eff[3];
+}

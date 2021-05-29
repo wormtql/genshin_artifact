@@ -4,6 +4,37 @@
             计算中
         </div>
         <div v-else-if="!calculating && !error.isError">
+            <el-dialog
+                :visible.sync="showArtifactsAnalysis"
+                title="圣遗物分析"
+                width="80%"
+            >
+                <artifacts-set-statistics
+                    :artifacts="artifacts"
+                ></artifacts-set-statistics>
+            </el-dialog>
+
+            <el-dialog
+                :visible.sync="showAttributeAnalysis"
+                title="面板分析"
+                width="80%"
+            >
+                <attribute-statistics
+                    :attribute="currentRecord.attribute"
+                ></attribute-statistics>
+            </el-dialog>
+
+            <div class="toolbar" style="margin-bottom: 16px">
+                <el-button
+                    size="small"
+                    @click="showArtifactsAnalysis = true"
+                >查看圣遗物分析</el-button>
+                <el-button
+                    size="small"
+                    @click="showAttributeAnalysis = true"
+                >查看属性分析</el-button>
+            </div>
+
             <div style="margin-bottom: 16px">
                 <el-radio-group v-model="recordIndex" size="small">
                     <el-radio-button :label="0" v-if="recordCount > 0">
@@ -61,10 +92,6 @@
                         <el-button size="small" @click="disableArtifacts">禁用以上圣遗物</el-button>
                     </div>
 
-                    <artifacts-set-statistics
-                        :artifacts="artifacts"
-                    ></artifacts-set-statistics>
-
                     <h3 class="title">最大值</h3>
                     <el-alert
                         title="不同目标函数的最大值不可相互比较；输出类型的最大值也并不是最终期望伤害，因此仅供参考"
@@ -112,6 +139,7 @@
 import ArtifactDisplay from "@c/ArtifactDisplay";
 import AttributePanel from "@c/AttributePanel";
 import ArtifactsSetStatistics from "@c/display/ArtifactsSetStatistics";
+import AttributeStatistics from "@c/display/AttributeStatistics";
 
 import compute from "@alg/attribute_target/compute_artifacts_promise";
 import timer from "@util/timer";
@@ -126,6 +154,7 @@ export default {
         ArtifactDisplay,
         AttributePanel,
         ArtifactsSetStatistics,
+        AttributeStatistics,
     },
     data: function () {
         return {
@@ -136,6 +165,9 @@ export default {
             recordIndex: 0,
 
             historyValue: [],
+
+            showAttributeAnalysis: false,
+            showArtifactsAnalysis: false,
         }
     },
     methods: {

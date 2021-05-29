@@ -62,6 +62,11 @@ let item = {
             }
         },
 
+        overwrite(state, { name, preset }) {
+            Vue.set(preset, "version", VERSION_PRESET);
+            Vue.set(state.presets, name, preset);
+        },
+
         update(state, preset) {
             let name = preset.name;
             Vue.set(preset, "version", VERSION_PRESET);
