@@ -305,7 +305,7 @@ export default {
         },
 
         savePreset() {
-            let preset = this.getConfigObject();
+            let preset = this.getConfigObject(true);
             preset.name = this.currentPresetName;
 
             this.$store.commit("presets/update", preset);
@@ -335,7 +335,7 @@ export default {
                         confirmButtonText: "是",
                         cancelButtonText: "否",
                     }).then(() => {
-                        let preset = this.getConfigObject();
+                        let preset = this.getConfigObject(true);
                         preset.name = value;
                         this.$store.commit("presets/overwrite", {
                             name: value,
@@ -347,7 +347,7 @@ export default {
                     return;
                 }
 
-                let preset = this.getConfigObject();
+                let preset = this.getConfigObject(true);
                 preset.name = value;
                 this.$store.commit("presets/add", {
                     name: value,
@@ -392,14 +392,19 @@ export default {
             return temp;
         },
 
-        getConfigObject() {
-            console.log(this.getConstraint());
+        getConfigObject(isPreset = false) {
+            let buffs;
+            if (isPreset) {
+                buffs = this.getBuffs();
+            } else {
+                buffs = this.getStandardBuffs();
+            }
             return {
                 character: this.getCharacterInfo(),
                 weapon: this.getWeaponInfo(),
                 targetFunc: this.getTargetFuncInfo(),
                 constraint: this.getConstraint(),
-                buffs: this.getStandardBuffs(),
+                buffs,
                 artifactsConfig: this.getArtifactsConfig(),
             };
         },
