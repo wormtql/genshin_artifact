@@ -13,9 +13,16 @@ export function count(artifacts) {
 
 export function howManyUpgradeCount(value, tagName, star) {
     let eff = artifactEff[star][tagName];
-    
-    let max = Math.floor(value / eff[0]);
-    let min = Math.ceil(value / eff[3]);
+    if (tagName === "attackPercentage") {
+        console.log(value);
+    }
+
+    value = Math.round(value * 1000);
+    let eff0 = Math.round(eff[0] * 1000);
+    let eff3 = Math.round(eff[3] * 1000);
+
+    let max = Math.floor(value / eff0);
+    let min = Math.ceil(value / eff3);
     return [min, max];
 }
 

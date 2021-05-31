@@ -47,6 +47,9 @@ export default {
         },
 
         setTargetFuncConfig(targetFunc) {
+            if (!targetFunctionsData[targetFunc.name]) {
+                return;
+            }
             this.targetFuncName = targetFunc.name;
 
             this.$nextTick(() => {
@@ -57,7 +60,7 @@ export default {
         },
 
         setTargetFuncName(name) {
-            if (name !== this.targetFuncName) {
+            if (name !== this.targetFuncName && targetFunctionsData[name]) {
                 this.targetFuncName = name;
             }
         }
