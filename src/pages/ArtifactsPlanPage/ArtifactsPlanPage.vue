@@ -51,7 +51,7 @@
                     <li
                         :class="{active: currentstep === 'character-config'}" x-name="character-config"
                     >
-                        <i class="el-icon-user"></i>
+                        <i class="el-icon-user icon"></i>
                         角色
                     </li>
                     <li
@@ -59,21 +59,21 @@
                         x-name="weapon-config"
                         style="margin-bottom: 16px"
                     >
-                        <i class="el-icon-knife-fork"></i>
+                        <i class="el-icon-knife-fork icon"></i>
                         武器
                     </li>
                     <li
                         :class="{active: currentstep === 'target-func'}"
                         x-name="target-func"
                     >
-                        <i class="el-icon-odometer"></i>
+                        <i class="el-icon-odometer icon"></i>
                         目标函数
                     </li>
                     <li
                         :class="{active: currentstep === 'target-func-config'}"
                         x-name="target-func-config"
                     >
-                        <i class="el-icon-odometer"></i>
+                        <i class="el-icon-odometer icon"></i>
                         目标函数参数
                     </li>
                     <li
@@ -81,7 +81,7 @@
                         x-name="config-artifacts"
                         style="margin-bottom: 16px"
                     >
-                        <i class="el-icon-help"></i>
+                        <i class="el-icon-help icon"></i>
                         圣遗物参数
                     </li>
                     <li
@@ -89,7 +89,7 @@
                         x-name="constraint"
                         style="margin-bottom: 16px"
                     >
-                        <i class="el-icon-cold-drink"></i>
+                        <i class="el-icon-cold-drink icon"></i>
                         过滤/限定
                     </li>
                     <li
@@ -97,21 +97,21 @@
                         x-name="buff"
                         style="margin-bottom: 16px"
                     >
-                        <i class="el-icon-ice-cream-round"></i>
+                        <i class="el-icon-ice-cream-round icon"></i>
                         全局buff
                     </li>
                     <li
                         :class="{active: currentstep === 'result'}"
                         x-name="result"
                     >
-                        <i class="el-icon-cpu"></i>
+                        <i class="el-icon-cpu icon"></i>
                         计算结果
                     </li>
                     <li
                         :class="{active: currentstep === 'calculator'}"
                         x-name="calculator"
                     >
-                        <i class="el-icon-set-up"></i>
+                        <i class="el-icon-set-up icon"></i>
                         计算器
                     </li>
                 </ul>
@@ -465,6 +465,7 @@ export default {
         /* border-bottom: 1px solid #00000011; */
         transition: 300ms;
         // border-left: 5px solid #12345611;
+        font-size: 12px;
 
         &:hover {
             background: #ecf5ff;
@@ -474,6 +475,11 @@ export default {
             // box-shadow: 0 0 20px 3px rgb(0 0 0 / 10%);
             color: #409eff;
             background: #ecf5ff;
+        }
+
+        .icon {
+            margin-right: 12px;
+            pointer-events: none;
         }
     }
 }
