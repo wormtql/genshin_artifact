@@ -4,6 +4,7 @@
         :value="value"
         :disabled="disabled"
         size="small"
+        :multiple="multiple"
     >
         <el-option
             v-if="anyOption"
@@ -57,6 +58,10 @@ export default {
             default: false,
         },
         anyOption: {
+            type: Boolean,
+            default: false,
+        },
+        multiple: {
             type: Boolean,
             default: false,
         }

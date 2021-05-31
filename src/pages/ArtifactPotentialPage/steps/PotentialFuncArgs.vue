@@ -1,10 +1,11 @@
 <template>
     <div>
-        <component
-            v-if="needConfig"
-            :is="potentialFunc.config"
-            ref="config"
-        ></component>
+        <keep-alive v-if="needConfig">
+            <component
+                :is="potentialFunc.config"
+                ref="config"
+            ></component>
+        </keep-alive>
         <div v-else>
             <el-alert
                 title="该函数无要配置的参数，请点击下一步"
@@ -13,21 +14,13 @@
             ></el-alert>
         </div>
 
-        <!-- <el-row :gutter="16">
-            <el-col :span="12">
-                <el-button @click="computeSingle">计算单个圣遗物</el-button>
-            </el-col>
-
-            <el-col :span="12">
-                <el-button @click="computeAll">计算所有圣遗物</el-button>
-            </el-col>
-        </el-row> -->
-        <el-button @click="computeAll" type="primary" style="width: 100%">计算所有圣遗物</el-button>
+        <!-- <el-button @click="computeAll" type="primary" style="width: 100%">计算所有圣遗物</el-button> -->
     </div>
 </template>
 
 <script>
 import potentialFuncData from "@asset/potential_functions/data";
+import deepCopy from "@util/deepcopy";
 
 export default {
     name: "PotentialFuncArgs",
@@ -55,23 +48,11 @@ export default {
             if (this.$refs.config.compact) {
                 configData = this.$refs.config.compact();
             } else {
-                configData = Object.assign({}, this.$refs.config.$data);
+                configData = deepCopy(this.$refs.config.$data);
             }
 
             return configData;
         },
-
-        computeSingle() {
-            let configData = this.getPArgs();
-
-            this.$emit("single", configData);
-        },
-
-        computeAll() {
-            let configData = this.getPArgs();
-
-            this.$emit("all", configData);
-        }
     }
 }
 </script>

@@ -9,6 +9,17 @@
                     size="mini"
                     circle
                     @click="$emit('delete')"
+                    class="button"
+                    title="删除"
+                ></el-button>
+                <el-button
+                    icon="el-icon-download"
+                    type="text"
+                    size="mini"
+                    circle
+                    @click="$emit('download')"
+                    class="button"
+                    title="导出"
                 ></el-button>
             </div>
         </div>
@@ -63,35 +74,52 @@ export default {
 }
 </script>
 
-<style scoped>
-.buttons {
-    float: right;
-    height: 32px;
-}
-
+<style lang="scss" scoped>
 .item {
     box-shadow: 0 0 10px 1px #00000011;
     display: inline-block;
     transition: 300ms;
-}
 
-.header {
-    height: 32px;
-    border-bottom: 1px solid #00000022;
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* align-items: center; */
-}
+    .header {
+        height: 32px;
+        border-bottom: 1px solid #00000022;
 
-.header span {
-    line-height: 32px;
-    padding: 4px 8px;
-    color: #123456;
-}
+        span {
+            line-height: 32px;
+            padding: 4px 8px;
+            color: #123456;
+        }
 
-.body {
-    padding: 8px;
-    display: flex;
+        .buttons {
+            float: right;
+            height: 32px;
+
+            .button {
+                margin: 0;
+            }
+        }
+    }
+
+    .body {
+        padding: 8px;
+        display: flex;
+
+        .detail-div {
+            margin-right: 12px;
+
+            span {
+                width: 64px;
+                text-align: center;
+                display: block;
+                padding-top: 8px;
+            }
+
+            &:last-of-type {
+                margin: 0;
+            }
+        }
+    }
+    
 }
 
 .c-avatar, .w-avatar, .tf-avatar {
@@ -99,20 +127,5 @@ export default {
     height: 64px;
     width: 64px;
     border: 1px solid #e9e9e9;
-}
-
-.detail-div span {
-    width: 64px;
-    text-align: center;
-    display: block;
-    padding-top: 8px;
-}
-
-.detail-div {
-    margin-right: 12px;
-}
-
-.detail-div:last-of-type {
-    margin: 0;
 }
 </style>

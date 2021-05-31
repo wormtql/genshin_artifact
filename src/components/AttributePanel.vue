@@ -155,6 +155,46 @@
             <span class="title">元素充能效率</span>
             <span class="value">{{ mul100("recharge") }}</span>
         </div>
+        <div class="item">
+            <span class="title">超载增强</span>
+            <span class="value">{{ mul100("overloadEnhance") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">燃烧增强</span>
+            <span class="value">{{ mul100("burningEnhance") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">感电增强</span>
+            <span class="value">{{ mul100("electroEnhance") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">超导增强</span>
+            <span class="value">{{ mul100("superconductEnhance") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">扩散（雷）增强</span>
+            <span class="value">{{ mul100("swirlThunderEnhance") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">扩散（火）增强</span>
+            <span class="value">{{ mul100("swirlFireEnhance") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">扩散（水）增强</span>
+            <span class="value">{{ mul100("swirlWaterEnhance") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">扩散（冰）增强</span>
+            <span class="value">{{ mul100("swirlIceEnhance") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">蒸发增强</span>
+            <span class="value">{{ mul100("vaporizeEnhance") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">融化增强</span>
+            <span class="value">{{ mul100("meltEnhance") }}</span>
+        </div>
 
 
         <h3 class="class">其他</h3>

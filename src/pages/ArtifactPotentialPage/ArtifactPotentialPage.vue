@@ -1,33 +1,42 @@
 <template>
     <div>
         <el-breadcrumb>
-            <el-breadcrumb-item>圣遗物潜力系统</el-breadcrumb-item>
+            <el-breadcrumb-item>圣遗物潜力计算</el-breadcrumb-item>
             <!-- <el-button>123</el-button> -->
         </el-breadcrumb>
         <el-divider></el-divider>
 
+        <div class="toolbar">
+            <div class="toolbar-right">
+                <el-button
+                    size="small"
+                    type="primary"
+                    @click="handleComputeAll"
+                >
+                    <i class="el-icon-cpu"></i>
+                    开始计算
+                </el-button>
+            </div>
+        </div>
+
         <my-step
             :steps="['潜力函数', '参数', '结果']"
             :pointer="step"
+            :lock="false"
             @navigate="step = $event"
         ></my-step>
 
         <div style="margin-top: 24px">
             <choose-potential-func
+                v-model="funcName"
                 v-show="step === 0"
-                @select="handleSelectPotentialFunc"
             ></choose-potential-func>
 
             <potential-func-args
                 v-show="step === 1"
-                :func-name="selected.funcName"
-                @single="handleComputeSingle"
-                @all="handleComputeAll"
+                :func-name="funcName"
+                ref="configPotentialFunc"
             ></potential-func-args>
-
-            <!-- <potential-compute-panel
-                v-show="step === 2"
-            ></potential-compute-panel> -->
 
             <result-of-all
                 ref="resultOfAll"
@@ -56,31 +65,30 @@ export default {
     data: function () {
         return {
             step: 0,
-            selected: {
-                funcName: "",
-                pArgs: {},
-            }
+            
+            funcName: "ratio",
         }
     },
     methods: {
-        handleSelectPotentialFunc(name) {
-            this.selected.funcName = name;
+        handleComputeAll() {
+            let args = this.$refs.configPotentialFunc.getPArgs();
 
-            this.step++;
-        },
+            let configObject = {
+                potentialFunction: {
+                    name: this.funcName,
+                    args,
+                }
+            };
 
-        handleComputeSingle(config) {
-            this.selected.pArgs = config;
-
-            this.step++;
-        },
-
-        handleComputeAll(config) {
-            this.selected.pArgs = config;
-
-            this.step++;
-            this.$refs.resultOfAll.compute();
+            this.step = 2;
+            this.$refs.resultOfAll.compute(configObject);
         }
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.toolbar {
+    margin-bottom: 24px;
+}
+</style>

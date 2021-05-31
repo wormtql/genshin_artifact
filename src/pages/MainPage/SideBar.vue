@@ -21,7 +21,7 @@
                 </el-menu-item>
                 <el-menu-item index="/character-presets">
                     <i class="el-icon-menu"></i>
-                    角色预设
+                    计算预设
                 </el-menu-item>
             </el-menu-item-group>
 

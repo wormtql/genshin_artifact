@@ -72,7 +72,7 @@ export default {
 }
 
 .text {
-    max-height: 116px;
+    max-height: 300px;
     overflow: auto;
 }
 </style>

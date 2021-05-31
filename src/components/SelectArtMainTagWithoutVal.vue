@@ -29,6 +29,7 @@ const tagData = {
     sand: artifactsTagMap["sand"].map(item => secondaryTags[item]),
     cup: artifactsTagMap["cup"].map(item => secondaryTags[item]),
     head: artifactsTagMap["head"].map(item => secondaryTags[item]),
+    "any": Object.values(secondaryTags),
 }
 
 export default {

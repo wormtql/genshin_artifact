@@ -6,7 +6,7 @@
         >
         </el-alert>
         <el-alert
-            title="目前对非5星圣遗物支持不好，因此，尽量使用5星圣遗物；未指定等级和星级的默认为5星20级"
+            title="只计算4星和5星圣遗物"
             :closable="false"
             type="warning"
             style="margin-bottom: 20px"
@@ -15,7 +15,8 @@
             class="item hand"
             v-for="(f, key) in potentialFuncData"
             :key="key"
-            @click="handleClick(f.name)"
+            :class="{ active: key === value }"
+            @click="handleClick(key)"
         >
             <div>
                 <img class="badge" :src="f.badge">
@@ -43,47 +44,54 @@ export default {
     created: function () {
         this.potentialFuncData = potentialFuncData;
     },
+    props: ["value"],
     methods: {
         handleClick(name) {
-            this.$emit("select", name);
+            this.$emit("input", name);
         }
     }
 }
 </script>
 
-<style scoped>
-.detail {
-    padding-left: 16px;
-}
-
+<style lang="scss" scoped>
 .item {
     /* height: 64px; */
     padding: 8px;
     transition: 300ms;
     border-radius: 3px;
     display: flex;
-}
+    border: 1px solid transparent;
 
-.item:hover {
-    background: rgba(0, 0, 0, 0.05);
-}
+    &:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
 
-.title {
-    font-weight: bold;
-    display: block;
-    /* padding: 0; */
-    margin: 0;
-}
+    .detail {
+        padding-left: 16px;
 
-.badge {
-    width: 64px;
-    display: inline-block;
-    vertical-align: top;
-}
+        .title {
+            font-weight: bold;
+            display: block;
+            /* padding: 0; */
+            margin: 0;
+        }
 
-.description span {
-    display: block;
-    color: #555555;
-    padding-top: 3px;
+        .description span {
+            display: block;
+            color: #555555;
+            padding-top: 3px;
+        }
+    }
+
+    .badge {
+        width: 64px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &.active {
+        background: #12345611;
+        border: 1px solid #12345633;
+    }
 }
 </style>

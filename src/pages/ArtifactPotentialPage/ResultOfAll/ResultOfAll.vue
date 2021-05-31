@@ -1,8 +1,10 @@
 <template>
     <div>
         <div class="filter">
-            <el-checkbox v-model="filNotFull">未满级圣遗物</el-checkbox>
-            <el-checkbox v-model="filFull">满级圣遗物</el-checkbox>
+            <filter-potential-result
+                ref="filterConfig"
+                v-model="displayFilterConfig"
+            ></filter-potential-result>
         </div>
         <div class="container">
             <artifact-display
@@ -40,6 +42,7 @@
 import { computeAll } from "@alg/potential/compute_artifact_potential_promise";
 
 import ArtifactDisplay from "@c/ArtifactDisplay";
+import FilterPotentialResult from "@c/filter/FilterPotentialResult";
 
 
 const PAGE_SIZE = 10;
@@ -47,27 +50,31 @@ const PAGE_SIZE = 10;
 export default {
     name: "ResultOfAll",
     components: {
-        ArtifactDisplay
+        ArtifactDisplay,
+        FilterPotentialResult,
     },
     data: function () {
         return {
             result: [],
 
-            filNotFull: true,
-            filFull: true,
-
             currentPage: 1,
 
             pageSize: PAGE_SIZE,
+
+            displayFilterConfig: {
+                filterSlots: ["flower", "feather", "sand", "cup", "head"],
+                minLevel: 0,
+                maxLevel: 20,
+                filterSetName: "any",
+                filterMainTag: "any",
+            }
         }
     },
     computed: {
         finalResult() {
             let temp = this.result.slice();
 
-            for (let fil of this.filters) {
-                temp = temp.filter(item => fil(item[0]))
-            }
+            temp = temp.filter(item => this.filter(item[0]));
 
             temp.sort((a, b) => b[1] - a[1]);
 
@@ -83,45 +90,43 @@ export default {
         resultCount() {
             return this.finalResult.length;
         },
-
-        filters() {
-            let temp = [];
-            let getLevel = art => {
-                if (Object.prototype.hasOwnProperty.call(art, "level")) {
-                    return art.level;
-                }
-                return 20;
-            };
-            if (!this.filNotFull) {
-                temp.push(item => getLevel(item) === 20);
-            }
-            if (!this.filFull) {
-                temp.push(item => getLevel(item) < 20);
-            }
-
-            return temp;
-        }
     },
     methods: {
-        compute() {
+        compute({ potentialFunction }) {
             let loading = this.$loading({
                 lock: true,
-                text: "莫娜计算中",
+                text: "莫娜占卜中",
             });
             let arts = this.$store.getters["artifacts/allFlat"];
 
             let fil = item => (item.star ?? 5) >= 4;
             let filteredArts = arts.filter(fil);
-            // console.log(filteredArts);
 
-            let name = this.$parent.$data.selected.funcName;
-            let pArgs = this.$parent.$data.selected.pArgs;
+            let name = potentialFunction.name;
+            let pArgs = potentialFunction.args;
 
             computeAll(filteredArts, name, pArgs).then(result => {
                 this.result = result;
                 loading.close();
                 // console.log(result);
             });
+        },
+
+        filter(artifact) {
+            let c = this.displayFilterConfig;
+
+            let pos = artifact.position;
+            let f1 = c.filterSlots.indexOf(pos) !== -1;
+
+            let level = artifact.level ?? 20;
+            let f2 = level >= c.minLevel && level < c.maxLevel;
+
+            let f3 = c.filterSetName === "any" || c.filterSetName === artifact.setName;
+            
+            let mainTagName = artifact.mainTag.name;
+            let f4 = c.filterMainTag === "any" || c.filterMainTag === mainTagName;
+
+            return f1 && f2 && f3 && f4;
         }
     }
 }
