@@ -43,6 +43,9 @@ routeMode = ${routeMode}
 `);
 
 
+let now = new Date();
+let buildDate = `${now.getFullYear()}/${now.getMonth()}/${now.getDay()}`
+
 module.exports = {
     publicPath: process.env.PublicPath || '/',
     configureWebpack: {
@@ -68,6 +71,7 @@ module.exports = {
                     BEIAN_NUMBER: `"${BEIAN_CODE + '-' + beianNumber}"`,
                     NEED_MIGRATE: `${needMigrate}`,
                     ROUTE_MODE: `"${routeMode}"`,
+                    BUILD_DATE: `"${buildDate}"`,
                 }
             }),
             new WorkerPlugin({

@@ -7,11 +7,12 @@
 
         <p
             class="title"
-            style="margin-bottom: 24px"
         >
             <span class="mona">{{ webTitle }}</span>
             V{{ version }}
+            <span class="build-info">BUILD ON {{ buildDate }}</span>
         </p>
+        
         <!-- <p style="padding: 0; margin: 0; font-size: 10px;">该网站处处透露着贫穷，欢迎有志者参与开发（美术等）</p> -->
 
         <migrate-notification
@@ -203,6 +204,7 @@ export default {
         this.version = process.env.VERSION;
         this.webTitle = process.env.WEB_TITLE;
         this.needMigrate = process.env.NEED_MIGRATE;
+        this.buildDate = process.env.BUILD_DATE;
 
         this.lastestVersion = changelogs[changelogs.length - 1];
         this.host = location.hostname;
@@ -218,7 +220,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.build-info {
+    font-size: 12px;
+
+}
+
 .mb16 {
     margin-bottom: 16px;
 }
@@ -227,16 +234,16 @@ export default {
     display: flex;
     align-items: center;
     margin-top: 20px;
-}
 
-.pay span {
-    width: 100px;
-}
+    span {
+        width: 100px;
+    }
 
-.pay img {
-    width: 96px;
-    height: 96px;
-    display: block;
+    img {
+        width: 96px;
+        height: 96px;
+        display: block;
+    }
 }
 
 .update-banner {
@@ -251,6 +258,7 @@ export default {
 .title {
     font-size: 3rem;
     margin: 0;
+    margin-bottom: 24px;
     padding: 0;
 }
 
