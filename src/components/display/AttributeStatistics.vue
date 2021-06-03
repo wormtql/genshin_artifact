@@ -46,7 +46,7 @@ export default {
 
             let bonus_S = (B + S + eff.attackStatic[3] + p * B) / (B + S + p * B);
             let bonus_p = (B + S + (p + eff.attackPercentage[3]) * B) / (B + S + p * B);
-            let bonus_c = (1 + (c + eff.critical[3]) * D) / (1 + c * D);
+            let bonus_c = (1 + (Math.min(c + eff.critical[3], 1)) * D) / (1 + c * D);
             let bonus_D = (1 + c * (D + eff.criticalDamage[3])) / (1 + c * D);
 
             return {

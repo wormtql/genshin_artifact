@@ -44,7 +44,7 @@ routeMode = ${routeMode}
 
 
 let now = new Date();
-let buildDate = `${now.getFullYear()}/${now.getMonth()}/${now.getDay()}`
+let buildDate = now.toString();
 
 module.exports = {
     publicPath: process.env.PublicPath || '/',
