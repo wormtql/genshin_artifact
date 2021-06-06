@@ -70,9 +70,15 @@
             <el-button
                 size="mini"
                 icon="el-icon-unlock"
-                circle
                 title="启用全部"
                 @click="$store.commit('artifacts/unlockAll')"
+            >启用全部</el-button>
+            <el-button
+                size="mini"
+                icon="el-icon-unlock"
+                circle
+                title="锁定/解锁当前页"
+                @click="lockOrUnlockCurrentPage"
             ></el-button>
         </div>
 
@@ -174,6 +180,30 @@ export default {
         }
     },
     methods: {
+        lockOrUnlockCurrentPage() {
+            let artifacts = this.$store.getters["artifacts/allArtifacts"][this.activeName];
+            let lockCount = artifacts.reduce((a, b) => a + (b.omit ? 1 : 0), 0);
+            console.log(lockCount);
+
+            if (lockCount === artifacts.length || lockCount === 0) {
+                for (let i = 0; i < artifacts.length; i++) {
+                    this.$store.commit("artifacts/toggleArtifact", {
+                        position: this.activeName,
+                        index: i,
+                    });
+                }
+            } else {
+                for (let i = 0; i < artifacts.length; i++) {
+                    if (artifacts[i].omit) {
+                        this.$store.commit("artifacts/toggleArtifact", {
+                            position: this.activeName,
+                            index: i,
+                        });
+                    }
+                }
+            }
+        },
+
         /**
          * remove artifacts of type: position and index: index
          */
