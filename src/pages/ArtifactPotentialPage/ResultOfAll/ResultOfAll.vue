@@ -12,6 +12,7 @@
                 :key="index"
                 :item="item[0]"
                 :extra="'分数：' + item[1].toFixed(3)"
+                width="240px"
                 class="art"
             ></artifact-display>
 
@@ -119,7 +120,7 @@ export default {
             let f1 = c.filterSlots.indexOf(pos) !== -1;
 
             let level = artifact.level ?? 20;
-            let f2 = level >= c.minLevel && level < c.maxLevel;
+            let f2 = level >= c.minLevel && level <= c.maxLevel;
 
             let f3 = c.filterSetName === "any" || c.filterSetName === artifact.setName;
             

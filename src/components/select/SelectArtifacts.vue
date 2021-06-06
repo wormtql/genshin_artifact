@@ -23,6 +23,7 @@
                     class="artifact-item"
                     :class="{ active: selected[position] === artifact.id }"
                     @click="handleClick(position, artifact.id)"
+                    width="200px"
                 ></artifact-display>
                 <el-alert
                     title="没有符合条件的圣遗物"

@@ -68,7 +68,7 @@ export default {
         validEff(validTagNames) {
             let temp = 0;
             for (let name of validTagNames) {
-                temp += this.tagEff[name];
+                temp += this.tagEff[name] ?? 0;
             }
             return temp;
         }

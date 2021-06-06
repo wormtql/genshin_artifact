@@ -157,9 +157,9 @@ export default {
 }
 
 .artifact {
-    /* border: 1px solid #cccccc; */
     box-shadow: 0 0 10px 1px #00000011;
     transition: 300ms;
+    width: 240px;
 }
 
 .up {

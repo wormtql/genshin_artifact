@@ -3,15 +3,16 @@
         class="artifact"
         :class="{ selectable, omit: item.omit }"
         @click="handleClick"
+        :style="artifactStyle"
     >
         <div class="up">
             <span class="name">
                 {{ displayedTitle }}
-                <span style="color: #e7bf4f">
+                <!-- <span style="color: #e7bf4f">
                     <i class="el-icon-star-on"></i>{{ displayedStar }}
-                </span>
+                </span> -->
             </span>
-            <span class="extra fs-12" v-if="this.extra">{{ extra }}</span>
+            <span class="extra fs-12" v-if="extra">{{ extra }}</span>
 
             <div class="buttons" v-if="buttons">
                 <el-button
@@ -89,6 +90,11 @@ export default {
         buttons: {
             type: Boolean,
             default: false,
+        },
+
+        width: {
+            type: String,
+            default: "unset",
         }
     },
     methods: {
@@ -151,89 +157,96 @@ export default {
         imageBackground() {
             let star = this.item.star ?? 5;
             return colors[star - 1];
+        },
+
+        artifactStyle() {
+            return {
+                width: this.width,
+            }
         }
     }
 }
 </script>
 
-<style scoped>
-.buttons {
-    display: flex;
-    align-items: center;
-    height: 32px;
-    float: right;
-}
-
-.buttons button {
-    padding: 0;
-    margin: 0;
-    margin-left: 8px;
-}
-
-.extra {
-    color: #e7bf4f;
-    line-height: 32px;
-    margin-left: 32px;
-}
-
-.sec-tag {
-    font-size: 12px;
-    margin: 0;
-    padding: 0;
-    color: #999999;
-}
-
-.main-tag {
-    font-size: 12px;
-    padding: 0;
-    margin: 0;
-    font-weight: bold;
-}
-
+<style lang="scss" scoped>
 .artifact {
     /* border: 1px solid #cccccc; */
     box-shadow: 0 0 10px 1px #00000011;
     transition: 300ms;
     display: inline-block;
-}
+    // width: 200px;
 
-.up {
-    height: 32px;
-    padding: 0 8px;
-    border-bottom: 1px solid #e9e9e9;
-    display: flex;
-    justify-content: space-between;
-}
+    &.selectable:hover {
+        background: #12345622;
+        /* border: 1px solid #123456; */
+        cursor: pointer;
+    }
 
-.down {
-    padding: 8px;
-    display: flex;
-    align-items: top;
-}
+    &.omit {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
 
-.name {
-    color: #123456;
-    font-size: 12px;
-    float: left;
-    height: 32px;
-    line-height: 32px;
-}
+    .up {
+        height: 32px;
+        padding: 0 8px;
+        border-bottom: 1px solid #e9e9e9;
+        display: flex;
+        justify-content: space-between;
 
-.myimage {
-    height: 48px;
-    width: 48px;
-    border-radius: 50%;
-    display: block;
-    margin-right: 8px;
-}
+        .name {
+            color: #123456;
+            font-size: 12px;
+            float: left;
+            height: 32px;
+            line-height: 32px;
+        }
 
-.selectable:hover {
-    background: #12345622;
-    /* border: 1px solid #123456; */
-    cursor: pointer;
-}
+        .extra {
+            color: #e7bf4f;
+            line-height: 32px;
+            margin-left: 16px;
+        }
 
-.omit {
-    background-color: rgba(0, 0, 0, 0.1);
+        .buttons {
+            display: flex;
+            align-items: center;
+            height: 32px;
+            float: right;
+
+            button {
+                padding: 0;
+                margin: 0;
+                margin-left: 8px;
+            }
+        }
+    }
+
+    .down {
+        padding: 8px;
+        display: flex;
+        align-items: top;
+
+        .myimage {
+            height: 48px;
+            width: 48px;
+            border-radius: 50%;
+            display: block;
+            margin-right: 8px;
+        }
+
+        .sec-tag {
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            color: #999999;
+        }
+
+        .main-tag {
+            font-size: 12px;
+            padding: 0;
+            margin: 0;
+            font-weight: bold;
+        }
+    }
 }
 </style>
