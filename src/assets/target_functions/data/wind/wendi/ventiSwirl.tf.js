@@ -6,6 +6,7 @@ export default {
     chs: "温迪-风神之诗",
     description: [
         "使得Q的期望伤害最高（考虑扩散）",
+        "假设扩散能够吃满4风套的减抗"
     ],
     tags: [
         "反应",

@@ -1,5 +1,9 @@
 <template>
     <div>
+        <!-- <common-table-transformative
+
+        ></common-table-transformative> -->
+
         <el-radio-group
             v-model="showSkill"
             size="small"
@@ -69,6 +73,7 @@ import CommonTableWater from "../../../CommonTableWater";
 import CommonTableThunder from "../../../CommonTableThunder";
 import CommonTableIce from "../../../CommonTableIce";
 import CommonTableFire from "../../../CommonTableFire";
+// import CommonTableTransformative from "../../../CommonTransformative";
 
 export default {
     name: "Wendi.calculator",
@@ -79,6 +84,7 @@ export default {
         CommonTableThunder,
         CommonTableIce,
         CommonTableFire,
+        // CommonTableTransformative,
     },
     props: {
         enemy: {

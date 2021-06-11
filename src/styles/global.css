@@ -82,3 +82,16 @@ body {
 .mb-16 {
     margin-bottom: 16px;
 }
+
+.title3 {
+    font-size: 14px;
+    color: #555555;
+    /* color: white; */
+    /* box-shadow: 0 0 10px 1px #00000022; */
+    /* padding: 8px; */
+    padding: 8px 0;
+    /* border-radius: 3px; */
+    /* background: #564884; */
+    /* border-left: 3px solid #564884; */
+    /* border-: 3px solid #564884; */
+}

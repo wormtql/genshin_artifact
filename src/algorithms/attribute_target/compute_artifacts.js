@@ -83,6 +83,7 @@ function computeArtifacts(artifacts, configObject) {
                 skill2: c.skill2,
                 skill3: c.skill3,
                 constellation: c.constellation,
+                level: c.level,
             },
             // target function args
             tArgs: tf.args,

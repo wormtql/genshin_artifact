@@ -119,33 +119,6 @@
         </div>
 
 
-        <h3 class="class">元素抗性</h3>
-        <div class="item">
-            <span class="title">雷元素抗性</span>
-            <span class="value">{{ mul100("thunderRes") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">火元素抗性</span>
-            <span class="value">{{ mul100("fireRes") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">冰元素抗性</span>
-            <span class="value">{{ mul100("iceRes") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">水元素抗性</span>
-            <span class="value">{{ mul100("waterRes") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">风元素抗性</span>
-            <span class="value">{{ mul100("windRes") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">岩元素抗性</span>
-            <span class="value">{{ mul100("rockRes") }}</span>
-        </div>
-
-
         <h3 class="class">元素</h3>
         <div class="item">
             <span class="title">元素精通</span>
@@ -188,12 +161,43 @@
             <span class="value">{{ mul100("swirlIceEnhance") }}</span>
         </div>
         <div class="item">
+            <span class="title">扩散增强</span>
+            <span class="value">{{ mul100("swirlEnhance") }}</span>
+        </div>
+        <div class="item">
             <span class="title">蒸发增强</span>
             <span class="value">{{ mul100("vaporizeEnhance") }}</span>
         </div>
         <div class="item">
             <span class="title">融化增强</span>
             <span class="value">{{ mul100("meltEnhance") }}</span>
+        </div>
+
+
+        <h3 class="class">元素抗性</h3>
+        <div class="item">
+            <span class="title">雷元素抗性</span>
+            <span class="value">{{ mul100("thunderRes") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">火元素抗性</span>
+            <span class="value">{{ mul100("fireRes") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">冰元素抗性</span>
+            <span class="value">{{ mul100("iceRes") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">水元素抗性</span>
+            <span class="value">{{ mul100("waterRes") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">风元素抗性</span>
+            <span class="value">{{ mul100("windRes") }}</span>
+        </div>
+        <div class="item">
+            <span class="title">岩元素抗性</span>
+            <span class="value">{{ mul100("rockRes") }}</span>
         </div>
 
 

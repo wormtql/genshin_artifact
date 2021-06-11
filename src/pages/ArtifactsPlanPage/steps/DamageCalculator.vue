@@ -9,17 +9,22 @@
 
         <el-row :gutter="16">
             <el-col :span="18">
+                <h3 class="title3">选择圣遗物</h3>
                 <select-artifacts
                     :selected="selectedArtifactIds"
                 ></select-artifacts>
+                
 
+                <h3 class="title3">增幅反应伤害</h3>
+                <CommonTableTransformative :data="reactionDamageTable"></CommonTableTransformative>
+
+                <h3 class="title3">技能伤害</h3>
                 <div
                     class="legend"
-                    style="padding: 16px 0"
+                    
                 >
                     <damage-display :damage="{ crit: '暴击伤害', nonCrit: '非暴击伤害', expect: '期望伤害' }"></damage-display>
                 </div>
-
                 <component
                     :is="calculator"
                     :config-object="configObject"
@@ -36,10 +41,13 @@
 <script>
 import calculators from "@asset/calculators";
 import { getAttribute } from "@util/attribute";
+import { tableTransformativeA } from "@asset/calculators/reaction_table";
+import Enemy from "@asset/enemies/enemy";
 
 import SelectArtifacts from "@c/select/SelectArtifacts";
 import AttributePanel from "@c/AttributePanel";
 import DamageDisplay from "@c/display/DamageDisplay";
+import CommonTableTransformative from "@asset/calculators/CommonTransformative";
 
 
 export default {
@@ -48,6 +56,7 @@ export default {
         SelectArtifacts,
         AttributePanel,
         DamageDisplay,
+        CommonTableTransformative
     },
     inject: ["getConfigObject", "getResultPage"],
     data() {
@@ -123,6 +132,11 @@ export default {
             let artifactsConfig = this.configObject.artifactsConfig;
             
             return getAttribute(this.selectedArtifactObjects, c, w, buffs, artifactsConfig);
+        },
+
+        reactionDamageTable() {
+            let enemy = new Enemy("hilichurl", 80);
+            return tableTransformativeA(this.attributePanel, this.configObject, enemy);
         }
     }
 }
