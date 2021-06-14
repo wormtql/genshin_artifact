@@ -12,6 +12,7 @@ function f(config) {
     let swirlTime = config.tArgs.swirlTime;
     let rate1 = config.tArgs.rate1;
     let rate2 = config.tArgs.rate2;
+    let isGroup = config.tArgs.isGroup;
 
     let level = config.cArgs.level;
     let qRatio = skill.q.dmg1[config.cArgs.skill3 - 1];
@@ -29,16 +30,16 @@ function f(config) {
 
         let normalDamage = atk * (1 + crit * attribute.criticalDamage) * (1 + bonus) * qRatio;
         let eleDamage = atk * (1 + crit * attribute.criticalDamage) * (1 + attribute.bonus + attribute.qBonus) * qRatio2;
-        let transformativeDamage = getTransformativeBase(level, REACTION_TYPE.SWIRL) * (1 + transformativeBonus);
+        let swirlDamage = getTransformativeBase(level, REACTION_TYPE.SWIRL) * (1 + transformativeBonus);
 
         if (isVV4) {
             return normalDamage * normal * 0.9
-                + eleDamage * (1 - swirlTime) * normal * (rate1 * 1.15 + (1 - rate1) * 0.9)
-                + transformativeDamage * sr * (rate2 * 1.15 + (1 - rate2) * 0.9);
+                + eleDamage * (1 - swirlTime) * (rate1 * 1.15 + (1 - rate1) * 0.9)
+                + swirlDamage * sr * (rate2 * 1.15 + (1 - rate2) * 0.9) * (isGroup ? 2 : 1);
         } else {
             return normalDamage * normal * 0.9
-                + eleDamage * (1 - swirlTime) * normal * 0.9
-                + transformativeDamage * sr * 0.9;
+                + eleDamage * (1 - swirlTime) * 0.9
+                + swirlDamage * sr * 0.9 * (isGroup ? 2 : 1);
         }
     }
 }

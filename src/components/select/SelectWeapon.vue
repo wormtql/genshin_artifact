@@ -6,6 +6,15 @@
         size="small"
     >
         <el-option
+            value="custom"
+            label="自定义"
+        >
+            <div class="option-item">
+                <div style="width: 40px; display: inline-block"></div>
+                <span :style="{ color: getColor(1) }">自定义</span>
+            </div>
+        </el-option>
+        <el-option
             v-for="weapon in weaponTypeMap[type]"
             :key="weapon.name"
             :value="weapon.name"
@@ -16,6 +25,7 @@
                 <span :style="{ color: getColor(weapon.star) }">{{ weapon.chs }}</span>
             </div>
         </el-option>
+        
     </el-select>
 </template>
 

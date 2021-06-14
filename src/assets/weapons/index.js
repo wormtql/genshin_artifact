@@ -16,6 +16,7 @@ let _weaponsByType = {
     "book": [],
     "stick": [],
     "bow": [],
+    "any": [],
 };
 Object.values(cache).forEach(item => {
     _weaponsByType[item.type].push(item);

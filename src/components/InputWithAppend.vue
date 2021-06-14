@@ -2,6 +2,7 @@
     <el-input
         :value="value"
         @input="$emit('input', $event)"
+        size="small"
     >
         <template slot="append">
             %

@@ -7,10 +7,20 @@
                 :closable="false"
                 style="margin-bottom: 16px"
             ></el-alert>
-            <el-input
+            <el-switch
+                v-model="isGroup"
+                active-text="对群"
+                inactive-text="对单"
+                style="margin-bottom: 16px"
+            ></el-switch>
+            <el-slider
+                :min="0"
+                :max="1"
+                :step="0.01"
+                show-input
+                input-size="small"
                 v-model="swirlRatio"
-                size="small"
-            ></el-input>
+            ></el-slider>
         </div>
         <div class="config-item">
             <h3 class="config-title">染色时机</h3>
@@ -56,25 +66,28 @@ export default {
     name: "VentiSwirl.tcfg",
     data() {
         return {
-            swirlRatio: "0.389",
+            swirlRatio: 0.3,
             swirlTime: 0.2,
             rate1: 0.9,
             rate2: 1,
+            isGroup: true,
         }
     },
     methods: {
         setData(d) {
-            this.swirlRatio = d.swirlRatio.toString();
-            this.swirlTime = d.swirlTime;
-            this.rate1 = d.rate1;
-            this.rate2 = d.rate2;
+            this.swirlRatio = d.swirlRatio ?? 0.3;
+            this.swirlTime = d.swirlTime ?? 0.2;
+            this.rate1 = d.rate1 ?? 0.9;
+            this.rate2 = d.rate2 ?? 1;
+            this.isGroup = d.isGroup ?? true;
         },
         compact() {
             return {
-                swirlRatio: parseFloat(this.swirlRatio) ?? 0.5,
+                swirlRatio: this.swirlRatio,
                 swirlTime: this.swirlTime,
                 rate1: this.rate1,
                 rate2: this.rate2,
+                isGroup: this.isGroup,
             }
         }
     }
