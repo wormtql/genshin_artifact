@@ -1,5 +1,10 @@
 <template>
     <div>
+        <save-as-kumi-dialog
+            :visible.sync="showSaveAsKumiDialog"
+            @confirm="handleConfirmSavaAsKumi"
+        ></save-as-kumi-dialog>
+
         <div v-if="calculating">
             计算中
         </div>
@@ -89,7 +94,7 @@
                         ></artifact-display>
                     </div>
                     <div>
-                        <el-button size="small" @click="disableArtifacts">禁用以上圣遗物</el-button>
+                        <el-button size="small" @click="handleSaveAsNewKumi">存为圣遗物套装</el-button>
                     </div>
 
                     <h3 class="title">最大值</h3>
@@ -140,6 +145,7 @@ import ArtifactDisplay from "@c/ArtifactDisplay";
 import AttributePanel from "@c/AttributePanel";
 import ArtifactsSetStatistics from "@c/display/ArtifactsSetStatistics";
 import AttributeStatistics from "@c/display/AttributeStatistics";
+import SaveAsKumiDialog from "./SaveAsKumiDialog";
 
 import compute from "@alg/attribute_target/compute_artifacts_promise";
 import timer from "@util/timer";
@@ -157,6 +163,7 @@ export default {
         AttributePanel,
         ArtifactsSetStatistics,
         AttributeStatistics,
+        SaveAsKumiDialog,
     },
     data: function () {
         return {
@@ -170,9 +177,22 @@ export default {
 
             showAttributeAnalysis: false,
             showArtifactsAnalysis: false,
+
+            showSaveAsKumiDialog: false,
         }
     },
     methods: {
+        handleConfirmSavaAsKumi({ dirId, name }) {
+            this.showSaveAsKumiDialog = false;
+
+            let ids = this.artifacts.map(item => item.id);
+            this.$store.commit("kumi/newKumi", {
+                ids,
+                label: name,
+                under: dirId
+            });
+        },
+
         pushHistory(values) {
             if (this.historyValue.length === HISTORY_MAX_ENTRY) {
                 this.historyValue.pop();
@@ -193,6 +213,10 @@ export default {
                 }
             }
             // this.$message("操作成功");
+        },
+
+        handleSaveAsNewKumi() {
+            this.showSaveAsKumiDialog = true;
         },
 
         convertTArgs(name, args) {

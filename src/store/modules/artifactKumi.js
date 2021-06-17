@@ -175,6 +175,10 @@ export default {
         firstDirId: state => {
             let temp = state.tree.children[0].id;
             return temp ?? -1;
+        },
+
+        allDirs: state => {
+            return state.tree.children;
         }
     }
 }
