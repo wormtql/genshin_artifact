@@ -143,6 +143,8 @@ import AttributeStatistics from "@c/display/AttributeStatistics";
 
 import compute from "@alg/attribute_target/compute_artifacts_promise";
 import timer from "@util/timer";
+import positions from "@const/positions";
+import deepCopy from "@util/deepcopy";
 
 import targetFunctionsData from "@asset/target_functions/data";
 
@@ -204,14 +206,22 @@ export default {
         /**
          * return an object representing all not omited artifacts
          */
-        getArtifacts() {
-            return this.$store.getters["artifacts/notOmittedArtifacts"];
+        getArtifacts(configObject) {
+            let excludedIds = configObject.excludedIds;
+            let fil = item => !excludedIds.has(item.id);
+
+            let temp = deepCopy(this.$store.getters["artifacts/notOmittedArtifacts"]);
+
+            for (let pos of positions) {
+                temp[pos] = temp[pos].filter(fil);
+            }
+
+            return temp;
         },
 
-        doCompute(veryBigConfigObject) {
+        doCompute(artifacts, veryBigConfigObject) {
             // let character = veryBigConfigObject.character;
             // let weapon = veryBigConfigObject.weapon;
-            let artifacts = this.getArtifacts();
             // let constraint = veryBigConfigObject.constraint;
             // let targetFunc = veryBigConfigObject.targetFunc;
             // let buffs = veryBigConfigObject.buffs;

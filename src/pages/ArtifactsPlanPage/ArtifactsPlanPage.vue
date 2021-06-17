@@ -87,10 +87,17 @@
                     <li
                         :class="{active: currentstep === 'constraint'}"
                         x-name="constraint"
-                        style="margin-bottom: 16px"
                     >
                         <i class="el-icon-cold-drink icon"></i>
                         过滤/限定
+                    </li>
+                    <li
+                        :class="{active: currentstep === 'filter-kumi'}"
+                        x-name="filter-kumi"
+                        style="margin-bottom: 16px"
+                    >
+                        <i class="el-icon-cold-drink icon"></i>
+                        过滤圣遗物组
                     </li>
                     <li
                         :class="{active: currentstep === 'buff'}"
@@ -152,6 +159,11 @@
                         ref="constraint"
                     ></config>
 
+                    <filter-kumi
+                        v-show="currentstep === 'filter-kumi'"
+                        ref="filterKumi"
+                    ></filter-kumi>
+
                     <config-buff
                         v-show="currentstep === 'buff'"
                         ref="configBuff"
@@ -181,6 +193,8 @@
 import { charactersData } from "@asset/characters";
 import { toChs as estimateToChs } from "@util/time_estimate";
 import createFilterFunction from "@alg/attribute_target/create_filter_function";
+import deepCopy from "@util/deepcopy";
+import positions from "@const/positions";
 
 import ResultPage from "./steps/ResultPage";
 import DamageCalculator from "./steps/DamageCalculator";
@@ -198,6 +212,7 @@ export default {
         "ConfigTargetFunction": () => import(/* webpackChunkName: "steps-select-t" */ "./steps/ConfigTargetFunction"),
         "ConfigBuff": () => import(/* webpackChunkName: "steps-select-buff" */ "./steps/ConfigBuff"),
         "Config": () => import(/* webpackChunkName: "steps-constraint" */ "./steps/Config"),
+        "FilterKumi": () => import(/* webpackChunkName: "steps-constraint" */ "./steps/FilterKumi"),
         // "DamageCalculator": () => import(/* webpackChunkName: "damage-calculator" */)
         "ConfigArtifacts": () => import(/* webpackChunkName: "config-artifacts" */ "./steps/ConfigArtifacts"),
         ResultPage,
@@ -416,10 +431,19 @@ export default {
         startCalculating() {
             let configObject = this.getConfigObject();
 
-            let rawArtifacts = this.$store.getters["artifacts/notOmittedArtifacts"];
+            let rawArtifacts = deepCopy(this.$store.getters["artifacts/notOmittedArtifacts"]);
 
+            // filter of setname, level, main stat, min value
             let filter = createFilterFunction(configObject.constraint);
             let filteredArtifacts = filter(rawArtifacts);
+
+            // filter of excluded artifact group
+            let excludedIds = this.$refs.filterKumi.getExcludedId();
+            filter = item => !excludedIds.has(item.id);
+            for (let pos of positions) {
+                filteredArtifacts[pos] = filteredArtifacts[pos].filter(filter);
+            }
+
             let iterCount
                 = (filteredArtifacts.flower.length || 1)
                 * (filteredArtifacts.feather.length || 1)
@@ -431,7 +455,7 @@ export default {
 
             let start = () => {
                 this.currentstep = "result";
-                this.$refs.resultPage.doCompute(configObject);
+                this.$refs.resultPage.doCompute(filteredArtifacts, configObject);
             };
 
             console.log(iterCount);
