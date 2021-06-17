@@ -1,6 +1,7 @@
 import Vue from "vue";
 // import "element-ui/lib/theme-chalk/index.css";
 import {
+    Tree,
     Button,
     RadioButton,
     RadioGroup,
@@ -45,8 +46,11 @@ import {
     Pagination,
     Table,
     TableColumn,
+    Popconfirm,
 } from "element-ui";
 
+Vue.use(Popconfirm);
+Vue.use(Tree);
 Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Pagination);

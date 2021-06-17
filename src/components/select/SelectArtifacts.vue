@@ -7,6 +7,7 @@
 
         <el-tabs
             v-model="activePosition"
+            v-if="pos === 'any'"
         >
             <el-tab-pane
                 v-for="position in positions"
@@ -32,6 +33,23 @@
                 ></el-alert>
             </el-tab-pane>
         </el-tabs>
+        <div v-else class="else-div">
+            <artifact-display
+                v-for="artifact in filteredArtifacts[pos]"
+                :key="artifact.id"
+                selectable
+                :item="artifact"
+                class="artifact-item"
+                :class="{ active: value === artifact.id }"
+                @click="$emit('input', artifact.id)"
+                width="200px"
+            ></artifact-display>
+            <el-alert
+                title="没有符合条件的圣遗物"
+                v-if="filteredArtifacts[pos].length === 0"
+                :closable="false"
+            ></el-alert>
+        </div>
     </div>
 </template>
 
@@ -44,7 +62,13 @@ import ArtifactsFilter from "@c/filter/ArtifactsFilter";
 
 export default {
     name: "SelectArtifact",
-    props: ["selected"],
+    props: {
+        selected: {},
+        pos: {
+            default: "any",
+        },
+        value: {},
+    },
     components: {
         ArtifactDisplay,
         ArtifactsFilter,
@@ -82,21 +106,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.else-div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .artifact-panel {
     display: flex;
     flex-wrap: wrap;
     max-height: 300px;
     overflow: auto;
-
-    .artifact-item {
-        margin: 0 16px 16px 0;
-        
-        &.active {
-            background: #3071b322;
-            border-radius: 3px;
-        }
-    }
 }
 
+.artifact-item {
+    margin: 0 16px 16px 0;
+    
+    &.active {
+        background: #3071b322;
+        border-radius: 3px;
+    }
+}
 
 </style>

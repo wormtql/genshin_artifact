@@ -28,7 +28,7 @@ if (localStoredArtifacts) {
     }
     id++;
     for (let item of temp) {
-        if (Object.prototype.hasOwnProperty.call(item, "id")) {
+        if (!Object.prototype.hasOwnProperty.call(item, "id")) {
             item.id = id++;
         }
     }

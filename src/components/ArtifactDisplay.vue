@@ -16,6 +16,7 @@
 
             <div class="buttons" v-if="buttons">
                 <el-button
+                    v-if="lockButton"
                     :icon="item.omit ? 'el-icon-unlock' : 'el-icon-lock'"
                     circle
                     size="mini"
@@ -23,6 +24,16 @@
                     :title="item.omit ? '启用' : '禁用'"
                     class="mybutton"
                     @click="$emit('toggle')"
+                ></el-button>
+                <el-button
+                    v-if="deleteButton"
+                    icon="el-icon-delete"
+                    circle
+                    size="mini"
+                    type="text"
+                    title="删除"
+                    class="mybutton"
+                    @click.stop="$emit('delete')"
                 ></el-button>
             </div>
         </div>
@@ -90,6 +101,16 @@ export default {
         buttons: {
             type: Boolean,
             default: false,
+        },
+
+        deleteButton: {
+            type: Boolean,
+            default: false,
+        },
+
+        lockButton: {
+            type: Boolean,
+            default: true,
         },
 
         width: {

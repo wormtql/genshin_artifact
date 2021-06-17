@@ -3,6 +3,7 @@ import Vue from "vue";
 
 import artifacts from "./modules/artifact";
 import presets from "./modules/presets";
+import kumi from "./modules/artifactKumi";
 
 Vue.use(Vuex);
 
@@ -10,9 +11,11 @@ const _store = new Vuex.Store({
     modules: {
         artifacts,
         presets,
+        kumi,
     }
 });
 
+// watch artifacts change
 _store.watch(
     state => ({
         flower: state.artifacts.flower,
@@ -29,6 +32,7 @@ _store.watch(
     },
 );
 
+// watch presets change
 _store.watch(
     state => state.presets.presets,
     newValue => {
@@ -38,5 +42,18 @@ _store.watch(
         deep: true,
     }
 )
+
+// watch artifact group change
+_store.watch(
+    state => ({
+        tree: state.kumi.tree,
+    }),
+    newValue => {
+        localStorage.setItem("kumiTree", JSON.stringify(newValue));
+    },
+    {
+        deep: true
+    }
+);
 
 export default _store;

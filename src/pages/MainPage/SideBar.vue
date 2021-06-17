@@ -23,6 +23,10 @@
                     <i class="el-icon-menu"></i>
                     计算预设
                 </el-menu-item>
+                <el-menu-item index="/artifacts-kumi">
+                    <i class="el-icon-menu"></i>
+                    圣遗物套装
+                </el-menu-item>
             </el-menu-item-group>
 
             <el-menu-item-group class="hidden-xs-only">

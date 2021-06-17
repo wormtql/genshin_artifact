@@ -1,5 +1,6 @@
 import LoadingComponent from "@c/LoadingComponent";
 import ErrorComponent from "@c/ErrorComponent";
+import VueRouter from "vue-router";
 
 const IntroPage = () => ({
     component: import(/* webpackChunkName: "intro-page" */ "@page/about/IntroPage"),
@@ -57,13 +58,20 @@ const FAQPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/FA
 const TargetFuncExplanationPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/TargetFuncExplanationPage");
 const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/ExportToolPage");
 const ArtifactsStatisticsPage = () => import(/* webpackChunkName: "artifacts-statistics-page" */ "@page/ArtifactsStatisticsPage");
+const KumiPage = () => import (/* webpackChunkName: "kumi-page" */ "@page/KumiPage");
 
-import VueRouter from "vue-router";
 
-// const webName = "莫娜占卜铺"
 const webName = process.env.WEB_TITLE;
 
 const routes = [
+    {
+        path: "/artifacts-kumi",
+        component: KumiPage,
+        meta: {
+            title: "圣遗物套装 | " + webName,
+            keepAlive: true,
+        }
+    },
     {
         path: "/artifacts-statistics",
         component: ArtifactsStatisticsPage,
