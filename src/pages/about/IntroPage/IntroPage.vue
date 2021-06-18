@@ -40,17 +40,32 @@
 
         <el-card class="mb16">
             <p class="big-card-title">用例</p>
-            <ul>
-                <li>我的圣遗物最高能到多少暴击伤害？</li>
-                <li>我的圣遗物最高能堆到多少生命值？</li>
-                <li>如何使单次打出的伤害最高？</li>
-                <li>如何使期望伤害最高？</li>
-                <li>暴击、爆伤、攻击力要多少比例？</li>
-                <li>诺艾尔的防御收益到底怎么样</li>
-                <li>多方向圣遗物评分与潜力计算</li>
-                <li>...</li>
-            </ul>
-            <!-- <p>以上都不是问题，一次输入圣遗物，即可自动计算</p> -->
+            <el-row :gutter="16">
+                <el-col :span="6">
+                    <use-case-item
+                        text="伤害计算器"
+                        icon="calculator"
+                    ></use-case-item>
+                </el-col>
+                <el-col :span="6">
+                    <use-case-item
+                        text="专业圣遗物配装"
+                        icon="bell"
+                    ></use-case-item>
+                </el-col>
+                <el-col :span="6">
+                    <use-case-item
+                        text="圣遗物潜力"
+                        icon="thumbs-up"
+                    ></use-case-item>
+                </el-col>
+                <el-col :span="6">
+                    <use-case-item
+                        text="属性/圣遗物分析"
+                        icon="chart-pie"
+                    ></use-case-item>
+                </el-col>
+            </el-row>
         </el-card>
 
         <el-card class="mb16">
@@ -188,15 +203,16 @@
 
 <script>
 import changelogs from "@/changelog/changelog";
-
 import links from "@const/links";
 
 import MigrateNotification from "./MigrateNotification";
+import UseCaseItem from "./UseCaseItem";
 
 export default {
     name: "IntroPage",
     components: {
         MigrateNotification,
+        UseCaseItem,
     },
     created: function() {
         this.links = links;

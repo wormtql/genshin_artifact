@@ -10,6 +10,10 @@ import {
   faComment,
   faDatabase,
   faCrown,
+  faCalculator,
+  faBell,
+  faThumbsUp,
+  faChartPie,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -19,5 +23,9 @@ library.add(
   faComment,
   faDatabase,
   faCrown,
+  faCalculator,
+  faBell,
+  faThumbsUp,
+  faChartPie
   );
 Vue.component("font-awesome-icon", FontAwesomeIcon);

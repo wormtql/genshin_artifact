@@ -19,13 +19,13 @@
                     <i class="el-icon-s-help"></i>
                     添加圣遗物
                 </el-menu-item>
+                <el-menu-item index="/artifacts-kumi">
+                    <i class="el-icon-s-help"></i>
+                    圣遗物套装
+                </el-menu-item>
                 <el-menu-item index="/character-presets">
                     <i class="el-icon-menu"></i>
                     计算预设
-                </el-menu-item>
-                <el-menu-item index="/artifacts-kumi">
-                    <i class="el-icon-menu"></i>
-                    圣遗物套装
                 </el-menu-item>
             </el-menu-item-group>
 
