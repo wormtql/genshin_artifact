@@ -1,8 +1,7 @@
 import Vue from "vue";
 
 import { count as countArtifacts } from "@util/artifacts";
-
-const positions = ["flower", "feather", "sand", "cup", "head"];
+import positions from "@const/positions";
 
 // id can only be changed in store mutations
 let id = 0;
@@ -61,6 +60,19 @@ let _store = {
             state[obj.position].splice(obj.index, 1);
         },
 
+        removeArtifactById(state, { id }) {
+            a: for (let pos of positions) {
+                let artifacts = state[pos];
+                for (let i = 0, l = artifacts.length; i < l; i++) {
+                    let art = artifacts[i];
+                    if (art.id === id) {
+                        artifacts.splice(i, 1);
+                        break a;
+                    }
+                }
+            }
+        },
+
         addArtifact(state, item) {
             item.id = id++;
             state[item.position].push(item);
@@ -73,6 +85,17 @@ let _store = {
         toggleArtifact(state, obj) {
             let art = state[obj.position][obj.index];
             art.omit = !art.omit;
+        },
+
+        toggleArtifactById(state, { id }) {
+            a: for (let pos of positions) {
+                for (let art of state[pos]) {
+                    if (art.id === id) {
+                        Vue.set(art, "omit", !art.omit);
+                        break a;
+                    }
+                }
+            }
         },
 
         toggleById(state, payload) {
@@ -106,6 +129,20 @@ let _store = {
         setArtifact(state, obj) {
             let n = obj.artifact;
             Vue.set(state[obj.position], obj.index, n);
+        },
+
+        setArtifactById(state, { id, newArt }) {
+            a: for (let pos of positions) {
+                let artifacts = state[pos];
+                for (let i = 0, l = artifacts.length; i < l; i++) {
+                    let art = artifacts[i];
+                    if (art.id === id) {
+                        newArt.id = id;
+                        artifacts.splice(i, 1, newArt);
+                        break a;
+                    }
+                }
+            }
         },
 
         appendArtifacts(state, obj) {
