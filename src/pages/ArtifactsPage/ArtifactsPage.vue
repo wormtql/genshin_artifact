@@ -96,12 +96,12 @@
                 </div>
                 <artifact
                     class="artifact-panel"
-                    v-for="(item, index) in filteredArtifacts[artType.name]"
-                    :key="artType.name + item.id"
+                    v-for="(item) in filteredArtifacts[artType.name]"
+                    :key="item.id"
                     :item="item"
-                    @delete="removeArtifact(artType.name, index)"
-                    @toggle="toggleArtifact(artType.name, index)"
-                    @edit="editArtifact(artType.name, index)"
+                    @delete="removeArtifact(artType.name, item.id)"
+                    @toggle="toggleArtifact(artType.name, item.id)"
+                    @edit="editArtifact(artType.name, item.id)"
                 ></artifact>
             </el-tab-pane>
         </el-tabs>
@@ -172,8 +172,7 @@ export default {
             editArtifactDrawerVisible: false,
 
             editArtifactArgs: {
-                position: "flower",
-                index: -1,
+                id: -1,
             },
 
             artifactsFilter: () => true,
@@ -207,30 +206,29 @@ export default {
         /**
          * remove artifacts of type: position and index: index
          */
-        removeArtifact: function(position, index) {
-            this.$store.commit("artifacts/removeArtifact", {
-                position, index
+        removeArtifact: function(position, id) {
+            this.$store.commit("artifacts/removeArtifactById", {
+                id
             });
         },
 
         /**
          * toggle enabled
          */
-        toggleArtifact: function(position, index) {
-            this.$store.commit("artifacts/toggleArtifact", {
-                position, index
+        toggleArtifact: function(position, id) {
+            this.$store.commit("artifacts/toggleArtifactById", {
+                id,
             });
         },
 
         /**
          * edit an artifact
          */
-        editArtifact: function(position, index) {
+        editArtifact: function(position, id) {
             this.editArtifactDrawerVisible = true;
-            this.editArtifactArgs.position = position;
-            this.editArtifactArgs.index = index;
+            this.editArtifactArgs.id = id;
 
-            let art = this.$store.getters["artifacts/allArtifacts"][position][index];
+            let art = this.$store.getters["artifacts/artifactsById"][id];
 
             this.$refs.editDrawer.setInit(art);
         },

@@ -101,8 +101,7 @@ export default {
         args: {
             type: Object,
             default: () => ({
-                position: "",
-                index: 0,
+                id: -1,
             })
         },
     },
@@ -178,10 +177,9 @@ export default {
             newArtifact.level = this.level;
             newArtifact.star = this.star;
 
-            this.$store.commit("artifacts/setArtifact", {
-                position: this.args.position,
-                index: this.args.index,
-                artifact: newArtifact,
+            this.$store.commit("artifacts/setArtifactById", {
+                id: this.artifact.id,
+                newArt: newArtifact,
             });
         },
 
@@ -191,11 +189,12 @@ export default {
     },
     computed: {
         artifact() {
-            if (this.args.index < 0) {
+            let id = this.args.id;
+            if (id < 0) {
                 return null;
             }
-            let x = this.$store.state.artifacts[this.args.position][this.args.index];
-            return x;
+            let artifactsById = this.$store.getters["artifacts/artifactsById"];
+            return artifactsById[id];
         },
 
         artifactData() {
@@ -224,24 +223,24 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .header {
     padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
 
-.header img {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-}
+    img {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+    }
 
-.header span {
-    font-size: 18px;
-    /* margin-left: 32px; */
-    /* border-bottom: 3px solid #123456; */
+    span {
+        font-size: 18px;
+        /* margin-left: 32px; */
+        /* border-bottom: 3px solid #123456; */
+    }
 }
 
 .main-tag {
@@ -257,10 +256,9 @@ export default {
 .buttons {
     padding: 0 20px;
     /* margin-top: 32px; */
-}
-
-.buttons button {
-    width: 100%;
+    button {
+        width: 100%;
+    }
 }
 
 .title {
