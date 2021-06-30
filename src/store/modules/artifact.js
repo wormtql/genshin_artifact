@@ -115,6 +115,18 @@ let _store = {
             })
         },
 
+        enableArtifactById(state, { id }) {
+            positions.forEach(item => {
+                let arr = state[item];
+                for (let art of arr) {
+                    if (art.id === id) {
+                        art.omit = false;
+                        return;
+                    }
+                }
+            });
+        },
+
         unlockAll(state) {
             positions.forEach(pos => {
                 for (let art of state[pos]) {

@@ -95,6 +95,7 @@
                     </div>
                     <div>
                         <el-button size="small" @click="handleSaveAsNewKumi">存为圣遗物套装</el-button>
+                        <el-button size="small" @click="handleToggleAll">{{ isAllDisabled ? "启用" : "禁用" }}全部</el-button>
                     </div>
 
                     <h3 class="title">最大值</h3>
@@ -182,6 +183,20 @@ export default {
         }
     },
     methods: {
+        handleToggleAll() {
+            let op;
+            if (this.isAllDisabled) {
+                op = id => this.$store.commit("artifacts/enableArtifactById", { id });
+            } else {
+                op = id => this.$store.commit("artifacts/disableArtifactById", { id });
+            }
+
+            for (let i = 0, l = this.notDeletedArtifacts.length; i < l; i++) {
+                let art = this.notDeletedArtifacts[i];
+                op(art.id);
+            }
+        },
+
         handleConfirmSavaAsKumi({ dirId, name }) {
             this.showSaveAsKumiDialog = false;
 
@@ -300,7 +315,7 @@ export default {
         }
     },
     computed: {
-        // result artifacts may contain null or undefined(which represents not put on anything in this slot
+        // result artifacts may contain null or undefined(which represents not putting on anything in this slot
         filteredArtifacts() {
             return this.currentRecord.combo.filter(item => !!item);
         },
@@ -342,6 +357,21 @@ export default {
             return temp;
         },
 
+        notDeletedArtifacts() {
+            let temp = [];
+            let map = this.$store.getters["artifacts/artifactsById"];
+
+            for (let i = 0, l = this.filteredArtifacts.length; i < l; i++) {
+                let id = this.filteredArtifacts[i].id;
+
+                if (!this.artifactsDeleted[i]) {
+                    temp.push(map[id]);
+                }
+            }
+
+            return temp;
+        },
+
         currentRecord() {
             return this.resultRecord[this.recordIndex];
         },
@@ -352,6 +382,16 @@ export default {
 
         isNoArtifactError() {
             return this.error.isError && this.error.code === 1000;
+        },
+
+        isAllDisabled() {
+            for (let art of this.notDeletedArtifacts) {
+                if (!art.omit) {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
