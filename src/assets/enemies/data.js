@@ -6,7 +6,7 @@ export default {
         iceRes: 0.1,
         windRes: 0.1,
         rockRes: 0.1,
-        phyRes: 0.1
+        phyRes: 0.1,
     },
     fireSlime: {
         thunderRes: 0.1,
@@ -33,7 +33,14 @@ export default {
         iceRes: 999,
         windRes: 0.1,
         rockRes: 0.1,
-        phyRes: 0.1
+        phyRes: 0.1,
+        shield: [
+            {
+                type: 1,
+                element: "ice",
+                amount: 8,
+            }
+        ]
     },
     windSlime: {
         thunderRes: 0.1,
@@ -51,7 +58,14 @@ export default {
         iceRes: 0.1,
         windRes: 0.1,
         rockRes: 999,
-        phyRes: 0.1
+        phyRes: 0.1,
+        shield: [
+            {
+                type: 1,
+                element: "rock",
+                amount: 8,
+            }
+        ]
     },
     hilichurl: {
         thunderRes: 0.1,
