@@ -3,7 +3,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/wormtql/genshin_artifact)
 ![GitHub forks](https://img.shields.io/github/forks/wormtql/genshin_artifact)
 
-原神圣遗物自动搭配，[网址在这里](https://www.genshin.art)  
+原神圣遗物自动搭配，[网址在这里](https://www.mona-uranai.com)  
 该README有以下语言：  
 [English](./README_en.md)
 <!-- [日本語](./README_jp.md) -->
