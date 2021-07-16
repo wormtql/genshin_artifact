@@ -6,7 +6,7 @@ let cache = {};
 
 function importAll(r) {
     for (let path of r.keys()) {
-        let name = path.split("/")[1];
+        let name = r(path).default.eng;
         cache[name] = r(path).default;
     }
 }
