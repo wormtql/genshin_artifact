@@ -1,6 +1,7 @@
 import card from "./card.png";
 import avatar from "@asset/badges/luoshaliya.png";
 import skill from "./luoshaliya.skill.js";
+import abyss from "./luoshaliya.abyss.js";
 
 export default {
     cardURL: card,
@@ -11,4 +12,5 @@ export default {
     star: 4,
     avatar,
     skill,
+    abyss,
 }

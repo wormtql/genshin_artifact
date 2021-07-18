@@ -1,6 +1,7 @@
 import card from "./card.jpg";
 import skill from "./kong_geo.skill.js";
 import avatar from "@asset/badges/traveller.png";
+import abyss from "./kong_geo.abyss.js";
 
 export default {
     cardURL: card,
@@ -11,4 +12,5 @@ export default {
     star: 5,
     skill,
     avatar,
+    abyss,
 }

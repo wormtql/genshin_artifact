@@ -1,6 +1,7 @@
 import card from "./card.png";
 import avatar from "@asset/badges/fengyuanwanye.png";
 import skill from "./fengyuanwanye.skill.js";
+import abyss from "./fengyuanwanye.abyss.js";
 
 export default {
     cardURL: card,
@@ -11,4 +12,5 @@ export default {
     star: 5,
     avatar,
     skill,
+    abyss,
 }

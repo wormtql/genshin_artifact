@@ -59,11 +59,20 @@ const TargetFuncExplanationPage = () => import(/* webpackChunkName: "help-page" 
 const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/ExportToolPage");
 const ArtifactsStatisticsPage = () => import(/* webpackChunkName: "artifacts-statistics-page" */ "@page/ArtifactsStatisticsPage");
 const KumiPage = () => import (/* webpackChunkName: "kumi-page" */ "@page/KumiPage");
+const AbyssPlanPage = () => import (/* webpackChunkName: "abyss-plan-page" */ "@page/AbyssPlanPage");
 
 
 const webName = process.env.WEB_TITLE;
 
 const routes = [
+    {
+        path: "/abyss-plan",
+        component: AbyssPlanPage,
+        meta: {
+            title: "深渊配队 | " + webName,
+            keepAlive: true,
+        }
+    },
     {
         path: "/artifacts-kumi",
         component: KumiPage,

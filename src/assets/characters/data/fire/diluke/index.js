@@ -1,6 +1,7 @@
 import card from "./card.jpg";
 import avatar from "@asset/badges/diluke.png";
 import skill from "./diluke.skill.js";
+import abyss from "./diluke.abyss.js";
 
 export default {
     cardURL: card,
@@ -11,4 +12,5 @@ export default {
     star: 5,
     avatar,
     skill,
+    abyss,
 }

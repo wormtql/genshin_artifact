@@ -1,6 +1,7 @@
 import card from "../../rock/me_geo/card.jpg";
 import skill from "./me_anemo.skill.js";
 import avatar from "@asset/badges/traveller.png";
+import abyss from "./me_anemo.abyss.js";
 
 export default {
     cardURL: card,
@@ -11,4 +12,5 @@ export default {
     star: 5,
     skill,
     avatar,
+    abyss,
 }

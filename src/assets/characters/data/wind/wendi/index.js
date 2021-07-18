@@ -1,6 +1,7 @@
 import card from "./card.jpg";
 import avatar from "@asset/badges/wendi.png";
 import skill from "./wendi.skill.js";
+import abyss from "./wendi.abyss.js";
 
 export default {
     cardURL: card,
@@ -12,4 +13,5 @@ export default {
     star: 5,
     avatar,
     skill,
+    abyss,
 }

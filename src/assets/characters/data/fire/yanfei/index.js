@@ -1,6 +1,7 @@
 import card from "./card.jpg";
 import avatar from "@asset/badges/yanfei.png";
 import skill from "./yanfei.skill.js";
+import abyss from "./yanfei.abyss.js";
 
 export default {
     cardURL: card,
@@ -11,4 +12,5 @@ export default {
     star: 4,
     avatar,
     skill,
+    abyss,
 }

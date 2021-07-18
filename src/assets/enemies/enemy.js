@@ -1,10 +1,26 @@
-import enemyData from "./data.js";
+import _entries from "./initData";
 
 export default class Enemy {
     constructor(name, level) {
         this.name = name;
         this.level = level;
+
+        let obj = _entries[name];
+        this.waterRes = obj.waterRes;
+        this.rockRes = obj.rockRes;
+        this.iceRes = obj.iceRes;
+        this.fireRes = obj.fireRes;
+        this.windRes = obj.windRes;
+        this.thunderRes = obj.thunderRes;
+        this.physicalRes = obj.phyRes;
+
+        this.abyss = obj.abyss;
     }
+
+    // static registerEnemy(name, obj) {
+    //     console.log(name);
+    //     _entries[name] = obj;
+    // }
 
     getDR(characterLevel, defDown = 0) {
         let def = this.level + 100;
@@ -12,14 +28,9 @@ export default class Enemy {
     }
 
     getRR(element) {
-        let attr;
-        if (element === "physical") {
-            attr = "phyRes";
-        } else {
-            attr = element + "Res";
-        }
+        let attr = element + "Res";
 
-        let res = enemyData[this.name][attr];
+        let res = this[attr];
         if (res > 0.75) {
             return 25 / (25 + res);
         } else if (res > 0) {
@@ -28,4 +39,25 @@ export default class Enemy {
             return 1 - res / 2;
         }
     }
+
+    getProperty(...paths) {
+        let ans = this;
+        for (let path of paths) {
+            let temp = [];
+            if (typeof path === "string") {
+                temp = path.split(".");
+            } else {
+                temp = [path];
+            }
+            
+        
+            for (let x of temp) {
+                ans = ans[x];
+            }
+        }
+        
+        return ans;
+    }
 }
+
+import "./initData";

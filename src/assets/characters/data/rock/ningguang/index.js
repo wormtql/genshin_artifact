@@ -1,6 +1,7 @@
 import card from "./card.jpg";
 import avatar from "@asset/badges/ningguang.png";
 import skill from "./ningguang.skill.js";
+import abyss from "./ningguang.abyss.js";
 
 export default {
     cardURL: card,
@@ -12,4 +13,5 @@ export default {
     star: 4,
     avatar,
     skill,
+    abyss,
 }

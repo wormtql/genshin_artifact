@@ -1,6 +1,7 @@
 import card from "./card.png";
 import avatar from "@asset/badges/youla.png";
 import skill from "./youla.skill.js";
+import abyss from "./youla.abyss.js";
 
 export default {
     cardURL: card,
@@ -11,4 +12,5 @@ export default {
     star: 5,
     avatar,
     skill,
+    abyss,
 }

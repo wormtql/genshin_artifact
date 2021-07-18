@@ -1,6 +1,7 @@
 import card from "./card.jpg";
 import avatar from "@asset/badges/keli.png";
 import skill from "./keli.skill.js";
+import abyss from "./keli.abyss.js";
 
 export default {
     cardURL: card,
@@ -12,4 +13,5 @@ export default {
     star: 5,
     avatar,
     skill,
+    abyss,
 }
