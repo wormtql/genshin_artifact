@@ -116,7 +116,7 @@ export default {
         },
 
         handleAddBuff() {
-            this.selectBuffDlgVisible = true;            
+            this.selectBuffDlgVisible = true;
         },
 
         handleSelectBuff(name) {

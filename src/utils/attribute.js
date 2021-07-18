@@ -35,6 +35,11 @@ export function applyBuffs(attribute, buffs) {
             case "criticalDamage":
                 attribute.criticalDamage += buff.value;
                 break;
+            case "elementalBonus": {
+                let ele = buff.element;
+                attribute[ele + "Bonus"] = buff.value;
+                break;
+            }
         }
     }
 }
