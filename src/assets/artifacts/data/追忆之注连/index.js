@@ -1,34 +1,29 @@
-// import cup from "./cup.png";
-// import feather from "./feather.png";
-// import flower from "./flower.png";
-// import head from "./head.png";
-// import sand from "./sand.png";
+import cup from "./cup.png";
+import feather from "./feather.png";
+import flower from "./flower.png";
+import head from "./head.png";
+import sand from "./sand.png";
 
 export default {
     flower: {
         chs: "羁缠之花",
-        // url: flower,
-        url: "https://dummyimage.com/256x256/ffffff/000000&text=羁缠之花"
+        url: flower,
     },
     feather: {
         chs: "思忆之矢",
-        // url: feather,
-        url: "https://dummyimage.com/256x256/ffffff/000000&text=思忆之矢"
+        url: feather,
     },
     sand: {
         chs: "朝露之时",
-        // url: sand,
-        url: "https://dummyimage.com/256x256/ffffff/000000&text=朝露之时",
+        url: sand,
     },
     cup: {
         chs: "祈望之心",
-        // url: cup,
-        url: "https://dummyimage.com/256x256/ffffff/000000&text=祈望之心"
+        url: cup,
     },
     head: {
         chs: "无常之面",
-        // url: head,
-        url: "https://dummyimage.com/256x256/ffffff/000000&text=无常之面"
+        url: head,
     },
     chs: "追忆之注连",
     eng: "shimenawaReminiscence",

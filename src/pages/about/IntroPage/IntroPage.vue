@@ -41,25 +41,25 @@
         <el-card class="mb16">
             <p class="big-card-title">用例</p>
             <el-row :gutter="16">
-                <el-col :span="6">
+                <el-col :sm="6" :xs="24" class="mb16">
                     <use-case-item
                         text="伤害计算器"
                         icon="calculator"
                     ></use-case-item>
                 </el-col>
-                <el-col :span="6">
+                <el-col :sm="6" :xs="24" class="mb16">
                     <use-case-item
                         text="专业圣遗物配装"
                         icon="bell"
                     ></use-case-item>
                 </el-col>
-                <el-col :span="6">
+                <el-col :sm="6" :xs="24" class="mb16">
                     <use-case-item
                         text="圣遗物潜力"
                         icon="thumbs-up"
                     ></use-case-item>
                 </el-col>
-                <el-col :span="6">
+                <el-col :sm="6" :xs="24" class="mb16">
                     <use-case-item
                         text="属性/圣遗物分析"
                         icon="chart-pie"

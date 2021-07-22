@@ -1,11 +1,10 @@
-// import tn from "./tn.png";
+import tn from "./tn.png";
 import { commonConfigRate } from "../../../common/utils";
 
 export default {
     name: "pomozhigong",
     chs: "破魔之弓",
-    // url: tn,
-    url: "https://dummyimage.com/256x256/ffffff/000000&text=破魔之弓",
+    url: tn,
     star: 4,
     type: "bow",
     config: () => commonConfigRate("破魔之弓"),

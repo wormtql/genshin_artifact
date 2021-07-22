@@ -1,12 +1,11 @@
-// import tn from "./tn.png";
+import tn from "./tn.png";
 // import { commonConfigRate } from "../../../common/utils";
 import config from "./Wuqie.wcfg.vue";
 
 export default {
     name: "wuqiezhihuiguang",
     chs: "雾切之回光",
-    // url: tn,
-    url: encodeURI("https://dummyimage.com/256x256/ffffff/000000&text=雾切之回光"),
+    url: tn,
     star: 5,
     type: "sword",
     config,

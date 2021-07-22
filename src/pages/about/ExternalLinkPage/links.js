@@ -14,5 +14,12 @@ export default [
             "地图工具"
         ],
         url: "https://yuanshen.site/",
+    },
+    {
+        name: "MEW原神社区",
+        tags: [
+            "社区"
+        ],
+        url: "https://mew.fun/n/ys",
     }
 ]

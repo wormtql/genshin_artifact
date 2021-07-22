@@ -10,8 +10,6 @@ let url = "https://genshin-impact.fandom.com/wiki/" + artName;
 const positions = ["flower", "feather", "sand", "cup", "head"];
 
 axios.get(url).then(response => {
-    console.log(response.data.slice(0, 200));
-
     const root = parse(response.data);
     const images = root.querySelectorAll("a.image");
 
@@ -24,9 +22,17 @@ axios.get(url).then(response => {
             method: "GET",
             url: imageUrl,
             responseType: "stream",
+        }, {
+            headers: {
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36",
+            }
         }).then(response => {
             const writer = createWriteStream(path.join(__dirname, "temp", positions[i] + ".png"));
             response.data.pipe(writer);
+        }).catch(err => {
+            console.log(err.message);
         });
     }
+}).catch(err => {
+    console.log(err);
 });
