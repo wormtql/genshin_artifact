@@ -307,6 +307,9 @@ export default {
             // set buffs
             this.$refs.configBuff.setBuffs(preset.buffs ?? []);
 
+            // set artifacts config
+            this.$refs.configArtifacts.setArtifactsConfig(preset.artifactsConfig ?? {});
+
             // update calculator
             this.$nextTick(() => {
                 this.$refs.calculator.updateConfigObject();

@@ -8,6 +8,12 @@
         ></el-alert>
 
         <common-artifact-config-ratio
+            artifact-name="shimenawaReminiscence"
+            v-model="configShimenawaReminiscence.rate"
+            class="artifact-config-item config-item"
+        ></common-artifact-config-ratio>
+
+        <common-artifact-config-ratio
             artifact-name="braveHeart"
             v-model="configBraveHeart.rate"
             class="artifact-config-item config-item"
@@ -139,6 +145,7 @@ export default {
     },
     data() {
         return {
+            configShimenawaReminiscence: { rate: 0 },
             configArchaicPetra: { element: "fire", rate: 0 },
             configBraveHeart: { rate: 0 },
             configInstructor: { rate: 0 },
@@ -161,6 +168,27 @@ export default {
     methods: {
         getArtifactsConfig() {
             return deepCopy(this.$data);
+        },
+
+        setArtifactsConfig(config) {
+            this.configShimenawaReminiscence = config.configShimenawaReminiscence ?? { rate: 0 };
+            this.configArchaicPetra = config.configArchaicPetra ?? { element: "fire", rate: 0 };
+            this.configBraveHeart = config.configBraveHeart ?? { rate: 0 };
+            this.configInstructor = config.configInstructor ?? { rate: 0 };
+            this.configBerserker = config.configBerserker ?? { rate: 0 };
+            this.configMartialArtist = config.configMartialArtist ?? { rate: 0 };
+            this.configDefenderWill = config.configDefenderWill ?? { elements: [] };
+            this.configCrimsonWitch = config.configCrimsonWitch ?? { level: 0 };
+            this.configBlizzardStrayer = config.configBlizzardStrayer ?? { criticalBonus: 0 };
+            this.configBloodstainedChivalry = config.configBloodstainedChivalry ?? { rate: 0 };
+            this.configNoblesseOblige = config.configNoblesseOblige ?? { rate: 0 };
+            this.configHeartOfDepth = config.configHeartOfDepth ?? { rate: 0 };
+            this.configPaleFlame = config.configPaleFlame ?? { rate: 0 };
+            this.configRetracingBolide = config.configRetracingBolide ?? { rate: 0 };
+            this.configThunderSmoother = config.configThunderSmoother ?? { rate: 0 };
+            this.configTenacityOfTheMillelith = config.configTenacityOfTheMillelith ?? { rate: 0 };
+            this.configLavaWalker = config.configLavaWalker ?? { rate: 0 };
+            this.configMaidenBeloved = config.configMaidenBeloved ?? { rate: 0 };
         }
     }
 }

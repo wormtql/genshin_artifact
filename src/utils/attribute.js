@@ -37,7 +37,7 @@ export function applyBuffs(attribute, buffs) {
                 break;
             case "elementalBonus": {
                 let ele = buff.element;
-                attribute[ele + "Bonus"] = buff.value;
+                attribute[ele + "Bonus"] += buff.value;
                 break;
             }
         }
