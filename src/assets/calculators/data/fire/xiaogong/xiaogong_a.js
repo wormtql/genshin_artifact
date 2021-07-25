@@ -3,10 +3,10 @@ import { getAttribute } from "@util/attribute";
 
 
 let rows1 = [
-    { key: "dmg1", chs: "普攻1段" },
+    { key: "dmg1", chs: "普攻1段/2" },
     { key: "dmg2", chs: "普攻2段" },
     { key: "dmg3", chs: "普攻3段" },
-    { key: "dmg4", chs: "普攻4段" },
+    { key: "dmg4", chs: "普攻4段/2" },
     { key: "dmg5", chs: "普攻5段" },
 ];
 
@@ -16,6 +16,7 @@ let rows2 = [
 
 let rows3 = [
     { key: "bDmg2", chs: "满蓄力瞄准射击" },
+    { key: "bDmg3", chs: "焰硝矢伤害" },
 ]
 
 export default function (artifacts, configObject, enemy) {

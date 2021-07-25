@@ -36,9 +36,11 @@ export function damageDefNormal(attribute, cLevel, r, enemy, element, skill) {
     return damageDelegate(attribute, cLevel, attribute.defend() * r, enemy, element, skill);
 }
 
-export function damageReaction(type, attribute, cLevel, r, enemy, element, skill) {
-    let baseDmg = damageNormal(attribute, cLevel, r, enemy, element, skill);
+export function damageCustom(attribute, cLevel, enemy, element, skill, baseDmg) {
+    return damageDelegate(attribute, cLevel, baseDmg, enemy, element, skill);
+}
 
+export function damageReactionDelegate(type, attribute, base, element) {
     let amp = reaction.amp(attribute.elementalMastery);
     let rate;
     if (type === "melt") {
@@ -50,10 +52,20 @@ export function damageReaction(type, attribute, cLevel, r, enemy, element, skill
     }
 
     return {
-        crit: baseDmg.crit * rate * (1 + amp),
-        nonCrit: baseDmg.nonCrit * rate * (1 + amp),
-        expect: baseDmg.expect * rate * (1 + amp),
+        crit: base.crit * rate * (1 + amp),
+        nonCrit: base.nonCrit * rate * (1 + amp),
+        expect: base.expect * rate * (1 + amp),
     };
+}
+
+export function damageReaction(type, attribute, cLevel, r, enemy, element, skill) {
+    let baseDmg = damageNormal(attribute, cLevel, r, enemy, element, skill);
+    return damageReactionDelegate(type, attribute, baseDmg, element);
+}
+
+export function damageReactionCustom(type, attribute, cLevel, enemy, element, skill, baseDmg) {
+    let base = damageCustom(attribute, cLevel, enemy, element, skill, baseDmg);
+    return damageReactionDelegate(type, attribute, base, element);
 }
 
 // skillName: a, b, air, e, q

@@ -2,11 +2,11 @@ import { tableWind } from "../../../utils";
 import { getAttribute } from "@util/attribute";
 import { charactersData } from "@asset/characters";
 
-let skill = charactersData["qin"].skill;
+let skill = charactersData["zaoyou"].skill;
 
 let rowsQ = [
-    { key: "dmg1", chs: "爆发伤害" },
-    { key: "dmg2", chs: "出入领域伤害" }
+    { key: "dmg1", chs: "技能发动伤害" },
+    { key: "dmg2", chs: "不倒貉貉伤害" }
 ];
 
 export default function (artifacts, configObject, enemy) {
@@ -17,10 +17,10 @@ export default function (artifacts, configObject, enemy) {
     let q = tableWind(attribute, configObject, enemy, rowsQ, "q");
     
     let idx = c.skill3 - 1;
-    let cure1 = skill.q.cure1[idx] * attribute.attack() + skill.q.cure1Static[idx];
-    let cure2 = skill.q.cure2[idx] * attribute.attack() + skill.q.cure2Static[idx];
+    let heal1 = skill.q.heal1[idx] * attribute.attack() + skill.q.heal1Static[idx];
+    let heal2 = skill.q.heal2[idx] * attribute.attack() + skill.q.heal2Static[idx];
 
     return {
-        q, cure1, cure2,
+        q, heal1, heal2,
     };
 }

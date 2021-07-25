@@ -4,7 +4,6 @@ import skill from "./anbo.skill.js";
 
 export default {
     cardURL: card,
-    detailURL: "",
     name: "anbo",
     chs: "安柏",
     element: "fire",
