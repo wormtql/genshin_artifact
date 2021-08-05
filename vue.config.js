@@ -8,6 +8,7 @@ const WorkerPlugin = require("worker-plugin");
 
 const BEIAN_CODE = "浙ICP备2021004987号";
 
+
 let title = "莫娜占卜铺";
 if ("MONA_TITLE" in process.env) {
     title = process.env.MONA_TITLE;
