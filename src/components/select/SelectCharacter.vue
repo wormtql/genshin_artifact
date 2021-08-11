@@ -34,7 +34,7 @@ export default {
     props: ["value"],
     created() {
         this.charactersByElement = charactersByElement;
-        console.log(charactersByElement);
+        // console.log(charactersByElement);
     },
     methods: {
         element2Chs(element) {

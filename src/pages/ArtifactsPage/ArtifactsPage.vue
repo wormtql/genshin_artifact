@@ -182,7 +182,7 @@ export default {
         lockOrUnlockCurrentPage() {
             let artifacts = this.$store.getters["artifacts/allArtifacts"][this.activeName];
             let lockCount = artifacts.reduce((a, b) => a + (b.omit ? 1 : 0), 0);
-            console.log(lockCount);
+            // console.log(lockCount);
 
             if (lockCount === artifacts.length || lockCount === 0) {
                 for (let i = 0; i < artifacts.length; i++) {

@@ -116,7 +116,7 @@ export default {
         graphOption() {
             let data = [];
             let g = this.gradient;
-            console.log(g);
+            // console.log(g);
 
             for (let item of Object.values(g)) {
                 data.push({

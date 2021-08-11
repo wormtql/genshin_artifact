@@ -242,7 +242,7 @@ export default {
     },
     methods: {
         notifyChange(type, value) {
-            console.log(type, value);
+            // console.log(type, value);
             if (type === "character") {
                 let weaponType = charactersData[value].weapon;
                 // this.$refs.selectWeapon.setAllow(weaponType);

@@ -34,7 +34,7 @@ if (temp) {
         }
     }
     id++;
-    console.log("next kumi node ID: " + id);
+    // console.log("next kumi node ID: " + id);
 }
 
 function getKumiFromTree(node) {
