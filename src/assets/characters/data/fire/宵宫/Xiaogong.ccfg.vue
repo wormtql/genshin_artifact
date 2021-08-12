@@ -16,7 +16,7 @@
 
 <script>
 export default {
-    name: "Hutao.ccfg",
+    name: "Xiaogong.ccfg",
     data() {
         return {
             talent1Level: 0,
