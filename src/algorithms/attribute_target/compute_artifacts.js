@@ -197,6 +197,10 @@ function computeArtifacts(artifacts, configObject) {
         return b.value - a.value;
     });
 
+    for (let record of maxRecord) {
+        delete record.attribute._lazyList;
+    }
+
     return {
         record: maxRecord,
         error: {
