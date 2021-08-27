@@ -4,7 +4,6 @@ import skill from "./beidou.skill";
 
 export default {
     cardURL: card,
-    detailURL: "",
     name: "beidou",
     chs: "北斗",
     element: "thunder",
