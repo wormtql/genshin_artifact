@@ -38,10 +38,10 @@ function rowIce(attribute, configObject, enemy, rowConfig, skillName, { coilCoun
         bonus = skill.e["atkBonus" + coilCount][skill2 - 1];
     }
 
-    let base = (skill.a[rowConfig.key][skill1 - 1]) * attribute.attack();
+    let base = skill.a[rowConfig.key][skill1 - 1] * attribute.attack();
 
-    let normal = damageCustom(attribute, cLevel, enemy, "ice", skillName, base);
-    let melt = damageReactionCustom("melt", attribute, cLevel, enemy, "ice", skillName, base);
+    let normal = damageCustom(attribute, cLevel, enemy, "ice", skillName, base, [bonus]);
+    let melt = damageReactionCustom("melt", attribute, cLevel, enemy, "ice", skillName, base, [bonus]);
 
     return {
         ice: normal,
@@ -51,33 +51,23 @@ function rowIce(attribute, configObject, enemy, rowConfig, skillName, { coilCoun
 }
 
 // ice rush = false
-function row(attribute, configObject, enemy, rowConfig, skillName, { coilCount, iceRush }) {
+function row(attribute, configObject, enemy, rowConfig, skillName, { coilCount }) {
     let skill1 = configObject.character.skill1;
     let skill2 = configObject.character.skill2;
     let cLevel = configObject.character.level;
 
-    let ratioBonus = 0;
+    let bonus = 0;
     if (coilCount > 0) {
-        ratioBonus = skill.e["atkBonus" + coilCount][skill2 - 1];
+        bonus = skill.e["atkBonus" + coilCount][skill2 - 1];
     }
 
-    let base = (ratioBonus + skill.a[rowConfig.key][skill1 - 1]) * attribute.attack();
+    let base = skill.a[rowConfig.key][skill1 - 1] * attribute.attack();
 
-    let normal = damageCustom(attribute, cLevel, enemy, "ice", skillName, base);
+    let normal = damageCustom(attribute, cLevel, enemy, "ice", skillName, base, [bonus]);
     
-
-    if (iceRush) {
-        let melt = damageReactionCustom("melt", attribute, cLevel, enemy, "ice", skillName, base);
-        return {
-            ice: normal,
-            iceMelt: melt,
-            chs: rowConfig.chs,
-        }
-    } else {
-        return {
-            normal,
-            chs: rowConfig.chs,
-        }
+    return {
+        normal,
+        chs: rowConfig.chs,
     }
 }
 

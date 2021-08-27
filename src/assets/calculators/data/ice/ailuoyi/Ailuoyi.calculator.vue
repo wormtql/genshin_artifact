@@ -5,10 +5,12 @@
             size="small"
             style="margin: 16px 0"
         >
-            <el-radio-button label="a">普通攻击·灭邪四式</el-radio-button>
-            <el-radio-button label="e">灵刃·重华叠霜</el-radio-button>
-            <el-radio-button label="q">灵刃·云开星落</el-radio-button>
+            <el-radio-button label="a">普通攻击·快速射击</el-radio-button>
+            <el-radio-button label="e">冰尘雪野</el-radio-button>
+            <el-radio-button label="q">曙光预言</el-radio-button>
         </el-radio-group>
+
+        <el-alert title="暂未计算天赋效果，请手动添加" :closable="false" style="margin-bottom: 16px"></el-alert>
 
         <div v-show="showSkill === 'a'">
             <div class="buff-config-item">
@@ -43,6 +45,7 @@
                 ></common-table-physical>
                 <common-table-ice
                     :data="ailuoyiA.b2"
+                    class="mb-16"
                 ></common-table-ice>
                 <common-table-physical
                     :data="ailuoyiA.air"

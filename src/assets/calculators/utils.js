@@ -9,11 +9,11 @@ function getBonus(attribute, element, skill) {
 }
 
 
-function damageDelegate(attribute, cLevel, dmg, enemy, element, skill) {
+function damageDelegate(attribute, cLevel, dmg, enemy, element, skill, extraBonus = []) {
     let defensiveRatio = enemy.getDR(cLevel, attribute.defDown ?? 0);
 
     let resRatio = enemy.getRR(element);
-    let damageBonus = 1 + getBonus(attribute, element, skill);
+    let damageBonus = 1 + getBonus(attribute, element, skill) + extraBonus.reduce((a, b) => a + b, 0);
 
     let base = dmg * defensiveRatio * resRatio * damageBonus;
 
@@ -36,8 +36,8 @@ export function damageDefNormal(attribute, cLevel, r, enemy, element, skill) {
     return damageDelegate(attribute, cLevel, attribute.defend() * r, enemy, element, skill);
 }
 
-export function damageCustom(attribute, cLevel, enemy, element, skill, baseDmg) {
-    return damageDelegate(attribute, cLevel, baseDmg, enemy, element, skill);
+export function damageCustom(attribute, cLevel, enemy, element, skill, baseDmg, extraBonus = []) {
+    return damageDelegate(attribute, cLevel, baseDmg, enemy, element, skill, extraBonus);
 }
 
 export function damageReactionDelegate(type, attribute, base, element) {
@@ -63,8 +63,8 @@ export function damageReaction(type, attribute, cLevel, r, enemy, element, skill
     return damageReactionDelegate(type, attribute, baseDmg, element);
 }
 
-export function damageReactionCustom(type, attribute, cLevel, enemy, element, skill, baseDmg) {
-    let base = damageCustom(attribute, cLevel, enemy, element, skill, baseDmg);
+export function damageReactionCustom(type, attribute, cLevel, enemy, element, skill, baseDmg, extraBonus = []) {
+    let base = damageCustom(attribute, cLevel, enemy, element, skill, baseDmg, extraBonus);
     return damageReactionDelegate(type, attribute, base, element);
 }
 
