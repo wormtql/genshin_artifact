@@ -113,7 +113,7 @@
                             class="history-entry fs-12"
                         >
                             {{ index === 0 ? "当前：" : "历史" + index + "：" }}
-                            {{ history[recordIndex].toFixed(3) }}
+                            {{ history[recordIndex].formatted || history[recordIndex].toFixed(3) }}
                         </li>
                     </ul>
                     <!-- <p class="max-value">{{ currentRecord.value.toFixed(3) }}</p> -->
@@ -278,6 +278,7 @@ export default {
                 artifacts,
                 veryBigConfigObject
             ).then(({ record, error }) => {
+                console.log(record)
                 this.error = error;
                 if (!error.isError) {
                     this.resultRecord = record;
