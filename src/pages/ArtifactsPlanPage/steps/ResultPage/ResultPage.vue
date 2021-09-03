@@ -278,7 +278,6 @@ export default {
                 artifacts,
                 veryBigConfigObject
             ).then(({ record, error }) => {
-                console.log(record)
                 this.error = error;
                 if (!error.isError) {
                     this.resultRecord = record;
