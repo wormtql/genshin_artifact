@@ -26,7 +26,7 @@ PrettyNumber.prototype.valueOf = function() { return this.val }
 //     ].join('\n')
 // }
 
-function f(config) {
+function shenlilinghuaDps(config) {
     // console.log(JSON.parse(JSON.stringify(config.weapon)))
     let hasTalent1 = config.character.hasTalent1;
     let hasTalent2 = config.character.hasTalent2;
@@ -49,12 +49,15 @@ function f(config) {
     let qDmgTime = 2.16
     let talentBonus = hasTalent2 ? 0.18 : 0 
 
+    let dogeTime = 0.5 // 闪避用时
+
     let ice4Crit = config.tArgs.ice4Crit;
     let weaponElement = 0
 
     if(config.weapon.name === "tianmuyingdadao")
     {
-        weaponElement += 9 / 30.0
+        const tianmuEnergyRecharge = [6, 7.5, 9, 10.5, 12]
+        weaponElement += tianmuEnergyRecharge[config.weapon.refine] * 1.5 / 30.0
     }
 
     return function (attribute, context) {
@@ -62,9 +65,6 @@ function f(config) {
         let crit = attribute.bCritical;
 
         let bonus = attribute.bBonus + attribute.bonus + attribute.iceBonus;
-        // if (isAmos) {
-        //     bonus += (config.weapon.refine * 0.02 + 0.06) * 3;
-        // }
 
         let isBS4 = (context.artifactSet.blizzardStrayer || 0) >= 4;
         if (isBS4) {
@@ -79,61 +79,78 @@ function f(config) {
         
         let helperElement = config.tArgs.doubleIceRecharge ?  4 / 15.0 : 0.0
         let shenliElement = 4.5 / 10.0
-        let additionalElement = 6.0 / 20 // 假设一个大招秒两个怪产出微粒
+        let additionalElement = 4.0 / 20 // 假设一个大招秒两个怪产出微粒
 
-        let totalElementPerSec = helperElement + shenliElement + additionalElement + weaponElement;
-        let energyPerSecond = totalElementPerSec * attribute.recharge
+        // 每个同元素微粒能获取约3能量
+        let totalElementPerSec = (helperElement + shenliElement + additionalElement) * 2.7
+        let energyPerSecond = totalElementPerSec * attribute.recharge + weaponElement
         let energyBurstInterval = Math.max(80 / energyPerSecond, 20)
         
         let critBonus = (1 + Math.min(crit, 1) * attribute.criticalDamage);
 
         
-        let aDps = aDmg * attack * (1 + bonus + aBonus + talentBonus) * critBonus / aDmgTime
-        let eDps = eDmg * attack * (1 + bonus          + talentBonus) * critBonus / (10 + eDmgTime)
-        let qDps = qDmg * attack * (1 + bonus          + talentBonus) * critBonus / (qDmgTime + energyBurstInterval)
+        let aOutput = aDmg * attack * (1 + bonus + aBonus + talentBonus) * critBonus // aDmgTime
+        let eOutput = eDmg * attack * (1 + bonus          + talentBonus) * critBonus // (eDmgTime)
+        let qOutput = qDmg * attack * (1 + bonus          + talentBonus) * critBonus // (qDmgTime)
 
         let timeElapse = 0
         let eTimer = 0
+        let qTimer = 0
 
         let aCount = 0
         let eCount = 0
-        let qCount = 3
-
+        let qCount = 0
+        
         // 神里三次大招循环，模拟切辅助、普通、e技能以及大招输出流程
-        while(timeElapse < energyBurstInterval * qCount)
+        while(qCount < 3)
         {
             let usedTime = 4 + aDmgTime
             timeElapse += usedTime // 辅助一通输出
             eTimer += usedTime
+            qTimer += usedTime
             aCount++;
 
-            if(eTimer > 10 + eDmgTime)
+            if(eTimer > 10)
             {
                 eCount ++;
                 eTimer = 0;
+                timeElapse += eDmgTime
+            }
+            if(qTimer > energyBurstInterval)
+            {
+                qCount ++;
+                qTimer = 0;
+                timeElapse += qDmgTime + dogeTime // 闪避之后放大获得冰伤加成
             }
         }
 
-        const res = (aDps * aCount + eDps * eCount + qDps * qCount) / (aCount + eCount + qCount)
+        const totalOutput = (aOutput * aCount + eOutput * eCount + qOutput * qCount)
+        const res = totalOutput / timeElapse
         var theRes = new PrettyNumber(res);
 
         const atkPercentage = (attribute.attackPercentage / attribute.attackBasic * 100).toFixed(1)
-        const greenAtkPercentage = ((attribute.attackPercentage+attribute.attackStatic) / attribute.attackBasic * 100).toFixed(1)
+        // const greenAtkPercentage = ((attribute.attackPercentage+attribute.attackStatic) / attribute.attackBasic * 100).toFixed(1)
+        
+        const aPercentage = aOutput * aCount / totalOutput * 100
+        const ePercentage = eOutput * eCount / totalOutput * 100
+        const qPercentage = qOutput * qCount / totalOutput * 100
+
         // const critDmgPercentage = (attribute.criticalDamage * 100).toFixed(1)
         theRes.formatted = [
             `期望Dps: ${res.toFixed(1)}`,
-            `百分比攻击力: ${atkPercentage}%`,
-            `绿值对应百分比攻击增加: ${greenAtkPercentage}%`, 
-            // `爆伤: ${critDmgPercentage}%`,
-            `大招间隔 ${energyBurstInterval.toFixed(1)}s`
-        ].join('   ')
+            `攻击力增加%: ${atkPercentage}%`, 
+            `大招间隔: ${energyBurstInterval.toFixed(1)}s`,
+            `输出占比: 普攻(${aPercentage.toFixed(1)}%), 战技(${ePercentage.toFixed(1)}%), 大招(${qPercentage.toFixed(1)}%)`,
+            // `输出量 vs 循环中使用次数: ${aOutput.toFixed(1)}:${aCount}, ${eOutput.toFixed(1)}:${eCount}, ${qOutput.toFixed(1)}:${qCount}`,
+            // `倍率: ${aDmg.toFixed(1)}, ${eDmg.toFixed(1)}, ${qDmg.toFixed(1)}`
+        ].join('  ‏‏‎ ')
         return theRes;
     };
 }
 
 export default {
-    name: "shenliA",
-    func: f,
+    name: "shenlilinghuaDps",
+    func: shenlilinghuaDps,
     needConfig: true,
     needContext: true,
 }

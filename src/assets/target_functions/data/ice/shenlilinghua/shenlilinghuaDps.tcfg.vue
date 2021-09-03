@@ -15,28 +15,12 @@
                 size="small"
             ></el-input>
         </div>
-
-        <!--div class="config-item">
-            <h3 class="config-title">天赋“唯此一心”折合暴击率加成</h3>
-            <el-input
-                v-model="talent1Crit"
-                size="small"
-            ></el-input>
-        </div>
-
-        <div class="config-item">
-            <h3 class="config-title">天赋“天地交泰”折合冰伤加成</h3>
-            <el-input
-                v-model="talent2Bonus"
-                size="small"
-            ></el-input>
-        </div-->
     </div>
 </template>
 
 <script>
 export default {
-    name: "shenlilinghua.tcfg",
+    name: "shenlilinghuaDps.tcfg",
     data() {
         return {
             ice4Crit: "0.3",
