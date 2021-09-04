@@ -8,7 +8,24 @@
 
         <el-card class="item">
             <div slot="header">
-                1. Genshin Art Scanner（推荐）
+                {{ getIndex() }}. 「天目」-- Amenoma
+            </div>
+
+            <p>fork自Genshin Art Scanner</p>
+
+            <div class="footer">
+                <a target="_blank" href="https://github.com/daydreaming666/Amenoma"
+                    class="el-button no-deco el-button--primary"
+                >
+                    <i class="el-icon-connection"></i>
+                    项目地址
+                </a>
+            </div>
+        </el-card>
+
+        <el-card class="item">
+            <div slot="header">
+                {{ getIndex() }}. Genshin Art Scanner
             </div>
 
             <p>本地识别，基本实现全自动，无UI模式，速度大致每分钟100-200个</p>
@@ -38,7 +55,7 @@
         </el-card>
 
         <el-card class="item">
-            <div slot="header">2. 椰羊（cocogoat）（推荐）</div>
+            <div slot="header">{{ getIndex() }}. 椰羊（cocogoat）</div>
 
             <p>本地识别，基本实现全自动，有UI</p>
 
@@ -55,7 +72,7 @@
         </el-card>
 
         <el-card class="item">
-            <div slot="header">3. 蹦蹦炸弹（已暂停维护）</div>
+            <div slot="header">{{ getIndex() }}. 蹦蹦炸弹（已暂停维护）</div>
 
             <p>使用百度API进行远程OCR自动识别，缺点是需要注册百度AI账号</p>
 
@@ -70,8 +87,16 @@
 </template>
 
 <script>
+let iter = 0;
+
 export default {
     name: "ExportToolPage",
+    methods: {
+        getIndex() {
+            iter += 1;
+            return iter;
+        }
+    }
 }
 </script>
 
