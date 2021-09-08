@@ -40,6 +40,10 @@ export function applyBuffs(attribute, buffs) {
                 attribute[ele + "Bonus"] += buff.value;
                 break;
             }
+            case "qBonus": {
+                attribute.qBonus += buff.value;
+                break;
+            }
         }
     }
 }

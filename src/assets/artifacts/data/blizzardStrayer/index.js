@@ -25,7 +25,7 @@ export default {
         chs: "破冰踏雪的回音",
         url: head,
     },
-    chs: "征服寒冬的勇士",
+    chs: "冰风迷途的勇士",
     eng: "blizzardStrayer",
     effect: "冰风迷途的勇士",
     minStar: 4,
