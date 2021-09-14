@@ -57,7 +57,7 @@ function shenlilinghuaDps(config) {
     if(config.weapon.name === "tianmuyingdadao")
     {
         const tianmuEnergyRecharge = [6, 7.5, 9, 10.5, 12]
-        weaponElement += tianmuEnergyRecharge[config.weapon.refine] * 1.5 / 30.0
+        weaponElement += tianmuEnergyRecharge[config.weapon.refine - 1] * 1.5 / 30.0
     }
 
     return function (attribute, context) {

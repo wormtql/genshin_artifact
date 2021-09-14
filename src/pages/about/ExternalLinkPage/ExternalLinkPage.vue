@@ -18,6 +18,12 @@
                     <!-- <div s>
                     </div> -->
                     <span slot="header" class="link-title">{{ link.name }}</span>
+
+                    <div class="words" v-if="link.word">
+                        <span class="quote">“</span>
+                        <span class="content">{{ link.word }}</span>
+                    </div>
+
                     <div class="link-tags">
                         <span
                             class="link-tag fs-12"
@@ -26,9 +32,15 @@
                         >{{ tag }}</span>
                     </div>
                     <div class="link-footer">
-                        <a class="el-button link-button" :href="link.url" target="_blank">
+                        <a
+                            v-for="(url, caption) in link.url"
+                            :key="caption"
+                            class="el-button link-button"
+                            :href="url"
+                            target="_blank"
+                        >
                             <i class="el-icon-connection" style="margin-right: 4px"></i>
-                            {{ link.url }}
+                            {{ caption }}
                         </a>
                     </div>
                 </el-card>
@@ -55,7 +67,29 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.words {
+    .quote {
+        font-size: 3rem;
+        padding: 0 8px;
+        vertical-align: baseline;
+        position: relative;
+        line-height: 16px;
+        top: 18px;
+    }
+
+    .content {
+        font-size: 14px;
+        vertical-align: bottom;
+    }
+
+    background: #f4f4f5;
+    color: #909399;
+    padding: 16px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+}
+
 .link-button {
     text-decoration: none;
 }
