@@ -37,8 +37,10 @@ export default {
             
             let ret = new Set();
             for (let node of nodes) {
-                for (let id of node.data.ids) {
-                    ret.add(id);
+                if (node && node.data) {
+                    for (let id of node.data.ids) {
+                        ret.add(id);
+                    }
                 }
             }
 

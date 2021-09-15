@@ -38,5 +38,14 @@ export default [
             "网址": "https://www.noknok.cn/",
             "原神群组": "https://www.noknok.cn/act/share_group_20210625/index.html?uid=100000041&gid=117757"
         },
+    },
+    {
+        name: "兴趣来源",
+        tags: [
+            "游戏助手", "工具",
+        ],
+        url: {
+            "https://xingqulaiyuan.chenyuwulu.top/": "https://xingqulaiyuan.chenyuwulu.top/"
+        }
     }
 ]
