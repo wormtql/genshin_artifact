@@ -174,7 +174,7 @@ const DEFAULT_CONSTRAINT_ATTRIBUTE_MIN = {
     defend: "0",
     recharge: "100",
     elementalMastery: "0",
-    critical: "5",
+    critical: "0",
     criticalDamage: "50",
 }
 
@@ -217,7 +217,7 @@ export default {
                 defend: parseFloat(cam.defend) ?? 0,
                 recharge: (parseFloat(cam.recharge) ?? 100) / 100,
                 elementalMastery: parseFloat(cam.elementalMastery) ?? 0,
-                critical: (parseFloat(cam.critical) ?? 5) / 100,
+                critical: (parseFloat(cam.critical) ?? 0) / 100,
                 criticalDamage: (parseFloat(cam.criticalDamage) ?? 50) / 100,
             }
         },
