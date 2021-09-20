@@ -13,10 +13,6 @@
                 <select-artifacts
                     :selected="selectedArtifactIds"
                 ></select-artifacts>
-                
-
-                <h3 class="title3">增幅反应伤害</h3>
-                <CommonTableTransformative :data="reactionDamageTable"></CommonTableTransformative>
 
                 <h3 class="title3">技能伤害</h3>
                 <div
@@ -30,6 +26,9 @@
                     :config-object="configObject"
                     :artifacts="selectedArtifactObjects"
                 ></component>
+
+                <h3 class="title3">增幅反应伤害</h3>
+                <CommonTableTransformative :data="reactionDamageTable"></CommonTableTransformative>
             </el-col>
             <el-col :span="6">
                 <attribute-panel v-if="configObject !== null" :panel="attributePanel"></attribute-panel>

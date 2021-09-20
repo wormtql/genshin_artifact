@@ -31,8 +31,8 @@ export default function (artifacts, configObject, enemy, { afterQ }) {
         bonusB = skill.q.bBonus[skill3 - 1] * attribute.life();
 
         if (hasTalent2) {
-            bonusA += attribute.cureEffect * 0.15;
-            bonusB += attribute.cureEffect * 0.15;
+            bonusA += attribute.cureEffect * 0.15 * attribute.life();
+            bonusB += attribute.cureEffect * 0.15 * attribute.life();
         }
     }
 
@@ -40,6 +40,7 @@ export default function (artifacts, configObject, enemy, { afterQ }) {
     for (let config of rowsA) {
         let ratio = skill.a[config.key][skill1 - 1];
         let base = ratio * attribute.attack() + bonusA;
+        // console.log(base);
         let row = rowWater(attribute, configObject, enemy, config.chs, "a", base);
         tableA.push(row);
     }
