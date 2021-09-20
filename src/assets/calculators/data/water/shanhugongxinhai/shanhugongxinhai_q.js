@@ -25,6 +25,7 @@ export default function (artifacts, configObject, enemy) {
     }
 
     let heal = attribute.life() * skill.q.heal1[skill3 - 1] + skill.q.heal1Fixed[skill3 - 1];
+    heal *= 1 + attribute.cureEffect;
 
     return {
         q: tableQ,
