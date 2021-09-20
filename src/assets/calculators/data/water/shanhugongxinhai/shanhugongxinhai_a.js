@@ -42,6 +42,7 @@ export default function (artifacts, configObject, enemy, { afterQ }) {
         let base = ratio * attribute.attack() + bonusA;
         // console.log(base);
         let row = rowWater(attribute, configObject, enemy, config.chs, "a", base);
+        row.tag = "expectOnly";
         tableA.push(row);
     }
 
@@ -50,6 +51,7 @@ export default function (artifacts, configObject, enemy, { afterQ }) {
         let ratio = skill.a[config.key][skill1 - 1];
         let base = ratio * attribute.attack() + bonusB;
         let row = rowWater(attribute, configObject, enemy, config.chs, "b", base);
+        row.tag = "expectOnly";
         tableB.push(row);
     }
 
@@ -58,6 +60,7 @@ export default function (artifacts, configObject, enemy, { afterQ }) {
         let ratio = skill.a[config.key][skill1 - 1];
         let base = ratio * attribute.attack();
         let row = rowWater(attribute, configObject, enemy, config.chs, "air", base);
+        row.tag = "expectOnly";
         tableAir.push(row);
     }
 

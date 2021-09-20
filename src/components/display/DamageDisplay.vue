@@ -1,12 +1,12 @@
 <template>
     <div>
-        <span class="dmg-crit">
+        <span class="dmg-crit" v-if="showCritical">
             {{ convert(damage.crit) }}
         </span>
-        <span class="dmg-non-crit">
+        <span class="dmg-non-crit" v-if="showNonCritical">
             {{ convert(damage.nonCrit) }}
         </span>
-        <span class="dmg-expect">
+        <span class="dmg-expect" v-if="showExpect">
             {{ convert(damage.expect) }}
         </span>
     </div>
@@ -15,7 +15,14 @@
 <script>
 export default {
     name: "DamageDisplay",
-    props: ["damage"],
+    props: {
+        damage: {
+            type: Object,
+        },
+        showExpect: { type: Boolean, default: true },
+        showCritical: { type: Boolean, default: true },
+        showNonCritical: { type: Boolean, default: true },
+    },
     methods: {
         convert(value) {
             if (typeof value === "string") {

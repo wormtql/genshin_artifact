@@ -19,8 +19,9 @@ export default function (artifacts, configObject, enemy) {
     let tableQ = [];
     for (let config of rowsQ) {
         let ratio = skill.q[config.key][skill3 - 1];
-        let base = ratio * attribute.attack();
+        let base = ratio * attribute.life();
         let row = rowWater(attribute, configObject, enemy, config.chs, "q", base);
+        row.tag = "expectOnly";
         tableQ.push(row);
     }
 

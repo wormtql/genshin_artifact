@@ -28,6 +28,7 @@ export default function (artifacts, configObject, enemy, { afterQ }) {
         let ratio = skill.e[config.key][skill2 - 1];
         let base = ratio * attribute.attack() + bonusE;
         let row = rowWater(attribute, configObject, enemy, config.chs, "e", base);
+        row.tag = "expectOnly"
         tableE.push(row);
     }
 
