@@ -43,6 +43,7 @@ function row(attribute, configObject, enemy, rowConfig, { afterE, qLevel }, isDm
     }
  
     let baseDmg = (skill.q[rowConfig.key][skill3 - 1] + qBase) * attribute.attack();
+    baseDmg += attribute.lifeRatio * attribute.life();
 
     let dmgWithoutCrit = baseDmg * (1 + qBonus + attribute.qBonus + attribute.bonus + attribute.thunderBonus)
         * enemy.getRR("thunder") * enemy.getDR(cLevel, 0)

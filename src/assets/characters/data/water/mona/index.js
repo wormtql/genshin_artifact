@@ -4,7 +4,6 @@ import skill from "./mona.skill.js";
 
 export default {
     cardURL: card,
-    detailURL: "",
     name: "mona",
     chs: "莫娜",
     element: "water",

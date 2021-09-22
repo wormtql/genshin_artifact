@@ -41,7 +41,9 @@ function checkAttribute(config, attribute) {
     if (attribute.recharge < min.recharge) {
         return false;
     }
-    if (attribute.critical < min.critical) {
+    let critical = Math.max(attribute.critical, 0);
+    critical = Math.min(critical, 1);
+    if (critical < min.critical) {
         return false;
     }
     if (attribute.criticalDamage < min.criticalDamage) {
@@ -133,7 +135,7 @@ function computeArtifacts(artifacts, configObject) {
                         if (!check([flower, feather, sand, cup, head])) {
                             continue;
                         }
-
+                        
                         let arts = [flower, feather, sand, cup, head].filter(item => item);
                         let attribute = getAttribute(arts, c, w, buffs, artifactsConfig);
                         if (!checkAttribute(constraint, attribute)) {
@@ -186,7 +188,7 @@ function computeArtifacts(artifacts, configObject) {
     if (maxRecord.length === 0) {
         return {
             error: {
-                reason: "no artifact",
+                reason: "没有符合条件的圣遗物，请仔细检查过滤条件、限定条件（套装等），以及圣遗物导入是否有错误",
                 code: 1000,
                 isError: true,
             },

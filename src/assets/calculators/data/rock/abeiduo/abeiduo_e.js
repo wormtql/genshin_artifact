@@ -1,4 +1,4 @@
-import { tableRock } from "../../../utils";
+import { tableRockCustom } from "../../../utils";
 import { getAttribute } from "@util/attribute";
 import { charactersData } from "@asset/characters";
 
@@ -8,6 +8,9 @@ let skill = charactersData["abeiduo"].skill;
 let rowsE = [
     { key: "dmg1", chs: "技能伤害" },
 ];
+let rowsE2 = [
+    { chs: "刹那之花伤害" }
+]
 
 export function damageDef(attribute, cLevel, r, enemy, element, skill) {
     let def = attribute.defend();
@@ -34,11 +37,15 @@ export default function (artifacts, configObject, enemy) {
     let w = configObject.weapon;
     let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
 
-    let e = tableRock(attribute, configObject, enemy, rowsE, "e");
-    e.push({
-        chs: "刹那之花伤害",
-        rock: damageDef(attribute, c.level, skill.e.dmg2[c.skill2 - 1], enemy, "rock", "e"),
-    });
+    let skill2 = c.skill2;
+
+    let dmg1Ratio = skill.e["dmg1"][skill2 - 1];
+    let dmg2Ratio = skill.e["dmg2"][skill2 - 1];
+
+    let e1 = tableRockCustom(attribute, configObject, enemy, rowsE, "e", dmg1Ratio * attribute.attack());
+    let e2 = tableRockCustom(attribute, configObject, enemy, rowsE2, "e", dmg2Ratio * attribute.defend());
+
+    let e = e1.concat(e2);
 
     return e;
 }

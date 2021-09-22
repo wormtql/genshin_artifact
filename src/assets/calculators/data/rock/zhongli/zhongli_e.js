@@ -1,6 +1,6 @@
-import { tableRock } from "./zhongli_utils";
 import { getAttribute } from "@util/attribute";
 import { charactersData } from "@asset/characters";
+import { rowRock } from "../../../utils";
 
 
 let skill = charactersData["zhongli"].skill;
@@ -22,12 +22,19 @@ export default function (artifacts, configObject, enemy) {
         extraDmg = attribute.life() * 0.019;
     }
 
-    let e = tableRock(attribute, configObject, enemy, rowsE, "e", extraDmg);
-    
-    let idx = c.skill2 - 1;
-    let shield = skill.e.shieldBase[idx] + skill.e.shieldExtra[idx] * attribute.life();
+    let skill2 = c.skill2;
+
+    let tableE = [];
+    for (let config of rowsE) {
+        let ratio = skill.e[config.key][skill2 - 1];
+        let base = ratio * attribute.attack() + extraDmg;
+        let row = rowRock(attribute, configObject, enemy, config.chs, "e", base);
+        tableE.push(row);
+    }
+
+    let shield = skill.e.shieldBase[skill2 - 1] + skill.e.shieldExtra[skill2 - 1] * attribute.life();
 
     return {
-        e, shield
+        e: tableE, shield
     }
 }

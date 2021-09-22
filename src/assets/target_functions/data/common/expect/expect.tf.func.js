@@ -8,6 +8,7 @@ function f(config) {
         let bonus = attribute.bonus + attribute[element + "Bonus"] + attribute[skill + "Bonus"];
 
         let crit = Math.min(attribute[critName], 1);
+        crit = Math.max(0, crit);
 
         let baseDmg = atk * (1 + bonus);
         return (crit * attribute.criticalDamage + 1) * baseDmg;
