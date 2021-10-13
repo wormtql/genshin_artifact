@@ -8,6 +8,23 @@
 
         <el-card class="item">
             <div slot="header">
+                {{ getIndex() }}. yas
+            </div>
+
+            <p>来自莫娜占卜铺原作者的导出器：Yet Another Scanner，state-of-the-art（速度上）导出器</p>
+
+            <div class="footer">
+                <a target="_blank" href="https://github.com/wormtql/yas"
+                    class="el-button no-deco el-button--primary"
+                >
+                    <i class="el-icon-connection"></i>
+                    项目地址
+                </a>
+            </div>
+        </el-card>
+
+        <el-card class="item">
+            <div slot="header">
                 {{ getIndex() }}. 「天目」-- Amenoma
             </div>
 

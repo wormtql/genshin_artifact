@@ -47,5 +47,5 @@ export default [
         url: {
             "https://xingqulaiyuan.chenyuwulu.top/": "https://xingqulaiyuan.chenyuwulu.top/"
         }
-    }
+    },
 ]
