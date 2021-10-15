@@ -46,16 +46,40 @@
         </div>
 
         <div v-show="showSkill === 'e'">
-            <common-table-fire
-                :data="hutaoE.e"
-            ></common-table-fire>
+            <el-switch
+                v-model="config.afterE"
+                active-text="彼岸蝶舞"
+                class="mb-16"
+            ></el-switch>
+            <div v-if="config.afterE">
+                <common-table-fire
+                    :data="hutaoE.e"
+                ></common-table-fire>
+            </div>
+            <div v-else>
+                <common-table-fire
+                    :data="hutaoE.e"
+                ></common-table-fire>
+            </div>
             <p class="single-item">增加攻击力：{{ hutaoE.atkBonus }}</p>
         </div>
 
         <div v-show="showSkill === 'q'">
-            <common-table-fire
-                :data="hutaoQ.q"
-            ></common-table-fire>
+            <el-switch
+                v-model="config.afterE"
+                active-text="彼岸蝶舞"
+                class="mb-16"
+            ></el-switch>
+            <div v-if="config.afterE">
+                <common-table-fire
+                    :data="hutaoQ.q"
+                ></common-table-fire>
+            </div>
+            <div v-else>
+                <common-table-fire
+                    :data="hutaoQ.q"
+                ></common-table-fire>
+            </div>
             <p class="single-item">治疗量：{{ hutaoQ.cure1 }}</p>
             <p class="single-item">低血量治疗量：{{ hutaoQ.cure2 }}</p>
         </div>
@@ -105,11 +129,11 @@ export default {
         },
 
         hutaoE() {
-            return hutaoE(this.artifacts, this.configObject, this.enemy);
+            return hutaoE(this.artifacts, this.configObject, this.enemy, this.config);
         },
 
         hutaoQ() {
-            return hutaoQ(this.artifacts, this.configObject, this.enemy);
+            return hutaoQ(this.artifacts, this.configObject, this.enemy, this.config);
         },
     }
 }
