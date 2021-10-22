@@ -15,10 +15,15 @@ let skillKeys = [
     },
 ];
 
-export default function (artifacts, configObject, enemy) {
+export default function (artifacts, configObject, enemy, otherConfig) {
     let c = configObject.character;
     let w = configObject.weapon;
     let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
+
+    if (otherConfig.afterE) {
+        let atkBonus = Math.min(4 * attribute.attackBasic, skill.e.hp[c.skill2 - 1] * attribute.life());
+        attribute.attackStatic += atkBonus;
+    }
 
     let q = tableFire(attribute, configObject, enemy, skillKeys, "q");
     let cure1 = skill.q.cure1[c.skill3 - 1] * attribute.life();

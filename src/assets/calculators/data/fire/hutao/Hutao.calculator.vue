@@ -46,6 +46,11 @@
         </div>
 
         <div v-show="showSkill === 'e'">
+            <el-switch
+                v-model="config.afterE"
+                active-text="彼岸蝶舞"
+                class="mb-16"
+            ></el-switch>
             <common-table-fire
                 :data="hutaoE.e"
             ></common-table-fire>
@@ -53,6 +58,11 @@
         </div>
 
         <div v-show="showSkill === 'q'">
+            <el-switch
+                v-model="config.afterE"
+                active-text="彼岸蝶舞"
+                class="mb-16"
+            ></el-switch>
             <common-table-fire
                 :data="hutaoQ.q"
             ></common-table-fire>
@@ -105,11 +115,11 @@ export default {
         },
 
         hutaoE() {
-            return hutaoE(this.artifacts, this.configObject, this.enemy);
+            return hutaoE(this.artifacts, this.configObject, this.enemy, this.config);
         },
 
         hutaoQ() {
-            return hutaoQ(this.artifacts, this.configObject, this.enemy);
+            return hutaoQ(this.artifacts, this.configObject, this.enemy, this.config);
         },
     }
 }
