@@ -17,8 +17,9 @@ export default function (artifacts, configObject, enemy, otherConfig) {
     let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
 
     let f = otherConfig.afterE ? tableFire : tablePhysical;
+
     if (otherConfig.afterE) {
-        atkBonus = Math.min(4 * attribute.attackBasic, skill.e.hp[c.skill2 - 1] * attribute.life());
+        let atkBonus = Math.min(4 * attribute.attackBasic, skill.e.hp[c.skill2 - 1] * attribute.life());
         attribute.attackStatic += atkBonus;
         e = f(attribute, configObject, enemy, skillKeys, "e");
     }

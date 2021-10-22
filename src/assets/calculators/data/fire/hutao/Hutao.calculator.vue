@@ -51,16 +51,9 @@
                 active-text="彼岸蝶舞"
                 class="mb-16"
             ></el-switch>
-            <div v-if="config.afterE">
-                <common-table-fire
-                    :data="hutaoE.e"
-                ></common-table-fire>
-            </div>
-            <div v-else>
-                <common-table-fire
-                    :data="hutaoE.e"
-                ></common-table-fire>
-            </div>
+            <common-table-fire
+                :data="hutaoE.e"
+            ></common-table-fire>
             <p class="single-item">增加攻击力：{{ hutaoE.atkBonus }}</p>
         </div>
 
@@ -70,16 +63,9 @@
                 active-text="彼岸蝶舞"
                 class="mb-16"
             ></el-switch>
-            <div v-if="config.afterE">
-                <common-table-fire
-                    :data="hutaoQ.q"
-                ></common-table-fire>
-            </div>
-            <div v-else>
-                <common-table-fire
-                    :data="hutaoQ.q"
-                ></common-table-fire>
-            </div>
+            <common-table-fire
+                :data="hutaoQ.q"
+            ></common-table-fire>
             <p class="single-item">治疗量：{{ hutaoQ.cure1 }}</p>
             <p class="single-item">低血量治疗量：{{ hutaoQ.cure2 }}</p>
         </div>
