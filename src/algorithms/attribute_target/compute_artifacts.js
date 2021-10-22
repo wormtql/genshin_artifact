@@ -158,6 +158,13 @@ function computeArtifacts(artifacts, configObject) {
                                 combo: [flower, feather, sand, cup, head],
                                 attribute,
                             });
+                            if (maxRecord.length === RECORD_COUNT) {
+                                minIndex = 0;
+                                for (let i = 1; i < maxRecord.length; i++) {
+                                    let record = maxRecord[i];
+                                    minIndex = record.value < maxRecord[minIndex].value ? i : minIndex;
+                                }
+                            }
                         } else if (value > maxRecord[minIndex].value) {
                             maxRecord[minIndex] = {
                                 value,
@@ -165,7 +172,7 @@ function computeArtifacts(artifacts, configObject) {
                                 attribute,
                             };
                             
-                            // determine new min value
+                            // determine new min value (arr size very small, no need of heap)
                             minIndex = 0;
                             maxRecord.forEach((record, index, arr) => {
                                 minIndex = record.value < arr[minIndex].value ? index : minIndex;

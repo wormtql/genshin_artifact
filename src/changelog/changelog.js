@@ -375,5 +375,12 @@ export default [
         changes: [
             "增加武器：恶玉丸、冬极白星",
         ]
+    },
+    {
+        time: "2021/10/22",
+        version: "4.8.1",
+        changes: [
+            "修复若干bug",
+        ]
     }
 ]

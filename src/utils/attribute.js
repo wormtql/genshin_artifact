@@ -44,6 +44,42 @@ export function applyBuffs(attribute, buffs) {
                 attribute.qBonus += buff.value;
                 break;
             }
+            case "reactionEnhance": {
+                let reactionTypes = buff.reactionTypes;
+                let value = parseFloat(buff.value) ?? 0;
+
+                for (let reactionType of reactionTypes) {
+                    switch (reactionType) {
+                        case "melt": {
+                            attribute.meltEnhance += value;
+                            break;
+                        }
+                        case "vaporize": {
+                            attribute.vaporizeEnhance += value;
+                            break;
+                        }
+                        case "overload": {
+                            attribute.overloadEnhance += value;
+                            break;
+                        }
+                        case "superconduct": {
+                            attribute.superconductEnhance += value;
+                            break;
+                        }
+                        case "electroCharged": {
+                            attribute.electroEnhance += value;
+                            break;
+                        }
+                        case "swirl": {
+                            attribute.swirlThunderEnhance += value;
+                            attribute.swirlFireEnhance += value;
+                            attribute.swirlWaterEnhance += value;
+                            attribute.swirlIceEnhance += value;
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }

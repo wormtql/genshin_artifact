@@ -25,7 +25,7 @@ export default {
         chs: "酒渍船帽",
         url: head,
     },
-    chs: "征涛之人",
+    chs: "沉沦之心",
     effect: "沉沦之心",
     eng: "heartOfDepth",
     minStar: 4,

@@ -1,6 +1,6 @@
 {
   "name": "genshin_artifacts",
-  "version": "4.8.0",
+  "version": "4.8.1",
   "private": true,
   "scripts": {
     "serve": "cross-env MONA_TITLE=莫娜占卜铺 MONA_NEED_BEIAN=false MONA_NEED_MIGRATE=false MONA_ROUTE_MODE=hash vue-cli-service serve",

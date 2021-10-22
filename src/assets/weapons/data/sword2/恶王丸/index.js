@@ -3,7 +3,7 @@ import config from "./Eyuwan.wcfg.vue";
 
 export default {
     name: "eyuwan",
-    chs: "恶玉丸",
+    chs: "恶王丸",
     url: tn,
     star: 4,
     type: "sword2",
