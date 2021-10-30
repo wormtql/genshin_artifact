@@ -155,6 +155,17 @@ export function colReaction(type, attribute, configObject, enemy, skillKeys, ski
     return ret;
 }
 
+export function rowFire(attribute, configObject, enemy, caption, skillName, baseDmg) {
+    const cLevel = configObject.character.level;
+    return {
+        "chs": caption,
+        "fire": damageCustom(attribute, cLevel, enemy, "fire", skillName, baseDmg),
+        "fireMelt": damageReactionCustom("melt", attribute, cLevel, enemy, "fire", skillName, baseDmg),
+        "fireVaporize": damageReactionCustom("vaporize", attribute, cLevel, enemy, "fire", skillName, baseDmg),
+    }
+}
+
+// deprecated
 export function tableFire(attribute, configObject, enemy, rowConfigs, skillName) {
     let ret = mergeArray(
         ["chs", rowConfigs.map(item => item.chs)],
