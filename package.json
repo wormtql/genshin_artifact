@@ -25,6 +25,7 @@
     "genshin_panel": "^2.18.2",
     "is-electron": "^2.2.0",
     "katex": "^0.13.0",
+    "object-hash": "^2.2.0",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4",
     "vue-katex": "^0.5.0"

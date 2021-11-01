@@ -1,6 +1,6 @@
 import Vue from "vue";
 
-import { count as countArtifacts } from "@util/artifacts";
+import { count as countArtifacts, hash as hashArtifact } from "@util/artifacts";
 import positions from "@const/positions";
 
 // id can only be changed in store mutations
@@ -11,6 +11,7 @@ let feather = [];
 let sand = [];
 let cup = [];
 let head = [];
+let hashes = new Set();
 let localStoredArtifacts = localStorage.getItem("artifacts");
 if (localStoredArtifacts) {
     let obj = JSON.parse(localStoredArtifacts);
@@ -24,6 +25,8 @@ if (localStoredArtifacts) {
     let temp = flower.concat(feather).concat(sand).concat(cup).concat(head);
     for (let item of temp) {
         id = Math.max(id, item.id ?? -1);
+        const hash = hashArtifact(item);
+        hashes.add(hash);
     }
     id++;
     for (let item of temp) {
@@ -164,6 +167,23 @@ let _store = {
                     state[pos].push(art);
                 }
             })
+        },
+
+        appendArtifactsCheckHash(state, obj) {
+            for (let pos of positions) {
+                let posArtifacts = obj[pos];
+                for (let art of posArtifacts) {
+                    let hashNew = hashArtifact(art);
+                    if (hashes.has(hashNew)) {
+                        continue;
+                    } else {
+                        hashes.add(hashNew);
+                        art.id = id++;
+                        state[pos].push(art);
+                    }
+                    // console.log(hashNew);
+                }
+            }
         },
 
         removeAllArtifacts(state) {

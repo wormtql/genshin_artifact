@@ -1,5 +1,6 @@
 import positions from "@const/positions";
 import artifactEff from "@const/artifact_eff";
+import objectHash from "object-hash";
 
 export function count(artifacts) {
     let c = 0;
@@ -30,4 +31,13 @@ export function getValueEff(value, tagName, star) {
     let eff = artifactEff[star][tagName];
 
     return value / eff[3];
+}
+
+export function hash(artifact) {
+    let h = objectHash(artifact, {
+        excludeKeys: (k) => {
+            return k === "id" || k === "omit" || k === "detailName";
+        }
+    });
+    return h;
 }

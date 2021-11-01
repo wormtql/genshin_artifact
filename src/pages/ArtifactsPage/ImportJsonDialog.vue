@@ -19,21 +19,21 @@
         <p v-if="supportFileReader">*支持拖拽文件</p>
 
         <div class="buttons">
-            <el-button
+            <!-- <el-button
                 type="primary"
                 class="confirm-button"
                 @click="handleOverwrite"
                 style="margin-left: 20px"
             >
                 覆盖导入<i class="el-icon-document-delete"></i>
-            </el-button>
+            </el-button> -->
             <el-button
                 type="primary"
                 class="confirm-button"
                 @click="handleAppend"
                 style="margin-left: 20px"
             >
-                追加导入<i class="el-icon-document-add"></i>
+                导入<i class="el-icon-document-add"></i>
             </el-button>
             <el-button class="cancel-button" @click="handleClose">取消</el-button>
         </div>
@@ -102,24 +102,47 @@ export default {
                 });
             }
 
-            this.$store.commit("artifacts/appendArtifacts", artifacts);
+            this.$store.commit("artifacts/appendArtifactsCheckHash", artifacts);
         },
+
+        // setLoading() {
+        //     const loading = this.$loading({
+        //         lock: true,
+        //         text: "处理中",
+        //         spinner: "el-icon-loading",
+        //         background: "rgba(0, 0, 0, 0.7)",
+        //     });
+
+        //     return loading;
+        // },
 
         // append clicked
         handleAppend() {
             if (this.json) {
+                // const loading = this.setLoading();
                 this.appendArtifacts();
+                // loading.close();
             }
-
+            
             this.$emit("close");
         },
 
         // overwrite clicked
-        handleOverwrite() {
+        async handleOverwrite() {
             if (this.json) {
-                this.$store.commit("artifacts/removeAllArtifacts");
+                // this.setLoading();
+
+                // this.$store.commit("artifacts/removeAllArtifacts");
 
                 this.appendArtifacts();
+
+                // loading.close();
+
+                // this.$nextTick(() => {
+                    
+                // })
+
+                
             }
 
             this.$emit("close");

@@ -27,6 +27,7 @@
         >
         </edit-artifact-drawer>
 
+        <!-- <div style="position: sticky"> -->
         <!-- bread crumb -->
         <el-breadcrumb>
             <el-breadcrumb-item>圣遗物</el-breadcrumb-item>
@@ -81,6 +82,8 @@
                 @click="lockOrUnlockCurrentPage"
             ></el-button>
         </div>
+
+        <!-- </div> -->
 
         <!-- artifacts display -->
         <el-tabs v-model="activeName" type="card">
@@ -278,7 +281,8 @@ export default {
 .panel {
     display: flex;
     flex-wrap: wrap;
-
+    /* max-height: 700px; */
+    /* overflow: auto; */
 }
 
 .artifact-panel {

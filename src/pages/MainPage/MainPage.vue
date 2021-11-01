@@ -13,8 +13,8 @@
             </el-drawer>
 
             <el-aside
-                width="300px"
-                style="border-right: 1px solid #eee"
+                width="15%"
+                style="border-right: 1px solid #eee; min-width: 200px"
                 class="hidden-sm-and-down"
             >
                 <side-bar></side-bar>
@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import SideBar from "./SideBar"
-import Beian from "./Beian";
+import SideBar from "./SideBar.vue"
+import Beian from "./Beian.vue";
 
 export default {
     name: 'App',
