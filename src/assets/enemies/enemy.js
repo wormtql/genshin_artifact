@@ -11,7 +11,7 @@ export default class Enemy {
         return (characterLevel + 100) / ((1 - defDown) * def + characterLevel + 100);
     }
 
-    getRR(element) {
+    getRR(element, down = 0) {
         let attr;
         if (element === "physical") {
             attr = "phyRes";
@@ -19,7 +19,7 @@ export default class Enemy {
             attr = element + "Res";
         }
 
-        let res = enemyData[this.name][attr];
+        let res = enemyData[this.name][attr] - down;
         if (res > 0.75) {
             return 25 / (25 + res);
         } else if (res > 0) {
