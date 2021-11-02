@@ -5,10 +5,8 @@ import { getAttribute } from "@util/attribute";
 const rowsA = [
     { key: "dmg1", chs: "普攻1段" },
     { key: "dmg2", chs: "普攻2段" },
-    { key: "dmg31", chs: "普攻3段-1" },
-    { key: "dmg32", chs: "普攻3段-2" },
-    { key: "dmg4", chs: "普攻4段/4" },
-    { key: "dmg5", chs: "普攻5段" },
+    { key: "dmg3", chs: "普攻3段/2" },
+    { key: "dmg4", chs: "普攻4段" },
 ];
 
 const rowsB = [

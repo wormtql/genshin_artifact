@@ -1,8 +1,8 @@
 import tn from "./tn.png";
-import config from "./Eyuwan.wcfg.vue";
+import config from "./Ewangwan.wcfg.vue";
 
 export default {
-    name: "eyuwan",
+    name: "ewangwan",
     chs: "恶王丸",
     url: tn,
     star: 4,
