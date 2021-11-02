@@ -68,6 +68,22 @@
         ></artifacts-filter>
 
         <div class="small-toolbar" style="margin-bottom: 16px">
+            <el-popconfirm
+                title="确定清除吗，将会同时清除圣遗物套装数据"
+                @confirm="handleClickDeleteAll"
+                style="margin-right: 8px"
+            >
+                <el-button
+                    slot="reference"
+                    size="mini"
+                    icon="el-icon-delete"
+                    type="danger"
+                    title="清空"
+                >
+                    清空
+                </el-button>
+            </el-popconfirm>
+            
             <el-button
                 size="mini"
                 icon="el-icon-unlock"
@@ -182,6 +198,10 @@ export default {
         }
     },
     methods: {
+        handleClickDeleteAll() {
+            this.$store.commit("artifacts/removeAllArtifacts");
+        },
+
         lockOrUnlockCurrentPage() {
             let artifacts = this.$store.getters["artifacts/allArtifacts"][this.activeName];
             let lockCount = artifacts.reduce((a, b) => a + (b.omit ? 1 : 0), 0);

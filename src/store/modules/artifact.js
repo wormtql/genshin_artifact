@@ -11,7 +11,7 @@ let feather = [];
 let sand = [];
 let cup = [];
 let head = [];
-let hashes = new Set();
+let hashes = new Map();
 let localStoredArtifacts = localStorage.getItem("artifacts");
 if (localStoredArtifacts) {
     let obj = JSON.parse(localStoredArtifacts);
@@ -26,7 +26,11 @@ if (localStoredArtifacts) {
     for (let item of temp) {
         id = Math.max(id, item.id ?? -1);
         const hash = hashArtifact(item);
-        hashes.add(hash);
+        if (hashes.has(hash)) {
+            hashes.set(hash, hashes.get(hash) + 1);
+        } else {
+            hashes.set(hash, 1);
+        }
     }
     id++;
     for (let item of temp) {
@@ -49,6 +53,17 @@ function findArtifact(state, id) {
     throw new Error("id not found");
 }
 
+function updateHash(hash, inc) {
+    if (hashes.has(hash)) {
+        hashes.set(hash, hashes.get(hash) + inc);
+        if (hashes.get(hash) === 0) {
+            hashes.delete(hash);
+        }
+    } else {
+        hashes.set(hash, inc);
+    }
+}
+
 let _store = {
     namespaced: true,
     state: {
@@ -59,8 +74,13 @@ let _store = {
         head,
     },
     mutations: {
-        removeArtifact(state, obj) {
-            state[obj.position].splice(obj.index, 1);
+        removeArtifact(state, { position, index }) {
+            let art = state[position][index];
+            if (art) {
+                const hash = hashArtifact(art);
+                updateHash(hash, -1);
+            }
+            state[position].splice(index, 1);
         },
 
         removeArtifactById(state, { id }) {
@@ -69,6 +89,8 @@ let _store = {
                 for (let i = 0, l = artifacts.length; i < l; i++) {
                     let art = artifacts[i];
                     if (art.id === id) {
+                        const hash = hashArtifact(art);
+                        updateHash(hash, -1);
                         artifacts.splice(i, 1);
                         break a;
                     }
@@ -79,10 +101,16 @@ let _store = {
         addArtifact(state, item) {
             item.id = id++;
             state[item.position].push(item);
+
+            const hash = hashArtifact(item);
+            updateHash(hash, 1);
         },
 
         addArtifactWithID(state, item) {
             state[item.position].push(item);
+
+            const hash = hashArtifact(item);
+            updateHash(hash, 1);
         },
 
         toggleArtifact(state, obj) {
@@ -141,9 +169,14 @@ let _store = {
         /**
          * set a single artifact
          */
-        setArtifact(state, obj) {
-            let n = obj.artifact;
-            Vue.set(state[obj.position], obj.index, n);
+        setArtifact(state, { artifact, position, index }) {
+            const oldHash = hashArtifact(state[position][index]);
+            updateHash(oldHash, -1);
+
+            const newHash = hashArtifact(artifact);
+            updateHash(newHash, 1);
+
+            Vue.set(state[position], index, artifact);
         },
 
         setArtifactById(state, { id, newArt }) {
@@ -152,6 +185,12 @@ let _store = {
                 for (let i = 0, l = artifacts.length; i < l; i++) {
                     let art = artifacts[i];
                     if (art.id === id) {
+                        const oldHash = hashArtifact(art);
+                        updateHash(oldHash, -1);
+
+                        const newHash = hashArtifact(newArt);
+                        updateHash(newHash, 1);
+
                         newArt.id = id;
                         artifacts.splice(i, 1, newArt);
                         break a;
@@ -165,6 +204,9 @@ let _store = {
                 for (let art of obj[pos]) {
                     art.id = id++;
                     state[pos].push(art);
+
+                    const hash = hashArtifact(art);
+                    updateHash(hash, 1);
                 }
             })
         },
@@ -173,11 +215,11 @@ let _store = {
             for (let pos of positions) {
                 let posArtifacts = obj[pos];
                 for (let art of posArtifacts) {
-                    let hashNew = hashArtifact(art);
+                    const hashNew = hashArtifact(art);
                     if (hashes.has(hashNew)) {
                         continue;
                     } else {
-                        hashes.add(hashNew);
+                        updateHash(hashNew, 1);
                         art.id = id++;
                         state[pos].push(art);
                     }
@@ -192,6 +234,8 @@ let _store = {
             state.sand = [];
             state.cup = [];
             state.head = [];
+
+            hashes.clear();
         }
     },
     getters: {
