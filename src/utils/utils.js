@@ -107,3 +107,7 @@ export function positionToLocale(name) {
             return "理之冠";
     }
 }
+
+export function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}

@@ -1,4 +1,4 @@
-// import { damageCustom } from "../../../utils";
+// import { damageDelegate } from "../../../utils";
 import { getAttribute } from "@util/attribute";
 import { charactersData } from "@asset/characters";
 
@@ -27,9 +27,11 @@ let rowsA = [
 ];
 
 function row(attribute, configObject, enemy, rowConfig, { afterE, qLevel }, isDmg1) {
-    let skill2 = configObject.character.skill2;
-    let skill3 = configObject.character.skill3;
-    let cLevel = configObject.character.level;
+    const skill2 = configObject.character.skill2;
+    const skill3 = configObject.character.skill3;
+    const cLevel = configObject.character.level;
+    const defDown = attribute.enemyDefDown;
+    const thunderDown = attribute.enemyThunderDown;
 
     let qBase = 0;
     let qBonus = 0;
@@ -45,11 +47,11 @@ function row(attribute, configObject, enemy, rowConfig, { afterE, qLevel }, isDm
     let baseDmg = (skill.q[rowConfig.key][skill3 - 1] + qBase) * attribute.attack();
     baseDmg += attribute.lifeRatio * attribute.life();
 
-    let dmgWithoutCrit = baseDmg * (1 + qBonus + attribute.qBonus + attribute.bonus + attribute.thunderBonus)
-        * enemy.getRR("thunder") * enemy.getDR(cLevel, 0)
+    const dmgWithoutCrit = baseDmg * (1 + qBonus + attribute.qBonus + attribute.bonus + attribute.thunderBonus)
+        * enemy.getRR("thunder", thunderDown) * enemy.getDR(cLevel, defDown)
     ;
 
-    let dmg = {
+    const dmg = {
         crit: dmgWithoutCrit * (1 + attribute.criticalDamage),
         nonCrit: dmgWithoutCrit,
         expect: dmgWithoutCrit * (1 + Math.min(1, attribute.qCritical) * attribute.criticalDamage)
@@ -65,6 +67,12 @@ export default function (artifacts, configObject, enemy, config) {
     let c = configObject.character;
     let w = configObject.weapon;
     let attribute = getAttribute(artifacts, c, w, configObject.buffs, configObject.artifactsConfig);
+
+    if (c.constellation >= 2) {
+        // ignore 60% DEF
+        console.log("123");
+        attribute.enemyDefDown += 0.6;
+    }
 
     let rows = [];
     rows.push(row(attribute, configObject, enemy, rowsQ[0], config, true));

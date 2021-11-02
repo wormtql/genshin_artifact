@@ -7,8 +7,10 @@ export default class Enemy {
     }
 
     getDR(characterLevel, defDown = 0) {
-        let def = this.level + 100;
-        return (characterLevel + 100) / ((1 - defDown) * def + characterLevel + 100);
+        const def = this.level + 100;
+        // const defDown = Math.max(defDown, 0);
+        const dd = Math.min(defDown, 1);
+        return (characterLevel + 100) / ((1 - dd) * def + characterLevel + 100);
     }
 
     getRR(element, down = 0) {

@@ -1,4 +1,5 @@
 import * as genshin from "genshin_panel";
+import { capitalize } from "./utils";
 
 function getArtifact(myArtifact) {
     let temp = new genshin.ArtifactBuilder()
@@ -79,6 +80,21 @@ export function applyBuffs(attribute, buffs) {
                         }
                     }
                 }
+                break;
+            }
+            case "enemyDefDown": {
+                const value = buff.value ?? 0;
+                attribute["enemyDefDown"] += value;
+                break;
+            }
+            case "enemyResDown": {
+                const value = buff.value ?? 0;
+                const elementTypes = buff.elementTypes ?? [];
+                for (let element of elementTypes) {
+                    let resAttributeKey = `enemy${capitalize(element)}Down`;
+                    attribute[resAttributeKey] += value;
+                }
+                break;
             }
         }
     }

@@ -1,6 +1,7 @@
 import { tableRockCustom } from "../../../utils";
 import { getAttribute } from "@util/attribute";
 import { charactersData } from "@asset/characters";
+import { capitalize } from "@util/utils";
 
 
 let skill = charactersData["abeiduo"].skill;
@@ -14,9 +15,10 @@ let rowsE2 = [
 
 export function damageDef(attribute, cLevel, r, enemy, element, skill) {
     let def = attribute.defend();
-    let defensiveRatio = enemy.getDR(cLevel, attribute.defDown ?? 0);
+    let defensiveRatio = enemy.getDR(cLevel, attribute.enemyDefDown ?? 0);
 
-    let resRatio = enemy.getRR(element);
+    const resAttributeKey = `enemy${capitalize(element)}Down`;
+    let resRatio = enemy.getRR(element, attribute[resAttributeKey]);
     let damageBonus = 1 + attribute.rockBonus + attribute.eBonus + attribute.bonus;
 
     let base = def * r * defensiveRatio * resRatio * damageBonus;

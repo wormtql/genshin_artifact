@@ -2,6 +2,7 @@
 import { charactersData } from "@asset/characters";
 import reaction from "@/elemental_reaction/reaction_bonus";
 import mergeArray from "@util/mergeArray";
+import { capitalize } from "@util/utils";
 
 
 // get bonus from element and skill
@@ -14,20 +15,23 @@ function getBonus(attribute, element, skill) {
 // note that baseDmg will be plused by attribute base bonus
 // for example, weapon 不灭月华 will add base attack by hp percentage
 // dmg: base damage
-function damageDelegate(attribute, cLevel, dmg, enemy, element, skill, extraBonus = []) {
-    let defensiveRatio = enemy.getDR(cLevel, attribute.defDown ?? 0);
+export function damageDelegate(attribute, cLevel, dmg, enemy, element, skill, extraBonus = []) {
+    const defensiveRatio = enemy.getDR(cLevel, attribute.enemyDefDown ?? 0);
 
-    let resRatio = enemy.getRR(element);
-    let damageBonus = 1 + getBonus(attribute, element, skill) + extraBonus.reduce((a, b) => a + b, 0);
+    const resDownAttributeName = `enemy${capitalize(element)}Down`;
+    const resDown = attribute[resDownAttributeName] ?? 0;
+    const resRatio = enemy.getRR(element, resDown);
+    
+    const damageBonus = 1 + getBonus(attribute, element, skill) + extraBonus.reduce((a, b) => a + b, 0);
 
-    let baseDmg = dmg + attribute["lifeRatio"] * attribute.life();
+    const baseDmg = dmg + attribute["lifeRatio"] * attribute.life();
 
-    let dmgWithoutCrit = baseDmg * defensiveRatio * resRatio * damageBonus;
+    const dmgWithoutCrit = baseDmg * defensiveRatio * resRatio * damageBonus;
 
     let crit = skill == "a" ? attribute["critical"] : attribute[skill + "Critical"];
     crit = Math.min(crit, 1);
     crit = Math.max(crit, 0);
-    let cd = attribute.criticalDamage;
+    const cd = attribute.criticalDamage;
 
     return {
         crit: dmgWithoutCrit * (1 + cd),

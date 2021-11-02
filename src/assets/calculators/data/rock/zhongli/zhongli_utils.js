@@ -1,5 +1,6 @@
 import { charactersData } from "@asset/characters";
 import mergeArray from "@util/mergeArray";
+import { capitalize } from "@util/utils";
 
 function getBonus(attribute, element, skill) {
     return attribute[element + "Bonus"] + attribute[skill + "Bonus"] + attribute["bonus"];
@@ -7,9 +8,10 @@ function getBonus(attribute, element, skill) {
 
 function damageNormal(attribute, cLevel, r, enemy, element, skill, extraDmg) {
     let atk = attribute.attack();
-    let defensiveRatio = enemy.getDR(cLevel, attribute.defDown ?? 0);
+    let defensiveRatio = enemy.getDR(cLevel, attribute.enemyDefDown ?? 0);
 
-    let resRatio = enemy.getRR(element);
+    const resAttributeKey = `enemy${capitalize(element)}Down`;
+    let resRatio = enemy.getRR(element, attribute[resAttributeKey]);
     let damageBonus = 1 + getBonus(attribute, element, skill);
 
     let base = (atk * r + extraDmg) * defensiveRatio * resRatio * damageBonus;
