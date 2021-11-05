@@ -73,26 +73,49 @@ function computeArtifacts(artifacts, configObject) {
 
     // construct target function, given name and args
     let targetFunc = targetFunctionsFunc[tf.name];
+    const targetFuncVersion = targetFunc.version ?? 1;
+    let targetFuncContext = {};
     // if need context, artifacts info will be passed as argument during computing
-    const needContext = targetFunc.needContext;
-    if (targetFunc.needConfig) {
-        // the target function need configuration
-        targetFunc = targetFunc.func({
-            character,
-            weapon,
+    const needContext = targetFunc.needContext
+
+    if (targetFuncVersion === 1) {
+        if (targetFunc.needConfig) {
+            // the target function need configuration
+            targetFunc = targetFunc.func({
+                character,
+                weapon,
+                cArgs: {
+                    skill1: c.skill1,
+                    skill2: c.skill2,
+                    skill3: c.skill3,
+                    constellation: c.constellation,
+                    level: c.level,
+                },
+                // target function args
+                tArgs: tf.args,
+            });
+        } else {
+            targetFunc = targetFunc.func;
+        }
+    } else if (targetFuncVersion === 2) {
+        targetFuncContext = {
             cArgs: {
+                name: character.name,
                 skill1: c.skill1,
                 skill2: c.skill2,
                 skill3: c.skill3,
                 constellation: c.constellation,
                 level: c.level,
+                hasTalent1: character.hasTalent1,
+                hasTalent2: character.hasTalent2,
             },
-            // target function args
+            wArgs: { name: weapon.name, refine: weapon.refine, level: weapon.level },
             tArgs: tf.args,
-        });
-    } else {
+        };
+
         targetFunc = targetFunc.func;
     }
+    
 
     // check(or constraint) function
     const check = createCheckFunction(constraint);
@@ -142,15 +165,25 @@ function computeArtifacts(artifacts, configObject) {
                             continue;
                         }
 
-                        let value;
+                        let value = 0;
+                        let context = undefined;
                         if (needContext) {
-                            let context = {
+                            context = {
                                 artifactSet: getArtifactsSetInfo([flower, feather, sand, cup, head]),
                             };
-                            value = targetFunc(attribute, context);
-                        } else {
-                            value = targetFunc(attribute);
                         }
+
+                        if (targetFuncVersion === 1) {
+                            value = targetFunc(attribute, context);
+                            // if (needContext) {
+                            //     value = targetFunc(attribute, context);
+                            // } else {
+                            //     value = targetFunc(attribute);
+                            // }
+                        } else if (targetFuncVersion === 2) {
+                            value = targetFunc(attribute, targetFuncContext, context);
+                        }
+                        
                         
                         if (maxRecord.length < RECORD_COUNT) {
                             maxRecord.push({
