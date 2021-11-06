@@ -18,12 +18,12 @@ function xingqiuNormal(attribute, { cArgs, wArgs }) {
 
     const isJili = wArgs.name === "jilijian";
     // 每秒几次E技能
-    const eFreq = isJili ? 0.9 : 0.045;
+    const eFreq = isJili ? 0.09 : 0.045;
 
     // 每秒由E产生的微粒
-    const eParticle = (isJili ? 10 : 5) * eFreq;
+    const eParticle = (isJili ? 10 : 5) * eFreq * 3;
     // 每秒环境产生的微粒
-    const envParticle = 1;
+    const envParticle = 0.8;
     const qExtraTime = 3;
     // 充能完成的需要的时间
     const energyEff = Math.max(80 / ((eParticle + envParticle) * (1 + attribute.recharge)), 20) + qExtraTime;

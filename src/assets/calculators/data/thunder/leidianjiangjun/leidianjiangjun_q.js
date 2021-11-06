@@ -43,7 +43,7 @@ function row(attribute, configObject, enemy, rowConfig, { afterE, qLevel }, isDm
     } else {
         qBase += skill.q.bonus2[skill3 - 1] * qLevel;
     }
- 
+
     let baseDmg = (skill.q[rowConfig.key][skill3 - 1] + qBase) * attribute.attack();
     baseDmg += attribute.lifeRatio * attribute.life();
 
@@ -70,7 +70,7 @@ export default function (artifacts, configObject, enemy, config) {
 
     if (c.constellation >= 2) {
         // ignore 60% DEF
-        console.log("123");
+        // console.log("123");
         attribute.enemyDefDown += 0.6;
     }
 
