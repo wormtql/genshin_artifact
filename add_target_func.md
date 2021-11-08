@@ -133,3 +133,12 @@ export default {
 }
 </script>
 ```
+
+## 其他
+### 获取角色技能
+可以查看`src/assets/characters/`下的`xxx.skill.js`文件
+```js
+import { charactersData } from "@asset/characters";
+
+const skill = charactersData["dadaliya"].skill;
+```
