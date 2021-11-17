@@ -38,10 +38,10 @@
             </ul>
         </div>
 
-        <el-card class="mb16">
+        <!-- <el-card class="mb16">
             <p class="big-card-title">赞助商</p>
             <nok-nok></nok-nok>
-        </el-card>
+        </el-card> -->
 
         <el-card class="mb16">
             <p class="big-card-title">用例</p>
@@ -212,14 +212,14 @@ import links from "@const/links";
 
 import MigrateNotification from "./MigrateNotification";
 import UseCaseItem from "./UseCaseItem";
-import NokNok from "./ad/NokNok";
+// import NokNok from "./ad/NokNok";
 
 export default {
     name: "IntroPage",
     components: {
         MigrateNotification,
         UseCaseItem,
-        NokNok,
+        // NokNok,
     },
     created: function() {
         this.links = links;
