@@ -7,6 +7,10 @@
 该README有以下语言：  
 [English](./README_en.md)
 <!-- [日本語](./README_jp.md) -->
+
+## 贡献目标函数
+[目标函数GUIDE](add_target_func.md)
+
 ## 简介
 - 《原神》圣遗物自动搭配
 - 多方向圣遗物评分与潜力计算
