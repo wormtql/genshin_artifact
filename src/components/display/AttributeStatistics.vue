@@ -1,6 +1,11 @@
 <template>
     <div>
         <el-divider>梯度分析</el-divider>
+        <el-alert
+            type="warning"
+            title="此处仅根据攻击力、暴击率、暴击伤害进行计算，仅供参考"
+            :closable="false"
+        ></el-alert>
         <div style="height: 300px">
             <v-chart :option="graphOption"></v-chart>
         </div>
