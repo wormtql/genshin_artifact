@@ -14,7 +14,7 @@ function getBonus(attribute, element, skill) {
 // get damage, given character level(for defense ratio), enemy, baseDmg
 // note that baseDmg will be plused by attribute base bonus
 // for example, weapon 不灭月华 will add base attack by hp percentage
-// dmg: base damage
+// dmg: extra base damage, base damage bonused by weapon is calculated from attribude
 export function damageDelegate(attribute, cLevel, dmg, enemy, element, skill, extraBonus = []) {
     const defensiveRatio = enemy.getDR(cLevel, attribute.enemyDefDown ?? 0);
 
@@ -24,7 +24,18 @@ export function damageDelegate(attribute, cLevel, dmg, enemy, element, skill, ex
     
     const damageBonus = 1 + getBonus(attribute, element, skill) + extraBonus.reduce((a, b) => a + b, 0);
 
-    const baseDmg = dmg + attribute["lifeRatio"] * attribute.life();
+    let baseDmg = dmg;
+    if (skill === "a") {
+        baseDmg += attribute.getNormalAttackBaseDamage(0);
+    } else if (skill === "b") {
+        baseDmg += attribute.getChargedAttackBaseDamage(0);
+    } else if (skill === "air") {
+        baseDmg += attribute.getPlungingAttackBaseDamage(0);
+    } else if (skill === "e") {
+        baseDmg += attribute.getElementalSkillBaseDamage(0);
+    } else if (skill === "q") {
+        baseDmg += attribute.getElementalBurstBaseDamage(0);
+    }
 
     const dmgWithoutCrit = baseDmg * defensiveRatio * resRatio * damageBonus;
 
