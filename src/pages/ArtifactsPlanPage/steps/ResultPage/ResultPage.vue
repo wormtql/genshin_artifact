@@ -26,6 +26,9 @@
             >
                 <attribute-statistics
                     :attribute="currentRecord.attribute"
+                    :config="configObject"
+                    :arts="currentRecord.combo"
+                    :howMuchBonusPerTag="currentRecord.howMuchBonusPerTag"
                 ></attribute-statistics>
             </el-dialog>
 
@@ -170,7 +173,7 @@ export default {
         return {
             resultRecord: [],
             error: {},
-
+            configObject:null,
             calculating: true,
             recordIndex: 0,
 
@@ -274,6 +277,7 @@ export default {
             this.calculating = true;
 
             // this is a web worker wrapped by a promise
+            this.configObject = veryBigConfigObject;
             let promise = compute(
                 artifacts,
                 veryBigConfigObject

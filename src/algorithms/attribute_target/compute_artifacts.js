@@ -4,6 +4,7 @@ import createCheckFunction from "./create_check_function";
 import createFilterFunction from "./create_filter_function";
 // import applyBuffs from "./apply_buffs";
 import { getAttribute } from "@util/attribute";
+import artifactEff from "@const/artifact_eff";
 
 const RECORD_COUNT = 5;
 
@@ -165,7 +166,7 @@ function computeArtifacts(artifacts, configObject) {
                             continue;
                         }
 
-                        let value = 0;
+                        let valueFunction = targetFunc
                         let context = undefined;
                         if (needContext) {
                             context = {
@@ -174,22 +175,23 @@ function computeArtifacts(artifacts, configObject) {
                         }
 
                         if (targetFuncVersion === 1) {
-                            value = targetFunc(attribute, context);
+                          valueFunction = (attr)=> targetFunc(attr, context);
                             // if (needContext) {
                             //     value = targetFunc(attribute, context);
                             // } else {
                             //     value = targetFunc(attribute);
                             // }
                         } else if (targetFuncVersion === 2) {
-                            value = targetFunc(attribute, targetFuncContext, context);
+                          valueFunction = (attr)=> targetFunc(attr, targetFuncContext, context);
                         }
-                        
+                        const value = valueFunction(attribute)
                         
                         if (maxRecord.length < RECORD_COUNT) {
                             maxRecord.push({
                                 value,
                                 combo: [flower, feather, sand, cup, head],
                                 attribute,
+                                valueFunction
                             });
                             if (maxRecord.length === RECORD_COUNT) {
                                 minIndex = 0;
@@ -203,6 +205,7 @@ function computeArtifacts(artifacts, configObject) {
                                 value,
                                 combo: [flower, feather, sand, cup, head],
                                 attribute,
+                                valueFunction
                             };
                             
                             // determine new min value (arr size very small, no need of heap)
@@ -240,7 +243,9 @@ function computeArtifacts(artifacts, configObject) {
     });
 
     for (let record of maxRecord) {
+        record.howMuchBonusPerTag = calcHowMuchBonusPerTag(record);
         delete record.attribute._lazyList;
+        delete record.valueFunction;
     }
 
     return {
@@ -250,7 +255,133 @@ function computeArtifacts(artifacts, configObject) {
         },
     };
 }
+function calcHowMuchBonusPerTag(candidate) {
+  const { attribute, valueFunction, value: baseValue } = candidate;
 
+  const {
+    critical,
+    criticalDamage,
+    attackPercentage,
+    attackBasic,
+    attackStatic,
+    lifePercentage,
+    lifeStatic,
+    lifeBasic,
+    elementalMastery,
+    recharge,
+    defendBasic,
+    defendStatic,
+    defendPercentage,
+  } = attribute;
+
+  let eff = artifactEff["5"];
+  const Attribute = attribute.constructor;
+  const bonus_S =
+    valueFunction(
+      Object.assign(new Attribute(), {
+        ...candidate.attribute,
+        attackStatic: attackStatic + eff.attackStatic[3],
+      })
+    ) /
+    baseValue -
+    1;
+  const bonus_p =
+    valueFunction(
+      Object.assign(new Attribute(), {
+        ...candidate.attribute,
+        attackPercentage:
+          attackPercentage + eff.attackPercentage[3] * attackBasic,
+      })
+    ) /
+    baseValue -
+    1;
+  const bonus_c =
+    valueFunction(
+      Object.assign(new Attribute(), {
+        ...candidate.attribute,
+        critical: critical + eff.critical[3],
+      })
+    ) /
+    baseValue -
+    1;
+  const bonus_D =
+    valueFunction(
+      Object.assign(new Attribute(), {
+        ...candidate.attribute,
+        criticalDamage: criticalDamage + eff.criticalDamage[3],
+      })
+    ) /
+    baseValue -
+    1;
+  const bonus_hpp =
+    valueFunction(
+      Object.assign(new Attribute(), {
+        ...candidate.attribute,
+        lifePercentage: lifePercentage + eff.lifePercentage[3] * lifeBasic,
+      })
+    ) /
+    baseValue -
+    1;
+  const bonus_hps =
+    valueFunction(
+      Object.assign(new Attribute(), {
+        ...candidate.attribute,
+        lifeStatic: lifeStatic + eff.lifeStatic[3],
+      })
+    ) /
+    baseValue -
+    1;
+  const bonus_em =
+    valueFunction(
+      Object.assign(new Attribute(), {
+        ...candidate.attribute,
+        elementalMastery: elementalMastery + eff.elementalMastery[3],
+      })
+    ) /
+    baseValue -
+    1;
+  const bonus_dfp =
+    valueFunction(
+      Object.assign(new Attribute(), {
+        ...candidate.attribute,
+        defendPercentage:
+          defendPercentage + eff.defendPercentage[3] * defendBasic,
+      })
+    ) /
+    baseValue -
+    1;
+  const bonus_dfs =
+    valueFunction(
+      Object.assign(new Attribute(), {
+        ...candidate.attribute,
+        defendStatic: defendStatic + eff.lifeStatic[3],
+      })
+    ) /
+    baseValue -
+    1;
+  const bonus_recharge =
+    valueFunction(
+      Object.assign(new Attribute(), {
+        ...candidate.attribute,
+        recharge: recharge + eff.recharge[3],
+      })
+    ) /
+    baseValue -
+    1;
+
+  return {
+    bonus_S,
+    bonus_p,
+    bonus_c,
+    bonus_D,
+    bonus_hpp,
+    bonus_hps,
+    bonus_em,
+    bonus_dfp,
+    bonus_dfs,
+    bonus_recharge,
+  };
+}
 // function _test() {
 //     let character = new genshin.Character("keqing", 90, false, 0);
 //     console.log(character);
