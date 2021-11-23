@@ -41,8 +41,8 @@ function xingqiuNormal(attribute, { cArgs, wArgs }) {
     const eBonus = attribute.waterBonus + attribute.eBonus + attribute.bonus;
     const qBonus = attribute.waterBonus + attribute.qBonus + attribute.bonus;
     const atk = attribute.attack();
-    const eCR = attribute.eCritical;
-    const qCR = attribute.qCritical;
+    const eCR = Math.min(1, attribute.eCritical);
+    const qCR = Math.min(1, attribute.qCritical);
     const criticalDamage = attribute.criticalDamage;
 
     const eDps = eRatio * eFreq * (1 + eBonus) * (1 + eCR * criticalDamage);

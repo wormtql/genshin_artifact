@@ -101,6 +101,7 @@ export function damageReactionCustom(type, attribute, cLevel, enemy, element, sk
 }
 
 // skillName: a, b, air, e, q
+// deprecated
 export function colNormal(attribute, configObject, enemy, rowConfigs, skillName, element, as=skillName) {
     let c = configObject.character;
 
@@ -136,6 +137,7 @@ export function colNormal(attribute, configObject, enemy, rowConfigs, skillName,
     return ret;
 }
 
+// deprecated
 export function colReaction(type, attribute, configObject, enemy, skillKeys, skillId, element, as=skillId) {
     let c = configObject.character;
 
@@ -191,6 +193,7 @@ export function tableFire(attribute, configObject, enemy, rowConfigs, skillName)
     return ret;
 }
 
+// deprecated
 export function tableFireCustom(attribute, configObject, enemy, rowConfigs, skillName, baseDmg,
     {extraBonus = []} = {}) {
     let rows = [];
@@ -210,6 +213,7 @@ export function tableFireCustom(attribute, configObject, enemy, rowConfigs, skil
     return rows;
 }
 
+// deprecated
 export function tableIce(attribute, configObject, enemy, rowConfigs, skillName) {
     return mergeArray(
         ["chs", rowConfigs.map(item => item.chs)],
@@ -218,6 +222,7 @@ export function tableIce(attribute, configObject, enemy, rowConfigs, skillName) 
     );
 }
 
+// deprecated
 export function tableThunder(attribute, configObject, enemy, rowConfigs, skillName) {
     return mergeArray(
         ["chs", rowConfigs.map(item => item.chs)],
@@ -241,6 +246,7 @@ export function rowWater(attribute, configObject, enemy, caption, skillName, bas
     }
 } 
 
+// deprecated
 export function tableWater(attribute, configObject, enemy, rowConfigs, skillName, as=skillName) {
     return mergeArray(
         ["chs", rowConfigs.map(item => item.chs)],
@@ -249,6 +255,7 @@ export function tableWater(attribute, configObject, enemy, rowConfigs, skillName
     );
 }
 
+// deprecated
 export function tableWind(attribute, configObject, enemy, rowConfigs, skillName, as=skillName) {
     return mergeArray(
         ["chs", rowConfigs.map(item => item.chs)],
@@ -256,6 +263,7 @@ export function tableWind(attribute, configObject, enemy, rowConfigs, skillName,
     )
 }
 
+// deprecated
 export function tableRock(attribute, configObject, enemy, rowConfigs, skillName, as=skillName) {
     return mergeArray(
         ["chs", rowConfigs.map(item => item.chs)],
@@ -271,6 +279,7 @@ export function rowRock(attribute, configObject, enemy, caption, skillName, base
     }
 }
 
+// deprecated
 export function tableRockCustom(attribute, configObject, enemy, rowConfigs, skillName, baseDmg,
     { extraBonus = [] } = {})
 {
@@ -289,6 +298,7 @@ export function tableRockCustom(attribute, configObject, enemy, rowConfigs, skil
     return rows;
 }
 
+// deprecated
 export function tablePhysical(attribute, configObject, enemy, rowConfigs, skillName) {
     let ret =  mergeArray(
         ["chs", rowConfigs.map(item => item.chs)],

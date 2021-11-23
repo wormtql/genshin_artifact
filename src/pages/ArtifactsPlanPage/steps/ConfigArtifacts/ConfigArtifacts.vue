@@ -8,6 +8,13 @@
         ></el-alert>
 
         <common-artifact-config-ratio
+            artifact-name="huskOfOpulentDreams"
+            v-model="configHuskOfOpulentDreams.level"
+            :max="4"
+            class="artifact-config-item config-item"
+        ></common-artifact-config-ratio>
+
+        <common-artifact-config-ratio
             artifact-name="shimenawaReminiscence"
             v-model="configShimenawaReminiscence.rate"
             class="artifact-config-item config-item"
@@ -163,6 +170,7 @@ export default {
             configTenacityOfTheMillelith: { rate: 0 },
             configLavaWalker: { rate: 0 },
             configMaidenBeloved: { rate: 0 },
+            configHuskOfOpulentDreams: { level: 0 },
         }
     },
     methods: {
