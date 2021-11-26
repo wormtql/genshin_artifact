@@ -1,12 +1,16 @@
-function f(attribute) {
-    let def = attribute.defend();
-    let crit = Math.min(attribute.eCritical, 1);
-    let bonus = attribute.eBonus + attribute.bonus + attribute.rockBonus;
+import { TargetFuncUtils } from "../../../utils";
 
-    return def * (1 + bonus) * (1 + crit * attribute.criticalDamage);
+
+function f(attribute) {
+    const def = attribute.defend();
+    
+    const dmg = TargetFuncUtils.damageDefault(attribute, def, "rock", "e").expect;
+    return dmg;
 }
 
 export default {
     name: "abeiduoE",
+    needConfig: false,
+    needContext: false,
     func: f,
 }

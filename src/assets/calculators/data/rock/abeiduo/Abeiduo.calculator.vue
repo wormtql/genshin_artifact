@@ -26,7 +26,7 @@
 
         <div v-show="showSkill === 'e'">
             <common-table-rock
-                :data="abeiduoE"
+                :data="abeiduoE.e"
             ></common-table-rock>
         </div>
 

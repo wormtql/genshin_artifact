@@ -1,43 +1,37 @@
 import { charactersData } from "@asset/characters";
+import { TargetFuncUtils } from "../../../utils";
 
 
-let skill = charactersData["abeiduo"].skill;
+const skill = charactersData["abeiduo"].skill;
 
-function f(config) {
-    let isConste2 = config.cArgs.constellation >= 2;
-    let eLevel = config.cArgs.skill2;
-    let qLevel = config.cArgs.skill3;
+function f(attribute, { cArgs, tArgs }) {
+    const isConste2 = cArgs.constellation >= 2;
+    const skill2 = cArgs.skill2;
+    const skill3 = cArgs.skill3;
 
-    let eDmg1 = skill.e.dmg1[eLevel - 1];
-    let eDmg2 = skill.e.dmg2[eLevel - 1];
-    let qDmg1 = skill.q.dmg1[qLevel - 1];
-    let qDmg2 = skill.q.dmg2[qLevel - 1];
+    const eRatio1 = skill.e.dmg1[skill2 - 1];
+    const eRatio2 = skill.e.dmg2[skill2 - 1];
+    const qRatio1 = skill.q.dmg1[skill3 - 1];
+    const qRatio2 = skill.q.dmg2[skill3 - 1];
 
-    let eCount = config.tArgs.eCount;
-    let qCount = config.tArgs.qCount;
-    let qFreq = config.tArgs.qFreq;
-    let c2Count = config.tArgs.c2Count;
+    const eCount = tArgs.eCount;
+    const qCount = tArgs.qCount;
+    const qFreq = tArgs.qFreq;
+    const c2Count = tArgs.c2Count;
 
-    return function (attribute) {
-        let def = attribute.defend();
-        let atk = attribute.attack();
+    const def = attribute.defend();
+    const atk = attribute.attack();
 
-        let eCrit = Math.min(attribute.eCritical, 1);
-        let eBonus = attribute.eBonus + attribute.bonus + attribute.rockBonus;
-        let e
-            = atk * eDmg1 * (1 + eBonus) * (1 + eCrit * attribute.criticalDamage)
-            + def * eDmg2 * (1 + eBonus) * (1 + eCrit * attribute.criticalDamage) * eCount
-        ;
+    const eDamage1 = TargetFuncUtils.damageDefault(attribute, eRatio1 * atk, "rock", "e").expect;
+    const eDamage2 = TargetFuncUtils.damageDefault(attribute, eRatio2 * def, "rock", "e").expect * eCount;
+    const eDamage = eDamage1 + eDamage2;
 
-        let qCrit = Math.min(attribute.qCritical, 1);
-        let qBonus = attribute.qBonus + attribute.bonus + attribute.rockBonus;
-        let q = atk * (1 + qBonus) * (1 + qCrit * attribute.criticalDamage) * (qDmg1 + qDmg2 * qCount);
-        if (isConste2) {
-            q += def * 0.3 * c2Count;
-        }
+    const qBaseBonus = isConste2 ? (def * 0.3 * c2Count) : 0;
+    const qDamage1 = TargetFuncUtils.damageDefault(attribute, qRatio1 * atk + qBaseBonus, "rock", "q").expect;
+    const qDamage2 = TargetFuncUtils.damageDefault(attribute, qRatio2 * atk + qBaseBonus, "rock", "q").expect * qCount;
+    const qDamage = qDamage1 + qDamage2;
 
-        return e * (1 - qFreq) + q * qFreq;
-    };
+    return eDamage * (1 - qFreq) + qDamage * qFreq;
 }
 
 export default {
@@ -45,4 +39,5 @@ export default {
     func: f,
     needConfig: true,
     needContext: true,
+    version: 2,
 }
