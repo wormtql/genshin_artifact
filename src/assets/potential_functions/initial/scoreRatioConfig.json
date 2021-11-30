@@ -1,0 +1,375 @@
+{
+  "artifactTypes": [
+    "flower",
+    "feather",
+    "cup",
+    "sand",
+    "head"
+  ],
+  "elementalBonusMap": {
+    "rockBonus": "elementalBonus",
+    "iceBonus": "elementalBonus",
+    "fireBonus": "elementalBonus",
+    "windBonus": "elementalBonus",
+    "thunderBonus": "elementalBonus",
+    "waterBonus": "elementalBonus"
+  },
+  "classTypes": [
+    {
+      "name": "reactionBased",
+      "ratio": 1
+    },
+    {
+      "name": "infusionBased",
+      "ratio": 1
+    },
+    {
+      "name": "defenceBased",
+      "ratio": 0.95
+    },
+    {
+      "name": "hpBased",
+      "ratio": 0.95
+    },
+    {
+      "name": "elementalMastery",
+      "ratio": 0.95
+    },
+    {
+      "name": "healerAtkBased",
+      "ratio": 0.9
+    },
+    {
+      "name": "healerHpBased",
+      "ratio": 0.9
+    },
+    {
+      "name": "support",
+      "ratio": 0.9
+    }
+  ],
+  "mainTagRatio": {
+    "flower": {
+      "lifeStatic": {
+        "reactionBased": 0.8,
+        "infusionBased": 0.8,
+        "defenceBased": 0.8,
+        "hpBased": 0.8,
+        "elementalMastery": 0.8,
+        "healerAtkBased": 0.8,
+        "healerHpBased": 0.8,
+        "support": 0.8
+      }
+    },
+    "feather": {
+      "attackStatic": {
+        "reactionBased": 0.8,
+        "infusionBased": 0.8,
+        "defenceBased": 0.8,
+        "hpBased": 0.8,
+        "elementalMastery": 0.8,
+        "healerAtkBased": 0.8,
+        "healerHpBased": 0.8,
+        "support": 0.8
+      }
+    },
+    "sand": {
+      "attackPercentage": {
+        "reactionBased": 1,
+        "infusionBased": 1,
+        "defenceBased": 0.9,
+        "hpBased": 0.9,
+        "elementalMastery": 0.72,
+        "healerAtkBased": 1,
+        "healerHpBased": 0,
+        "support": 0.9
+      },
+      "defendPercentage": {
+        "reactionBased": 0,
+        "infusionBased": 0,
+        "defenceBased": 1,
+        "hpBased": 0,
+        "elementalMastery": 0,
+        "healerAtkBased": 0,
+        "healerHpBased": 0,
+        "support": 0
+      },
+      "lifePercentage": {
+        "reactionBased": 0,
+        "infusionBased": 0,
+        "defenceBased": 0,
+        "hpBased": 1,
+        "elementalMastery": 0,
+        "healerAtkBased": 0,
+        "healerHpBased": 1,
+        "support": 0
+      },
+      "recharge": {
+        "reactionBased": 0,
+        "infusionBased": 0,
+        "defenceBased": 0,
+        "hpBased": 0,
+        "elementalMastery": 0.6,
+        "healerAtkBased": 1,
+        "healerHpBased": 1,
+        "support": 1.2
+      },
+      "elementalMastery": {
+        "reactionBased": 0.72,
+        "infusionBased": 0.54,
+        "defenceBased": 0.54,
+        "hpBased": 0.54,
+        "elementalMastery": 1.2,
+        "healerAtkBased": 0.6,
+        "healerHpBased": 0.6,
+        "support": 0.72
+      }
+    },
+    "cup": {
+      "attackPercentage": {
+        "reactionBased": 0.9,
+        "infusionBased": 0.9,
+        "defenceBased": 0.9,
+        "hpBased": 0.9,
+        "elementalMastery": 0.72,
+        "healerAtkBased": 1,
+        "healerHpBased": 0,
+        "support": 0.9
+      },
+      "defendPercentage": {
+        "reactionBased": 0,
+        "infusionBased": 0,
+        "defenceBased": 0.9,
+        "hpBased": 0,
+        "elementalMastery": 0,
+        "healerAtkBased": 0,
+        "healerHpBased": 0,
+        "support": 0
+      },
+      "lifePercentage": {
+        "reactionBased": 0,
+        "infusionBased": 0,
+        "defenceBased": 0,
+        "hpBased": 0.9,
+        "elementalMastery": 0,
+        "healerAtkBased": 0,
+        "healerHpBased": 1,
+        "support": 0
+      },
+      "elementalBonus": {
+        "reactionBased": 1.2,
+        "infusionBased": 1.2,
+        "defenceBased": 1.2,
+        "hpBased": 1.2,
+        "elementalMastery": 1.2,
+        "healerAtkBased": 0,
+        "healerHpBased": 0,
+        "support": 1.2
+      },
+      "physicalBonus": {
+        "reactionBased": 1.2,
+        "infusionBased": 1.2,
+        "defenceBased": 1.2,
+        "hpBased": 1.2,
+        "elementalMastery": 0,
+        "healerAtkBased": 0,
+        "healerHpBased": 0,
+        "support": 0
+      },
+      "elementalMastery": {
+        "reactionBased": 0.72,
+        "infusionBased": 0.54,
+        "defenceBased": 0.54,
+        "hpBased": 0.54,
+        "elementalMastery": 1.2,
+        "healerAtkBased": 0.6,
+        "healerHpBased": 0.6,
+        "support": 0.72
+      }
+    },
+    "head": {
+      "attackPercentage": {
+        "reactionBased": 0.9,
+        "infusionBased": 0.9,
+        "defenceBased": 0.9,
+        "hpBased": 0.9,
+        "elementalMastery": 0.72,
+        "healerAtkBased": 0.9,
+        "healerHpBased": 0,
+        "support": 0.9
+      },
+      "defendPercentage": {
+        "reactionBased": 0,
+        "infusionBased": 0,
+        "defenceBased": 0.9,
+        "hpBased": 0,
+        "elementalMastery": 0,
+        "healerAtkBased": 0,
+        "healerHpBased": 0,
+        "support": 0
+      },
+      "lifePercentage": {
+        "reactionBased": 0,
+        "infusionBased": 0,
+        "defenceBased": 0,
+        "hpBased": 0.9,
+        "elementalMastery": 0,
+        "healerAtkBased": 0,
+        "healerHpBased": 0.9,
+        "support": 0
+      },
+      "critical": {
+        "reactionBased": 1.2,
+        "infusionBased": 1.2,
+        "defenceBased": 1.2,
+        "hpBased": 1.2,
+        "elementalMastery": 1.2,
+        "healerAtkBased": 0.8,
+        "healerHpBased": 0.8,
+        "support": 1.2
+      },
+      "criticalDamage": {
+        "reactionBased": 1.2,
+        "infusionBased": 1.2,
+        "defenceBased": 1.2,
+        "hpBased": 1.2,
+        "elementalMastery": 1.2,
+        "healerAtkBased": 0.8,
+        "healerHpBased": 0.8,
+        "support": 1.2
+      },
+      "cureEffect": {
+        "reactionBased": 0,
+        "infusionBased": 0,
+        "defenceBased": 0,
+        "hpBased": 0,
+        "elementalMastery": 0,
+        "healerAtkBased": 1.2,
+        "healerHpBased": 1.2,
+        "support": 0
+      },
+      "elementalMastery": {
+        "reactionBased": 0.72,
+        "infusionBased": 0.54,
+        "defenceBased": 0.54,
+        "hpBased": 0.54,
+        "elementalMastery": 1.2,
+        "healerAtkBased": 0.6,
+        "healerHpBased": 0.6,
+        "support": 0.72
+      }
+    }
+  },
+  "normalTagRatio": {
+    "critical": {
+      "reactionBased": 1,
+      "infusionBased": 1,
+      "defenceBased": 1,
+      "hpBased": 1,
+      "elementalMastery": 1,
+      "healerAtkBased": 0,
+      "healerHpBased": 0,
+      "support": 0.75
+    },
+    "criticalDamage": {
+      "reactionBased": 1,
+      "infusionBased": 1,
+      "defenceBased": 1,
+      "hpBased": 1,
+      "elementalMastery": 1,
+      "healerAtkBased": 0,
+      "healerHpBased": 0,
+      "support": 0.75
+    },
+    "attackPercentage": {
+      "reactionBased": 1,
+      "infusionBased": 1,
+      "defenceBased": 0.75,
+      "hpBased": 0.75,
+      "elementalMastery": 0.75,
+      "healerAtkBased": 1.2,
+      "healerHpBased": 0,
+      "support": 0.75
+    },
+    "attackStatic": {
+      "reactionBased": 0.25,
+      "infusionBased": 0.25,
+      "defenceBased": 0,
+      "hpBased": 0,
+      "elementalMastery": 0,
+      "healerAtkBased": 0.5,
+      "healerHpBased": 0,
+      "support": 0
+    },
+    "lifePercentage": {
+      "reactionBased": 0,
+      "infusionBased": 0,
+      "defenceBased": 0,
+      "hpBased": 1,
+      "elementalMastery": 0,
+      "healerAtkBased": 0,
+      "healerHpBased": 1.2,
+      "support": 0
+    },
+    "lifeStatic": {
+      "reactionBased": 0,
+      "infusionBased": 0,
+      "defenceBased": 0,
+      "hpBased": 0.25,
+      "elementalMastery": 0,
+      "healerAtkBased": 0,
+      "healerHpBased": 0.5,
+      "support": 0
+    },
+    "defendPercentage": {
+      "reactionBased": 0,
+      "infusionBased": 0,
+      "defenceBased": 1,
+      "hpBased": 0,
+      "elementalMastery": 0,
+      "healerAtkBased": 0,
+      "healerHpBased": 0,
+      "support": 0
+    },
+    "defendStatic": {
+      "reactionBased": 0,
+      "infusionBased": 0,
+      "defenceBased": 0.25,
+      "hpBased": 0,
+      "elementalMastery": 0,
+      "healerAtkBased": 0,
+      "healerHpBased": 0,
+      "support": 0
+    },
+    "recharge": {
+      "reactionBased": 0.5,
+      "infusionBased": 0.5,
+      "defenceBased": 0.5,
+      "hpBased": 0.5,
+      "elementalMastery": 0.75,
+      "healerAtkBased": 1.2,
+      "healerHpBased": 1.2,
+      "support": 1
+    },
+    "elementalMastery": {
+      "reactionBased": 0.75,
+      "infusionBased": 0.5,
+      "defenceBased": 0.5,
+      "hpBased": 0.5,
+      "elementalMastery": 1,
+      "healerAtkBased": 0,
+      "healerHpBased": 0,
+      "support": 1
+    },
+    "blank": {
+      "reactionBased": 0.17,
+      "infusionBased": 0.14,
+      "defenceBased": 0.26,
+      "hpBased": 0.26,
+      "elementalMastery": 0.2,
+      "healerAtkBased": 0.17,
+      "healerHpBased": 0.29,
+      "support": 0.23
+    }
+  }
+}

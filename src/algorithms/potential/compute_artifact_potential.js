@@ -62,6 +62,10 @@ export default function (artifact, pfName, pArgs) {
 
     let f = createPotentialFunc(pfName, pArgs);
 
+    if (pArgs.initialMode) {
+        return f.f(artifact);
+    }
+
     let upCount = getArtifactUpCount(artifact);
     // console.log(upCount);
 
