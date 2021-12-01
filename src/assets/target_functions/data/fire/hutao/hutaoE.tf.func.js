@@ -1,8 +1,9 @@
 import { charactersData } from "@asset/characters";
 import reaction from "@/elemental_reaction/reaction_bonus";
 
-let ampFunc = reaction.amp;
-let skill = charactersData["hutao"].skill;
+const ampFunc = reaction.amp;
+const skill = charactersData["hutao"].skill;
+
 
 function f(config) {
     let baseAtk = config.character.baseAtk + config.weapon.baseAtk;
@@ -57,7 +58,7 @@ function f(config) {
             let ret
                 = (a + b)
                 * (1 + ((1 - conste6Rate) * crit + conste6Rate) * attribute.criticalDamage)
-                * (normal + (evaporate * 1.5 + melt * 2) * (1 + amp))
+                * (normal + (evaporate * 1.5 * (1 + amp + attribute.vaporizeEnhance) + melt * 2 * (1 + amp + attribute.meltEnhance)))
 
             return ret;
         };
