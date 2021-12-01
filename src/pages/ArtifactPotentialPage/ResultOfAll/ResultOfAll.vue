@@ -107,7 +107,7 @@ export default {
             let pArgs = potentialFunction.args;
 
             computeAll(filteredArts, name, pArgs).then(result => {
-                this.result = result;
+                this.result = result.filter(items => items[1] > 0);
                 loading.close();
                 // console.log(result);
             });
@@ -123,7 +123,7 @@ export default {
             let f2 = level >= c.minLevel && level <= c.maxLevel;
 
             let f3 = c.filterSetName === "any" || c.filterSetName === artifact.setName;
-            
+
             let mainTagName = artifact.mainTag.name;
             let f4 = c.filterMainTag === "any" || c.filterMainTag === mainTagName;
 
