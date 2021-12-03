@@ -15,36 +15,36 @@
             <p
                 class="item"
                 v-show="howMuchBonusPerTag.bonus_S > 0"
-            >每个攻击力词条提升输出：{{ x100(howMuchBonusPerTag["bonus_S"]) }}%</p>
+            >每个攻击力词条提升：{{ x100(howMuchBonusPerTag["bonus_S"]) }}%</p>
             <p
                 class="item"
                 v-show="howMuchBonusPerTag.bonus_p > 0"
-            >每个%攻击力词条提升输出：{{ x100(howMuchBonusPerTag["bonus_p"]) }}%</p>
+            >每个%攻击力词条提升：{{ x100(howMuchBonusPerTag["bonus_p"]) }}%</p>
             <p
                 class="item"
                 v-show="howMuchBonusPerTag.bonus_c > 0"
-            >每个暴击率词条提升输出：{{ x100(howMuchBonusPerTag["bonus_c"]) }}%</p>
+            >每个暴击率词条提升：{{ x100(howMuchBonusPerTag["bonus_c"]) }}%</p>
             <p
                 class="item"
                 v-show="howMuchBonusPerTag.bonus_D > 0"
-            >每个暴击伤害词条提升输出：{{ x100(howMuchBonusPerTag["bonus_D"]) }}%</p>
+            >每个暴击伤害词条提升：{{ x100(howMuchBonusPerTag["bonus_D"]) }}%</p>
              <p
                 class="item"
                 v-show="howMuchBonusPerTag.bonus_hpp > 0"
-            >每个%生命词条提升输出：{{ x100(howMuchBonusPerTag["bonus_hpp"]) }}%</p>
+            >每个%生命值词条提升：{{ x100(howMuchBonusPerTag["bonus_hpp"]) }}%</p>
             <p
                 class="item"
                 v-show="howMuchBonusPerTag.bonus_hps > 0"
-            >每个生命词条提升输出：{{ x100(howMuchBonusPerTag["bonus_hps"]) }}%</p>
+            >每个生命值词条提升：{{ x100(howMuchBonusPerTag["bonus_hps"]) }}%</p>
            
             <p
                 class="item"
                 v-show="howMuchBonusPerTag.bonus_em > 0"
-            >每个精通词条提升输出：{{ x100(howMuchBonusPerTag["bonus_em"]) }}%</p>
+            >每个元素精通词条提升：{{ x100(howMuchBonusPerTag["bonus_em"]) }}%</p>
             <p
                 class="item"
                 v-show="howMuchBonusPerTag.bonus_dfs > 0"
-            >每个防御力词条提升输出：{{ x100(howMuchBonusPerTag["bonus_dfs"]) }}%</p>
+            >每个防御力词条提升：{{ x100(howMuchBonusPerTag["bonus_dfs"]) }}%</p>
             <p
                 class="item"
                 v-show="howMuchBonusPerTag.bonus_dfp > 0"
@@ -52,7 +52,7 @@
             <p
                 class="item"
                 v-show="howMuchBonusPerTag.bonus_recharge > 0"
-            >每个充能词条提升输出：{{ x100(howMuchBonusPerTag["bonus_recharge"]) }}%</p>
+            >每个元素充能效率词条提升输出：{{ x100(howMuchBonusPerTag["bonus_recharge"]) }}%</p>
         </div>
     </div>
 </template>
