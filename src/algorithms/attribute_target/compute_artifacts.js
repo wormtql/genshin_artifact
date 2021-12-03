@@ -4,9 +4,9 @@ import createCheckFunction from "./create_check_function";
 import createFilterFunction from "./create_filter_function";
 // import applyBuffs from "./apply_buffs";
 import { getAttribute } from "@util/attribute";
+import artifactEff from "@const/artifact_eff";
 
 const RECORD_COUNT = 5;
-
 
 function getArtifactsSetInfo(arts) {
     let temp = {};
@@ -66,17 +66,22 @@ function computeArtifacts(artifacts, configObject) {
     let filterFunc = createFilterFunction(constraint);
     artifacts = filterFunc(artifacts);
 
-
     // get character and weapon
     const character = new genshin.Character(c.name, c.level, c.ascend, 0);
-    const weapon = new genshin.Weapon(w.name, w.level, w.ascend, w.refine, w.args);
+    const weapon = new genshin.Weapon(
+        w.name,
+        w.level,
+        w.ascend,
+        w.refine,
+        w.args
+    );
 
     // construct target function, given name and args
     let targetFunc = targetFunctionsFunc[tf.name];
     const targetFuncVersion = targetFunc.version ?? 1;
     let targetFuncContext = {};
     // if need context, artifacts info will be passed as argument during computing
-    const needContext = targetFunc.needContext
+    const needContext = targetFunc.needContext;
 
     if (targetFuncVersion === 1) {
         if (targetFunc.needConfig) {
@@ -115,7 +120,6 @@ function computeArtifacts(artifacts, configObject) {
 
         targetFunc = targetFunc.func;
     }
-    
 
     // check(or constraint) function
     const check = createCheckFunction(constraint);
@@ -158,44 +162,56 @@ function computeArtifacts(artifacts, configObject) {
                         if (!check([flower, feather, sand, cup, head])) {
                             continue;
                         }
-                        
-                        let arts = [flower, feather, sand, cup, head].filter(item => item);
+
+                        let arts = [flower, feather, sand, cup, head].filter(
+                            (item) => item
+                        );
                         let attribute = getAttribute(arts, c, w, buffs, artifactsConfig);
                         if (!checkAttribute(constraint, attribute)) {
                             continue;
                         }
 
-                        let value = 0;
+                        let valueFunction = targetFunc;
                         let context = undefined;
                         if (needContext) {
                             context = {
-                                artifactSet: getArtifactsSetInfo([flower, feather, sand, cup, head]),
+                                artifactSet: getArtifactsSetInfo([
+                                    flower,
+                                    feather,
+                                    sand,
+                                    cup,
+                                    head,
+                                ]),
                             };
                         }
 
                         if (targetFuncVersion === 1) {
-                            value = targetFunc(attribute, context);
+                            valueFunction = (attr) => targetFunc(attr, context);
                             // if (needContext) {
                             //     value = targetFunc(attribute, context);
                             // } else {
                             //     value = targetFunc(attribute);
                             // }
                         } else if (targetFuncVersion === 2) {
-                            value = targetFunc(attribute, targetFuncContext, context);
+                            valueFunction = (attr) =>
+                                targetFunc(attr, targetFuncContext, context);
                         }
-                        
-                        
+                        const value = valueFunction(attribute);
+
                         if (maxRecord.length < RECORD_COUNT) {
                             maxRecord.push({
                                 value,
                                 combo: [flower, feather, sand, cup, head],
                                 attribute,
+                                valueFunction,
+                                parameters: [c, w, buffs, artifactsConfig],
                             });
                             if (maxRecord.length === RECORD_COUNT) {
                                 minIndex = 0;
                                 for (let i = 1; i < maxRecord.length; i++) {
                                     let record = maxRecord[i];
-                                    minIndex = record.value < maxRecord[minIndex].value ? i : minIndex;
+                                    minIndex =
+                                        record.value < maxRecord[minIndex].value ? i : minIndex;
                                 }
                             }
                         } else if (value > maxRecord[minIndex].value) {
@@ -203,12 +219,15 @@ function computeArtifacts(artifacts, configObject) {
                                 value,
                                 combo: [flower, feather, sand, cup, head],
                                 attribute,
+                                parameters: [c, w, buffs, artifactsConfig],
+                                valueFunction,
                             };
-                            
+
                             // determine new min value (arr size very small, no need of heap)
                             minIndex = 0;
                             maxRecord.forEach((record, index, arr) => {
-                                minIndex = record.value < arr[minIndex].value ? index : minIndex;
+                                minIndex =
+                                    record.value < arr[minIndex].value ? index : minIndex;
                             });
                         }
 
@@ -228,11 +247,12 @@ function computeArtifacts(artifacts, configObject) {
     if (maxRecord.length === 0) {
         return {
             error: {
-                reason: "没有符合条件的圣遗物，请仔细检查过滤条件、限定条件（套装等），以及圣遗物导入是否有错误",
+                reason:
+                    "没有符合条件的圣遗物，请仔细检查过滤条件、限定条件（套装等），以及圣遗物导入是否有错误",
                 code: 1000,
                 isError: true,
             },
-        }
+        };
     }
 
     maxRecord.sort((a, b) => {
@@ -240,7 +260,9 @@ function computeArtifacts(artifacts, configObject) {
     });
 
     for (let record of maxRecord) {
+        record.howMuchBonusPerTag = calcHowMuchBonusPerTag(record);
         delete record.attribute._lazyList;
+        delete record.valueFunction;
     }
 
     return {
@@ -251,6 +273,90 @@ function computeArtifacts(artifacts, configObject) {
     };
 }
 
+function getNewArts(combo, name, value) {
+    const [flower, ...rest] = combo;
+    let newFlower = flower;
+    const sameTagIndex = flower.normalTags.findIndex((t) => t.name === name);
+    if (sameTagIndex >= 0) {
+        newFlower = {
+            ...flower,
+            normalTags: Object.assign([], flower.normalTags, {
+                [sameTagIndex]: {
+                    name,
+                    value: flower.normalTags[sameTagIndex].value + value,
+                },
+            }),
+        };
+    } else {
+        newFlower = {
+            ...flower,
+            normalTags: [...flower.normalTags, { name, value }],
+        };
+    }
+
+    return [newFlower, ...rest];
+}
+
+function getNewAttribute(combo, parameters, name) {
+    let eff = artifactEff["5"];
+    return getAttribute(getNewArts(combo, name, eff[name][3]), ...parameters);
+}
+
+function calcHowMuchBonusPerTag(candidate) {
+    const { valueFunction, value: baseValue, parameters, combo } = candidate;
+
+    const bonus_S =
+        valueFunction(getNewAttribute(combo, parameters, "attackStatic")) /
+        baseValue -
+        1;
+    const bonus_p =
+        valueFunction(getNewAttribute(combo, parameters, "attackPercentage")) /
+        baseValue -
+        1;
+    const bonus_c =
+        valueFunction(getNewAttribute(combo, parameters, "critical")) / baseValue -
+        1;
+    const bonus_D =
+        valueFunction(getNewAttribute(combo, parameters, "criticalDamage")) /
+        baseValue -
+        1;
+    const bonus_hpp =
+        valueFunction(getNewAttribute(combo, parameters, "lifePercentage")) /
+        baseValue -
+        1;
+    const bonus_hps =
+        valueFunction(getNewAttribute(combo, parameters, "lifeStatic")) /
+        baseValue -
+        1;
+    const bonus_em =
+        valueFunction(getNewAttribute(combo, parameters, "elementalMastery")) /
+        baseValue -
+        1;
+    const bonus_dfp =
+        valueFunction(getNewAttribute(combo, parameters, "defendPercentage")) /
+        baseValue -
+        1;
+    const bonus_dfs =
+        valueFunction(getNewAttribute(combo, parameters, "defendStatic")) /
+        baseValue -
+        1;
+    const bonus_recharge =
+        valueFunction(getNewAttribute(combo, parameters, "recharge")) / baseValue -
+        1;
+
+    return {
+        bonus_S,
+        bonus_p,
+        bonus_c,
+        bonus_D,
+        bonus_hpp,
+        bonus_hps,
+        bonus_em,
+        bonus_dfp,
+        bonus_dfs,
+        bonus_recharge,
+    };
+}
 // function _test() {
 //     let character = new genshin.Character("keqing", 90, false, 0);
 //     console.log(character);
