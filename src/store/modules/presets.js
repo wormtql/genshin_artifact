@@ -15,8 +15,14 @@ let upgradedCount = 0;
 let invalidCount = 0;
 
 // upgrade lower version presets
-for (let name of Object.keys(presets)) {
+for (let name in presets) {
+    if (!name) {
+        continue;
+    }
     let preset = presets[name];
+    if (!preset) {
+        continue;
+    }
 
     let version = parseInt(preset.version ?? "1");
     if (version < VERSION_PRESET_INT) {

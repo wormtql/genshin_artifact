@@ -19,6 +19,7 @@
                 </div>
                 <div class="detail">
                     <span class="target-title">{{ target.chs }}</span>
+                    <span class="is-recommend" v-if="target.recommend">推荐</span>
                     <div class="description fs-12">
                         <span
                             v-for="(des, index) in target.description"
@@ -173,17 +174,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.formula {
-    display: inline-block;
-    background: #d9ecff;
-    font-size: 12px;
-    color: #444444;
-    border-radius: 3px;
-    padding: 0 8px;
-    /* margin-bottom: 4px; */
-    margin-top: 4px;
-}
+<style scoped lang="scss">
 
 .title {
     /* background:rgb(74, 99, 211); */
@@ -196,51 +187,74 @@ export default {
     color: #555555;
 }
 
-.image {
-    width: 64px;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.detail {
-    display: inline-block;
-    vertical-align: top;
-    padding-left: 16px;
-    flex: 1;
-}
-
-.target-title {
-    font-weight: bold;
-    font-size: 14px;
-    display: block;
-}
-
-.description span {
-    display: block;
-    color: #555555;
-    padding-top: 3px;
-}
-
 .item {
     padding: 8px;
     transition: 300ms;
     border-radius: 3px;
     display: flex;
     border: 1px solid transparent;
-}
 
-.item:hover {
-    background: rgba(0, 0, 0, 0.05);
-}
+    .image {
+        width: 64px;
+        display: inline-block;
+        vertical-align: top;
+    }
 
-.tag {
-    font-size: 12px;
-    padding: 4px 8px;
-    background:cornflowerblue;
-    color: white;
-    border-radius: 3px;
-    margin-left: 8px;
-    display: inline-block;
+    .detail {
+        display: inline-block;
+        vertical-align: top;
+        padding-left: 16px;
+        flex: 1;
+
+        .target-title {
+            font-weight: bold;
+            font-size: 14px;
+            // display: block;
+        }
+
+        .is-recommend {
+            font-size: 12px;
+            padding: 2px 4px;
+            background:rgb(255, 239, 96);
+            color: rgb(0, 30, 48);
+            border-radius: 3px;
+            margin-left: 8px;
+            display: inline-block;
+        }
+
+        .description span {
+            display: block;
+            color: #555555;
+            padding-top: 3px;
+        }
+
+        .formula {
+            display: inline-block;
+            background: #d9ecff;
+            font-size: 12px;
+            color: #444444;
+            border-radius: 3px;
+            padding: 0 8px;
+            /* margin-bottom: 4px; */
+            margin-top: 4px;
+        }
+    }
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    .tags {
+        .tag {
+            font-size: 12px;
+            padding: 4px 8px;
+            background:cornflowerblue;
+            color: white;
+            border-radius: 3px;
+            margin-left: 8px;
+            display: inline-block;
+        }
+    }
 }
 
 .active {

@@ -54,7 +54,7 @@ export default {
 
             this.$nextTick(() => {
                 if (this.tf.config) {
-                    this.$refs.config.setData(targetFunc.args);
+                    this.$refs.config.setData(targetFunc.args ?? {});
                 }
             });
         },

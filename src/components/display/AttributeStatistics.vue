@@ -100,7 +100,7 @@ export default {
             for (let i = 1; i < this.gradient.length; i++) {
                 if (this.gradient[i][1] > this.gradient[maxIndex][1]) {
                     maxIndex = i;
-                } 
+                }
             }
 
             return `接下来提升最大的词条：${this.gradient[maxIndex][0]}`;
