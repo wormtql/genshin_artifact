@@ -52,7 +52,7 @@ export default {
 
         setBuff(buff) {
             this.value = (buff.value ?? "10").toString(),
-            this.reactionTypes = buff.reactonTypes ?? [];
+            this.elementTypes = buff.reactonTypes ?? [];
         }
     }
 }
