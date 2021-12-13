@@ -24,6 +24,12 @@ export function applyBuffs(attribute, buffs) {
             case "atk-percentage":
                 attribute.attackPercentage += buff.value * attribute.attackBasic;
                 break;
+            case "def-static":
+                attribute.defendStatic += buff.value;
+                break;
+            case "def-percentage":
+                attribute.defendPercentage += buff.value * attribute.defendBasic;
+                break;
             case "bonus":
                 attribute.bonus += buff.value;
                 break;

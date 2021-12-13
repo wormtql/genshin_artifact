@@ -42,7 +42,9 @@ export function damageDelegate(attribute, cLevel, dmg, enemy, element, skill, ex
     let crit = skill == "a" ? attribute["critical"] : attribute[skill + "Critical"];
     crit = Math.min(crit, 1);
     crit = Math.max(crit, 0);
-    const cd = attribute.criticalDamage;
+    const cd = attribute.criticalDamage
+        + attribute[element + "CriticalDamage"]
+    ;
 
     return {
         crit: dmgWithoutCrit * (1 + cd),
