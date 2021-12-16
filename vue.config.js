@@ -3,7 +3,6 @@ const fs = require("fs");
 const packageJson = fs.readFileSync("./package.json");
 const version = JSON.parse(packageJson).version || "no version";
 const webpack = require("webpack");
-const WorkerPlugin = require("worker-plugin");
 
 
 const BEIAN_CODE = "浙ICP备2021004987号";
@@ -34,6 +33,13 @@ if ("MONA_ROUTE_MODE" in process.env) {
     routeMode = process.env.MONA_ROUTE_MODE;
 }
 
+let singleFile = false;
+if ("MONA_SINGLE_FILE" in process.env) {
+    singleFile = !!process.env.MONA_SINGLE_FILE;
+    routeMode = "hash";
+    process.env.PublicPath = "./";
+}
+
 console.info(`
 building with:
 title = ${title}
@@ -41,6 +47,7 @@ needBeian = ${needBeian}
 beianNumber = ${beianNumber}
 needMigrate = ${needMigrate}
 routeMode = ${routeMode}
+singleFile = ${singleFile}
 `);
 
 
@@ -49,6 +56,10 @@ let buildDate = now.toString();
 
 module.exports = {
     publicPath: process.env.PublicPath || '/',
+    css: {
+        extract: !singleFile,
+    },
+    filenameHashing: !singleFile,
     configureWebpack: {
         resolve: {
             alias: {
@@ -74,31 +85,8 @@ module.exports = {
                     ROUTE_MODE: `"${routeMode}"`,
                     BUILD_DATE: `"${buildDate}"`,
                 }
-            }),
-            new WorkerPlugin({
-                globalObject: "self",
-            }),
+            })
         ],
-        // entry: {
-        //     "compute-worker": "./src/workers/compute.worker.js",
-        //     "potential-worker": "./src/workers/compute_potential.worker.js",
-        // },
-        // module: {
-        //     rules: [
-        //         {
-        //             test: /\.worker\.js$/,
-        //             use: [
-        //                 {
-        //                     loader: "worker-loader",
-        //                     // options: {
-        //                     //     filename: "js/[contenthash].[name].js",
-        //                     // }
-        //                 },
-        //                 // "babel-loader"
-        //             ],
-        //         }
-        //     ]
-        // },
         externals: {
             vue: "Vue",
             "vue-router": "VueRouter",
@@ -107,13 +95,88 @@ module.exports = {
             "vue-echarts": "VueECharts",
         }
     },
-    // chainWebpack: config => {
-    //     config.module
-    //         .rule("worker")
-    //             .test(/\.worker\.js$/)
-    //             .use("babel")
-    //                 .loader("babel-loader")
-
-    // },
+    chainWebpack: config => {
+        if(singleFile){
+            config.output.filename("[name].js");
+            config.plugins.delete('prefetch')
+            config.plugins.delete('preload')
+            config.optimization.splitChunks({
+                chunks: 'all',//split both async chunks and initial chunks(entrypoints)
+                cacheGroups: {
+                    default: false,
+                    vendors: false
+                }
+            })
+            config.plugin('limitchunk').use(
+                new webpack.optimize.LimitChunkCountPlugin({
+                    maxChunks: 1
+                })
+            )
+            config.module
+                .rule('images')
+                .use('url-loader')
+                .loader('url-loader')
+                .tap((options) => Object.assign(options, { limit: 2000000 }))
+            config.module
+                .rule('fonts')
+                .use('url-loader')
+                .loader('url-loader')
+                .tap((options) => Object.assign(options, { limit: 2000000 }))
+            config.plugin('FaviconBase64Plugin').use({
+                pluginName: "FaviconBase64Plugin",
+                iconMatch: [],
+                apply: function (compiler) {
+                    console.log("Apply start");
+                    compiler.hooks.compilation.tap(this.pluginName, (compilation) => {
+                        compilation.hooks.htmlWebpackPluginAfterHtmlProcessing.tapAsync(
+                            this.pluginName,
+                            (htmlPluginData, cb) => {
+                                const iconMatch = htmlPluginData.html.match(/<link rel="icon" href="([^"]+)"\/?>/);
+                                if (iconMatch[0] && iconMatch[1]) {
+                                    this.iconMatch.push({
+                                        html: htmlPluginData.outputName,
+                                        match: iconMatch,
+                                    });
+                                }
+                                cb(null, htmlPluginData);
+                            }
+                        );
+                    });
+                    compiler.hooks.emit.tapAsync(this.pluginName, (compilation, cb) => {
+                        if (this.iconMatch.length > 0) {
+                            this.iconMatch.forEach((iconMatch) => {
+                                const iconPath = iconMatch.match[1].replace(compilation.options.output.publicPath, "");
+                                if (compilation.assets[iconPath] && compilation.assets[iconMatch.html]) {
+                                    const iconData = compilation.assets[iconPath].source();
+                                    const iconExt = iconPath.split(".").pop();
+                                    const mimeType = iconExt === "ico" ? "image/x-icon" : `image/${iconExt}`;
+                                    const iconBase64 = `data:${mimeType};base64,${iconData.toString("base64")}`;
+                                    let htmlData = compilation.assets[iconMatch.html].source().toString();
+                                    htmlData = htmlData.replace(
+                                        iconMatch.match[0],
+                                        `<link rel="icon" href="${iconBase64}" />`
+                                    );
+                                    compilation.assets[iconMatch.html] = {
+                                        source: () => htmlData,
+                                        size: () => htmlData.length,
+                                    };
+                                    delete compilation.assets[iconPath];
+                                }
+                            });
+                        }
+                        cb();
+                    });
+                },
+            })
+            config
+                .plugin('ScriptExtHtmlWebpackPlugin')
+                .before('copy')
+                .use('script-ext-html-webpack-plugin', [
+                    {
+                        inline: [/app\.js$/],
+                    },
+                ])
+        }
+    },
     productionSourceMap: false,
 }
