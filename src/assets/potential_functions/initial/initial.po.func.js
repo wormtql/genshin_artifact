@@ -14,14 +14,16 @@ function f() {
         if (elementalBonusMap[mainTag]) {
             mainTag = elementalBonusMap[mainTag];
         }
+        
         const position = artifact.position;
+        console.log(mainTag, position);
         let normalTags = [...artifact.normalTags];
         if (normalTags.length === 3) {
             normalTags.push({ name: 'blank', value: 0 });
         }
         const scores = classTypes.map(classType => {
             let score = 0;
-            if (mainTagRatio[position][mainTag][classType.name]) {
+            if (mainTagRatio[position]?.[mainTag]?.[classType.name]) {
                 score = normalTags.map(normalTag => {
                     return normalTagRatio[normalTag.name][classType.name];
                 }).reduce(
