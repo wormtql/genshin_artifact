@@ -49,10 +49,10 @@ export default {
     },
     methods: {
         setData(d) {
+            this.handleChangeReactionType(d.reactionType ?? "vaporize");
             this.skill = d.skill ?? "a";
             this.element = d.element ?? "fire";
             // this.handleChangeReactionType(d.reactionType ?? "vaporize");
-            this.reactionType = d.reactionType ?? "vaporize";
         },
 
         compact() {
