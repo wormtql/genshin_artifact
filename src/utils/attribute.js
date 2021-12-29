@@ -116,7 +116,9 @@ export function getAttribute(artifacts, c, w, stdBuffs, artifactsConfig = {}) {
         .weapon(weapon)
     ;
     for (let art of artifacts) {
-        builder.artifact(getArtifact(art));
+        if (art) {
+            builder.artifact(getArtifact(art));
+        }
     }
     builder.artifactsConfig(artifactsConfig);
 
