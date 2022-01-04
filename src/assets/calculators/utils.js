@@ -224,6 +224,14 @@ export function tableIce(attribute, configObject, enemy, rowConfigs, skillName) 
     );
 }
 
+export function rowIce(attribute, configObject, enemy, caption, skillName, baseDmg) {
+    return {
+        chs: caption,
+        ice: damageCustom(attribute, configObject.character.level, enemy, "ice", skillName, baseDmg),
+        iceMelt: damageReactionCustom("melt", attribute, configObject.character.level, enemy, "ice", skillName, baseDmg),
+    }
+}
+
 // deprecated
 export function tableThunder(attribute, configObject, enemy, rowConfigs, skillName) {
     return mergeArray(
