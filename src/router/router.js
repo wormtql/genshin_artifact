@@ -65,6 +65,14 @@ const webName = process.env.WEB_TITLE;
 
 const routes = [
     {
+        path: "/ura",
+        component: () => import("@page/NewArtifactPlanPage"),
+        meta: {
+            title: "ura | " + webName,
+            keepAlive: false,
+        }
+    },
+    {
         path: "/artifacts-kumi",
         component: KumiPage,
         meta: {

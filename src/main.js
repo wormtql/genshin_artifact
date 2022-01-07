@@ -6,6 +6,7 @@ import "./vendors/fontawesome";
 import "./vendors/vuerouter";
 import "./vendors/vue-katex";
 import "./vendors/echarts";
+import "./vendors/wasm";
 
 // install global api
 import "./global_api";

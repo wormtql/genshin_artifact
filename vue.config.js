@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const path = require("path");
 const fs = require("fs");
 const packageJson = fs.readFileSync("./package.json");
@@ -60,6 +62,7 @@ module.exports = {
                 "@worker": path.resolve(__dirname, "src/workers"),
                 "@const": path.resolve(__dirname, "src/constants"),
                 "@enemy": path.resolve(__dirname, "src/enemies"),
+                "mona": path.resolve(__dirname, "mona/pkg"),
                 // "genshin_panel": path.resolve(__dirname, "../../ts/genshin/dist"),
             }
         },
@@ -107,6 +110,7 @@ module.exports = {
             "vue-echarts": "VueECharts",
         }
     },
+    // chainWebpack: config => config.resolve.symlinks(false),
     // chainWebpack: config => {
     //     config.module
     //         .rule("worker")
