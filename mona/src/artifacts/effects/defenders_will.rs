@@ -1,7 +1,5 @@
 use super::super::effect::ArtifactEffect;
-use crate::character::Character;
-use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 
 pub struct DefendersWillEffect {}
 
@@ -11,13 +9,9 @@ impl DefendersWillEffect {
     }
 }
 
-impl ArtifactEffect for DefendersWillEffect {
-    fn effect2(&self, attribute: &mut AttributeGraph) {
-        attribute.add_edge(
-            AttributeName::DEFBase,
-            AttributeName::DEFPercentage,
-            Box::new(|n| (String::from("守护之心2"), n.value() * 0.3))
-        );
+impl<T: Attribute> ArtifactEffect<T> for DefendersWillEffect {
+    fn effect2(&self, attribute: &mut T) {
+        attribute.add_def_percentage("守护之心2", 0.3);
     }
 
     // fn effect4(&self, attribute: &mut AttributeGraph) {

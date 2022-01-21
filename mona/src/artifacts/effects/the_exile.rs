@@ -1,18 +1,16 @@
 use super::super::effect::ArtifactEffect;
-use crate::character::Character;
-use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName};
 
 pub struct TheExileEffect {}
 
 impl TheExileEffect {
-    pub fn new(config: &ArtifactEffectConfig) -> TheExileEffect {
+    pub fn new() -> TheExileEffect {
         TheExileEffect {}
     }
 }
 
-impl ArtifactEffect for TheExileEffect {
-    fn effect2(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::Recharge, "流放者2", 0.2);
+impl<T: Attribute> ArtifactEffect<T> for TheExileEffect {
+    fn effect2(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::Recharge, "流放者2", 0.2);
     }
 }

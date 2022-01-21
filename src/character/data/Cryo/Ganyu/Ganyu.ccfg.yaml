@@ -1,0 +1,15 @@
+type: character
+characterName: Ganyu
+configs:
+  - type: float
+    name: talent1_rate
+    title: 甘雨天赋唯此一心比例
+    min: 0
+    max: 1
+    default: 0.5
+  - type: float
+    name: talent2_rate
+    title: 甘雨天赋天地交泰比例
+    min: 0
+    max: 1
+    default: 0.5

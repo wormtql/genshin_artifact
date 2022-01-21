@@ -1,26 +1,24 @@
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
-use super::super::character::Character;
-use super::super::character_name::CharacterName;
 use crate::common::{ChangeAttribute, Element, WeaponType};
 use crate::character::CharacterStaticData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 
 pub struct MonaSkillType {
-    normal_dmg1: [f64; 15],
-    normal_dmg2: [f64; 15],
-    normal_dmg3: [f64; 15],
-    normal_dmg4: [f64; 15],
-    charged_dmg1: [f64; 15],
-    plunging_dmg1: [f64; 15],
-    plunging_dmg2: [f64; 15],
-    plunging_dmg3: [f64; 15],
+    pub normal_dmg1: [f64; 15],
+    pub normal_dmg2: [f64; 15],
+    pub normal_dmg3: [f64; 15],
+    pub normal_dmg4: [f64; 15],
+    pub charged_dmg1: [f64; 15],
+    pub plunging_dmg1: [f64; 15],
+    pub plunging_dmg2: [f64; 15],
+    pub plunging_dmg3: [f64; 15],
 
-    elemental_skill_dmg1: [f64; 15],
-    elemental_skill_dmg2: [f64; 15],
+    pub elemental_skill_dmg1: [f64; 15],
+    pub elemental_skill_dmg2: [f64; 15],
 
-    elemental_burst_dmg1: [f64; 15],
-    elemental_burst_bonus: [f64; 15],
+    pub elemental_burst_dmg1: [f64; 15],
+    pub elemental_burst_bonus: [f64; 15],
 }
 
 pub const MONA_SKILL: MonaSkillType = MonaSkillType {
@@ -60,13 +58,15 @@ impl MonaEffect {
     }
 }
 
-impl ChangeAttribute for MonaEffect {
-    fn change_attribute(&self, attribute: &mut AttributeGraph) {
+impl<T: Attribute> ChangeAttribute<T> for MonaEffect {
+    fn change_attribute(&self, attribute: &mut T) {
         if self.has_talent2 {
-            attribute.add_edge(
+            attribute.add_edge1(
                 AttributeName::Recharge,
                 AttributeName::BonusHydro,
-                Box::new(|n| (String::from("莫娜天赋2"), n.value() * 0.2))
+                Box::new(|recharge, _| recharge * 0.2),
+                Box::new(|grad, _x1, _x2| (grad * 0.2, 0.0)),
+                "莫娜天赋：「托付于命运吧!」"
             );
         }
     }

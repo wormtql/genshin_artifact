@@ -1,13 +1,14 @@
 use std::collections::HashMap;
 
 use serde::{Serialize, Deserialize};
+use super::complicated_attribute_graph::ComplicatedAttributeGraph;
 
-use super::attribute::{AttributeGraph, AttributeName};
+use super::attribute_name::AttributeName;
 
 
 type AttributeEntryType = HashMap<String, f64>;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct AttributeNoReactive {
     pub atk: AttributeEntryType,
     pub def: AttributeEntryType,
@@ -27,6 +28,12 @@ pub struct AttributeNoReactive {
     pub bonus_hydro: AttributeEntryType,
     pub bonus_dendro: AttributeEntryType,
     pub bonus_physical: AttributeEntryType,
+}
+
+fn merge(x: &mut AttributeEntryType, y: &AttributeEntryType) {
+    for (key, value) in y.iter() {
+        *x.entry(key.clone()).or_insert(0.0) += value;
+    }
 }
 
 impl AttributeNoReactive {
@@ -52,25 +59,42 @@ impl AttributeNoReactive {
     }
 }
 
-impl From<&AttributeGraph> for AttributeNoReactive {
-    fn from(graph: &AttributeGraph) -> Self {
+impl From<&ComplicatedAttributeGraph> for AttributeNoReactive {
+    fn from(graph: &ComplicatedAttributeGraph) -> Self {
         let mut attribute = AttributeNoReactive::new();
 
-        attribute.atk.extend(graph.get_attribute_composition(AttributeName::ATKBase));
-        attribute.atk.extend(graph.get_attribute_composition(AttributeName::ATKFixed));
-        attribute.atk.extend(graph.get_attribute_composition(AttributeName::ATKPercentage));
+        attribute.atk = graph.get_composition_merge(&vec![
+            AttributeName::ATKBase,
+            AttributeName::ATKPercentage,
+            AttributeName::ATKFixed
+        ]).0;
 
-        attribute.def.extend(graph.get_attribute_composition(AttributeName::DEFBase));
-        attribute.def.extend(graph.get_attribute_composition(AttributeName::DEFFixed));
-        attribute.def.extend(graph.get_attribute_composition(AttributeName::DEFPercentage));
+        attribute.def = graph.get_composition_merge(&vec![
+            AttributeName::DEFBase,
+            AttributeName::DEFPercentage,
+            AttributeName::DEFFixed
+        ]).0;
 
-        attribute.hp.extend(graph.get_attribute_composition(AttributeName::HPBase));
-        attribute.hp.extend(graph.get_attribute_composition(AttributeName::HPFixed));
-        attribute.hp.extend(graph.get_attribute_composition(AttributeName::HPPercentage));
+        attribute.hp = graph.get_composition_merge(&vec![
+            AttributeName::HPBase,
+            AttributeName::HPPercentage,
+            AttributeName::HPFixed
+        ]).0;
 
-        attribute.healing_bonus.extend(graph.get_attribute_composition(AttributeName::HealingBonus));
-        attribute.elemental_mastery.extend(graph.get_attribute_composition(AttributeName::ElementalMastery));
-        attribute.recharge.extend(graph.get_attribute_composition(AttributeName::Recharge));
+        attribute.healing_bonus = graph.get_attribute_composition(AttributeName::HealingBonus).0;
+        attribute.elemental_mastery = graph.get_attribute_composition(AttributeName::ElementalMastery).0;
+        attribute.recharge = graph.get_attribute_composition(AttributeName::Recharge).0;
+        attribute.critical = graph.get_attribute_composition(AttributeName::CriticalBase).0;
+        attribute.critical_damage = graph.get_attribute_composition(AttributeName::CriticalDamageBase).0;
+
+        attribute.bonus_electro = graph.get_attribute_composition(AttributeName::BonusElectro).0;
+        attribute.bonus_pyro = graph.get_attribute_composition(AttributeName::BonusPyro).0;
+        attribute.bonus_anemo = graph.get_attribute_composition(AttributeName::BonusAnemo).0;
+        attribute.bonus_cryo = graph.get_attribute_composition(AttributeName::BonusCryo).0;
+        attribute.bonus_hydro = graph.get_attribute_composition(AttributeName::BonusHydro).0;
+        attribute.bonus_geo = graph.get_attribute_composition(AttributeName::BonusGeo).0;
+        attribute.bonus_dendro = graph.get_attribute_composition(AttributeName::BonusDendro).0;
+        attribute.bonus_physical = graph.get_attribute_composition(AttributeName::BonusPhysical).0;
 
         // todo other attributes
 

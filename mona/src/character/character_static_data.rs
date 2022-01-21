@@ -1,6 +1,5 @@
-use crate::common::{Element, StatName, WeaponType, ChangeAttribute};
+use crate::common::{Element, WeaponType};
 use super::character_sub_stat::CharacterSubStatFamily;
-use super::character_name::CharacterName;
 
 pub struct CharacterStaticData {
     pub element: Element,

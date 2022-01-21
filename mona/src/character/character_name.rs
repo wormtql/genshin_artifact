@@ -35,6 +35,7 @@ pub enum CharacterName {
     Rosaria,
     SangonomiyaKokomi,
     Sayu,
+    Shenhe,
     Sucrose,
     Tartaglia,
     Thoma,
@@ -46,5 +47,6 @@ pub enum CharacterName {
     Xinyan,
     Yanfei,
     Yoimiya,
+    YunJin,
     Zhongli,
 }

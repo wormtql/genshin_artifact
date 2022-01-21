@@ -1,7 +1,6 @@
 use super::super::effect::ArtifactEffect;
-use crate::character::Character;
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 
 pub struct PaleFlameEffect {
     pub level: f64,
@@ -17,18 +16,13 @@ impl PaleFlameEffect {
     }
 }
 
-impl ArtifactEffect for PaleFlameEffect {
-    fn effect2(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::BonusPhysical, "苍白之火2", 0.25);
+impl<T: Attribute> ArtifactEffect<T> for PaleFlameEffect {
+    fn effect2(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::BonusPhysical, "苍白之火2", 0.25);
     }
 
-    fn effect4(&self, attribute: &mut AttributeGraph) {
-        let level = self.level;
-        attribute.add_edge(
-            AttributeName::ATKBase,
-            AttributeName::ATKPercentage,
-            Box::new(move |n| (String::from("苍白之火4"), 0.09 * level * n.value()))
-        );
-        attribute.add_value(AttributeName::BonusPhysical, "苍白之火4", 0.25 * self.full_rate);
+    fn effect4(&self, attribute: &mut T) {
+        attribute.add_atk_percentage("苍白之火4", 0.09 * self.level);
+        attribute.set_value_by(AttributeName::BonusPhysical, "苍白之火4", 0.25 * self.full_rate);
     }
 }

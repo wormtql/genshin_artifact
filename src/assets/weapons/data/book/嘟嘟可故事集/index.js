@@ -1,5 +1,6 @@
 import tn from "./tn.png";
 import config from "./Dudukegushiji.wcfg.vue";
+// import config from "./dudukegushiji.wcfg.yaml"
 
 export default {
     name: "dudukegushiji",

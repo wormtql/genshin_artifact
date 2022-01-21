@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import SelectArtifactSet from "@c/SelectArtifactSet";
+import SelectArtifactSet from "@c/select/SelectArtifactSet";
 
 export default {
     name: "ArtifactsFilter",

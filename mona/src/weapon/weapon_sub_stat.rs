@@ -1,9 +1,10 @@
 use crate::common::{StatName, ChangeAttribute};
-use crate::attribute::AttributeGraph;
+use crate::attribute::Attribute;
 
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
 pub enum WeaponSubStatFamily {
     ATK30,
+    ATK36,
     ATK51,
     ATK60,
     ATK72,
@@ -34,14 +35,14 @@ pub enum WeaponSubStatFamily {
     DEF113,
     DEF150,
 
-    EM55,
-    EM94,
-    EM110,
-    EM141,
-    EM165,
-    EM187,
-    EM198,
-    EM221,
+    EM12,
+    EM20,
+    EM24,
+    EM31,
+    EM36,
+    EM41,
+    EM43,
+    EM48,
 
     HP77,
     HP90,
@@ -67,6 +68,7 @@ pub enum WeaponSubStatFamily {
 pub fn get_stat_name_from_family(family: WeaponSubStatFamily) -> StatName {
     match family {
         WeaponSubStatFamily::ATK30 => StatName::ATKPercentage,
+        WeaponSubStatFamily::ATK36 => StatName::ATKPercentage,
         WeaponSubStatFamily::ATK51 => StatName::ATKPercentage,
         WeaponSubStatFamily::ATK60 => StatName::ATKPercentage,
         WeaponSubStatFamily::ATK72 => StatName::ATKPercentage,
@@ -97,14 +99,14 @@ pub fn get_stat_name_from_family(family: WeaponSubStatFamily) -> StatName {
         WeaponSubStatFamily::DEF113 => StatName::DEFPercentage,
         WeaponSubStatFamily::DEF150 => StatName::DEFPercentage,
 
-        WeaponSubStatFamily::EM55 => StatName::ElementalMastery,
-        WeaponSubStatFamily::EM94 => StatName::ElementalMastery,
-        WeaponSubStatFamily::EM110 => StatName::ElementalMastery,
-        WeaponSubStatFamily::EM141 => StatName::ElementalMastery,
-        WeaponSubStatFamily::EM165 => StatName::ElementalMastery,
-        WeaponSubStatFamily::EM187 => StatName::ElementalMastery,
-        WeaponSubStatFamily::EM198 => StatName::ElementalMastery,
-        WeaponSubStatFamily::EM221 => StatName::ElementalMastery,
+        WeaponSubStatFamily::EM12 => StatName::ElementalMastery,
+        WeaponSubStatFamily::EM20 => StatName::ElementalMastery,
+        WeaponSubStatFamily::EM24 => StatName::ElementalMastery,
+        WeaponSubStatFamily::EM31 => StatName::ElementalMastery,
+        WeaponSubStatFamily::EM36 => StatName::ElementalMastery,
+        WeaponSubStatFamily::EM41 => StatName::ElementalMastery,
+        WeaponSubStatFamily::EM43 => StatName::ElementalMastery,
+        WeaponSubStatFamily::EM48 => StatName::ElementalMastery,
 
         WeaponSubStatFamily::HP77 => StatName::HPPercentage,
         WeaponSubStatFamily::HP90 => StatName::HPPercentage,
@@ -131,6 +133,7 @@ pub fn get_stat_name_from_family(family: WeaponSubStatFamily) -> StatName {
 pub fn get_value_array(family: WeaponSubStatFamily) -> [f64; 8] {
     match family {
         WeaponSubStatFamily::ATK30 => [0.03, 0.053, 0.077, 0.089, 0.101, 0.114, 0.126, 0.138],
+        WeaponSubStatFamily::ATK36 => [0.036, 0.064, 0.093, 0.107, 0.122, 0.136, 0.151, 0.165],
         WeaponSubStatFamily::ATK51 => [0.051, 0.09, 0.131, 0.152, 0.173, 0.193, 0.201, 0.221],
         WeaponSubStatFamily::ATK60 => [0.06, 0.106, 0.155, 0.179, 0.203, 0.227, 0.251, 0.276],
         WeaponSubStatFamily::ATK72 => [0.072, 0.127, 0.185, 0.214, 0.244, 0.273, 0.302, 0.331],
@@ -161,14 +164,14 @@ pub fn get_value_array(family: WeaponSubStatFamily) -> [f64; 8] {
         WeaponSubStatFamily::DEF113 => [0.113, 0.199, 0.29, 0.335, 0.381, 0.426, 0.472, 0.517],
         WeaponSubStatFamily::DEF150 => [0.15, 0.265, 0.387, 0.447, 0.508, 0.568, 0.629, 0.69],
 
-        WeaponSubStatFamily::EM55 => [12.0, 21.0, 31.0, 36.0, 41.0, 45.0, 50.0, 55.0],
-        WeaponSubStatFamily::EM94 => [20.0, 36.0, 53.0, 61.0, 69.0, 77.0, 85.0, 94.0],
-        WeaponSubStatFamily::EM110 => [24.0, 42.0, 62.0, 71.0, 81.0, 91.0, 101.0, 110.0],
-        WeaponSubStatFamily::EM141 => [31.0, 54.0, 79.0, 91.0, 104.0, 116.0, 128.0, 141.0],
-        WeaponSubStatFamily::EM165 => [36.0, 64.0, 93.0, 107.0, 122.0, 136.0, 151.0, 165.0],
-        WeaponSubStatFamily::EM187 => [41.0, 72.0, 105.0, 122.0, 138.0, 154.0, 171.0, 187.0],
-        WeaponSubStatFamily::EM198 => [43.0, 76.0, 111.0, 129.0, 146.0, 164.0, 181.0, 198.0],
-        WeaponSubStatFamily::EM221 => [48.0, 85.0, 124.0, 143.0, 162.0, 182.0, 201.0, 221.0],
+        WeaponSubStatFamily::EM12 => [12.0, 21.0, 31.0, 36.0, 41.0, 45.0, 50.0, 55.0],
+        WeaponSubStatFamily::EM20 => [20.0, 36.0, 53.0, 61.0, 69.0, 77.0, 85.0, 94.0],
+        WeaponSubStatFamily::EM24 => [24.0, 42.0, 62.0, 71.0, 81.0, 91.0, 101.0, 110.0],
+        WeaponSubStatFamily::EM31 => [31.0, 54.0, 79.0, 91.0, 104.0, 116.0, 128.0, 141.0],
+        WeaponSubStatFamily::EM36 => [36.0, 64.0, 93.0, 107.0, 122.0, 136.0, 151.0, 165.0],
+        WeaponSubStatFamily::EM41 => [41.0, 72.0, 105.0, 122.0, 138.0, 154.0, 171.0, 187.0],
+        WeaponSubStatFamily::EM43 => [43.0, 76.0, 111.0, 129.0, 146.0, 164.0, 181.0, 198.0],
+        WeaponSubStatFamily::EM48 => [48.0, 85.0, 124.0, 143.0, 162.0, 182.0, 201.0, 221.0],
 
         WeaponSubStatFamily::HP77 => [0.077, 0.135, 0.197, 0.228, 0.259, 0.29, 0.321, 0.413],
         WeaponSubStatFamily::HP90 => [0.09, 0.159, 0.232, 0.268, 0.304, 0.341, 0.377, 0.413],
@@ -199,7 +202,7 @@ pub struct WeaponSubStat {
 }
 
 impl WeaponSubStat {
-    pub fn new(family: WeaponSubStatFamily, level: i32, ascend: bool) -> WeaponSubStat {
+    pub fn new(family: WeaponSubStatFamily, level: i32, _ascend: bool) -> WeaponSubStat {
         let array = get_value_array(family);
 
         let temp = [1, 20, 40, 50, 60, 70, 80, 90];
@@ -224,8 +227,8 @@ impl WeaponSubStat {
     }
 }
 
-impl ChangeAttribute for WeaponSubStat {
-    fn change_attribute(&self, attribute: &mut AttributeGraph) {
+impl<T: Attribute> ChangeAttribute<T> for WeaponSubStat {
+    fn change_attribute(&self, attribute: &mut T) {
         self.stat_name.apply(attribute, self.attribute_key.as_str(), self.value);
     }
 }

@@ -1,20 +1,11 @@
-use std::collections::HashMap;
+pub trait ArtifactEffect<T> {
+    fn effect1(&self, attribute: &mut T) {}
 
-use crate::attribute::{AttributeName, AttributeGraph};
-use crate::common::Element;
-use super::artifact::ArtifactSetName;
-use super::effect_config::ArtifactEffectConfig;
-use crate::character::{CharacterStaticData, Character};
+    fn effect2(&self, attribute: &mut T) {}
 
+    fn effect3(&self, attribute: &mut T) {}
 
-pub trait ArtifactEffect {
-    fn effect1(&self, attribute: &mut AttributeGraph) {}
+    fn effect4(&self, attribute: &mut T) {}
 
-    fn effect2(&self, attribute: &mut AttributeGraph) {}
-
-    fn effect3(&self, attribute: &mut AttributeGraph) {}
-
-    fn effect4(&self, attribute: &mut AttributeGraph) {}
-
-    fn effect5(&self, attribute: &mut AttributeGraph) {}
+    fn effect5(&self, attribute: &mut T) {}
 }

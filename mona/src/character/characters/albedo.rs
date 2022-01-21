@@ -1,10 +1,15 @@
-use crate::attribute::{AttributeGraph, AttributeName};
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
-use super::super::character::Character;
-use super::super::character_name::CharacterName;
-use crate::common::{ChangeAttribute, Element, WeaponType, StatName};
-use crate::character::CharacterStaticData;
+use crate::common::{Element, WeaponType, StatName, SkillType};
+use crate::character::{CharacterConfig, CharacterStaticData};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
+use crate::character::characters::albedo::AlbedoDamageEnum::ETransientBlossom;
+use crate::character::no_effect::NoEffect;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterConstant, CharacterDamage, CharacterEffect, CharacterTrait};
+use crate::damage::{ComplicatedDamageBuilder, DamageAnalysis, DamageContext};
+use crate::damage::damage_builder::DamageBuilder;
 
 pub struct AlbedoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -25,7 +30,7 @@ pub struct AlbedoSkillType {
     pub elemental_burst_dmg2: [f64; 15],
 }
 
-pub const ALBEDO_SKILL: AlbedoSkillType = AlbedoSkillType {
+const ALBEDO_SKILL: AlbedoSkillType = AlbedoSkillType {
     normal_dmg1: [0.3674, 0.3973, 0.4272, 0.4699, 0.4998, 0.534, 0.581, 0.628, 0.675, 0.7262, 0.785, 0.8541, 0.9231, 0.9922, 1.0676],
     normal_dmg2: [0.3674, 0.3973, 0.4272, 0.4699, 0.4998, 0.534, 0.581, 0.628, 0.675, 0.7262, 0.785, 0.8541, 0.9231, 0.9922, 1.0676],
     normal_dmg3: [0.4745, 0.5132, 0.5518, 0.607, 0.6456, 0.6898, 0.7504, 0.8111, 0.8718, 0.9381, 1.0139, 1.1032, 1.1924, 1.2816, 1.3789],
@@ -42,7 +47,7 @@ pub const ALBEDO_SKILL: AlbedoSkillType = AlbedoSkillType {
     elemental_burst_dmg2: [0.72, 0.774, 0.828, 0.9, 0.954, 1.008, 1.08, 1.152, 1.224, 1.296, 1.368, 1.44, 1.53, 1.62, 1.71],
 };
 
-pub const ALBEDO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+const ALBEDO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     element: Element::Geo,
     hp: [1030, 2671, 3554, 5317, 5944, 6839, 7675, 8579, 9207, 10119, 10746, 11669, 12296, 13226],
     atk: [20, 51, 68, 101, 113, 130, 146, 163, 175, 192, 204, 222, 233, 251],
@@ -51,3 +56,122 @@ pub const ALBEDO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     weapon_type: WeaponType::Sword,
     star: 5,
 };
+
+#[derive(Copy, Clone, Eq, PartialEq)]
+#[derive(FromPrimitive)]
+pub enum AlbedoDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal5,
+    Charged11,
+    Charged12,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    ETransientBlossom,
+    Q1,
+    QFatalBlossom
+}
+
+impl Into<usize> for AlbedoDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+impl AlbedoDamageEnum {
+    pub fn is_def_ratio(&self) -> bool {
+        *self == ETransientBlossom
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use AlbedoDamageEnum::*;
+        match *self {
+            Charged11 | Charged12 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | ETransientBlossom => SkillType::ElementalSkill,
+            Q1 | QFatalBlossom => SkillType::ElementalBurst,
+            _ => SkillType::NormalAttack
+        }
+    }
+
+    pub fn get_element(&self) -> Element {
+        use AlbedoDamageEnum::*;
+        match *self {
+            E1 | ETransientBlossom | Q1 | QFatalBlossom => Element::Geo,
+            _ => Element::Physical
+        }
+    }
+}
+
+pub struct Albedo;
+
+impl CharacterConstant for Albedo {
+    const STATIC_DATA: CharacterStaticData = ALBEDO_STATIC_DATA;
+    type SkillType = AlbedoSkillType;
+    const SKILL: Self::SkillType = ALBEDO_SKILL;
+    type DamageEnumType = AlbedoDamageEnum;
+}
+
+impl<D: DamageBuilder> CharacterDamage<D> for Albedo {
+    fn damage_internal(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s = num::FromPrimitive::from_usize(s).unwrap();
+        let fatal_count = match *config {
+            CharacterSkillConfig::Albedo { fatal_count } => fatal_count,
+            _ => 0
+        };
+
+        let s1 = context.character_common_data.skill1;
+        let s2 = context.character_common_data.skill2;
+        let s3 = context.character_common_data.skill3;
+        let ratio = match s {
+            AlbedoDamageEnum::Normal1 => ALBEDO_SKILL.normal_dmg1[s1],
+            AlbedoDamageEnum::Normal2 => ALBEDO_SKILL.normal_dmg2[s1],
+            AlbedoDamageEnum::Normal3 => ALBEDO_SKILL.normal_dmg3[s1],
+            AlbedoDamageEnum::Normal4 => ALBEDO_SKILL.normal_dmg4[s1],
+            AlbedoDamageEnum::Normal5 => ALBEDO_SKILL.normal_dmg5[s1],
+            AlbedoDamageEnum::Charged11 => ALBEDO_SKILL.charged_dmg1[s1],
+            AlbedoDamageEnum::Charged12 => ALBEDO_SKILL.charged_dmg2[s1],
+            AlbedoDamageEnum::Plunging1 => ALBEDO_SKILL.plunging_dmg1[s1],
+            AlbedoDamageEnum::Plunging2 => ALBEDO_SKILL.plunging_dmg2[s1],
+            AlbedoDamageEnum::Plunging3 => ALBEDO_SKILL.plunging_dmg3[s1],
+            AlbedoDamageEnum::E1 => ALBEDO_SKILL.elemental_skill_dmg1[s2],
+            AlbedoDamageEnum::ETransientBlossom => ALBEDO_SKILL.elemental_skill_dmg2[s2],
+            AlbedoDamageEnum::Q1 => ALBEDO_SKILL.elemental_burst_dmg1[s3],
+            AlbedoDamageEnum::QFatalBlossom => ALBEDO_SKILL.elemental_burst_dmg2[s3]
+        };
+        let mut builder = D::new();
+        if s.is_def_ratio() {
+            builder.add_def_ratio("技能倍率", ratio)
+        } else {
+            builder.add_atk_ratio("技能倍率", ratio)
+        }
+        if context.character_common_data.constellation >= 2 {
+            builder.add_def_ratio("2命：显生之宙", fatal_count as f64 * 0.3);
+        }
+
+        builder.build(
+            &context.attribute,
+            &context.enemy,
+            Element::Geo,
+            s.get_skill_type(),
+            false,
+            90
+        )
+    }
+}
+
+impl<A: Attribute> CharacterEffect<A> for Albedo {
+    type EffectType = NoEffect;
+
+    fn new_effect(common_data: &CharacterCommonData, config: &CharacterConfig) -> Self::EffectType {
+        NoEffect
+    }
+}
+
+impl<D: DamageBuilder, A: Attribute> CharacterTrait<A, D> for Albedo {
+
+}

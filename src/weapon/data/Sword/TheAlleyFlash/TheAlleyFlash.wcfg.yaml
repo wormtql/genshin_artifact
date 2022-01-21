@@ -1,0 +1,9 @@
+type: weapon
+weaponName: TheAlleyFlash
+configs:
+  - type: float
+    name: rate
+    min: 0
+    max: 1
+    title: 平均效果比例
+    default: 0

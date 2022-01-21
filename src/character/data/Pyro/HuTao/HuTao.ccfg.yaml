@@ -1,0 +1,7 @@
+type: character
+characterName: HuTao
+configs:
+  - type: bool
+    name: le_50
+    default: true
+    title: "生命值低于50%"

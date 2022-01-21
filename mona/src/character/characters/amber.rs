@@ -1,26 +1,32 @@
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType, ChangeAttribute};
+use num_derive::FromPrimitive;
+use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::common::{Element, WeaponType, ChangeAttribute, SkillType};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::character_common_data::CharacterCommonData;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName};
+use crate::character::prelude::CharacterTrait;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterConstant, CharacterDamage, CharacterEffect};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
 
 pub struct AmberSkillType {
-    normal_dmg1: [f64; 15],
-    normal_dmg2: [f64; 15],
-    normal_dmg3: [f64; 15],
-    normal_dmg4: [f64; 15],
-    normal_dmg5: [f64; 15],
-    charged_dmg1: [f64; 15],
-    charged_dmg2: [f64; 15],
-    plunging_dmg1: [f64; 15],
-    plunging_dmg2: [f64; 15],
-    plunging_dmg3: [f64; 15],
+    pub normal_dmg1: [f64; 15],
+    pub normal_dmg2: [f64; 15],
+    pub normal_dmg3: [f64; 15],
+    pub normal_dmg4: [f64; 15],
+    pub normal_dmg5: [f64; 15],
+    pub charged_dmg1: [f64; 15],
+    pub charged_dmg2: [f64; 15],
+    pub plunging_dmg1: [f64; 15],
+    pub plunging_dmg2: [f64; 15],
+    pub plunging_dmg3: [f64; 15],
 
-    elemental_skill_hp: [f64; 15],
-    elemental_skill_dmg1: [f64; 15],
+    pub elemental_skill_hp: [f64; 15],
+    pub elemental_skill_dmg1: [f64; 15],
 
-    elemental_burst_dmg1: [f64; 15],
-    elemental_burst_dmg2: [f64; 15],
+    pub elemental_burst_dmg1: [f64; 15],
+    pub elemental_burst_dmg2: [f64; 15],
 }
 
 pub const AMBER_SKILL: AmberSkillType = AmberSkillType {
@@ -62,8 +68,113 @@ impl AmberEffect {
     }
 }
 
-impl ChangeAttribute for AmberEffect {
-    fn change_attribute(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::CriticalElementalBurst, "安柏天赋1", 0.1);
+impl<T: Attribute> ChangeAttribute<T> for AmberEffect {
+    fn change_attribute(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::CriticalElementalBurst, "安柏天赋1", 0.1);
     }
+}
+
+#[derive(Copy, Clone)]
+#[derive(FromPrimitive)]
+pub enum AmberDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal5,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    Q1,
+    Q2
+}
+
+impl Into<usize> for AmberDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+impl AmberDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use AmberDamageEnum::*;
+
+        match *self {
+            Charged2 | E1 | Q1 | Q2 => Element::Pyro,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use AmberDamageEnum::*;
+
+        match *self {
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 => SkillType::ElementalSkill,
+            Q1 | Q2 => SkillType::ElementalBurst,
+            _ => SkillType::NormalAttack
+        }
+    }
+}
+
+pub struct Amber;
+
+impl CharacterConstant for Amber {
+    const STATIC_DATA: CharacterStaticData = AMBER_STATIC_DATA;
+    type SkillType = AmberSkillType;
+    const SKILL: Self::SkillType = AMBER_SKILL;
+    type DamageEnumType = AmberDamageEnum;
+}
+
+impl<D: DamageBuilder> CharacterDamage<D> for Amber {
+    fn damage_internal(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        use AmberDamageEnum::*;
+        let s: AmberDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+
+        let s1 = context.character_common_data.skill1;
+        let s2 = context.character_common_data.skill2;
+        let s3 = context.character_common_data.skill3;
+
+        let ratio = match s {
+            Normal1 => AMBER_SKILL.normal_dmg1[s1],
+            Normal2 => AMBER_SKILL.normal_dmg2[s1],
+            Normal3 => AMBER_SKILL.normal_dmg3[s1],
+            Normal4 => AMBER_SKILL.normal_dmg4[s1],
+            Normal5 => AMBER_SKILL.normal_dmg5[s1],
+            Charged1 => AMBER_SKILL.charged_dmg1[s1],
+            Charged2 => AMBER_SKILL.charged_dmg2[s1],
+            Plunging1 => AMBER_SKILL.plunging_dmg1[s1],
+            Plunging2 => AMBER_SKILL.plunging_dmg2[s1],
+            Plunging3 => AMBER_SKILL.plunging_dmg3[s1],
+            E1 => AMBER_SKILL.elemental_skill_dmg1[s2],
+            Q1 => AMBER_SKILL.elemental_burst_dmg1[s3],
+            Q2 => AMBER_SKILL.elemental_burst_dmg2[s3]
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+
+        builder.build(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            false,
+            context.character_common_data.level
+        )
+    }
+}
+
+impl<A: Attribute> CharacterEffect<A> for Amber {
+    type EffectType = AmberEffect;
+
+    fn new_effect(common_data: &CharacterCommonData, config: &CharacterConfig) -> Self::EffectType {
+        AmberEffect::new(common_data)
+    }
+}
+
+impl<A: Attribute, D: DamageBuilder> CharacterTrait<A, D> for Amber {
 }

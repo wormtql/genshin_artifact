@@ -3,7 +3,7 @@ pub use weapon_name::WeaponName;
 pub use weapon_config::WeaponConfig;
 
 pub mod weapon_sub_stat;
-pub mod weapon_data;
+pub mod weapon_static_data;
 pub mod weapon_base_atk;
 pub mod weapon_name;
 pub mod weapons;

@@ -1,7 +1,5 @@
 use super::super::effect::ArtifactEffect;
-use crate::character::Character;
-use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName};
 
 pub struct AdventurerEffect {}
 
@@ -11,8 +9,8 @@ impl AdventurerEffect {
     }
 }
 
-impl ArtifactEffect for AdventurerEffect {
-    fn effect2(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::HPFixed, "冒险家2", 1000.0);
+impl<T: Attribute> ArtifactEffect<T> for AdventurerEffect {
+    fn effect2(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::HPFixed, "冒险家2", 1000.0);
     }
 }

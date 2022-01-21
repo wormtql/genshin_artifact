@@ -1,7 +1,6 @@
 use super::super::effect::ArtifactEffect;
-use crate::character::Character;
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 
 pub struct HuskOfOpulentDreamsEffect {
     pub level: f64,
@@ -15,22 +14,13 @@ impl HuskOfOpulentDreamsEffect {
     }
 }
 
-impl ArtifactEffect for HuskOfOpulentDreamsEffect {
-    fn effect2(&self, attribute: &mut AttributeGraph) {
-        attribute.add_edge(
-            AttributeName::DEFBase,
-            AttributeName::DEFPercentage,
-            Box::new(|n| (String::from("华馆梦醒形骸记2"), 0.3 * n.value()))
-        );
+impl<T: Attribute> ArtifactEffect<T> for HuskOfOpulentDreamsEffect {
+    fn effect2(&self, attribute: &mut T) {
+        attribute.add_def_percentage("华馆梦醒形骸记2", 0.3);
     }
 
-    fn effect4(&self, attribute: &mut AttributeGraph) {
-        let level = self.level;
-        attribute.add_edge(
-            AttributeName::DEFBase,
-            AttributeName::DEFPercentage,
-            Box::new(move |n| (String::from("华馆梦醒形骸记4"), 0.06 * level * n.value()))
-        );
-        attribute.add_value(AttributeName::BonusGeo, "华馆梦醒形骸记4", self.level * 0.06);
+    fn effect4(&self, attribute: &mut T) {
+        attribute.add_def_percentage("华馆梦醒形骸记4", 0.06 * self.level);
+        attribute.set_value_by(AttributeName::BonusGeo, "华馆梦醒形骸记4", self.level * 0.06);
     }
 }

@@ -3,26 +3,26 @@ use crate::common::{Element, StatName, WeaponType};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 
 pub struct AloySkillType {
-    normal_dmg11: [f64; 15],
-    normal_dmg12: [f64; 15],
-    normal_dmg2: [f64; 15],
-    normal_dmg3: [f64; 15],
-    normal_dmg4: [f64; 15],
-    charged_dmg1: [f64; 15],
-    charged_dmg2: [f64; 15],
-    plunging_dmg1: [f64; 15],
-    plunging_dmg2: [f64; 15],
-    plunging_dmg3: [f64; 15],
+    pub normal_dmg11: [f64; 15],
+    pub normal_dmg12: [f64; 15],
+    pub normal_dmg2: [f64; 15],
+    pub normal_dmg3: [f64; 15],
+    pub normal_dmg4: [f64; 15],
+    pub charged_dmg1: [f64; 15],
+    pub charged_dmg2: [f64; 15],
+    pub plunging_dmg1: [f64; 15],
+    pub plunging_dmg2: [f64; 15],
+    pub plunging_dmg3: [f64; 15],
 
-    elemental_skill_dmg1: [f64; 15],
-    elemental_skill_dmg2: [f64; 15],
-    elemental_skill_atk_minus: [f64; 15],
-    elemental_skill_atk_bonus1: [f64; 15],
-    elemental_skill_atk_bonus2: [f64; 15],
-    elemental_skill_atk_bonus3: [f64; 15],
-    elemental_skill_atk_bonus4: [f64; 15],
+    pub elemental_skill_dmg1: [f64; 15],
+    pub elemental_skill_dmg2: [f64; 15],
+    pub elemental_skill_atk_minus: [f64; 15],
+    pub elemental_skill_atk_bonus1: [f64; 15],
+    pub elemental_skill_atk_bonus2: [f64; 15],
+    pub elemental_skill_atk_bonus3: [f64; 15],
+    pub elemental_skill_atk_bonus4: [f64; 15],
 
-    elemental_burst_dmg1: [f64; 15],
+    pub elemental_burst_dmg1: [f64; 15],
 }
 
 pub const ALOY_SKILL: AloySkillType = AloySkillType {

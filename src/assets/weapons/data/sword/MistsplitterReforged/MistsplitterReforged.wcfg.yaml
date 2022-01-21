@@ -1,0 +1,9 @@
+type: weapon
+weaponName: MistsplitterReforged
+configs:
+  - type: int
+    min: 0
+    max: 3
+    name: emblem_level
+    title: 「雾切之巴印」层数
+    default: 1

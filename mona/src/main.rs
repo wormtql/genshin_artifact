@@ -1,58 +1,163 @@
 use std::time;
 
-use mona::attribute::entry::{Node, NodeHandle};
-use mona::attribute::{AttributeName, AttributeGraph};
+use mona::attribute::{AttributeName, AttributeUtils, ComplicatedAttributeGraph};
 use mona::common::{ChangeAttribute, StatName, Element, SkillType};
 use mona::weapon::{WeaponName, WeaponConfig, Weapon};
-use mona::artifacts::{Artifact, ArtifactSetName, ArtifactSlotName, ArtifactList};
-use mona::artifacts::effect_config::ArtifactEffectConfig;
-use mona::character::{Character, CharacterName};
+use mona::artifacts::{Artifact, ArtifactSlotName};
 use mona::character::character_config::CharacterConfig;
-use mona::target_functions::{TargetFunctionConfig, TargetFunctionName};
-use mona::target_functions::target_functions::{get_target_function};
-use mona::applications::{CharacterInterface, OptimizeArtifactInterface};
-use mona::WeaponInterface;
-use mona::applications::optimize_artifacts::interface_config_object::TargetFunctionInterface;
-use mona::target_functions::target_function_config::TargetFunctionConfig::ExpectationConfig;
-use mona::attribute::attribute_utils::AttributeUtils;
+use mona::target_functions::{TargetFunctionConfig, TargetFunctionName, TargetFunctionUtils};
+use mona::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
+use mona::applications::{ConstraintConfig, OptimizeArtifactInterface};
+use mona::applications::calculator::interface_calculator::CalculatorInterface;
+use mona::applications::optimize_artifacts::interface_config_object::{ConstraintSetMode, OptimizationResult};
+use mona::character::{Character, CharacterName};
+use mona::character::characters::{HuTaoDamage, HuTaoDamageEnum};
+use mona::character::skill_config::CharacterSkillConfig;
+use mona::damage::DamageContext;
+use mona::enemies::Enemy;
 
 
 fn perf() {
-    let character = Character::new(
-        CharacterName::Albedo,
-        90, false, 0, &CharacterConfig::NoConfig,
-    );
-    let weapon = Weapon::new(
-        WeaponName::MistsplitterReforged,
-        90, false, 1, &WeaponConfig::MistsplitterReforgedConfig(1),
-        &character
-    );
-    let artifacts = vec![
-        Artifact::new_random(ArtifactSlotName::Flower),
-        Artifact::new_random(ArtifactSlotName::Feather),
-        Artifact::new_random(ArtifactSlotName::Feather),
-        Artifact::new_random(ArtifactSlotName::Feather),
-        Artifact::new_random(ArtifactSlotName::Feather),
-    ];
-    let artifact_list = ArtifactList {
-        artifacts: artifacts.iter().collect(),
+    let character = CharacterInterface {
+        name: CharacterName::Ganyu,
+        level: 90,
+        ascend: false,
+        constellation: 0,
+        params: CharacterConfig::Ganyu { talent2_rate: 0.5, talent1_rate: 0.5 },
+        skill1: 6,
+        skill2: 6,
+        skill3: 6,
     };
+    let weapon = WeaponInterface {
+        name: WeaponName::AmosBow,
+        level: 90,
+        ascend: false,
+        refine: 1,
+        params: WeaponConfig::AmosBow { stack: 1.0 }
+    };
+    let target_function = TargetFunctionInterface {
+        name: TargetFunctionName::BarbaraDefault,
+        params: TargetFunctionConfig::GanyuDefault { melt_rate: 0.5 }
+        // name: TargetFunctionName::Max,
+        // params: TargetFunctionConfig::MaxConfig { element: Element::Cryo, skill_type: SkillType::NormalAttack },
+    };
+    let constraint = ConstraintConfig {
+        set_mode: Some(ConstraintSetMode::Any),
+        hp_min: None,
+        atk_min: None,
+        def_min: None,
+        recharge_min: None,
+        em_min: None,
+        crit_min: None,
+        crit_dmg_min: None
+    };
+    let mut artifacts = vec![];
+    for _ in 0..25 {
+        artifacts.push(Artifact::new_random(ArtifactSlotName::Flower));
+        artifacts.push(Artifact::new_random(ArtifactSlotName::Feather));
+        artifacts.push(Artifact::new_random(ArtifactSlotName::Sand));
+        artifacts.push(Artifact::new_random(ArtifactSlotName::Goblet));
+        artifacts.push(Artifact::new_random(ArtifactSlotName::Head));
+    }
 
     let now = time::SystemTime::now();
-    for _ in 0..1000000 {
-        let attribute = AttributeUtils::create_attribute_from_big_config(
-            &artifact_list,
-            &ArtifactEffectConfig::default(),
-            &character,
-            &weapon,
-            &vec![],
-        );
-    }
+
+    let results = OptimizeArtifactInterface::optimize_internal(
+        &artifacts,
+        &Default::default(),
+        &character,
+        &weapon,
+        &target_function,
+        &constraint,
+        &Vec::new()
+    );
+
+    // let results = OptimizeArtifactInterface::optimize_internal(OptimizeArtifactInterface {
+    //     artifacts,
+    //     artifact_config: Default::default(),
+    //     character,
+    //     weapon,
+    //     target_function,
+    //     constraint,
+    //     buffs: vec![]
+    // });
+    println!("{:?}", results);
+
     println!("{}s", now.elapsed().unwrap().as_secs())
 }
 
+// fn skill() {
+//     let character: Character<ComplicatedAttributeGraph> = Character::new(
+//         CharacterName::HuTao,
+//         90, false, 0,
+//         8, 8, 8,
+//         &CharacterConfig::HuTao { le_50: true },
+//     );
+//     let weapon: Weapon<ComplicatedAttributeGraph> = Weapon::new(
+//         WeaponName::StaffOfHoma,
+//         90,
+//         false,
+//         1,
+//         &WeaponConfig::NoConfig,
+//         &character
+//     );
+//     let attribute = AttributeUtils::create_attribute_from_c_w_bs(
+//         &character,
+//         &weapon,
+//         &Vec::new()
+//     );
+//     let enemy = Enemy::default();
+//     let context = DamageContext {
+//         enemy: &enemy,
+//         character_common_data: &character.common_data,
+//         attribute: &attribute
+//     };
+//     let result = HuTaoDamage::damage(&context, HuTaoSkillEnum::Charged, true);
+//     println!("{:?}", result);
+// }
+
+fn skill_interface() {
+    let character: Character<ComplicatedAttributeGraph> = Character::new(
+        CharacterName::HuTao,
+        90, false, 0,
+        8, 8, 8,
+        &CharacterConfig::HuTao { le_50: true },
+    );
+    let weapon: Weapon<ComplicatedAttributeGraph> = Weapon::new(
+        WeaponName::StaffOfHoma,
+        90,
+        false,
+        1,
+        &WeaponConfig::NoConfig,
+        &character
+    );
+    // let tf = TargetFunctionUtils::new_target_function(
+    //     TargetFunctionName::HuTaoDefault,
+    //     &character,
+    //     &weapon,
+    //     &TargetFunctionConfig::HuTaoDefault { vaporize_rate: 0.5 }
+    // );
+    // let artifact_config = tf.get_default_artifact_config(&Default::default());
+
+    let result = CalculatorInterface::get_damage_analysis_internal(
+        &character,
+        &weapon,
+        &Vec::new(),
+        Vec::new(),
+        &Default::default(),
+        0,
+        &CharacterSkillConfig::NoConfig
+    );
+
+    println!("{:?}", result);
+}
+
 fn main() {
+    // perf::<ComplicatedAttributeGraph>();
     perf();
+
+    // skill();
+    // skill_interface();
     // let mut graph = AttributeGraph::new();
     //
     // let mona = Character::new(

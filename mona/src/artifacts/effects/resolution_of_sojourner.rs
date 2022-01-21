@@ -1,7 +1,5 @@
 use super::super::effect::ArtifactEffect;
-use crate::character::Character;
-use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 
 pub struct ResolutionOfSojournerEffect {}
 
@@ -11,16 +9,12 @@ impl ResolutionOfSojournerEffect {
     }
 }
 
-impl ArtifactEffect for ResolutionOfSojournerEffect {
-    fn effect2(&self, attribute: &mut AttributeGraph) {
-        attribute.add_edge(
-            AttributeName::ATKBase,
-            AttributeName::ATKPercentage,
-            Box::new(|n| (String::from("行者之心2"), 0.18 * n.value()))
-        );
+impl<T: Attribute> ArtifactEffect<T> for ResolutionOfSojournerEffect {
+    fn effect2(&self, attribute: &mut T) {
+        attribute.add_atk_percentage("行者之心2", 0.18);
     }
 
-    fn effect4(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::CriticalChargedAttack, "行者之心4", 0.3);
+    fn effect4(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::CriticalChargedAttack, "行者之心4", 0.3);
     }
 }

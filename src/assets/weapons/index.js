@@ -7,8 +7,21 @@ function importAll(r) {
     }
 }
 
+function importConfigs(r) {
+    let temp = {}
+    for (const path of r.keys()) {
+        const importt = r(path)
+        const weaponName = importt.name
+
+        temp[weaponName] = importt.default
+    }
+
+    return temp
+}
+
 importAll(require.context("./data", true, /index\.js$/));
 
+export const weaponConfig = importConfigs(require.context("./data", true, /\.wcfg\.yaml$/))
 
 let _weaponsByType = {
     "sword": [],

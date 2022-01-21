@@ -3,12 +3,10 @@ use std::collections::HashMap;
 use serde::{Serialize, Deserialize};
 
 use crate::common::StatName;
-use crate::attribute::{AttributeName, AttributeGraph};
-use super::effect;
+use crate::attribute::{Attribute};
 use super::effect_config::ArtifactEffectConfig;
-use crate::character::{CharacterStaticData, Character};
+use crate::character::{Character};
 use super::effects::get_effect;
-use crate::artifacts::effect::ArtifactEffect;
 
 #[derive(Serialize, Deserialize)]
 #[derive(Hash, Eq, PartialEq, Debug, Copy, Clone)]
@@ -62,7 +60,7 @@ pub enum ArtifactSlotName {
     Head,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Artifact {
     pub set_name: ArtifactSetName,
     pub slot: ArtifactSlotName,
@@ -70,6 +68,7 @@ pub struct Artifact {
     pub star: i32,
     pub sub_stats: Vec<(StatName, f64)>,
     pub main_stat: (StatName, f64),
+    pub id: usize
 }
 
 impl Artifact {
@@ -88,10 +87,12 @@ impl Artifact {
             star,
             main_stat,
             sub_stats,
+            id: 0
         }
     }
 
     pub fn new_random(slot: ArtifactSlotName) -> Artifact {
+        // todo currently it's not random
         Artifact {
             set_name: ArtifactSetName::Thundersoother,
             slot,
@@ -104,6 +105,7 @@ impl Artifact {
                 (StatName::ElementalMastery, 10.0),
             ],
             main_stat: (StatName::ATKPercentage, 0.1),
+            id: 0
         }
     }
 }
@@ -113,7 +115,7 @@ pub struct ArtifactList<'a> {
 }
 
 impl<'a> ArtifactList<'a> {
-    pub fn apply(&self, attribute: &mut AttributeGraph, character: &Character, config: &ArtifactEffectConfig) {
+    pub fn apply<T: Attribute>(&self, attribute: &mut T, character: &Character<T>, config: &ArtifactEffectConfig) {
         let mut attributes_hash: HashMap<StatName, f64> = HashMap::new();
         let mut set_name_count: HashMap<ArtifactSetName, i32> = HashMap::new();
 

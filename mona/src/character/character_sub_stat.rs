@@ -1,5 +1,5 @@
 use crate::common::{StatName, ChangeAttribute};
-use crate::attribute::AttributeGraph;
+use crate::attribute::Attribute;
 
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
 pub enum CharacterSubStatFamily {
@@ -71,7 +71,7 @@ pub struct CharacterSubStat {
 }
 
 impl CharacterSubStat {
-    pub fn new(family: CharacterSubStatFamily, level: i32, ascend: bool) -> CharacterSubStat {
+    pub fn new(family: CharacterSubStatFamily, level: usize, ascend: bool) -> CharacterSubStat {
         let array = get_value_array(family);
 
         let value = if level < 40 || (level == 40 && !ascend) {
@@ -97,8 +97,8 @@ impl CharacterSubStat {
     }
 }
 
-impl ChangeAttribute for CharacterSubStat {
-    fn change_attribute(&self, attribute: &mut AttributeGraph) {
+impl<T: Attribute> ChangeAttribute<T> for CharacterSubStat {
+    fn change_attribute(&self, attribute: &mut T) {
         self.stat_name.apply(attribute, self.attribute_key.as_str(), self.value);
     }
 }

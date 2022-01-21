@@ -81,7 +81,8 @@ export function convertArtifact(artifact) {
         "level": artifact.level,
         "star": artifact.star,
         "main_stat": convertStat(artifact.mainTag),
-        "sub_stats": artifact.normalTags.map(x => convertStat(x))
+        "sub_stats": artifact.normalTags.map(x => convertStat(x)),
+        "id": artifact.id
     }
 }
 

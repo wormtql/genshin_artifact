@@ -1,8 +1,10 @@
 use serde::{Serialize, Deserialize};
 
 use crate::common::Element;
+use crate::common::max_trait::MaxValue;
 
 #[derive(Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ConfigArchaicPetra {
     pub element: Element,
     pub rate: f64,
@@ -18,6 +20,7 @@ impl Default for ConfigArchaicPetra {
 }
 
 #[derive(Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ConfigBlizzardStrayer {
     pub critical_bonus: f64,
 }
@@ -25,12 +28,21 @@ pub struct ConfigBlizzardStrayer {
 impl Default for ConfigBlizzardStrayer {
     fn default() -> Self {
         ConfigBlizzardStrayer {
-            critical_bonus: 0.0,
+            critical_bonus: 0.0
+        }
+    }
+}
+
+impl MaxValue for ConfigBlizzardStrayer {
+    fn max_value() -> Self {
+        ConfigBlizzardStrayer {
+            critical_bonus: 0.4
         }
     }
 }
 
 #[derive(Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ConfigPaleFlame {
     pub avg_level: f64,
     pub full_rate: f64,
@@ -45,12 +57,31 @@ impl Default for ConfigPaleFlame {
     }
 }
 
+impl MaxValue for ConfigPaleFlame {
+    fn max_value() -> Self {
+        ConfigPaleFlame {
+            avg_level: 2.0,
+            full_rate: 1.0
+        }
+    }
+}
+
 #[derive(Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ConfigRate {
     pub rate: f64,
 }
 
+impl MaxValue for ConfigRate {
+    fn max_value() -> Self {
+        ConfigRate {
+            rate: 1.0
+        }
+    }
+}
+
 #[derive(Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ConfigLevel {
     pub level: f64,
 }
@@ -71,7 +102,7 @@ impl Default for ConfigLevel {
     }
 }
 
-#[derive(Default)]
+#[derive(Default, Debug)]
 #[derive(Serialize, Deserialize)]
 pub struct ArtifactEffectConfig {
     pub config_archaic_petra: ConfigArchaicPetra,

@@ -2,7 +2,6 @@ use crate::common::Element;
 
 pub struct Enemy {
     pub level: i32,
-    pub def_minus: f64,
     pub electro_res: f64,
     pub pyro_res: f64,
     pub hydro_res: f64,
@@ -17,7 +16,6 @@ impl Default for Enemy {
     fn default() -> Self {
         Enemy {
             level: 80,
-            def_minus: 0.0,
             electro_res: 0.1,
             pyro_res: 0.1,
             hydro_res: 0.1,
@@ -31,13 +29,13 @@ impl Default for Enemy {
 }
 
 impl Enemy {
-    pub fn get_defensive_ratio(&self, character_level: i32) -> f64 {
+    pub fn get_defensive_ratio(&self, character_level: usize, extra: f64) -> f64 {
         let def = self.level as f64 + 100.0;
-        let def_minus = self.def_minus.min(1.0).max(0.0);
+        let def_minus = extra.min(1.0).max(0.0);
         (character_level as f64 + 100.0) / ((1.0 - def_minus) * def + character_level as f64 + 100.0)
     }
 
-    pub fn get_resistance_ratio(&self, element: Element) -> f64 {
+    pub fn get_resistance_ratio(&self, element: Element, extra: f64) -> f64 {
         let res = match element {
             Element::Electro => self.electro_res,
             Element::Pyro => self.pyro_res,
@@ -48,7 +46,7 @@ impl Enemy {
             Element::Dendro => self.dendro_res,
             Element::Physical => self.physical_res,
             _ => unreachable!(),
-        };
+        } + extra;
 
         if res > 0.75 {
             25.0 / (25.0 + res)

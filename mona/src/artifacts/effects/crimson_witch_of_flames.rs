@@ -1,7 +1,6 @@
 use super::super::effect::ArtifactEffect;
-use crate::character::Character;
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName};
 
 pub struct CrimsonWitchOfFlamesEffect {
     pub level: f64,
@@ -15,17 +14,17 @@ impl CrimsonWitchOfFlamesEffect {
     }
 }
 
-impl ArtifactEffect for CrimsonWitchOfFlamesEffect {
-    fn effect2(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::BonusPyro, "炽烈的炎之魔女2", 0.15);
+impl<T: Attribute> ArtifactEffect<T> for CrimsonWitchOfFlamesEffect {
+    fn effect2(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::BonusPyro, "炽烈的炎之魔女2", 0.15);
     }
 
-    fn effect4(&self, attribute: &mut AttributeGraph) {
+    fn effect4(&self, attribute: &mut T) {
         let key = "炽烈的炎之魔女4";
-        attribute.add_value(AttributeName::EnhanceOverload, key, 0.4);
-        attribute.add_value(AttributeName::EnhanceBurning, key, 0.4);
-        attribute.add_value(AttributeName::EnhanceVaporize, key, 0.15);
-        attribute.add_value(AttributeName::EnhanceMelt, key, 0.15);
-        attribute.add_value(AttributeName::BonusPyro, key, self.level * 0.075);
+        attribute.set_value_by(AttributeName::EnhanceOverload, key, 0.4);
+        attribute.set_value_by(AttributeName::EnhanceBurning, key, 0.4);
+        attribute.set_value_by(AttributeName::EnhanceVaporize, key, 0.15);
+        attribute.set_value_by(AttributeName::EnhanceMelt, key, 0.15);
+        attribute.set_value_by(AttributeName::BonusPyro, key, self.level * 0.075);
     }
 }

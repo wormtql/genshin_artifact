@@ -12,9 +12,9 @@ pub enum WeaponName {
     TheFlute,
     TheBlackSword,
     TheAlleyFlash,
-    SwordOfDescension,
+    SwordOfDescension,  // todo
     SacrificialSword,
-    RoyalLongsword,
+    RoyalLongsword,     // todo
     PrototypeRancour,
     AmenomaKageuchi,
     LionsRoar,
@@ -23,7 +23,7 @@ pub enum WeaponName {
     FavoniusSword,
     CinnabarSpindle,
     BlackcliffLongsword,
-    HarbingerOfDawn,
+    HarbingerOfDawn,     // todo below *3 weapon
     FilletBlade,
     SkyriderSword,
     DarkIronSword,
@@ -51,8 +51,7 @@ pub enum WeaponName {
     PrototypeArchaic,
     LuxuriousSeaLord,
     LithicBlade,
-    Quartz,
-    SkyriderGreatsword,
+    SkyriderGreatsword,     // todo below *3
     DebateClub,
     BloodstainedGreatsword,
     WhiteIronGreatsword,
@@ -78,7 +77,7 @@ pub enum WeaponName {
     BlackcliffPole,
     WavebreakersFin,
     RoyalSpear,
-    Halberd,
+    Halberd,        // todo 3*
     BlackTassel,
     WhiteTassel,
     IronPoint,
@@ -101,12 +100,11 @@ pub enum WeaponName {
     EyeOfPerception,
     DodocoTales,
     BlackcliffAgate,
-    MagicGuide,
+    MagicGuide,         // todo 3*
     OtherworldlyStory,
     EmeraldOrb,
     ThrillingTalesOfDragonSlayers,
     TwinNephrite,
-    AmberCatalyst,
     PocketGrimoire,
     ApprenticesNotes,
 
@@ -130,12 +128,11 @@ pub enum WeaponName {
     CompoundBow,
     BlackcliffWarbow,
     WindblumeOde,
-    RavenBow,
+    RavenBow,       // todo 3*
     RecurveBow,
     Messenger,
     SharpshootersOath,
     Slingshot,
-    EbonyBow,
     SeasonedHuntersBow,
     HuntersBow,
 }

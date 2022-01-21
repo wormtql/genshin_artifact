@@ -5,8 +5,14 @@ pub mod characters; // data
 pub mod character; // character definition
 pub mod character_config;
 pub mod character_common_data;
+pub mod skill_config;
+pub mod traits;
+mod no_effect;
+pub mod prelude;
 
 pub use character_static_data::{CharacterStaticData};
 pub use character_name::CharacterName;
 pub use character::Character;
 pub use character_config::CharacterConfig;
+
+pub use characters::{GANYU_SKILL};

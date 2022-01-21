@@ -12,11 +12,11 @@ const ArtifactsPage = () => ({
     loading: LoadingComponent,
     error: ErrorComponent,
 });
-const ArtifactsPlanPage = () => ({
-    component: import(/* webpackChunkName: "artifacts-plan-page" */ "@page/ArtifactsPlanPage"),
-    loading: LoadingComponent,
-    error: ErrorComponent,
-});
+// const ArtifactsPlanPage = () => ({
+//     component: import(/* webpackChunkName: "artifacts-plan-page" */ "@page/ArtifactsPlanPage"),
+//     loading: LoadingComponent,
+//     error: ErrorComponent,
+// });
 const ChangeLogPage = () => ({
     component: import(/* webpackChunkName: "about-page" */ "@page/about/ChangeLogPage"),
     loading: LoadingComponent,
@@ -132,14 +132,14 @@ const routes = [
             title: "圣遗物 | " + webName,
         }
     },
-    {
-        path: "/calculate",
-        component: ArtifactsPlanPage,
-        meta: {
-            keepAlive: true,
-            title: "星命定轨 | " + webName,
-        }
-    },
+    // {
+    //     path: "/calculate",
+    //     component: ArtifactsPlanPage,
+    //     meta: {
+    //         keepAlive: true,
+    //         title: "星命定轨 | " + webName,
+    //     }
+    // },
     {
         path: "/changelog",
         component: ChangeLogPage,

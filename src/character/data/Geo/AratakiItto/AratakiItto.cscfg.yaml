@@ -1,0 +1,6 @@
+characterName: AratakiItto
+configs:
+  - type: bool
+    name: after_q
+    title: 处于「怒目鬼王」
+    default: true

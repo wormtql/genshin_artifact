@@ -1,0 +1,15 @@
+type: weapon
+weaponName: SummitShaper
+configs:
+  - type: float
+    min: 0
+    max: 5
+    name: stack
+    title: 攻击力叠加层数
+    default: 0
+  - type: float
+    min: 0
+    max: 1
+    name: shield_rate
+    title: 处于护盾下的比例
+    default: 0

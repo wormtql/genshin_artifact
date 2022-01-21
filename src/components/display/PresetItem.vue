@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { charactersData } from "@asset/characters";
+import { characterData } from "@character";
 import { weaponsData } from "@asset/weapons";
 import targetFuncsData from "@asset/target_functions/data";
 
@@ -59,7 +59,7 @@ export default {
     },
     computed: {
         characterData() {
-            return charactersData[this.item.character.name];
+            return characterData[this.item.character.name];
         },
 
         weaponData() {

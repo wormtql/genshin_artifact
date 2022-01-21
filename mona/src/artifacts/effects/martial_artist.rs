@@ -1,7 +1,6 @@
 use super::super::effect::ArtifactEffect;
-use crate::character::Character;
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName};
 
 pub struct MartialArtistEffect {
     pub rate: f64,
@@ -15,14 +14,14 @@ impl MartialArtistEffect {
     }
 }
 
-impl ArtifactEffect for MartialArtistEffect {
-    fn effect2(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::BonusNormalAttack, "武人2", 0.15);
-        attribute.add_value(AttributeName::BonusChargedAttack, "武人2", 0.15);
+impl<T: Attribute> ArtifactEffect<T> for MartialArtistEffect {
+    fn effect2(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::BonusNormalAttack, "武人2", 0.15);
+        attribute.set_value_by(AttributeName::BonusChargedAttack, "武人2", 0.15);
     }
 
-    fn effect4(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::BonusNormalAttack, "武人4", self.rate * 0.25);
-        attribute.add_value(AttributeName::BonusChargedAttack, "武人4", self.rate * 0.25);
+    fn effect4(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::BonusNormalAttack, "武人4", self.rate * 0.25);
+        attribute.set_value_by(AttributeName::BonusChargedAttack, "武人4", self.rate * 0.25);
     }
 }

@@ -1,7 +1,6 @@
 use super::super::effect::ArtifactEffect;
-use crate::character::Character;
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName};
 
 pub struct HeartOfDepthEffect {
     pub rate: f64,
@@ -15,13 +14,13 @@ impl HeartOfDepthEffect {
     }
 }
 
-impl ArtifactEffect for HeartOfDepthEffect {
-    fn effect2(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::BonusHydro, "沉沦之心2", 0.12);
+impl<T: Attribute> ArtifactEffect<T> for HeartOfDepthEffect {
+    fn effect2(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::BonusHydro, "沉沦之心2", 0.12);
     }
 
-    fn effect4(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::BonusNormalAttack, "沉沦之心4", self.rate * 0.3);
-        attribute.add_value(AttributeName::BonusChargedAttack, "沉沦之心4", self.rate * 0.3);
+    fn effect4(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::BonusNormalAttack, "沉沦之心4", self.rate * 0.3);
+        attribute.set_value_by(AttributeName::BonusChargedAttack, "沉沦之心4", self.rate * 0.3);
     }
 }

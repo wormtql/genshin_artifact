@@ -4,6 +4,7 @@ use super::effect_config::ArtifactEffectConfig;
 use crate::character::Character;
 
 pub use adventurer::AdventurerEffect;
+use crate::attribute::Attribute;
 pub use archaic_petra::ArchaicPetraEffect;
 pub use berserker::BerserkerEffect;
 pub use blizzard_strayer::BlizzardStrayerEffect;
@@ -69,9 +70,9 @@ pub mod wanderers_troupe;
 
 pub struct NoEffect {}
 
-impl ArtifactEffect for NoEffect {}
+impl<T: Attribute> ArtifactEffect<T> for NoEffect {}
 
-pub fn get_effect(name: ArtifactSetName, config: &ArtifactEffectConfig, character: &Character) -> Box<dyn ArtifactEffect> {
+pub fn get_effect<T: Attribute>(name: ArtifactSetName, config: &ArtifactEffectConfig, character: &Character<T>) -> Box<dyn ArtifactEffect<T>> {
     match name {
         ArtifactSetName::Adventurer => Box::new(AdventurerEffect::new()),
         ArtifactSetName::ArchaicPetra => Box::new(ArchaicPetraEffect::new(config)),
@@ -99,10 +100,10 @@ pub fn get_effect(name: ArtifactSetName, config: &ArtifactEffectConfig, characte
         ArtifactSetName::Scholar => Box::new(ScholarEffect::new()),
         ArtifactSetName::ShimenawasReminiscence => Box::new(ShimenawasReminiscenceEffect::new(config)),
         ArtifactSetName::TenacityOfTheMillelith => Box::new(TenacityOfTheMillelithEffect::new(config)),
-        ArtifactSetName::TheExile => Box::new(TheExileEffect::new(config)),
+        ArtifactSetName::TheExile => Box::new(TheExileEffect::new()),
         ArtifactSetName::ThunderingFury => Box::new(ThunderingFuryEffect::new()),
         ArtifactSetName::Thundersoother => Box::new(ThundersootherEffect::new(config)),
-        ArtifactSetName::ViridescentVenerer => Box::new(ViridescentVenererEffect::new(config)),
+        ArtifactSetName::ViridescentVenerer => Box::new(ViridescentVenererEffect::new()),
         ArtifactSetName::WanderersTroupe => Box::new(WanderersTroupeEffect::new(character.common_data.static_data.weapon_type)),
         _ => Box::new(NoEffect {}),
     }

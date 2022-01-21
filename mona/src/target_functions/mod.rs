@@ -8,3 +8,4 @@ pub mod target_functions;
 pub mod target_function_config;
 pub mod target_function_name;
 pub mod target_function_utils;
+pub mod target_function_opt_config;

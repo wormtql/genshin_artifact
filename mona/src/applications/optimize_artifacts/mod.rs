@@ -1,5 +1,4 @@
 use wasm_bindgen::prelude::*;
-use crate::artifacts::Artifact;
 
 pub mod interface_config_object;
 

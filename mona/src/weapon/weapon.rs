@@ -2,25 +2,25 @@ use super::weapon_common_data::WeaponCommonData;
 use super::weapon_effect::WeaponEffect;
 use super::weapons::get_effect;
 use crate::common::ChangeAttribute;
-use crate::attribute::AttributeGraph;
+use crate::attribute::{Attribute};
 use crate::character::Character;
 use crate::weapon::weapon_name::WeaponName;
 use super::weapon_config::WeaponConfig;
 
-pub struct Weapon {
+pub struct Weapon<T> {
     pub common_data: WeaponCommonData,
-    pub effect: Box<dyn WeaponEffect>,
+    pub effect: Box<dyn WeaponEffect<T>>,
 }
 
-impl Weapon {
+impl<T: Attribute> Weapon<T> {
     pub fn new(
         name: WeaponName,
         level: i32,
         ascend: bool,
         refine: i32,
         config: &WeaponConfig,
-        character: &Character,
-    ) -> Weapon {
+        character: &Character<T>,
+    ) -> Weapon<T> {
         let common_data = WeaponCommonData::new(name, level, ascend, refine);
         let effect = get_effect(name, config, character);
 
@@ -31,8 +31,8 @@ impl Weapon {
     }
 }
 
-impl ChangeAttribute for Weapon {
-    fn change_attribute(&self, attribute: &mut AttributeGraph) {
+impl<T: Attribute> ChangeAttribute<T> for Weapon<T> {
+    fn change_attribute(&self, attribute: &mut T) {
         self.common_data.change_attribute(attribute);
         self.effect.apply(&self.common_data, attribute);
     }

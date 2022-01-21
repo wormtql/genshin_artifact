@@ -1,22 +1,20 @@
 use super::super::effect::ArtifactEffect;
-use crate::character::Character;
-use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName};
 
 pub struct ViridescentVenererEffect {}
 
 impl ViridescentVenererEffect {
-    pub fn new(config: &ArtifactEffectConfig) -> ViridescentVenererEffect {
+    pub fn new() -> ViridescentVenererEffect {
         ViridescentVenererEffect {}
     }
 }
 
-impl ArtifactEffect for ViridescentVenererEffect {
-    fn effect2(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::BonusAnemo, "翠绿之影2", 0.15);
+impl<T: Attribute> ArtifactEffect<T> for ViridescentVenererEffect {
+    fn effect2(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::BonusAnemo, "翠绿之影2", 0.15);
     }
 
-    fn effect4(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::EnhanceSwirlBase, "翠绿之影4", 0.6);
+    fn effect4(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::EnhanceSwirlBase, "翠绿之影4", 0.6);
     }
 }

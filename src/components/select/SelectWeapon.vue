@@ -6,16 +6,7 @@
         size="small"
     >
         <el-option
-            value="custom"
-            label="自定义"
-        >
-            <div class="option-item">
-                <div style="width: 40px; display: inline-block"></div>
-                <span :style="{ color: getColor(1) }">自定义</span>
-            </div>
-        </el-option>
-        <el-option
-            v-for="weapon in weaponTypeMap[type]"
+            v-for="weapon in weaponList"
             :key="weapon.name"
             :value="weapon.name"
             :label="weapon.chs"
@@ -30,23 +21,32 @@
 </template>
 
 <script>
-import { weaponsByType } from "@asset/weapons";
+import { weaponByType } from "@weapon";
 import qualityColors from "@const/quality_colors";
 
 export default {
     name: "SelectWeapon",
-    created() {
-        this.weaponTypeMap = weaponsByType;
-    },
     props: {
         type: {
-            default: "any",
+            default: "Bow",
         },
         value: {},
+    },
+    computed: {
+        weaponList() {
+            return weaponByType[this.type] ?? []
+        }
     },
     methods: {
         getColor(star) {
             return qualityColors[star - 1];
+        }
+    },
+    watch: {
+        "type": function (newWeaponType, oldWeaponType) {
+            const defaultWeaponData = weaponByType[newWeaponType][0]
+            const name = defaultWeaponData.name
+            this.$emit("input", name)
         }
     }
 }

@@ -23,9 +23,9 @@ module.exports = {
     "rules": {
         "quotes": ["warn", "double"],
         "indent": ["error", 4],
-        "semi": ["warn", "always"],
+        // "semi": ["warn", "always"],
         "comma-dangle": ["warn", "never"],
         "eol-last": ["warn", "always"],
     },
-    "ignorePatterns": ["node_modules/**/*", "src/**/*", "mona/**/*"],
+    "ignorePatterns": ["node_modules/**/*", "src/**/*", "mona/**/*", "loaders/**/*"],
 };

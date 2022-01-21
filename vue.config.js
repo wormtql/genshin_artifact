@@ -8,6 +8,8 @@ const webpack = require("webpack");
 const WorkerPlugin = require("worker-plugin");
 
 
+const loaderPath = path.resolve(__dirname, "loaders")
+
 const BEIAN_CODE = "浙ICP备2021004987号";
 
 
@@ -63,6 +65,10 @@ module.exports = {
                 "@const": path.resolve(__dirname, "src/constants"),
                 "@enemy": path.resolve(__dirname, "src/enemies"),
                 "mona": path.resolve(__dirname, "mona/pkg"),
+
+                "@character": path.resolve(__dirname, "src/character"),
+                "@weapon": path.resolve(__dirname, "src/weapon"),
+                "@targetFunction": path.resolve(__dirname, "src/target_function"),
                 // "genshin_panel": path.resolve(__dirname, "../../ts/genshin/dist"),
             }
         },
@@ -86,22 +92,53 @@ module.exports = {
         //     "compute-worker": "./src/workers/compute.worker.js",
         //     "potential-worker": "./src/workers/compute_potential.worker.js",
         // },
-        // module: {
-        //     rules: [
-        //         {
-        //             test: /\.worker\.js$/,
-        //             use: [
-        //                 {
-        //                     loader: "worker-loader",
-        //                     // options: {
-        //                     //     filename: "js/[contenthash].[name].js",
-        //                     // }
-        //                 },
-        //                 // "babel-loader"
-        //             ],
-        //         }
-        //     ]
-        // },
+        module: {
+            rules: [
+                {
+                    test: /\.ccfg\.yaml$/,
+                    use: [
+                        "vue-loader",
+                        {
+                            loader: path.resolve(loaderPath, "character_config_loader.js"),
+                            options: {
+                                type: "character"
+                            }
+                        }
+                    ]
+                },
+                {
+                    test: /\.cscfg\.yaml$/,
+                    use: [
+                        "vue-loader",
+                        {
+                            loader: path.resolve(loaderPath, "character_config_loader.js"),
+                            options: {
+                                type: "characterSkill"
+                            }
+                        }
+                    ]
+                },
+                {
+                    test: /\.wcfg\.yaml$/,
+                    use: [
+                        "vue-loader",
+                        path.resolve(loaderPath, "weapon_config_loader")
+                    ]
+                }
+                // {
+                //     test: /\.worker\.js$/,
+                //     use: [
+                //         {
+                //             loader: "worker-loader",
+                //             // options: {
+                //             //     filename: "js/[contenthash].[name].js",
+                //             // }
+                //         },
+                //         // "babel-loader"
+                //     ],
+                // }
+            ]
+        },
         externals: {
             vue: "Vue",
             "vue-router": "VueRouter",

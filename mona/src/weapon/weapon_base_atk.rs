@@ -1,5 +1,5 @@
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
-pub enum WeaponBaskATKFamily {
+pub enum WeaponBaseATKFamily {
     ATK185,
     ATK243,
     ATK354,
@@ -16,26 +16,26 @@ pub enum WeaponBaskATKFamily {
     ATK741,
 }
 
-pub fn get_array(family: WeaponBaskATKFamily) -> [i32; 14] {
+pub fn get_array(family: WeaponBaseATKFamily) -> [i32; 14] {
     match family {
-        WeaponBaskATKFamily::ATK185 => [23, 56, 68, 102, 113, 130, 141, 158, 169, 185, -999, -999, -999, -999],
-        WeaponBaskATKFamily::ATK243 => [33, 80, 91, 139, 151, 174, 186, 209, 220, 243, -999, -999, -999, -999],
-        WeaponBaskATKFamily::ATK354 => [38, 86, 105, 151, 171, 193, 212, 234, 253, 274, 294, 314, 334, 354],
-        WeaponBaskATKFamily::ATK401 => [39, 94, 113, 169, 189, 216, 236, 263, 282, 309, 329, 355, 375, 401],
-        WeaponBaskATKFamily::ATK440 => [39, 94, 113, 169, 189, 216, 236, 263, 282, 309, 329, 355, 375, 440],
-        WeaponBaskATKFamily::ATK448 => [40, 102, 121, 187, 207, 239, 259, 292, 311, 344, 363, 396, 415, 448],
-        WeaponBaskATKFamily::ATK454 => [41, 99, 125, 184, 210, 238, 264, 293, 319, 347, 373, 401, 427, 454],
-        WeaponBaskATKFamily::ATK510 => [42, 109, 135, 205, 231, 266, 292, 327, 353, 388, 414, 449, 475, 510],
-        WeaponBaskATKFamily::ATK542 => [44, 110, 141, 210, 241, 275, 307, 341, 373, 408, 439, 475, 506, 542],
-        WeaponBaskATKFamily::ATK565 => [44, 119, 144, 226, 252, 293, 319, 361, 387, 429, 455, 497, 523, 565],
-        WeaponBaskATKFamily::ATK620 => [45, 134, 154, 261, 287, 340, 366, 419, 445, 499, 525, 579, 605, 620],
-        WeaponBaskATKFamily::ATK608 => [46, 122, 153, 235, 266, 308, 340, 382, 414, 457, 488, 532, 563, 608],
-        WeaponBaskATKFamily::ATK674 => [48, 133, 164, 261, 292, 341, 373, 423, 455, 506, 537, 590, 621, 674],
-        WeaponBaskATKFamily::ATK741 => [49, 145, 176, 286, 317, 374, 406, 464, 495, 555, 586, 648, 679, 741],
+        WeaponBaseATKFamily::ATK185 => [23, 56, 68, 102, 113, 130, 141, 158, 169, 185, -999, -999, -999, -999],
+        WeaponBaseATKFamily::ATK243 => [33, 80, 91, 139, 151, 174, 186, 209, 220, 243, -999, -999, -999, -999],
+        WeaponBaseATKFamily::ATK354 => [38, 86, 105, 151, 171, 193, 212, 234, 253, 274, 294, 314, 334, 354],
+        WeaponBaseATKFamily::ATK401 => [39, 94, 113, 169, 189, 216, 236, 263, 282, 309, 329, 355, 375, 401],
+        WeaponBaseATKFamily::ATK440 => [39, 94, 113, 169, 189, 216, 236, 263, 282, 309, 329, 355, 375, 440],
+        WeaponBaseATKFamily::ATK448 => [40, 102, 121, 187, 207, 239, 259, 292, 311, 344, 363, 396, 415, 448],
+        WeaponBaseATKFamily::ATK454 => [41, 99, 125, 184, 210, 238, 264, 293, 319, 347, 373, 401, 427, 454],
+        WeaponBaseATKFamily::ATK510 => [42, 109, 135, 205, 231, 266, 292, 327, 353, 388, 414, 449, 475, 510],
+        WeaponBaseATKFamily::ATK542 => [44, 110, 141, 210, 241, 275, 307, 341, 373, 408, 439, 475, 506, 542],
+        WeaponBaseATKFamily::ATK565 => [44, 119, 144, 226, 252, 293, 319, 361, 387, 429, 455, 497, 523, 565],
+        WeaponBaseATKFamily::ATK620 => [45, 134, 154, 261, 287, 340, 366, 419, 445, 499, 525, 579, 605, 620],
+        WeaponBaseATKFamily::ATK608 => [46, 122, 153, 235, 266, 308, 340, 382, 414, 457, 488, 532, 563, 608],
+        WeaponBaseATKFamily::ATK674 => [48, 133, 164, 261, 292, 341, 373, 423, 455, 506, 537, 590, 621, 674],
+        WeaponBaseATKFamily::ATK741 => [49, 145, 176, 286, 317, 374, 406, 464, 495, 555, 586, 648, 679, 741],
     }
 }
 
-impl WeaponBaskATKFamily {
+impl WeaponBaseATKFamily {
     pub fn get_base_atk(&self, level: i32, ascend: bool) -> f64 {
         let array = get_array(*self);
 

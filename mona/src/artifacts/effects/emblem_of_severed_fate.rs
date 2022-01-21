@@ -1,7 +1,5 @@
 use super::super::effect::ArtifactEffect;
-use crate::character::Character;
-use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{AttributeGraph, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 
 pub struct EmblemOfSeveredFataEffect {}
 
@@ -11,16 +9,18 @@ impl EmblemOfSeveredFataEffect {
     }
 }
 
-impl ArtifactEffect for EmblemOfSeveredFataEffect {
-    fn effect2(&self, attribute: &mut AttributeGraph) {
-        attribute.add_value(AttributeName::Recharge, "绝缘之旗印2", 0.2);
+impl<T: Attribute> ArtifactEffect<T> for EmblemOfSeveredFataEffect {
+    fn effect2(&self, attribute: &mut T) {
+        attribute.set_value_by(AttributeName::Recharge, "绝缘之旗印2", 0.2);
     }
 
-    fn effect4(&self, attribute: &mut AttributeGraph) {
-        attribute.add_edge(
+    fn effect4(&self, attribute: &mut T) {
+        attribute.add_edge1(
             AttributeName::Recharge,
             AttributeName::BonusElementalBurst,
-            Box::new(|n| (String::from("绝缘之旗印4"), (n.value() * 0.25).min(0.75)))
+            Box::new(|x, _| (x * 0.25).min(0.75)),
+            Box::new(|grad, x, _| (if x < 3.0 { grad * 0.25 } else { 0.0 }, 0.0)),
+            "绝缘之旗印4"
         );
     }
 }
