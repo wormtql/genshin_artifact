@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::no_effect::NoEffect;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::EulaDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct EulaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -61,3 +73,125 @@ pub const EULA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     weapon_type: WeaponType::Claymore,
     star: 5
 };
+
+pub struct Eula;
+
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+pub enum EulaDamageEnum {
+    Normal1,
+    Normal2,
+    Normal31,
+    Normal32,
+    Normal4,
+    Normal51,
+    Normal52,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    E3,
+    EShatteredLightfall,
+    Q1,
+    QLightfall
+}
+
+impl EulaDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use EulaDamageEnum::*;
+        match *self {
+            E1 | E2 | E3 | Q1 => Element::Cryo,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use EulaDamageEnum::*;
+        match *self {
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E2 | E3 | EShatteredLightfall => SkillType::ElementalSkill,
+            Q1 | QLightfall => SkillType::ElementalBurst,
+            _ => SkillType::NormalAttack
+        }
+    }
+}
+
+impl Into<usize> for EulaDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum EulaRoleEnum {
+    Main
+}
+
+impl CharacterTrait for Eula {
+    const STATIC_DATA: CharacterStaticData = EULA_STATIC_DATA;
+    type SkillType = EulaSkillType;
+    const SKILL: Self::SkillType = EULA_SKILL;
+    type DamageEnumType = EulaDamageEnum;
+    type RoleEnum = EulaRoleEnum;
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s: EulaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use EulaDamageEnum::*;
+        let ratio = match s {
+            Normal1 => EULA_SKILL.normal_dmg1[s1],
+            Normal2 => EULA_SKILL.normal_dmg2[s1],
+            Normal31 => EULA_SKILL.normal_dmg31[s1],
+            Normal32 => EULA_SKILL.normal_dmg32[s1],
+            Normal4 => EULA_SKILL.normal_dmg4[s1],
+            Normal51 => EULA_SKILL.normal_dmg51[s1],
+            Normal52 => EULA_SKILL.normal_dmg52[s1],
+            Charged1 => EULA_SKILL.charged_dmg1[s1],
+            Charged2 => EULA_SKILL.charged_dmg2[s1],
+            Plunging1 => EULA_SKILL.plunging_dmg1[s1],
+            Plunging2 => EULA_SKILL.plunging_dmg2[s1],
+            Plunging3 => EULA_SKILL.plunging_dmg3[s1],
+            E1 => EULA_SKILL.elemental_skill_dmg1[s2],
+            E2 => EULA_SKILL.elemental_skill_dmg2[s2],
+            E3 => EULA_SKILL.elemental_skill_dmg3[s2],
+            EShatteredLightfall => EULA_SKILL.elemental_burst_dmg2[s3] / 2.0,
+            Q1 => EULA_SKILL.elemental_burst_dmg1[s3],
+            QLightfall => EULA_SKILL.elemental_burst_dmg2[s3],
+        };
+
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        if s == QLightfall {
+            let stack = match *config {
+                CharacterSkillConfig::Eula { lightfall_stack } => lightfall_stack,
+                _ => 0
+            };
+            builder.add_atk_ratio("光降之剑能量", (stack as f64) * EULA_SKILL.elemental_burst_dmg3[s3]);
+        }
+
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(NoEffect)
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: EulaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            EulaRoleEnum::Main => Box::new(EulaDefaultTargetFunction {
+                is_c2: c.constellation >= 2
+            })
+        }
+    }
+}

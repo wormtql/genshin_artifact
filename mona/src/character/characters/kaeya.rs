@@ -1,6 +1,19 @@
+use num_derive::FromPrimitive;
+use num_traits::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::no_effect::NoEffect;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::CharacterTrait;
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::KaeyaDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct KaeyaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -41,3 +54,102 @@ pub const KAEYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     weapon_type: WeaponType::Sword,
     star: 4
 };
+
+pub struct Kaeya;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum KaeyaDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal5,
+    Charged11,
+    Charged12,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    Q1
+}
+
+impl KaeyaDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use KaeyaDamageEnum::*;
+        match *self {
+            E1 | Q1 => Element::Cryo,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use KaeyaDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal5 => SkillType::NormalAttack,
+            Charged11 | Charged12 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 => SkillType::ElementalSkill,
+            Q1 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for KaeyaDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum KaeyaRoleEnum {
+    MainCryo
+}
+
+impl CharacterTrait for Kaeya {
+    const STATIC_DATA: CharacterStaticData = KAEYA_STATIC_DATA;
+    type SkillType = KaeyaSkillType;
+    const SKILL: Self::SkillType = KAEYA_SKILL;
+    type DamageEnumType = KaeyaDamageEnum;
+    type RoleEnum = KaeyaRoleEnum;
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: KaeyaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use KaeyaDamageEnum::*;
+        let ratio = match s {
+            Normal1 => KAEYA_SKILL.normal_dmg1[s1],
+            Normal2 => KAEYA_SKILL.normal_dmg2[s1],
+            Normal3 => KAEYA_SKILL.normal_dmg3[s1],
+            Normal4 => KAEYA_SKILL.normal_dmg4[s1],
+            Normal5 => KAEYA_SKILL.normal_dmg5[s1],
+            Charged11 => KAEYA_SKILL.charged_dmg11[s1],
+            Charged12 => KAEYA_SKILL.charged_dmg11[s1],
+            Plunging1 => KAEYA_SKILL.plunging_dmg1[s1],
+            Plunging2 => KAEYA_SKILL.plunging_dmg1[s1],
+            Plunging3 => KAEYA_SKILL.plunging_dmg1[s1],
+            E1 => KAEYA_SKILL.elemental_skill_dmg1[s2],
+            Q1 => KAEYA_SKILL.elemental_burst_dmg1[s3]
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(NoEffect)
+    }
+
+    fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: KaeyaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            KaeyaRoleEnum::MainCryo => Box::new(KaeyaDefaultTargetFunction)
+        }
+    }
+}

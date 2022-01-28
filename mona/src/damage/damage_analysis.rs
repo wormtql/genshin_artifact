@@ -18,16 +18,18 @@ pub struct DamageAnalysis {
     pub melt_enhance: HashMap<String, f64>,
     pub vaporize_enhance: HashMap<String, f64>,
     pub healing_bonus: HashMap<String, f64>,
+    pub shield_strength: HashMap<String, f64>,
 
     pub def_minus: HashMap<String, f64>,
     pub res_minus: HashMap<String, f64>,
 
     pub element: Element,
     pub is_heal: bool,
+    pub is_shield: bool,
 
     pub normal: DamageResult,
-    pub melt: DamageResult,
-    pub vaporize: DamageResult
+    pub melt: Option<DamageResult>,
+    pub vaporize: Option<DamageResult>
 }
 
 pub struct HealAnalysis {

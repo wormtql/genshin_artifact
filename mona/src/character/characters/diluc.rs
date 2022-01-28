@@ -1,6 +1,19 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{Character, CharacterConfig, CharacterStaticData};
+use crate::character::no_effect::NoEffect;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::DilucDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct DilucSkillType {
     pub normal_dmg1: [f64; 15],
@@ -40,7 +53,7 @@ pub const DILUC_SKILL: DilucSkillType = DilucSkillType {
     elemental_burst_dmg3: [2.04, 2.193, 2.346, 2.55, 2.703, 2.856, 3.06, 3.264, 3.468, 3.672, 3.876, 4.08, 4.335, 4.59, 4.845]
 };
 
-pub const DILUC_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+const DILUC_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     element: Element::Pyro,
     hp: [1011, 2621, 3488, 5219, 5834, 6712, 7533, 8421, 9036, 9932, 10547, 11453, 12068, 12981],
     atk: [26, 68, 90, 135, 151, 173, 194, 217, 233, 256, 272, 295, 311, 335],
@@ -49,3 +62,120 @@ pub const DILUC_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     weapon_type: WeaponType::Claymore,
     star: 5
 };
+
+pub struct Diluc;
+
+#[derive(Copy, Clone)]
+#[derive(FromPrimitive)]
+pub enum DilucDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    E3,
+    Q1,
+    Q2,
+    Q3
+}
+
+impl DilucDamageEnum {
+    pub fn get_element(&self, pyro: bool) -> Element {
+        use DilucDamageEnum::*;
+
+        if pyro {
+            Element::Pyro
+        } else {
+            match *self {
+                E1 | E2 | E3 | Q1 | Q2 | Q3 => Element::Pyro,
+                _ => Element::Physical
+            }
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use DilucDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E2 | E3 => SkillType::ElementalSkill,
+            Q1 | Q2 | Q3 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for DilucDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum DilucRoleEnum {
+    Main
+}
+
+impl CharacterTrait for Diluc {
+    const STATIC_DATA: CharacterStaticData = DILUC_STATIC_DATA;
+    type SkillType = DilucSkillType;
+    const SKILL: Self::SkillType = DILUC_SKILL;
+    type DamageEnumType = DilucDamageEnum;
+    type RoleEnum = DilucRoleEnum;
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s: DilucDamageEnum = num::FromPrimitive::from_usize(s).expect("wrong skill index");
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use DilucDamageEnum::*;
+        let ratio = match s {
+            Normal1 => DILUC_SKILL.normal_dmg1[s1],
+            Normal2 => DILUC_SKILL.normal_dmg2[s1],
+            Normal3 => DILUC_SKILL.normal_dmg3[s1],
+            Normal4 => DILUC_SKILL.normal_dmg4[s1],
+            Charged1 => DILUC_SKILL.charged_dmg1[s1],
+            Charged2 => DILUC_SKILL.charged_dmg2[s1],
+            Plunging1 => DILUC_SKILL.plunging_dmg1[s1],
+            Plunging2 => DILUC_SKILL.plunging_dmg2[s1],
+            Plunging3 => DILUC_SKILL.plunging_dmg3[s1],
+            E1 => DILUC_SKILL.elemental_skill_dmg1[s2],
+            E2 => DILUC_SKILL.elemental_skill_dmg2[s2],
+            E3 => DILUC_SKILL.elemental_skill_dmg3[s2],
+            Q1 => DILUC_SKILL.elemental_burst_dmg1[s3],
+            Q2 => DILUC_SKILL.elemental_burst_dmg2[s3],
+            Q3 => DILUC_SKILL.elemental_burst_dmg3[s3]
+        };
+
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+
+        let pyro = match *config {
+            CharacterSkillConfig::Diluc { pyro } => pyro,
+            _ => false
+        };
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(pyro),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(NoEffect)
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: DilucRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            DilucRoleEnum::Main => Box::new(DilucDefaultTargetFunction),
+        }
+    }
+}

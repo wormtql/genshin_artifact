@@ -1,11 +1,18 @@
+use num_derive::FromPrimitive;
 use crate::attribute::{Attribute, AttributeName, ComplicatedAttributeGraph};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
 use crate::damage::{ComplicatedDamageBuilder, DamageAnalysis, DamageContext};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::enemies::Enemy;
+use crate::target_functions::target_functions::HuTaoDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct HuTaoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -88,7 +95,7 @@ impl<T: Attribute> ChangeAttribute<T> for HuTaoEffect {
     }
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, FromPrimitive)]
 pub enum HuTaoDamageEnum {
     Normal1,
     Normal2,
@@ -106,56 +113,107 @@ pub enum HuTaoDamageEnum {
     ElementalBurstLow1,
 }
 
-pub struct HuTaoDamage {}
+impl Into<usize> for HuTaoDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
 
-impl HuTaoDamage {
-    pub fn damage<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, t: HuTaoDamageEnum, after_e: bool) -> D::Result {
-        let ratio = match t {
-            HuTaoDamageEnum::Normal1 => HU_TAO_SKILL.normal_dmg1[context.character_common_data.skill1],
-            HuTaoDamageEnum::Normal2 => HU_TAO_SKILL.normal_dmg2[context.character_common_data.skill1],
-            HuTaoDamageEnum::Normal3 => HU_TAO_SKILL.normal_dmg3[context.character_common_data.skill1],
-            HuTaoDamageEnum::Normal4 => HU_TAO_SKILL.normal_dmg4[context.character_common_data.skill1],
-            HuTaoDamageEnum::Normal51 => HU_TAO_SKILL.normal_dmg51[context.character_common_data.skill1],
-            HuTaoDamageEnum::Normal52 => HU_TAO_SKILL.normal_dmg52[context.character_common_data.skill1],
-            HuTaoDamageEnum::Normal6 => HU_TAO_SKILL.normal_dmg6[context.character_common_data.skill1],
-            HuTaoDamageEnum::Charged => HU_TAO_SKILL.charged_dmg1[context.character_common_data.skill1],
-            HuTaoDamageEnum::Plunging1 => HU_TAO_SKILL.plunging_dmg1[context.character_common_data.skill1],
-            HuTaoDamageEnum::Plunging2 => HU_TAO_SKILL.plunging_dmg2[context.character_common_data.skill1],
-            HuTaoDamageEnum::Plunging3 => HU_TAO_SKILL.plunging_dmg3[context.character_common_data.skill1],
-            HuTaoDamageEnum::ElementalSkillBloodBlossom => HU_TAO_SKILL.elemental_skill_blood_blossom[context.character_common_data.skill2],
-            HuTaoDamageEnum::ElementalBurst1 => HU_TAO_SKILL.elemental_burst_dmg1[context.character_common_data.skill3],
-            HuTaoDamageEnum::ElementalBurstLow1 => HU_TAO_SKILL.elemental_burst_dmg2[context.character_common_data.skill3],
-        };
-        let element = match t {
-            HuTaoDamageEnum::ElementalSkillBloodBlossom | HuTaoDamageEnum::ElementalBurst1 | HuTaoDamageEnum::ElementalBurstLow1 => Element::Pyro,
-            _ => if after_e { Element::Pyro } else { Element::Physical }
-        };
-        let skill = match t {
-            HuTaoDamageEnum::ElementalSkillBloodBlossom => SkillType::ElementalSkill,
-            HuTaoDamageEnum::ElementalBurst1 | HuTaoDamageEnum::ElementalBurstLow1 => SkillType::ElementalBurst,
-            HuTaoDamageEnum::Charged => SkillType::ChargedAttack,
-            HuTaoDamageEnum::Plunging1 | HuTaoDamageEnum::Plunging2 | HuTaoDamageEnum::Plunging3 => SkillType::PlungingAttack,
-            _ => SkillType::NormalAttack
+impl HuTaoDamageEnum {
+    pub fn get_element(&self, after_e: bool) -> Element {
+        use HuTaoDamageEnum::*;
+
+        if after_e {
+            Element::Pyro
+        } else {
+            match *self {
+                ElementalSkillBloodBlossom | ElementalBurst1 | ElementalBurstLow1 => Element::Pyro,
+                _ => Element::Physical
+            }
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use HuTaoDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 |Normal3 | Normal4 | Normal51 | Normal52 | Normal6 => SkillType::NormalAttack,
+            Charged => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            ElementalSkillBloodBlossom => SkillType::ElementalSkill,
+            ElementalBurst1 | ElementalBurstLow1 => SkillType::ElementalBurst
+        }
+    }
+}
+
+pub struct HuTao;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum HuTaoRoleEnum {
+    Main
+}
+
+impl CharacterTrait for HuTao {
+    const STATIC_DATA: CharacterStaticData = HU_TAO_STATIC_DATA;
+    type SkillType = HuTaoSkillType;
+    const SKILL: Self::SkillType = HU_TAO_SKILL;
+    type DamageEnumType = HuTaoDamageEnum;
+    type RoleEnum = HuTaoRoleEnum;
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s: HuTaoDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use HuTaoDamageEnum::*;
+        let ratio = match s {
+            Normal1 => HU_TAO_SKILL.normal_dmg1[s1],
+            Normal2 => HU_TAO_SKILL.normal_dmg2[s1],
+            Normal3 => HU_TAO_SKILL.normal_dmg3[s1],
+            Normal4 => HU_TAO_SKILL.normal_dmg4[s1],
+            Normal51 => HU_TAO_SKILL.normal_dmg51[s1],
+            Normal52 => HU_TAO_SKILL.normal_dmg52[s1],
+            Normal6 => HU_TAO_SKILL.normal_dmg6[s1],
+            Charged => HU_TAO_SKILL.charged_dmg1[s1],
+            Plunging1 => HU_TAO_SKILL.plunging_dmg1[s1],
+            Plunging2 => HU_TAO_SKILL.plunging_dmg2[s1],
+            Plunging3 => HU_TAO_SKILL.plunging_dmg3[s1],
+            ElementalSkillBloodBlossom => HU_TAO_SKILL.elemental_skill_blood_blossom[s2],
+            ElementalBurst1 => HU_TAO_SKILL.elemental_burst_dmg1[s3],
+            ElementalBurstLow1 => HU_TAO_SKILL.elemental_burst_dmg2[s3],
         };
 
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
+
+        let after_e = match *config {
+            CharacterSkillConfig::HuTao { after_e } => after_e,
+            _ => false
+        };
         if after_e {
             let hp = context.attribute.get_value(AttributeName::HP);
             let atk_base = context.attribute.get_value(AttributeName::ATKBase);
-            let atk_bonus = (HU_TAO_SKILL.elemental_skill_atk_bonus[context.character_common_data.skill2] * hp).min(4.0 * atk_base);
+            let atk_bonus = (HU_TAO_SKILL.elemental_skill_atk_bonus[s2] * hp).min(4.0 * atk_base);
             builder.add_extra_atk("胡桃：彼岸蝶舞", atk_bonus);
         }
 
-        builder.build(
+        builder.damage(
             &context.attribute,
             &context.enemy,
-            element,
-            skill,
-            false,
+            s.get_element(after_e),
+            s.get_skill_type(),
             context.character_common_data.level
         )
     }
-}
 
-pub struct HuTao {}
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(HuTaoEffect::new(common_data, config))
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: HuTaoRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            HuTaoRoleEnum::Main => Box::new(HuTaoDefaultTargetFunction {
+                vaporize_rate: 0.5
+            })
+        }
+    }
+}

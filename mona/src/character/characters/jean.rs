@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::no_effect::NoEffect;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::JeanDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct JeanSkillType {
     pub normal_dmg1: [f64; 15],
@@ -51,3 +63,133 @@ pub const JEAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     weapon_type: WeaponType::Sword,
     star: 5
 };
+
+pub struct Jean;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum JeanDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal5,
+    Charged,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    Q1,
+    Q2,
+    QHeal1,
+    QHeal2
+}
+
+impl JeanDamageEnum {
+    pub fn is_heal(&self) -> bool {
+        use JeanDamageEnum::*;
+        match *self {
+            QHeal1 | QHeal2 => true,
+            _ => false
+        }
+    }
+
+    pub fn get_element(&self) -> Element {
+        use JeanDamageEnum::*;
+        match *self {
+            E1 | Q1 | Q2 => Element::Anemo,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use JeanDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal5 => SkillType::NormalAttack,
+            Charged => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 => SkillType::ElementalSkill,
+            Q1 | Q2 | QHeal1 | QHeal2 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for JeanDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum JeanRoleEnum {
+    Default
+}
+
+impl CharacterTrait for Jean {
+    const STATIC_DATA: CharacterStaticData = JEAN_STATIC_DATA;
+    type SkillType = JeanSkillType;
+    const SKILL: Self::SkillType = JEAN_SKILL;
+    type DamageEnumType = JeanDamageEnum;
+    type RoleEnum = JeanRoleEnum;
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: JeanDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use JeanDamageEnum::*;
+        if s.is_heal() {
+            let ratio = match s {
+                QHeal1 => JEAN_SKILL.elemental_burst_heal1[s3],
+                QHeal2 => JEAN_SKILL.elemental_burst_heal2[s3],
+                _ => 0.0
+            };
+            let fixed = match s {
+                QHeal1 => JEAN_SKILL.elemental_burst_heal1_fixed[s3],
+                QHeal2 => JEAN_SKILL.elemental_burst_heal2_fixed[s3],
+                _ => 0.0
+            };
+            let mut builder = D::new();
+            builder.add_atk_ratio("技能倍率", ratio);
+            builder.add_extra_damage("技能倍率", fixed);
+            builder.heal(&context.attribute)
+        } else {
+            let ratio = match s {
+                Normal1 => JEAN_SKILL.normal_dmg1[s1],
+                Normal2 => JEAN_SKILL.normal_dmg2[s1],
+                Normal3 => JEAN_SKILL.normal_dmg3[s1],
+                Normal4 => JEAN_SKILL.normal_dmg4[s1],
+                Normal5 => JEAN_SKILL.normal_dmg5[s1],
+                Charged => JEAN_SKILL.charged_dmg1[s1],
+                Plunging1 => JEAN_SKILL.plunging_dmg1[s1],
+                Plunging2 => JEAN_SKILL.plunging_dmg2[s1],
+                Plunging3 => JEAN_SKILL.plunging_dmg3[s1],
+                E1 => JEAN_SKILL.elemental_skill_dmg1[s2],
+                Q1 => JEAN_SKILL.elemental_burst_dmg1[s3],
+                Q2 => JEAN_SKILL.elemental_burst_dmg2[s3],
+                _ => 0.0
+            };
+            let mut builder = D::new();
+            builder.add_atk_ratio("技能倍率", ratio);
+            builder.damage(
+                &context.attribute,
+                &context.enemy,
+                s.get_element(),
+                s.get_skill_type(),
+                context.character_common_data.level
+            )
+        }
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(NoEffect)
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: JeanRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            JeanRoleEnum::Default => Box::new(JeanDefaultTargetFunction {
+                recharge_demand: 1.6,
+                damage_weight: 0.8,
+            })
+        }
+    }
+}

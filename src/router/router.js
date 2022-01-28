@@ -66,7 +66,7 @@ const webName = process.env.WEB_TITLE;
 const routes = [
     {
         path: "/ura",
-        component: () => import("@page/NewArtifactPlanPage"),
+        component: () => Promise.all([window.wasmPromise]).then(() => import("@page/NewArtifactPlanPage")),
         meta: {
             title: "ura | " + webName,
             keepAlive: false,

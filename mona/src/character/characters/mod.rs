@@ -2,7 +2,7 @@ use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::ChangeAttribute;
 use crate::attribute::Attribute;
-use super::traits::{CharacterTrait, CharacterConstant, CharacterDamage, CharacterEffect};
+use super::traits::{CharacterTrait};
 
 pub use albedo::{Albedo};
 pub use aloy::{ALOY_STATIC_DATA, ALOY_SKILL};
@@ -10,19 +10,19 @@ pub use amber::{Amber};
 pub use arataki_itto::{AratakiItto};
 pub use barbara::{Barbara};
 pub use beidou::{Beidou};
-pub use bennett::{BENNETT_SKILL, BENNETT_STATIC_DATA};
-pub use chongyun::{CHONGYUN_SKILL, CHONGYUN_STATIC_DATA};
-pub use diluc::{DILUC_SKILL, DILUC_STATIC_DATA};
-pub use diona::{DIONA_SKILL, DIONA_STATIC_DATA};
-pub use eula::{EULA_SKILL, EULA_STATIC_DATA};
-pub use fischl::{FISCHL_SKILL, FISCHL_STATIC_DATA};
-pub use ganyu::{GANYU_SKILL, GANYU_STATIC_DATA, GanyuEffect, GanyuDamageEnum, GanyuDamage};
-pub use gorou::{GOROU_SKILL, GOROU_STATIC_DATA};
-pub use hu_tao::{HU_TAO_SKILL, HU_TAO_STATIC_DATA, HuTaoEffect, HuTaoDamageEnum, HuTaoDamage};
-pub use jean::{JEAN_SKILL, JEAN_STATIC_DATA};
-pub use kaedehara_kazuha::{KAEDEHARA_KAZUHA_SKILL, KAEDEHARA_KAZUHA_STATIC_DATA};
-pub use kaeya::{KAEYA_SKILL, KAEYA_STATIC_DATA};
-pub use kamisato_ayaka::{KAMISATO_AYAKA_SKILL, KAMISATO_AYAKA_STATIC_DATA};
+pub use bennett::{Bennett};
+pub use chongyun::{Chongyun};
+pub use diluc::{Diluc};
+pub use diona::{Diona};
+pub use eula::{Eula};
+pub use fischl::{Fischl};
+pub use ganyu::{Ganyu};
+pub use gorou::{Gorou};
+pub use hu_tao::{HuTao};
+pub use jean::{Jean};
+pub use kaedehara_kazuha::{KaedeharaKazuha};
+pub use kaeya::{Kaeya};
+pub use kamisato_ayaka::{KamisatoAyaka};
 pub use keqing::{KEQING_SKILL, KEQING_STATIC_DATA};
 pub use klee::{KLEE_SKILL, KLEE_STATIC_DATA};
 pub use kujou_sara::{KUJOU_SARA_SKILL, KUJOU_SARA_STATIC_DATA};
@@ -50,6 +50,9 @@ pub use zhongli::{ZhongliEffect, ZHONGLI_SKILL, ZHONGLI_STATIC_DATA};
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub mod albedo;
 pub mod aloy;
@@ -103,19 +106,19 @@ pub fn get_static_data(name: CharacterName) -> CharacterStaticData {
         CharacterName::AratakiItto => AratakiItto::STATIC_DATA,
         CharacterName::Barbara => Barbara::STATIC_DATA,
         CharacterName::Beidou => Beidou::STATIC_DATA,
-        CharacterName::Bennett => BENNETT_STATIC_DATA,
-        CharacterName::Chongyun => CHONGYUN_STATIC_DATA,
-        CharacterName::Diluc => DILUC_STATIC_DATA,
-        CharacterName::Diona => DIONA_STATIC_DATA,
-        CharacterName::Eula => EULA_STATIC_DATA,
-        CharacterName::Fischl => FISCHL_STATIC_DATA,
-        CharacterName::Ganyu => GANYU_STATIC_DATA,
-        CharacterName::Gorou => GOROU_STATIC_DATA,
-        CharacterName::HuTao => HU_TAO_STATIC_DATA,
-        CharacterName::Jean => JEAN_STATIC_DATA,
-        CharacterName::KaedeharaKazuha => KAEDEHARA_KAZUHA_STATIC_DATA,
-        CharacterName::Kaeya => KAEYA_STATIC_DATA,
-        CharacterName::KamisatoAyaka => KAMISATO_AYAKA_STATIC_DATA,
+        CharacterName::Bennett => Bennett::STATIC_DATA,
+        CharacterName::Chongyun => Chongyun::STATIC_DATA,
+        CharacterName::Diluc => Diluc::STATIC_DATA,
+        CharacterName::Diona => Diona::STATIC_DATA,
+        CharacterName::Eula => Eula::STATIC_DATA,
+        CharacterName::Fischl => Fischl::STATIC_DATA,
+        CharacterName::Ganyu => Ganyu::STATIC_DATA,
+        CharacterName::Gorou => Gorou::STATIC_DATA,
+        CharacterName::HuTao => HuTao::STATIC_DATA,
+        CharacterName::Jean => Jean::STATIC_DATA,
+        CharacterName::KaedeharaKazuha => KaedeharaKazuha::STATIC_DATA,
+        CharacterName::Kaeya => Kaeya::STATIC_DATA,
+        CharacterName::KamisatoAyaka => KamisatoAyaka::STATIC_DATA,
         CharacterName::Keqing => KEQING_STATIC_DATA,
         CharacterName::Klee => KLEE_STATIC_DATA,
         CharacterName::KujouSara => KUJOU_SARA_STATIC_DATA,
@@ -150,9 +153,10 @@ pub fn get_effect<T: Attribute>(
     config: &CharacterConfig
 ) -> Option<Box<dyn ChangeAttribute<T>>> {
     match name {
-        CharacterName::Amber => Some(Box::new(<Amber as CharacterEffect<T>>::new_effect(common_data, config))),
-        CharacterName::Ganyu => Some(Box::new(GanyuEffect::new(config))),
-        CharacterName::HuTao => Some(Box::new(HuTaoEffect::new(common_data, config))),
+        CharacterName::Amber => Some(Amber::new_effect(common_data, config)),
+        CharacterName::Ganyu => Some(Ganyu::new_effect(common_data, config)),
+        CharacterName::HuTao => Some(HuTao::new_effect(common_data, config)),
+        CharacterName::KamisatoAyaka => Some(KamisatoAyaka::new_effect(common_data, config)),
         CharacterName::Mona => Some(Box::new(MonaEffect::new(common_data))),
         CharacterName::RaidenShogun => Some(Box::new(RaidenShogunEffect::new(common_data))),
         CharacterName::SangonomiyaKokomi => Some(Box::new(SangonomiyaKokomiEffect::new())),
@@ -164,10 +168,53 @@ pub fn get_effect<T: Attribute>(
 
 pub fn damage<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, skill_index: usize, skill_config: &CharacterSkillConfig) -> D::Result {
     match context.character_common_data.name {
-        CharacterName::Amber => <Amber as CharacterDamage<D>>::damage_internal(context, skill_index, skill_config),
-        CharacterName::AratakiItto => <AratakiItto as CharacterDamage<D>>::damage_internal(context, skill_index, skill_config),
-        CharacterName::Barbara => <Barbara as CharacterDamage<D>>::damage_internal(context, skill_index, skill_config),
-        CharacterName::Beidou => <Beidou as CharacterDamage<D>>::damage_internal(context, skill_index, skill_config),
-        _ => <Amber as CharacterDamage<D>>::damage_internal(context, skill_index, skill_config)
+        CharacterName::Albedo => Albedo::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Amber => Amber::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::AratakiItto => AratakiItto::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Barbara => Barbara::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Beidou => Beidou::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Bennett => Bennett::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Chongyun => Chongyun::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Diluc => Diluc::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Diona => Diona::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Eula => Eula::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Fischl => Fischl::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Ganyu => Ganyu::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Gorou => Gorou::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::HuTao => HuTao::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Jean => Jean::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::KaedeharaKazuha => KaedeharaKazuha::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::Kaeya => Kaeya::damage_internal::<D>(context, skill_index, skill_config),
+        CharacterName::KamisatoAyaka => KamisatoAyaka::damage_internal::<D>(context, skill_index, skill_config),
+        _ => Amber::damage_internal::<D>(context, skill_index, skill_config)
+    }
+}
+
+pub fn get_target_function_by_role(
+    role_index: usize,
+    team: &TeamQuantization,
+    character: &CharacterCommonData,
+    weapon: &WeaponCommonData
+) -> Box<dyn TargetFunction> {
+    match character.name {
+        CharacterName::Albedo => Albedo::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Amber => Amber::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::AratakiItto => AratakiItto::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Barbara => Barbara::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Beidou => Beidou::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Bennett => Bennett::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Chongyun => Chongyun::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Diluc => Diluc::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Diona => Diona::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Eula => Eula::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Fischl => Fischl::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Ganyu => Ganyu::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Gorou => Gorou::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::HuTao => HuTao::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Jean => Jean::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::KaedeharaKazuha => KaedeharaKazuha::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::Kaeya => Kaeya::get_target_function_by_role(role_index, team, character, weapon),
+        CharacterName::KamisatoAyaka => KamisatoAyaka::get_target_function_by_role(role_index, team, character, weapon),
+        _ => panic!("no character")
     }
 }

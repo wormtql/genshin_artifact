@@ -2,13 +2,18 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::{Character, CharacterConfig, CharacterStaticData};
 use crate::character::no_effect::NoEffect;
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterConstant, CharacterDamage, CharacterEffect, CharacterTrait};
-use crate::common::{Element, SkillType, WeaponType};
+use crate::character::traits::{CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
+use crate::target_functions::target_functions::BarbaraDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct BarbaraSkillType {
     pub normal_dmg1: [f64; 15],
@@ -104,22 +109,19 @@ impl Into<usize> for BarbaraDamageEnum {
     }
 }
 
-impl CharacterConstant for Barbara {
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum BarbaraRoleEnum {
+    Heal
+}
+
+impl CharacterTrait for Barbara {
     const STATIC_DATA: CharacterStaticData = BARBARA_STATIC_DATA;
     type SkillType = BarbaraSkillType;
     const SKILL: Self::SkillType = BARBARA_SKILL;
     type DamageEnumType = BarbaraDamageEnum;
-}
+    type RoleEnum = BarbaraRoleEnum;
 
-impl<A: Attribute> CharacterEffect<A> for Barbara {
-    type EffectType = NoEffect;
-    fn new_effect(common_data: &CharacterCommonData, config: &CharacterConfig) -> Self::EffectType {
-        NoEffect
-    }
-}
-
-impl<D: DamageBuilder> CharacterDamage<D> for Barbara {
-    fn damage_internal(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: BarbaraDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
 
         let s1 = context.character_common_data.skill1;
@@ -145,14 +147,7 @@ impl<D: DamageBuilder> CharacterDamage<D> for Barbara {
             builder.add_hp_ratio("技能倍率", ratio);
             builder.add_extra_damage("技能倍率", fixed);
 
-            builder.build(
-                &context.attribute,
-                &context.enemy,
-                Element::NoElement,
-                SkillType::NormalAttack, // won't matter
-                true,
-                context.character_common_data.level
-            )
+            builder.heal(&context.attribute)
         } else {
             let ratio = match s {
                 Normal1 => BARBARA_SKILL.normal_dmg1[s1],
@@ -169,17 +164,24 @@ impl<D: DamageBuilder> CharacterDamage<D> for Barbara {
             let mut builder = D::new();
             builder.add_atk_ratio("技能倍率", ratio);
 
-            builder.build(
+            builder.damage(
                 &context.attribute,
                 &context.enemy,
                 Element::Hydro,
                 s.get_skill_type(),
-                false,
                 context.character_common_data.level
             )
         }
     }
-}
 
-impl<A: Attribute, D: DamageBuilder> CharacterTrait<A, D> for Barbara {
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(NoEffect)
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: BarbaraRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            BarbaraRoleEnum::Heal => Box::new(BarbaraDefaultTargetFunction)
+        }
+    }
 }

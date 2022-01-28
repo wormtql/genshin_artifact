@@ -30,7 +30,7 @@ impl AttributeUtils {
         artifact_config: &ArtifactEffectConfig,
         character: &Character<T>,
         weapon: &Weapon<T>,
-        buffs: &Vec<Box<dyn Buff<T>>>,
+        buffs: &[Box<dyn Buff<T>>],
     ) -> T {
         let mut attribute = T::new_with_base_edge();
 

@@ -1,14 +1,13 @@
-use crate::artifacts::ArtifactSetName;
+use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::{ArtifactEffectConfig, ConfigLevel, ConfigRate};
 use crate::attribute::SimpleAttributeGraph2;
 use crate::character::Character;
 use crate::character::characters::{AratakiItto, damage};
+use crate::character::prelude::CharacterTrait;
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterConstant, CharacterDamage};
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
-use crate::target_functions::target_function::{DefaultArtifactConfig, GetTargetFunctionOptConfig};
 use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
@@ -16,7 +15,7 @@ use crate::weapon::Weapon;
 
 pub struct AratakiIttoDefaultTargetFunction;
 
-impl GetTargetFunctionOptConfig for AratakiIttoDefaultTargetFunction {
+impl TargetFunction for AratakiIttoDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
         TargetFunctionOptConfig {
             atk_fixed: 0.0,
@@ -59,9 +58,7 @@ impl GetTargetFunctionOptConfig for AratakiIttoDefaultTargetFunction {
             ]),
         }
     }
-}
 
-impl DefaultArtifactConfig for AratakiIttoDefaultTargetFunction {
     fn get_default_artifact_config(&self, team_config: &TeamQuantization) -> ArtifactEffectConfig {
         ArtifactEffectConfig {
             config_archaic_petra: Default::default(),
@@ -87,19 +84,23 @@ impl DefaultArtifactConfig for AratakiIttoDefaultTargetFunction {
             config_thundersoother: Default::default()
         }
     }
-}
 
-impl TargetFunction for AratakiIttoDefaultTargetFunction {
-    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, enemy: &Enemy) -> f64 {
+    fn target(
+        &self,
+        attribute: &SimpleAttributeGraph2,
+        character: &Character<SimpleAttributeGraph2>,
+        _weapon: &Weapon<SimpleAttributeGraph2>,
+        _artifacts: &Vec<&Artifact>,
+        enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
             attribute,
             enemy
         };
 
-        type DamageEnum = <AratakiItto as CharacterConstant>::DamageEnumType;
+        type DamageEnum = <AratakiItto as CharacterTrait>::DamageEnumType;
         const CONFIG: CharacterSkillConfig = CharacterSkillConfig::AratakiItto { after_q: true };
-        let damage_kesa = <AratakiItto as CharacterDamage<SimpleDamageBuilder>>::damage(&context, DamageEnum::KesagiriCombo, &CONFIG);
+        let damage_kesa = AratakiItto::damage::<SimpleDamageBuilder>(&context, DamageEnum::KesagiriCombo, &CONFIG);
         damage_kesa.normal.expectation
     }
 }

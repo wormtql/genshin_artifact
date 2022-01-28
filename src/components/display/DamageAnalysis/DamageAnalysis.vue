@@ -7,14 +7,14 @@
                 <el-radio-button v-if="showVaporizeOption" label="vaporize">蒸发</el-radio-button>
             </el-radio-group>
 
-            <span class="damage-display" v-if="damageType === 'normal'">{{ damageNormal }}</span>
-            <span class="damage-display" v-if="damageType === 'melt'">{{ damageMelt }}</span>
-            <span class="damage-display" v-if="damageType === 'vaporize'">{{ damageVaporize }}</span>
+            <span class="damage-display" v-if="damageType === 'normal'">{{ Math.round(damageNormal) }}</span>
+            <span class="damage-display" v-if="damageType === 'melt'">{{ Math.round(damageMelt) }}</span>
+            <span class="damage-display" v-if="damageType === 'vaporize'">{{ Math.round(damageVaporize) }}</span>
         </div>
 
         <div class="header-row">
             <div>
-                <div class="big-title base-damage-region">基础伤害乘区</div>
+                <div class="big-title base-damage-region">{{ baseRegionName }}</div>
                 <div class="header-row">
                     <damage-analysis-util
                         v-if="atkRatioState.length > 0"
@@ -49,12 +49,12 @@
                     <damage-analysis-util
                         v-if="extraDamageState.length > 0"
                         :arr="extraDamageState"
-                        title="其他伤害"
+                        title="其他"
                     ></damage-analysis-util>
                 </div>
             </div>
-            <div>
-                <div class="big-title critical-region">暴击乘区</div>
+            <div v-show="!isHeal">
+                <div class="big-title critical-region">暴击</div>
                 <div class="header-row">
                     <damage-analysis-util
                         :arr="criticalState"
@@ -67,11 +67,11 @@
                 </div>
             </div>
             <div>
-                <div class="big-title bonus-region">增伤乘区</div>
+                <div class="big-title bonus-region">加成</div>
                 <div class="header-row">
                     <damage-analysis-util
                         :arr="bonusState"
-                        title="伤害加成"
+                        :title="bonusRegionName"
                     ></damage-analysis-util>
                 </div>
             </div>
@@ -125,6 +125,7 @@ export default {
         return {
             damageType: "normal",
             element: "Pyro",
+            isHeal: false,
 
             atkState: [{ name: "test", value: 1000, checked: true }],
             atkRatioState: [{ name: "test", value: 1000, checked: true }],
@@ -140,6 +141,7 @@ export default {
             defMinusState: [],
             resMinusState: [],
             bonusState: [],
+            healingBonusState: []
         }
     },
     methods: {
@@ -158,9 +160,11 @@ export default {
                 "vaporizeEnhanceState": "vaporize_enhance",
                 "bonusState": "bonus",
                 "defMinusState": "def_minus",
-                "resMinusState": "res_minus"
+                "resMinusState": "res_minus",
+                "healingBonusState": "healing_bonus"
             }
             this.element = analysis.element
+            this.isHeal = analysis.is_heal
             this.damageType = "normal"
             for (let key in map) {
                 let fromKey = map[key]
@@ -197,6 +201,22 @@ export default {
 
         showVaporizeOption() {
             return this.element === "Pyro" || this.element === "Hydro"
+        },
+        
+        baseRegionName() {
+            if (this.isHeal) {
+                return "基础治疗"
+            } else {
+                return "基础伤害"
+            }
+        },
+
+        bonusRegionName() {
+            if (this.isHeal) {
+                return "治疗加成"
+            } else {
+                return "伤害加成"
+            }
         },
 
         reactionRatio() {
@@ -242,6 +262,10 @@ export default {
             return sum(this.bonusState)
         },
 
+        healingBonus() {
+            return sum(this.healingBonusState)
+        },
+
         critical() {
             return sum(this.criticalState)
         },
@@ -267,22 +291,37 @@ export default {
         },
 
         baseDamage() {
-            return this.atk * this.atkRatio + this.def * this.defRatio + this.hp * this.hpRatio
+            return this.atk * this.atkRatio + this.def * this.defRatio + this.hp * this.hpRatio + this.extraDamage;
         },
 
         damageNormal() {
-            const d = this.baseDamage * (1 + this.critical * this.criticalDamage) * (1 + this.bonus)
-            return Math.round(d)
+            const def_ratio = 190 / ((1 - this.defMinus) * 180 + 190)
+            const res = 0.1 - this.resMinus
+            let res_ratio
+            if (res > 0.75) {
+                res_ratio = 25 / (25 + res)
+            } else if (res > 0) {
+                res_ratio = 1 - res
+            } else {
+                res_ratio = 1 - res / 2
+            }
+            let d
+            if (this.isHeal) {
+                d = this.baseDamage * (1 + this.healingBonus)
+            } else {
+                d = this.baseDamage * (1 + this.critical * this.criticalDamage) * (1 + this.bonus) * res_ratio * def_ratio
+            }
+            return d
         },
 
         damageMelt() {
             const d = this.damageNormal * this.reactionRatio * (1 + this.meltEnhance)
-            return Math.round(d)
+            return d
         },
 
         damageVaporize() {
             const d = this.damageNormal * this.reactionRatio * (1 + this.vaporizeEnhance)
-            return Math.round(d)
+            return d
         }
     }
 }

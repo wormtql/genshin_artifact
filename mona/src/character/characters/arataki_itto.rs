@@ -2,13 +2,18 @@ use num_derive::FromPrimitive;
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::{Character, CharacterConfig, CharacterStaticData};
 use crate::character::no_effect::NoEffect;
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterConstant, CharacterDamage, CharacterEffect, CharacterTrait};
-use crate::common::{Element, SkillType, WeaponType};
+use crate::character::traits::{CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
+use crate::target_functions::target_functions::AratakiIttoDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct AratakiIttoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -54,18 +59,9 @@ const ARATAKI_ITTO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 
 pub struct AratakiItto;
 
-impl CharacterConstant for AratakiItto {
-    const STATIC_DATA: CharacterStaticData = ARATAKI_ITTO_STATIC_DATA;
-    type SkillType = AratakiIttoSkillType;
-    const SKILL: Self::SkillType = ARATAKI_ITTO_SKILL;
-    type DamageEnumType = AratakiIttoDamageEnum;
-}
-
-impl<A: Attribute> CharacterEffect<A> for AratakiItto {
-    type EffectType = NoEffect;
-    fn new_effect(common_data: &CharacterCommonData, config: &CharacterConfig) -> Self::EffectType {
-        NoEffect
-    }
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum AratakiIttoRoleEnum {
+    Main
 }
 
 #[derive(Copy, Clone)]
@@ -114,8 +110,14 @@ impl AratakiIttoDamageEnum {
     }
 }
 
-impl<D: DamageBuilder> CharacterDamage<D> for AratakiItto {
-    fn damage_internal(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+impl CharacterTrait for AratakiItto {
+    const STATIC_DATA: CharacterStaticData = ARATAKI_ITTO_STATIC_DATA;
+    type SkillType = AratakiIttoSkillType;
+    const SKILL: Self::SkillType = ARATAKI_ITTO_SKILL;
+    type DamageEnumType = AratakiIttoDamageEnum;
+    type RoleEnum = AratakiIttoRoleEnum;
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
         let after_q = match *config {
             CharacterSkillConfig::AratakiItto { after_q } => after_q,
             _ => false
@@ -147,16 +149,23 @@ impl<D: DamageBuilder> CharacterDamage<D> for AratakiItto {
             builder.add_extra_atk("大招加成", atk_bonus);
         }
 
-        builder.build(
+        builder.damage(
             &context.attribute,
             &context.enemy,
             s.get_element(after_q),
             s.get_skill_type(),
-            false,
             context.character_common_data.level
         )
     }
-}
 
-impl<A: Attribute, D: DamageBuilder> CharacterTrait<A, D> for AratakiItto {
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(NoEffect)
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: AratakiIttoRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            AratakiIttoRoleEnum::Main => Box::new(AratakiIttoDefaultTargetFunction)
+        }
+    }
 }

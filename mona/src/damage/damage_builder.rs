@@ -37,5 +37,9 @@ pub trait DamageBuilder {
 
     fn add_extra_res_minus(&mut self, key: &str, value: f64);
 
-    fn build(&self, attribute: &Self::AttributeType, enemy: &Enemy, element: Element, skill_type: SkillType, is_heal: bool, character_level: usize) -> Self::Result;
+    fn damage(&self, attribute: &Self::AttributeType, enemy: &Enemy, element: Element, skill_type: SkillType, character_level: usize) -> Self::Result;
+
+    fn heal(&self, attribute: &Self::AttributeType) -> Self::Result;
+
+    fn shield(&self, attribute: &Self::AttributeType, element: Element) -> Self::Result;
 }

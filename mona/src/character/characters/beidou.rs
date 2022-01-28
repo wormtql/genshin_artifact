@@ -2,13 +2,18 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::{Character, CharacterConfig, CharacterStaticData};
 use crate::character::no_effect::NoEffect;
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterConstant, CharacterDamage, CharacterEffect, CharacterTrait};
-use crate::common::{Element, SkillType, StatName, WeaponType};
+use crate::character::traits::{CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
+use crate::target_functions::target_functions::BeidouDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct BeidouSkillType {
     pub normal_dmg1: [f64; 15],
@@ -111,22 +116,19 @@ impl BeidouDamageEnum {
     }
 }
 
-impl CharacterConstant for Beidou {
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum BeidouRoleEnum {
+    EMain,
+}
+
+impl CharacterTrait for Beidou {
     const STATIC_DATA: CharacterStaticData = BEIDOU_STATIC_DATA;
     type SkillType = BeidouSkillType;
     const SKILL: Self::SkillType = BEIDOU_SKILL;
     type DamageEnumType = BeidouDamageEnum;
-}
+    type RoleEnum = BeidouRoleEnum;
 
-impl<A: Attribute> CharacterEffect<A> for Beidou {
-    type EffectType = NoEffect;
-    fn new_effect(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Self::EffectType {
-        NoEffect
-    }
-}
-
-impl<D: DamageBuilder> CharacterDamage<D> for Beidou {
-    fn damage_internal(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: BeidouDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -152,16 +154,23 @@ impl<D: DamageBuilder> CharacterDamage<D> for Beidou {
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
 
-        builder.build(
+        builder.damage(
             &context.attribute,
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            false,
             context.character_common_data.level
         )
     }
-}
 
-impl<A: Attribute, D: DamageBuilder> CharacterTrait<A, D> for Beidou {
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(NoEffect)
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: BeidouRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            BeidouRoleEnum::EMain => Box::new(BeidouDefaultTargetFunction)
+        }
+    }
 }

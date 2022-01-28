@@ -1,9 +1,17 @@
+use num_derive::FromPrimitive;
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::character_common_data::CharacterCommonData;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
+use crate::target_functions::target_functions::GanyuDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct GanyuSkillType {
     pub normal_dmg1: [f64; 15],
@@ -60,21 +68,6 @@ pub struct GanyuEffect {
     talent2_rate: f64
 }
 
-impl GanyuEffect {
-    pub fn new(config: &CharacterConfig) -> GanyuEffect {
-        match *config {
-            CharacterConfig::Ganyu { talent1_rate, talent2_rate } => GanyuEffect {
-                talent1_rate,
-                talent2_rate
-            },
-            _ => GanyuEffect {
-                talent1_rate: 0.0,
-                talent2_rate: 0.0
-            }
-        }
-    }
-}
-
 impl<T: Attribute> ChangeAttribute<T> for GanyuEffect {
     fn change_attribute(&self, attribute: &mut T) {
         attribute.set_value_by(AttributeName::CriticalBase, "甘雨天赋：唯此一心", 0.2 * self.talent1_rate);
@@ -83,6 +76,7 @@ impl<T: Attribute> ChangeAttribute<T> for GanyuEffect {
 }
 
 #[derive(Copy, Clone)]
+#[derive(FromPrimitive)]
 pub enum GanyuDamageEnum {
     Normal1,
     Normal2,
@@ -99,6 +93,12 @@ pub enum GanyuDamageEnum {
     Plunging3,
     E1,
     Q1
+}
+
+impl Into<usize> for GanyuDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
 }
 
 impl GanyuDamageEnum {
@@ -124,15 +124,25 @@ impl GanyuDamageEnum {
     }
 }
 
-pub struct GanyuDamage {}
+pub struct Ganyu;
 
-impl GanyuDamage {
-    pub fn damage<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: GanyuDamageEnum) -> D::Result {
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum GanyuRoleEnum {
+    Main
+}
+
+impl CharacterTrait for Ganyu {
+    const STATIC_DATA: CharacterStaticData = GANYU_STATIC_DATA;
+    type SkillType = GanyuSkillType;
+    const SKILL: Self::SkillType = GANYU_SKILL;
+    type DamageEnumType = GanyuDamageEnum;
+    type RoleEnum = GanyuRoleEnum;
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) ->D::Result {
+        let s: GanyuDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
         use GanyuDamageEnum::*;
-
-        let s1 = context.character_common_data.skill1;
-        let s2 = context.character_common_data.skill2;
-        let s3 = context.character_common_data.skill3;
         let ratio = match s {
             Normal1 => GANYU_SKILL.normal_dmg1[s1],
             Normal2 => GANYU_SKILL.normal_dmg2[s1],
@@ -153,13 +163,34 @@ impl GanyuDamage {
 
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
-        builder.build(
+        builder.damage(
             &context.attribute,
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            false,
             context.character_common_data.level
         )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(match *config {
+            CharacterConfig::Ganyu { talent1_rate, talent2_rate } => GanyuEffect {
+                talent1_rate,
+                talent2_rate
+            },
+            _ => GanyuEffect {
+                talent1_rate: 0.0,
+                talent2_rate: 0.0
+            }
+        })
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: GanyuRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            GanyuRoleEnum::Main => Box::new(GanyuDefaultTargetFunction {
+                melt_rate: 0.5
+            })
+        }
     }
 }

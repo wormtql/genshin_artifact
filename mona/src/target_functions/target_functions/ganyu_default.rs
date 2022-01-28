@@ -1,30 +1,25 @@
-use crate::artifacts::ArtifactSetName;
+use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::{ArtifactEffectConfig, ConfigArchaicPetra, ConfigBlizzardStrayer, ConfigRate};
 use crate::attribute::{Attribute, SimpleAttributeGraph2};
-use crate::character::{Character, GANYU_SKILL};
-use crate::character::characters::{GanyuDamage, GanyuDamageEnum};
+use crate::character::{Character};
+use crate::character::characters::Ganyu;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::CharacterTrait;
 use crate::common::{Element, SkillType, StatName};
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
 use crate::target_functions::{TargetFunction, TargetFunctionConfig};
-use crate::target_functions::target_function::{DefaultArtifactConfig, GetTargetFunctionOptConfig};
 use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 
 pub struct GanyuDefaultTargetFunction {
-    pub skill1: usize,
-    pub skill2: usize,
-    pub skill3: usize,
     pub melt_rate: f64
 }
 
 impl GanyuDefaultTargetFunction {
-    pub fn new<T>(character: &Character<T>, config: &TargetFunctionConfig) -> GanyuDefaultTargetFunction {
+    pub fn new(config: &TargetFunctionConfig) -> GanyuDefaultTargetFunction {
         GanyuDefaultTargetFunction {
-            skill1: character.common_data.skill1 as usize,
-            skill2: character.common_data.skill2 as usize,
-            skill3: character.common_data.skill3 as usize,
             melt_rate: match *config {
                 TargetFunctionConfig::GanyuDefault { melt_rate } => melt_rate,
                 _ => 0.0
@@ -33,7 +28,7 @@ impl GanyuDefaultTargetFunction {
     }
 }
 
-impl GetTargetFunctionOptConfig for GanyuDefaultTargetFunction {
+impl TargetFunction for GanyuDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
         TargetFunctionOptConfig {
             atk_fixed: 0.1,
@@ -78,9 +73,7 @@ impl GetTargetFunctionOptConfig for GanyuDefaultTargetFunction {
             ]),
         }
     }
-}
 
-impl DefaultArtifactConfig for GanyuDefaultTargetFunction {
     fn get_default_artifact_config(&self, team_config: &TeamQuantization) -> ArtifactEffectConfig {
         ArtifactEffectConfig {
             config_archaic_petra: if team_config.shield_coverage > 0.5 {
@@ -123,54 +116,29 @@ impl DefaultArtifactConfig for GanyuDefaultTargetFunction {
             config_thundersoother: Default::default()
         }
     }
-}
 
-impl TargetFunction for GanyuDefaultTargetFunction {
-    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, enemy: &Enemy) -> f64 {
-        // let charged_ratio1 = GANYU_SKILL.charged_dmg3[self.skill1 - 1];
-        // let charged_ratio2 = GANYU_SKILL.charged_dmg4[self.skill1 - 1];
-        // let q_ratio = GANYU_SKILL.elemental_burst_dmg1[self.skill3 - 1];
-        //
-        // let charged_damage = SimpleDamageBuilder::new(
-        //     charged_ratio1 * 0.8 + charged_ratio2 * 1.2,
-        //     0.0,
-        //     0.0
-        // ).damage(attribute, enemy, Element::Cryo, SkillType::ChargedAttack, 90);
-        //
-        // let elemental_burst_damage = SimpleDamageBuilder::new(
-        //     q_ratio, 0.0, 0.0
-        // ).damage(
-        //     attribute,
-        //     enemy,
-        //     Element::Cryo,
-        //     SkillType::ElementalBurst,
-        //     90
-        // );
-        //
-        // charged_damage.expectation * 0.7 + elemental_burst_damage.expectation * 0.3
-
-        let damage_context = DamageContext {
+    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &Vec<&Artifact>, enemy: &Enemy) -> f64 {
+        let context = DamageContext {
             enemy,
             character_common_data: &character.common_data,
             attribute
         };
 
-        let charged3_damage = GanyuDamage::damage::<SimpleDamageBuilder>(
-            &damage_context,
-            GanyuDamageEnum::Charged3
+        type S = <Ganyu as CharacterTrait>::DamageEnumType;
+        let charged_dmg3 = Ganyu::damage::<SimpleDamageBuilder>(
+            &context, S::Charged3, &CharacterSkillConfig::NoConfig
         );
-        let charged4_damage = GanyuDamage::damage::<SimpleDamageBuilder>(
-            &damage_context,
-            GanyuDamageEnum::Charged4
+        let charged_dmg4 = Ganyu::damage::<SimpleDamageBuilder>(
+            &context, S::Charged4, &CharacterSkillConfig::NoConfig
         );
-        let charged_mean = (1.0 - self.melt_rate) * (charged3_damage.normal.expectation * 0.8 + charged4_damage.normal.expectation * 1.2)
-            + self.melt_rate * (charged3_damage.melt.unwrap().expectation * 0.8 + charged4_damage.melt.unwrap().expectation * 1.2);
 
-        let q_damage = GanyuDamage::damage::<SimpleDamageBuilder>(
-            &damage_context,
-            GanyuDamageEnum::Q1
+        let charged_mean = (1.0 - self.melt_rate) * (charged_dmg3.normal.expectation * 0.8 + charged_dmg4.normal.expectation * 1.2)
+            + self.melt_rate * (charged_dmg3.melt.unwrap().expectation * 0.8 + charged_dmg4.melt.unwrap().expectation * 1.2);
+
+        let q_dmg = Ganyu::damage::<SimpleDamageBuilder>(
+            &context, S::Q1, &CharacterSkillConfig::NoConfig
         );
-        let q_mean = (1.0 - self.melt_rate) * q_damage.normal.expectation + self.melt_rate * q_damage.melt.unwrap().expectation;
+        let q_mean = (1.0 - self.melt_rate) * q_dmg.normal.expectation + self.melt_rate * q_dmg.melt.unwrap().expectation;
 
         charged_mean + q_mean
     }

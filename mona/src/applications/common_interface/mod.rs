@@ -6,7 +6,7 @@ pub struct CommonInterface {}
 
 #[wasm_bindgen]
 impl CommonInterface {
-    fn get_attribute(val: &JsValue) -> JsValue {
+    pub fn get_attribute(val: &JsValue) -> JsValue {
         get_attribute::get_attribute(val)
     }
 }

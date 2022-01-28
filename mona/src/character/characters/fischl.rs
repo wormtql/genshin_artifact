@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::no_effect::NoEffect;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::FischlDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct FischlSkillType {
     pub normal_dmg1: [f64; 15],
@@ -45,3 +57,105 @@ pub const FISCHL_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     weapon_type: WeaponType::Bow,
     star: 4
 };
+
+pub struct Fischl;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum FischlDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal5,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    Q1
+}
+
+impl FischlDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use FischlDamageEnum::*;
+        match *self {
+            Charged2 | E1 | E2 | Q1 => Element::Electro,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use FischlDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal5 => SkillType::NormalAttack,
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E2 => SkillType::ElementalSkill,
+            Q1 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for FischlDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum FischlRoleEnum {
+    Damage
+}
+
+impl CharacterTrait for Fischl {
+    const STATIC_DATA: CharacterStaticData = FISCHL_STATIC_DATA;
+    type SkillType = FischlSkillType;
+    const SKILL: Self::SkillType = FISCHL_SKILL;
+    type DamageEnumType = FischlDamageEnum;
+    type RoleEnum = FischlRoleEnum;
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: FischlDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use FischlDamageEnum::*;
+        let ratio = match s {
+            Normal1 => FISCHL_SKILL.normal_dmg1[s1],
+            Normal2 => FISCHL_SKILL.normal_dmg2[s1],
+            Normal3 => FISCHL_SKILL.normal_dmg3[s1],
+            Normal4 => FISCHL_SKILL.normal_dmg4[s1],
+            Normal5 => FISCHL_SKILL.normal_dmg5[s1],
+            Charged1 => FISCHL_SKILL.charged_dmg1[s1],
+            Charged2 => FISCHL_SKILL.charged_dmg2[s1],
+            Plunging1 => FISCHL_SKILL.plunging_dmg1[s1],
+            Plunging2 => FISCHL_SKILL.plunging_dmg2[s1],
+            Plunging3 => FISCHL_SKILL.plunging_dmg3[s1],
+            E1 => FISCHL_SKILL.elemental_skill_dmg1[s2],
+            E2 => FISCHL_SKILL.elemental_skill_dmg2[s2],
+            Q1 => FISCHL_SKILL.elemental_burst_dmg1[s3]
+        };
+        let mut builder = D::new();
+
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(NoEffect)
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: FischlRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            FischlRoleEnum::Damage => Box::new(FischlDefaultTargetFunction)
+        }
+    }
+}

@@ -28,6 +28,10 @@ pub enum AttributeName {
     DEFPercentage,
     DEF,
 
+    // not character attributes, but needed
+    ATKBonusForOther,
+    HealBonusForOther,
+
     CriticalBase,
     CriticalNormalAttack,
     CriticalChargedAttack,

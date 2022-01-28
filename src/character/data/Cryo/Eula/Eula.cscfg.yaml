@@ -1,0 +1,8 @@
+characterName: Eula
+configs:
+  - type: int
+    name: lightfall_stack
+    title: "光降之剑能量层数"
+    min: 0
+    max: 30
+    default: 10

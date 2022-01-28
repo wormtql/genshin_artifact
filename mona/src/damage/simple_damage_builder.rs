@@ -92,29 +92,10 @@ impl DamageBuilder for SimpleDamageBuilder {
         self.extra_res_minus += value
     }
 
-    fn build(&self, attribute: &Self::AttributeType, enemy: &Enemy, element: Element, skill: SkillType, is_heal: bool, character_level: usize) -> Self::Result {
+    fn damage(&self, attribute: &Self::AttributeType, enemy: &Enemy, element: Element, skill: SkillType, character_level: usize) -> Self::Result {
         let atk = attribute.get_atk() + self.extra_atk;
         let def = attribute.get_def() + self.extra_def;
         let hp = attribute.get_hp() + self.extra_hp;
-
-        if is_heal {
-            let base = self.ratio_def * def + self.ratio_hp * hp + self.ratio_atk * atk + self.extra_damage;
-
-            let healing_bonus = attribute.get_value(AttributeName::HealingBonus);
-            let heal_value = base * (1.0 + healing_bonus);
-            let result = {
-                DamageResult {
-                    critical: heal_value,
-                    non_critical: heal_value,
-                    expectation: heal_value
-                }
-            };
-            return SimpleDamageResult {
-                normal: result,
-                melt: None,
-                vaporize: None
-            };
-        }
 
         let base
             = (attribute.get_def_ratio(element, skill) + self.ratio_def) * def
@@ -145,6 +126,8 @@ impl DamageBuilder for SimpleDamageBuilder {
             critical: base * (1.0 + bonus) * (1.0 + critical_damage),
             non_critical: base * (1.0 + bonus),
             expectation: base * (1.0 + bonus) * (1.0 + critical_damage * critical_rate),
+            is_heal: false,
+            is_shield: false
         } * (defensive_ratio * resistance_ratio);
 
         let em = attribute.get_value(AttributeName::ElementalMastery);
@@ -169,8 +152,64 @@ impl DamageBuilder for SimpleDamageBuilder {
         SimpleDamageResult {
             normal: normal_damage,
             melt: melt_damage,
-            vaporize: vaporize_damage
+            vaporize: vaporize_damage,
+            is_shield: false,
+            is_heal: false
         }
+    }
+
+    fn heal(&self, attribute: &Self::AttributeType) -> Self::Result {
+        let atk = attribute.get_atk() + self.extra_atk;
+        let def = attribute.get_def() + self.extra_def;
+        let hp = attribute.get_hp() + self.extra_hp;
+
+        let base = self.ratio_def * def + self.ratio_hp * hp + self.ratio_atk * atk + self.extra_damage;
+
+        let healing_bonus = attribute.get_value(AttributeName::HealingBonus);
+        let heal_value = base * (1.0 + healing_bonus);
+        let result = {
+            DamageResult {
+                critical: heal_value,
+                non_critical: heal_value,
+                expectation: heal_value,
+                is_heal: true,
+                is_shield: false
+            }
+        };
+        return SimpleDamageResult {
+            normal: result,
+            melt: None,
+            vaporize: None,
+            is_heal: true,
+            is_shield: false
+        };
+    }
+
+    fn shield(&self, attribute: &Self::AttributeType, _element: Element) -> Self::Result {
+        let atk = attribute.get_atk() + self.extra_atk;
+        let def = attribute.get_def() + self.extra_def;
+        let hp = attribute.get_hp() + self.extra_hp;
+
+        let base = self.ratio_def * def + self.ratio_hp * hp + self.ratio_atk * atk + self.extra_damage;
+
+        let shield_strength = attribute.get_value(AttributeName::ShieldStrength);
+        let shield_value = base * (1.0 + shield_strength);
+        let result = {
+            DamageResult {
+                critical: shield_value,
+                non_critical: shield_value,
+                expectation: shield_value,
+                is_heal: false,
+                is_shield: true
+            }
+        };
+        return SimpleDamageResult {
+            normal: result,
+            melt: None,
+            vaporize: None,
+            is_shield: true,
+            is_heal: false
+        };
     }
 }
 

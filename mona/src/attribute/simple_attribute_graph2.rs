@@ -1,3 +1,4 @@
+use smallvec::SmallVec;
 use std::cell::RefCell;
 use std::rc::Rc;
 use std::collections::HashSet;
@@ -29,7 +30,8 @@ struct SimpleEdge {
 pub struct SimpleAttributeGraph2 {
     attributes: RefCell<[SimpleEntry; 150]>,
     // edges: Vec<Rc<SimpleEdge>>,
-    edges: Vec<SimpleEdge>,
+    // edges: Vec<SimpleEdge>,
+    edges: SmallVec<[SimpleEdge; 20]>
 
     // atk_percentage: f64,
     // def_percentage: f64,
@@ -45,7 +47,8 @@ impl Default for SimpleAttributeGraph2 {
                 cached_value: 0.0,
                 dirty: true
             }; 150]),
-            edges: Vec::new(),
+            // edges: Vec::new(),
+            edges: SmallVec::new()
             // atk_percentage: 0.0,
             // def_percentage: 0.0,
             // hp_percentage: 0.0,

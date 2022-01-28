@@ -16,7 +16,7 @@ opt-level = 3
 
 [dependencies]
 wasm-bindgen = { version = "0.2.63", features = ["serde-serialize"] }
-#lazy_static = "1.4.0"
+lazy_static = "1.4.0"
 rand = "0.8.4"
 serde = { version = "1.0.133", features = ["derive"] }
 console_error_panic_hook = { version = "0.1.7", optional = true }
@@ -25,3 +25,4 @@ getrandom = { version = "0.2", features = ["js"] }
 num = "0.4"
 num-derive = "0.3"
 num-traits = "0.2"
+smallvec = "1.8.0"

@@ -1,6 +1,9 @@
 use std::collections::HashMap;
 
+use rand::{thread_rng, Rng};
+use num_derive::FromPrimitive;
 use serde::{Serialize, Deserialize};
+use smallvec::SmallVec;
 
 use crate::common::StatName;
 use crate::attribute::{Attribute};
@@ -10,6 +13,7 @@ use super::effects::get_effect;
 
 #[derive(Serialize, Deserialize)]
 #[derive(Hash, Eq, PartialEq, Debug, Copy, Clone)]
+#[derive(FromPrimitive)]
 pub enum ArtifactSetName {
     Adventurer,
     ArchaicPetra,
@@ -48,6 +52,15 @@ pub enum ArtifactSetName {
     TravelingDoctor,
     ViridescentVenerer,
     WanderersTroupe,
+}
+
+impl ArtifactSetName {
+    pub fn random() -> ArtifactSetName {
+        let max = ArtifactSetName::WanderersTroupe as usize;
+        let mut rng = thread_rng();
+        let n: usize = rng.gen::<usize>() % max;
+        num::FromPrimitive::from_usize(n).unwrap()
+    }
 }
 
 #[derive(Hash, Eq, PartialEq, Debug, Copy, Clone)]
@@ -94,7 +107,7 @@ impl Artifact {
     pub fn new_random(slot: ArtifactSlotName) -> Artifact {
         // todo currently it's not random
         Artifact {
-            set_name: ArtifactSetName::Thundersoother,
+            set_name: ArtifactSetName::random(),
             slot,
             level: 20,
             star: 5,
@@ -110,11 +123,12 @@ impl Artifact {
     }
 }
 
-pub struct ArtifactList<'a> {
-    pub artifacts: Vec<&'a Artifact>,
+pub struct ArtifactList<'a, 'b> {
+    pub artifacts: &'a Vec<&'b Artifact>
+    // pub artifacts: &'a SmallVec<[&'b Artifact; 5]>
 }
 
-impl<'a> ArtifactList<'a> {
+impl<'a, 'b> ArtifactList<'a, 'b> {
     pub fn apply<T: Attribute>(&self, attribute: &mut T, character: &Character<T>, config: &ArtifactEffectConfig) {
         let mut attributes_hash: HashMap<StatName, f64> = HashMap::new();
         let mut set_name_count: HashMap<ArtifactSetName, i32> = HashMap::new();

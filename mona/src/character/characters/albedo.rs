@@ -1,15 +1,20 @@
 use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
-use crate::common::{Element, WeaponType, StatName, SkillType};
-use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::common::{Element, WeaponType, StatName, SkillType, ChangeAttribute};
+use crate::character::{Character, CharacterConfig, CharacterStaticData};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::characters::albedo::AlbedoDamageEnum::ETransientBlossom;
 use crate::character::no_effect::NoEffect;
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterConstant, CharacterDamage, CharacterEffect, CharacterTrait};
+use crate::character::traits::{CharacterTrait};
 use crate::damage::{ComplicatedDamageBuilder, DamageAnalysis, DamageContext};
 use crate::damage::damage_builder::DamageBuilder;
+use crate::target_functions::target_functions::AlbedoDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct AlbedoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -109,15 +114,19 @@ impl AlbedoDamageEnum {
 
 pub struct Albedo;
 
-impl CharacterConstant for Albedo {
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum AlbedoRoleEnum {
+    Sub
+}
+
+impl CharacterTrait for Albedo {
     const STATIC_DATA: CharacterStaticData = ALBEDO_STATIC_DATA;
     type SkillType = AlbedoSkillType;
     const SKILL: Self::SkillType = ALBEDO_SKILL;
     type DamageEnumType = AlbedoDamageEnum;
-}
+    type RoleEnum = AlbedoRoleEnum;
 
-impl<D: DamageBuilder> CharacterDamage<D> for Albedo {
-    fn damage_internal(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
         let s = num::FromPrimitive::from_usize(s).unwrap();
         let fatal_count = match *config {
             CharacterSkillConfig::Albedo { fatal_count } => fatal_count,
@@ -153,25 +162,24 @@ impl<D: DamageBuilder> CharacterDamage<D> for Albedo {
             builder.add_def_ratio("2命：显生之宙", fatal_count as f64 * 0.3);
         }
 
-        builder.build(
+        builder.damage(
             &context.attribute,
             &context.enemy,
             Element::Geo,
             s.get_skill_type(),
-            false,
             90
         )
     }
-}
 
-impl<A: Attribute> CharacterEffect<A> for Albedo {
-    type EffectType = NoEffect;
-
-    fn new_effect(common_data: &CharacterCommonData, config: &CharacterConfig) -> Self::EffectType {
-        NoEffect
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(NoEffect)
     }
-}
 
-impl<D: DamageBuilder, A: Attribute> CharacterTrait<A, D> for Albedo {
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: AlbedoRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
 
+        match role {
+            AlbedoRoleEnum::Sub => Box::new(AlbedoDefaultTargetFunction)
+        }
+    }
 }

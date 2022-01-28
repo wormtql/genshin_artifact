@@ -8,7 +8,8 @@ use super::attribute_name::AttributeName;
 
 type AttributeEntryType = HashMap<String, f64>;
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize)]
+#[derive(Default, Debug)]
 pub struct AttributeNoReactive {
     pub atk: AttributeEntryType,
     pub def: AttributeEntryType,
@@ -17,9 +18,11 @@ pub struct AttributeNoReactive {
     pub healing_bonus: AttributeEntryType,
     pub elemental_mastery: AttributeEntryType,
     pub recharge: AttributeEntryType,
+    pub shield_strength: AttributeEntryType,
 
     pub critical: AttributeEntryType,
     pub critical_damage: AttributeEntryType,
+
     pub bonus_electro: AttributeEntryType,
     pub bonus_pyro: AttributeEntryType,
     pub bonus_anemo: AttributeEntryType,
@@ -38,24 +41,7 @@ fn merge(x: &mut AttributeEntryType, y: &AttributeEntryType) {
 
 impl AttributeNoReactive {
     pub fn new() -> AttributeNoReactive {
-        AttributeNoReactive {
-            atk: Default::default(),
-            def: Default::default(),
-            hp: Default::default(),
-            healing_bonus: Default::default(),
-            elemental_mastery: Default::default(),
-            recharge: Default::default(),
-            critical: Default::default(),
-            critical_damage: Default::default(),
-            bonus_electro: Default::default(),
-            bonus_pyro: Default::default(),
-            bonus_anemo: Default::default(),
-            bonus_cryo: Default::default(),
-            bonus_geo: Default::default(),
-            bonus_hydro: Default::default(),
-            bonus_dendro: Default::default(),
-            bonus_physical: Default::default()
-        }
+        Default::default()
     }
 }
 
@@ -84,6 +70,7 @@ impl From<&ComplicatedAttributeGraph> for AttributeNoReactive {
         attribute.healing_bonus = graph.get_attribute_composition(AttributeName::HealingBonus).0;
         attribute.elemental_mastery = graph.get_attribute_composition(AttributeName::ElementalMastery).0;
         attribute.recharge = graph.get_attribute_composition(AttributeName::Recharge).0;
+        attribute.shield_strength = graph.get_attribute_composition(AttributeName::ShieldStrength).0;
         attribute.critical = graph.get_attribute_composition(AttributeName::CriticalBase).0;
         attribute.critical_damage = graph.get_attribute_composition(AttributeName::CriticalDamageBase).0;
 

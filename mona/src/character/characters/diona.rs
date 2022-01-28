@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, StatName, WeaponType};
+use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::no_effect::NoEffect;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::DionaDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct DionaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -53,3 +65,127 @@ pub const DIONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     weapon_type: WeaponType::Bow,
     star: 4
 };
+
+pub struct Diona;
+
+#[derive(Copy, Clone, Eq, PartialEq)]
+#[derive(FromPrimitive)]
+pub enum DionaDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal5,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    Q1,
+    Q2,
+    QHeal
+}
+
+impl DionaDamageEnum {
+    pub fn is_heal(&self) -> bool {
+        *self == DionaDamageEnum::QHeal
+    }
+
+    pub fn get_element(&self) -> Element {
+        use DionaDamageEnum::*;
+        match *self {
+            Charged2 | E1 | Q1 | Q2 => Element::Cryo,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use DionaDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal5 => SkillType::NormalAttack,
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 => SkillType::ElementalSkill,
+            Q1 | Q2 | QHeal => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for DionaDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum DionaRoleEnum {
+    Aux
+}
+
+impl CharacterTrait for Diona {
+    const STATIC_DATA: CharacterStaticData = DIONA_STATIC_DATA;
+    type SkillType = DionaSkillType;
+    const SKILL: Self::SkillType = DIONA_SKILL;
+    type DamageEnumType = DionaDamageEnum;
+    type RoleEnum = DionaRoleEnum;
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: DionaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use DionaDamageEnum::*;
+        if s.is_heal() {
+            let ratio = match s {
+                QHeal => DIONA_SKILL.elemental_burst_heal1[s3],
+                _ => 0.0
+            };
+            let fixed = match s {
+                QHeal => DIONA_SKILL.elemental_burst_heal1_fixed[s3],
+                _ => 0.0
+            };
+            let mut builder = D::new();
+            builder.add_hp_ratio("技能倍率", ratio);
+            builder.add_extra_damage("技能倍率", fixed);
+            builder.heal(&context.attribute)
+        } else {
+            let ratio = match s {
+                Normal1 => DIONA_SKILL.normal_dmg1[s1],
+                Normal2 => DIONA_SKILL.normal_dmg2[s1],
+                Normal3 => DIONA_SKILL.normal_dmg3[s1],
+                Normal4 => DIONA_SKILL.normal_dmg4[s1],
+                Normal5 => DIONA_SKILL.normal_dmg5[s1],
+                Charged1 => DIONA_SKILL.charged_dmg1[s1],
+                Charged2 => DIONA_SKILL.charged_dmg2[s1],
+                Plunging1 => DIONA_SKILL.plunging_dmg1[s1],
+                Plunging2 => DIONA_SKILL.plunging_dmg2[s1],
+                Plunging3 => DIONA_SKILL.plunging_dmg3[s1],
+                E1 => DIONA_SKILL.elemental_skill_dmg1[s2],
+                Q1 => DIONA_SKILL.elemental_burst_dmg1[s3],
+                Q2 => DIONA_SKILL.elemental_burst_dmg2[s3],
+                _ => 0.0
+            };
+            let mut builder = D::new();
+            builder.add_atk_ratio("技能倍率", ratio);
+
+            builder.damage(
+                &context.attribute,
+                &context.enemy,
+                s.get_element(),
+                s.get_skill_type(),
+                context.character_common_data.level
+            )
+        }
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(NoEffect)
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: DionaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            DionaRoleEnum::Aux => Box::new(DionaDefaultTargetFunction)
+        }
+    }
+}

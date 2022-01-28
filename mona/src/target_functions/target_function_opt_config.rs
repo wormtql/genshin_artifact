@@ -2,6 +2,7 @@ use std::collections::HashMap;
 
 use crate::common::{StatName, SUB_STAT_VALUE_5};
 use crate::artifacts::{Artifact, ArtifactSetName, ArtifactSlotName};
+use crate::utils::log;
 
 pub struct TargetFunctionOptConfig {
     pub atk_fixed: f64,
@@ -98,14 +99,17 @@ impl TargetFunctionOptConfig {
             }
         }
 
-        for (&set_name, arts) in goblets.iter() {
+        // log!("{}", results.len());
+        for (set_name, arts) in goblets.iter() {
             let flag = arts.iter().any(|x| self.goblet_main_stats.contains(&x.main_stat.0));
+            // log!("{:?}", arts);
             if !flag {
                 results.extend(arts.iter());
             } else {
                 results.extend(arts.iter().filter(|x| self.goblet_main_stats.contains(&x.main_stat.0)));
             }
         }
+        // log!("{}", results.len());
 
         for (&set_name, arts) in heads.iter() {
             let flag = arts.iter().any(|x| self.head_main_stats.contains(&x.main_stat.0));
@@ -120,6 +124,7 @@ impl TargetFunctionOptConfig {
     }
 
     pub fn filter_sub_stats<'a>(&self, artifacts: Vec<&'a Artifact>) -> Vec<&'a Artifact> {
+        // log!("{:?}", artifacts);
         let mut flowers: HashMap<StatName, Vec<(&Artifact, f64)>> = HashMap::new();
         let mut feathers: HashMap<StatName, Vec<(&Artifact, f64)>> = HashMap::new();
         let mut sands: HashMap<StatName, Vec<(&Artifact, f64)>> = HashMap::new();
@@ -143,14 +148,16 @@ impl TargetFunctionOptConfig {
             for (stat_name, arts) in entry.iter() {
                 let max_score = arts.iter().map(|x| (*x).1).fold(-f64::INFINITY, f64::max);
                 for (art, score) in arts.iter() {
-                    let relative = (max_score - score) / max_score;
+                    let relative = score / max_score;
                     let is_critical_set_name = self.is_critical_set_name(art.set_name);
-                    if (!is_critical_set_name && relative < 0.3) || (is_critical_set_name && relative < 0.5) {
+                    if (!is_critical_set_name && relative >= 0.8) || (is_critical_set_name && relative >= 0.5) {
                         results.push(art);
                     }
                 }
             }
         }
+
+        let flag = results.iter().any(|x| x.slot == ArtifactSlotName::Goblet);
 
         results
     }

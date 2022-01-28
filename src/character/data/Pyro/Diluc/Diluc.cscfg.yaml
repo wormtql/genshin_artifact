@@ -1,0 +1,6 @@
+characterName: Diluc
+configs:
+  - type: bool
+    name: pyro
+    title: "是否被大招附魔"
+    default: false

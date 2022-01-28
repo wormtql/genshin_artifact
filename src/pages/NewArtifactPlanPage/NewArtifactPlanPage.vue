@@ -16,6 +16,16 @@
             ></select-artifact>
         </el-dialog>
 
+        <el-dialog
+            :visible.sync="showDamageAnalysisDialog"
+            title="伤害构成"
+            width="80%"
+        >
+            <damage-analysis
+                ref="damageAnalysis"
+            ></damage-analysis>
+        </el-dialog>
+
         <div class="top-toolbar">
             <el-button
                 size="small"
@@ -81,6 +91,11 @@
 
                 <div class="config-target-function">
                     <p class="common-title">目标函数</p>
+                    <div class="my-button-list" style="margin-bottom: 12px">
+                        <my-button-1 icon="el-icon-s-operation" title="Optimize"
+                            @click="handleOptimizeArtifact"
+                        ></my-button-1>
+                    </div>
                     <select-target-function
                         v-model="targetFunctionName"
                         :character-name="characterName"
@@ -96,6 +111,24 @@
                                 class="target-function-description"
                             >{{ description }}</p>
                         </div> 
+                    </div>
+
+                    <div v-if="optimizationResults.length > 0"
+                        style="margin-top: 12px"
+                    >
+                        <el-alert
+                            title="共计算100组圣遗物搭配"
+                            type="success"
+                            style="margin-bottom: 12px"
+                        ></el-alert>
+                        <el-input-number
+                            v-model="optimizationResultIndex"
+                            @input="handleUseNthOptimizationResult"
+                            :min="1"
+                            :max="optimizationResults.length"
+                            size="small"
+                            style="width: 100%"
+                        ></el-input-number>
                     </div>
                 </div>
 
@@ -146,22 +179,34 @@
                 <el-divider></el-divider>
 
                 <p class="common-title">伤害计算</p>
-                <div v-if="characterNeedSkillConfig">
+                <div class="my-button-list" style="margin-bottom: 12px">
+                    <my-button-1 icon="el-icon-s-operation" title="明细"
+                        @click="handleDisplayAnalysis"
+                    ></my-button-1>
+                </div>
+                <div v-if="characterNeedSkillConfig" style="margin-bottom: 16px;">
                     <component
                         :is="characterSkillConfigComponent"
                         v-model="characterSkillConfig"
                     ></component>
                 </div>
                 <div class="damage-analysis-div">
-                    <damage-list
-                        :damage-list="characterDamageAnalysis"
-                    ></damage-list>
-                    <!-- {{ characterDamageAnalysis }} -->
+                    <select-character-skill
+                        v-model="characterSkillIndex"
+                        :character-name="characterName"
+                        style="margin-bottom: 16px"
+                    ></select-character-skill>
+                    <damage-panel
+                        :analysis-from-wasm="characterDamageAnalysis"
+                    ></damage-panel>
                 </div>
             </div>
 
             <div class="right-container">
                 <div class="common-title">面板</div>
+                <attribute-panel
+                    :attribute="attributeFromWasm"
+                ></attribute-panel>
             </div>
         </div>
     </div>
@@ -181,9 +226,13 @@ import SelectCharacterLevel from "@c/select/SelectCharacterLevel"
 import SelectWeapon from "@c/select/SelectWeapon"
 import SelectWeaponLevel from "@c/select/SelectWeaponLevel"
 import SelectTargetFunction from "@c/select/SelectTargetFunction"
+import SelectCharacterSkill from "@c/select/SelectCharacterSkill"
 import ArtifactDisplay from "@c/display/ArtifactDisplay"
 import AddButton from "@c/misc/AddButton"
-import DamageList from "./DamageList"
+import DamagePanel from "./DamagePanel"
+import MyButton1 from "@c/button/MyButton1"
+import DamageAnalysis from "@c/display/DamageAnalysis"
+import AttributePanel from "@c/display/AttributePanel"
 
 const artifactConfig = {
     "config_archaic_petra": {
@@ -214,12 +263,16 @@ export default {
         SelectArtifact,
         SelectCharacter,
         SelectCharacterLevel,
+        SelectCharacterSkill,
         SelectWeapon,
         SelectWeaponLevel,
         SelectTargetFunction,
         ArtifactDisplay,
         AddButton,
-        DamageList
+        DamagePanel,
+        MyButton1,
+        DamageAnalysis,
+        AttributePanel
     },
     created() {
         // this.characterData = characterData
@@ -230,6 +283,7 @@ export default {
             characterLevel: "90",
             characterConfig: "NoConfig",
             characterSkillConfig: "NoConfig",
+            characterSkillIndex: 0,
 
             weaponName: "PolarStar",
             weaponLevel: "90",
@@ -240,11 +294,16 @@ export default {
             },
 
             targetFunctionName: "GanyuDefault",
+            targetFunctionConfig: "NoConfig",
+            optimizationResults: [],
+            optimizationResultIndex: 0,
 
             artifactIds: [-1, -1, -1, -1, -1],
 
             showSelectArtifactDialog: false,
-            selectArtifactSlot: "any"
+            selectArtifactSlot: "any",
+
+            showDamageAnalysisDialog: false
         }
     },
     computed: {
@@ -299,6 +358,13 @@ export default {
             }
         },
 
+        characterSkillInterface() {
+            return {
+                index: this.characterSkillIndex,
+                config: this.characterSkillConfig
+            }
+        },
+
         weaponLevelNumber() {
             return parseInt(this.weaponLevel)
         },
@@ -341,7 +407,7 @@ export default {
         targetFunctionInterface() {
             return {
                 name: this.targetFunctionName,
-                params: "NoConfig" // todo
+                params: this.targetFunctionConfig
             }
         },
 
@@ -379,8 +445,33 @@ export default {
                 character: this.characterInterface,
                 weapon: this.weaponInterface,
                 buffs: [], // todo
+                artifacts: this.artifactWasmFormat,
+                artifact_config: null, // todo
+                skill: this.characterSkillInterface
+            }
+        },
+
+        getAttributeWasmInterface() {
+            return {
+                character: this.characterInterface,
+                weapon: this.weaponInterface,
+                buffs: [], // todo
+                artifacts: this.artifactWasmFormat,
+                artifact_config: null, // todo
+            }
+        },
+
+        optimizeArtifactWasmInterface() {
+            const artifacts = this.getAllArtifactsWasmFormat()
+            const artifacts16 = artifacts.filter(x => x.level >= 16)
+
+            return {
+                artifacts: artifacts16,
+                character: this.characterInterface,
+                weapon: this.weaponInterface,
                 target_function: this.targetFunctionInterface,
-                artifacts: this.artifactWasmFormat
+                constraint: null, // todo
+                buffs: [] // todo
             }
         },
 
@@ -388,9 +479,60 @@ export default {
             const temp = this.$mona.CalculatorInterface.get_damage_analysis(this.damageAnalysisWasmInterface)
             // console.log(temp)
             return temp
+        },
+
+        attributeFromWasm() {
+            return this.$mona.CommonInterface.get_attribute(this.getAttributeWasmInterface)
         }
     },
     methods: {
+        handleOptimizeArtifact() {
+            const interfac = this.optimizeArtifactWasmInterface
+            const start = new Date()
+
+            const worker = new Worker(new URL("@worker/optimize_artifact.js", import.meta.url))
+            worker.onmessage = e => {
+                if (e.data.type === "ready") {
+                    worker.postMessage({
+                        interfac
+                    })
+                } else {
+                    const results = e.data.data.results
+                    const end = new Date()
+
+                    console.log(`time: ${(end - start) / 1000}s`)
+                    // console.log(results)
+
+                    this.optimizationResults = results
+                }
+            }
+        },
+
+        handleUseNthOptimizationResult(n) {
+            // const index = this.optimizationResultIndex
+            // if (index === 0) {
+            //     return
+            // }
+
+            const result = this.optimizationResults[n - 1]
+            const m = x => {
+                if (x !== null) {
+                    return x
+                } else {
+                    return -1
+                }
+            }
+
+            let temp = []
+            temp.push(m(result.flower))
+            temp.push(m(result.feather))
+            temp.push(m(result.sand))
+            temp.push(m(result.goblet))
+            temp.push(m(result.head))
+
+            this.artifactIds = temp
+        },
+
         handleChangeCharacter(name) {
             this.characterName = name
         },
@@ -424,69 +566,16 @@ export default {
             this.$store.commit("artifacts/toggleById", { id })
         },
 
-        onClick () {
-            const characterInterface = {
-                name: "Zhongli",
-                level: 90,
-                ascend: false,
-                constellation: 0,
-                params: "NoConfig",
-                skill1: 8,
-                skill2: 8,
-                skill3: 8,
-            }
+        handleDisplayAnalysis() {
+            this.showDamageAnalysisDialog = true;
+            this.$nextTick(() => {
+                const component = this.$refs["damageAnalysis"]
+                component.setValue(this.characterDamageAnalysis)
+            })
+        },
 
-            const weaponInterface = {
-                name: "MistsplitterReforged",
-                level: 90,
-                ascend: false,
-                refine: 1,
-                params: {
-                    "MistsplitterReforgedConfig": 1,
-                },
-            }
-
-            const targetFunctionInterface = {
-                name: "GanyuDefault",
-                params: {
-                    "GanyuDefaultConfig": {
-                        "talent1_rate": 0.5,
-                        "talent2_rate": 0.5,
-                    }
-                }
-            }
-
-            const artifacts = this.$store.getters["artifacts/allFlat"].filter(x => {
-                return x.level == 20
-            }).map(x => convertArtifact(x));
-            // console.log(artifacts);
-            const artifacts2 = artifacts.splice(0, 118);
-            console.log(artifacts2);
-
-            // const constraint = {
-            //     "set_mode": "Any",
-            //     "min_level": 
-            // }
-            const inter = {
-                // artifacts: [artifacts[i]],
-                artifacts: artifacts2,
-                artifact_config: artifactConfig,
-                character: characterInterface,
-                weapon: weaponInterface,
-                target_function: targetFunctionInterface,
-                constraint: {},
-                buffs: [],
-            }
-
-            // let ret = this.$mona.OptimizeArtifactInterface.hello();
-            // let ret = this.$mona.OptimizeArtifactInterface.from_js(inter);
-            let start = new Date();
-            let ret = this.$mona.OptimizeArtifactInterface.optimize(inter);
-            let end = new Date();
-            
-            console.log("time", end - start);
-            console.log(ret);
-            console.log(typeof(ret));
+        getAllArtifactsWasmFormat() {
+            return this.$store.getters["artifacts/allFlat"].map(x => convertArtifact(x))
         }
     },
     watch: {
@@ -519,6 +608,7 @@ export default {
         }
     }
 };
+
 </script>
 
 <style lang="scss" scoped>
@@ -532,14 +622,20 @@ export default {
         // margin: 0 auto;
         // background: #00000011;
         position: relative;
+        // overflow-y: auto;
+        // overflow-x: visible;
     }
 
     .middle-container {
         flex: 2;
+        // overflow-y: auto;
+        // overflow-x: hidden;
     }
 
     .right-container {
         flex: 1;
+        // overflow-y: auto;
+        // overflow-x: hidden;
     }
 }
 
@@ -567,6 +663,7 @@ export default {
         // left: -150px;
         right: -100px;
         top: -32px;
+        pointer-events: none;
     }
 
     .character-extra-config {

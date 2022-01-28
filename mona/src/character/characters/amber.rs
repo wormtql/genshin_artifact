@@ -1,14 +1,18 @@
 use num_derive::FromPrimitive;
-use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::{Character, CharacterConfig, CharacterStaticData};
 use crate::common::{Element, WeaponType, ChangeAttribute, SkillType};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::attribute::{Attribute, AttributeName};
-use crate::character::prelude::CharacterTrait;
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterConstant, CharacterDamage, CharacterEffect};
+use crate::character::traits::CharacterTrait;
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
+use crate::target_functions::target_functions::AmberDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct AmberSkillType {
     pub normal_dmg1: [f64; 15],
@@ -123,15 +127,19 @@ impl AmberDamageEnum {
 
 pub struct Amber;
 
-impl CharacterConstant for Amber {
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum AmberRoleEnum {
+    Main
+}
+
+impl CharacterTrait for Amber {
     const STATIC_DATA: CharacterStaticData = AMBER_STATIC_DATA;
     type SkillType = AmberSkillType;
     const SKILL: Self::SkillType = AMBER_SKILL;
     type DamageEnumType = AmberDamageEnum;
-}
+    type RoleEnum = AmberRoleEnum;
 
-impl<D: DamageBuilder> CharacterDamage<D> for Amber {
-    fn damage_internal(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         use AmberDamageEnum::*;
         let s: AmberDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
 
@@ -157,24 +165,23 @@ impl<D: DamageBuilder> CharacterDamage<D> for Amber {
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
 
-        builder.build(
+        builder.damage(
             &context.attribute,
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            false,
             context.character_common_data.level
         )
     }
-}
 
-impl<A: Attribute> CharacterEffect<A> for Amber {
-    type EffectType = AmberEffect;
-
-    fn new_effect(common_data: &CharacterCommonData, config: &CharacterConfig) -> Self::EffectType {
-        AmberEffect::new(common_data)
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(AmberEffect::new(common_data))
     }
-}
 
-impl<A: Attribute, D: DamageBuilder> CharacterTrait<A, D> for Amber {
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: AmberRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            AmberRoleEnum::Main => Box::new(AmberDefaultTargetFunction)
+        }
+    }
 }

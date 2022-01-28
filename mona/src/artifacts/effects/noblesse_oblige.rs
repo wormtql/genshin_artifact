@@ -21,5 +21,6 @@ impl<T: Attribute> ArtifactEffect<T> for NoblesseObligeEffect {
 
     fn effect4(&self, attribute: &mut T) {
         attribute.add_atk_percentage("昔日宗室之仪4", self.rate * 0.2);
+        attribute.set_value_by(AttributeName::ATKBonusForOther, "昔日宗室之仪4", self.rate * 0.2);
     }
 }

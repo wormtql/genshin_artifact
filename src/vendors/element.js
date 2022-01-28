@@ -47,8 +47,12 @@ import {
     Table,
     TableColumn,
     Popconfirm,
+    Tooltip,
+    Empty
 } from "element-ui";
 
+Vue.use(Empty)
+Vue.use(Tooltip)
 Vue.use(Popconfirm);
 Vue.use(Tree);
 Vue.use(Table);

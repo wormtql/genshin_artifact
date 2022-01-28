@@ -2,7 +2,6 @@ const yaml = require("js-yaml")
 const Mustache = require("mustache")
 const fs = require("fs")
 const path = require("path")
-const { getOptions } = require("loader-utils")
 
 const pathFloatConfigTemplate = path.resolve(__dirname, "character_templates", "float_config.mustache")
 const pathIntConfigTemplate = path.resolve(__dirname, "character_templates", "int_config.mustache")
@@ -63,7 +62,7 @@ module.exports = function (source) {
     this.addDependency(pathCharacterConfigTemplate)
     this.addDependency(pathCharacterSkillConfigTemplate)
 
-    const options = getOptions()
+    const options = this.getOptions()
 
     const parsed = yaml.load(source)
     

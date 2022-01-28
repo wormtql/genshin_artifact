@@ -7,11 +7,9 @@ use mona::artifacts::{Artifact, ArtifactSlotName};
 use mona::character::character_config::CharacterConfig;
 use mona::target_functions::{TargetFunctionConfig, TargetFunctionName, TargetFunctionUtils};
 use mona::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
-use mona::applications::{ConstraintConfig, OptimizeArtifactInterface};
 use mona::applications::calculator::interface_calculator::CalculatorInterface;
-use mona::applications::optimize_artifacts::interface_config_object::{ConstraintSetMode, OptimizationResult};
+use mona::applications::optimize_artifacts::single_optimize::{optimize_single, optimize_single_interface};
 use mona::character::{Character, CharacterName};
-use mona::character::characters::{HuTaoDamage, HuTaoDamageEnum};
 use mona::character::skill_config::CharacterSkillConfig;
 use mona::damage::DamageContext;
 use mona::enemies::Enemy;
@@ -19,7 +17,7 @@ use mona::enemies::Enemy;
 
 fn perf() {
     let character = CharacterInterface {
-        name: CharacterName::Ganyu,
+        name: CharacterName::Diluc,
         level: 90,
         ascend: false,
         constellation: 0,
@@ -36,20 +34,10 @@ fn perf() {
         params: WeaponConfig::AmosBow { stack: 1.0 }
     };
     let target_function = TargetFunctionInterface {
-        name: TargetFunctionName::BarbaraDefault,
+        name: TargetFunctionName::KamisatoAyakaDefault,
         params: TargetFunctionConfig::GanyuDefault { melt_rate: 0.5 }
         // name: TargetFunctionName::Max,
         // params: TargetFunctionConfig::MaxConfig { element: Element::Cryo, skill_type: SkillType::NormalAttack },
-    };
-    let constraint = ConstraintConfig {
-        set_mode: Some(ConstraintSetMode::Any),
-        hp_min: None,
-        atk_min: None,
-        def_min: None,
-        recharge_min: None,
-        em_min: None,
-        crit_min: None,
-        crit_dmg_min: None
     };
     let mut artifacts = vec![];
     for _ in 0..25 {
@@ -59,28 +47,20 @@ fn perf() {
         artifacts.push(Artifact::new_random(ArtifactSlotName::Goblet));
         artifacts.push(Artifact::new_random(ArtifactSlotName::Head));
     }
+    let artifacts_ref: Vec<&Artifact> = artifacts.iter().collect();
 
     let now = time::SystemTime::now();
 
-    let results = OptimizeArtifactInterface::optimize_internal(
-        &artifacts,
-        &Default::default(),
+    let results = optimize_single_interface(
+        &artifacts_ref,
+        None,
         &character,
         &weapon,
         &target_function,
-        &constraint,
-        &Vec::new()
+        None,
+        &Vec::new(),
+        5
     );
-
-    // let results = OptimizeArtifactInterface::optimize_internal(OptimizeArtifactInterface {
-    //     artifacts,
-    //     artifact_config: Default::default(),
-    //     character,
-    //     weapon,
-    //     target_function,
-    //     constraint,
-    //     buffs: vec![]
-    // });
     println!("{:?}", results);
 
     println!("{}s", now.elapsed().unwrap().as_secs())

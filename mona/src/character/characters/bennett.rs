@@ -1,6 +1,19 @@
+use num_derive::FromPrimitive;
+use crate::attribute::{Attribute, AttributeName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{Character, CharacterConfig, CharacterStaticData};
+use crate::character::no_effect::NoEffect;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::BennettDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct BennettSkillType {
     pub normal_dmg1: [f64; 15],
@@ -59,3 +72,143 @@ pub const BENNETT_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     weapon_type: WeaponType::Sword,
     star: 4
 };
+
+pub struct Bennett;
+
+impl Bennett {
+    pub fn atk_bonus<A: Attribute>(common_data: &CharacterCommonData, attribute: &A) -> f64 {
+        let base_atk = attribute.get_value(AttributeName::ATKBase);
+        let s3 = common_data.skill3;
+
+        let bonus = BENNETT_SKILL.elemental_burst_atk_bonus[s3] + (if common_data.constellation >= 1 { 0.2 } else { 0.0 });
+        bonus * base_atk
+    }
+}
+
+#[derive(Copy, Clone, Eq, PartialEq)]
+#[derive(FromPrimitive)]
+pub enum BennettDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal5,
+    Charged11,
+    Charged12,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E21,
+    E22,
+    E31,
+    E32,
+    E4,
+    Q1,
+    QHeal
+}
+
+impl BennettDamageEnum {
+    pub fn is_heal(&self) -> bool {
+        *self == BennettDamageEnum::QHeal
+    }
+
+    pub fn get_element(&self) -> Element {
+        use BennettDamageEnum::*;
+        match *self {
+            E1 | E21 | E22 | E31 | E32 | E4 | Q1 | QHeal => Element::Pyro,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use BennettDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal5 => SkillType::NormalAttack,
+            Charged11 | Charged12 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E21 | E22 | E31 | E32 | E4 => SkillType::ElementalSkill,
+            Q1 | QHeal => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for BennettDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(FromPrimitive)]
+pub enum BennettRoleEnum {
+    Aux
+}
+
+impl CharacterTrait for Bennett {
+    const STATIC_DATA: CharacterStaticData = BENNETT_STATIC_DATA;
+    type SkillType = BennettSkillType;
+    const SKILL: Self::SkillType = BENNETT_SKILL;
+    type DamageEnumType = BennettDamageEnum;
+    type RoleEnum = BennettRoleEnum;
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: BennettDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        if s.is_heal() {
+            let ratio = match s {
+                BennettDamageEnum::QHeal => BENNETT_SKILL.elemental_burst_heal1[s3],
+                _ => 0.0
+            };
+            let fixed = BENNETT_SKILL.elemental_burst_heal1_fixed[s3];
+
+            let mut builder = D::new();
+            builder.add_hp_ratio("技能倍率", ratio);
+            builder.add_extra_damage("技能倍率", fixed);
+
+            builder.heal(&context.attribute)
+        } else {
+            let ratio = match s {
+                BennettDamageEnum::Normal1 => BENNETT_SKILL.normal_dmg1[s1],
+                BennettDamageEnum::Normal2 => BENNETT_SKILL.normal_dmg2[s1],
+                BennettDamageEnum::Normal3 => BENNETT_SKILL.normal_dmg3[s1],
+                BennettDamageEnum::Normal4 => BENNETT_SKILL.normal_dmg4[s1],
+                BennettDamageEnum::Normal5 => BENNETT_SKILL.normal_dmg5[s1],
+                BennettDamageEnum::Charged11 => BENNETT_SKILL.charged_dmg1[s1],
+                BennettDamageEnum::Charged12 => BENNETT_SKILL.charged_dmg2[s1],
+                BennettDamageEnum::Plunging1 => BENNETT_SKILL.plunging_dmg1[s1],
+                BennettDamageEnum::Plunging2 => BENNETT_SKILL.plunging_dmg2[s1],
+                BennettDamageEnum::Plunging3 => BENNETT_SKILL.plunging_dmg3[s1],
+                BennettDamageEnum::E1 => BENNETT_SKILL.elemental_skill_dmg1[s2],
+                BennettDamageEnum::E21 => BENNETT_SKILL.elemental_skill_dmg21[s2],
+                BennettDamageEnum::E22 => BENNETT_SKILL.elemental_skill_dmg22[s2],
+                BennettDamageEnum::E31 => BENNETT_SKILL.elemental_skill_dmg31[s2],
+                BennettDamageEnum::E32 => BENNETT_SKILL.elemental_skill_dmg32[s2],
+                BennettDamageEnum::E4 => BENNETT_SKILL.elemental_skill_dmg4[s2],
+                BennettDamageEnum::Q1 => BENNETT_SKILL.elemental_burst_dmg1[s3],
+                _ => 0.0
+            };
+            let mut builder = D::new();
+            builder.add_atk_ratio("技能倍率", ratio);
+
+            builder.damage(
+                &context.attribute,
+                &context.enemy,
+                s.get_element(),
+                s.get_skill_type(),
+                context.character_common_data.level
+            )
+        }
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+       Box::new(NoEffect)
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: BennettRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            BennettRoleEnum::Aux => Box::new(BennettDefaultTargetFunction)
+        }
+    }
+}

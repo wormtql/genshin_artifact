@@ -84,9 +84,9 @@ module.exports = {
                     BUILD_DATE: `"${buildDate}"`,
                 }
             }),
-            new WorkerPlugin({
-                globalObject: "self",
-            }),
+            // new WorkerPlugin({
+            //     globalObject: "self",
+            // }),
         ],
         // entry: {
         //     "compute-worker": "./src/workers/compute.worker.js",
@@ -122,21 +122,16 @@ module.exports = {
                     test: /\.wcfg\.yaml$/,
                     use: [
                         "vue-loader",
-                        path.resolve(loaderPath, "weapon_config_loader")
+                        path.resolve(loaderPath, "weapon_config_loader.js")
+                    ]
+                },
+                {
+                    test: /\.tfcfg\.yaml$/,
+                    use: [
+                        "vue-loader",
+                        path.resolve(loaderPath, "target_function_config_loader.js")
                     ]
                 }
-                // {
-                //     test: /\.worker\.js$/,
-                //     use: [
-                //         {
-                //             loader: "worker-loader",
-                //             // options: {
-                //             //     filename: "js/[contenthash].[name].js",
-                //             // }
-                //         },
-                //         // "babel-loader"
-                //     ],
-                // }
             ]
         },
         externals: {
@@ -145,6 +140,9 @@ module.exports = {
             vuex: "Vuex",
             "element-ui": "ELEMENT",
             "vue-echarts": "VueECharts",
+        },
+        experiments: {
+            asyncWebAssembly: true
         }
     },
     // chainWebpack: config => config.resolve.symlinks(false),

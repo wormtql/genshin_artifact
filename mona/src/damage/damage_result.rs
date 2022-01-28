@@ -7,6 +7,9 @@ pub struct DamageResult {
     pub critical: f64,
     pub non_critical: f64,
     pub expectation: f64,
+
+    pub is_heal: bool,
+    pub is_shield: bool
 }
 
 impl Mul<f64> for DamageResult {
@@ -17,6 +20,8 @@ impl Mul<f64> for DamageResult {
             critical: self.critical * rhs,
             non_critical: self.non_critical * rhs,
             expectation: self.expectation * rhs,
+            is_shield: false,
+            is_heal: false
         }
     }
 }
@@ -26,5 +31,7 @@ impl Mul<f64> for DamageResult {
 pub struct SimpleDamageResult {
     pub normal: DamageResult,
     pub melt: Option<DamageResult>,
-    pub vaporize: Option<DamageResult>
+    pub vaporize: Option<DamageResult>,
+    pub is_heal: bool,
+    pub is_shield: bool
 }

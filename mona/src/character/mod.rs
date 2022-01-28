@@ -14,5 +14,3 @@ pub use character_static_data::{CharacterStaticData};
 pub use character_name::CharacterName;
 pub use character::Character;
 pub use character_config::CharacterConfig;
-
-pub use characters::{GANYU_SKILL};

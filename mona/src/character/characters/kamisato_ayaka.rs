@@ -1,6 +1,17 @@
+use num_derive::FromPrimitive;
+use crate::attribute::{Attribute, AttributeName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::CharacterTrait;
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::kamisato_ayaka_default::KamisatoAyakaDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct KamisatoAyakaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -43,3 +54,149 @@ pub const KAMISATO_AYAKA_STATIC_DATA: CharacterStaticData = CharacterStaticData 
     weapon_type: WeaponType::Sword,
     star: 5
 };
+
+pub struct KamisatoAyakaEffect {
+    pub has_talent1: bool,
+    pub has_talent2: bool,
+    pub rate1: f64,
+    pub rate2: f64
+}
+
+impl KamisatoAyakaEffect {
+    pub fn new(common_data: &CharacterCommonData, config: &CharacterConfig) -> Self {
+        let (r1, r2) = match *config {
+            CharacterConfig::KamisatoAyaka { talent1_rate, talent2_rate } => (talent1_rate, talent2_rate),
+            _ => (0.0, 0.0)
+        };
+        KamisatoAyakaEffect {
+            has_talent1: common_data.has_talent1,
+            has_talent2: common_data.has_talent2,
+            rate1: r1,
+            rate2: r2
+        }
+    }
+}
+
+impl<A: Attribute> ChangeAttribute<A> for KamisatoAyakaEffect {
+    fn change_attribute(&self, attribute: &mut A) {
+        if self.has_talent1 {
+            attribute.set_value_by(AttributeName::BonusNormalAttack, "神里绫华天赋：天罪国罪镇词", 0.3 * self.rate1);
+            attribute.set_value_by(AttributeName::BonusChargedAttack, "神里绫华天赋：天罪国罪镇词", 0.3 * self.rate1);
+        }
+        if self.has_talent2 {
+            attribute.set_value_by(AttributeName::BonusCryo, "神里绫华天赋：寒天宣命祝词", 0.18 * self.rate2);
+        }
+    }
+}
+
+pub struct KamisatoAyaka;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum KamisatoAyakaDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal4Times3,
+    Normal5,
+    Charged,
+    ChargedTimes3,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    Q1,
+    Q2
+}
+
+impl Into<usize> for KamisatoAyakaDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+impl KamisatoAyakaDamageEnum {
+    pub fn get_element(&self, after_dash: bool) -> Element {
+        if after_dash {
+            Element::Cryo
+        } else {
+            use KamisatoAyakaDamageEnum::*;
+            match *self {
+                E1 | Q1 | Q2 => Element::Cryo,
+                _ => Element::Physical
+            }
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use KamisatoAyakaDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal4Times3 | Normal5 => SkillType::NormalAttack,
+            Charged | ChargedTimes3 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 => SkillType::ElementalSkill,
+            Q1 | Q2 => SkillType::ElementalBurst
+        }
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum KamisatoAyakaRoleEnum {
+    Main
+}
+
+impl CharacterTrait for KamisatoAyaka {
+    const STATIC_DATA: CharacterStaticData = KAMISATO_AYAKA_STATIC_DATA;
+    type SkillType = KamisatoAyakaSkillType;
+    const SKILL: Self::SkillType = KAMISATO_AYAKA_SKILL;
+    type DamageEnumType = KamisatoAyakaDamageEnum;
+    type RoleEnum = KamisatoAyakaRoleEnum;
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s: KamisatoAyakaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use KamisatoAyakaDamageEnum::*;
+        let ratio = match s {
+            Normal1 => KAMISATO_AYAKA_SKILL.normal_dmg1[s1],
+            Normal2 => KAMISATO_AYAKA_SKILL.normal_dmg2[s1],
+            Normal3 => KAMISATO_AYAKA_SKILL.normal_dmg3[s1],
+            Normal4 => KAMISATO_AYAKA_SKILL.normal_dmg4[s1],
+            Normal4Times3 => KAMISATO_AYAKA_SKILL.normal_dmg4[s1] * 3.0,
+            Normal5 => KAMISATO_AYAKA_SKILL.normal_dmg5[s1],
+            Charged => KAMISATO_AYAKA_SKILL.charged_dmg1[s1],
+            ChargedTimes3 => KAMISATO_AYAKA_SKILL.charged_dmg1[s1] * 3.0,
+            Plunging1 => KAMISATO_AYAKA_SKILL.plunging_dmg1[s1],
+            Plunging2 => KAMISATO_AYAKA_SKILL.plunging_dmg2[s1],
+            Plunging3 => KAMISATO_AYAKA_SKILL.plunging_dmg3[s1],
+            E1 => KAMISATO_AYAKA_SKILL.elemental_skill_dmg1[s2],
+            Q1 => KAMISATO_AYAKA_SKILL.elemental_burst_dmg1[s3],
+            Q2 => KAMISATO_AYAKA_SKILL.elemental_burst_dmg2[s3]
+        };
+
+        let after_dash = match *config {
+            CharacterSkillConfig::KamisatoAyaka { after_dash } => after_dash,
+            _ => false
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(after_dash),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
+        Box::new(KamisatoAyakaEffect::new(common_data, config))
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: KamisatoAyakaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            KamisatoAyakaRoleEnum::Main => Box::new(KamisatoAyakaDefaultTargetFunction)
+        }
+    }
+}
