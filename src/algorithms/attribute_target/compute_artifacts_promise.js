@@ -1,4 +1,4 @@
-import ComputeWorker from 'worker-loader?inline=no-fallback!@worker/compute.worker.js'
+import ComputeWorker from '@worker/compute.worker.js'
 export default function (artifacts, configObject) {
     return new Promise((resolve, reject) => {
         // let worker = new Worker("@worker/compute.worker.js", { type: "module" });

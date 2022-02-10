@@ -176,6 +176,20 @@ module.exports = {
                         inline: [/app\.js$/],
                     },
                 ])
+            config.module
+                .rule('worker')
+                .test(/\.worker\.js$/)
+                .use('worker')
+                .loader('worker-loader')
+                .options({
+                    inline: 'no-fallback'
+                })
+        }else{
+            config.module
+                .rule('worker')
+                .test(/\.worker\.js$/)
+                .use('worker')
+                .loader('worker-loader')
         }
     },
     productionSourceMap: false,
