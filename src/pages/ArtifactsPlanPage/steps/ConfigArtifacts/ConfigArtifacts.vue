@@ -197,6 +197,7 @@ export default {
             this.configTenacityOfTheMillelith = config.configTenacityOfTheMillelith ?? { rate: 0 };
             this.configLavaWalker = config.configLavaWalker ?? { rate: 0 };
             this.configMaidenBeloved = config.configMaidenBeloved ?? { rate: 0 };
+            this.configHuskOfOpulentDreams = config.configHuskOfOpulentDreams ?? { level: 0 };
         }
     }
 }
