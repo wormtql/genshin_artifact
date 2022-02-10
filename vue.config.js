@@ -53,7 +53,7 @@ singleFile = ${singleFile}
 
 let now = new Date();
 let buildDate = now.toString();
-
+process.env.VUE_APP_SINGLEFILE = singleFile
 module.exports = {
     publicPath: process.env.PublicPath || '/',
     css: {
@@ -87,7 +87,7 @@ module.exports = {
                 }
             })
         ],
-        externals: {
+        externals: (singleFile||process.env.NODE_ENV==='development')?{}:{
             vue: "Vue",
             "vue-router": "VueRouter",
             vuex: "Vuex",

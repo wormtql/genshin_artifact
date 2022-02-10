@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "cross-env MONA_TITLE=莫娜占卜铺 MONA_NEED_BEIAN=false MONA_NEED_MIGRATE=false MONA_ROUTE_MODE=hash vue-cli-service serve",
     "build": "cross-env MONA_TITLE=莫娜占卜铺 MONA_NEED_BEIAN=false MONA_NEED_MIGRATE=false MONA_ROUTE_MODE=hash vue-cli-service build",
+    "build:singlefile": "cross-env MONA_SINGLE_FILE=true MONA_TITLE=莫娜占卜铺 MONA_NEED_BEIAN=false MONA_NEED_MIGRATE=false MONA_ROUTE_MODE=hash MONA_ROUTE_MODE=hash vue-cli-service build",
     "build:1": "cross-env MONA_TITLE=原神圣遗物工具 MONA_NEED_BEIAN=true MONA_BEIAN_NUMBER=1 MONA_NEED_MIGRATE=true MONA_ROUTE_MODE=hash vue-cli-service build",
     "build:2": "cross-env MONA_TITLE=莫娜占卜铺 MONA_NEED_BEIAN=true MONA_BEIAN_NUMBER=2 MONA_NEED_MIGRATE=false MONA_ROUTE_MODE=history vue-cli-service build",
     "lint": "vue-cli-service lint",
@@ -19,6 +20,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/vue-fontawesome": "^2.0.0",
+    "@vue/composition-api": "^1.4.6",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.14.0",
@@ -28,6 +30,7 @@
     "object-hash": "^2.2.0",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4",
+    "vue-echarts": "^6.0.2",
     "vue-katex": "^0.5.0"
   },
   "devDependencies": {

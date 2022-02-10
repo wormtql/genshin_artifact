@@ -1,5 +1,5 @@
 import Vue from "vue";
-// import "element-ui/lib/theme-chalk/index.css";
+import 'element-ui/lib/theme-chalk/display.css';
 import {
     Tree,
     Button,
@@ -47,6 +47,8 @@ import {
     Table,
     TableColumn,
     Popconfirm,
+    Submenu,
+    Header
 } from "element-ui";
 
 Vue.use(Popconfirm);
@@ -93,6 +95,8 @@ Vue.use(Aside);
 Vue.use(Main);
 Vue.use(Divider);
 Vue.use(Image);
+Vue.use(Submenu)
+Vue.use(Header)
 
 Vue.prototype.$alert = MessageBox.alert;
 Vue.prototype.$confirm = MessageBox.confirm;
