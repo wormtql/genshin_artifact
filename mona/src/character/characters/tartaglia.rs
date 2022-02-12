@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, StatName, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
+use crate::common::item_config_type::ItemConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::TartagliaDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct TartagliaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -65,11 +77,185 @@ pub const TARTAGLIA_SKILL: TartagliaSkillType = TartagliaSkillType {
 };
 
 pub const TARTAGLIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Tartaglia,
+    chs: "达达利亚",
     element: Element::Hydro,
     hp: [1020, 2646, 3521, 5268, 5889, 6776, 7604, 8500, 9121, 10025, 10647, 11561, 12182, 13103],
     atk: [23, 61, 81, 121, 135, 156, 175, 195, 210, 231, 245, 266, 280, 301],
     def: [63, 165, 219, 328, 366, 421, 473, 528, 567, 623, 662, 719, 757, 815],
     sub_stat: CharacterSubStatFamily::Bonus288(StatName::HydroBonus),
     weapon_type: WeaponType::Bow,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·断雨",
+    skill_name2: "魔王武装·狂澜",
+    skill_name3: "极恶技·尽灭闪"
 };
+
+pub struct Tartaglia;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum TartagliaDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal5,
+    Normal6,
+    Charged1,
+    Charged2,
+    NormalRiptideFlash,
+    NormalRiptideBurst,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    ENormal1,
+    ENormal2,
+    ENormal3,
+    ENormal4,
+    ENormal5,
+    ENormal61,
+    ENormal62,
+    ECharged11,
+    ECharged12,
+    ERiptideSlash,
+    Q1,
+    Q2,
+    QRiptideBlast
+}
+
+impl TartagliaDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use TartagliaDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal5 | Normal6 | Charged1 | Plunging1 | Plunging2 | Plunging3 => Element::Physical,
+            _ => Element::Hydro
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use TartagliaDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal5 | Normal6 |
+                ENormal1 | ENormal2 | ENormal3 | ENormal4 | ENormal5 | ENormal61 | ENormal62 |
+                NormalRiptideFlash | NormalRiptideBurst => SkillType::NormalAttack,
+            Charged1 | Charged2 | ECharged11 | ECharged12 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | ERiptideSlash => SkillType::ElementalSkill,
+            Q1 | Q2 | QRiptideBlast => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for TartagliaDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum TartagliaRoleEnum {
+    Main
+}
+
+impl CharacterTrait for Tartaglia {
+    const STATIC_DATA: CharacterStaticData = TARTAGLIA_STATIC_DATA;
+    type SkillType = TartagliaSkillType;
+    const SKILL: Self::SkillType = TARTAGLIA_SKILL;
+    type DamageEnumType = TartagliaDamageEnum;
+    type RoleEnum = TartagliaRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal6 as usize, chs: "六段伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Charged1 as usize, chs: "瞄准射击" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Charged2 as usize, chs: "满蓄力瞄准射击" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::NormalRiptideFlash as usize, chs: "断流·闪伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::NormalRiptideBurst as usize, chs: "断流·破伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: TartagliaDamageEnum::E1 as usize, chs: "状态爆发伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal61 as usize, chs: "六段伤害-1" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal62 as usize, chs: "六段伤害-2" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ECharged11 as usize, chs: "重击伤害-1" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ECharged12 as usize, chs: "重击伤害-2" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ERiptideSlash as usize, chs: "断流·斩伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Q1 as usize, chs: "技能伤害·近战" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Q2 as usize, chs: "技能伤害·远程" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::QRiptideBlast as usize, chs: "断流·爆伤害" },
+        ])
+    };
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: TartagliaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use TartagliaDamageEnum::*;
+        let ratio = match s {
+            Normal1 => TARTAGLIA_SKILL.normal_dmg1[s1],
+            Normal2 => TARTAGLIA_SKILL.normal_dmg2[s1],
+            Normal3 => TARTAGLIA_SKILL.normal_dmg3[s1],
+            Normal4 => TARTAGLIA_SKILL.normal_dmg4[s1],
+            Normal5 => TARTAGLIA_SKILL.normal_dmg5[s1],
+            Normal6 => TARTAGLIA_SKILL.normal_dmg6[s1],
+            Charged1 => TARTAGLIA_SKILL.charged_dmg1[s1],
+            Charged2 => TARTAGLIA_SKILL.charged_dmg2[s1],
+            NormalRiptideFlash => TARTAGLIA_SKILL.normal_riptide_flash[s1],
+            NormalRiptideBurst => TARTAGLIA_SKILL.normal_riptide_burst[s1],
+            Plunging1 => TARTAGLIA_SKILL.plunging_dmg1[s1],
+            Plunging2 => TARTAGLIA_SKILL.plunging_dmg2[s1],
+            Plunging3 => TARTAGLIA_SKILL.plunging_dmg3[s1],
+            E1 => TARTAGLIA_SKILL.elemental_skill_dmg1[s2],
+            ENormal1 => TARTAGLIA_SKILL.elemental_skill_normal_dmg1[s2],
+            ENormal2 => TARTAGLIA_SKILL.elemental_skill_normal_dmg2[s2],
+            ENormal3 => TARTAGLIA_SKILL.elemental_skill_normal_dmg3[s2],
+            ENormal4 => TARTAGLIA_SKILL.elemental_skill_normal_dmg4[s2],
+            ENormal5 => TARTAGLIA_SKILL.elemental_skill_normal_dmg5[s2],
+            ENormal61 => TARTAGLIA_SKILL.elemental_skill_normal_dmg61[s2],
+            ENormal62 => TARTAGLIA_SKILL.elemental_skill_normal_dmg62[s2],
+            ECharged11 => TARTAGLIA_SKILL.elemental_skill_charged_dmg11[s2],
+            ECharged12 => TARTAGLIA_SKILL.elemental_skill_charged_dmg12[s2],
+            ERiptideSlash => TARTAGLIA_SKILL.elemental_skill_riptide_slash[s2],
+            Q1 => TARTAGLIA_SKILL.elemental_burst_dmg1[s3],
+            Q2 => TARTAGLIA_SKILL.elemental_burst_dmg2[s3],
+            QRiptideBlast => TARTAGLIA_SKILL.elemental_burst_riptide_blast[s3]
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: TartagliaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            TartagliaRoleEnum::Main => Box::new(TartagliaDefaultTargetFunction),
+        }
+    }
+}

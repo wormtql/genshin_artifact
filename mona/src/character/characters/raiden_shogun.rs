@@ -1,8 +1,18 @@
+use num_derive::FromPrimitive;
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{ChangeAttribute, Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::RaidenShogunDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct RaidenShogunSkill {
     pub normal_dmg1: [f64; 15],
@@ -67,13 +77,18 @@ pub const RAIDEN_SHOGUN_SKILL: RaidenShogunSkill = RaidenShogunSkill {
 };
 
 pub const RAIDEN_SHOGUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::RaidenShogun,
+    chs: "雷电将军",
     element: Element::Electro,
     hp: [1005, 2606, 3468, 5189, 5801, 6675, 7491, 8373, 8985, 9875, 10487, 11388, 12000, 12907],
     atk: [26, 68, 91, 136, 152, 174, 196, 219, 235, 258, 274, 298, 314, 337],
     def: [61, 159, 212, 317, 355, 408, 458, 512, 549, 604, 641, 696, 734, 789],
     sub_stat: CharacterSubStatFamily::Recharge320,
     weapon_type: WeaponType::Polearm,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击•源流",
+    skill_name2: "神变•恶曜开眼",
+    skill_name3: "奥义•梦想真说"
 };
 
 pub struct RaidenShogunEffect {
@@ -98,6 +113,203 @@ impl<T: Attribute> ChangeAttribute<T> for RaidenShogunEffect {
                 Box::new(|grad, _x1, _x2| (grad * 0.4, 0.0)),
                 "雷电将军天赋：殊胜之御体"
             );
+        }
+    }
+}
+
+pub struct RaidenShogun;
+
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+pub enum RaidenShogunDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal41,
+    Normal42,
+    Normal5,
+    Charged,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    Q1,
+    QNormal1,
+    QNormal2,
+    QNormal3,
+    QNormal41,
+    QNormal42,
+    QNormal5,
+    QCharged11,
+    QCharged12,
+    QPlunging1,
+    QPlunging2,
+    QPlunging3
+}
+
+impl RaidenShogunDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use RaidenShogunDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal41 | Normal42 | Normal5 | Charged | Plunging1 | Plunging2 | Plunging3 => Element::Physical,
+            _ => Element::Electro
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use RaidenShogunDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal41 | Normal42 | Normal5 => SkillType::NormalAttack,
+            Charged => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E2 => SkillType::ElementalSkill,
+            _ => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for RaidenShogunDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum RaidenShogunRoleEnum {
+    QTE
+}
+
+impl CharacterTrait for RaidenShogun {
+    const STATIC_DATA: CharacterStaticData = RAIDEN_SHOGUN_STATIC_DATA;
+    type SkillType = RaidenShogunSkill;
+    const SKILL: Self::SkillType = RAIDEN_SHOGUN_SKILL;
+    type DamageEnumType = RaidenShogunDamageEnum;
+    type RoleEnum = RaidenShogunRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::Normal41 as usize, chs: "四段伤害-1" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::Normal42 as usize, chs: "四段伤害-2" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::E1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::E2 as usize, chs: "协同攻击伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::Q1 as usize, chs: "梦想一刀基础伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::QNormal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::QNormal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::QNormal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::QNormal41 as usize, chs: "四段伤害-1" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::QNormal42 as usize, chs: "四段伤害-2" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::QNormal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::QCharged11 as usize, chs: "重击伤害-1" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::QCharged12 as usize, chs: "重击伤害-2" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::QPlunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::QPlunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: RaidenShogunDamageEnum::QPlunging3 as usize, chs: "高空坠地冲击伤害" },
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "under_e",
+            title: "处于雷罚恶曜之眼",
+            config: ItemConfigType::Bool { default: true }
+        },
+        ItemConfig {
+            name: "resolve_stack",
+            title: "诸愿百眼之愿力层数",
+            config: ItemConfigType::Int { min: 0, max: 60, default: 60 }
+        }
+    ]);
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s: RaidenShogunDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use RaidenShogunDamageEnum::*;
+        let ratio = match s {
+            Normal1 => RAIDEN_SHOGUN_SKILL.normal_dmg1[s1],
+            Normal2 => RAIDEN_SHOGUN_SKILL.normal_dmg2[s1],
+            Normal3 => RAIDEN_SHOGUN_SKILL.normal_dmg3[s1],
+            Normal41 => RAIDEN_SHOGUN_SKILL.normal_dmg41[s1],
+            Normal42 => RAIDEN_SHOGUN_SKILL.normal_dmg42[s1],
+            Normal5 => RAIDEN_SHOGUN_SKILL.normal_dmg5[s1],
+            Charged => RAIDEN_SHOGUN_SKILL.charged_dmg1[s1],
+            Plunging1 => RAIDEN_SHOGUN_SKILL.plunging_dmg1[s1],
+            Plunging2 => RAIDEN_SHOGUN_SKILL.plunging_dmg2[s1],
+            Plunging3 => RAIDEN_SHOGUN_SKILL.plunging_dmg3[s1],
+            E1 => RAIDEN_SHOGUN_SKILL.elemental_skill_dmg1[s2],
+            E2 => RAIDEN_SHOGUN_SKILL.elemental_skill_dmg2[s2],
+            Q1 => RAIDEN_SHOGUN_SKILL.elemental_burst_dmg1[s3],
+            QNormal1 => RAIDEN_SHOGUN_SKILL.elemental_burst_normal_dmg1[s3],
+            QNormal2 => RAIDEN_SHOGUN_SKILL.elemental_burst_normal_dmg2[s3],
+            QNormal3 => RAIDEN_SHOGUN_SKILL.elemental_burst_normal_dmg3[s3],
+            QNormal41 => RAIDEN_SHOGUN_SKILL.elemental_burst_normal_dmg41[s3],
+            QNormal42 => RAIDEN_SHOGUN_SKILL.elemental_burst_normal_dmg42[s3],
+            QNormal5 => RAIDEN_SHOGUN_SKILL.elemental_burst_normal_dmg5[s3],
+            QCharged11 => RAIDEN_SHOGUN_SKILL.elemental_burst_charged_dmg11[s3],
+            QCharged12 => RAIDEN_SHOGUN_SKILL.elemental_burst_charged_dmg12[s3],
+            QPlunging1 => RAIDEN_SHOGUN_SKILL.elemental_burst_plunging_dmg1[s3],
+            QPlunging2 => RAIDEN_SHOGUN_SKILL.elemental_burst_plunging_dmg2[s3],
+            QPlunging3 => RAIDEN_SHOGUN_SKILL.elemental_burst_plunging_dmg3[s3],
+        };
+
+        let (under_e, resolve_stack) = match *config {
+            CharacterSkillConfig::RaidenShogun { under_e, resolve_stack } => (under_e, resolve_stack),
+            _ => (false, 0)
+        };
+
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        let skill_type = s.get_skill_type();
+        if skill_type == SkillType::ElementalBurst {
+            if under_e {
+                let bonus_per_energy = RAIDEN_SHOGUN_SKILL.elemental_skill_q_bonus[s2];
+                builder.add_extra_bonus("雷罚恶曜之眼加成", bonus_per_energy * 90.0);
+            }
+            let resolve_bonus_per_stack = if s == RaidenShogunDamageEnum::Q1 {
+                RAIDEN_SHOGUN_SKILL.elemental_burst_bonus1[s3]
+            } else {
+                RAIDEN_SHOGUN_SKILL.elemental_burst_bonus2[s3]
+            };
+            let extra_ratio = resolve_stack as f64 * resolve_bonus_per_stack;
+            builder.add_atk_ratio("愿力加成", extra_ratio);
+
+            let is_conste2 = context.character_common_data.constellation >= 2;
+            if is_conste2 {
+                builder.add_extra_def_minus("雷电将军二命「斩铁断金」", 0.6);
+            }
+        }
+
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            skill_type,
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(RaidenShogunEffect::new(common_data)))
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: RaidenShogunRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            RaidenShogunRoleEnum::QTE => Box::new(RaidenShogunDefaultTargetFunction)
         }
     }
 }

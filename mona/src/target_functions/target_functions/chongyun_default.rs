@@ -1,19 +1,40 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::{ArtifactEffectConfig, ConfigArchaicPetra, ConfigBlizzardStrayer, ConfigRate};
 use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
-use crate::character::Character;
+use crate::character::{Character, CharacterName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::Chongyun;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
 use crate::common::{Element, StatName};
+use crate::common::item_config_type::ItemConfig;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
+use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
-use crate::target_functions::TargetFunction;
+use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
+use crate::target_functions::target_function::TargetFunctionMetaTrait;
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct ChongyunDefaultTargetFunction;
+
+impl TargetFunctionMetaTrait for ChongyunDefaultTargetFunction {
+    #[cfg(not(target_family = "wasm"))]
+    const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
+        name: TargetFunctionName::ChongyunDefault,
+        chs: "重云-雪融有踪",
+        description: "普通副C重云",
+        tags: "副C,输出",
+        four: TargetFunctionFor::SomeWho(CharacterName::Chongyun),
+        image: TargetFunctionMetaImage::Avatar
+    };
+
+    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, _config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        Box::new(ChongyunDefaultTargetFunction)
+    }
+}
 
 impl TargetFunction for ChongyunDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
@@ -28,6 +49,7 @@ impl TargetFunction for ChongyunDefaultTargetFunction {
             elemental_mastery: 0.0,
             critical: 1.0,
             critical_damage: 1.0,
+            healing_bonus: 0.0,
             bonus_electro: 0.0,
             bonus_pyro: 0.0,
             bonus_hydro: 0.0,
@@ -54,7 +76,11 @@ impl TargetFunction for ChongyunDefaultTargetFunction {
                 ArtifactSetName::BlizzardStrayer,
                 ArtifactSetName::GladiatorsFinale,
                 ArtifactSetName::ShimenawasReminiscence
-            ])
+            ]),
+            very_critical_set_names: None,
+            normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
+            critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
+            very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
         }
     }
 

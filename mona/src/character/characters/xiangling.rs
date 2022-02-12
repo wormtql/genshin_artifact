@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::ItemConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::XianglingDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct XianglingSkillType {
     pub normal_dmg1: [f64; 15],
@@ -41,11 +53,152 @@ pub const XIANGLING_SKILL: XianglingSkillType = XianglingSkillType {
 };
 
 pub const XIANGLING_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Xiangling,
+    chs: "香菱",
     element: Element::Pyro,
     hp: [912, 2342, 3024, 4529, 5013, 5766, 6411, 7164, 7648, 8401, 8885, 9638, 10122, 10875],
     atk: [19, 48, 63, 94, 104, 119, 133, 148, 158, 174, 184, 200, 210, 225],
     def: [56, 144, 186, 279, 308, 355, 394, 441, 470, 517, 546, 593, 623, 669],
     sub_stat: CharacterSubStatFamily::ElementalMastery96,
     weapon_type: WeaponType::Polearm,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·白案功夫",
+    skill_name2: "锅巴出击",
+    skill_name3: "旋火轮"
 };
+
+pub struct Xiangling;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum XianglingDamageEnum {
+    Normal1,
+    Normal2,
+    Normal31,
+    Normal32,
+    Normal3,
+    Normal4,
+    Normal4Times4,
+    Normal5,
+    Charged,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    Q1,
+    Q2,
+    Q3,
+    Q4
+}
+
+impl XianglingDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use XianglingDamageEnum::*;
+        match *self {
+            E1 | Q1 | Q2 | Q3 | Q4 => Element::Pyro,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use XianglingDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal31 | Normal32 | Normal3 | Normal4 | Normal4Times4 | Normal5 => SkillType::NormalAttack,
+            Charged => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 => SkillType::ElementalSkill,
+            Q1 | Q2 | Q3 | Q4 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for XianglingDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum XianglingRoleEnum {
+    Sub
+}
+
+impl CharacterTrait for Xiangling {
+    const STATIC_DATA: CharacterStaticData = XIANGLING_STATIC_DATA;
+    type SkillType = XianglingSkillType;
+    const SKILL: Self::SkillType = XIANGLING_SKILL;
+    type DamageEnumType = XianglingDamageEnum;
+    type RoleEnum = XianglingRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal31 as usize, chs: "三段伤害-1" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal32 as usize, chs: "三段伤害-2" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal4 as usize, chs: "四段伤害/4" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: XianglingDamageEnum::E1 as usize, chs: "喷火伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: XianglingDamageEnum::Q1 as usize, chs: "一段挥舞伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Q2 as usize, chs: "二段挥舞伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Q3 as usize, chs: "三段挥舞伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Q4 as usize, chs: "旋火轮伤害" },
+        ])
+    };
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: XianglingDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use XianglingDamageEnum::*;
+        let ratio = match s {
+            Normal1 => XIANGLING_SKILL.normal_dmg1[s1],
+            Normal2 => XIANGLING_SKILL.normal_dmg2[s1],
+            Normal31 => XIANGLING_SKILL.normal_dmg31[s1],
+            Normal32 => XIANGLING_SKILL.normal_dmg32[s1],
+            Normal3 => XIANGLING_SKILL.normal_dmg31[s1] + XIANGLING_SKILL.normal_dmg32[s1],
+            Normal4 => XIANGLING_SKILL.normal_dmg4[s1],
+            Normal4Times4 => XIANGLING_SKILL.normal_dmg4[s1] * 4.0,
+            Normal5 => XIANGLING_SKILL.normal_dmg5[s1],
+            Charged => XIANGLING_SKILL.charged_dmg1[s1],
+            Plunging1 => XIANGLING_SKILL.plunging_dmg1[s1],
+            Plunging2 => XIANGLING_SKILL.plunging_dmg2[s1],
+            Plunging3 => XIANGLING_SKILL.plunging_dmg3[s1],
+            E1 => XIANGLING_SKILL.elemental_skill_dmg1[s2],
+            Q1 => XIANGLING_SKILL.elemental_burst_dmg1[s3],
+            Q2 => XIANGLING_SKILL.elemental_burst_dmg2[s3],
+            Q3 => XIANGLING_SKILL.elemental_burst_dmg3[s3],
+            Q4 => XIANGLING_SKILL.elemental_burst_dmg4[s3],
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: XianglingRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            XianglingRoleEnum::Sub => Box::new(XianglingDefaultTargetFunction {
+                recharge_demand: 1.8
+            })
+        }
+    }
+}

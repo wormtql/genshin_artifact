@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::ItemConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::XinyanDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct XinyanSkillType {
     pub normal_dmg1: [f64; 15],
@@ -49,11 +61,145 @@ pub const XINYAN_SKILL: XinyanSkillType = XinyanSkillType {
 };
 
 pub const XINYAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Xinyan,
+    chs: "辛焱",
     element: Element::Pyro,
     hp: [939, 2413, 3114, 4665, 5163, 5939, 6604, 7379, 7878, 8653, 9151, 9927, 10425, 11201],
     atk: [21, 54, 69, 103, 115, 132, 147, 164, 175, 192, 203, 220, 231, 249],
     def: [67, 172, 222, 333, 368, 423, 471, 526, 562, 617, 652, 708, 743, 799],
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Claymore,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·炎舞",
+    skill_name2: "热情拂扫",
+    skill_name3: "叛逆刮弦"
 };
+
+pub struct Xinyan;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum XinyanDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    Q1,
+    Q2
+}
+
+impl XinyanDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use XinyanDamageEnum::*;
+        match *self {
+            E1 | E2 | Q2 => Element::Pyro,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use XinyanDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E2 => SkillType::ElementalSkill,
+            Q1 | Q2 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for XinyanDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum XinyanRoleEnum {
+    Aux
+}
+
+impl CharacterTrait for Xinyan {
+    const STATIC_DATA: CharacterStaticData = XINYAN_STATIC_DATA;
+    type SkillType = XinyanSkillType;
+    const SKILL: Self::SkillType = XINYAN_SKILL;
+    type DamageEnumType = XinyanDamageEnum;
+    type RoleEnum = XinyanRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: XinyanDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Charged1 as usize, chs: "重击循环伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Charged2 as usize, chs: "重击终结伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: XinyanDamageEnum::E1 as usize, chs: "挥舞伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::E2 as usize, chs: "持续伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: XinyanDamageEnum::Q1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Q2 as usize, chs: "火元素持续伤害" },
+        ])
+    };
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: XinyanDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use XinyanDamageEnum::*;
+        let ratio = match s {
+            Normal1 => XINYAN_SKILL.normal_dmg1[s1],
+            Normal2 => XINYAN_SKILL.normal_dmg2[s1],
+            Normal3 => XINYAN_SKILL.normal_dmg3[s1],
+            Normal4 => XINYAN_SKILL.normal_dmg4[s1],
+            Charged1 => XINYAN_SKILL.charged_dmg1[s1],
+            Charged2 => XINYAN_SKILL.charged_dmg2[s1],
+            Plunging1 => XINYAN_SKILL.plunging_dmg1[s1],
+            Plunging2 => XINYAN_SKILL.plunging_dmg2[s1],
+            Plunging3 => XINYAN_SKILL.plunging_dmg3[s1],
+            E1 => XINYAN_SKILL.elemental_skill_dmg1[s2],
+            E2 => XINYAN_SKILL.elemental_skill_dmg2[s2],
+            Q1 => XINYAN_SKILL.elemental_burst_dmg1[s3],
+            Q2 => XINYAN_SKILL.elemental_burst_dmg2[s3],
+        };
+
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: XinyanRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            XinyanRoleEnum::Aux => Box::new(XinyanDefaultTargetFunction {
+                recharge_demand: 1.4,
+                damage_demand: 0.5,
+            })
+        }
+    }
+}

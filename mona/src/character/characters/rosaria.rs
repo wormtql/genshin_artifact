@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::rosaria_default::RosariaDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct RosariaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -41,11 +53,164 @@ pub const ROSARIA_SKILL: RosariaSkillType = RosariaSkillType {
 };
 
 pub const ROSARIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Rosaria,
+    chs: "罗莎莉亚",
     element: Element::Cryo,
     hp: [1030, 2647, 3417, 5118, 5665, 6516, 7245, 8096, 8643, 9493, 10040, 10891, 11438, 12289],
     atk: [20, 52, 67, 100, 111, 127, 141, 158, 169, 185, 196, 213, 223, 240],
     def: [60, 153, 197, 296, 327, 376, 418, 468, 499, 548, 580, 629, 661, 710],
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Polearm,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·教会枪术",
+    skill_name2: "噬罪的告解",
+    skill_name3: "终命的圣礼"
 };
+
+pub struct Rosaria;
+
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+pub enum RosariaDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal51,
+    Normal52,
+    Charged,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E11,
+    E12,
+    Q11,
+    Q12,
+    Q2,
+}
+
+impl RosariaDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use RosariaDamageEnum::*;
+        match *self {
+            E11 | E12 | Q11 | Q12 | Q2 => Element::Cryo,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use RosariaDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal51 | Normal52 => SkillType::NormalAttack,
+            Charged => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E11 | E12 => SkillType::ElementalSkill,
+            Q11 | Q12 | Q2 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for RosariaDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum RosariaRoleEnum {
+    Freezing
+}
+
+impl CharacterTrait for Rosaria {
+    const STATIC_DATA: CharacterStaticData = ROSARIA_STATIC_DATA;
+    type SkillType = RosariaSkillType;
+    const SKILL: Self::SkillType = ROSARIA_SKILL;
+    type DamageEnumType = RosariaDamageEnum;
+    type RoleEnum = RosariaRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal3 as usize, chs: "三段伤害/2" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal51 as usize, chs: "五段伤害-1" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal52 as usize, chs: "五段伤害-2" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: RosariaDamageEnum::E11 as usize, chs: "技能伤害-1" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::E12 as usize, chs: "技能伤害-2" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: RosariaDamageEnum::Q11 as usize, chs: "技能伤害-1" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Q12 as usize, chs: "技能伤害-2" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Q2 as usize, chs: "冰枪持续伤害" },
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "e_from_behind",
+            title: "应用天赋「聆听忏悔的幽影」效果",
+            config: ItemConfigType::Bool { default: true }
+        }
+    ]);
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s: RosariaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use RosariaDamageEnum::*;
+        let ratio = match s {
+            Normal1 => ROSARIA_SKILL.normal_dmg1[s1],
+            Normal2 => ROSARIA_SKILL.normal_dmg2[s1],
+            Normal3 => ROSARIA_SKILL.normal_dmg3[s1],
+            Normal4 => ROSARIA_SKILL.normal_dmg4[s1],
+            Normal51 => ROSARIA_SKILL.normal_dmg51[s1],
+            Normal52 => ROSARIA_SKILL.normal_dmg51[s1],
+            Charged => ROSARIA_SKILL.charged_dmg1[s1],
+            Plunging1 => ROSARIA_SKILL.plunging_dmg1[s1],
+            Plunging2 => ROSARIA_SKILL.plunging_dmg2[s1],
+            Plunging3 => ROSARIA_SKILL.plunging_dmg3[s1],
+            E11 => ROSARIA_SKILL.elemental_skill_dmg11[s2],
+            E12 => ROSARIA_SKILL.elemental_skill_dmg12[s2],
+            Q11 => ROSARIA_SKILL.elemental_burst_dmg11[s3],
+            Q12 => ROSARIA_SKILL.elemental_burst_dmg12[s3],
+            Q2 => ROSARIA_SKILL.elemental_burst_dmg2[s3]
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+
+        let e_from_behind = match *config {
+            CharacterSkillConfig::Rosaria { e_from_behind } => e_from_behind,
+            _ => false
+        };
+        if s == E12 && e_from_behind && context.character_common_data.has_talent1 {
+            builder.add_extra_critical("罗莎莉亚天赋：聆听忏悔的幽影", 0.12);
+        }
+
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: RosariaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            RosariaRoleEnum::Freezing => Box::new(RosariaDefaultTargetFunction::default())
+        }
+    }
+}

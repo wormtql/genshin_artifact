@@ -2,17 +2,16 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{Character, CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::DilucDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
-use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct DilucSkillType {
@@ -54,13 +53,18 @@ pub const DILUC_SKILL: DilucSkillType = DilucSkillType {
 };
 
 const DILUC_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Diluc,
+    chs: "迪卢克",
     element: Element::Pyro,
     hp: [1011, 2621, 3488, 5219, 5834, 6712, 7533, 8421, 9036, 9932, 10547, 11453, 12068, 12981],
     atk: [26, 68, 90, 135, 151, 173, 194, 217, 233, 256, 272, 295, 311, 335],
     def: [61, 158, 211, 315, 352, 405, 455, 509, 546, 600, 637, 692, 729, 784],
     sub_stat: CharacterSubStatFamily::CriticalRate192,
     weapon_type: WeaponType::Claymore,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·淬炼之剑",
+    skill_name2: "逆焰之刃",
+    skill_name3: "黎明"
 };
 
 pub struct Diluc;
@@ -129,6 +133,40 @@ impl CharacterTrait for Diluc {
     type DamageEnumType = DilucDamageEnum;
     type RoleEnum = DilucRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: DilucDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::Charged1 as usize, chs: "重击循环伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::Charged2 as usize, chs: "重击终结伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: DilucDamageEnum::E1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::E2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::E3 as usize, chs: "三段伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: DilucDamageEnum::Q1 as usize, chs: "斩击伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::Q2 as usize, chs: "持续伤害" },
+            CharacterSkillMapItem { index: DilucDamageEnum::Q3 as usize, chs: "爆裂伤害" },
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "pyro",
+            title: "是否被大招附魔",
+            config: ItemConfigType::Bool { default: true }
+        }
+    ]);
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
         let s: DilucDamageEnum = num::FromPrimitive::from_usize(s).expect("wrong skill index");
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -168,8 +206,8 @@ impl CharacterTrait for Diluc {
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

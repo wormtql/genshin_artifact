@@ -1,0 +1,14 @@
+characterName: KamisatoAyaka
+configs:
+  - name: talent1_rate
+    type: float
+    title: 天赋：天罪国罪镇词比例
+    min: 0
+    max: 1
+    default: 1
+  - name: talent2_rate
+    type: float
+    title: 天赋：寒天宣命祝词比例
+    min: 0
+    max: 1
+    default: 1

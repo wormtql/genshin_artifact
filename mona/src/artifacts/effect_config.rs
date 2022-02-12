@@ -13,7 +13,7 @@ pub struct ConfigArchaicPetra {
 impl Default for ConfigArchaicPetra {
     fn default() -> Self {
         ConfigArchaicPetra {
-            element: Element::NoElement,
+            element: Element::Pyro,
             rate: 0.0,
         }
     }

@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::XiaoDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct XiaoSkillType {
     pub normal_dmg11: [f64; 15],
@@ -41,11 +53,190 @@ pub const XIAO_SKILL: XiaoSkillType = XiaoSkillType {
 };
 
 pub const XIAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Xiao,
+    chs: "魈",
     element: Element::Anemo,
     hp: [991, 2572, 3422, 5120, 5724, 6586, 7391, 8262, 8866, 9744, 10348, 11236, 11840, 12736],
     atk: [27, 71, 94, 140, 157, 181, 203, 227, 243, 267, 284, 308, 325, 349],
     def: [62, 161, 215, 321, 359, 413, 464, 519, 556, 612, 649, 705, 743, 799],
     sub_stat: CharacterSubStatFamily::CriticalRate192,
     weapon_type: WeaponType::Polearm,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·卷积微尘",
+    skill_name2: "风轮两立",
+    skill_name3: "靖妖傩舞"
 };
+
+pub struct Xiao;
+
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+pub enum XiaoDamageEnum {
+    Normal11,
+    Normal12,
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal41,
+    Normal42,
+    Normal4,
+    Normal5,
+    Normal6,
+    Charged,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1
+}
+
+impl XiaoDamageEnum {
+    pub fn is_affected_by_q(&self) -> bool {
+        *self != XiaoDamageEnum::E1
+    }
+
+    pub fn get_element(&self, after_q: bool) -> Element {
+        if after_q {
+            Element::Anemo
+        } else {
+            use XiaoDamageEnum::*;
+            match *self {
+                E1 => Element::Anemo,
+                _ => Element::Physical
+            }
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use XiaoDamageEnum::*;
+        match *self {
+            Charged => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 => SkillType::ElementalSkill,
+            _ => SkillType::NormalAttack
+        }
+    }
+}
+
+impl Into<usize> for XiaoDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum XiaoRoleEnum {
+    Main
+}
+
+impl CharacterTrait for Xiao {
+    const STATIC_DATA: CharacterStaticData = XIAO_STATIC_DATA;
+    type SkillType = XiaoSkillType;
+    const SKILL: Self::SkillType = XIAO_SKILL;
+    type DamageEnumType = XiaoDamageEnum;
+    type RoleEnum = XiaoRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: XiaoDamageEnum::Normal11 as usize, chs: "一段伤害-1" },
+            CharacterSkillMapItem { index: XiaoDamageEnum::Normal12 as usize, chs: "一段伤害-2" },
+            CharacterSkillMapItem { index: XiaoDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: XiaoDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: XiaoDamageEnum::Normal41 as usize, chs: "四段伤害-2" },
+            CharacterSkillMapItem { index: XiaoDamageEnum::Normal42 as usize, chs: "四段伤害-1" },
+            CharacterSkillMapItem { index: XiaoDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: XiaoDamageEnum::Normal6 as usize, chs: "六段伤害" },
+            CharacterSkillMapItem { index: XiaoDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: XiaoDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: XiaoDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: XiaoDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: XiaoDamageEnum::E1 as usize, chs: "技能伤害" }
+        ]),
+        skill3: None
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "after_q",
+            title: "靖妖傩舞",
+            config: ItemConfigType::Bool { default: true }
+        },
+        ItemConfig {
+            name: "talent1_stack",
+            title: "天赋「降魔·平妖大圣」应用层数",
+            config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 4.0 },
+        },
+        ItemConfig {
+            name: "talent2_stack",
+            title: "天赋「坏劫·国土碾尘」应用层数",
+            config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 0.0 },
+        }
+    ]);
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s: XiaoDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use XiaoDamageEnum::*;
+        let ratio = match s {
+            Normal11 => XIAO_SKILL.normal_dmg11[s1],
+            Normal12 => XIAO_SKILL.normal_dmg12[s1],
+            Normal1 => XIAO_SKILL.normal_dmg11[s1] + XIAO_SKILL.normal_dmg12[s1],
+            Normal2 => XIAO_SKILL.normal_dmg2[s1],
+            Normal3 => XIAO_SKILL.normal_dmg3[s1],
+            Normal41 => XIAO_SKILL.normal_dmg41[s1],
+            Normal42 => XIAO_SKILL.normal_dmg42[s1],
+            Normal4 => XIAO_SKILL.normal_dmg41[s1] + XIAO_SKILL.normal_dmg42[s1],
+            Normal5 => XIAO_SKILL.normal_dmg5[s1],
+            Normal6 => XIAO_SKILL.normal_dmg6[s1],
+            Charged => XIAO_SKILL.charged_dmg1[s1],
+            Plunging1 => XIAO_SKILL.plunging_dmg1[s1],
+            Plunging2 => XIAO_SKILL.plunging_dmg2[s1],
+            Plunging3 => XIAO_SKILL.plunging_dmg3[s1],
+            E1 => XIAO_SKILL.elemental_skill_dmg1[s2]
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+
+        let (after_q, talent1_stack, talent2_stack) = match *config {
+            CharacterSkillConfig::Xiao { after_q, talent1_stack, talent2_stack } => (after_q, talent1_stack, talent2_stack),
+            _ => (false, 0.0, 0.0)
+        };
+
+        if after_q {
+            if s.is_affected_by_q() {
+                let bonus = XIAO_SKILL.elemental_burst_bonus[s3];
+                builder.add_extra_bonus("夜叉傩面加成", bonus);
+
+                if context.character_common_data.has_talent1 {
+                    builder.add_extra_bonus("魈天赋：降魔·平妖大圣", 0.05 + talent1_stack * 0.05);
+                }
+            }
+        }
+
+        if s == E1 && context.character_common_data.has_talent2 {
+            builder.add_extra_bonus("魈天赋：坏劫·国土碾尘", 0.15 * talent2_stack);
+        }
+
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(after_q),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: XiaoRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            XiaoRoleEnum::Main => Box::new(XiaoDefaultTargetFunction)
+        }
+    }
+}

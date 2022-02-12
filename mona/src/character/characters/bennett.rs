@@ -2,17 +2,15 @@ use num_derive::FromPrimitive;
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{Character, CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::BennettDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
-use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct BennettSkillType {
@@ -64,13 +62,18 @@ pub const BENNETT_SKILL: BennettSkillType = BennettSkillType {
 };
 
 pub const BENNETT_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Bennett,
+    chs: "班尼特",
     element: Element::Pyro,
     hp: [1039, 2670, 3447, 5163, 5715, 6573, 7309, 8186, 8719, 9577, 10129, 10987, 11539, 12397],
     atk: [16, 41, 53, 80, 88, 101, 113, 126, 134, 148, 156, 169, 178, 191],
     def: [65, 166, 214, 321, 356, 409, 455, 508, 542, 596, 630, 684, 718, 771],
     sub_stat: CharacterSubStatFamily::Recharge267,
     weapon_type: WeaponType::Sword,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·好运剑",
+    skill_name2: "热情过载",
+    skill_name3: "美妙旅程"
 };
 
 pub struct Bennett;
@@ -151,6 +154,34 @@ impl CharacterTrait for Bennett {
     type DamageEnumType = BennettDamageEnum;
     type RoleEnum = BennettRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: BennettDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: BennettDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: BennettDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: BennettDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: BennettDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: BennettDamageEnum::Charged11 as usize, chs: "重击伤害-1" },
+            CharacterSkillMapItem { index: BennettDamageEnum::Charged12 as usize, chs: "重击伤害-2" },
+            CharacterSkillMapItem { index: BennettDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: BennettDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: BennettDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: BennettDamageEnum::E1 as usize, chs: "点按伤害" },
+            CharacterSkillMapItem { index: BennettDamageEnum::E21 as usize, chs: "一段蓄力伤害-1" },
+            CharacterSkillMapItem { index: BennettDamageEnum::E22 as usize, chs: "一段蓄力伤害-2" },
+            CharacterSkillMapItem { index: BennettDamageEnum::E31 as usize, chs: "二段蓄力伤害-1" },
+            CharacterSkillMapItem { index: BennettDamageEnum::E32 as usize, chs: "二段蓄力伤害-2" },
+            CharacterSkillMapItem { index: BennettDamageEnum::E4 as usize, chs: "爆炸伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: BennettDamageEnum::Q1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: BennettDamageEnum::QHeal as usize, chs: "持续治疗" },
+        ])
+    };
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: BennettDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -201,8 +232,8 @@ impl CharacterTrait for Bennett {
         }
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-       Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

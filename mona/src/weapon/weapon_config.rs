@@ -41,7 +41,7 @@ pub enum WeaponConfig {
     LostPrayerToTheSacredWinds { stack: f64 },
     MemoryOfDust { stack: f64, shield_rate: f64 },
     WindAndSong { rate: f64 },
-    TheWidsith { theme: usize },
+    TheWidsith { t1_rate: f64, t2_rate: f64, t3_rate: f64 },
     SolarPearl { rate1: f64, rate2: f64 },
     MappaMare { stack: f64 },
     DodocoTales { rate1: f64, rate2: f64 },

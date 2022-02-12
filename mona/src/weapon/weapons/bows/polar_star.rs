@@ -1,18 +1,14 @@
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
+use crate::character::character_common_data::CharacterCommonData;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::weapon::weapon_effect::WeaponEffect;
 use crate::weapon::weapon_static_data::WeaponStaticData;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
-use crate::weapon::WeaponConfig;
-
-pub const POLAR_STAR_STATIC_DATA: WeaponStaticData = WeaponStaticData {
-    weapon_type: WeaponType::Bow,
-    weapon_sub_stat: WeaponSubStatFamily::CriticalRate72,
-    weapon_base: WeaponBaseATKFamily::ATK608,
-    star: 5
-};
+use crate::weapon::{WeaponConfig, WeaponName};
+use crate::weapon::weapon_trait::WeaponTrait;
 
 pub struct PolarStarEffect {
     stack: usize
@@ -51,5 +47,31 @@ impl<T: Attribute> WeaponEffect<T> for PolarStarEffect {
         };
 
         attribute.add_atk_percentage("冬极白星被动等效", atk_bonus);
+    }
+}
+
+pub struct PolarStar;
+
+impl WeaponTrait for PolarStar {
+    const META_DATA: WeaponStaticData = WeaponStaticData {
+        name: WeaponName::PolarStar,
+        weapon_type: WeaponType::Bow,
+        weapon_sub_stat: WeaponSubStatFamily::CriticalRate72,
+        weapon_base: WeaponBaseATKFamily::ATK608,
+        star: 5,
+        effect: Some("元素战技和元素爆发造成的伤害提高12%/15%/18%/21%/24%；普通攻击、重击、元素战技或元素爆发命中敌人后，将产生1层持续12秒的「白夜极星」效果。处于1/2/3/4层「白夜极星」效果下时，攻击力将提高(10/20/30/48%)/(12.5/25/37.5/60%)/(15/30/45/72%)/(17.5/35/52.5/84%)/(20/40/60/96%)。由普通攻击、重击、元素战技或元素爆发产生的「白夜极星」将分别独立存在。"),
+        chs: "冬极白星"
+    };
+
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "stack",
+            title: "「白夜极星」层数",
+            config: ItemConfigType::Int { min: 0, max: 4, default: 0 }
+        }
+    ]);
+
+    fn get_effect<A: Attribute>(_character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
+        Some(Box::new(PolarStarEffect::new(config)))
     }
 }

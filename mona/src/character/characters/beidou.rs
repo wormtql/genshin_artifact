@@ -2,17 +2,15 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{Character, CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::BeidouDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
-use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct BeidouSkillType {
@@ -58,13 +56,18 @@ pub const BEIDOU_SKILL: BeidouSkillType = BeidouSkillType {
 };
 
 const BEIDOU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Beidou,
+    chs: "北斗",
     element: Element::Electro,
     hp: [1094, 2811, 3628, 5435, 6015, 6919, 7694, 8597, 9178, 10081, 10662, 11565, 12146, 13050],
     atk: [19, 48, 63, 94, 104, 119, 133, 148, 158, 174, 184, 200, 210, 225],
     def: [54, 140, 180, 270, 299, 344, 382, 427, 456, 501, 530, 575, 603, 648],
     sub_stat: CharacterSubStatFamily::Bonus240(StatName::ElectroBonus),
     weapon_type: WeaponType::Claymore,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·征涛",
+    skill_name2: "捉浪",
+    skill_name3: "斫雷"
 };
 
 pub struct Beidou;
@@ -128,6 +131,31 @@ impl CharacterTrait for Beidou {
     type DamageEnumType = BeidouDamageEnum;
     type RoleEnum = BeidouRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: BeidouDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::Charged1 as usize, chs: "重击循环伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::Charged2 as usize, chs: "重击终结伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: BeidouDamageEnum::E1 as usize, chs: "基础伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::E2 as usize, chs: "一层伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::E3 as usize, chs: "二层伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: BeidouDamageEnum::Q1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: BeidouDamageEnum::Q2 as usize, chs: "闪电伤害" },
+        ])
+    };
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: BeidouDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -163,8 +191,8 @@ impl CharacterTrait for Beidou {
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

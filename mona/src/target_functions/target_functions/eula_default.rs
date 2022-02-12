@@ -1,27 +1,48 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::{ArtifactEffectConfig, ConfigPaleFlame};
 use crate::attribute::{Attribute, SimpleAttributeGraph2};
-use crate::character::Character;
+use crate::character::{Character, CharacterName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::Eula;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
+use crate::common::item_config_type::ItemConfig;
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
+use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
-use crate::target_functions::TargetFunction;
+use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
+use crate::target_functions::target_function::TargetFunctionMetaTrait;
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct EulaDefaultTargetFunction {
     pub is_c2: bool
 }
 
 impl EulaDefaultTargetFunction {
-    pub fn new<A: Attribute>(character: &Character<A>) -> Self {
+    pub fn new(character: &CharacterCommonData) -> Self {
         Self {
-            is_c2: character.common_data.constellation >= 2
+            is_c2: character.constellation >= 2
         }
+    }
+}
+
+impl TargetFunctionMetaTrait for EulaDefaultTargetFunction {
+    #[cfg(not(target_family = "wasm"))]
+    const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
+        name: TargetFunctionName::EulaDefault,
+        chs: "优菈-浪花骑士",
+        description: "普通优菈输出",
+        tags: "输出",
+        four: TargetFunctionFor::SomeWho(CharacterName::Eula),
+        image: TargetFunctionMetaImage::Avatar
+    };
+
+    fn create(character: &CharacterCommonData, _weapon: &WeaponCommonData, _config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        Box::new(EulaDefaultTargetFunction::new(character))
     }
 }
 
@@ -38,6 +59,7 @@ impl TargetFunction for EulaDefaultTargetFunction {
             elemental_mastery: 0.0,
             critical: 1.0,
             critical_damage: 1.0,
+            healing_bonus: 0.0,
             bonus_electro: 0.0,
             bonus_pyro: 0.0,
             bonus_hydro: 0.0,
@@ -64,6 +86,10 @@ impl TargetFunction for EulaDefaultTargetFunction {
                 ArtifactSetName::ShimenawasReminiscence,
                 ArtifactSetName::GladiatorsFinale,
             ]),
+            very_critical_set_names: None,
+            normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
+            critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
+            very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
         }
     }
 

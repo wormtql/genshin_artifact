@@ -1,10 +1,5 @@
 <template>
     <div>
-        <el-breadcrumb>
-            <el-breadcrumb-item>裏</el-breadcrumb-item>
-        </el-breadcrumb>
-        <el-divider></el-divider>
-
         <el-dialog
             title="选择圣遗物"
             width="80%"
@@ -26,188 +21,271 @@
             ></damage-analysis>
         </el-dialog>
 
-        <div class="top-toolbar">
-            <el-button
-                size="small"
-                type="primary"
-                style="margin-bottom: 16px"
-            >开始计算</el-button>
-        </div>
+        <el-dialog
+            :visible.sync="showSelectBuffDialog"
+            title="选择BUFF"
+            width="60%"
+        >
+            <select-buff
+                @select="handleSelectBuff"
+            ></select-buff>
+        </el-dialog>
 
-        <div class="big-container">
-            <div class="left-container">
-                <div class="config-character">
-                    <img :src="characterSplash" class="character-splash" />
-                    <div class="select-character">
-                        <p class="common-title">角色</p>
-                        <div style="display: flex; gap: 12px">
-                            <select-character
-                                v-model="characterName"
-                                style="flex: 1"
-                            ></select-character>
-                            <select-character-level
-                                v-model="characterLevel"
-                                style="flex: 1"
-                            ></select-character-level>
-                        </div>
-                        <div class="character-extra-config" v-if="characterNeedConfig">
-                            <component
-                                :is="characterConfigComponent"
-                                ref="characterConfigComponent"
-                                v-model="characterConfig"
-                            ></component>
+        <div class="outer-container">
+            <div>
+                <el-breadcrumb>
+                    <el-breadcrumb-item>裏</el-breadcrumb-item>
+                </el-breadcrumb>
+                <el-divider></el-divider>
+            </div>
+            
+            <el-row class="big-container">
+                <el-col class="left-container" :span="6">
+                    <div class="config-character">
+                        <img :src="characterSplash" class="character-splash" />
+                        <div class="select-character">
+                            <p class="common-title">角色</p>
+                            <div style="display: flex; gap: 12px">
+                                <select-character
+                                    v-model="characterName"
+                                    style="flex: 1"
+                                ></select-character>
+                                <select-character-level
+                                    v-model="characterLevel"
+                                    style="flex: 1"
+                                ></select-character-level>
+                            </div>
+
+                            <div class="config-character-skill">
+                                <h3 class="common-title2">技能</h3>
+                                <div class="skill-div">
+                                    <el-input-number
+                                        size="mini"
+                                        controls-position="right"
+                                        v-model="characterSkill1"
+                                        :min="1"
+                                        :max="15"
+                                        style="flex: 1; display: block; width: unset"
+                                    ></el-input-number>
+                                    <el-input-number
+                                        size="mini"
+                                        controls-position="right"
+                                        v-model="characterSkill2"
+                                        :min="1"
+                                        :max="15"
+                                        style="flex: 1; display: blockl width: unset"
+                                    ></el-input-number>
+                                    <el-input-number
+                                        size="mini"
+                                        controls-position="right"
+                                        v-model="characterSkill3"
+                                        :min="1"
+                                        :max="15"
+                                        style="flex: 1; display: block; width: unset"
+                                    ></el-input-number>
+                                </div>
+                            </div>
+
+                            <div class="config-character-constellation">
+                                <h3 class="common-title2">命之座</h3>
+                                <el-input-number
+                                    size="mini"
+                                    controls-position="right"
+                                    v-model="characterConstellation"
+                                    :min="0"
+                                    :max="6"
+                                ></el-input-number>
+                            </div>
+
+                            <div class="character-extra-config" v-if="characterNeedConfig">
+                                <item-config
+                                    v-model="characterConfig"
+                                    :item-name="characterName"
+                                    :configs="characterConfigConfig"
+                                ></item-config>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <el-divider></el-divider>
+                    <el-divider></el-divider>
 
-                <div class="config-weapon">
-                    <img :src="weaponSplash" class="weapon-splash" />
-                    <div class="select-weapon">
-                        <p class="common-title">武器</p>
-                        <div style="display: flex; gap: 12px">
-                            <select-weapon
-                                :type="characterWeaponType"
-                                v-model="weaponName"
-                                style="flex: 1"
-                            ></select-weapon>
-                            <select-weapon-level
-                                v-model="weaponLevel"
-                                style="flex: 1"
-                            ></select-weapon-level>
-                        </div>
-                        <div class="weapon-extra-config" v-if="weaponNeedConfig">
-                            <component
-                                :is="weaponConfigComponent"
-                                ref="weaponConfigComponent"
-                                v-model="weaponConfig"
-                            ></component>
+                    <div class="config-weapon">
+                        <!-- <img :src="weaponSplash" class="weapon-splash" /> -->
+                        <div class="select-weapon">
+                            <p class="common-title">武器</p>
+                            <div style="display: flex; gap: 12px">
+                                <select-weapon
+                                    :type="characterWeaponType"
+                                    v-model="weaponName"
+                                    style="flex: 1"
+                                ></select-weapon>
+                                <select-weapon-level
+                                    v-model="weaponLevel"
+                                    style="flex: 1"
+                                ></select-weapon-level>
+                            </div>
+
+                            <div class="config-weapon-refine">
+                                <h3 class="common-title2">精炼</h3>
+                                <el-input-number
+                                    size="mini"
+                                    controls-position="right"
+                                    v-model="weaponRefine"
+                                    :min="1"
+                                    :max="5"
+                                ></el-input-number>
+                            </div>
+
+                            <div class="weapon-extra-config" v-if="weaponNeedConfig">
+                                <item-config
+                                    v-model="weaponConfig"
+                                    :item-name="weaponName"
+                                    :configs="weaponConfigConfig"
+                                ></item-config>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <el-divider></el-divider>
+                    <el-divider></el-divider>
 
-                <div class="config-target-function">
-                    <p class="common-title">目标函数</p>
+                    <div class="config-target-function">
+                        <p class="common-title">目标函数</p>
+                        <div class="my-button-list" style="margin-bottom: 12px">
+                            <my-button-1 icon="el-icon-caret-right" title="开始计算"
+                                @click="handleOptimizeArtifact"
+                            ></my-button-1>
+                            <my-button-1 icon="el-icon-s-operation" title="设置"
+                                @click="handleOptimizeArtifact"
+                            ></my-button-1>
+                        </div>
+                        <select-target-function
+                            v-model="targetFunctionName"
+                            :character-name="characterName"
+                        ></select-target-function>
+                        <div class="target-function-config" v-if="targetFunctionNeedConfig"
+                            style="margin-top: 12px"
+                        >
+                            <item-config
+                                v-model="targetFunctionConfig"
+                                :item-name="targetFunctionName"
+                                :configs="targetFunctionConfigConfig"
+                            ></item-config>
+                        </div>
+
+                        <div class="target-function-detail">
+                            <div class="detail-left">
+                                <img :src="targetFunctionBadge" />
+                            </div>
+                            <div class="detail-right">
+                                <p
+                                    class="target-function-description"
+                                >{{ targetFunctionDescription }}</p>
+                            </div> 
+                        </div>
+
+                        <div v-if="optimizationResults.length > 0"
+                            style="margin-top: 12px"
+                        >
+                            <el-alert
+                                title="共计算100组圣遗物搭配"
+                                type="success"
+                                style="margin-bottom: 12px"
+                            ></el-alert>
+                            <el-input-number
+                                :value="optimizationResultIndex"
+                                @input="handleUseNthOptimizationResult"
+                                :min="1"
+                                :max="optimizationResults.length"
+                                size="small"
+                                style="width: 100%"
+                            ></el-input-number>
+                        </div>
+                    </div>
+
+                    <el-divider></el-divider>
+
+                    <div class="config-buff">
+                        <p class="common-title">BUFF</p>
+                        <div class="buff-tool" style="margin-bottom: 12px">
+                            <my-button-1 icon="el-icon-plus" title="添加BUFF"
+                                @click="handleClickAddBuff"
+                            ></my-button-1>
+                        </div>
+                        <div class="buffs">
+                            <buff-item
+                                v-for="buff in buffs"
+                                :key="buff.id"
+                                :buff="buff"
+                                :buff-config.sync="buff.config"
+                                @delete="handleClickDeleteBuff(buff.id)"
+                                @toggle="handleClickToggleBuff(buff.id)"
+                            ></buff-item>
+                        </div>
+                    </div>
+                </el-col>
+
+                <el-col :span="12" class="middle-container">
+                    <p class="common-title">圣遗物</p>
+                    <div class="artifacts">
+                        <div
+                            v-for="(id, index) in artifactIds"
+                            :key="id"
+                            class="artifact-item-or-button"
+                        >
+                            <artifact-display
+                                v-if="artifactItems[index]"
+                                :item="artifactItems[index]"
+                                selectable
+                                buttons
+                                delete-button
+                                @delete="handleRemoveArtifact(index)"
+                                @toggle="handleToggleArtifact(id)"
+                                @click="handleGotoSelectArtifact(index)"
+                                class="artifact-display"
+                            ></artifact-display>
+                            <add-button
+                                v-else
+                                @click="handleGotoSelectArtifact(index)"
+                                class="add-button"
+                                style="height: 125px"
+                            ></add-button>
+                        </div>
+                    </div>
+
+                    <el-divider></el-divider>
+
+                    <p class="common-title">伤害计算</p>
                     <div class="my-button-list" style="margin-bottom: 12px">
-                        <my-button-1 icon="el-icon-s-operation" title="Optimize"
-                            @click="handleOptimizeArtifact"
+                        <my-button-1 icon="el-icon-s-operation" title="明细"
+                            @click="handleDisplayAnalysis"
                         ></my-button-1>
                     </div>
-                    <select-target-function
-                        v-model="targetFunctionName"
-                        :character-name="characterName"
-                    ></select-target-function>
-                    <div class="target-function-detail">
-                        <div class="detail-left">
-                            <img :src="targetFunctionBadge" />
-                        </div>
-                        <div class="detail-right">
-                            <p
-                                v-for="(description, index) in targetFunctionDescription"
-                                :key="index"
-                                class="target-function-description"
-                            >{{ description }}</p>
-                        </div> 
+                    <div v-if="characterNeedSkillConfig" style="margin-bottom: 16px;">
+                        <item-config
+                            v-model="characterSkillConfig"
+                            :item-name="characterName"
+                            :configs="characterSkillConfigConfig"
+                        ></item-config>
                     </div>
-
-                    <div v-if="optimizationResults.length > 0"
-                        style="margin-top: 12px"
-                    >
-                        <el-alert
-                            title="共计算100组圣遗物搭配"
-                            type="success"
-                            style="margin-bottom: 12px"
-                        ></el-alert>
-                        <el-input-number
-                            v-model="optimizationResultIndex"
-                            @input="handleUseNthOptimizationResult"
-                            :min="1"
-                            :max="optimizationResults.length"
-                            size="small"
-                            style="width: 100%"
-                        ></el-input-number>
+                    <div class="damage-analysis-div">
+                        <select-character-skill
+                            v-model="characterSkillIndex"
+                            :character-name="characterName"
+                            style="margin-bottom: 16px"
+                        ></select-character-skill>
+                        <damage-panel
+                            :analysis-from-wasm="characterDamageAnalysis"
+                        ></damage-panel>
                     </div>
-                </div>
+                </el-col>
 
-                <el-divider></el-divider>
-
-                <div class="config-buff">
-                    <p class="common-title">Buff</p>
-                    <div class="buff-tool" style="margin-bottom: 12px">
-                        <el-button
-                            size="small"
-                            type="primary"
-                        >添加BUFF</el-button>
-                    </div>
-                    <div class="buffs">
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="middle-container">
-                <p class="common-title">圣遗物</p>
-                <div class="artifacts">
-                    <div
-                        v-for="(id, index) in artifactIds"
-                        :key="id"
-                        class="artifact-item-or-button"
-                    >
-                        <artifact-display
-                            v-if="artifactItems[index]"
-                            :item="artifactItems[index]"
-                            selectable
-                            buttons
-                            delete-button
-                            @delete="handleRemoveArtifact(index)"
-                            @toggle="handleToggleArtifact(id)"
-                            @click="handleGotoSelectArtifact(index)"
-                            class="artifact-display"
-                        ></artifact-display>
-                        <add-button
-                            v-else
-                            @click="handleGotoSelectArtifact(index)"
-                            class="add-button"
-                            style="height: 125px"
-                        ></add-button>
-                    </div>
-                </div>
-
-                <el-divider></el-divider>
-
-                <p class="common-title">伤害计算</p>
-                <div class="my-button-list" style="margin-bottom: 12px">
-                    <my-button-1 icon="el-icon-s-operation" title="明细"
-                        @click="handleDisplayAnalysis"
-                    ></my-button-1>
-                </div>
-                <div v-if="characterNeedSkillConfig" style="margin-bottom: 16px;">
-                    <component
-                        :is="characterSkillConfigComponent"
-                        v-model="characterSkillConfig"
-                    ></component>
-                </div>
-                <div class="damage-analysis-div">
-                    <select-character-skill
-                        v-model="characterSkillIndex"
-                        :character-name="characterName"
-                        style="margin-bottom: 16px"
-                    ></select-character-skill>
-                    <damage-panel
-                        :analysis-from-wasm="characterDamageAnalysis"
-                    ></damage-panel>
-                </div>
-            </div>
-
-            <div class="right-container">
-                <div class="common-title">面板</div>
-                <attribute-panel
-                    :attribute="attributeFromWasm"
-                ></attribute-panel>
-            </div>
+                <el-col :span="6" class="right-container">
+                    <div class="common-title">面板</div>
+                    <attribute-panel
+                        :attribute="attributeFromWasm"
+                    ></attribute-panel>
+                </el-col>
+            </el-row>
         </div>
     </div>
 </template>
@@ -216,9 +294,10 @@
 import { mapGetters } from "vuex"
 
 import { convertArtifact } from "@util/converter"
-import { characterData, characterConfig, characterSkillConfig } from "@character"
-import { weaponConfig, weaponData } from "@weapon"
+import { characterData } from "@character"
+import { weaponData } from "@weapon"
 import { targetFunctionData } from "@targetFunction"
+import { buffData } from "@buff"
 
 import SelectArtifact from "@c/select/SelectArtifact"
 import SelectCharacter from "@c/select/SelectCharacter"
@@ -227,12 +306,15 @@ import SelectWeapon from "@c/select/SelectWeapon"
 import SelectWeaponLevel from "@c/select/SelectWeaponLevel"
 import SelectTargetFunction from "@c/select/SelectTargetFunction"
 import SelectCharacterSkill from "@c/select/SelectCharacterSkill"
+import SelectBuff from "@c/select/SelectBuff"
 import ArtifactDisplay from "@c/display/ArtifactDisplay"
 import AddButton from "@c/misc/AddButton"
 import DamagePanel from "./DamagePanel"
 import MyButton1 from "@c/button/MyButton1"
 import DamageAnalysis from "@c/display/DamageAnalysis"
 import AttributePanel from "@c/display/AttributePanel"
+import ItemConfig from "@c/config/ItemConfig"
+import BuffItem from "./BuffItem"
 
 const artifactConfig = {
     "config_archaic_petra": {
@@ -267,12 +349,15 @@ export default {
         SelectWeapon,
         SelectWeaponLevel,
         SelectTargetFunction,
+        SelectBuff,
         ArtifactDisplay,
         AddButton,
         DamagePanel,
         MyButton1,
         DamageAnalysis,
-        AttributePanel
+        AttributePanel,
+        ItemConfig,
+        BuffItem,
     },
     created() {
         // this.characterData = characterData
@@ -284,16 +369,23 @@ export default {
             characterConfig: "NoConfig",
             characterSkillConfig: "NoConfig",
             characterSkillIndex: 0,
+            characterSkill1: 8,
+            characterSkill2: 8,
+            characterSkill3: 8,
+            characterConstellation: 0,
 
             weaponName: "PolarStar",
             weaponLevel: "90",
+            weaponRefine: 1,
             weaponConfig: {
                 "PolarStar": {
                     stack: 1
                 }
             },
 
-            targetFunctionName: "GanyuDefault",
+            buffs: [],
+
+            targetFunctionName: "AmberDefault",
             targetFunctionConfig: "NoConfig",
             optimizationResults: [],
             optimizationResultIndex: 0,
@@ -303,7 +395,8 @@ export default {
             showSelectArtifactDialog: false,
             selectArtifactSlot: "any",
 
-            showDamageAnalysisDialog: false
+            showDamageAnalysisDialog: false,
+            showSelectBuffDialog: false,
         }
     },
     computed: {
@@ -311,6 +404,7 @@ export default {
             artifactsById: "artifacts/artifactsById"
         }),
 
+        // character
         characterLevelNumber() {
             return parseInt(this.characterLevel)
         },
@@ -321,41 +415,44 @@ export default {
 
         characterSplash() {
             const data = characterData[this.characterName]
-            return data.splash ?? data.card
+            return data.splash
         },
 
         characterNeedConfig() {
-            return !!characterConfig[this.characterName]
+            let temp = characterData[this.characterName].config
+            return temp && temp.length > 0
         },
 
-        characterConfigComponent() {
-            return characterConfig[this.characterName]
+        characterConfigConfig() {
+            return characterData[this.characterName].config
         },
 
         characterNeedSkillConfig() {
-            return !!characterSkillConfig[this.characterName]
+            let temp = characterData[this.characterName].configSkill
+            return temp && temp.length > 0
         },
 
-        characterSkillConfigComponent() {
-            return characterSkillConfig[this.characterName]
+        characterSkillConfigConfig() {
+            return characterData[this.characterName].configSkill
         },
 
         characterWeaponType() {
             const item = characterData[this.characterName]
-            return item ? item.weapon : "bow"
+            return item ? item.weapon : "Bow"
         },
 
         characterInterface() {
-            return {
+            let i = {
                 name: this.characterName,
                 level: this.characterLevelNumber,
                 ascend: this.characterAscend,
-                constellation: 0,
-                skill1: 8,
-                skill2: 8,
-                skill3: 8,
+                constellation: this.characterConstellation,
+                skill1: this.characterSkill1 - 1,
+                skill2: this.characterSkill2 - 1,
+                skill3: this.characterSkill3 - 1,
                 params: this.characterConfig
             }
+            return i
         },
 
         characterSkillInterface() {
@@ -365,6 +462,13 @@ export default {
             }
         },
 
+        characterDamageAnalysis() {
+            const temp = this.$mona.CalculatorInterface.get_damage_analysis(this.damageAnalysisWasmInterface)
+            // console.log(temp)
+            return temp
+        },
+
+        // weapon
         weaponLevelNumber() {
             return parseInt(this.weaponLevel)
         },
@@ -379,11 +483,12 @@ export default {
         },
 
         weaponNeedConfig() {
-            return !!weaponConfig[this.weaponName]
+            // return !!weaponConfig[this.weaponName]
+            return !!weaponData[this.weaponName].configs
         },
 
-        weaponConfigComponent() {
-            return weaponConfig[this.weaponName]
+        weaponConfigConfig() {
+            return weaponData[this.weaponName].configs
         },
 
         weaponInterface() {
@@ -391,11 +496,12 @@ export default {
                 name: this.weaponName,
                 level: this.weaponLevelNumber,
                 ascend: this.weaponAscend,
-                refine: 1,
+                refine: this.weaponRefine,
                 params: this.weaponConfig
             }
         },
 
+        // tf
         targetFunctionBadge() {
             return targetFunctionData[this.targetFunctionName].badge
         },
@@ -411,6 +517,16 @@ export default {
             }
         },
 
+        targetFunctionNeedConfig() {
+            const temp = targetFunctionData[this.targetFunctionName].config
+            return temp && temp.length > 0
+        },
+
+        targetFunctionConfigConfig() {
+            return targetFunctionData[this.targetFunctionName].config
+        },
+
+        // artifact
         artifactItems() {
             let temp = []
             for (let id of this.artifactIds) {
@@ -444,7 +560,7 @@ export default {
             return {
                 character: this.characterInterface,
                 weapon: this.weaponInterface,
-                buffs: [], // todo
+                buffs: this.buffsInterface,
                 artifacts: this.artifactWasmFormat,
                 artifact_config: null, // todo
                 skill: this.characterSkillInterface
@@ -455,7 +571,7 @@ export default {
             return {
                 character: this.characterInterface,
                 weapon: this.weaponInterface,
-                buffs: [], // todo
+                buffs: this.buffsInterface,
                 artifacts: this.artifactWasmFormat,
                 artifact_config: null, // todo
             }
@@ -471,18 +587,31 @@ export default {
                 weapon: this.weaponInterface,
                 target_function: this.targetFunctionInterface,
                 constraint: null, // todo
-                buffs: [] // todo
+                buffs: this.buffsInterface
             }
         },
 
-        characterDamageAnalysis() {
-            const temp = this.$mona.CalculatorInterface.get_damage_analysis(this.damageAnalysisWasmInterface)
-            // console.log(temp)
-            return temp
-        },
+        
 
         attributeFromWasm() {
             return this.$mona.CommonInterface.get_attribute(this.getAttributeWasmInterface)
+        },
+
+
+        // buff
+        buffsUnlocked() {
+            return this.buffs.filter(e => !e.lock)
+        },
+
+        buffsInterface() {
+            let temp = []
+            for (let buff of this.buffsUnlocked) {
+                temp.push({
+                    name: buff.name,
+                    config: buff.config
+                })
+            }
+            return temp
         }
     },
     methods: {
@@ -490,7 +619,30 @@ export default {
             const interfac = this.optimizeArtifactWasmInterface
             const start = new Date()
 
+            const loading = this.$loading({
+                lock: true,
+                text: "莫娜占卜中"
+            })
             const worker = new Worker(new URL("@worker/optimize_artifact.js", import.meta.url))
+
+            const closeLoading = () => {
+                loading.close()
+            }
+
+            const closeWorker = () => {
+                worker.terminate()
+            }
+
+            // max calc time: 2min
+            const timer = setTimeout(() => {
+                closeLoading()
+                closeWorker()
+                this.$message({
+                    message: "计算超时",
+                    type: "error"
+                })
+            }, 120000)
+            
             worker.onmessage = e => {
                 if (e.data.type === "ready") {
                     worker.postMessage({
@@ -504,16 +656,15 @@ export default {
                     // console.log(results)
 
                     this.optimizationResults = results
+                    clearTimeout(timer)
+                    closeLoading()
+                    this.handleUseNthOptimizationResult(1)
+                    closeWorker()
                 }
             }
         },
 
         handleUseNthOptimizationResult(n) {
-            // const index = this.optimizationResultIndex
-            // if (index === 0) {
-            //     return
-            // }
-
             const result = this.optimizationResults[n - 1]
             const m = x => {
                 if (x !== null) {
@@ -531,6 +682,8 @@ export default {
             temp.push(m(result.head))
 
             this.artifactIds = temp
+
+            this.optimizationResultIndex = n
         },
 
         handleChangeCharacter(name) {
@@ -576,34 +729,116 @@ export default {
 
         getAllArtifactsWasmFormat() {
             return this.$store.getters["artifacts/allFlat"].map(x => convertArtifact(x))
-        }
+        },
+
+        // BUFF
+        handleClickAddBuff() {
+            this.showSelectBuffDialog = true
+        },
+
+        handleSelectBuff(name) {
+            this.showSelectBuffDialog = false
+            this.addBuff(name)
+        },
+
+        handleClickDeleteBuff(id) {
+            const index = this.buffs.findIndex(e => e.id === id)
+            this.$delete(this.buffs, index)
+        },
+
+        handleClickToggleBuff(id) {
+            const index = this.buffs.findIndex(e => e.id === id)
+            const v = this.buffs[index].lock
+            this.$set(this.buffs[index], "lock", !v)
+        },
+
+        addBuff(name) {
+            const data = buffData[name]
+            let defaultConfig = {}
+            for (let c of data.config) {
+                defaultConfig[c.name] = c.default
+            }
+
+            let config;
+            if (data.config.length === 0) {
+                config = "NoConfig"
+            } else {
+                config = {
+                    [name]: defaultConfig
+                }
+            }
+
+            this.buffs.push({
+                name,
+                config,
+                id: Math.floor(Math.random() * 1e9),
+                lock: false
+            })
+        },
     },
     watch: {
-        weaponName(newName, oldName) {
-            if (weaponConfig[newName]) {
-                const componentDefinition = weaponConfig[newName]
-                const defaultConfig = componentDefinition.getDefaultConfig()
-                this.weaponConfig = defaultConfig
+        weaponName(newName) {
+            const hasConfig = !!weaponData[newName]?.configs
+            if (hasConfig) {
+                const configs = weaponData[newName].configs
+
+                let defaultConfig = {}
+                for (let config of configs) {
+                    defaultConfig[config.name] = config.default
+                }
+
+                this.weaponConfig = {
+                    [newName]: defaultConfig
+                }
             } else {
                 this.weaponConfig = "NoConfig"
             }
         },
 
-        characterName(newName, oldName) {
-            if (characterConfig[newName]) {
-                const componentDefinition = characterConfig[newName]
-                const defaultConfig = componentDefinition.getDefaultConfig()
-                this.characterConfig = defaultConfig
+        characterName(newName) {
+            const hasConfigData = characterData[newName].config.length > 0;
+            const hasConfigSkill = characterData[newName].configSkill.length > 0;
+
+            if (hasConfigData) {
+                const configs = characterData[newName].config
+
+                let defaultConfig = {}
+                for (let c of configs) {
+                    defaultConfig[c.name] = c.default
+                }
+                this.characterConfig = {
+                    [newName]: defaultConfig
+                }
             } else {
                 this.characterConfig = "NoConfig"
             }
 
-            if (characterSkillConfig[newName]) {
-                const skillComponentDefinition = characterSkillConfig[newName]
-                const defaultConfig = skillComponentDefinition.getDefaultConfig()
-                this.characterSkillConfig = defaultConfig
+            if (hasConfigSkill) {
+                let defaultConfig = {}
+                for (let c of characterData[newName].configSkill) {
+                    defaultConfig[c.name] = c.default
+                }
+                this.characterSkillConfig = {
+                    [newName]: defaultConfig
+                }
             } else {
                 this.characterSkillConfig = "NoConfig"
+            }
+        },
+
+        targetFunctionName(newName) {
+            const hasConfig = targetFunctionData[newName].config.length > 0
+
+            if (hasConfig) {
+                let defaultConfig = {}
+                for (let c of targetFunctionData[newName].config) {
+                    defaultConfig[c.name] = c.default
+                }
+                this.targetFunctionConfig = {
+                    [newName]: defaultConfig
+                }
+            } else {
+                this.targetFunctionConfig = "NoConfig"
             }
         }
     }
@@ -612,28 +847,56 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.big-container {
+.outer-container {
     display: flex;
-    gap: 16px;
+    flex-direction: column;
+    height: 100%;
+}
+
+.big-container {
+    // display: flex;
+    // gap: 16px;
+    flex: 1;
+    overflow-y: hidden;
+    // overflow-x: visible;
+
+    .left-container, .middle-container, .right-container {
+        height: 100%;
+        overflow-x: visible;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: rgb(236, 245, 255);
+            border-radius: 2px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #d4d4d4;
+        }
+    }
 
     .left-container {
-        flex: 1;
-        // width: 1000px;
-        // margin: 0 auto;
-        // background: #00000011;
-        position: relative;
-        // overflow-y: auto;
-        // overflow-x: visible;
+        // flex: 1;
+        padding-right: 12px;
+        
     }
 
     .middle-container {
-        flex: 2;
+        // flex: 2;
+        padding-left: 12px;
+        padding-right: 12px;
+
         // overflow-y: auto;
         // overflow-x: hidden;
     }
 
     .right-container {
-        flex: 1;
+        // flex: 1;
+        padding-left: 12px;
         // overflow-y: auto;
         // overflow-x: hidden;
     }
@@ -661,18 +924,26 @@ export default {
         width: 400px;
         opacity: 0.3;
         // left: -150px;
-        right: -100px;
-        top: -32px;
+        // right: -100px;
+        // top: -32px;
         pointer-events: none;
     }
 
     .character-extra-config {
         margin-top: 16px;
-        border-left: #222222 solid 3px;
-        padding: 8px;
-        background: #12345611;
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 3px;
+        // border-left: #222222 solid 3px;
+        // padding: 8px;
+        // background: #12345611;
+        // border-top-right-radius: 3px;
+        // border-bottom-right-radius: 3px;
+    }
+
+    .config-character-skill {
+        .skill-div {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
     }
 
     .select-character {
@@ -699,11 +970,11 @@ export default {
 
     .weapon-extra-config {
         margin-top: 16px;
-        border-left: #222222 solid 3px;
-        padding: 8px;
-        background: #12345611;
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 3px;
+        // border-left: #222222 solid 3px;
+        // padding: 8px;
+        // background: #12345611;
+        // border-top-right-radius: 3px;
+        // border-bottom-right-radius: 3px;
     }
 }
 
@@ -739,5 +1010,10 @@ export default {
     font-weight: bold;
     margin: 0 0 12px 0;
     color: #555555;
+}
+
+.common-title2 {
+    font-size: 12px;
+    color: #666666;
 }
 </style>

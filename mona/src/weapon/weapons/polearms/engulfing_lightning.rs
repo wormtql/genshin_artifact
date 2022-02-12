@@ -1,18 +1,14 @@
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
+use crate::character::character_common_data::CharacterCommonData;
+use crate::common::item_config_type::ItemConfig;
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::weapon::weapon_effect::WeaponEffect;
 use crate::weapon::weapon_static_data::WeaponStaticData;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
-use crate::weapon::WeaponConfig;
-
-pub const ENGULFING_LIGHTNING_STATIC_DATA: WeaponStaticData = WeaponStaticData {
-    weapon_type: WeaponType::Polearm,
-    weapon_sub_stat: WeaponSubStatFamily::Recharge120,
-    weapon_base: WeaponBaseATKFamily::ATK608,
-    star: 5
-};
+use crate::weapon::{WeaponConfig, WeaponName};
+use crate::weapon::weapon_trait::WeaponTrait;
 
 pub struct EngulfingLightningEffect {
     rate: f64,
@@ -56,5 +52,31 @@ impl<T: Attribute> WeaponEffect<T> for EngulfingLightningEffect {
             }),
             "薙草之稻光被动等效"
         )
+    }
+}
+
+pub struct EngulfingLightning;
+
+impl WeaponTrait for EngulfingLightning {
+    const META_DATA: WeaponStaticData = WeaponStaticData {
+        name: WeaponName::EngulfingLightning,
+        weapon_type: WeaponType::Polearm,
+        weapon_sub_stat: WeaponSubStatFamily::Recharge120,
+        weapon_base: WeaponBaseATKFamily::ATK608,
+        star: 5,
+        effect: Some("攻击力获得提升，提升程度相当于元素充能效率超出100%部分的28/35/42/49/56%，至多通过这种方式提升80/90/100/110/120%。施放元素爆发后的12秒内，元素充能效率提升30/35/40/45/50%。"),
+        chs: "薙草之稻光"
+    };
+
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "rate",
+            title: ItemConfig::DEFAULT_RATE_TITLE,
+            config: ItemConfig::RATE01_TYPE,
+        }
+    ]);
+
+    fn get_effect<A: Attribute>(_character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
+        Some(Box::new(EngulfingLightningEffect::new(config)))
     }
 }

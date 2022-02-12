@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::{Attribute, AttributeName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, StatName, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::RazorDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct RazorSkillType {
     pub normal_dmg1: [f64; 15],
@@ -39,11 +51,193 @@ pub const RAZOR_SKILL: RazorSkillType = RazorSkillType {
 };
 
 pub const RAZOR_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Razor,
+    chs: "雷泽",
     element: Element::Electro,
     hp: [1003, 2577, 3326, 4982, 5514, 6343, 7052, 7881, 8413, 9241, 9773, 10602, 11134, 11962],
     atk: [20, 50, 65, 97, 108, 124, 138, 154, 164, 180, 191, 207, 217, 234],
     def: [63, 162, 209, 313, 346, 398, 443, 495, 528, 580, 613, 665, 699, 751],
     sub_stat: CharacterSubStatFamily::Bonus300(StatName::PhysicalBonus),
     weapon_type: WeaponType::Claymore,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·钢脊",
+    skill_name2: "利爪与苍雷",
+    skill_name3: "雷牙"
 };
+
+pub struct RazorEffect {
+    pub stack: f64,
+    pub talent2_ratio: f64,
+    pub has_talent2: bool,
+}
+
+impl RazorEffect {
+    pub fn new(common_data: &CharacterCommonData, config: &CharacterConfig) -> RazorEffect {
+        let (stack, talent2_ratio) = match *config {
+            CharacterConfig::Razor { e_stack, talent2_ratio } => (e_stack, talent2_ratio),
+            _ => (0.0, 0.0)
+        };
+        RazorEffect {
+            stack,
+            talent2_ratio,
+            has_talent2: common_data.has_talent2
+        }
+    }
+}
+
+impl<A: Attribute> ChangeAttribute<A> for RazorEffect {
+    fn change_attribute(&self, attribute: &mut A) {
+        let recharge_bonus = 0.2 * self.stack;
+        attribute.set_value_by(AttributeName::Recharge, "雷泽：雷之印加成", recharge_bonus);
+        if self.has_talent2 {
+            attribute.set_value_by(AttributeName::Recharge, "雷泽天赋：饥饿", self.talent2_ratio * 0.3);
+        }
+    }
+}
+
+pub struct Razor;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum RazorDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    Q1,
+    QNormal1,
+    QNormal2,
+    QNormal3,
+    QNormal4,
+}
+
+impl RazorDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use RazorDamageEnum::*;
+        match *self {
+            E1 | E2 | Q1 | QNormal1 | QNormal2 | QNormal3 | QNormal4 => Element::Electro,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use RazorDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | QNormal1 | QNormal2 | QNormal3 | QNormal4 => SkillType::NormalAttack,
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E2 => SkillType::ElementalSkill,
+            Q1 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for RazorDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum RazorRoleEnum {
+    Main
+}
+
+impl CharacterTrait for Razor {
+    const STATIC_DATA: CharacterStaticData = RAZOR_STATIC_DATA;
+    type SkillType = RazorSkillType;
+    const SKILL: Self::SkillType = RAZOR_SKILL;
+    type DamageEnumType = RazorDamageEnum;
+    type RoleEnum = RazorRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: RazorDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::Charged1 as usize, chs: "重击循环伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::Charged2 as usize, chs: "重击终结伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: RazorDamageEnum::E1 as usize, chs: "点按技能伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::E2 as usize, chs: "长按技能伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: RazorDamageEnum::Q1 as usize, chs: "爆发伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::QNormal1 as usize, chs: "狼魂-一段伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::QNormal2 as usize, chs: "狼魂-二段伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::QNormal3 as usize, chs: "狼魂-三段伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::QNormal4 as usize, chs: "狼魂-四段伤害" },
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "e_stack",
+            title: "雷之印层数",
+            config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 0.0 }
+        },
+        ItemConfig {
+            name: "talent2_ratio",
+            title: "天赋「饥饿」应用比例",
+            config: ItemConfig::RATE01_TYPE
+        }
+    ]);
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: RazorDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use RazorDamageEnum::*;
+        let ratio = match s {
+            Normal1 => RAZOR_SKILL.normal_dmg1[s1],
+            Normal2 => RAZOR_SKILL.normal_dmg2[s1],
+            Normal3 => RAZOR_SKILL.normal_dmg3[s1],
+            Normal4 => RAZOR_SKILL.normal_dmg4[s1],
+            Charged1 => RAZOR_SKILL.charged_dmg1[s1],
+            Charged2 => RAZOR_SKILL.charged_dmg2[s1],
+            Plunging1 => RAZOR_SKILL.plunging_dmg1[s1],
+            Plunging2 => RAZOR_SKILL.plunging_dmg2[s1],
+            Plunging3 => RAZOR_SKILL.plunging_dmg3[s1],
+            E1 => RAZOR_SKILL.elemental_skill_dmg1[s2],
+            E2 => RAZOR_SKILL.elemental_skill_dmg2[s2],
+            Q1 => RAZOR_SKILL.elemental_burst_dmg1[s3],
+            QNormal1 => RAZOR_SKILL.elemental_burst_dmg2[s3] * RAZOR_SKILL.normal_dmg1[s1],
+            QNormal2 => RAZOR_SKILL.elemental_burst_dmg2[s3] * RAZOR_SKILL.normal_dmg2[s1],
+            QNormal3 => RAZOR_SKILL.elemental_burst_dmg2[s3] * RAZOR_SKILL.normal_dmg3[s1],
+            QNormal4 => RAZOR_SKILL.elemental_burst_dmg2[s3] * RAZOR_SKILL.normal_dmg4[s1],
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(RazorEffect::new(common_data, config)))
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: RazorRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            RazorRoleEnum::Main => Box::new(RazorDefaultTargetFunction)
+        }
+    }
+}

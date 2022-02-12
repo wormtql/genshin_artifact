@@ -1,7 +1,5 @@
 use smallvec::SmallVec;
 use std::cell::RefCell;
-use std::rc::Rc;
-use std::collections::HashSet;
 use crate::attribute::typing::EdgeFunctionBwd;
 
 use super::attribute::Attribute;
@@ -31,7 +29,7 @@ pub struct SimpleAttributeGraph2 {
     attributes: RefCell<[SimpleEntry; 150]>,
     // edges: Vec<Rc<SimpleEdge>>,
     // edges: Vec<SimpleEdge>,
-    edges: SmallVec<[SimpleEdge; 20]>
+    edges: SmallVec<[SimpleEdge; MAX_EDGE_COUNT]>
 
     // atk_percentage: f64,
     // def_percentage: f64,
@@ -40,7 +38,7 @@ pub struct SimpleAttributeGraph2 {
 
 impl Default for SimpleAttributeGraph2 {
     fn default() -> Self {
-        let mut temp = SimpleAttributeGraph2 {
+        let temp = SimpleAttributeGraph2 {
             attributes: RefCell::new([SimpleEntry {
                 value_from_edge: 0.0,
                 value_self: 0.0,
@@ -73,14 +71,14 @@ impl Attribute for SimpleAttributeGraph2 {
         self.my_get_value(key as usize)
     }
 
-    fn set_value_to(&mut self, name: AttributeName, key: &str, value: f64) {
+    fn set_value_to(&mut self, name: AttributeName, _key: &str, value: f64) {
         let data = self.attributes.as_ptr();
         unsafe {
             (*data)[name as usize].value_self = value;
         }
     }
 
-    fn set_value_by(&mut self, name: AttributeName, key: &str, value: f64) {
+    fn set_value_by(&mut self, name: AttributeName, _key: &str, value: f64) {
         let data = self.attributes.as_ptr();
         unsafe {
             (*data)[name as usize].value_self += value;
@@ -107,7 +105,7 @@ impl Attribute for SimpleAttributeGraph2 {
         self.edges.push(edge);
     }
 
-    fn remove_edge(&mut self, handle: Self::EdgeHandle) {
+    fn remove_edge(&mut self, _handle: Self::EdgeHandle) {
     }
 }
 

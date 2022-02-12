@@ -1,11 +1,12 @@
 use num_derive::FromPrimitive;
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::ItemConfig;
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::GanyuDefaultTargetFunction;
@@ -54,13 +55,18 @@ pub const GANYU_SKILL: GanyuSkillType = GanyuSkillType {
 };
 
 pub const GANYU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Ganyu,
+    chs: "甘雨",
     element: Element::Cryo,
     hp: [763, 1978, 2632, 3939, 4403, 5066, 5686, 6355, 6820, 7495, 7960, 8643, 9108, 9797],
     atk: [26, 68, 90, 135, 151, 173, 194, 217, 233, 256, 272, 295, 311, 335],
     def: [49, 127, 169, 253, 283, 326, 366, 409, 439, 482, 512, 556, 586, 630],
     sub_stat: CharacterSubStatFamily::CriticalDamage384,
     weapon_type: WeaponType::Bow,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·流天射术",
+    skill_name2: "山泽麟迹",
+    skill_name3: "降众天华"
 };
 
 pub struct GanyuEffect {
@@ -138,6 +144,45 @@ impl CharacterTrait for Ganyu {
     type DamageEnumType = GanyuDamageEnum;
     type RoleEnum = GanyuRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal6 as usize, chs: "六段伤害" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Charged1 as usize, chs: "瞄准射击" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Charged2 as usize, chs: "一段蓄力瞄准射击" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Charged3 as usize, chs: "霜华矢命中伤害" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Charged4 as usize, chs: "霜华矢·霜华绽发伤害" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: GanyuDamageEnum::E1 as usize, chs: "技能伤害" }
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: GanyuDamageEnum::Q1 as usize, chs: "冰棱伤害" }
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "talent1_rate",
+            title: "天赋「唯此一心」应用比例",
+            config: ItemConfig::RATE01_TYPE
+        },
+        ItemConfig {
+            name: "talent2_rate",
+            title: "天赋「天地交泰」应用比例",
+            config: ItemConfig::RATE01_TYPE
+        }
+    ]);
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) ->D::Result {
         let s: GanyuDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -172,8 +217,8 @@ impl CharacterTrait for Ganyu {
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(match *config {
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(match *config {
             CharacterConfig::Ganyu { talent1_rate, talent2_rate } => GanyuEffect {
                 talent1_rate,
                 talent2_rate
@@ -182,7 +227,7 @@ impl CharacterTrait for Ganyu {
                 talent1_rate: 0.0,
                 talent2_rate: 0.0
             }
-        })
+        }))
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

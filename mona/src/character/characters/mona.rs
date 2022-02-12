@@ -1,8 +1,17 @@
+use num_derive::FromPrimitive;
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
-use crate::common::{ChangeAttribute, Element, WeaponType};
-use crate::character::CharacterStaticData;
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::MonaDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct MonaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -37,6 +46,8 @@ pub const MONA_SKILL: MonaSkillType = MonaSkillType {
 };
 
 pub const MONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Mona,
+    chs: "莫娜",
     element: Element::Hydro,
     hp: [810, 2102, 2797, 4185, 4678, 5383, 6041, 6752, 7246, 7964, 8458, 9184, 9677, 10409],
     atk: [22, 58, 77, 115, 129, 148, 167, 186, 200, 220, 233, 253, 267, 287],
@@ -44,6 +55,9 @@ pub const MONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Recharge320,
     weapon_type: WeaponType::Catalyst,
     star: 5,
+    skill_name1: "普通攻击·因果点破",
+    skill_name2: "水中幻愿",
+    skill_name3: "星命定轨"
 };
 
 pub struct MonaEffect {
@@ -68,6 +82,121 @@ impl<T: Attribute> ChangeAttribute<T> for MonaEffect {
                 Box::new(|grad, _x1, _x2| (grad * 0.2, 0.0)),
                 "莫娜天赋：「托付于命运吧!」"
             );
+        }
+    }
+}
+
+pub struct Mona;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum MonaDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Charged,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    Q1
+}
+
+impl MonaDamageEnum {
+    pub fn get_skill_type(&self) -> SkillType {
+        use MonaDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
+            Charged => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E2 => SkillType::ElementalSkill,
+            Q1 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for MonaDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum MonaRoleEnum {
+    General,
+    Aux, // 增伤辅助
+    Nu, // 核弹流
+}
+
+impl CharacterTrait for Mona {
+    const STATIC_DATA: CharacterStaticData = MONA_STATIC_DATA;
+    type SkillType = MonaSkillType;
+    const SKILL: Self::SkillType = MONA_SKILL;
+    type DamageEnumType = MonaDamageEnum;
+    type RoleEnum = MonaRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: MonaDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: MonaDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: MonaDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: MonaDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: MonaDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: MonaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: MonaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: MonaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: MonaDamageEnum::E1 as usize, chs: "持续伤害" },
+            CharacterSkillMapItem { index: MonaDamageEnum::E2 as usize, chs: "爆裂伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: MonaDamageEnum::Q1 as usize, chs: "泡影破裂伤害" }
+        ])
+    };
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: MonaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use MonaDamageEnum::*;
+        let ratio = match s {
+            Normal1 => MONA_SKILL.normal_dmg1[s1],
+            Normal2 => MONA_SKILL.normal_dmg2[s1],
+            Normal3 => MONA_SKILL.normal_dmg3[s1],
+            Normal4 => MONA_SKILL.normal_dmg4[s1],
+            Charged => MONA_SKILL.charged_dmg1[s1],
+            Plunging1 => MONA_SKILL.plunging_dmg1[s1],
+            Plunging2 => MONA_SKILL.plunging_dmg2[s1],
+            Plunging3 => MONA_SKILL.plunging_dmg3[s1],
+            E1 => MONA_SKILL.elemental_skill_dmg1[s2],
+            E2 => MONA_SKILL.elemental_skill_dmg2[s2],
+            Q1 => MONA_SKILL.elemental_burst_dmg1[s3]
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            Element::Hydro,
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(MonaEffect::new(common_data)))
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: MonaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            MonaRoleEnum::General => Box::new(MonaDefaultTargetFunction {
+                recharge_demand: 1.4
+            }),
+            _ => todo!()
         }
     }
 }

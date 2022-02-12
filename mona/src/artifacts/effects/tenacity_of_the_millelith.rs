@@ -22,5 +22,6 @@ impl<T: Attribute> ArtifactEffect<T> for TenacityOfTheMillelithEffect {
     fn effect4(&self, attribute: &mut T) {
         attribute.add_atk_percentage("千岩牢固4", self.rate * 0.2);
         attribute.set_value_by(AttributeName::ShieldStrength, "千岩牢固4", self.rate * 0.3);
+        attribute.set_value_by(AttributeName::ATKBonusForOther, "千岩牢固4", self.rate * 0.2);
     }
 }

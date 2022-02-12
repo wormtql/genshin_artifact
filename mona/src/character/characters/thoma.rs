@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::ItemConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::ThomaDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct ThomaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -45,11 +57,142 @@ pub const THOMA_SKILL: ThomaSkillType = ThomaSkillType {
 };
 
 pub const THOMA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Thoma,
+    chs: "托马",
     element: Element::Pyro,
     hp: [866, 2225, 2872, 4302, 4762, 5478, 6091, 6806, 7266, 7981, 8440, 9156, 9616, 10331],
     atk: [17, 43, 56, 84, 93, 107, 119, 133, 142, 156, 165, 179, 188, 202],
     def: [63, 162, 209, 313, 346, 398, 443, 495, 528, 580, 613, 665, 699, 751],
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Polearm,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·迅破枪势",
+    skill_name2: "烈烧佑命之侍护",
+    skill_name3: "真红炽火之大铠"
 };
+
+pub struct Thoma;
+
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+pub enum ThomaDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal3Times2,
+    Normal4,
+    Charged,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    Q1,
+    Q2
+}
+
+impl ThomaDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use ThomaDamageEnum::*;
+        match *self {
+            E1 | Q1 | Q2 => Element::Pyro,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use ThomaDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal3Times2 => SkillType::NormalAttack,
+            Charged => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 => SkillType::ElementalSkill,
+            Q1 | Q2 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for ThomaDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum ThomaRoleEnum {
+    AuxShield
+}
+
+impl CharacterTrait for Thoma {
+    const STATIC_DATA: CharacterStaticData = THOMA_STATIC_DATA;
+    type SkillType = ThomaSkillType;
+    const SKILL: Self::SkillType = THOMA_SKILL;
+    type DamageEnumType = ThomaDamageEnum;
+    type RoleEnum = ThomaRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: ThomaDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: ThomaDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: ThomaDamageEnum::Normal3 as usize, chs: "三段伤害/2" },
+            CharacterSkillMapItem { index: ThomaDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: ThomaDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: ThomaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: ThomaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: ThomaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: ThomaDamageEnum::E1 as usize, chs: "技能伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: ThomaDamageEnum::Q1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: ThomaDamageEnum::Q2 as usize, chs: "炽火崩破伤害" },
+        ])
+    };
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: ThomaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use ThomaDamageEnum::*;
+        let ratio = match s {
+            Normal1 => THOMA_SKILL.normal_dmg1[s1],
+            Normal2 => THOMA_SKILL.normal_dmg2[s1],
+            Normal3 => THOMA_SKILL.normal_dmg3[s1],
+            Normal3Times2 => THOMA_SKILL.normal_dmg3[s1] * 2.0,
+            Normal4 => THOMA_SKILL.normal_dmg4[s1],
+            Charged => THOMA_SKILL.charged_dmg1[s1],
+            Plunging1 => THOMA_SKILL.plunging_dmg1[s1],
+            Plunging2 => THOMA_SKILL.plunging_dmg2[s1],
+            Plunging3 => THOMA_SKILL.plunging_dmg3[s1],
+            E1 => THOMA_SKILL.elemental_skill_dmg1[s2],
+            Q1 => THOMA_SKILL.elemental_burst_dmg1[s3],
+            Q2 => THOMA_SKILL.elemental_burst_dmg2[s3],
+        };
+
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        if s == Q2 && context.character_common_data.has_talent2 {
+            builder.add_hp_ratio("托马天赋：烈火攻燔", 0.022);
+        }
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: ThomaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            ThomaRoleEnum::AuxShield => Box::new(ThomaDefaultTargetFunction {
+                recharge_demand: 2.0
+            })
+        }
+    }
+}

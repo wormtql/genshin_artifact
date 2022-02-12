@@ -2,11 +2,11 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::EulaDefaultTargetFunction;
@@ -65,13 +65,18 @@ pub const EULA_SKILL: EulaSkillType = EulaSkillType {
 };
 
 pub const EULA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Eula,
+    chs: "优菈",
     element: Element::Cryo,
     hp: [1030, 2671, 3554, 5317, 5944, 6839, 7675, 8579, 9207, 10119, 10746, 11699, 12296, 13226],
     atk: [27, 69, 92, 138, 154, 177, 198, 222, 238, 262, 278, 302, 318, 342],
     def: [58, 152, 202, 302, 337, 388, 436, 487, 523, 574, 610, 662, 698, 751],
     sub_stat: CharacterSubStatFamily::CriticalDamage384,
     weapon_type: WeaponType::Claymore,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·西风剑术·宗室",
+    skill_name2: "冰潮的涡旋",
+    skill_name3: "凝浪之光剑"
 };
 
 pub struct Eula;
@@ -137,6 +142,43 @@ impl CharacterTrait for Eula {
     type DamageEnumType = EulaDamageEnum;
     type RoleEnum = EulaRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: EulaDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: EulaDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: EulaDamageEnum::Normal31 as usize, chs: "三段伤害-1" },
+            CharacterSkillMapItem { index: EulaDamageEnum::Normal32 as usize, chs: "三段伤害-2" },
+            CharacterSkillMapItem { index: EulaDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: EulaDamageEnum::Normal51 as usize, chs: "五段伤害-1" },
+            CharacterSkillMapItem { index: EulaDamageEnum::Normal52 as usize, chs: "五段伤害-2" },
+            CharacterSkillMapItem { index: EulaDamageEnum::Charged1 as usize, chs: "重击循环伤害" },
+            CharacterSkillMapItem { index: EulaDamageEnum::Charged2 as usize, chs: "重击终结伤害" },
+            CharacterSkillMapItem { index: EulaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: EulaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: EulaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: EulaDamageEnum::E1 as usize, chs: "点按伤害" },
+            CharacterSkillMapItem { index: EulaDamageEnum::E2 as usize, chs: "长按伤害" },
+            CharacterSkillMapItem { index: EulaDamageEnum::E3 as usize, chs: "冰涡之剑伤害" },
+            CharacterSkillMapItem { index: EulaDamageEnum::EShatteredLightfall as usize, chs: "残缺光降之剑" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: EulaDamageEnum::Q1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: EulaDamageEnum::QLightfall as usize, chs: "光降之剑" },
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "lightfall_stack",
+            title: "光降之剑能量层数",
+            config: ItemConfigType::Int { min: 0, max: 30, default: 0 }
+        }
+    ]);
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
         let s: EulaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -182,8 +224,8 @@ impl CharacterTrait for Eula {
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

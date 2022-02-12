@@ -7,7 +7,6 @@ pub mod character_config;
 pub mod character_common_data;
 pub mod skill_config;
 pub mod traits;
-mod no_effect;
 pub mod prelude;
 
 pub use character_static_data::{CharacterStaticData};

@@ -1,8 +1,18 @@
+use num_derive::FromPrimitive;
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
-use crate::common::{ChangeAttribute, Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::YoimiyaDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct YoimiyaSkill {
     pub normal_dmg1: [f64; 15],
@@ -41,13 +51,18 @@ pub const YOIMIYA_SKILL: YoimiyaSkill = YoimiyaSkill {
 };
 
 pub const YOIMIYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Yoimiya,
+    chs: "宵宫",
     element: Element::Pyro,
     hp: [791, 2053, 2731, 4086, 4568, 5256, 5899, 6593, 7075, 7777, 8259, 8968, 9450, 10164],
     atk: [25, 65, 87, 130, 145, 167, 187, 209, 225, 247, 262, 285, 300, 323],
     def: [48, 124, 165, 247, 276, 318, 357, 399, 428, 470, 500, 542, 572, 615],
     sub_stat: CharacterSubStatFamily::CriticalRate192,
     weapon_type: WeaponType::Bow,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·烟火打扬",
+    skill_name2: "焰硝庭火舞",
+    skill_name3: "琉金云间草"
 };
 
 pub struct YoimiyaEffect {
@@ -72,6 +87,168 @@ impl<T: Attribute> ChangeAttribute<T> for YoimiyaEffect {
     fn change_attribute(&self, attribute: &mut T) {
         if self.has_talent1 {
             attribute.set_value_by(AttributeName::BonusPyro, "宵宫天赋：袖火百景图", self.talent1_level * 0.02);
+        }
+    }
+}
+
+pub struct Yoimiya;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum YoimiyaDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal5,
+    Charged1,
+    Charged2,
+    Charged3,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    Q1,
+    Q2
+}
+
+impl YoimiyaDamageEnum {
+    pub fn get_element(&self, after_e: bool) -> Element {
+        use YoimiyaDamageEnum::*;
+        if after_e {
+            match *self {
+                Charged1 | Plunging1 | Plunging2 | Plunging3 => Element::Physical,
+                _ => Element::Pyro
+            }
+        } else {
+            match *self {
+                Charged2 | Charged3 | Q1 | Q2 => Element::Pyro,
+                _ => Element::Physical
+            }
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use YoimiyaDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal5 => SkillType::NormalAttack,
+            Charged1 | Charged2 | Charged3 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Q1 | Q2 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for YoimiyaDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum YoimiyaRoleEnum {
+    Main
+}
+
+impl CharacterTrait for Yoimiya {
+    const STATIC_DATA: CharacterStaticData = YOIMIYA_STATIC_DATA;
+    type SkillType = YoimiyaSkill;
+    const SKILL: Self::SkillType = YOIMIYA_SKILL;
+    type DamageEnumType = YoimiyaDamageEnum;
+    type RoleEnum = YoimiyaRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Normal1 as usize, chs: "一段伤害/2" },
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Normal4 as usize, chs: "四段伤害/2" },
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Charged1 as usize, chs: "瞄准射击" },
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Charged2 as usize, chs: "满蓄力瞄准射击" },
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Charged3 as usize, chs: "焰硝矢伤害" },
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: None,
+        skill3: Some(&[
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Q1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: YoimiyaDamageEnum::Q2 as usize, chs: "琉金火光爆炸伤害" },
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "talent1_level",
+            title: "天赋「袖火百景图」应用层数",
+            config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 8.0 }
+        }
+    ]);
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "after_e",
+            title: "庭火焰硝",
+            config: ItemConfigType::Bool { default: true }
+        }
+    ]);
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s: YoimiyaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use YoimiyaDamageEnum::*;
+        let mut ratio = match s {
+            Normal1 => YOIMIYA_SKILL.normal_dmg1[s1],
+            Normal2 => YOIMIYA_SKILL.normal_dmg2[s1],
+            Normal3 => YOIMIYA_SKILL.normal_dmg3[s1],
+            Normal4 => YOIMIYA_SKILL.normal_dmg4[s1],
+            Normal5 => YOIMIYA_SKILL.normal_dmg5[s1],
+            Charged1 => YOIMIYA_SKILL.charged_dmg1[s1],
+            Charged2 => YOIMIYA_SKILL.charged_dmg2[s1],
+            Charged3 => YOIMIYA_SKILL.charged_dmg3[s1],
+            Plunging1 => YOIMIYA_SKILL.plunging_dmg1[s1],
+            Plunging2 => YOIMIYA_SKILL.plunging_dmg2[s1],
+            Plunging3 => YOIMIYA_SKILL.plunging_dmg3[s1],
+            Q1 => YOIMIYA_SKILL.elemental_burst_dmg1[s3],
+            Q2 => YOIMIYA_SKILL.elemental_burst_dmg2[s3],
+        };
+
+        let skill_type = s.get_skill_type();
+        let after_e = match *config {
+            CharacterSkillConfig::Yoimiya { after_e } => after_e,
+            _ => false
+        };
+
+        if after_e && skill_type == SkillType::NormalAttack {
+            let times = YOIMIYA_SKILL.elemental_skill_dmg1[s2];
+            ratio *= times;
+        }
+
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(after_e),
+            skill_type,
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(YoimiyaEffect::new(common_data, config)))
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: YoimiyaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            YoimiyaRoleEnum::Main => Box::new(YoimiyaDefaultTargetFunction {
+                melt_rate: 0.0,
+                vaporize_rate: 0.0
+            })
         }
     }
 }

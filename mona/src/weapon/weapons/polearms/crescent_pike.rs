@@ -1,11 +1,27 @@
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_static_data::WeaponStaticData;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
+use crate::weapon::weapon_trait::WeaponTrait;
+use crate::weapon::{WeaponConfig, WeaponName};
+use crate::weapon::weapon_effect::WeaponEffect;
 
-pub const CRESCENT_PIKE_STATIC_DATA: WeaponStaticData = WeaponStaticData {
-    weapon_type: WeaponType::Polearm,
-    weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus75,
-    weapon_base: WeaponBaseATKFamily::ATK565,
-    star: 4
-};
+pub struct CrescentPike;
+
+impl WeaponTrait for CrescentPike {
+    const META_DATA: WeaponStaticData = WeaponStaticData {
+        name: WeaponName::CrescentPike,
+        weapon_type: WeaponType::Polearm,
+        weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus75,
+        weapon_base: WeaponBaseATKFamily::ATK565,
+        star: 4,
+        effect: Some("注能之针：获得元素微粒或元素晶球后的5秒内，普通攻击和重击额外造成20%/25%/30%/35%/40%攻击力伤害。"),
+        chs: "流月针"
+    };
+
+    fn get_effect<A: Attribute>(character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
+        None
+    }
+}

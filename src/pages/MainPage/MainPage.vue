@@ -74,7 +74,9 @@ export default {
 } */
 
 .router-view {
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    /* height: 100vh; */
+    height: 100%;
 }
 
 #container {

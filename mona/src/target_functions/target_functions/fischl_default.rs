@@ -1,19 +1,40 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
 use crate::attribute::SimpleAttributeGraph2;
-use crate::character::Character;
+use crate::character::{Character, CharacterName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::Fischl;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
+use crate::common::item_config_type::ItemConfig;
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
+use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
-use crate::target_functions::TargetFunction;
+use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
+use crate::target_functions::target_function::TargetFunctionMetaTrait;
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct FischlDefaultTargetFunction;
+
+impl TargetFunctionMetaTrait for FischlDefaultTargetFunction {
+    #[cfg(not(target_family = "wasm"))]
+    const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
+        name: TargetFunctionName::FischlDefault,
+        chs: "菲谢尔-断罪皇女！！",
+        description: "普通元素输出菲谢尔",
+        tags: "输出",
+        four: TargetFunctionFor::SomeWho(CharacterName::Fischl),
+        image: TargetFunctionMetaImage::Avatar
+    };
+
+    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, _config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        Box::new(FischlDefaultTargetFunction)
+    }
+}
 
 impl TargetFunction for FischlDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
@@ -28,6 +49,7 @@ impl TargetFunction for FischlDefaultTargetFunction {
             elemental_mastery: 0.3,
             critical: 1.0,
             critical_damage: 1.0,
+            healing_bonus: 0.0,
             bonus_electro: 0.0,
             bonus_pyro: 0.0,
             bonus_hydro: 0.0,
@@ -54,6 +76,10 @@ impl TargetFunction for FischlDefaultTargetFunction {
                 ArtifactSetName::GladiatorsFinale,
                 ArtifactSetName::ShimenawasReminiscence,
             ]),
+            very_critical_set_names: None,
+            normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
+            critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
+            very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
         }
     }
 
@@ -79,7 +105,7 @@ impl TargetFunction for FischlDefaultTargetFunction {
         }
     }
 
-    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, artifacts: &Vec<&Artifact>, enemy: &Enemy) -> f64 {
+    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &Vec<&Artifact>, enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
             attribute, enemy

@@ -17,3 +17,4 @@ pub mod festering_desire;
 pub mod favonius_sword;
 pub mod cinnabar_spindle;
 pub mod blackcliff_longsword;
+pub mod sword_of_descension;

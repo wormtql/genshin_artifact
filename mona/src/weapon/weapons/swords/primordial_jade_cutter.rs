@@ -1,19 +1,15 @@
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::weapon::weapon_effect::WeaponEffect;
 use crate::weapon::weapon_static_data::WeaponStaticData;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
+use crate::weapon::weapon_trait::WeaponTrait;
+use crate::weapon::{WeaponConfig, WeaponName};
 
-pub const PRIMORDIAL_JADE_CUTTER_STATIC_DATA: WeaponStaticData = WeaponStaticData {
-    weapon_type: WeaponType::Sword,
-    weapon_sub_stat: WeaponSubStatFamily::CriticalRate96,
-    weapon_base: WeaponBaseATKFamily::ATK542,
-    star: 5
-};
-
-pub struct PrimordialJadeCutterEffect {}
+pub struct PrimordialJadeCutterEffect;
 
 impl PrimordialJadeCutterEffect {
     pub fn new() -> PrimordialJadeCutterEffect {
@@ -36,5 +32,23 @@ impl<T: Attribute> WeaponEffect<T> for PrimordialJadeCutterEffect {
             Box::new(move |grad, _x1, _x2| (grad * atk_bonus, 0.0)),
             "磐岩结绿被动"
         );
+    }
+}
+
+pub struct PrimordialJadeCutter;
+
+impl WeaponTrait for PrimordialJadeCutter {
+    const META_DATA: WeaponStaticData = WeaponStaticData {
+        name: WeaponName::PrimordialJadeCutter,
+        weapon_type: WeaponType::Sword,
+        weapon_sub_stat: WeaponSubStatFamily::CriticalRate96,
+        weapon_base: WeaponBaseATKFamily::ATK542,
+        star: 5,
+        effect: Some("护国的无垢之心：生命值提升20%/25%/30%/35%/40%。此外，基于装备该武器的角色生命值上限的1.2%/1.5%/1.8%/2.1%/2.4%,获得攻击力加成。"),
+        chs: "磐岩结绿"
+    };
+
+    fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
+        Some(Box::new(PrimordialJadeCutterEffect::new()))
     }
 }

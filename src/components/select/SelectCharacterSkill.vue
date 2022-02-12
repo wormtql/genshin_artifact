@@ -1,3 +1,5 @@
+<!-- 选择技能index -->
+
 <template>
     <el-select
         :value="value"
@@ -27,16 +29,20 @@ export default {
     props: ["characterName", "value"],
     computed: {
         skillMap() {
-            const items = characterData[this.characterName]?.skillMap ?? []
-            let temp = {}
-            for (const item of items) {
-                const groupName = item.group
-                if (!Object.prototype.hasOwnProperty.call(temp, groupName)) {
-                    temp[groupName] = []
-                }
-                temp[groupName].push(item)
+            const data = characterData[this.characterName]
+
+            let map = {}
+            if (data.skillMap1.length > 0) {
+                map[data.skillName1] = data.skillMap1
             }
-            return temp
+            if (data.skillMap2.length > 0) {
+                map[data.skillName2] = data.skillMap2
+            }
+            if (data.skillMap3.length > 0) {
+                map[data.skillName3] = data.skillMap3
+            }
+            
+            return map
         }
     },
     watch: {

@@ -13,6 +13,7 @@ use crate::team::team_name::TeamName;
 use crate::team::TeamQuantization;
 
 
+#[derive(Clone)]
 pub struct TeamPreset {
     pub team_name: TeamName,
     pub name_and_role: Vec<(CharacterName, usize)>, // name, role as usize
@@ -33,37 +34,23 @@ impl TeamPreset {
 
         hasher.finish()
     }
-
-    pub fn get_target_functions<A: Attribute>(&self, team: &Team<A>, team_quant: &TeamQuantization) -> HashMap<usize, Box<dyn TargetFunction>> {
-        let mut result = HashMap::new();
-
-        for member in team.members.iter() {
-            let character_name_usize = member.character.common_data.name as usize;
-            for &(name, role_index) in self.name_and_role.iter() {
-                if name as usize == character_name_usize {
-                    let target_function = get_target_function_by_role(
-                        role_index, team_quant, &member.character.common_data, &member.weapon.common_data
-                    );
-                    result.insert(character_name_usize, target_function);
-                    break;
-                }
-            }
-        }
-
-        result
-    }
 }
 
 lazy_static! {
-    static ref COMMON_TEAMS: Vec<TeamPreset> = {
+    static ref COMMON_TEAMS: HashMap<u64, TeamPreset> = {
         init_teams()
     };
 }
 
-fn init_teams() -> Vec<TeamPreset> {
-    let mut teams = Vec::new();
+fn init_teams() -> HashMap<u64, TeamPreset> {
+    let mut teams = HashMap::new();
 
-    teams.push(TeamPreset {
+    let mut add = |preset: TeamPreset| {
+        let hash = preset.get_character_names_hash();
+        teams.insert(hash, preset);
+    };
+
+    add(TeamPreset {
         team_name: TeamName::Test,
         name_and_role: vec![
             (CharacterName::Albedo, <Albedo as CharacterTrait>::RoleEnum::Sub as usize),
@@ -75,7 +62,7 @@ fn init_teams() -> Vec<TeamPreset> {
     teams
 }
 
-pub fn match_team<A: Attribute>(team: &Team<A>) -> Option<&'static TeamPreset> {
+pub fn match_team<A: Attribute>(team: &Team<A>) -> Option<TeamPreset> {
     let mut names: Vec<usize> = Vec::new();
     for member in team.members.iter() {
         names.push(member.character.common_data.name as usize);
@@ -89,11 +76,9 @@ pub fn match_team<A: Attribute>(team: &Team<A>) -> Option<&'static TeamPreset> {
 
     let target = hasher.finish();
 
-    for team_preset in COMMON_TEAMS.iter() {
-        if team_preset.get_character_names_hash() == target {
-            return Some(team_preset);
-        }
+    if let Some(x) = COMMON_TEAMS.get(&target) {
+        Some(x.clone())
+    } else {
+        None
     }
-
-    None
 }

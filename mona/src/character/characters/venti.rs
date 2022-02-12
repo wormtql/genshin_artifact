@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::ItemConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::VentiDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct VentiSkillType {
     pub normal_dmg11: [f64; 15],
@@ -45,11 +57,169 @@ pub const VENTI_SKILL: VentiSkillType = VentiSkillType {
 };
 
 pub const VENTI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Venti,
+    chs: "温迪",
     element: Element::Anemo,
     hp: [820, 2127, 2830, 4234, 4734, 5446, 6112, 6832, 7331, 8058, 8557, 9292, 9791, 10531],
     atk: [20, 53, 71, 106, 118, 136, 153, 171, 183, 201, 214, 232, 245, 263],
     def: [52, 135, 180, 269, 301, 346, 388, 434, 465, 512, 543, 590, 622, 669],
     sub_stat: CharacterSubStatFamily::Recharge320,
     weapon_type: WeaponType::Bow,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·神代射术",
+    skill_name2: "高天之歌",
+    skill_name3: "风神之诗"
 };
+
+pub struct Venti;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum VentiDamageEnum {
+    Normal11,
+    Normal12,
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal41,
+    Normal42,
+    Normal4,
+    Normal5,
+    Normal6,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    Q1,
+    Q2Pyro,
+    Q2Electro,
+    Q2Hydro,
+    Q2Cryo
+}
+
+impl VentiDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use VentiDamageEnum::*;
+        match *self {
+            E1 | E2 | Q1 | Charged2 => Element::Anemo,
+            Q2Pyro => Element::Pyro,
+            Q2Electro => Element::Electro,
+            Q2Hydro => Element::Hydro,
+            Q2Cryo => Element::Cryo,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use VentiDamageEnum::*;
+        match *self {
+            Normal1 | Normal11 | Normal12 | Normal2 | Normal3 | Normal41 | Normal42 | Normal4 | Normal5 | Normal6 => SkillType::NormalAttack,
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E2 => SkillType::ElementalSkill,
+            Q1 | Q2Pyro | Q2Electro | Q2Hydro | Q2Cryo => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for VentiDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum VentiRoleEnum {
+    Sub,
+}
+
+impl CharacterTrait for Venti {
+    const STATIC_DATA: CharacterStaticData = VENTI_STATIC_DATA;
+    type SkillType = VentiSkillType;
+    const SKILL: Self::SkillType = VENTI_SKILL;
+    type DamageEnumType = VentiDamageEnum;
+    type RoleEnum = VentiRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal11 as usize, chs: "一段伤害-1" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal12 as usize, chs: "一段伤害-2" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal41 as usize, chs: "四段伤害-1" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal42 as usize, chs: "四段伤害-2" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal6 as usize, chs: "六段伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Charged1 as usize, chs: "瞄准射击" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Charged2 as usize, chs: "满蓄力瞄准射击" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: VentiDamageEnum::E1 as usize, chs: "点按伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::E2 as usize, chs: "长按伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: VentiDamageEnum::Q1 as usize, chs: "持续伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Pyro as usize, chs: "附加火元素伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Hydro as usize, chs: "附加水元素伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Cryo as usize, chs: "附加冰元素伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Electro as usize, chs: "附加雷元素伤害" },
+        ])
+    };
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: VentiDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use VentiDamageEnum::*;
+        let ratio = match s {
+            Normal11 => VENTI_SKILL.normal_dmg11[s1],
+            Normal12 => VENTI_SKILL.normal_dmg12[s1],
+            Normal1 => VENTI_SKILL.normal_dmg11[s1] + VENTI_SKILL.normal_dmg12[s1],
+            Normal2 => VENTI_SKILL.normal_dmg2[s1],
+            Normal3 => VENTI_SKILL.normal_dmg3[s1],
+            Normal41 => VENTI_SKILL.normal_dmg41[s1],
+            Normal42 => VENTI_SKILL.normal_dmg42[s1],
+            Normal4 => VENTI_SKILL.normal_dmg41[s1] + VENTI_SKILL.normal_dmg42[s1],
+            Normal5 => VENTI_SKILL.normal_dmg5[s1],
+            Normal6 => VENTI_SKILL.normal_dmg6[s1],
+            Charged1 => VENTI_SKILL.charged_dmg1[s1],
+            Charged2 => VENTI_SKILL.charged_dmg2[s1],
+            Plunging1 => VENTI_SKILL.plunging_dmg1[s1],
+            Plunging2 => VENTI_SKILL.plunging_dmg2[s1],
+            Plunging3 => VENTI_SKILL.plunging_dmg3[s1],
+            E1 => VENTI_SKILL.elemental_skill_dmg1[s2],
+            E2 => VENTI_SKILL.elemental_skill_dmg2[s2],
+            Q1 => VENTI_SKILL.elemental_burst_dmg1[s3],
+            Q2Pyro | Q2Electro | Q2Hydro | Q2Cryo => VENTI_SKILL.elemental_burst_dmg2[s3]
+        };
+
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: VentiRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            VentiRoleEnum::Sub => Box::new(VentiDefaultTargetFunction {
+                swirl_rate: 0.7
+            })
+        }
+    }
+}

@@ -1,7 +1,16 @@
+use std::string::ToString;
+use strum_macros::Display;
+use num_derive::FromPrimitive;
 use serde::{Serialize, Deserialize};
+use mona_derive::{WeaponData, EnumLen};
+use crate::weapon::weapon_trait::WeaponTrait;
+use crate::weapon::weapon_static_data::WeaponStaticData;
+use crate::common::item_config_type::ItemConfig;
 
 #[derive(Serialize, Deserialize)]
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
+#[derive(FromPrimitive, Display)]
+#[derive(WeaponData, EnumLen)]
 pub enum WeaponName {
     MistsplitterReforged,
     AquilaFavonia,
@@ -12,9 +21,9 @@ pub enum WeaponName {
     TheFlute,
     TheBlackSword,
     TheAlleyFlash,
-    SwordOfDescension,  // todo
+    SwordOfDescension,
     SacrificialSword,
-    RoyalLongsword,     // todo
+    RoyalLongsword,
     PrototypeRancour,
     AmenomaKageuchi,
     LionsRoar,
@@ -23,14 +32,14 @@ pub enum WeaponName {
     FavoniusSword,
     CinnabarSpindle,
     BlackcliffLongsword,
-    HarbingerOfDawn,     // todo below *3 weapon
-    FilletBlade,
-    SkyriderSword,
-    DarkIronSword,
-    CoolSteel,
-    TravelersHandySword,
-    SilverSword,
-    DullBlade,
+    // HarbingerOfDawn,     // todo below *3 weapon
+    // FilletBlade,
+    // SkyriderSword,
+    // DarkIronSword,
+    // CoolSteel,
+    // TravelersHandySword,
+    // SilverSword,
+    // DullBlade,
 
     WolfsGravestone,
     SkywardPride,
@@ -51,13 +60,13 @@ pub enum WeaponName {
     PrototypeArchaic,
     LuxuriousSeaLord,
     LithicBlade,
-    SkyriderGreatsword,     // todo below *3
-    DebateClub,
-    BloodstainedGreatsword,
-    WhiteIronGreatsword,
-    FerrousShadow,
-    OldMercsPal,
-    WasterGreatsword,
+    // SkyriderGreatsword,     // todo below *3
+    // DebateClub,
+    // BloodstainedGreatsword,
+    // WhiteIronGreatsword,
+    // FerrousShadow,
+    // OldMercsPal,
+    // WasterGreatsword,
 
     EngulfingLightning,
     SkywardSpine,
@@ -77,11 +86,11 @@ pub enum WeaponName {
     BlackcliffPole,
     WavebreakersFin,
     RoyalSpear,
-    Halberd,        // todo 3*
-    BlackTassel,
-    WhiteTassel,
-    IronPoint,
-    BeginnersProtector,
+    // Halberd,        // todo 3*
+    // BlackTassel,
+    // WhiteTassel,
+    // IronPoint,
+    // BeginnersProtector,
 
     LostPrayerToTheSacredWinds,
     SkywardAtlas,
@@ -100,13 +109,13 @@ pub enum WeaponName {
     EyeOfPerception,
     DodocoTales,
     BlackcliffAgate,
-    MagicGuide,         // todo 3*
-    OtherworldlyStory,
-    EmeraldOrb,
-    ThrillingTalesOfDragonSlayers,
-    TwinNephrite,
-    PocketGrimoire,
-    ApprenticesNotes,
+    // MagicGuide,         // todo 3*
+    // OtherworldlyStory,
+    // EmeraldOrb,
+    // ThrillingTalesOfDragonSlayers,
+    // TwinNephrite,
+    // PocketGrimoire,
+    // ApprenticesNotes,
 
     PolarStar,
     ThunderingPulse,
@@ -128,11 +137,11 @@ pub enum WeaponName {
     CompoundBow,
     BlackcliffWarbow,
     WindblumeOde,
-    RavenBow,       // todo 3*
-    RecurveBow,
-    Messenger,
-    SharpshootersOath,
-    Slingshot,
-    SeasonedHuntersBow,
-    HuntersBow,
+    // RavenBow,       // todo 3*
+    // RecurveBow,
+    // Messenger,
+    // SharpshootersOath,
+    // Slingshot,
+    // SeasonedHuntersBow,
+    // HuntersBow,
 }

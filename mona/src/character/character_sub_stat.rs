@@ -4,6 +4,7 @@ use crate::attribute::Attribute;
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
 pub enum CharacterSubStatFamily {
     ATK240,
+    ATK288,
 
     Bonus240(StatName),
     Bonus288(StatName),
@@ -30,6 +31,7 @@ pub enum CharacterSubStatFamily {
 pub fn get_value_array(family: CharacterSubStatFamily) -> [f64; 5] {
     match family {
         CharacterSubStatFamily::ATK240 => [0.06, 0.12, 0.12, 0.18, 0.24],
+        CharacterSubStatFamily::ATK288 => [0.072, 0.144, 0.144, 0.216, 0.288],
         CharacterSubStatFamily::Bonus240(_) => [0.06, 0.12, 0.12, 0.18, 0.24],
         CharacterSubStatFamily::Bonus288(_) => [0.072, 0.144, 0.144, 0.216, 0.288],
         CharacterSubStatFamily::Bonus300(_) => [0.75, 0.15, 0.15, 0.225, 0.3],
@@ -46,20 +48,21 @@ pub fn get_value_array(family: CharacterSubStatFamily) -> [f64; 5] {
 }
 
 pub fn get_stat_name_from_family(family: CharacterSubStatFamily) -> StatName {
+    use CharacterSubStatFamily::*;
     match family {
-        CharacterSubStatFamily::ATK240 => StatName::ATKPercentage,
-        CharacterSubStatFamily::Bonus240(x) => x,
-        CharacterSubStatFamily::Bonus288(x) => x,
-        CharacterSubStatFamily::Bonus300(x) => x,
-        CharacterSubStatFamily::CriticalDamage384 => StatName::CriticalDamage,
-        CharacterSubStatFamily::CriticalRate192 => StatName::CriticalRate,
-        CharacterSubStatFamily::HealingBonus222 => StatName::HealingBonus,
-        CharacterSubStatFamily::DEF300 => StatName::DEFPercentage,
-        CharacterSubStatFamily::ElementalMastery96 => StatName::ElementalMastery,
-        CharacterSubStatFamily::ElementalMastery115 => StatName::ElementalMastery,
-        CharacterSubStatFamily::HP240 => StatName::HPPercentage,
-        CharacterSubStatFamily::Recharge267 => StatName::Recharge,
-        CharacterSubStatFamily::Recharge320 => StatName::Recharge,
+        ATK240 | ATK288 => StatName::ATKPercentage,
+        Bonus240(x) => x,
+        Bonus288(x) => x,
+        Bonus300(x) => x,
+        CriticalDamage384 => StatName::CriticalDamage,
+        CriticalRate192 => StatName::CriticalRate,
+        HealingBonus222 => StatName::HealingBonus,
+        DEF300 => StatName::DEFPercentage,
+        ElementalMastery96 => StatName::ElementalMastery,
+        ElementalMastery115 => StatName::ElementalMastery,
+        HP240 => StatName::HPPercentage,
+        Recharge267 => StatName::Recharge,
+        Recharge320 => StatName::Recharge,
     }
 }
 

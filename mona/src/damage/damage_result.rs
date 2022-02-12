@@ -1,5 +1,6 @@
 use std::ops::Mul;
 use serde::{Serialize, Deserialize};
+use crate::damage::transformative_damage::TransformativeDamage;
 
 #[derive(Debug, Clone, Copy)]
 #[derive(Deserialize, Serialize)]
@@ -33,5 +34,5 @@ pub struct SimpleDamageResult {
     pub melt: Option<DamageResult>,
     pub vaporize: Option<DamageResult>,
     pub is_heal: bool,
-    pub is_shield: bool
+    pub is_shield: bool,
 }

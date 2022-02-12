@@ -2,10 +2,9 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -55,13 +54,18 @@ pub const JEAN_SKILL: JeanSkillType = JeanSkillType {
 };
 
 pub const JEAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Jean,
+    chs: "琴",
     element: Element::Anemo,
     hp: [1144, 2967, 3948, 5908, 6605, 7599, 8528, 9533, 10230, 11243, 11940, 12965, 13662, 14695],
     atk: [19, 48, 64, 96, 108, 124, 139, 155, 166, 183, 194, 211, 222, 239],
     def: [60, 155, 206, 309, 345, 397, 446, 499, 535, 588, 624, 678, 715, 769],
     sub_stat: CharacterSubStatFamily::HealingBonus222,
     weapon_type: WeaponType::Sword,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·西风剑术",
+    skill_name2: "风压剑",
+    skill_name3: "蒲公英之风"
 };
 
 pub struct Jean;
@@ -131,6 +135,30 @@ impl CharacterTrait for Jean {
     type DamageEnumType = JeanDamageEnum;
     type RoleEnum = JeanRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: JeanDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: JeanDamageEnum::E1 as usize, chs: "技能伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: JeanDamageEnum::Q1 as usize, chs: "爆发伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::Q2 as usize, chs: "出入领域伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::QHeal1 as usize, chs: "领域发动治疗量" },
+            CharacterSkillMapItem { index: JeanDamageEnum::QHeal2 as usize, chs: "持续治疗" },
+        ])
+    };
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: JeanDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -179,8 +207,8 @@ impl CharacterTrait for Jean {
         }
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

@@ -2,10 +2,9 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -57,13 +56,18 @@ pub const DIONA_SKILL: DionaSkillType = DionaSkillType {
 };
 
 pub const DIONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Diona,
+    chs: "迪奥娜",
     element: Element::Cryo,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],
     atk: [18, 46, 59, 88, 98, 113, 125, 140, 149, 164, 174, 188, 198, 212],
     def: [50, 129, 167, 250, 277, 318, 354, 396, 422, 464, 491, 532, 559, 601],
     sub_stat: CharacterSubStatFamily::Bonus240(StatName::CryoBonus),
     weapon_type: WeaponType::Bow,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·猎人射术",
+    skill_name2: "猫爪冻冻",
+    skill_name3: "最烈特调"
 };
 
 pub struct Diona;
@@ -130,6 +134,30 @@ impl CharacterTrait for Diona {
     type DamageEnumType = DionaDamageEnum;
     type RoleEnum = DionaRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: DionaDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: DionaDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: DionaDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: DionaDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: DionaDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: DionaDamageEnum::Charged1 as usize, chs: "瞄准射击" },
+            CharacterSkillMapItem { index: DionaDamageEnum::Charged2 as usize, chs: "满蓄力瞄准射击" },
+            CharacterSkillMapItem { index: DionaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: DionaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: DionaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: DionaDamageEnum::E1 as usize, chs: "猫爪伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: DionaDamageEnum::Q1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: DionaDamageEnum::Q2 as usize, chs: "领域持续伤害" },
+            CharacterSkillMapItem { index: DionaDamageEnum::QHeal as usize, chs: "持续治疗量" },
+        ])
+    };
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: DionaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -178,8 +206,8 @@ impl CharacterTrait for Diona {
         }
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

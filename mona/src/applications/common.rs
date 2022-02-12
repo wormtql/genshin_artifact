@@ -1,5 +1,7 @@
 use serde::{Serialize, Deserialize};
 use crate::attribute::{Attribute, SimpleAttributeGraph2};
+use crate::buffs::buff_name::BuffName;
+use crate::buffs::{Buff, BuffConfig};
 use crate::character::{Character, CharacterConfig, CharacterName};
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName, TargetFunctionUtils};
@@ -74,5 +76,17 @@ impl TargetFunctionInterface {
             weapon,
             &self.params
         )
+    }
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct BuffInterface {
+    pub name: BuffName,
+    pub config: BuffConfig,
+}
+
+impl BuffInterface {
+    pub fn to_buff<A: Attribute>(&self) -> Box<dyn Buff<A>> {
+        self.name.create(&self.config)
     }
 }

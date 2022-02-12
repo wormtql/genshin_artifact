@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::ItemConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::LisaDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct LisaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -39,11 +51,137 @@ pub const LISA_SKILL: LisaSkillType = LisaSkillType {
 };
 
 pub const LISA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Lisa,
+    chs: "丽莎",
     element: Element::Electro,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],
     atk: [19, 50, 64, 96, 107, 123, 136, 153, 163, 179, 189, 205, 215, 232],
     def: [48, 123, 159, 239, 264, 304, 338, 378, 403, 443, 468, 508, 534, 573],
     sub_stat: CharacterSubStatFamily::ElementalMastery96,
     weapon_type: WeaponType::Catalyst,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·指尖雷暴",
+    skill_name2: "苍雷",
+    skill_name3: "蔷薇的雷光"
 };
+
+pub struct Lisa;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum LisaDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Charged,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    E3,
+    E4,
+    E5,
+    Q1
+}
+
+impl LisaDamageEnum {
+    pub fn get_skill_type(&self) -> SkillType {
+        use LisaDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
+            Charged => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E2 | E3 | E4 | E5 => SkillType::ElementalSkill,
+            Q1 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for LisaDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum LisaRoleEnum {
+    Default
+}
+
+impl CharacterTrait for Lisa {
+    const STATIC_DATA: CharacterStaticData = LISA_STATIC_DATA;
+    type SkillType = LisaSkillType;
+    const SKILL: Self::SkillType = LISA_SKILL;
+    type DamageEnumType = LisaDamageEnum;
+    type RoleEnum = LisaRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: LisaDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: LisaDamageEnum::E1 as usize, chs: "点按伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::E2 as usize, chs: "无引雷长按伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::E3 as usize, chs: "一层引雷长按伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::E4 as usize, chs: "二层引雷长按伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::E5 as usize, chs: "三层引雷长按伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: LisaDamageEnum::Q1 as usize, chs: "雷光放电伤害" }
+        ])
+    };
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: LisaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use LisaDamageEnum::*;
+        let ratio = match s {
+            Normal1 => LISA_SKILL.normal_dmg1[s1],
+            Normal2 => LISA_SKILL.normal_dmg2[s1],
+            Normal3 => LISA_SKILL.normal_dmg3[s1],
+            Normal4 => LISA_SKILL.normal_dmg4[s1],
+            Charged => LISA_SKILL.charged_dmg1[s1],
+            Plunging1 => LISA_SKILL.plunging_dmg1[s1],
+            Plunging2 => LISA_SKILL.plunging_dmg2[s1],
+            Plunging3 => LISA_SKILL.plunging_dmg3[s1],
+            E1 => LISA_SKILL.elemental_skill_dmg1[s2],
+            E2 => LISA_SKILL.elemental_skill_dmg2[s2],
+            E3 => LISA_SKILL.elemental_skill_dmg3[s2],
+            E4 => LISA_SKILL.elemental_skill_dmg4[s2],
+            E5 => LISA_SKILL.elemental_skill_dmg5[s2],
+            Q1 => LISA_SKILL.elemental_burst_dmg1[s3]
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            Element::Electro,
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: LisaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            LisaRoleEnum::Default => Box::new(LisaDefaultTargetFunction {
+                recharge_demand: 1.0
+            })
+        }
+    }
+}

@@ -20,6 +20,6 @@ impl<T: Attribute> ArtifactEffect<T> for BlizzardStrayerEffect {
     }
 
     fn effect4(&self, attribute: &mut T) {
-        attribute.set_value_by(AttributeName::CriticalBase, "冰风迷途的勇士4", self.crit_bonus);
+        attribute.set_value_by(AttributeName::CriticalAttacking, "冰风迷途的勇士4", self.crit_bonus);
     }
 }

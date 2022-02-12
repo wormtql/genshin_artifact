@@ -127,14 +127,14 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         let bonus = bonus_comp.sum();
 
         let critical_comp = self.get_critical_composition(attribute, element, skill);
-        let critical = critical_comp.sum();
+        let critical = critical_comp.sum().clamp(0.0, 1.0);
 
         let critical_damage_comp = self.get_critical_damage_composition(attribute, element, skill);
         let critical_damage = critical_damage_comp.sum();
 
         let def_minus_comp = self.get_def_minus_composition(attribute);
         let def_minus = def_minus_comp.sum();
-        let res_minus_comp = self.get_res_minus_composition(attribute);
+        let res_minus_comp = self.get_res_minus_composition(attribute, element);
         let res_minus = res_minus_comp.sum();
         let defensive_ratio = enemy.get_defensive_ratio(character_level, def_minus);
         let resistance_ratio = enemy.get_resistance_ratio(element, res_minus);
@@ -239,7 +239,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             def_minus: HashMap::new(),
             res_minus: HashMap::new(),
 
-            element: Element::NoElement,
+            element: Element::Pyro,
             is_heal: true,
             is_shield: false,
 
@@ -310,8 +310,11 @@ impl ComplicatedDamageBuilder {
         comp
     }
 
-    fn get_res_minus_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
-        let mut comp = attribute.get_attribute_composition(AttributeName::ResMinus);
+    fn get_res_minus_composition(&self, attribute: &ComplicatedAttributeGraph, element: Element) -> EntryType {
+        let mut comp = attribute.get_composition_merge(&vec![
+            AttributeName::ResMinusBase,
+            AttributeName::res_minus_name_by_element(element)
+        ]);
         comp.merge(&self.extra_res_minus);
         comp
     }
@@ -369,11 +372,7 @@ impl ComplicatedDamageBuilder {
     }
 
     fn get_critical_composition(&self, attribute: &ComplicatedAttributeGraph, element: Element, skill: SkillType) -> EntryType {
-        let mut comp = attribute.get_composition_merge(&vec![
-            AttributeName::CriticalBase,
-            AttributeName::critical_rate_name_by_element(element),
-            AttributeName::critical_rate_name_by_skill_type(skill)
-        ]);
+        let mut comp = attribute.get_critical_composition(element, skill);
         comp.merge(&self.extra_critical_rate);
         comp
     }

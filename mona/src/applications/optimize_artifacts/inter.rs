@@ -1,8 +1,8 @@
 use serde::{Serialize, Deserialize};
-use crate::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
+use crate::applications::common::{BuffInterface, CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::buffs::BuffType;
+use crate::buffs::BuffConfig;
 
 #[derive(Serialize, Deserialize)]
 pub enum ConstraintSetMode {
@@ -48,7 +48,7 @@ pub struct OptimizeArtifactInterface {
     pub weapon: WeaponInterface,
     pub target_function: TargetFunctionInterface,
     pub constraint: Option<ConstraintConfig>,
-    pub buffs: Vec<BuffType>,
+    pub buffs: Vec<BuffInterface>,
 }
 
 #[derive(Serialize, Deserialize, Default, Debug)]

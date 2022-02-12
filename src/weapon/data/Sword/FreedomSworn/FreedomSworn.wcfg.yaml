@@ -1,9 +1,0 @@
-type: weapon
-weaponName: FreedomSworn
-configs:
-  - type: float
-    min: 0
-    max: 1
-    name: rate
-    title: 「千年的大乐章·抗争之歌」比例
-    default: 0

@@ -1,14 +1,14 @@
 use num_derive::FromPrimitive;
-use crate::attribute::{Attribute, AttributeName, ComplicatedAttributeGraph};
+use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
-use crate::damage::{ComplicatedDamageBuilder, DamageAnalysis, DamageContext};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::damage::{DamageContext};
 use crate::damage::damage_builder::DamageBuilder;
-use crate::enemies::Enemy;
 use crate::target_functions::target_functions::HuTaoDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
@@ -59,13 +59,18 @@ pub const HU_TAO_SKILL: HuTaoSkillType = HuTaoSkillType {
 };
 
 pub const HU_TAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::HuTao,
+    chs: "胡桃",
     element: Element::Pyro,
     hp: [1211, 3141, 4179, 6253, 6990, 8042, 9026, 10089, 10826, 11899, 12637, 13721, 14459, 15552],
     atk: [8, 21, 29, 43, 48, 55, 62, 69, 74, 81, 86, 94, 99, 106],
     def: [68, 177, 235, 352, 394, 453, 508, 568, 610, 670, 712, 773, 815, 876],
     sub_stat: CharacterSubStatFamily::CriticalDamage384,
     weapon_type: WeaponType::Polearm,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·往生秘传枪法",
+    skill_name2: "蝶引来生",
+    skill_name3: "安神秘法"
 };
 
 pub struct HuTaoEffect {
@@ -159,6 +164,48 @@ impl CharacterTrait for HuTao {
     type DamageEnumType = HuTaoDamageEnum;
     type RoleEnum = HuTaoRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal51 as usize, chs: "五段伤害-1" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal52 as usize, chs: "五段伤害-2" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal6 as usize, chs: "六段伤害" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: HuTaoDamageEnum::ElementalSkillBloodBlossom as usize, chs: "血梅香伤害" }
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: HuTaoDamageEnum::ElementalBurst1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::ElementalBurstLow1 as usize, chs: "低血量时技能伤害" },
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "le_50",
+            title: "生命值低于50%",
+            config: ItemConfigType::Bool { default: true }
+        }
+    ]);
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "after_e",
+            title: "彼岸蝶舞",
+            config: ItemConfigType::Bool { default: true }
+        }
+    ]);
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
         let s: HuTaoDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -204,15 +251,16 @@ impl CharacterTrait for HuTao {
         )
     }
 
-    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(HuTaoEffect::new(common_data, config))
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(HuTaoEffect::new(common_data, config)))
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
         let role: HuTaoRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
         match role {
             HuTaoRoleEnum::Main => Box::new(HuTaoDefaultTargetFunction {
-                vaporize_rate: 0.5
+                vaporize_rate: 0.5,
+                melt_rate: 0.0
             })
         }
     }

@@ -1,0 +1,6 @@
+characterName: Yoimiya
+configs:
+  - name: after_e
+    title: 庭火焰硝
+    type: bool
+    default: true

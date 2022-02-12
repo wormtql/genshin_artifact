@@ -8,7 +8,15 @@ pub enum AttributeName {
     ShieldStrength,
 
     DefMinus,
-    ResMinus,
+    ResMinusBase,
+    ResMinusElectro,
+    ResMinusPyro,
+    ResMinusHydro,
+    ResMinusCryo,
+    ResMinusGeo,
+    ResMinusAnemo,
+    ResMinusDendro,
+    ResMinusPhysical,
 
     SpeedNormalAttack,
     SpeedChargedAttack,
@@ -33,6 +41,7 @@ pub enum AttributeName {
     HealBonusForOther,
 
     CriticalBase,
+    CriticalAttacking,          // critical when attack enemy, but not counted in real panel
     CriticalNormalAttack,
     CriticalChargedAttack,
     CriticalPlungingAttack,
@@ -79,6 +88,7 @@ pub enum AttributeName {
 
     EnhanceOverload,
     EnhanceBurning,
+    EnhanceShatter,
     EnhanceElectroCharged,
     EnhanceSuperconduct,
     EnhanceSwirlElectro,
@@ -161,7 +171,6 @@ impl AttributeName {
             Element::Dendro => AttributeName::BonusDendro,
             Element::Geo => AttributeName::BonusGeo,
             Element::Physical => AttributeName::BonusPhysical,
-            _ => unreachable!(),
         }
     }
 
@@ -185,7 +194,6 @@ impl AttributeName {
             Element::Dendro => AttributeName::CriticalDendro,
             Element::Geo => AttributeName::CriticalGeo,
             Element::Physical => AttributeName::CriticalPhysical,
-            _ => unreachable!(),
         }
     }
 
@@ -209,7 +217,6 @@ impl AttributeName {
             Element::Dendro => AttributeName::CriticalDamageDendro,
             Element::Geo => AttributeName::CriticalDamageGeo,
             Element::Physical => AttributeName::CriticalDamagePhysical,
-            _ => unreachable!(),
         }
     }
 
@@ -233,7 +240,6 @@ impl AttributeName {
             Element::Dendro => AttributeName::HPRatioDendro,
             Element::Geo => AttributeName::HPRatioGeo,
             Element::Physical => AttributeName::HPRatioPhysical,
-            _ => unreachable!(),
         }
     }
 
@@ -257,7 +263,6 @@ impl AttributeName {
             Element::Dendro => AttributeName::DEFRatioDendro,
             Element::Geo => AttributeName::DEFRatioGeo,
             Element::Physical => AttributeName::DEFRatioPhysical,
-            _ => unreachable!(),
         }
     }
 
@@ -281,7 +286,6 @@ impl AttributeName {
             Element::Dendro => AttributeName::ATKRatioDendro,
             Element::Geo => AttributeName::ATKRatioGeo,
             Element::Physical => AttributeName::ATKRatioPhysical,
-            _ => unreachable!(),
         }
     }
 
@@ -305,7 +309,6 @@ impl AttributeName {
             Element::Dendro => AttributeName::ExtraDmgDendro,
             Element::Geo => AttributeName::ExtraDmgGeo,
             Element::Physical => AttributeName::ExtraDmgPhysical,
-            _ => unreachable!(),
         }
     }
 
@@ -316,6 +319,19 @@ impl AttributeName {
             SkillType::PlungingAttack => AttributeName::ExtraDmgPlungingAttack,
             SkillType::ElementalSkill => AttributeName::ExtraDmgElementalSkill,
             SkillType::ElementalBurst => AttributeName::ExtraDmgElementalBurst,
+        }
+    }
+
+    pub fn res_minus_name_by_element(element: Element) -> AttributeName {
+        match element {
+            Element::Cryo => AttributeName::ResMinusCryo,
+            Element::Pyro => AttributeName::ResMinusPyro,
+            Element::Geo => AttributeName::ResMinusGeo,
+            Element::Electro => AttributeName::ResMinusElectro,
+            Element::Hydro => AttributeName::ResMinusHydro,
+            Element::Anemo => AttributeName::ResMinusAnemo,
+            Element::Dendro => AttributeName::ResMinusDendro,
+            Element::Physical => AttributeName::ResMinusPhysical,
         }
     }
 }

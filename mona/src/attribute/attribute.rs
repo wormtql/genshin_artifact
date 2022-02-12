@@ -49,6 +49,8 @@ pub trait AttributeCommon<T> {
 
     fn get_critical_damage(&self, element: Element, skill: SkillType) -> f64;
 
+    fn get_enemy_res_minus(&self, element: Element, skill: SkillType) -> f64;
+
     fn new_with_base_edge() -> T;
 
     fn add_edge1(
@@ -142,7 +144,7 @@ impl<T: Attribute> AttributeCommon<T> for T {
         let key1 = AttributeName::critical_rate_name_by_element(element);
         let key2 = AttributeName::critical_rate_name_by_skill_type(skill);
 
-        self.get_value(AttributeName::CriticalBase)
+        self.get_value(AttributeName::CriticalBase) + self.get_value(AttributeName::CriticalAttacking)
             + self.get_value(key1) + self.get_value(key2)
     }
 
@@ -152,6 +154,11 @@ impl<T: Attribute> AttributeCommon<T> for T {
 
         self.get_value(AttributeName::CriticalDamageBase)
             + self.get_value(key1) + self.get_value(key2)
+    }
+
+    fn get_enemy_res_minus(&self, element: Element, _skill: SkillType) -> f64 {
+        self.get_value(AttributeName::ResMinusBase)
+            + self.get_value(AttributeName::res_minus_name_by_element(element))
     }
 
     fn new_with_base_edge() -> T {

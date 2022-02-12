@@ -1,6 +1,5 @@
 import card from "./card.jpg"
 import avatar from "@asset/badges/diaona.png"
-// import skill from "./diaona.skill.js";
 import splash from "./splash.png"
 
 const g1 = "普通攻击·猎人射术"
@@ -32,5 +31,4 @@ export default {
         { index: 12, chs: "领域持续伤害", group: g3 },
         { index: 13, chs: "持续治疗量", group: g3 }
     ]
-    // skill,
 }

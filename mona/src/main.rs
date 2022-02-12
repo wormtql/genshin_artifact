@@ -17,10 +17,10 @@ use mona::enemies::Enemy;
 
 fn perf() {
     let character = CharacterInterface {
-        name: CharacterName::Diluc,
+        name: CharacterName::Yunjin,
         level: 90,
         ascend: false,
-        constellation: 0,
+        constellation: 6,
         params: CharacterConfig::Ganyu { talent2_rate: 0.5, talent1_rate: 0.5 },
         skill1: 6,
         skill2: 6,
@@ -34,8 +34,8 @@ fn perf() {
         params: WeaponConfig::AmosBow { stack: 1.0 }
     };
     let target_function = TargetFunctionInterface {
-        name: TargetFunctionName::KamisatoAyakaDefault,
-        params: TargetFunctionConfig::GanyuDefault { melt_rate: 0.5 }
+        name: TargetFunctionName::YunjinDefault,
+        params: TargetFunctionConfig::VentiDefault { swirl_rate: 0.5 }
         // name: TargetFunctionName::Max,
         // params: TargetFunctionConfig::MaxConfig { element: Element::Cryo, skill_type: SkillType::NormalAttack },
     };
@@ -59,7 +59,7 @@ fn perf() {
         &target_function,
         None,
         &Vec::new(),
-        5
+        10
     );
     println!("{:?}", results);
 

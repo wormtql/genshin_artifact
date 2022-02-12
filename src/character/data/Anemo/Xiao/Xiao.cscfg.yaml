@@ -1,0 +1,18 @@
+characterName: Xiao
+configs:
+  - name: after_q
+    type: bool
+    title: 靖妖傩舞
+    default: true
+  - name: talent1_stack
+    type: int
+    title: 天赋1「降魔·平妖大圣」层数
+    min: 0
+    max: 4
+    default: 4
+  - name: talent2_stack
+    type: int
+    title: 天赋2「坏劫·国土碾尘」层数
+    min: 0
+    max: 3
+    default: 0

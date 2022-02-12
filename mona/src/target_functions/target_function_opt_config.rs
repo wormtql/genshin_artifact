@@ -2,7 +2,6 @@ use std::collections::HashMap;
 
 use crate::common::{StatName, SUB_STAT_VALUE_5};
 use crate::artifacts::{Artifact, ArtifactSetName, ArtifactSlotName};
-use crate::utils::log;
 
 pub struct TargetFunctionOptConfig {
     pub atk_fixed: f64,
@@ -15,6 +14,7 @@ pub struct TargetFunctionOptConfig {
     pub elemental_mastery: f64,
     pub critical: f64,
     pub critical_damage: f64,
+    pub healing_bonus: f64,
     pub bonus_electro: f64,
     pub bonus_pyro: f64,
     pub bonus_hydro: f64,
@@ -28,10 +28,21 @@ pub struct TargetFunctionOptConfig {
     pub goblet_main_stats: Vec<StatName>,
     pub head_main_stats: Vec<StatName>,
 
+    // if none, every set is critical
     pub set_names: Option<Vec<ArtifactSetName>>,
+    // if none, no set is very critical
+    pub very_critical_set_names: Option<Vec<ArtifactSetName>>,
+
+    pub normal_threshold: f64,      // defaults to 0.7
+    pub critical_threshold: f64,    // defaults to 0.5
+    pub very_critical_threshold: f64,   // defaults to 0.0
 }
 
 impl TargetFunctionOptConfig {
+    pub const DEFAULT_NORMAL_THRESHOLD: f64 = 0.7;
+    pub const DEFAULT_CRITICAL_THRESHOLD: f64 = 0.5;
+    pub const DEFAULT_VERY_CRITICAL_THRESHOLD: f64 = 0.1;
+
     pub fn score(&self, artifact: &Artifact) -> f64 {
         let mut map: HashMap<StatName, i32> = HashMap::new();
 
@@ -52,6 +63,7 @@ impl TargetFunctionOptConfig {
         s += self.elemental_mastery / SUB_STAT_VALUE_5.elemental_mastery[3] * map.get(&StatName::ElementalMastery).cloned().unwrap_or(0) as f64;
         s += self.critical / SUB_STAT_VALUE_5.critical_rate[3] * map.get(&StatName::CriticalRate).cloned().unwrap_or(0) as f64;
         s += self.critical_damage / SUB_STAT_VALUE_5.critical_damage[3] * map.get(&StatName::CriticalDamage).cloned().unwrap_or(0) as f64;
+        s += self.healing_bonus / SUB_STAT_VALUE_5.healing_bonus[3] * map.get(&StatName::HealingBonus).cloned().unwrap_or(0) as f64;
         s += self.bonus_hydro / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::HydroBonus).cloned().unwrap_or(0) as f64;
         s += self.bonus_anemo / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::AnemoBonus).cloned().unwrap_or(0) as f64;
         s += self.bonus_cryo / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::CryoBonus).cloned().unwrap_or(0) as f64;
@@ -69,6 +81,52 @@ impl TargetFunctionOptConfig {
             None => true,
             Some(ref x) => x.contains(&set_name),
         }
+    }
+
+    pub fn is_very_critical_set_name(&self, set_name: ArtifactSetName) -> bool {
+        match self.set_names {
+            None => false,
+            Some(ref x) => x.contains(&set_name)
+        }
+    }
+
+    pub fn filter_main_stats_aggressive<'a>(&self, artifacts: Vec<&'a Artifact>) -> Vec<&'a Artifact> {
+        let mut sands: Vec<&Artifact> = Vec::new();
+        let mut goblets: Vec<&Artifact> = Vec::new();
+        let mut heads: Vec<&Artifact> = Vec::new();
+        let mut results: Vec<&'a Artifact> = Vec::new();
+
+        for &art in artifacts.iter() {
+            match art.slot {
+                ArtifactSlotName::Sand => sands.push(art),
+                ArtifactSlotName::Goblet => goblets.push(art),
+                ArtifactSlotName::Head => heads.push(art),
+                _ => results.push(art)
+            }
+        }
+
+        let sands_filter: Vec<&Artifact> = sands.iter().cloned().filter(|x| self.sand_main_stats.contains(&x.main_stat.0)).collect();
+        if sands_filter.len() > 0 {
+            results.extend(sands_filter.iter());
+        } else {
+            results.extend(sands.iter());
+        }
+
+        let goblets_filter: Vec<&Artifact> = goblets.iter().cloned().filter(|x| self.goblet_main_stats.contains(&x.main_stat.0)).collect();
+        if goblets_filter.len() > 0 {
+            results.extend(goblets_filter.iter());
+        } else {
+            results.extend(goblets.iter());
+        }
+
+        let heads_filter: Vec<&Artifact> = heads.iter().cloned().filter(|x| self.head_main_stats.contains(&x.main_stat.0)).collect();
+        if heads_filter.len() > 0 {
+            results.extend(heads_filter.iter());
+        } else {
+            results.extend(heads.iter());
+        }
+
+        results
     }
 
     pub fn filter_main_stats<'a>(&self, artifacts: Vec<&'a Artifact>) -> Vec<&'a Artifact> {
@@ -90,7 +148,7 @@ impl TargetFunctionOptConfig {
         // let mut goblet_flag = false;
         // let mut head_flag = false;
 
-        for (&set_name, arts) in sands.iter() {
+        for (&_set_name, arts) in sands.iter() {
             let flag = arts.iter().any(|x| self.sand_main_stats.contains(&x.main_stat.0));
             if !flag {
                 results.extend(arts.iter());
@@ -100,7 +158,7 @@ impl TargetFunctionOptConfig {
         }
 
         // log!("{}", results.len());
-        for (set_name, arts) in goblets.iter() {
+        for (&_set_name, arts) in goblets.iter() {
             let flag = arts.iter().any(|x| self.goblet_main_stats.contains(&x.main_stat.0));
             // log!("{:?}", arts);
             if !flag {
@@ -111,7 +169,7 @@ impl TargetFunctionOptConfig {
         }
         // log!("{}", results.len());
 
-        for (&set_name, arts) in heads.iter() {
+        for (&_set_name, arts) in heads.iter() {
             let flag = arts.iter().any(|x| self.head_main_stats.contains(&x.main_stat.0));
             if !flag {
                 results.extend(arts.iter());
@@ -150,20 +208,22 @@ impl TargetFunctionOptConfig {
                 for (art, score) in arts.iter() {
                     let relative = score / max_score;
                     let is_critical_set_name = self.is_critical_set_name(art.set_name);
-                    if (!is_critical_set_name && relative >= 0.8) || (is_critical_set_name && relative >= 0.5) {
+                    let is_very_critical_set_name = self.is_very_critical_set_name(art.set_name);
+                    if (!is_critical_set_name && !is_very_critical_set_name && relative >= self.normal_threshold)
+                        || (is_critical_set_name && relative >= self.critical_threshold)
+                        || (is_very_critical_set_name && relative >= self.very_critical_threshold) {
                         results.push(art);
                     }
                 }
             }
         }
 
-        let flag = results.iter().any(|x| x.slot == ArtifactSlotName::Goblet);
-
         results
     }
 
     pub fn filter<'a>(&self, artifacts: Vec<&'a Artifact>) -> Vec<&'a Artifact> {
-        let mut temp = self.filter_main_stats(artifacts);
+        // let mut temp = self.filter_main_stats(artifacts);
+        let temp = self.filter_main_stats_aggressive(artifacts);
         self.filter_sub_stats(temp)
 
         // temp

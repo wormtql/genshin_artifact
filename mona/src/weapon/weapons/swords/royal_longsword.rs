@@ -1,188 +1,16 @@
-use crate::attribute::{Attribute, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::common::WeaponType;
+use crate::weapon::royal_series::royal_series_critical_bonus;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::weapon::weapon_effect::WeaponEffect;
 use crate::weapon::weapon_static_data::WeaponStaticData;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
+use crate::weapon::weapon_trait::WeaponTrait;
+use crate::weapon::{WeaponConfig, WeaponName};
 
-pub const ROYAL_LONGSWORD_STATIC_DATA: WeaponStaticData = WeaponStaticData {
-    weapon_type: WeaponType::Sword,
-    weapon_sub_stat: WeaponSubStatFamily::ATK90,
-    weapon_base: WeaponBaseATKFamily::ATK510,
-    star: 4
-};
-
-pub struct RoyalLongswordEffect {}
-
-fn f1(x: f64) -> f64 {
-    if x < 0.6 {
-        x + 2.0 * (1.0 - x) * (x + 0.08)
-            + 3.0 * (1.0 - x) * (0.92 - x) * (x + 0.16)
-            + 4.0 * (1.0 - x) * (0.92 - x) * (0.84 - x) * (x + 0.24)
-            + 5.0 * (1.0 - x) * (0.92 - x) * (0.84 - x) * (0.76 - x) * (x + 0.32)
-            + 6.0 * (1.0 - x) * (0.92 - x) * (0.84 - x) * (0.76 - x) * (0.68 - x) * (x + 0.4)
-            + (7.0 + (0.6 - x) / (0.4 + x)) * (1.0 - x) * (0.92 - x) * (0.84 - x) * (0.76 - x) * (0.68 - x) * (0.6 - x)
-    } else if x < 0.68 {
-        x + 2.0 * (1.0 - x) * (x + 0.08)
-            + 3.0 * (1.0 - x) * (0.92 - x) * (x + 0.16)
-            + 4.0 * (1.0 - x) * (0.92 - x) * (0.84 - x) * (x + 0.24)
-            + 5.0 * (1.0 - x) * (0.92 - x) * (0.84 - x) * (0.76 - x) * (x + 0.32)
-            + 6.0 * (1.0 - x) * (0.92 - x) * (0.84 - x) * (0.76 - x) * (0.68 - x)
-    } else if x < 0.76 {
-        x + 2.0 * (1.0 - x) * (x + 0.08)
-            + 3.0 * (1.0 - x) * (0.92 - x) * (x + 0.16)
-            + 4.0 * (1.0 - x) * (0.92 - x) * (0.84 - x) * (x + 0.24)
-            + 5.0 * (1.0 - x) * (0.92 - x) * (0.84 - x) * (0.76 - x)
-    } else if x < 0.84 {
-        x + 2.0 * (1.0 - x) * (x + 0.08)
-            + 3.0 * (1.0 - x) * (0.92 - x) * (x + 0.16)
-            + 4.0 * (1.0 - x) * (0.92 - x) * (0.84 - x)
-    } else if x < 0.92 {
-        x + 2.0 * (1.0 - x) * (x + 0.08)
-            + 3.0 * (1.0 - x) * (0.92 - x)
-    } else {
-        x + 2.0 * (1.0 - x)
-    }
-}
-
-fn f2(x: f64) -> f64 {
-    if x < 0.5 {
-        x + 2.0 * (1.0 - x) * (x + 0.1)
-            + 3.0 * (1.0 - x) * (0.9 - x) * (x + 0.2)
-            + 4.0 * (1.0 - x) * (0.9 - x) * (0.8 - x) * (x + 0.3)
-            + 5.0 * (1.0 - x) * (0.9 - x) * (0.8 - x) * (0.7 - x) * (x + 0.4)
-            + 6.0 * (1.0 - x) * (0.9 - x) * (0.8 - x) * (0.7 - x) * (0.6 - x) * (x + 0.5)
-            + (7.0 + (0.5 - x) / (0.5 + x)) * (1.0 - x) * (0.9 - x) * (0.8 - x) * (0.7 - x) * (0.6 - x) * (0.5 - x)
-    } else if x < 0.6 {
-        x + 2.0 * (1.0 - x) * (x + 0.1)
-            + 3.0 * (1.0 - x) * (0.9 - x) * (x + 0.2)
-            + 4.0 * (1.0 - x) * (0.9 - x) * (0.8 - x) * (x + 0.3)
-            + 5.0 * (1.0 - x) * (0.9 - x) * (0.8 - x) * (0.7 - x) * (x + 0.4)
-            + 6.0 * (1.0 - x) * (0.9 - x) * (0.8 - x) * (0.7 - x) * (0.6 - x)
-    } else if x < 0.7 {
-        x + 2.0 * (1.0 - x) * (x + 0.1)
-            + 3.0 * (1.0 - x) * (0.9 - x) * (x + 0.2)
-            + 4.0 * (1.0 - x) * (0.9 - x) * (0.8 - x) * (x + 0.3)
-            + 5.0 * (1.0 - x) * (0.9 - x) * (0.8 - x) * (0.7 - x)
-    } else if x < 0.8 {
-        x + 2.0 * (1.0 - x) * (x + 0.1)
-            + 3.0 * (1.0 - x) * (0.9 - x) * (x + 0.2)
-            + 4.0 * (1.0 - x) * (0.9 - x) * (0.8 - x)
-    } else if x < 0.9 {
-        x + 2.0 * (1.0 - x) * (x + 0.1)
-            + 3.0 * (1.0 - x) * (0.9 - x)
-    } else {
-        x + 2.0 * (1.0 - x)
-    }
-}
-
-fn f3(x: f64) -> f64 {
-    if x < 0.4 {
-        x + 2.0 * (1.0 - x) * (x + 0.12)
-            + 3.0 * (1.0 - x) * (0.88 - x) * (x + 0.24)
-            + 4.0 * (1.0 - x) * (0.88 - x) * (0.76 - x) * (x + 0.36)
-            + 5.0 * (1.0 - x) * (0.88 - x) * (0.76 - x) * (0.64 - x) * (x + 0.48)
-            + 6.0 * (1.0 - x) * (0.88 - x) * (0.76 - x) * (0.64 - x) * (0.52 - x) * (x + 0.6)
-            + (7.0 + (0.4 - x) / (0.6 + x)) * (1.0 - x) * (0.88 - x) * (0.76 - x) * (0.64 - x) * (0.52 - x) * (0.4 - x)
-    } else if x < 0.52 {
-        x + 2.0 * (1.0 - x) * (x + 0.12)
-            + 3.0 * (1.0 - x) * (0.88 - x) * (x + 0.24)
-            + 4.0 * (1.0 - x) * (0.88 - x) * (0.76 - x) * (x + 0.36)
-            + 5.0 * (1.0 - x) * (0.88 - x) * (0.76 - x) * (0.64 - x) * (x + 0.48)
-            + 6.0 * (1.0 - x) * (0.88 - x) * (0.76 - x) * (0.64 - x) * (0.52 - x)
-    } else if x < 0.64 {
-        x + 2.0 * (1.0 - x) * (x + 0.12)
-            + 3.0 * (1.0 - x) * (0.88 - x) * (x + 0.24)
-            + 4.0 * (1.0 - x) * (0.88 - x) * (0.76 - x) * (x + 0.36)
-            + 5.0 * (1.0 - x) * (0.88 - x) * (0.76 - x) * (0.64 - x)
-    } else if x < 0.76 {
-        x + 2.0 * (1.0 - x) * (x + 0.12)
-            + 3.0 * (1.0 - x) * (0.88 - x) * (x + 0.24)
-            + 4.0 * (1.0 - x) * (0.88 - x) * (0.76 - x)
-    } else if x < 0.88 {
-        x + 2.0 * (1.0 - x) * (x + 0.12)
-            + 3.0 * (1.0 - x) * (0.88 - x)
-    } else {
-        x + 2.0 * (1.0 - x)
-    }
-}
-
-fn f4(x: f64) -> f64 {
-    if x < 0.3 {
-        x + 2.0 * (1.0 - x) * (x + 0.14)
-            + 3.0 * (1.0 - x) * (0.86 - x) * (x + 0.28)
-            + 4.0 * (1.0 - x) * (0.86 - x) * (0.72 - x) * (x + 0.42)
-            + 5.0 * (1.0 - x) * (0.86 - x) * (0.72 - x) * (0.58 - x) * (x + 0.56)
-            + 6.0 * (1.0 - x) * (0.86 - x) * (0.72 - x) * (0.58 - x) * (0.44 - x) * (x + 0.7)
-            + (7.0 + (0.3 - x) / (0.7 + x)) * (1.0 - x) * (0.86 - x) * (0.72 - x) * (0.58 - x) * (0.44 - x) * (0.3 - x)
-    } else if x < 0.44 {
-        x + 2.0 * (1.0 - x) * (x + 0.14)
-            + 3.0 * (1.0 - x) * (0.86 - x) * (x + 0.28)
-            + 4.0 * (1.0 - x) * (0.86 - x) * (0.72 - x) * (x + 0.42)
-            + 5.0 * (1.0 - x) * (0.86 - x) * (0.72 - x) * (0.58 - x) * (x + 0.56)
-            + 6.0 * (1.0 - x) * (0.86 - x) * (0.72 - x) * (0.58 - x) * (0.44 - x)
-    } else if x < 0.58 {
-        x + 2.0 * (1.0 - x) * (x + 0.14)
-            + 3.0 * (1.0 - x) * (0.86 - x) * (x + 0.28)
-            + 4.0 * (1.0 - x) * (0.86 - x) * (0.72 - x) * (x + 0.42)
-            + 5.0 * (1.0 - x) * (0.86 - x) * (0.72 - x) * (0.58 - x)
-    } else if x < 0.72 {
-        x + 2.0 * (1.0 - x) * (x + 0.14)
-            + 3.0 * (1.0 - x) * (0.86 - x) * (x + 0.28)
-            + 4.0 * (1.0 - x) * (0.86 - x) * (0.72 - x)
-    } else if x < 0.86 {
-        x + 2.0 * (1.0 - x) * (x + 0.14)
-            + 3.0 * (1.0 - x) * (0.86 - x)
-    } else {
-        x + 2.0 * (1.0 - x)
-    }
-}
-
-fn f5(x: f64) -> f64 {
-    if x < 0.2 {
-        x + 2.0 * (1.0 - x) * (x + 0.16)
-            + 3.0 * (1.0 - x) * (0.84 - x) * (x + 0.32)
-            + 4.0 * (1.0 - x) * (0.84 - x) * (0.68 - x) * (x + 0.48)
-            + 5.0 * (1.0 - x) * (0.84 - x) * (0.68 - x) * (0.52 - x) * (x + 0.64)
-            + 6.0 * (1.0 - x) * (0.84 - x) * (0.68 - x) * (0.52 - x) * (0.36 - x) * (x + 0.8)
-            + (7.0 + (0.2 - x) / (0.8 + x)) * (1.0 - x) * (0.84 - x) * (0.68 - x) * (0.52 - x) * (0.36 - x) * (0.2 - x)
-    } else if x < 0.36 {
-        x + 2.0 * (1.0 - x) * (x + 0.16)
-            + 3.0 * (1.0 - x) * (0.84 - x) * (x + 0.32)
-            + 4.0 * (1.0 - x) * (0.84 - x) * (0.68 - x) * (x + 0.48)
-            + 5.0 * (1.0 - x) * (0.84 - x) * (0.68 - x) * (0.52 - x) * (x + 0.64)
-            + 6.0 * (1.0 - x) * (0.84 - x) * (0.68 - x) * (0.52 - x) * (0.36 - x)
-    } else if x < 0.52 {
-        x + 2.0 * (1.0 - x) * (x + 0.16)
-            + 3.0 * (1.0 - x) * (0.84 - x) * (x + 0.32)
-            + 4.0 * (1.0 - x) * (0.84 - x) * (0.68 - x) * (x + 0.48)
-            + 5.0 * (1.0 - x) * (0.84 - x) * (0.68 - x) * (0.52 - x)
-    } else if x < 0.68 {
-        x + 2.0 * (1.0 - x) * (x + 0.16)
-            + 3.0 * (1.0 - x) * (0.84 - x) * (x + 0.32)
-            + 4.0 * (1.0 - x) * (0.84 - x) * (0.68 - x)
-    } else if x < 0.84 {
-        x + 2.0 * (1.0 - x) * (x + 0.16)
-            + 3.0 * (1.0 - x) * (0.84 - x)
-    } else {
-        x + 2.0 * (1.0 - x)
-    }
-}
-
-fn critical_bonus(refine: usize, x: f64) -> f64 {
-    if refine == 1 {
-        1.0 / f1(x) - x
-    } else if refine == 2 {
-        1.0 / f2(x) - x
-    } else if refine == 3 {
-        1.0 / f3(x) - x
-    } else if refine == 4 {
-        1.0 / f4(x) - x
-    } else {
-        1.0 / f5(x) - x
-    }
-}
+pub struct RoyalLongswordEffect;
 
 impl RoyalLongswordEffect {
     pub fn new() -> RoyalLongswordEffect {
@@ -192,10 +20,31 @@ impl RoyalLongswordEffect {
 
 impl<T: Attribute> WeaponEffect<T> for RoyalLongswordEffect {
     fn apply(&self, data: &WeaponCommonData, attribute: &mut T) {
-        // todo intercept damage builder
-        // attribute.add_edge(
-        //     AttributeName::CriticalBase,
-        //     AttributeName::CriticalBase,
-        // )
+        let refine = data.refine as usize;
+        attribute.add_edge1(
+            AttributeName::CriticalBase,
+            AttributeName::CriticalAttacking,
+            Box::new(move |x, _| royal_series_critical_bonus(refine, x)),
+            Box::new(|grad, _x1, _x2| (grad, 0.0)), // todo
+            "宗室被动等效"
+        )
+    }
+}
+
+pub struct RoyalLongsword;
+
+impl WeaponTrait for RoyalLongsword {
+    const META_DATA: WeaponStaticData = WeaponStaticData {
+        name: WeaponName::RoyalLongsword,
+        weapon_type: WeaponType::Sword,
+        weapon_sub_stat: WeaponSubStatFamily::ATK90,
+        weapon_base: WeaponBaseATKFamily::ATK510,
+        star: 4,
+        effect: Some("专注：攻击造成伤害时，暴击率提升8%/10%/12%/14%/16%，最多堆叠5次。攻击造成暴击后，移除已有的专注效果。"),
+        chs: "宗室长剑"
+    };
+
+    fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
+        Some(Box::new(RoyalLongswordEffect::new()))
     }
 }

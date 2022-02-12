@@ -2,10 +2,9 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -49,13 +48,18 @@ pub const FISCHL_SKILL: FischlSkillType = FischlSkillType {
 };
 
 pub const FISCHL_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Fischl,
+    chs: "菲谢尔",
     element: Element::Electro,
     hp: [770, 1979, 2555, 3827, 4236, 4872, 5418, 6054, 6463, 7099, 7508, 8144, 8553, 9189],
     atk: [20, 53, 68, 102, 113, 130, 144, 161, 172, 189, 200, 216, 227, 244],
     def: [50, 128, 165, 247, 274, 315, 350, 391, 418, 459, 485, 526, 553, 594],
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Bow,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·罪灭之矢",
+    skill_name2: "夜巡影翼",
+    skill_name3: "至夜幻现"
 };
 
 pub struct Fischl;
@@ -116,6 +120,29 @@ impl CharacterTrait for Fischl {
     type DamageEnumType = FischlDamageEnum;
     type RoleEnum = FischlRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: FischlDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: FischlDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: FischlDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: FischlDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: FischlDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: FischlDamageEnum::Charged1 as usize, chs: "瞄准射击" },
+            CharacterSkillMapItem { index: FischlDamageEnum::Charged2 as usize, chs: "满蓄力瞄准射击" },
+            CharacterSkillMapItem { index: FischlDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: FischlDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: FischlDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: FischlDamageEnum::E1 as usize, chs: "奥兹攻击伤害" },
+            CharacterSkillMapItem { index: FischlDamageEnum::E2 as usize, chs: "召唤伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: FischlDamageEnum::Q1 as usize, chs: "落雷伤害" }
+        ])
+    };
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: FischlDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -148,8 +175,8 @@ impl CharacterTrait for Fischl {
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

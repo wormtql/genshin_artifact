@@ -1,13 +1,8 @@
-function importAll(r) {
-    let temp = {}
-    for (let path of r.keys()) {
-        let im = r(path).default
-        temp[im.name] = im
-    }
-    return temp
-}
+import _tfData from "!../../loaders/tf_meta_loader.js!./meta"
+Object.freeze(_tfData)
 
-export const targetFunctionData = importAll(require.context("./data", true, /\.tf\.js$/))
+// export const targetFunctionData = importAll(require.context("./data", true, /\.tf\.js$/))
+export const targetFunctionData = _tfData
 
 let _tfByCharacterName = {}
 
@@ -17,5 +12,7 @@ for (let targetFunction of Object.values(targetFunctionData)) {
     }
     _tfByCharacterName[targetFunction["for"]].push(targetFunction)
 }
+
+Object.freeze(_tfByCharacterName)
 
 export const targetFunctionByCharacterName = _tfByCharacterName

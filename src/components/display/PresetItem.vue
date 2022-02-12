@@ -41,9 +41,9 @@
 </template>
 
 <script>
-import { characterData } from "@character";
-import { weaponsData } from "@asset/weapons";
-import targetFuncsData from "@asset/target_functions/data";
+import { characterData } from "@character"
+import { weaponData } from "@weapon"
+import { targetFunctionData } from "@targetFunction"
 
 export default {
     name: "PresetItem",
@@ -63,7 +63,7 @@ export default {
         },
 
         weaponData() {
-            return weaponsData[this.item.weapon.name];
+            return weaponData[this.item.weapon.name];
         },
 
         tfData() {

@@ -1,6 +1,5 @@
 import card from "./card.jpg"
 import avatar from "@asset/badges/beidou.png"
-// import skill from "./beidou.skill";
 import splash from "./splash.png"
 
 const g1 = "普通攻击·征涛"
@@ -33,5 +32,4 @@ export default {
         { index: 13, chs: "技能伤害", group: g3 },
         { index: 14, chs: "闪电伤害", group: g3 }
     ]
-    // skill,
 }

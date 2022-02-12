@@ -33,11 +33,11 @@ pub struct AttributeNoReactive {
     pub bonus_physical: AttributeEntryType,
 }
 
-fn merge(x: &mut AttributeEntryType, y: &AttributeEntryType) {
-    for (key, value) in y.iter() {
-        *x.entry(key.clone()).or_insert(0.0) += value;
-    }
-}
+// fn merge(x: &mut AttributeEntryType, y: &AttributeEntryType) {
+//     for (key, value) in y.iter() {
+//         *x.entry(key.clone()).or_insert(0.0) += value;
+//     }
+// }
 
 impl AttributeNoReactive {
     pub fn new() -> AttributeNoReactive {

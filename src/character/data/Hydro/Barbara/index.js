@@ -1,6 +1,5 @@
 import card from "./card.jpg"
 import avatar from "@asset/badges/babala.png"
-// import skill from "./babala.skill.js";
 import splash from "./splash.png"
 
 const g1 = "普通攻击·水之浅唱"
@@ -30,5 +29,4 @@ export default {
         { index: 10, chs: "持续治疗量", group: g2 },
         { index: 11, chs: "治疗量", group: g3 }
     ]
-    // skill,
 }

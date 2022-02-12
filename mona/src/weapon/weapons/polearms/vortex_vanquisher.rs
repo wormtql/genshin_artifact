@@ -1,18 +1,14 @@
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
+use crate::character::character_common_data::CharacterCommonData;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::weapon::weapon_effect::WeaponEffect;
 use crate::weapon::weapon_static_data::WeaponStaticData;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
-use crate::weapon::WeaponConfig;
-
-pub const VORTEX_VANQUISHER_STATIC_DATA: WeaponStaticData = WeaponStaticData {
-    weapon_type: WeaponType::Polearm,
-    weapon_sub_stat: WeaponSubStatFamily::ATK108,
-    weapon_base: WeaponBaseATKFamily::ATK608,
-    star: 5
-};
+use crate::weapon::{WeaponConfig, WeaponName};
+use crate::weapon::weapon_trait::WeaponTrait;
 
 pub struct VortexVanquisherEffect {
     stack: f64,
@@ -40,5 +36,40 @@ impl<T: Attribute> WeaponEffect<T> for VortexVanquisherEffect {
         attribute.set_value_by(AttributeName::ShieldStrength, "贯虹之槊被动", refine * 0.05 + 0.15);
         let atk_bonus = (refine * 0.01 + 0.03) * self.stack * (1.0 + self.shield_rate);
         attribute.add_atk_percentage("贯虹之槊被动等效", atk_bonus);
+    }
+}
+
+pub struct VortexVanquisher;
+
+impl WeaponTrait for VortexVanquisher {
+    const META_DATA: WeaponStaticData = WeaponStaticData {
+        name: WeaponName::VortexVanquisher,
+        weapon_type: WeaponType::Polearm,
+        weapon_sub_stat: WeaponSubStatFamily::ATK108,
+        weapon_base: WeaponBaseATKFamily::ATK608,
+        star: 5,
+        effect: Some("金璋皇极：护盾强效提升20%/25%/30%/35%/40%。攻击命中后的8秒内，攻击力提升4%/5%/6%/7%/8%。该效果至多可叠加5层，每0.3秒只能触发一次。此外，处于护盾庇护下时，该效果的攻击力提升效果提高100%。"),
+        chs: "贯虹之槊"
+    };
+
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "stack",
+            title: ItemConfig::DEFAULT_STACK_TITLE,
+            config: ItemConfigType::Float {
+                min: 0.0,
+                max: 5.0,
+                default: 0.0
+            }
+        },
+        ItemConfig {
+            name: "shield_rate",
+            title: "护盾覆盖率",
+            config: ItemConfig::RATE01_TYPE
+        }
+    ]);
+
+    fn get_effect<A: Attribute>(_character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
+        Some(Box::new(VortexVanquisherEffect::new(config)))
     }
 }

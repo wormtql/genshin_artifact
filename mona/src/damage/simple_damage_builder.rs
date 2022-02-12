@@ -111,15 +111,15 @@ impl DamageBuilder for SimpleDamageBuilder {
         let critical_rate
             = attribute.get_critical_rate(element, skill)
             + self.extra_critical_rate;
-        let critical_rate = critical_rate.min(1.0);
+        let critical_rate = critical_rate.clamp(0.0, 1.0);
 
         let critical_damage
             = attribute.get_critical_damage(element, skill)
             + self.extra_critical_damage;
 
-        let def_minus = self.extra_def_minus + attribute.get_value(AttributeName::DefMinus);
+        let def_minus = self.extra_def_minus + attribute.get_enemy_res_minus(element, skill);
         let defensive_ratio = enemy.get_defensive_ratio(character_level, def_minus);
-        let res_minus = self.extra_res_minus + attribute.get_value(AttributeName::ResMinus);
+        let res_minus = self.extra_res_minus + attribute.get_value(AttributeName::ResMinusBase);
         let resistance_ratio = enemy.get_resistance_ratio(element, res_minus);
 
         let normal_damage = DamageResult {
@@ -154,7 +154,7 @@ impl DamageBuilder for SimpleDamageBuilder {
             melt: melt_damage,
             vaporize: vaporize_damage,
             is_shield: false,
-            is_heal: false
+            is_heal: false,
         }
     }
 
@@ -181,7 +181,7 @@ impl DamageBuilder for SimpleDamageBuilder {
             melt: None,
             vaporize: None,
             is_heal: true,
-            is_shield: false
+            is_shield: false,
         };
     }
 
@@ -208,7 +208,7 @@ impl DamageBuilder for SimpleDamageBuilder {
             melt: None,
             vaporize: None,
             is_shield: true,
-            is_heal: false
+            is_heal: false,
         };
     }
 }

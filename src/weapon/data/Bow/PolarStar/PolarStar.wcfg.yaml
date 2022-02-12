@@ -1,9 +1,0 @@
-type: weapon
-weaponName: PolarStar
-configs:
-  - type: int
-    name: stack
-    min: 0
-    max: 4
-    title: 「白夜极星」层数
-    default: 4

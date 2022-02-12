@@ -2,17 +2,15 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{Character, CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::BarbaraDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
-use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct BarbaraSkillType {
@@ -54,13 +52,18 @@ pub const BARBARA_SKILL: BarbaraSkillType = BarbaraSkillType {
 };
 
 pub const BARBARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Barbara,
+    chs: "芭芭拉",
     element: Element::Hydro,
     hp: [821, 2108, 2721, 4076, 4512, 5189, 5770, 6448, 6884, 7561, 7996, 8674, 9110, 9787],
     atk: [13, 34, 44, 66, 73, 84, 94, 105, 112, 123, 130, 141, 148, 159],
     def: [56, 144, 186, 279, 308, 355, 394, 441, 470, 517, 546, 593, 623, 669],
     sub_stat: CharacterSubStatFamily::HP240,
     weapon_type: WeaponType::Catalyst,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·水之浅唱",
+    skill_name2: "演唱，开始♪",
+    skill_name3: "闪耀奇迹♪"
 };
 
 pub struct Barbara;
@@ -121,6 +124,28 @@ impl CharacterTrait for Barbara {
     type DamageEnumType = BarbaraDamageEnum;
     type RoleEnum = BarbaraRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: BarbaraDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: BarbaraDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: BarbaraDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: BarbaraDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: BarbaraDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: BarbaraDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: BarbaraDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: BarbaraDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: BarbaraDamageEnum::EHeal1 as usize, chs: "命中治疗量" },
+            CharacterSkillMapItem { index: BarbaraDamageEnum::EHeal2 as usize, chs: "持续治疗量" },
+            CharacterSkillMapItem { index: BarbaraDamageEnum::EDmg as usize, chs: "水珠伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: BarbaraDamageEnum::QHeal as usize, chs: "治疗量" },
+        ])
+    };
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: BarbaraDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
 
@@ -174,8 +199,8 @@ impl CharacterTrait for Barbara {
         }
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

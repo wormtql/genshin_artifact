@@ -1,6 +1,5 @@
 import card from "./card.jpg"
 import avatar from "@asset/badges/diluke.png"
-// import skill from "./diluke.skill.js";
 import splash from "./splash.png"
 
 const g1 = "普通攻击·淬炼之剑"
@@ -33,5 +32,4 @@ export default {
         { index: 13, chs: "持续伤害", group: g3 },
         { index: 14, chs: "爆裂伤害", group: g3 }
     ]
-    // skill,
 }

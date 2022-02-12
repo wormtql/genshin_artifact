@@ -1,9 +1,0 @@
-type: weapon
-weaponName: IronSting
-configs:
-  - type: float
-    name: stack
-    min: 0
-    max: 2
-    title: "平均效果层数"
-    default: 0

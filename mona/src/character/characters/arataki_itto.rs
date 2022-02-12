@@ -2,17 +2,16 @@ use num_derive::FromPrimitive;
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{Character, CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::AratakiIttoDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
-use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct AratakiIttoSkillType {
@@ -48,6 +47,8 @@ pub const ARATAKI_ITTO_SKILL: AratakiIttoSkillType = AratakiIttoSkillType {
 };
 
 const ARATAKI_ITTO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::AratakiItto,
+    chs: "荒泷一斗",
     element: Element::Geo,
     hp: [1001, 2579, 3455, 5170, 5779, 6649, 7462, 8341, 8951, 9838, 10448, 11345, 11954, 12858],
     atk: [18, 46, 61, 91, 102, 117, 132, 147, 158, 174, 185, 200, 211, 227],
@@ -55,7 +56,22 @@ const ARATAKI_ITTO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::CriticalRate192,
     weapon_type: WeaponType::Claymore,
     star: 5,
+    skill_name1: "普通攻击•喧哗屋传说",
+    skill_name2: "魔杀绝技•赤牛发破！",
+    skill_name3: "最恶鬼王•一斗轰临！！"
 };
+
+pub struct AratakiIttoEffect {
+    pub c6: bool
+}
+
+impl<A: Attribute> ChangeAttribute<A> for AratakiIttoEffect {
+    fn change_attribute(&self, attribute: &mut A) {
+        if self.c6 {
+            attribute.set_value_by(AttributeName::CriticalDamageChargedAttack, "6命：「在下荒泷一斗是也」", 0.7);
+        }
+    }
+}
 
 pub struct AratakiItto;
 
@@ -87,6 +103,14 @@ impl Into<usize> for AratakiIttoDamageEnum {
 }
 
 impl AratakiIttoDamageEnum {
+    pub fn is_kesagiri(&self) -> bool {
+        use AratakiIttoDamageEnum::*;
+        match *self {
+            KesagiriCombo | KesagiriFinal => true,
+            _ => false
+        }
+    }
+
     pub fn get_element(&self, after_q: bool) -> Element {
         use AratakiIttoDamageEnum::*;
         if after_q {
@@ -116,6 +140,35 @@ impl CharacterTrait for AratakiItto {
     const SKILL: Self::SkillType = ARATAKI_ITTO_SKILL;
     type DamageEnumType = AratakiIttoDamageEnum;
     type RoleEnum = AratakiIttoRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::KesagiriCombo as usize, chs: "荒泷逆袈裟连斩伤害" },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::KesagiriFinal as usize, chs: "荒泷逆袈裟终结伤害" },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Saichimonji as usize, chs: "左一文字斩伤害" },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::E1 as usize, chs: "技能伤害" }
+        ]),
+        skill3: None
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "after_q",
+            title: "处于「怒目鬼王」",
+            config: ItemConfigType::Bool { default: true }
+        }
+    ]);
 
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
         let after_q = match *config {
@@ -149,6 +202,10 @@ impl CharacterTrait for AratakiItto {
             builder.add_extra_atk("大招加成", atk_bonus);
         }
 
+        if s.is_kesagiri() && context.character_common_data.has_talent2 {
+            builder.add_def_ratio("天赋「赤鬼之血」加成", 0.35);
+        }
+
         builder.damage(
             &context.attribute,
             &context.enemy,
@@ -158,8 +215,10 @@ impl CharacterTrait for AratakiItto {
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(AratakiIttoEffect {
+            c6: common_data.constellation >= 6
+        }))
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

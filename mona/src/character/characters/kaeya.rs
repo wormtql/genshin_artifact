@@ -1,13 +1,12 @@
 use num_derive::FromPrimitive;
-use num_traits::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::CharacterTrait;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::ItemConfig;
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::KaeyaDefaultTargetFunction;
@@ -46,13 +45,18 @@ pub const KAEYA_SKILL: KaeyaSkillType = KaeyaSkillType {
 };
 
 pub const KAEYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Kaeya,
+    chs: "凯亚",
     element: Element::Cryo,
     hp: [976, 2506, 3235, 4846, 5364, 6170, 6860, 7666, 8184, 8989, 9507, 10312, 10830, 11636],
     atk: [19, 48, 62, 93, 103, 118, 131, 147, 157, 172, 182, 198, 208, 223],
     def: [66, 171, 220, 330, 365, 420, 467, 522, 557, 612, 647, 702, 737, 792],
     sub_stat: CharacterSubStatFamily::Recharge267,
     weapon_type: WeaponType::Sword,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·仪典剑术",
+    skill_name2: "霜袭",
+    skill_name3: "凛冽轮舞"
 };
 
 pub struct Kaeya;
@@ -112,6 +116,28 @@ impl CharacterTrait for Kaeya {
     type DamageEnumType = KaeyaDamageEnum;
     type RoleEnum = KaeyaRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: KaeyaDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: KaeyaDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: KaeyaDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: KaeyaDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: KaeyaDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: KaeyaDamageEnum::Charged11 as usize, chs: "重击伤害-1" },
+            CharacterSkillMapItem { index: KaeyaDamageEnum::Charged12 as usize, chs: "重击伤害-2" },
+            CharacterSkillMapItem { index: KaeyaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: KaeyaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: KaeyaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: KaeyaDamageEnum::E1 as usize, chs: "技能伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: KaeyaDamageEnum::Q1 as usize, chs: "技能伤害" }
+        ])
+    };
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: KaeyaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -142,11 +168,11 @@ impl CharacterTrait for Kaeya {
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
-    fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
         let role: KaeyaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
         match role {
             KaeyaRoleEnum::MainCryo => Box::new(KaeyaDefaultTargetFunction)

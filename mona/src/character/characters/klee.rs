@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, StatName, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
+use crate::common::item_config_type::ItemConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::KleeDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct KleeSkillType {
     pub normal_dmg1: [f64; 15],
@@ -31,11 +43,126 @@ pub const KLEE_SKILL: KleeSkillType = KleeSkillType {
 };
 
 pub const KLEE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Klee,
+    chs: "可莉",
     element: Element::Pyro,
     hp: [801, 2077, 2764, 4136, 4623, 5319, 5970, 6673, 7161, 7870, 8358, 9076, 9563, 10287],
     atk: [24, 63, 84, 125, 140, 161, 180, 202, 216, 238, 253, 274, 289, 311],
     def: [48, 124, 165, 247, 276, 318, 357, 399, 428, 470, 500, 542, 572, 615],
     sub_stat: CharacterSubStatFamily::Bonus288(StatName::PyroBonus),
     weapon_type: WeaponType::Catalyst,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·砰砰",
+    skill_name2: "蹦蹦炸弹",
+    skill_name3: "轰轰火花"
 };
+
+pub struct Klee;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum KleeDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Charged,
+    ChargedWithTalent,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    Q1
+}
+
+impl KleeDamageEnum {
+    pub fn get_skill_type(&self) -> SkillType {
+        use KleeDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 => SkillType::NormalAttack,
+            Charged | ChargedWithTalent => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E2 => SkillType::ElementalSkill,
+            Q1 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for KleeDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum KleeRoleEnum {
+    MainPyro
+}
+
+impl CharacterTrait for Klee {
+    const STATIC_DATA: CharacterStaticData = KLEE_STATIC_DATA;
+    type SkillType = KleeSkillType;
+    const SKILL: Self::SkillType = KLEE_SKILL;
+    type DamageEnumType = KleeDamageEnum;
+    type RoleEnum = KleeRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: KleeDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: KleeDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: KleeDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: KleeDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: KleeDamageEnum::ChargedWithTalent as usize, chs: "重击伤害（带天赋）" },
+            CharacterSkillMapItem { index: KleeDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: KleeDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: KleeDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: KleeDamageEnum::E1 as usize, chs: "蹦蹦炸弹伤害" },
+            CharacterSkillMapItem { index: KleeDamageEnum::E2 as usize, chs: "诡雷伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: KleeDamageEnum::Q1 as usize, chs: "轰轰火花伤害" }
+        ])
+    };
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: KleeDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use KleeDamageEnum::*;
+        let ratio = match s {
+            Normal1 => KLEE_SKILL.normal_dmg1[s1],
+            Normal2 => KLEE_SKILL.normal_dmg2[s1],
+            Normal3 => KLEE_SKILL.normal_dmg3[s1],
+            Charged => KLEE_SKILL.charged_dmg1[s1],
+            ChargedWithTalent => KLEE_SKILL.charged_dmg1[s1] * 1.5,
+            Plunging1 => KLEE_SKILL.plunging_dmg1[s1],
+            Plunging2 => KLEE_SKILL.plunging_dmg2[s1],
+            Plunging3 => KLEE_SKILL.plunging_dmg3[s1],
+            E1 => KLEE_SKILL.elemental_skill_dmg1[s2],
+            E2 => KLEE_SKILL.elemental_skill_dmg2[s2],
+            Q1 => KLEE_SKILL.elemental_burst_dmg1[s3]
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            Element::Pyro,
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: KleeRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            KleeRoleEnum::MainPyro => Box::new(KleeDefaultTargetFunction)
+        }
+    }
+}

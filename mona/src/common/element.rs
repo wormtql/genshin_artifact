@@ -1,6 +1,7 @@
 use serde::{Serialize, Deserialize};
+use strum_macros::Display;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Display)]
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
 pub enum Element {
     Electro,
@@ -11,5 +12,4 @@ pub enum Element {
     Anemo,
     Hydro,
     Physical,
-    NoElement,
 }

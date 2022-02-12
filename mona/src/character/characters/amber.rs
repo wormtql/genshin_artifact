@@ -1,17 +1,16 @@
 use num_derive::FromPrimitive;
-use crate::character::{Character, CharacterConfig, CharacterStaticData};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::common::{Element, WeaponType, ChangeAttribute, SkillType};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::CharacterTrait;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::AmberDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
-use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct AmberSkillType {
@@ -51,6 +50,8 @@ pub const AMBER_SKILL: AmberSkillType = AmberSkillType {
 };
 
 pub const AMBER_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Amber,
+    chs: "安柏",
     element: Element::Pyro,
     hp: [793, 2038, 2630, 3940, 4361, 5016, 5578, 6233, 6654, 7309, 7730, 8358, 8806, 9461],
     atk: [19, 48, 62, 93, 103, 118, 131, 147, 157, 172, 182, 198, 208, 223],
@@ -58,6 +59,9 @@ pub const AMBER_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Bow,
     star: 4,
+    skill_name1: "普通攻击·神射手",
+    skill_name2: "爆弹玩偶",
+    skill_name3: "箭雨"
 };
 
 pub struct AmberEffect {
@@ -74,7 +78,9 @@ impl AmberEffect {
 
 impl<T: Attribute> ChangeAttribute<T> for AmberEffect {
     fn change_attribute(&self, attribute: &mut T) {
-        attribute.set_value_by(AttributeName::CriticalElementalBurst, "安柏天赋1", 0.1);
+        if self.has_talent1 {
+            attribute.set_value_by(AttributeName::CriticalElementalBurst, "安柏天赋1", 0.1);
+        }
     }
 }
 
@@ -139,6 +145,29 @@ impl CharacterTrait for Amber {
     type DamageEnumType = AmberDamageEnum;
     type RoleEnum = AmberRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: AmberDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: AmberDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: AmberDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: AmberDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: AmberDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: AmberDamageEnum::Charged1 as usize, chs: "瞄准射击" },
+            CharacterSkillMapItem { index: AmberDamageEnum::Charged2 as usize, chs: "满蓄力瞄准射击" },
+            CharacterSkillMapItem { index: AmberDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: AmberDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: AmberDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: AmberDamageEnum::E1 as usize, chs: "爆炸伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: AmberDamageEnum::Q1 as usize, chs: "箭雨单次伤害" },
+            CharacterSkillMapItem { index: AmberDamageEnum::Q1 as usize, chs: "箭雨总伤害" },
+        ])
+    };
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         use AmberDamageEnum::*;
         let s: AmberDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
@@ -174,8 +203,8 @@ impl CharacterTrait for Amber {
         )
     }
 
-    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(AmberEffect::new(common_data))
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(AmberEffect::new(common_data)))
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

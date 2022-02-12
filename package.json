@@ -22,6 +22,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.20.3",
     "element-ui": "^2.15.6",
+    "fuse.js": "^6.5.3",
     "genshin_panel": "^2.21.0",
     "is-electron": "^2.2.0",
     "katex": "^0.13.0",

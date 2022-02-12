@@ -1,9 +1,0 @@
-type: weapon
-weaponName: BlackcliffLongsword
-configs:
-  - type: float
-    name: stack
-    min: 0
-    max: 3
-    title: 平均效果层数
-    default: 0

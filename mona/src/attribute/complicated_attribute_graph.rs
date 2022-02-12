@@ -1,10 +1,9 @@
-use std::rc::Rc;
 use std::cell::RefCell;
 use std::collections::HashMap;
 use crate::attribute::typing::EdgeFunctionBwd;
 
 use rand::Rng;
-use crate::common::EntryType;
+use crate::common::{Element, EntryType, SkillType};
 
 use super::attribute_name::AttributeName;
 use super::typing::EdgeFunctionFwd;
@@ -57,7 +56,7 @@ pub struct ComplicatedAttributeGraph {
 
 impl Default for ComplicatedAttributeGraph {
     fn default() -> Self {
-        let mut ret = ComplicatedAttributeGraph {
+        let ret = ComplicatedAttributeGraph {
             attributes: RefCell::new([(); 150].map(|_| MyNode {
                 value_self: HashMap::new(),
                 value_from_edge: HashMap::new(),
@@ -187,5 +186,14 @@ impl ComplicatedAttributeGraph {
         }
 
         temp
+    }
+
+    pub fn get_critical_composition(&self, element: Element, skill: SkillType) -> EntryType {
+        self.get_composition_merge(&vec![
+            AttributeName::CriticalBase,
+            AttributeName::CriticalAttacking,
+            AttributeName::critical_rate_name_by_element(element),
+            AttributeName::critical_rate_name_by_skill_type(skill)
+        ])
     }
 }

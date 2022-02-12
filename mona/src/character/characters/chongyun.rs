@@ -2,17 +2,15 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{Character, CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::ChongyunDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
-use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct ChongyunSkillType {
@@ -46,13 +44,18 @@ pub const CHONGYUN_SKILL: ChongyunSkillType = ChongyunSkillType {
 };
 
 pub const CHONGYUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Chongyun,
+    chs: "重云",
     element: Element::Cryo,
     hp: [921, 2366, 3054, 4574, 5063, 5824, 6475, 7236, 7725, 8485, 8974, 9734, 10223, 10984],
     atk: [19, 48, 62, 93, 103, 118, 131, 147, 157, 172, 182, 197, 208, 223],
     def: [54, 140, 180, 270, 299, 344, 382, 427, 456, 501, 530, 575, 603, 648],
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Claymore,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·灭邪四式",
+    skill_name2: "灵刃·重华叠霜",
+    skill_name3: "灵刃·云开星落"
 };
 
 pub struct Chongyun;
@@ -112,7 +115,28 @@ impl CharacterTrait for Chongyun {
     type DamageEnumType = ChongyunDamageEnum;
     type RoleEnum = ChongyunRoleEnum;
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: ChongyunDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: ChongyunDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: ChongyunDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: ChongyunDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: ChongyunDamageEnum::Charged1 as usize, chs: "重击循环伤害" },
+            CharacterSkillMapItem { index: ChongyunDamageEnum::Charged2 as usize, chs: "重击终结伤害" },
+            CharacterSkillMapItem { index: ChongyunDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: ChongyunDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: ChongyunDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: ChongyunDamageEnum::E1 as usize, chs: "技能伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: ChongyunDamageEnum::Q1 as usize, chs: "技能伤害" },
+        ])
+    };
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: ChongyunDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -142,8 +166,8 @@ impl CharacterTrait for Chongyun {
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

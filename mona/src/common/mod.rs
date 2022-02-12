@@ -13,4 +13,6 @@ pub mod change_attribute;
 pub mod skill_type;
 mod entry_type;
 pub mod max_trait;
-pub mod roles;
+pub mod reaction_type;
+pub mod item_config_type;
+pub mod code_escape;

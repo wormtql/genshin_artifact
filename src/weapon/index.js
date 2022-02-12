@@ -1,27 +1,6 @@
-function importWeapons(r) {
-    let temp = {}
-    for (let path of r.keys()) {
-        let data = r(path).default
-        temp[data.name] = data
-    }
-    return temp
-}
+import _weaponData from "!../../loaders/meta_loader.js?type=weapon!./weapon_meta_data_auto"
 
-export const weaponData = importWeapons(require.context("./data", true, /index\.js$/))
-
-function importConfigs(r) {
-    let temp = {}
-    for (const path of r.keys()) {
-        const importt = r(path)
-        const weaponName = importt.weaponName
-
-        temp[weaponName] = importt.default
-    }
-
-    return temp
-}
-
-export const weaponConfig = importConfigs(require.context("./data", true, /\.wcfg\.yaml$/))
+export const weaponData = _weaponData
 
 let _weaponsByType = {
     "Sword": [],

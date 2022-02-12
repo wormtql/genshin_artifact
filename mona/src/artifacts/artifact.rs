@@ -3,7 +3,6 @@ use std::collections::HashMap;
 use rand::{thread_rng, Rng};
 use num_derive::FromPrimitive;
 use serde::{Serialize, Deserialize};
-use smallvec::SmallVec;
 
 use crate::common::StatName;
 use crate::attribute::{Attribute};

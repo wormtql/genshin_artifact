@@ -1,5 +1,5 @@
 use super::super::effect::ArtifactEffect;
-use crate::attribute::{Attribute, AttributeName, AttributeCommon};
+use crate::attribute::{Attribute, AttributeCommon};
 
 pub struct DefendersWillEffect {}
 

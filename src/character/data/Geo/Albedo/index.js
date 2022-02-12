@@ -1,6 +1,5 @@
 import card from "./card.jpg"
 import avatar from "@asset/badges/abeiduo.png"
-// import skill from "./abeiduo.skill.js"
 import splash from "./splash.png"
 
 const g1 = "普通攻击·西风剑术·白"
@@ -16,7 +15,6 @@ export default {
     card,
     avatar,
     splash,
-    // skill,
     skillMap: [
         { index: 0, chs: "一段伤害", group: g1 },
         { index: 1, chs: "二段伤害", group: g1 },

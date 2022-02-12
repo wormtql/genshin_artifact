@@ -101,7 +101,6 @@ impl StatName {
             Element::Geo => StatName::GeoBonus,
             Element::Dendro => StatName::DendroBonus,
             Element::Physical => StatName::PhysicalBonus,
-            _ => unreachable!(),
         }
     }
 }

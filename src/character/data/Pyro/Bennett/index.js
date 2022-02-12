@@ -1,6 +1,5 @@
 import card from "./card.jpg"
 import avatar from "@asset/badges/bannite.png"
-// import skill from './bannite.skill.js';
 import splash from "./splash.png"
 
 const g1 = "普通攻击·好运剑"

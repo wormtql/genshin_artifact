@@ -2,18 +2,16 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::{Element, WeaponType, StatName, SkillType, ChangeAttribute};
-use crate::character::{Character, CharacterConfig, CharacterStaticData};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::characters::albedo::AlbedoDamageEnum::ETransientBlossom;
-use crate::character::no_effect::NoEffect;
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
-use crate::damage::{ComplicatedDamageBuilder, DamageAnalysis, DamageContext};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::damage::{DamageContext};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::target_functions::target_functions::AlbedoDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
-use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct AlbedoSkillType {
@@ -53,6 +51,8 @@ const ALBEDO_SKILL: AlbedoSkillType = AlbedoSkillType {
 };
 
 const ALBEDO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Albedo,
+    chs: "阿贝多",
     element: Element::Geo,
     hp: [1030, 2671, 3554, 5317, 5944, 6839, 7675, 8579, 9207, 10119, 10746, 11669, 12296, 13226],
     atk: [20, 51, 68, 101, 113, 130, 146, 163, 175, 192, 204, 222, 233, 251],
@@ -60,6 +60,9 @@ const ALBEDO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus288(StatName::GeoBonus),
     weapon_type: WeaponType::Sword,
     star: 5,
+    skill_name1: "普通攻击·西风剑术·白",
+    skill_name2: "创生法·拟造阳华",
+    skill_name3: "诞生式·大地之潮"
 };
 
 #[derive(Copy, Clone, Eq, PartialEq)]
@@ -126,6 +129,30 @@ impl CharacterTrait for Albedo {
     type DamageEnumType = AlbedoDamageEnum;
     type RoleEnum = AlbedoRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: AlbedoDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: AlbedoDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: AlbedoDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: AlbedoDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: AlbedoDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: AlbedoDamageEnum::Charged11 as usize, chs: "重击伤害-1" },
+            CharacterSkillMapItem { index: AlbedoDamageEnum::Charged12 as usize, chs: "重击伤害-2" },
+            CharacterSkillMapItem { index: AlbedoDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: AlbedoDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: AlbedoDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: AlbedoDamageEnum::E1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: AlbedoDamageEnum::ETransientBlossom as usize, chs: "刹那之花伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: AlbedoDamageEnum::Q1 as usize, chs: "爆发伤害" },
+            CharacterSkillMapItem { index: AlbedoDamageEnum::QFatalBlossom as usize, chs: "生灭之花" },
+        ])
+    };
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
         let s = num::FromPrimitive::from_usize(s).unwrap();
         let fatal_count = match *config {
@@ -159,20 +186,20 @@ impl CharacterTrait for Albedo {
             builder.add_atk_ratio("技能倍率", ratio)
         }
         if context.character_common_data.constellation >= 2 {
-            builder.add_def_ratio("2命：显生之宙", fatal_count as f64 * 0.3);
+            builder.add_def_ratio("阿贝多二命「显生之宙」", fatal_count as f64 * 0.3);
         }
 
         builder.damage(
             &context.attribute,
             &context.enemy,
-            Element::Geo,
+            s.get_element(),
             s.get_skill_type(),
             90
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

@@ -1,0 +1,6 @@
+characterName: Xingqiu
+configs:
+  - name: c4
+    type: bool
+    title: 应用4命效果
+    default: false

@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::ItemConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::KujouSaraDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct KujouSaraSkillType {
     pub normal_dmg1: [f64; 15],
@@ -39,11 +51,140 @@ pub const KUJOU_SARA_SKILL: KujouSaraSkillType = KujouSaraSkillType {
 };
 
 pub const KUJOU_SARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::KujouSara,
+    chs: "九条裟罗",
     element: Element::Electro,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],
     atk: [16, 42, 54, 81, 90, 104, 115, 129, 137, 151, 160, 173, 182, 195],
     def: [53, 135, 175, 262, 289, 333, 370, 414, 442, 485, 513, 556, 584, 628],
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Bow,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击•天狗传弓术",
+    skill_name2: "鸦羽天狗霆雷召咒",
+    skill_name3: "煌煌千道镇式"
 };
+
+pub struct KujouSara;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum KujouSaraDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Normal5,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    Q1,
+    Q2
+}
+
+impl KujouSaraDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use KujouSaraDamageEnum::*;
+        match *self {
+            Charged2 | E1 | Q1 | Q2 => Element::Electro,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use KujouSaraDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal5 => SkillType::NormalAttack,
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 => SkillType::ElementalSkill,
+            Q1 | Q2 => SkillType::ElementalBurst
+        }
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum KujouSaraRoleEnum {
+    Aux
+}
+
+impl Into<usize> for KujouSaraDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+impl CharacterTrait for KujouSara {
+    const STATIC_DATA: CharacterStaticData = KUJOU_SARA_STATIC_DATA;
+    type SkillType = KujouSaraSkillType;
+    const SKILL: Self::SkillType = KUJOU_SARA_SKILL;
+    type DamageEnumType = KujouSaraDamageEnum;
+    type RoleEnum = KujouSaraRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Charged1 as usize, chs: "瞄准射击" },
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Charged2 as usize, chs: "满蓄力瞄准射击" },
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::E1 as usize, chs: "天狗咒雷•伏伤害" }
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Q1 as usize, chs: "天狗咒雷•金刚坏伤害" },
+            CharacterSkillMapItem { index: KujouSaraDamageEnum::Q2 as usize, chs: "天狗咒雷•雷砾伤害" },
+        ])
+    };
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: KujouSaraDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use KujouSaraDamageEnum::*;
+        let ratio = match s {
+            Normal1 => KUJOU_SARA_SKILL.normal_dmg1[s1],
+            Normal2 => KUJOU_SARA_SKILL.normal_dmg2[s1],
+            Normal3 => KUJOU_SARA_SKILL.normal_dmg3[s1],
+            Normal4 => KUJOU_SARA_SKILL.normal_dmg4[s1],
+            Normal5 => KUJOU_SARA_SKILL.normal_dmg5[s1],
+            Charged1 => KUJOU_SARA_SKILL.charged_dmg1[s1],
+            Charged2 => KUJOU_SARA_SKILL.charged_dmg2[s1],
+            Plunging1 => KUJOU_SARA_SKILL.plunging_dmg1[s1],
+            Plunging2 => KUJOU_SARA_SKILL.plunging_dmg2[s1],
+            Plunging3 => KUJOU_SARA_SKILL.plunging_dmg3[s1],
+            E1 => KUJOU_SARA_SKILL.elemental_skill_dmg1[s2],
+            Q1 => KUJOU_SARA_SKILL.elemental_burst_dmg1[s3],
+            Q2 => KUJOU_SARA_SKILL.elemental_burst_dmg2[s3],
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: KujouSaraRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            KujouSaraRoleEnum::Aux => Box::new(KujouSaraDefaultTargetFunction)
+        }
+    }
+}

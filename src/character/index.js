@@ -1,32 +1,7 @@
-function importCharacterData(r) {
-    let temp = {}
-    for (let path of r.keys()) {
-        let data = r(path).default
-        temp[data.name] = data
-    }
-    return temp
-}
+import _characterData from "!../../loaders/character_meta_loader.js!./meta"
 
-export const characterData = importCharacterData(require.context("./data", true, /index\.js$/));
-
-function importConfigs(r) {
-    let configs = {}
-    for (let path of r.keys()) {
-        let im = r(path)
-        let characterName = im.characterName
-        configs[characterName] = im.default
-    }
-
-    return configs
-}
-
-export const characterConfig = importConfigs(
-    require.context("./data", true, /\.ccfg\.yaml$/)
-)
-
-export const characterSkillConfig = importConfigs(
-    require.context("./data", true, /\.cscfg\.yaml$/)
-)
+Object.freeze(_characterData)
+export const characterData = _characterData
 
 let _charactersByElement = {
     Pyro: [],
@@ -49,5 +24,6 @@ for (let ele in _charactersByElement) {
         return b.star - a.star;
     })
 }
+Object.freeze(_charactersByElement)
 
 export const characterByElement = _charactersByElement;

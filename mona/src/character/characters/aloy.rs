@@ -1,6 +1,18 @@
-use crate::character::CharacterStaticData;
-use crate::common::{Element, StatName, WeaponType};
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::AloyDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct AloySkillType {
     pub normal_dmg11: [f64; 15],
@@ -47,6 +59,8 @@ pub const ALOY_SKILL: AloySkillType = AloySkillType {
 };
 
 pub const ALOY_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Aloy,
+    chs: "埃洛伊",
     element: Element::Cryo,
     hp: [848, 2201, 2928, 4382, 4899, 5636, 6325, 7070, 7587, 8339, 8856, 9616, 10133, 10899],
     atk: [18, 47, 63, 94, 105, 121, 136, 152, 163, 179, 190, 206, 217, 234],
@@ -54,5 +68,169 @@ pub const ALOY_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus288(StatName::CryoBonus),
     weapon_type: WeaponType::Bow,
     star: 5,
+    skill_name1: "普通攻击·快速射击",
+    skill_name2: "冰尘雪野",
+    skill_name3: "曙光预言"
 };
 
+pub struct Aloy;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum AloyDamageEnum {
+    Normal11,
+    Normal12,
+    Normal2,
+    Normal3,
+    Normal4,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    Q1
+}
+
+impl AloyDamageEnum {
+    pub fn get_element(&self, ice_rush: bool) -> Element {
+        use AloyDamageEnum::*;
+        if ice_rush {
+            match *self {
+                Normal11 | Normal12 | Normal2 | Normal3 | Normal4 | E1 | E2 | Q1 => Element::Cryo,
+                _ => Element::Physical
+            }
+        } else {
+            match *self {
+                E1 | E2 | Q1 => Element::Cryo,
+                _ => Element::Physical
+            }
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use AloyDamageEnum::*;
+        match *self {
+            Normal11 | Normal12 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | E2 => SkillType::ElementalSkill,
+            Q1 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for AloyDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum AloyRoleEnum {
+    Sub
+}
+
+impl CharacterTrait for Aloy {
+    const STATIC_DATA: CharacterStaticData = ALOY_STATIC_DATA;
+    type SkillType = AloySkillType;
+    const SKILL: Self::SkillType = ALOY_SKILL;
+    type DamageEnumType = AloyDamageEnum;
+    type RoleEnum = AloyRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: AloyDamageEnum::Normal11 as usize, chs: "一段伤害-1" },
+            CharacterSkillMapItem { index: AloyDamageEnum::Normal12 as usize, chs: "一段伤害-2" },
+            CharacterSkillMapItem { index: AloyDamageEnum::Normal2 as usize, chs: "二段伤害-1" },
+            CharacterSkillMapItem { index: AloyDamageEnum::Normal3 as usize, chs: "三段伤害-1" },
+            CharacterSkillMapItem { index: AloyDamageEnum::Normal4 as usize, chs: "四段伤害-1" },
+            CharacterSkillMapItem { index: AloyDamageEnum::Charged1 as usize, chs: "瞄准射击" },
+            CharacterSkillMapItem { index: AloyDamageEnum::Charged2 as usize, chs: "满蓄力瞄准射击" },
+            CharacterSkillMapItem { index: AloyDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: AloyDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: AloyDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: AloyDamageEnum::E1 as usize, chs: "冰尘弹伤害" },
+            CharacterSkillMapItem { index: AloyDamageEnum::E2 as usize, chs: "冷冻炸弹伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: AloyDamageEnum::Q1 as usize, chs: "技能伤害" }
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "coil_count",
+            title: "线圈层数",
+            config: ItemConfigType::Int { min: 0, max: 4, default: 4 }
+        }
+    ]);
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s: AloyDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use AloyDamageEnum::*;
+        let ratio = match s {
+            Normal11 => ALOY_SKILL.normal_dmg11[s1],
+            Normal12 => ALOY_SKILL.normal_dmg12[s1],
+            Normal2 => ALOY_SKILL.normal_dmg2[s1],
+            Normal3 => ALOY_SKILL.normal_dmg3[s1],
+            Normal4 => ALOY_SKILL.normal_dmg4[s1],
+            Charged1 => ALOY_SKILL.charged_dmg1[s1],
+            Charged2 => ALOY_SKILL.charged_dmg2[s1],
+            Plunging1 => ALOY_SKILL.plunging_dmg1[s1],
+            Plunging2 => ALOY_SKILL.plunging_dmg2[s1],
+            Plunging3 => ALOY_SKILL.plunging_dmg3[s1],
+            E1 => ALOY_SKILL.elemental_skill_dmg1[s2],
+            E2 => ALOY_SKILL.elemental_skill_dmg2[s2],
+            Q1 => ALOY_SKILL.elemental_burst_dmg1[s3]
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+
+        let coil_count = match *config {
+            CharacterSkillConfig::Aloy { coil_count } => coil_count,
+            _ => 0
+        };
+
+        let skill_type = s.get_skill_type();
+        if coil_count > 0 && skill_type == SkillType::NormalAttack {
+            let bonus = match coil_count {
+                0 => 0.0,
+                1 => ALOY_SKILL.elemental_skill_atk_bonus1[s2],
+                2 => ALOY_SKILL.elemental_skill_atk_bonus2[s2],
+                3 => ALOY_SKILL.elemental_skill_atk_bonus3[s2],
+                _ => ALOY_SKILL.elemental_skill_atk_bonus4[s2],
+            };
+            if coil_count < 4 {
+                builder.add_extra_bonus("线圈加成", bonus);
+            } else {
+                builder.add_extra_bonus("冰驰加成", bonus);
+            }
+        }
+
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(coil_count >= 4),
+            skill_type,
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: AloyRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            AloyRoleEnum::Sub => Box::new(AloyDefaultTargetFunction)
+        }
+    }
+}

@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::{Attribute, AttributeName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::NoelleDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct NoelleSkillType {
     pub normal_dmg1: [f64; 15],
@@ -47,11 +59,198 @@ pub const NOELLE_SKILL: NoelleSkillType = NoelleSkillType {
 };
 
 pub const NOELLE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Noelle,
+    chs: "诺艾尔",
     element: Element::Geo,
     hp: [1012, 2600, 3356, 5027, 5564, 6400, 7117, 7953, 8490, 9325, 9862, 10698, 11235, 12071],
     atk: [16, 41, 53, 80, 88, 101, 113, 126, 134, 148, 156, 169, 178, 191],
     def: [67, 172, 222, 333, 368, 423, 471, 526, 562, 617, 652, 708, 743, 799],
     sub_stat: CharacterSubStatFamily::DEF300,
     weapon_type: WeaponType::Claymore,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·西风剑术·女仆",
+    skill_name2: "护心铠",
+    skill_name3: "大扫除"
 };
+
+pub struct Noelle;
+
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+pub enum NoelleDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    EHeal1,
+    Q1,
+    Q2
+}
+
+impl NoelleDamageEnum {
+    pub fn is_heal(&self) -> bool {
+        *self == NoelleDamageEnum::EHeal1
+    }
+
+    pub fn is_def_ratio(&self) -> bool {
+        *self == NoelleDamageEnum::E1
+    }
+
+    pub fn get_element(&self, after_q: bool) -> Element {
+        if after_q {
+            Element::Geo
+        } else {
+            use NoelleDamageEnum::*;
+            match *self {
+                E1 | Q1 | Q2 => Element::Geo,
+                _ => Element::Physical
+            }
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use NoelleDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 | EHeal1 => SkillType::ElementalSkill,
+            Q1 | Q2 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for NoelleDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum NoelleRoleEnum {
+    Main
+}
+
+impl CharacterTrait for Noelle {
+    const STATIC_DATA: CharacterStaticData = NOELLE_STATIC_DATA;
+    type SkillType = NoelleSkillType;
+    const SKILL: Self::SkillType = NOELLE_SKILL;
+    type DamageEnumType = NoelleDamageEnum;
+    type RoleEnum = NoelleRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: NoelleDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::Charged1 as usize, chs: "重击循环伤害" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::Charged2 as usize, chs: "重击终结伤害" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: NoelleDamageEnum::E1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::EHeal1 as usize, chs: "治疗量" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: NoelleDamageEnum::Q1 as usize, chs: "爆发伤害" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::Q2 as usize, chs: "技能伤害" },
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "after_q",
+            title: "Q技能之后",
+            config: ItemConfigType::Bool { default: true }
+        }
+    ]);
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s: NoelleDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use NoelleDamageEnum::*;
+
+        let mut builder = D::new();
+        if s.is_heal() {
+            let ratio = match s {
+                EHeal1 => NOELLE_SKILL.elemental_skill_heal1[s2],
+                _ => 0.0
+            };
+            let fixed = match s {
+                EHeal1 => NOELLE_SKILL.elemental_skill_heal1_fixed[s2],
+                _ => 0.0
+            };
+            builder.add_def_ratio("技能倍率", ratio);
+            builder.add_extra_damage("技能倍率", fixed);
+            builder.heal(&context.attribute)
+        } else {
+            let ratio = match s {
+                Normal1 => NOELLE_SKILL.normal_dmg1[s1],
+                Normal2 => NOELLE_SKILL.normal_dmg2[s1],
+                Normal3 => NOELLE_SKILL.normal_dmg3[s1],
+                Normal4 => NOELLE_SKILL.normal_dmg4[s1],
+                Charged1 => NOELLE_SKILL.charged_dmg1[s1],
+                Charged2 => NOELLE_SKILL.charged_dmg1[s1],
+                Plunging1 => NOELLE_SKILL.plunging_dmg1[s1],
+                Plunging2 => NOELLE_SKILL.plunging_dmg2[s1],
+                Plunging3 => NOELLE_SKILL.plunging_dmg3[s1],
+                E1 => NOELLE_SKILL.elemental_skill_dmg1[s2],
+                Q1 => NOELLE_SKILL.elemental_burst_dmg1[s3],
+                Q2 => NOELLE_SKILL.elemental_burst_dmg2[s3],
+                _ => 0.0
+            };
+
+            if s.is_def_ratio() {
+                builder.add_def_ratio("技能倍率", ratio);
+            } else {
+                builder.add_atk_ratio("技能倍率", ratio);
+            }
+
+            let after_q = match *config {
+                CharacterSkillConfig::Noelle { after_q } => after_q,
+                _ => false
+            };
+            if after_q {
+                let def = context.attribute.get_value(AttributeName::DEF);
+                let is_conste6 = context.character_common_data.constellation == 6;
+                let atk_bonus_ratio = NOELLE_SKILL.elemental_burst_atk_bonus[s3] + if is_conste6 {
+                    0.5
+                } else {
+                    0.0
+                };
+                let atk_bonus = def * atk_bonus_ratio;
+                builder.add_extra_atk("大扫除加成", atk_bonus);
+            }
+
+            builder.damage(
+                &context.attribute,
+                &context.enemy,
+                s.get_element(after_q),
+                s.get_skill_type(),
+                context.character_common_data.level
+            )
+        }
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: NoelleRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            NoelleRoleEnum::Main => Box::new(NoelleDefaultTargetFunction)
+        }
+    }
+}

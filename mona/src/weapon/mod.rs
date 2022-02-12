@@ -11,4 +11,5 @@ pub mod weapon;
 pub mod weapon_common_data;
 pub mod weapon_effect;
 pub mod weapon_config;
-
+pub mod weapon_trait;
+pub mod royal_series;

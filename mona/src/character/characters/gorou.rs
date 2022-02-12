@@ -2,10 +2,9 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::{CharacterTrait};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -26,6 +25,7 @@ pub struct GorouSkillType {
     pub plunging_dmg3: [f64; 15],
 
     pub elemental_skill_dmg1: [f64; 15],
+    pub elemental_skill_def_bonus: [f64; 15],
 
     pub elemental_burst_dmg1: [f64; 15],
     pub elemental_burst_dmg2: [f64; 15],
@@ -42,23 +42,29 @@ pub const GOROU_SKILL: GorouSkillType = GorouSkillType {
     plunging_dmg2: [1.1363, 1.2288, 1.3213, 1.4535, 1.5459, 1.6517, 1.797, 1.9423, 2.0877, 2.2462, 2.4048, 2.5634, 2.7219, 2.8805, 3.039],
     plunging_dmg3: [1.4193, 1.5349, 1.6504, 1.8154, 1.931, 2.063, 2.2445, 2.4261, 2.6076, 2.8057, 3.0037, 3.2018, 3.3998, 3.5979, 3.7959],
     elemental_skill_dmg1: [1.072, 1.1524, 1.2328, 1.34, 1.4204, 1.5008, 1.608, 1.7152, 1.8224, 1.9296, 2.0368, 2.144, 2.278, 2.412, 2.546],
+    elemental_skill_def_bonus: [206.0, 222.0, 237.0, 258.0, 273.0, 289.0, 309.0, 330.0, 350.0, 371.0, 392.0, 412.0, 438.0, 464.0, 490.0],
     elemental_burst_dmg1: [0.9822, 1.0558, 1.1295, 1.2277, 1.3014, 1.375, 1.4732, 1.5715, 1.6697, 1.7679, 1.8661, 1.9643, 2.0871, 2.2099, 2.3326],
     elemental_burst_dmg2: [0.613, 0.659, 0.705, 0.7663, 0.8122, 0.8582, 0.9195, 0.9808, 1.0421, 1.1034, 1.1647, 1.226, 1.3026, 1.3793, 1.4559],
 };
 
 pub const GOROU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Gorou,
+    chs: "五郎",
     element: Element::Geo,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],
     atk: [15, 39, 51, 76, 84, 97, 108, 120, 128, 141, 149, 162, 170, 183],
     def: [54, 140, 180, 270, 299, 344, 382, 427, 456, 501, 530, 575, 603, 648],
     sub_stat: CharacterSubStatFamily::Bonus240(StatName::GeoBonus),
     weapon_type: WeaponType::Bow,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击•呲牙裂扇箭",
+    skill_name2: "犬坂吠吠方圆阵",
+    skill_name3: "兽牙逐突形胜战法"
 };
 
 pub struct Gorou;
 
-#[derive(Copy, Clone, FromPrimitive)]
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
 pub enum GorouDamageEnum {
     Normal1,
     Normal2,
@@ -113,6 +119,28 @@ impl CharacterTrait for Gorou {
     type DamageEnumType = GorouDamageEnum;
     type RoleEnum = GorouRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: GorouDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: GorouDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: GorouDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: GorouDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: GorouDamageEnum::Charged1 as usize, chs: "瞄准射击" },
+            CharacterSkillMapItem { index: GorouDamageEnum::Charged2 as usize, chs: "满蓄力瞄准射击" },
+            CharacterSkillMapItem { index: GorouDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: GorouDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: GorouDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: GorouDamageEnum::E1 as usize, chs: "技能伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: GorouDamageEnum::Q1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: GorouDamageEnum::Q2 as usize, chs: "岩晶崩破伤害" },
+        ])
+    };
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: GorouDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -133,19 +161,35 @@ impl CharacterTrait for Gorou {
             Q2 => GOROU_SKILL.elemental_burst_dmg2[s3]
         };
 
+        let skill_type = s.get_skill_type();
+
         let mut builder = D::new();
-        builder.add_atk_ratio("", ratio);
+
+        if skill_type == SkillType::ElementalBurst {
+            builder.add_def_ratio("技能倍率", ratio);
+        } else {
+            builder.add_atk_ratio("技能倍率", ratio);
+        }
+
+        if context.character_common_data.has_talent2 {
+            if skill_type == SkillType::ElementalSkill {
+                builder.add_def_ratio("五郎天赋「报恩之守」", 1.56);
+            } else if skill_type == SkillType::ElementalBurst {
+                builder.add_def_ratio("五郎天赋「报恩之守」", 0.156);
+            }
+        }
+
         builder.damage(
             &context.attribute,
             &context.enemy,
             s.get_element(),
-            s.get_skill_type(),
+            skill_type,
             context.character_common_data.level
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

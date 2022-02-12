@@ -2,7 +2,7 @@ use std::cmp::{Ordering, Reverse};
 use std::collections::{BinaryHeap, HashMap};
 use crate::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use crate::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode, OptimizationResult};
-use crate::artifacts::{Artifact, ArtifactList, ArtifactSetName, ArtifactSlotName};
+use crate::artifacts::{Artifact, ArtifactList, ArtifactSlotName};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
 use crate::attribute::{AttributeUtils, SimpleAttributeGraph2, AttributeCommon, AttributeName, Attribute};
 use crate::buffs::Buff;
@@ -126,7 +126,13 @@ pub fn optimize_single(
     count: usize
 ) -> Vec<OptimizationResult> {
     let need_constraint = constraint.is_some();
-    let enemy = Enemy::default();
+    let mut enemy = Enemy::default();
+
+    // buff change enemy
+    for b in buffs.iter() {
+        b.change_enemy(&mut enemy);
+    }
+
     let artifact_config = if let Some(x) = artifact_config {
         x
     } else {

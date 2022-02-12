@@ -1,10 +1,10 @@
 use wasm_bindgen::prelude::*;
 use serde::{Serialize, Deserialize};
-use crate::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
+use crate::applications::common::{BuffInterface, CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use crate::artifacts::{Artifact, ArtifactList};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
 use crate::attribute::{AttributeNoReactive, AttributeUtils, ComplicatedAttributeGraph, SimpleAttributeGraph2};
-use crate::buffs::{Buff, BuffType};
+use crate::buffs::{Buff, BuffConfig};
 use crate::character::Character;
 use crate::weapon::Weapon;
 
@@ -12,7 +12,7 @@ use crate::weapon::Weapon;
 pub struct GetAttributeInterface {
     character: CharacterInterface,
     weapon: WeaponInterface,
-    buffs: Vec<BuffType>,
+    buffs: Vec<BuffInterface>,
     artifacts: Vec<Artifact>,
     artifact_config: Option<ArtifactEffectConfig>
 }
@@ -33,7 +33,7 @@ pub fn get_attribute(val: &JsValue) -> JsValue {
         artifacts: &artifacts
     };
 
-    let buffs: Vec<Box<dyn Buff<ComplicatedAttributeGraph>>> = input.buffs.iter().map(|x| x.into()).collect();
+    let buffs: Vec<Box<dyn Buff<ComplicatedAttributeGraph>>> = input.buffs.iter().map(|x| x.to_buff()).collect();
 
     let attribute: ComplicatedAttributeGraph = AttributeUtils::create_attribute_from_big_config(
         &artifact_list,

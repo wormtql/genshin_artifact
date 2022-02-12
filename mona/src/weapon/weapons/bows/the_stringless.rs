@@ -1,19 +1,15 @@
 use crate::attribute::{Attribute, AttributeName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::weapon::weapon_effect::WeaponEffect;
 use crate::weapon::weapon_static_data::WeaponStaticData;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
+use crate::weapon::weapon_trait::WeaponTrait;
+use crate::weapon::{WeaponConfig, WeaponName};
 
-pub const THE_STRINGLESS_STATIC_DATA: WeaponStaticData = WeaponStaticData {
-    weapon_type: WeaponType::Bow,
-    weapon_sub_stat: WeaponSubStatFamily::EM36,
-    weapon_base: WeaponBaseATKFamily::ATK510,
-    star: 4
-};
-
-pub struct TheStringlessEffect {}
+pub struct TheStringlessEffect;
 
 impl TheStringlessEffect {
     pub fn new() -> TheStringlessEffect {
@@ -26,5 +22,23 @@ impl<T: Attribute> WeaponEffect<T> for TheStringlessEffect {
         let value = data.refine as f64 * 0.06 + 0.18;
         attribute.set_value_by(AttributeName::BonusElementalSkill, "绝弦被动", value);
         attribute.set_value_by(AttributeName::BonusElementalBurst, "绝弦被动", value);
+    }
+}
+
+pub struct TheStringless;
+
+impl WeaponTrait for TheStringless {
+    const META_DATA: WeaponStaticData = WeaponStaticData {
+        name: WeaponName::TheStringless,
+        weapon_type: WeaponType::Bow,
+        weapon_sub_stat: WeaponSubStatFamily::EM36,
+        weapon_base: WeaponBaseATKFamily::ATK510,
+        star: 4,
+        effect: Some("无矢之歌：元素战技与元素爆发的伤害提高24％/30%/36%/42%/48%。"),
+        chs: "绝弦"
+    };
+
+    fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
+        Some(Box::new(TheStringlessEffect::new()))
     }
 }

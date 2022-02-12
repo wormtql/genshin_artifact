@@ -9,7 +9,7 @@ use crate::artifacts::{Artifact, ArtifactSetName, ArtifactSlotName, ArtifactList
 use crate::character::{CharacterConfig, CharacterName, Character};
 use crate::weapon::{WeaponName, WeaponConfig, Weapon};
 use crate::target_functions::{TargetFunctionName, TargetFunctionConfig, TargetFunctionUtils};
-use crate::buffs::{Buff, BuffType};
+use crate::buffs::{Buff, BuffConfig};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
 use crate::attribute::{AttributeNoReactive, AttributeName, AttributeUtils, AttributeCommon, Attribute, ComplicatedAttributeGraph, SimpleAttributeGraph2};
 use crate::enemies::Enemy;
@@ -32,7 +32,7 @@ impl OptimizeSingleWasm {
         let target_function = input.target_function.to_target_function(&character, &weapon);
         let artifacts_ref: Vec<&Artifact> = input.artifacts.iter().collect();
         let constraint_ref = input.constraint.as_ref();
-        let buffs: Vec<Box<dyn Buff<SimpleAttributeGraph2>>> = input.buffs.iter().map(|x| x.into()).collect();
+        let buffs: Vec<Box<dyn Buff<SimpleAttributeGraph2>>> = input.buffs.iter().map(|x| x.to_buff()).collect();
 
         let results = optimize_single(
             &artifacts_ref,

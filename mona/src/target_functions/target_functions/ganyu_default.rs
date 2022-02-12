@@ -1,17 +1,22 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::{ArtifactEffectConfig, ConfigArchaicPetra, ConfigBlizzardStrayer, ConfigRate};
-use crate::attribute::{Attribute, SimpleAttributeGraph2};
-use crate::character::{Character};
+use crate::attribute::{SimpleAttributeGraph2};
+use crate::character::{Character, CharacterName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::Ganyu;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
-use crate::common::{Element, SkillType, StatName};
+use crate::common::{Element, StatName};
+use crate::common::item_config_type::{ItemConfig};
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
-use crate::target_functions::{TargetFunction, TargetFunctionConfig};
+use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
+use crate::target_functions::target_function::TargetFunctionMetaTrait;
+use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct GanyuDefaultTargetFunction {
     pub melt_rate: f64
@@ -28,6 +33,31 @@ impl GanyuDefaultTargetFunction {
     }
 }
 
+impl TargetFunctionMetaTrait for GanyuDefaultTargetFunction {
+    #[cfg(not(target_family = "wasm"))]
+    const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
+        name: TargetFunctionName::GanyuDefault,
+        chs: "甘雨-循循守月",
+        description: "普通输出甘雨",
+        tags: "输出",
+        four: TargetFunctionFor::SomeWho(CharacterName::Ganyu),
+        image: TargetFunctionMetaImage::Avatar
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "melt_rate",
+            title: "融化占比",
+            config: ItemConfig::RATE01_TYPE
+        }
+    ]);
+
+    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        Box::new(GanyuDefaultTargetFunction::new(config))
+    }
+}
+
 impl TargetFunction for GanyuDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
         TargetFunctionOptConfig {
@@ -41,6 +71,7 @@ impl TargetFunction for GanyuDefaultTargetFunction {
             elemental_mastery: 0.3,
             critical: 1.0,
             critical_damage: 1.0,
+            healing_bonus: 0.0,
             bonus_electro: 0.0,
             bonus_pyro: 0.0,
             bonus_hydro: 0.0,
@@ -71,6 +102,10 @@ impl TargetFunction for GanyuDefaultTargetFunction {
                 ArtifactSetName::BlizzardStrayer,
                 ArtifactSetName::NoblesseOblige
             ]),
+            very_critical_set_names: None,
+            normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
+            critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
+            very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
         }
     }
 

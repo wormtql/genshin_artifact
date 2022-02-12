@@ -1,6 +1,5 @@
 import card from "./card.jpg"
 import avatar from "@asset/badges/chongyun.png"
-// import skill from "./chongyun.skill.js";
 import splash from "./splash.png"
 
 const g1 = "普通攻击·灭邪四式"
@@ -14,7 +13,6 @@ export default {
     weapon: "Claymore",
     star: 4,
     avatar,
-    // skill,
     card,
     splash,
     skillMap: [

@@ -1,5 +1,6 @@
 use crate::attribute::Attribute;
 use crate::common::{DamageResult, Element, SkillType};
+use crate::common::reaction_type::TransformativeType;
 use crate::damage::DamageAnalysis;
 use crate::enemies::Enemy;
 

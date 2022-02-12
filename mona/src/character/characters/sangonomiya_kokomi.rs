@@ -1,7 +1,18 @@
+use num_derive::FromPrimitive;
 use crate::attribute::{Attribute, AttributeName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{ChangeAttribute, Element, StatName, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::sangonomiya_kokomi_default::SangonomiyaKokomiDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct SangonomiyaKokomiSkillType {
     pub normal_dmg1: [f64; 15],
@@ -44,16 +55,21 @@ pub const SANGONOMIYA_KOKOMI_SKILL: SangonomiyaKokomiSkillType = SangonomiyaKoko
 };
 
 pub const SANGONOMIYA_KOKOMI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::SangonomiyaKokomi,
+    chs: "珊瑚宫心海",
     element: Element::Hydro,
     hp: [1049, 2720, 3619, 5416, 6055, 6966, 7818, 8738, 9377, 10306, 10945, 11885, 12524, 13471],
     atk: [18, 47, 63, 94, 105, 121, 136, 152, 163, 179, 190, 207, 218, 234],
     def: [51, 133, 177, 264, 295, 340, 381, 426, 457, 503, 534, 580, 611, 657],
     sub_stat: CharacterSubStatFamily::Bonus288(StatName::HydroBonus),
     weapon_type: WeaponType::Catalyst,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击•水有常形",
+    skill_name2: "海月之誓",
+    skill_name3: "海人化羽"
 };
 
-pub struct SangonomiyaKokomiEffect {}
+pub struct SangonomiyaKokomiEffect;
 
 impl SangonomiyaKokomiEffect {
     pub fn new() -> SangonomiyaKokomiEffect {
@@ -65,5 +81,179 @@ impl<T: Attribute> ChangeAttribute<T> for SangonomiyaKokomiEffect {
     fn change_attribute(&self, attribute: &mut T) {
         attribute.set_value_by(AttributeName::CriticalBase, "珊瑚宫心海天赋：庙算无遗", -1.0);
         attribute.set_value_by(AttributeName::HealingBonus, "珊瑚宫心海天赋：庙算无遗", 0.25);
+    }
+}
+
+pub struct SangonomiyaKokomi;
+
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+pub enum SangonomiyaKokomiDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Charged,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    EHeal1,
+    E1,
+    Q1,
+    QHeal1
+}
+
+impl SangonomiyaKokomiDamageEnum {
+    pub fn is_heal(&self) -> bool {
+        use SangonomiyaKokomiDamageEnum::*;
+        match *self {
+            EHeal1 | QHeal1 => true,
+            _ => false
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use SangonomiyaKokomiDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 => SkillType::NormalAttack,
+            Charged => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            EHeal1 | E1 => SkillType::ElementalSkill,
+            Q1 | QHeal1 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for SangonomiyaKokomiDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum SangonomiyaKokomiRoleEnum {
+    Normal
+}
+
+impl CharacterTrait for SangonomiyaKokomi {
+    const STATIC_DATA: CharacterStaticData = SANGONOMIYA_KOKOMI_STATIC_DATA;
+    type SkillType = SangonomiyaKokomiSkillType;
+    const SKILL: Self::SkillType = SANGONOMIYA_KOKOMI_SKILL;
+    type DamageEnumType = SangonomiyaKokomiDamageEnum;
+    type RoleEnum = SangonomiyaKokomiRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::E1 as usize, chs: "波纹伤害" },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::EHeal1 as usize, chs: "治疗量" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Q1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::QHeal1 as usize, chs: "命中治疗量" },
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "after_q",
+            title: "「仪来羽衣」状态",
+            config: ItemConfigType::Bool { default: true }
+        }
+    ]);
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+        let s: SangonomiyaKokomiDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use SangonomiyaKokomiDamageEnum::*;
+        if s.is_heal() {
+            let ratio = match s {
+                EHeal1 => SANGONOMIYA_KOKOMI_SKILL.elemental_skill_heal1[s2],
+                QHeal1 => SANGONOMIYA_KOKOMI_SKILL.elemental_burst_heal1[s3],
+                _ => 0.0
+            };
+            let fixed = match s {
+                EHeal1 => SANGONOMIYA_KOKOMI_SKILL.elemental_skill_heal1_fixed[s2],
+                QHeal1 => SANGONOMIYA_KOKOMI_SKILL.elemental_burst_heal1_fixed[s3],
+                _ => 0.0
+            };
+            let mut builder = D::new();
+            builder.add_hp_ratio("技能倍率", ratio);
+            builder.add_extra_damage("技能倍率", fixed);
+            builder.heal(&context.attribute)
+        } else {
+            let ratio = match s {
+                Normal1 => SANGONOMIYA_KOKOMI_SKILL.normal_dmg1[s1],
+                Normal2 => SANGONOMIYA_KOKOMI_SKILL.normal_dmg2[s1],
+                Normal3 => SANGONOMIYA_KOKOMI_SKILL.normal_dmg3[s1],
+                Charged => SANGONOMIYA_KOKOMI_SKILL.charged_dmg1[s1],
+                Plunging1 => SANGONOMIYA_KOKOMI_SKILL.plunging_dmg1[s1],
+                Plunging2 => SANGONOMIYA_KOKOMI_SKILL.plunging_dmg2[s1],
+                Plunging3 => SANGONOMIYA_KOKOMI_SKILL.plunging_dmg3[s1],
+                E1 => SANGONOMIYA_KOKOMI_SKILL.elemental_skill_dmg1[s2],
+                Q1 => SANGONOMIYA_KOKOMI_SKILL.elemental_burst_dmg1[s3],
+                _ => 0.0
+            };
+            let mut builder = D::new();
+            if s == Q1 {
+                builder.add_hp_ratio("技能倍率", ratio);
+            } else {
+                builder.add_atk_ratio("技能倍率", ratio);
+            }
+
+            let skill_type = s.get_skill_type();
+            let after_q = match *config {
+                CharacterSkillConfig::SangonomiyaKokomi { after_q } => after_q,
+                _ => false
+            };
+            if after_q {
+                if skill_type == SkillType::NormalAttack {
+                    let bonus = SANGONOMIYA_KOKOMI_SKILL.elemental_burst_a_bonus[s3];
+                    builder.add_hp_ratio("海人化羽伤害提升", bonus);
+                    if context.character_common_data.has_talent2 {
+                        let healing_bonus = context.attribute.get_value(AttributeName::HealingBonus);
+                        builder.add_hp_ratio("珊瑚宫心海天赋「真珠御呗」", healing_bonus * 0.15);
+                    }
+                } else if skill_type == SkillType::ChargedAttack {
+                    let bonus = SANGONOMIYA_KOKOMI_SKILL.elemental_burst_b_bonus[s3];
+                    builder.add_hp_ratio("海人化羽伤害提升", bonus);
+                    if context.character_common_data.has_talent2 {
+                        let healing_bonus = context.attribute.get_value(AttributeName::HealingBonus);
+                        builder.add_hp_ratio("珊瑚宫心海天赋「真珠御呗」", healing_bonus * 0.15);
+                    }
+                } else if skill_type == SkillType::ElementalSkill {
+                    let bonus = SANGONOMIYA_KOKOMI_SKILL.elemental_burst_e_bonus[s3];
+                    builder.add_hp_ratio("海人化羽伤害提升", bonus);
+                }
+            }
+
+            builder.damage(
+                &context.attribute,
+                &context.enemy,
+                Element::Hydro,
+                skill_type,
+                context.character_common_data.level
+            )
+        }
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(SangonomiyaKokomiEffect::new()))
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: SangonomiyaKokomiRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            SangonomiyaKokomiRoleEnum::Normal => Box::new(SangonomiyaKokomiDefaultTargetFunction)
+        }
     }
 }

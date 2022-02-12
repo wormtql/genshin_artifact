@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::Attribute;
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, StatName, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
+use crate::common::item_config_type::ItemConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::sucrose_default::SucroseDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct SucroseSkillType {
     pub normal_dmg1: [f64; 15],
@@ -33,11 +45,146 @@ pub const SUCROSE_SKILL: SucroseSkillType = SucroseSkillType {
 };
 
 pub const SUCROSE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Sucrose,
+    chs: "砂糖",
     element: Element::Anemo,
     hp: [775, 1991, 2570, 3850, 4261, 4901, 5450, 6090, 6501, 7141, 7552, 8192, 8604, 9244],
     atk: [14, 37, 47, 71, 78, 90, 100, 112, 120, 131, 139, 151, 158, 170],
     def: [59, 151, 195, 293, 324, 373, 414, 463, 494, 543, 574, 623, 654, 703],
     sub_stat: CharacterSubStatFamily::Bonus240(StatName::AnemoBonus),
     weapon_type: WeaponType::Catalyst,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·简式风灵作成",
+    skill_name2: "风灵作成·陆叁零捌",
+    skill_name3: "禁·风灵作成·柒伍同构贰型"
 };
+
+pub struct Sucrose;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum SucroseDamageEnum {
+    Normal1,
+    Normal2,
+    Normal3,
+    Normal4,
+    Charged,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    Q1,
+    Q2Pyro,
+    Q2Hydro,
+    Q2Electro,
+    Q2Cryo
+}
+
+impl SucroseDamageEnum {
+    pub fn get_element(&self) -> Element {
+        use SucroseDamageEnum::*;
+        match *self {
+            Q2Pyro => Element::Pyro,
+            Q2Hydro => Element::Hydro,
+            Q2Electro => Element::Electro,
+            Q2Cryo => Element::Cryo,
+            _ => Element::Anemo
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use SucroseDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
+            Charged => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 => SkillType::ElementalSkill,
+            Q1 | Q2Cryo | Q2Hydro | Q2Pyro | Q2Electro => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for SucroseDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum SucroseRoleEnum {
+    Aux
+}
+
+impl CharacterTrait for Sucrose {
+    const STATIC_DATA: CharacterStaticData = SUCROSE_STATIC_DATA;
+    type SkillType = SucroseSkillType;
+    const SKILL: Self::SkillType = SUCROSE_SKILL;
+    type DamageEnumType = SucroseDamageEnum;
+    type RoleEnum = SucroseRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: SucroseDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Charged as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: SucroseDamageEnum::E1 as usize, chs: "技能伤害" }
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q1 as usize, chs: "持续伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Pyro as usize, chs: "附加火元素伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Hydro as usize, chs: "附加水元素伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Cryo as usize, chs: "附加冰元素伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Electro as usize, chs: "附加雷元素伤害" },
+        ])
+    };
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: SucroseDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use SucroseDamageEnum::*;
+        let ratio = match s {
+            Normal1 => SUCROSE_SKILL.normal_dmg1[s1],
+            Normal2 => SUCROSE_SKILL.normal_dmg2[s1],
+            Normal3 => SUCROSE_SKILL.normal_dmg3[s1],
+            Normal4 => SUCROSE_SKILL.normal_dmg4[s1],
+            Charged => SUCROSE_SKILL.charged_dmg1[s1],
+            Plunging1 => SUCROSE_SKILL.plunging_dmg1[s1],
+            Plunging2 => SUCROSE_SKILL.plunging_dmg2[s1],
+            Plunging3 => SUCROSE_SKILL.plunging_dmg3[s1],
+            E1 => SUCROSE_SKILL.elemental_skill_dmg1[s2],
+            Q1 => SUCROSE_SKILL.elemental_burst_dmg1[s3],
+            Q2Electro | Q2Pyro | Q2Hydro | Q2Cryo => SUCROSE_SKILL.elemental_burst_dmg2[s3]
+        };
+
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            s.get_element(),
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: SucroseRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            SucroseRoleEnum::Aux => Box::new(SucroseDefaultTargetFunction {
+                recharge_demand: 1.4
+            })
+        }
+    }
+}

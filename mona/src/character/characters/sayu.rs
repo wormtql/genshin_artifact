@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::{Attribute, AttributeName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::ItemConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::SayuDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct SayuSkillType {
     pub normal_dmg1: [f64; 15],
@@ -53,11 +65,220 @@ pub const SAYU_SKILL: SayuSkillType = SayuSkillType {
 };
 
 pub const SAYU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Sayu,
+    chs: "早柚",
     element: Element::Anemo,
     hp: [994, 2553, 3296, 4937, 5464, 6285, 6988, 7809, 8337, 9157, 9684, 10505, 11033, 11854],
     atk: [20, 53, 68, 102, 113, 130, 144, 161, 172, 189, 200, 216, 227, 244],
     def: [62, 160, 207, 310, 343, 395, 439, 491, 524, 575, 608, 660, 693, 745],
     sub_stat: CharacterSubStatFamily::ElementalMastery96,
     weapon_type: WeaponType::Claymore,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·忍刀·终末番",
+    skill_name2: "呜呼流·风隐急进",
+    skill_name3: "呜呼流·影貉缭乱"
 };
+
+pub struct Sayu;
+
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+pub enum SayuDamageEnum {
+    Normal1,
+    Normal2,
+    Normal31,
+    Normal32,
+    Normal4,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    E2,
+    E3,
+    E4Pyro,
+    E4Electro,
+    E4Cryo,
+    E4Hydro,
+    E5Pyro,
+    E5Electro,
+    E5Cryo,
+    E5Hydro,
+    Q1,
+    QHeal1,
+    Q2,
+    QHeal2
+}
+
+impl SayuDamageEnum {
+    pub fn is_heal(&self) -> bool {
+        use SayuDamageEnum::*;
+        match *self {
+            QHeal1 | QHeal2 => true,
+            _ => false
+        }
+    }
+
+    pub fn is_q(&self) -> bool {
+        use SayuDamageEnum::*;
+        match *self {
+            Q1 | Q2 | QHeal1 | QHeal2 => true,
+            _ => false
+        }
+    }
+
+    pub fn get_element(&self) -> Element {
+        use SayuDamageEnum::*;
+        match *self {
+            E1 | E2 | E3 | Q1 | Q2 => Element::Anemo,
+            E4Pyro | E5Pyro => Element::Pyro,
+            E4Electro | E5Electro => Element::Electro,
+            E4Cryo | E5Cryo => Element::Cryo,
+            E4Hydro | E5Hydro => Element::Hydro,
+            _ => Element::Physical
+        }
+    }
+
+    pub fn get_skill_type(&self) -> SkillType {
+        use SayuDamageEnum::*;
+        match *self {
+            Normal1 | Normal2 | Normal31 | Normal32 | Normal4 => SkillType::NormalAttack,
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Q1 | QHeal1 | Q2 | QHeal2 => SkillType::ElementalBurst,
+            _ => SkillType::ElementalSkill
+        }
+    }
+}
+
+impl Into<usize> for SayuDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum SayuRoleEnum {
+    Normal
+}
+
+impl CharacterTrait for Sayu {
+    const STATIC_DATA: CharacterStaticData = SAYU_STATIC_DATA;
+    type SkillType = SayuSkillType;
+    const SKILL: Self::SkillType = SAYU_SKILL;
+    type DamageEnumType = SayuDamageEnum;
+    type RoleEnum = SayuRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: SayuDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::Normal31 as usize, chs: "三段伤害-1" },
+            CharacterSkillMapItem { index: SayuDamageEnum::Normal32 as usize, chs: "三段伤害-2" },
+            CharacterSkillMapItem { index: SayuDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::Charged1 as usize, chs: "重击循环伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::Charged2 as usize, chs: "重击终结伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: SayuDamageEnum::E1 as usize, chs: "风风轮伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::E2 as usize, chs: "风风轮舞踢点按伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::E3 as usize, chs: "风风轮舞踢长按伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::E4Pyro as usize, chs: "风风轮附带火元素伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::E4Hydro as usize, chs: "风风轮附带水元素伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::E4Cryo as usize, chs: "风风轮附带冰元素伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::E4Electro as usize, chs: "风风轮附带雷元素伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::E5Pyro as usize, chs: "风风轮舞踢长按附带火元素伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::E5Hydro as usize, chs: "风风轮舞踢长按附带水元素伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::E5Cryo as usize, chs: "风风轮舞踢长按附带冰元素伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::E5Electro as usize, chs: "风风轮舞踢长按附带雷元素伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: SayuDamageEnum::Q1 as usize, chs: "技能发动伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::QHeal1 as usize, chs: "技能发动治疗量" },
+            CharacterSkillMapItem { index: SayuDamageEnum::Q2 as usize, chs: "不倒貉貉伤害" },
+            CharacterSkillMapItem { index: SayuDamageEnum::QHeal2 as usize, chs: "不倒貉貉治疗量" },
+        ])
+    };
+
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: SayuDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use SayuDamageEnum::*;
+        if s.is_heal() {
+            let ratio = match s {
+                QHeal1 => SAYU_SKILL.elemental_burst_heal1[s3],
+                QHeal2 => SAYU_SKILL.elemental_burst_heal2[s3],
+                _ => 0.0
+            };
+            let fixed = match s {
+                QHeal1 => SAYU_SKILL.elemental_burst_heal1_fixed[s3],
+                QHeal2 => SAYU_SKILL.elemental_burst_heal2_fixed[s3],
+                _ => 0.0
+            };
+            let mut builder = D::new();
+            builder.add_atk_ratio("技能倍率", ratio);
+            builder.add_extra_damage("技能倍率", fixed);
+            if s == QHeal2 && context.character_common_data.constellation >= 6 {
+                let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                let extra = (em * 3.0).min(6000.0);
+                builder.add_extra_damage("6命：呼呼大睡时间", extra);
+            }
+            builder.heal(&context.attribute)
+        } else {
+            let ratio = match s {
+                Normal1 => SAYU_SKILL.normal_dmg1[s1],
+                Normal2 => SAYU_SKILL.normal_dmg2[s1],
+                Normal31 => SAYU_SKILL.normal_dmg31[s1],
+                Normal32 => SAYU_SKILL.normal_dmg32[s1],
+                Normal4 => SAYU_SKILL.normal_dmg4[s1],
+                Charged1 => SAYU_SKILL.charged_dmg1[s1],
+                Charged2 => SAYU_SKILL.charged_dmg2[s1],
+                Plunging1 => SAYU_SKILL.plunging_dmg1[s1],
+                Plunging2 => SAYU_SKILL.plunging_dmg2[s1],
+                Plunging3 => SAYU_SKILL.plunging_dmg3[s1],
+                E1 => SAYU_SKILL.elemental_skill_dmg1[s2],
+                E2 => SAYU_SKILL.elemental_skill_dmg2[s2],
+                E3 => SAYU_SKILL.elemental_skill_dmg3[s2],
+                E4Cryo | E4Hydro | E4Electro | E4Pyro => SAYU_SKILL.elemental_skill_dmg4[s2],
+                E5Cryo | E5Hydro | E5Electro | E5Pyro => SAYU_SKILL.elemental_skill_dmg5[s2],
+                Q1 => SAYU_SKILL.elemental_burst_dmg1[s3],
+                Q2 => SAYU_SKILL.elemental_burst_dmg2[s3],
+                _ => 0.0
+            };
+            let mut builder = D::new();
+            builder.add_atk_ratio("技能倍率", ratio);
+            if s == Q2 && context.character_common_data.constellation >= 6 {
+                let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                let bonus = (0.002 * em).min(4.0);
+                builder.add_atk_ratio("6命：呼呼大睡时间", bonus);
+            }
+            builder.damage(
+                &context.attribute,
+                &context.enemy,
+                s.get_element(),
+                s.get_skill_type(),
+                context.character_common_data.level
+            )
+        }
+    }
+
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: SayuRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            SayuRoleEnum::Normal => Box::new(SayuDefaultTargetFunction {
+                c6: c.constellation >= 6,
+                recharge_demand: 1.4
+            })
+        }
+    }
+}

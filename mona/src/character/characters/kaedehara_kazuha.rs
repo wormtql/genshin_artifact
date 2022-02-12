@@ -2,11 +2,11 @@ use num_derive::FromPrimitive;
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
-use crate::character::no_effect::NoEffect;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::CharacterTrait;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::ItemConfig;
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::KaedeharaKazuhaDefaultTargetFunction;
@@ -55,13 +55,18 @@ pub const KAEDEHARA_KAZUHA_SKILL: KaedeharaKazuhaSkillType = KaedeharaKazuhaSkil
 };
 
 pub const KAEDEHARA_KAZUHA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::KaedeharaKazuha,
+    chs: "枫原万叶",
     element: Element::Anemo,
     hp: [1039, 2695, 3586, 5366, 5999, 6902, 7747, 8659, 9292, 10213, 10849, 11777, 12410, 13348],
     atk: [23, 60, 80, 119, 133, 153, 172, 192, 206, 227, 241, 262, 276, 297],
     def: [63, 163, 217, 324, 363, 417, 468, 523, 562, 617, 656, 712, 750, 807],
     sub_stat: CharacterSubStatFamily::ElementalMastery115,
     weapon_type: WeaponType::Sword,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·我流剑术",
+    skill_name2: "千早振",
+    skill_name3: "万叶之一刀"
 };
 
 pub struct KaedeharaKazuha;
@@ -139,6 +144,42 @@ impl CharacterTrait for KaedeharaKazuha {
     type DamageEnumType = KaedeharaKazuhaDamageEnum;
     type RoleEnum = KaedeharaKazuhaRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal31 as usize, chs: "三段伤害-1" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal32 as usize, chs: "三段伤害-2" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal4 as usize, chs: "四段伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal5 as usize, chs: "五段伤害/3" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Charged11 as usize, chs: "重击伤害-1" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Charged11 as usize, chs: "重击伤害-2" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingE1 as usize, chs: "乱岚拨止：下坠期间伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingE2 as usize, chs: "乱岚拨止：低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingE3 as usize, chs: "乱岚拨止：高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingPyro as usize, chs: "乱岚拨止：火元素转化伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingHydro as usize, chs: "乱岚拨止：水元素转化伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingCryo as usize, chs: "乱岚拨止：冰元素转化伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingElectro as usize, chs: "乱岚拨止：雷元素转化伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::E1 as usize, chs: "点按技能伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::E2 as usize, chs: "长按技能伤害" },
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q1 as usize, chs: "斩击伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q2 as usize, chs: "持续伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Pyro as usize, chs: "附加火元素伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Hydro as usize, chs: "附加水元素伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Cryo as usize, chs: "附加冰元素伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Electro as usize, chs: "附加雷元素伤害" },
+        ])
+    };
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: KaedeharaKazuhaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -174,8 +215,8 @@ impl CharacterTrait for KaedeharaKazuha {
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(NoEffect)
+    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        None
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

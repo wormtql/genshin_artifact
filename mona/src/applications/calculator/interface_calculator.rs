@@ -2,11 +2,11 @@ use std::collections::HashMap;
 use serde::{Serialize, Deserialize};
 use wasm_bindgen::JsValue;
 use wasm_bindgen::prelude::*;
-use crate::applications::common::{CharacterInterface, SkillInterface, TargetFunctionInterface, WeaponInterface};
+use crate::applications::common::{BuffInterface, CharacterInterface, SkillInterface, TargetFunctionInterface, WeaponInterface};
 use crate::artifacts::{Artifact, ArtifactList};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
 use crate::attribute::{AttributeUtils, ComplicatedAttributeGraph, SimpleAttributeGraph2};
-use crate::buffs::{Buff, BuffType};
+use crate::buffs::{Buff, BuffConfig};
 use crate::character::{Character, CharacterName};
 use crate::character::characters::damage;
 use crate::character::traits::CharacterTrait;
@@ -25,7 +25,7 @@ pub struct CalculatorInterface {}
 pub struct CalculatorConfigInterface {
     pub character: CharacterInterface,
     pub weapon: WeaponInterface,
-    pub buffs: Vec<BuffType>,
+    pub buffs: Vec<BuffInterface>,
     pub artifacts: Vec<Artifact>,
     pub artifact_config: Option<ArtifactEffectConfig>,
     pub skill: SkillInterface
@@ -42,7 +42,7 @@ impl CalculatorInterface {
         let character: Character<ComplicatedAttributeGraph> = input.character.to_character();
         let weapon = input.weapon.to_weapon(&character);
 
-        let buffs: Vec<Box<dyn Buff<ComplicatedAttributeGraph>>> = input.buffs.iter().map(|x| x.into()).collect();
+        let buffs: Vec<Box<dyn Buff<ComplicatedAttributeGraph>>> = input.buffs.iter().map(|x| x.to_buff()).collect();
         let artifacts: Vec<&Artifact> = input.artifacts.iter().collect();
 
         // utils::log!("{:?}", default_artifact_config);

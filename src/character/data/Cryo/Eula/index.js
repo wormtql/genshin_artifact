@@ -1,6 +1,5 @@
 import card from "./card.png"
 import avatar from "@asset/badges/youla.png"
-// import skill from "./youla.skill.js";
 import splash from "./splash.png"
 
 const g1 = "普通攻击·西风剑术·宗室"
@@ -36,5 +35,4 @@ export default {
         { index: 16, chs: "技能伤害", group: g3 },
         { index: 17, chs: "光降之剑", group: g3 }
     ]
-    // skill,
 }

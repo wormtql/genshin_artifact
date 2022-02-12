@@ -1,19 +1,40 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::{ArtifactEffectConfig, ConfigArchaicPetra, ConfigLevel, ConfigRate};
 use crate::attribute::SimpleAttributeGraph2;
-use crate::character::Character;
+use crate::character::{Character, CharacterName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::Diluc;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
 use crate::common::{Element, StatName};
+use crate::common::item_config_type::ItemConfig;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
+use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
-use crate::target_functions::TargetFunction;
+use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
+use crate::target_functions::target_function::TargetFunctionMetaTrait;
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct DilucDefaultTargetFunction;
+
+impl TargetFunctionMetaTrait for DilucDefaultTargetFunction {
+    #[cfg(not(target_family = "wasm"))]
+    const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
+        name: TargetFunctionName::DilucDefault,
+        chs: "迪卢克-晨曦酒庄的贵公子",
+        description: "普通输出迪卢克",
+        tags: "输出",
+        four: TargetFunctionFor::SomeWho(CharacterName::Diluc),
+        image: TargetFunctionMetaImage::Avatar
+    };
+
+    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, _config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        Box::new(DilucDefaultTargetFunction)
+    }
+}
 
 impl TargetFunction for DilucDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
@@ -28,6 +49,7 @@ impl TargetFunction for DilucDefaultTargetFunction {
             elemental_mastery: 0.5,
             critical: 1.0,
             critical_damage: 1.0,
+            healing_bonus: 0.0,
             bonus_electro: 0.0,
             bonus_pyro: 2.0,
             bonus_hydro: 0.0,
@@ -54,6 +76,10 @@ impl TargetFunction for DilucDefaultTargetFunction {
                 ArtifactSetName::ShimenawasReminiscence,
                 ArtifactSetName::CrimsonWitchOfFlames,
             ]),
+            very_critical_set_names: None,
+            normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
+            critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
+            very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
         }
     }
 
@@ -86,7 +112,7 @@ impl TargetFunction for DilucDefaultTargetFunction {
         }
     }
 
-    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, artifacts: &Vec<&Artifact>, enemy: &Enemy) -> f64 {
+    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &Vec<&Artifact>, enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
             attribute, enemy

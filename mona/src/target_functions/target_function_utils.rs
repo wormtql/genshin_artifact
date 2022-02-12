@@ -1,4 +1,4 @@
-use crate::attribute::{Attribute, SimpleAttributeGraph2};
+use crate::attribute::{SimpleAttributeGraph2};
 use super::target_function::TargetFunction;
 use super::target_function_name::TargetFunctionName;
 use super::target_function_config::TargetFunctionConfig;

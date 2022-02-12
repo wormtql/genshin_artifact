@@ -1,17 +1,22 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::{ArtifactEffectConfig, ConfigLevel};
 use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
-use crate::character::Character;
+use crate::character::{Character, CharacterName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::Gorou;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
 use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
-use crate::target_functions::{TargetFunction, TargetFunctionConfig};
+use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
+use crate::target_functions::target_function::TargetFunctionMetaTrait;
+use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct GorouDefaultTargetFunction {
     pub recharge_demand: f64,
@@ -30,6 +35,31 @@ impl GorouDefaultTargetFunction {
     }
 }
 
+impl TargetFunctionMetaTrait for GorouDefaultTargetFunction {
+    #[cfg(not(target_family = "wasm"))]
+    const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
+        name: TargetFunctionName::GorouDefault,
+        chs: "五郎-戎犬锵锵",
+        description: "普通岩辅五郎",
+        tags: "辅助",
+        four: TargetFunctionFor::SomeWho(CharacterName::Gorou),
+        image: TargetFunctionMetaImage::Avatar
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "recharge_demand",
+            title: ItemConfig::DEFAULT_RECHARGE_TITLE,
+            config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.7 }
+        }
+    ]);
+
+    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        Box::new(GorouDefaultTargetFunction::new(config))
+    }
+}
+
 impl TargetFunction for GorouDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
         TargetFunctionOptConfig {
@@ -43,6 +73,7 @@ impl TargetFunction for GorouDefaultTargetFunction {
             elemental_mastery: 0.3,
             critical: 1.0,
             critical_damage: 1.0,
+            healing_bonus: 0.0,
             bonus_electro: 0.0,
             bonus_pyro: 0.0,
             bonus_hydro: 0.0,
@@ -69,6 +100,10 @@ impl TargetFunction for GorouDefaultTargetFunction {
                 ArtifactSetName::NoblesseOblige,
                 ArtifactSetName::EmblemOfSeveredFate,
             ]),
+            very_critical_set_names: None,
+            normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
+            critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
+            very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
         }
     }
 
@@ -96,7 +131,7 @@ impl TargetFunction for GorouDefaultTargetFunction {
         }
     }
 
-    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, artifacts: &Vec<&Artifact>, enemy: &Enemy) -> f64 {
+    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &Vec<&Artifact>, enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
             attribute, enemy

@@ -3,7 +3,6 @@ use crate::common::ChangeAttribute;
 use crate::attribute::Attribute;
 use crate::character::CharacterName;
 use crate::character::character_config::CharacterConfig;
-use crate::damage::damage_builder::DamageBuilder;
 use super::characters::get_effect;
 
 pub struct Character<T> {

@@ -2,10 +2,11 @@ use num_derive::FromPrimitive;
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterStaticData};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
-use crate::character::traits::CharacterTrait;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::kamisato_ayaka_default::KamisatoAyakaDefaultTargetFunction;
@@ -46,13 +47,18 @@ pub const KAMISATO_AYAKA_SKILL: KamisatoAyakaSkillType = KamisatoAyakaSkillType 
 };
 
 pub const KAMISATO_AYAKA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::KamisatoAyaka,
+    chs: "神里绫华",
     element: Element::Cryo,
     hp: [1011, 2597, 3455, 5170, 5779, 6649, 7462, 8341, 8951, 9838, 10448, 11345, 11954, 12858],
     atk: [27, 69, 92, 138, 154, 177, 198, 222, 238, 262, 278, 302, 318, 342],
     def: [61, 158, 211, 315, 352, 405, 455, 509, 546, 600, 637, 692, 729, 784],
     sub_stat: CharacterSubStatFamily::CriticalDamage384,
     weapon_type: WeaponType::Sword,
-    star: 5
+    star: 5,
+    skill_name1: "普通攻击·神里流·倾",
+    skill_name2: "神里流·冰华",
+    skill_name3: "神里流·霜灭"
 };
 
 pub struct KamisatoAyakaEffect {
@@ -152,6 +158,51 @@ impl CharacterTrait for KamisatoAyaka {
     type DamageEnumType = KamisatoAyakaDamageEnum;
     type RoleEnum = KamisatoAyakaRoleEnum;
 
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::Normal1 as usize, chs: "一段伤害" },
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::Normal2 as usize, chs: "二段伤害" },
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::Normal3 as usize, chs: "三段伤害" },
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::Normal4 as usize, chs: "四段伤害/3" },
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::Normal5 as usize, chs: "五段伤害" },
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::Charged as usize, chs: "重击伤害/3" },
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::E1 as usize, chs: "技能伤害" }
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::Q1 as usize, chs: "切割伤害" },
+            CharacterSkillMapItem { index: KamisatoAyakaDamageEnum::Q2 as usize, chs: "绽放伤害" },
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "talent1_rate",
+            title: "天赋「天罪国罪镇词」应用比例",
+            config: ItemConfig::RATE01_TYPE
+        },
+        ItemConfig {
+            name: "talent2_rate",
+            title: "天赋「寒天宣命祝词」应用比例",
+            config: ItemConfig::RATE01_TYPE
+        }
+    ]);
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "after_dash",
+            title: "神里流·霰步",
+            config: ItemConfigType::Bool { default: true }
+        }
+    ]);
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
         let s: KamisatoAyakaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -189,8 +240,8 @@ impl CharacterTrait for KamisatoAyaka {
         )
     }
 
-    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Box<dyn ChangeAttribute<A>> {
-        Box::new(KamisatoAyakaEffect::new(common_data, config))
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(KamisatoAyakaEffect::new(common_data, config)))
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

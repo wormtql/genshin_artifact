@@ -1,3 +1,5 @@
+#![allow(unused_imports)]
+
 pub mod character;
 pub mod attribute;
 pub mod artifacts;
@@ -10,7 +12,13 @@ pub mod applications;
 pub mod utils;
 pub mod damage;
 pub mod team;
+pub mod team_target;
 
+// calculator
 pub use applications::calculator::interface_calculator::{CalculatorInterface};
+// optimize single
 pub use applications::optimize_artifacts::OptimizeSingleWasm;
+// optimize team
+pub use applications::team_optimize::interface_wasm::TeamOptimizationWasm;
+// get attribute
 pub use applications::common_interface::CommonInterface;

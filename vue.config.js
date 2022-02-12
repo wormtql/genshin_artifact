@@ -55,6 +55,7 @@ module.exports = {
     publicPath: process.env.PublicPath || '/',
     configureWebpack: {
         resolve: {
+            extensions: [".vue", ".png", ".jpg"],
             alias: {
                 "@c": path.resolve(__dirname, "src/components"),
                 "@asset": path.resolve(__dirname, "src/assets"),
@@ -69,6 +70,8 @@ module.exports = {
                 "@character": path.resolve(__dirname, "src/character"),
                 "@weapon": path.resolve(__dirname, "src/weapon"),
                 "@targetFunction": path.resolve(__dirname, "src/target_function"),
+                "@buff": path.resolve(__dirname, "src/assets/buff"),
+                "@image": path.resolve(__dirname, "src/images"),
                 // "genshin_panel": path.resolve(__dirname, "../../ts/genshin/dist"),
             }
         },
@@ -94,44 +97,44 @@ module.exports = {
         // },
         module: {
             rules: [
-                {
-                    test: /\.ccfg\.yaml$/,
-                    use: [
-                        "vue-loader",
-                        {
-                            loader: path.resolve(loaderPath, "character_config_loader.js"),
-                            options: {
-                                type: "character"
-                            }
-                        }
-                    ]
-                },
-                {
-                    test: /\.cscfg\.yaml$/,
-                    use: [
-                        "vue-loader",
-                        {
-                            loader: path.resolve(loaderPath, "character_config_loader.js"),
-                            options: {
-                                type: "characterSkill"
-                            }
-                        }
-                    ]
-                },
-                {
-                    test: /\.wcfg\.yaml$/,
-                    use: [
-                        "vue-loader",
-                        path.resolve(loaderPath, "weapon_config_loader.js")
-                    ]
-                },
-                {
-                    test: /\.tfcfg\.yaml$/,
-                    use: [
-                        "vue-loader",
-                        path.resolve(loaderPath, "target_function_config_loader.js")
-                    ]
-                }
+                // {
+                //     test: /\.ccfg\.yaml$/,
+                //     use: [
+                //         "vue-loader",
+                //         {
+                //             loader: path.resolve(loaderPath, "character_config_loader.js"),
+                //             options: {
+                //                 type: "character"
+                //             }
+                //         }
+                //     ]
+                // },
+                // {
+                //     test: /\.cscfg\.yaml$/,
+                //     use: [
+                //         "vue-loader",
+                //         {
+                //             loader: path.resolve(loaderPath, "character_config_loader.js"),
+                //             options: {
+                //                 type: "characterSkill"
+                //             }
+                //         }
+                //     ]
+                // },
+                // {
+                //     test: /\.wcfg\.yaml$/,
+                //     use: [
+                //         "vue-loader",
+                //         path.resolve(loaderPath, "weapon_config_loader.js")
+                //     ]
+                // },
+                // {
+                //     test: /\.tfcfg\.yaml$/,
+                //     use: [
+                //         "vue-loader",
+                //         path.resolve(loaderPath, "target_function_config_loader.js")
+                //     ]
+                // },
             ]
         },
         externals: {
@@ -140,6 +143,7 @@ module.exports = {
             vuex: "Vuex",
             "element-ui": "ELEMENT",
             "vue-echarts": "VueECharts",
+            "fuse.js": "Fuse",
         },
         experiments: {
             asyncWebAssembly: true

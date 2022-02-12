@@ -1,7 +1,6 @@
-import card from "./card.jpg";
+import card from "./card.jpg"
 import splash from "./splash.png"
-import avatar from "@asset/badges/anbo.png";
-import skill from "./anbo.skill.js";
+import avatar from "@asset/badges/anbo.png"
 
 export default {
     card,
@@ -12,7 +11,6 @@ export default {
     weapon: "Bow",
     star: 4,
     avatar,
-    skill,
     skillMap: [
         { index: 0, chs: "普攻1段", group: "普通攻击" },
         { index: 1, chs: "普攻2段", group: "普通攻击" },

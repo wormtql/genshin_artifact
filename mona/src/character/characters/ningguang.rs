@@ -1,6 +1,18 @@
+use num_derive::FromPrimitive;
+use crate::attribute::{Attribute, AttributeName};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::CharacterStaticData;
-use crate::common::{Element, StatName, WeaponType};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
+use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
+use crate::common::item_config_type::ItemConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::target_functions::NingguangDefaultTargetFunction;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct NingguangSkillType {
     pub normal_dmg1: [f64; 15],
@@ -29,11 +41,152 @@ pub const NINGGUANG_SKILL: NingguangSkillType = NingguangSkillType {
 };
 
 pub const NINGGUANG_STATIC_DATA: CharacterStaticData = CharacterStaticData {
+    name: CharacterName::Ningguang,
+    chs: "凝光",
     element: Element::Geo,
     hp: [821, 2108, 2721, 4076, 4512, 5189, 5770, 6448, 6884, 7561, 7996, 8674, 9110, 9787],
     atk: [18, 46, 59, 88, 98, 113, 125, 140, 149, 164, 174, 188, 198, 212],
     def: [48, 123, 159, 239, 264, 304, 338, 378, 403, 443, 468, 508, 534, 573],
     sub_stat: CharacterSubStatFamily::Bonus240(StatName::GeoBonus),
     weapon_type: WeaponType::Catalyst,
-    star: 4
+    star: 4,
+    skill_name1: "普通攻击·千金掷",
+    skill_name2: "璇玑屏",
+    skill_name3: "天权崩玉"
 };
+
+pub struct NingguangEffect {
+    pub has_talent2: bool,
+    pub rate: f64
+}
+
+impl NingguangEffect {
+    pub fn new(common_data: &CharacterCommonData, config: &CharacterConfig) -> NingguangEffect {
+        let rate = match *config {
+            CharacterConfig::Ningguang { talent2_rate } => talent2_rate,
+            _ => 0.0
+        };
+        NingguangEffect {
+            has_talent2: common_data.has_talent2,
+            rate
+        }
+    }
+}
+
+impl<A: Attribute> ChangeAttribute<A> for NingguangEffect {
+    fn change_attribute(&self, attribute: &mut A) {
+        if self.has_talent2 {
+            attribute.set_value_by(AttributeName::BonusGeo, "凝光天赋：储之千日，用之一刻", self.rate * 0.12);
+        }
+    }
+}
+
+pub struct Ningguang;
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum NingguangDamageEnum {
+    Normal,
+    Charged1,
+    Charged2,
+    Plunging1,
+    Plunging2,
+    Plunging3,
+    E1,
+    Q1,
+}
+
+impl NingguangDamageEnum {
+    pub fn get_skill_type(&self) ->SkillType {
+        use NingguangDamageEnum::*;
+        match *self {
+            Normal => SkillType::NormalAttack,
+            Charged1 | Charged2 => SkillType::ChargedAttack,
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            E1 => SkillType::ElementalSkill,
+            Q1 => SkillType::ElementalBurst
+        }
+    }
+}
+
+impl Into<usize> for NingguangDamageEnum {
+    fn into(self) -> usize {
+        self as usize
+    }
+}
+
+#[derive(Copy, Clone, FromPrimitive)]
+pub enum NingguangRoleEnum {
+    MainAB, // 主打平A重击
+}
+
+impl CharacterTrait for Ningguang {
+    const STATIC_DATA: CharacterStaticData = NINGGUANG_STATIC_DATA;
+    type SkillType = NingguangSkillType;
+    const SKILL: Self::SkillType = NINGGUANG_SKILL;
+    type DamageEnumType = NingguangDamageEnum;
+    type RoleEnum = NingguangRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: Some(&[
+            CharacterSkillMapItem { index: NingguangDamageEnum::Normal as usize, chs: "普通攻击伤害" },
+            CharacterSkillMapItem { index: NingguangDamageEnum::Charged1 as usize, chs: "重击伤害" },
+            CharacterSkillMapItem { index: NingguangDamageEnum::Charged2 as usize, chs: "星璇伤害" },
+            CharacterSkillMapItem { index: NingguangDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
+            CharacterSkillMapItem { index: NingguangDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
+            CharacterSkillMapItem { index: NingguangDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+        ]),
+        skill2: Some(&[
+            CharacterSkillMapItem { index: NingguangDamageEnum::E1 as usize, chs: "技能伤害" }
+        ]),
+        skill3: Some(&[
+            CharacterSkillMapItem { index: NingguangDamageEnum::Q1 as usize, chs: "每颗宝石伤害" }
+        ])
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "talent2_rate",
+            title: "天赋「储之千日，用之一刻」应用比例",
+            config: ItemConfig::RATE01_TYPE
+        }
+    ]);
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+        let s: NingguangDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use NingguangDamageEnum::*;
+        let ratio = match s {
+            Normal => NINGGUANG_SKILL.normal_dmg1[s1],
+            Charged1 => NINGGUANG_SKILL.charged_dmg1[s1],
+            Charged2 => NINGGUANG_SKILL.charged_dmg2[s1],
+            Plunging1 => NINGGUANG_SKILL.plunging_dmg1[s1],
+            Plunging2 => NINGGUANG_SKILL.plunging_dmg2[s1],
+            Plunging3 => NINGGUANG_SKILL.plunging_dmg3[s1],
+            E1 => NINGGUANG_SKILL.elemental_skill_dmg1[s2],
+            Q1 => NINGGUANG_SKILL.elemental_burst_dmg1[s3]
+        };
+        let mut builder = D::new();
+        builder.add_atk_ratio("技能倍率", ratio);
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            Element::Geo,
+            s.get_skill_type(),
+            context.character_common_data.level
+        )
+    }
+
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(NingguangEffect::new(common_data, config)))
+    }
+
+    fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        let role: NingguangRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        match role {
+            NingguangRoleEnum::MainAB => Box::new(NingguangDefaultTargetFunction)
+        }
+    }
+}

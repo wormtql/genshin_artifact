@@ -9,7 +9,7 @@ use super::weapon_config::WeaponConfig;
 
 pub struct Weapon<T> {
     pub common_data: WeaponCommonData,
-    pub effect: Box<dyn WeaponEffect<T>>,
+    pub effect: Option<Box<dyn WeaponEffect<T>>>,
 }
 
 impl<T: Attribute> Weapon<T> {
@@ -22,7 +22,7 @@ impl<T: Attribute> Weapon<T> {
         character: &Character<T>,
     ) -> Weapon<T> {
         let common_data = WeaponCommonData::new(name, level, ascend, refine);
-        let effect = get_effect(name, config, character);
+        let effect = get_effect(name, config, &character.common_data);
 
         Weapon {
             common_data,
@@ -34,6 +34,9 @@ impl<T: Attribute> Weapon<T> {
 impl<T: Attribute> ChangeAttribute<T> for Weapon<T> {
     fn change_attribute(&self, attribute: &mut T) {
         self.common_data.change_attribute(attribute);
-        self.effect.apply(&self.common_data, attribute);
+
+        if let Some(ref effect) = self.effect {
+            effect.apply(&self.common_data, attribute);
+        }
     }
 }

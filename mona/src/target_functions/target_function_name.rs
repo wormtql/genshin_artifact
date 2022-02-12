@@ -1,11 +1,16 @@
+use num_derive::FromPrimitive;
 use serde::{Serialize, Deserialize};
+use mona_derive::{TargetFunctionData, EnumLen};
+use strum_macros::Display;
 
 #[derive(Serialize, Deserialize)]
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
+#[derive(TargetFunctionData, EnumLen, FromPrimitive, Display)]
 pub enum TargetFunctionName {
     // Expectation,
     // Max,
     AlbedoDefault,
+    AloyDefault,
     AmberDefault,
     AratakiIttoDefault,
     BarbaraDefault,
@@ -23,4 +28,30 @@ pub enum TargetFunctionName {
     KaedeharaKazuhaDefault,
     KaeyaDefault,
     KamisatoAyakaDefault,
+    KeqingDefault,
+    KleeDefault,
+    KujouSaraDefault,
+    LisaDefault,
+    MonaDefault,
+    NingguangDefault,
+    NoelleDefault,
+    QiqiDefault,
+    RaidenShogunDefault,
+    RazorDefault,
+    RosariaDefault,
+    SangonomiyaKokomiDefault,
+    SayuDefault,
+    ShenheDefault,
+    SucroseDefault,
+    TartagliaDefault,
+    ThomaDefault,
+    VentiDefault,
+    XianglingDefault,
+    XiaoDefault,
+    XingqiuDefault,
+    XinyanDefault,
+    YanfeiDefault,
+    YoimiyaDefault,
+    YunjinDefault,
+    ZhongliDefault,
 }
