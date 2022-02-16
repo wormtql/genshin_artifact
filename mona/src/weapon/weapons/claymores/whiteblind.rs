@@ -44,10 +44,13 @@ impl WeaponTrait for Whiteblind {
         weapon_sub_stat: WeaponSubStatFamily::DEF113,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("注能之锋：普通攻击和重击命中后，攻击力和防御力提高6%/7.5%/9%/10.5%/12%。该效果持续6秒，最多叠加4层，每0.5秒只能触发一次。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "白影剑"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",

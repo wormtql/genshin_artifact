@@ -34,7 +34,9 @@ impl WeaponTrait for TheBlackSword {
         weapon_sub_stat: WeaponSubStatFamily::CriticalRate60,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("「正义」：普通攻击与重击造成的伤害提升20%/25%/30%/35%/40%；此外普通攻击和重击暴击时，恢复等同于攻击力60/70/80/90/100%的生命值。该效果每5秒至多发动一次。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "黑剑"
     };
 

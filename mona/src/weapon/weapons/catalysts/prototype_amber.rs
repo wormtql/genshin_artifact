@@ -17,7 +17,9 @@ impl WeaponTrait for PrototypeAmber {
         weapon_sub_stat: WeaponSubStatFamily::HP90,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("炊金：施放元素爆发后6秒内，每2秒恢复4/4.5/5/5.5/6点元素能量，队伍中的所有角色每2秒恢复4%/4.5%/5%/5.5%/6%生命值。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "试作金珀"
     };
 

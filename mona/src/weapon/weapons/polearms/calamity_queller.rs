@@ -50,10 +50,13 @@ impl WeaponTrait for CalamityQueller {
         weapon_sub_stat: WeaponSubStatFamily::ATK36,
         weapon_base: WeaponBaseATKFamily::ATK741,
         star: 5,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("获得12/15/18/21/24%所有元素伤害加成；施放元素战技后，获得持续20秒的「圆顿」，攻击力每1秒提升3.2/4/4.8/5.6/6.4%，该攻击力提升效果至多叠加6次。当装备此武器的角色处于队伍后台时，「圆顿」的攻击力提升效果翻倍。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "息灾"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",

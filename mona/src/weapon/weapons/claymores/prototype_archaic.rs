@@ -17,7 +17,9 @@ impl WeaponTrait for PrototypeArchaic {
         weapon_sub_stat: WeaponSubStatFamily::ATK60,
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("粉碎：普通攻击和重击命中时，有50%的概率对小范围内的敌人造成240%/300%/360%/420%/480%攻击力的额外伤害。该效果每15秒只能触发一次。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "试作古华"
     };
 

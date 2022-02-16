@@ -22,3 +22,6 @@ pub use applications::optimize_artifacts::OptimizeSingleWasm;
 pub use applications::team_optimize::interface_wasm::TeamOptimizationWasm;
 // get attribute
 pub use applications::common_interface::CommonInterface;
+
+pub use applications::bonus_per_stat::interface_wasm::BonusPerStat;
+

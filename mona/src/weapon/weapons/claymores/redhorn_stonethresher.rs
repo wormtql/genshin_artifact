@@ -37,7 +37,9 @@ impl WeaponTrait for RedhornStonethresher {
         weapon_sub_stat: WeaponSubStatFamily::CriticalDamage192,
         weapon_base: WeaponBaseATKFamily::ATK542,
         star: 5,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("防御力提高28/35/42/49/56%；普通攻击与重击造成的伤害值提高，提高数值相当于防御力的40/50/60/70/80%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "赤角石溃杵"
     };
 

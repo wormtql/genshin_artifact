@@ -43,10 +43,13 @@ impl WeaponTrait for LionsRoar {
         weapon_sub_stat: WeaponSubStatFamily::ATK90,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("踏火息雷：对处于火元素或雷元素影响下的敌人，造成的伤害提高20%/24%/28%/32%/36%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "匣里龙吟"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",

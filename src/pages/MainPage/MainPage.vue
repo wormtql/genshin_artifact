@@ -35,7 +35,7 @@
                         </el-button>
                     </div>
                 </el-header>
-                <el-main style="position: relative">
+                <el-main class="main" style="position: relative">
                     <keep-alive>
                         <router-view v-if="$route.meta.keepAlive" class="router-view"></router-view>
                     </keep-alive>
@@ -82,4 +82,8 @@ export default {
 #container {
     height: 100vh;
 }
+
+/*.main {*/
+/*    overflow-x: visible;*/
+/*}*/
 </style>

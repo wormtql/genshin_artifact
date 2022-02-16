@@ -34,7 +34,9 @@ impl WeaponTrait for TheStringless {
         weapon_sub_stat: WeaponSubStatFamily::EM36,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("无矢之歌：元素战技与元素爆发的伤害提高24％/30%/36%/42%/48%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "绝弦"
     };
 

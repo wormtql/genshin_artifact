@@ -11,6 +11,8 @@ pub use common::critical::BuffCritical;
 pub use common::critical_damage::BuffCriticalDamage;
 pub use common::custom_bonus::BuffCustomBonus;
 pub use common::elemental_mastery::BuffElementalMastery;
+pub use common::recharge::BuffRecharge;
+pub use resonance::{BuffResonanceGeo2, BuffResonancePyro2, BuffResonanceCryo2};
 pub use character::albedo::BuffAlbedoTalent2;
 pub use character::aloy::BuffAloyTalent1;
 pub use character::arataki_itto::BuffAratakiIttoC4;
@@ -42,12 +44,24 @@ pub use character::xinyan::{BuffXinyanC4, BuffXinyanTalent2};
 pub use character::yoimiya::BuffYoimiyaTalent2;
 pub use character::yunjin::{BuffYunjinC2, BuffYunjinQ};
 pub use character::zhongli::BuffZhongliShield;
+pub use weapon::sword::freedom_sworn::BuffFreedomSworn;
+pub use weapon::claymore::song_of_broken_pines::BuffSongOfBrokenPines;
+pub use weapon::claymore::wolfs_gravestone::BuffWolfsGravestone;
+pub use weapon::catalyst::thrilling_tales_of_dragon_slayers::BuffThrillingTalesOfDragonSlayers;
+pub use weapon::bow::elegy_of_the_end::BuffElegyOfTheEnd;
+pub use artifact::instructor::BuffInstructor4;
+pub use artifact::noblesse_oblige::BuffNoblesseOblige4;
+pub use artifact::archaic_petra::BuffArchaicPetra4;
+pub use artifact::viridescent_venerer::BuffViridescentVenerer4;
+pub use artifact::tenacity_of_the_millelith::BuffTenacityOfTheMillelith4;
 
 use crate::buffs::buff_name::BuffName;
 
 pub mod common;
 pub mod character;
 pub mod weapon;
+pub mod resonance;
+pub mod artifact;
 
 pub fn get_buff<T: Attribute>(name: &BuffName, b: &BuffConfig) -> Box<dyn Buff<T>> {
     name.create(b)

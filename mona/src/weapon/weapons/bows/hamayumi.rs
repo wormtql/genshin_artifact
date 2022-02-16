@@ -46,10 +46,13 @@ impl WeaponTrait for Hamayumi {
         weapon_sub_stat: WeaponSubStatFamily::ATK120,
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("普通攻击造成的伤害提升16/20/24/28/32%，重击造成的伤害提升12/15/18/21/24%。当装备该武器的角色元素能量等于100%时，这个效果提升100%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "破魔之弓"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig::RATE01
     ]);

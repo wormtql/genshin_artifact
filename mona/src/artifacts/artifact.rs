@@ -3,16 +3,19 @@ use std::collections::HashMap;
 use rand::{thread_rng, Rng};
 use num_derive::FromPrimitive;
 use serde::{Serialize, Deserialize};
+use strum_macros::Display;
+use mona_derive::{ArtifactData, EnumLen};
 
 use crate::common::StatName;
 use crate::attribute::{Attribute};
 use super::effect_config::ArtifactEffectConfig;
 use crate::character::{Character};
 use super::effects::get_effect;
+use crate::artifacts::effect::ArtifactEffect;
 
 #[derive(Serialize, Deserialize)]
 #[derive(Hash, Eq, PartialEq, Debug, Copy, Clone)]
-#[derive(FromPrimitive)]
+#[derive(FromPrimitive, ArtifactData, EnumLen, Display)]
 pub enum ArtifactSetName {
     Adventurer,
     ArchaicPetra,
@@ -117,7 +120,7 @@ impl Artifact {
                 (StatName::ElementalMastery, 10.0),
             ],
             main_stat: (StatName::ATKPercentage, 0.1),
-            id: 0
+            id: thread_rng().gen()
         }
     }
 }

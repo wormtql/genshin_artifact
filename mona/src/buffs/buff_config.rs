@@ -16,6 +16,7 @@ pub enum BuffConfig {
     CriticalDamage { p: f64 },
     CustomBonus { p: f64 },
     ElementalMastery { value: f64 },
+    Recharge { p: f64 },
 
     BennettQ { base_atk: f64, c1: bool, skill3: usize },
     GorouE1 { skill2: usize },
@@ -36,6 +37,18 @@ pub enum BuffConfig {
     VentiC6 { is_convert: bool, element: Element },
     YoimiyaTalent2 { talent1_stack: usize },
     YunjinQ { talent2: bool, skill3: usize, def: f64, ele_count: usize },
+
+    FreedomSworn { refine: usize },
+    SongOfBrokenPines { refine: usize },
+    WolfsGravestone { refine: usize },
+    ThrillingTalesOfDragonSlayers { refine: usize },
+    ElegyOfTheEnd { refine: usize },
+
+    ResonanceCryo2 { rate: f64 },
+    ResonanceGeo2 { rate1: f64, rate2: f64 },
+
+    ArchaicPetra4 { element: Element },
+    ViridescentVenerer4 { element: Element },
 
     NoConfig,
 }

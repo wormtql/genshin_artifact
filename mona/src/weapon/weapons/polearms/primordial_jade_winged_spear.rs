@@ -49,10 +49,13 @@ impl WeaponTrait for PrimordialJadeWingedSpear {
         weapon_sub_stat: WeaponSubStatFamily::CriticalRate48,
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("昭理的鸢之枪：命中敌人时自身攻击力提高3.2%/3.9%/4.6%/5.3%/6%，持续6秒，最高可以叠加7层。该效果每0.3秒最多触发一次。满层状态时伤害提升12%/15%/18%/21%/24%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "和璞鸢"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",

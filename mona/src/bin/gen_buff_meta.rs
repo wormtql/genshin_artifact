@@ -1,6 +1,7 @@
 use mona::buffs::buff_meta::{BuffImage, BuffMetaData};
 use mona::buffs::buff_name::BuffName;
 use askama::Template;
+use mona::artifacts::artifact_trait::ArtifactMetaData;
 
 struct BuffMeta {
     name: String,
@@ -22,6 +23,21 @@ fn convert_image(i: &BuffImage) -> String {
         BuffImage::Avatar(x) => format!("characters/{}_avatar", x.to_string()),
         BuffImage::Custom(x) => String::from(x),
         BuffImage::Misc(x) => format!("misc/{}", x),
+        BuffImage::Weapon(x) => format!("weapons/{}_tn", x.to_string()),
+        BuffImage::Artifact(x) => {
+            let meta: ArtifactMetaData = x.get_meta();
+            if meta.flower.is_some() {
+                format!("artifacts/{}_flower", x.to_string())
+            } else if meta.feather.is_some() {
+                format!("artifacts/{}_feater", x.to_string())
+            } else if meta.sand.is_some() {
+                format!("artifacts/{}_sand", x.to_string())
+            } else if meta.goblet.is_some() {
+                format!("artifacts/{}_goblet", x.to_string())
+            } else {
+                format!("artifacts/{}_head", x.to_string())
+            }
+        }
     }
 }
 

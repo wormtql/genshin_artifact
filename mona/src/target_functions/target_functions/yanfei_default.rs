@@ -120,7 +120,7 @@ impl TargetFunction for YanfeiDefaultTargetFunction {
         let dmg_charged5 = Yanfei::damage::<SimpleDamageBuilder>(&context, S::Charged5, &config).normal.expectation;
         let dmg_talent2 = Yanfei::damage::<SimpleDamageBuilder>(&context, S::DmgTalent2, &config).normal.expectation;
 
-        let critical = attribute.get_critical_rate(Element::Pyro, SkillType::ChargedAttack);
+        let critical = attribute.get_critical_rate(Element::Pyro, SkillType::ChargedAttack).min(1.0);
 
         dmg_charged5 + critical * dmg_talent2
     }

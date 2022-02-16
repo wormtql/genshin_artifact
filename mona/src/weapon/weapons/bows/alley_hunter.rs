@@ -44,10 +44,13 @@ impl WeaponTrait for AlleyHunter {
         weapon_sub_stat: WeaponSubStatFamily::ATK60,
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("街巷伏击：装备该武器的角色处于队伍后台时，每1秒角色造成的伤害提升2%/2.5%/3%/3.5%/4%,最多通过这种方式获得20%/25%/30%/35%/40%的伤害提升；在场上超过4秒后，上述伤害提升效果每1秒会流失4%/5%/6%/7%/8%，直到降低至0%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "暗巷猎手",
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             config: ItemConfigType::Float {

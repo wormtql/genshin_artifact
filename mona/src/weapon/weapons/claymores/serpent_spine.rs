@@ -43,10 +43,13 @@ impl WeaponTrait for SerpentSpine {
         weapon_sub_stat: WeaponSubStatFamily::CriticalRate60,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("破浪：角色在场上时，每4秒提升6%/7%/8%/9%/10%造成的伤害，3%/2.7%/2.4%/2.2%/2%受到的伤害。该效果最多叠加5层，不随角色退场重置，受到伤害后会减少1层效果"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "螭骨剑"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",

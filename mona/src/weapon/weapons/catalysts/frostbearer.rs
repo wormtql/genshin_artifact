@@ -17,7 +17,9 @@ impl WeaponTrait for Frostbearer {
         weapon_sub_stat: WeaponSubStatFamily::ATK90,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("霜葬：普通攻击与重击命中敌人时，有60%/70%/80%/90/100%概率在敌人上方生成恒冰晶核并坠落，造成80%/95%/110%/125%/140%攻击力的范围伤害。若敌人处于冰元素影响下，则造成200%/240%/280%/320%/360%攻击力的伤害。该效果每10秒至多触发一次。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "忍冬之果"
     };
 

@@ -22,6 +22,15 @@
                 :step="1"
             ></el-slider>
         </template>
+        <template v-if="type === 'intInput'">
+            <el-input-number
+                size="mini"
+                :value="value"
+                @input="handleChangeValue"
+                :min="params.min"
+                :max="params.max"
+            ></el-input-number>
+        </template>
         <template v-if="type === 'bool'">
             <el-switch
                 :value="value"

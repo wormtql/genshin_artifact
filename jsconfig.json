@@ -13,7 +13,8 @@
 
             "@character/*": ["src/character/*"],
             "@weapon/*": ["src/weapon/*"],
-            "@targetFunction/*": ["src/targetFunction/*"]
+            "@targetFunction/*": ["src/targetFunction/*"],
+            "@artifact": ["src/assets/artifacts"]
         }
     }
 }

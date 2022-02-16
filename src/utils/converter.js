@@ -86,6 +86,6 @@ export function convertArtifact(artifact) {
     }
 }
 
-export function convertCharacter(characterConfig) {
-    
+export function convertArtifactName(name) {
+    return nameMap[name.toLowerCase()]
 }

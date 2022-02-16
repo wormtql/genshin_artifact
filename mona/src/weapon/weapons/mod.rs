@@ -78,6 +78,7 @@ pub use catalysts::favonius_codex::FavoniusCodex;
 pub use catalysts::eye_of_perception::EyeOfPerception;
 pub use catalysts::dodoco_tales::DodocoTales;
 pub use catalysts::blackcliff_agate::BlackcliffAgate;
+pub use catalysts::thrilling_tales_of_dragon_slayers::ThrillingTalesOfDragonSlayers;
 pub use bows::polar_star::PolarStar;
 pub use bows::thundering_pulse::ThunderingPulse;
 pub use bows::elegy_of_the_end::ElegyOfTheEnd;

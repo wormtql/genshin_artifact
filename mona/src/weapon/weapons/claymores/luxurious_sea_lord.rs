@@ -33,7 +33,9 @@ impl WeaponTrait for LuxuriousSeaLord {
         weapon_sub_stat: WeaponSubStatFamily::ATK120,
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("元素爆发造成的伤害提升12/15/18/21/24%。元素爆发命中敌人时，有100%概率召唤大鲔冲击，造成100/125/150/175/200%攻击力的范围伤害。该效果每15秒至多触发一次。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "衔珠海皇"
     };
 

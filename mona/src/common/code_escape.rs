@@ -12,10 +12,10 @@ impl Escaper for CodeEscaper {
                 '\'' => x.write_str("\\\'"),
                 '\\' => x.write_str("\\\\"),
                 _ => x.write_char(c)
-            };
+            }.unwrap();
         }
 
-        fmt.write_str(&x);
+        fmt.write_str(&x).unwrap();
 
         std::fmt::Result::Ok(())
     }

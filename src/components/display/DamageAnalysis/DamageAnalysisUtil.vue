@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 100%">
+    <div style="min-width: 100px">
         <div class="header">{{ title }}</div>
         <div>
             <div
@@ -8,15 +8,12 @@
                 class="item"
             >
                 <div class="item-top">
-                    <el-checkbox v-model="item.checked"></el-checkbox>
-                    <span class="name">{{ item.name }}</span>
+                    <el-checkbox v-model="item.checked">{{ item.name }}</el-checkbox>
+<!--                    <span class="name">{{ item.name }}</span>-->
                 </div>
                 <div class="item-bottom">
-                    <input type="text" v-model="item.value" class="input" />
+                    <input type="text" v-model.number="item.value" class="input" />
                 </div>
-                
-                
-                
             </div>
         </div>
     </div>
@@ -40,16 +37,17 @@ export default {
     height: 32px;
     justify-content: center;
     align-items: center;
-    background: #00000011;
+    background: rgb(236, 245, 255);
 }
 
 .item {
     padding: 4px;
-    border-bottom: 1px solid #00000011;
+    //border-bottom: 1px solid #00000011;
 
     .item-top {
         display: flex;
         align-items: center;
+        margin-bottom: 4px;
     }
 
     .name {
@@ -62,9 +60,13 @@ export default {
         width: 100%;
         box-sizing: border-box;
         padding: 4px;
+        transition: 200ms;
+        border-bottom: 1px solid transparent;
+        //transform-origin: left;
 
         &:focus {
-            background-color: #00000011;
+            //background-color: #00000005;
+            border-bottom: 1px solid #409EFF;
         }
     }
 }

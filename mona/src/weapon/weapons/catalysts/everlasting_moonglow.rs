@@ -34,7 +34,9 @@ impl WeaponTrait for EverlastingMoonglow {
         weapon_sub_stat: WeaponSubStatFamily::HP108,
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("治疗加成提升10/12.5/15/17.5/20%；普通攻击造成的伤害增加，增加值为装备该武器的角色生命值上限的1/1.5/2/2.5/3%。在施放元素爆发后的12秒内，普通攻击命中敌人时恢复0.6点元素能量，每0.1秒至多通过这种方式恢复一次元素能量。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "不灭月华"
     };
 

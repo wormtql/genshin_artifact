@@ -19,7 +19,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::utils;
 
-pub struct CalculatorInterface {}
+pub struct CalculatorInterface;
 
 #[derive(Serialize, Deserialize)]
 pub struct CalculatorConfigInterface {
@@ -35,7 +35,7 @@ pub struct CalculatorConfigInterface {
 impl CalculatorInterface {
     pub fn get_damage_analysis(value: &JsValue) -> JsValue {
         utils::set_panic_hook();
-        utils::log!("start");
+        // utils::log!("start");
 
         let input: CalculatorConfigInterface = value.into_serde().unwrap();
 

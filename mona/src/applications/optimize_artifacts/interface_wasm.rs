@@ -25,7 +25,10 @@ impl OptimizeSingleWasm {
     pub fn optimize(val: &JsValue) -> JsValue {
         utils::set_panic_hook();
 
-        let input: OptimizeArtifactInterface = val.into_serde().unwrap();
+        let input: OptimizeArtifactInterface = match val.into_serde() {
+            Ok(x) => x,
+            Err(e) => panic!("{}", e)
+        };
 
         let character = input.character.to_character();
         let weapon = input.weapon.to_weapon(&character);

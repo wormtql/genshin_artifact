@@ -1,7 +1,7 @@
 <template>
     <div class="buff-root">
         <div class="top" :class="{ lock: this.lock }">
-            <p class="buff-title">{{ buffCommon.chs }}</p>
+            <p class="buff-title">{{ data.chs }}</p>
             <div class="buttons">
                 <el-button
                     type="text"
@@ -19,13 +19,20 @@
                 ></el-button>
             </div>
         </div>
+
+        <div class="detail">
+            <img :src="data.badge">
+            <div>
+                <p v-if="data.description"><span v-html="data.description"></span></p>
+            </div>
+        </div>
         
         <item-config
-            v-if="buffCommon.configConfig.length > 0"
+            v-if="data.config.length > 0"
             :value="buffConfig"
             @input="handleChangeConfig"
             :item-name="buff.name"
-            :configs="buffCommon.configConfig"
+            :configs="data.config"
         ></item-config>
     </div>
 </template>
@@ -45,13 +52,8 @@ export default {
         }
     },
     computed: {
-        buffCommon() {
-            let data = buffData[this.buff.name]
-
-            return {
-                chs: data.chs,
-                configConfig: data.config,
-            }
+        data() {
+            return buffData[this.buff.name]
         },
 
         lock() {
@@ -63,7 +65,7 @@ export default {
 
 <style lang="scss" scoped>
 .buff-root {
-    background-color: rgb(239, 246, 253);
+    //background-color: rgb(239, 246, 253);
     margin-bottom: 12px;
 
     .top {
@@ -85,12 +87,32 @@ export default {
             font-size: 14px;
             margin: 0px;
             color: #666666;
+            margin-right: 24px;
         }
 
         .buttons {
+            display: flex;
             .button {
                 padding: 0;
             }
+        }
+    }
+
+    .detail {
+        display: flex;
+        padding: 8px;
+
+        img {
+            height: 64px;
+            width: 64px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        p {
+            margin: 0;
+            font-size: 12px;
+            color: #606266;
         }
     }
 }

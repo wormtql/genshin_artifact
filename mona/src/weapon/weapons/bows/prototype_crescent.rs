@@ -43,10 +43,13 @@ impl WeaponTrait for PrototypeCrescent {
         weapon_sub_stat: WeaponSubStatFamily::ATK90,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("离簇不归：瞄准射击时，若命中要害，则提升10%移动速度与36%/45%/54%/63%/72%攻击力，持续10秒。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "试作澹月"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig::RATE01,
     ]);

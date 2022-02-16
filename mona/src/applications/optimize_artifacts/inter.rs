@@ -25,6 +25,19 @@ pub struct ConstraintConfig {
     pub crit_dmg_min: Option<f64>,
 }
 
+impl ConstraintConfig {
+    pub fn is_any(&self) -> bool {
+        if let Some(ref x) = self.set_mode {
+            match x {
+                ConstraintSetMode::Any => true,
+                _ => false
+            }
+        } else {
+            false
+        }
+    }
+}
+
 impl Default for ConstraintConfig {
     fn default() -> Self {
         ConstraintConfig {

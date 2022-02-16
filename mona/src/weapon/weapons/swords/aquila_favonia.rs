@@ -33,7 +33,9 @@ impl WeaponTrait for AquilaFavonia {
         weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus90,
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
+        #[cfg(not(target_family = "wasm"))]
         chs: "风鹰剑",
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("西风之鹰的抗争：攻击力提高20%/25%/30%/35%/40%；受到伤害时触发：高扬抗争旗号的西风鹰之魂苏醒，恢复同等与攻击力的100%/115%/130%/145%/160%生命值，并对周围的敌人造成200%/230%/260%/290%/320%攻击力的伤害。该效果每15秒只能触发一次。")
     };
 

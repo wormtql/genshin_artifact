@@ -33,7 +33,9 @@ impl WeaponTrait for Rust {
         weapon_sub_stat: WeaponSubStatFamily::ATK90,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("速射弓斗：普通攻击伤害提升40%/50%/60%/70%/80%，重击伤害下降10%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "弓藏"
     };
 

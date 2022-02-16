@@ -47,10 +47,14 @@ import {
     Table,
     TableColumn,
     Popconfirm,
+    Popover,
     Tooltip,
-    Empty
+    Empty,
+    Autocomplete,
 } from "element-ui";
 
+Vue.use(Autocomplete)
+Vue.use(Popover)
 Vue.use(Empty)
 Vue.use(Tooltip)
 Vue.use(Popconfirm);

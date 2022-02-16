@@ -8,3 +8,4 @@ pub mod critical;
 pub mod critical_damage;
 pub mod custom_bonus;
 pub mod elemental_mastery;
+pub mod recharge;

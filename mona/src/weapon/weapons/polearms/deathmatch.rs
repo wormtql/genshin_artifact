@@ -50,10 +50,13 @@ impl WeaponTrait for Deathmatch {
         weapon_sub_stat: WeaponSubStatFamily::CriticalRate80,
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("角斗士：身边至少有2个敌人时，获得16%/20%/24%/28%/32%攻击力提升与16%/20%/24%/28%/32%防御力提升；身边的敌人少于2个时，获得24%/30%/36%/42%/48%攻击力提升。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "决斗之枪"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "ge2",

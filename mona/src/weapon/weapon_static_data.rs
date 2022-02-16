@@ -11,6 +11,8 @@ pub struct WeaponStaticData {
     pub weapon_sub_stat: WeaponSubStatFamily,
     pub weapon_base: WeaponBaseATKFamily,
     pub star: usize,
+    #[cfg(not(target_family = "wasm"))]
     pub effect: Option<&'static str>,
+    #[cfg(not(target_family = "wasm"))]
     pub chs: &'static str,
 }

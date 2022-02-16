@@ -52,10 +52,13 @@ impl WeaponTrait for Predator {
         weapon_sub_stat: WeaponSubStatFamily::ATK90,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("对敌人造成冰元素伤害后，普通攻击与重击造成的伤害提高10%，效果持续6秒，至多叠加2次；此外，埃洛伊装备掠食者时，攻击力提升66点。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "掠食者"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig::STACK02
     ]);

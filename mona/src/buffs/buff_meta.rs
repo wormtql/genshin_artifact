@@ -1,4 +1,5 @@
 use strum_macros::Display;
+use crate::artifacts::ArtifactSetName;
 use crate::buffs::buff_name::BuffName;
 use crate::character::CharacterName;
 use crate::weapon::WeaponName;
@@ -6,7 +7,9 @@ use crate::weapon::WeaponName;
 pub enum BuffImage {
     Custom(&'static str),
     Avatar(CharacterName),
+    Weapon(WeaponName),
     Misc(&'static str),
+    Artifact(ArtifactSetName),
 }
 
 #[derive(Display)]
@@ -22,6 +25,7 @@ pub enum BuffGenre {
 pub enum BuffFrom {
     Character(CharacterName),
     Weapon(WeaponName),
+    Artifact(ArtifactSetName),
     Common,
     Resonance,
 }

@@ -43,10 +43,13 @@ impl WeaponTrait for Rainslasher {
         weapon_sub_stat: WeaponSubStatFamily::EM36,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("止水息雷：对处于水元素或雷元素影响下的敌人，造成的伤害提高20％/24%/28%/32%/36%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "雨裁"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",

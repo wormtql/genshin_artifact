@@ -44,10 +44,13 @@ impl WeaponTrait for PrototypeRancour {
         weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus75,
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("碎石：普通攻击或重击命中时，攻击力（原为基础攻击力）和防御力提高4%/5%/6%/7%/8%，持续6秒，最多叠加4层。该效果每0.3秒只能触发一次。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "试作斩岩"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",

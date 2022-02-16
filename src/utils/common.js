@@ -47,3 +47,12 @@ export function recommendAttribute(d) {
     
     return chs;
 }
+
+export function toSnakeCase(s) {
+    let temp = s.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
+    if (temp.startsWith("_")) {
+        return temp.substr(1)
+    } else {
+        return temp
+    }
+}

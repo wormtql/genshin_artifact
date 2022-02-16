@@ -44,10 +44,13 @@ impl WeaponTrait for PrototypeStarglitter {
         weapon_sub_stat: WeaponSubStatFamily::Recharge100,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("嗜魔：施放元素战技后，普通攻击和重击造成的伤害提高8%/10%/12%/14%/16%。该效果持续12秒，最多叠加2层。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "试作星镰"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",

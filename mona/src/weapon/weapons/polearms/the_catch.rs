@@ -34,7 +34,9 @@ impl WeaponTrait for TheCatch {
         weapon_sub_stat: WeaponSubStatFamily::Recharge100,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("元素爆发造成的伤害提升16/20/24/28/32/%，元素爆发的暴击率提升6/7.5/9/10.5/12%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "「渔获」"
     };
 

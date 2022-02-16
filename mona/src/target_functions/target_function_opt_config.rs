@@ -39,7 +39,7 @@ pub struct TargetFunctionOptConfig {
 }
 
 impl TargetFunctionOptConfig {
-    pub const DEFAULT_NORMAL_THRESHOLD: f64 = 0.7;
+    pub const DEFAULT_NORMAL_THRESHOLD: f64 = 0.75;
     pub const DEFAULT_CRITICAL_THRESHOLD: f64 = 0.5;
     pub const DEFAULT_VERY_CRITICAL_THRESHOLD: f64 = 0.1;
 

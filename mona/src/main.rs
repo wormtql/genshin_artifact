@@ -1,19 +1,43 @@
 use std::time;
+use mona::applications::bonus_per_stat::bonus_per_stat::{bonus_per_stat, BonusPerStatInput};
 
 use mona::attribute::{AttributeName, AttributeUtils, ComplicatedAttributeGraph};
 use mona::common::{ChangeAttribute, StatName, Element, SkillType};
 use mona::weapon::{WeaponName, WeaponConfig, Weapon};
-use mona::artifacts::{Artifact, ArtifactSlotName};
+use mona::artifacts::{Artifact, ArtifactSetName, ArtifactSlotName};
 use mona::character::character_config::CharacterConfig;
 use mona::target_functions::{TargetFunctionConfig, TargetFunctionName, TargetFunctionUtils};
 use mona::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use mona::applications::calculator::interface_calculator::CalculatorInterface;
+use mona::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode};
 use mona::applications::optimize_artifacts::single_optimize::{optimize_single, optimize_single_interface};
 use mona::character::{Character, CharacterName};
 use mona::character::skill_config::CharacterSkillConfig;
 use mona::damage::DamageContext;
 use mona::enemies::Enemy;
+use mona::target_functions::target_functions::get_target_function;
 
+
+fn test_bonus_per_stat() {
+    let character = Character::new(CharacterName::Amber, 90, false, 0, 7, 7, 7, &CharacterConfig::NoConfig);
+    let weapon = Weapon::new(WeaponName::PolarStar, 90, false, 1, &WeaponConfig::PolarStar { stack: 1 }, &character);
+    let tf = get_target_function(
+        TargetFunctionName::AmberDefault,
+        &character, &weapon, &TargetFunctionConfig::NoConfig
+    );
+
+    let output = bonus_per_stat(BonusPerStatInput {
+        character: &character,
+        weapon: &weapon,
+        artifacts: &[],
+        enemy: &Default::default(),
+        tf: &tf,
+        buffs: &[],
+        artifacts_config: None
+    });
+
+    println!("{:?}", output);
+}
 
 fn perf() {
     let character = CharacterInterface {
@@ -51,17 +75,46 @@ fn perf() {
 
     let now = time::SystemTime::now();
 
+    let constraint = ConstraintConfig {
+        set_mode: Some(ConstraintSetMode::Set4(ArtifactSetName::BlizzardStrayer)),
+        hp_min: None,
+        atk_min: None,
+        def_min: None,
+        recharge_min: None,
+        em_min: None,
+        crit_min: None,
+        crit_dmg_min: None
+    };
+
     let results = optimize_single_interface(
         &artifacts_ref,
         None,
         &character,
         &weapon,
         &target_function,
-        None,
+        Some(&constraint),
         &Vec::new(),
         10
     );
     println!("{:?}", results);
+
+    // for art in artifacts.iter() {
+    //     if art.id == results[0].flower.unwrap() {
+    //         println!("{:?}", art);
+    //     }
+    //     if art.id == results[0].feather.unwrap() {
+    //         println!("{:?}", art);
+    //     }
+    //     if art.id == results[0].sand.unwrap() {
+    //         println!("{:?}", art);
+    //     }
+    //     if art.id == results[0].goblet.unwrap() {
+    //         println!("{:?}", art);
+    //     }
+    //     if art.id == results[0].head.unwrap() {
+    //         println!("{:?}", art);
+    //     }
+    // }
 
     println!("{}s", now.elapsed().unwrap().as_secs())
 }
@@ -134,7 +187,8 @@ fn skill_interface() {
 
 fn main() {
     // perf::<ComplicatedAttributeGraph>();
-    perf();
+    // perf();
+    test_bonus_per_stat();
 
     // skill();
     // skill_interface();

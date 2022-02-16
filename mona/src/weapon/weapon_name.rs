@@ -112,7 +112,7 @@ pub enum WeaponName {
     // MagicGuide,         // todo 3*
     // OtherworldlyStory,
     // EmeraldOrb,
-    // ThrillingTalesOfDragonSlayers,
+    ThrillingTalesOfDragonSlayers,
     // TwinNephrite,
     // PocketGrimoire,
     // ApprenticesNotes,

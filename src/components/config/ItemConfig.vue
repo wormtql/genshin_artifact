@@ -1,5 +1,6 @@
 <template>
     <div class="config-root" :style="styleRoot">
+<!--        {{ configs }}-->
         <ConfigItem
             class="config"
             v-for="config in configs"

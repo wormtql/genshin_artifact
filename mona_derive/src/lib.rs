@@ -7,6 +7,56 @@ use crate::utils::get_enum_variants;
 
 mod utils;
 
+#[proc_macro_derive(ArtifactData)]
+pub fn derive_artifact_data(input: TokenStream) -> TokenStream {
+    let ast = parse_macro_input!(input as DeriveInput);
+    let mut vars = get_enum_variants(&ast);
+
+    let mut rows_effect = String::new();
+    let mut rows_meta = String::new();
+    let mut rows_config4 = String::new();
+    for v in vars.iter() {
+        rows_effect.push_str(&format!("ArtifactSetName::{n} => crate::artifacts::effects::{n}::create_effect(config, common),\n", n=v));
+        rows_meta.push_str(&format!("ArtifactSetName::{n} => crate::artifacts::effects::{n}::META_DATA,\n", n=v));
+        rows_config4.push_str(&format!("ArtifactSetName::{n} => crate::artifacts::effects::{n}::CONFIG4,\n", n=v));
+    }
+
+    let output = format!(
+        r#"
+        use crate::artifacts::artifact_trait::ArtifactTrait;
+        use crate::character::character_common_data::CharacterCommonData;
+        use crate::artifacts::artifact_trait::{{ArtifactMetaData}};
+        use crate::common::item_config_type::ItemConfig;
+        impl ArtifactSetName {{
+            pub fn create_effect<A: Attribute>(&self, config: &ArtifactEffectConfig, common: &CharacterCommonData) ->Box<dyn ArtifactEffect<A>> {{
+                match *self {{
+                    {rows_effect}
+                }}
+            }}
+
+            #[cfg(not(target_family = "wasm"))]
+            pub fn get_meta(&self) -> ArtifactMetaData {{
+                match *self {{
+                    {rows_meta}
+                }}
+            }}
+
+            #[cfg(not(target_family = "wasm"))]
+            pub fn get_config4(&self) -> Option<&'static [ItemConfig]> {{
+                match *self {{
+                    {rows_config4}
+                }}
+            }}
+        }}
+        "#,
+        rows_effect=rows_effect,
+        rows_meta=rows_meta,
+        rows_config4=rows_config4
+    );
+
+    output.parse().unwrap()
+}
+
 #[proc_macro_derive(WeaponData)]
 pub fn derive_weapon_meta_data(input: TokenStream) -> TokenStream {
     let ast = parse_macro_input!(input as DeriveInput);
@@ -31,6 +81,7 @@ pub fn derive_weapon_meta_data(input: TokenStream) -> TokenStream {
                 }}
             }}
 
+            #[cfg(not(target_family = "wasm"))]
             pub fn get_config_data(&self) -> Option<&'static [ItemConfig]> {{
                 match *self {{
                     {}

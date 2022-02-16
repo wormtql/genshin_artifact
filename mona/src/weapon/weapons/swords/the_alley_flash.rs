@@ -43,10 +43,13 @@ impl WeaponTrait for TheAlleyFlash {
         weapon_sub_stat: WeaponSubStatFamily::EM12,
         weapon_base: WeaponBaseATKFamily::ATK620,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("街巷游侠：造成的伤害提升12%/15%/18%/21%/24%，受到伤害后的5秒内失效。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "暗巷闪光"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",

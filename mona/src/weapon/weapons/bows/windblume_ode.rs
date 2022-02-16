@@ -43,10 +43,13 @@ impl WeaponTrait for WindblumeOde {
         weapon_sub_stat: WeaponSubStatFamily::EM36,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("风花之愿：施放元素战技时，获得风之花的悠古愿望加持，攻击力提升16%/20%/24%/28%/32%，持续6秒"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "风花之颂"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig::RATE01
     ]);

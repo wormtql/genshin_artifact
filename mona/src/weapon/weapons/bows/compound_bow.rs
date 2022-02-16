@@ -46,10 +46,13 @@ impl WeaponTrait for CompoundBow {
         weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus150,
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("注能之矢：普通攻击和瞄准攻击命中时，提升4%/5%/6%/7%/8%攻击力与1.2%/1.5%/1.8%/2.1%/2.4%普通攻击速度。该效果持续6秒，最多可以叠加4层，每0.3秒只能触发一次。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "钢轮弓"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig::STACK04
     ]);

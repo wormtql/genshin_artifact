@@ -67,9 +67,11 @@ fn check_artifact_set(list: &[&Artifact], constraint: &ConstraintConfig) -> bool
                 ConstraintSetMode::Set22(s1, s2) => {
                     set_name_count[s1 as usize] = 2;
                     set_name_count[s2 as usize] = 2;
+                    count = 4;
                 },
                 ConstraintSetMode::Set4(s1) => {
                     set_name_count[s1 as usize] = 4;
+                    count = 4;
                 }
             }
         }
@@ -146,7 +148,9 @@ pub fn optimize_single(
     let mut heads: Vec<&Artifact> = vec![];
 
     let mut artifacts: Vec<&Artifact> = artifacts.iter().map(|x| *x).collect();
-    if get_iteration_count(&artifacts) > TOO_LARGE_ITER_COUNT {
+    if get_iteration_count(&artifacts) > TOO_LARGE_ITER_COUNT
+        && (!need_constraint || (need_constraint && constraint.unwrap().is_any()))
+    {
         let target_function_opt_config = target_function.get_target_function_opt_config();
         artifacts = target_function_opt_config.filter(artifacts);
     }
@@ -184,6 +188,13 @@ pub fn optimize_single(
 
             for sand_i in 0..sands.len().max(1) {
                 if need_constraint {
+                    check_artifact_set_buffer.clear();
+                    if flower_i != flowers.len() {
+                        check_artifact_set_buffer.push(&flowers[flower_i]);
+                    }
+                    if feather_i != feathers.len() {
+                        check_artifact_set_buffer.push(&feathers[feather_i]);
+                    }
                     if sand_i != sands.len() {
                         check_artifact_set_buffer.push(&sands[sand_i]);
                     }
@@ -194,6 +205,16 @@ pub fn optimize_single(
 
                 for goblet_i in 0..goblets.len().max(1) {
                     if need_constraint {
+                        check_artifact_set_buffer.clear();
+                        if flower_i != flowers.len() {
+                            check_artifact_set_buffer.push(&flowers[flower_i]);
+                        }
+                        if feather_i != feathers.len() {
+                            check_artifact_set_buffer.push(&feathers[feather_i]);
+                        }
+                        if sand_i != sands.len() {
+                            check_artifact_set_buffer.push(&sands[sand_i]);
+                        }
                         if goblet_i != goblets.len() {
                             check_artifact_set_buffer.push(&goblets[goblet_i]);
                         }
@@ -204,10 +225,24 @@ pub fn optimize_single(
 
                     for head_i in 0..heads.len().max(1) {
                         if need_constraint {
+                            check_artifact_set_buffer.clear();
+                            if flower_i != flowers.len() {
+                                check_artifact_set_buffer.push(&flowers[flower_i]);
+                            }
+                            if feather_i != feathers.len() {
+                                check_artifact_set_buffer.push(&feathers[feather_i]);
+                            }
+                            if sand_i != sands.len() {
+                                check_artifact_set_buffer.push(&sands[sand_i]);
+                            }
+                            if goblet_i != goblets.len() {
+                                check_artifact_set_buffer.push(&goblets[goblet_i]);
+                            }
                             if head_i != heads.len() {
                                 check_artifact_set_buffer.push(&heads[head_i]);
                             }
                             if !check_artifact_set(&check_artifact_set_buffer, constraint.unwrap()) {
+                                check_artifact_set_buffer.pop();
                                 continue;
                             }
                         }

@@ -12,7 +12,7 @@
             <span class="damage-display" v-if="damageType === 'vaporize'">{{ Math.round(damageVaporize) }}</span>
         </div>
 
-        <div class="header-row">
+        <div class="header-row" style="overflow: auto; margin-bottom: 16px;">
             <div>
                 <div class="big-title base-damage-region">{{ baseRegionName }}</div>
                 <div class="header-row">
@@ -94,8 +94,24 @@
                 <div class="big-title vaporize-region">增幅伤害加成</div>
                 <div class="header-row">
                     <damage-analysis-util
-                        :arr="meltEnhanceState"
+                        :arr="vaporizeEnhanceState"
                         title="蒸发伤害加成"
+                    ></damage-analysis-util>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="!isHeal" class="header-row">
+            <div>
+                <div class="big-title minus">减防/减抗</div>
+                <div class="header-row">
+                    <damage-analysis-util
+                        :arr="defMinusState"
+                        title="减防"
+                    ></damage-analysis-util>
+                    <damage-analysis-util
+                        :arr="resMinusState"
+                        title="减抗"
                     ></damage-analysis-util>
                 </div>
             </div>
@@ -146,6 +162,7 @@ export default {
     },
     methods: {
         setValue(analysis) {
+            console.log(analysis)
             let map = {
                 "atkState": "atk",
                 "atkRatioState": "atk_ratio",
@@ -173,7 +190,7 @@ export default {
                     temp.push({
                         name: i,
                         checked: true,
-                        value: analysis[fromKey][i]
+                        value: Math.round(analysis[fromKey][i] * 1000) / 1000
                     })
                 }
                 this[key] = temp
@@ -341,27 +358,31 @@ export default {
     min-width: 100px;
 
     &.base-damage-region {
-        background-color: rgb(255, 173, 173);
+        background-color: rgb(217, 236, 255);
     }
 
     &.critical-region {
-        background-color: rgb(151, 208, 255);
+        background-color: rgb(179, 216, 255);
     }
 
     &.bonus-region {
-        background-color: rgb(189, 194, 255);
+        background-color: rgb(217, 236, 255);
     }
 
     &.reaction-ratio-region {
-        background-color: #00000022;
+        background-color: rgb(179, 216, 255);
     }
 
     &.vaporize-region {
-        background-color: rgb(202, 228, 253);
+        background-color: rgb(217, 236, 255);
     }
 
     &.melt-region {
-        background-color: rgb(179, 255, 251);
+        background-color: rgb(217, 236, 255);
+    }
+
+    &.minus {
+        background-color: rgb(217, 236, 255);
     }
 }
 </style>

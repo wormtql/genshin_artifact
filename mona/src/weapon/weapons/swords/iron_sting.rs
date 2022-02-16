@@ -43,10 +43,13 @@ impl WeaponTrait for IronSting {
         weapon_sub_stat: WeaponSubStatFamily::EM36,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("注能之刺：造成元素伤害后的6秒内，角色造成的伤害提高6%/7.5%/9%/10.5%/12%，该效果最多叠加2层。该效果每1秒可以触发一次。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "铁蜂刺"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",

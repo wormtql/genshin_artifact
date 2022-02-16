@@ -17,11 +17,13 @@ impl WeaponTrait for CrescentPike {
         weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus75,
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("注能之针：获得元素微粒或元素晶球后的5秒内，普通攻击和重击额外造成20%/25%/30%/35%/40%攻击力伤害。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "流月针"
     };
 
-    fn get_effect<A: Attribute>(character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
+    fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
         None
     }
 }

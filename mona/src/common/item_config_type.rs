@@ -12,6 +12,11 @@ pub enum ItemConfigType {
         max: i32,
         default: i32
     },
+    IntInput {
+        min: i32,
+        max: i32,
+        default: i32
+    },
     Bool {
         default: bool
     },
@@ -39,6 +44,16 @@ pub struct ItemConfig {
 impl ItemConfigType {
     pub fn to_json(&self, title: &str, name: &str) -> String {
         let j = match *self {
+            ItemConfigType::IntInput { min, max, default } => {
+                json!({
+                    "type": "intInput",
+                    "title": title,
+                    "name": name,
+                    "min": min,
+                    "max": max,
+                    "default": default
+                })
+            },
             ItemConfigType::Element4 { default } => {
                 json!({
                     "type": "element4",
@@ -121,6 +136,7 @@ impl ItemConfig {
     pub const STACK05: ItemConfig = ItemConfig { name: "stack", title: Self::DEFAULT_STACK_TITLE, config: ItemConfigType::Float { min: 0.0, max: 5.0, default: 0.0 } };
     pub const BUFFV1P: ItemConfig = ItemConfig { name: "p", title: Self::DEFAULT_BUFF_TITLE, config: ItemConfigType::FloatPercentageInput { default: 0.0 } };
     pub const BUFFV1: ItemConfig = ItemConfig { name: "value", title: Self::DEFAULT_BUFF_TITLE, config: ItemConfigType::FloatInput { default: 0.0 } };
+    pub const REFINE: ItemConfig = ItemConfig { name: "refine", title: "精炼", config: ItemConfigType::IntInput { min: 1, max: 5, default: 1 } };
 
     pub fn to_json(&self) -> String {
         self.config.to_json(self.title, self.name)

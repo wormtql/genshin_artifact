@@ -19,7 +19,7 @@
                     :label="genre.chs"
                     :name="genre.name"
                     :key="genre.name"
-                    class="tab-pane"
+                    class="tab-pane mona-scroll"
                 >
                     <div
                         v-for="buff in buffByGenre[genre.name]"
@@ -48,6 +48,7 @@ import Fuse from "fuse.js"
 const genres = [
     { name: "Character", chs: "角色引发的BUFF" },
     { name: "Weapon", chs: "武器引发的BUFF" },
+    { name: "Artifact", chs: "圣遗物引发的BUFF" },
     { name: "Resonance", chs: "元素共鸣" },
     { name: "Common", chs: "自定义" }
 ]
@@ -105,25 +106,25 @@ export default {
 <style lang="scss">
 .tab-pane {
     max-height: 50vh;
-    overflow: auto;
-    
-    &::-webkit-scrollbar {
-        width: 4px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: rgb(247, 247, 247);
-        border-radius: 2px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: #d4d4d4;
-    }
+    //overflow: auto;
+    //
+    //&::-webkit-scrollbar {
+    //    width: 4px;
+    //}
+    //
+    //&::-webkit-scrollbar-track {
+    //    background: rgb(247, 247, 247);
+    //    border-radius: 2px;
+    //}
+    //
+    //&::-webkit-scrollbar-thumb {
+    //    background: #d4d4d4;
+    //}
 }
 
 .buff-item {
     display: flex;
-    align-items: top;
+    //align-items: top;
     padding: 8px;
     cursor: pointer;
 

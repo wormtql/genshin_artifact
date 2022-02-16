@@ -1,11 +1,7 @@
 <template>
     <div>
         <div class="up">
-            <click-edit-label
-                :value="data.name"
-                @input="handleChangeKumiName"
-                class="title"
-            ></click-edit-label>
+            <p class="title">{{ data.title }}</p>
             <div class="buttons">
                 <el-button
                     type="text"
@@ -15,35 +11,34 @@
                 ></el-button>
                 <el-button
                     type="text"
-                    icon="el-icon-rank"
-                    title="移动"
-                    @click="$emit('move')"
+                    icon="el-icon-edit"
+                    title="重命名"
+                    @click="$emit('edit')"
                 ></el-button>
             </div>
         </div>
         <div class="body">
             <template
-                v-for="i in 5"
+                v-for="pos in positions"
             >
                 <artifact-display
-                    :key="i"
-                    v-if="isIdValid(data.ids[i - 1])"
+                    :key="pos"
+                    v-if="artifactBySlot[pos]"
                     class="artifact-item"
                     width="200px"
-                    :item="getArtifactById(data.ids[i - 1])"
+                    :item="artifactBySlot[pos]"
                     selectable
-                    @click="$emit('click', i - 1)"
-                    @delete="$emit('deleteArtifact', i - 1)"
+                    @click="$emit('click', pos)"
+                    @delete="$emit('deleteArtifact', artifactBySlot[pos].id)"
                     buttons
                     :lock-button="false"
                     :delete-button="true"
                 ></artifact-display>
                 <add-button
-                    :key="i"
+                    :key="pos"
                     v-else
                     class="artifact-item"
-                    :back="getIcon(i)"
-                    @click="$emit('click', i - 1)"
+                    @click="$emit('click', pos)"
                 ></add-button>
             </template>
         </div>
@@ -51,55 +46,48 @@
 </template>
 
 <script>
-import { artifactsIcon } from "@asset/artifacts";
+// import { artifactsIcon } from "@asset/artifacts"
+import { mapGetters } from "vuex"
+import { positions } from "@const/artifact"
 
-import AddButton from "@c/misc/AddButton";
-import ArtifactDisplay from "@c/ArtifactDisplay";
-import ClickEditLabel from "@c/misc/ClickEditLabel";
+import AddButton from "@c/misc/AddButton"
+import ArtifactDisplay from "@c/ArtifactDisplay"
+// import SelectArtifact from "@c/select/SelectArtifact"
 
 export default {
     name: "KumiItem",
     components: {
         AddButton,
         ArtifactDisplay,
-        ClickEditLabel,
+        // SelectArtifact,
     },
-    props: {
-        data: {
-            default: () => ({
-                name: "test",
-                ids: [7001, -1, 2, -3, 4]
-            })
-        }
+    props: ["data"],
+    created() {
+        this.positions = positions
     },
-    methods: {
-        isIdValid(id) {
-            if (id < 0) {
-                return false;
+    computed: {
+        ...mapGetters("artifacts", [
+            "artifactsById"
+        ]),
+
+        artifacts() {
+            let results = []
+            for (let id of this.data.artifactIds) {
+                if (Object.prototype.hasOwnProperty.call(this.artifactsById, id)) {
+                    results.push(this.artifactsById[id])
+                }
             }
-            let artifactsById = this.$store.getters["artifacts/artifactsById"];
-            if (!Object.prototype.hasOwnProperty.call(artifactsById, id)) {
-                return false;
+            return results
+        },
+
+        artifactBySlot() {
+            let results = {}
+            for (let artifact of this.artifacts) {
+                const slot = artifact.position
+                results[slot] = artifact
             }
 
-            return true;
-        },
-
-        getArtifactById(id) {
-            let artifactsById = this.$store.getters["artifacts/artifactsById"];
-            return artifactsById[id];
-        },
-
-        getIcon(i) {
-            let temp = [artifactsIcon.flower, artifactsIcon.feather, artifactsIcon.sand, artifactsIcon.cup, artifactsIcon.head];
-            return temp[i - 1];
-        },
-
-        handleChangeKumiName(text) {
-            this.$store.commit("kumi/updateKumiName", {
-                id: this.data.id,
-                newName: text,
-            });
+            return results
         }
     }
 }
@@ -109,14 +97,16 @@ export default {
 .up {
     border-bottom: 1px solid #dcdfe6;
     padding: 8px;
-    background: #00000005;
+    //background: #00000005;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     .title {
-        flex: 1;
-        margin-right: 16px;
+        //flex: 1;
+        //margin-right: 16px;
+        color: #606266;
+        margin: 0;
     }
 
     .buttons {
@@ -125,6 +115,7 @@ export default {
         button {
             // margin: 0;
             vertical-align: top;
+            padding: 0;
         }
     }
 }

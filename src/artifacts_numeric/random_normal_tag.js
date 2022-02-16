@@ -1,4 +1,4 @@
-import attribute from "./attribute";
+import attribute from "@const/artifact_eff";
 import { random01, randomIntBetween, randomElement } from "@util/random";
 import { artifactsSecondaryTag as tags } from "@asset/artifacts";
 

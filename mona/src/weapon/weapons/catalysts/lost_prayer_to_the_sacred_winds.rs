@@ -43,10 +43,13 @@ impl WeaponTrait for LostPrayerToTheSacredWinds {
         weapon_sub_stat: WeaponSubStatFamily::CriticalRate72,
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("无边际的眷顾：移动速度提高10%；在场上每4秒获得8%/10%/12%/14%/16%元素伤害加成。该效果最多叠加4层，角色倒下或离场后清空。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "四风原典"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig::STACK04
     ]);

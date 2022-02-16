@@ -48,19 +48,22 @@ impl WeaponTrait for SolarPearl {
         weapon_sub_stat: WeaponSubStatFamily::CriticalRate60,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
-        effect: Some("日月辉：普通攻击命中后的6秒内，元素战技与元素爆发的伤害提高20%/25%/30%/35%/40%；元素战技与元素爆发命中后的6秒内，普通攻击的伤害提高20%/25%/30%/35%/40%。"),
+        #[cfg(not(target_family = "wasm"))]
+        effect: Some("日月辉：①普通攻击命中后的6秒内，元素战技与元素爆发的伤害提高20%/25%/30%/35%/40%；②元素战技与元素爆发命中后的6秒内，普通攻击的伤害提高20%/25%/30%/35%/40%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "匣里日月"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate1",
-            title: "效果1比例",
+            title: "效果①比例",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "rate2",
-            title: "效果2比例",
+            title: "效果②比例",
             config: ItemConfig::RATE01_TYPE
         },
     ]);

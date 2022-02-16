@@ -17,7 +17,9 @@ impl WeaponTrait for SacrificialFragments {
         weapon_sub_stat: WeaponSubStatFamily::EM48,
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("气定神闲：元素战技造成伤害时，有40%/50%/60%/70%/80%的概率重置该技能的冷却时间，该效果每30/26/22/19/16秒只能触发1次。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "祭礼残章"
     };
 

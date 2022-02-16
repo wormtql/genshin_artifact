@@ -12,7 +12,7 @@ export default {
         type: "{{ weapon.t }}",
 
         {% if weapon.effect.len() > 0 %}
-        effect: "{{ weapon.effect | e }}",
+        effect: "{{ weapon.effect }}",
         {% else %}
         effect: null,
         {% endif %}

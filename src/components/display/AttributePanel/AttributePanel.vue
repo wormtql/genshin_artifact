@@ -13,7 +13,7 @@
 
         <attribute-item title="治疗加成" :composition="attribute.healing_bonus" :percentage="true"></attribute-item>
         <attribute-item title="元素充能效率" :composition="attribute.recharge" :percentage="true"></attribute-item>
-        <!-- <attribute-item title="护盾强效" :composition="attribute.healing_bonus" :percentage="true"></attribute-item> -->
+         <attribute-item title="护盾强效" :composition="attribute.shield_strength" :percentage="true"></attribute-item>
 
         <h3 class="class">元素属性</h3>
         <attribute-item title="火元素伤害加成" :composition="attribute.bonus_pyro" :percentage="true"></attribute-item>
@@ -25,7 +25,7 @@
         <attribute-item title="岩元素伤害加成" :composition="attribute.bonus_geo" :percentage="true"></attribute-item>
         <attribute-item title="物理伤害加成" :composition="attribute.bonus_physical" :percentage="true"></attribute-item>
 
-        <h3 class="class">元素</h3>
+<!--        <h3 class="class">元素</h3>-->
         <!-- <div class="item">
             <span class="title">元素精通</span>
             <span class="value">{{ attribute.elementalMastery }}</span>

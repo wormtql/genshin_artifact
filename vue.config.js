@@ -67,11 +67,13 @@ module.exports = {
                 "@enemy": path.resolve(__dirname, "src/enemies"),
                 "mona": path.resolve(__dirname, "mona/pkg"),
 
+                "@wasm": path.resolve(__dirname, "src/wasm"),
                 "@character": path.resolve(__dirname, "src/character"),
                 "@weapon": path.resolve(__dirname, "src/weapon"),
                 "@targetFunction": path.resolve(__dirname, "src/target_function"),
                 "@buff": path.resolve(__dirname, "src/assets/buff"),
                 "@image": path.resolve(__dirname, "src/images"),
+                "@artifact": path.resolve(__dirname, "src/assets/artifacts"),
                 // "genshin_panel": path.resolve(__dirname, "../../ts/genshin/dist"),
             }
         },

@@ -18,6 +18,7 @@ pub enum BuffName {
     CriticalDamage,
     CustomBonus,
     ElementalMastery,
+    Recharge,
 
     // character
     AlbedoTalent2,
@@ -72,4 +73,20 @@ pub enum BuffName {
     YunjinQ,
     YunjinC2,
     ZhongliShield,
+
+    FreedomSworn,
+    SongOfBrokenPines,
+    WolfsGravestone,
+    ThrillingTalesOfDragonSlayers,
+    ElegyOfTheEnd,
+
+    ResonancePyro2,
+    ResonanceCryo2,
+    ResonanceGeo2,
+
+    Instructor4,
+    NoblesseOblige4,
+    ArchaicPetra4,
+    ViridescentVenerer4,
+    TenacityOfTheMillelith4,
 }

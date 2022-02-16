@@ -43,10 +43,13 @@ impl WeaponTrait for MappaMare {
         weapon_sub_stat: WeaponSubStatFamily::EM24,
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("注能之卷：触发元素反应后的10秒内，获得8%/10%/12%/14%/16%元素伤害加成，该效果最多可叠加2层"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "万国诸海图谱"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig::STACK02
     ]);

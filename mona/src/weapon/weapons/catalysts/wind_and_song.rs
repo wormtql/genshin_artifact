@@ -43,10 +43,13 @@ impl WeaponTrait for WindAndSong {
         weapon_sub_stat: WeaponSubStatFamily::Recharge67,
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("变化万端：普通攻击命中敌人后，冲刺或替代冲刺的能力消耗的体力降低14%/16%/18%/20%/22%，持续5秒。此外，使用冲刺或替代冲刺的能力后，攻击力提升20%/25%/30%/35%/40%，持续5秒。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "暗巷的酒与诗"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig::RATE01
     ]);

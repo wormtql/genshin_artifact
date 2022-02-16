@@ -8,6 +8,8 @@ use crate::weapon::WeaponConfig;
 
 pub trait WeaponTrait {
     const META_DATA: WeaponStaticData;
+
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = None;
 
     fn get_effect<A: Attribute>(character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>>;

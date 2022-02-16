@@ -15,3 +15,4 @@ pub mod favonius_codex;
 pub mod eye_of_perception;
 pub mod dodoco_tales;
 pub mod blackcliff_agate;
+pub mod thrilling_tales_of_dragon_slayers;

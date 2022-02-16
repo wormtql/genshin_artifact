@@ -47,10 +47,13 @@ impl WeaponTrait for DodocoTales {
         weapon_sub_stat: WeaponSubStatFamily::ATK120,
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("普通攻击命中敌人后的6秒内，重击造成的伤害提升16/20/24/28/32%；重击命中敌人后的6秒内，攻击力提升8/10/12/14/16%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "嘟嘟可故事集"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate1",

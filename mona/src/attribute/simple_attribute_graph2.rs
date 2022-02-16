@@ -29,7 +29,8 @@ pub struct SimpleAttributeGraph2 {
     attributes: RefCell<[SimpleEntry; 150]>,
     // edges: Vec<Rc<SimpleEdge>>,
     // edges: Vec<SimpleEdge>,
-    edges: SmallVec<[SimpleEdge; MAX_EDGE_COUNT]>
+    edges: SmallVec<[SimpleEdge; MAX_EDGE_COUNT]>,
+    pub set_dirty_on_set_value: bool,
 
     // atk_percentage: f64,
     // def_percentage: f64,
@@ -46,7 +47,8 @@ impl Default for SimpleAttributeGraph2 {
                 dirty: true
             }; 150]),
             // edges: Vec::new(),
-            edges: SmallVec::new()
+            edges: SmallVec::new(),
+            set_dirty_on_set_value: false,
             // atk_percentage: 0.0,
             // def_percentage: 0.0,
             // hp_percentage: 0.0,
@@ -76,12 +78,18 @@ impl Attribute for SimpleAttributeGraph2 {
         unsafe {
             (*data)[name as usize].value_self = value;
         }
+        if self.set_dirty_on_set_value {
+            self.mark_dirty(name as usize);
+        }
     }
 
     fn set_value_by(&mut self, name: AttributeName, _key: &str, value: f64) {
         let data = self.attributes.as_ptr();
         unsafe {
             (*data)[name as usize].value_self += value;
+        }
+        if self.set_dirty_on_set_value {
+            self.mark_dirty(name as usize);
         }
     }
 
@@ -134,6 +142,22 @@ impl SimpleAttributeGraph2 {
 
         node.cached_value
         // 0.0
+    }
+
+    fn mark_dirty(&self, index: usize) {
+        let data = self.attributes.as_ptr();
+        let node = unsafe {
+            &mut (*data)[index]
+        };
+        node.dirty = true;
+        for edge in self.edges.iter() {
+            if edge.from1 == index || edge.from2 == index {
+                let to_node = unsafe { &(*data)[edge.to] };
+                if !to_node.dirty {
+                    self.mark_dirty(edge.to);
+                }
+            }
+        }
     }
 
     fn get_from_value(&self, index: usize) -> f64 {

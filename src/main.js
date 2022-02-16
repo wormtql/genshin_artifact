@@ -1,4 +1,4 @@
-import "./styles/global.css";
+import "./styles/global.scss";
 import "./styles/select.css";
 
 import "./vendors/element";

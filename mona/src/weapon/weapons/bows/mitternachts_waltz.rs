@@ -47,10 +47,13 @@ impl WeaponTrait for MitternachtsWaltz {
         weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus113,
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("普通攻击命中敌人后的5秒内，元素战技造成的伤害提升20%/25%/30%/35%/40%；元素战技命中敌人后的5秒内，普通攻击造成的伤害提升20%/25%/30%/35%/40%。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "幽夜华尔兹"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate1",

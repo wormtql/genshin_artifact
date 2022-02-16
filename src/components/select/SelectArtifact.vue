@@ -22,7 +22,7 @@
             ></artifact-display>
         </div>
         <div v-show="artifactListDisplayed.length === 0" class="no-artifacts">
-            No Artifacts
+            <el-empty></el-empty>
         </div>
 
         <el-pagination

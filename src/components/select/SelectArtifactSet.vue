@@ -5,6 +5,7 @@
         :disabled="disabled"
         size="small"
         :multiple="multiple"
+        :multiple-limit="multipleLimit"
     >
         <el-option
             v-if="anyOption"
@@ -64,6 +65,9 @@ export default {
         multiple: {
             type: Boolean,
             default: false,
+        },
+        multipleLimit: {
+            default: 2
         }
     }
 }

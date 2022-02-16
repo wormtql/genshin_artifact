@@ -43,10 +43,13 @@ impl WeaponTrait for CinnabarSpindle {
         weapon_sub_stat: WeaponSubStatFamily::DEF150,
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
+        #[cfg(not(target_family = "wasm"))]
         effect: Some("元素战技造成的伤害值提高，提高数值相当于防御力的40/50/60/70/80%。该效果每1.5秒最多触发一次，并将在元素战技造成伤害后的0.1秒后清除效果。"),
+        #[cfg(not(target_family = "wasm"))]
         chs: "辰砂之纺锤"
     };
 
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
