@@ -28,6 +28,12 @@
             :closable="false"
         ></el-alert>
 
+        <el-alert
+            title="Mona5.0 Coming Soon..."
+            style="margin-bottom: 16px"
+            :closable="false"
+        ></el-alert>
+
         <div class="update-banner">
             <p style="font-size: 24px; margin: 0;">V{{ version }}更新内容</p>
             <ul>
