@@ -1,5 +1,5 @@
 import { charactersData } from "@asset/characters";
-import {TargetFuncUtils} from "@asset/target_functions/utils";
+import { TargetFuncUtils } from "@asset/target_functions/utils";
 
 
 // const skill = charactersData["bachongshenzi"].skill;

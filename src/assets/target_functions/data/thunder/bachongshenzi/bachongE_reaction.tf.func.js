@@ -7,10 +7,11 @@ const skill = charactersData["bachongshenzi"].skill;
 function f(attribute, { tArgs,cArgs }) {
     const hasTalent2 = cArgs.level > 60 || (cArgs.level === 60 && cArgs.ascend);
 
+    let atk = attribute.attack();
     let eSkill = cArgs.skill2-1;
     let ePercent = skill.e.dmg3[eSkill];
     let constellation=cArgs.constellation;
-    let eTimes = 15; //E总攻击次数
+    let eTimes = 15 //E总攻击次数
     let defRadio = 0.5 //预设防御系数
 
     //命座2升阶
@@ -31,9 +32,14 @@ function f(attribute, { tArgs,cArgs }) {
 
     let cSixBonus = 0;
 
+       //4命减防提升  经过测试，计算器本身并不会给自动加上4命的20%雷伤，这里给加伤了。
+       if (constellation>=4) {
+        eBonus += 0.2;
+    }
+
     //6命减防提升
     if (constellation>=6) {
-        cSixBonus = 0.428
+        cSixBonus = 0.428;
     }
 
 
@@ -53,12 +59,8 @@ function f(attribute, { tArgs,cArgs }) {
 
     let reationsBous = 1+16*attribute.elementalMastery/(attribute.elementalMastery+2000)
 
-
-
-    let atk = attribute.attack();
-
     let dps = 
-      atk * eCritBonus * eBonus * eTimes * defRadio * ( 1 + cSixBonus )
+      atk *ePercent* eCritBonus * eBonus * eTimes * defRadio * ( 1 + cSixBonus )
     + reation_baseDamge*reationsBous*reationTimes;
 
     return dps;
