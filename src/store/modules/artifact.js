@@ -7,24 +7,12 @@ import { deepCopy } from "@util/common"
 // id can only be changed in store mutations
 let id = 0;
 
-let flower = [];
-let feather = [];
-let sand = [];
-let cup = [];
-let head = [];
-let hashes = new Map();
-let localStoredArtifacts = localStorage.getItem("artifacts");
-if (localStoredArtifacts) {
-    let obj = JSON.parse(localStoredArtifacts);
+const hashes = new Map();
 
-    flower = obj.flower || [];
-    feather = obj.feather || [];
-    sand = obj.sand || [];
-    cup = obj.cup || [];
-    head = obj.head || [];
-
-    let temp = flower.concat(feather).concat(sand).concat(cup).concat(head);
-    for (let item of temp) {
+function initIdAndHash(state) {
+    const { flower, feather, sand, cup, head } = state;
+    const allArtifacts = flower.concat(feather).concat(sand).concat(cup).concat(head);
+    for (const item of allArtifacts) {
         id = Math.max(id, item.id ?? -1);
         const hash = hashArtifact(item);
         if (hashes.has(hash)) {
@@ -34,10 +22,21 @@ if (localStoredArtifacts) {
         }
     }
     id++;
-    for (let item of temp) {
+    for (const item of allArtifacts) {
         if (!Object.prototype.hasOwnProperty.call(item, "id")) {
             item.id = id++;
         }
+    }
+}
+
+function updateHash(hash, inc) {
+    if (hashes.has(hash)) {
+        hashes.set(hash, hashes.get(hash) + inc);
+        if (hashes.get(hash) === 0) {
+            hashes.delete(hash);
+        }
+    } else {
+        hashes.set(hash, inc);
     }
 }
 
@@ -54,17 +53,6 @@ function findArtifact(state, id) {
     throw new Error("id not found");
 }
 
-function updateHash(hash, inc) {
-    if (hashes.has(hash)) {
-        hashes.set(hash, hashes.get(hash) + inc);
-        if (hashes.get(hash) === 0) {
-            hashes.delete(hash);
-        }
-    } else {
-        hashes.set(hash, inc);
-    }
-}
-
 function count(artifacts) {
     let c = 0;
 
@@ -78,13 +66,37 @@ function count(artifacts) {
 let _store = {
     namespaced: true,
     state: {
-        flower,
-        feather,
-        sand,
-        cup,
-        head,
+        flower: [],
+        feather: [],
+        sand: [],
+        cup: [],
+        head: [],
     },
     mutations: {
+        oldInit(state) {
+            const localStoredArtifacts = localStorage.getItem("artifacts");
+            if (localStoredArtifacts) {
+                const obj = JSON.parse(localStoredArtifacts);
+                state.flower = obj.flower || [];
+                state.feather = obj.feather || [];
+                state.sand = obj.sand || [];
+                state.cup = obj.cup || [];
+                state.head = obj.head || [];
+                initIdAndHash(state);
+            }
+            // localStorage.removeItem("artifacts");
+        },
+
+        set(state, payload) {
+            payload = payload || {};
+            state.flower = payload.flower || [];
+            state.feather = payload.feather || [];
+            state.sand = payload.sand || [];
+            state.cup = payload.cup || [];
+            state.head = payload.head || [];
+            initIdAndHash(state);
+        },
+
         removeArtifactById(state, { id }) {
             a: for (let pos of positions) {
                 let artifacts = state[pos];

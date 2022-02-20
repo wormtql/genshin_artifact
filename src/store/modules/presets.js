@@ -2,48 +2,33 @@ import Vue from "vue"
 
 import {upgradePresetItem} from "@util/preset"
 
-const VERSION_PRESET = 3
-
-function loadLocalOrDefault() {
-    const local = localStorage.getItem("presets5")
-    if (!local) {
-        return {}
-    }
-
-    let localObj = null
-    try {
-        localObj = JSON.parse(local)
-    } catch (e) {
-        localObj = null
-    }
-
-    if (!localObj) {
-        return {}
-    } else {
-        for (let name in localObj) {
-            let entry = localObj[name]
-            let item = entry.item
-
-            try {
-                const newItem = upgradePresetItem(item)
-                // console.log(newItem)
-                entry.item = newItem
-            } catch (e) {
-                console.log("upgrade preset item failed")
-                console.log(e)
-            }
-        }
-
-        return localObj
-    }
-}
+const VERSION_PRESET = 3;
 
 export default {
     namespaced: true,
     state: {
-        presets: loadLocalOrDefault(),
+        presets: {},
     },
     mutations: {
+        set(state, payload) {
+            if (payload) {
+                for (let name in payload) {
+                    let entry = payload[name];
+                    let item = entry.item;
+
+                    try {
+                        const newItem = upgradePresetItem(item);
+                        // console.log(newItem);
+                        entry.item = newItem;
+                    } catch (e) {
+                        console.log("upgrade preset item failed");
+                        console.log(e);
+                    }
+                }
+                state.presets = payload;
+            }
+        },
+
         addOrOverwrite(state, { item, name }) {
             const entry = {
                 item,

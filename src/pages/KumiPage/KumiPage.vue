@@ -109,7 +109,7 @@
 <!--                {{ currentKumiList }}-->
             </el-col>
         </el-row>
-        
+
     </div>
 </template>
 
@@ -193,6 +193,14 @@ export default {
             }
             const results = this.fuse.search(this.searchString)
             return results.map(x => x.item)
+        }
+    },
+    watch: {
+        "$store.state.accounts.currentAccountId": {
+            handler() {
+                this.currentDirId = 0;
+            },
+            immediate: false,
         }
     },
     methods: {

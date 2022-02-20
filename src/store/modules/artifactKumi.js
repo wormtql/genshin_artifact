@@ -53,8 +53,8 @@ function isDir(item) {
     return item.dir
 }
 
-function loadLocalKumiOrDefault() {
-    let kumi = {
+function getDefault() {
+    return {
         0: {
             id: 0,
             title: "默认收藏夹",
@@ -62,17 +62,6 @@ function loadLocalKumiOrDefault() {
             children: []
         }
     }
-    const local_str = localStorage.getItem("kumi2")
-    if (!local_str) {
-        return {
-            kumi
-        }
-    }
-
-    const local = JSON.parse(local_str)
-    // console.log(local)
-
-    return local
 }
 
 function newDir(id, title) {
@@ -97,11 +86,15 @@ function newKumi(id, title, artifactIds, dirId) {
 export default {
     namespaced: true,
     state: {
-        // kumi: {},
-        // tree,
-        ...loadLocalKumiOrDefault()
+        kumi: getDefault(),
     },
     mutations: {
+        set(state, payload) {
+            if (payload) {
+                state.kumi = payload.kumi
+            }
+        },
+
         newKumi(state, { artifactIds, title, dirId }) {
             const id = nextID()
             let kumi = newKumi(id, title, artifactIds, dirId)
