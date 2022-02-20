@@ -26,7 +26,7 @@
                 ></kumi-directory-display>
             </el-col>
         </el-row>
-        
+
     </div>
 </template>
 
@@ -45,8 +45,13 @@ export default {
             currentDirId: -1,
         }
     },
-    created() {
-        this.currentDirId = this.$store.getters["kumi/firstDirId"];
+    watch: {
+        "$store.state.accounts.currentAccountId": {
+            handler() {
+                this.currentDirId = this.$store.getters["kumi/firstDirId"];
+            },
+            immediate: true,
+        }
     },
     methods: {
         handleDeleteDir(id) {

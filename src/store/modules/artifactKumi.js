@@ -4,23 +4,7 @@ import getTreeNode from "../utils/getTreeNode";
 
 let id = 2;
 
-
-let tree = {
-    label: "root",
-    type: "dir",
-    id: 0,
-    children: [
-        {
-            label: "默认收藏夹",
-            type: "dir",
-            id: 1,
-        }
-    ],
-};
-
-let temp = localStorage.getItem("kumiTree");
-if (temp) {
-    tree = JSON.parse(temp).tree;
+function initId(tree) {
     let queue = [tree];
     while (queue.length > 0) {
         let p = queue.pop();
@@ -34,7 +18,6 @@ if (temp) {
         }
     }
     id++;
-    // console.log("next kumi node ID: " + id);
 }
 
 function getKumiFromTree(node) {
@@ -48,14 +31,46 @@ function getKumiFromTree(node) {
     return temp;
 }
 
+function getInitTree() {
+    return {
+        label: "root",
+        type: "dir",
+        id: 0,
+        children: [
+            {
+                label: "默认收藏夹",
+                type: "dir",
+                id: 1,
+            }
+        ],
+    };
+}
+
 
 export default {
     namespaced: true,
     state: {
         // kumi: {},
-        tree,
+        tree: getInitTree(),
     },
     mutations: {
+        oldInit(state) {
+            let temp = localStorage.getItem("kumiTree");
+            if (temp) {
+                const tree = JSON.parse(temp).tree;
+                initId(tree);
+                state.tree = tree;
+                // console.log("next kumi node ID: " + id);
+            }
+            // localStorage.removeItem("kumiTree");
+        },
+
+        set(state, payload) {
+            payload = payload || {};
+            state.tree = payload.tree || getInitTree();
+            initId(state.tree);
+        },
+
         // create artifacts group
         newKumi(state, { ids, label, under }) {
             let node = getTreeNode(state.tree, node => node.id === under);
@@ -164,7 +179,7 @@ export default {
     getters: {
         kumiByDir: state => {
             let temp = {};
-            
+
             for (let child of state.tree.children) {
                 temp[child.id] = getKumiFromTree(child);
             }

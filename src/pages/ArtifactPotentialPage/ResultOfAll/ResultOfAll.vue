@@ -71,6 +71,11 @@ export default {
             }
         }
     },
+    watch: {
+        "$store.state.accounts.currentAccountId"() {
+            this.result = [];
+        }
+    },
     computed: {
         finalResult() {
             let temp = this.result.slice();

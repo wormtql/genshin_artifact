@@ -59,11 +59,19 @@ const TargetFuncExplanationPage = () => import(/* webpackChunkName: "help-page" 
 const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/ExportToolPage");
 const ArtifactsStatisticsPage = () => import(/* webpackChunkName: "artifacts-statistics-page" */ "@page/ArtifactsStatisticsPage");
 const KumiPage = () => import (/* webpackChunkName: "kumi-page" */ "@page/KumiPage");
+const AccountPage = () => import (/* webpackChunkName: "account-page" */ "@page/AccountPage");
 
 
 const webName = process.env.WEB_TITLE;
 
 const routes = [
+    {
+        path: "/accounts",
+        component: AccountPage,
+        meta: {
+            title: "账号 | " + webName,
+        }
+    },
     {
         path: "/artifacts-kumi",
         component: KumiPage,

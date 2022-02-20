@@ -185,7 +185,7 @@
                 </div>
             </el-col>
         </el-row>
-        
+
     </div>
 </template>
 
@@ -240,6 +240,12 @@ export default {
             currentPresetName: "",
         }
     },
+    watch: {
+        "$store.state.accounts.currentAccountId"() {
+            this.isPreset = false;
+            this.currentPresetName = "";
+        }
+    },
     methods: {
         notifyChange(type, value) {
             // console.log(type, value);
@@ -286,7 +292,7 @@ export default {
 
         applyPreset(name) {
             let preset = this.$store.getters["presets/all"][name];
-            
+
             // set character
             // this.$refs.selectCharacter.setCharacterName(preset.character.name);
             this.$refs.configCharacter.setCharacterConfig(preset.character);
@@ -303,7 +309,7 @@ export default {
 
             // set constraint
             this.$refs.constraint.setConstraint(preset.constraint);
-            
+
             // set buffs
             this.$refs.configBuff.setBuffs(preset.buffs ?? []);
 
@@ -314,7 +320,7 @@ export default {
             this.$nextTick(() => {
                 this.$refs.calculator.updateConfigObject();
             });
-            
+
 
             this.$message({
                 type: "success",
