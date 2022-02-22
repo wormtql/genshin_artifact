@@ -1,4 +1,4 @@
-import { charactersData } from "@asset/characters";
+import { charactersData } from "@asset/character";
 import { TargetFuncUtils } from "../../../utils";
 
 const skill = charactersData["hutao"].skill;

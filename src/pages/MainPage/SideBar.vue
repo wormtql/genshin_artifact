@@ -23,10 +23,10 @@
                     <i class="el-icon-s-help"></i>
                     圣遗物套装
                 </el-menu-item>
-                <el-menu-item index="/character-presets">
-                    <i class="el-icon-menu"></i>
-                    计算预设
-                </el-menu-item>
+<!--                <el-menu-item index="/character-presets">-->
+<!--                    <i class="el-icon-menu"></i>-->
+<!--                    计算预设-->
+<!--                </el-menu-item>-->
             </el-menu-item-group>
 
             <el-menu-item-group class="hidden-xs-only">
@@ -35,16 +35,20 @@
                 </template>
                 <el-menu-item index="/calculate">
                     <i class="el-icon-cpu"></i>
-                    Arts Planner
+                    计算器
+                </el-menu-item>
+                <el-menu-item index="/team-optimization">
+                    <i class="el-icon-s-opportunity"></i>
+                    多人优化
                 </el-menu-item>
                 <el-menu-item index="/potential">
                     <i class="el-icon-magic-stick"></i>
                     圣遗物潜力
                 </el-menu-item>
-                <el-menu-item index="/artifacts-statistics">
-                    <i class="el-icon-s-data"></i>
-                    圣遗物统计
-                </el-menu-item>
+<!--                <el-menu-item index="/artifacts-statistics">-->
+<!--                    <i class="el-icon-s-data"></i>-->
+<!--                    圣遗物统计-->
+<!--                </el-menu-item>-->
             </el-menu-item-group>
 
             <el-menu-item-group>
@@ -68,30 +72,30 @@
                         <i class="el-icon-question"></i>
                         FAQ
                     </el-menu-item>
-                    <el-menu-item index="/help/target-func-explanation">
-                        <i class="el-icon-question"></i>
-                        目标函数参数说明
-                    </el-menu-item>
+<!--                    <el-menu-item index="/help/target-func-explanation">-->
+<!--                        <i class="el-icon-question"></i>-->
+<!--                        目标函数参数说明-->
+<!--                    </el-menu-item>-->
                 </el-submenu>
-                <el-submenu index="alg">
-                    <template slot="title">
-                        <i class="el-icon-ice-cream"></i>
-                        算法说明
-                    </template>
-                    <el-menu-item index="/algorithm-target">
-                        <i class="el-icon-chicken"></i>
-                        目标函数
-                    </el-menu-item>
-                    <el-menu-item index="/algorithm-potential">
-                        <i class="el-icon-sugar"></i>
-                        潜力函数
-                    </el-menu-item>
-                </el-submenu>
+<!--                <el-submenu index="alg">-->
+<!--                    <template slot="title">-->
+<!--                        <i class="el-icon-ice-cream"></i>-->
+<!--                        算法说明-->
+<!--                    </template>-->
+<!--                    <el-menu-item index="/algorithm-target">-->
+<!--                        <i class="el-icon-chicken"></i>-->
+<!--                        目标函数-->
+<!--                    </el-menu-item>-->
+<!--                    <el-menu-item index="/algorithm-potential">-->
+<!--                        <i class="el-icon-sugar"></i>-->
+<!--                        潜力函数-->
+<!--                    </el-menu-item>-->
+<!--                </el-submenu>-->
                 
-                <el-menu-item index="/changelog">
-                    <i class="el-icon-date"></i>
-                    更新记录
-                </el-menu-item>
+<!--                <el-menu-item index="/changelog">-->
+<!--                    <i class="el-icon-date"></i>-->
+<!--                    更新记录-->
+<!--                </el-menu-item>-->
 
                 <el-menu-item index="/tomodachi">
                     <i class="el-icon-link"></i>

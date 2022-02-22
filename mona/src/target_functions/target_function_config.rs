@@ -12,6 +12,7 @@ pub enum TargetFunctionConfig {
     // ExpectationConfig { element: Element, skill_type: SkillType }
     HuTaoDefault { vaporize_rate: f64, melt_rate: f64 },
     JeanDefault { recharge_demand: f64, damage_weight: f64 },
+    KaedeharaKazuhaDefault { recharge_demand: f64 },
     LisaDefault { recharge_demand: f64 },
     MonaDefault { recharge_demand: f64 },
     QiqiDefault { recharge_demand: f64 },
@@ -24,8 +25,10 @@ pub enum TargetFunctionConfig {
     XianglingDefault { recharge_demand: f64 },
     XingqiuDefault { recharge_demand: f64 },
     XinyanDefault { recharge_demand: f64, damage_demand: f64 },
+    YaeMikoDefault { recharge_demand: f64, electro_charged_times: f64, overload_times: f64 },
     YoimiyaDefault { vaporize_rate: f64, melt_rate: f64 },
     YunjinDefault { recharge_demand: f64 },
     ZhongliDefault { recharge_demand: f64 },
+    KujouSaraDamage { recharge_demand: f64 },
     NoConfig
 }

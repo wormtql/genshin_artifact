@@ -1,5 +1,5 @@
 import { artifactsData } from "@asset/artifacts";
-import { secondaryTags } from "@asset/tags";
+import { artifactTags } from "@const/artifact";
 
 const positions = ["flower", "feather", "sand", "cup", "head"];
 const alias = {
@@ -21,7 +21,7 @@ function checkTag(tag) {
         return "expecting tag name";
     }
     // check if tag name exists
-    if (!secondaryTags[tag.name]) {
+    if (!artifactTags[tag.name]) {
         return `tag name "${tag.name}" not found`;
     }
 

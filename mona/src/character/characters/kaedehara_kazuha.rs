@@ -222,7 +222,9 @@ impl CharacterTrait for KaedeharaKazuha {
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
         let role: KaedeharaKazuhaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
         match role {
-            KaedeharaKazuhaRoleEnum::Default => Box::new(KaedeharaKazuhaDefaultTargetFunction),
+            KaedeharaKazuhaRoleEnum::Default => Box::new(KaedeharaKazuhaDefaultTargetFunction {
+                recharge_demand: 1.8
+            }),
         }
     }
 }

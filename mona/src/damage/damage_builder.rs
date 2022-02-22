@@ -16,6 +16,8 @@ pub trait DamageBuilder {
 
     fn add_hp_ratio(&mut self, key: &str, value: f64);
 
+    fn add_extra_em(&mut self, key: &str, value: f64);
+
     fn add_extra_atk(&mut self, key: &str, value: f64);
 
     fn add_extra_def(&mut self, key: &str, value: f64);
@@ -35,6 +37,8 @@ pub trait DamageBuilder {
     fn add_extra_enhance_vaporize(&mut self, key: &str, value: f64);
 
     fn add_extra_def_minus(&mut self, key: &str, value: f64);
+
+    fn add_extra_def_penetration(&mut self, key: &str, value: f64);
 
     fn add_extra_res_minus(&mut self, key: &str, value: f64);
 

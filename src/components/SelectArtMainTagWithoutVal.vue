@@ -21,15 +21,15 @@
 
 <script>
 import { artifactsTagMap } from "@asset/artifacts";
-import { secondaryTags } from "@asset/tags";
+import { artifactTags } from "@const/artifact";
 
 const tagData = {
-    flower: artifactsTagMap["flower"].map(item => secondaryTags[item]),
-    feather: artifactsTagMap["feather"].map(item => secondaryTags[item]),
-    sand: artifactsTagMap["sand"].map(item => secondaryTags[item]),
-    cup: artifactsTagMap["cup"].map(item => secondaryTags[item]),
-    head: artifactsTagMap["head"].map(item => secondaryTags[item]),
-    "any": Object.values(secondaryTags),
+    flower: artifactsTagMap["flower"].map(item => artifactTags[item]),
+    feather: artifactsTagMap["feather"].map(item => artifactTags[item]),
+    sand: artifactsTagMap["sand"].map(item => artifactTags[item]),
+    cup: artifactsTagMap["cup"].map(item => artifactTags[item]),
+    head: artifactsTagMap["head"].map(item => artifactTags[item]),
+    "any": Object.values(artifactTags),
 }
 
 export default {

@@ -7,7 +7,7 @@ use super::typing::EdgeFunctionFwd;
 
 use super::attribute_name::AttributeName;
 
-const MAX_EDGE_COUNT: usize = 20;
+const MAX_EDGE_COUNT: usize = 30;
 
 #[derive(Copy, Clone, Debug)]
 struct SimpleEntry {

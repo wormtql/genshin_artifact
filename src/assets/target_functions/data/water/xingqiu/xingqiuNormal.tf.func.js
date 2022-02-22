@@ -1,4 +1,4 @@
-import { charactersData } from "@asset/characters";
+import { charactersData } from "@asset/character";
 
 
 const skill = charactersData["xingqiu"].skill;

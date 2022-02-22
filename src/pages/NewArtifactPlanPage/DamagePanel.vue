@@ -2,6 +2,7 @@
     <div>
         <el-table
             :data="tableData"
+            size="small"
         >
             <el-table-column
                 prop="name"

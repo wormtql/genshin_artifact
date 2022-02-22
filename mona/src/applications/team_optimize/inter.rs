@@ -5,6 +5,7 @@ use crate::artifacts::Artifact;
 use crate::attribute::Attribute;
 use crate::character::Character;
 use crate::team::team::{Team, TeamEntry};
+use crate::team_target::team_target_config::TeamTargetFunctionConfig;
 use crate::weapon::Weapon;
 
 #[derive(Serialize, Deserialize)]
@@ -16,6 +17,7 @@ pub struct TeamInterface {
 #[derive(Serialize, Deserialize)]
 pub struct OptimizeTeamObject {
     pub team: TeamInterface,
+    pub team_target_function_config: Option<TeamTargetFunctionConfig>,
     pub override_target_functions: Option<Vec<Option<TargetFunctionInterface>>>,
     pub artifacts: Vec<Artifact>,
     pub hyper_param: Option<TeamOptimizeHyperParam>
@@ -44,7 +46,7 @@ impl OptimizeTeamResultEntry {
 
 #[derive(Serialize, Deserialize)]
 pub struct OptimizeTeamResult {
-    pub artifacts: Vec<OptimizeTeamResultEntry>
+    pub artifacts: Vec<Vec<OptimizeTeamResultEntry>>
 }
 
 impl TeamInterface {

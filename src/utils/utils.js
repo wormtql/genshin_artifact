@@ -1,4 +1,4 @@
-import { secondaryTags } from "@asset/tags";
+import { artifactTags } from "@const/artifact";
 import { artifactsData } from "@asset/artifacts";
 
 /**
@@ -6,7 +6,7 @@ import { artifactsData } from "@asset/artifacts";
  * attackStatic, 20 => "攻击力+20"
  */
 export function displayedTag(name, value) {
-    let tagData = secondaryTags[name];
+    let tagData = artifactTags[name];
     if (!tagData) {
         throw "tag name not exist";
     }
@@ -43,7 +43,7 @@ export function displayedTag(name, value) {
  * attackStatic, 10 -> "10"
  */
 export function convertDisplayTagValue(name, value) {
-    let tagData = secondaryTags[name];
+    let tagData = artifactTags[name];
     if (!tagData) {
         throw "tag name not exist";
     }
@@ -66,7 +66,7 @@ export function getArtifactThumbnailURL(setName) {
 
 export function getArtifactRealValue(name, value) {
     let temp = parseFloat(value);
-    if (secondaryTags[name].percentage) {
+    if (artifactTags[name].percentage) {
         return temp / 100;
     }
     return temp;

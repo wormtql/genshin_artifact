@@ -1,6 +1,0 @@
-characterName: Yanfei
-configs:
-  - name: after_q
-    title: 灼灼
-    type: bool
-    default: true

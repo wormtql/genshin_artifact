@@ -4,6 +4,7 @@ use crate::buffs::buff_name::BuffName;
 use crate::buffs::{Buff, BuffConfig};
 use crate::character::{Character, CharacterConfig, CharacterName};
 use crate::character::skill_config::CharacterSkillConfig;
+use crate::enemies::Enemy;
 use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName, TargetFunctionUtils};
 use crate::weapon::{Weapon, WeaponConfig, WeaponName};
 
@@ -88,5 +89,34 @@ pub struct BuffInterface {
 impl BuffInterface {
     pub fn to_buff<A: Attribute>(&self) -> Box<dyn Buff<A>> {
         self.name.create(&self.config)
+    }
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct EnemyInterface {
+    pub level: usize,
+    pub electro_res: f64,
+    pub pyro_res: f64,
+    pub hydro_res: f64,
+    pub cryo_res: f64,
+    pub geo_res: f64,
+    pub anemo_res: f64,
+    pub dendro_res: f64,
+    pub physical_res: f64
+}
+
+impl EnemyInterface {
+    pub fn to_enemy(&self) -> Enemy {
+        Enemy {
+            level: self.level as i32,
+            electro_res: self.electro_res,
+            pyro_res: self.pyro_res,
+            hydro_res: self.hydro_res,
+            cryo_res: self.cryo_res,
+            anemo_res: self.anemo_res,
+            geo_res: self.geo_res,
+            dendro_res: self.dendro_res,
+            physical_res: self.physical_res
+        }
     }
 }

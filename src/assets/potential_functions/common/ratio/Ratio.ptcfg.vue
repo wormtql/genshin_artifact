@@ -30,14 +30,14 @@
 
 <script>
 import { artifactsSecondaryTag } from "@asset/artifacts";
-import { secondaryTags } from "@asset/tags";
+import { artifactTags } from "@const/artifact";
 
 export default {
     name: "Ratio.ptcfg",
     created() {
         let temp = {};
         for (let i of artifactsSecondaryTag) {
-            temp[i] = secondaryTags[i];
+            temp[i] = artifactTags[i];
         }
 
         this.tags = temp;

@@ -1,9 +1,0 @@
-type: character
-characterName: Yoimiya
-configs:
-  - type: float
-    name: talent1_level
-    min: 0
-    max: 10
-    default: 8
-    title: "袖火百景图叠加层数"

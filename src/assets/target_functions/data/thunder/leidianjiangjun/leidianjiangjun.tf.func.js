@@ -1,4 +1,4 @@
-import { charactersData } from "@asset/characters";
+import { charactersData } from "@asset/character";
 
 
 let skill = charactersData["leidianjiangjun"].skill;

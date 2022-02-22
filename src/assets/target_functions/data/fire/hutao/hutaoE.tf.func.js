@@ -1,4 +1,4 @@
-import { charactersData } from "@asset/characters";
+import { charactersData } from "@asset/character";
 import reaction from "@/elemental_reaction/reaction_bonus";
 
 const ampFunc = reaction.amp;

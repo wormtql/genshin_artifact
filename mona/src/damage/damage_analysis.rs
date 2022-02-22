@@ -21,6 +21,7 @@ pub struct DamageAnalysis {
     pub shield_strength: HashMap<String, f64>,
 
     pub def_minus: HashMap<String, f64>,
+    pub def_penetration: HashMap<String, f64>,
     pub res_minus: HashMap<String, f64>,
 
     pub element: Element,

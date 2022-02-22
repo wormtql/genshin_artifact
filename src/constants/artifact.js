@@ -33,7 +33,7 @@ export const artifactTags = {
         "max": {
             "4": 0.268,
             "5": 0.359
-        }
+        },
     },
     "criticalDamage": {
         "name": "criticalDamage",
@@ -185,6 +185,47 @@ export const artifactTags = {
         }
     }
 }
+
+export const mainStatMap = {
+    flower: ["lifeStatic"],
+    feather: ["attackStatic"],
+    sand: ["attackPercentage", "lifePercentage", "defendPercentage", "elementalMastery", "recharge"],
+    cup: [
+        "thunderBonus",
+        "fireBonus",
+        "waterBonus",
+        "iceBonus",
+        "windBonus",
+        "rockBonus",
+        "physicalBonus",
+        "attackPercentage",
+        "lifePercentage",
+        "defendPercentage",
+        "elementalMastery"
+    ],
+    head: [
+        "critical",
+        "criticalDamage",
+        "attackPercentage",
+        "cureEffect",
+        "elementalMastery",
+        "lifePercentage",
+        "defendPercentage",
+    ]
+}
+
+export const subStats = [
+    "critical",
+    "criticalDamage",
+    "attackStatic",
+    "attackPercentage",
+    "lifeStatic",
+    "lifePercentage",
+    "defendStatic",
+    "defendPercentage",
+    "elementalMastery",
+    "recharge",
+]
 
 export const positions = [
     "flower", "feather", "sand", "cup", "head"

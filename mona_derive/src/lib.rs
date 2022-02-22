@@ -7,6 +7,67 @@ use crate::utils::get_enum_variants;
 
 mod utils;
 
+#[proc_macro_derive(TeamTargetFunctionData)]
+pub fn derive_team_target_function_data(input: TokenStream) -> TokenStream {
+    let ast = parse_macro_input!(input as DeriveInput);
+    let mut vars = get_enum_variants(&ast);
+
+    let mut rows_members = String::new();
+    let mut rows_get_buff = String::new();
+    let mut rows_create = String::new();
+    let mut rows_get_meta = String::new();
+    for v in vars.iter() {
+        rows_members.push_str(&format!("TeamName::{n} => crate::team_target::team_targets::TeamTarget{n}::MEMBERS,\n", n=v));
+        rows_get_buff.push_str(&format!("TeamName::{n} => crate::team_target::team_targets::TeamTarget{n}::get_default_buffs(team),\n", n=v));
+        rows_create.push_str(&format!("TeamName::{n} => crate::team_target::team_targets::TeamTarget{n}::create(config, team),\n", n=v));
+        rows_get_meta.push_str(&format!("TeamName::{n} => crate::team_target::team_targets::TeamTarget{n}::META,\n", n=v));
+    }
+
+    let output = format!(
+        r#"
+        use std::collections::HashMap;
+        use crate::character::CharacterName;
+        use crate::attribute::Attribute;
+        use crate::team::team::Team;
+        use crate::buffs::Buff;
+        use crate::team_target::team_target_config::TeamTargetFunctionConfig;
+        use crate::target_functions::TargetFunction;
+        use crate::team_target::team_target_function::{{TeamTargetFunction, TeamTargetFunctionMetaData, TeamTargetFunctionMetaTrait}};
+        impl TeamName {{
+            pub fn get_members(&self) -> &'static [CharacterName] {{
+                match *self {{
+                    {rows_members}
+                }}
+            }}
+
+            pub fn get_default_buffs<A: Attribute>(&self, team: &Team<A>) -> HashMap<usize, Vec<Box<dyn Buff<A>>>> {{
+                match *self {{
+                    {rows_get_buff}
+                }}
+            }}
+
+            pub fn create<A: Attribute>(&self, config: &TeamTargetFunctionConfig, team: &Team<A>) -> Box<dyn TeamTargetFunction> {{
+                match *self {{
+                    {rows_create}
+                }}
+            }}
+
+            pub fn get_meta(&self) -> TeamTargetFunctionMetaData {{
+                match *self {{
+                    {rows_meta_data}
+                }}
+            }}
+        }}
+        "#,
+        rows_members=rows_members,
+        rows_get_buff=rows_get_buff,
+        rows_create=rows_create,
+        rows_meta_data=rows_get_meta,
+    );
+
+    output.parse().unwrap()
+}
+
 #[proc_macro_derive(ArtifactData)]
 pub fn derive_artifact_data(input: TokenStream) -> TokenStream {
     let ast = parse_macro_input!(input as DeriveInput);

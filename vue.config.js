@@ -1,14 +1,12 @@
 /* eslint-disable */
 
-const path = require("path");
-const fs = require("fs");
-const packageJson = fs.readFileSync("./package.json");
-const version = JSON.parse(packageJson).version || "no version";
-const webpack = require("webpack");
-const WorkerPlugin = require("worker-plugin");
+const path = require("path")
+const fs = require("fs")
+const packageJson = fs.readFileSync("./package.json")
+const version = JSON.parse(packageJson).version || "no version"
+const webpack = require("webpack")
+const { execSync } = require("child_process")
 
-
-const loaderPath = path.resolve(__dirname, "loaders")
 
 const BEIAN_CODE = "浙ICP备2021004987号";
 
@@ -68,9 +66,9 @@ module.exports = {
                 "mona": path.resolve(__dirname, "mona/pkg"),
 
                 "@wasm": path.resolve(__dirname, "src/wasm"),
-                "@character": path.resolve(__dirname, "src/character"),
-                "@weapon": path.resolve(__dirname, "src/weapon"),
-                "@targetFunction": path.resolve(__dirname, "src/target_function"),
+                "@character": path.resolve(__dirname, "src/assets/character"),
+                "@weapon": path.resolve(__dirname, "src/assets/weapon"),
+                "@targetFunction": path.resolve(__dirname, "src/assets/target_function"),
                 "@buff": path.resolve(__dirname, "src/assets/buff"),
                 "@image": path.resolve(__dirname, "src/images"),
                 "@artifact": path.resolve(__dirname, "src/assets/artifacts"),

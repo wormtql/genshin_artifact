@@ -1,8 +1,0 @@
-characterName: Aloy
-configs:
-  - name: coil_count
-    type: int
-    title: 线圈层数
-    min: 0
-    max: 4
-    default: 4

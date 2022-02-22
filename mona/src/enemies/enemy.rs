@@ -15,7 +15,7 @@ pub struct Enemy {
 impl Default for Enemy {
     fn default() -> Self {
         Enemy {
-            level: 80,
+            level: 90,
             electro_res: 0.1,
             pyro_res: 0.1,
             hydro_res: 0.1,
@@ -29,10 +29,12 @@ impl Default for Enemy {
 }
 
 impl Enemy {
-    pub fn get_defensive_ratio(&self, character_level: usize, extra: f64) -> f64 {
+    pub fn get_defensive_ratio(&self, character_level: usize, extra_minus: f64, penetration: f64) -> f64 {
         let def = self.level as f64 + 100.0;
-        let def_minus = extra.clamp(0.0, 1.0);
-        (character_level as f64 + 100.0) / ((1.0 - def_minus) * def + character_level as f64 + 100.0)
+        let def_minus = extra_minus.clamp(0.0, 1.0);
+        let def_penetration = penetration.clamp(0.0, 1.0);
+        let c = character_level as f64 + 100.0;
+        c / ((1.0 - def_penetration) * (1.0 - def_minus) * def + c)
     }
 
     pub fn get_resistance_ratio(&self, element: Element, minus: f64) -> f64 {
@@ -48,7 +50,7 @@ impl Enemy {
         } - minus;
 
         if res > 0.75 {
-            25.0 / (25.0 + res)
+            1.0 / (1.0 + res * 4.0)
         } else if res > 0.0 {
             1.0 - res
         } else {

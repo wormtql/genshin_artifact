@@ -3,7 +3,7 @@ use crate::artifacts::effect_config::ArtifactEffectConfig;
 use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
-use crate::common::item_config_type::ItemConfig;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::enemies::Enemy;
 use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
@@ -14,7 +14,9 @@ use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
-pub struct KaedeharaKazuhaDefaultTargetFunction;
+pub struct KaedeharaKazuhaDefaultTargetFunction {
+    pub recharge_demand: f64
+}
 
 impl TargetFunctionMetaTrait for KaedeharaKazuhaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
@@ -27,8 +29,23 @@ impl TargetFunctionMetaTrait for KaedeharaKazuhaDefaultTargetFunction {
         image: TargetFunctionMetaImage::Avatar
     };
 
-    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, _config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        Box::new(KaedeharaKazuhaDefaultTargetFunction)
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "recharge_demand",
+            title: "充能需求",
+            config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.8 },
+        }
+    ]);
+
+    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        let recharge_demand = match *config {
+            TargetFunctionConfig::KaedeharaKazuhaDefault { recharge_demand } => recharge_demand,
+            _ => 1.0
+        };
+        Box::new(KaedeharaKazuhaDefaultTargetFunction {
+            recharge_demand
+        })
     }
 }
 
@@ -98,10 +115,18 @@ impl TargetFunction for KaedeharaKazuhaDefaultTargetFunction {
         }
     }
 
-    fn target(&self, attribute: &SimpleAttributeGraph2, _character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &Vec<&Artifact>, _enemy: &Enemy) -> f64 {
+    fn target(&self, attribute: &SimpleAttributeGraph2, _character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, artifacts: &Vec<&Artifact>, _enemy: &Enemy) -> f64 {
+        let mut vv_count = 0;
+        for artifact in artifacts.iter() {
+            if artifact.set_name == ArtifactSetName::ViridescentVenerer {
+                vv_count += 1;
+            }
+        }
+
+        let vv_ratio = if vv_count >= 4 { 1.167 } else { 1.0 };
+
         let em = attribute.get_value(AttributeName::ElementalMastery);
-        let recharge = attribute.get_value(AttributeName::Recharge);
-        let recharge_ratio = recharge.min(1.8);
-        recharge_ratio * em
+        let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);
+        r * (1.0 + (em * 0.0004) / 1.5) * vv_ratio
     }
 }

@@ -72,12 +72,11 @@ impl TargetFunction for KujouSaraDefaultTargetFunction {
                 StatName::ATKPercentage,
             ],
             set_names: Some(vec![
-                ArtifactSetName::NoblesseOblige,
                 ArtifactSetName::EmblemOfSeveredFate,
                 ArtifactSetName::GladiatorsFinale,
                 ArtifactSetName::ShimenawasReminiscence,
             ]),
-            very_critical_set_names: None,
+            very_critical_set_names: Some(vec![ArtifactSetName::NoblesseOblige]),
             normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
             critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
             very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD

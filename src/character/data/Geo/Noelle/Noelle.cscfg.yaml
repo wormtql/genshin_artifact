@@ -1,6 +1,0 @@
-characterName: Noelle
-configs:
-  - name: after_q
-    type: bool
-    title: Q技能之后
-    default: true

@@ -1,6 +1,8 @@
+use wasm_bindgen::prelude::*;
 use crate::attribute::{Attribute, AttributeName};
 use crate::common::reaction_type::TransformativeType;
 
+#[wasm_bindgen]
 pub struct TransformativeDamage {
     pub swirl_cryo: f64,
     pub swirl_hydro: f64,

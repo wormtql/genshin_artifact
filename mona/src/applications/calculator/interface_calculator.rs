@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use serde::{Serialize, Deserialize};
 use wasm_bindgen::JsValue;
 use wasm_bindgen::prelude::*;
-use crate::applications::common::{BuffInterface, CharacterInterface, SkillInterface, TargetFunctionInterface, WeaponInterface};
+use crate::applications::common::{BuffInterface, CharacterInterface, EnemyInterface, SkillInterface, TargetFunctionInterface, WeaponInterface};
 use crate::artifacts::{Artifact, ArtifactList};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
 use crate::attribute::{AttributeUtils, ComplicatedAttributeGraph, SimpleAttributeGraph2};
@@ -12,7 +12,9 @@ use crate::character::characters::damage;
 use crate::character::traits::CharacterTrait;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::damage::{ComplicatedDamageBuilder, DamageAnalysis, DamageContext, SimpleDamageBuilder};
+use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::damage_result::SimpleDamageResult;
+use crate::damage::transformative_damage::TransformativeDamage;
 use crate::enemies::Enemy;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
@@ -28,8 +30,39 @@ pub struct CalculatorConfigInterface {
     pub buffs: Vec<BuffInterface>,
     pub artifacts: Vec<Artifact>,
     pub artifact_config: Option<ArtifactEffectConfig>,
-    pub skill: SkillInterface
+    pub skill: SkillInterface,
+    pub enemy: Option<EnemyInterface>,
 }
+
+// #[derive(Serialize, Deserialize)]
+// pub struct DamageWithoutAttributeInterface {
+//     pub atk: f64,
+//     pub atk_ratio: f64,
+//     pub def: f64,
+//     pub def_ratio: f64,
+//     pub hp: f64,
+//     pub hp_ratio: f64,
+//     pub extra_damage: f64,
+//     pub bonus: f64,
+//     pub critical: f64,
+//     pub critical_damage: f64,
+//     pub melt_enhance: f64,
+//     pub vaporize_enhance: f64,
+//
+//     pub def_minus: f64,
+//     pub def_penetration: f64,
+//     pub res_minus: f64,
+// }
+
+// #[wasm_bindgen]
+// pub struct TransformativeDamageOutput {
+//     pub overload: f64,
+//     pub electro_charged: f64,
+//     pub swirl_pyro: f64,
+//     pub swirl_electro: f64,
+//     pub swirl_cryo: f64,
+//     pub swirl_hydro: f64
+// }
 
 #[wasm_bindgen]
 impl CalculatorInterface {
@@ -51,6 +84,12 @@ impl CalculatorInterface {
             None => Default::default()
         };
 
+        let enemy = if let Some(x) = input.enemy {
+            x.to_enemy()
+        } else {
+            Default::default()
+        };
+
         let result = CalculatorInterface::get_damage_analysis_internal(
             &character,
             &weapon,
@@ -58,11 +97,75 @@ impl CalculatorInterface {
             artifacts,
             &artifact_config,
             input.skill.index,
-            &input.skill.config
+            &input.skill.config,
+            &enemy
         );
 
         JsValue::from_serde(&result).unwrap()
     }
+
+    pub fn get_transformative_damage(value: &JsValue) -> TransformativeDamage {
+        utils::set_panic_hook();
+
+        let input: CalculatorConfigInterface = value.into_serde().unwrap();
+
+        let character: Character<SimpleAttributeGraph2> = input.character.to_character();
+        let weapon = input.weapon.to_weapon(&character);
+
+        let buffs: Vec<_> = input.buffs.iter().map(|x| x.to_buff()).collect();
+        let artifacts: Vec<&Artifact> = input.artifacts.iter().collect();
+
+        let artifact_config = match input.artifact_config {
+            Some(x) => x,
+            None => Default::default()
+        };
+
+        let enemy = if let Some(x) = input.enemy {
+            x.to_enemy()
+        } else {
+            Default::default()
+        };
+
+        let attribute = AttributeUtils::create_attribute_from_big_config(
+            &ArtifactList {
+                artifacts: &artifacts
+            },
+            &artifact_config,
+            &character,
+            &weapon,
+            &buffs
+        );
+
+        let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
+            character_common_data: &character.common_data,
+            enemy: &enemy,
+            attribute: &attribute
+        };
+
+        let result = context.transformative();
+
+        result
+    }
+
+    // pub fn damage_without_attribute(value: &JsValue) -> SimpleDamageResult {
+    //     let input: DamageWithoutAttributeInterface = value.into_serde().unwrap();
+    //
+    //     let mut builder = SimpleDamageBuilder::new(input.atk_ratio, input.def_ratio, input.hp_ratio);
+    //     builder.add_extra_atk("", input.atk);
+    //     builder.add_extra_def("", input.def);
+    //     builder.add_extra_hp("", input.hp);
+    //     builder.add_extra_damage("", input.extra_damage);
+    //     builder.add_extra_bonus("", input.bonus);
+    //     builder.add_extra_critical("", input.critical);
+    //     builder.add_extra_critical_damage("", input.critical_damage);
+    //     builder.add_extra_enhance_melt("", input.melt_enhance);
+    //     builder.add_extra_enhance_vaporize("", input.vaporize_enhance);
+    //     builder.add_extra_def_minus("", input.def_minus);
+    //     builder.add_extra_def_penetration("", input.def_penetration);
+    //     builder.add_extra_res_minus("", input.res_minus);
+    //
+    //
+    // }
 }
 
 impl CalculatorInterface {
@@ -73,7 +176,8 @@ impl CalculatorInterface {
         artifacts: Vec<&Artifact>,
         artifact_config: &ArtifactEffectConfig,
         skill_index: usize,
-        skill_config: &CharacterSkillConfig
+        skill_config: &CharacterSkillConfig,
+        enemy: &Enemy
     ) -> DamageAnalysis {
         // let mut ans: HashMap<String, DamageAnalysis> = HashMap::new();
 
@@ -89,7 +193,6 @@ impl CalculatorInterface {
             buffs
         );
 
-        let enemy = Enemy::default();
         let context = DamageContext {
             character_common_data: &character.common_data,
             attribute: &attribute,
@@ -98,34 +201,5 @@ impl CalculatorInterface {
 
         let damage: DamageAnalysis = damage::<ComplicatedDamageBuilder>(&context, skill_index, skill_config);
         damage
-
-        // match character.common_data.name {
-        //
-        //     CharacterName::HuTao => {
-        //         ans.insert(String::from("普攻1段"), HuTaoDamage::damage::<ComplicatedDamageBuilder>(&context, HuTaoDamageEnum::Normal1, false));
-        //         ans.insert(String::from("普攻1段-彼岸蝶舞"), HuTaoDamage::damage::<ComplicatedDamageBuilder>(&context, HuTaoDamageEnum::Normal1, true));
-        //         ans.insert(String::from("重击"), HuTaoDamage::damage::<ComplicatedDamageBuilder>(&context, HuTaoDamageEnum::Charged, false));
-        //         ans.insert(String::from("重击-彼岸蝶舞"), HuTaoDamage::damage::<ComplicatedDamageBuilder>(&context, HuTaoDamageEnum::Charged, true));
-        //         ans.insert(String::from("血梅香"), HuTaoDamage::damage::<ComplicatedDamageBuilder>(&context, HuTaoDamageEnum::ElementalSkillBloodBlossom, false));
-        //         ans.insert(String::from("血梅香-彼岸蝶舞"), HuTaoDamage::damage::<ComplicatedDamageBuilder>(&context, HuTaoDamageEnum::ElementalSkillBloodBlossom, true));
-        //         ans.insert(String::from("大招伤害"), HuTaoDamage::damage::<ComplicatedDamageBuilder>(&context, HuTaoDamageEnum::ElementalBurst1, false));
-        //         ans.insert(String::from("大招伤害-彼岸蝶舞"), HuTaoDamage::damage::<ComplicatedDamageBuilder>(&context, HuTaoDamageEnum::ElementalBurst1, true));
-        //         ans.insert(String::from("低血量大招伤害"), HuTaoDamage::damage::<ComplicatedDamageBuilder>(&context, HuTaoDamageEnum::ElementalBurstLow1, false));
-        //         ans.insert(String::from("低血量大招伤害-彼岸蝶舞"), HuTaoDamage::damage::<ComplicatedDamageBuilder>(&context, HuTaoDamageEnum::ElementalBurstLow1, true));
-        //     },
-        //     // CharacterName::Albedo => {
-        //     //     ans.insert(String::from("普攻1段"), AlbedoDamage::damage::<ComplicatedDamageBuilder>(&context, AlbedoDamageEnum::Normal1, 0.0));
-        //     //     ans.insert(String::from("阳华伤害"), AlbedoDamage::damage::<ComplicatedDamageBuilder>(&context, AlbedoDamageEnum::E1, 0.0));
-        //     //     ans.insert(String::from("刹那之花"), AlbedoDamage::damage::<ComplicatedDamageBuilder>(&context, AlbedoDamageEnum::ETransientBlossom, 0.0));
-        //     //     ans.insert(String::from("元素爆发伤害"), AlbedoDamage::damage::<ComplicatedDamageBuilder>(&context, AlbedoDamageEnum::Q1, 4.0));
-        //     //     ans.insert(String::from("生灭之花"), AlbedoDamage::damage::<ComplicatedDamageBuilder>(&context, AlbedoDamageEnum::QFatalBlossom, 4.0));
-        //     // },
-        //     // CharacterName::Amber => {
-        //     //     ans.insert(String::from("普攻1段"), AmberDamage::damage::<ComplicatedDamageBuilder>(&context, AmberDamageE))
-        //     // }
-        //     _ => ()
-        // }
-        //
-        // ans
     }
 }

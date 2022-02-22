@@ -7,11 +7,22 @@
             @confirm="handleAddArtifact"
         ></add-artifact-dialog>
 
-        <import-json-dialog
-            :visible="importJsonDialogVisible"
-            @close="importJsonDialogVisible = false"
+        <el-dialog
+            :visible.sync="showImportDialog"
+            title="导入"
+            width="60%"
         >
-        </import-json-dialog>
+            <import-block ref="fileUploader"></import-block>
+            <el-checkbox
+                v-model="importDeleteUnseen"
+                style="margin-top: 12px"
+            >删除不存在的圣遗物</el-checkbox>
+
+            <template #footer>
+                <el-button @click="showImportDialog = false">取消</el-button>
+                <el-button type="primary" @click="handleImportJson">确定</el-button>
+            </template>
+        </el-dialog>
 
         <output-json-dialog
             :visible="outputJsonDialogVisible"
@@ -19,55 +30,45 @@
         >
         </output-json-dialog>
 
-        <edit-artifact-drawer
-            :visible="editArtifactDrawerVisible"
-            @close="editArtifactDrawerVisible = false"
-            :args="editArtifactArgs"
-            ref="editDrawer"
+        <el-drawer
+            title="编辑圣遗物"
+            :visible.sync="showEditArtifactDrawer"
+            direction="rtl"
         >
-        </edit-artifact-drawer>
+            <edit-artifact
+                ref="editArtifactDrawer"
+                @confirm="handleConfirmEdit"
+                @cancel="showEditArtifactDrawer = false"
+            ></edit-artifact>
+        </el-drawer>
 
         <!-- <div style="position: sticky"> -->
         <!-- bread crumb -->
         <el-breadcrumb>
-            <el-breadcrumb-item>圣遗物</el-breadcrumb-item>
+            <el-breadcrumb-item>圣遗物（{{ count }}）</el-breadcrumb-item>
         </el-breadcrumb>
-        <el-divider></el-divider>
+<!--        <el-divider></el-divider>-->
 
-        <el-alert
-            title="请注意保存圣遗物数据至本地，以防意外导致数据丢失"
-            type="warning"
-            :closable="false"
-            style="margin-bottom: 16px"
-        ></el-alert>
+<!--        <el-alert-->
+<!--            title="请注意保存圣遗物数据至本地，以防意外导致数据丢失"-->
+<!--            type="warning"-->
+<!--            :closable="false"-->
+<!--            style="margin-bottom: 16px"-->
+<!--        ></el-alert>-->
 
-        <el-tag>数量：{{ $store.getters["artifacts/count"] }}</el-tag>
+
 
         <!-- tool bar -->
         <div class="tool-bar">
-            <el-button @click="add"
+<!--            <el-tag>数量：{{ $store.getters["artifacts/count"] }}</el-tag>-->
+            <el-button
+                @click="add"
                 type="primary"
                 icon="el-icon-plus"
-            >
-                添加圣遗物
-            </el-button>
+                size="mini"
+                style="margin-right: 8px"
+            ></el-button>
 
-            <div class="tool-right">
-                <el-button @click="handleImportJsonClicked">
-                    导入json
-                </el-button>
-                <el-button @click="handleOutputJsonClicked">
-                    导出json
-                </el-button>
-            </div>
-        </div>
-
-        <artifacts-filter
-            :filter.sync="artifactsFilter"
-            style="margin-bottom: 16px"
-        ></artifacts-filter>
-
-        <div class="small-toolbar" style="margin-bottom: 16px">
             <el-popconfirm
                 title="确定清除吗，将会同时清除圣遗物套装数据"
                 @confirm="handleClickDeleteAll"
@@ -83,118 +84,163 @@
                     清空
                 </el-button>
             </el-popconfirm>
-            
+
             <el-button
                 size="mini"
                 icon="el-icon-unlock"
                 title="启用全部"
                 @click="$store.commit('artifacts/unlockAll')"
             >启用全部</el-button>
-            <el-button
-                size="mini"
-                icon="el-icon-unlock"
-                circle
-                title="锁定/解锁当前页"
-                @click="lockOrUnlockCurrentPage"
-            ></el-button>
+
+            <div class="tool-right">
+                <el-button @click="handleImportJsonClicked">
+                    导入json
+                </el-button>
+                <el-button @click="handleOutputJsonClicked">
+                    导出json
+                </el-button>
+            </div>
         </div>
 
         <!-- </div> -->
+        <div class="filter">
+            <span>套装</span>
+            <select-artifact-set
+                v-model="filterSet"
+                :multiple="true"
+                :multiple-limit="1000"
+            ></select-artifact-set>
+
+            <span style="margin-left: 24px">主词条</span>
+            <select-artifact-main-stat
+                v-model="filterMainStat"
+                :include-any="false"
+                :multiple="true"
+            ></select-artifact-main-stat>
+
+            <el-checkbox
+                v-model="ge16"
+                style="margin-left: 24px"
+            >只显示16级以上</el-checkbox>
+        </div>
 
         <!-- artifacts display -->
-        <el-tabs v-model="activeName" type="card">
+        <el-tabs v-model="activeName">
             <el-tab-pane
-                v-for="artType in artifactsType"
-                :key="artType.name"
+                v-for="tab in tabs"
+                :key="tab.name"
                 class="panel"
-                :name="artType.name"
+                :name="tab.name"
             >
-                <div slot="label" class="flex-row">
-                    <img :src="artType.iconURL">
-                    <span>{{ artType.chs }}</span>
+                <div slot="label">
+                    <img :src="tab.icon" class="icon">
                 </div>
-                <artifact
-                    class="artifact-panel"
-                    v-for="(item) in filteredArtifacts[artType.name]"
-                    :key="item.id"
-                    :item="item"
-                    @delete="removeArtifact(artType.name, item.id)"
-                    @toggle="toggleArtifact(artType.name, item.id)"
-                    @edit="editArtifact(artType.name, item.id)"
-                ></artifact>
+
+                <div v-if="filteredArtifacts.length > 0">
+                    <div class="artifacts-div mona-scroll" ref="artifactsDiv"
+                        :style="{ height: contentHeight }"
+                    >
+                        <artifact-display
+                            class="artifact-item"
+                            v-for="(item) in artifactToBeDisplayed"
+                            :key="item.id"
+                            :item="item"
+                            :buttons="true"
+                            :delete-button="true"
+                            :edit-button="true"
+                            @delete="handleClickRemoveArtifact(item.id)"
+                            @toggle="handleClickToggleArtifact(item.id)"
+                            @edit="handleClickEditArtifact(item.id)"
+                        ></artifact-display>
+                    </div>
+<!--                    <el-pagination-->
+<!--                        :current-page.sync="currentPage"-->
+<!--                        :page-size="pageSize"-->
+<!--                        :total="filteredArtifacts.length"-->
+<!--                    ></el-pagination>-->
+                </div>
+                <div v-else>
+                    <el-empty></el-empty>
+                </div>
             </el-tab-pane>
         </el-tabs>
     </div>
 </template>
 
 <script>
-import AddArtifactDialog from "./AddArtifactDialog";
-import ImportJsonDialog from "./ImportJsonDialog";
-import OutputJsonDialog from "./OutputJsonDialog";
-import Artifact from "./Artifact";
-import EditArtifactDrawer from "./EditArtifactDrawer";
-import ArtifactsFilter from "@c/filter/ArtifactsFilter";
+import { mapGetters } from "vuex"
+import {removeArtifact, toggleArtifact, updateArtifact, importMonaJson} from "@util/artifacts"
 
-import { artifactsIcon } from "@asset/artifacts";
-import { toChs as estimateToChs } from "@util/time_estimate";
+import flowerIcon from "@image/misc/flower.png"
+import featherIcon from "@image/misc/feather.png"
+import sandIcon from "@image/misc/sand.png"
+import gobletIcon from "@image/misc/goblet.png"
+import headIcon from "@image/misc/head.png"
 
-import positions from "@const/positions";
+import AddArtifactDialog from "./AddArtifactDialog"
+import OutputJsonDialog from "./OutputJsonDialog"
+import SelectArtifactSet from "@c/select/SelectArtifactSet"
+import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
+import ArtifactDisplay from "@c/display/ArtifactDisplay"
+import EditArtifact from "./EditArtifact"
+import ImportBlock from "@c/misc/ImportBlock";
+
+const tabs = [
+    { icon: flowerIcon, name: "flower" },
+    { icon: featherIcon, name: "feather" },
+    { icon: sandIcon, name: "sand" },
+    { icon: gobletIcon, name: "cup" },
+    { icon: headIcon, name: "head" },
+]
+Object.freeze(tabs)
+
+const pageSize = 20
 
 export default {
     name: "ArtifactsPage",
     components: {
+        ImportBlock,
         AddArtifactDialog,
-        ImportJsonDialog,
         OutputJsonDialog,
-        Artifact,
-        EditArtifactDrawer,
-        ArtifactsFilter,
+        SelectArtifactSet,
+        SelectArtifactMainStat,
+        ArtifactDisplay,
+        EditArtifact,
     },
     created: function () {
-        this.artifactsIcon = artifactsIcon;
-
-        this.artifactsType = [
-            {
-                name: "flower",
-                chs: "生之花",
-                iconURL: artifactsIcon["flower"],
-            },
-            {
-                name: "feather",
-                chs: "死之羽",
-                iconURL: artifactsIcon["feather"],
-            },
-            {
-                name: "sand",
-                chs: "时之沙",
-                iconURL: artifactsIcon["sand"],
-            },
-            {
-                name: "cup",
-                chs: "空之杯",
-                iconURL: artifactsIcon["cup"],
-            },
-            {
-                name: "head",
-                chs: "理之冠",
-                iconURL: artifactsIcon["head"],
+        this.tabs = tabs
+        this.pageSize = pageSize
+    },
+    mounted() {
+        this.$nextTick(() => {
+            const component = this.$refs["artifactsDiv"]?.[0]
+            if (!component) {
+                return
             }
-        ];
+
+            const rect = component.getBoundingClientRect()
+            console.log(rect.top)
+            this.contentHeight = `calc(100vh - ${rect.top}px)`
+        })
+
     },
     data: function() {
         return {
             activeName: "flower",
 
             newDialogVisible: false,
-            importJsonDialogVisible: false,
             outputJsonDialogVisible: false,
-            editArtifactDrawerVisible: false,
+            showEditArtifactDrawer: false,
+            showImportDialog: false,
 
-            editArtifactArgs: {
-                id: -1,
-            },
+            filterSet: [],
+            filterMainStat: [],
+            ge16: true,
+            // currentPage: 1,
 
-            artifactsFilter: () => true,
+            contentHeight: "",
+
+            importDeleteUnseen: false
         }
     },
     methods: {
@@ -202,58 +248,37 @@ export default {
             this.$store.commit("artifacts/removeAllArtifacts");
         },
 
-        lockOrUnlockCurrentPage() {
-            let artifacts = this.$store.getters["artifacts/allArtifacts"][this.activeName];
-            let lockCount = artifacts.reduce((a, b) => a + (b.omit ? 1 : 0), 0);
-            // console.log(lockCount);
+        handleClickRemoveArtifact(id) {
+            removeArtifact(id)
+        },
 
-            if (lockCount === artifacts.length || lockCount === 0) {
-                for (let i = 0; i < artifacts.length; i++) {
-                    this.$store.commit("artifacts/toggleArtifact", {
-                        position: this.activeName,
-                        index: i,
-                    });
+        handleClickToggleArtifact(id) {
+            toggleArtifact(id)
+        },
+
+        handleClickEditArtifact(id) {
+            // console.log(id)
+            this.showEditArtifactDrawer = true
+
+            this.$nextTick(() => {
+                let component = this.$refs["editArtifactDrawer"]
+                if (!component) {
+                    return
                 }
-            } else {
-                for (let i = 0; i < artifacts.length; i++) {
-                    if (artifacts[i].omit) {
-                        this.$store.commit("artifacts/toggleArtifact", {
-                            position: this.activeName,
-                            index: i,
-                        });
-                    }
-                }
+                component.setId(id)
+            })
+        },
+
+        handleConfirmEdit(id) {
+            let component = this.$refs["editArtifactDrawer"]
+            if (!component) {
+                return
             }
-        },
+            let newArtifact = component.getNewArtifact()
 
-        /**
-         * remove artifacts of type: position and index: index
-         */
-        removeArtifact: function(position, id) {
-            this.$store.commit("artifacts/removeArtifactById", {
-                id
-            });
-        },
+            updateArtifact(id, newArtifact)
 
-        /**
-         * toggle enabled
-         */
-        toggleArtifact: function(position, id) {
-            this.$store.commit("artifacts/toggleArtifactById", {
-                id,
-            });
-        },
-
-        /**
-         * edit an artifact
-         */
-        editArtifact: function(position, id) {
-            this.editArtifactDrawerVisible = true;
-            this.editArtifactArgs.id = id;
-
-            let art = this.$store.getters["artifacts/artifactsById"][id];
-
-            this.$refs.editDrawer.setInit(art);
+            this.showEditArtifactDrawer = false
         },
 
         add: function() {
@@ -269,7 +294,33 @@ export default {
         },
 
         handleImportJsonClicked() {
-            this.importJsonDialogVisible = true;
+            this.showImportDialog = true
+        },
+
+        handleImportJson() {
+            const component = this.$refs.fileUploader
+            if (!component) {
+                return
+            }
+
+            const loading = this.$loading({
+                lock: true,
+                text: "导入中",
+            })
+
+            component.getReadPromise().then(text => {
+                // console.log(text)
+                try {
+                    const rawObj = JSON.parse(text)
+                    importMonaJson(rawObj, this.importDeleteUnseen)
+                } catch(e) {
+                    return Promise.reject("格式不正确")
+                }
+            }).catch(e => {
+                this.$message.error(e)
+            }).finally(() => {
+                loading.close()
+            })
         },
 
         handleOutputJsonClicked() {
@@ -277,36 +328,92 @@ export default {
         },
     },
     computed: {
-        allArtifacts() {
-            return this.$store.getters["artifacts/allArtifacts"];
+        ...mapGetters("artifacts", [
+            "allArtifacts",
+            "count"
+        ]),
+
+        artifactsCurrentSlotFlat() {
+            const items = this.allArtifacts[this.activeName]
+            return items
         },
 
         filteredArtifacts() {
-            let temp = {};
-            for (let pos of positions) {
-                temp[pos] = this.allArtifacts[pos].filter(this.artifactsFilter);
+            let results = []
+
+            for (let artifact of this.artifactsCurrentSlotFlat) {
+                const setName = artifact.setName
+                const mainStatName = artifact.mainTag.name
+                const level = artifact.level ?? 20
+
+                if (this.filterSet.length > 0 && this.filterSet.indexOf(setName) === -1) {
+                    continue
+                }
+                if (this.filterMainStat.length > 0 && this.filterMainStat.indexOf(mainStatName) === -1) {
+                    continue
+                }
+                if (this.ge16 && level < 16) {
+                    continue
+                }
+
+                results.push(artifact)
             }
-            return temp;
+
+            return results
         },
 
-        estimatedTime() {
-            let iterCount = this.$store.getters["artifacts/iterCount"];
-            return estimateToChs(iterCount);
-        }
+        artifactToBeDisplayed() {
+            // return this.artifactsCurrentSlotFlat
+            return this.filteredArtifacts
+            // const start = (this.currentPage - 1) * pageSize
+            // const end = Math.min(start + pageSize, this.filteredArtifacts.length)
+            //
+            // return this.filteredArtifacts.slice(start, end)
+        },
     }
 }
 </script>
 
-<style scoped>
-.panel {
-    display: flex;
-    flex-wrap: wrap;
-    /* max-height: 700px; */
-    /* overflow: auto; */
+<style scoped lang="scss">
+.filter {
+    margin-bottom: 12px;
+
+    span {
+        font-size: 12px;
+        color: #606266;
+        margin-right: 8px;
+    }
 }
 
-.artifact-panel {
-    margin: 8px;
+.icon {
+    padding: 0 12px;
+}
+
+.artifacts-div {
+    //display: flex;
+    //flex-wrap: wrap;
+    //align-items: flex-start;
+    //justify-content: space-between;
+    //gap: 12px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    justify-content: space-between;
+    align-content: flex-start;
+    grid-gap: 12px;
+
+    //&::after {
+    //    content: "";
+    //    flex: auto;
+    //}
+
+    .artifact-item {
+        //width: 20%;
+        //width: 200px;
+    }
 }
 
 .tool-bar {

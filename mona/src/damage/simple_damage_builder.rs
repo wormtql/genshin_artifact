@@ -16,6 +16,7 @@ pub struct SimpleDamageBuilder {
 
     pub extra_def_minus: f64,
     pub extra_res_minus: f64,
+    pub extra_def_penetration: f64,
 
     pub ratio_atk: f64,
     pub ratio_def: f64,
@@ -23,9 +24,9 @@ pub struct SimpleDamageBuilder {
 
     pub extra_enhance_melt: f64,
     pub extra_enhance_vaporize: f64,
-
     pub enhance_melt: f64,
     pub enhance_vaporize: f64,
+    pub extra_em: f64,
 }
 
 impl DamageBuilder for SimpleDamageBuilder {
@@ -46,6 +47,10 @@ impl DamageBuilder for SimpleDamageBuilder {
 
     fn add_hp_ratio(&mut self, _key: &str, value: f64) {
         self.ratio_hp += value
+    }
+
+    fn add_extra_em(&mut self, _key: &str, value: f64) {
+        self.extra_em += value;
     }
 
     fn add_extra_atk(&mut self, _key: &str, value: f64) {
@@ -88,6 +93,10 @@ impl DamageBuilder for SimpleDamageBuilder {
         self.extra_def_minus += value
     }
 
+    fn add_extra_def_penetration(&mut self, _key: &str, value: f64) {
+        self.extra_def_penetration += value;
+    }
+
     fn add_extra_res_minus(&mut self, _key: &str, value: f64) {
         self.extra_res_minus += value
     }
@@ -118,7 +127,8 @@ impl DamageBuilder for SimpleDamageBuilder {
             + self.extra_critical_damage;
 
         let def_minus = self.extra_def_minus + attribute.get_enemy_res_minus(element, skill);
-        let defensive_ratio = enemy.get_defensive_ratio(character_level, def_minus);
+        let def_penetration = self.extra_def_penetration + attribute.get_value(AttributeName::DefPenetration);
+        let defensive_ratio = enemy.get_defensive_ratio(character_level, def_minus, def_penetration);
         let res_minus = self.extra_res_minus + attribute.get_value(AttributeName::ResMinusBase);
         let resistance_ratio = enemy.get_resistance_ratio(element, res_minus);
 
@@ -130,7 +140,7 @@ impl DamageBuilder for SimpleDamageBuilder {
             is_shield: false
         } * (defensive_ratio * resistance_ratio);
 
-        let em = attribute.get_value(AttributeName::ElementalMastery);
+        let em = self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
         let em_amp = Reaction::amp(em);
 
         let melt_damage = if element != Element::Pyro && element != Element::Cryo {
@@ -229,11 +239,73 @@ impl SimpleDamageBuilder {
             extra_def: 0.0,
             extra_hp: 0.0,
             extra_def_minus: 0.0,
+            extra_def_penetration: 0.0,
             extra_res_minus: 0.0,
 
             enhance_melt: 0.0,
             enhance_vaporize: 0.0,
-            extra_enhance_vaporize: 0.0
+            extra_enhance_vaporize: 0.0,
+            extra_em: 0.0
         }
     }
+
+    // pub fn damage_without_attribute(&self, enemy: &Enemy) -> <SimpleDamageBuilder as DamageBuilder>::Result {
+    //     let atk = self.extra_atk;
+    //     let def = self.extra_def;
+    //     let hp = self.extra_hp;
+    //
+    //     let base
+    //         = self.ratio_def * def
+    //         + self.ratio_hp * hp
+    //         + self.ratio_atk * atk
+    //         + self.extra_damage;
+    //
+    //     let bonus = self.extra_bonus;
+    //
+    //     let critical_rate = self.extra_critical_rate;
+    //     let critical_rate = critical_rate.clamp(0.0, 1.0);
+    //
+    //     let critical_damage = self.extra_critical_damage;
+    //
+    //     let def_minus = self.extra_def_minus;
+    //     let def_penetration = self.extra_def_penetration;
+    //     let defensive_ratio = enemy.get_defensive_ratio(character_level, def_minus, def_penetration);
+    //     let res_minus = self.extra_res_minus;
+    //     let resistance_ratio = enemy.get_resistance_ratio(element, res_minus);
+    //
+    //     let normal_damage = DamageResult {
+    //         critical: base * (1.0 + bonus) * (1.0 + critical_damage),
+    //         non_critical: base * (1.0 + bonus),
+    //         expectation: base * (1.0 + bonus) * (1.0 + critical_damage * critical_rate),
+    //         is_heal: false,
+    //         is_shield: false
+    //     } * (defensive_ratio * resistance_ratio);
+    //
+    //     let em = self.extra_em;
+    //     let em_amp = Reaction::amp(em);
+    //
+    //     let melt_damage = if element != Element::Pyro && element != Element::Cryo {
+    //         None
+    //     } else {
+    //         let reaction_ratio = if element == Element::Pyro { 2.0 } else { 1.5 };
+    //         let enhance = em_amp + self.extra_enhance_melt;
+    //         Some(normal_damage * (reaction_ratio * (1.0 + enhance)))
+    //     };
+    //
+    //     let vaporize_damage = if element != Element::Pyro && element != Element::Hydro {
+    //         None
+    //     } else {
+    //         let reaction_ratio = if element == Element::Pyro { 1.5 } else { 2.0 };
+    //         let enhance = em_amp + self.extra_enhance_vaporize;
+    //         Some(normal_damage * (reaction_ratio * (1.0 + enhance)))
+    //     };
+    //
+    //     SimpleDamageResult {
+    //         normal: normal_damage,
+    //         melt: melt_damage,
+    //         vaporize: vaporize_damage,
+    //         is_shield: false,
+    //         is_heal: false,
+    //     }
+    // }
 }

@@ -1,6 +1,0 @@
-characterName: KamisatoAyaka
-configs:
-  - name: after_dash
-    type: bool
-    title: 神里流·霰步
-    default: true

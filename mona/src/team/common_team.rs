@@ -9,7 +9,7 @@ use crate::character::characters::*;
 use crate::character::traits::CharacterTrait;
 use crate::target_functions::TargetFunction;
 use crate::team::team::Team;
-use crate::team::team_name::TeamName;
+use crate::team_target::team_name::TeamName;
 use crate::team::TeamQuantization;
 
 

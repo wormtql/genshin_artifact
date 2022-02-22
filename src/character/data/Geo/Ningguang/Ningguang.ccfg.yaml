@@ -1,8 +1,0 @@
-characterName: Ningguang
-configs:
-  - name: talent2_rate
-    type: float
-    title: 天赋：储之千日，用之一刻比例
-    min: 0
-    max: 1
-    default: 1

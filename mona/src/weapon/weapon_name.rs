@@ -109,6 +109,8 @@ pub enum WeaponName {
     EyeOfPerception,
     DodocoTales,
     BlackcliffAgate,
+    KagurasVerity,
+    OathswornEye,
     // MagicGuide,         // todo 3*
     // OtherworldlyStory,
     // EmeraldOrb,

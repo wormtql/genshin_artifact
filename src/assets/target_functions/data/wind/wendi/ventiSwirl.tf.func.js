@@ -1,6 +1,6 @@
 import reaction from "@/elemental_reaction/reaction_bonus";
 import { getTransformativeBase, REACTION_TYPE } from "@/elemental_reaction/transformativeBase";
-import { charactersData } from "@asset/characters";
+import { charactersData } from "@asset/character";
 
 
 let skill = charactersData["wendi"].skill;

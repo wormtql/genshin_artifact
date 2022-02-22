@@ -45,11 +45,11 @@
 
 <script>
 import { artifactsSecondaryTag } from "@asset/artifacts";
-import { secondaryTags } from "@asset/tags";
+import { artifactTags } from "@const/artifact";
 // import { getArtifactRealValue } from "@util/utils";
 import deepCopy from "@util/deepcopy";
 
-let secondaryTagData = artifactsSecondaryTag.map(item => secondaryTags[item]);
+let secondaryTagData = artifactsSecondaryTag.map(item => artifactTags[item]);
 
 export default {
     name: "SelectArtifactNormalTag",
@@ -105,7 +105,7 @@ export default {
 
             for (let i = 0; i < 4; i++) {
                 try {
-                    temp.push(secondaryTags[this.value[i].name].percentage);
+                    temp.push(artifactTags[this.value[i].name].percentage);
                 } catch(e) {
                     temp.push(false);
                 }

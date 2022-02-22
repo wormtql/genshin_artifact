@@ -16,3 +16,5 @@ pub mod eye_of_perception;
 pub mod dodoco_tales;
 pub mod blackcliff_agate;
 pub mod thrilling_tales_of_dragon_slayers;
+pub mod oathsworn_eye;
+pub mod kaguras_verity;

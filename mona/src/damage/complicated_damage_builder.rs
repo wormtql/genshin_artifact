@@ -21,8 +21,10 @@ pub struct ComplicatedDamageBuilder {
 
     pub extra_enhance_melt: EntryType,
     pub extra_enhance_vaporize: EntryType,
+    pub extra_em: f64,
 
     pub extra_def_minus: EntryType,
+    pub extra_def_penetration: EntryType,
     pub extra_res_minus: EntryType,
 
     pub ratio_atk: EntryType,
@@ -39,59 +41,67 @@ impl DamageBuilder for ComplicatedDamageBuilder {
     }
 
     fn add_atk_ratio(&mut self, key: &str, value: f64) {
-        *self.ratio_atk.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.ratio_atk.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_def_ratio(&mut self, key: &str, value: f64) {
-        *self.ratio_def.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.ratio_def.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_hp_ratio(&mut self, key: &str, value: f64) {
-        *self.ratio_hp.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.ratio_hp.0.entry(String::from(key)).or_insert(0.0) += value;
+    }
+
+    fn add_extra_em(&mut self, _key: &str, value: f64) {
+        self.extra_em += value;
     }
 
     fn add_extra_atk(&mut self, key: &str, value: f64) {
-        *self.extra_atk.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.extra_atk.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_extra_def(&mut self, key: &str, value: f64) {
-        *self.extra_def.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.extra_def.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_extra_hp(&mut self, key: &str, value: f64) {
-        *self.extra_hp.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.extra_hp.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_extra_damage(&mut self, key: &str, value: f64) {
-        *self.extra_damage.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.extra_damage.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_extra_critical(&mut self, key: &str, value: f64) {
-        *self.extra_critical_rate.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.extra_critical_rate.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_extra_critical_damage(&mut self, key: &str, value: f64) {
-        *self.extra_critical_damage.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.extra_critical_damage.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_extra_bonus(&mut self, key: &str, value: f64) {
-        *self.extra_bonus.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.extra_bonus.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_extra_enhance_melt(&mut self, key: &str, value: f64) {
-        *self.extra_enhance_melt.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.extra_enhance_melt.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_extra_enhance_vaporize(&mut self, key: &str, value: f64) {
-        *self.extra_enhance_vaporize.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.extra_enhance_vaporize.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_extra_def_minus(&mut self, key: &str, value: f64) {
-        *self.extra_def_minus.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.extra_def_minus.0.entry(String::from(key)).or_insert(0.0) += value;
+    }
+
+    fn add_extra_def_penetration(&mut self, key: &str, value: f64) {
+        *self.extra_def_penetration.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_extra_res_minus(&mut self, key: &str, value: f64) {
-        *self.extra_res_minus.0.entry(String::from(key)).or_insert(0.0) = value;
+        *self.extra_res_minus.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn damage(
@@ -134,9 +144,11 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
         let def_minus_comp = self.get_def_minus_composition(attribute);
         let def_minus = def_minus_comp.sum();
+        let def_penetration_comp = self.get_def_penetration_composition(attribute);
+        let def_penetration = def_penetration_comp.sum();
         let res_minus_comp = self.get_res_minus_composition(attribute, element);
         let res_minus = res_minus_comp.sum();
-        let defensive_ratio = enemy.get_defensive_ratio(character_level, def_minus);
+        let defensive_ratio = enemy.get_defensive_ratio(character_level, def_minus, def_penetration);
         let resistance_ratio = enemy.get_resistance_ratio(element, res_minus);
 
         let melt_enhance_comp = self.get_enhance_melt_composition(attribute);
@@ -184,6 +196,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             healing_bonus: HashMap::new(),
             shield_strength: HashMap::new(),
             def_minus: def_minus_comp.0,
+            def_penetration: def_penetration_comp.0,
             res_minus: res_minus_comp.0,
 
             element,
@@ -237,6 +250,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             healing_bonus: healing_bonus_comp.0,
             shield_strength: HashMap::new(),
             def_minus: HashMap::new(),
+            def_penetration: HashMap::new(),
             res_minus: HashMap::new(),
 
             element: Element::Pyro,
@@ -290,6 +304,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             healing_bonus: HashMap::new(),
             shield_strength: shield_strength_comp.0,
             def_minus: HashMap::new(),
+            def_penetration: HashMap::new(),
             res_minus: HashMap::new(),
 
             element,
@@ -307,6 +322,12 @@ impl ComplicatedDamageBuilder {
     fn get_def_minus_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::DefMinus);
         comp.merge(&self.extra_def_minus);
+        comp
+    }
+
+    fn get_def_penetration_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
+        let mut comp = attribute.get_attribute_composition(AttributeName::DefPenetration);
+        comp.merge(&self.extra_def_penetration);
         comp
     }
 
@@ -344,7 +365,7 @@ impl ComplicatedDamageBuilder {
     fn get_enhance_melt_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceMelt);
         comp.merge(&self.extra_enhance_melt);
-        let em = attribute.get_value(AttributeName::ElementalMastery);
+        let em = self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
         if em > 0.0 {
             comp.add_value("精通", Reaction::amp(em));
         }
@@ -354,7 +375,7 @@ impl ComplicatedDamageBuilder {
     fn get_enhance_vaporize_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceVaporize);
         comp.merge(&self.extra_enhance_vaporize);
-        let em = attribute.get_value(AttributeName::ElementalMastery);
+        let em = self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
         if em > 0.0 {
             comp.add_value("精通", Reaction::amp(em));
         }

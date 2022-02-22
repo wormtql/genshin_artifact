@@ -1,18 +1,11 @@
-import positions from "@const/positions"
-import { artifactEff } from "@const/artifact"
+import { positions } from "@const/misc"
+import {artifactEff} from "@const/artifact"
 import objectHash from "object-hash"
 import store from "@/store/store"
+import {artifactsData} from "@artifact"
+
 
 // count how many artifacts
-export function count(artifacts) {
-    let c = 0;
-
-    positions.forEach(pos => {
-        c += artifacts[pos].length;
-    });
-
-    return c;
-}
 
 // count min and max upgrade count
 export function howManyUpgradeCount(value, tagName, star) {
@@ -33,12 +26,48 @@ export function howManyUpgradeCount(value, tagName, star) {
 }
 
 export function hash(artifact) {
-    let h = objectHash(artifact, {
-        excludeKeys: (k) => {
-            return k === "id" || k === "omit" || k === "detailName";
-        }
-    });
-    return h;
+    // return objectHash(artifact, {
+    //     excludeKeys: (k) => {
+    //         return k === "id" || k === "omit" || k === "detailName";
+    //     }
+    // });
+
+    let subStatNames = ""
+    let subStatValues = ""
+    for (let stat of artifact.normalTags) {
+        subStatNames += stat.name
+        subStatValues += stat.value.toFixed(5)
+    }
+
+    const object = {
+        name: artifact.setName,
+        position: artifact.position,
+        star: artifact.star,
+        level: artifact.level,
+        mainStatName: artifact.mainTag.name,
+        mainStatValue: artifact.mainTag.value.toFixed(5),
+        subStatNames,
+        subStatValues
+    }
+
+    return objectHash(object)
+}
+
+export function hashExceptValue(artifact) {
+    let subStatNames = ""
+    for (let stat of artifact.normalTags) {
+        subStatNames += stat.name
+    }
+
+    const object = {
+        name: artifact.setName,
+        position: artifact.position,
+        star: artifact.star,
+        mainStatName: artifact.mainTag.name,
+        subStatNames
+    }
+
+    return objectHash(object)
 }
 
 export function newDefaultArtifactConfigForWasm() {
@@ -70,4 +99,101 @@ export function toggleArtifact(id) {
     store.commit("artifacts/toggleArtifactById", {
         id
     })
+}
+
+export function removeArtifact(id) {
+    store.commit("artifacts/removeArtifactById", {
+        id
+    })
+}
+
+export function getArtifact(id) {
+    const byId = store.getters["artifacts/artifactsById"]
+    return byId[id]
+}
+
+export function getArtifactImage(setName, position) {
+    const data = artifactsData[setName]
+    if (data[position]) {
+        return data[position].url
+    }
+    throw new Error("artifact can't exist")
+}
+
+export function getArtifactImageByArtifact(artifact) {
+    return getArtifactImage(artifact.setName, artifact.position)
+}
+
+export function updateArtifact(id, newArtifact) {
+    store.commit("artifacts/updateArtifact", { id, artifact: newArtifact })
+}
+
+export function newArtifact(artifact) {
+    store.commit("artifacts/addArtifactV2", {
+        artifact
+    })
+}
+
+export async function importMonaJson(rawObj, removeNonExisting) {
+    let hashAll = {}
+    let hashEV = {}
+    let existingIds = new Set()
+
+    let artifactsFlat = store.getters["artifacts/allFlat"]
+
+    for (let artifact of artifactsFlat) {
+        const h = hash(artifact)
+        const hev = hashExceptValue(artifact)
+
+        hashAll[h] = artifact
+        hashEV[hev] = artifact
+    }
+
+    let skipCount = 0
+    let upgradeCount = 0
+    let newCount = 0
+
+    let importFlat = [].concat(rawObj.flower ?? []).concat(rawObj.feather ?? []).concat(rawObj.sand ?? []).concat(rawObj.cup ?? []).concat(rawObj.head ?? [])
+    for (let artifact of importFlat) {
+        const h = hash(artifact)
+        const hev = hashExceptValue(artifact)
+
+        if (hashAll[h]) {
+            // this artifacts exists
+            const id = hashAll[h].id
+            skipCount += 1
+            existingIds.add(id)
+            continue
+        }
+
+        if (hashEV[hev] && artifact.level > hashEV[hev].level) {
+            // this artifacts is upgraded
+            console.log("upgrade")
+            console.log("old", JSON.stringify(hashEV[hev]))
+            console.log("new", JSON.stringify(artifact))
+            const id = hashEV[hev].id
+            updateArtifact(id, artifact)
+            upgradeCount += 1
+            existingIds.add(id)
+            continue
+        }
+
+        // new artifact
+        newCount += 1
+        newArtifact(artifact)
+    }
+
+    let removeCount = 0
+    if (removeNonExisting) {
+        for (let originalArtifacts of Object.values(hashAll)) {
+            const id = originalArtifacts.id
+            if (!existingIds.has(id)) {
+                removeCount += 1
+                console.log("remove", originalArtifacts)
+                removeArtifact(id)
+            }
+        }
+    }
+
+    console.log(`import result: skip${skipCount}, upgrade${upgradeCount}, new${newCount}, remove${removeCount}`)
 }

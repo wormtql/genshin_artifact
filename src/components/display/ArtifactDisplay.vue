@@ -11,8 +11,8 @@
                 <!-- <span style="color: #e7bf4f">
                     <i class="el-icon-star-on"></i>{{ displayedStar }}
                 </span> -->
+                <span class="extra fs-12" v-if="extra">{{ extra }}</span>
             </span>
-            <span class="extra fs-12" v-if="extra">{{ extra }}</span>
 
             <div class="buttons" v-if="buttons">
                 <el-button
@@ -34,6 +34,16 @@
                     title="删除"
                     class="mybutton"
                     @click.stop="$emit('delete')"
+                ></el-button>
+                <el-button
+                    v-if="editButton"
+                    icon="el-icon-edit"
+                    circle
+                    size="mini"
+                    type="text"
+                    title="编辑"
+                    class="mybutton"
+                    @click.stop="$emit('edit')"
                 ></el-button>
             </div>
         </div>
@@ -73,7 +83,6 @@ export default {
             default: () => ({
                 setName: "luckyDog",
                 position: "cup",
-                detailName: "worm666",
                 mainTag: {
                     name: "attackPercentage",
                     value: 0.1,
@@ -98,25 +107,15 @@ export default {
             default: "",
         },
 
-        buttons: {
-            type: Boolean,
-            default: false,
-        },
+        buttons: { default: false },
+        deleteButton: { default: false },
+        lockButton: { default: true },
+        editButton: { default: false },
 
-        deleteButton: {
-            type: Boolean,
-            default: false,
-        },
-
-        lockButton: {
-            type: Boolean,
-            default: true,
-        },
-
-        width: {
-            type: String,
-            default: "unset",
-        }
+        // width: {
+        //     type: String,
+        //     default: "unset",
+        // }
     },
     methods: {
         handleClick() {
@@ -182,7 +181,7 @@ export default {
 
         artifactStyle() {
             return {
-                width: this.width,
+                // width: this.width,
             }
         }
     }
@@ -192,9 +191,10 @@ export default {
 <style lang="scss" scoped>
 .artifact {
     /* border: 1px solid #cccccc; */
-    box-shadow: 0 0 10px 1px #00000011;
+    //box-shadow: 0 0 10px 1px #00000011;
     // transition: 300ms;
     display: inline-block;
+    border: 1px solid #00000011;
     // width: 200px;
 
     &.selectable:hover {
@@ -245,7 +245,6 @@ export default {
     .down {
         padding: 8px;
         display: flex;
-        align-items: top;
 
         .myimage {
             height: 48px;

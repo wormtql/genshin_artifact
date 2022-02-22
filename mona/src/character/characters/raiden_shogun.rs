@@ -289,7 +289,7 @@ impl CharacterTrait for RaidenShogun {
 
             let is_conste2 = context.character_common_data.constellation >= 2;
             if is_conste2 {
-                builder.add_extra_def_minus("雷电将军二命「斩铁断金」", 0.6);
+                builder.add_extra_def_penetration("雷电将军二命「斩铁断金」", 0.6);
             }
         }
 

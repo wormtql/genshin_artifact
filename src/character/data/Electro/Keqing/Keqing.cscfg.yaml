@@ -1,6 +1,0 @@
-characterName: Keqing
-configs:
-  - name: after_e
-    type: bool
-    title: E附魔
-    default: true

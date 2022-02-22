@@ -1,6 +1,0 @@
-characterName: HuTao
-configs:
-  - type: bool
-    name: after_e
-    title: 彼岸蝶舞
-    default: true

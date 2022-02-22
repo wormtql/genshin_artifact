@@ -64,6 +64,7 @@ pub enum CharacterName {
     Xiao,
     Xingqiu,
     Xinyan,
+    YaeMiko,
     Yanfei,
     Yoimiya,
     Yunjin,

@@ -1,6 +1,8 @@
 import LoadingComponent from "@c/LoadingComponent";
 import ErrorComponent from "@c/ErrorComponent";
 import VueRouter from "vue-router";
+import NewArtifactPlanPage from "@page/NewArtifactPlanPage";
+import TeamOptimizationPage from "@page/TeamOptimizationPage";
 
 const IntroPage = () => ({
     component: import(/* webpackChunkName: "intro-page" */ "@page/about/IntroPage"),
@@ -17,16 +19,16 @@ const ArtifactsPage = () => ({
 //     loading: LoadingComponent,
 //     error: ErrorComponent,
 // });
-const ChangeLogPage = () => ({
-    component: import(/* webpackChunkName: "about-page" */ "@page/about/ChangeLogPage"),
-    loading: LoadingComponent,
-    error: ErrorComponent,
-});
-const AlgorithmPage = () => ({
-    component: import(/* webpackChunkName: "about-page" */ "@page/about/AlgorithmPage"),
-    loading: LoadingComponent,
-    error: ErrorComponent,
-});
+// const ChangeLogPage = () => ({
+//     component: import(/* webpackChunkName: "about-page" */ "@page/about/ChangeLogPage"),
+//     loading: LoadingComponent,
+//     error: ErrorComponent,
+// });
+// const AlgorithmPage = () => ({
+//     component: import(/* webpackChunkName: "about-page" */ "@page/about/AlgorithmPage"),
+//     loading: LoadingComponent,
+//     error: ErrorComponent,
+// });
 const ExternalLinkPage = () => ({
     component: import(/* webpackChunkName: "about-page" */ "@page/about/ExternalLinkPage"),
     loading: LoadingComponent,
@@ -37,11 +39,11 @@ const ArtifactPotentialPage = () => ({
     loading: LoadingComponent,
     error: ErrorComponent,
 });
-const PotentialFuncPage = () => ({
-    component: import(/* webpackChunkName: "about-page" */ "@page/about/PotentialFuncPage"),
-    loading: LoadingComponent,
-    error: ErrorComponent,
-});
+// const PotentialFuncPage = () => ({
+//     component: import(/* webpackChunkName: "about-page" */ "@page/about/PotentialFuncPage"),
+//     loading: LoadingComponent,
+//     error: ErrorComponent,
+// });
 const CharacterPresetsPage = () => (
     {
         component: import(/* webpackChunkName: "character-presets-page" */ "@page/CharacterPresetsPage"),
@@ -57,19 +59,27 @@ const HelpBasicPage = () => ({
 const FAQPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/FAQPage");
 const TargetFuncExplanationPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/TargetFuncExplanationPage");
 const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/ExportToolPage");
-const ArtifactsStatisticsPage = () => import(/* webpackChunkName: "artifacts-statistics-page" */ "@page/ArtifactsStatisticsPage");
+// const ArtifactsStatisticsPage = () => import(/* webpackChunkName: "artifacts-statistics-page" */ "@page/ArtifactsStatisticsPage");
 const KumiPage = () => import (/* webpackChunkName: "kumi-page" */ "@page/KumiPage");
 
 
 const webName = process.env.WEB_TITLE;
 
 const routes = [
+    // {
+    //     path: "/ura",
+    //     component: () => Promise.all([window.wasmPromise]).then(() => import("@page/NewArtifactPlanPage")),
+    //     meta: {
+    //         title: "ura | " + webName,
+    //         keepAlive: false,
+    //     }
+    // },
     {
-        path: "/ura",
-        component: () => Promise.all([window.wasmPromise]).then(() => import("@page/NewArtifactPlanPage")),
+        path: "/team-optimization",
+        component: TeamOptimizationPage,
         meta: {
-            title: "ura | " + webName,
-            keepAlive: false,
+            title: "整队优化 | " + webName,
+            keepAlive: true,
         }
     },
     {
@@ -80,14 +90,14 @@ const routes = [
             keepAlive: true,
         }
     },
-    {
-        path: "/artifacts-statistics",
-        component: ArtifactsStatisticsPage,
-        meta: {
-            title: "圣遗物统计 | " + webName,
-            keepAlive: true,
-        }
-    },
+    // {
+    //     path: "/artifacts-statistics",
+    //     component: ArtifactsStatisticsPage,
+    //     meta: {
+    //         title: "圣遗物统计 | " + webName,
+    //         keepAlive: true,
+    //     }
+    // },
     {
         path: "/help/export-tools",
         component: ExportToolPage,
@@ -95,13 +105,13 @@ const routes = [
             title: "导出工具汇总 | 帮助 | " + webName,
         }
     },
-    {
-        path: "/help/target-func-explanation",
-        component: TargetFuncExplanationPage,
-        meta: {
-            title: "目标函数参数说明 | 帮助 | " + webName,
-        }
-    },
+    // {
+    //     path: "/help/target-func-explanation",
+    //     component: TargetFuncExplanationPage,
+    //     meta: {
+    //         title: "目标函数参数说明 | 帮助 | " + webName,
+    //     }
+    // },
     {
         path: "/help/basic",
         component: HelpBasicPage,
@@ -132,35 +142,35 @@ const routes = [
             title: "圣遗物 | " + webName,
         }
     },
+    {
+        path: "/calculate",
+        component: NewArtifactPlanPage,
+        meta: {
+            keepAlive: true,
+            title: "星命定轨 | " + webName,
+        }
+    },
     // {
-    //     path: "/calculate",
-    //     component: ArtifactsPlanPage,
+    //     path: "/changelog",
+    //     component: ChangeLogPage,
     //     meta: {
-    //         keepAlive: true,
-    //         title: "星命定轨 | " + webName,
+    //         title: "更新记录 | " + webName,
     //     }
     // },
-    {
-        path: "/changelog",
-        component: ChangeLogPage,
-        meta: {
-            title: "更新记录 | " + webName,
-        }
-    },
-    {
-        path: "/algorithm-target",
-        component: AlgorithmPage,
-        meta: {
-            title: "目标函数 | " + webName,
-        }
-    },
-    {
-        path: "/algorithm-potential",
-        component: PotentialFuncPage,
-        meta: {
-            title: "潜力函数 | " + webName,
-        }
-    },
+    // {
+    //     path: "/algorithm-target",
+    //     component: AlgorithmPage,
+    //     meta: {
+    //         title: "目标函数 | " + webName,
+    //     }
+    // },
+    // {
+    //     path: "/algorithm-potential",
+    //     component: PotentialFuncPage,
+    //     meta: {
+    //         title: "潜力函数 | " + webName,
+    //     }
+    // },
     {
         path: "/tomodachi",
         component: ExternalLinkPage,
@@ -176,14 +186,14 @@ const routes = [
             title: "圣遗物潜力 | " + webName,
         }
     },
-    {
-        path: "/character-presets",
-        component: CharacterPresetsPage,
-        meta: {
-            keepAlive: true,
-            title: "角色预设 | " + webName,
-        }
-    }
+    // {
+    //     path: "/character-presets",
+    //     component: CharacterPresetsPage,
+    //     meta: {
+    //         keepAlive: true,
+    //         title: "角色预设 | " + webName,
+    //     }
+    // }
 ]
 
 const router = new VueRouter({

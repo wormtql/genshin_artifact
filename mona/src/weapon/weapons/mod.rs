@@ -79,6 +79,8 @@ pub use catalysts::eye_of_perception::EyeOfPerception;
 pub use catalysts::dodoco_tales::DodocoTales;
 pub use catalysts::blackcliff_agate::BlackcliffAgate;
 pub use catalysts::thrilling_tales_of_dragon_slayers::ThrillingTalesOfDragonSlayers;
+pub use catalysts::oathsworn_eye::OathswornEye;
+pub use catalysts::kaguras_verity::KagurasVerity;
 pub use bows::polar_star::PolarStar;
 pub use bows::thundering_pulse::ThunderingPulse;
 pub use bows::elegy_of_the_end::ElegyOfTheEnd;

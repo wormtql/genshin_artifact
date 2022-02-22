@@ -1,6 +1,0 @@
-characterName: SangonomiyaKokomi
-configs:
-  - name: after_q
-    type: bool
-    title: 「仪来羽衣」状态
-    default: true

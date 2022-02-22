@@ -46,6 +46,8 @@ pub enum WeaponConfig {
     MappaMare { stack: f64 },
     DodocoTales { rate1: f64, rate2: f64 },
     BlackcliffAgate { stack: f64 },
+    OathswornEye { rate: f64 },
+    KagurasVerity { stack: f64, full_rate: f64 },
 
     // Bow
     PolarStar { stack: usize },

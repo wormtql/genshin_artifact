@@ -103,12 +103,22 @@
 
         <div v-if="!isHeal" class="header-row">
             <div>
-                <div class="big-title minus">减防/减抗</div>
+                <div class="big-title def-minus">防御乘区</div>
                 <div class="header-row">
                     <damage-analysis-util
                         :arr="defMinusState"
                         title="减防"
                     ></damage-analysis-util>
+                    <damage-analysis-util
+                        :arr="defPenetrationState"
+                        title="穿防"
+                    ></damage-analysis-util>
+                </div>
+            </div>
+
+            <div>
+                <div class="big-title res-minus">抗性乘区</div>
+                <div class="header-row">
                     <damage-analysis-util
                         :arr="resMinusState"
                         title="减抗"
@@ -137,6 +147,7 @@ export default {
     components: {
         DamageAnalysisUtil
     },
+    props: ["enemyConfig", "characterLevel"],
     data() {
         return {
             damageType: "normal",
@@ -155,6 +166,7 @@ export default {
             meltEnhanceState: [],
             vaporizeEnhanceState: [],
             defMinusState: [],
+            defPenetrationState: [],
             resMinusState: [],
             bonusState: [],
             healingBonusState: []
@@ -177,6 +189,7 @@ export default {
                 "vaporizeEnhanceState": "vaporize_enhance",
                 "bonusState": "bonus",
                 "defMinusState": "def_minus",
+                "defPenetrationState": "def_penetration",
                 "resMinusState": "res_minus",
                 "healingBonusState": "healing_bonus"
             }
@@ -303,6 +316,10 @@ export default {
             return sum(this.defMinusState)
         },
 
+        defPenetration() {
+            return sum(this.defPenetrationState)
+        },
+
         resMinus() {
             return sum(this.resMinusState)
         },
@@ -312,11 +329,15 @@ export default {
         },
 
         damageNormal() {
-            const def_ratio = 190 / ((1 - this.defMinus) * 180 + 190)
+            const enemyLevel = this.enemyConfig.level
+            const characterLevel = this.characterLevel
+            const c = 100 + characterLevel
+            const def_ratio = c / ((1 - this.defPenetration) * (1 - this.defMinus) * (100 + enemyLevel) + c)
             const res = 0.1 - this.resMinus
+
             let res_ratio
             if (res > 0.75) {
-                res_ratio = 25 / (25 + res)
+                res_ratio = 1 / (1 + res * 4)
             } else if (res > 0) {
                 res_ratio = 1 - res
             } else {
@@ -381,8 +402,12 @@ export default {
         background-color: rgb(217, 236, 255);
     }
 
-    &.minus {
+    &.def-minus {
         background-color: rgb(217, 236, 255);
+    }
+
+    &.res-minus {
+        background-color: rgb(179, 216, 255);
     }
 }
 </style>

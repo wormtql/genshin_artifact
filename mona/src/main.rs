@@ -179,7 +179,8 @@ fn skill_interface() {
         Vec::new(),
         &Default::default(),
         0,
-        &CharacterSkillConfig::NoConfig
+        &CharacterSkillConfig::NoConfig,
+        &Default::default()
     );
 
     println!("{:?}", result);

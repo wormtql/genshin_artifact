@@ -18,6 +18,8 @@
         >
             <damage-analysis
                 ref="damageAnalysis"
+                :enemy-config="enemyConfig"
+                :character-level="characterLevelNumber"
             ></damage-analysis>
         </el-dialog>
 
@@ -95,6 +97,16 @@
                 ></el-tree>
             </div>
 
+        </el-dialog>
+
+        <el-dialog
+            :visible.sync="showEnemyConfigDialog"
+            title="敌人设置"
+            width="60%"
+        >
+            <enemy-config
+                v-model="enemyConfig"
+            ></enemy-config>
         </el-dialog>
 
         <div class="top-things" ref="topThings">
@@ -257,7 +269,7 @@
                         style="margin-top: 12px"
                     >
                         <el-alert
-                            title="共计算100组圣遗物搭配"
+                            :title="`共计算${optimizationResults.length}组圣遗物搭配`"
                             type="success"
                             style="margin-bottom: 12px"
                         ></el-alert>
@@ -269,6 +281,10 @@
                             size="small"
                             style="width: 100%"
                         ></el-input-number>
+                        <value-display
+                            :value="optimizationResults[optimizationResultIndex - 1].ratio"
+                            style="margin-top: 12px"
+                        ></value-display>
                     </div>
                 </div>
 
@@ -354,8 +370,11 @@
 
                 <p class="common-title">伤害计算</p>
                 <div class="my-button-list" style="margin-bottom: 12px">
-                    <my-button-1 icon="el-icon-s-operation" title="明细"
+                    <my-button-1 icon="el-icon-s-data" title="明细"
                         @click="handleDisplayAnalysis"
+                    ></my-button-1>
+                    <my-button-1 icon="el-icon-s-operation" title="敌人设置"
+                                 @click="handleClickEnemyConfig"
                     ></my-button-1>
                 </div>
                 <div v-if="characterNeedSkillConfig" style="margin-bottom: 16px;">
@@ -375,6 +394,11 @@
                         :analysis-from-wasm="characterDamageAnalysis"
                     ></damage-panel>
                 </div>
+
+                <h3 class="common-title2" style="margin-top: 24px">剧变反应伤害</h3>
+                <transformative-damage
+                    :data="characterTransformativeDamage"
+                ></transformative-damage>
             </el-col>
 
             <el-col :span="6" class="right-container">
@@ -422,13 +446,14 @@ import ArtifactDisplay from "@c/display/ArtifactDisplay"
 import AddButton from "@c/misc/AddButton"
 import DamagePanel from "./DamagePanel"
 import MyButton1 from "@c/button/MyButton1"
-// import DamageAnalysis from "@c/display/DamageAnalysis"
 import AttributePanel from "@c/display/AttributePanel"
 import ItemConfig from "@c/config/ItemConfig"
 import BuffItem from "./BuffItem"
 import WeaponDisplay from "@c/display/WeaponDisplay"
 import SaveAsKumi from "./SaveAsKumi"
-// import ArtifactsSetStatistics from "@c/display/ArtifactsSetStatistics"
+import TransformativeDamage from "./TransformativeDamage"
+import ValueDisplay from "./ValueDisplay"
+import EnemyConfig from "./EnemyConfig"
 
 export default {
     name: "NewArtifactPlanPage",
@@ -453,7 +478,10 @@ export default {
         WeaponDisplay,
         ArtifactsSetStatistics: () => import("@c/display/ArtifactsSetStatistics"),
         ArtifactPerStatBonus: () => import("@c/display/ArtifactPerStatBonus"),
-        SaveAsKumi
+        SaveAsKumi,
+        TransformativeDamage,
+        ValueDisplay,
+        EnemyConfig,
     },
     created() {
         // this.characterData = characterData
@@ -491,6 +519,18 @@ export default {
 
             constraintArtifactSet: [],
 
+            enemyConfig: {
+                level: 90,
+                electro_res: 0.1,
+                pyro_res: 0.1,
+                hydro_res: 0.1,
+                cryo_res: 0.1,
+                geo_res: 0.1,
+                anemo_res: 0.1,
+                dendro_res: 0.1,
+                physical_res: 0.1
+            },
+
             buffs: [],
 
             targetFunctionName: "AmberDefault",
@@ -511,6 +551,7 @@ export default {
             showArtifactPerBonusDialog: false,
             showSaveKumiDialog: false,
             showUseKumiDialog: false,
+            showEnemyConfigDialog: false,
 
             miscBigContainerHeight: "",
             miscPerStatBonus: {},
@@ -529,6 +570,12 @@ export default {
         // ...mapState("kumi", {
         //
         // }),
+
+        // enemy
+        enemyInterface() {
+            return this.enemyConfig
+        },
+        // end enemy
 
         // character
         characterLevelNumber() {
@@ -592,6 +639,10 @@ export default {
             const temp = this.$mona.CalculatorInterface.get_damage_analysis(this.damageAnalysisWasmInterface)
             // console.log(temp)
             return temp
+        },
+
+        characterTransformativeDamage() {
+            return this.$mona.CalculatorInterface.get_transformative_damage(this.damageAnalysisWasmInterface)
         },
 
         // weapon
@@ -786,7 +837,8 @@ export default {
                 buffs: this.buffsInterface,
                 artifacts: this.artifactWasmFormat,
                 artifact_config: this.artifactConfigForCalculator,
-                skill: this.characterSkillInterface
+                skill: this.characterSkillInterface,
+                enemy: this.enemyInterface,
             }
         },
 
@@ -832,6 +884,10 @@ export default {
         }
     },
     methods: {
+        handleClickEnemyConfig() {
+            this.showEnemyConfigDialog = true
+        },
+
         handleClickSetupOptimization() {
             this.showConstraintDialog = true
 
@@ -858,7 +914,7 @@ export default {
         handleUseKumi(node) {
             if (Object.prototype.hasOwnProperty.call(node, "kumiId")) {
                 const kumiId = node.kumiId
-                console.log(kumiId)
+                // console.log(kumiId)
                 this.showUseKumiDialog = false
 
                 const ids = getArtifactIdsByKumiId(kumiId)
@@ -896,7 +952,7 @@ export default {
                 }
             }
             
-            console.log(s)
+            // console.log(s)
 
             let filtered = []
 

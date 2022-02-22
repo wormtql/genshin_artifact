@@ -6,10 +6,15 @@ use crate::applications::team_optimize::inter::{OptimizeTeamObject, OptimizeTeam
 use crate::applications::team_optimize::team_optimize::optimize_team;
 use crate::artifacts::{Artifact, ArtifactSlotName};
 use crate::attribute::SimpleAttributeGraph2;
+use crate::buffs::Buff;
 use crate::character::Character;
+use crate::character::characters::get_target_function_by_role;
 use crate::target_functions::TargetFunction;
 use crate::team::team::Team;
+use crate::team_target::team_target_config::TeamTargetFunctionConfig;
+use crate::team_target::team_targets::{get_default_buff, try_get_team_target_function, try_match_team};
 use crate::weapon::Weapon;
+use crate::utils;
 
 pub struct TeamOptimizationWasm;
 
@@ -50,6 +55,7 @@ fn smallvec_to_optimize_entry(v: &SmallVec<[usize; 5]>, artifacts_by_id: &HashMa
 #[wasm_bindgen]
 impl TeamOptimizationWasm {
     pub fn optimize_team(val: &JsValue) -> JsValue {
+        utils::set_panic_hook();
         let input: OptimizeTeamObject = val.into_serde().unwrap();
 
         let mut characters: Vec<Character<SimpleAttributeGraph2>> = Vec::new();
@@ -63,45 +69,85 @@ impl TeamOptimizationWasm {
         }
 
         let team: Team<SimpleAttributeGraph2> = input.team.to_team();
-        let mut default_target_functions = team.get_default_target_functions();
-        if let Some(ref tfs) = input.override_target_functions {
-            for (index, maybe_target_function) in tfs.iter().enumerate() {
-                if let Some(tf) = maybe_target_function {
-                    let character_name = input.team.characters[index].name;
-                    let target_function = tf.to_target_function(&characters[index], &weapons[index]);
-                    default_target_functions.insert(character_name as usize, target_function);
-                }
+
+        let maybe_team_name = try_match_team(&team);
+        let is_team_preset = maybe_team_name.is_some();
+
+        if !is_team_preset {
+            // use priority optimization
+            todo!();
+        }
+
+        let team_name = maybe_team_name.unwrap();
+        let team_target_function_config = input.team_target_function_config.unwrap_or(TeamTargetFunctionConfig::NoConfig);
+
+        let team_target_function = team_name.create(&team_target_function_config, &team);
+        let mut buffs_map = get_default_buff(team_name, &team);
+        let mut buffs: Vec<Vec<Box<dyn Buff<SimpleAttributeGraph2>>>> = Vec::new();
+        for i in 0..characters.len() {
+            let name_usize = characters[i].common_data.name as usize;
+            let has_buff = buffs_map.contains_key(&name_usize);
+            if has_buff {
+                buffs.push(buffs_map.remove(&name_usize).unwrap());
+            } else {
+                buffs.push(Vec::new());
             }
         }
 
+        // let mut default_target_functions = team.get_default_target_functions();
+        // if let Some(ref tfs) = input.override_target_functions {
+        //     for (index, maybe_target_function) in tfs.iter().enumerate() {
+        //         if let Some(tf) = maybe_target_function {
+        //             let character_name = input.team.characters[index].name;
+        //             let target_function = tf.to_target_function(&characters[index], &weapons[index]);
+        //             default_target_functions.insert(character_name as usize, target_function);
+        //         }
+        //     }
+        // }
+
+        let mut individual_targets = team_target_function.get_default_individual_targets();
         let mut target_functions: Vec<Box<dyn TargetFunction>> = Vec::new();
         for i in 0..characters.len() {
-            let name = characters[i].common_data.name;
-            let tf = default_target_functions.remove(&(name as usize)).unwrap();
-            target_functions.push(tf);
+            // let name = characters[i].common_data.name;
+            // let tf = default_target_functions.remove(&(name as usize)).unwrap();
+            // target_functions.push(tf);
+            let name_usize = characters[i].common_data.name as usize;
+            let has_individual_target = individual_targets.contains_key(&name_usize);
+            if has_individual_target {
+                target_functions.push(individual_targets.remove(&name_usize).unwrap());
+            } else {
+                todo!() // todo default or user input target function
+                // let tf =
+                // get_target_function_by_role(0, )
+            }
         }
 
         let artifacts_ref: Vec<&Artifact> = input.artifacts.iter().collect();
-        let characters_ref: Vec<&Character<SimpleAttributeGraph2>> = characters.iter().collect();
-        let weapons_ref: Vec<&Weapon<SimpleAttributeGraph2>> = weapons.iter().collect();
-        let target_functions_ref: Vec<&Box<dyn TargetFunction>> = target_functions.iter().collect();
-
+        // let characters_ref: Vec<&Character<SimpleAttributeGraph2>> = characters.iter().collect();
+        // let weapons_ref: Vec<&Weapon<SimpleAttributeGraph2>> = weapons.iter().collect();
+        // let target_functions_ref: Vec<&Box<dyn TargetFunction>> = target_functions.iter().collect();
         let hyper_param = match input.hyper_param {
             Some(x) => x,
             None => TeamOptimizeHyperParam::default()
         };
         let result_raw = optimize_team(
             &artifacts_ref,
-            &characters_ref,
-            &weapons_ref,
-            &target_functions_ref,
+            &characters,
+            &weapons,
+            &buffs,
+            &target_functions,
+            &team_target_function,
             &hyper_param
         );
 
         let artifacts_by_id = artifacts_by_id_hashmap(&artifacts_ref);
-        let mut results: Vec<OptimizeTeamResultEntry> = Vec::new();
+        let mut results: Vec<Vec<OptimizeTeamResultEntry>> = Vec::new();
         for entry in result_raw.iter() {
-            results.push(smallvec_to_optimize_entry(entry, &artifacts_by_id));
+            let mut temp = Vec::new();
+            for member_index in 0..entry.len() {
+                temp.push(smallvec_to_optimize_entry(&entry[member_index], &artifacts_by_id));
+            }
+            results.push(temp);
         }
 
         let ret = OptimizeTeamResult {
@@ -109,5 +155,17 @@ impl TeamOptimizationWasm {
         };
 
         JsValue::from_serde(&ret).unwrap()
+    }
+
+    pub fn match_name(val: &JsValue) -> JsValue {
+        utils::set_panic_hook();
+        let input: OptimizeTeamObject = val.into_serde().unwrap();
+
+        let team: Team<SimpleAttributeGraph2> = input.team.to_team();
+
+        let maybe_team_name = try_match_team(&team);
+        let maybe_chs = maybe_team_name.map(|x| x.get_meta().chs);
+
+        JsValue::from_serde(&maybe_chs).unwrap()
     }
 }

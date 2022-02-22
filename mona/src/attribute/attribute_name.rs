@@ -8,6 +8,7 @@ pub enum AttributeName {
     ShieldStrength,
 
     DefMinus,
+    DefPenetration,
     ResMinusBase,
     ResMinusElectro,
     ResMinusPyro,

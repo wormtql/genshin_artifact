@@ -1,4 +1,5 @@
-use std::collections::{HashMap, HashSet};
+use std::cmp::{Ordering, Reverse};
+use std::collections::{BinaryHeap, HashMap, HashSet};
 use smallvec::{SmallVec, smallvec};
 use crate::applications::common::{CharacterInterface, WeaponInterface};
 use crate::applications::optimize_artifacts::inter::OptimizationResult;
@@ -7,11 +8,13 @@ use crate::applications::optimize_artifacts::single_optimize::optimize_single;
 use crate::applications::team_optimize::hyper_param::TeamOptimizeHyperParam;
 use crate::artifacts::Artifact;
 use crate::attribute::SimpleAttributeGraph2;
-use crate::character::Character;
-use crate::character::characters::jean::JeanRoleEnum::Default;
+use crate::buffs::Buff;
+use crate::character::{Character, CharacterName};
 use crate::target_functions::TargetFunction;
 use crate::team::team::Team;
+use crate::team_target::team_target_function::TeamTargetFunction;
 use crate::weapon::Weapon;
+use crate::utils;
 
 
 const MAX_TEAM_COUNT: usize = 4;
@@ -71,9 +74,11 @@ impl ArtifactSet {
     }
 
     pub fn intersect(&self, other: &ArtifactSet) -> ArtifactSet {
-        let mut items = self.items.clone();
+        let mut items = HashSet::new();
         for i in other.items.iter() {
-            items.remove(i);
+            if self.items.contains(i) {
+                items.insert(*i);
+            }
         }
 
         ArtifactSet {
@@ -103,81 +108,146 @@ impl ArtifactSet {
 struct SearchStackContent {
     col_index: usize,
     row_index: usize,
-    current_value: f64,
+    value_self: f64,
+    // current_value: f64,
     invalid_set: ArtifactSet,
     indices: SmallVec<[usize; 4]>,
 }
 
-fn try_search(nodes: &[Vec<ArtifactSet>], max_iter: usize) -> Result<SmallVec<[usize; MAX_TEAM_COUNT]>, HashMap<usize, usize>> {
+struct HeapItem {
+    pub indices: SmallVec<[usize; MAX_TEAM_COUNT]>,
+    pub value: f64,
+}
+
+impl PartialEq for HeapItem {
+    fn eq(&self, other: &Self) -> bool {
+        self.value.eq(&other.value)
+    }
+}
+
+impl Eq for HeapItem {}
+
+impl PartialOrd for HeapItem {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        self.value.partial_cmp(&other.value)
+    }
+}
+
+impl Ord for HeapItem {
+    fn cmp(&self, other: &Self) -> Ordering {
+        self.value.partial_cmp(&other.value).unwrap()
+    }
+}
+
+fn try_search(
+    nodes: &[Vec<ArtifactSet>],
+    max_iter: usize,
+    team_target_function: &Box<dyn TeamTargetFunction>,
+    character_names: &[CharacterName],
+    count: usize,
+) -> Result<Vec<SmallVec<[usize; MAX_TEAM_COUNT]>>, HashMap<usize, usize>> {
     // let mut invalid_set = ArtifactSet::new();
     // let mut iter: usize = 0;
     // try_search_helper(nodes, 0, &invalid_set, &mut iter, max_iter)
 
     let mut stack: Vec<SearchStackContent> = Vec::new();
     let mut iter_count = 0_usize;
-    let mut max_value: f64 = 0.0;
-    let mut max_indices: SmallVec<[usize; MAX_TEAM_COUNT]> = SmallVec::new();
+    // let mut max_value: f64 = 0.0;
+    // let mut max_indices: SmallVec<[usize; MAX_TEAM_COUNT]> = SmallVec::new();
     let mut mva_map: HashMap<usize, usize> = HashMap::new(); // artifact id -> count
     for (row, node) in nodes[0].iter().enumerate().rev() {
         stack.push(SearchStackContent {
             col_index: 0,
             row_index: row,
-            current_value: node.value,
+            // current_value: node.value,
+            value_self: node.value,
             invalid_set: node.clone(),
             indices: smallvec![row],
         });
     }
 
+    let mut heap = BinaryHeap::with_capacity(count + 1);
     while !stack.is_empty() && iter_count < max_iter {
         let p = stack.pop().unwrap();
         if p.col_index == nodes.len() - 1 {
             iter_count += 1;
-            if p.current_value > max_value {
-                max_value = p.current_value;
-                max_indices = p.indices.clone();
+
+            let mut value_map = HashMap::new();
+            for col in 0..p.indices.len() {
+                let value = nodes[col][p.indices[col]].value;
+                value_map.insert(character_names[col] as usize, value);
             }
-        }
-        for (row, node) in nodes[p.col_index + 1].iter().enumerate().rev() {
-            let intersect = p.invalid_set.intersect(node);
-            if intersect.is_empty() {
-                let mut ind = p.indices.clone();
-                ind.push(row);
-                stack.push(SearchStackContent {
-                    col_index: p.col_index + 1,
-                    row_index: row,
-                    current_value: p.current_value * node.value,
-                    invalid_set: p.invalid_set.intersect(node),
-                    indices: ind,
-                });
+            let team_target_value = team_target_function.target(&value_map);
+
+            let heap_item = HeapItem {
+                indices: p.indices.clone(),
+                value: team_target_value
+            };
+            if heap.len() < count {
+                heap.push(Reverse(heap_item));
             } else {
-                for &id in intersect.items.iter() {
-                    *mva_map.entry(id).or_insert(0) += 1;
+                heap.push(Reverse(heap_item));
+                heap.pop();
+            }
+
+            // if team_target_value > max_value {
+            //     max_value = team_target_value;
+            //     max_indices = p.indices.clone();
+            // }
+        } else {
+            for (row, node) in nodes[p.col_index + 1].iter().enumerate().rev() {
+                let intersect = p.invalid_set.intersect(node);
+                if intersect.is_empty() {
+                    let mut ind = p.indices.clone();
+                    ind.push(row);
+                    stack.push(SearchStackContent {
+                        col_index: p.col_index + 1,
+                        row_index: row,
+                        value_self: node.value,
+                        // current_value: p.current_value * node.value,
+                        invalid_set: p.invalid_set.union(node),
+                        indices: ind,
+                    });
+                } else {
+                    for &id in intersect.items.iter() {
+                        *mva_map.entry(id).or_insert(0) += 1;
+                    }
                 }
             }
         }
     }
 
-    if max_indices.len() == 0 {
+    if heap.len() == 0 {
         Err(mva_map)
     } else {
-        Ok(max_indices)
+        // Ok(max_indices)
+        let mut results = Vec::new();
+        for entry in heap.iter() {
+            results.push(entry.0.indices.clone());
+        }
+        Ok(results)
     }
 }
 
 fn optimize_team_helper(
     artifacts: &[&Artifact],
-    characters: &[&Character<SimpleAttributeGraph2>],
-    weapons: &[&Weapon<SimpleAttributeGraph2>],
-    target_functions: &[&Box<dyn TargetFunction>],
+    characters: &[Character<SimpleAttributeGraph2>],
+    weapons: &[Weapon<SimpleAttributeGraph2>],
+    buffs: &[Vec<Box<dyn Buff<SimpleAttributeGraph2>>>],
+    target_functions: &[Box<dyn TargetFunction>],
+    team_target_function: &Box<dyn TeamTargetFunction>,
     hyper_param: &TeamOptimizeHyperParam
-) -> SmallVec<[ArtifactSet; MAX_TEAM_COUNT]> {
+) -> Vec<SmallVec<[ArtifactSet; MAX_TEAM_COUNT]>> {
     let l = characters.len();
+    let character_names: Vec<_> = characters.iter().map(|c| c.common_data.name).collect();
+
+    // nodes[character index][individual optimization result index]
     let mut nodes: Vec<Vec<ArtifactSet>> = Vec::with_capacity(l);
 
     let optimize_index = |index: usize, arts: &[&Artifact]| -> Vec<ArtifactSet> {
         let result = optimize_single(
-            artifacts, None, characters[index], weapons[index],
-            target_functions[index], None, &[], hyper_param.work_space
+            artifacts, None, &characters[index], &weapons[index],
+            &target_functions[index], None, &buffs[index], hyper_param.work_space
         );
         result.iter().map(|x| ArtifactSet::from_optimization_result(x)).collect()
     };
@@ -188,12 +258,14 @@ fn optimize_team_helper(
         nodes.push(column);
     }
 
-    let mut result_indices: SmallVec<[usize; MAX_TEAM_COUNT]> = SmallVec::new();
+    utils::log!("finish initial individual");
+
+    let mut result_indices: Vec<SmallVec<[usize; MAX_TEAM_COUNT]>> = Vec::new();
     let mut re_optimize_count: usize = 0;
     're_optimize: while re_optimize_count < hyper_param.max_re_optimize {
         re_optimize_count += 1;
 
-        match try_search(&nodes, hyper_param.max_search) {
+        match try_search(&nodes, hyper_param.max_search, &team_target_function, &character_names, hyper_param.count) {
             Ok(indices) => {
                 // there is a result
                 result_indices = indices;
@@ -201,9 +273,13 @@ fn optimize_team_helper(
             },
             Err(mva_map) => {
                 // otherwise, re-optimize all columns except the first
+
+                // mva_map(most valuable artifact): artifact id -> conflicting count
                 let mut mva_map = mva_map;
                 let mut temp: Vec<(usize, usize)> = mva_map.drain().collect();
                 temp.sort_by(|x, y| (*y).1.cmp(&(*x).1));
+
+                // exclude_list: artifact ids to be excluded for next re-optimization
                 let exclude_list: HashSet<usize> = temp.iter().take(hyper_param.mva_step).map(|x| (*x).0).collect();
                 let mut artifacts_new: Vec<&Artifact> = Vec::new();
                 for &art in artifacts.iter() {
@@ -211,6 +287,7 @@ fn optimize_team_helper(
                         artifacts_new.push(art);
                     }
                 }
+
                 for i in 1..l {
                     let col = optimize_index(i, &artifacts_new);
                     nodes[i] = col;
@@ -221,13 +298,18 @@ fn optimize_team_helper(
 
     if result_indices.len() > 0 {
         // there is a result
-        let mut ret: SmallVec<[ArtifactSet; MAX_TEAM_COUNT]> = SmallVec::new();
-        for (index, row_index) in result_indices.iter().enumerate() {
-            ret.push(nodes[index][*row_index].clone());
+        let mut results = Vec::new();
+        for entry in result_indices.iter() {
+            let mut temp: SmallVec<[ArtifactSet; MAX_TEAM_COUNT]> = SmallVec::new();
+            for (col, row_index) in entry.iter().enumerate() {
+                temp.push(nodes[col][*row_index].clone());
+            }
+            results.push(temp);
         }
 
-        ret
+        results
     } else {
+        // todo optimize algorithm
         // after re-optimization, still no result, fallback to naive greedy strategy
         let mut artifacts_new: Vec<&Artifact> = Vec::new();
         let need_remove = |art: &Artifact| -> bool {
@@ -242,31 +324,45 @@ fn optimize_team_helper(
         let mut ret: SmallVec<[ArtifactSet; MAX_TEAM_COUNT]> = SmallVec::new();
         ret.push(nodes[0][0].clone());
         let rest = optimize_team_helper(
-            &artifacts_new, &characters[1..], &weapons[1..], &target_functions[1..],
-            hyper_param
+            &artifacts_new,
+            &characters[1..],
+            &weapons[1..],
+            &buffs[1..],
+            &target_functions[1..],
+            &team_target_function,
+            &hyper_param
         );
-        for i in rest {
-            ret.push(i);
+        for i in rest[0].iter() {
+            ret.push(i.clone());
         }
 
-        ret
+        vec![ret]
     }
 }
 
 pub fn optimize_team<'a>(
     artifacts: &[&'a Artifact],
-    characters: &[&Character<SimpleAttributeGraph2>],
-    weapons: &[&Weapon<SimpleAttributeGraph2>],
-    target_functions: &[&Box<dyn TargetFunction>],
+    characters: &[Character<SimpleAttributeGraph2>],
+    weapons: &[Weapon<SimpleAttributeGraph2>],
+    buffs: &[Vec<Box<dyn Buff<SimpleAttributeGraph2>>>],
+    target_functions: &[Box<dyn TargetFunction>],
+    team_target_function: &Box<dyn TeamTargetFunction>,
     hyper_param: &TeamOptimizeHyperParam
-) -> SmallVec<[SmallVec<[usize; 5]>; MAX_TEAM_COUNT]> {
+) -> Vec<SmallVec<[SmallVec<[usize; 5]>; MAX_TEAM_COUNT]>> {
     let intermediate = optimize_team_helper(
         artifacts,
         characters,
         weapons,
+        buffs,
         target_functions,
+        team_target_function,
         hyper_param
     );
 
-    intermediate.iter().map(|x| x.to_small_vec()).collect()
+    let mut results = Vec::new();
+    for entry in intermediate.iter() {
+        results.push(entry.iter().map(|x| x.to_small_vec()).collect());
+    }
+
+    results
 }

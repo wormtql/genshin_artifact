@@ -3,6 +3,7 @@
         :value="value"
         @input="$emit('input', $event)"
         size="small"
+        :multiple="multiple"
     >
         <el-option
             v-if="includeAny"
@@ -19,15 +20,7 @@
 </template>
 
 <script>
-import { secondaryTags } from "@asset/tags"
-
-let list = []
-for (let name in secondaryTags) {
-    list.push({
-        name,
-        title: secondaryTags[name].chs
-    })
-}
+import { artifactTags, mainStatMap } from "@const/artifact"
 
 export default {
     name: "SelectArtifactMainStat",
@@ -35,10 +28,34 @@ export default {
         value: {},
         includeAny: {
             default: true
-        }
+        },
+        multiple: { default: false },
+        position: { default: null }
     },
-    created() {
-        this.tagList = list
+    // created() {
+    //     this.tagList = list
+    // },
+    computed: {
+        tagList() {
+            let list = []
+            if (!this.position) {
+                for (let name in artifactTags) {
+                    list.push({
+                        name,
+                        title: artifactTags[name].chs
+                    })
+                }
+            } else {
+                for (let name of mainStatMap[this.position]) {
+                    list.push({
+                        name,
+                        title: artifactTags[name].chs
+                    })
+                }
+            }
+
+            return list
+        }
     }
 }
 </script>
