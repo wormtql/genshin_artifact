@@ -3,7 +3,7 @@ pub fn set_panic_hook() {
     console_error_panic_hook::set_once();
 }
 
-#[cfg(target_family = "windows")]
+#[cfg(not(target_family = "wasm"))]
 pub fn my_log(s: &str) {
     println!("{}", s);
 }
