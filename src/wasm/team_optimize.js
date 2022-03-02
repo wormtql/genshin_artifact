@@ -1,4 +1,4 @@
-export function team_optimize(input) {
+export function team_optimize(input, artifacts) {
     const worker = new Worker(new URL("@worker/team_optimization.js", import.meta.url))
 
     return new Promise((resolve, reject) => {
@@ -6,7 +6,8 @@ export function team_optimize(input) {
             const type = e.data.type
             if (type === "ready") {
                 worker.postMessage({
-                    input
+                    input,
+                    artifacts
                 })
             } else if (type === "result") {
                 const result = e.data.data.result

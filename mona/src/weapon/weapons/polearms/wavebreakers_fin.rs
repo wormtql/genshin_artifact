@@ -41,7 +41,7 @@ impl WeaponTrait for WavebreakersFin {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::WavebreakersFin,
         weapon_type: WeaponType::Polearm,
-        weapon_sub_stat: WeaponSubStatFamily::ATK30,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK30),
         weapon_base: WeaponBaseATKFamily::ATK620,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

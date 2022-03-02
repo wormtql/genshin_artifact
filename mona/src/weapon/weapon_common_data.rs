@@ -32,7 +32,9 @@ impl<T: Attribute> ChangeAttribute<T> for WeaponCommonData {
     fn change_attribute(&self, attribute: &mut T) {
         attribute.set_value_by(AttributeName::ATKBase, "武器基础攻击", self.base_atk);
 
-        let sub_stat = WeaponSubStat::new(self.static_data.weapon_sub_stat, self.level, self.ascend);
-        sub_stat.change_attribute(attribute);
+        if let Some(s) = self.static_data.weapon_sub_stat {
+            let sub_stat = WeaponSubStat::new(s, self.level, self.ascend);
+            sub_stat.change_attribute(attribute);
+        }
     }
 }

@@ -44,7 +44,7 @@ impl WeaponTrait for DodocoTales {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::DodocoTales,
         weapon_type: WeaponType::Catalyst,
-        weapon_sub_stat: WeaponSubStatFamily::ATK120,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK120),
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

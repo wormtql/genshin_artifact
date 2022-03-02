@@ -30,7 +30,7 @@ impl WeaponTrait for KitainCrossSpear {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::KitainCrossSpear,
         weapon_type: WeaponType::Polearm,
-        weapon_sub_stat: WeaponSubStatFamily::EM24,
+        weapon_sub_stat: Some(WeaponSubStatFamily::EM24),
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

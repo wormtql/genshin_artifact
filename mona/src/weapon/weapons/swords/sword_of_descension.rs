@@ -14,7 +14,7 @@ impl WeaponTrait for SwordOfDescension {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SwordOfDescension,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::ATK77,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK77),
         weapon_base: WeaponBaseATKFamily::ATK440,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

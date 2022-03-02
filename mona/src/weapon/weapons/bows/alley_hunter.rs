@@ -41,7 +41,7 @@ impl WeaponTrait for AlleyHunter {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::AlleyHunter,
         weapon_type: WeaponType::Bow,
-        weapon_sub_stat: WeaponSubStatFamily::ATK60,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

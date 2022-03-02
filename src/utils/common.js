@@ -6,6 +6,10 @@ export function deepCopy(obj) {
         }
         return temp;
     } else if (typeof obj === "object") {
+        if (obj === null) {
+            return null
+        }
+
         let temp = {};
         for (let key in obj) {
             temp[key] = deepCopy(obj[key]);
@@ -55,4 +59,19 @@ export function toSnakeCase(s) {
     } else {
         return temp
     }
+}
+
+// code from https://gist.github.com/danallison/3ec9d5314788b337b682
+export function downloadString(text, fileType, filename) {
+    const blob = new Blob([text], { type: fileType })
+
+    const a = document.createElement("a")
+    a.download = filename
+    a.href = URL.createObjectURL(blob)
+    a.dataset.downloadurl = [fileType, a.download, a.href].join(":")
+    a.style.display = "none"
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    setTimeout(function() { URL.revokeObjectURL(a.href) }, 1500)
 }

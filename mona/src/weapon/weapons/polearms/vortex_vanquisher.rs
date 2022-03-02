@@ -45,7 +45,7 @@ impl WeaponTrait for VortexVanquisher {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::VortexVanquisher,
         weapon_type: WeaponType::Polearm,
-        weapon_sub_stat: WeaponSubStatFamily::ATK108,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK108),
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

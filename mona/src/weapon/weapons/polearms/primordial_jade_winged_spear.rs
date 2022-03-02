@@ -46,7 +46,7 @@ impl WeaponTrait for PrimordialJadeWingedSpear {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrimordialJadeWingedSpear,
         weapon_type: WeaponType::Polearm,
-        weapon_sub_stat: WeaponSubStatFamily::CriticalRate48,
+        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate48),
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

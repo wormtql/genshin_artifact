@@ -40,7 +40,7 @@ impl WeaponTrait for TheAlleyFlash {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheAlleyFlash,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::EM12,
+        weapon_sub_stat: Some(WeaponSubStatFamily::EM12),
         weapon_base: WeaponBaseATKFamily::ATK620,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

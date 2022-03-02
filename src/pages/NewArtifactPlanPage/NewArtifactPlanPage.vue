@@ -11,6 +11,7 @@
             ></select-artifact>
         </el-dialog>
 
+<!--        damage analysis-->
         <el-dialog
             :visible.sync="showDamageAnalysisDialog"
             title="伤害构成"
@@ -35,24 +36,126 @@
 
         <el-dialog
             :visible.sync="showConstraintDialog"
-            title="计算限制"
+            title="计算设置"
             width="60%"
         >
-            <p>限定套装</p>
-            <div style="margin-top: 12px">
+            <p class="common-title2">算法</p>
+            <el-alert
+                v-if="computationMode === 'enum'"
+                title="请限定套装或者主词条，否则计算将十分耗时，可能导致计算超时"
+                type="warning"
+                style="margin-bottom: 12px"
+            ></el-alert>
+            <el-radio-group v-model="computationMode">
+                <el-radio label="optim">剪枝</el-radio>
+                <el-radio label="enum">纯枚举</el-radio>
+            </el-radio-group>
+
+            <p class="common-title2">限定套装</p>
+            <div style="margin-top: 12px; margin-bottom: 12px">
                 <select-artifact-set
                     multiple
                     v-model="constraintArtifactSet"
+                    style="width: 30%"
                 ></select-artifact-set>
             </div>
+
+            <p class="common-title2">限定主词条</p>
+            <div style="margin-top: 12px; margin-bottom: 12px">
+                <div class="constraint-main-stat-item">
+                    <span>时之沙</span>
+                    <select-artifact-main-stat
+                        v-model="constraintSandMainStats"
+                        :include-any="false"
+                        :multiple="true"
+                        position="sand"
+                        style="width: 30%"
+                    ></select-artifact-main-stat>
+                </div>
+                <div class="constraint-main-stat-item">
+                    <span>空之杯</span>
+                    <select-artifact-main-stat
+                        v-model="constraintGobletMainStats"
+                        :include-any="false"
+                        :multiple="true"
+                        position="cup"
+                        style="width: 30%"
+                    ></select-artifact-main-stat>
+                </div>
+                <div class="constraint-main-stat-item">
+                    <span>理之冠</span>
+                    <select-artifact-main-stat
+                        v-model="constraintHeadMainStats"
+                        :include-any="false"
+                        :multiple="true"
+                        position="head"
+                        style="width: 30%"
+                    ></select-artifact-main-stat>
+                </div>
+            </div>
+
+<!--            <p class="constraint-title">限定最小值</p>-->
+<!--            <div>-->
+<!--                <div class="constraint-min-item">-->
+<!--                    <span class="constraint-min-title">元素充能效率</span>-->
+<!--                    <div style="width: 40%">-->
+<!--                        <el-slider-->
+<!--                            :min="1"-->
+<!--                            :max="4"-->
+<!--                            :step="0.05"-->
+<!--                            v-model="constraintMinRecharge"-->
+<!--                            :show-input="true"-->
+<!--                        ></el-slider>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="constraint-min-item">-->
+<!--                    <span class="constraint-min-title">元素精通</span>-->
+<!--                    <div style="width: 40%">-->
+<!--                        <el-slider-->
+<!--                            :min="0"-->
+<!--                            :max="2000"-->
+<!--                            :step="10"-->
+<!--                            v-model="constraintMinElementalMastery"-->
+<!--                            :show-input="true"-->
+<!--                        ></el-slider>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="constraint-min-item">-->
+<!--                    <span class="constraint-min-title">暴击率</span>-->
+<!--                    <div style="width: 40%">-->
+<!--                        <el-slider-->
+<!--                            :min="0"-->
+<!--                            :max="1"-->
+<!--                            :step="0.01"-->
+<!--                            v-model="constraintMinCritical"-->
+<!--                            :show-input="true"-->
+<!--                        ></el-slider>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="constraint-min-item">-->
+<!--                    <span class="constraint-min-title">暴击伤害</span>-->
+<!--                    <div style="width: 40%">-->
+<!--                        <el-slider-->
+<!--                            :min="0"-->
+<!--                            :max="4"-->
+<!--                            :step="0.1"-->
+<!--                            v-model="constraintMinCriticalDamage"-->
+<!--                            :show-input="true"-->
+<!--                        ></el-slider>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             
-            <p>过滤圣遗物组</p>
-            <el-tree
-                :data="kumiTreeDataForElementUI"
-                show-checkbox
-                ref="filterKumiRef"
-            >
-            </el-tree>
+            <p class="common-title2">过滤圣遗物组</p>
+            <div style="max-height: 50vh; overflow: auto" class="mona-scroll">
+                <el-tree
+                    :data="kumiTreeDataForElementUI"
+                    show-checkbox
+                    ref="filterKumiRef"
+                >
+                </el-tree>
+            </div>
+
         </el-dialog>
 
         <el-dialog
@@ -109,9 +212,28 @@
             ></enemy-config>
         </el-dialog>
 
+        <el-dialog
+            :visible.sync="showConfigArtifactDialog"
+            title="圣遗物设置"
+            width="60%"
+        >
+            <h3 class="common-title2">圣遗物特效模式</h3>
+            <el-radio-group
+                v-model="artifactEffectMode"
+            >
+                <el-radio label="auto">自动</el-radio>
+                <el-radio label="custom">手动</el-radio>
+            </el-radio-group>
+
+            <h3 class="common-title2">圣遗物特效（仅在手动模式下有效）</h3>
+            <artifact-config
+                v-model="artifactConfig"
+            ></artifact-config>
+        </el-dialog>
+
         <div class="top-things" ref="topThings">
             <el-breadcrumb>
-                <el-breadcrumb-item>裏</el-breadcrumb-item>
+                <el-breadcrumb-item>Mona</el-breadcrumb-item>
             </el-breadcrumb>
             <el-divider></el-divider>
         </div>
@@ -233,13 +355,87 @@
                 <div class="config-target-function">
                     <p class="common-title">目标函数</p>
                     <div class="my-button-list" style="margin-bottom: 12px">
-                        <my-button-1 icon="el-icon-caret-right" title="开始计算"
+                        <el-button
+                            type="primary"
+                            size="mini"
+                            icon="el-icon-caret-right"
                             @click="handleOptimizeArtifact"
-                        ></my-button-1>
-                        <my-button-1 icon="el-icon-s-operation" title="设置"
-                            @click="handleClickSetupOptimization"
-                        ></my-button-1>
+                        >开始计算</el-button>
+
+                        <el-dropdown
+                            trigger="click"
+                            size="mini"
+                            @command="handleCommandSetup"
+                            style="margin-left: 12px"
+                        >
+                            <el-button
+                                size="mini"
+                            >设置<i class="el-icon-arrow-down"></i></el-button>
+
+                            <template #dropdown>
+                                <el-dropdown-menu
+                                >
+                                    <el-dropdown-item icon="el-icon-s-tools" command="setup-computation">计算设置</el-dropdown-item>
+                                    <el-dropdown-item icon="el-icon-s-help" command="setup-artifact">圣遗物设置</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </template>
+                        </el-dropdown>
+
+                        <el-dropdown
+                            trigger="click"
+                            size="mini"
+                            @command="handleCommandPreset"
+                            @click="handleSavePreset(miscCurrentPresetName)"
+                            style="margin-left: 12px"
+                            split-button
+                        >
+                            <template v-if="!miscCurrentPresetName">预设</template>
+                            <template v-else>保存「{{ miscCurrentPresetName }}」</template>
+
+                            <template #dropdown>
+                                <el-dropdown-menu
+                                >
+                                    <el-dropdown-item icon="el-icon-s-tools" command="save-preset">保存预设</el-dropdown-item>
+<!--                                    <el-dropdown-item icon="el-icon-s-help" command="setup-artifact">圣遗物设置</el-dropdown-item>-->
+
+                                    <el-dropdown-item
+                                        v-for="(item, index) in presetsAllFlat"
+                                        :divided="index === 0"
+                                        :key="item.name"
+                                        icon="el-icon-menu"
+                                        :command="'apply-' + item.name"
+                                    >{{ item.name }}</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </template>
+                        </el-dropdown>
+<!--                        <el-button-->
+<!--                            size="mini"-->
+<!--                            icon="el-icon-s-tools"-->
+<!--                            type="text"-->
+<!--                            @click="handleClickSetupOptimization"-->
+<!--                        >设置</el-button>-->
+
+<!--                        <el-button-->
+<!--                            size="mini"-->
+<!--                            icon="el-icon-s-help"-->
+<!--                            type="text"-->
+<!--                            @click="handleClickArtifactConfig"-->
+<!--                        >圣遗物设置</el-button>-->
                     </div>
+<!--                    <div>-->
+<!--                        <el-button-->
+<!--                            size="mini"-->
+<!--                            icon="el-icon-star-on"-->
+<!--                            type="text"-->
+<!--                            @click="handleClickSaveOptimizeConfig"-->
+<!--                        >存为预设</el-button>-->
+<!--                        <el-button-->
+<!--                            size="mini"-->
+<!--                            icon="el-icon-star-on"-->
+<!--                            type="text"-->
+<!--                            @click="handleClickSaveOptimizeConfig"-->
+<!--                        >应用预设</el-button>-->
+<!--                    </div>-->
                     <select-target-function
                         v-model="targetFunctionName"
                         :character-name="characterName"
@@ -317,15 +513,30 @@
                 <p class="common-title">圣遗物</p>
 
                 <div class="artifact-tool" style="margin-bottom: 12px">
-                    <my-button-1 icon="el-icon-s-data" title="圣遗物分析"
-                                 @click="handleClickArtifactAnalysis"
-                    ></my-button-1>
-                    <my-button-1 icon="el-icon-star-on" title="存为套装"
-                                 @click="handleClickSaveAsKumi"
-                    ></my-button-1>
-                    <my-button-1 icon="el-icon-folder" title="应用套装"
-                                 @click="handleClickUseKumi"
-                    ></my-button-1>
+                    <el-button
+                        size="mini"
+                        icon="el-icon-s-data"
+                        @click="handleClickArtifactAnalysis"
+                    >词条分析</el-button>
+<!--                    <my-button-1 icon="el-icon-s-data" title="圣遗物分析"-->
+<!--                                 @click="handleClickArtifactAnalysis"-->
+<!--                    ></my-button-1>-->
+                    <el-button
+                        size="mini"
+                        icon="el-icon-star-on"
+                        @click="handleClickSaveAsKumi"
+                    >存为套装</el-button>
+<!--                    <my-button-1 icon="el-icon-star-on" title="存为套装"-->
+<!--                                 @click="handleClickSaveAsKumi"-->
+<!--                    ></my-button-1>-->
+                    <el-button
+                        size="mini"
+                        icon="el-icon-folder"
+                        @click="handleClickUseKumi"
+                    >应用套装</el-button>
+<!--                    <my-button-1 icon="el-icon-folder" title="应用套装"-->
+<!--                                 @click="handleClickUseKumi"-->
+<!--                    ></my-button-1>-->
                 </div>
 
                 <div class="artifacts">
@@ -338,8 +549,8 @@
                             v-if="artifactItems[index]"
                             :item="artifactItems[index]"
                             selectable
-                            buttons
-                            delete-button
+                            :buttons="true"
+                            :delete-button="true"
                             @delete="handleRemoveArtifact(index)"
                             @toggle="handleToggleArtifact(id)"
                             @click="handleGotoSelectArtifact(index)"
@@ -349,7 +560,7 @@
                             v-else
                             @click="handleGotoSelectArtifact(index)"
                             class="add-button"
-                            style="height: 125px"
+                            style="height: 5vw; width: 5vw"
                         ></add-button>
                     </div>
                 </div>
@@ -370,12 +581,22 @@
 
                 <p class="common-title">伤害计算</p>
                 <div class="my-button-list" style="margin-bottom: 12px">
-                    <my-button-1 icon="el-icon-s-data" title="明细"
+                    <el-button
+                        size="mini"
+                        icon="el-icon-s-data"
                         @click="handleDisplayAnalysis"
-                    ></my-button-1>
-                    <my-button-1 icon="el-icon-s-operation" title="敌人设置"
-                                 @click="handleClickEnemyConfig"
-                    ></my-button-1>
+                    >明细</el-button>
+<!--                    <my-button-1 icon="el-icon-s-data" title="明细"-->
+<!--                        @click="handleDisplayAnalysis"-->
+<!--                    ></my-button-1>-->
+                    <el-button
+                        size="mini"
+                        icon="el-icon-s-tools"
+                        @click="handleClickEnemyConfig"
+                    >敌人设置</el-button>
+<!--                    <my-button-1 icon="el-icon-s-operation" title="敌人设置"-->
+<!--                                 @click="handleClickEnemyConfig"-->
+<!--                    ></my-button-1>-->
                 </div>
                 <div v-if="characterNeedSkillConfig" style="margin-bottom: 16px;">
                     <item-config
@@ -405,9 +626,14 @@
                 <div class="common-title">面板</div>
 
                 <div class="my-button-list" style="margin-bottom: 12px">
-                    <my-button-1 icon="el-icon-s-data" title="开始计算"
-                                 @click="handleClickAttributeAnalysis"
-                    ></my-button-1>
+                    <el-button
+                        size="mini"
+                        icon="el-icon-s-data"
+                        @click="handleClickAttributeAnalysis"
+                    >词条收益</el-button>
+<!--                    <my-button-1 icon="el-icon-s-data" title="词条收益分析"-->
+<!--                                 @click="handleClickAttributeAnalysis"-->
+<!--                    ></my-button-1>-->
                 </div>
 
                 <attribute-panel
@@ -424,6 +650,8 @@ import { mapGetters, mapState } from "vuex"
 import { convertArtifact, convertArtifactName } from "@util/converter"
 import { newDefaultArtifactConfigForWasm } from "@util/artifacts"
 import {getArtifactIdsByKumiId, newKumiWithArtifacts} from "@util/kumi"
+import { deepCopy } from "@util/common"
+import {createOrUpdatePreset, deletePreset, getPresetEntryByName} from "@util/preset"
 import { toSnakeCase } from "@util/common"
 import { positions } from "@const/artifact"
 import { characterData } from "@character"
@@ -431,7 +659,8 @@ import { weaponData } from "@weapon"
 import { targetFunctionData } from "@targetFunction"
 import { buffData } from "@buff"
 import { artifactsData } from "@artifact"
-import { wasmBonusPerStat } from "@/wasm/bonus_per_stat"
+import { wasmBonusPerStat } from "@/wasm"
+import { wasmSingleOptimize } from "@/wasm/single_optimize"
 
 import SelectArtifact from "@c/select/SelectArtifact"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
@@ -454,10 +683,13 @@ import SaveAsKumi from "./SaveAsKumi"
 import TransformativeDamage from "./TransformativeDamage"
 import ValueDisplay from "./ValueDisplay"
 import EnemyConfig from "./EnemyConfig"
+import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
+import ArtifactConfig from "./ArtifactConfig"
 
 export default {
     name: "NewArtifactPlanPage",
     components: {
+        SelectArtifactMainStat,
         SelectArtifact,
         SelectArtifactSet,
         SelectCharacter,
@@ -482,6 +714,7 @@ export default {
         TransformativeDamage,
         ValueDisplay,
         EnemyConfig,
+        ArtifactConfig,
     },
     created() {
         // this.characterData = characterData
@@ -518,6 +751,14 @@ export default {
             },
 
             constraintArtifactSet: [],
+            constraintSandMainStats: [],
+            constraintGobletMainStats: [],
+            constraintHeadMainStats: [],
+            computationMode: "optim",
+            // constraintMinRecharge: 1,
+            // constraintMinElementalMastery: 0,
+            // constraintMinCritical: 0,
+            // constraintMinCriticalDamage: 0,
 
             enemyConfig: {
                 level: 90,
@@ -540,6 +781,8 @@ export default {
 
             artifactIds: [-1, -1, -1, -1, -1],
             artifactSingleConfig: null,
+            artifactConfig: newDefaultArtifactConfigForWasm(),
+            artifactEffectMode: "auto",
 
             selectArtifactSlot: "any",
 
@@ -552,9 +795,11 @@ export default {
             showSaveKumiDialog: false,
             showUseKumiDialog: false,
             showEnemyConfigDialog: false,
+            showConfigArtifactDialog: false,
 
             miscBigContainerHeight: "",
             miscPerStatBonus: {},
+            miscCurrentPresetName: null,
         }
     },
     computed: {
@@ -565,6 +810,10 @@ export default {
 
         ...mapGetters("kumi", {
             kumiTreeDataForElementUI: "treeDataForElementUI"
+        }),
+
+        ...mapGetters("presets", {
+            presetsAllFlat: "allFlat"
         }),
 
         // ...mapState("kumi", {
@@ -821,6 +1070,10 @@ export default {
                 "hp_min": null,
                 "atk_min": null,
                 "def_min": null,
+                // "recharge_min": this.constraintMinRecharge,
+                // "em_min": this.constraintMinElementalMastery,
+                // "crit_min": this.constraintMinCritical,
+                // "crit_dmg_min": this.constraintMinCriticalDamage
                 "recharge_min": null,
                 "em_min": null,
                 "crit_min": null,
@@ -884,13 +1137,164 @@ export default {
         }
     },
     methods: {
+        handleClickArtifactConfig() {
+            this.showConfigArtifactDialog = true
+        },
+
         handleClickEnemyConfig() {
             this.showEnemyConfigDialog = true
         },
 
         handleClickSetupOptimization() {
             this.showConstraintDialog = true
+        },
 
+        handleCommandSetup(cmd) {
+            console.log(cmd)
+            if (cmd === "setup-computation") {
+                this.handleClickSetupOptimization()
+            } else if (cmd === "setup-artifact") {
+                this.handleClickArtifactConfig()
+            }
+        },
+
+        usePreset(name) {
+            const entry = getPresetEntryByName(name)
+            const item = entry.item
+
+            if (!item) {
+                return
+            }
+
+            // use buffs
+            for (let buff of item.buffs) {
+                buff.id = buff.id ?? Math.floor(Math.random() * 1e9)
+            }
+            this.buffs = item.buffs ?? []
+
+            // use character
+            const c = item.character
+            if (c) {
+                this.characterName = c.name
+                this.characterLevel = c.level.toString() + (c.ascend ? "+" : "-")
+                this.characterConstellation = c.constellation ?? 0
+                this.characterSkill1 = c.skill1 + 1
+                this.characterSkill2 = c.skill2 + 1
+                this.characterSkill3 = c.skill3 + 1
+
+                this.$nextTick(() => {
+                    this.characterConfig = c.params
+
+                    // use weapon
+                    // this has to be executed after character update, because weapon type will be updated if character is different
+                    const w = item.weapon
+                    if (w) {
+                        this.weaponName = w.name
+                        this.weaponLevel = w.level.toString() + (w.ascend ? "+" : "-")
+                        this.weaponRefine = w.refine
+
+                        this.$nextTick(() => {
+                            // console.log("in next tick", w.name)
+                            this.weaponConfig = w.params
+                        })
+                    }
+                })
+            }
+
+            // use target function
+            const tf = item.targetFunction
+            if (tf) {
+                this.targetFunctionName = tf.name
+
+                this.$nextTick(() => {
+                    this.targetFunctionConfig = tf.params
+                })
+            }
+
+            // use constraint
+            const constraint = item.constraint
+            if (constraint) {
+                this.constraintArtifactSet = constraint.setNames ?? []
+            }
+
+            // use filter
+            const filter = item.filter
+            if (filter) {
+                this.constraintSandMainStats = filter.sandMainStats ?? []
+                this.constraintGobletMainStats = filter.gobletMainStats ?? []
+                this.constraintHeadMainStats = filter.headMainStats ?? []
+            }
+
+            // use compute mode
+            this.computationMode = item.computationMode ?? "optim"
+
+            // use artifact effect mode
+            this.artifactEffectMode = item.artifactEffectMode ?? "auto"
+
+            // use artifact config
+            this.artifactConfig = item.artifactConfig ?? newDefaultArtifactConfigForWasm()
+        },
+
+        handleCommandPreset(cmd) {
+            if (cmd === "save-preset") {
+                this.handleClickSaveOptimizeConfig()
+            } else {
+                if (cmd.startsWith("apply-")) {
+                    const name = cmd.slice(6)
+
+                    this.usePreset(name)
+
+                    this.miscCurrentPresetName = name
+                }
+            }
+        },
+
+        handleSavePreset(name) {
+            if (!name) {
+                return
+            }
+
+            const item = this.getPresetItem()
+            createOrUpdatePreset(item, name)
+
+            this.$message.success("已保存")
+        },
+
+        getPresetItem() {
+            const config = this.getOptimizeArtifactWasmInterface()
+
+            const item = {
+                buffs: deepCopy(config.buffs),
+                character: deepCopy(config.character),
+                weapon: deepCopy(config.weapon),
+                targetFunction: deepCopy(config.target_function),
+                constraint: {
+                    setNames: deepCopy(this.constraintArtifactSet),
+                },
+                filter: {
+                    sandMainStats: deepCopy(this.constraintSandMainStats),
+                    gobletMainStats: deepCopy(this.constraintGobletMainStats),
+                    headMainStats: deepCopy(this.constraintHeadMainStats),
+                },
+                artifactConfig: deepCopy(this.artifactConfig),
+                computationMode: this.computationMode,
+                artifactEffectMode: this.artifactEffectMode
+            }
+            return item
+        },
+
+        handleClickSaveOptimizeConfig() {
+            const item = this.getPresetItem()
+
+            this.$prompt("输入名称（重复名称将覆盖）", "存为预设", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                inputPattern: /[^\s]+$/
+            }).then(({ value }) => {
+                item.name = value
+                createOrUpdatePreset(item, value)
+                this.$message.success("保存成功")
+            })
         },
 
         handleClickSaveAsKumi() {
@@ -940,7 +1344,10 @@ export default {
         getAllArtifactsFiltered() {
             const component = this.$refs["filterKumiRef"]
 
+            // s is artifact ids to be filtered
             let s = new Set()
+
+            // filter kumi
             if (component) {
                 const nodes = component.getCheckedNodes(true)
                 for (let node of nodes) {
@@ -951,8 +1358,35 @@ export default {
                     }
                 }
             }
-            
-            // console.log(s)
+
+            // filter main stat
+            for (let artifact of this.allArtifactsFlat) {
+                const position = artifact.position
+                const mainStatName = artifact.mainTag.name
+                const id = artifact.id
+                if (position === "sand") {
+                    if (this.constraintSandMainStats.length > 0) {
+                        const index = this.constraintSandMainStats.indexOf(mainStatName)
+                        if (index === -1) {
+                            s.add(id)
+                        }
+                    }
+                } else if (position === "cup") {
+                    if (this.constraintGobletMainStats.length > 0) {
+                        const index = this.constraintGobletMainStats.indexOf(mainStatName)
+                        if (index === -1) {
+                            s.add(id)
+                        }
+                    }
+                } else if (position === "head") {
+                    if (this.constraintHeadMainStats.length > 0) {
+                        const index = this.constraintHeadMainStats.indexOf(mainStatName)
+                        if (index === -1) {
+                            s.add(id)
+                        }
+                    }
+                }
+            }
 
             let filtered = []
 
@@ -962,7 +1396,7 @@ export default {
                 }
             }
 
-            return filtered
+            return filtered.filter(a => !a.omit)
         },
 
         getAllArtifactsFilteredWasm() {
@@ -970,17 +1404,29 @@ export default {
         },
 
         getOptimizeArtifactWasmInterface() {
-            const artifacts = this.getAllArtifactsFilteredWasm()
-            const artifacts16 = artifacts.filter(x => x.level >= 16)
+            let artifact_config = null
+            if (this.artifactEffectMode === "custom") {
+                artifact_config = this.artifactConfig
+            }
 
             return {
-                artifacts: artifacts16,
+                // artifacts: artifacts16,
                 character: this.characterInterface,
                 weapon: this.weaponInterface,
                 target_function: this.targetFunctionInterface,
                 constraint: this.constraintInterface,
-                buffs: this.buffsInterface
+                buffs: this.buffsInterface,
+                artifact_config,
+                use_optim: this.computationMode === "optim",
+
             }
+        },
+
+        getArtifactsToBeCalculated() {
+            const artifacts = this.getAllArtifactsFilteredWasm()
+            const artifacts16 = artifacts.filter(x => x.level >= 16)
+
+            return artifacts16
         },
 
         handleClickArtifactAnalysis() {
@@ -988,52 +1434,23 @@ export default {
         },
 
         handleOptimizeArtifact() {
-            const interfac = this.getOptimizeArtifactWasmInterface()
             const start = new Date()
-
             const loading = this.$loading({
                 lock: true,
                 text: "莫娜占卜中"
             })
-            const worker = new Worker(new URL("@worker/optimize_artifact.js", import.meta.url))
 
-            const closeLoading = () => {
+            wasmSingleOptimize(this.getOptimizeArtifactWasmInterface(), this.getArtifactsToBeCalculated()).then(results => {
+                const end = new Date()
+                console.log(`time: ${(end - start) / 1000}s`)
+
+                this.optimizationResults = results
+                this.handleUseNthOptimizationResult(1)
+            }).catch(e => {
+                this.$message.error(e)
+            }).finally(() => {
                 loading.close()
-            }
-
-            const closeWorker = () => {
-                worker.terminate()
-            }
-
-            // max calc time: 2min
-            const timer = setTimeout(() => {
-                closeLoading()
-                closeWorker()
-                this.$message({
-                    message: "计算超时",
-                    type: "error"
-                })
-            }, 120000)
-            
-            worker.onmessage = e => {
-                if (e.data.type === "ready") {
-                    worker.postMessage({
-                        interfac
-                    })
-                } else {
-                    const results = e.data.data.results
-                    const end = new Date()
-
-                    console.log(`time: ${(end - start) / 1000}s`)
-                    // console.log(results)
-
-                    this.optimizationResults = results
-                    clearTimeout(timer)
-                    closeLoading()
-                    this.handleUseNthOptimizationResult(1)
-                    closeWorker()
-                }
-            }
+            })
         },
 
         handleUseNthOptimizationResult(n) {
@@ -1179,6 +1596,7 @@ export default {
     },
     watch: {
         weaponName(newName) {
+            // console.log("in watch", newName)
             const hasConfig = !!weaponData[newName]?.configs
             if (hasConfig) {
                 const configs = weaponData[newName].configs
@@ -1320,6 +1738,7 @@ export default {
     .right-container {
         // flex: 1;
         padding-left: 12px;
+        padding-right: 12px;
         // overflow-y: auto;
         // overflow-x: hidden;
     }
@@ -1429,24 +1848,51 @@ export default {
 }
 
 .common-title {
-    font-size: 16px;
+    font-size: 0.9rem;
     font-weight: bold;
-    margin: 0 0 12px 0;
+    margin: 0 0 1.5vh 0;
     color: #555555;
 }
 
-.common-title2 {
-    font-size: 12px;
+.common-title2, .constraint-title {
+    font-size: 0.7rem;
     color: #666666;
+    border-left: 2px solid #409EFF;
+    padding-left: 0.5vw;
 }
 
 .common-description {
-    font-size: 12px;
+    font-size: 0.7rem;
     color: #606266;
 }
 
  //artifact effect description title
 .effect4 {
     color: #6eb7ff;
+}
+
+.constraint-main-stat-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+
+    span {
+        width: 7vw;
+        font-size: 0.7rem;
+    }
+}
+
+.constraint-min-item {
+    display: flex;
+    align-items: center;
+
+    .constraint-min-title {
+        font-size: 0.7rem;
+        width: 7vw;
+    }
 }
 </style>

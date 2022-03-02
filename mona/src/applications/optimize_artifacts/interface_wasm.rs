@@ -16,37 +16,23 @@ use crate::enemies::Enemy;
 use crate::{utils};
 use crate::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use crate::applications::optimize_artifacts::inter::OptimizeArtifactInterface;
-use crate::applications::optimize_artifacts::single_optimize::optimize_single;
+use crate::applications::optimize_artifacts::single_optimize::{optimize_single, optimize_single_interface_wasm};
 
 pub struct OptimizeSingleWasm;
 
 #[wasm_bindgen]
 impl OptimizeSingleWasm {
-    pub fn optimize(val: &JsValue) -> JsValue {
+    pub fn optimize(val: &JsValue, artifacts: &JsValue) -> JsValue {
         utils::set_panic_hook();
 
         let input: OptimizeArtifactInterface = match val.into_serde() {
             Ok(x) => x,
             Err(e) => panic!("{}", e)
         };
+        let artifacts: Vec<Artifact> = artifacts.into_serde().unwrap();
+        let artifacts_ref: Vec<_> = artifacts.iter().map(|x| x).collect();
 
-        let character = input.character.to_character();
-        let weapon = input.weapon.to_weapon(&character);
-        let target_function = input.target_function.to_target_function(&character, &weapon);
-        let artifacts_ref: Vec<&Artifact> = input.artifacts.iter().collect();
-        let constraint_ref = input.constraint.as_ref();
-        let buffs: Vec<Box<dyn Buff<SimpleAttributeGraph2>>> = input.buffs.iter().map(|x| x.to_buff()).collect();
-
-        let results = optimize_single(
-            &artifacts_ref,
-            input.artifact_config,
-            &character,
-            &weapon,
-            &target_function,
-            constraint_ref,
-            &buffs,
-            100
-        );
+        let results = optimize_single_interface_wasm(&input, &artifacts_ref);
 
         JsValue::from_serde(&results).unwrap()
     }

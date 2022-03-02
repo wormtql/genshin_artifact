@@ -47,7 +47,7 @@ impl WeaponTrait for FreedomSworn {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FreedomSworn,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::EM43,
+        weapon_sub_stat: Some(WeaponSubStatFamily::EM43),
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

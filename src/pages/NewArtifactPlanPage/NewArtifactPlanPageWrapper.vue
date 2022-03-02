@@ -9,18 +9,27 @@ import SimpleError from "@c/loading/SimpleError"
 import { requestMonaWasm } from "@/vendors/mona"
 
 const NewArtifactPlanPage = () => {
-    const component = requestMonaWasm().then(() => import(
+    const component1 = requestMonaWasm().then(() => import(
         /* webpackChunkName: "artifact-plan-page" */
         /* webpackPrefetch: true */
         "./NewArtifactPlanPage"
         )
     )
 
+    // const component = new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         resolve()
+    //     }, 30000)
+    // }).then(() => {
+    //     return component1
+    // })
+
     return {
-        component,
+        component: component1,
         loading: SimpleLoading,
         error: SimpleError,
-        timeout: 3000,
+        timeout: 30000,
+        delay: 0,
     }
 }
 

@@ -34,7 +34,7 @@ impl WeaponTrait for RedhornStonethresher {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::RedhornStonethresher,
         weapon_type: WeaponType::Claymore,
-        weapon_sub_stat: WeaponSubStatFamily::CriticalDamage192,
+        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage192),
         weapon_base: WeaponBaseATKFamily::ATK542,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

@@ -14,7 +14,7 @@ impl WeaponTrait for FavoniusLance {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FavoniusLance,
         weapon_type: WeaponType::Polearm,
-        weapon_sub_stat: WeaponSubStatFamily::Recharge67,
+        weapon_sub_stat: Some(WeaponSubStatFamily::Recharge67),
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

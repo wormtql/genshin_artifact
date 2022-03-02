@@ -40,7 +40,7 @@ impl WeaponTrait for BlackcliffSlasher {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BlackcliffSlasher,
         weapon_type: WeaponType::Claymore,
-        weapon_sub_stat: WeaponSubStatFamily::CriticalDamage120,
+        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage120),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

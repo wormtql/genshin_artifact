@@ -40,7 +40,7 @@ impl WeaponTrait for BlackcliffWarbow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BlackcliffWarbow,
         weapon_type: WeaponType::Bow,
-        weapon_sub_stat: WeaponSubStatFamily::CriticalDamage80,
+        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage80),
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

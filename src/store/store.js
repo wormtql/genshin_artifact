@@ -36,7 +36,7 @@ _store.watch(
 _store.watch(
     state => state.presets.presets,
     newValue => {
-        localStorage.setItem("presets", JSON.stringify(newValue));
+        localStorage.setItem("presets5", JSON.stringify(newValue));
     },
     {
         deep: true,

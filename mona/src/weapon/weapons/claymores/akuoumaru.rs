@@ -41,7 +41,7 @@ impl WeaponTrait for Akuoumaru {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Akuoumaru,
         weapon_type: WeaponType::Claymore,
-        weapon_sub_stat: WeaponSubStatFamily::ATK90,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

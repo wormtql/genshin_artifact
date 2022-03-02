@@ -64,7 +64,7 @@ impl WeaponTrait for MistsplitterReforged {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MistsplitterReforged,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::CriticalDamage96,
+        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage96),
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

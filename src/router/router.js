@@ -51,11 +51,11 @@ const CharacterPresetsPage = () => (
         error: ErrorComponent,
     }
 );
-const HelpBasicPage = () => ({
-    component: import(/* webpackChunkName: "help-page" */ "@page/helps/HelpBasicPage"),
-    loading: LoadingComponent,
-    error: ErrorComponent,
-});
+// const HelpBasicPage = () => ({
+//     component: import(/* webpackChunkName: "help-page" */ "@page/helps/HelpBasicPage"),
+//     loading: LoadingComponent,
+//     error: ErrorComponent,
+// });
 const FAQPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/FAQPage");
 const TargetFuncExplanationPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/TargetFuncExplanationPage");
 const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/ExportToolPage");
@@ -66,14 +66,6 @@ const KumiPage = () => import (/* webpackChunkName: "kumi-page" */ "@page/KumiPa
 const webName = process.env.WEB_TITLE;
 
 const routes = [
-    // {
-    //     path: "/ura",
-    //     component: () => Promise.all([window.wasmPromise]).then(() => import("@page/NewArtifactPlanPage")),
-    //     meta: {
-    //         title: "ura | " + webName,
-    //         keepAlive: false,
-    //     }
-    // },
     {
         path: "/team-optimization",
         component: TeamOptimizationPage,
@@ -112,13 +104,13 @@ const routes = [
     //         title: "目标函数参数说明 | 帮助 | " + webName,
     //     }
     // },
-    {
-        path: "/help/basic",
-        component: HelpBasicPage,
-        meta: {
-            title: "基本使用 | 帮助 | " + webName,
-        }
-    },
+    // {
+    //     path: "/help/basic",
+    //     component: HelpBasicPage,
+    //     meta: {
+    //         title: "基本使用 | 帮助 | " + webName,
+    //     }
+    // },
     {
         path: "/help/faq",
         component: FAQPage,
@@ -150,27 +142,6 @@ const routes = [
             title: "星命定轨 | " + webName,
         }
     },
-    // {
-    //     path: "/changelog",
-    //     component: ChangeLogPage,
-    //     meta: {
-    //         title: "更新记录 | " + webName,
-    //     }
-    // },
-    // {
-    //     path: "/algorithm-target",
-    //     component: AlgorithmPage,
-    //     meta: {
-    //         title: "目标函数 | " + webName,
-    //     }
-    // },
-    // {
-    //     path: "/algorithm-potential",
-    //     component: PotentialFuncPage,
-    //     meta: {
-    //         title: "潜力函数 | " + webName,
-    //     }
-    // },
     {
         path: "/tomodachi",
         component: ExternalLinkPage,
@@ -186,14 +157,14 @@ const routes = [
             title: "圣遗物潜力 | " + webName,
         }
     },
-    // {
-    //     path: "/character-presets",
-    //     component: CharacterPresetsPage,
-    //     meta: {
-    //         keepAlive: true,
-    //         title: "角色预设 | " + webName,
-    //     }
-    // }
+    {
+        path: "/presets",
+        component: CharacterPresetsPage,
+        meta: {
+            keepAlive: true,
+            title: "计算预设 | " + webName,
+        }
+    }
 ]
 
 const router = new VueRouter({

@@ -40,7 +40,7 @@ impl WeaponTrait for LionsRoar {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::LionsRoar,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::ATK90,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

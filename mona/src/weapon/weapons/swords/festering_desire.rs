@@ -33,7 +33,7 @@ impl WeaponTrait for FesteringDesire {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FesteringDesire,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::Recharge100,
+        weapon_sub_stat: Some(WeaponSubStatFamily::Recharge100),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

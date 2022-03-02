@@ -40,7 +40,7 @@ impl WeaponTrait for CinnabarSpindle {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CinnabarSpindle,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::DEF150,
+        weapon_sub_stat: Some(WeaponSubStatFamily::DEF150),
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

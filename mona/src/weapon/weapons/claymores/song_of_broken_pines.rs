@@ -41,7 +41,7 @@ impl WeaponTrait for SongOfBrokenPines {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SongOfBrokenPines,
         weapon_type: WeaponType::Claymore,
-        weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus45,
+        weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus45),
         weapon_base: WeaponBaseATKFamily::ATK741,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

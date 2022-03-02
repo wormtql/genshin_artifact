@@ -14,7 +14,7 @@ impl WeaponTrait for HakushinRing {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::HakushinRing,
         weapon_type: WeaponType::Catalyst,
-        weapon_sub_stat: WeaponSubStatFamily::Recharge67,
+        weapon_sub_stat: Some(WeaponSubStatFamily::Recharge67),
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

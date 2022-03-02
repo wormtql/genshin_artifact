@@ -14,7 +14,7 @@ impl WeaponTrait for CrescentPike {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CrescentPike,
         weapon_type: WeaponType::Polearm,
-        weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus75,
+        weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus75),
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

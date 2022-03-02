@@ -46,7 +46,7 @@ impl WeaponTrait for SummitShaper {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SummitShaper,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::ATK108,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK108),
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

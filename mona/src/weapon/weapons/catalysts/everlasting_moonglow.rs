@@ -31,7 +31,7 @@ impl WeaponTrait for EverlastingMoonglow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::EverlastingMoonglow,
         weapon_type: WeaponType::Catalyst,
-        weapon_sub_stat: WeaponSubStatFamily::HP108,
+        weapon_sub_stat: Some(WeaponSubStatFamily::HP108),
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

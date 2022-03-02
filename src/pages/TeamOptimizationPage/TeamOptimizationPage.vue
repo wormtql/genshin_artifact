@@ -5,6 +5,22 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
+        <el-drawer
+            title="面板"
+            :visible.sync="showAttributeDrawer"
+        >
+            <template v-if="!wasmAttribute">
+                <el-empty>In theory, in should not see this</el-empty>
+            </template>
+            <template v-else>
+                <div style="padding: 0 20px">
+                    <attribute-panel
+                        :attribute="wasmAttribute"
+                    ></attribute-panel>
+                </div>
+            </template>
+        </el-drawer>
+
         <el-row :gutter="16">
             <el-col
                 :span="6"
@@ -12,92 +28,62 @@
                 :style="{ height: contentHeight }"
                 class="mona-scroll"
             >
-                <div
-                    style="margin-bottom: 12px"
-                >
+                <div>
                     <my-button1
                         icon="el-icon-caret-right"
                         title="开始计算"
                         @click="handleClickStart"
                     ></my-button1>
+                    <my-button1
+                        icon="el-icon-plus"
+                        title="添加成员"
+                        @click="handleClickAddMember"
+                    ></my-button1>
                 </div>
 
                 <div
-                    v-for="(characterName, index) in characterNames"
+                    v-for="(presetName, index) in presetNames"
                     :key="index"
                     class="member-item"
                 >
-                    <h3 class="title">成员{{ index + 1 }}</h3>
-<!--                    <el-row :gutter="16">-->
-<!--                        <el-col-->
-<!--                            :span="12"-->
-<!--                        >-->
-                    <select-character
-                        :value="characterNames[index]"
-                        @input="handleChangeCharacterName(index, $event)"
-                    ></select-character>
-                    <item-config
-                        v-if="characterConfigs[index] !== 'NoConfig'"
-                        v-model="characterConfigs[index]"
-                        :item-name="characterNames[index]"
-                        :configs="characterConfigConfigs[index]"
-                        style="margin-top: 12px"
-                    ></item-config>
-                    <div>
-                        <img class="image" :src="characterAvatars[index]" />
-                    </div>
-
-                    <div>
-                        <h3 class="common-title2">命之座</h3>
-                        <el-input-number
-                            size="small"
-                            v-model="characterConstellations[index]"
-                            :min="0"
-                            :max="6"
-                        ></el-input-number>
-                    </div>
-
-                    <div>
-                        <h3 class="common-title2">武器</h3>
-                        <select-weapon
-                            :value="weaponNames[index]"
-                            @input="handleChangeWeaponName(index, $event)"
-                            :type="characterWeaponTypes[index]"
-                            style="margin-bottom: 12px;"
-                        ></select-weapon>
-                        <item-config
-                            v-if="weaponConfigs[index] !== 'NoConfig'"
-                            v-model="weaponConfigs[index]"
-                            :item-name="weaponNames[index]"
-                            :configs="weaponConfigConfigs[index]"
-                        ></item-config>
+                    <div style="display: flex; justify-content: space-between; align-items: center">
+                        <p class="team-title">成员{{ index + 1 }}</p>
                         <div>
-                            <img class="image" :src="weaponImages[index]" />
+                            <el-button
+                                circle
+                                size="mini"
+                                type="text"
+                                icon="el-icon-delete"
+                                @click="handleDeleteMember(index)"
+                            ></el-button>
                         </div>
                     </div>
 
-                    <h3 class="common-title2">精炼</h3>
-                    <el-input-number
-                        size="small"
-                        v-model="weaponRefines[index]"
-                        :min="1"
-                        :max="5"
-                    ></el-input-number>
 
-                    <el-divider v-if="index !== characterNames.length - 1"></el-divider>
-<!--                        </el-col>-->
-<!--                    </el-row>-->
+                    <p class="common-title2">计算预设</p>
+                    <select-preset
+                        v-model="presetNames[index]"
+                    ></select-preset>
+
+                    <p class="common-title2">权重</p>
+                    <el-slider
+                        v-model="weights[index]"
+                        :min="0"
+                        :max="1"
+                        :step="0.01"
+                        :show-input="true"
+                        style="padding-left: 8px"
+                    ></el-slider>
+
+                    <el-divider v-if="index < presetNames.length - 1"></el-divider>
                 </div>
             </el-col>
 
             <el-col
                 :span="18"
+                :style="{ height: contentHeight }"
+                class="mona-scroll"
             >
-                <el-alert
-                    v-if="maybeTeamChs"
-                    :closable="false"
-                    :title="`检测到队伍名「${maybeTeamChs}」`"
-                ></el-alert>
                 <template v-if="currentResultEntry">
                     <el-input-number
                         :value="resultIndex + 1"
@@ -108,13 +94,21 @@
                         style="margin-bottom: 12px"
                     ></el-input-number>
                     <div
-                        v-for="(characterName, index) in characterNames"
+                        v-for="(presetName, index) in currentResultEntry"
                         :key="index"
                         class="result-item"
                     >
                         <div class="result-item-top">
                             <div>
-                                <span class="result-item-title">{{ characterChs[index] }}</span>
+<!--                                <span class="result-item-title">{{ characterChs[index] }}</span>-->
+                                <el-button
+                                    icon="el-icon-s-data"
+                                    circle
+                                    size="mini"
+                                    type="text"
+                                    title="查看面板"
+                                    @click="handleClickDisplayAttributePanel(index)"
+                                ></el-button>
                             </div>
 
                             <div class="result-item-buttons">
@@ -132,12 +126,21 @@
                                 v-for="artifactId in currentResultEntry[index]"
                                 :key="artifactId"
                                 :item="artifactsById[artifactId]"
+                                :buttons="true"
+                                :lock-button="true"
+                                :delete-button="false"
+                                :edit-button="false"
+                                @toggle="handleToggleArtifact(artifactId)"
                             ></artifact-display>
                         </div>
                     </div>
                 </template>
                 <template v-else>
-                    <el-empty></el-empty>
+                    <div
+                        style="display: flex; justify-content: center;"
+                    >
+                        <el-empty></el-empty>
+                    </div>
                 </template>
             </el-col>
         </el-row>
@@ -145,20 +148,22 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import {mapGetters} from "vuex"
 
-import { getWeaponDefaultConfigWasmInterface } from "@util/weapon"
-import { getCharacterDefaultConfigWasmInterface } from "@util/character"
-import { characterData } from "@asset/character"
-import { weaponData } from "@asset/weapon"
-import { convertArtifact } from "@util/converter"
-import { team_optimize } from "@/wasm"
+import {convertArtifact} from "@util/converter"
+import {team_optimize, wasmGetAttribute} from "@/wasm"
+import {convertPresetToWasmInterface, getPresetEntryByName} from "@util/preset"
+import { newKumiWithArtifacts } from "@util/kumi"
+import {toggleArtifact} from "@util/artifacts"
 
 import SelectCharacter from "@c/select/SelectCharacter"
 import SelectWeapon from "@c/select/SelectWeapon"
 import ItemConfig from "@c/config/ItemConfig"
 import ArtifactDisplay from "@c/display/ArtifactDisplay"
 import MyButton1 from "@c/button/MyButton1"
+import PresetItem from "@c/display/PresetItem"
+import SelectPreset from "@c/select/SelectPreset"
+import AttributePanel from "@c/display/AttributePanel"
 
 export default {
     name: "TeamOptimizationPage",
@@ -168,98 +173,121 @@ export default {
         ItemConfig,
         ArtifactDisplay,
         MyButton1,
+        PresetItem,
+        SelectPreset,
+        AttributePanel,
     },
     data() {
         return {
-            characterNames: [ "RaidenShogun", "KujouSara", "KaedeharaKazuha", "Bennett"],
-            characterConfigs: ["NoConfig", "NoConfig", "NoConfig", "NoConfig"],
-            characterConstellations: [2, 6, 0, 1],
-
-            weaponNames: ["EngulfingLightning", "FavoniusWarbow", "FreedomSworn", "FesteringDesire"],
-            weaponConfigs: ["NoConfig", "NoConfig", "NoConfig", "NoConfig"],
-            weaponRefines: [1, 1, 1, 5],
-
             results: [],    // a 3d array
             resultIndex: 0,
 
             contentHeight: "",
-        }
-    },
-    created() {
-        for (let i = 0; i < this.weaponNames.length; i++) {
-            const weaponName = this.weaponNames[i]
-            const defaultConfig = getWeaponDefaultConfigWasmInterface(weaponName)
-            this.$set(this.weaponConfigs, i, defaultConfig)
-        }
 
-        for (let i = 0; i < this.characterNames.length; i++) {
-            const characterName = this.characterNames[i]
-            const defaultConfig = getCharacterDefaultConfigWasmInterface(characterName)
-            this.$set(this.characterConfigs, i, defaultConfig)
+            presetNames: [null],
+            weights: [],
+
+            showAttributeDrawer: false,
+            wasmAttribute: null,
         }
-        // console.log(this.weaponConfigs)
-        // console.log(this.characterConfigs)
     },
     mounted() {
         const component = this.$refs["content"]
 
         this.$nextTick(() => {
             const rect = component.$el.getBoundingClientRect()
-            console.log(rect)
+            // console.log(rect)
             this.contentHeight = `calc(100vh - ${rect.top}px)`
         })
     },
     methods: {
+        handleClickAddMember() {
+            if (this.presetNames.length === 8) {
+                this.$message.error("最多支持8个成员")
+                return
+            }
+            this.presetNames.push(null)
+            this.weights.push(0)
+        },
+
+        handleDeleteMember(index) {
+            if (this.presetNames.length === 1) {
+                return
+            }
+            this.$delete(this.presetNames, index)
+            this.$delete(this.weights, index)
+        },
+
         handleClickStart() {
+            const canStart = this.presets.length === this.presetNames.length
+            if (!canStart) {
+                this.$message.error("请选择计算预设")
+                return
+            }
+
             const interfaceWasm = this.optimizeTeamWasmInterface
+            const artifacts = this.filteredArtifactsWasm
+            // console.log(artifacts)
+            // console.log(interfaceWasm)
 
             const loading = this.$loading({
                 lock: true,
                 text: "莫娜占卜中（可能需要数分钟）"
             })
 
-            const closeLoading = () => {
-                loading.close()
-            }
-
-            team_optimize(interfaceWasm).then(result => {
-                console.log(result)
+            team_optimize(interfaceWasm, artifacts).then(result => {
+                // console.log(result)
                 this.results = result.artifacts
                 this.resultIndex = 0
             }).catch(e => {
                 console.log(e)
             }).finally(() => {
-                closeLoading()
+                loading.close()
             })
-            // console.log(interfaceWasm)
-            // let result = this.$mona.TeamOptimizationWasm.optimize_team(interfaceWasm)
-            // console.log(result)
-            // this.results = result.artifacts
-            // this.resultIndex = 0
-        },
-
-        handleChangeWeaponName(index, name) {
-            if (name === this.weaponNames[index]) {
-                return
-            }
-
-            const defaultConfig = getWeaponDefaultConfigWasmInterface(name)
-            this.$set(this.weaponConfigs, index, defaultConfig)
-            this.$set(this.weaponNames, index, name)
-        },
-
-        handleChangeCharacterName(index, name) {
-            if (name === this.characterNames[index]) {
-                return
-            }
-
-            const defaultConfig = getCharacterDefaultConfigWasmInterface(name)
-            this.$set(this.characterConfigs, index, defaultConfig)
-            this.$set(this.characterNames, index, name)
         },
 
         handleChangeResultIndex(index) {
             this.resultIndex = index - 1
+        },
+
+        handleClickDisplayAttributePanel: async function (index) {
+            const input = this.wasmGetAttributeInterface(index)
+            // console.log(input)
+            const result = await wasmGetAttribute(input)
+            this.wasmAttribute = result
+
+            this.showAttributeDrawer = true
+            // console.log(result)
+        },
+
+        wasmGetAttributeInterface(index) {
+            let artifacts = []
+            if (this.currentResultEntry) {
+                const artifactIds = Object.values(this.currentResultEntry[index])
+                const artifactsOldFormat = artifactIds.map(x => this.artifactsById[x]).filter(x => x)
+                artifacts = artifactsOldFormat.map(a => convertArtifact(a))
+            }
+            // console.log(this.presets[index])
+
+            return {
+                character: this.presets[index].item.character,
+                weapon: this.presets[index].item.weapon,
+                buffs: this.presets[index].item.buffs,
+                artifacts,
+            }
+        },
+
+        // not used, todo
+        handleClickSaveAsKumi(index) {
+            let artifacts = []
+            if (this.currentResultEntry) {
+                const artifactIds = Object.values(this.currentResultEntry[index])
+                artifacts = artifactIds.map(x => this.artifactsById[x]).filter(x => x)
+            }
+        },
+
+        handleToggleArtifact(artifactId) {
+            toggleArtifact(artifactId)
         }
     },
     computed: {
@@ -268,10 +296,8 @@ export default {
             artifactsById: "artifactsById",
         }),
 
-        maybeTeamChs() {
-            const maybeName = this.$mona.TeamOptimizationWasm.match_name(this.optimizeTeamWasmInterface)
-            // console.log(maybeName)
-            return maybeName
+        singleInterfaces() {
+            return this.presets.map(x => convertPresetToWasmInterface(x.item))
         },
 
         currentResultEntry() {
@@ -289,109 +315,21 @@ export default {
                     results.push(artifact)
                 }
             }
-            return results
+            return results.filter(a => !a.omit)
         },
 
         filteredArtifactsWasm() {
             return this.filteredArtifacts.map(convertArtifact)
         },
 
-        characterConfigConfigs() {
+        presets() {
             let results = []
-            for (let i = 0; i < this.characterNames.length; i++) {
-                const name = this.characterNames[i]
-                const data = characterData[name]
-                results.push(data.config ?? [])
+            for (let name of this.presetNames) {
+                if (name) {
+                    results.push(getPresetEntryByName(name))
+                }
             }
             return results
-        },
-
-        characterWeaponTypes() {
-            let results = []
-            for (let i = 0; i < this.characterNames.length; i++) {
-                const name = this.characterNames[i]
-                const data = characterData[name]
-                results.push(data.weapon)
-            }
-            return results
-        },
-
-        characterAvatars() {
-            let results = []
-            for (let i = 0; i < this.characterNames.length; i++) {
-                const name = this.characterNames[i]
-                const data = characterData[name]
-                results.push(data.avatar)
-            }
-            return results
-        },
-
-        characterChs() {
-            let results = []
-            for (let i = 0; i < this.characterNames.length; i++) {
-                const name = this.characterNames[i]
-                const data = characterData[name]
-                results.push(data.chs)
-            }
-            return results
-        },
-
-        characterInterfaces() {
-            let results = []
-            for (let i = 0; i < this.characterNames.length; i++) {
-                results.push({
-                    name: this.characterNames[i],
-                    level: 90,
-                    ascend: false,
-                    constellation: 0,
-                    skill1: 8,
-                    skill2: 8,
-                    skill3: 8,
-                    params: this.characterConfigs[i]
-                })
-            }
-            return results
-        },
-
-        weaponConfigConfigs() {
-            let results = []
-            for (let i = 0; i < this.weaponNames.length; i++) {
-                const name = this.weaponNames[i]
-                const data = weaponData[name]
-                results.push(data.configs ?? [])
-            }
-            return results
-        },
-
-        weaponImages() {
-            let results = []
-            for (let i = 0; i < this.weaponNames.length; i++) {
-                const name = this.weaponNames[i]
-                const data = weaponData[name]
-                results.push(data.url)
-            }
-            return results
-        },
-
-        weaponInterfaces() {
-            let results = []
-            for (let i = 0; i < this.weaponNames.length; i++) {
-                results.push({
-                    name: this.weaponNames[i],
-                    level: 90,
-                    ascend: false,
-                    refine: 0,
-                    params: this.weaponConfigs[i]
-                })
-            }
-            return results
-        },
-
-        teamInterface() {
-            return {
-                characters: this.characterInterfaces,
-                weapons: this.weaponInterfaces
-            }
         },
 
         optimizeTeamHyperParamInterface() {
@@ -400,69 +338,19 @@ export default {
                 mva_step: 5,
                 work_space: 1000,
                 max_re_optimize: 5,
-                max_search: 2000000,
+                max_search: 10000000,
                 count: 1000,
             }
         },
 
         optimizeTeamWasmInterface() {
             return {
-                team: this.teamInterface,
-                team_target_function_config: null,      // todo
-                override_target_functions: null,        // todo
-                artifacts: this.filteredArtifactsWasm,
+                single_interfaces: this.singleInterfaces,
+                weights: this.weights,
                 hyper_param: this.optimizeTeamHyperParamInterface
             }
         }
     },
-    watch: {
-        // characterNames: {
-        //     handler: function (newNames, oldNames) {
-        //         const oldLen = oldNames.length
-        //         const newLen = newNames.length
-        //
-        //         if (oldLen !== newLen) {
-        //             return
-        //         }
-        //
-        //         for (let i = 0; i < oldLen; i++) {
-        //             const oldName = oldNames[i]
-        //             const newName = newNames[i]
-        //             if (oldName !== newName) {
-        //                 const defaultConfig = getCharacterDefaultConfigWasmInterface(newName)
-        //                 this.$set(this.characterConfigs, i, defaultConfig)
-        //             }
-        //         }
-        //     },
-        //     deep: true,
-        // },
-        //
-        // weaponNames: {
-        //     handler: function (newNames, oldNames) {
-        //         const oldLen = oldNames.length
-        //         const newLen = newNames.length
-        //
-        //         if (oldLen !== newLen) {
-        //             return
-        //         }
-        //         console.log(oldNames, newNames)
-        //
-        //         for (let i = 0; i < oldLen; i++) {
-        //             const oldName = oldNames[i]
-        //             const newName = newNames[i]
-        //             console.log(oldName, newName)
-        //             if (oldName !== newName) {
-        //                 const defaultConfig = getWeaponDefaultConfigWasmInterface(newName)
-        //
-        //                 this.$set(this.weaponConfigs, i, defaultConfig)
-        //             }
-        //         }
-        //
-        //         console.log(this.weaponConfigs)
-        //     },
-        //     deep: true,
-        // }
-    }
 }
 </script>
 
@@ -494,6 +382,14 @@ export default {
 .common-title2 {
     font-size: 12px;
     color: #666666;
+}
+
+.team-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #666666;
+    //border-left: 2px solid #409EFF;
+    //padding-left: 12px;
 }
 
 .result-item {

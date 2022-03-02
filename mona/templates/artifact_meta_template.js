@@ -21,6 +21,7 @@ export default {
     "{{ a.name_mona }}": {
         eng: "{{ a.name_mona }}",
         chs: "{{ a.chs }}",
+        name2: "{{ a.name }}",
         minStar: {{ a.min_star }},
         maxStar: {{ a.max_star }},
         effect2: "{{ a.effect2 }}",

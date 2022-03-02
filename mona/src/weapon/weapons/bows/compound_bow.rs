@@ -43,7 +43,7 @@ impl WeaponTrait for CompoundBow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CompoundBow,
         weapon_type: WeaponType::Bow,
-        weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus150,
+        weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus150),
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

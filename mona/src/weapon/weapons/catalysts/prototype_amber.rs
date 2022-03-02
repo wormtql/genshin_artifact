@@ -14,7 +14,7 @@ impl WeaponTrait for PrototypeAmber {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrototypeAmber,
         weapon_type: WeaponType::Catalyst,
-        weapon_sub_stat: WeaponSubStatFamily::HP90,
+        weapon_sub_stat: Some(WeaponSubStatFamily::HP90),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

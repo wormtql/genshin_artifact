@@ -13,6 +13,7 @@ default = ["console_error_panic_hook"]
 [profile.release]
 lto = true
 opt-level = 3
+strip = true
 
 [dependencies]
 mona_derive = { path = "../mona_derive" }

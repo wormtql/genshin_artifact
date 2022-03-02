@@ -16,3 +16,8 @@ pub mod crescent_pike;
 pub mod blackcliff_pole;
 pub mod wavebreakers_fin;
 pub mod royal_spear;
+pub mod halberd;
+pub mod black_tassel;
+pub mod white_tassel;
+pub mod iron_point;
+pub mod beginners_protector;

@@ -17,16 +17,16 @@
                 </template>
                 <el-menu-item index="/artifacts">
                     <i class="el-icon-s-help"></i>
-                    添加圣遗物
+                    圣遗物
                 </el-menu-item>
                 <el-menu-item index="/artifacts-kumi">
                     <i class="el-icon-s-help"></i>
                     圣遗物套装
                 </el-menu-item>
-<!--                <el-menu-item index="/character-presets">-->
-<!--                    <i class="el-icon-menu"></i>-->
-<!--                    计算预设-->
-<!--                </el-menu-item>-->
+                <el-menu-item index="/presets">
+                    <i class="el-icon-menu"></i>
+                    计算预设
+                </el-menu-item>
             </el-menu-item-group>
 
             <el-menu-item-group class="hidden-xs-only">
@@ -60,18 +60,18 @@
                         <i class="el-icon-question"></i>
                         帮助
                     </template>
-                    <el-menu-item index="/help/basic">
-                        <i class="el-icon-question"></i>
-                        基本使用
-                    </el-menu-item>
+<!--                    <el-menu-item index="/help/basic">-->
+<!--                        <i class="el-icon-question"></i>-->
+<!--                        基本使用-->
+<!--                    </el-menu-item>-->
                     <el-menu-item index="/help/export-tools">
                         <i class="el-icon-aim"></i>
                         导出工具
                     </el-menu-item>
-                    <el-menu-item index="/help/faq">
-                        <i class="el-icon-question"></i>
-                        FAQ
-                    </el-menu-item>
+<!--                    <el-menu-item index="/help/faq">-->
+<!--                        <i class="el-icon-question"></i>-->
+<!--                        FAQ-->
+<!--                    </el-menu-item>-->
 <!--                    <el-menu-item index="/help/target-func-explanation">-->
 <!--                        <i class="el-icon-question"></i>-->
 <!--                        目标函数参数说明-->

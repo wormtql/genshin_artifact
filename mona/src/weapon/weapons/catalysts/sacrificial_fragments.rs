@@ -14,7 +14,7 @@ impl WeaponTrait for SacrificialFragments {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SacrificialFragments,
         weapon_type: WeaponType::Catalyst,
-        weapon_sub_stat: WeaponSubStatFamily::EM48,
+        weapon_sub_stat: Some(WeaponSubStatFamily::EM48),
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

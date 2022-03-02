@@ -110,6 +110,7 @@ impl Artifact {
         // todo currently it's not random
         Artifact {
             set_name: ArtifactSetName::random(),
+            // set_name: ArtifactSetName::NoblesseOblige,
             slot,
             level: 20,
             star: 5,

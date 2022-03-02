@@ -1,9 +1,11 @@
 use serde::{Serialize, Deserialize};
+use crate::artifacts::{Artifact, ArtifactSlotName};
 use crate::attribute::{Attribute, SimpleAttributeGraph2};
 use crate::buffs::buff_name::BuffName;
 use crate::buffs::{Buff, BuffConfig};
 use crate::character::{Character, CharacterConfig, CharacterName};
 use crate::character::skill_config::CharacterSkillConfig;
+use crate::common::StatName;
 use crate::enemies::Enemy;
 use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName, TargetFunctionUtils};
 use crate::weapon::{Weapon, WeaponConfig, WeaponName};
@@ -118,5 +120,57 @@ impl EnemyInterface {
             dendro_res: self.dendro_res,
             physical_res: self.physical_res
         }
+    }
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct ArtifactFilterConfig {
+    pub sand_main_stat: Option<Vec<StatName>>,
+    pub goblet_main_stat: Option<Vec<StatName>>,
+    pub head_main_stat: Option<Vec<StatName>>,
+}
+
+impl ArtifactFilterConfig {
+    pub fn filter_artifact<'a>(&self, artifacts: &[&'a Artifact]) -> Vec<&'a Artifact> {
+        let mut results: Vec<&Artifact> = Vec::new();
+
+        use ArtifactSlotName::*;
+        for artifact in artifacts.iter() {
+            match artifact.slot {
+                Flower | Feather => results.push(artifact),
+                Sand => {
+                    match self.sand_main_stat {
+                        None => results.push(artifact),
+                        Some(ref li) => {
+                            if li.contains(&artifact.main_stat.0) || li.len() == 0 {
+                                results.push(artifact);
+                            }
+                        }
+                    }
+                },
+                Goblet => {
+                    match self.goblet_main_stat {
+                        None => results.push(artifact),
+                        Some(ref li) => {
+                            if li.contains(&artifact.main_stat.0) || li.len() == 0 {
+                                results.push(artifact);
+                            }
+                        }
+                    }
+                },
+                Head => {
+                    match self.head_main_stat {
+                        None => results.push(artifact),
+                        Some(ref li) => {
+                            if li.contains(&artifact.main_stat.0) || li.len() == 0 {
+                                results.push(artifact);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        results
     }
 }

@@ -30,7 +30,7 @@ impl WeaponTrait for SkywardSpine {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SkywardSpine,
         weapon_type: WeaponType::Polearm,
-        weapon_sub_stat: WeaponSubStatFamily::Recharge80,
+        weapon_sub_stat: Some(WeaponSubStatFamily::Recharge80),
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

@@ -3,6 +3,7 @@ use serde::{Serialize, Deserialize};
 #[derive(Serialize, Deserialize)]
 pub enum WeaponConfig {
     NoConfig,
+
     MistsplitterReforged { emblem_level: usize },
     SummitShaper { stack: f64, shield_rate: f64 },
     FreedomSworn { rate: f64 },
@@ -12,7 +13,12 @@ pub enum WeaponConfig {
     IronSting { stack: f64 },
     CinnabarSpindle { rate: f64 },
     BlackcliffLongsword { stack: f64 },
+    HarbingerOfDawn { rate: f64 },
+    SkyriderSword { rate: f64 },
+    DarkIronSword { rate: f64 },
+    CoolSteel { rate: f64 },
 
+    // claymore
     WolfsGravestone { rate: f64 },
     TheUnforged { stack: f64, shield_rate: f64 },
     SongOfBrokenPines { rate: f64 },
@@ -23,6 +29,9 @@ pub enum WeaponConfig {
     BlackcliffSlasher { stack: f64 },
     Rainslasher { rate: f64 },
     LithicBlade { liyue_count: usize },
+    SkyriderGreatsword { stack: f64 },
+    BloodstainedGreatsword { rate: f64 },
+    FerrousShadow { rate: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },
@@ -36,6 +45,7 @@ pub enum WeaponConfig {
     Deathmatch { ge2: bool },
     BlackcliffPole { stack: f64 },
     WavebreakersFin { energy: usize },
+    BlackTassel { rate: f64 },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },
@@ -48,6 +58,9 @@ pub enum WeaponConfig {
     BlackcliffAgate { stack: f64 },
     OathswornEye { rate: f64 },
     KagurasVerity { stack: f64, full_rate: f64 },
+    MagicGuide { rate: f64 },
+    EmeraldOrb { rate: f64 },
+    TwinNephrite { rate: f64 },
 
     // Bow
     PolarStar { stack: usize },
@@ -63,6 +76,9 @@ pub enum WeaponConfig {
     CompoundBow { stack: f64 },
     BlackcliffWarbow { stack: f64 },
     WindblumeOde { rate: f64 },
+    RavenBow { rate: f64 },
+    SharpshootersOath { rate: f64 },
+    Slingshot { is_effect: bool, rate: f64 },
 }
 
 impl Default for WeaponConfig {

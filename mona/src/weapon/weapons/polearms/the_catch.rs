@@ -31,7 +31,7 @@ impl WeaponTrait for TheCatch {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheCatch,
         weapon_type: WeaponType::Polearm,
-        weapon_sub_stat: WeaponSubStatFamily::Recharge100,
+        weapon_sub_stat: Some(WeaponSubStatFamily::Recharge100),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

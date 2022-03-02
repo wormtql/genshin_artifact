@@ -1,0 +1,105 @@
+import store from "@/store/store"
+
+import { deepCopy } from "@util/common"
+import { upgradeCharacterConfig } from "@util/character"
+import { upgradeWeaponConfig } from "@util/weapon"
+import { upgradeTargetFunctionConfig } from "@util/targetFunction"
+import { upgradeArtifactConfig } from "@util/artifacts"
+import { convertArtifactName, convertArtifactStatName } from "@util/converter"
+
+export function createOrUpdatePreset(item, name) {
+    item = upgradePresetItem(item)
+    store.commit("presets/addOrOverwrite", {
+        item, name
+    })
+}
+
+export function deletePreset(name) {
+    store.commit("presets/delete", {
+        name
+    })
+}
+
+export function getPresetEntryByName(name) {
+    return store.state.presets.presets[name]
+}
+
+export function checkImportFormat(obj) {
+    if (!Array.isArray(obj)) {
+        return false
+    }
+
+    return true
+}
+
+export function upgradePresetItem(item) {
+    let temp = deepCopy(item)
+
+    const characterName = item.character.name
+    temp.character.params = upgradeCharacterConfig(characterName, temp.character.params)
+
+    const weaponName = item.weapon.name
+    temp.weapon.params = upgradeWeaponConfig(weaponName, temp.weapon.params)
+
+    const targetFunctionName = item.targetFunction.name
+    temp.targetFunction.params = upgradeTargetFunctionConfig(targetFunctionName, temp.targetFunction.params)
+    if (temp.artifactConfig) {
+        temp.artifactConfig = upgradeArtifactConfig(temp.artifactConfig)
+    }
+
+    // console.log(temp)
+
+    return temp
+}
+
+export function artifactSetNamesToConstraintSetMode(setNames) {
+    if (!setNames || setNames.length === 0) {
+        return "Any"
+    }
+
+    if (setNames.length === 1) {
+        return {
+            "Set4": convertArtifactName(setNames[0])
+        }
+    }
+
+    return {
+        "Set22": setNames.map(x => convertArtifactName(x))
+    }
+}
+
+export function convertPresetToWasmInterface(item) {
+    let wasm = {}
+
+    wasm.character = item.character
+    wasm.weapon = item.weapon
+    wasm.target_function = item.targetFunction
+    wasm.constraint = {
+        set_mode: artifactSetNamesToConstraintSetMode(item.constraint?.setNames),
+    }
+    if (item.artifactEffectMode === "custom") {
+        wasm.artifact_config = item.artifactConfig
+    }
+    wasm.buffs = item.buffs ?? []
+
+    if (item.computationMode) {
+        wasm.use_optim = item.computationMode === "optim"
+    } else {
+        wasm.use_optim = true
+    }
+
+    if (item.filter) {
+        wasm.filter = {}
+        if (item.filter.sandMainStats) {
+            wasm.filter.sand_main_stat = item.filter.sandMainStats.map(x => convertArtifactStatName(x))
+        }
+        if (item.filter.gobletMainStats) {
+            wasm.filter.goblet_main_stat = item.filter.gobletMainStats.map(x => convertArtifactStatName(x))
+        }
+        if (item.filter.headMainStats) {
+            wasm.filter.head_main_stat = item.filter.headMainStats.map(x => convertArtifactStatName(x))
+        }
+    }
+
+    return wasm
+}

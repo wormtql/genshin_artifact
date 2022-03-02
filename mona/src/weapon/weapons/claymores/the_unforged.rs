@@ -45,7 +45,7 @@ impl WeaponTrait for TheUnforged {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheUnforged,
         weapon_type: WeaponType::Claymore,
-        weapon_sub_stat: WeaponSubStatFamily::ATK108,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK108),
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

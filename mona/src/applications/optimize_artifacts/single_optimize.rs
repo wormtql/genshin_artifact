@@ -1,7 +1,7 @@
 use std::cmp::{Ordering, Reverse};
 use std::collections::{BinaryHeap, HashMap};
 use crate::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
-use crate::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode, OptimizationResult};
+use crate::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode, OptimizationResult, OptimizeArtifactInterface};
 use crate::artifacts::{Artifact, ArtifactList, ArtifactSlotName};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
 use crate::attribute::{AttributeUtils, SimpleAttributeGraph2, AttributeCommon, AttributeName, Attribute};
@@ -104,7 +104,7 @@ fn check_attribute(attribute: &SimpleAttributeGraph2, constraint: &ConstraintCon
     if attribute.get_value(AttributeName::Recharge) < constraint.recharge_min.unwrap_or(0.0) {
         return false;
     }
-    let critical = attribute.get_value(AttributeName::CriticalBase).min(1.0).max(0.0);
+    let critical = attribute.get_value(AttributeName::CriticalBase).clamp(0.0, 1.0);
     if critical < constraint.crit_min.unwrap_or(0.0) {
         return false;
     }
@@ -125,9 +125,15 @@ pub fn optimize_single(
     target_function: &Box<dyn TargetFunction>,
     constraint: Option<&ConstraintConfig>,
     buffs: &[Box<dyn Buff<SimpleAttributeGraph2>>],
-    count: usize
+    count: usize,
+    use_optim: bool
 ) -> Vec<OptimizationResult> {
-    let need_constraint = constraint.is_some();
+    let need_constraint = if let Some(c) = constraint {
+        !c.is_any()
+    } else {
+        false
+    };
+
     let mut enemy = Enemy::default();
 
     // buff change enemy
@@ -148,9 +154,7 @@ pub fn optimize_single(
     let mut heads: Vec<&Artifact> = vec![];
 
     let mut artifacts: Vec<&Artifact> = artifacts.iter().map(|x| *x).collect();
-    if get_iteration_count(&artifacts) > TOO_LARGE_ITER_COUNT
-        && (!need_constraint || (need_constraint && constraint.unwrap().is_any()))
-    {
+    if get_iteration_count(&artifacts) > TOO_LARGE_ITER_COUNT && !need_constraint && use_optim {
         let target_function_opt_config = target_function.get_target_function_opt_config();
         artifacts = target_function_opt_config.filter(artifacts);
     }
@@ -351,6 +355,37 @@ pub fn optimize_single_interface(
     let tf = target_function_interface.to_target_function(&character, &weapon);
 
     optimize_single(
-        artifacts, artifact_config, &character, &weapon, &tf, constraint, buffs, count
+        artifacts, artifact_config, &character, &weapon, &tf, constraint, buffs, count, true
     )
+}
+
+pub fn optimize_single_interface_wasm(input: &OptimizeArtifactInterface, artifacts: &[&Artifact]) -> Vec<OptimizationResult> {
+    let character = input.character.to_character();
+    let weapon = input.weapon.to_weapon(&character);
+    let target_function = input.target_function.to_target_function(&character, &weapon);
+    // let artifacts_ref: Vec<&Artifact> = input.artifacts.iter().collect();
+    let constraint_ref = input.constraint.as_ref();
+    let buffs: Vec<Box<dyn Buff<SimpleAttributeGraph2>>> = input.buffs.iter().map(|x| x.to_buff()).collect();
+    let artifact_config = input.artifact_config.as_ref().map(|x| x.clone().to_config());
+
+    let filtered_artifacts = input.filter.as_ref().map(|x| x.filter_artifact(artifacts));
+    let artifacts = match filtered_artifacts {
+        Some(ref a) => a.as_slice(),
+        None => artifacts
+    };
+
+    let results = optimize_single(
+        // &artifacts_ref,
+        &artifacts,
+        artifact_config,
+        &character,
+        &weapon,
+        &target_function,
+        constraint_ref,
+        &buffs,
+        100,
+        input.use_optim
+    );
+
+    results
 }

@@ -49,7 +49,7 @@ impl WeaponTrait for StaffOfHoma {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::StaffOfHoma,
         weapon_type: WeaponType::Polearm,
-        weapon_sub_stat: WeaponSubStatFamily::CriticalDamage144,
+        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage144),
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

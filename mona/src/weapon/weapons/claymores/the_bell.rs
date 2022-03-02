@@ -40,7 +40,7 @@ impl WeaponTrait for TheBell {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheBell,
         weapon_type: WeaponType::Claymore,
-        weapon_sub_stat: WeaponSubStatFamily::HP90,
+        weapon_sub_stat: Some(WeaponSubStatFamily::HP90),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

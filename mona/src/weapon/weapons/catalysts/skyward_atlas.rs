@@ -30,7 +30,7 @@ impl WeaponTrait for SkywardAtlas {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SkywardAtlas,
         weapon_type: WeaponType::Catalyst,
-        weapon_sub_stat: WeaponSubStatFamily::ATK72,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK72),
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

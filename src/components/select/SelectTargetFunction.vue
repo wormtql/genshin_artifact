@@ -20,6 +20,22 @@
                 </div>
             </el-option>
         </el-option-group>
+
+        <el-option-group label="通用" v-if="commonTargetFunctionList">
+            <el-option
+                v-for="item in commonTargetFunctionList"
+                :key="item.name"
+                :label="item.chs"
+                :value="item.name"
+            >
+                <div class="option-root">
+                    <img class="option-badge" :src="item.badge" />
+                    <div class="option-body">
+                        <p class="option-title">{{ item.chs }}</p>
+                    </div>
+                </div>
+            </el-option>
+        </el-option-group>
     </el-select>
 </template>
 
@@ -34,9 +50,9 @@ export default {
             default: "Amber"
         }
     },
-    // created() {
-    //     this.commonTargetFunctionList = targetFunctionByCharacterName["common"]
-    // },
+    created() {
+        this.commonTargetFunctionList = targetFunctionByCharacterName["common"]
+    },
     computed: {
         characterTargetFunctionList() {
             return targetFunctionByCharacterName[this.characterName]

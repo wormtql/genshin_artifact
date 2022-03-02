@@ -164,7 +164,7 @@ impl CharacterTrait for Amber {
         ]),
         skill3: Some(&[
             CharacterSkillMapItem { index: AmberDamageEnum::Q1 as usize, chs: "箭雨单次伤害" },
-            CharacterSkillMapItem { index: AmberDamageEnum::Q1 as usize, chs: "箭雨总伤害" },
+            CharacterSkillMapItem { index: AmberDamageEnum::Q2 as usize, chs: "箭雨总伤害" },
         ])
     };
 

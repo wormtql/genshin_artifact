@@ -7,7 +7,7 @@
             :key="config.name"
             :params="config"
             :type="config.type"
-            :value="value[itemName][config.name]"
+            :value="value2[config.name]"
             @input="handleInput(config.name, $event)"
         ></ConfigItem>
     </div>
@@ -29,6 +29,9 @@ export default {
         },
         bg: {
             default: "rgb(239, 246, 253)"
+        },
+        needItemName: {
+            default: true,
         }
     },
     computed: {
@@ -36,17 +39,31 @@ export default {
             return {
                 backgroundColor: this.bg
             }
+        },
+
+        value2() {
+            if (this.needItemName) {
+                return this.value[this.itemName]
+            } else {
+                return this.value
+            }
         }
     },
     
     methods: {
         handleInput(name, value) {
-            let obj = Object.assign({}, this.value[this.itemName])
-            obj[name] = value
+            if (this.needItemName) {
+                let obj = Object.assign({}, this.value[this.itemName])
+                obj[name] = value
 
-            this.$emit("input", {
-                [this.itemName]: obj
-            })
+                this.$emit("input", {
+                    [this.itemName]: obj
+                })
+            } else {
+                let obj = Object.assign({}, this.value)
+                obj[name] = value
+                this.$emit("input", obj)
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
 use serde::{Serialize, Deserialize};
-use crate::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
+use crate::applications::common::{BuffInterface, CharacterInterface, TargetFunctionInterface, WeaponInterface};
+use crate::applications::optimize_artifacts::inter::{ConstraintConfig, OptimizeArtifactInterface};
 use crate::applications::team_optimize::hyper_param::TeamOptimizeHyperParam;
 use crate::artifacts::Artifact;
 use crate::attribute::Attribute;
 use crate::character::Character;
 use crate::team::team::{Team, TeamEntry};
-use crate::team_target::team_target_config::TeamTargetFunctionConfig;
+// use crate::team_target::team_target_config::TeamTargetFunctionConfig;
 use crate::weapon::Weapon;
 
 #[derive(Serialize, Deserialize)]
@@ -16,10 +17,23 @@ pub struct TeamInterface {
 
 #[derive(Serialize, Deserialize)]
 pub struct OptimizeTeamObject {
-    pub team: TeamInterface,
-    pub team_target_function_config: Option<TeamTargetFunctionConfig>,
-    pub override_target_functions: Option<Vec<Option<TargetFunctionInterface>>>,
+    // pub team: TeamInterface,
+    pub weapons: Vec<WeaponInterface>,
+    pub characters: Vec<CharacterInterface>,
+    pub buffs: Vec<Vec<BuffInterface>>,
+    pub target_functions: Vec<TargetFunctionInterface>,
+    pub constraints: Vec<ConstraintConfig>,
+    pub weights: Vec<f64>,
+    // pub override_target_functions: Option<Vec<Option<TargetFunctionInterface>>>,
     pub artifacts: Vec<Artifact>,
+    pub hyper_param: Option<TeamOptimizeHyperParam>
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct OptimizeTeamInterface2 {
+    // pub artifacts: Vec<Artifact>,
+    pub single_interfaces: Vec<OptimizeArtifactInterface>,
+    pub weights: Vec<f64>,
     pub hyper_param: Option<TeamOptimizeHyperParam>
 }
 

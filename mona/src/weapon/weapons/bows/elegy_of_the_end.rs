@@ -43,7 +43,7 @@ impl WeaponTrait for ElegyOfTheEnd {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::ElegyOfTheEnd,
         weapon_type: WeaponType::Bow,
-        weapon_sub_stat: WeaponSubStatFamily::Recharge120,
+        weapon_sub_stat: Some(WeaponSubStatFamily::Recharge120),
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

@@ -3,7 +3,9 @@ async function initWasm() {
 
     self.onmessage = function (e) {
         const input = e.data.input
-        const result = mona.TeamOptimizationWasm.optimize_team(input)
+        const artifacts = e.data.artifacts
+        const result = mona.TeamOptimizationWasm.optimize_team2(input, artifacts)
+        // const result = mona.TeamOptimizationWasm.optimize_team(input)
 
         self.postMessage({
             type: "result",

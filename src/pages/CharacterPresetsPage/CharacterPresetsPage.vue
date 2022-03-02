@@ -1,112 +1,100 @@
 <template>
     <div>
-        <el-dialog
-            :visible.sync="showExportDialog"
-            :title="exportPresetTitle"
-        >
-            <el-input
-                type="textarea"
-                :rows="10"
-                v-model="exportPresetItemStr"
-            ></el-input>
-
-            <span slot="footer">
-                <el-button @click="showExportDialog = false">取消</el-button>
-                <el-button
-                    type="primary"
-                    v-if="canCopy"
-                    @click="handleCopy"
-                >复制</el-button>
-            </span>
-        </el-dialog>
+        <el-breadcrumb>
+            <el-breadcrumb-item>计算预设</el-breadcrumb-item>
+        </el-breadcrumb>
+        <el-divider></el-divider>
 
         <el-dialog
             :visible.sync="showImportDialog"
             title="导入"
+            width="60%"
         >
-            <el-input
-                type="textarea"
-                :rows="10"
-                v-model="importPresetStr"
-            ></el-input>
+            <import-block ref="importBlock"></import-block>
 
-            <span slot="footer">
+            <template #footer>
                 <el-button @click="showImportDialog = false">取消</el-button>
-                <el-button
-                    type="primary"
-                    @click="handleImport('append')"
-                >追加导入</el-button>
-                <el-button
-                    type="primary"
-                    @click="handleImport('overwrite')"
-                >覆盖导入</el-button>
-            </span>
+                <el-button type="primary" @click="handleImport">确定</el-button>
+            </template>
         </el-dialog>
 
-        <el-breadcrumb>
-            <el-breadcrumb-item>预设</el-breadcrumb-item>
-        </el-breadcrumb>
-        <el-divider></el-divider>
+        <el-drawer
+            :visible.sync="showArtifactsScoreDrawer"
+            title="推荐圣遗物"
+        >
+            <el-empty v-if="artifactScoreList.length === 0"></el-empty>
+            <div v-else class="artifact-score-list-div">
+                <div
+                    v-for="(item, index) in artifactsScoreListCut"
+                    :key="index"
+                >
+                    <artifact-display
+                        :item="artifactsById[item[0]]"
+                        :show-back="true"
+                        :back-value="item[1]"
+                        class="artifact-score-item"
+                    ></artifact-display>
+                </div>
+            </div>
+        </el-drawer>
 
         <div class="toolbar">
             <el-button
                 icon="el-icon-download"
-                circle
-                size="small"
-                title="导出全部"
+                size="mini"
                 @click="handleExportAll"
-            ></el-button>
+            >导出全部</el-button>
             <el-button
                 icon="el-icon-upload2"
-                circle
-                size="small"
-                title="导入"
-                @click="showImportDialog = true"
-            ></el-button>
+                size="mini"
+                @click="handleClickImport"
+            >导入</el-button>
         </div>
 
         <div class="body">
-            <template v-if="!isEmpty">
+            <template v-if="presetsLength > 0">
                 <preset-item
-                    v-for="(item, name) in all"
-                    :key="name"
-                    :item="item"
-                    @delete="deletePreset(name)"
-                    @download="handleDownload(name, item)"
+                    v-for="entry in allFlat"
+                    :item="entry.item"
+                    :name="entry.name"
+                    @delete="handleDeletePreset(entry.name)"
+                    @download="handleDownload(entry.name)"
                     class="item"
+                    @click="test(entry.name)"
                 ></preset-item>
             </template>
-            <el-alert
-                v-else
-                title="请去Artifacts Planner页面添加预设"
-                :closable="false"
-            ></el-alert>
+            <el-empty v-else></el-empty>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from "vuex"
 
-import PresetItem from "@c/display/PresetItem";
+import { deletePreset, getPresetEntryByName, checkImportFormat, createOrUpdatePreset, upgradePresetItem } from "@util/preset"
+import { downloadString } from "@util/common"
+import { convertArtifact } from "@util/converter"
+import { wasmGetArtifactsRankByCharacter } from "@/wasm"
+
+import PresetItem from "@c/display/PresetItem"
+import ImportBlock from "@c/misc/ImportBlock"
+import ArtifactDisplay from "@c/display/ArtifactDisplay"
 
 export default {
     name: "CharacterPresetsPage",
     components: {
         PresetItem,
+        ImportBlock,
+        ArtifactDisplay,
     },
     created() {
-        this.canCopy = !!navigator.clipboard;
     },
     data() {
         return {
-            showExportDialog: false,
             showImportDialog: false,
+            showArtifactsScoreDrawer: false,
 
-            exportPresetTitle: "",
-            exportPresetItemStr: "",
-
-            importPresetStr: "",
+            artifactScoreList: [],
         }
     },
     methods: {
@@ -118,87 +106,109 @@ export default {
             }
         },
 
-        handleImport(mode) {
-            let json;
+        async handleImport() {
+            const component = this.$refs.importBlock
+            if (!component) {
+                return
+            }
+
+            const text = await component.getReadPromise()
+
+            let obj = null
             try {
-                json = JSON.parse(this.importPresetStr);
-            } catch (e) {
-                this.$message.error("JSON格式错误，请检查导入数据的格式或来源");
-                return;
+                obj = JSON.parse(text)
+            } catch {
+                obj = null
             }
 
-            let itemsToDelete = [];
-            if (mode === "overwrite") {
-                itemsToDelete = Object.keys(this.all);
-            }
+            const checkObj = checkImportFormat(obj)
 
-            for (let deleteItemName of itemsToDelete) {
-                this.$store.commit("presets/delete", { name: deleteItemName });
-            }
-
-            let type = this.checkImportType(json);
-            if (type === "multi") {
-                for (let presetItem of json.data) {
-                    let name = presetItem.name;
-                    this.$store.commit("presets/add", {
-                        name,
-                        value: presetItem
-                    });
+            if (!checkObj) {
+                this.$message.error("导入格式错误")
+            } else {
+                for (let entry of obj) {
+                    createOrUpdatePreset(entry.item, entry.name)
                 }
-            } else if (type === "single") {
-                let name = json.name;
-                let preset = json;
-                this.$store.commit("presets/add", {
-                    name,
-                    value: preset,
-                });
+
+                this.showImportDialog = false
             }
-
-            this.showImportDialog = false;
         },
 
-        deletePreset(name) {
-            this.$store.commit("presets/delete", {
-                name,
-            });
+        handleDeletePreset(name) {
+            deletePreset(name)
         },
 
-        handleDownload(name, presetItem) {
-            this.exportPresetTitle = `导出预设"${name}"`;
-            this.exportPresetItemStr = JSON.stringify(presetItem);
+        handleDownload(name) {
+            const entry = getPresetEntryByName(name)
+            const temp = [entry]
+            const str = JSON.stringify(temp)
 
-            this.showExportDialog = true;
-        },
-
-        handleCopy() {
-            navigator.clipboard.writeText(this.exportPresetItemStr).then(() => {
-                this.$message("复制成功");
-            }).catch(() => {
-                this.$message.error("复制失败");
-            });
+            downloadString(str, "text/plain", name)
         },
 
         handleExportAll() {
-            this.exportPresetTitle = "导出全部";
-            let all = this.all;
+            const str = JSON.stringify(this.allFlat)
             
-            let data = {
-                data: Object.values(all),
-            };
-            this.exportPresetItemStr = JSON.stringify(data);
-            this.showExportDialog = true;
+            downloadString(str, "text/plain", "预设")
+        },
+
+        handleClickImport() {
+            this.showImportDialog = true
+        },
+
+        test(name) {
+            console.log(name)
+
+            const item = getPresetEntryByName(name).item
+            if (!item) {
+                return
+            }
+
+            const characterInterface = item.character
+            const weaponInterface = item.weapon
+            const tfInterface = item.targetFunction
+
+            const artifacts = this.allArtifactsFlat.map(a => convertArtifact(a))
+
+            wasmGetArtifactsRankByCharacter(characterInterface, weaponInterface, tfInterface, artifacts).then(result => {
+                result = result.filter(item => {
+                    return this.artifactsById[item[0]].level === 0
+                })
+
+                this.artifactScoreList = result
+
+                const maxValue = result.map(x => x[1]).reduce((p, c) => Math.max(p, c), 0)
+                console.log(maxValue)
+                if (maxValue > 0) {
+                    for (let i = 0; i < result.length; i++) {
+                        result[i][1] /= maxValue
+                    }
+                }
+
+
+                this.showArtifactsScoreDrawer = true
+            })
         }
     },
     computed: {
-        ...mapGetters("presets", ["all"]),
-        isEmpty() {
-            return Object.keys(this.all).length === 0;
-        }
+        ...mapGetters("presets", ["allFlat"]),
+        ...mapGetters("artifacts", {
+            "allArtifactsFlat": "allFlat",
+            "artifactsById": "artifactsById"
+        }),
+
+        presetsLength() {
+            return this.allFlat.length
+        },
+
+        artifactsScoreListCut() {
+            return this.artifactScoreList.slice(0, 20)
+        },
     }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .item {
     margin: 0 16px 16px 0;
 }
@@ -210,5 +220,14 @@ export default {
 
 .toolbar {
     margin-bottom: 20px;
+}
+
+.artifact-score-list-div {
+    padding: 0 20px;
+
+    .artifact-score-item {
+        width: 100%;
+        margin-bottom: 12px;
+    }
 }
 </style>

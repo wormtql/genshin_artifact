@@ -1,7 +1,7 @@
 use serde::{Serialize, Deserialize};
-use crate::applications::common::{BuffInterface, CharacterInterface, TargetFunctionInterface, WeaponInterface};
+use crate::applications::common::{ArtifactFilterConfig, BuffInterface, CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use crate::artifacts::{Artifact, ArtifactSetName};
-use crate::artifacts::effect_config::ArtifactEffectConfig;
+use crate::artifacts::effect_config::{ArtifactConfigInterface, ArtifactEffectConfig};
 use crate::buffs::BuffConfig;
 
 #[derive(Serialize, Deserialize)]
@@ -36,6 +36,20 @@ impl ConstraintConfig {
             false
         }
     }
+
+    // pub fn need_optimization(&self) -> bool {
+    //     if !self.is_any() {
+    //         false
+    //     } else {
+    //         // let recharge_min = self.recharge_min.unwrap_or(1.0);
+    //         // let em_min = self.em_min.unwrap_or(0.0);
+    //         // let crit_min = self.crit_min.unwrap_or(0.0);
+    //         // let crit_dmg_min = self.crit_dmg_min.unwrap_or(0.0);
+    //         //
+    //         // let has_min = recharge_min > 1.0 || em_min > 0.0 || crit_min > 0.0 || crit_dmg_min > 0.0;
+    //         // !has_min
+    //     }
+    // }
 }
 
 impl Default for ConstraintConfig {
@@ -55,13 +69,15 @@ impl Default for ConstraintConfig {
 
 #[derive(Serialize, Deserialize)]
 pub struct OptimizeArtifactInterface {
-    pub artifacts: Vec<Artifact>,
-    pub artifact_config: Option<ArtifactEffectConfig>,
+    // pub artifacts: Vec<Artifact>,
+    pub artifact_config: Option<ArtifactConfigInterface>,
     pub character: CharacterInterface,
     pub weapon: WeaponInterface,
     pub target_function: TargetFunctionInterface,
     pub constraint: Option<ConstraintConfig>,
+    pub filter: Option<ArtifactFilterConfig>,
     pub buffs: Vec<BuffInterface>,
+    pub use_optim: bool,
 }
 
 #[derive(Serialize, Deserialize, Default, Debug)]

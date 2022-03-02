@@ -161,11 +161,16 @@ impl CharacterTrait for YaeMiko {
             builder.add_extra_bonus("八重神子天赋「启蜇之祝词」", em * 0.0015);
         }
 
+        let skill_type = s.get_skill_type();
+        if context.character_common_data.constellation >= 6 && skill_type == SkillType::ElementalSkill {
+            builder.add_extra_def_penetration("八重神子六命「大杀生咒禁」", 0.6);
+        }
+
         builder.damage(
             &context.attribute,
             &context.enemy,
             Element::Electro,
-            s.get_skill_type(),
+            skill_type,
             context.character_common_data.level
         )
     }

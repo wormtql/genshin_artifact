@@ -14,7 +14,7 @@ impl WeaponTrait for AmenomaKageuchi {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::AmenomaKageuchi,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::ATK120,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK120),
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

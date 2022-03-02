@@ -56,7 +56,7 @@ impl WeaponTrait for PolarStar {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PolarStar,
         weapon_type: WeaponType::Bow,
-        weapon_sub_stat: WeaponSubStatFamily::CriticalRate72,
+        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate72),
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

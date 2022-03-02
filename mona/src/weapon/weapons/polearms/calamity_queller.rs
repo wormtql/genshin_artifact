@@ -47,7 +47,7 @@ impl WeaponTrait for CalamityQueller {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CalamityQueller,
         weapon_type: WeaponType::Polearm,
-        weapon_sub_stat: WeaponSubStatFamily::ATK36,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK36),
         weapon_base: WeaponBaseATKFamily::ATK741,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

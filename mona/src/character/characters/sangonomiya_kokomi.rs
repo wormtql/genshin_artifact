@@ -9,7 +9,7 @@ use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
-use crate::target_functions::target_functions::sangonomiya_kokomi_default::SangonomiyaKokomiDefaultTargetFunction;
+use crate::target_functions::target_functions::hydro::sangonomiya_kokomi_default::SangonomiyaKokomiDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;

@@ -197,7 +197,10 @@ impl CharacterTrait for Xiangling {
         let role: XianglingRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
         match role {
             XianglingRoleEnum::Sub => Box::new(XianglingDefaultTargetFunction {
-                recharge_demand: 1.8
+                recharge_demand: 1.8,
+                melt_rate: 0.0,
+                vaporize_rate: 0.0,
+                overload_rate: 0.0,
             })
         }
     }

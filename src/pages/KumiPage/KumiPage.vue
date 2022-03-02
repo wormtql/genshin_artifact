@@ -38,15 +38,21 @@
             <el-col :span="20" class="right-col">
                 <div class="toolbar2">
                     <div class="button-left">
-                        <my-button1
+                        <el-button
+                            size="mini"
+                            type="primary"
                             icon="el-icon-plus"
                             @click="handleNewKumi"
-                            title="新建圣遗物组"
-                        ></my-button1>
+                        >新建组</el-button>
+<!--                        <my-button1-->
+<!--                            icon="el-icon-plus"-->
+<!--                            @click="handleNewKumi"-->
+<!--                            title="新建圣遗物组"-->
+<!--                        ></my-button1>-->
                         <el-input
                             v-model="searchString"
                             style="margin-left: 16px"
-                            size="small"
+                            size="mini"
                             placeholder="搜索"
                         >
                             <template #append>
@@ -57,19 +63,24 @@
 
                     <div class="button-right">
                         <el-button
-                            size="small"
+                            size="mini"
                             type="danger"
                             @click="handleDeleteDir(currentDirId)"
                             v-if="currentDirId !== 0"
-                            style="margin-right: 12px"
                             title="删除收藏夹"
                         ><i class="el-icon-delete"></i></el-button>
-                        <my-button1
+<!--                        <my-button1-->
+<!--                            v-if="currentDirId !== 0"-->
+<!--                            icon="el-icon-edit"-->
+<!--                            @click="handleRenameDir(currentDirId)"-->
+<!--                            title="重命名收藏夹"-->
+<!--                        ></my-button1>-->
+                        <el-button
                             v-if="currentDirId !== 0"
+                            size="mini"
                             icon="el-icon-edit"
                             @click="handleRenameDir(currentDirId)"
-                            title="重命名收藏夹"
-                        ></my-button1>
+                        >重命名</el-button>
                     </div>
                 </div>
 

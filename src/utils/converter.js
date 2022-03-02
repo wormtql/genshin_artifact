@@ -89,3 +89,8 @@ export function convertArtifact(artifact) {
 export function convertArtifactName(name) {
     return nameMap[name.toLowerCase()]
 }
+
+// dir: 1: old -> new
+export function convertArtifactStatName(name) {
+    return statNameMap[name]
+}

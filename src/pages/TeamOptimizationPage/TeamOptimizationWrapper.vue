@@ -20,7 +20,7 @@ const TeamOptimizationPage = () => {
         component,
         loading: SimpleLoading,
         error: SimpleError,
-        timeout: 3000,
+        timeout: 30000,
     }
 }
 

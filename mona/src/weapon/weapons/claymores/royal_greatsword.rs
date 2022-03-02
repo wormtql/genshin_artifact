@@ -31,7 +31,7 @@ impl WeaponTrait for RoyalGreatsword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::RoyalGreatsword,
         weapon_type: WeaponType::Claymore,
-        weapon_sub_stat: WeaponSubStatFamily::ATK60,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

@@ -24,12 +24,6 @@
             </template>
         </el-dialog>
 
-        <output-json-dialog
-            :visible="outputJsonDialogVisible"
-            @close="outputJsonDialogVisible = false"
-        >
-        </output-json-dialog>
-
         <el-drawer
             title="编辑圣遗物"
             :visible.sync="showEditArtifactDrawer"
@@ -42,25 +36,28 @@
             ></edit-artifact>
         </el-drawer>
 
-        <!-- <div style="position: sticky"> -->
-        <!-- bread crumb -->
+        <el-drawer
+            title="推荐圣遗物"
+            :visible.sync="showArtifactRecommendationDrawer"
+        >
+            <el-empty v-if="recommendationList.length === 0"></el-empty>
+            <div v-else style="padding: 0 20px">
+                <artifact-display
+                    v-for="item in recommendationList"
+                    :key="item[0]"
+                    :item="artifactsById[item[0]]"
+                    style="width: 100%; margin-bottom: 16px"
+                    :show-back="true"
+                    :back-value="item[1]"
+                ></artifact-display>
+            </div>
+        </el-drawer>
+
         <el-breadcrumb>
             <el-breadcrumb-item>圣遗物（{{ count }}）</el-breadcrumb-item>
         </el-breadcrumb>
-<!--        <el-divider></el-divider>-->
 
-<!--        <el-alert-->
-<!--            title="请注意保存圣遗物数据至本地，以防意外导致数据丢失"-->
-<!--            type="warning"-->
-<!--            :closable="false"-->
-<!--            style="margin-bottom: 16px"-->
-<!--        ></el-alert>-->
-
-
-
-        <!-- tool bar -->
         <div class="tool-bar">
-<!--            <el-tag>数量：{{ $store.getters["artifacts/count"] }}</el-tag>-->
             <el-button
                 @click="add"
                 type="primary"
@@ -92,12 +89,25 @@
                 @click="$store.commit('artifacts/unlockAll')"
             >启用全部</el-button>
 
+            <el-button
+                size="mini"
+                icon="el-icon-s-opportunity"
+                @click="handleClickRecommendation"
+            >推荐</el-button>
+
             <div class="tool-right">
-                <el-button @click="handleImportJsonClicked">
-                    导入json
+                <el-button
+                    @click="handleImportJsonClicked"
+                    size="mini"
+                    type="primary"
+                >
+                    导入
                 </el-button>
-                <el-button @click="handleOutputJsonClicked">
-                    导出json
+                <el-button
+                    @click="handleOutputJsonClicked"
+                    size="mini"
+                >
+                    导出
                 </el-button>
             </div>
         </div>
@@ -169,7 +179,9 @@
 
 <script>
 import { mapGetters } from "vuex"
-import {removeArtifact, toggleArtifact, updateArtifact, importMonaJson} from "@util/artifacts"
+import {removeArtifact, toggleArtifact, updateArtifact, importMonaJson, getArtifactsRecommendation } from "@util/artifacts"
+import { positions } from "@const/misc"
+import { downloadString } from "@util/common"
 
 import flowerIcon from "@image/misc/flower.png"
 import featherIcon from "@image/misc/feather.png"
@@ -178,12 +190,11 @@ import gobletIcon from "@image/misc/goblet.png"
 import headIcon from "@image/misc/head.png"
 
 import AddArtifactDialog from "./AddArtifactDialog"
-import OutputJsonDialog from "./OutputJsonDialog"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
 import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
 import ArtifactDisplay from "@c/display/ArtifactDisplay"
 import EditArtifact from "./EditArtifact"
-import ImportBlock from "@c/misc/ImportBlock";
+import ImportBlock from "@c/misc/ImportBlock"
 
 const tabs = [
     { icon: flowerIcon, name: "flower" },
@@ -201,7 +212,6 @@ export default {
     components: {
         ImportBlock,
         AddArtifactDialog,
-        OutputJsonDialog,
         SelectArtifactSet,
         SelectArtifactMainStat,
         ArtifactDisplay,
@@ -219,7 +229,7 @@ export default {
             }
 
             const rect = component.getBoundingClientRect()
-            console.log(rect.top)
+            // console.log(rect.top)
             this.contentHeight = `calc(100vh - ${rect.top}px)`
         })
 
@@ -229,9 +239,12 @@ export default {
             activeName: "flower",
 
             newDialogVisible: false,
-            outputJsonDialogVisible: false,
             showEditArtifactDrawer: false,
             showImportDialog: false,
+            showArtifactRecommendationDrawer: false,
+
+            recommendationList: [],
+            recommendationInCalculation: false,
 
             filterSet: [],
             filterMainStat: [],
@@ -324,12 +337,43 @@ export default {
         },
 
         handleOutputJsonClicked() {
-            this.outputJsonDialogVisible = true;
+            let temp = {
+                version: "1"
+            }
+
+            for (let position in positions) {
+                temp[position] = this.$store.state.artifacts[position]
+            }
+
+            const str = JSON.stringify(temp)
+            downloadString(str, "application/json", "artifacts_mona")
         },
+
+        handleClickRecommendation() {
+            const presetLength = this.$store.getters["presets/allFlat"].length
+            if (presetLength === 0) {
+                this.$message.error("添加计算预设以使用该功能")
+                return
+            }
+
+            this.showArtifactRecommendationDrawer = true
+
+            getArtifactsRecommendation().then(result => {
+                let temp = result.slice(0, 50)
+                const maxValue = temp.map(item => item[1]).reduce((p, c) => Math.max(p, c), 0)
+
+                for (let i = 0; i < temp.length; i++) {
+                    temp[i][1] /= maxValue
+                }
+
+                this.recommendationList = temp
+            })
+        }
     },
     computed: {
         ...mapGetters("artifacts", [
             "allArtifacts",
+            "artifactsById",
             "count"
         ]),
 

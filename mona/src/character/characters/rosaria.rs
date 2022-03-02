@@ -9,7 +9,7 @@ use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
-use crate::target_functions::target_functions::rosaria_default::RosariaDefaultTargetFunction;
+use crate::target_functions::target_functions::cryo::rosaria_default::RosariaDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;

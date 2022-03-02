@@ -14,7 +14,7 @@ impl WeaponTrait for SacrificialGreatsword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SacrificialGreatsword,
         weapon_type: WeaponType::Claymore,
-        weapon_sub_stat: WeaponSubStatFamily::Recharge67,
+        weapon_sub_stat: Some(WeaponSubStatFamily::Recharge67),
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

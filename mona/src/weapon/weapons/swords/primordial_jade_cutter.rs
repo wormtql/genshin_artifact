@@ -41,7 +41,7 @@ impl WeaponTrait for PrimordialJadeCutter {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrimordialJadeCutter,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::CriticalRate96,
+        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate96),
         weapon_base: WeaponBaseATKFamily::ATK542,
         star: 5,
         #[cfg(not(target_family = "wasm"))]

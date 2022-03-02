@@ -40,7 +40,7 @@ impl WeaponTrait for IronSting {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::IronSting,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::EM36,
+        weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

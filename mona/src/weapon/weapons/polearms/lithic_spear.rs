@@ -41,7 +41,7 @@ impl WeaponTrait for LithicSpear {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::LithicSpear,
         weapon_type: WeaponType::Polearm,
-        weapon_sub_stat: WeaponSubStatFamily::ATK60,
+        weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

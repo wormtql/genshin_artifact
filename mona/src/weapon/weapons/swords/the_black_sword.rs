@@ -31,7 +31,7 @@ impl WeaponTrait for TheBlackSword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheBlackSword,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::CriticalRate60,
+        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate60),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

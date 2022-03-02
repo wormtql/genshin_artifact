@@ -30,7 +30,7 @@
                     selectable
                     @click="$emit('click', pos)"
                     @delete="$emit('deleteArtifact', artifactBySlot[pos].id)"
-                    buttons
+                    :buttons="true"
                     :lock-button="false"
                     :delete-button="true"
                 ></artifact-display>
@@ -51,7 +51,7 @@ import { mapGetters } from "vuex"
 import { positions } from "@const/artifact"
 
 import AddButton from "@c/misc/AddButton"
-import ArtifactDisplay from "@c/ArtifactDisplay"
+import ArtifactDisplay from "@c/display/ArtifactDisplay"
 // import SelectArtifact from "@c/select/SelectArtifact"
 
 export default {

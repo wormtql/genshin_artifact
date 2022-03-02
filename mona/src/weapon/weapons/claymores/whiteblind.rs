@@ -41,7 +41,7 @@ impl WeaponTrait for Whiteblind {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Whiteblind,
         weapon_type: WeaponType::Claymore,
-        weapon_sub_stat: WeaponSubStatFamily::DEF113,
+        weapon_sub_stat: Some(WeaponSubStatFamily::DEF113),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

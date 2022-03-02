@@ -14,7 +14,7 @@ impl WeaponTrait for FavoniusCodex {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FavoniusCodex,
         weapon_type: WeaponType::Catalyst,
-        weapon_sub_stat: WeaponSubStatFamily::Recharge100,
+        weapon_sub_stat: Some(WeaponSubStatFamily::Recharge100),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

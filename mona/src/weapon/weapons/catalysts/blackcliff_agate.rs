@@ -40,7 +40,7 @@ impl WeaponTrait for BlackcliffAgate {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BlackcliffAgate,
         weapon_type: WeaponType::Catalyst,
-        weapon_sub_stat: WeaponSubStatFamily::CriticalDamage120,
+        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage120),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

@@ -309,7 +309,9 @@ impl CharacterTrait for RaidenShogun {
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
         let role: RaidenShogunRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
         match role {
-            RaidenShogunRoleEnum::QTE => Box::new(RaidenShogunDefaultTargetFunction)
+            RaidenShogunRoleEnum::QTE => Box::new(RaidenShogunDefaultTargetFunction {
+                recharge_demand: 1.0
+            })
         }
     }
 }

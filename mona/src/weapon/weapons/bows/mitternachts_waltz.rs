@@ -44,7 +44,7 @@ impl WeaponTrait for MitternachtsWaltz {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MitternachtsWaltz,
         weapon_type: WeaponType::Bow,
-        weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus113,
+        weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus113),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

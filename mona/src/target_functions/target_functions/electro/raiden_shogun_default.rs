@@ -1,12 +1,12 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::{ArtifactEffectConfig, ConfigRate};
-use crate::attribute::SimpleAttributeGraph2;
+use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::raiden_shogun::RaidenShogun;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
-use crate::common::item_config_type::ItemConfig;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
@@ -18,7 +18,9 @@ use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
-pub struct RaidenShogunDefaultTargetFunction;
+pub struct RaidenShogunDefaultTargetFunction {
+    pub recharge_demand: f64,
+}
 
 impl TargetFunctionMetaTrait for RaidenShogunDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
@@ -31,8 +33,23 @@ impl TargetFunctionMetaTrait for RaidenShogunDefaultTargetFunction {
         image: TargetFunctionMetaImage::Avatar
     };
 
-    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, _config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        Box::new(RaidenShogunDefaultTargetFunction)
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "recharge_demand",
+            title: "充能需求",
+            config: ItemConfigType::Float { min: 1.0, max: 4.0, default: 2.6 },
+        }
+    ]);
+
+    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        let recharge_demand = match *config {
+            TargetFunctionConfig::RaidenShogunDefault { recharge_demand } => recharge_demand,
+            _ => 1.0
+        };
+        Box::new(RaidenShogunDefaultTargetFunction {
+            recharge_demand
+        })
     }
 }
 
@@ -72,11 +89,12 @@ impl TargetFunction for RaidenShogunDefaultTargetFunction {
                 StatName::ATKPercentage,
             ],
             set_names: Some(vec![
-                ArtifactSetName::EmblemOfSeveredFate,
                 ArtifactSetName::GladiatorsFinale,
                 ArtifactSetName::ShimenawasReminiscence,
             ]),
-            very_critical_set_names: None,
+            very_critical_set_names: Some(vec![
+                ArtifactSetName::EmblemOfSeveredFate
+            ]),
             normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
             critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
             very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
@@ -117,6 +135,8 @@ impl TargetFunction for RaidenShogunDefaultTargetFunction {
         type S = <RaidenShogun as CharacterTrait>::DamageEnumType;
         let dmg_q1 = RaidenShogun::damage::<SimpleDamageBuilder>(&context, S::Q1, &config).normal.expectation;
 
-        dmg_q1
+        let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);
+
+        dmg_q1 * r
     }
 }

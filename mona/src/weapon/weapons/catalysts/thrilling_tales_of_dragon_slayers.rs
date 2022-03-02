@@ -15,7 +15,7 @@ impl WeaponTrait for ThrillingTalesOfDragonSlayers {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::ThrillingTalesOfDragonSlayers,
         weapon_type: WeaponType::Catalyst,
-        weapon_sub_stat: WeaponSubStatFamily::HP77,
+        weapon_sub_stat: Some(WeaponSubStatFamily::HP77),
         weapon_base: WeaponBaseATKFamily::ATK401,
         star: 3,
         #[cfg(not(target_family = "wasm"))]

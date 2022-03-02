@@ -44,36 +44,47 @@ impl TargetFunctionOptConfig {
     pub const DEFAULT_VERY_CRITICAL_THRESHOLD: f64 = 0.1;
 
     pub fn score(&self, artifact: &Artifact) -> f64 {
-        let mut map: HashMap<StatName, i32> = HashMap::new();
+        let mut map: HashMap<StatName, f64> = HashMap::new();
 
-        *map.entry(artifact.main_stat.0).or_insert(0) += 1;
+        *map.entry(artifact.main_stat.0).or_insert(0.0) += artifact.main_stat.1;
 
-        for (stat_name, _) in artifact.sub_stats.iter() {
-            *map.entry(*stat_name).or_insert(0) += 1;
+        for (stat_name, stat_value) in artifact.sub_stats.iter() {
+            *map.entry(*stat_name).or_insert(0.0) += *stat_value;
         }
 
         let mut s = 0.0;
-        s += self.atk_fixed / SUB_STAT_VALUE_5.atk_fixed[3] * map.get(&StatName::ATKFixed).cloned().unwrap_or(0) as f64;
-        s += self.atk_percentage / SUB_STAT_VALUE_5.atk_percentage[3] * map.get(&StatName::ATKPercentage).cloned().unwrap_or(0) as f64;
-        s += self.hp_fixed / SUB_STAT_VALUE_5.hp_fixed[3] * map.get(&StatName::HPFixed).cloned().unwrap_or(0) as f64;
-        s += self.hp_percentage / SUB_STAT_VALUE_5.hp_percentage[3] * map.get(&StatName::HPPercentage).cloned().unwrap_or(0) as f64;
-        s += self.def_fixed / SUB_STAT_VALUE_5.def_fixed[3] * map.get(&StatName::DEFFixed).cloned().unwrap_or(0) as f64;
-        s += self.def_percentage / SUB_STAT_VALUE_5.def_percentage[3] * map.get(&StatName::DEFPercentage).cloned().unwrap_or(0) as f64;
-        s += self.recharge / SUB_STAT_VALUE_5.recharge[3] * map.get(&StatName::Recharge).cloned().unwrap_or(0) as f64;
-        s += self.elemental_mastery / SUB_STAT_VALUE_5.elemental_mastery[3] * map.get(&StatName::ElementalMastery).cloned().unwrap_or(0) as f64;
-        s += self.critical / SUB_STAT_VALUE_5.critical_rate[3] * map.get(&StatName::CriticalRate).cloned().unwrap_or(0) as f64;
-        s += self.critical_damage / SUB_STAT_VALUE_5.critical_damage[3] * map.get(&StatName::CriticalDamage).cloned().unwrap_or(0) as f64;
-        s += self.healing_bonus / SUB_STAT_VALUE_5.healing_bonus[3] * map.get(&StatName::HealingBonus).cloned().unwrap_or(0) as f64;
-        s += self.bonus_hydro / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::HydroBonus).cloned().unwrap_or(0) as f64;
-        s += self.bonus_anemo / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::AnemoBonus).cloned().unwrap_or(0) as f64;
-        s += self.bonus_cryo / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::CryoBonus).cloned().unwrap_or(0) as f64;
-        s += self.bonus_electro / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::ElectroBonus).cloned().unwrap_or(0) as f64;
-        s += self.bonus_pyro / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::PyroBonus).cloned().unwrap_or(0) as f64;
-        s += self.bonus_geo / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::GeoBonus).cloned().unwrap_or(0) as f64;
-        s += self.bonus_dendro / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::DendroBonus).cloned().unwrap_or(0) as f64;
-        s += self.bonus_physical / SUB_STAT_VALUE_5.physical_bonus[3] * map.get(&StatName::PhysicalBonus).cloned().unwrap_or(0) as f64;
+        s += self.atk_fixed / SUB_STAT_VALUE_5.atk_fixed[3] * map.get(&StatName::ATKFixed).cloned().unwrap_or(0.0) as f64;
+        s += self.atk_percentage / SUB_STAT_VALUE_5.atk_percentage[3] * map.get(&StatName::ATKPercentage).cloned().unwrap_or(0.0) as f64;
+        s += self.hp_fixed / SUB_STAT_VALUE_5.hp_fixed[3] * map.get(&StatName::HPFixed).cloned().unwrap_or(0.0) as f64;
+        s += self.hp_percentage / SUB_STAT_VALUE_5.hp_percentage[3] * map.get(&StatName::HPPercentage).cloned().unwrap_or(0.0) as f64;
+        s += self.def_fixed / SUB_STAT_VALUE_5.def_fixed[3] * map.get(&StatName::DEFFixed).cloned().unwrap_or(0.0) as f64;
+        s += self.def_percentage / SUB_STAT_VALUE_5.def_percentage[3] * map.get(&StatName::DEFPercentage).cloned().unwrap_or(0.0) as f64;
+        s += self.recharge / SUB_STAT_VALUE_5.recharge[3] * map.get(&StatName::Recharge).cloned().unwrap_or(0.0) as f64;
+        s += self.elemental_mastery / SUB_STAT_VALUE_5.elemental_mastery[3] * map.get(&StatName::ElementalMastery).cloned().unwrap_or(0.0) as f64;
+        s += self.critical / SUB_STAT_VALUE_5.critical_rate[3] * map.get(&StatName::CriticalRate).cloned().unwrap_or(0.0) as f64;
+        s += self.critical_damage / SUB_STAT_VALUE_5.critical_damage[3] * map.get(&StatName::CriticalDamage).cloned().unwrap_or(0.0) as f64;
+        s += self.healing_bonus / SUB_STAT_VALUE_5.healing_bonus[3] * map.get(&StatName::HealingBonus).cloned().unwrap_or(0.0) as f64;
+        s += self.bonus_hydro / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::HydroBonus).cloned().unwrap_or(0.0) as f64;
+        s += self.bonus_anemo / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::AnemoBonus).cloned().unwrap_or(0.0) as f64;
+        s += self.bonus_cryo / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::CryoBonus).cloned().unwrap_or(0.0) as f64;
+        s += self.bonus_electro / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::ElectroBonus).cloned().unwrap_or(0.0) as f64;
+        s += self.bonus_pyro / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::PyroBonus).cloned().unwrap_or(0.0) as f64;
+        s += self.bonus_geo / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::GeoBonus).cloned().unwrap_or(0.0) as f64;
+        s += self.bonus_dendro / SUB_STAT_VALUE_5.elemental_bonus[3] * map.get(&StatName::DendroBonus).cloned().unwrap_or(0.0) as f64;
+        s += self.bonus_physical / SUB_STAT_VALUE_5.physical_bonus[3] * map.get(&StatName::PhysicalBonus).cloned().unwrap_or(0.0) as f64;
 
         s
+    }
+
+    pub fn score_normalized(&self, artifact: &Artifact) -> f64 {
+        let sum = self.atk_percentage + self.atk_fixed + self.hp_percentage + self.hp_fixed + self.def_percentage + self.def_fixed
+            + self.recharge + self.elemental_mastery + self.critical + self.critical_damage
+            + self.healing_bonus
+            + self.bonus_anemo + self.bonus_geo + self.bonus_cryo + self.bonus_pyro + self.bonus_hydro + self.bonus_dendro + self.bonus_electro
+            + self.bonus_physical;
+        let score1 = self.score(artifact);
+
+        score1 / sum
     }
 
     pub fn is_critical_set_name(&self, set_name: ArtifactSetName) -> bool {
@@ -84,7 +95,7 @@ impl TargetFunctionOptConfig {
     }
 
     pub fn is_very_critical_set_name(&self, set_name: ArtifactSetName) -> bool {
-        match self.set_names {
+        match self.very_critical_set_names {
             None => false,
             Some(ref x) => x.contains(&set_name)
         }
@@ -105,21 +116,21 @@ impl TargetFunctionOptConfig {
             }
         }
 
-        let sands_filter: Vec<&Artifact> = sands.iter().cloned().filter(|x| self.sand_main_stats.contains(&x.main_stat.0)).collect();
+        let sands_filter: Vec<&Artifact> = sands.iter().cloned().filter(|x| self.sand_main_stats.contains(&x.main_stat.0) || self.is_very_critical_set_name(x.set_name)).collect();
         if sands_filter.len() > 0 {
             results.extend(sands_filter.iter());
         } else {
             results.extend(sands.iter());
         }
 
-        let goblets_filter: Vec<&Artifact> = goblets.iter().cloned().filter(|x| self.goblet_main_stats.contains(&x.main_stat.0)).collect();
+        let goblets_filter: Vec<&Artifact> = goblets.iter().cloned().filter(|x| self.goblet_main_stats.contains(&x.main_stat.0) || self.is_very_critical_set_name(x.set_name)).collect();
         if goblets_filter.len() > 0 {
             results.extend(goblets_filter.iter());
         } else {
             results.extend(goblets.iter());
         }
 
-        let heads_filter: Vec<&Artifact> = heads.iter().cloned().filter(|x| self.head_main_stats.contains(&x.main_stat.0)).collect();
+        let heads_filter: Vec<&Artifact> = heads.iter().cloned().filter(|x| self.head_main_stats.contains(&x.main_stat.0) || self.is_very_critical_set_name(x.set_name)).collect();
         if heads_filter.len() > 0 {
             results.extend(heads_filter.iter());
         } else {

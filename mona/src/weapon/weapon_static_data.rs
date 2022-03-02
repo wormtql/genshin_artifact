@@ -8,7 +8,7 @@ use super::weapon_base_atk::WeaponBaseATKFamily;
 pub struct WeaponStaticData {
     pub name: WeaponName,
     pub weapon_type: WeaponType,
-    pub weapon_sub_stat: WeaponSubStatFamily,
+    pub weapon_sub_stat: Option<WeaponSubStatFamily>,
     pub weapon_base: WeaponBaseATKFamily,
     pub star: usize,
     #[cfg(not(target_family = "wasm"))]

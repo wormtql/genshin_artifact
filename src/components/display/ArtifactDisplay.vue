@@ -6,6 +6,12 @@
         :style="artifactStyle"
     >
         <div class="up">
+            <div
+                v-if="showBack"
+                :style="{ width: `${backValue * 100}%` }"
+                class="back"
+            ></div>
+
             <span class="name">
                 {{ displayedTitle }}
                 <!-- <span style="color: #e7bf4f">
@@ -112,6 +118,9 @@ export default {
         lockButton: { default: true },
         editButton: { default: false },
 
+        showBack: { default: false },
+        backValue: { default: 1.0 },
+
         // width: {
         //     type: String,
         //     default: "unset",
@@ -196,6 +205,7 @@ export default {
     display: inline-block;
     border: 1px solid #00000011;
     // width: 200px;
+    position: relative;
 
     &.selectable:hover {
         background: #00000009;
@@ -213,6 +223,16 @@ export default {
         border-bottom: 1px solid #e9e9e9;
         display: flex;
         justify-content: space-between;
+        position: relative;
+
+        .back {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background-color: rgb(240, 249, 235);
+            //z-index: -1;
+        }
 
         .name {
             color: #123456;
@@ -220,6 +240,7 @@ export default {
             float: left;
             height: 32px;
             line-height: 32px;
+            z-index: 10;
         }
 
         .extra {

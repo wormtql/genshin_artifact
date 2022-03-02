@@ -41,7 +41,7 @@ fn test_bonus_per_stat() {
 
 fn perf() {
     let character = CharacterInterface {
-        name: CharacterName::Yunjin,
+        name: CharacterName::Bennett,
         level: 90,
         ascend: false,
         constellation: 6,
@@ -51,15 +51,17 @@ fn perf() {
         skill3: 6,
     };
     let weapon = WeaponInterface {
-        name: WeaponName::AmosBow,
+        name: WeaponName::FesteringDesire,
         level: 90,
         ascend: false,
         refine: 1,
-        params: WeaponConfig::AmosBow { stack: 1.0 }
+        params: WeaponConfig::NoConfig,
+        // params: WeaponConfig::AmosBow { stack: 1.0 }
     };
     let target_function = TargetFunctionInterface {
-        name: TargetFunctionName::YunjinDefault,
-        params: TargetFunctionConfig::VentiDefault { swirl_rate: 0.5 }
+        name: TargetFunctionName::BennettDamage,
+        // params: TargetFunctionConfig::NoConfig,
+        params: TargetFunctionConfig::BennettDamage { recharge_demand: 1.0, other_dmg_ratio: 1.0 }
         // name: TargetFunctionName::Max,
         // params: TargetFunctionConfig::MaxConfig { element: Element::Cryo, skill_type: SkillType::NormalAttack },
     };
@@ -92,7 +94,8 @@ fn perf() {
         &character,
         &weapon,
         &target_function,
-        Some(&constraint),
+        None,
+        // Some(&constraint),
         &Vec::new(),
         10
     );
@@ -188,8 +191,8 @@ fn skill_interface() {
 
 fn main() {
     // perf::<ComplicatedAttributeGraph>();
-    // perf();
-    test_bonus_per_stat();
+    perf();
+    // test_bonus_per_stat();
 
     // skill();
     // skill_interface();

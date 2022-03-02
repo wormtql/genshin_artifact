@@ -16,3 +16,38 @@ export function getCharacterDefaultConfigWasmInterface(name) {
         return "NoConfig"
     }
 }
+
+export function upgradeCharacterConfig(name, oldConfig) {
+    if (!name) {
+        return "NoConfig"
+    }
+
+    const data = characterData[name]
+    if (!data) {
+        return "NoConfig"
+    }
+
+    const config = data.config ?? []
+    if (config.length === 0) {
+        return "NoConfig"
+    }
+
+    if (Object.hasOwnProperty.call(oldConfig, name)) {
+        oldConfig = oldConfig[name]
+    } else {
+        oldConfig = {}
+    }
+    let newConfig = {}
+    for (let c of config) {
+        const configName = c.name
+        if (Object.prototype.hasOwnProperty.call(oldConfig, configName)) {
+            newConfig[configName] = oldConfig[configName]
+        } else {
+            newConfig[configName] = c.default
+        }
+    }
+
+    return {
+        [name]: newConfig
+    }
+}

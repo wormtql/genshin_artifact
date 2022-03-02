@@ -41,7 +41,7 @@ impl WeaponTrait for PrototypeRancour {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrototypeRancour,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::PhysicalBonus75,
+        weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus75),
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

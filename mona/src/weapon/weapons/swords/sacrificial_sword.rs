@@ -14,7 +14,7 @@ impl WeaponTrait for SacrificialSword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SacrificialSword,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: WeaponSubStatFamily::Recharge133,
+        weapon_sub_stat: Some(WeaponSubStatFamily::Recharge133),
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

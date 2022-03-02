@@ -31,7 +31,7 @@ impl WeaponTrait for TheStringless {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheStringless,
         weapon_type: WeaponType::Bow,
-        weapon_sub_stat: WeaponSubStatFamily::EM36,
+        weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
