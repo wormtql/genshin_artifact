@@ -145,7 +145,7 @@
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
-            
+
             <p class="common-title2">过滤圣遗物组</p>
             <div style="max-height: 50vh; overflow: auto" class="mona-scroll">
                 <el-tree
@@ -902,7 +902,7 @@ export default {
         weaponAscend() {
             return this.weaponLevel.includes("+")
         },
-        
+
         weaponSplash() {
             const data = weaponData[this.weaponName]
             return data.gacha ?? data.url ?? data.tn
@@ -1680,6 +1680,15 @@ export default {
                 // console.log(this.artifactSingleConfig)
             }
         },
+
+        "$store.state.accounts.currentAccountId"() {
+            this.constraintArtifactSet = []
+            this.artifactIds = [-1, -1, -1, -1, -1]
+            this.optimizationResults = []
+            this.optimizationResultIndex = 0
+            this.miscPerStatBonus = {}
+            this.miscCurrentPresetName = null
+        },
     }
 };
 
@@ -1723,7 +1732,7 @@ export default {
     .left-container {
         // flex: 1;
         padding-right: 12px;
-        
+
     }
 
     .middle-container {
@@ -1752,7 +1761,7 @@ export default {
         align-items: center;
 
         .artifact-item-or-button {
-            
+
         }
     }
 }
@@ -1829,7 +1838,7 @@ export default {
         .detail-left {
             width: 64px;
             margin-right: 16px;
-            
+
             img {
                 height: 64px;
                 width: 64px;

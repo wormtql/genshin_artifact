@@ -54,6 +54,16 @@ const accounts = {
             }
         }
     },
+    getters: {
+        currentAccountName(state) {
+            const id = state.currentAccountId;
+            for (const account of state.allAccounts) {
+                if (account.id === id) {
+                    return account.name;
+                }
+            }
+        }
+    }
 };
 
 export default accounts;

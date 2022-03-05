@@ -351,6 +351,14 @@ export default {
             }
         }
     },
+    watch: {
+        "$store.state.accounts.currentAccountId"() {
+            this.results = []
+            this.resultIndex = 0
+            this.presetNames = [null]
+            this.weights = []
+        },
+    },
 }
 </script>
 

@@ -17,7 +17,7 @@
                 </template>
                 <el-menu-item index="/accounts">
                     <i class="el-icon-user-solid"></i>
-                    账号
+                    账号（{{ currentAccountName }}）
                 </el-menu-item>
                 <el-menu-item index="/artifacts">
                     <i class="el-icon-s-help"></i>
@@ -125,6 +125,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
+
 export default {
     name: "SideBar",
     props: {
@@ -136,6 +138,9 @@ export default {
             type: String,
             default: "vertical",
         }
+    },
+    computed: {
+        ...mapGetters("accounts", ["currentAccountName"]),
     }
 }
 </script>
