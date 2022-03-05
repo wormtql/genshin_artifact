@@ -88,6 +88,7 @@ fn check_artifact_set(list: &[&Artifact], constraint: &ConstraintConfig) -> bool
     5 - list.len() >= count
 }
 
+// #[inline]
 fn check_attribute(attribute: &SimpleAttributeGraph2, constraint: &ConstraintConfig) -> bool {
     if attribute.get_atk() < constraint.atk_min.unwrap_or(0.0) {
         return false;

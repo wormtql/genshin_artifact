@@ -30,7 +30,7 @@ impl OptimizeSingleWasm {
             Err(e) => panic!("{}", e)
         };
         let artifacts: Vec<Artifact> = artifacts.into_serde().unwrap();
-        let artifacts_ref: Vec<_> = artifacts.iter().map(|x| x).collect();
+        let artifacts_ref: Vec<_> = artifacts.iter().collect();
 
         let results = optimize_single_interface_wasm(&input, &artifacts_ref);
 

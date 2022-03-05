@@ -149,8 +149,8 @@ pub struct ArtifactConfigInterface {
 impl ArtifactConfigInterface {
     pub fn to_config(self) -> ArtifactEffectConfig {
         ArtifactEffectConfig {
-            config_archaic_petra: self.config_archaic_petra.unwrap_or(Default::default()),
-            config_berserker: self.config_berserker.unwrap_or(Default::default()),
+            config_archaic_petra: self.config_archaic_petra.unwrap_or_default(),
+            config_berserker: self.config_berserker.unwrap_or_default(),
             config_blizzard_strayer: self.config_blizzard_strayer.unwrap_or(Default::default()),
             config_bloodstained_chivalry: self.config_bloodstained_chivalry.unwrap_or(Default::default()),
             config_brave_heart: self.config_brave_heart.unwrap_or(Default::default()),
