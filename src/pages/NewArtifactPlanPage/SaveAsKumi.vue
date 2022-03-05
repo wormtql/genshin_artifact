@@ -1,7 +1,7 @@
 <template>
     <div>
         <p class="title">选择收藏夹</p>
-        <div class="select-dir">
+        <!-- <div class="select-dir">
             <div
                 class="dir-item"
                 v-for="dir in directories"
@@ -9,7 +9,20 @@
             >
                 <el-checkbox ref="checkbox" :x-id="dir.id">{{ dir.title }}</el-checkbox>
             </div>
-        </div>
+        </div> -->
+
+        <el-checkbox-group
+            v-model="checkList"
+            :min="1"
+        >
+            <el-checkbox
+                v-for="dir in directories"
+                :key="dir.id"
+                :label="dir.id"
+                border
+                class="dir-item"
+            >{{ dir.title }}</el-checkbox>
+        </el-checkbox-group>
 
         <p class="title">名称</p>
         <el-input
@@ -22,6 +35,7 @@
 <!--            >取消</el-button>-->
             <el-button
                 type="primary"
+                :disabled="name === ''"
                 @click="handleConfirm"
             >确定</el-button>
 
@@ -34,9 +48,22 @@ import { mapGetters } from "vuex"
 
 export default {
     name: "SaveAsKumi",
+    props: {
+        defaultName: {
+            type: String,
+            default: "",
+        }
+    },
     data() {
         return {
-            name: ""
+            name: this.defaultName,
+            checkList: [0],
+        }
+    },
+    watch: {
+        defaultName(newName) {
+            console.log(newName);
+            this.name = newName
         }
     },
     methods: {
@@ -58,11 +85,8 @@ export default {
         },
 
         handleConfirm() {
-            if (this.name === "") {
-                this.$message.error("名称不能为空")
-                return
-            }
-            const dirIds = this.getCheckedDirIds()
+            // const dirIds = this.getCheckedDirIds()
+            const dirIds = this.checkList
 
             this.$emit("confirm", {
                 dirIds,

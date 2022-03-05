@@ -184,6 +184,7 @@
             width="60%"
         >
             <save-as-kumi
+                :default-name="kumiDefaultName"
                 @confirm="handleSaveAsKumi"
             ></save-as-kumi>
         </el-dialog>
@@ -362,7 +363,21 @@
                             @click="handleOptimizeArtifact"
                         >开始计算</el-button>
 
-                        <el-dropdown
+                       <el-button
+                           size="mini"
+                           icon="el-icon-s-tools"
+                           type="text"
+                           @click="handleClickSetupOptimization"
+                       >计算设置</el-button>
+
+                       <el-button
+                           size="mini"
+                           icon="el-icon-s-help"
+                           type="text"
+                           @click="handleClickArtifactConfig"
+                       >圣遗物设置</el-button>
+
+                        <!-- <el-dropdown
                             trigger="click"
                             size="mini"
                             @command="handleCommandSetup"
@@ -373,34 +388,37 @@
                             >设置<i class="el-icon-arrow-down"></i></el-button>
 
                             <template #dropdown>
-                                <el-dropdown-menu
-                                >
+                                <el-dropdown-menu>
                                     <el-dropdown-item icon="el-icon-s-tools" command="setup-computation">计算设置</el-dropdown-item>
                                     <el-dropdown-item icon="el-icon-s-help" command="setup-artifact">圣遗物设置</el-dropdown-item>
                                 </el-dropdown-menu>
                             </template>
-                        </el-dropdown>
+                        </el-dropdown> -->
+                    </div>
 
+                    <div class="my-button-list" style="margin-bottom: 12px">
                         <el-dropdown
                             trigger="click"
-                            size="mini"
+                            size="small"
                             @command="handleCommandPreset"
                             @click="handleSavePreset(miscCurrentPresetName)"
-                            style="margin-left: 12px"
                             split-button
                         >
-                            <template v-if="!miscCurrentPresetName">预设</template>
-                            <template v-else>保存「{{ miscCurrentPresetName }}」</template>
+                            <template v-if="!miscCurrentPresetName">新建预设</template>
+                            <template v-else>保存预设「{{ miscCurrentPresetName }}」</template>
 
                             <template #dropdown>
-                                <el-dropdown-menu
-                                >
-                                    <el-dropdown-item icon="el-icon-s-tools" command="save-preset">保存预设</el-dropdown-item>
-<!--                                    <el-dropdown-item icon="el-icon-s-help" command="setup-artifact">圣遗物设置</el-dropdown-item>-->
+                                <el-dropdown-menu>
+                                    <el-dropdown-item
+                                        v-if="miscCurrentPresetName"
+                                        icon="el-icon-s-tools"
+                                        command="save-preset"
+                                    >另存为预设</el-dropdown-item>
+    <!--                                    <el-dropdown-item icon="el-icon-s-help" command="setup-artifact">圣遗物设置</el-dropdown-item>-->
 
                                     <el-dropdown-item
                                         v-for="(item, index) in presetsAllFlat"
-                                        :divided="index === 0"
+                                        :divided="index === 0 && miscCurrentPresetName"
                                         :key="item.name"
                                         icon="el-icon-menu"
                                         :command="'apply-' + item.name"
@@ -408,19 +426,6 @@
                                 </el-dropdown-menu>
                             </template>
                         </el-dropdown>
-<!--                        <el-button-->
-<!--                            size="mini"-->
-<!--                            icon="el-icon-s-tools"-->
-<!--                            type="text"-->
-<!--                            @click="handleClickSetupOptimization"-->
-<!--                        >设置</el-button>-->
-
-<!--                        <el-button-->
-<!--                            size="mini"-->
-<!--                            icon="el-icon-s-help"-->
-<!--                            type="text"-->
-<!--                            @click="handleClickArtifactConfig"-->
-<!--                        >圣遗物设置</el-button>-->
                     </div>
 <!--                    <div>-->
 <!--                        <el-button-->
@@ -825,6 +830,24 @@ export default {
             return this.enemyConfig
         },
         // end enemy
+
+        // default names
+        kumiDefaultName() {
+            let name = characterData[this.characterName].chs
+            for (const setName in this.artifactSetCount) {
+                if (this.artifactSetCount[setName] >= 2) {
+                    name += '-' + artifactsData[setName].chs
+                }
+            }
+            return name
+        },
+
+        presetDefaultName() {
+            const cName = characterData[this.characterName].chs
+            const wName = weaponData[this.weaponName].chs
+            return `${cName}-${wName}`
+        },
+        // end default names
 
         // character
         characterLevelNumber() {
@@ -1251,13 +1274,13 @@ export default {
 
         handleSavePreset(name) {
             if (!name) {
-                return
+                this.handleClickSaveOptimizeConfig()
+            } else {
+                const item = this.getPresetItem()
+                createOrUpdatePreset(item, name)
+
+                this.$message.success("已保存")
             }
-
-            const item = this.getPresetItem()
-            createOrUpdatePreset(item, name)
-
-            this.$message.success("已保存")
         },
 
         getPresetItem() {
@@ -1289,10 +1312,12 @@ export default {
             this.$prompt("输入名称（重复名称将覆盖）", "存为预设", {
                 confirmButtonText: "确定",
                 cancelButtonText: "取消",
-                inputPattern: /[^\s]+$/
+                inputPattern: /[^\s]+$/,
+                inputValue: this.presetDefaultName
             }).then(({ value }) => {
                 item.name = value
                 createOrUpdatePreset(item, value)
+                this.miscCurrentPresetName = value
                 this.$message.success("保存成功")
             })
         },
