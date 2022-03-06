@@ -84,12 +84,27 @@ export default {
             this.$store.commit('accounts/addAccount', { name: '新账户' });
         },
         deleteAccount(id) {
-            this.$store.commit('accounts/deleteAccount', { id });
+            const loading = this.$loading({
+                lock: true,
+                text: "删除账号中"
+            });
+            this.$store.dispatch('deleteAccount', { id })
+                .then(() => {
+                    loading.close();
+                });
         },
         changeAccount(id) {
-            if (id !== this.currentAccountId) {
-                this.$store.dispatch('changeAccount', { id });
+            if (id === this.currentAccountId) {
+                return;
             }
+            const loading = this.$loading({
+                lock: true,
+                text: "切换账号中"
+            });
+            this.$store.dispatch('changeAccount', { id })
+                .then(() => {
+                    loading.close();
+                });
         },
         handleChangeName(id, oldName, newName) {
             if (newName !== oldName && newName !== '') {

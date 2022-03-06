@@ -62,7 +62,6 @@ export default {
     },
     watch: {
         defaultName(newName) {
-            console.log(newName);
             this.name = newName
         }
     },

@@ -20,6 +20,12 @@ Vue.use(Vuex);
 
 let loadingAccountData = false;
 
+function setTimeoutPromise(ms) {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
+}
+
 const _store = new Vuex.Store({
     modules: {
         accounts,
@@ -28,20 +34,34 @@ const _store = new Vuex.Store({
         kumi,
     },
     actions: {
-        loadAccountData({ commit, state }) {
+        async loadAccountData({ commit, state }) {
             loadingAccountData = true;
             const id = state.accounts.currentAccountId;
-            const ArtKey = `mona_account_artifacts_${id}`;
-            commit('artifacts/set', JSON.parse(localStorage.getItem(ArtKey)));
-            const PresetKey = `mona_account_presets_${id}`;
-            commit('presets/set', JSON.parse(localStorage.getItem(PresetKey)));
-            const KumiKey = `mona_account_kumi_${id}`;
-            commit('kumi/set', JSON.parse(localStorage.getItem(KumiKey)));
+            const artKey = `mona_account_artifacts_${id}`;
+            commit('artifacts/set', JSON.parse(localStorage.getItem(artKey)));
+            const presetKey = `mona_account_presets_${id}`;
+            commit('presets/set', JSON.parse(localStorage.getItem(presetKey)));
+            const kumiKey = `mona_account_kumi_${id}`;
+            commit('kumi/set', JSON.parse(localStorage.getItem(kumiKey)));
             loadingAccountData = false;
         },
-        changeAccount({ dispatch, commit }, { id }) {
+        async changeAccount({ dispatch, commit }, { id }) {
+            await setTimeoutPromise(50);
             commit('accounts/setCurrentAccountId', { id });
-            dispatch('loadAccountData');
+            await dispatch('loadAccountData');
+        },
+        async deleteAccount({ commit, state }, { id }) {
+            if (id === state.accounts.currentAccountId) {
+                // this should not happen, but add a guard here
+                return;
+            }
+            commit('accounts/deleteAccount', { id });
+            const artKey = `mona_account_artifacts_${id}`;
+            localStorage.removeItem(artKey);
+            const presetKey = `mona_account_presets_${id}`;
+            localStorage.removeItem(presetKey);
+            const kumiKey = `mona_account_kumi_${id}`;
+            localStorage.removeItem(kumiKey);
         }
     }
 });

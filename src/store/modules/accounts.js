@@ -39,7 +39,6 @@ const accounts = {
             for (let i = 0, l = allAccounts.length; i < l; i++) {
                 if (allAccounts[i].id === id) {
                     allAccounts.splice(i, 1);
-                    localStorage.removeItem(`mona_account_${id}`);
                     break;
                 }
             }
