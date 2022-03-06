@@ -6,9 +6,11 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
-        <el-card class="item">
+        <el-card class="item" shadow="never">
             <div slot="header">
-                {{ getIndex() }}. yas
+                <font-awesome-icon :icon="['fas', 'crown']"
+                    style="color: #8a0045; margin-right: 4px;"
+                ></font-awesome-icon>yas
             </div>
 
             <p>来自莫娜占卜铺原作者的导出器：Yet Another Scanner，state-of-the-art（速度上）导出器</p>
@@ -23,9 +25,11 @@
             </div>
         </el-card>
 
-        <el-card class="item">
+        <el-card class="item" shadow="never">
             <div slot="header">
-                {{ getIndex() }}. 「天目」-- Amenoma
+                <font-awesome-icon :icon="['fas', 'crown']"
+                                   style="color: #8a0045; margin-right: 4px;"
+                ></font-awesome-icon>「天目」-- Amenoma
             </div>
 
             <p>fork自Genshin Art Scanner</p>
@@ -40,9 +44,9 @@
             </div>
         </el-card>
 
-        <el-card class="item">
+        <el-card class="item archived" shadow="never">
             <div slot="header">
-                {{ getIndex() }}. Genshin Art Scanner
+                Genshin Art Scanner
             </div>
 
             <p>本地识别，基本实现全自动，无UI模式，速度大致每分钟100-200个</p>
@@ -71,8 +75,8 @@
             </div>
         </el-card>
 
-        <el-card class="item">
-            <div slot="header">{{ getIndex() }}. 椰羊（cocogoat）</div>
+        <el-card class="item archived" shadow="never">
+            <div slot="header">椰羊（cocogoat）</div>
 
             <p>本地识别，基本实现全自动，有UI</p>
 
@@ -88,8 +92,8 @@
             </div>
         </el-card>
 
-        <el-card class="item">
-            <div slot="header">{{ getIndex() }}. 蹦蹦炸弹（已暂停维护）</div>
+        <el-card class="item archived" shadow="never">
+            <div slot="header">蹦蹦炸弹</div>
 
             <p>使用百度API进行远程OCR自动识别，缺点是需要注册百度AI账号</p>
 
@@ -120,5 +124,11 @@ export default {
 <style scoped>
 .item {
     margin-bottom: 16px;
+}
+
+.archived {
+    opacity: 0.5;
+    /*background-image: linear-gradient(45deg, #B2A2CD 25%, #5F5370 25%, #5F5370 50%, #B2A2CD 50%, #B2A2CD 75%, #5F5370 75%, #5F5370 100%);*/
+    /*background-size: 56.57px 56.57px;*/
 }
 </style>

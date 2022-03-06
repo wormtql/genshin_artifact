@@ -40,6 +40,7 @@ pub enum TargetFunctionName {
     KaedeharaKazuhaDefault,
     KaeyaDefault,
     KamisatoAyakaDefault,
+    KamisatoAyakaDps,
     KeqingDefault,
     KleeDefault,
     KujouSaraDamage,
