@@ -205,14 +205,12 @@ impl CharacterTrait for Xiao {
             _ => (false, 0.0, 0.0)
         };
 
-        if after_q {
-            if s.is_affected_by_q() {
-                let bonus = XIAO_SKILL.elemental_burst_bonus[s3];
-                builder.add_extra_bonus("夜叉傩面加成", bonus);
+        if after_q && s.is_affected_by_q() {
+            let bonus = XIAO_SKILL.elemental_burst_bonus[s3];
+            builder.add_extra_bonus("夜叉傩面加成", bonus);
 
-                if context.character_common_data.has_talent1 {
-                    builder.add_extra_bonus("魈天赋：降魔·平妖大圣", 0.05 + talent1_stack * 0.05);
-                }
+            if context.character_common_data.has_talent1 {
+                builder.add_extra_bonus("魈天赋：降魔·平妖大圣", 0.05 + talent1_stack * 0.05);
             }
         }
 
