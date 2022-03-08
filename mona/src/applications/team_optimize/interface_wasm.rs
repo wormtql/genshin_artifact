@@ -18,7 +18,7 @@ use crate::utils;
 
 pub struct TeamOptimizationWasm;
 
-fn artifacts_by_id_hashmap<'a>(artifacts: &[&'a Artifact]) -> HashMap<usize, &'a Artifact> {
+fn artifacts_by_id_hashmap<'a>(artifacts: &[&'a Artifact]) -> HashMap<u64, &'a Artifact> {
     let mut temp = HashMap::new();
     for &art in artifacts.iter() {
         temp.insert(art.id, art);
@@ -26,7 +26,7 @@ fn artifacts_by_id_hashmap<'a>(artifacts: &[&'a Artifact]) -> HashMap<usize, &'a
     temp
 }
 
-fn smallvec_to_optimize_entry(v: &SmallVec<[usize; 5]>, artifacts_by_id: &HashMap<usize, &Artifact>) -> OptimizeTeamResultEntry {
+fn smallvec_to_optimize_entry(v: &SmallVec<[u64; 5]>, artifacts_by_id: &HashMap<u64, &Artifact>) -> OptimizeTeamResultEntry {
     let mut temp = OptimizeTeamResultEntry::new();
     for &art_id in v.iter() {
         let art = *artifacts_by_id.get(&art_id).unwrap();

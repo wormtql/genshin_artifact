@@ -14,6 +14,7 @@
             >
                 <el-card
                     style="margin-bottom: 16px"
+                    shadow="never"
                 >
                     <!-- <div s>
                     </div> -->

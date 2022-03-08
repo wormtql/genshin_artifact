@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 
 use rand::{thread_rng, Rng};
+use rand::prelude::*;
+use rand::distributions::WeightedIndex;
 use num_derive::FromPrimitive;
 use serde::{Serialize, Deserialize};
 use strum_macros::Display;
@@ -83,7 +85,7 @@ pub struct Artifact {
     pub star: i32,
     pub sub_stats: Vec<(StatName, f64)>,
     pub main_stat: (StatName, f64),
-    pub id: usize
+    pub id: u64
 }
 
 impl Artifact {
@@ -122,6 +124,46 @@ impl Artifact {
             ],
             main_stat: (StatName::ATKPercentage, 0.1),
             id: thread_rng().gen()
+        }
+    }
+
+    pub fn is_max_level(&self) -> bool {
+        (self.star == 5 && self.level == 20)
+        || (self.star == 4 && self.level == 16)
+        || (self.star <= 3 && self.level == 12)
+    }
+
+    // return statname, and the probability of that stat
+    pub fn get_next_stat_name_dist(&self) -> Option<Vec<(StatName, f64)>> {
+        if self.sub_stats.len() == 4 {
+            None
+        } else {
+            use StatName::*;
+            let mut weights = vec![150.0, 100.0, 150.0, 100.0, 150.0, 100.0, 75.0, 75.0, 100.0, 100.0];
+            let mut stat_names = vec![HPFixed, HPPercentage, ATKFixed, ATKPercentage, DEFFixed, DEFPercentage, CriticalRate, CriticalDamage, ElementalMastery, Recharge];
+
+            let mut existing_stat_names = Vec::new();
+            existing_stat_names.push(self.main_stat.0);
+            for stat in self.sub_stats.iter() {
+                existing_stat_names.push(stat.0);
+            }
+
+            for stat_name in existing_stat_names {
+                let index = stat_names.iter().position(|x| *x == stat_name).unwrap();
+                stat_names.remove(index);
+                weights.remove(index);
+            }
+
+            let weight_sum: f64 = weights.iter().sum();
+
+            let mut result = Vec::new();
+            for i in 0..weights.len() {
+                let prob = weights[i] / weight_sum;
+                let stat_name = stat_names[i];
+                result.push((stat_name, prob));
+            }
+
+            Some(result)
         }
     }
 }

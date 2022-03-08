@@ -15,6 +15,11 @@ use mona::character::{Character, CharacterName};
 use mona::character::skill_config::CharacterSkillConfig;
 use mona::damage::DamageContext;
 use mona::enemies::Enemy;
+use mona::potential_function::potential_functions::artifact_eff::PotentialFunctionArtifactEffConfig;
+use mona::potential_function::potential_functions::PotentialFunctionArtifactEff;
+use mona::potential_function::potential_function::{PotentialFunctionMeta, PotentialFunction, calc_potential};
+use mona::potential_function::potential_function_config::PotentialFunctionConfig;
+use mona::potential_function::potential_function_engine::{ExpectationPotentialFunctionEngine, NaivePotentialFunctionEngine, PotentialFunctionEngine};
 use mona::target_functions::target_functions::get_target_function;
 
 
@@ -189,10 +194,42 @@ fn skill_interface() {
     println!("{:?}", result);
 }
 
+fn test_potential() {
+    let artifact = Artifact {
+        set_name: ArtifactSetName::Adventurer,
+        slot: ArtifactSlotName::Sand,
+        level: 0,
+        star: 5,
+        sub_stats: vec![
+            (StatName::ATKPercentage, 0.053),
+            (StatName::CriticalDamage, 0.054),
+            (StatName::DEFFixed, 10.0),
+            (StatName::CriticalRate, 0.039)
+        ],
+        main_stat: (StatName::Recharge, 0.0),
+        id: 0
+    };
+
+    let potential_config =
+
+    let pf = PotentialFunctionArtifactEff::create(&PotentialFunctionConfig::ArtifactEff(potential_config));
+
+    // let engine = NaivePotentialFunctionEngine;
+    // let engine = ExpectationPotentialFunctionEngine;
+
+    // let score = engine.value(&pf, &artifact);
+
+    // let score = pf.potential(&artifact);
+
+    let score = calc_potential(&pf, &artifact);
+    println!("{}", score);
+}
+
 fn main() {
     // perf::<ComplicatedAttributeGraph>();
-    perf();
+    // perf();
     // test_bonus_per_stat();
+    test_potential();
 
     // skill();
     // skill_interface();

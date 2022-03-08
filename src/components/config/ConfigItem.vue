@@ -75,6 +75,15 @@
                 >{{ option }}</el-radio-button>
             </el-radio-group>
         </template>
+        <template v-if="type === 'nullOrFloatInput'">
+<!--            <el-switch-->
+<!--                :value="value !== null"-->
+<!--                @input="handleChangeNullOrX"-->
+<!--            ></el-switch>-->
+<!--            <el-input-->
+<!--                :value="value === null ? 0.0 : value"-->
+<!--            ></el-input>-->
+        </template>
     </div>
 </template>
 
@@ -106,6 +115,12 @@ export default {
 
         handleChangeValue(value) {
             this.$emit("input", value)
+        },
+
+        handleChangeNullOrX(value) {
+            if (value) {
+                this.$emit()
+            }
         }
     }
 }
