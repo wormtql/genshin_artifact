@@ -34,6 +34,7 @@
             ></select-buff>
         </el-dialog>
 
+<!--    computation setup    -->
         <el-dialog
             :visible.sync="showConstraintDialog"
             title="计算设置"
@@ -158,6 +159,7 @@
 
         </el-dialog>
 
+<!--    artifacts analysis    -->
         <el-dialog
             :visible.sync="showArtifactAnalysisDialog"
             title="圣遗物分析"
@@ -168,10 +170,11 @@
             ></artifacts-set-statistics>
         </el-dialog>
 
+<!--    stats marginal bonus    -->
         <el-dialog
             :visible.sync="showArtifactPerBonusDialog"
             title="词条收益曲线"
-            width="60%"
+            width="80%"
         >
             <artifact-per-stat-bonus
                 :data="miscPerStatBonus"
