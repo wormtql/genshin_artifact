@@ -149,9 +149,11 @@ impl Artifact {
             }
 
             for stat_name in existing_stat_names {
-                let index = stat_names.iter().position(|x| *x == stat_name).unwrap();
-                stat_names.remove(index);
-                weights.remove(index);
+                let maybe_index = stat_names.iter().position(|x| *x == stat_name);
+                if let Some(index) = maybe_index {
+                    stat_names.remove(index);
+                    weights.remove(index);
+                }
             }
 
             let weight_sum: f64 = weights.iter().sum();

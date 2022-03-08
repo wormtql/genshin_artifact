@@ -17,7 +17,6 @@
                 <!-- <span style="color: #e7bf4f">
                     <i class="el-icon-star-on"></i>{{ displayedStar }}
                 </span> -->
-                <span class="extra fs-12" v-if="extra">{{ extra }}</span>
             </span>
 
             <div class="buttons" v-if="buttons">
@@ -52,6 +51,8 @@
                     @click.stop="$emit('edit')"
                 ></el-button>
             </div>
+
+            <span class="extra fs-12" v-if="extra">{{ extra }}</span>
         </div>
         <div class="down">
             <div>
@@ -247,6 +248,8 @@ export default {
             color: #e7bf4f;
             line-height: 32px;
             margin-left: 16px;
+            float: right;
+            z-index: 10;
         }
 
         .buttons {
