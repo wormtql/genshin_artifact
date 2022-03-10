@@ -213,7 +213,10 @@ impl CharacterTrait for Diluc {
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
         let role: DilucRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
         match role {
-            DilucRoleEnum::Main => Box::new(DilucDefaultTargetFunction),
+            DilucRoleEnum::Main => Box::new(DilucDefaultTargetFunction {
+                melt_rate: 0.0,
+                vaporize_rate: 0.0
+            }),
         }
     }
 }
