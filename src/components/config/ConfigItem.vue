@@ -106,7 +106,7 @@ export default {
 
         handleChangeValue(value) {
             this.$emit("input", value)
-        }
+        },
     }
 }
 </script>

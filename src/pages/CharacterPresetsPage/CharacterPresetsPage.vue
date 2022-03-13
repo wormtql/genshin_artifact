@@ -51,20 +51,27 @@
             >导入</el-button>
         </div>
 
-        <div class="body">
-            <template v-if="presetsLength > 0">
-                <preset-item
-                    v-for="entry in allFlat"
-                    :item="entry.item"
-                    :name="entry.name"
-                    @delete="handleDeletePreset(entry.name)"
-                    @download="handleDownload(entry.name)"
-                    class="item"
-                    @click="test(entry.name)"
-                ></preset-item>
-            </template>
-            <el-empty v-else></el-empty>
+        <div class="body" v-if="presetsLength > 0">
+            <preset-item
+                v-for="entry in allFlat"
+                :item="entry.item"
+                :name="entry.name"
+                @delete="handleDeletePreset(entry.name)"
+                @download="handleDownload(entry.name)"
+                class="item"
+                @click="test(entry.name)"
+            ></preset-item>
         </div>
+        <template v-else>
+
+            <el-empty>
+                <p
+                    style="font-size: 0.9em; color: #606266"
+                >
+                    请前往<span class="route-item" @click="$router.replace('/calculate')">计算器</span>页面添加预设
+                </p>
+            </el-empty>
+        </template>
     </div>
 </template>
 
@@ -228,6 +235,19 @@ export default {
     .artifact-score-item {
         width: 100%;
         margin-bottom: 12px;
+    }
+}
+
+.route-item {
+    padding: 4px;
+    transition: 200ms;
+    border-radius: 2px;
+    cursor: pointer;
+    color: rgb(86,69,137);
+
+    &:hover {
+        background-color: rgb(86,69,137);
+        color: white;
     }
 }
 </style>

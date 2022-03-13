@@ -69,6 +69,7 @@ module.exports = {
                 "@character": path.resolve(__dirname, "src/assets/character"),
                 "@weapon": path.resolve(__dirname, "src/assets/weapon"),
                 "@targetFunction": path.resolve(__dirname, "src/assets/target_function"),
+                "@potentialFunction": path.resolve(__dirname, "src/assets/potential_function"),
                 "@buff": path.resolve(__dirname, "src/assets/buff"),
                 "@image": path.resolve(__dirname, "src/images"),
                 "@artifact": path.resolve(__dirname, "src/assets/artifacts"),

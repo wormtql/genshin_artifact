@@ -7,6 +7,56 @@ use crate::utils::get_enum_variants;
 
 mod utils;
 
+#[proc_macro_derive(PotentialFunctionData)]
+pub fn derive_potential_function_data(input: TokenStream) -> TokenStream {
+    let ast = parse_macro_input!(input as DeriveInput);
+    let mut vars = get_enum_variants(&ast);
+
+    let mut rows_create = String::new();
+    let mut rows_meta = String::new();
+    let mut rows_config = String::new();
+
+    for v in vars.iter() {
+        rows_create.push_str(&format!("PotentialFunctionName::{n} => crate::potential_function::potential_functions::PotentialFunction{n}::create(config),\n", n=v));
+        rows_meta.push_str(&format!("PotentialFunctionName::{n} => crate::potential_function::potential_functions::PotentialFunction{n}::META,\n", n=v));
+        rows_config.push_str(&format!("PotentialFunctionName::{n} => crate::potential_function::potential_functions::PotentialFunction{n}::CONFIG,\n", n=v));
+    }
+
+    let output = format!(
+        r#"
+        use crate::potential_function::potential_function::{{PotentialFunction, PotentialFunctionMeta, PotentialFunctionMetaData}};
+        use crate::potential_function::potential_function_config::PotentialFunctionConfig;
+        use crate::common::item_config_type::ItemConfig;
+        impl PotentialFunctionName {{
+            pub fn create(&self, config: &PotentialFunctionConfig) -> Box<dyn PotentialFunction> {{
+                match *self {{
+                    {rows_create}
+                }}
+            }}
+
+            #[cfg(not(target_family = "wasm"))]
+            pub fn get_meta(&self) -> PotentialFunctionMetaData {{
+                match *self {{
+                    {rows_meta}
+                }}
+            }}
+
+            #[cfg(not(target_family = "wasm"))]
+            pub fn get_config(&self) -> Option<&'static [ItemConfig]> {{
+                match *self {{
+                    {rows_config}
+                }}
+            }}
+        }}
+        "#,
+        rows_create=rows_create,
+        rows_meta=rows_meta,
+        rows_config=rows_config
+    );
+
+    output.parse().unwrap()
+}
+
 #[proc_macro_derive(TeamTargetFunctionData)]
 pub fn derive_team_target_function_data(input: TokenStream) -> TokenStream {
     let ast = parse_macro_input!(input as DeriveInput);

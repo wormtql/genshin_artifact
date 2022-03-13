@@ -24,6 +24,11 @@ pub enum ItemConfigType {
         options: &'static str, // comma separated
         default: usize
     },
+    // NullOrValueInput {
+    //     min: f64,
+    //     max: f64,
+    //     default: f64,
+    // },
     FloatPercentageInput {
         default: f64,
     },
@@ -44,6 +49,16 @@ pub struct ItemConfig {
 impl ItemConfigType {
     pub fn to_json(&self, title: &str, name: &str) -> String {
         let j = match *self {
+            // ItemConfigType::NullOrValueInput { min, max, default } => {
+            //     json!({
+            //         "type": "nullOrValueInput",
+            //         "title": title,
+            //         "name": name,
+            //         "min": min,
+            //         "max": max,
+            //         "default": default
+            //     })
+            // },
             ItemConfigType::IntInput { min, max, default } => {
                 json!({
                     "type": "intInput",

@@ -1,8 +1,9 @@
-import LoadingComponent from "@c/LoadingComponent";
-import ErrorComponent from "@c/ErrorComponent";
-import VueRouter from "vue-router";
-import NewArtifactPlanPage from "@page/NewArtifactPlanPage";
-import TeamOptimizationPage from "@page/TeamOptimizationPage";
+import LoadingComponent from "@c/LoadingComponent"
+import ErrorComponent from "@c/ErrorComponent"
+import VueRouter from "vue-router"
+import NewArtifactPlanPage from "@page/NewArtifactPlanPage"
+import TeamOptimizationPage from "@page/TeamOptimizationPage"
+import NewArtifactPotentialPage from "@page/NewArtifactPotentialPage"
 
 const IntroPage = () => ({
     component: import(/* webpackChunkName: "intro-page" */ "@page/about/IntroPage"),
@@ -34,11 +35,11 @@ const ExternalLinkPage = () => ({
     loading: LoadingComponent,
     error: ErrorComponent,
 });
-const ArtifactPotentialPage = () => ({
-    component: import(/* webpackChunkName: "artifact-potential-page" */ "@page/ArtifactPotentialPage"),
-    loading: LoadingComponent,
-    error: ErrorComponent,
-});
+// const ArtifactPotentialPage = () => ({
+//     component: import(/* webpackChunkName: "artifact-potential-page" */ "@page/ArtifactPotentialPage"),
+//     loading: LoadingComponent,
+//     error: ErrorComponent,
+// });
 // const PotentialFuncPage = () => ({
 //     component: import(/* webpackChunkName: "about-page" */ "@page/about/PotentialFuncPage"),
 //     loading: LoadingComponent,
@@ -57,7 +58,7 @@ const CharacterPresetsPage = () => (
 //     error: ErrorComponent,
 // });
 const FAQPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/FAQPage");
-const TargetFuncExplanationPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/TargetFuncExplanationPage");
+// const TargetFuncExplanationPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/TargetFuncExplanationPage");
 const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/ExportToolPage");
 // const ArtifactsStatisticsPage = () => import(/* webpackChunkName: "artifacts-statistics-page" */ "@page/ArtifactsStatisticsPage");
 const KumiPage = () => import (/* webpackChunkName: "kumi-page" */ "@page/KumiPage");
@@ -159,7 +160,8 @@ const routes = [
     },
     {
         path: "/potential",
-        component: ArtifactPotentialPage,
+        // component: ArtifactPotentialPage,
+        component: NewArtifactPotentialPage,
         meta: {
             keepAlive: true,
             title: "圣遗物潜力 | " + webName,

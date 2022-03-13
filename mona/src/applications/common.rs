@@ -7,6 +7,9 @@ use crate::character::{Character, CharacterConfig, CharacterName};
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::common::StatName;
 use crate::enemies::Enemy;
+use crate::potential_function::potential_function::PotentialFunction;
+use crate::potential_function::potential_function_config::PotentialFunctionConfig;
+use crate::potential_function::potential_function_name::PotentialFunctionName;
 use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName, TargetFunctionUtils};
 use crate::weapon::{Weapon, WeaponConfig, WeaponName};
 
@@ -172,5 +175,19 @@ impl ArtifactFilterConfig {
         }
 
         results
+    }
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct PotentialFunctionInterface {
+    pub name: PotentialFunctionName,
+    pub config: Option<PotentialFunctionConfig>,
+}
+
+impl PotentialFunctionInterface {
+    pub fn to_pf(&self) -> Box<dyn PotentialFunction> {
+        let no_config = PotentialFunctionConfig::NoConfig;
+        let config = self.config.as_ref().unwrap_or(&no_config);
+        self.name.create(config)
     }
 }

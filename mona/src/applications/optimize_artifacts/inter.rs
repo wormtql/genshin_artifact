@@ -96,11 +96,11 @@ pub struct PerStatBonus {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct OptimizationResult {
-    pub flower: Option<usize>,
-    pub feather: Option<usize>,
-    pub sand: Option<usize>,
-    pub goblet: Option<usize>,
-    pub head: Option<usize>,
+    pub flower: Option<u64>,
+    pub feather: Option<u64>,
+    pub sand: Option<u64>,
+    pub goblet: Option<u64>,
+    pub head: Option<u64>,
     pub value: f64,
     pub ratio: f64
 }
