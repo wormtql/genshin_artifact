@@ -25,7 +25,7 @@ impl CommonInterface {
 
         let optim_config = target_function.get_target_function_opt_config();
 
-        let mut scores: Vec<(usize, f64)> = Vec::new();
+        let mut scores: Vec<(u64, f64)> = Vec::new();
         for artifact in artifacts.iter() {
             let id = artifact.id;
             let score = optim_config.score_normalized(artifact);

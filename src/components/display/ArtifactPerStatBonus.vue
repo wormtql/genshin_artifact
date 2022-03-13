@@ -1,9 +1,20 @@
 <template>
     <div class="root">
-        <v-chart
-            :option="optionsForECharts"
-            :autoresize="true"
-        ></v-chart>
+        <el-row :gutter="16">
+            <el-col :span="16" style="height: 400px">
+                <v-chart
+                    :option="optionsForECharts"
+                    :autoresize="true"
+                ></v-chart>
+            </el-col>
+            <el-col :span="8" style="height: 400px">
+                <v-chart
+                    :option="optionsForPieChart"
+                    :autoresize="true"
+                ></v-chart>
+            </el-col>
+        </el-row>
+
     </div>
 </template>
 
@@ -47,6 +58,36 @@ export default {
             // console.log(data)
             return {
                 data, legend
+            }
+        },
+
+        optionsForPieChart() {
+            const { data } = this.seriesAndLegend
+            let dataSingle = []
+
+            for (let item of data) {
+                dataSingle.push({
+                    value: item.data[0],
+                    name: item.name
+                })
+            }
+
+            return {
+                title: {
+                    text: "1词条收益",
+                    left: "center",
+                },
+                tooltip: {
+                    trigger: "item"
+                },
+                series: [
+                    {
+                        name: "1词条收益",
+                        type: "pie",
+                        radius: "50%",
+                        data: dataSingle
+                    }
+                ]
             }
         },
 

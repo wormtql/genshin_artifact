@@ -5,7 +5,7 @@ import store from "@/store/store"
 import {artifactsData} from "@artifact"
 import { toSnakeCase, deepCopy } from "@util/common"
 import { wasmGetArtifactsRankByCharacter } from "@/wasm"
-import {convertArtifact} from "@util/converter"
+import { convertArtifact } from "@util/converter"
 
 
 // count how many artifacts
@@ -28,6 +28,7 @@ export function howManyUpgradeCount(value, tagName, star) {
     return [min, max];
 }
 
+// hash of an artifact, including only properties in game
 export function hash(artifact) {
     // return objectHash(artifact, {
     //     excludeKeys: (k) => {
@@ -56,6 +57,7 @@ export function hash(artifact) {
     return objectHash(object)
 }
 
+// hash with order of sub stats, without sub stats' value
 export function hashExceptValue(artifact) {
     let subStatNames = ""
     for (let stat of artifact.normalTags) {
@@ -73,6 +75,7 @@ export function hashExceptValue(artifact) {
     return objectHash(object)
 }
 
+// create new default artifact config
 export function newDefaultArtifactConfigForWasm() {
     let configs = {}
 
@@ -119,23 +122,27 @@ export function newDefaultArtifactConfigForWasm() {
     // }
 }
 
+// toggle artifact omit/not omit
 export function toggleArtifact(id) {
     store.commit("artifacts/toggleArtifactById", {
         id
     })
 }
 
+// remove artifact
 export function removeArtifact(id) {
     store.commit("artifacts/removeArtifactById", {
         id
     })
 }
 
+// get artifact item
 export function getArtifact(id) {
     const byId = store.getters["artifacts/artifactsById"]
     return byId[id]
 }
 
+// get image url
 export function getArtifactImage(setName, position) {
     const data = artifactsData[setName]
     if (data[position]) {
@@ -158,6 +165,8 @@ export function newArtifact(artifact) {
     })
 }
 
+// import json
+// @param removeNonExisting: whether remove not existing artifacts
 export async function importMonaJson(rawObj, removeNonExisting) {
     let hashAll = {}
     let hashEV = {}
@@ -234,6 +243,10 @@ export function getArtifactThumbnail(name) {
     throw new Error("artifact with no artifact")
 }
 
+// as artifact set number will increase, old config is not enough
+// this function automatically upgrade old config to new config
+// if new config key also exists in old config, use old value
+// otherwise, use default value
 export function upgradeArtifactConfig(oldConfig) {
     if (!oldConfig) {
         return newDefaultArtifactConfigForWasm()
@@ -264,6 +277,8 @@ export function upgradeArtifactConfig(oldConfig) {
     return newConfig
 }
 
+// get artifact recommendation according to current character presets
+// @return [[id, score]]
 export async function getArtifactsRecommendation() {
     const artifactsAll = store.getters["artifacts/allFlat"]
     const artifacts0 = artifactsAll.filter(a => a.level === 0)
@@ -291,4 +306,10 @@ export async function getArtifactsRecommendation() {
     temp.sort((a, b) => b[1] - a[1])
 
     return temp
+}
+
+// get all artifacts(including omitted) using wasm format
+export function getArtifactsWasm() {
+    const allFlat = store.getters["artifacts/allFlat"]
+    return allFlat.map(x => convertArtifact(x))
 }

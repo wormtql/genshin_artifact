@@ -94,6 +94,12 @@ impl TargetFunctionMetaTrait for XianglingDefaultTargetFunction {
 
 impl TargetFunction for XianglingDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
+        let em = if self.melt_rate + self.vaporize_rate > 0.5 || self.overload_rate > 0.5 {
+            1.0
+        } else {
+            0.3
+        };
+
         TargetFunctionOptConfig {
             atk_fixed: 0.1,
             atk_percentage: 1.0,
@@ -102,7 +108,7 @@ impl TargetFunction for XianglingDefaultTargetFunction {
             def_fixed: 0.0,
             def_percentage: 0.0,
             recharge: 1.0,
-            elemental_mastery: 0.3,
+            elemental_mastery: em,
             critical: 1.0,
             critical_damage: 1.0,
             healing_bonus: 0.0,

@@ -21,7 +21,7 @@ const MAX_TEAM_COUNT: usize = 8;
 
 #[derive(Clone)]
 pub struct ArtifactSet {
-    pub items: HashSet<usize>,
+    pub items: HashSet<u64>,
     pub value: f64,
 }
 
@@ -57,7 +57,7 @@ impl ArtifactSet {
         }
     }
 
-    pub fn to_small_vec(&self) -> SmallVec<[usize; 5]> {
+    pub fn to_small_vec(&self) -> SmallVec<[u64; 5]> {
         self.items.iter().cloned().collect()
     }
 
@@ -100,7 +100,7 @@ impl ArtifactSet {
         self.items.is_empty()
     }
 
-    pub fn contains(&self, value: usize) -> bool {
+    pub fn contains(&self, value: u64) -> bool {
         self.items.contains(&value)
     }
 }
@@ -145,7 +145,7 @@ fn try_search(
     // team_target_function: &Box<dyn TeamTargetFunction>,
     weights: &[f64],
     count: usize,
-) -> Result<Vec<SmallVec<[usize; MAX_TEAM_COUNT]>>, HashMap<usize, usize>> {
+) -> Result<Vec<SmallVec<[usize; MAX_TEAM_COUNT]>>, HashMap<u64, usize>> {
     // let mut invalid_set = ArtifactSet::new();
     // let mut iter: usize = 0;
     // try_search_helper(nodes, 0, &invalid_set, &mut iter, max_iter)
@@ -154,7 +154,7 @@ fn try_search(
     let mut iter_count = 0_usize;
     // let mut max_value: f64 = 0.0;
     // let mut max_indices: SmallVec<[usize; MAX_TEAM_COUNT]> = SmallVec::new();
-    let mut mva_map: HashMap<usize, usize> = HashMap::new(); // artifact id -> count
+    let mut mva_map: HashMap<u64, usize> = HashMap::new(); // artifact id -> count
     for (row, node) in nodes[0].iter().enumerate().rev() {
         stack.push(SearchStackContent {
             col_index: 0,
@@ -271,11 +271,11 @@ fn optimize_team_helper2(
 
                 // mva_map(most valuable artifact): artifact id -> conflicting count
                 let mut mva_map = mva_map;
-                let mut temp: Vec<(usize, usize)> = mva_map.drain().collect();
+                let mut temp: Vec<(u64, usize)> = mva_map.drain().collect();
                 temp.sort_by(|x, y| (*y).1.cmp(&(*x).1));
 
                 // exclude_list: artifact ids to be excluded for next re-optimization
-                let exclude_list: HashSet<usize> = temp.iter().take(hyper_param.mva_step).map(|x| (*x).0).collect();
+                let exclude_list: HashSet<u64> = temp.iter().take(hyper_param.mva_step).map(|x| (*x).0).collect();
                 let mut artifacts_new: Vec<&Artifact> = Vec::new();
                 for &art in artifacts.iter() {
                     if !exclude_list.contains(&art.id) {
@@ -388,11 +388,11 @@ fn optimize_team_helper(
 
                 // mva_map(most valuable artifact): artifact id -> conflicting count
                 let mut mva_map = mva_map;
-                let mut temp: Vec<(usize, usize)> = mva_map.drain().collect();
+                let mut temp: Vec<(u64, usize)> = mva_map.drain().collect();
                 temp.sort_by(|x, y| (*y).1.cmp(&(*x).1));
 
                 // exclude_list: artifact ids to be excluded for next re-optimization
-                let exclude_list: HashSet<usize> = temp.iter().take(hyper_param.mva_step).map(|x| (*x).0).collect();
+                let exclude_list: HashSet<u64> = temp.iter().take(hyper_param.mva_step).map(|x| (*x).0).collect();
                 let mut artifacts_new: Vec<&Artifact> = Vec::new();
                 for &art in artifacts.iter() {
                     if !exclude_list.contains(&art.id) {
@@ -464,7 +464,7 @@ pub fn optimize_team<'a>(
     weights: &[f64],
     // team_target_function: &Box<dyn TeamTargetFunction>,
     hyper_param: &TeamOptimizeHyperParam
-) -> Vec<SmallVec<[SmallVec<[usize; 5]>; MAX_TEAM_COUNT]>> {
+) -> Vec<SmallVec<[SmallVec<[u64; 5]>; MAX_TEAM_COUNT]>> {
     let intermediate = optimize_team_helper(
         artifacts,
         characters,
@@ -490,7 +490,7 @@ pub fn optimize_team_multi_single<'a>(
     single_interfaces: &[OptimizeArtifactInterface],
     weights: &[f64],
     hyper_param: &TeamOptimizeHyperParam
-) -> Vec<SmallVec<[SmallVec<[usize; 5]>; MAX_TEAM_COUNT]>> {
+) -> Vec<SmallVec<[SmallVec<[u64; 5]>; MAX_TEAM_COUNT]>> {
     let intermediate = optimize_team_helper2(&artifacts, &single_interfaces, &weights, &hyper_param);
 
     let mut results = Vec::new();

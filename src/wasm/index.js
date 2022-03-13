@@ -1,5 +1,6 @@
 export { team_optimize } from "./team_optimize"
 export { wasmSingleOptimize } from "./single_optimize"
+export { wasmComputeArtifactPotential } from "./compute_potential"
 
 async function initWasm() {
     return await import("mona")
