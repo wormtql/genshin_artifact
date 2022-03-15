@@ -16,6 +16,7 @@ pub enum TargetFunctionConfig {
     GanyuDefault { melt_rate: f64 },
     GorouDefault { recharge_demand: f64 },
     DilucDefault { melt_rate: f64, vaporize_rate: f64 },
+    DionaDefault { recharge_demand: f64 },
     // ExpectationConfig { element: Element, skill_type: SkillType }
     HuTaoDefault { vaporize_rate: f64, melt_rate: f64 },
     JeanDefault { recharge_demand: f64, damage_weight: f64 },

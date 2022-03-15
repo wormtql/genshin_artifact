@@ -213,7 +213,9 @@ impl CharacterTrait for Diona {
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
         let role: DionaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
         match role {
-            DionaRoleEnum::Aux => Box::new(DionaDefaultTargetFunction)
+            DionaRoleEnum::Aux => Box::new(DionaDefaultTargetFunction {
+                recharge_demand: 1.5
+            })
         }
     }
 }
