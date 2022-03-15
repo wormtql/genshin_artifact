@@ -1,7 +1,7 @@
 import createPotentialFunc from "./create_potential_func";
 import { getArtifactUpCount } from "@util/utils";
 
-import artifactNumeric from "@/artifacts_numeric/attribute";
+import artifactNumeric from "@const/artifact_eff";
 
 function helper(tags, dep, valid, func, star) {
     // let currentValue = func(tags);

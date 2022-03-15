@@ -1,92 +1,70 @@
-import Vue from "vue";
+import Vue from "vue"
 
-import upgradePreset from "../utils/upgradePreset";
+import {upgradePresetItem} from "@util/preset"
 
-const VERSION_PRESET = "2";
-const VERSION_PRESET_INT = parseInt(VERSION_PRESET);
+const VERSION_PRESET = 3
 
-let temp = localStorage.getItem("presets");
-
-// presets form localStorage, might be out-versioned
-let presets = temp ? JSON.parse(temp) : {};
-
-let upgradedPresets = {};
-let upgradedCount = 0;
-let invalidCount = 0;
-
-// upgrade lower version presets
-for (let name in presets) {
-    if (!name) {
-        continue;
-    }
-    let preset = presets[name];
-    if (!preset) {
-        continue;
+function loadLocalOrDefault() {
+    const local = localStorage.getItem("presets5")
+    if (!local) {
+        return {}
     }
 
-    let version = parseInt(preset.version ?? "1");
-    if (version < VERSION_PRESET_INT) {
-        // need upgrade
+    let localObj = null
+    try {
+        localObj = JSON.parse(local)
+    } catch (e) {
+        localObj = null
+    }
 
-        try {
-            let newPreset = upgradePreset(preset);
-            newPreset.version = VERSION_PRESET;
-            upgradedPresets[newPreset.name] = newPreset;
-            upgradedCount++;
-        } catch (e) {
-            console.error(e);
-            invalidCount++;
-        }
+    if (!localObj) {
+        return {}
     } else {
-        // don't need upgrade
-        console.log("not upgrade");
-        upgradedPresets[preset.name] = preset;
+        for (let name in localObj) {
+            let entry = localObj[name]
+            let item = entry.item
+
+            try {
+                const newItem = upgradePresetItem(item)
+                // console.log(newItem)
+                entry.item = newItem
+            } catch (e) {
+                console.log("upgrade preset item failed")
+                console.log(e)
+            }
+        }
+
+        return localObj
     }
 }
 
-if (invalidCount > 0 || upgradedCount > 0) {
-    Vue.nextTick(() => {
-        window.monaApp.message(`已升级预设，通过${upgradedCount}个，失败${invalidCount}个`);
-    });
-}
-if (upgradedCount > 0) {
-    localStorage.setItem("presets", JSON.stringify(upgradedPresets));
-}
-
-
-let item = {
+export default {
     namespaced: true,
     state: {
-        presets: upgradedPresets,
+        presets: loadLocalOrDefault(),
     },
     mutations: {
-        add(state, payload) {
-            if (!Object.prototype.hasOwnProperty.call(state.presets, payload.name)) {
-                let preset = payload.value;
-                Vue.set(preset, "version", VERSION_PRESET);
-                Vue.set(state.presets, payload.name, payload.value);
+        addOrOverwrite(state, { item, name }) {
+            const entry = {
+                item,
+                name,
+                version: VERSION_PRESET
             }
+
+            Vue.set(state.presets, name, entry)
         },
 
-        overwrite(state, { name, preset }) {
-            Vue.set(preset, "version", VERSION_PRESET);
-            Vue.set(state.presets, name, preset);
-        },
-
-        update(state, preset) {
-            let name = preset.name;
-            Vue.set(preset, "version", VERSION_PRESET);
-            Vue.set(state.presets, name, preset);
-        },
-
-        delete(state, payload) {
-            let name = payload.name;
+        delete(state, { name }) {
             Vue.delete(state.presets, name);
         }
     },
     getters: {
         all(state) {
             return state.presets;
+        },
+
+        allFlat(state) {
+            return Object.values(state.presets)
         },
 
         count(state) {
@@ -101,5 +79,3 @@ let item = {
         // }
     }
 }
-
-export default item;

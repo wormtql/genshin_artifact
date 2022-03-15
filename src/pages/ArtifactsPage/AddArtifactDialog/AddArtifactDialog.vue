@@ -98,7 +98,7 @@ import randomNormalTag from "@/artifacts_numeric/random_normal_tag";
 import { convertDisplayTagValue } from '@util/utils';
 import isArtifactUnique from "@util/isArtifactUnique";
 import { artifactsData } from "@asset/artifacts";
-import { secondaryTags } from "@asset/tags";
+import { artifactTags } from "@const/artifact";
 
 function convertPercentage(item) {
     item.value = getArtifactRealValue(item.name, item.value);

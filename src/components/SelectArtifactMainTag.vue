@@ -28,15 +28,15 @@
 
 <script>
 import { artifactsTagMap } from "@asset/artifacts";
-import { secondaryTags } from "@asset/tags";
+import { artifactTags } from "@const/artifact";
 // import { convertDisplayTagValue } from "@util/utils";
 
 const tagData = {
-    flower: artifactsTagMap["flower"].map(item => secondaryTags[item]),
-    feather: artifactsTagMap["feather"].map(item => secondaryTags[item]),
-    sand: artifactsTagMap["sand"].map(item => secondaryTags[item]),
-    cup: artifactsTagMap["cup"].map(item => secondaryTags[item]),
-    head: artifactsTagMap["head"].map(item => secondaryTags[item]),
+    flower: artifactsTagMap["flower"].map(item => artifactTags[item]),
+    feather: artifactsTagMap["feather"].map(item => artifactTags[item]),
+    sand: artifactsTagMap["sand"].map(item => artifactTags[item]),
+    cup: artifactsTagMap["cup"].map(item => artifactTags[item]),
+    head: artifactsTagMap["head"].map(item => artifactTags[item]),
 }
 
 export default {
@@ -79,7 +79,7 @@ export default {
             if (!this.value.name) {
                 return false;
             }
-            return secondaryTags[this.value.name].percentage;
+            return artifactTags[this.value.name].percentage;
         },
     },
     watch: {
@@ -94,7 +94,7 @@ export default {
         },
 
         // "value.name"() {
-        //     let maxValue = secondaryTags[this.value.name].max[5];
+        //     let maxValue = artifactTags[this.value.name].max[5];
         //     let temp = Object.assign({}, this.value);
 
         //     temp.value = convertDisplayTagValue(temp.name, maxValue);

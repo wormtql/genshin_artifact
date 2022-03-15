@@ -1,0 +1,6 @@
+[general]
+dirs = ["templates"]
+
+[[escaper]]
+path = "mona::common::code_escape::CodeEscaper"
+extensions = ["js"]

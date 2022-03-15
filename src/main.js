@@ -1,11 +1,12 @@
-import "./styles/global.css";
+import "./styles/global.scss";
 import "./styles/select.css";
 
 import "./vendors/element";
 import "./vendors/fontawesome";
 import "./vendors/vuerouter";
-import "./vendors/vue-katex";
+// import "./vendors/vue-katex";
 import "./vendors/echarts";
+import "./vendors/mona";
 
 // install global api
 import "./global_api";

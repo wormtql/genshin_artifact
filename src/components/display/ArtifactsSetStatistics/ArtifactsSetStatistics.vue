@@ -1,188 +1,248 @@
 <template>
-    <div>
-        <el-divider>有效词条分布</el-divider>
-        <artifacts-tag-eff-graph
-            :artifacts="artifacts"
-            style="margin-bottom: 32px"
-        ></artifacts-tag-eff-graph>
-
-        <el-divider>明细</el-divider>
-        <el-table
-            :data="tableData"
-            size="mini"
-        >
-            <el-table-column
-                label="词条"
-                prop="chs"
-            ></el-table-column>
-            <el-table-column
-                label="值"
+    <div class="root">
+        <div class="chart-div">
+            <v-chart :option="chartOptionForEChart" :autoresize="true"></v-chart>
+        </div>
+        <div class="table-div">
+            <el-table
+                :data="tableDataForElementUI"
+                size="mini"
+                @selection-change="selection = $event"
+                ref="table"
             >
-                <template slot-scope="scope">
-                    {{ scope.row.number }}
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="最低强化数"
-            >
-                <template slot-scope="scope">
-                    {{ scope.row.value[0] }}
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="最高强化数"
-            >
-                <template slot-scope="scope">
-                    {{ scope.row.value[1] }}
-                </template>
-            </el-table-column>
-            <el-table-column
-                label="有效词条数"
-            >
-                <template slot-scope="scope">
-                    {{ scope.row.eff.toFixed(3) }}
-                </template>
-            </el-table-column>
-        </el-table>
-        <!-- <p class="single-item">共强化次数（理论最大值：45）：{{ totalUpgradeCount }}</p> -->
-        <p class="single-item">总有效词条数（理论最大值：45）：{{ totalEff.toFixed(3) }}</p>
-        <!-- <p class="single-item">总有效词条数（理论最大值：45）：{{ totalEff.toFixed(3) }}</p> -->
-        <p class="single-item">暴击率+暴击伤害有效词条数：{{ validEff(["critical", "criticalDamage"]).toFixed(3) }}</p>
-        <p class="single-item">暴击率+暴击伤害+%攻击力有效词条数：{{ validEff(["critical", "criticalDamage", "attackPercentage"]).toFixed(3) }}</p>
+                <el-table-column
+                    type="selection"
+                    width="48"
+                ></el-table-column>
+                <el-table-column
+                    label="词条"
+                >
+                    <template v-slot="{ row }">
+                        {{ row.chs }}
+                        <!--                    <el-checkbox>{{ row.chs }}</el-checkbox>-->
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    label="值"
+                >
+                    <template #default="{ row }">
+                        <template v-if="row.percentage">
+                            {{ (row.value * 100).toFixed(1) }}%
+                        </template>
+                        <template v-else>
+                            {{ row.value.toFixed(0) }}
+                        </template>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    label="有效词条数"
+                >
+                    <template #default="scope">
+                        {{ scope.row.eff.toFixed(3) }}
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    label="强化次数"
+                >
+                    <template slot-scope="scope">
+                        [{{ scope.row.upgradeCount[0] }}, {{ scope.row.upgradeCount[1] }}]
+                    </template>
+                </el-table-column>
+            </el-table>
+            <p style="font-size: 12px">选中：{{ selectedEff.toFixed(1) }}</p>
+        </div>
     </div>
 </template>
 
 <script>
-import { howManyUpgradeCount, getValueEff } from "@util/artifacts";
-import { secondaryTags } from "@asset/tags";
-
-import ArtifactsTagEffGraph from "./ArtifactsTagEffGraph";
+import { howManyUpgradeCount } from "@util/artifacts"
+import { artifactTags, artifactEff } from "@const/artifact"
 
 export default {
     name: "ArtifactsSetStatistics",
     components: {
-        ArtifactsTagEffGraph,
     },
-    props: ["artifacts"],
+    props: ["artifactIds"],
+    // mounted() {
+    //     this.setSelection("critical", true)
+    //     this.setSelection("criticalDamage", true)
+    //     this.setSelection("attackPercentage", true)
+    // },
+    data() {
+        return {
+            selection: []
+        }
+    },
     methods: {
-        validEff(validTagNames) {
-            let temp = 0;
-            for (let name of validTagNames) {
-                temp += this.tagEff[name] ?? 0;
+        setSelection(tagName, value) {
+            const component = this.$refs["table"]
+            if (!component) {
+                return
             }
-            return temp;
+            for (let row of this.tableDataForElementUI) {
+                if (row.name === tagName) {
+                    component.toggleRowSelection(row, value)
+                    break
+                }
+            }
         }
     },
+
     computed: {
-        upgradeCount() {
-            let temp = {};
+        artifacts() {
+            const artifactsById = this.$store.getters["artifacts/artifactsById"]
+            let arr = []
+            for (let id of this.artifactIds) {
+                let maybeArtifact = artifactsById[id]
+                if (maybeArtifact) {
+                    arr.push(maybeArtifact)
+                }
+            }
+
+            return arr
+        },
+
+        data() {
+            let result = {}
 
             if (!this.artifacts) {
-                return {};
+                return {}
             }
 
             for (let artifact of this.artifacts) {
-                let star = artifact.star ?? 5;
+                const star = artifact.star ?? 5
                 if (star <= 3) {
-                    continue;
+                    continue
                 }
-                for (let tag of artifact.normalTags) {
-                    let name = tag.name;
-                    let value = tag.value;
-                    let [min, max] = howManyUpgradeCount(value, name, star);
-                    if (temp[name]) {
-                        temp[name][0] += min;
-                        temp[name][1] += max;
+
+                for (let stat of artifact.normalTags) {
+                    const name = stat.name
+                    const value = stat.value
+
+                    const [min, max] = howManyUpgradeCount(value, name, star)
+                    const eff = value / artifactEff[star][name][3]
+
+                    if (!Object.prototype.hasOwnProperty.call(result, name)) {
+                        result[name] = {
+                            name,
+                            upgradeCount: [min, max],
+                            value,
+                            chs: artifactTags[name].chs,
+                            eff,
+                            percentage: artifactTags[name].percentage
+                        }
                     } else {
-                        temp[name] = [min, max];
+                        let temp = result[name]
+                        temp.upgradeCount[0] += min
+                        temp.upgradeCount[1] += max
+                        temp.value += value
+                        temp.eff += eff
                     }
                 }
             }
 
-            return temp;
+            return result
         },
 
-        totalUpgradeCount() {
-            return Object.values(this.upgradeCount).reduce((a, b) => [a[0] + b[0], a[1] + b[1]]);
+        selectedEff() {
+            let sum = 0
+            for (let row of this.selection) {
+                sum += row.eff
+            }
+            return sum
         },
 
-        upgradeValue() {
-            let temp = {};
+        tableDataForElementUI() {
+            let data = []
 
-            if (!this.artifacts) {
-                return {};
+            for (let key in this.data) {
+                data.push(this.data[key])
             }
 
-            for (let artifact of this.artifacts) {
-                let star = artifact.star ?? 5;
-                if (star <= 3) {
-                    continue;
-                }
-                for (let tag of artifact.normalTags) {
-                    let name = tag.name;
-                    let value = tag.value;
-                    if (temp[name]) {
-                        temp[name] += value;
-                    } else {
-                        temp[name] = value;
+            data.sort((a, b) => b.eff - a.eff)
+            // data.sort((a, b) => a.chs.localeCompare(b.chs))
+
+            return data
+        },
+
+        chartOptionForEChart() {
+            // const sumOfEff = Object.values(this.data).reduce((a, b) => a + b.eff, 0)
+
+            let data = [];
+            for (let name in this.data) {
+                data.push({
+                    value: this.data[name].eff,
+                    name: this.data[name].chs
+                })
+            }
+            data.sort((a, b) => a.value - b.value)
+            // console.log(sumOfEff)
+
+            return {
+                tooltip: {
+                    trigger: "item",
+                    formatter: (params) => {
+                        // console.log(params)
+                        const value = params.value
+                        const p = params.percent
+
+                        return `${value.toFixed(1)}/${p.toFixed(0)}%`
+                    },
+                    // backgroundColor: 'rgb(236, 245, 255)'
+                },
+                visualMap: {
+                    show: false,
+                    min: 0,
+                    max: 25,
+                    inRange: {
+                        colorLightness: [0.3, 1]
                     }
-                }
-            }
-
-            for (let name in temp) {
-                if (secondaryTags[name].percentage) {
-                    temp[name] = `${(temp[name] * 100).toFixed(1)}%`;
-                } else {
-                    temp[name] = temp[name].toString();
-                }
-            }
-
-            return temp;
-        },
-
-        totalEff() {
-            return Object.values(this.tagEff).reduce((a, b) => a + b);
-        },
-
-        tagEff() {
-            let temp = {};
-            if (!this.artifacts) {
-                return {};
-            }
-
-            for (let artifact of this.artifacts) {
-                let star = artifact.star ?? 5;
-                if (star <= 3) {
-                    continue;
-                }
-                for (let tag of artifact.normalTags) {
-                    let name = tag.name;
-                    let value = tag.value;
-                    let eff = getValueEff(value, name, star);
-                    if (temp[name]) {
-                        temp[name] += eff;
-                    } else {
-                        temp[name] = eff;
+                },
+                // roseType: 'area',
+                // radius: "55%",
+                // legend: {
+                //     orient: "vertical",
+                //     left: "left",
+                // },
+                series: [
+                    {
+                        name: "有效词条分布",
+                        type: "pie",
+                        // radius: ["40%", "70%"],
+                        label: {
+                            // show: false
+                        },
+                        // itemStyle: {
+                        //     borderRadius: 5,
+                        //     borderColor: '#fff',
+                        //     borderWidth: 2
+                        // },
+                        itemStyle: {
+                            color: '#c23531',
+                            // shadowBlur: 200,
+                            // shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        },
+                        data,
                     }
-                }
+                ]
             }
-
-            return temp;
         },
-
-        tableData() {
-            let temp = [];
-            for (let tagName in this.upgradeCount) {
-                let tagData = secondaryTags[tagName];
-                temp.push({
-                    chs: tagData.chs,
-                    value: this.upgradeCount[tagName],
-                    eff: this.tagEff[tagName],
-                    number: this.upgradeValue[tagName],
-                });
-            }
-            return temp;
-        }
     }
 }
 </script>
+
+<style scoped lang="scss">
+.root {
+    display: flex;
+    gap: 20px;
+
+    .table-div {
+        flex-grow: 1;
+    }
+
+    .chart-div {
+        width: 400px;
+        height: 300px;
+    }
+}
+</style>

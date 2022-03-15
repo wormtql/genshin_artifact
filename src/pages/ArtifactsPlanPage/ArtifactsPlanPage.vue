@@ -190,7 +190,7 @@
 </template>
 
 <script>
-import { charactersData } from "@asset/characters";
+import { charactersData } from "@asset/character";
 import { toChs as estimateToChs } from "@util/time_estimate";
 import createFilterFunction from "@alg/attribute_target/create_filter_function";
 import deepCopy from "@util/deepcopy";

@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { charactersData } from "@asset/characters";
+import { charactersData } from "@asset/character";
 
 import SelectLevel from "@c/select/SelectLevel";
 import SelectCharacter from "@c/select/SelectCharacter";

@@ -144,7 +144,7 @@
 </template>
 
 <script>
-import SelectArtifactSet from "@c/SelectArtifactSet";
+import SelectArtifactSet from "@c/select/SelectArtifactSet";
 import SelectArtMainTagWithoutVal from '@c/SelectArtMainTagWithoutVal.vue';
 
 import deepCopy from "@util/deepcopy";

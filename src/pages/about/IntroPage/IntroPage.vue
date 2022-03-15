@@ -15,10 +15,10 @@
         
         <!-- <p style="padding: 0; margin: 0; font-size: 10px;">该网站处处透露着贫穷，欢迎有志者参与开发（美术等）</p> -->
 
-        <migrate-notification
-            v-if="needMigrate"
-            style="margin-bottom: 16px"
-        ></migrate-notification>
+<!--        <migrate-notification-->
+<!--            v-if="needMigrate"-->
+<!--            style="margin-bottom: 16px"-->
+<!--        ></migrate-notification>-->
 
         <el-alert
             class="hidden-sm-and-up"
@@ -28,115 +28,159 @@
             :closable="false"
         ></el-alert>
 
-        <el-alert
-            title="Mona5.0 Coming Soon..."
-            style="margin-bottom: 16px"
-            :closable="false"
-        ></el-alert>
-
-        <div class="update-banner">
-            <p style="font-size: 24px; margin: 0;">V{{ version }}更新内容</p>
-            <ul>
-                <li
-                    v-for="(item, index) in lastestVersion.changes"
-                    :key="index"
-                >{{ item }}</li>
-            </ul>
-        </div>
+<!--        <div class="update-banner">-->
+<!--            <p style="font-size: 24px; margin: 0;">V{{ version }}更新内容</p>-->
+<!--            <ul>-->
+<!--                <li-->
+<!--                    v-for="(item, index) in lastestVersion.changes"-->
+<!--                    :key="index"-->
+<!--                >{{ item }}</li>-->
+<!--            </ul>-->
+<!--        </div>-->
 
         <!-- <el-card class="mb16">
             <p class="big-card-title">赞助商</p>
             <nok-nok></nok-nok>
         </el-card> -->
 
-        <el-card class="mb16">
-            <p class="big-card-title">用例</p>
+<!--        <el-card class="mb16">-->
+<!--            <p class="big-card-title">用例</p>-->
             <el-row :gutter="16">
                 <el-col :sm="6" :xs="24" class="mb16">
                     <use-case-item
-                        text="伤害计算器"
+                        text="伤害计算器/单人配装"
                         icon="calculator"
+                        url="/calculate"
                     ></use-case-item>
                 </el-col>
                 <el-col :sm="6" :xs="24" class="mb16">
                     <use-case-item
-                        text="专业圣遗物配装"
+                        text="队伍配装"
                         icon="bell"
+                        url="/team-optimization"
                     ></use-case-item>
                 </el-col>
                 <el-col :sm="6" :xs="24" class="mb16">
                     <use-case-item
                         text="圣遗物潜力"
                         icon="thumbs-up"
+                        url="/potential"
                     ></use-case-item>
                 </el-col>
                 <el-col :sm="6" :xs="24" class="mb16">
                     <use-case-item
-                        text="属性/圣遗物分析"
+                        text="导出工具"
                         icon="chart-pie"
                     ></use-case-item>
                 </el-col>
             </el-row>
-        </el-card>
+<!--        </el-card>-->
 
-        <el-card class="mb16">
+<!--        <el-row :gutter="16">-->
+<!--            <el-col :sm="12">-->
+<!--                <div class="my-card">-->
+<!--                    <p class="my-title">圣遗物导出工具</p>-->
+
+<!--                    <el-card-->
+<!--                        :body-style="{textAlign: 'center'}"-->
+<!--                        @click.native="newPage(links.frontendProject)"-->
+<!--                        class="item mb16"-->
+<!--                        shadow="hover"-->
+<!--                    >-->
+<!--                        <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>-->
+<!--                        <p class="item-title">前端</p>-->
+<!--                    </el-card>-->
+<!--                </div>-->
+<!--            </el-col>-->
+<!--            <el-col :sm="12">-->
+<!--                <div class="my-card">-->
+<!--                    <p class="my-title">开源地址</p>-->
+
+<!--                    <el-card-->
+<!--                        :body-style="{textAlign: 'center'}"-->
+<!--                        @click.native="newPage(links.frontendProject)"-->
+<!--                        class="item mb16"-->
+<!--                        shadow="hover"-->
+<!--                    >-->
+<!--                        <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>-->
+<!--                        <p class="item-title">前端</p>-->
+<!--                    </el-card>-->
+<!--                </div>-->
+<!--            </el-col>-->
+<!--        </el-row>-->
+
+        <el-card class="mb16" shadow="never">
             <p class="big-card-title">开源地址</p>
-            <el-alert
-                title="该工具全部免费且开源"
-                :closable="false"
-                style="margin-bottom: 16px"
-            ></el-alert>
             <el-row :gutter="16">
                 <el-col :xs="24" :sm="12">
-                    <el-card
-                        :body-style="{textAlign: 'center'}"
-                        @click.native="newPage(links.frontendProject)"
-                        class="item mb16"
-                        shadow="hover"
+                    <div
+                        class="source-code-item"
+                        @click="newPage(links.frontendProject)"
                     >
                         <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>
-                        <p class="item-title">前端</p>
-                    </el-card>
+                        <p class="item-title">Mona</p>
+                    </div>
+<!--                    <el-card-->
+<!--                        :body-style="{textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}"-->
+<!--                        @click.native="newPage(links.frontendProject)"-->
+<!--                        class="item mb16"-->
+<!--                        shadow="hover"-->
+<!--                        style="height: 15vh"-->
+<!--                    >-->
+<!--                        <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>-->
+<!--                        <p class="item-title">前端</p>-->
+<!--                    </el-card>-->
                 </el-col>
                 <el-col :xs="24" :sm="12">
-                    <el-card
-                        :body-style="{textAlign: 'center'}"
-                        @click.native="newPage(links.panelProject)" class="item"
-                        shadow="hover"
+                    <div
+                        class="source-code-item"
+                        @click="newPage(links.yasProject)"
                     >
                         <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>
-                        <p class="item-title">面板计算器（npm包）</p>
-                    </el-card>
+                        <p class="item-title">YAS</p>
+                    </div>
+<!--                    <el-card-->
+<!--                        :body-style="{textAlign: 'center'}"-->
+<!--                        @click.native="newPage(links.yasProject)" class="item"-->
+<!--                        shadow="hover"-->
+<!--                    >-->
+<!--                        <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>-->
+<!--                        <p class="item-title">YAS</p>-->
+<!--                    </el-card>-->
                 </el-col>
             </el-row>
         </el-card>
 
         <el-row :gutter="16">
             <el-col :xs="24" :sm="12">
-                <el-card class="mb16">
-                    <p class="card-title">提交bug/功能请求</p>
-                    <el-alert
-                        title="如果出现了明显不合理的结果，请务必提交bug"
-                        style="margin-bottom: 16px"
-                        :closable="false"
-                        type="warning"
-                    ></el-alert>
+                <el-card class="mb16" shadow="never">
+                    <p class="card-title">反馈</p>
+<!--                    <el-alert-->
+<!--                        title="如果出现了明显不合理的结果，请务必提交bug"-->
+<!--                        style="margin-bottom: 16px"-->
+<!--                        :closable="false"-->
+<!--                        type="warning"-->
+<!--                    ></el-alert>-->
                     <el-button @click="newPage(links.issue)" class="data-source">
                         github Issue
                         <font-awesome-icon :icon="['fab', 'github']"></font-awesome-icon>
                     </el-button>
-                    <el-button class="data-source">
-                        QQ(584130248)
-                        <font-awesome-icon icon="comment"></font-awesome-icon>
-                    </el-button>
-                    <el-button class="data-source">
+<!--                    <el-button class="data-source">-->
+<!--                        QQ(584130248)-->
+<!--                        <font-awesome-icon icon="comment"></font-awesome-icon>-->
+<!--                    </el-button>-->
+                    <el-button
+                        class="data-source"
+                        @click="newPage('https://qm.qq.com/cgi-bin/qm/qr?k=yQaJgPzRmBgEXXk1uiqNbq7CIrq-0biW&jump_from=webapi')"
+                    >
                         QQ群(801106595)
                         <font-awesome-icon icon="comment"></font-awesome-icon>
                     </el-button>
                 </el-card>
             </el-col>
+
             <el-col :xs="24" :sm="12">
-                <el-card class="mb16">
+                <el-card class="mb16" shadow="never">
                     <p class="card-title">数据来源</p>
                     <el-button @click="newPage(links.wiki)" class="data-source">
                         bilibili原神wiki
@@ -156,34 +200,41 @@
 
         <el-row :gutter="16">
             <el-col :xs="24" :sm="12">
-                <el-card class="mb16">
-                    <p class="card-title">第一次使用？</p>
+                <el-card class="mb16" shadow="never">
+                    <p class="card-title">圣遗物导出工具</p>
+<!--                    <el-button-->
+<!--                        @click="$router.push('/help/basic')"-->
+<!--                        class="data-source"-->
+<!--                    >-->
+<!--                        基本使用帮助-->
+<!--                        <i class="el-icon-question"></i>-->
+<!--                    </el-button>-->
                     <el-button
-                        @click="$router.push('/help/basic')"
-                        class="data-source"
-                    >
-                        基本使用帮助
-                        <i class="el-icon-question"></i>
-                    </el-button>
-                    <el-button
-                        @click="$router.push('/help/export-tools')"
+                        @click="newPage(links.yasDownloadGithub)"
                         type="primary"
                         class="data-source"
                     >
-                        导出工具
+                        YAS下载地址
                         <i class="el-icon-aim"></i>
                     </el-button>
                     <el-button
-                        @click="$router.push('/help/faq')"
+                        @click="$router.push('/help/export-tools')"
                         class="data-source"
                     >
-                        FAQ
-                        <i class="el-icon-question"></i>
+                        导出工具大全
+                        <i class="el-icon-aim"></i>
                     </el-button>
+<!--                    <el-button-->
+<!--                        @click="$router.push('/help/faq')"-->
+<!--                        class="data-source"-->
+<!--                    >-->
+<!--                        FAQ-->
+<!--                        <i class="el-icon-question"></i>-->
+<!--                    </el-button>-->
                 </el-card>
             </el-col>
             <el-col :xs="24" :sm="12">
-                <el-card class="mb16">
+                <el-card class="mb16" shadow="never">
                     <p class="card-title">开发者文档</p>
                     <a class="el-button no-deco" :href="links.doc" target="_blank">
                         文档
@@ -193,7 +244,7 @@
             </el-col>
         </el-row>
 
-        <el-card style="margin-bottom: 16px">
+        <el-card style="margin-bottom: 16px" shadow="never">
             <p class="card-title">请莫娜吃饭</p>
             <el-alert
                 :closable="false"
@@ -213,12 +264,11 @@
 </template>
 
 <script>
-import changelogs from "@/changelog/changelog";
-import links from "@const/links";
+import changelogs from "@/changelog/changelog"
+import links from "@const/links"
 
-import MigrateNotification from "./MigrateNotification";
-import UseCaseItem from "./UseCaseItem";
-// import NokNok from "./ad/NokNok";
+import MigrateNotification from "./MigrateNotification"
+import UseCaseItem from "./UseCaseItem"
 
 export default {
     name: "IntroPage",
@@ -328,5 +378,19 @@ export default {
     border-radius: 3px;
     color: white;
     padding: 0 8px;
+}
+
+.source-code-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    border: 1px solid #00000011;
+    cursor: pointer;
+
+    &:hover {
+        background: rgb(251, 249, 255);
+    }
 }
 </style>

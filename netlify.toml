@@ -1,0 +1,6 @@
+[build]
+publish = "dist/"
+command = "cargo install wasm-pack && node build.js"
+
+[build.environment]
+NETLIFY = "true"

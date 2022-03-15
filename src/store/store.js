@@ -36,20 +36,18 @@ _store.watch(
 _store.watch(
     state => state.presets.presets,
     newValue => {
-        localStorage.setItem("presets", JSON.stringify(newValue));
+        localStorage.setItem("presets5", JSON.stringify(newValue));
     },
     {
         deep: true,
     }
 )
 
-// watch artifact group change
+// watch kumi change
 _store.watch(
-    state => ({
-        tree: state.kumi.tree,
-    }),
+    state => state.kumi,
     newValue => {
-        localStorage.setItem("kumiTree", JSON.stringify(newValue));
+        localStorage.setItem("kumi2", JSON.stringify(newValue));
     },
     {
         deep: true

@@ -1,9 +1,11 @@
-const path = require("path");
-const fs = require("fs");
-const packageJson = fs.readFileSync("./package.json");
-const version = JSON.parse(packageJson).version || "no version";
-const webpack = require("webpack");
-const WorkerPlugin = require("worker-plugin");
+/* eslint-disable */
+
+const path = require("path")
+const fs = require("fs")
+const packageJson = fs.readFileSync("./package.json")
+const version = JSON.parse(packageJson).version || "no version"
+const webpack = require("webpack")
+const { execSync } = require("child_process")
 
 
 const BEIAN_CODE = "浙ICP备2021004987号";
@@ -51,6 +53,7 @@ module.exports = {
     publicPath: process.env.PublicPath || '/',
     configureWebpack: {
         resolve: {
+            extensions: [".vue", ".png", ".jpg"],
             alias: {
                 "@c": path.resolve(__dirname, "src/components"),
                 "@asset": path.resolve(__dirname, "src/assets"),
@@ -60,6 +63,16 @@ module.exports = {
                 "@worker": path.resolve(__dirname, "src/workers"),
                 "@const": path.resolve(__dirname, "src/constants"),
                 "@enemy": path.resolve(__dirname, "src/enemies"),
+                "mona": path.resolve(__dirname, "mona/pkg"),
+
+                "@wasm": path.resolve(__dirname, "src/wasm"),
+                "@character": path.resolve(__dirname, "src/assets/character"),
+                "@weapon": path.resolve(__dirname, "src/assets/weapon"),
+                "@targetFunction": path.resolve(__dirname, "src/assets/target_function"),
+                "@potentialFunction": path.resolve(__dirname, "src/assets/potential_function"),
+                "@buff": path.resolve(__dirname, "src/assets/buff"),
+                "@image": path.resolve(__dirname, "src/images"),
+                "@artifact": path.resolve(__dirname, "src/assets/artifacts"),
                 // "genshin_panel": path.resolve(__dirname, "../../ts/genshin/dist"),
             }
         },
@@ -75,38 +88,69 @@ module.exports = {
                     BUILD_DATE: `"${buildDate}"`,
                 }
             }),
-            new WorkerPlugin({
-                globalObject: "self",
-            }),
+            // new WorkerPlugin({
+            //     globalObject: "self",
+            // }),
         ],
         // entry: {
         //     "compute-worker": "./src/workers/compute.worker.js",
         //     "potential-worker": "./src/workers/compute_potential.worker.js",
         // },
-        // module: {
-        //     rules: [
-        //         {
-        //             test: /\.worker\.js$/,
-        //             use: [
-        //                 {
-        //                     loader: "worker-loader",
-        //                     // options: {
-        //                     //     filename: "js/[contenthash].[name].js",
-        //                     // }
-        //                 },
-        //                 // "babel-loader"
-        //             ],
-        //         }
-        //     ]
-        // },
+        module: {
+            rules: [
+                // {
+                //     test: /\.ccfg\.yaml$/,
+                //     use: [
+                //         "vue-loader",
+                //         {
+                //             loader: path.resolve(loaderPath, "character_config_loader.js"),
+                //             options: {
+                //                 type: "character"
+                //             }
+                //         }
+                //     ]
+                // },
+                // {
+                //     test: /\.cscfg\.yaml$/,
+                //     use: [
+                //         "vue-loader",
+                //         {
+                //             loader: path.resolve(loaderPath, "character_config_loader.js"),
+                //             options: {
+                //                 type: "characterSkill"
+                //             }
+                //         }
+                //     ]
+                // },
+                // {
+                //     test: /\.wcfg\.yaml$/,
+                //     use: [
+                //         "vue-loader",
+                //         path.resolve(loaderPath, "weapon_config_loader.js")
+                //     ]
+                // },
+                // {
+                //     test: /\.tfcfg\.yaml$/,
+                //     use: [
+                //         "vue-loader",
+                //         path.resolve(loaderPath, "target_function_config_loader.js")
+                //     ]
+                // },
+            ]
+        },
         externals: {
             vue: "Vue",
             "vue-router": "VueRouter",
             vuex: "Vuex",
             "element-ui": "ELEMENT",
             "vue-echarts": "VueECharts",
+            "fuse.js": "Fuse",
+        },
+        experiments: {
+            asyncWebAssembly: true
         }
     },
+    // chainWebpack: config => config.resolve.symlinks(false),
     // chainWebpack: config => {
     //     config.module
     //         .rule("worker")

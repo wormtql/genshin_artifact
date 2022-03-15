@@ -3,6 +3,8 @@ export default {
 
     frontendProject: "https://github.com/wormtql/genshin_artifact",
     panelProject: "https://github.com/wormtql/genshin_panel",
+    yasProject: "https://github.com/wormtql/yas",
+    yasDownloadGithub: "https://github.com/wormtql/yas/releases",
     issue: "https://github.com/wormtql/genshin_artifact/issues",
 
     wiki: "https://wiki.biligame.com/ys/%E9%A6%96%E9%A1%B5",

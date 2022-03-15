@@ -23,7 +23,7 @@
                     type="text"
                     :title="item.omit ? '启用' : '禁用'"
                     class="mybutton"
-                    @click="$emit('toggle')"
+                    @click.stop="$emit('toggle')"
                 ></el-button>
                 <el-button
                     v-if="deleteButton"

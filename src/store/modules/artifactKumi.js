@@ -1,184 +1,250 @@
-import Vue from "vue";
+import Vue from "vue"
 
-import getTreeNode from "../utils/getTreeNode";
+// let ID = 0
 
-let id = 2;
+// let tree = {
+//     label: "root",
+//     type: "dir",
+//     id: 0,
+//     children: [
+//         {
+//             label: "默认收藏夹",
+//             type: "dir",
+//             id: 1,
+//         }
+//     ],
+// };
+//
+// let temp = localStorage.getItem("kumiTree");
+// if (temp) {
+//     tree = JSON.parse(temp).tree;
+//     let queue = [tree];
+//     while (queue.length > 0) {
+//         let p = queue.pop();
+//         if (Object.prototype.hasOwnProperty.call(p, "id")) {
+//             id = Math.max(p.id, id);
+//         }
+//         if (p.type === "dir") {
+//             for (let child of p.children ?? []) {
+//                 queue.push(child);
+//             }
+//         }
+//     }
+//     id++;
+//     // console.log("next kumi node ID: " + id);
+// }
+//
+// function getKumiFromTree(node) {
+//     let temp = [];
+//     for (let child of node.children ?? []) {
+//         if (child.type === "data") {
+//             temp.push(child.data);
+//         }
+//     }
+//
+//     return temp;
+// }
 
-
-let tree = {
-    label: "root",
-    type: "dir",
-    id: 0,
-    children: [
-        {
-            label: "默认收藏夹",
-            type: "dir",
-            id: 1,
-        }
-    ],
-};
-
-let temp = localStorage.getItem("kumiTree");
-if (temp) {
-    tree = JSON.parse(temp).tree;
-    let queue = [tree];
-    while (queue.length > 0) {
-        let p = queue.pop();
-        if (Object.prototype.hasOwnProperty.call(p, "id")) {
-            id = Math.max(p.id, id);
-        }
-        if (p.type === "dir") {
-            for (let child of p.children ?? []) {
-                queue.push(child);
-            }
-        }
-    }
-    id++;
-    // console.log("next kumi node ID: " + id);
+function nextID() {
+    return Math.floor(Math.random() * 1e9)
 }
 
-function getKumiFromTree(node) {
-    let temp = [];
-    for (let child of node.children ?? []) {
-        if (child.type === "data") {
-            temp.push(child.data);
+function isDir(item) {
+    return item.dir
+}
+
+function loadLocalKumiOrDefault() {
+    let kumi = {
+        0: {
+            id: 0,
+            title: "默认收藏夹",
+            dir: true,
+            children: []
+        }
+    }
+    const local_str = localStorage.getItem("kumi2")
+    if (!local_str) {
+        return {
+            kumi
         }
     }
 
-    return temp;
+    const local = JSON.parse(local_str)
+    // console.log(local)
+
+    return local
 }
 
+function newDir(id, title) {
+    return {
+        id,
+        title,
+        dir: true,
+        children: []
+    }
+}
+
+function newKumi(id, title, artifactIds, dirId) {
+    return {
+        id,
+        title,
+        dir: false,
+        artifactIds,
+        parent: dirId
+    }
+}
 
 export default {
     namespaced: true,
     state: {
         // kumi: {},
-        tree,
+        // tree,
+        ...loadLocalKumiOrDefault()
     },
     mutations: {
-        // create artifacts group
-        newKumi(state, { ids, label, under }) {
-            let node = getTreeNode(state.tree, node => node.id === under);
-            if (!node || node.type !== "dir") {
-                return;
-            }
-            if (!node.children) {
-                Vue.set(node, "children", []);
-            }
-            let newId = id++;
-            node.children.push({
-                type: "data",
-                label,
-                id: newId,
-                data: {
-                    name: label,
-                    ids,
-                    id: newId,
-                }
-            })
+        newKumi(state, { artifactIds, title, dirId }) {
+            const id = nextID()
+            let kumi = newKumi(id, title, artifactIds, dirId)
+
+            let dirItem = state.kumi[dirId]
+            dirItem.children.push(id)
+
+            Vue.set(state.kumi, id, kumi)
         },
 
-        // delete artifacts group
         deleteKumi(state, { id }) {
-            let queue = [state.tree];
-            a: while (queue.length > 0) {
-                let p = queue.pop();
+            const item = state.kumi[id]
+            const dirId = item.parent
 
-                let children = p.children ?? [];
-                for (let i = 0; i < children.length; i++) {
-                    let child = children[i];
-                    if (child.type === "data" && child.id === id) {
-                        children.splice(i, 1);
-                        break a;
-                    }
-                    if (child.type === "dir") {
-                        queue.push(child);
-                    }
-                }
+            Vue.delete(state.kumi, id)
+            const dirItem = state.kumi[dirId]
+            const index = dirItem.children.indexOf(id)
+            if (index !== -1) {
+                Vue.delete(dirItem.children, index)
             }
         },
 
-        // update directory name
-        updateDirName(state, { id, newName }) {
-            let node = getTreeNode(state.tree, node => node.id === id);
-            if (!node) {
-                return;
-            }
-            node.label = newName;
+        updateKumiArtifact(state, { artifactIds, kumiId }) {
+            Vue.set(state.kumi[kumiId], "artifactIds", artifactIds)
         },
 
-        // update artifact in a group
-        updateKumiArtifact(state, { id, posId, newId }) {
-            let node = getTreeNode(state.tree, node => node.id === id);
-            if (!node) {
-                return;
+        renameItem(state, { id, name }) {
+            let item = state.kumi[id]
+            if (!item) {
+                return
             }
-
-            node.data = node.data ?? { ids: [-1, -1, -1, -1, -1] }
-            Vue.set(node.data.ids, posId, newId);
-            // node.data.ids[posId] = newId;
-        },
-
-        // update group name
-        updateKumiName(state, { id, newName }) {
-            let node = getTreeNode(state.tree, node => node.id === id);
-            if (!node || node.type !== "data") {
-                return;
-            }
-
-            node.label = newName;
-            node.data = node.data ?? {};
-            node.data.name = newName;
+            Vue.set(item, "title", name)
         },
 
         // create new directory
         newDir(state, { name }) {
-            let root = state.tree;
-            root.children.push({
-                label: name,
-                type: "dir",
-                id: id++,
-            });
+            const id = nextID()
+
+            Vue.set(state.kumi, id, newDir(id, name))
         },
 
-        // delete directory
         deleteDir(state, { id }) {
-            let queue = [state.tree];
-            a: while (queue.length > 0) {
-                let p = queue.pop();
-
-                let children = p.children ?? [];
-                for (let i = 0; i < children.length; i++) {
-                    let child = children[i];
-                    if (child.type === "dir" && child.id === id) {
-                        children.splice(i, 1);
-                        break a;
-                    }
-                    if (child.type === "dir") {
-                        queue.push(child);
-                    }
-                }
+            const item = state.kumi[id]
+            if (!item) {
+                return
             }
+
+            for (let childId of item.children) {
+                Vue.delete(state.kumi, childId)
+            }
+            Vue.delete(state.kumi, id)
         }
     },
     getters: {
-        kumiByDir: state => {
-            let temp = {};
-            
-            for (let child of state.tree.children) {
-                temp[child.id] = getKumiFromTree(child);
+        directories: (state, getters) => {
+            let results = []
+            for (let id of getters.idsAscend) {
+                const item = state.kumi[id]
+                if (isDir(item)) {
+                    results.push({
+                        title: item.title,
+                        id: item.id
+                    })
+                }
+            }
+            return results
+        },
+
+        kumiByDir(state, getters) {
+            let results = {}
+            for (let dir of getters.directories) {
+                const item = state.kumi[dir.id]
+                results[item.id] = item.children
+            }
+            return results
+        },
+
+        idsAscend: state => {
+            let temp = Object.keys(state.kumi)
+            temp.sort((a, b) => parseInt(a) - parseInt(b))
+            // console.log("ids ascend", temp)
+            return temp
+        },
+
+        kumis: (state, getters) => {
+            let results = []
+            for (let id of getters.idsAscend) {
+                const item = state.kumi[id]
+                if (!isDir(item)) {
+                    results.push({
+                        title: item.title,
+                        id: item.id
+                    })
+                }
             }
 
-            return temp;
+            return results
         },
 
-        firstDirId: state => {
-            let temp = state.tree.children[0].id;
-            return temp ?? -1;
+        kumiNames: (state, getters) => {
+            let set = new Set()
+            for (let item of getters.kumis) {
+                set.add(item.title)
+            }
+
+            return set
         },
 
-        allDirs: state => {
-            return state.tree.children;
+        dirNames(state, getters) {
+            let set = new Set()
+            for (let item of getters.directories) {
+                set.add(item.title)
+            }
+            return set
+        },
+
+        treeDataForElementUI: (state, getters) => {
+            function helper(id) {
+                const item = state.kumi[id]
+                if (!isDir(item)) {
+                    return {
+                        label: item.title,
+                        kumiId: id
+                    }
+                }
+
+                let children = []
+                for (let i of item.children) {
+                    children.push(helper(i))
+                }
+
+                return {
+                    label: item.title,
+                    children
+                }
+            }
+
+            let data = []
+            for (let dir of getters.directories) {
+                data.push(helper(dir.id))
+            }
+
+            return data
         }
     }
 }

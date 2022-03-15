@@ -1,14 +1,14 @@
 <template>
     <div class="item br-3" @click="$emit('click')">
         <div class="header">
-            <span class="fs-12">{{ item.name }}</span>
+            <span class="fs-12">{{ name }}</span>
             <div v-if="toolbar" class="buttons flex-row">
                 <el-button
                     icon="el-icon-delete"
                     type="text"
                     size="mini"
                     circle
-                    @click="$emit('delete')"
+                    @click.stop="$emit('delete')"
                     class="button"
                     title="删除"
                 ></el-button>
@@ -17,7 +17,7 @@
                     type="text"
                     size="mini"
                     circle
-                    @click="$emit('download')"
+                    @click.stop="$emit('download')"
                     class="button"
                     title="导出"
                 ></el-button>
@@ -25,8 +25,8 @@
         </div>
         <div class="body">
             <div class="detail-div fs-12">
-                <img :src="characterData.avatar" class="c-avatar br-50p">
-                <span>{{ characterData.chs }}</span>
+                <img :src="characterAvatar" class="c-avatar br-50p">
+                <span>{{ characterChs }}</span>
             </div>
             <div class="detail-div fs-12">
                 <img :src="weaponData.url" class="w-avatar br-50p">
@@ -41,9 +41,9 @@
 </template>
 
 <script>
-import { charactersData } from "@asset/characters";
-import { weaponsData } from "@asset/weapons";
-import targetFuncsData from "@asset/target_functions/data";
+import { characterData } from "@character"
+import { weaponData } from "@weapon"
+import { targetFunctionData } from "@targetFunction"
 
 export default {
     name: "PresetItem",
@@ -52,22 +52,33 @@ export default {
             type: Object,
             required: true,
         },
+        name: {},
         toolbar: {
             type: Boolean,
             default: true,
         }
     },
     computed: {
-        characterData() {
-            return charactersData[this.item.character.name];
+        characterName() {
+            return this.item.character.name
+        },
+
+        characterAvatar() {
+            const data = characterData[this.characterName]
+            return data.avatar
+        },
+
+        characterChs() {
+            const data = characterData[this.characterName]
+            return data.chs
         },
 
         weaponData() {
-            return weaponsData[this.item.weapon.name];
+            return weaponData[this.item.weapon.name]
         },
 
         tfData() {
-            return targetFuncsData[this.item.targetFunc.name];
+            return targetFunctionData[this.item.targetFunction.name]
         }
     }
 
@@ -76,13 +87,19 @@ export default {
 
 <style lang="scss" scoped>
 .item {
-    box-shadow: 0 0 10px 1px #00000011;
+    //box-shadow: 0 0 10px 1px #00000011;
+    border: 1px solid #00000011;
     display: inline-block;
     transition: 300ms;
 
+    &:hover {
+        background-color: #00000008;
+        cursor: pointer;
+    }
+
     .header {
         height: 32px;
-        border-bottom: 1px solid #00000022;
+        border-bottom: 1px solid #00000011;
 
         span {
             line-height: 32px;

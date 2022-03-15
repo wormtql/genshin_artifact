@@ -4,13 +4,14 @@
         @input="$emit('input', $event)"
         size="small"
     >
-        <el-radio-button v-if="eleMap.has('fire')" label="fire">火</el-radio-button>
-        <el-radio-button v-if="eleMap.has('thunder')" label="thunder">雷</el-radio-button>
-        <el-radio-button v-if="eleMap.has('water')" label="water">水</el-radio-button>
-        <el-radio-button v-if="eleMap.has('wind')" label="wind">风</el-radio-button>
-        <el-radio-button v-if="eleMap.has('rock')" label="rock">岩</el-radio-button>
-        <el-radio-button v-if="eleMap.has('ice')" label="ice">冰</el-radio-button>
-        <el-radio-button v-if="eleMap.has('physical')" label="physical">物理</el-radio-button>
+        <el-radio-button v-if="eleMap.has('Pyro')" label="Pyro">火</el-radio-button>
+        <el-radio-button v-if="eleMap.has('Electro')" label="Electro">雷</el-radio-button>
+        <el-radio-button v-if="eleMap.has('Hydro')" label="Hydro">水</el-radio-button>
+        <el-radio-button v-if="eleMap.has('Anemo')" label="Anemo">风</el-radio-button>
+        <el-radio-button v-if="eleMap.has('Geo')" label="Geo">岩</el-radio-button>
+        <el-radio-button v-if="eleMap.has('Cryo')" label="Cryo">冰</el-radio-button>
+        <el-radio-button v-if="eleMap.has('Dendro')" label="Dendro">草</el-radio-button>
+        <el-radio-button v-if="eleMap.has('Physical')" label="Physical">物理</el-radio-button>
     </el-radio-group>
 </template>
 
@@ -24,10 +25,9 @@ export default {
         },
         elements: {
             default: () => {
-                return ["fire", "thunder", "water", "wind", "rock", "ice", "physical"];
+                return ["Pyro", "Electro", "Hydro", "Anemo", "Geo", "Cryo", "Dendro", "Physical"];
             }
         },
-        multi: { default: false }
     },
     computed: {
         eleMap() {

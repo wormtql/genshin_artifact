@@ -19,16 +19,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color: #409eff;
-$hoverColor: rgb(102, 177, 255);
+$color: rgb(217, 236, 255);
+$hoverColor: rgb(217, 236, 255);
 $border: 2px solid $color;
+$border-radius: 10px;
 
 $backSize: 58px;
 
 .root {
     position: relative;
-    width: 200px;
-    height: 100px;
+    //width: 10vw;
+    //height: 5vw;
     // background: red;
     display: inline-flex;
     justify-content: center;
@@ -36,6 +37,7 @@ $backSize: 58px;
     font-size: 20px;
     color: $color;
     cursor: pointer;
+    border-radius: $border-radius;
 
     img {
         position: absolute;
@@ -63,6 +65,7 @@ $backSize: 58px;
         top: 0;
         border-left: $border;
         border-top: $border;
+        //border-top-left-radius: $border-radius;
     }
 
     .s2 {
@@ -70,6 +73,7 @@ $backSize: 58px;
         right: 0;
         border-top: $border;
         border-right: $border;
+        //border-top-right-radius: $border-radius;
     }
 
     .s3 {
@@ -77,6 +81,7 @@ $backSize: 58px;
         right: 0;
         border-bottom: $border;
         border-right: $border;
+        //border-bottom-right-radius: $border-radius;
     }
 
     .s4 {
@@ -84,6 +89,7 @@ $backSize: 58px;
         left: 0;
         border-bottom: $border;
         border-left: $border;
+        //border-bottom-left-radius: $border-radius;
     }
 }
 </style>

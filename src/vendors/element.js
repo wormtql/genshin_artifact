@@ -47,8 +47,26 @@ import {
     Table,
     TableColumn,
     Popconfirm,
+    Popover,
+    Tooltip,
+    Empty,
+    Autocomplete,
+    Dropdown,
+    DropdownMenu,
+    DropdownItem,
+    Skeleton,
+    SkeletonItem,
 } from "element-ui";
 
+Vue.use(Skeleton)
+Vue.use(SkeletonItem)
+Vue.use(Dropdown)
+Vue.use(DropdownItem)
+Vue.use(DropdownMenu)
+Vue.use(Autocomplete)
+Vue.use(Popover)
+Vue.use(Empty)
+Vue.use(Tooltip)
 Vue.use(Popconfirm);
 Vue.use(Tree);
 Vue.use(Table);

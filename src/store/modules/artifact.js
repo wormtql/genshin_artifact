@@ -1,7 +1,8 @@
 import Vue from "vue";
 
-import { count as countArtifacts, hash as hashArtifact } from "@util/artifacts";
+import { hash as hashArtifact } from "@util/artifacts";
 import positions from "@const/positions";
+import { deepCopy } from "@util/common"
 
 // id can only be changed in store mutations
 let id = 0;
@@ -64,6 +65,16 @@ function updateHash(hash, inc) {
     }
 }
 
+function count(artifacts) {
+    let c = 0;
+
+    positions.forEach(pos => {
+        c += artifacts[pos].length;
+    });
+
+    return c;
+}
+
 let _store = {
     namespaced: true,
     state: {
@@ -74,15 +85,6 @@ let _store = {
         head,
     },
     mutations: {
-        removeArtifact(state, { position, index }) {
-            let art = state[position][index];
-            if (art) {
-                const hash = hashArtifact(art);
-                updateHash(hash, -1);
-            }
-            state[position].splice(index, 1);
-        },
-
         removeArtifactById(state, { id }) {
             a: for (let pos of positions) {
                 let artifacts = state[pos];
@@ -98,12 +100,36 @@ let _store = {
             }
         },
 
+        updateArtifact(state, { id, artifact }) {
+            let original = findArtifact(state, id)
+
+            const check = name => Object.prototype.hasOwnProperty.call(artifact, name)
+            const attributes = ["setName", "star", "level", "position", "mainTag", "normalTags"]
+
+            for (let a of attributes) {
+                if (check(a)) {
+                    Vue.set(original, a, artifact[a])
+                }
+            }
+        },
+
         addArtifact(state, item) {
-            item.id = id++;
+            item.id = Math.floor(Math.random() * 1e9);
             state[item.position].push(item);
 
             const hash = hashArtifact(item);
             updateHash(hash, 1);
+        },
+
+        addArtifactV2(state, { artifact }) {
+            let item = deepCopy(artifact)
+            item.id = Math.floor(Math.random() * 1e9)
+
+            if (!Object.hasOwnProperty.call(item, "omit")) {
+                item.omit = false
+            }
+
+            state[item.position].push(item)
         },
 
         addArtifactWithID(state, item) {
@@ -199,17 +225,17 @@ let _store = {
             }
         },
 
-        appendArtifacts(state, obj) {
-            positions.forEach(pos => {
-                for (let art of obj[pos]) {
-                    art.id = id++;
-                    state[pos].push(art);
-
-                    const hash = hashArtifact(art);
-                    updateHash(hash, 1);
-                }
-            })
-        },
+        // appendArtifacts(state, obj) {
+        //     positions.forEach(pos => {
+        //         for (let art of obj[pos]) {
+        //             art.id = id++;
+        //             state[pos].push(art);
+        //
+        //             const hash = hashArtifact(art);
+        //             updateHash(hash, 1);
+        //         }
+        //     })
+        // },
 
         appendArtifactsCheckHash(state, obj) {
             for (let pos of positions) {
@@ -309,7 +335,7 @@ let _store = {
         },
 
         count: state => {
-            return countArtifacts(state);
+            return count(state);
         },
 
         valid: (state, getters) => {

@@ -6,7 +6,7 @@
         size="small"
     >
         <el-option-group
-            v-for="(group, elementName) in charactersByElement"
+            v-for="(group, elementName) in characterByElement"
             :key="elementName"
             :label="element2Chs(elementName)"
         >
@@ -26,32 +26,31 @@
 </template>
 
 <script>
-import { charactersByElement } from "@asset/characters";
+import { characterByElement } from "@character";
 import qualityColors from "@const/quality_colors";
 
 export default {
     name: "SelectCharacter",
     props: ["value"],
     created() {
-        this.charactersByElement = charactersByElement;
-        // console.log(charactersByElement);
+        this.characterByElement = characterByElement;
     },
     methods: {
         element2Chs(element) {
             switch(element) {
-                case "fire":
+                case "Pyro":
                     return "火";
-                case "ice":
+                case "Cryo":
                     return "冰";
-                case "grass":
+                case "Dendro":
                     return "草";
-                case "thunder":
+                case "Electro":
                     return "雷";
-                case "wind":
+                case "Anemo":
                     return "风";
-                case "rock":
+                case "Geo":
                     return "岩";
-                case "water":
+                case "Hydro":
                     return "水";
             }
         },
