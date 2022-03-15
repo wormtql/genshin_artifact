@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div align="center">
 
 
 # 莫娜占卜铺
