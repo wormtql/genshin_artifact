@@ -88,8 +88,6 @@
 <script>
 import ChooseArtifactSet from "./ChooseArtifactSet";
 import ChooseArtifactPosition from "./ChooseArtifactPosition";
-// import ChooseMainTag from "./ChooseMainTag";
-// import ChooseNormalTag from "./ChooseNormalTag";
 import SelectArtifactNormalTag from "@c/SelectArtifactNormalTag";
 import SelectArtifactMainTag from "@c/SelectArtifactMainTag";
 
@@ -153,7 +151,8 @@ export default {
 
         handleMainTagChange(e) {
             if (e.name !== this.mainTag.name) {
-                let maxValue = secondaryTags[e.name].max[5];
+                // let maxValue = secondaryTags[e.name].max[5];
+                const maxValue = artifactTags[e.name].max[5]
 
                 this.mainTag.value = convertDisplayTagValue(e.name, maxValue);
                 this.mainTag.name = e.name;
