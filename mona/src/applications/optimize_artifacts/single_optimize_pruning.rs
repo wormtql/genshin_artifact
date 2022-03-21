@@ -151,6 +151,8 @@ impl<'a> ResultRecorder<'a> {
 
     fn push_result(&mut self, arts: &Vec<&Artifact>, value: f64) {
         // utils::log!("push_result {}", value);
+        let mut arts = arts.clone();
+        arts.sort_by_key(|art| art.slot as usize);
         let arts_id: [u64; 5] = arts.iter().map(|art| art.id).collect::<Vec<_>>().try_into().unwrap();
         let hash = Self::arts_to_u64(&arts_id);
         if self.result_set.contains(&hash) {
@@ -304,14 +306,17 @@ impl<'a> SingleOptimizer<'a> {
         upper_arts[slot_index] = slot_upper_art;
     }
 
-    fn do_enumerate(&self, group_arts: &Vec<&HashMap<ArtifactSetName, (&Vec<&Artifact>, &Artifact)>>, res_rec: &mut ResultRecorder) {
+    fn do_enumerate(&self, mut group_arts: Vec<&HashMap<ArtifactSetName, (&Vec<&Artifact>, &Artifact)>>, res_rec: &mut ResultRecorder) {
+        group_arts.sort_by_cached_key(|hm| {
+            hm.values().map(|v| v.0.len()).sum::<usize>()
+        });
         let mut upper_arts = group_arts.iter().map(|hm| hm[&ArtifactSetName::Empty].1).collect::<Vec<_>>();
         let mut arts = upper_arts.clone();
-        self.do_enumerate_recursive(0, group_arts, &mut arts, &mut upper_arts, res_rec);
+        self.do_enumerate_recursive(0, &group_arts, &mut arts, &mut upper_arts, res_rec);
     }
 
     fn do4(&self, art_sets: &Vec<ArtifactSetName>, res_rec: &mut ResultRecorder) {
-        utils::log!("hello from do4");
+        // utils::log!("hello from do4");
         for flower_group in self.group_map[&ArtifactSlotName::Flower].values() {
             for feather_group in self.group_map[&ArtifactSlotName::Feather].values() {
                 for sand_group in self.group_map[&ArtifactSlotName::Sand].values() {
@@ -351,7 +356,7 @@ impl<'a> SingleOptimizer<'a> {
                                     }
                                     let mut group_arts: Vec<_> = set_group_arts.iter().map(|hm| hm).collect();
                                     group_arts[free_posi] = &groups[free_posi];
-                                    self.do_enumerate(&group_arts, res_rec);
+                                    self.do_enumerate(group_arts, res_rec);
                                 }
                             }
                         }
@@ -362,7 +367,7 @@ impl<'a> SingleOptimizer<'a> {
     }
 
     fn do22(&self, art_sets: &Vec<ArtifactSetName>, fixed_set: Option<ArtifactSetName>, res_rec: &mut ResultRecorder) {
-        utils::log!("hello from do22");
+        // utils::log!("hello from do22");
         for flower_group in self.group_map[&ArtifactSlotName::Flower].values() {
             for feather_group in self.group_map[&ArtifactSlotName::Feather].values() {
                 for sand_group in self.group_map[&ArtifactSlotName::Sand].values() {
@@ -440,7 +445,7 @@ impl<'a> SingleOptimizer<'a> {
                                                     group_arts[pos2] = &set1_group_arts[pos2];
                                                     group_arts[pos3] = &set2_group_arts[pos3];
                                                     group_arts[pos4] = &set2_group_arts[pos4];
-                                                    self.do_enumerate(&group_arts, res_rec);
+                                                    self.do_enumerate(group_arts, res_rec);
                                                 }
                                             }
                                         }
@@ -455,7 +460,7 @@ impl<'a> SingleOptimizer<'a> {
     }
 
     fn do2(&self, art_sets: &Vec<ArtifactSetName>, res_rec: &mut ResultRecorder) {
-        utils::log!("hello from do2");
+        // utils::log!("hello from do2");
         for flower_group in self.group_map[&ArtifactSlotName::Flower].values() {
             for feather_group in self.group_map[&ArtifactSlotName::Feather].values() {
                 for sand_group in self.group_map[&ArtifactSlotName::Sand].values() {
@@ -501,7 +506,7 @@ impl<'a> SingleOptimizer<'a> {
                                         let mut group_arts: Vec<_> = groups.iter().map(|hm| hm).collect();
                                         group_arts[free_posi_1] = &set_group_arts[free_posi_1];
                                         group_arts[free_posi_2] = &set_group_arts[free_posi_2];
-                                        self.do_enumerate(&group_arts, res_rec);
+                                        self.do_enumerate(group_arts, res_rec);
                                     }
                                 }
                             }
@@ -513,7 +518,7 @@ impl<'a> SingleOptimizer<'a> {
     }
 
     fn do_any(&self, res_rec: &mut ResultRecorder) {
-        utils::log!("hello from do_any");
+        // utils::log!("hello from do_any");
         for flower_group in self.group_map[&ArtifactSlotName::Flower].values() {
             for feather_group in self.group_map[&ArtifactSlotName::Feather].values() {
                 for sand_group in self.group_map[&ArtifactSlotName::Sand].values() {
@@ -533,7 +538,7 @@ impl<'a> SingleOptimizer<'a> {
                                 new_hm
                             }).collect();
                             let group_arts: Vec<_> = groups.iter().map(|hm| hm).collect();
-                            self.do_enumerate(&group_arts, res_rec);
+                            self.do_enumerate(group_arts, res_rec);
                         }
                     }
                 }
