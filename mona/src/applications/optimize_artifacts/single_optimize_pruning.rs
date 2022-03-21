@@ -1,6 +1,7 @@
 use std::cmp::{Ordering, Reverse};
 use std::collections::{BinaryHeap, HashMap, HashSet};
 use std::collections::hash_map::RandomState;
+use std::convert::TryInto;
 // use std::iter::zip;
 use crate::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use crate::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode, OptimizationResult, OptimizeArtifactInterface};
@@ -18,7 +19,7 @@ use crate::weapon::Weapon;
 
 struct OptimizationIntermediateResult {
     value: f64,
-    arts: Vec<u64>,
+    arts: [u64; 5],
 }
 
 impl PartialEq for OptimizationIntermediateResult {
@@ -109,10 +110,10 @@ impl<'a> ResultRecorder<'a> {
         Self {
             result_heap: BinaryHeap::with_capacity(result_count),
             result_count,
-            result_set: HashSet::new(),
+            result_set: HashSet::with_capacity(result_count),
 
             artifact_config,
-            character: character,
+            character,
             weapon,
             target_function,
             constraint,
@@ -144,37 +145,36 @@ impl<'a> ResultRecorder<'a> {
         Some(value)
     }
 
-    fn arts_to_u64(arts: &Vec<&Artifact>) -> u64 {
-        arts.iter().fold(0_u64, |acc, art| acc * 2000 + art.id)
+    fn arts_to_u64(arts_id: &[u64; 5]) -> u64 {
+        arts_id.iter().fold(0_u64, |acc, id| acc * 2000 + id)
     }
 
-    fn push_result(&mut self, arts: &Vec<&Artifact>) {
-        let hash = Self::arts_to_u64(arts);
+    fn push_result(&mut self, arts: &Vec<&Artifact>, value: f64) {
+        // utils::log!("push_result {}", value);
+        let arts_id: [u64; 5] = arts.iter().map(|art| art.id).collect::<Vec<_>>().try_into().unwrap();
+        let hash = Self::arts_to_u64(&arts_id);
         if self.result_set.contains(&hash) {
             return;
         }
-        if let Some(value) = self.calc_value(&arts) {
-            // utils::log!("push_result {}", value);
-            let intermediate = OptimizationIntermediateResult {
-                arts: arts.iter().map(|a| a.id).collect(),
-                value,
-            };
-            if value > self.result_heap.peek().map_or(0., |r| r.0.value) {
-                if self.result_heap.len() == self.result_count {
-                    self.result_heap.pop();
-                }
-                self.result_heap.push(Reverse(intermediate));
-                self.result_set.insert(hash);
-            }
+        if self.result_heap.len() == self.result_count {
+            let old_arts_id = self.result_heap.pop().unwrap().0.arts;
+            let old_hash = Self::arts_to_u64(&old_arts_id);
+            self.result_set.remove(&old_hash);
         }
+        let intermediate = OptimizationIntermediateResult {
+            arts: arts_id,
+            value,
+        };
+        self.result_heap.push(Reverse(intermediate));
+        self.result_set.insert(hash);
     }
 
-    fn check_hope(&self, arts: &Vec<&Artifact>) -> bool {
+    fn check_hope(&self, arts: &Vec<&Artifact>) -> (bool, f64) {
         if let Some(value) = self.calc_value(&arts) {
             // utils::log!("check_hope {}", value);
-            value > self.result_heap.peek().map_or(0., |r| r.0.value)
+            (value > self.result_heap.peek().map_or(0., |r| r.0.value), value)
         } else {
-            false
+            (false, 0.)
         }
     }
 
@@ -184,7 +184,7 @@ impl<'a> ResultRecorder<'a> {
             return false;
         }
         let arts: Vec<_> = arts.iter().map(|op| op.unwrap()).collect();
-        self.check_hope(&arts)
+        self.check_hope(&arts).0
     }
 }
 
@@ -209,9 +209,6 @@ struct SingleOptimizer<'a> {
     artifacts: Vec<&'a Artifact>,
     group_arts: Vec<(Vec<&'a Artifact>, Artifact)>,
     group_map: HashMap<ArtifactSlotName, HashMap<StatName, HashMap<ArtifactSetName, usize>>>,
-    // ideal_arts: HashMap<ArtifactSlotName, HashMap<StatName, HashMap<ArtifactSetName, Artifact>>>,
-    // stat_groups: Vec<[(&'a HashMap<ArtifactSetName, Vec<usize>>, &'a HashMap<ArtifactSetName, Artifact>); 5]>,
-    // stat_groups_temp: [(&'a HashMap<ArtifactSetName, Vec<usize>>, &'a HashMap<ArtifactSetName, Artifact>); 5],
     constraint: Option<&'a ConstraintConfig>,
 }
 
@@ -222,7 +219,6 @@ impl<'a> SingleOptimizer<'a> {
     ) -> Self {
         // group arts by slot, main stat, set; and make an fake super art for each set
         let mut group_arts = Vec::<(Vec<&Artifact>, Artifact)>::new();
-        // let mut group_arts = HashMap::<ArtifactSlotName, HashMap<StatName, HashMap<ArtifactSetName, (Vec<&Artifact>, Artifact)>>>::new();
         let mut group_map = HashMap::<ArtifactSlotName, HashMap<StatName, HashMap<ArtifactSetName, usize>>>::new();
         for &art in artifacts.iter() {
             let slot_res = group_map.entry(art.slot).or_default();
@@ -242,14 +238,6 @@ impl<'a> SingleOptimizer<'a> {
                 mstat_res.insert(art.set_name, gi);
                 &mut group_arts[gi]
             };
-            // let (set_res, super_art) = mstat_res.entry(art.set_name).or_insert_with(|| (Vec::new(), Artifact::new(
-            //     art.set_name,
-            //     art.slot,
-            //     0,
-            //     5,
-            //     Vec::new(),
-            //     (art.main_stat.0, 0.),
-            // )));
             set_res.push(art);
             merge_art_stat(super_art, &art);
         }
@@ -263,9 +251,6 @@ impl<'a> SingleOptimizer<'a> {
                     Vec::new(),
                     (mstat, 0.),
                 );
-                // for (_, set_super_art) in stat_group.values() {
-                //     merge_art_stat(&mut super_art, set_super_art);
-                // }
                 for &gi in stat_group.values() {
                     let (_, set_super_art) = &mut group_arts[gi];
                     merge_art_stat(&mut super_art, set_super_art);
@@ -276,114 +261,53 @@ impl<'a> SingleOptimizer<'a> {
             }
         }
 
-        // get fake ideal arts
-        // let mut ideal_arts = HashMap::<ArtifactSlotName, HashMap<StatName, HashMap<ArtifactSetName, Artifact>>>::new();
-        // for (&slot, slot_arts) in group_arts.iter() {
-        //     let slot_res = ideal_arts.entry(slot).or_default();
-        //     for (&mstat, stat_arts) in slot_arts.iter() {
-        //         let mstat_res = slot_res.entry(mstat).or_default();
-        //         for (&set, set_arts) in stat_arts.iter() {
-        //             let mut set_ideal_art = Artifact::new(
-        //                 set,
-        //                 slot,
-        //                 0,
-        //                 5,
-        //                 Vec::new(),
-        //                 (mstat, 0.),
-        //             );
-        //             for art in set_arts.iter() {
-        //                 merge_art_stat(&mut set_ideal_art, art);
-        //             }
-        //             mstat_res.insert(set, set_ideal_art);
-        //         }
-        //         // over all set
-        //         let mut empty_ideal_art = Artifact::new(
-        //             ArtifactSetName::Empty,
-        //             slot,
-        //             0,
-        //             5,
-        //             Vec::new(),
-        //             (mstat, 0.),
-        //         );
-        //         for art in mstat_res.values() {
-        //             merge_art_stat(&mut empty_ideal_art, art);
-        //         }
-        //         mstat_res.insert(ArtifactSetName::Empty, empty_ideal_art);
-        //     }
-        // }
-
-        let mut _self = Self {
+        Self {
             artifacts: artifacts.iter().map(|x| *x).collect(),
             group_arts,
             group_map,
-            // ideal_arts,
-            // stat_groups: Vec::new(),
-            // stat_groups_temp: [],
             constraint,
-        };
-        // let mut temp: [(&HashMap<ArtifactSetName, Vec<usize>>, &HashMap<ArtifactSetName, Artifact>); 5];
-        // _self.gen_stat_group(0, &mut temp);
-
-        _self
+        }
     }
-
-    // fn gen_stat_group(&mut self, slot_index: usize, temp: &mut [(&'a HashMap<ArtifactSetName, Vec<usize>>, &'a HashMap<ArtifactSetName, Artifact>); 5]) {
-    //     if slot_index == ArtifactSlotName::LEN {
-    //         let _temp: [(&HashMap<ArtifactSetName, Vec<usize>>, &HashMap<ArtifactSetName, Artifact>); 5];
-    //         _temp.clone_from_slice(temp);
-    //         // _temp.clone_from_slice(&self.stat_groups_temp);
-    //         self.stat_groups.push(_temp);
-    //         return;
-    //     }
-    //     let slot: ArtifactSlotName = num::FromPrimitive::from_usize(slot_index).unwrap();
-    //     // for group in self.group_arts[&slot].values() {
-    //     //     self.stat_groups_temp[slot_index].0 = group;
-    //     //     self.gen_stat_group(slot_index + 1);
-    //     // }
-    //     for (group, ideal) in zip(self.group_arts[&slot].values(), self.ideal_arts[&slot].values()) {
-    //         temp[slot_index] = (group, ideal);
-    //         self.gen_stat_group(slot_index + 1, temp);
-    //     }
-    // }
 
     fn do_enumerate_recursive<'b>(
         &self,
         slot_index: usize,
-        group_arts: &Vec<&HashMap<ArtifactSetName, (&Vec<&'b Artifact>, &Artifact)>>,
+        group_arts: &Vec<&HashMap<ArtifactSetName, (&Vec<&'b Artifact>, &'b Artifact)>>,
         arts: &mut Vec<&'b Artifact>,
+        upper_arts: &mut Vec<&'b Artifact>,
         res_rec: &mut ResultRecorder,
     ) {
-        if slot_index == 5 {
-            res_rec.push_result(arts);
-            return;
-        }
-        let mut upper_arts = arts.clone();
-        for i in slot_index..5 {
-            upper_arts.push(group_arts[i][&ArtifactSetName::Empty].1);
-        }
-        if !res_rec.check_hope(&upper_arts) {
-            return;
-        }
+        let slot_upper_art = upper_arts[slot_index];
         let slot_group = group_arts[slot_index];
         for (set_arts, set_super_art) in slot_group.values() {
             if set_arts.is_empty() {
                 continue;
             }
             upper_arts[slot_index] = set_super_art;
-            if !res_rec.check_hope(&upper_arts) {
+            if !res_rec.check_hope(upper_arts).0 {
                 continue;
             }
             for art in set_arts.iter() {
-                arts.push(art);
-                self.do_enumerate_recursive(slot_index + 1, group_arts, arts, res_rec);
-                arts.pop();
+                upper_arts[slot_index] = art;
+                let (hope, value) = res_rec.check_hope(upper_arts);
+                if !hope {
+                    continue;
+                }
+                arts[slot_index] = art;
+                if slot_index == 4 {
+                    res_rec.push_result(arts, value);
+                } else {
+                    self.do_enumerate_recursive(slot_index + 1, group_arts, arts, upper_arts, res_rec);
+                }
             }
         }
+        upper_arts[slot_index] = slot_upper_art;
     }
 
     fn do_enumerate(&self, group_arts: &Vec<&HashMap<ArtifactSetName, (&Vec<&Artifact>, &Artifact)>>, res_rec: &mut ResultRecorder) {
-        let mut arts = Vec::with_capacity(5);
-        self.do_enumerate_recursive(0, group_arts, &mut arts, res_rec);
+        let mut upper_arts = group_arts.iter().map(|hm| hm[&ArtifactSetName::Empty].1).collect::<Vec<_>>();
+        let mut arts = upper_arts.clone();
+        self.do_enumerate_recursive(0, group_arts, &mut arts, &mut upper_arts, res_rec);
     }
 
     fn do4(&self, art_sets: &Vec<ArtifactSetName>, res_rec: &mut ResultRecorder) {
