@@ -4,6 +4,7 @@ use super::effect_config::ArtifactEffectConfig;
 use crate::character::Character;
 use crate::attribute::Attribute;
 
+pub use empty::Empty;
 pub use adventurer::Adventurer;
 pub use archaic_petra::ArchaicPetra;
 pub use berserker::Berserker;
@@ -42,6 +43,7 @@ pub use traveling_doctor::TravelingDoctor;
 pub use viridescent_venerer::ViridescentVenerer;
 pub use wanderers_troupe::WanderersTroupe;
 
+pub mod empty;
 pub mod adventurer;
 pub mod archaic_petra;
 pub mod berserker;

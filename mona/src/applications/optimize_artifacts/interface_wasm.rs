@@ -16,7 +16,7 @@ use crate::enemies::Enemy;
 use crate::{utils};
 use crate::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use crate::applications::optimize_artifacts::inter::OptimizeArtifactInterface;
-use crate::applications::optimize_artifacts::single_optimize::{optimize_single, optimize_single_interface_wasm};
+use crate::applications::optimize_artifacts::single_optimize_pruning::{optimize_single, optimize_single_interface_wasm};
 
 pub struct OptimizeSingleWasm;
 

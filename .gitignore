@@ -1,8 +1,8 @@
 .DS_Store
 node_modules
 /dist
-/mona
-/mona_derive
+# /mona
+# /mona_derive
 
 # local env files
 .env.local

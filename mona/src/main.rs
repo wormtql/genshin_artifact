@@ -210,7 +210,37 @@ fn test_potential() {
         id: 0
     };
 
-    let potential_config =
+    let potential_config = PotentialFunctionArtifactEffConfig {
+        atk_use: false,
+        atk_weight: 1.,
+
+        atk_p_use: false,
+        atk_p_weight: 1.,
+
+        hp_use: false,
+        hp_weight: 1.,
+
+        hp_p_use: false,
+        hp_p_weight: 1.,
+
+        def_use: false,
+        def_weight: 1.,
+
+        def_p_use: false,
+        def_p_weight: 1.,
+
+        critical_use: true,
+        critical_weight: 1.,
+
+        critical_damage_use: true,
+        critical_damage_weight: 1.,
+
+        elemental_mastery_use: false,
+        elemental_mastery_weight: 1.,
+
+        recharge_use: false,
+        recharge_weight: 1.
+    };
 
     let pf = PotentialFunctionArtifactEff::create(&PotentialFunctionConfig::ArtifactEff(potential_config));
 

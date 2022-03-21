@@ -19,6 +19,7 @@ use crate::artifacts::effect::ArtifactEffect;
 #[derive(Hash, Eq, PartialEq, Debug, Copy, Clone)]
 #[derive(FromPrimitive, ArtifactData, EnumLen, Display)]
 pub enum ArtifactSetName {
+    Empty,  // use to construct fake super artifact
     Adventurer,
     ArchaicPetra,
     Berserker,
@@ -69,6 +70,7 @@ impl ArtifactSetName {
 
 #[derive(Hash, Eq, PartialEq, Debug, Copy, Clone)]
 #[derive(Serialize, Deserialize)]
+#[derive(FromPrimitive, EnumLen)]
 pub enum ArtifactSlotName {
     Flower,
     Feather,
