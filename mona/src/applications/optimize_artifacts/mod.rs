@@ -5,4 +5,3 @@ pub mod single_optimize;
 pub mod inter;
 pub mod algorithm;
 pub mod algorithms;
-

@@ -1,4 +1,5 @@
 use serde::{Serialize, Deserialize};
+use crate::applications::optimize_artifacts::algorithms::cutoff_a_star::AStarCutoff;
 
 use crate::applications::optimize_artifacts::algorithms::cutoff_heuristic::CutoffAlgorithmHeuristic;
 use crate::applications::optimize_artifacts::algorithms::CutoffAlgorithm2;
@@ -37,7 +38,7 @@ pub enum SingleOptimizeAlgorithmName {
 impl SingleOptimizeAlgorithmName {
     pub fn get_algorithm(&self) -> Box<dyn SingleOptimizeAlgorithm> {
         match *self {
-            SingleOptimizeAlgorithmName::AStar => Box::new(CutoffAlgorithm2),
+            SingleOptimizeAlgorithmName::AStar => Box::new(AStarCutoff),
             SingleOptimizeAlgorithmName::Naive => Box::new(CutoffAlgorithmHeuristic { use_heuristic: false }),
             SingleOptimizeAlgorithmName::Heuristic => Box::new(CutoffAlgorithmHeuristic { use_heuristic: true })
         }

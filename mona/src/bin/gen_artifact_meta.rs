@@ -32,7 +32,7 @@ struct ArtifactMetaTemplate {
 fn main() {
     let mut data = Vec::new();
 
-    for i in 0_usize..ArtifactSetName::LEN {
+    for i in 1_usize..ArtifactSetName::LEN {
         let e: ArtifactSetName = num::FromPrimitive::from_usize(i).unwrap();
         let meta: ArtifactMetaData = e.get_meta();
         let config4: Option<&'static [ItemConfig]> = e.get_config4();
