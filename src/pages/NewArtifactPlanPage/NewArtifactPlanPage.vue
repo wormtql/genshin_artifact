@@ -48,8 +48,9 @@
                 style="margin-bottom: 12px"
             ></el-alert>
             <el-radio-group v-model="computationMode">
-                <el-radio label="optim">剪枝</el-radio>
-                <el-radio label="enum">纯枚举</el-radio>
+                <el-radio label="AStar">A*</el-radio>
+                <el-radio label="Heuristic">启发式剪枝</el-radio>
+                <el-radio label="Naive">纯枚举</el-radio>
             </el-radio-group>
 
             <p class="common-title2">限定套装</p>
@@ -762,7 +763,7 @@ export default {
             constraintSandMainStats: [],
             constraintGobletMainStats: [],
             constraintHeadMainStats: [],
-            computationMode: "optim",
+            computationMode: "AStar",
             // constraintMinRecharge: 1,
             // constraintMinElementalMastery: 0,
             // constraintMinCritical: 0,
@@ -1252,7 +1253,7 @@ export default {
             }
 
             // use compute mode
-            this.computationMode = item.computationMode ?? "optim"
+            this.computationMode = item.algorithm ?? "AStar"
 
             // use artifact effect mode
             this.artifactEffectMode = item.artifactEffectMode ?? "auto"
@@ -1303,7 +1304,7 @@ export default {
                     headMainStats: deepCopy(this.constraintHeadMainStats),
                 },
                 artifactConfig: deepCopy(this.artifactConfig),
-                computationMode: this.computationMode,
+                algorithm: this.computationMode,
                 artifactEffectMode: this.artifactEffectMode
             }
             return item
@@ -1445,8 +1446,7 @@ export default {
                 constraint: this.constraintInterface,
                 buffs: this.buffsInterface,
                 artifact_config,
-                use_optim: this.computationMode === "optim",
-
+                algorithm: this.computationMode,
             }
         },
 

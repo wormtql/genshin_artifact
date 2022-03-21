@@ -5,7 +5,8 @@ use rand::prelude::*;
 use rand::distributions::WeightedIndex;
 use num_derive::FromPrimitive;
 use serde::{Serialize, Deserialize};
-use strum_macros::Display;
+use strum::IntoEnumIterator;
+use strum_macros::{Display, EnumIter};
 use mona_derive::{ArtifactData, EnumLen};
 
 use crate::common::StatName;
@@ -17,7 +18,7 @@ use crate::artifacts::effect::ArtifactEffect;
 
 #[derive(Serialize, Deserialize)]
 #[derive(Hash, Eq, PartialEq, Debug, Copy, Clone)]
-#[derive(FromPrimitive, ArtifactData, EnumLen, Display)]
+#[derive(FromPrimitive, ArtifactData, EnumLen, Display, EnumIter)]
 pub enum ArtifactSetName {
     Adventurer,
     ArchaicPetra,
@@ -69,6 +70,7 @@ impl ArtifactSetName {
 
 #[derive(Hash, Eq, PartialEq, Debug, Copy, Clone)]
 #[derive(Serialize, Deserialize)]
+#[derive(FromPrimitive, EnumIter)]
 pub enum ArtifactSlotName {
     Flower,
     Feather,
@@ -109,6 +111,8 @@ impl Artifact {
     }
 
     pub fn new_random(slot: ArtifactSlotName) -> Artifact {
+        let main_stat = StatName::random_artifact_main_stat(slot);
+        let main_stat_value = StatName::artifact_main_stat_max_value(main_stat);
         // todo currently it's not random
         Artifact {
             set_name: ArtifactSetName::random(),
@@ -122,7 +126,7 @@ impl Artifact {
                 (StatName::Recharge, 0.1),
                 (StatName::ElementalMastery, 10.0),
             ],
-            main_stat: (StatName::ATKPercentage, 0.1),
+            main_stat: (main_stat, main_stat_value),
             id: thread_rng().gen()
         }
     }
@@ -170,12 +174,12 @@ impl Artifact {
     }
 }
 
-pub struct ArtifactList<'a, 'b> {
-    pub artifacts: &'a Vec<&'b Artifact>
+pub struct ArtifactList<'a> {
+    pub artifacts: &'a [&'a Artifact]
     // pub artifacts: &'a SmallVec<[&'b Artifact; 5]>
 }
 
-impl<'a, 'b> ArtifactList<'a, 'b> {
+impl<'a> ArtifactList<'a> {
     pub fn apply<T: Attribute>(&self, attribute: &mut T, character: &Character<T>, config: &ArtifactEffectConfig) {
         let mut attributes_hash: HashMap<StatName, f64> = HashMap::new();
         let mut set_name_count: HashMap<ArtifactSetName, i32> = HashMap::new();

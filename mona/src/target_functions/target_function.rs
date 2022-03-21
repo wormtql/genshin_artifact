@@ -32,7 +32,7 @@ pub trait TargetFunction {
         attribute: &SimpleAttributeGraph2,
         character: &Character<SimpleAttributeGraph2>,
         weapon: &Weapon<SimpleAttributeGraph2>,
-        artifacts: &Vec<&Artifact>,
+        artifacts: &[&Artifact],
         enemy: &Enemy
     ) -> f64;
 }

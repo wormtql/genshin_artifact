@@ -1,5 +1,7 @@
 use serde::{Serialize, Deserialize};
+use rand::{Rng, thread_rng};
 
+use crate::artifacts::ArtifactSlotName;
 use crate::attribute::{AttributeName, Attribute, AttributeCommon};
 use super::element::Element;
 
@@ -101,6 +103,41 @@ impl StatName {
             Element::Geo => StatName::GeoBonus,
             Element::Dendro => StatName::DendroBonus,
             Element::Physical => StatName::PhysicalBonus,
+        }
+    }
+
+    pub fn random_artifact_main_stat(slot: ArtifactSlotName) -> StatName {
+        use StatName::*;
+        let v = match slot {
+            ArtifactSlotName::Flower => return HPFixed,
+            ArtifactSlotName::Feather => return ATKFixed,
+            ArtifactSlotName::Sand => vec![ATKPercentage, DEFPercentage, HPPercentage, ElementalMastery, Recharge],
+            ArtifactSlotName::Goblet => vec![ATKPercentage, DEFPercentage, HPPercentage, ElementalMastery, PyroBonus, ElectroBonus, HydroBonus, CryoBonus, AnemoBonus, GeoBonus, PhysicalBonus],
+            ArtifactSlotName::Head => vec![ATKPercentage, DEFPercentage, HPPercentage, ElementalMastery, CriticalRate, CriticalDamage, HealingBonus]
+        };
+
+        let len = v.len();
+        let index: usize = thread_rng().gen::<usize>() % len;
+
+        v[index]
+    }
+
+    #[inline]
+    pub fn artifact_main_stat_max_value(name: StatName) -> f64 {
+        use StatName::*;
+        match name {
+            HPFixed => 4780.0,
+            ATKFixed => 311.0,
+            Recharge => 0.518,
+            CriticalRate => 0.311,
+            HPPercentage | ATKPercentage => 0.466,
+            DEFPercentage => 0.583,
+            CriticalDamage => 0.622,
+            HealingBonus => 0.359,
+            ElementalMastery => 187.0,
+            PyroBonus | ElectroBonus | HydroBonus | CryoBonus | AnemoBonus | GeoBonus => 0.466,
+            PhysicalBonus => 0.583,
+            _ => unreachable!()
         }
     }
 }

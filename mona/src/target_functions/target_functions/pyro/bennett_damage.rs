@@ -136,7 +136,7 @@ impl TargetFunction for BennettDamageTargetFunction {
         }
     }
 
-    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &Vec<&Artifact>, enemy: &Enemy) -> f64 {
+    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
         let bonus_for_other = attribute.get_value(AttributeName::ATKBonusForOther);
         // if bonus_for_other > 1e-6 {
         //     crate::utils::log!("666 {}", bonus_for_other);

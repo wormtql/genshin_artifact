@@ -1,5 +1,6 @@
 use serde::{Serialize, Deserialize};
 use crate::applications::common::{ArtifactFilterConfig, BuffInterface, CharacterInterface, TargetFunctionInterface, WeaponInterface};
+use crate::applications::optimize_artifacts::algorithm::SingleOptimizeAlgorithmName;
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::{ArtifactConfigInterface, ArtifactEffectConfig};
 use crate::buffs::BuffConfig;
@@ -77,7 +78,8 @@ pub struct OptimizeArtifactInterface {
     pub constraint: Option<ConstraintConfig>,
     pub filter: Option<ArtifactFilterConfig>,
     pub buffs: Vec<BuffInterface>,
-    pub use_optim: bool,
+    pub algorithm: SingleOptimizeAlgorithmName,
+    // pub use_optim: bool,
 }
 
 #[derive(Serialize, Deserialize, Default, Debug)]

@@ -385,7 +385,7 @@ pub fn optimize_single_interface_wasm(input: &OptimizeArtifactInterface, artifac
         constraint_ref,
         &buffs,
         100,
-        input.use_optim
+        true
     );
 
     results

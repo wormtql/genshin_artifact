@@ -1,5 +1,6 @@
 use crate::common::Element;
 
+#[derive(Clone)]
 pub struct Enemy {
     pub level: i32,
     pub electro_res: f64,

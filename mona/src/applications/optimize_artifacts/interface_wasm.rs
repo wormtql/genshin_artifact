@@ -32,8 +32,33 @@ impl OptimizeSingleWasm {
         let artifacts: Vec<Artifact> = artifacts.into_serde().unwrap();
         let artifacts_ref: Vec<_> = artifacts.iter().collect();
 
-        let results = optimize_single_interface_wasm(&input, &artifacts_ref);
+        let character = input.character.to_character();
+        let weapon = input.weapon.to_weapon(&character);
+        let target_function = input.target_function.to_target_function(&character, &weapon);
+        let constraint = input.constraint.unwrap_or(Default::default());
+        let buffs: Vec<Box<dyn Buff<SimpleAttributeGraph2>>> = input.buffs.iter().map(|x| x.to_buff()).collect();
+        let artifact_config = input.artifact_config.as_ref().map(|x| x.clone().to_config());
 
-        JsValue::from_serde(&results).unwrap()
+        let filtered_artifacts = input.filter.as_ref().map(|x| x.filter_artifact(&artifacts_ref));
+        let artifacts = match filtered_artifacts {
+            Some(ref a) => a.as_slice(),
+            None => &artifacts_ref
+        };
+
+        let algorithm = input.algorithm.get_algorithm();
+
+        let result = algorithm.optimize(
+            &artifacts,
+            artifact_config,
+            &character,
+            &weapon,
+            &target_function,
+            &Default::default(),
+            &buffs,
+            &constraint,
+            100
+        );
+
+        JsValue::from_serde(&result).unwrap()
     }
 }

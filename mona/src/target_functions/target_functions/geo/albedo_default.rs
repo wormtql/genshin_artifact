@@ -117,7 +117,7 @@ impl TargetFunction for AlbedoDefaultTargetFunction {
         attribute: &SimpleAttributeGraph2,
         character: &Character<SimpleAttributeGraph2>,
         _weapon: &Weapon<SimpleAttributeGraph2>,
-        _artifacts: &Vec<&Artifact>,
+        _artifacts: &[&Artifact],
         enemy: &Enemy) -> f64 {
         let context = DamageContext {
             character_common_data: &character.common_data,

@@ -81,28 +81,10 @@ impl TargetFunction for BarbaraDefaultTargetFunction {
     }
 
     fn get_default_artifact_config(&self, _team_config: &TeamQuantization) -> ArtifactEffectConfig {
-        ArtifactEffectConfig {
-            config_archaic_petra: Default::default(),
-            config_berserker: Default::default(),
-            config_blizzard_strayer: Default::default(),
-            config_bloodstained_chivalry: Default::default(),
-            config_brave_heart: Default::default(),
-            config_crimson_witch_of_flames: Default::default(),
-            config_heart_of_depth: Default::default(),
-            config_husk_of_opulent_dreams: Default::default(),
-            config_instructor: Default::default(),
-            config_lavawalker: Default::default(),
-            config_martial_artist: Default::default(),
-            config_noblesse_oblige: Default::default(),
-            config_pale_flame: Default::default(),
-            config_retracing_bolide: Default::default(),
-            config_shimenawas_reminiscence: Default::default(),
-            config_tenacity_of_the_millelith: Default::default(),
-            config_thundersoother: Default::default()
-        }
+        Default::default()
     }
 
-    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &Vec<&Artifact>, enemy: &Enemy) -> f64 {
+    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
             attribute,
