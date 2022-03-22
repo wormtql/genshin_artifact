@@ -2,6 +2,7 @@ use std::cmp::{Ordering, Reverse};
 use std::collections::{BinaryHeap, HashMap, HashSet};
 use std::collections::hash_map::RandomState;
 use crate::applications::optimize_artifacts::algorithm::SingleOptimizeAlgorithm;
+use crate::applications::optimize_artifacts::algorithms::cutoff_heuristic::CutoffAlgorithmHeuristic;
 use crate::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode, OptimizationResult};
 use crate::artifacts::{Artifact, ArtifactList, ArtifactSetName, ArtifactSlotName};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
@@ -11,6 +12,7 @@ use crate::character::Character;
 use crate::common::StatName;
 use crate::enemies::Enemy;
 use crate::target_functions::TargetFunction;
+use crate::utils::artifact::get_per_slot_artifacts;
 use crate::weapon::Weapon;
 
 struct OptimizationIntermediateResult {
@@ -593,6 +595,14 @@ pub struct AStarCutoff;
 
 impl SingleOptimizeAlgorithm for AStarCutoff {
     fn optimize(&self, artifacts: &[&Artifact], artifact_config: Option<ArtifactEffectConfig>, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, target_function: &Box<dyn TargetFunction>, enemy: &Enemy, buffs: &[Box<dyn Buff<SimpleAttributeGraph2>>], constraint: &ConstraintConfig, count: usize) -> Vec<OptimizationResult> {
+        let (flowers, feathers, sands, goblets, heads) = get_per_slot_artifacts(&artifacts);
+
+        let any_zero = vec![flowers, feathers, sands, goblets, heads].iter().any(|x| x.len() == 0);
+        if any_zero {
+            let naive_algo = CutoffAlgorithmHeuristic { use_heuristic: false };
+            return naive_algo.optimize(artifacts, artifact_config, character, weapon, target_function, enemy, buffs, constraint, count);
+        }
+
         let single_optimizer = SingleOptimizer::new(artifacts, constraint);
         let mut res_rec = ResultRecorder::new(
             artifact_config,

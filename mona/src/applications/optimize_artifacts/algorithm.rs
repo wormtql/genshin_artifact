@@ -35,6 +35,12 @@ pub enum SingleOptimizeAlgorithmName {
     Heuristic,
 }
 
+impl Default for SingleOptimizeAlgorithmName {
+    fn default() -> Self {
+        SingleOptimizeAlgorithmName::AStar
+    }
+}
+
 impl SingleOptimizeAlgorithmName {
     pub fn get_algorithm(&self) -> Box<dyn SingleOptimizeAlgorithm> {
         match *self {

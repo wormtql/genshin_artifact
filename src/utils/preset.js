@@ -82,10 +82,10 @@ export function convertPresetToWasmInterface(item) {
     }
     wasm.buffs = item.buffs ?? []
 
-    if (item.computationMode) {
-        wasm.use_optim = item.computationMode === "optim"
+    if (item.algorithm) {
+        wasm.algorithm = item.algorithm
     } else {
-        wasm.use_optim = true
+        wasm.algorithm = "AStar"
     }
 
     if (item.filter) {

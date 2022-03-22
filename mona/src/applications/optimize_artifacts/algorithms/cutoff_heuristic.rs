@@ -259,10 +259,8 @@ impl SingleOptimizeAlgorithm for CutoffAlgorithmHeuristic {
                                 &buffs
                             );
 
-                            if need_constraint {
-                                if !check_attribute(&attribute, constraint) {
-                                    continue;
-                                }
+                            if !check_attribute(&attribute, constraint) {
+                                continue;
                             }
 
                             let value = target_function.target(&attribute, character, weapon, &buffer_artifacts, &enemy);

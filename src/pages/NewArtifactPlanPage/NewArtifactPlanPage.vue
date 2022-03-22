@@ -40,14 +40,24 @@
             title="计算设置"
             width="60%"
         >
-            <p class="common-title2">算法</p>
+            <p class="common-title2">
+                算法
+                <el-tooltip>
+                    <i class="el-icon-question" content=""></i>
+                    <template #content>
+                        A*：推荐<br>
+                        启发式剪枝：不保证得到最优解，但是速度快<br>
+                        纯枚举：不推荐
+                    </template>
+                </el-tooltip>
+            </p>
             <el-alert
-                v-if="computationMode === 'enum'"
+                v-if="algorithm === 'Naive'"
                 title="请限定套装或者主词条，否则计算将十分耗时，可能导致计算超时"
                 type="warning"
                 style="margin-bottom: 12px"
             ></el-alert>
-            <el-radio-group v-model="computationMode">
+            <el-radio-group v-model="algorithm">
                 <el-radio label="AStar">A*</el-radio>
                 <el-radio label="Heuristic">启发式剪枝</el-radio>
                 <el-radio label="Naive">纯枚举</el-radio>
@@ -96,57 +106,57 @@
                 </div>
             </div>
 
-<!--            <p class="constraint-title">限定最小值</p>-->
-<!--            <div>-->
-<!--                <div class="constraint-min-item">-->
-<!--                    <span class="constraint-min-title">元素充能效率</span>-->
-<!--                    <div style="width: 40%">-->
-<!--                        <el-slider-->
-<!--                            :min="1"-->
-<!--                            :max="4"-->
-<!--                            :step="0.05"-->
-<!--                            v-model="constraintMinRecharge"-->
-<!--                            :show-input="true"-->
-<!--                        ></el-slider>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="constraint-min-item">-->
-<!--                    <span class="constraint-min-title">元素精通</span>-->
-<!--                    <div style="width: 40%">-->
-<!--                        <el-slider-->
-<!--                            :min="0"-->
-<!--                            :max="2000"-->
-<!--                            :step="10"-->
-<!--                            v-model="constraintMinElementalMastery"-->
-<!--                            :show-input="true"-->
-<!--                        ></el-slider>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="constraint-min-item">-->
-<!--                    <span class="constraint-min-title">暴击率</span>-->
-<!--                    <div style="width: 40%">-->
-<!--                        <el-slider-->
-<!--                            :min="0"-->
-<!--                            :max="1"-->
-<!--                            :step="0.01"-->
-<!--                            v-model="constraintMinCritical"-->
-<!--                            :show-input="true"-->
-<!--                        ></el-slider>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="constraint-min-item">-->
-<!--                    <span class="constraint-min-title">暴击伤害</span>-->
-<!--                    <div style="width: 40%">-->
-<!--                        <el-slider-->
-<!--                            :min="0"-->
-<!--                            :max="4"-->
-<!--                            :step="0.1"-->
-<!--                            v-model="constraintMinCriticalDamage"-->
-<!--                            :show-input="true"-->
-<!--                        ></el-slider>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <p class="constraint-title">限定最小值</p>
+            <div>
+                <div class="constraint-min-item">
+                    <span class="constraint-min-title">元素充能效率</span>
+                    <div style="width: 40%">
+                        <el-slider
+                            :min="1"
+                            :max="4"
+                            :step="0.05"
+                            v-model="constraintMinRecharge"
+                            :show-input="true"
+                        ></el-slider>
+                    </div>
+                </div>
+                <div class="constraint-min-item">
+                    <span class="constraint-min-title">元素精通</span>
+                    <div style="width: 40%">
+                        <el-slider
+                            :min="0"
+                            :max="2000"
+                            :step="10"
+                            v-model="constraintMinElementalMastery"
+                            :show-input="true"
+                        ></el-slider>
+                    </div>
+                </div>
+                <div class="constraint-min-item">
+                    <span class="constraint-min-title">暴击率</span>
+                    <div style="width: 40%">
+                        <el-slider
+                            :min="0"
+                            :max="1"
+                            :step="0.01"
+                            v-model="constraintMinCritical"
+                            :show-input="true"
+                        ></el-slider>
+                    </div>
+                </div>
+                <div class="constraint-min-item">
+                    <span class="constraint-min-title">暴击伤害</span>
+                    <div style="width: 40%">
+                        <el-slider
+                            :min="0"
+                            :max="4"
+                            :step="0.1"
+                            v-model="constraintMinCriticalDamage"
+                            :show-input="true"
+                        ></el-slider>
+                    </div>
+                </div>
+            </div>
             
             <p class="common-title2">过滤圣遗物组</p>
             <div style="max-height: 50vh; overflow: auto" class="mona-scroll">
@@ -763,11 +773,11 @@ export default {
             constraintSandMainStats: [],
             constraintGobletMainStats: [],
             constraintHeadMainStats: [],
-            computationMode: "AStar",
-            // constraintMinRecharge: 1,
-            // constraintMinElementalMastery: 0,
-            // constraintMinCritical: 0,
-            // constraintMinCriticalDamage: 0,
+            algorithm: "AStar",
+            constraintMinRecharge: 1,
+            constraintMinElementalMastery: 0,
+            constraintMinCritical: 0,
+            constraintMinCriticalDamage: 0,
 
             enemyConfig: {
                 level: 90,
@@ -1097,14 +1107,14 @@ export default {
                 "hp_min": null,
                 "atk_min": null,
                 "def_min": null,
-                // "recharge_min": this.constraintMinRecharge,
-                // "em_min": this.constraintMinElementalMastery,
-                // "crit_min": this.constraintMinCritical,
-                // "crit_dmg_min": this.constraintMinCriticalDamage
-                "recharge_min": null,
-                "em_min": null,
-                "crit_min": null,
-                "crit_dmg_min": null
+                "recharge_min": this.constraintMinRecharge,
+                "em_min": this.constraintMinElementalMastery,
+                "crit_min": this.constraintMinCritical,
+                "crit_dmg_min": this.constraintMinCriticalDamage
+                // "recharge_min": null,
+                // "em_min": null,
+                // "crit_min": null,
+                // "crit_dmg_min": null
             }
             return t
         },
@@ -1176,15 +1186,6 @@ export default {
             this.showConstraintDialog = true
         },
 
-        handleCommandSetup(cmd) {
-            console.log(cmd)
-            if (cmd === "setup-computation") {
-                this.handleClickSetupOptimization()
-            } else if (cmd === "setup-artifact") {
-                this.handleClickArtifactConfig()
-            }
-        },
-
         usePreset(name) {
             const entry = getPresetEntryByName(name)
             const item = entry.item
@@ -1242,6 +1243,10 @@ export default {
             const constraint = item.constraint
             if (constraint) {
                 this.constraintArtifactSet = constraint.setNames ?? []
+                this.constraintMinCriticalDamage = 0
+                this.constraintMinCritical = 0
+                this.constraintMinElementalMastery = 0
+                this.constraintMinRecharge = 1
             }
 
             // use filter
@@ -1253,7 +1258,7 @@ export default {
             }
 
             // use compute mode
-            this.computationMode = item.algorithm ?? "AStar"
+            this.algorithm = item.algorithm ?? "AStar"
 
             // use artifact effect mode
             this.artifactEffectMode = item.artifactEffectMode ?? "auto"
@@ -1297,6 +1302,10 @@ export default {
                 targetFunction: deepCopy(config.target_function),
                 constraint: {
                     setNames: deepCopy(this.constraintArtifactSet),
+                    minRecharge: this.constraintMinRecharge,
+                    minCritical: this.constraintMinCritical,
+                    minCriticalDamage: this.constraintMinCriticalDamage,
+                    minElementalMastery: this.constraintMinElementalMastery
                 },
                 filter: {
                     sandMainStats: deepCopy(this.constraintSandMainStats),
@@ -1304,7 +1313,7 @@ export default {
                     headMainStats: deepCopy(this.constraintHeadMainStats),
                 },
                 artifactConfig: deepCopy(this.artifactConfig),
-                algorithm: this.computationMode,
+                algorithm: this.algorithm,
                 artifactEffectMode: this.artifactEffectMode
             }
             return item
@@ -1446,7 +1455,7 @@ export default {
                 constraint: this.constraintInterface,
                 buffs: this.buffsInterface,
                 artifact_config,
-                algorithm: this.computationMode,
+                algorithm: this.algorithm,
             }
         },
 
@@ -1472,6 +1481,10 @@ export default {
                 const end = new Date()
                 console.log(`time: ${(end - start) / 1000}s`)
 
+                if (results.length === 0) {
+                    this.$message.error("没有符合条件的圣遗物")
+                    return
+                }
                 this.optimizationResults = results
                 this.handleUseNthOptimizationResult(1)
             }).catch(e => {

@@ -2,9 +2,10 @@ use std::cmp::{Ordering, Reverse};
 use std::collections::{BinaryHeap, HashMap, HashSet};
 use smallvec::{SmallVec, smallvec};
 use crate::applications::common::{CharacterInterface, WeaponInterface};
+use crate::applications::optimize_artifacts::algorithm::SingleOptimizeAlgorithm;
 use crate::applications::optimize_artifacts::inter::{ConstraintConfig, OptimizationResult, OptimizeArtifactInterface};
 use crate::applications::team_optimize::inter::TeamInterface;
-use crate::applications::optimize_artifacts::single_optimize::{optimize_single, optimize_single_interface_wasm};
+use crate::applications::optimize_artifacts::single_optimize::{optimize_single_interface_wasm};
 use crate::applications::team_optimize::hyper_param::TeamOptimizeHyperParam;
 use crate::artifacts::Artifact;
 use crate::attribute::SimpleAttributeGraph2;
@@ -235,7 +236,8 @@ fn optimize_team_helper2(
     artifacts: &[&Artifact],
     single_interfaces: &[OptimizeArtifactInterface],
     weights: &[f64],
-    hyper_param: &TeamOptimizeHyperParam
+    hyper_param: &TeamOptimizeHyperParam,
+    single_algo: &Box<dyn SingleOptimizeAlgorithm>
 ) -> Vec<SmallVec<[ArtifactSet; MAX_TEAM_COUNT]>> {
     let l = single_interfaces.len();
 
@@ -243,7 +245,8 @@ fn optimize_team_helper2(
     let mut nodes: Vec<Vec<ArtifactSet>> = Vec::with_capacity(l);
 
     let optimize_index = |index: usize, arts: &[&Artifact]| -> Vec<ArtifactSet> {
-        let result = optimize_single_interface_wasm(&single_interfaces[index], &arts);
+        let algo = single_interfaces[index].algorithm.get_algorithm();
+        let result = optimize_single_interface_wasm(&single_interfaces[index], &arts, &algo, hyper_param.work_space);
         result.iter().map(|x| ArtifactSet::from_optimization_result(x)).collect()
     };
 
@@ -322,7 +325,8 @@ fn optimize_team_helper2(
             &artifacts_new,
             &single_interfaces[1..],
             &weights[1..],
-            &hyper_param
+            &hyper_param,
+            &single_algo
         );
         for i in rest[0].iter() {
             ret.push(i.clone());
@@ -332,166 +336,167 @@ fn optimize_team_helper2(
     }
 }
 
-fn optimize_team_helper(
-    artifacts: &[&Artifact],
-    characters: &[Character<SimpleAttributeGraph2>],
-    weapons: &[Weapon<SimpleAttributeGraph2>],
-    buffs: &[Vec<Box<dyn Buff<SimpleAttributeGraph2>>>],
-    target_functions: &[Box<dyn TargetFunction>],
-    constraints: &[ConstraintConfig],
-    // team_target_function: &Box<dyn TeamTargetFunction>,
-    weights: &[f64],
-    hyper_param: &TeamOptimizeHyperParam
-) -> Vec<SmallVec<[ArtifactSet; MAX_TEAM_COUNT]>> {
-    let l = characters.len();
-    let character_names: Vec<_> = characters.iter().map(|c| c.common_data.name).collect();
+// fn optimize_team_helper(
+//     artifacts: &[&Artifact],
+//     characters: &[Character<SimpleAttributeGraph2>],
+//     weapons: &[Weapon<SimpleAttributeGraph2>],
+//     buffs: &[Vec<Box<dyn Buff<SimpleAttributeGraph2>>>],
+//     target_functions: &[Box<dyn TargetFunction>],
+//     constraints: &[ConstraintConfig],
+//     // team_target_function: &Box<dyn TeamTargetFunction>,
+//     weights: &[f64],
+//     hyper_param: &TeamOptimizeHyperParam
+// ) -> Vec<SmallVec<[ArtifactSet; MAX_TEAM_COUNT]>> {
+//     let l = characters.len();
+//     let character_names: Vec<_> = characters.iter().map(|c| c.common_data.name).collect();
+//
+//     // nodes[character index][individual optimization result index]
+//     let mut nodes: Vec<Vec<ArtifactSet>> = Vec::with_capacity(l);
+//
+//     let optimize_index = |index: usize, arts: &[&Artifact]| -> Vec<ArtifactSet> {
+//         let result = optimize_single(
+//             artifacts,
+//             None,
+//             &characters[index],
+//             &weapons[index],
+//             &target_functions[index],
+//             Some(&constraints[index]),
+//             &buffs[index],
+//             hyper_param.work_space,
+//             true
+//         );
+//         result.iter().map(|x| ArtifactSet::from_optimization_result(x)).collect()
+//     };
+//
+//     // calc L initial optimization results
+//     for i in 0..l {
+//         let column = optimize_index(i, artifacts);
+//         nodes.push(column);
+//     }
+//
+//     utils::log!("finish initial individual");
+//
+//     let mut result_indices: Vec<SmallVec<[usize; MAX_TEAM_COUNT]>> = Vec::new();
+//     let mut re_optimize_count: usize = 0;
+//     're_optimize: while re_optimize_count < hyper_param.max_re_optimize {
+//         re_optimize_count += 1;
+//
+//         match try_search(&nodes, hyper_param.max_search, weights, hyper_param.count) {
+//             Ok(indices) => {
+//                 // there is a result
+//                 result_indices = indices;
+//                 break 're_optimize;
+//             },
+//             Err(mva_map) => {
+//                 // otherwise, re-optimize all columns except the first
+//
+//                 // mva_map(most valuable artifact): artifact id -> conflicting count
+//                 let mut mva_map = mva_map;
+//                 let mut temp: Vec<(u64, usize)> = mva_map.drain().collect();
+//                 temp.sort_by(|x, y| (*y).1.cmp(&(*x).1));
+//
+//                 // exclude_list: artifact ids to be excluded for next re-optimization
+//                 let exclude_list: HashSet<u64> = temp.iter().take(hyper_param.mva_step).map(|x| (*x).0).collect();
+//                 let mut artifacts_new: Vec<&Artifact> = Vec::new();
+//                 for &art in artifacts.iter() {
+//                     if !exclude_list.contains(&art.id) {
+//                         artifacts_new.push(art);
+//                     }
+//                 }
+//
+//                 for i in 1..l {
+//                     let col = optimize_index(i, &artifacts_new);
+//                     nodes[i] = col;
+//                 }
+//             }
+//         }
+//     }
+//
+//     if result_indices.len() > 0 {
+//         // there is a result
+//         let mut results = Vec::new();
+//         for entry in result_indices.iter() {
+//             let mut temp: SmallVec<[ArtifactSet; MAX_TEAM_COUNT]> = SmallVec::new();
+//             for (col, row_index) in entry.iter().enumerate() {
+//                 temp.push(nodes[col][*row_index].clone());
+//             }
+//             results.push(temp);
+//         }
+//
+//         results
+//     } else {
+//         // todo optimize algorithm
+//         // after re-optimization, still no result, fallback to naive greedy strategy
+//         let mut artifacts_new: Vec<&Artifact> = Vec::new();
+//         let need_remove = |art: &Artifact| -> bool {
+//             nodes[0][0].contains(art.id)
+//         };
+//         for &art in artifacts.iter() {
+//             if !need_remove(art) {
+//                 artifacts_new.push(art);
+//             }
+//         }
+//
+//         let mut ret: SmallVec<[ArtifactSet; MAX_TEAM_COUNT]> = SmallVec::new();
+//         ret.push(nodes[0][0].clone());
+//         let rest = optimize_team_helper(
+//             &artifacts_new,
+//             &characters[1..],
+//             &weapons[1..],
+//             &buffs[1..],
+//             &target_functions[1..],
+//             // &team_target_function,
+//             &constraints[1..],
+//             &weights[1..],
+//             &hyper_param
+//         );
+//         for i in rest[0].iter() {
+//             ret.push(i.clone());
+//         }
+//
+//         vec![ret]
+//     }
+// }
 
-    // nodes[character index][individual optimization result index]
-    let mut nodes: Vec<Vec<ArtifactSet>> = Vec::with_capacity(l);
-
-    let optimize_index = |index: usize, arts: &[&Artifact]| -> Vec<ArtifactSet> {
-        let result = optimize_single(
-            artifacts,
-            None,
-            &characters[index],
-            &weapons[index],
-            &target_functions[index],
-            Some(&constraints[index]),
-            &buffs[index],
-            hyper_param.work_space,
-            true
-        );
-        result.iter().map(|x| ArtifactSet::from_optimization_result(x)).collect()
-    };
-
-    // calc L initial optimization results
-    for i in 0..l {
-        let column = optimize_index(i, artifacts);
-        nodes.push(column);
-    }
-
-    utils::log!("finish initial individual");
-
-    let mut result_indices: Vec<SmallVec<[usize; MAX_TEAM_COUNT]>> = Vec::new();
-    let mut re_optimize_count: usize = 0;
-    're_optimize: while re_optimize_count < hyper_param.max_re_optimize {
-        re_optimize_count += 1;
-
-        match try_search(&nodes, hyper_param.max_search, weights, hyper_param.count) {
-            Ok(indices) => {
-                // there is a result
-                result_indices = indices;
-                break 're_optimize;
-            },
-            Err(mva_map) => {
-                // otherwise, re-optimize all columns except the first
-
-                // mva_map(most valuable artifact): artifact id -> conflicting count
-                let mut mva_map = mva_map;
-                let mut temp: Vec<(u64, usize)> = mva_map.drain().collect();
-                temp.sort_by(|x, y| (*y).1.cmp(&(*x).1));
-
-                // exclude_list: artifact ids to be excluded for next re-optimization
-                let exclude_list: HashSet<u64> = temp.iter().take(hyper_param.mva_step).map(|x| (*x).0).collect();
-                let mut artifacts_new: Vec<&Artifact> = Vec::new();
-                for &art in artifacts.iter() {
-                    if !exclude_list.contains(&art.id) {
-                        artifacts_new.push(art);
-                    }
-                }
-
-                for i in 1..l {
-                    let col = optimize_index(i, &artifacts_new);
-                    nodes[i] = col;
-                }
-            }
-        }
-    }
-
-    if result_indices.len() > 0 {
-        // there is a result
-        let mut results = Vec::new();
-        for entry in result_indices.iter() {
-            let mut temp: SmallVec<[ArtifactSet; MAX_TEAM_COUNT]> = SmallVec::new();
-            for (col, row_index) in entry.iter().enumerate() {
-                temp.push(nodes[col][*row_index].clone());
-            }
-            results.push(temp);
-        }
-
-        results
-    } else {
-        // todo optimize algorithm
-        // after re-optimization, still no result, fallback to naive greedy strategy
-        let mut artifacts_new: Vec<&Artifact> = Vec::new();
-        let need_remove = |art: &Artifact| -> bool {
-            nodes[0][0].contains(art.id)
-        };
-        for &art in artifacts.iter() {
-            if !need_remove(art) {
-                artifacts_new.push(art);
-            }
-        }
-
-        let mut ret: SmallVec<[ArtifactSet; MAX_TEAM_COUNT]> = SmallVec::new();
-        ret.push(nodes[0][0].clone());
-        let rest = optimize_team_helper(
-            &artifacts_new,
-            &characters[1..],
-            &weapons[1..],
-            &buffs[1..],
-            &target_functions[1..],
-            // &team_target_function,
-            &constraints[1..],
-            &weights[1..],
-            &hyper_param
-        );
-        for i in rest[0].iter() {
-            ret.push(i.clone());
-        }
-
-        vec![ret]
-    }
-}
-
-pub fn optimize_team<'a>(
-    artifacts: &[&'a Artifact],
-    characters: &[Character<SimpleAttributeGraph2>],
-    weapons: &[Weapon<SimpleAttributeGraph2>],
-    buffs: &[Vec<Box<dyn Buff<SimpleAttributeGraph2>>>],
-    target_functions: &[Box<dyn TargetFunction>],
-    constraints: &[ConstraintConfig],
-    weights: &[f64],
-    // team_target_function: &Box<dyn TeamTargetFunction>,
-    hyper_param: &TeamOptimizeHyperParam
-) -> Vec<SmallVec<[SmallVec<[u64; 5]>; MAX_TEAM_COUNT]>> {
-    let intermediate = optimize_team_helper(
-        artifacts,
-        characters,
-        weapons,
-        buffs,
-        target_functions,
-        constraints,
-        // team_target_function,
-        weights,
-        hyper_param
-    );
-
-    let mut results = Vec::new();
-    for entry in intermediate.iter() {
-        results.push(entry.iter().map(|x| x.to_small_vec()).collect());
-    }
-
-    results
-}
+// pub fn optimize_team<'a>(
+//     artifacts: &[&'a Artifact],
+//     characters: &[Character<SimpleAttributeGraph2>],
+//     weapons: &[Weapon<SimpleAttributeGraph2>],
+//     buffs: &[Vec<Box<dyn Buff<SimpleAttributeGraph2>>>],
+//     target_functions: &[Box<dyn TargetFunction>],
+//     constraints: &[ConstraintConfig],
+//     weights: &[f64],
+//     // team_target_function: &Box<dyn TeamTargetFunction>,
+//     hyper_param: &TeamOptimizeHyperParam
+// ) -> Vec<SmallVec<[SmallVec<[u64; 5]>; MAX_TEAM_COUNT]>> {
+//     let intermediate = optimize_team_helper(
+//         artifacts,
+//         characters,
+//         weapons,
+//         buffs,
+//         target_functions,
+//         constraints,
+//         // team_target_function,
+//         weights,
+//         hyper_param
+//     );
+//
+//     let mut results = Vec::new();
+//     for entry in intermediate.iter() {
+//         results.push(entry.iter().map(|x| x.to_small_vec()).collect());
+//     }
+//
+//     results
+// }
 
 pub fn optimize_team_multi_single<'a>(
     artifacts: &[&'a Artifact],
     single_interfaces: &[OptimizeArtifactInterface],
     weights: &[f64],
-    hyper_param: &TeamOptimizeHyperParam
+    hyper_param: &TeamOptimizeHyperParam,
+    single_algo: &Box<dyn SingleOptimizeAlgorithm>
 ) -> Vec<SmallVec<[SmallVec<[u64; 5]>; MAX_TEAM_COUNT]>> {
-    let intermediate = optimize_team_helper2(&artifacts, &single_interfaces, &weights, &hyper_param);
+    let intermediate = optimize_team_helper2(&artifacts, &single_interfaces, &weights, &hyper_param, &single_algo);
 
     let mut results = Vec::new();
     for entry in intermediate.iter() {

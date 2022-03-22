@@ -70,7 +70,6 @@ impl Default for ConstraintConfig {
 
 #[derive(Serialize, Deserialize)]
 pub struct OptimizeArtifactInterface {
-    // pub artifacts: Vec<Artifact>,
     pub artifact_config: Option<ArtifactConfigInterface>,
     pub character: CharacterInterface,
     pub weapon: WeaponInterface,
@@ -78,8 +77,8 @@ pub struct OptimizeArtifactInterface {
     pub constraint: Option<ConstraintConfig>,
     pub filter: Option<ArtifactFilterConfig>,
     pub buffs: Vec<BuffInterface>,
+    #[serde(default)]
     pub algorithm: SingleOptimizeAlgorithmName,
-    // pub use_optim: bool,
 }
 
 #[derive(Serialize, Deserialize, Default, Debug)]

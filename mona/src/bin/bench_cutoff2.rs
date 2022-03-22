@@ -11,7 +11,6 @@ use mona::applications::common::{CharacterInterface, TargetFunctionInterface, We
 use mona::applications::calculator::interface_calculator::CalculatorInterface;
 use mona::applications::optimize_artifacts::algorithms::CutoffAlgorithm2;
 use mona::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode};
-use mona::applications::optimize_artifacts::single_optimize::{optimize_single, optimize_single_interface};
 use mona::character::{Character, CharacterName};
 use mona::character::skill_config::CharacterSkillConfig;
 use mona::damage::DamageContext;
