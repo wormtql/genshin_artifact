@@ -9,6 +9,8 @@ pub mod electro_damage;
 pub mod anemo_damage;
 pub mod geo_damage;
 pub mod physical_damage;
+pub mod max_vaporize;
+pub mod max_melt;
 
 pub use max_atk::MaxATKTargetFunction;
 pub use max_def::MaxDEFTargetFunction;
@@ -21,3 +23,5 @@ pub use electro_damage::ElectroDamageTargetFunction;
 pub use anemo_damage::AnemoDamageTargetFunction;
 pub use geo_damage::GeoDamageTargetFunction;
 pub use physical_damage::PhysicalDamageTargetFunction;
+pub use max_vaporize::MaxVaporizeTargetFunction;
+pub use max_melt::MaxMeltTargetFunction;

@@ -62,6 +62,12 @@
                 :elements="['Pyro', 'Cryo', 'Electro', 'Hydro']"
             ></select-element-type>
         </template>
+        <template v-if="type === 'skill4'">
+            <select-skill-type
+                :value="value"
+                @input="handleChangeValue"
+            ></select-skill-type>
+        </template>
         <template v-if="type === 'option'">
             <el-radio-group
                 :value="value"
@@ -80,10 +86,11 @@
 
 <script>
 import SelectElementType from "@c/select/SelectElementType"
+import SelectSkillType from "@c/select/SelectSkillType"
 
 export default {
     name: "ConfigItem",
-    components: { SelectElementType },
+    components: { SelectSkillType, SelectElementType },
     props: {
         value: {},
         type: {},

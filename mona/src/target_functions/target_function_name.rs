@@ -18,6 +18,8 @@ pub enum TargetFunctionName {
     AnemoDamage,
     GeoDamage,
     PhysicalDamage,
+    MaxVaporize,
+    MaxMelt,
 
     AlbedoDefault,
     AloyDefault,

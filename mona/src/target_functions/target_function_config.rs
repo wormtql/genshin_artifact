@@ -1,6 +1,6 @@
 use serde::{Serialize, Deserialize};
 
-use crate::common::{Element};
+use crate::common::{Element, SkillType};
 use crate::target_functions::target_functions::cryo::rosaria_default::RosariaDefaultTFConfig;
 
 #[derive(Serialize, Deserialize)]
@@ -12,6 +12,8 @@ pub enum TargetFunctionConfig {
     AnemoDamage { t: usize },
     GeoDamage { t: usize },
     PhysicalDamage { t: usize },
+    MaxVaporize { t: usize, skill: SkillType },
+    MaxMelt { t: usize, skill: SkillType },
 
     GanyuDefault { melt_rate: f64 },
     GorouDefault { recharge_demand: f64 },

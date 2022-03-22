@@ -1,5 +1,5 @@
 use serde_json::json;
-use crate::common::Element;
+use crate::common::{Element, SkillType};
 
 pub enum ItemConfigType {
     Float {
@@ -37,6 +37,9 @@ pub enum ItemConfigType {
     },
     Element4 {      // cryo, pyro, electro, hydro
         default: Element,
+    },
+    Skill4 {
+        default: SkillType
     }
 }
 
@@ -59,6 +62,14 @@ impl ItemConfigType {
             //         "default": default
             //     })
             // },
+            ItemConfigType::Skill4 { default } => {
+                json!({
+                    "type": "skill4",
+                    "title": title,
+                    "name": name,
+                    "default": default
+                })
+            },
             ItemConfigType::IntInput { min, max, default } => {
                 json!({
                     "type": "intInput",
