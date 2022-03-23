@@ -14,6 +14,7 @@ default = ["console_error_panic_hook"]
 lto = true
 opt-level = 3
 strip = true
+#codegen-units = 1
 
 [dependencies]
 mona_derive = { path = "../mona_derive" }
@@ -33,3 +34,4 @@ askama = "0.11"
 askama_escape = "0.10.2"
 strum = "0.23"
 strum_macros = "0.23"
+rustc-hash = "1.1.0"

@@ -42,6 +42,7 @@
                     <router-view v-if="!$route.meta.keepAlive" class="router-view"></router-view>
 
                     <beian v-if="needBeian"></beian>
+<!--                    <p>123</p>-->
                 </el-main>
             </el-container>
         </el-container>
@@ -81,6 +82,15 @@ export default {
 
 #container {
     height: 100vh;
+}
+
+.main::-webkit-scrollbar {
+    display: none;
+}
+
+.main {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 /*.main {*/

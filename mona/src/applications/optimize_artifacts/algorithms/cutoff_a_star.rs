@@ -1,6 +1,9 @@
 use std::cmp::{Ordering, Reverse};
 use std::collections::{BinaryHeap, HashMap, HashSet};
-use std::collections::hash_map::RandomState;
+use std::collections::hash_map::{RandomState, DefaultHasher};
+use std::hash::{Hash, Hasher};
+use rustc_hash::FxHashSet;
+use smallvec::SmallVec;
 use crate::applications::optimize_artifacts::algorithm::SingleOptimizeAlgorithm;
 use crate::applications::optimize_artifacts::algorithms::cutoff_heuristic::CutoffAlgorithmHeuristic;
 use crate::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode, OptimizationResult};
@@ -71,7 +74,7 @@ fn check_attribute(attribute: &SimpleAttributeGraph2, constraint: &ConstraintCon
 struct ResultRecorder<'a> {
     result_heap: BinaryHeap<Reverse<OptimizationIntermediateResult>>,
     result_count: usize,
-    result_set: HashSet<u64>,
+    result_set: FxHashSet<u64>,
 
     artifact_config: ArtifactEffectConfig,
     character: &'a Character<SimpleAttributeGraph2>,
@@ -109,7 +112,7 @@ impl<'a> ResultRecorder<'a> {
         Self {
             result_heap: BinaryHeap::with_capacity(result_count),
             result_count,
-            result_set: HashSet::with_capacity(result_count),
+            result_set: FxHashSet::default(),
 
             artifact_config,
             character,
@@ -121,7 +124,7 @@ impl<'a> ResultRecorder<'a> {
         }
     }
 
-    fn calc_value(&self, arts: &Vec<&Artifact>) -> Option<f64> {
+    fn calc_value(&self, arts: &[&Artifact]) -> Option<f64> {
         let artifact_list = ArtifactList {
             artifacts: arts
         };
@@ -142,15 +145,33 @@ impl<'a> ResultRecorder<'a> {
         Some(value)
     }
 
-    fn arts_to_u64(arts_id: &[u64; 5]) -> u64 {
-        arts_id.iter().fold(0_u64, |acc, id| acc * 2000 + id)
+    // arts id are sorted by slots
+    fn arts_to_u64(arts_id: &[u64]) -> u64 {
+        let mut s = DefaultHasher::new();
+        for &id in arts_id.iter() {
+            id.hash(&mut s);
+        }
+        // arts_id.iter().fold(0_u64, |acc, id| acc * 2000 + id)
+        s.finish()
     }
 
-    fn push_result(&mut self, arts: &Vec<&Artifact>, value: f64) {
+    fn push_result(&mut self, arts: &[&Artifact], value: f64) {
         // utils::log!("push_result {}", value);
         let mut arts = arts.clone();
-        arts.sort_by_key(|art| art.slot as usize);
-        let arts_id: [u64; 5] = arts.iter().map(|art| art.id).collect::<Vec<_>>().try_into().unwrap();
+
+        let mut slot_ids: SmallVec<[(usize, u64); 5]> = SmallVec::new();
+        for art in arts.iter() {
+            slot_ids.push((art.slot as usize, art.id));
+        }
+        slot_ids.sort_by_key(|x| x.0);
+
+        let mut arts_id: [u64; 5] = [0; 5];
+        for (index, (_, id)) in slot_ids.iter().enumerate() {
+            arts_id[index] = *id;
+        }
+
+        // arts.sort_by_key(|art| art.slot as usize);
+        // let arts_id: [u64; 5] = arts.iter().map(|art| art.id).collect::<Vec<_>>().try_into().unwrap();
         let hash = Self::arts_to_u64(&arts_id);
         if self.result_set.contains(&hash) {
             return;
@@ -168,7 +189,7 @@ impl<'a> ResultRecorder<'a> {
         self.result_set.insert(hash);
     }
 
-    fn check_hope(&self, arts: &Vec<&Artifact>) -> (bool, f64) {
+    fn check_hope(&self, arts: &[&Artifact]) -> (bool, f64) {
         if let Some(value) = self.calc_value(&arts) {
             // utils::log!("check_hope {}", value);
             (value > self.result_heap.peek().map_or(0., |r| r.0.value), value)
@@ -177,12 +198,12 @@ impl<'a> ResultRecorder<'a> {
         }
     }
 
-    fn check_hope_option(&self, arts: &Vec<Option<&Artifact>>) -> bool {
+    fn check_hope_option(&self, arts: &[Option<&Artifact>]) -> bool {
         // utils::log!("check_hope_option {}", arts.len());
         if arts.iter().any(|op| op.is_none()) {
             return false;
         }
-        let arts: Vec<_> = arts.iter().map(|op| op.unwrap()).collect();
+        let arts: SmallVec<[&Artifact; 5]> = arts.iter().map(|op| op.unwrap()).collect();
         self.check_hope(&arts).0
     }
 }

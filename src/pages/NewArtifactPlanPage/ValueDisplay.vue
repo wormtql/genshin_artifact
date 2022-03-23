@@ -1,14 +1,21 @@
 <template>
     <div class="root">
         <div class="back" :style="styleForBack"></div>
-        <span class="display">{{ (value * 100).toFixed(1) }}</span>
+        <span class="display">{{ (value * 100).toFixed(1) }}
+            <span v-if="extra">/ {{ extra }}</span>
+        </span>
     </div>
 </template>
 
 <script>
 export default {
     name: "ValueDisplay",
-    props: ["value"],
+    props: {
+        "value": {},
+        "extra": {
+            default: ""
+        }
+    },
     computed: {
         styleForBack() {
             return {

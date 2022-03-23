@@ -498,6 +498,7 @@
                         ></el-input-number>
                         <value-display
                             :value="optimizationResults[optimizationResultIndex - 1].ratio"
+                            :extra="optimizationResults[optimizationResultIndex - 1].value.toFixed(1)"
                             style="margin-top: 12px"
                         ></value-display>
                     </div>

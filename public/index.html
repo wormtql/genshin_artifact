@@ -8,29 +8,9 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>莫娜占卜铺</title>
 
-    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.1/lib/theme-chalk/index.css"> -->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.1/lib/theme-chalk/display.css"> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/theme-chalk/index.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/theme-chalk/display.css">
+    <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui@2.15.6/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui@2.15.6/lib/theme-chalk/display.css">
 
-    <!-- <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
-    <script src="https://cdn.bootcss.com/vue-router/3.4.8/vue-router.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/vuex/3.5.1/vuex.min.js"></script>
-    <script src="https://unpkg.com/element-ui@2.15.1/lib/index.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-router@3.4.8/dist/vue-router.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vuex@3.5.1/dist/vuex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@vue/composition-api@1.0.0-rc.3"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-echarts@6.0.0-rc.4"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue-katex@0.5.0/dist/vue-katex.cjs.min.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH" crossorigin="anonymous"></script> -->
-    
     <style>
       .loading {
         height: 100vh;
@@ -56,10 +36,111 @@
       <strong>好家伙，这年头还有不开启javascript的人吗</strong>
     </noscript>
     <div id="app">
-      <div class="loading">
-        <span>莫娜正在仰望星空，请稍安勿躁（狗头）</span>
+      <div class="loading"
+        style="display: flex; flex-direction: column; align-items: center"
+      >
+          <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <p style="margin-top: 12px">莫娜正在仰望星空，请稍安勿躁（狗头）</p>
       </div>
     </div>
+
+    <style>
+        .lds-roller {
+            display: inline-block;
+            position: relative;
+            width: 40px;
+            height: 40px;
+        }
+        .lds-roller div {
+            animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            transform-origin: 20px 20px;
+        }
+        .lds-roller div:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #564884;
+            margin: -4px 0 0 -4px;
+        }
+        .lds-roller div:nth-child(1) {
+            animation-delay: -0.036s;
+        }
+        .lds-roller div:nth-child(1):after {
+            top: 30px;
+            left: 30px;
+        }
+        .lds-roller div:nth-child(2) {
+            animation-delay: -0.072s;
+        }
+        .lds-roller div:nth-child(2):after {
+            top: 34px;
+            left: 28px;
+        }
+        .lds-roller div:nth-child(3) {
+            animation-delay: -0.108s;
+        }
+        .lds-roller div:nth-child(3):after {
+            top: 35px;
+            left: 24px;
+        }
+        .lds-roller div:nth-child(4) {
+            animation-delay: -0.144s;
+        }
+        .lds-roller div:nth-child(4):after {
+            top: 36px;
+            left: 20px;
+        }
+        .lds-roller div:nth-child(5) {
+            animation-delay: -0.18s;
+        }
+        .lds-roller div:nth-child(5):after {
+            top: 35px;
+            left: 16px;
+        }
+        .lds-roller div:nth-child(6) {
+            animation-delay: -0.216s;
+        }
+        .lds-roller div:nth-child(6):after {
+            top: 34px;
+            left: 12px;
+        }
+        .lds-roller div:nth-child(7) {
+            animation-delay: -0.252s;
+        }
+        .lds-roller div:nth-child(7):after {
+            top: 31px;
+            left: 8px;
+        }
+        .lds-roller div:nth-child(8) {
+            animation-delay: -0.288s;
+        }
+        .lds-roller div:nth-child(8):after {
+            top: 28px;
+            left: 6px;
+        }
+        @keyframes lds-roller {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <script src="https://unpkg.zhimg.com/vue@2.6.11/dist/vue.min.js"></script>
+    <script src="https://unpkg.zhimg.com/vue-router@3.4.8/dist/vue-router.min.js"></script>
+    <script src="https://unpkg.zhimg.com/vuex@3.5.1/dist/vuex.min.js"></script>
+    <script src="https://unpkg.zhimg.com/element-ui@2.15.6/lib/index.js"></script>
+
+    <script src="https://unpkg.com/@vue/composition-api@1.0.0-rc.3"></script>
+    <script src="https://unpkg.com/echarts@5.3.0"></script>
+    <script src="https://unpkg.zhimg.com/vue-echarts@6.0.0-rc.4"></script>
+
+    <script src="https://unpkg.com/fuse.js@6.5.3"></script>
     <!-- built files will be auto injected -->
   </body>
 </html>

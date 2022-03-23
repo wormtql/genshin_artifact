@@ -112,13 +112,13 @@
                             </div>
 
                             <div class="result-item-buttons">
-                                <el-button
-                                    icon="el-icon-plus"
-                                    circle
-                                    size="mini"
-                                    type="text"
-                                    title="存为套装"
-                                ></el-button>
+<!--                                <el-button-->
+<!--                                    icon="el-icon-plus"-->
+<!--                                    circle-->
+<!--                                    size="mini"-->
+<!--                                    type="text"-->
+<!--                                    title="存为套装"-->
+<!--                                ></el-button>-->
                             </div>
                         </div>
                         <div class="result-item-content">

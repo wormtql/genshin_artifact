@@ -51,7 +51,7 @@ fn create_target_function(character: &Character<SimpleAttributeGraph2>, weapon: 
 
 fn generate_artifacts() -> Vec<Artifact> {
     let mut artifacts = vec![];
-    for _ in 0..25 {
+    for _ in 0..50 {
         artifacts.push(Artifact::new_random(ArtifactSlotName::Flower));
         artifacts.push(Artifact::new_random(ArtifactSlotName::Feather));
         artifacts.push(Artifact::new_random(ArtifactSlotName::Sand));
@@ -102,7 +102,7 @@ fn main() {
         &enemy,
         &[],
         &constraint,
-        100
+        5
     );
 
     println!("{:?}", results);

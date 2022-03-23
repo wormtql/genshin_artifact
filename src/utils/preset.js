@@ -74,9 +74,19 @@ export function convertPresetToWasmInterface(item) {
     wasm.character = item.character
     wasm.weapon = item.weapon
     wasm.target_function = item.targetFunction
-    wasm.constraint = {
-        set_mode: artifactSetNamesToConstraintSetMode(item.constraint?.setNames),
+
+    if (item.constraint) {
+        wasm.constraint = {
+            set_mode: artifactSetNamesToConstraintSetMode(item.constraint.setNames),
+            recharge_min: item.constraint.minRecharge ?? 1,
+            em_min: item.constraint.minElementalMastery ?? 0,
+            crit_min: item.constraint.minCritical ?? 0,
+            crit_damage_min: item.constraint.minCriticalDamage ?? 0
+        }
+    } else {
+        wasm.constraint = null
     }
+
     if (item.artifactEffectMode === "custom") {
         wasm.artifact_config = item.artifactConfig
     }
