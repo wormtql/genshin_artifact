@@ -20,6 +20,8 @@ pub enum TargetFunctionName {
     PhysicalDamage,
     MaxVaporize,
     MaxMelt,
+    ExpectVaporize,
+    ExpectMelt,
 
     AlbedoDefault,
     AloyDefault,

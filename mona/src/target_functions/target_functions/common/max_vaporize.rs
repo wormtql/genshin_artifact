@@ -80,7 +80,7 @@ impl TargetFunction for MaxVaporizeTargetFunction {
             def_percentage: 0.0,
             recharge: 0.0,
             elemental_mastery: 1.0,
-            critical: 1.0,
+            critical: 0.0,
             critical_damage: 1.0,
             healing_bonus: 0.0,
             bonus_electro: 0.0,
@@ -98,7 +98,6 @@ impl TargetFunction for MaxVaporizeTargetFunction {
             goblet_main_stats: goblets,
             head_main_stats: vec![
                 StatName::ATKPercentage,
-                StatName::CriticalRate,
                 StatName::CriticalDamage,
                 StatName::ElementalMastery,
             ],

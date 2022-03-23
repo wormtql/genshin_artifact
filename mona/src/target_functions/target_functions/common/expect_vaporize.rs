@@ -14,17 +14,17 @@ use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
-pub struct MaxMeltTargetFunction {
+pub struct ExpectVaporizeTargetFunction {
     pub t: usize,
     pub skill: SkillType,
 }
 
-impl TargetFunctionMetaTrait for MaxMeltTargetFunction {
+impl TargetFunctionMetaTrait for ExpectVaporizeTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
-        name: TargetFunctionName::MaxMelt,
-        chs: "最大融化伤害",
-        description: "使得融化反应的伤害最高",
+        name: TargetFunctionName::ExpectVaporize,
+        chs: "期望蒸发伤害",
+        description: "使得蒸发反应的期望伤害最高",
         tags: "输出",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/sword")
@@ -36,7 +36,7 @@ impl TargetFunctionMetaTrait for MaxMeltTargetFunction {
             name: "t",
             title: "触发元素",
             config: ItemConfigType::Option {
-                options: "火,冰",
+                options: "火,水",
                 default: 0
             }
         },
@@ -49,18 +49,18 @@ impl TargetFunctionMetaTrait for MaxMeltTargetFunction {
 
     fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
         let (t, skill) = match *config {
-            TargetFunctionConfig::MaxMelt { t, skill } => (t, skill),
+            TargetFunctionConfig::ExpectVaporize { t, skill } => (t, skill),
             _ => (0, SkillType::NormalAttack)
         };
 
-        Box::new(MaxMeltTargetFunction {
+        Box::new(ExpectVaporizeTargetFunction {
             t,
             skill
         })
     }
 }
 
-impl TargetFunction for MaxMeltTargetFunction {
+impl TargetFunction for ExpectVaporizeTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
         let mut goblets = Vec::new();
         goblets.push(StatName::ATKPercentage);
@@ -68,7 +68,7 @@ impl TargetFunction for MaxMeltTargetFunction {
         if self.t == 0 {
             goblets.push(StatName::PyroBonus);
         } else {
-            goblets.push(StatName::CryoBonus);
+            goblets.push(StatName::HydroBonus);
         }
 
         TargetFunctionOptConfig {
@@ -80,14 +80,14 @@ impl TargetFunction for MaxMeltTargetFunction {
             def_percentage: 0.0,
             recharge: 0.0,
             elemental_mastery: 1.0,
-            critical: 0.0,
+            critical: 1.0,
             critical_damage: 1.0,
             healing_bonus: 0.0,
             bonus_electro: 0.0,
             bonus_pyro: if self.t == 0 { 2.0 } else { 0.0 },
-            bonus_hydro: 0.0,
+            bonus_hydro: if self.t == 0 { 0.0 } else { 2.0 },
             bonus_anemo: 0.0,
-            bonus_cryo: if self.t == 0 { 0.0 } else { 2.0 },
+            bonus_cryo: 0.0,
             bonus_geo: 0.0,
             bonus_dendro: 0.0,
             bonus_physical: 0.0,
@@ -98,6 +98,7 @@ impl TargetFunction for MaxMeltTargetFunction {
             goblet_main_stats: goblets,
             head_main_stats: vec![
                 StatName::ATKPercentage,
+                StatName::CriticalRate,
                 StatName::CriticalDamage,
                 StatName::ElementalMastery,
             ],
@@ -120,13 +121,14 @@ impl TargetFunction for MaxMeltTargetFunction {
         let element = if self.t == 0 {
             Element::Pyro
         } else {
-            Element::Cryo
+            Element::Hydro
         };
 
         let bonus = attribute.get_bonus(element, self.skill);
+        let crit = attribute.get_critical_rate(element, self.skill).clamp(0.0, 1.0);
         let crit_damage = attribute.get_critical_damage(element, self.skill);
         let extra_damage = attribute.get_extra_damage(element, self.skill);
 
-        (atk * 3.0 + extra_damage) * (1.0 + bonus) * (1.0 + crit_damage)
+        (atk * 3.0 + extra_damage) * (1.0 + bonus) * (1.0 + crit_damage * crit)
     }
 }

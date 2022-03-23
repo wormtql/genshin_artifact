@@ -11,6 +11,8 @@ pub mod geo_damage;
 pub mod physical_damage;
 pub mod max_vaporize;
 pub mod max_melt;
+pub mod expect_vaporize;
+pub mod expect_melt;
 
 pub use max_atk::MaxATKTargetFunction;
 pub use max_def::MaxDEFTargetFunction;
@@ -25,3 +27,5 @@ pub use geo_damage::GeoDamageTargetFunction;
 pub use physical_damage::PhysicalDamageTargetFunction;
 pub use max_vaporize::MaxVaporizeTargetFunction;
 pub use max_melt::MaxMeltTargetFunction;
+pub use expect_vaporize::ExpectVaporizeTargetFunction;
+pub use expect_melt::ExpectMeltTargetFunction;

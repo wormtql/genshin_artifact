@@ -14,6 +14,8 @@ pub enum TargetFunctionConfig {
     PhysicalDamage { t: usize },
     MaxVaporize { t: usize, skill: SkillType },
     MaxMelt { t: usize, skill: SkillType },
+    ExpectVaporize { t: usize, skill: SkillType },
+    ExpectMelt { t: usize, skill: SkillType },
 
     GanyuDefault { melt_rate: f64 },
     GorouDefault { recharge_demand: f64 },
