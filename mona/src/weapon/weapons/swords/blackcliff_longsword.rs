@@ -40,7 +40,7 @@ impl WeaponTrait for BlackcliffLongsword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BlackcliffLongsword,
         weapon_type: WeaponType::Sword,
-        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate80),
+        weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage80),
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]

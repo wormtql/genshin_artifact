@@ -338,7 +338,7 @@ export default {
                 mva_step: 5,
                 work_space: 1000,
                 max_re_optimize: 5,
-                max_search: 10000000,
+                max_search: 1000000,
                 count: 1000,
             }
         },
