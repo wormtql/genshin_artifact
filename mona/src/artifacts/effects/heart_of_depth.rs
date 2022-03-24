@@ -20,7 +20,7 @@ impl HeartOfDepthEffect {
 
 impl<T: Attribute> ArtifactEffect<T> for HeartOfDepthEffect {
     fn effect2(&self, attribute: &mut T) {
-        attribute.set_value_by(AttributeName::BonusHydro, "沉沦之心2", 0.12);
+        attribute.set_value_by(AttributeName::BonusHydro, "沉沦之心2", 0.15);
     }
 
     fn effect4(&self, attribute: &mut T) {
