@@ -55,7 +55,7 @@ impl TargetFunctionMetaTrait for DilucDefaultTargetFunction {
         };
 
         let sum = melt_rate + vaporize_rate;
-        if sum > 0.0 {
+        if sum > 1.0 {
             melt_rate /= sum;
             vaporize_rate /= sum;
         }
