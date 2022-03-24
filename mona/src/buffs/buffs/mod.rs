@@ -1,17 +1,7 @@
 use crate::attribute::Attribute;
 use crate::buffs::{Buff, BuffConfig};
 
-pub use common::atk_percentage::BuffATKPercentage;
-pub use common::def_percentage::BuffDEFPercentage;
-pub use common::hp_percentage::BuffHPPercentage;
-pub use common::atk_fixed::BuffATKFixed;
-pub use common::def_fixed::BuffDEFFixed;
-pub use common::hp_fixed::BuffHPFixed;
-pub use common::critical::BuffCritical;
-pub use common::critical_damage::BuffCriticalDamage;
-pub use common::custom_bonus::BuffCustomBonus;
-pub use common::elemental_mastery::BuffElementalMastery;
-pub use common::recharge::BuffRecharge;
+pub use common::*;
 pub use resonance::{BuffResonanceGeo2, BuffResonancePyro2, BuffResonanceCryo2};
 pub use character::albedo::BuffAlbedoTalent2;
 pub use character::aloy::BuffAloyTalent1;

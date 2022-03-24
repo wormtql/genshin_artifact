@@ -19,6 +19,8 @@ pub enum BuffName {
     CustomBonus,
     ElementalMastery,
     Recharge,
+    DEFMinus,
+    ResMinus,
 
     // character
     AlbedoTalent2,

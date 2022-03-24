@@ -17,6 +17,8 @@ pub enum BuffConfig {
     CustomBonus { p: f64 },
     ElementalMastery { value: f64 },
     Recharge { p: f64 },
+    DEFMinus { p: f64 },
+    ResMinus { p: f64 },
 
     BennettQ { base_atk: f64, c1: bool, skill3: usize },
     GorouE1 { skill2: usize },
