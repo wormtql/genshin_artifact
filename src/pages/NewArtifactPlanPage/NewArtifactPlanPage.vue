@@ -476,7 +476,8 @@
                         <div class="detail-right">
                             <p
                                 class="target-function-description"
-                            >{{ targetFunctionDescription }}</p>
+                                v-html="targetFunctionDescription"
+                            ></p>
                         </div>
                     </div>
 

@@ -5,6 +5,8 @@ use crate::character::Character;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::{Element, SkillType, StatName};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::SimpleDamageBuilder;
 use crate::enemies::Enemy;
 use crate::target_functions::target_function::TargetFunctionMetaTrait;
 use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
@@ -24,7 +26,7 @@ impl TargetFunctionMetaTrait for ExpectVaporizeTargetFunction {
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::ExpectVaporize,
         chs: "期望蒸发伤害",
-        description: "使得蒸发反应的期望伤害最高",
+        description: "使得蒸发反应的期望伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
         tags: "输出",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/sword")
@@ -116,19 +118,16 @@ impl TargetFunction for ExpectVaporizeTargetFunction {
         Default::default()
     }
 
-    fn target(&self, attribute: &SimpleAttributeGraph2, _character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], _enemy: &Enemy) -> f64 {
-        let atk = attribute.get_atk();
+    fn target(&self, attribute: &SimpleAttributeGraph2, _character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
         let element = if self.t == 0 {
             Element::Pyro
         } else {
             Element::Hydro
         };
 
-        let bonus = attribute.get_bonus(element, self.skill);
-        let crit = attribute.get_critical_rate(element, self.skill).clamp(0.0, 1.0);
-        let crit_damage = attribute.get_critical_damage(element, self.skill);
-        let extra_damage = attribute.get_extra_damage(element, self.skill);
+        let builder = SimpleDamageBuilder::new(3.0, 0.0, 0.0);
+        let result = builder.damage(&attribute, &enemy, element, self.skill, 90);
 
-        (atk * 3.0 + extra_damage) * (1.0 + bonus) * (1.0 + crit_damage * crit)
+        result.vaporize.unwrap().expectation
     }
 }
