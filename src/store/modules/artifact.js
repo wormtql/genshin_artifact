@@ -75,6 +75,37 @@ function count(artifacts) {
     return c;
 }
 
+function removeArtifact(state, id) {
+    a: for (let pos of positions) {
+        let artifacts = state[pos];
+        for (let i = 0, l = artifacts.length; i < l; i++) {
+            let art = artifacts[i];
+            if (art.id === id) {
+                const hash = hashArtifact(art);
+                updateHash(hash, -1);
+                artifacts.splice(i, 1);
+                break a;
+            }
+        }
+    }
+}
+
+function addArtifact(state, artifact, fixedId = -1) {
+    const id = fixedId !== -1 ? fixedId : Math.floor(Math.random() * 1e9)
+
+    let artifact2 = deepCopy(artifact)
+    artifact2.id = id
+    if (!Object.hasOwnProperty.call(artifact2, "omit")) {
+        artifact2.omit = false
+    }
+
+    const position = artifact2.position
+    state[position].push(artifact2)
+
+    const hash = hashArtifact(artifact2)
+    updateHash(hash, 1)
+}
+
 let _store = {
     namespaced: true,
     state: {
@@ -86,50 +117,43 @@ let _store = {
     },
     mutations: {
         removeArtifactById(state, { id }) {
-            a: for (let pos of positions) {
-                let artifacts = state[pos];
-                for (let i = 0, l = artifacts.length; i < l; i++) {
-                    let art = artifacts[i];
-                    if (art.id === id) {
-                        const hash = hashArtifact(art);
-                        updateHash(hash, -1);
-                        artifacts.splice(i, 1);
-                        break a;
-                    }
-                }
-            }
+            removeArtifact(state, id)
         },
 
         updateArtifact(state, { id, artifact }) {
             let original = findArtifact(state, id)
 
-            const check = name => Object.prototype.hasOwnProperty.call(artifact, name)
-            const attributes = ["setName", "star", "level", "position", "mainTag", "normalTags"]
-
-            for (let a of attributes) {
-                if (check(a)) {
-                    Vue.set(original, a, artifact[a])
-                }
+            console.log(original)
+            if (original.position !== artifact.position) {
+                removeArtifact(state, id)
             }
+
+            addArtifact(state, artifact, id)
+
+            // const check = name => Object.prototype.hasOwnProperty.call(artifact, name)
+            // const attributes = ["setName", "star", "level", "position", "mainTag", "normalTags"]
+            //
+            // for (let a of attributes) {
+            //     if (check(a)) {
+            //         Vue.set(original, a, artifact[a])
+            //     }
+            // }
         },
 
         addArtifact(state, item) {
-            item.id = Math.floor(Math.random() * 1e9);
-            state[item.position].push(item);
-
-            const hash = hashArtifact(item);
-            updateHash(hash, 1);
+            addArtifact(state, item)
         },
 
         addArtifactV2(state, { artifact }) {
-            let item = deepCopy(artifact)
-            item.id = Math.floor(Math.random() * 1e9)
-
-            if (!Object.hasOwnProperty.call(item, "omit")) {
-                item.omit = false
-            }
-
-            state[item.position].push(item)
+            addArtifact(state, artifact)
+            // let item = deepCopy(artifact)
+            // item.id = Math.floor(Math.random() * 1e9)
+            //
+            // if (!Object.hasOwnProperty.call(item, "omit")) {
+            //     item.omit = false
+            // }
+            //
+            // state[item.position].push(item)
         },
 
         addArtifactWithID(state, item) {
