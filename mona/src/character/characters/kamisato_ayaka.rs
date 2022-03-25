@@ -200,6 +200,11 @@ impl CharacterTrait for KamisatoAyaka {
             name: "after_dash",
             title: "神里流·霰步",
             config: ItemConfigType::Bool { default: true }
+        },
+        ItemConfig {
+            name: "use_c6",
+            title: "六命效果",
+            config: ItemConfigType::Bool { default: false }
         }
     ]);
 
@@ -225,12 +230,18 @@ impl CharacterTrait for KamisatoAyaka {
             Q2 => KAMISATO_AYAKA_SKILL.elemental_burst_dmg2[s3]
         };
 
-        let after_dash = match *config {
-            CharacterSkillConfig::KamisatoAyaka { after_dash } => after_dash,
-            _ => false
+        let (after_dash, use_c6) = match *config {
+            CharacterSkillConfig::KamisatoAyaka { after_dash, use_c6 } => (after_dash, use_c6),
+            _ => (false, false)
         };
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
+
+        let skill_type = s.get_skill_type();
+        if skill_type == SkillType::ChargedAttack && use_c6 {
+            builder.add_extra_bonus("绫华六命：间水月", 2.98);
+        }
+
         builder.damage(
             &context.attribute,
             &context.enemy,

@@ -118,7 +118,7 @@ impl TargetFunction for KamisatoAyakaDefaultTargetFunction {
             attribute, enemy
         };
 
-        let s_config: CharacterSkillConfig = CharacterSkillConfig::KamisatoAyaka { after_dash: true };
+        let s_config: CharacterSkillConfig = CharacterSkillConfig::KamisatoAyaka { after_dash: true, use_c6: false };
         type S = <KamisatoAyaka as CharacterTrait>::DamageEnumType;
         let dmg_q = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::Q1, &s_config).normal.expectation;
         let dmg_normal = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::Normal1, &s_config).normal.expectation;

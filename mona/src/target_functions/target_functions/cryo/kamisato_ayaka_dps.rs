@@ -126,7 +126,7 @@ impl TargetFunction for KamisatoAyakaDpsTargetFunction {
 
         type S = <KamisatoAyaka as CharacterTrait>::DamageEnumType;
 
-        let config = CharacterSkillConfig::KamisatoAyaka { after_dash: true };
+        let config = CharacterSkillConfig::KamisatoAyaka { after_dash: true, use_c6: false };
         let dmg_a1 = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config).normal.expectation;
         let dmg_a = dmg_a1 * (1.0 + 1.0656 + 1.3698 + 0.4955 * 3.0);
         let time_a = 2.66;
