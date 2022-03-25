@@ -11,7 +11,6 @@
     "download-artifact": "node ./script/download_artifact.js",
     "inspect": "vue inspect > inspect.js",
     "myserve": "serve ./dist",
-    "optimize-png": "node ./script/optimize_png.js",
     "pack": "tar -czvf dist.tar.gz ./dist"
   },
   "dependencies": {

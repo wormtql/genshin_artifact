@@ -8,6 +8,7 @@ pub enum CharacterSkillConfig {
     Diluc { pyro: bool },
     Eula { lightfall_stack: usize },
     HuTao { after_e: bool },
+    KaedeharaKazuha { after_e_or_q: bool },
     KamisatoAyaka { after_dash: bool, use_c6: bool },
     Keqing { after_e: bool },
     Noelle { after_q: bool },

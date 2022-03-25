@@ -1,12 +1,12 @@
 use num_derive::FromPrimitive;
-use crate::attribute::Attribute;
+use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
-use crate::common::item_config_type::ItemConfig;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::KaedeharaKazuhaDefaultTargetFunction;
@@ -102,7 +102,7 @@ pub enum KaedeharaKazuhaDamageEnum {
 }
 
 impl KaedeharaKazuhaDamageEnum {
-    pub fn get_element(&self) -> Element {
+    pub fn get_element(&self, after_e_or_q: bool) -> Element {
         use KaedeharaKazuhaDamageEnum::*;
         match *self {
             E1 | E2 | Q1 | Q2 | PlungingE1 | PlungingE2 | PlungingE3 => Element::Anemo,
@@ -110,7 +110,7 @@ impl KaedeharaKazuhaDamageEnum {
             Q3Hydro | PlungingHydro => Element::Hydro,
             Q3Pyro | PlungingPyro => Element::Pyro,
             Q3Electro | PlungingElectro => Element::Electro,
-            _ => Element::Physical
+            _ => if after_e_or_q { Element::Anemo } else { Element::Physical }
         }
     }
 
@@ -143,6 +143,15 @@ impl CharacterTrait for KaedeharaKazuha {
     const SKILL: Self::SkillType = KAEDEHARA_KAZUHA_SKILL;
     type DamageEnumType = KaedeharaKazuhaDamageEnum;
     type RoleEnum = KaedeharaKazuhaRoleEnum;
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "after_e_or_q",
+            title: "六命：血赤叶红",
+            config: ItemConfigType::Bool { default: false }
+        }
+    ]);
 
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
@@ -180,7 +189,7 @@ impl CharacterTrait for KaedeharaKazuha {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
         let s: KaedeharaKazuhaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -204,13 +213,27 @@ impl CharacterTrait for KaedeharaKazuha {
             Q2 => KAEDEHARA_KAZUHA_SKILL.elemental_burst_dmg2[s3],
             Q3Electro | Q3Pyro | Q3Cryo | Q3Hydro => KAEDEHARA_KAZUHA_SKILL.elemental_burst_dmg3[s3]
         };
+
+        let after_e_or_q = match *config {
+            CharacterSkillConfig::KaedeharaKazuha { after_e_or_q } => after_e_or_q,
+            _ => false
+        };
+
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
+
+        let skill_type = s.get_skill_type();
+        if after_e_or_q && (skill_type == SkillType::NormalAttack || skill_type == SkillType::ChargedAttack || skill_type == SkillType::PlungingAttack) {
+            let em = context.attribute.get_value(AttributeName::ElementalMastery);
+            let bonus = em * 0.002;
+            builder.add_extra_bonus("枫原万叶六命：血赤叶红", bonus);
+        }
+
         builder.damage(
             &context.attribute,
             &context.enemy,
-            s.get_element(),
-            s.get_skill_type(),
+            s.get_element(after_e_or_q),
+            skill_type,
             context.character_common_data.level
         )
     }
