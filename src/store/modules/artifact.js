@@ -123,7 +123,7 @@ let _store = {
         updateArtifact(state, { id, artifact }) {
             let original = findArtifact(state, id)
 
-            console.log(original)
+            // console.log(original)
             if (original.position !== artifact.position) {
                 removeArtifact(state, id)
             }
