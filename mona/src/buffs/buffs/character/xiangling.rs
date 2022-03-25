@@ -22,7 +22,7 @@ impl BuffMeta for BuffXianglingTalent2 {
         chs: "香菱-「绝云朝天椒」",
         image: BuffImage::Avatar(CharacterName::Xiangling),
         genre: BuffGenre::Character,
-        description: Some("锅巴出击效果结束时，锅巴会在消失的位置留下辣椒。拾取辣椒会提高10%攻击力，持续10秒。"),
+        description: Some("香菱天赋2：锅巴出击效果结束时，锅巴会在消失的位置留下辣椒。拾取辣椒会提高10%攻击力，持续10秒。"),
         from: BuffFrom::Character(CharacterName::Xiangling),
     };
 
@@ -47,7 +47,7 @@ impl BuffMeta for BuffXianglingC1 {
         chs: "香菱-「外酥里嫩」",
         image: BuffImage::Avatar(CharacterName::Xiangling),
         genre: BuffGenre::Character,
-        description: Some("香菱一命。受到锅巴攻击的敌人，火元素抗性降低15％，持续6秒。"),
+        description: Some("香菱命座1：受到锅巴攻击的敌人，火元素抗性降低15％，持续6秒。"),
         from: BuffFrom::Character(CharacterName::Xiangling),
     };
 
@@ -72,7 +72,7 @@ impl BuffMeta for BuffXianglingC6 {
         chs: "香菱-「大龙卷旋火轮」",
         image: BuffImage::Avatar(CharacterName::Xiangling),
         genre: BuffGenre::Character,
-        description: Some("香菱六命。旋火轮持续期间，队伍中所有角色获得15％火元素伤害加成。"),
+        description: Some("香菱命座6；旋火轮持续期间，队伍中所有角色获得15％火元素伤害加成。"),
         from: BuffFrom::Character(CharacterName::Xiangling),
     };
 

@@ -22,7 +22,7 @@ impl BuffMeta for BuffLisaTalent2 {
         chs: "丽莎-「静电场力」",
         image: BuffImage::Avatar(CharacterName::Lisa),
         genre: BuffGenre::Character,
-        description: Some("敌人受到蔷薇的雷光攻击后，降低15%防御力，持续10秒。"),
+        description: Some("丽莎天赋2：敌人受到蔷薇的雷光攻击后，降低15%防御力，持续10秒。"),
         from: BuffFrom::Character(CharacterName::Lisa),
     };
 

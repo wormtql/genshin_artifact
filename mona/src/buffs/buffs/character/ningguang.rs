@@ -22,7 +22,7 @@ impl BuffMeta for BuffNingguangTalent2 {
         chs: "凝光-「储之千日，用之一刻」",
         image: BuffImage::Avatar(CharacterName::Ningguang),
         genre: BuffGenre::Character,
-        description: Some("穿过璇玑屏的角色会获得12%岩元素伤害加成，持续10秒。"),
+        description: Some("凝光天赋2：穿过璇玑屏的角色会获得12%岩元素伤害加成，持续10秒。"),
         from: BuffFrom::Character(CharacterName::Ningguang),
     };
 

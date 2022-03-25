@@ -22,7 +22,7 @@ impl BuffMeta for BuffHuTaoTalent1 {
         chs: "胡桃-「蝶隐之时」",
         image: BuffImage::Avatar(CharacterName::HuTao),
         genre: BuffGenre::Character,
-        description: Some("蝶引来生施加的彼岸蝶舞状态结束后，队伍中所有角色（不包括胡桃自己）的暴击率提高12%，持续8秒。"),
+        description: Some("胡桃天赋1：蝶引来生施加的彼岸蝶舞状态结束后，队伍中所有角色（不包括胡桃自己）的暴击率提高12%，持续8秒。"),
         from: BuffFrom::Character(CharacterName::HuTao),
     };
 

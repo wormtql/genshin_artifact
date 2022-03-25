@@ -20,7 +20,7 @@ impl BuffMeta for BuffBeidouC6 {
         chs: "北斗-「北斗祓幽孽」",
         image: BuffImage::Avatar(CharacterName::Beidou),
         genre: BuffGenre::Character,
-        description: Some("斫雷持续期间，周围敌人的雷元素抗性降低15%。"),
+        description: Some("北斗命座6：斫雷持续期间，周围敌人的雷元素抗性降低15%。"),
         from: BuffFrom::Character(CharacterName::Beidou),
     };
 

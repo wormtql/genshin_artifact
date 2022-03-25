@@ -27,7 +27,7 @@ impl BuffMeta for BuffVentiC2 {
         chs: "温迪-「眷恋的泠风」",
         image: BuffImage::Avatar(CharacterName::Venti),
         genre: BuffGenre::Character,
-        description: Some("高天之歌会使敌人的风元素抗性与物理抗性降低12％，持续10秒。被高天之歌击飞的敌人在落地前，风元素抗性与物理抗性额外降低12％。"),
+        description: Some("温迪命座2：高天之歌会使敌人的风元素抗性与物理抗性降低12％，持续10秒。被高天之歌击飞的敌人在落地前，风元素抗性与物理抗性额外降低12％。"),
         from: BuffFrom::Character(CharacterName::Venti),
     };
 
@@ -75,7 +75,7 @@ impl BuffMeta for BuffVentiC6 {
         chs: "温迪-「抗争的暴风」",
         image: BuffImage::Avatar(CharacterName::Venti),
         genre: BuffGenre::Character,
-        description: Some("温迪六命BUFF。受风神之诗伤害的敌人，风元素抗性降低20％。若产生了元素转化，则使转换的元素抗性也降低20％。"),
+        description: Some("温迪命座6：温迪六命BUFF。受风神之诗伤害的敌人，风元素抗性降低20％。若产生了元素转化，则使转换的元素抗性也降低20％。"),
         from: BuffFrom::Character(CharacterName::Venti),
     };
 

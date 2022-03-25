@@ -23,7 +23,7 @@ impl BuffMeta for BuffSucroseTalent1 {
         chs: "砂糖-「触媒置换术」",
         image: BuffImage::Avatar(CharacterName::Sucrose),
         genre: BuffGenre::Character,
-        description: Some("砂糖触发扩散反应时，使队伍中所有对应元素类型的角色（不包括砂糖自己）元素精通提升50，持续8秒。"),
+        description: Some("砂糖天赋1：砂糖触发扩散反应时，使队伍中所有对应元素类型的角色（不包括砂糖自己）元素精通提升50，持续8秒。"),
         from: BuffFrom::Character(CharacterName::Sucrose),
     };
 
@@ -51,7 +51,7 @@ impl BuffMeta for BuffSucroseTalent2 {
         chs: "砂糖-「小小的慧风」",
         image: BuffImage::Avatar(CharacterName::Sucrose),
         genre: BuffGenre::Character,
-        description: Some("风灵作成·陆叁零捌或禁·风灵作成·染伍同构贰型命中敌人时，基于砂糖元素精通的20%,为队伍中所有角色（不包括砂糖自己）提供元素精通加成，持续8秒。"),
+        description: Some("砂糖天赋2：风灵作成·陆叁零捌或禁·风灵作成·染伍同构贰型命中敌人时，基于砂糖元素精通的20%,为队伍中所有角色（不包括砂糖自己）提供元素精通加成，持续8秒。"),
         from: BuffFrom::Character(CharacterName::Sucrose),
     };
 
@@ -95,7 +95,7 @@ impl BuffMeta for BuffSucroseC6 {
         chs: "砂糖-「混元熵增论」",
         image: BuffImage::Avatar(CharacterName::Sucrose),
         genre: BuffGenre::Character,
-        description: Some("	禁·风灵作成·柒伍同构贰型如果发生了元素转化，则使队伍中所有角色在技能持续时间内获得20%的对应元素伤害加成。"),
+        description: Some("砂糖命座6：禁·风灵作成·柒伍同构贰型如果发生了元素转化，则使队伍中所有角色在技能持续时间内获得20%的对应元素伤害加成。"),
         from: BuffFrom::Character(CharacterName::Sucrose),
     };
 

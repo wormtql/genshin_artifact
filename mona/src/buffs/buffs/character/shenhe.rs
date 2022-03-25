@@ -29,7 +29,7 @@ impl BuffMeta for BuffShenheE {
         chs: "申鹤-「冰翎」",
         image: BuffImage::Avatar(CharacterName::Shenhe),
         genre: BuffGenre::Character,
-        description: Some("基于申鹤自己当前的攻击力，提高造成的伤害。"),
+        description: Some("申鹤E技能：基于申鹤自己当前的攻击力，提高造成的伤害。"),
         from: BuffFrom::Character(CharacterName::Shenhe),
     };
 
@@ -79,7 +79,7 @@ impl BuffMeta for BuffShenheQ {
         chs: "申鹤-「神女遣灵真诀」减抗",
         image: BuffImage::Avatar(CharacterName::Shenhe),
         genre: BuffGenre::Character,
-        description: Some("「箓灵」将结成领域，使其中敌人的冰元素抗性与物理抗性降低。"),
+        description: Some("申鹤Q技能：「箓灵」将结成领域，使其中敌人的冰元素抗性与物理抗性降低。"),
         from: BuffFrom::Character(CharacterName::Shenhe),
     };
 
@@ -125,7 +125,7 @@ impl BuffMeta for BuffShenheTalent1 {
         chs: "申鹤-「大洞弥罗尊法」",
         image: BuffImage::Avatar(CharacterName::Shenhe),
         genre: BuffGenre::Character,
-        description: Some("处于神女遣灵真诀的领域中的当前场上角色，冰元素伤害加成提高15%。二命：领域中的当前场上角色，冰元素伤害的暴击伤害提高15%。"),
+        description: Some("申鹤天赋1：处于神女遣灵真诀的领域中的当前场上角色，冰元素伤害加成提高15%。二命：领域中的当前场上角色，冰元素伤害的暴击伤害提高15%。"),
         from: BuffFrom::Character(CharacterName::Shenhe),
     };
 
@@ -175,7 +175,7 @@ impl BuffMeta for BuffShenheTalent2 {
         chs: "申鹤-「缚灵通真法印」",
         image: BuffImage::Avatar(CharacterName::Shenhe),
         genre: BuffGenre::Character,
-        description: Some("申鹤施放仰灵威召将役咒后，将使附近的队伍中所有角色获得如下效果：<br>•点按：元素战技和元素爆发造成的伤害提高15%，持续10秒；<br>•长按：普通攻击、重击和下落攻击造成的伤害提高15%，持续15秒。"),
+        description: Some("申鹤天赋2：申鹤施放仰灵威召将役咒后，将使附近的队伍中所有角色获得如下效果：<br>•点按：元素战技和元素爆发造成的伤害提高15%，持续10秒；<br>•长按：普通攻击、重击和下落攻击造成的伤害提高15%，持续15秒。"),
         from: BuffFrom::Character(CharacterName::Shenhe),
     };
 

@@ -42,7 +42,7 @@ impl BuffMeta for BuffYunjinQ {
         chs: "云堇-「飞云旗阵」",
         image: BuffImage::Avatar(CharacterName::Yunjin),
         genre: BuffGenre::Character,
-        description: Some("对敌人造成普通攻击伤害时，基于云堇自己当前的防御力，提高造成的伤害。<br>天赋「莫从恒蹊」：「飞云旗阵」提供的普通攻击伤害提高，当队伍中存在1/2/3/4种元素类型的角色时，数值上进一步追加云堇防御力的2.5%/5.0%/7.5%/11.5%。"),
+        description: Some("云堇Q技能：对敌人造成普通攻击伤害时，基于云堇自己当前的防御力，提高造成的伤害。<br>天赋「莫从恒蹊」：「飞云旗阵」提供的普通攻击伤害提高，当队伍中存在1/2/3/4种元素类型的角色时，数值上进一步追加云堇防御力的2.5%/5.0%/7.5%/11.5%。"),
         from: BuffFrom::Character(CharacterName::Yunjin),
     };
 
@@ -98,7 +98,7 @@ impl BuffMeta for BuffYunjinC2 {
         chs: "云堇-「诸般切末」",
         image: BuffImage::Avatar(CharacterName::Yunjin),
         genre: BuffGenre::Character,
-        description: Some("施放破嶂见旌仪后，附近队伍中所有角色普通攻击造成的伤害提高15%，持续12秒。"),
+        description: Some("云堇命座2：施放破嶂见旌仪后，附近队伍中所有角色普通攻击造成的伤害提高15%，持续12秒。"),
         from: BuffFrom::Character(CharacterName::Yunjin),
     };
 

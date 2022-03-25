@@ -22,7 +22,7 @@ impl BuffMeta for BuffJeanC4 {
         chs: "琴-「蒲公英的国土」",
         image: BuffImage::Avatar(CharacterName::Jean),
         genre: BuffGenre::Character,
-        description: Some("在蒲公英之风的领域内，所有敌人的风元素抗性下降40％。"),
+        description: Some("琴命座4：在蒲公英之风的领域内，所有敌人的风元素抗性下降40％。"),
         from: BuffFrom::Character(CharacterName::Jean),
     };
 

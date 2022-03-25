@@ -22,7 +22,7 @@ impl BuffMeta for BuffGanyuTalent2 {
         chs: "甘雨-「天地交泰」",
         image: BuffImage::Avatar(CharacterName::Ganyu),
         genre: BuffGenre::Character,
-        description: Some("降众天华领域内的队伍中当前场上角色获得20%冰元素伤害加成。"),
+        description: Some("甘雨天赋2：降众天华领域内的队伍中当前场上角色获得20%冰元素伤害加成。"),
         from: BuffFrom::Character(CharacterName::Ganyu)
     };
 
@@ -46,7 +46,7 @@ impl BuffMeta for BuffGanyuC1 {
         chs: "甘雨-「饮露」",
         image: BuffImage::Avatar(CharacterName::Ganyu),
         genre: BuffGenre::Character,
-        description: Some("二段蓄力重击的霜华矢或霜华绽发命中敌人时，会使敌人的冰元素抗性降低15%，持续6秒。"),
+        description: Some("甘雨命座1：二段蓄力重击的霜华矢或霜华绽发命中敌人时，会使敌人的冰元素抗性降低15%，持续6秒。"),
         from: BuffFrom::Character(CharacterName::Ganyu),
     };
 

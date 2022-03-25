@@ -22,7 +22,7 @@ impl BuffMeta for BuffXinyanC4 {
         chs: "辛焱-「节奏的传染」",
         image: BuffImage::Avatar(CharacterName::Xinyan),
         genre: BuffGenre::Character,
-        description: Some("辛焱四命。热情拂扫的伤害，会使敌人的物理抗性降低15%，持续12秒。"),
+        description: Some("辛焱命座4：热情拂扫的伤害，会使敌人的物理抗性降低15%，持续12秒。"),
         from: BuffFrom::Character(CharacterName::Xinyan),
     };
 
@@ -47,7 +47,7 @@ impl BuffMeta for BuffXinyanTalent2 {
         chs: "辛焱-「这才是摇滚!」",
         image: BuffImage::Avatar(CharacterName::Xinyan),
         genre: BuffGenre::Character,
-        description: Some("处于热情拂扫的护盾保护下的角色造成的物理伤害提高15%。"),
+        description: Some("辛焱天赋2：处于热情拂扫的护盾保护下的角色造成的物理伤害提高15%。"),
         from: BuffFrom::Character(CharacterName::Xinyan),
     };
 

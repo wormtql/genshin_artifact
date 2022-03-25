@@ -21,7 +21,7 @@ impl BuffMeta for BuffAlbedoTalent2 {
         chs: "阿贝多-「瓶中人的天慧」",
         image: BuffImage::Avatar(CharacterName::Albedo),
         genre: BuffGenre::Character,
-        description: Some("释放诞生式·大地之潮时,使附近的队伍中角色的元素精通提高125点，持续10秒"),
+        description: Some("阿贝多天赋2：释放诞生式·大地之潮时,使附近的队伍中角色的元素精通提高125点，持续10秒"),
         from: BuffFrom::Character(CharacterName::Albedo),
     };
 

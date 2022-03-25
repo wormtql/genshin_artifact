@@ -28,7 +28,7 @@ impl BuffMeta for BuffKaedeharaKazuhaTalent2 {
         chs: "枫原万叶-「风物之诗咏」",
         image: BuffImage::Avatar(CharacterName::KaedeharaKazuha),
         genre: BuffGenre::Character,
-        description: Some("枫原万叶触发扩散反应后，枫原万叶的每点元素精通，会为队伍中所有角色提供0.04%对应元素伤害加成，持续8秒。"),
+        description: Some("枫原万叶天赋2：枫原万叶触发扩散反应后，枫原万叶的每点元素精通，会为队伍中所有角色提供0.04%对应元素伤害加成，持续8秒。"),
         from: BuffFrom::Character(CharacterName::KaedeharaKazuha),
     };
 
@@ -73,7 +73,7 @@ impl BuffMeta for BuffKaedeharaKazuhaC2 {
         chs: "枫原万叶-「山岚残芯」",
         image: BuffImage::Avatar(CharacterName::KaedeharaKazuha),
         genre: BuffGenre::Character,
-        description: Some("场上角色的元素精通提升200点。"),
+        description: Some("枫原万叶命座2：场上角色的元素精通提升200点。"),
         from: BuffFrom::Character(CharacterName::KaedeharaKazuha),
     };
 

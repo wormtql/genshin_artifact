@@ -23,7 +23,7 @@ impl BuffMeta for BuffAratakiIttoC4 {
         chs: "荒泷一斗-「奉行牢狱，茶饭之所」",
         image: BuffImage::Avatar(CharacterName::AratakiItto),
         genre: BuffGenre::Character,
-        description: Some("最恶鬼王•一斗轰临！！施加的「怒目鬼王」状态结束后，附近的队伍中所有角色的防御力提升20%，攻击力提升20%，持续10秒。"),
+        description: Some("荒泷一斗命座4：最恶鬼王•一斗轰临！！施加的「怒目鬼王」状态结束后，附近的队伍中所有角色的防御力提升20%，攻击力提升20%，持续10秒。"),
         from: BuffFrom::Character(CharacterName::AratakiItto),
     };
 

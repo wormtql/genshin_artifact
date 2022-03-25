@@ -22,7 +22,7 @@ impl BuffMeta for BuffRazorC4 {
         chs: "雷泽-「撕咬」",
         image: BuffImage::Avatar(CharacterName::Razor),
         genre: BuffGenre::Character,
-        description: Some("	利爪与苍雷点按时，会使命中的敌人防御力降低15％，持续7秒。"),
+        description: Some("雷泽命座4：利爪与苍雷点按时，会使命中的敌人防御力降低15％，持续7秒。"),
         from: BuffFrom::Character(CharacterName::Razor),
     };
 

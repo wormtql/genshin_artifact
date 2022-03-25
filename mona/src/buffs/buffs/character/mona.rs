@@ -31,7 +31,7 @@ impl BuffMeta for BuffMonaQ {
         chs: "莫娜-「星异」",
         image: BuffImage::Avatar(CharacterName::Mona),
         genre: BuffGenre::Character,
-        description: Some("对敌人施加星异的伤害加成效果，并以此提高这一次造成的伤害。四命：队伍中所有角色攻击处于星异状态下的敌人时，暴击率提升15%"),
+        description: Some("莫娜Q技能：对敌人施加星异的伤害加成效果，并以此提高这一次造成的伤害。四命：队伍中所有角色攻击处于星异状态下的敌人时，暴击率提升15%"),
         from: BuffFrom::Character(CharacterName::Mona),
     };
 
@@ -78,7 +78,7 @@ impl BuffMeta for BuffMonaC1 {
         chs: "莫娜-「沉没的预言」",
         image: BuffImage::Avatar(CharacterName::Mona),
         genre: BuffGenre::Character,
-        description: Some("队伍中自己的角色攻击命中处于星异状态下的敌人后的8秒内，水元素相关反应的效果提升：<br>•感电反应造成的伤害提升15%，蒸发反应造成的伤害提升15%，水元素扩散反应造成的伤害提升15%"),
+        description: Some("莫娜命座1：队伍中自己的角色攻击命中处于星异状态下的敌人后的8秒内，水元素相关反应的效果提升：<br>•感电反应造成的伤害提升15%，蒸发反应造成的伤害提升15%，水元素扩散反应造成的伤害提升15%"),
         from: BuffFrom::Character(CharacterName::Mona),
     };
 

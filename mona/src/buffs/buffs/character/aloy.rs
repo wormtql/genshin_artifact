@@ -21,7 +21,7 @@ impl BuffMeta for BuffAloyTalent1 {
         chs: "埃洛伊-「战斗覆盖」",
         image: BuffImage::Avatar(CharacterName::Aloy),
         genre: BuffGenre::Character,
-        description: Some("埃洛伊获得冰尘雪野的线圈效果时，队伍中附近的其他角色的攻击力提升8%，持续10秒。"),
+        description: Some("埃洛伊天赋1：埃洛伊获得冰尘雪野的线圈效果时，队伍中附近的其他角色的攻击力提升8%，持续10秒。"),
         from: BuffFrom::Character(CharacterName::Aloy),
     };
 

@@ -21,7 +21,7 @@ impl BuffMeta for BuffDionaC6G50 {
         chs: "迪奥娜-「猫尾打烊之时」",
         image: BuffImage::Avatar(CharacterName::Diona),
         genre: BuffGenre::Character,
-        description: Some("需要迪奥娜6命。生命值高于50%时，元素精通提升200。"),
+        description: Some("迪奥娜命座6：生命值高于50%时，元素精通提升200。"),
         from: BuffFrom::Character(CharacterName::Diona)
     };
 

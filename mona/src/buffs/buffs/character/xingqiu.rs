@@ -22,7 +22,7 @@ impl BuffMeta for BuffXingqiuC2 {
         chs: "行秋-「天青现虹」",
         image: BuffImage::Avatar(CharacterName::Xingqiu),
         genre: BuffGenre::Character,
-        description: Some("行秋二命。受到剑雨攻击的敌人，水元素抗性降低15％，持续4秒。"),
+        description: Some("行秋命座2：受到剑雨攻击的敌人，水元素抗性降低15％，持续4秒。"),
         from: BuffFrom::Character(CharacterName::Xingqiu),
     };
 

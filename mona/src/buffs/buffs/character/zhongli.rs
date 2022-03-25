@@ -22,7 +22,7 @@ impl BuffMeta for BuffZhongliShield {
         chs: "钟离-「玉璋护盾」",
         image: BuffImage::Avatar(CharacterName::Zhongli),
         genre: BuffGenre::Character,
-        description: Some("使附近小范围内敌人的所有元素抗性与物理抗性降低20%"),
+        description: Some("钟离盾：使附近小范围内敌人的所有元素抗性与物理抗性降低20%"),
         from: BuffFrom::Character(CharacterName::Zhongli),
     };
 

@@ -28,10 +28,10 @@ impl BuffMeta for BuffBennettQ {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::BennettQ,
-        chs: "班尼特-美妙旅程",
+        chs: "班尼特-「美妙旅程」",
         image: BuffImage::Avatar(CharacterName::Bennett),
         genre: BuffGenre::Character,
-        description: Some("基于班尼特的基础攻击力，以一定比例获得攻击力加成<br>一命：美妙旅程的攻击力提升效果不再有血量限制，数值上追加班尼特基础攻击力的20%。"),
+        description: Some("班尼特Q技能：基于班尼特的基础攻击力，以一定比例获得攻击力加成<br>一命：美妙旅程的攻击力提升效果不再有血量限制，数值上追加班尼特基础攻击力的20%。"),
         from: BuffFrom::Character(CharacterName::Bennett),
     };
 
@@ -81,7 +81,7 @@ impl BuffMeta for BuffBennettC6 {
         chs: "班尼特-「烈火与勇气」",
         image: BuffImage::Avatar(CharacterName::Bennett),
         genre: BuffGenre::Character,
-        description: Some("班尼特六命。处在美妙旅程领域内的队伍中当前场上单手剑、双手剑、长柄武器角色获得15%火元素伤害加成<br>注：此处不管当前角色的武器类型"),
+        description: Some("班尼特命座6：处在美妙旅程领域内的队伍中当前场上单手剑、双手剑、长柄武器角色获得15%火元素伤害加成<br>注：此处不管当前角色的武器类型"),
         from: BuffFrom::Character(CharacterName::Bennett)
     };
 

@@ -22,7 +22,7 @@ impl BuffMeta for BuffChongyunTalent2 {
         chs: "重云-「追冰剑诀」",
         image: BuffImage::Avatar(CharacterName::Chongyun),
         genre: BuffGenre::Character,
-        description: Some("灵刃·重华叠霜领域消失时，会唤出一柄灵刃自动攻击附近的敌人，造成相当于灵刃·重华叠霜技能伤害100%的冰元素范围伤害。被击中的敌人冰元素抗性降低10%，持续8秒。"),
+        description: Some("重云天赋2：灵刃·重华叠霜领域消失时，会唤出一柄灵刃自动攻击附近的敌人，造成相当于灵刃·重华叠霜技能伤害100%的冰元素范围伤害。被击中的敌人冰元素抗性降低10%，持续8秒。"),
         from: BuffFrom::Character(CharacterName::Chongyun),
     };
 

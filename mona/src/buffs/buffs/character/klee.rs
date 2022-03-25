@@ -22,7 +22,7 @@ impl BuffMeta for BuffKleeC2 {
         chs: "可莉-「破破弹片」",
         image: BuffImage::Avatar(CharacterName::Klee),
         genre: BuffGenre::Character,
-        description: Some("蹦蹦炸弹的诡雷会使敌人防御力降低23％，持续10秒。"),
+        description: Some("可莉命座2：蹦蹦炸弹的诡雷会使敌人防御力降低23％，持续10秒。"),
         from: BuffFrom::Character(CharacterName::Klee),
     };
 
@@ -46,7 +46,7 @@ impl BuffMeta for BuffKleeC6 {
         chs: "可莉-「火力全开」",
         image: BuffImage::Avatar(CharacterName::Klee),
         genre: BuffGenre::Character,
-        description: Some("施放轰轰火花后的25秒内，队伍中所有角色获得10％火元素伤害加成。"),
+        description: Some("可莉命座6：施放轰轰火花后的25秒内，队伍中所有角色获得10％火元素伤害加成。"),
         from: BuffFrom::Character(CharacterName::Klee),
     };
 

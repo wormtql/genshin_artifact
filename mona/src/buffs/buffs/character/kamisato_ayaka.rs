@@ -22,7 +22,7 @@ impl BuffMeta for BuffKamisatoAyakaC4 {
         chs: "神里绫华-「盈缺流返」",
         image: BuffImage::Avatar(CharacterName::KamisatoAyaka),
         genre: BuffGenre::Character,
-        description: Some("敌人受到神里流•霜灭的霜见雪关扉造成的伤害后，防御力降低30%，持续6秒。"),
+        description: Some("绫华命座4：敌人受到神里流•霜灭的霜见雪关扉造成的伤害后，防御力降低30%，持续6秒。"),
         from: BuffFrom::Character(CharacterName::KamisatoAyaka),
     };
 

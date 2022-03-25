@@ -29,7 +29,7 @@ impl BuffMeta for BuffRaidenShogunE {
         chs: "雷电将军-「雷罚恶曜之眼」",
         image: BuffImage::Avatar(CharacterName::RaidenShogun),
         genre: BuffGenre::Character,
-        description: Some("雷罚恶曜之眼的角色在持续期间内，元素爆发造成的伤害获得提升，提升程度基于元素爆发的元素能量。"),
+        description: Some("雷电将军E技能：雷罚恶曜之眼的角色在持续期间内，元素爆发造成的伤害获得提升，提升程度基于元素爆发的元素能量。"),
         from: BuffFrom::Character(CharacterName::RaidenShogun),
     };
 
@@ -75,7 +75,7 @@ impl BuffMeta for BuffRaidenShogunC4 {
         chs: "雷电将军-「誓奉常道」",
         image: BuffImage::Avatar(CharacterName::RaidenShogun),
         genre: BuffGenre::Character,
-        description: Some("奥义•梦想真说施加的梦想一心状态结束后，附近的队伍中所有角色（不包括雷电将军自己）的攻击力提升30%，持续10秒。"),
+        description: Some("雷电将军命座4：奥义•梦想真说施加的梦想一心状态结束后，附近的队伍中所有角色（不包括雷电将军自己）的攻击力提升30%，持续10秒。"),
         from: BuffFrom::Character(CharacterName::RaidenShogun),
     };
 

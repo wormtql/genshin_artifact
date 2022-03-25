@@ -25,7 +25,7 @@ impl BuffMeta for BuffYoimiyaTalent2 {
         chs: "宵宫-「炎昼风物诗」",
         image: BuffImage::Avatar(CharacterName::Yoimiya),
         genre: BuffGenre::Character,
-        description: Some("释放琉金云间草后的15秒内，附近的队伍中所有其它角色（不包括宵宫自己）攻击力提高10%。此外，依据宵宫自己释放琉金云间草时固有天赋「袖火百景图」的叠加层数，将额外提升上述的攻击力效果，每层提升1%攻击力。"),
+        description: Some("宵宫天赋2：释放琉金云间草后的15秒内，附近的队伍中所有其它角色（不包括宵宫自己）攻击力提高10%。此外，依据宵宫自己释放琉金云间草时固有天赋「袖火百景图」的叠加层数，将额外提升上述的攻击力效果，每层提升1%攻击力。"),
         from: BuffFrom::Character(CharacterName::Yoimiya),
     };
 
