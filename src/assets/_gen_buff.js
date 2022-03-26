@@ -122,6 +122,8 @@ import XinyanC4_image from "@image/characters/Xinyan_avatar"
 
 import XinyanTalent2_image from "@image/characters/Xinyan_avatar"
 
+import YaeMikoC4_image from "@image/characters/YaeMiko_avatar"
+
 import YoimiyaTalent2_image from "@image/characters/Yoimiya_avatar"
 
 import YunjinQ_image from "@image/characters/Yunjin_avatar"
@@ -903,6 +905,17 @@ export default {
         badge: XinyanTalent2_image,
         genre: "Character",
         description: "辛焱天赋2：处于热情拂扫的护盾保护下的角色造成的物理伤害提高15%。",
+        config: [
+            
+        ],
+    },
+    
+    "YaeMikoC4": {
+        name: "YaeMikoC4",
+        chs: "八重神子-「绯樱引雷章」",
+        badge: YaeMikoC4_image,
+        genre: "Character",
+        description: "八重神子命座4：杀生樱的落雷命中敌人后，队伍中附近的所有角色获得20%雷元素伤害加成，持续5秒。",
         config: [
             
         ],

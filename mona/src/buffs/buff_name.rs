@@ -71,6 +71,7 @@ pub enum BuffName {
     XingqiuC2,
     XinyanC4,
     XinyanTalent2,
+    YaeMikoC4,
     YoimiyaTalent2,
     YunjinQ,
     YunjinC2,

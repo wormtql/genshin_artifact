@@ -171,7 +171,6 @@
 </template>
 
 <script>
-import changelogs from "@/changelog/changelog"
 import links from "@const/links"
 
 import MigrateNotification from "./MigrateNotification"
@@ -192,7 +191,6 @@ export default {
         this.needMigrate = process.env.NEED_MIGRATE;
         this.buildDate = process.env.BUILD_DATE;
 
-        this.lastestVersion = changelogs[changelogs.length - 1];
         this.host = location.hostname;
     },
     methods: {
