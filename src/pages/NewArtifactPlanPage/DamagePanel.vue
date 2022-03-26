@@ -134,7 +134,7 @@ export default {
     .melt {
         color: rgb(63, 63, 63);
         // background-color: rgb(155, 218, 255);
-        background-image: url("../../assets/badges/cryo.png");
+        background-image: url("@image/misc/cryo");
         // background-size: 48px;
         background-position-x: -20px;
         background-position-y: -30px;

@@ -19,7 +19,7 @@
             "@potentialFunction": ["src/assets/potential_function"],
             "@buff": ["src/assets/buff"],
             "@image": ["src/images"],
-            "@artifact": ["src/assets/artifacts"],
+            "@artifact": ["src/assets/artifacts"]
         }
     }
 }
