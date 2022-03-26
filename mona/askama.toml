@@ -2,5 +2,5 @@
 dirs = ["templates"]
 
 [[escaper]]
-path = "mona::common::code_escape::CodeEscaper"
+path = "crate::common::code_escape::CodeEscaper"
 extensions = ["js"]

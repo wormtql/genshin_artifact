@@ -1,8 +1,8 @@
 use askama::{Template};
-use mona::common::item_config_type::ItemConfig;
-use mona::weapon::weapons::get_static_data;
-use mona::weapon::weapon_name::WeaponName;
-use mona::weapon::weapon_static_data::WeaponStaticData;
+use crate::common::item_config_type::ItemConfig;
+use crate::weapon::weapons::get_static_data;
+use crate::weapon::weapon_name::WeaponName;
+use crate::weapon::weapon_static_data::WeaponStaticData;
 
 struct WeaponMetaDataForJS {
     name: String,
@@ -19,7 +19,7 @@ struct WeaponMetaAllForJS {
     weapons: Vec<WeaponMetaDataForJS>,
 }
 
-fn main() {
+pub fn gen_weapon_meta_as_js_file() -> String {
     let mut data: Vec<WeaponMetaDataForJS> = Vec::new();
 
     for i in 0_usize..WeaponName::LEN {
@@ -54,5 +54,5 @@ fn main() {
         weapons: data
     };
 
-    println!("{}", t.render().unwrap())
+    t.render().unwrap()
 }

@@ -1,3 +1,4 @@
+// generated file, do not edit
 {% for weapon in weapons %}
 import {{ weapon.name }}_tn from "@image/weapons/{{ weapon.name }}_tn.png"
 {% endfor %}

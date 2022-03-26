@@ -16,6 +16,8 @@ pub mod team;
 // pub mod team_target;
 pub mod potential_function;
 
+#[cfg(not(target_family = "wasm"))]
+pub mod gen_meta;
 
 // calculator
 pub use applications::calculator::interface_calculator::{CalculatorInterface};

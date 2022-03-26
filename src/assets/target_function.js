@@ -1,4 +1,5 @@
-import _tfData from "!../../loaders/meta_loader.js?type=tf!./meta"
+import _tfData from "./_gen_tf"
+// import _tfData from "!../../loaders/meta_loader.js?type=tf!./meta"
 
 Object.freeze(_tfData)
 

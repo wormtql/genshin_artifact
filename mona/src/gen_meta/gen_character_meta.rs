@@ -1,7 +1,7 @@
 use askama::Template;
-use mona::character::{CharacterName, CharacterStaticData};
-use mona::character::traits::{CharacterSkillMap, CharacterSkillMapItem};
-use mona::common::item_config_type::ItemConfig;
+use crate::character::{CharacterName, CharacterStaticData};
+use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem};
+use crate::common::item_config_type::ItemConfig;
 
 struct CharacterMeta {
     name: String,
@@ -25,7 +25,7 @@ struct CharacterMetaTemplate {
     characters: Vec<CharacterMeta>
 }
 
-fn main() {
+pub fn gen_character_meta_as_js_file() -> String {
     let mut data: Vec<CharacterMeta> = Vec::new();
 
     for i in 0_usize..CharacterName::LEN {
@@ -84,5 +84,5 @@ fn main() {
         characters: data
     };
 
-    println!("{}", t.render().unwrap());
+    t.render().unwrap()
 }

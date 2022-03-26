@@ -31,7 +31,7 @@ npm install
 4. 编译Rust依赖
 ```
 cd mona
-cargo build --release
+cargo run --bin gen_meta
 wasm-pack build
 ```
 5. 本地运行

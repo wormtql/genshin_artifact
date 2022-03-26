@@ -1,7 +1,7 @@
 use askama::Template;
-use mona::common::item_config_type::ItemConfig;
-use mona::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
-use mona::target_functions::TargetFunctionName;
+use crate::common::item_config_type::ItemConfig;
+use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
+use crate::target_functions::TargetFunctionName;
 
 struct TFMeta {
     name: String,
@@ -40,7 +40,7 @@ fn convert_badge_path(p: &TargetFunctionMetaImage, f: &TargetFunctionFor) -> Str
     }
 }
 
-fn main() {
+pub fn gen_tf_meta_as_js_file() -> String {
     let mut data: Vec<TFMeta> = Vec::new();
 
     for i in 0_usize..TargetFunctionName::LEN {
@@ -68,5 +68,5 @@ fn main() {
         tfs: data
     };
 
-    println!("{}", t.render().unwrap())
+    t.render().unwrap()
 }

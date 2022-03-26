@@ -1,3 +1,4 @@
+// generated file, do not edit
 {% for p in pfs %}
 import {{ p.name }}_image from "@image/{{ p.image }}"
 {% endfor %}

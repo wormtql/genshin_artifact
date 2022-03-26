@@ -1,6 +1,6 @@
 use askama::Template;
-use mona::potential_function::potential_function::PotentialFunctionMetaData;
-use mona::potential_function::potential_function_name::PotentialFunctionName;
+use crate::potential_function::potential_function::PotentialFunctionMetaData;
+use crate::potential_function::potential_function_name::PotentialFunctionName;
 
 struct PFMeta {
     name: String,
@@ -16,7 +16,7 @@ struct PFMetaTemplate {
     pfs: Vec<PFMeta>
 }
 
-fn main() {
+pub fn gen_pf_meta_as_js_file() -> String {
     let mut data: Vec<PFMeta> = Vec::new();
     for i in 0_usize..PotentialFunctionName::LEN {
         let e: PotentialFunctionName = num::FromPrimitive::from_usize(i).unwrap();
@@ -41,5 +41,5 @@ fn main() {
         pfs: data,
     };
 
-    println!("{}", t.render().unwrap())
+    t.render().unwrap()
 }

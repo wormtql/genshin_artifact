@@ -1,4 +1,5 @@
-import _data from "!../../loaders/meta_loader.js?type=buff!./meta"
+import _data from "./_gen_buff"
+// import _data from "!../../loaders/meta_loader.js?type=buff!./meta"
 Object.freeze(_data)
 
 export const buffData = _data

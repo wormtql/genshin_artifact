@@ -1,3 +1,4 @@
+// generated file, do not edit
 {% for b in buffs %}
 import {{ b.name }}_image from "@image/{{ b.image }}"
 {% endfor %}

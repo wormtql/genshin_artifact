@@ -9,7 +9,8 @@ function get_meta(name) {
     //     cmd = path.resolve(__dirname, `../mona/target/debug/gen_${name}_meta`)
     // }
     // if (!fs.existsSync(cmd)) {
-        cmd = `cargo run --release --bin gen_${name}_meta`
+    //     cmd = `cargo run --release --bin gen_${name}_meta`
+    cmd = path.resolve(__dirname, `../mona/target/release/gen_${name}_meta`)
     // }
     console.log(cmd)
 

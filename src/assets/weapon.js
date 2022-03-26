@@ -1,4 +1,5 @@
-import _weaponData from "!../../loaders/meta_loader.js?type=weapon!./meta"
+import _weaponData from "./_gen_weapon"
+// import _weaponData from "!../../loaders/meta_loader.js?type=weapon!./meta"
 
 export const weaponData = _weaponData
 

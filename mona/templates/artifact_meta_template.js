@@ -1,3 +1,4 @@
+// generated file, do not edit
 {% for a in artifacts %}
 {% if a.flower.len() > 0 %}
 import {{ a.name }}_flower from "@image/artifacts/{{ a.name }}_flower"

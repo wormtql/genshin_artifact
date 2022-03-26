@@ -1,3 +1,4 @@
+// generated file, do not edit
 {% for t in tfs %}
 import {{ t.name }}_image from "@image/{{ t.badge_path }}"
 {% endfor %}

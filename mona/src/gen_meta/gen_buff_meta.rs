@@ -1,7 +1,7 @@
-use mona::buffs::buff_meta::{BuffImage, BuffMetaData};
-use mona::buffs::buff_name::BuffName;
+use crate::buffs::buff_meta::{BuffImage, BuffMetaData};
+use crate::buffs::buff_name::BuffName;
 use askama::Template;
-use mona::artifacts::artifact_trait::ArtifactMetaData;
+use crate::artifacts::artifact_trait::ArtifactMetaData;
 
 struct BuffMeta {
     name: String,
@@ -41,7 +41,7 @@ fn convert_image(i: &BuffImage) -> String {
     }
 }
 
-fn main() {
+pub fn gen_buff_meta_as_js_file() -> String {
     let mut data: Vec<BuffMeta> = Vec::new();
 
     for i in 0_usize..BuffName::LEN {
@@ -74,5 +74,5 @@ fn main() {
         buffs: data
     };
 
-    println!("{}", t.render().unwrap());
+    t.render().unwrap()
 }

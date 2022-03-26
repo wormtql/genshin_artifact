@@ -1,7 +1,7 @@
 use askama::Template;
-use mona::artifacts::artifact_trait::ArtifactMetaData;
-use mona::artifacts::ArtifactSetName;
-use mona::common::item_config_type::ItemConfig;
+use crate::artifacts::artifact_trait::ArtifactMetaData;
+use crate::artifacts::ArtifactSetName;
+use crate::common::item_config_type::ItemConfig;
 
 struct ArtifactMeta {
     chs: String,
@@ -29,7 +29,7 @@ struct ArtifactMetaTemplate {
     artifacts: Vec<ArtifactMeta>
 }
 
-fn main() {
+pub fn gen_artifact_meta_as_js_file() -> String {
     let mut data = Vec::new();
 
     for i in 1_usize..ArtifactSetName::LEN {
@@ -61,5 +61,5 @@ fn main() {
         artifacts: data
     };
 
-    println!("{}", t.render().unwrap())
+    t.render().unwrap()
 }
