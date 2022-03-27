@@ -58,7 +58,9 @@ fn smallvec_to_optimize_entry(v: &SmallVec<[u64; 5]>, artifacts_by_id: &HashMap<
 impl TeamOptimizationWasm {
     pub fn optimize_team2(val: &JsValue, artifacts: &JsValue) -> JsValue {
         utils::set_panic_hook();
-        let input: OptimizeTeamInterface2 = val.into_serde().unwrap();
+
+        let mut input: OptimizeTeamInterface2 = val.into_serde().unwrap();
+
         let artifacts: Vec<Artifact> = artifacts.into_serde().unwrap();
 
         let artifacts_ref: Vec<&Artifact> = artifacts.iter().collect();

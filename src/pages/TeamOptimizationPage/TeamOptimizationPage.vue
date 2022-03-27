@@ -155,6 +155,7 @@ import {team_optimize, wasmGetAttribute} from "@/wasm"
 import {convertPresetToWasmInterface, getPresetEntryByName} from "@util/preset"
 import { newKumiWithArtifacts } from "@util/kumi"
 import {toggleArtifact} from "@util/artifacts"
+import { deepCopy } from "@util/common"
 
 import SelectCharacter from "@c/select/SelectCharacter"
 import SelectWeapon from "@c/select/SelectWeapon"
@@ -344,9 +345,19 @@ export default {
         },
 
         optimizeTeamWasmInterface() {
+            // sort by weight
+            let temp = []
+            for (let i = 0; i < this.singleInterfaces.length; i++) {
+                temp.push([this.singleInterfaces[i], this.weights[i]])
+            }
+            temp.sort((a, b) => b[1] - a[1])
+
+            const interfaces = temp.map(x => x[0])
+            const weights = temp.map(x => x[1])
+
             return {
-                single_interfaces: this.singleInterfaces,
-                weights: this.weights,
+                single_interfaces: interfaces,
+                weights: weights,
                 hyper_param: this.optimizeTeamHyperParamInterface
             }
         }
