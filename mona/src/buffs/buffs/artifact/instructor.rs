@@ -11,7 +11,7 @@ pub struct BuffInstructor4;
 
 impl<A: Attribute> Buff<A> for BuffInstructor4 {
     fn change_attribute(&self, attribute: &mut A) {
-        attribute.set_value_by(AttributeName::ElementalMastery, "BUFF: 教官4", 150.0);
+        attribute.set_value_by(AttributeName::ElementalMastery, "BUFF: 教官4", 120.0);
     }
 }
 
