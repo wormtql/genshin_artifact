@@ -47,54 +47,54 @@ export default {
         // }
     },
     computed: {
-        element() {
-            return this.analysisFromWasm.element
-        },
-
-        normalDamageTitle() {
-            if (this.analysisFromWasm.is_heal) {
-                return "治疗"
-            } else {
-                const map = {
-                    "Pyro": "火元素伤害",
-                    "Hydro": "水元素伤害",
-                    "Electro": "雷元素伤害",
-                    "Cryo": "冰元素伤害",
-                    "Dendro": "草元素伤害",
-                    "Geo": "岩元素伤害",
-                    "Anemo": "风元素伤害",
-                    "Physical": "物理伤害",
-                }
-                return map[this.element]
-            }
-        },
-
         tableData() {
-            let temp = []
-            const NO_DATA = "无数据"
+            const result = this.analysisFromWasm
+            if (!result) {
+                return []
+            }
 
-            const r = (x) => Math.round(x)
+            const r = Math.round
 
-            temp.push({
-                expectation: r(this.analysisFromWasm.normal?.expectation) ?? NO_DATA,
-                critical: r(this.analysisFromWasm.normal?.critical) ?? NO_DATA,
-                nonCritical: r(this.analysisFromWasm.normal?.non_critical) ?? NO_DATA,
-                name: this.normalDamageTitle
-            })
+            const temp = []
 
+            if (this.analysisFromWasm.normal) {
+                let normalDamageTitle
+                if (this.analysisFromWasm.is_heal) {
+                    normalDamageTitle = "治疗"
+                } else {
+                    const map = {
+                        "Pyro": "火元素伤害",
+                        "Hydro": "水元素伤害",
+                        "Electro": "雷元素伤害",
+                        "Cryo": "冰元素伤害",
+                        "Dendro": "草元素伤害",
+                        "Geo": "岩元素伤害",
+                        "Anemo": "风元素伤害",
+                        "Physical": "物理伤害",
+                    }
+                    normalDamageTitle = map[result.element]
+                }
+
+                temp.push({
+                    expectation: r(this.analysisFromWasm.normal.expectation),
+                    critical: r(this.analysisFromWasm.normal.critical),
+                    nonCritical: r(this.analysisFromWasm.normal.non_critical),
+                    name: normalDamageTitle
+                })
+            }
             if (this.analysisFromWasm.melt) {
                 temp.push({
-                    expectation: r(this.analysisFromWasm.melt?.expectation) ?? NO_DATA,
-                    critical: r(this.analysisFromWasm.melt?.critical) ?? NO_DATA,
-                    nonCritical: r(this.analysisFromWasm.melt?.non_critical) ?? NO_DATA,
+                    expectation: r(this.analysisFromWasm.melt.expectation),
+                    critical: r(this.analysisFromWasm.melt.critical),
+                    nonCritical: r(this.analysisFromWasm.melt.non_critical),
                     name: "融化"
                 })
             }
             if (this.analysisFromWasm.vaporize) {
                 temp.push({
-                    expectation: r(this.analysisFromWasm.vaporize?.expectation) ?? NO_DATA,
-                    critical: r(this.analysisFromWasm.vaporize?.critical) ?? NO_DATA,
-                    nonCritical: r(this.analysisFromWasm.vaporize?.non_critical) ?? NO_DATA,
+                    expectation: r(this.analysisFromWasm.vaporize.expectation),
+                    critical: r(this.analysisFromWasm.vaporize.critical),
+                    nonCritical: r(this.analysisFromWasm.vaporize.non_critical),
                     name: "蒸发"
                 })
             }
@@ -118,7 +118,7 @@ export default {
     }
 
     .name {
-        
+
     }
 
     .numbers {

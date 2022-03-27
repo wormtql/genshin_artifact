@@ -29,6 +29,9 @@ export default {
     props: ["data"],
     computed: {
         tableDataForElementUI() {
+            if (!this.data) {
+                return []
+            }
             let results = []
             results.push({ chs: "感电", value: this.data.electro_charged })
             results.push({ chs: "超载", value: this.data.overload })

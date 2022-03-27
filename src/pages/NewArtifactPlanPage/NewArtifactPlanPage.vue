@@ -157,7 +157,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <p class="common-title2">过滤圣遗物组</p>
             <div style="max-height: 50vh; overflow: auto" class="mona-scroll">
                 <el-tree
@@ -707,6 +707,8 @@ import EnemyConfig from "./EnemyConfig"
 import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
 import ArtifactConfig from "./ArtifactConfig"
 
+let wasmCalculated = false
+
 export default {
     name: "NewArtifactPlanPage",
     components: {
@@ -821,6 +823,9 @@ export default {
             miscBigContainerHeight: "",
             miscPerStatBonus: {},
             miscCurrentPresetName: null,
+
+            characterDamageAnalysis: null,
+            characterTransformativeDamage: null,
         }
     },
     computed: {
@@ -923,16 +928,6 @@ export default {
             }
         },
 
-        characterDamageAnalysis() {
-            const temp = this.$mona.CalculatorInterface.get_damage_analysis(this.damageAnalysisWasmInterface)
-            // console.log(temp)
-            return temp
-        },
-
-        characterTransformativeDamage() {
-            return this.$mona.CalculatorInterface.get_transformative_damage(this.damageAnalysisWasmInterface)
-        },
-
         // weapon
         weaponLevelNumber() {
             return parseInt(this.weaponLevel)
@@ -941,7 +936,7 @@ export default {
         weaponAscend() {
             return this.weaponLevel.includes("+")
         },
-        
+
         weaponSplash() {
             const data = weaponData[this.weaponName]
             return data.gacha ?? data.url ?? data.tn
@@ -1723,6 +1718,22 @@ export default {
                 // console.log(this.artifactSingleConfig)
             }
         },
+
+        damageAnalysisWasmInterface: {
+            handler() {
+                wasmCalculated = false
+                this.$nextTick(() => {
+                    // debounce
+                    if (!wasmCalculated) {
+                        this.characterDamageAnalysis = this.$mona.CalculatorInterface.get_damage_analysis(this.damageAnalysisWasmInterface)
+                        this.characterTransformativeDamage = this.$mona.CalculatorInterface.get_transformative_damage(this.damageAnalysisWasmInterface)
+                        wasmCalculated = true
+                    }
+                })
+            },
+            immediate: true,
+            deep: true,
+        },
     }
 };
 
@@ -1766,7 +1777,7 @@ export default {
     .left-container {
         // flex: 1;
         padding-right: 12px;
-        
+
     }
 
     .middle-container {
@@ -1795,7 +1806,7 @@ export default {
         align-items: center;
 
         .artifact-item-or-button {
-            
+
         }
     }
 }
@@ -1872,7 +1883,7 @@ export default {
         .detail-left {
             width: 64px;
             margin-right: 16px;
-            
+
             img {
                 height: 64px;
                 width: 64px;
