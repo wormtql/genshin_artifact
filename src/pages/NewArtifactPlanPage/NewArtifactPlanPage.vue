@@ -666,22 +666,20 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex"
+import {mapGetters} from "vuex"
 
-import { convertArtifact, convertArtifactName } from "@util/converter"
-import { newDefaultArtifactConfigForWasm } from "@util/artifacts"
+import {convertArtifact, convertArtifactName} from "@util/converter"
+import {newDefaultArtifactConfigForWasm} from "@util/artifacts"
 import {getArtifactIdsByKumiId, newKumiWithArtifacts} from "@util/kumi"
-import { deepCopy } from "@util/common"
-import {createOrUpdatePreset, deletePreset, getPresetEntryByName} from "@util/preset"
-import { toSnakeCase } from "@util/common"
-import { positions } from "@const/artifact"
-import { characterData } from "@character"
-import { weaponData } from "@weapon"
-import { targetFunctionData } from "@targetFunction"
-import { buffData } from "@buff"
-import { artifactsData } from "@artifact"
-import { wasmBonusPerStat } from "@/wasm"
-import { wasmSingleOptimize } from "@/wasm/single_optimize"
+import {deepCopy, toSnakeCase} from "@util/common"
+import {createOrUpdatePreset, getPresetEntryByName} from "@util/preset"
+import {characterData} from "@character"
+import {weaponData} from "@weapon"
+import {targetFunctionData} from "@targetFunction"
+import {buffData} from "@buff"
+import {artifactsData} from "@artifact"
+import {wasmBonusPerStat} from "@/wasm"
+import {wasmSingleOptimize} from "@/wasm/single_optimize"
 
 import SelectArtifact from "@c/select/SelectArtifact"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
@@ -1686,6 +1684,8 @@ export default {
             } else {
                 this.characterSkillConfig = "NoConfig"
             }
+
+            this.characterSkillIndex = 0
         },
 
         targetFunctionName(newName) {
