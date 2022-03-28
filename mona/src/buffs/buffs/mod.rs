@@ -9,6 +9,7 @@ pub use weapon::claymore::song_of_broken_pines::BuffSongOfBrokenPines;
 pub use weapon::claymore::wolfs_gravestone::BuffWolfsGravestone;
 pub use weapon::catalyst::thrilling_tales_of_dragon_slayers::BuffThrillingTalesOfDragonSlayers;
 pub use weapon::bow::elegy_of_the_end::BuffElegyOfTheEnd;
+pub use weapon::catalyst::hakushin_ring::BuffHakushinRing;
 pub use artifact::instructor::BuffInstructor4;
 pub use artifact::noblesse_oblige::BuffNoblesseOblige4;
 pub use artifact::archaic_petra::BuffArchaicPetra4;

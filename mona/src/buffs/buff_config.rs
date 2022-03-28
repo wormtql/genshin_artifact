@@ -45,6 +45,7 @@ pub enum BuffConfig {
     WolfsGravestone { refine: usize },
     ThrillingTalesOfDragonSlayers { refine: usize },
     ElegyOfTheEnd { refine: usize },
+    HakushinRing { refine: usize, element: Element },
 
     ResonanceCryo2 { rate: f64 },
     ResonanceGeo2 { rate1: f64, rate2: f64 },

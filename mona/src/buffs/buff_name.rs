@@ -82,6 +82,7 @@ pub enum BuffName {
     WolfsGravestone,
     ThrillingTalesOfDragonSlayers,
     ElegyOfTheEnd,
+    HakushinRing,
 
     ResonancePyro2,
     ResonanceCryo2,

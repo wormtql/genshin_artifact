@@ -36,7 +36,10 @@ pub enum ItemConfigType {
         default: f64,
     },
     Element4 {      // cryo, pyro, electro, hydro
-        default: Element,
+        default: Element
+    },
+    Element8 {
+        default: Element
     },
     Skill4 {
         default: SkillType
@@ -83,6 +86,14 @@ impl ItemConfigType {
             ItemConfigType::Element4 { default } => {
                 json!({
                     "type": "element4",
+                    "title": title,
+                    "name": name,
+                    "default": default
+                })
+            },
+            ItemConfigType::Element8 { default } => {
+                json!({
+                    "type": "element8",
                     "title": title,
                     "name": name,
                     "default": default
