@@ -10,6 +10,7 @@ pub enum CharacterSkillConfig {
     HuTao { after_e: bool },
     KaedeharaKazuha { after_e_or_q: bool },
     KamisatoAyaka { after_dash: bool, use_c6: bool },
+    KamisatoAyato { e_stack: usize, in_q: bool },
     Keqing { after_e: bool },
     Noelle { after_q: bool },
     RaidenShogun { under_e: bool, resolve_stack: usize },

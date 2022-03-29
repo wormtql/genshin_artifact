@@ -74,6 +74,8 @@ import KamisatoAyakaDefault_image from "@image/characters/KamisatoAyaka_avatar"
 
 import KamisatoAyakaDps_image from "@image/characters/KamisatoAyaka_avatar"
 
+import KamisatoAyatoDefault_image from "@image/characters/KamisatoAyato_avatar"
+
 import KeqingDefault_image from "@image/characters/Keqing_avatar"
 
 import KleeDefault_image from "@image/characters/Klee_avatar"
@@ -792,6 +794,22 @@ export default {
         ],
         "for": "KamisatoAyaka",
         badge: KamisatoAyakaDps_image,
+        config: [
+            
+        ],
+    },
+    
+    "KamisatoAyatoDefault": {
+        name: "KamisatoAyatoDefault",
+        chs: "神里绫人-磐祭叶守",
+        description: "普通水系输出绫人",
+        tags: [
+            
+            "输出",
+            
+        ],
+        "for": "KamisatoAyato",
+        badge: KamisatoAyatoDefault_image,
         config: [
             
         ],

@@ -40,6 +40,7 @@ pub enum WeaponName {
     TravelersHandySword,
     SilverSword,
     DullBlade,
+    HaranGeppakuFutsu,
 
     WolfsGravestone,
     SkywardPride,

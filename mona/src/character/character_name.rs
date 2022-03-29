@@ -41,6 +41,7 @@ pub enum CharacterName {
     KaedeharaKazuha,
     Kaeya,
     KamisatoAyaka,
+    KamisatoAyato,
     Keqing,
     Klee,
     KujouSara,

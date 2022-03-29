@@ -53,7 +53,7 @@ module.exports = {
     publicPath: process.env.PublicPath || '/',
     configureWebpack: {
         resolve: {
-            extensions: [".vue", ".png", ".jpg"],
+            extensions: [".vue", ".png", ".jpg", ".webp"],
             alias: {
                 "@c": path.resolve(__dirname, "src/components"),
                 "@asset": path.resolve(__dirname, "src/assets"),

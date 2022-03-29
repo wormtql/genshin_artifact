@@ -1,264 +1,266 @@
 // generated file, do not edit
 
-import MistsplitterReforged_tn from "@image/weapons/MistsplitterReforged_tn.png"
+import MistsplitterReforged_tn from "@image/weapons/MistsplitterReforged_tn"
 
-import AquilaFavonia_tn from "@image/weapons/AquilaFavonia_tn.png"
+import AquilaFavonia_tn from "@image/weapons/AquilaFavonia_tn"
 
-import SummitShaper_tn from "@image/weapons/SummitShaper_tn.png"
+import SummitShaper_tn from "@image/weapons/SummitShaper_tn"
 
-import SkywardBlade_tn from "@image/weapons/SkywardBlade_tn.png"
+import SkywardBlade_tn from "@image/weapons/SkywardBlade_tn"
 
-import FreedomSworn_tn from "@image/weapons/FreedomSworn_tn.png"
+import FreedomSworn_tn from "@image/weapons/FreedomSworn_tn"
 
-import PrimordialJadeCutter_tn from "@image/weapons/PrimordialJadeCutter_tn.png"
+import PrimordialJadeCutter_tn from "@image/weapons/PrimordialJadeCutter_tn"
 
-import TheFlute_tn from "@image/weapons/TheFlute_tn.png"
+import TheFlute_tn from "@image/weapons/TheFlute_tn"
 
-import TheBlackSword_tn from "@image/weapons/TheBlackSword_tn.png"
+import TheBlackSword_tn from "@image/weapons/TheBlackSword_tn"
 
-import TheAlleyFlash_tn from "@image/weapons/TheAlleyFlash_tn.png"
+import TheAlleyFlash_tn from "@image/weapons/TheAlleyFlash_tn"
 
-import SwordOfDescension_tn from "@image/weapons/SwordOfDescension_tn.png"
+import SwordOfDescension_tn from "@image/weapons/SwordOfDescension_tn"
 
-import SacrificialSword_tn from "@image/weapons/SacrificialSword_tn.png"
+import SacrificialSword_tn from "@image/weapons/SacrificialSword_tn"
 
-import RoyalLongsword_tn from "@image/weapons/RoyalLongsword_tn.png"
+import RoyalLongsword_tn from "@image/weapons/RoyalLongsword_tn"
 
-import PrototypeRancour_tn from "@image/weapons/PrototypeRancour_tn.png"
+import PrototypeRancour_tn from "@image/weapons/PrototypeRancour_tn"
 
-import AmenomaKageuchi_tn from "@image/weapons/AmenomaKageuchi_tn.png"
+import AmenomaKageuchi_tn from "@image/weapons/AmenomaKageuchi_tn"
 
-import LionsRoar_tn from "@image/weapons/LionsRoar_tn.png"
+import LionsRoar_tn from "@image/weapons/LionsRoar_tn"
 
-import IronSting_tn from "@image/weapons/IronSting_tn.png"
+import IronSting_tn from "@image/weapons/IronSting_tn"
 
-import FesteringDesire_tn from "@image/weapons/FesteringDesire_tn.png"
+import FesteringDesire_tn from "@image/weapons/FesteringDesire_tn"
 
-import FavoniusSword_tn from "@image/weapons/FavoniusSword_tn.png"
+import FavoniusSword_tn from "@image/weapons/FavoniusSword_tn"
 
-import CinnabarSpindle_tn from "@image/weapons/CinnabarSpindle_tn.png"
+import CinnabarSpindle_tn from "@image/weapons/CinnabarSpindle_tn"
 
-import BlackcliffLongsword_tn from "@image/weapons/BlackcliffLongsword_tn.png"
+import BlackcliffLongsword_tn from "@image/weapons/BlackcliffLongsword_tn"
 
-import HarbingerOfDawn_tn from "@image/weapons/HarbingerOfDawn_tn.png"
+import HarbingerOfDawn_tn from "@image/weapons/HarbingerOfDawn_tn"
 
-import FilletBlade_tn from "@image/weapons/FilletBlade_tn.png"
+import FilletBlade_tn from "@image/weapons/FilletBlade_tn"
 
-import SkyriderSword_tn from "@image/weapons/SkyriderSword_tn.png"
+import SkyriderSword_tn from "@image/weapons/SkyriderSword_tn"
 
-import DarkIronSword_tn from "@image/weapons/DarkIronSword_tn.png"
+import DarkIronSword_tn from "@image/weapons/DarkIronSword_tn"
 
-import CoolSteel_tn from "@image/weapons/CoolSteel_tn.png"
+import CoolSteel_tn from "@image/weapons/CoolSteel_tn"
 
-import TravelersHandySword_tn from "@image/weapons/TravelersHandySword_tn.png"
+import TravelersHandySword_tn from "@image/weapons/TravelersHandySword_tn"
 
-import SilverSword_tn from "@image/weapons/SilverSword_tn.png"
+import SilverSword_tn from "@image/weapons/SilverSword_tn"
 
-import DullBlade_tn from "@image/weapons/DullBlade_tn.png"
+import DullBlade_tn from "@image/weapons/DullBlade_tn"
 
-import WolfsGravestone_tn from "@image/weapons/WolfsGravestone_tn.png"
+import HaranGeppakuFutsu_tn from "@image/weapons/HaranGeppakuFutsu_tn"
 
-import SkywardPride_tn from "@image/weapons/SkywardPride_tn.png"
+import WolfsGravestone_tn from "@image/weapons/WolfsGravestone_tn"
 
-import TheUnforged_tn from "@image/weapons/TheUnforged_tn.png"
+import SkywardPride_tn from "@image/weapons/SkywardPride_tn"
 
-import SongOfBrokenPines_tn from "@image/weapons/SongOfBrokenPines_tn.png"
+import TheUnforged_tn from "@image/weapons/TheUnforged_tn"
 
-import RedhornStonethresher_tn from "@image/weapons/RedhornStonethresher_tn.png"
+import SongOfBrokenPines_tn from "@image/weapons/SongOfBrokenPines_tn"
 
-import Akuoumaru_tn from "@image/weapons/Akuoumaru_tn.png"
+import RedhornStonethresher_tn from "@image/weapons/RedhornStonethresher_tn"
 
-import RoyalGreatsword_tn from "@image/weapons/RoyalGreatsword_tn.png"
+import Akuoumaru_tn from "@image/weapons/Akuoumaru_tn"
 
-import Whiteblind_tn from "@image/weapons/Whiteblind_tn.png"
+import RoyalGreatsword_tn from "@image/weapons/RoyalGreatsword_tn"
 
-import TheBell_tn from "@image/weapons/TheBell_tn.png"
+import Whiteblind_tn from "@image/weapons/Whiteblind_tn"
 
-import SnowTombedStarsilver_tn from "@image/weapons/SnowTombedStarsilver_tn.png"
+import TheBell_tn from "@image/weapons/TheBell_tn"
 
-import FavoniusGreatsword_tn from "@image/weapons/FavoniusGreatsword_tn.png"
+import SnowTombedStarsilver_tn from "@image/weapons/SnowTombedStarsilver_tn"
 
-import KatsuragikiriNagamasa_tn from "@image/weapons/KatsuragikiriNagamasa_tn.png"
+import FavoniusGreatsword_tn from "@image/weapons/FavoniusGreatsword_tn"
 
-import SacrificialGreatsword_tn from "@image/weapons/SacrificialGreatsword_tn.png"
+import KatsuragikiriNagamasa_tn from "@image/weapons/KatsuragikiriNagamasa_tn"
 
-import SerpentSpine_tn from "@image/weapons/SerpentSpine_tn.png"
+import SacrificialGreatsword_tn from "@image/weapons/SacrificialGreatsword_tn"
 
-import BlackcliffSlasher_tn from "@image/weapons/BlackcliffSlasher_tn.png"
+import SerpentSpine_tn from "@image/weapons/SerpentSpine_tn"
 
-import Rainslasher_tn from "@image/weapons/Rainslasher_tn.png"
+import BlackcliffSlasher_tn from "@image/weapons/BlackcliffSlasher_tn"
 
-import PrototypeArchaic_tn from "@image/weapons/PrototypeArchaic_tn.png"
+import Rainslasher_tn from "@image/weapons/Rainslasher_tn"
 
-import LuxuriousSeaLord_tn from "@image/weapons/LuxuriousSeaLord_tn.png"
+import PrototypeArchaic_tn from "@image/weapons/PrototypeArchaic_tn"
 
-import LithicBlade_tn from "@image/weapons/LithicBlade_tn.png"
+import LuxuriousSeaLord_tn from "@image/weapons/LuxuriousSeaLord_tn"
 
-import SkyriderGreatsword_tn from "@image/weapons/SkyriderGreatsword_tn.png"
+import LithicBlade_tn from "@image/weapons/LithicBlade_tn"
 
-import DebateClub_tn from "@image/weapons/DebateClub_tn.png"
+import SkyriderGreatsword_tn from "@image/weapons/SkyriderGreatsword_tn"
 
-import BloodstainedGreatsword_tn from "@image/weapons/BloodstainedGreatsword_tn.png"
+import DebateClub_tn from "@image/weapons/DebateClub_tn"
 
-import WhiteIronGreatsword_tn from "@image/weapons/WhiteIronGreatsword_tn.png"
+import BloodstainedGreatsword_tn from "@image/weapons/BloodstainedGreatsword_tn"
 
-import FerrousShadow_tn from "@image/weapons/FerrousShadow_tn.png"
+import WhiteIronGreatsword_tn from "@image/weapons/WhiteIronGreatsword_tn"
 
-import OldMercsPal_tn from "@image/weapons/OldMercsPal_tn.png"
+import FerrousShadow_tn from "@image/weapons/FerrousShadow_tn"
 
-import WasterGreatsword_tn from "@image/weapons/WasterGreatsword_tn.png"
+import OldMercsPal_tn from "@image/weapons/OldMercsPal_tn"
 
-import EngulfingLightning_tn from "@image/weapons/EngulfingLightning_tn.png"
+import WasterGreatsword_tn from "@image/weapons/WasterGreatsword_tn"
 
-import SkywardSpine_tn from "@image/weapons/SkywardSpine_tn.png"
+import EngulfingLightning_tn from "@image/weapons/EngulfingLightning_tn"
 
-import PrimordialJadeWingedSpear_tn from "@image/weapons/PrimordialJadeWingedSpear_tn.png"
+import SkywardSpine_tn from "@image/weapons/SkywardSpine_tn"
 
-import CalamityQueller_tn from "@image/weapons/CalamityQueller_tn.png"
+import PrimordialJadeWingedSpear_tn from "@image/weapons/PrimordialJadeWingedSpear_tn"
 
-import StaffOfHoma_tn from "@image/weapons/StaffOfHoma_tn.png"
+import CalamityQueller_tn from "@image/weapons/CalamityQueller_tn"
 
-import VortexVanquisher_tn from "@image/weapons/VortexVanquisher_tn.png"
+import StaffOfHoma_tn from "@image/weapons/StaffOfHoma_tn"
 
-import PrototypeStarglitter_tn from "@image/weapons/PrototypeStarglitter_tn.png"
+import VortexVanquisher_tn from "@image/weapons/VortexVanquisher_tn"
 
-import LithicSpear_tn from "@image/weapons/LithicSpear_tn.png"
+import PrototypeStarglitter_tn from "@image/weapons/PrototypeStarglitter_tn"
 
-import KitainCrossSpear_tn from "@image/weapons/KitainCrossSpear_tn.png"
+import LithicSpear_tn from "@image/weapons/LithicSpear_tn"
 
-import TheCatch_tn from "@image/weapons/TheCatch_tn.png"
+import KitainCrossSpear_tn from "@image/weapons/KitainCrossSpear_tn"
 
-import FavoniusLance_tn from "@image/weapons/FavoniusLance_tn.png"
+import TheCatch_tn from "@image/weapons/TheCatch_tn"
 
-import DragonspineSpear_tn from "@image/weapons/DragonspineSpear_tn.png"
+import FavoniusLance_tn from "@image/weapons/FavoniusLance_tn"
 
-import DragonsBane_tn from "@image/weapons/DragonsBane_tn.png"
+import DragonspineSpear_tn from "@image/weapons/DragonspineSpear_tn"
 
-import Deathmatch_tn from "@image/weapons/Deathmatch_tn.png"
+import DragonsBane_tn from "@image/weapons/DragonsBane_tn"
 
-import CrescentPike_tn from "@image/weapons/CrescentPike_tn.png"
+import Deathmatch_tn from "@image/weapons/Deathmatch_tn"
 
-import BlackcliffPole_tn from "@image/weapons/BlackcliffPole_tn.png"
+import CrescentPike_tn from "@image/weapons/CrescentPike_tn"
 
-import WavebreakersFin_tn from "@image/weapons/WavebreakersFin_tn.png"
+import BlackcliffPole_tn from "@image/weapons/BlackcliffPole_tn"
 
-import RoyalSpear_tn from "@image/weapons/RoyalSpear_tn.png"
+import WavebreakersFin_tn from "@image/weapons/WavebreakersFin_tn"
 
-import Halberd_tn from "@image/weapons/Halberd_tn.png"
+import RoyalSpear_tn from "@image/weapons/RoyalSpear_tn"
 
-import BlackTassel_tn from "@image/weapons/BlackTassel_tn.png"
+import Halberd_tn from "@image/weapons/Halberd_tn"
 
-import WhiteTassel_tn from "@image/weapons/WhiteTassel_tn.png"
+import BlackTassel_tn from "@image/weapons/BlackTassel_tn"
 
-import IronPoint_tn from "@image/weapons/IronPoint_tn.png"
+import WhiteTassel_tn from "@image/weapons/WhiteTassel_tn"
 
-import BeginnersProtector_tn from "@image/weapons/BeginnersProtector_tn.png"
+import IronPoint_tn from "@image/weapons/IronPoint_tn"
 
-import LostPrayerToTheSacredWinds_tn from "@image/weapons/LostPrayerToTheSacredWinds_tn.png"
+import BeginnersProtector_tn from "@image/weapons/BeginnersProtector_tn"
 
-import SkywardAtlas_tn from "@image/weapons/SkywardAtlas_tn.png"
+import LostPrayerToTheSacredWinds_tn from "@image/weapons/LostPrayerToTheSacredWinds_tn"
 
-import EverlastingMoonglow_tn from "@image/weapons/EverlastingMoonglow_tn.png"
+import SkywardAtlas_tn from "@image/weapons/SkywardAtlas_tn"
 
-import MemoryOfDust_tn from "@image/weapons/MemoryOfDust_tn.png"
+import EverlastingMoonglow_tn from "@image/weapons/EverlastingMoonglow_tn"
 
-import WindAndSong_tn from "@image/weapons/WindAndSong_tn.png"
+import MemoryOfDust_tn from "@image/weapons/MemoryOfDust_tn"
 
-import TheWidsith_tn from "@image/weapons/TheWidsith_tn.png"
+import WindAndSong_tn from "@image/weapons/WindAndSong_tn"
 
-import SolarPearl_tn from "@image/weapons/SolarPearl_tn.png"
+import TheWidsith_tn from "@image/weapons/TheWidsith_tn"
 
-import SacrificialFragments_tn from "@image/weapons/SacrificialFragments_tn.png"
+import SolarPearl_tn from "@image/weapons/SolarPearl_tn"
 
-import RoyalGrimoire_tn from "@image/weapons/RoyalGrimoire_tn.png"
+import SacrificialFragments_tn from "@image/weapons/SacrificialFragments_tn"
 
-import PrototypeAmber_tn from "@image/weapons/PrototypeAmber_tn.png"
+import RoyalGrimoire_tn from "@image/weapons/RoyalGrimoire_tn"
 
-import MappaMare_tn from "@image/weapons/MappaMare_tn.png"
+import PrototypeAmber_tn from "@image/weapons/PrototypeAmber_tn"
 
-import HakushinRing_tn from "@image/weapons/HakushinRing_tn.png"
+import MappaMare_tn from "@image/weapons/MappaMare_tn"
 
-import Frostbearer_tn from "@image/weapons/Frostbearer_tn.png"
+import HakushinRing_tn from "@image/weapons/HakushinRing_tn"
 
-import FavoniusCodex_tn from "@image/weapons/FavoniusCodex_tn.png"
+import Frostbearer_tn from "@image/weapons/Frostbearer_tn"
 
-import EyeOfPerception_tn from "@image/weapons/EyeOfPerception_tn.png"
+import FavoniusCodex_tn from "@image/weapons/FavoniusCodex_tn"
 
-import DodocoTales_tn from "@image/weapons/DodocoTales_tn.png"
+import EyeOfPerception_tn from "@image/weapons/EyeOfPerception_tn"
 
-import BlackcliffAgate_tn from "@image/weapons/BlackcliffAgate_tn.png"
+import DodocoTales_tn from "@image/weapons/DodocoTales_tn"
 
-import KagurasVerity_tn from "@image/weapons/KagurasVerity_tn.png"
+import BlackcliffAgate_tn from "@image/weapons/BlackcliffAgate_tn"
 
-import OathswornEye_tn from "@image/weapons/OathswornEye_tn.png"
+import KagurasVerity_tn from "@image/weapons/KagurasVerity_tn"
 
-import MagicGuide_tn from "@image/weapons/MagicGuide_tn.png"
+import OathswornEye_tn from "@image/weapons/OathswornEye_tn"
 
-import OtherworldlyStory_tn from "@image/weapons/OtherworldlyStory_tn.png"
+import MagicGuide_tn from "@image/weapons/MagicGuide_tn"
 
-import EmeraldOrb_tn from "@image/weapons/EmeraldOrb_tn.png"
+import OtherworldlyStory_tn from "@image/weapons/OtherworldlyStory_tn"
 
-import ThrillingTalesOfDragonSlayers_tn from "@image/weapons/ThrillingTalesOfDragonSlayers_tn.png"
+import EmeraldOrb_tn from "@image/weapons/EmeraldOrb_tn"
 
-import TwinNephrite_tn from "@image/weapons/TwinNephrite_tn.png"
+import ThrillingTalesOfDragonSlayers_tn from "@image/weapons/ThrillingTalesOfDragonSlayers_tn"
 
-import PocketGrimoire_tn from "@image/weapons/PocketGrimoire_tn.png"
+import TwinNephrite_tn from "@image/weapons/TwinNephrite_tn"
 
-import ApprenticesNotes_tn from "@image/weapons/ApprenticesNotes_tn.png"
+import PocketGrimoire_tn from "@image/weapons/PocketGrimoire_tn"
 
-import PolarStar_tn from "@image/weapons/PolarStar_tn.png"
+import ApprenticesNotes_tn from "@image/weapons/ApprenticesNotes_tn"
 
-import ThunderingPulse_tn from "@image/weapons/ThunderingPulse_tn.png"
+import PolarStar_tn from "@image/weapons/PolarStar_tn"
 
-import ElegyOfTheEnd_tn from "@image/weapons/ElegyOfTheEnd_tn.png"
+import ThunderingPulse_tn from "@image/weapons/ThunderingPulse_tn"
 
-import SkywardHarp_tn from "@image/weapons/SkywardHarp_tn.png"
+import ElegyOfTheEnd_tn from "@image/weapons/ElegyOfTheEnd_tn"
 
-import AmosBow_tn from "@image/weapons/AmosBow_tn.png"
+import SkywardHarp_tn from "@image/weapons/SkywardHarp_tn"
 
-import AlleyHunter_tn from "@image/weapons/AlleyHunter_tn.png"
+import AmosBow_tn from "@image/weapons/AmosBow_tn"
 
-import TheViridescentHunt_tn from "@image/weapons/TheViridescentHunt_tn.png"
+import AlleyHunter_tn from "@image/weapons/AlleyHunter_tn"
 
-import TheStringless_tn from "@image/weapons/TheStringless_tn.png"
+import TheViridescentHunt_tn from "@image/weapons/TheViridescentHunt_tn"
 
-import SacrificialBow_tn from "@image/weapons/SacrificialBow_tn.png"
+import TheStringless_tn from "@image/weapons/TheStringless_tn"
 
-import Rust_tn from "@image/weapons/Rust_tn.png"
+import SacrificialBow_tn from "@image/weapons/SacrificialBow_tn"
 
-import RoyalBow_tn from "@image/weapons/RoyalBow_tn.png"
+import Rust_tn from "@image/weapons/Rust_tn"
 
-import Predator_tn from "@image/weapons/Predator_tn.png"
+import RoyalBow_tn from "@image/weapons/RoyalBow_tn"
 
-import PrototypeCrescent_tn from "@image/weapons/PrototypeCrescent_tn.png"
+import Predator_tn from "@image/weapons/Predator_tn"
 
-import MouunsMoon_tn from "@image/weapons/MouunsMoon_tn.png"
+import PrototypeCrescent_tn from "@image/weapons/PrototypeCrescent_tn"
 
-import MitternachtsWaltz_tn from "@image/weapons/MitternachtsWaltz_tn.png"
+import MouunsMoon_tn from "@image/weapons/MouunsMoon_tn"
 
-import Hamayumi_tn from "@image/weapons/Hamayumi_tn.png"
+import MitternachtsWaltz_tn from "@image/weapons/MitternachtsWaltz_tn"
 
-import FavoniusWarbow_tn from "@image/weapons/FavoniusWarbow_tn.png"
+import Hamayumi_tn from "@image/weapons/Hamayumi_tn"
 
-import CompoundBow_tn from "@image/weapons/CompoundBow_tn.png"
+import FavoniusWarbow_tn from "@image/weapons/FavoniusWarbow_tn"
 
-import BlackcliffWarbow_tn from "@image/weapons/BlackcliffWarbow_tn.png"
+import CompoundBow_tn from "@image/weapons/CompoundBow_tn"
 
-import WindblumeOde_tn from "@image/weapons/WindblumeOde_tn.png"
+import BlackcliffWarbow_tn from "@image/weapons/BlackcliffWarbow_tn"
 
-import RavenBow_tn from "@image/weapons/RavenBow_tn.png"
+import WindblumeOde_tn from "@image/weapons/WindblumeOde_tn"
 
-import RecurveBow_tn from "@image/weapons/RecurveBow_tn.png"
+import RavenBow_tn from "@image/weapons/RavenBow_tn"
 
-import Messenger_tn from "@image/weapons/Messenger_tn.png"
+import RecurveBow_tn from "@image/weapons/RecurveBow_tn"
 
-import SharpshootersOath_tn from "@image/weapons/SharpshootersOath_tn.png"
+import Messenger_tn from "@image/weapons/Messenger_tn"
 
-import Slingshot_tn from "@image/weapons/Slingshot_tn.png"
+import SharpshootersOath_tn from "@image/weapons/SharpshootersOath_tn"
 
-import SeasonedHuntersBow_tn from "@image/weapons/SeasonedHuntersBow_tn.png"
+import Slingshot_tn from "@image/weapons/Slingshot_tn"
 
-import HuntersBow_tn from "@image/weapons/HuntersBow_tn.png"
+import SeasonedHuntersBow_tn from "@image/weapons/SeasonedHuntersBow_tn"
+
+import HuntersBow_tn from "@image/weapons/HuntersBow_tn"
 
 
 export default {
@@ -762,6 +764,26 @@ export default {
 
         
         configs: null,
+        
+    },
+
+    HaranGeppakuFutsu: {
+        name: "HaranGeppakuFutsu",
+        chs: "波乱月白经津",
+        star: 5,
+        url: HaranGeppakuFutsu_tn,
+        type: "Sword",
+
+        
+        effect: "白刃流转：获得12/15/18/21/24%所有元素伤害加成；队伍中附近的其他角色在施放元素战技时，会为装备该武器的角色产生1层「波穗」效果，至多叠加2层，每0.3秒最多触发1次。装备该武器的角色施放元素战技时，如果有积累的「波穗」效果，则将消耗已有的「波穗」，获得「波乱」：根据消耗的层数，每层提升20/25/30/35/40%普通攻击伤害，持续8秒。",
+        
+
+        
+        configs: [
+            
+            {"default":2.0,"max":2.0,"min":0.0,"name":"stack","title":"「波穗」层数","type":"float"},
+            
+        ],
         
     },
 

@@ -17,6 +17,7 @@ pub enum WeaponConfig {
     SkyriderSword { rate: f64 },
     DarkIronSword { rate: f64 },
     CoolSteel { rate: f64 },
+    HaranGeppakuFutsu { stack: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },

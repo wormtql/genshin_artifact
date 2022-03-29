@@ -76,6 +76,10 @@ import KamisatoAyaka_card from "@image/characters/KamisatoAyaka_card"
 import KamisatoAyaka_avatar from "@image/characters/KamisatoAyaka_avatar"
 import KamisatoAyaka_splash from "@image/characters/KamisatoAyaka_splash"
 
+import KamisatoAyato_card from "@image/characters/KamisatoAyato_card"
+import KamisatoAyato_avatar from "@image/characters/KamisatoAyato_avatar"
+import KamisatoAyato_splash from "@image/characters/KamisatoAyato_splash"
+
 import Keqing_card from "@image/characters/Keqing_card"
 import Keqing_avatar from "@image/characters/Keqing_avatar"
 import Keqing_splash from "@image/characters/Keqing_splash"
@@ -1305,6 +1309,67 @@ export default {
             {"default":true,"name":"after_dash","title":"神里流·霰步","type":"bool"},
             
             {"default":false,"name":"use_c6","title":"六命效果","type":"bool"},
+            
+        ],
+    },
+    
+    KamisatoAyato: {
+        name: "KamisatoAyato",
+        chs: "神里绫人",
+        element: "Hydro",
+        weapon: "Sword",
+        star: 5,
+        card: KamisatoAyato_card,
+        avatar: KamisatoAyato_avatar,
+        splash: KamisatoAyato_splash,
+        skillName1: "普通攻击·神里流·转",
+        skillName2: "神里流·镜花",
+        skillName3: "神里流·水囿",
+        skillMap1: [
+            
+            { index: 0, chs: "一段伤害" },
+            
+            { index: 1, chs: "一段伤害" },
+            
+            { index: 2, chs: "一段伤害" },
+            
+            { index: 3, chs: "一段伤害" },
+            
+            { index: 4, chs: "一段伤害" },
+            
+            { index: 5, chs: "重击伤害" },
+            
+            { index: 6, chs: "下坠期间伤害" },
+            
+            { index: 7, chs: "低空坠地冲击伤害" },
+            
+            { index: 8, chs: "高空坠地冲击伤害" },
+            
+        ],
+        skillMap2: [
+            
+            { index: 9, chs: "一段瞬水剑伤害" },
+            
+            { index: 10, chs: "二段瞬水剑伤害" },
+            
+            { index: 11, chs: "三段瞬水剑伤害" },
+            
+            { index: 12, chs: "水影伤害" },
+            
+        ],
+        skillMap3: [
+            
+            { index: 13, chs: "水花剑伤害" },
+            
+        ],
+        config: [
+            
+        ],
+        configSkill: [
+            
+            {"default":4,"max":5,"min":0,"name":"e_stack","title":"「浪闪」层数","type":"int"},
+            
+            {"default":true,"name":"in_q","title":"处于「水囿」","type":"bool"},
             
         ],
     },
