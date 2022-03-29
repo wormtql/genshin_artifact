@@ -21,7 +21,7 @@ const nameMap = {
     "oceanhuedclam": "OceanHuedClam",
     "paleflame": "PaleFlame",
     "prayersfordestiny": "PrayersForDestiny",
-    "prayersforillumination": "PrayersForIlluminaton",
+    "prayersforillumination": "PrayersForIllumination",
     "prayersforwisdom": "PrayersForWisdom",
     "prayerstospringtime": "PrayersToSpringtime",
     "resolutionofsojourner": "ResolutionOfSojourner",
