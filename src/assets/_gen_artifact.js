@@ -129,6 +129,22 @@ import DefendersWill_head from "@image/artifacts/DefendersWill_head"
 
 
 
+import EchoesOfAnOffering_flower from "@image/artifacts/EchoesOfAnOffering_flower"
+
+
+import EchoesOfAnOffering_feather from "@image/artifacts/EchoesOfAnOffering_feather"
+
+
+import EchoesOfAnOffering_sand from "@image/artifacts/EchoesOfAnOffering_sand"
+
+
+import EchoesOfAnOffering_goblet from "@image/artifacts/EchoesOfAnOffering_goblet"
+
+
+import EchoesOfAnOffering_head from "@image/artifacts/EchoesOfAnOffering_head"
+
+
+
 import EmblemOfSeveredFate_flower from "@image/artifacts/EmblemOfSeveredFate_flower"
 
 
@@ -529,6 +545,22 @@ import TravelingDoctor_head from "@image/artifacts/TravelingDoctor_head"
 
 
 
+import VermillionHereafter_flower from "@image/artifacts/VermillionHereafter_flower"
+
+
+import VermillionHereafter_feather from "@image/artifacts/VermillionHereafter_feather"
+
+
+import VermillionHereafter_sand from "@image/artifacts/VermillionHereafter_sand"
+
+
+import VermillionHereafter_goblet from "@image/artifacts/VermillionHereafter_goblet"
+
+
+import VermillionHereafter_head from "@image/artifacts/VermillionHereafter_head"
+
+
+
 import ViridescentVenerer_flower from "@image/artifacts/ViridescentVenerer_flower"
 
 
@@ -917,6 +949,51 @@ export default {
         },
         
         config4: [
+            
+        ],
+    },
+    
+    "EchoesOfAnOffering": {
+        eng: "EchoesOfAnOffering",
+        chs: "来歆余响",
+        name2: "EchoesOfAnOffering",
+        minStar: 4,
+        maxStar: 5,
+        effect2: "攻击力提高18%。",
+        effect4: "普通攻击命中敌人时，有36%概率触发「幽谷祝祀」：普通攻击造成的伤害提高，伤害提高值为攻击力的70%，该效果将在普通攻击造成伤害后的0.05秒后清除。普通攻击未触发「幽谷祝祀」时，会使下次触发概率提升20%；0.2秒内至多判定1次触发与否。（注：平均触发比例为50.53%）",
+        
+        flower: {
+            chs: "魂香之花",
+            url: EchoesOfAnOffering_flower,
+        },
+        
+        
+        feather: {
+            chs: "垂玉之叶",
+            url: EchoesOfAnOffering_feather,
+        },
+        
+        
+        sand: {
+            chs: "祝祀之凭",
+            url: EchoesOfAnOffering_sand,
+        },
+        
+        
+        cup: {
+            chs: "涌泉之盏",
+            url: EchoesOfAnOffering_goblet,
+        },
+        
+        
+        head: {
+            chs: "浮溯之珏",
+            url: EchoesOfAnOffering_head,
+        },
+        
+        config4: [
+            
+            {"default":0.5053283764473575,"max":1.0,"min":0.0,"name":"rate","title":"平均触发比例","type":"float"},
             
         ],
     },
@@ -2022,6 +2099,53 @@ export default {
         },
         
         config4: [
+            
+        ],
+    },
+    
+    "VermillionHereafter": {
+        eng: "VermillionHereafter",
+        chs: "辰砂往生录",
+        name2: "VermillionHereafter",
+        minStar: 4,
+        maxStar: 5,
+        effect2: "攻击力提高18%。",
+        effect4: "施放元素爆发后，将产生持续16秒的「潜光」效果：攻击力提升8%；并在角色的生命值降低时，攻击力进一步提升10%，至多通过这种方式提升4次，每0.8秒至多触发一次。「潜光」效果将在角色退场时消失；持续期间再次施放元素爆发，将移除原有的「潜光」。",
+        
+        flower: {
+            chs: "生灵之华",
+            url: VermillionHereafter_flower,
+        },
+        
+        
+        feather: {
+            chs: "潜光片羽",
+            url: VermillionHereafter_feather,
+        },
+        
+        
+        sand: {
+            chs: "阳辔之遗",
+            url: VermillionHereafter_sand,
+        },
+        
+        
+        cup: {
+            chs: "结契之刻",
+            url: VermillionHereafter_goblet,
+        },
+        
+        
+        head: {
+            chs: "虺雷之姿",
+            url: VermillionHereafter_head,
+        },
+        
+        config4: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate_q","title":"元素爆发频率","type":"float"},
+            
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"平均层数","type":"float"},
             
         ],
     },

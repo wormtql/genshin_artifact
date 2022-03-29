@@ -102,6 +102,27 @@ impl Default for ConfigLevel {
     }
 }
 
+#[derive(Serialize, Deserialize)]
+#[derive(Debug, Clone, Default)]
+pub struct ConfigVermillionHereafter {
+    pub rate_q: f64,
+    pub stack: f64,
+}
+
+#[derive(Serialize, Deserialize)]
+#[derive(Debug, Clone)]
+pub struct ConfigEchoesOfAnOffering {
+    pub rate: f64
+}
+
+impl Default for ConfigEchoesOfAnOffering {
+    fn default() -> Self {
+        ConfigEchoesOfAnOffering {
+            rate: 0.5053
+        }
+    }
+}
+
 #[derive(Default, Debug, Clone)]
 #[derive(Serialize, Deserialize)]
 pub struct ArtifactEffectConfig {
@@ -122,6 +143,8 @@ pub struct ArtifactEffectConfig {
     pub config_shimenawas_reminiscence: ConfigRate,
     pub config_tenacity_of_the_millelith: ConfigRate,
     pub config_thundersoother: ConfigRate,
+    pub config_vermillion_hereafter: ConfigVermillionHereafter,
+    pub config_echoes_of_an_offering: ConfigEchoesOfAnOffering,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -144,6 +167,8 @@ pub struct ArtifactConfigInterface {
     pub config_shimenawas_reminiscence: Option<ConfigRate>,
     pub config_tenacity_of_the_millelith: Option<ConfigRate>,
     pub config_thundersoother: Option<ConfigRate>,
+    pub config_vermillion_hereafter: Option<ConfigVermillionHereafter>,
+    pub config_echoes_of_an_offering: Option<ConfigEchoesOfAnOffering>
 }
 
 impl ArtifactConfigInterface {
@@ -165,7 +190,98 @@ impl ArtifactConfigInterface {
             config_retracing_bolide: self.config_retracing_bolide.unwrap_or(Default::default()),
             config_shimenawas_reminiscence: self.config_shimenawas_reminiscence.unwrap_or(Default::default()),
             config_tenacity_of_the_millelith: self.config_tenacity_of_the_millelith.unwrap_or(Default::default()),
-            config_thundersoother: self.config_thundersoother.unwrap_or(Default::default())
+            config_thundersoother: self.config_thundersoother.unwrap_or(Default::default()),
+            config_vermillion_hereafter: self.config_vermillion_hereafter.unwrap_or(Default::default()),
+            config_echoes_of_an_offering: self.config_echoes_of_an_offering.unwrap_or(Default::default()),
         }
+    }
+}
+
+pub struct ArtifactEffectConfigBuilder {
+    pub config: ArtifactEffectConfig
+}
+
+impl ArtifactEffectConfigBuilder {
+    pub fn build(&self) -> ArtifactEffectConfig {
+        self.config.clone()
+    }
+
+    pub fn new() -> Self {
+        ArtifactEffectConfigBuilder {
+            config: Default::default()
+        }
+    }
+
+    pub fn vermillion_hereafter(&mut self, rate_q: f64, stack: f64) -> &mut Self {
+        self.config.config_vermillion_hereafter.rate_q = rate_q;
+        self.config.config_vermillion_hereafter.stack = stack;
+
+        self
+    }
+
+    pub fn crimson_witch_of_flames(&mut self, stack: f64) -> &mut Self {
+        self.config.config_crimson_witch_of_flames.level = stack;
+        self
+    }
+
+    pub fn noblesse_oblige(&mut self, rate: f64) -> &mut Self {
+        self.config.config_noblesse_oblige.rate = rate;
+        self
+    }
+
+    pub fn shimenawas_reminiscence(&mut self, rate: f64) -> &mut Self {
+        self.config.config_shimenawas_reminiscence.rate = rate;
+        self
+    }
+
+    pub fn lavawalker(&mut self, rate: f64) -> &mut Self {
+        self.config.config_lavawalker.rate = rate;
+        self
+    }
+
+    pub fn tenacity_of_the_millelith(&mut self, rate: f64) -> &mut Self {
+        self.config.config_tenacity_of_the_millelith.rate = rate;
+        self
+    }
+
+    pub fn thundersoother(&mut self, rate: f64) -> &mut Self {
+        self.config.config_thundersoother.rate = rate;
+        self
+    }
+
+    pub fn pale_flame(&mut self, stack: f64, full_rate: f64) -> &mut Self {
+        self.config.config_pale_flame.avg_level = stack;
+        self.config.config_pale_flame.full_rate = full_rate;
+        self
+    }
+
+    pub fn echoes_of_an_offering(&mut self, rate: f64) -> &mut Self {
+        self.config.config_echoes_of_an_offering.rate = rate;
+        self
+    }
+
+    pub fn echoes_of_an_offering_avg(&mut self) -> &mut Self {
+        self.config.config_echoes_of_an_offering.rate = 0.5053;
+        self
+    }
+
+    pub fn husk_of_opulent_dreams(&mut self, stack: f64) -> &mut Self {
+        self.config.config_husk_of_opulent_dreams.level = stack;
+        self
+    }
+
+    pub fn retracing_bolide(&mut self, rate: f64) -> &mut Self {
+        self.config.config_retracing_bolide.rate = rate;
+        self
+    }
+
+    pub fn blizzard_strayer(&mut self, crit: f64) -> &mut Self {
+        self.config.config_blizzard_strayer.critical_bonus = crit;
+        self
+    }
+
+    pub fn heart_of_depth(&mut self, rate: f64) -> &mut Self {
+        self.config.config_heart_of_depth.rate = rate;
+        self
     }
 }

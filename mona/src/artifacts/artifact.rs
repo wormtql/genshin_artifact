@@ -29,6 +29,7 @@ pub enum ArtifactSetName {
     BraveHeart,
     CrimsonWitchOfFlames,
     DefendersWill,
+    EchoesOfAnOffering,
     EmblemOfSeveredFate,
     Gambler,
     GladiatorsFinale,
@@ -56,6 +57,7 @@ pub enum ArtifactSetName {
     Thundersoother,
     TinyMiracle,
     TravelingDoctor,
+    VermillionHereafter,
     ViridescentVenerer,
     WanderersTroupe,
 }

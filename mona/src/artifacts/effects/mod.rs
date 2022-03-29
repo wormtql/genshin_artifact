@@ -13,6 +13,7 @@ pub use bloodstained_chivalry::BloodstainedChivalry;
 pub use brave_heart::BraveHeart;
 pub use crimson_witch_of_flames::CrimsonWitchOfFlames;
 pub use defenders_will::DefendersWill;
+pub use echoes_of_an_offering::EchoesOfAnOffering;
 pub use emblem_of_severed_fate::EmblemOfSeveredFate;
 pub use gambler::Gambler;
 pub use gladiators_finale::GladiatorsFinale;
@@ -40,6 +41,7 @@ pub use thundering_fury::ThunderingFury;
 pub use thundersoother::Thundersoother;
 pub use tiny_miracle::TinyMiracle;
 pub use traveling_doctor::TravelingDoctor;
+pub use vermillion_hereafter::VermillionHereafter;
 pub use viridescent_venerer::ViridescentVenerer;
 pub use wanderers_troupe::WanderersTroupe;
 
@@ -81,41 +83,9 @@ pub mod tiny_miracle;
 pub mod traveling_doctor;
 pub mod viridescent_venerer;
 pub mod wanderers_troupe;
+pub mod vermillion_hereafter;
+pub mod echoes_of_an_offering;
 
 pub fn get_effect<T: Attribute>(name: ArtifactSetName, config: &ArtifactEffectConfig, character: &Character<T>) -> Box<dyn ArtifactEffect<T>> {
     name.create_effect(config, &character.common_data)
-    // match name {
-    //     ArtifactSetName::Adventurer => Box::new(AdventurerEffect::new()),
-    //     ArtifactSetName::ArchaicPetra => Box::new(ArchaicPetraEffect::new(config)),
-    //     ArtifactSetName::Berserker => Box::new(BerserkerEffect::new(config)),
-    //     ArtifactSetName::BlizzardStrayer => Box::new(BlizzardStrayerEffect::new(config)),
-    //     ArtifactSetName::BloodstainedChivalry => Box::new(BloodstainedChivalryEffect::new(config)),
-    //     ArtifactSetName::BraveHeart => Box::new(BraveHeartEffect::new(config)),
-    //     ArtifactSetName::CrimsonWitchOfFlames => Box::new(CrimsonWitchOfFlamesEffect::new(config)),
-    //     ArtifactSetName::DefendersWill => Box::new(DefendersWillEffect::new()),
-    //     ArtifactSetName::EmblemOfSeveredFate => Box::new(EmblemOfSeveredFateEffect::new()),
-    //     ArtifactSetName::Gambler => Box::new(GamblerEffect::new()),
-    //     ArtifactSetName::GladiatorsFinale => Box::new(GladiatorsFinaleEffect::new(character)),
-    //     ArtifactSetName::HeartOfDepth => Box::new(HeartOfDepthEffect::new(config)),
-    //     ArtifactSetName::HuskOfOpulentDreams => Box::new(HuskOfOpulentDreamsEffect::new(config)),
-    //     ArtifactSetName::Instructor => Box::new(InstructorEffect::new(config)),
-    //     ArtifactSetName::Lavawalker => Box::new(LavawalkerEffect::new(config)),
-    //     ArtifactSetName::LuckyDog => Box::new(LuckyDogEffect::new()),
-    //     ArtifactSetName::MaidenBeloved => Box::new(MaidenBelovedEffect::new()),
-    //     ArtifactSetName::MartialArtist => Box::new(MartialArtistEffect::new(config)),
-    //     ArtifactSetName::NoblesseOblige => Box::new(NoblesseObligeEffect::new(config)),
-    //     ArtifactSetName::OceanHuedClam => Box::new(OceanHuedClamEffect::new()),
-    //     ArtifactSetName::PaleFlame => Box::new(PaleFlameEffect::new(config)),
-    //     ArtifactSetName::ResolutionOfSojourner => Box::new(ResolutionOfSojournerEffect::new()),
-    //     ArtifactSetName::RetracingBolide => Box::new(RetracingBolideEffect::new(config)),
-    //     ArtifactSetName::Scholar => Box::new(ScholarEffect::new()),
-    //     ArtifactSetName::ShimenawasReminiscence => Box::new(ShimenawasReminiscenceEffect::new(config)),
-    //     ArtifactSetName::TenacityOfTheMillelith => Box::new(TenacityOfTheMillelithEffect::new(config)),
-    //     ArtifactSetName::TheExile => Box::new(TheExileEffect::new()),
-    //     ArtifactSetName::ThunderingFury => Box::new(ThunderingFuryEffect::new()),
-    //     ArtifactSetName::Thundersoother => Box::new(ThundersootherEffect::new(config)),
-    //     ArtifactSetName::ViridescentVenerer => Box::new(ViridescentVenererEffect::new()),
-    //     ArtifactSetName::WanderersTroupe => Box::new(WanderersTroupeEffect::new(character.common_data.static_data.weapon_type)),
-    //     _ => Box::new(NoEffect {}),
-    // }
 }

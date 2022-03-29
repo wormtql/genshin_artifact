@@ -1,5 +1,5 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
-use crate::artifacts::effect_config::{ArtifactEffectConfig, ConfigPaleFlame};
+use crate::artifacts::effect_config::{ArtifactEffectConfig, ArtifactEffectConfigBuilder, ConfigPaleFlame};
 use crate::attribute::{Attribute, SimpleAttributeGraph2};
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
@@ -94,37 +94,17 @@ impl TargetFunction for EulaDefaultTargetFunction {
     }
 
     fn get_default_artifact_config(&self, _team_config: &TeamQuantization) -> ArtifactEffectConfig {
-        ArtifactEffectConfig {
-            config_archaic_petra: Default::default(),
-            config_berserker: Default::default(),
-            config_blizzard_strayer: Default::default(),
-            config_bloodstained_chivalry: Default::default(),
-            config_brave_heart: Default::default(),
-            config_crimson_witch_of_flames: Default::default(),
-            config_heart_of_depth: Default::default(),
-            config_husk_of_opulent_dreams: Default::default(),
-            config_instructor: Default::default(),
-            config_lavawalker: Default::default(),
-            config_martial_artist: Default::default(),
-            config_noblesse_oblige: Default::default(),
-            config_pale_flame: if self.is_c2 {
-                const CD: f64 = 5.0;
-                ConfigPaleFlame {
-                    avg_level: 7.0 / CD,
-                    full_rate: (7.0 - CD) / CD
-                }
-            } else {
-                const CD: f64 = 11.0;
-                ConfigPaleFlame {
-                    avg_level: 7.0 / CD,
-                    full_rate: 0.0
-                }
-            },
-            config_retracing_bolide: Default::default(),
-            config_shimenawas_reminiscence: Default::default(),
-            config_tenacity_of_the_millelith: Default::default(),
-            config_thundersoother: Default::default()
-        }
+        let (stack, full_rate) = if self.is_c2 {
+            const CD: f64 = 5.0;
+            (7.0 / CD, (7.0 - CD) / CD)
+        } else {
+            const CD: f64 = 11.0;
+            (7.0 / CD, 0.0)
+        };
+
+        ArtifactEffectConfigBuilder::new()
+            .pale_flame(stack, full_rate)
+            .build()
     }
 
     fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], enemy: &Enemy) -> f64 {

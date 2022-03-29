@@ -1,5 +1,5 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
-use crate::artifacts::effect_config::{ArtifactEffectConfig, ConfigArchaicPetra, ConfigRate};
+use crate::artifacts::effect_config::{ArtifactEffectConfig, ArtifactEffectConfigBuilder, ConfigArchaicPetra, ConfigRate};
 use crate::attribute::SimpleAttributeGraph2;
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
@@ -82,32 +82,9 @@ impl TargetFunction for AloyDefaultTargetFunction {
     }
 
     fn get_default_artifact_config(&self, team_config: &TeamQuantization) -> ArtifactEffectConfig {
-        ArtifactEffectConfig {
-            config_archaic_petra: ConfigArchaicPetra {
-                element: Element::Cryo,
-                rate: team_config.shield_coverage
-            },
-            config_berserker: Default::default(),
-            config_blizzard_strayer: Default::default(),
-            config_bloodstained_chivalry: Default::default(),
-            config_brave_heart: Default::default(),
-            config_crimson_witch_of_flames: Default::default(),
-            config_heart_of_depth: Default::default(),
-            config_husk_of_opulent_dreams: Default::default(),
-            config_instructor: Default::default(),
-            config_lavawalker: Default::default(),
-            config_martial_artist: Default::default(),
-            config_noblesse_oblige: Default::default(),
-            config_pale_flame: Default::default(),
-            config_retracing_bolide: ConfigRate {
-                rate: team_config.shield_coverage
-            },
-            config_shimenawas_reminiscence: ConfigRate {
-                rate: 1.0
-            },
-            config_tenacity_of_the_millelith: Default::default(),
-            config_thundersoother: Default::default()
-        }
+        ArtifactEffectConfigBuilder::new()
+            .shimenawas_reminiscence(1.0)
+            .build()
     }
 
     fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
