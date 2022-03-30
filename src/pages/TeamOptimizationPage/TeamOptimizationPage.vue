@@ -346,18 +346,20 @@ export default {
 
         optimizeTeamWasmInterface() {
             // sort by weight
-            let temp = []
-            for (let i = 0; i < this.singleInterfaces.length; i++) {
-                temp.push([this.singleInterfaces[i], this.weights[i]])
-            }
-            temp.sort((a, b) => b[1] - a[1])
-
-            const interfaces = temp.map(x => x[0])
-            const weights = temp.map(x => x[1])
+            // let temp = []
+            // for (let i = 0; i < this.singleInterfaces.length; i++) {
+            //     temp.push([this.singleInterfaces[i], this.weights[i]])
+            // }
+            // temp.sort((a, b) => b[1] - a[1])
+            //
+            // const interfaces = temp.map(x => x[0])
+            // const weights = temp.map(x => x[1])
 
             return {
-                single_interfaces: interfaces,
-                weights: weights,
+                // single_interfaces: interfaces,
+                // weights: weights,
+                single_interfaces: this.singleInterfaces,
+                weights: this.weights,
                 hyper_param: this.optimizeTeamHyperParamInterface
             }
         }

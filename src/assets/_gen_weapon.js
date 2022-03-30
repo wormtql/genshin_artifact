@@ -1075,7 +1075,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":0.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
             
         ],
         
