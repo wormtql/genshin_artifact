@@ -39,6 +39,12 @@ wasm-pack build
 npm run serve
 ```
 
+## Docker
+```
+docker build -t mona .
+docker run -dp 8080:80 mona
+```
+
 ## 贡献
 ### 添加目标函数
 目标函数在`mona/src/target_functions/target_functions`
