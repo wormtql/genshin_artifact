@@ -64,7 +64,7 @@ const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/h
 const KumiPage = () => import (/* webpackChunkName: "kumi-page" */ "@page/KumiPage");
 
 
-const webName = process.env.WEB_TITLE;
+const webName = process.env.MONA_TITLE;
 
 const routes = [
     {
@@ -170,7 +170,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    mode: process.env.ROUTE_MODE,       // webpack define plugin
+    mode: process.env.MONA_ROUTE_MODE,       // webpack define plugin
     routes,
 });
 

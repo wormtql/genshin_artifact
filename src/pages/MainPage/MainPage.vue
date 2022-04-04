@@ -41,9 +41,10 @@
                     </keep-alive>
                     <router-view v-if="!$route.meta.keepAlive" class="router-view"></router-view>
 
-                    <beian v-if="needBeian"></beian>
+                    <mona-footer></mona-footer>
 <!--                    <p>123</p>-->
                 </el-main>
+
             </el-container>
         </el-container>
     </div>
@@ -51,19 +52,17 @@
 
 <script>
 import SideBar from "./SideBar.vue"
-import Beian from "./Beian.vue";
+import Footer from "./Footer.vue";
 
 export default {
     name: 'App',
     components: {
         SideBar,
-        Beian,
+        MonaFooter: Footer,
     },
     data: function () {
         return {
             drawerVisible: false,
-
-            needBeian: process.env.NEED_BEIAN,
         }
     }
 }

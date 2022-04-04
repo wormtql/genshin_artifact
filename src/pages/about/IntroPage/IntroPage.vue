@@ -10,7 +10,6 @@
         >
             <span class="mona">{{ webTitle }}</span>
             V{{ version }}
-            <span class="build-info">BUILD ON {{ buildDate }}</span>
         </p>
         
         <!-- <p style="padding: 0; margin: 0; font-size: 10px;">该网站处处透露着贫穷，欢迎有志者参与开发（美术等）</p> -->
@@ -186,10 +185,10 @@ export default {
     created: function() {
         this.links = links;
 
-        this.version = process.env.VERSION;
-        this.webTitle = process.env.WEB_TITLE;
-        this.needMigrate = process.env.NEED_MIGRATE;
-        this.buildDate = process.env.BUILD_DATE;
+        this.version = process.env.MONA_VERSION;
+        this.webTitle = process.env.MONA_TITLE;
+        this.needMigrate = process.env.MONA_NEED_MIGRATE;
+        this.buildDate = process.env.MONA_BUILD_DATE;
 
         this.host = location.hostname;
     },

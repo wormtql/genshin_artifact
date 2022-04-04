@@ -1,53 +1,40 @@
 /* eslint-disable */
 
 const path = require("path")
-const fs = require("fs")
-const packageJson = fs.readFileSync("./package.json")
-const version = JSON.parse(packageJson).version || "no version"
-const webpack = require("webpack")
+const { readFileSync, existsSync } = require("fs")
+// const webpack = require("webpack")
 const { execSync } = require("child_process")
+const yaml = require("js-yaml")
 
+// const BEIAN_CODE = "浙ICP备2021004987号";
 
-const BEIAN_CODE = "浙ICP备2021004987号";
+const revision = execSync("git rev-parse HEAD").toString().trim().substring(0, 6)
+console.log("revision: ", revision)
 
+const version = JSON.parse(readFileSync("./package.json").toString()).version || "no version"
 
-let title = "莫娜占卜铺";
-if ("MONA_TITLE" in process.env) {
-    title = process.env.MONA_TITLE;
+function getEnv() {
+    let filename = ".env.development.yaml"
+    if (process.env.NODE_ENV === "production") {
+        filename = ".env.production.yaml"
+    }
+
+    let result = {}
+    if (existsSync(filename)) {
+        const content = readFileSync(filename).toString()
+        const parsed = yaml.load(content)
+        // console.log(parsed)
+        result = parsed
+    }
+
+    return result
 }
 
-let needBeian = true;
-if ("MONA_NEED_BEIAN" in process.env) {
-    needBeian = !!eval(process.env.MONA_NEED_BEIAN);
-}
-
-let beianNumber = "1";
-if ("MONA_BEIAN_NUMBER" in process.env) {
-    beianNumber = process.env.MONA_BEIAN_NUMBER;
-}
-
-let needMigrate = false;
-if ("MONA_NEED_MIGRATE" in process.env) {
-    needMigrate = !!eval(process.env.MONA_NEED_MIGRATE);
-}
-
-let routeMode = "hash";
-if ("MONA_ROUTE_MODE" in process.env) {
-    routeMode = process.env.MONA_ROUTE_MODE;
-}
-
-console.info(`
-building with:
-title = ${title}
-needBeian = ${needBeian}
-beianNumber = ${beianNumber}
-needMigrate = ${needMigrate}
-routeMode = ${routeMode}
-`);
-
-
-let now = new Date();
-let buildDate = now.toString();
+const now = new Date()
+const year = now.getFullYear()
+const month = now.getMonth()
+const date = now.getDate()
+const buildDate = `${year}/${month + 1}/${date}`
 
 module.exports = {
     publicPath: process.env.PublicPath || '/',
@@ -76,68 +63,6 @@ module.exports = {
                 // "genshin_panel": path.resolve(__dirname, "../../ts/genshin/dist"),
             }
         },
-        plugins: [
-            new webpack.DefinePlugin({
-                "process.env": {
-                    VERSION: `"${version}"`,
-                    WEB_TITLE: `"${title}"`,
-                    NEED_BEIAN: `${needBeian}`,
-                    BEIAN_NUMBER: `"${BEIAN_CODE + '-' + beianNumber}"`,
-                    NEED_MIGRATE: `${needMigrate}`,
-                    ROUTE_MODE: `"${routeMode}"`,
-                    BUILD_DATE: `"${buildDate}"`,
-                }
-            }),
-            // new WorkerPlugin({
-            //     globalObject: "self",
-            // }),
-        ],
-        // entry: {
-        //     "compute-worker": "./src/workers/compute.worker.js",
-        //     "potential-worker": "./src/workers/compute_potential.worker.js",
-        // },
-        module: {
-            rules: [
-                // {
-                //     test: /\.ccfg\.yaml$/,
-                //     use: [
-                //         "vue-loader",
-                //         {
-                //             loader: path.resolve(loaderPath, "character_config_loader.js"),
-                //             options: {
-                //                 type: "character"
-                //             }
-                //         }
-                //     ]
-                // },
-                // {
-                //     test: /\.cscfg\.yaml$/,
-                //     use: [
-                //         "vue-loader",
-                //         {
-                //             loader: path.resolve(loaderPath, "character_config_loader.js"),
-                //             options: {
-                //                 type: "characterSkill"
-                //             }
-                //         }
-                //     ]
-                // },
-                // {
-                //     test: /\.wcfg\.yaml$/,
-                //     use: [
-                //         "vue-loader",
-                //         path.resolve(loaderPath, "weapon_config_loader.js")
-                //     ]
-                // },
-                // {
-                //     test: /\.tfcfg\.yaml$/,
-                //     use: [
-                //         "vue-loader",
-                //         path.resolve(loaderPath, "target_function_config_loader.js")
-                //     ]
-                // },
-            ]
-        },
         externals: {
             vue: "Vue",
             "vue-router": "VueRouter",
@@ -150,14 +75,18 @@ module.exports = {
             asyncWebAssembly: true
         }
     },
-    // chainWebpack: config => config.resolve.symlinks(false),
-    // chainWebpack: config => {
-    //     config.module
-    //         .rule("worker")
-    //             .test(/\.worker\.js$/)
-    //             .use("babel")
-    //                 .loader("babel-loader")
+    chainWebpack: config => {
+        config.plugin("define").tap(definitions => {
+            const customEnv = getEnv()
 
-    // },
+            definitions[0]["process.env"] = Object.assign(definitions[0]["process.env"], customEnv, {
+                MONA_VERSION: `"${version}"`,
+                MONA_BUILD_DATE: `"${buildDate}"`,
+                MONA_REVISION: `"${revision}"`
+            })
+            // console.log(definitions)
+            return definitions
+        })
+    },
     productionSourceMap: false,
 }
