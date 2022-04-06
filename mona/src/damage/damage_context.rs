@@ -14,7 +14,7 @@ impl<'a, A: Attribute> DamageContext<'a, A> {
         let level = self.character_common_data.level;
 
         // todo res ratio
-        transformative_damage::<A>(level, &self.attribute, 0.9)
+        transformative_damage::<A>(level, &self.attribute, &self.enemy)
     }
 
     pub fn swirl_without_element(&self) -> f64 {

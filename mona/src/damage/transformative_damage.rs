@@ -1,6 +1,8 @@
 use wasm_bindgen::prelude::*;
-use crate::attribute::{Attribute, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
+use crate::common::{Element, SkillType};
 use crate::common::reaction_type::TransformativeType;
+use crate::enemies::Enemy;
 
 #[wasm_bindgen]
 pub struct TransformativeDamage {
@@ -128,7 +130,7 @@ fn get_em_bonus(em: f64) -> f64 {
     16.0 * em / (em + 2000.0)
 }
 
-pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, res_ratio: f64) -> TransformativeDamage {
+pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &Enemy) -> TransformativeDamage {
     let enhance_base = attribute.get_value(AttributeName::EnhanceSwirlBase);
     let enhance_swirl_pyro = attribute.get_value(AttributeName::EnhanceSwirlPyro) + enhance_base;
     let enhance_swirl_cryo = attribute.get_value(AttributeName::EnhanceSwirlCryo) + enhance_base;
@@ -148,14 +150,27 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, res_rati
     let em = attribute.get_value(AttributeName::ElementalMastery);
     let em_bonus = get_em_bonus(em);
 
-    let dmg_swirl_pyro = base_swirl * res_ratio * (1.0 + em_bonus + enhance_swirl_pyro);
-    let dmg_swirl_cryo = base_swirl * res_ratio * (1.0 + em_bonus + enhance_swirl_cryo);
-    let dmg_swirl_electro = base_swirl * res_ratio * (1.0 + em_bonus + enhance_swirl_electro);
-    let dmg_swirl_hydro = base_swirl * res_ratio * (1.0 + em_bonus + enhance_swirl_hydro);
-    let dmg_overload = base_overload * res_ratio * (1.0 + em_bonus + enhance_overload);
-    let dmg_superconduct = base_superconduct * res_ratio * (1.0 + em_bonus + enhance_superconduct);
-    let dmg_shatter = base_shatter * res_ratio * (1.0 + em_bonus + enhance_shatter);
-    let dmg_electro_charged = base_electro_charged * res_ratio * (1.0 + em_bonus + enhance_electro_charged);
+    // skill type is not used, thus passing normal attack
+    let res_pyro = attribute.get_enemy_res_minus(Element::Pyro, SkillType::NormalAttack);
+    let res_cryo = attribute.get_enemy_res_minus(Element::Cryo, SkillType::NormalAttack);
+    let res_electro = attribute.get_enemy_res_minus(Element::Electro, SkillType::NormalAttack);
+    let res_hydro = attribute.get_enemy_res_minus(Element::Hydro, SkillType::NormalAttack);
+    let res_physical = attribute.get_enemy_res_minus(Element::Physical, SkillType::NormalAttack);
+
+    let res_ratio_pyro = enemy.get_resistance_ratio(Element::Pyro, res_pyro);
+    let res_ratio_cryo = enemy.get_resistance_ratio(Element::Cryo, res_cryo);
+    let res_ratio_electro = enemy.get_resistance_ratio(Element::Electro, res_electro);
+    let res_ratio_hydro = enemy.get_resistance_ratio(Element::Hydro, res_hydro);
+    let res_ratio_physical = enemy.get_resistance_ratio(Element::Physical, res_physical);
+
+    let dmg_swirl_pyro = base_swirl * res_ratio_pyro * (1.0 + em_bonus + enhance_swirl_pyro);
+    let dmg_swirl_cryo = base_swirl * res_ratio_cryo * (1.0 + em_bonus + enhance_swirl_cryo);
+    let dmg_swirl_electro = base_swirl * res_ratio_electro * (1.0 + em_bonus + enhance_swirl_electro);
+    let dmg_swirl_hydro = base_swirl * res_ratio_hydro * (1.0 + em_bonus + enhance_swirl_hydro);
+    let dmg_overload = base_overload * res_ratio_pyro * (1.0 + em_bonus + enhance_overload);
+    let dmg_superconduct = base_superconduct * res_ratio_cryo * (1.0 + em_bonus + enhance_superconduct);
+    let dmg_shatter = base_shatter * res_ratio_physical * (1.0 + em_bonus + enhance_shatter);
+    let dmg_electro_charged = base_electro_charged * res_ratio_electro * (1.0 + em_bonus + enhance_electro_charged);
 
     TransformativeDamage {
         swirl_cryo: dmg_swirl_cryo,
@@ -169,6 +184,7 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, res_rati
     }
 }
 
+// because there is no element, so we don't know which res to use, so use res_ratio explicitly
 pub fn swirl_without_element<A: Attribute>(level: usize, attribute: &A, res_ratio: f64) -> f64 {
     let enhance_swirl_base = attribute.get_value(AttributeName::EnhanceSwirlBase);
     let em = attribute.get_value(AttributeName::ElementalMastery);
