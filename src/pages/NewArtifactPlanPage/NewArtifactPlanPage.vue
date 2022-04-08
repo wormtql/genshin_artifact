@@ -1188,7 +1188,7 @@ export default {
 
         usePreset(name) {
             const entry = getPresetEntryByName(name)
-            const item = entry.item
+            const item = deepCopy(entry.item)
 
             if (!item) {
                 return

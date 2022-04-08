@@ -13,7 +13,6 @@ impl<'a, A: Attribute> DamageContext<'a, A> {
     pub fn transformative(&self) -> TransformativeDamage {
         let level = self.character_common_data.level;
 
-        // todo res ratio
         transformative_damage::<A>(level, &self.attribute, &self.enemy)
     }
 
