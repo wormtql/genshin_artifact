@@ -70,6 +70,7 @@ module.exports = {
             "element-ui": "ELEMENT",
             "vue-echarts": "VueECharts",
             "fuse.js": "Fuse",
+            "@vue/composition-api": "VueCompositionAPI",
         },
         experiments: {
             asyncWebAssembly: true

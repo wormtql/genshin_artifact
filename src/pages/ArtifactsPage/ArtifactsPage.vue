@@ -7,16 +7,11 @@
             @confirm="handleAddArtifact"
         ></add-artifact-dialog>
 
-        <el-dialog
-            :visible.sync="showImportDialog"
-            title="导入"
-            width="60%"
-        >
+        <yas-ui-dialog :visible.sync="showYasUIDialog"></yas-ui-dialog>
+
+        <el-dialog :visible.sync="showImportDialog" title="导入" width="60%">
             <import-block ref="fileUploader"></import-block>
-            <el-checkbox
-                v-model="importDeleteUnseen"
-                style="margin-top: 12px"
-            >删除不存在的圣遗物</el-checkbox>
+            <el-checkbox v-model="importDeleteUnseen" style="margin-top: 12px">删除不存在的圣遗物</el-checkbox>
 
             <template #footer>
                 <el-button @click="showImportDialog = false">取消</el-button>
@@ -24,11 +19,7 @@
             </template>
         </el-dialog>
 
-        <el-drawer
-            title="编辑圣遗物"
-            :visible.sync="showEditArtifactDrawer"
-            direction="rtl"
-        >
+        <el-drawer title="编辑圣遗物" :visible.sync="showEditArtifactDrawer" direction="rtl">
             <edit-artifact
                 ref="editArtifactDrawer"
                 @confirm="handleConfirmEdit"
@@ -36,10 +27,7 @@
             ></edit-artifact>
         </el-drawer>
 
-        <el-drawer
-            title="推荐圣遗物"
-            :visible.sync="showArtifactRecommendationDrawer"
-        >
+        <el-drawer title="推荐圣遗物" :visible.sync="showArtifactRecommendationDrawer">
             <el-empty v-if="recommendationList.length === 0"></el-empty>
             <div v-else style="padding: 0 20px">
                 <artifact-display
@@ -71,55 +59,28 @@
                 @confirm="handleClickDeleteAll"
                 style="margin-right: 8px"
             >
-                <el-button
-                    slot="reference"
-                    size="mini"
-                    icon="el-icon-delete"
-                    type="danger"
-                    title="清空"
-                >
+                <el-button slot="reference" size="mini" icon="el-icon-delete" type="danger" title="清空">
                     清空
                 </el-button>
             </el-popconfirm>
 
-            <el-button
-                size="mini"
-                icon="el-icon-unlock"
-                title="启用全部"
-                @click="$store.commit('artifacts/unlockAll')"
-            >启用全部</el-button>
+            <el-button size="mini" icon="el-icon-unlock" title="启用全部" @click="$store.commit('artifacts/unlockAll')"
+                >启用全部</el-button
+            >
 
-            <el-button
-                size="mini"
-                icon="el-icon-s-opportunity"
-                @click="handleClickRecommendation"
-            >推荐</el-button>
+            <el-button size="mini" icon="el-icon-s-opportunity" @click="handleClickRecommendation">推荐</el-button>
 
             <div class="tool-right">
-                <el-button
-                    @click="handleImportJsonClicked"
-                    size="mini"
-                    type="primary"
-                >
-                    导入
-                </el-button>
-                <el-button
-                    @click="handleOutputJsonClicked"
-                    size="mini"
-                >
-                    导出
-                </el-button>
+                <el-button @click="handleYasUIClicked" size="mini" type="primary"> 扫描 </el-button>
+                <el-button @click="handleImportJsonClicked" size="mini" type="primary"> 导入 </el-button>
+                <el-button @click="handleOutputJsonClicked" size="mini"> 导出 </el-button>
             </div>
         </div>
 
         <!-- </div> -->
         <div class="filter">
             <span>套装</span>
-            <select-artifact-set
-                v-model="filterSet"
-                :multiple="true"
-                :multiple-limit="1000"
-            ></select-artifact-set>
+            <select-artifact-set v-model="filterSet" :multiple="true" :multiple-limit="1000"></select-artifact-set>
 
             <span style="margin-left: 24px">主词条</span>
             <select-artifact-main-stat
@@ -128,31 +89,21 @@
                 :multiple="true"
             ></select-artifact-main-stat>
 
-            <el-checkbox
-                v-model="ge16"
-                style="margin-left: 24px"
-            >只显示16级以上</el-checkbox>
+            <el-checkbox v-model="ge16" style="margin-left: 24px">只显示16级以上</el-checkbox>
         </div>
 
         <!-- artifacts display -->
         <el-tabs v-model="activeName">
-            <el-tab-pane
-                v-for="tab in tabs"
-                :key="tab.name"
-                class="panel"
-                :name="tab.name"
-            >
+            <el-tab-pane v-for="tab in tabs" :key="tab.name" class="panel" :name="tab.name">
                 <div slot="label">
-                    <img :src="tab.icon" class="icon">
+                    <img :src="tab.icon" class="icon" />
                 </div>
 
                 <div v-if="filteredArtifacts.length > 0">
-                    <div class="artifacts-div mona-scroll" ref="artifactsDiv"
-                        :style="{ height: contentHeight }"
-                    >
+                    <div class="artifacts-div mona-scroll" ref="artifactsDiv" :style="{ height: contentHeight }">
                         <artifact-display
                             class="artifact-item"
-                            v-for="(item) in artifactToBeDisplayed"
+                            v-for="item in artifactToBeDisplayed"
                             :key="item.id"
                             :item="item"
                             :buttons="true"
@@ -163,11 +114,11 @@
                             @edit="handleClickEditArtifact(item.id)"
                         ></artifact-display>
                     </div>
-<!--                    <el-pagination-->
-<!--                        :current-page.sync="currentPage"-->
-<!--                        :page-size="pageSize"-->
-<!--                        :total="filteredArtifacts.length"-->
-<!--                    ></el-pagination>-->
+                    <!--                    <el-pagination-->
+                    <!--                        :current-page.sync="currentPage"-->
+                    <!--                        :page-size="pageSize"-->
+                    <!--                        :total="filteredArtifacts.length"-->
+                    <!--                    ></el-pagination>-->
                 </div>
                 <div v-else>
                     <el-empty></el-empty>
@@ -178,37 +129,44 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
-import {removeArtifact, toggleArtifact, updateArtifact, importMonaJson, getArtifactsRecommendation } from "@util/artifacts"
-import { positions } from "@const/misc"
-import { downloadString } from "@util/common"
+import { mapGetters } from 'vuex';
+import {
+    removeArtifact,
+    toggleArtifact,
+    updateArtifact,
+    importMonaJson,
+    getArtifactsRecommendation,
+} from '@util/artifacts';
+import { positions } from '@const/misc';
+import { downloadString } from '@util/common';
 
-import flowerIcon from "@image/misc/flower.png"
-import featherIcon from "@image/misc/feather.png"
-import sandIcon from "@image/misc/sand.png"
-import gobletIcon from "@image/misc/goblet.png"
-import headIcon from "@image/misc/head.png"
+import flowerIcon from '@image/misc/flower.png';
+import featherIcon from '@image/misc/feather.png';
+import sandIcon from '@image/misc/sand.png';
+import gobletIcon from '@image/misc/goblet.png';
+import headIcon from '@image/misc/head.png';
 
-import AddArtifactDialog from "./AddArtifactDialog"
-import SelectArtifactSet from "@c/select/SelectArtifactSet"
-import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
-import ArtifactDisplay from "@c/display/ArtifactDisplay"
-import EditArtifact from "./EditArtifact"
-import ImportBlock from "@c/misc/ImportBlock"
+import AddArtifactDialog from './AddArtifactDialog';
+import YasUiDialog from './YasUIDialog';
+import SelectArtifactSet from '@c/select/SelectArtifactSet';
+import SelectArtifactMainStat from '@c/select/SelectArtifactMainStat';
+import ArtifactDisplay from '@c/display/ArtifactDisplay';
+import EditArtifact from './EditArtifact';
+import ImportBlock from '@c/misc/ImportBlock';
 
 const tabs = [
-    { icon: flowerIcon, name: "flower" },
-    { icon: featherIcon, name: "feather" },
-    { icon: sandIcon, name: "sand" },
-    { icon: gobletIcon, name: "cup" },
-    { icon: headIcon, name: "head" },
-]
-Object.freeze(tabs)
+    { icon: flowerIcon, name: 'flower' },
+    { icon: featherIcon, name: 'feather' },
+    { icon: sandIcon, name: 'sand' },
+    { icon: gobletIcon, name: 'cup' },
+    { icon: headIcon, name: 'head' },
+];
+Object.freeze(tabs);
 
-const pageSize = 20
+const pageSize = 20;
 
 export default {
-    name: "ArtifactsPage",
+    name: 'ArtifactsPage',
     components: {
         ImportBlock,
         AddArtifactDialog,
@@ -216,31 +174,32 @@ export default {
         SelectArtifactMainStat,
         ArtifactDisplay,
         EditArtifact,
+        YasUiDialog,
     },
     created: function () {
-        this.tabs = tabs
-        this.pageSize = pageSize
+        this.tabs = tabs;
+        this.pageSize = pageSize;
     },
     mounted() {
         this.$nextTick(() => {
-            const component = this.$refs["artifactsDiv"]?.[0]
+            const component = this.$refs['artifactsDiv']?.[0];
             if (!component) {
-                return
+                return;
             }
 
-            const rect = component.getBoundingClientRect()
+            const rect = component.getBoundingClientRect();
             // console.log(rect.top)
-            this.contentHeight = `calc(100vh - ${rect.top}px)`
-        })
-
+            this.contentHeight = `calc(100vh - ${rect.top}px)`;
+        });
     },
-    data: function() {
+    data: function () {
         return {
-            activeName: "flower",
+            activeName: 'flower',
 
             newDialogVisible: false,
             showEditArtifactDrawer: false,
             showImportDialog: false,
+            showYasUIDialog: false,
             showArtifactRecommendationDrawer: false,
 
             recommendationList: [],
@@ -251,171 +210,175 @@ export default {
             ge16: true,
             // currentPage: 1,
 
-            contentHeight: "",
+            contentHeight: '',
 
-            importDeleteUnseen: false
-        }
+            importDeleteUnseen: false,
+        };
     },
     methods: {
         handleClickDeleteAll() {
-            this.$store.commit("artifacts/removeAllArtifacts");
+            this.$store.commit('artifacts/removeAllArtifacts');
         },
 
         handleClickRemoveArtifact(id) {
-            removeArtifact(id)
+            removeArtifact(id);
         },
 
         handleClickToggleArtifact(id) {
-            toggleArtifact(id)
+            toggleArtifact(id);
         },
 
         handleClickEditArtifact(id) {
             // console.log(id)
-            this.showEditArtifactDrawer = true
+            this.showEditArtifactDrawer = true;
 
             this.$nextTick(() => {
-                let component = this.$refs["editArtifactDrawer"]
+                let component = this.$refs['editArtifactDrawer'];
                 if (!component) {
-                    return
+                    return;
                 }
-                component.setId(id)
-            })
+                component.setId(id);
+            });
         },
 
         handleConfirmEdit(id) {
-            let component = this.$refs["editArtifactDrawer"]
+            let component = this.$refs['editArtifactDrawer'];
             if (!component) {
-                return
+                return;
             }
-            let newArtifact = component.getNewArtifact()
+            let newArtifact = component.getNewArtifact();
 
-            updateArtifact(id, newArtifact)
+            updateArtifact(id, newArtifact);
 
-            this.showEditArtifactDrawer = false
+            this.showEditArtifactDrawer = false;
         },
 
-        add: function() {
+        add: function () {
             this.newDialogVisible = true;
         },
 
-        handleAddArtifact: function(item) {
+        handleAddArtifact: function (item) {
             this.newDialogVisible = false;
 
             this.activeName = item.position;
 
-            this.$store.commit("artifacts/addArtifact", item);
+            this.$store.commit('artifacts/addArtifact', item);
         },
 
         handleImportJsonClicked() {
-            this.showImportDialog = true
+            this.showImportDialog = true;
+        },
+
+        handleYasUIClicked() {
+            this.showYasUIDialog = true;
         },
 
         handleImportJson() {
-            const component = this.$refs.fileUploader
+            const component = this.$refs.fileUploader;
             if (!component) {
-                return
+                return;
             }
 
             const loading = this.$loading({
                 lock: true,
-                text: "导入中",
-            })
+                text: '导入中',
+            });
 
-            component.getReadPromise().then(text => {
-                // console.log(text)
-                try {
-                    const rawObj = JSON.parse(text)
-                    importMonaJson(rawObj, this.importDeleteUnseen)
-                } catch(e) {
-                    return Promise.reject("格式不正确")
-                }
-            }).catch(e => {
-                this.$message.error(e)
-            }).finally(() => {
-                loading.close()
-            })
+            component
+                .getReadPromise()
+                .then((text) => {
+                    // console.log(text)
+                    try {
+                        const rawObj = JSON.parse(text);
+                        importMonaJson(rawObj, this.importDeleteUnseen);
+                    } catch (e) {
+                        return Promise.reject('格式不正确');
+                    }
+                })
+                .catch((e) => {
+                    this.$message.error(e);
+                })
+                .finally(() => {
+                    loading.close();
+                });
         },
 
         handleOutputJsonClicked() {
             let temp = {
-                version: "1"
-            }
+                version: '1',
+            };
 
             for (let position in positions) {
-                temp[position] = this.$store.state.artifacts[position]
+                temp[position] = this.$store.state.artifacts[position];
             }
 
-            const str = JSON.stringify(temp)
-            downloadString(str, "application/json", "artifacts_mona")
+            const str = JSON.stringify(temp);
+            downloadString(str, 'application/json', 'artifacts_mona');
         },
 
         handleClickRecommendation() {
-            const presetLength = this.$store.getters["presets/allFlat"].length
+            const presetLength = this.$store.getters['presets/allFlat'].length;
             if (presetLength === 0) {
-                this.$message.error("添加计算预设以使用该功能")
-                return
+                this.$message.error('添加计算预设以使用该功能');
+                return;
             }
 
-            this.showArtifactRecommendationDrawer = true
+            this.showArtifactRecommendationDrawer = true;
 
-            getArtifactsRecommendation().then(result => {
-                let temp = result.slice(0, 50)
-                const maxValue = temp.map(item => item[1]).reduce((p, c) => Math.max(p, c), 0)
+            getArtifactsRecommendation().then((result) => {
+                let temp = result.slice(0, 50);
+                const maxValue = temp.map((item) => item[1]).reduce((p, c) => Math.max(p, c), 0);
 
                 for (let i = 0; i < temp.length; i++) {
-                    temp[i][1] /= maxValue
+                    temp[i][1] /= maxValue;
                 }
 
-                this.recommendationList = temp
-            })
-        }
+                this.recommendationList = temp;
+            });
+        },
     },
     computed: {
-        ...mapGetters("artifacts", [
-            "allArtifacts",
-            "artifactsById",
-            "count"
-        ]),
+        ...mapGetters('artifacts', ['allArtifacts', 'artifactsById', 'count']),
 
         artifactsCurrentSlotFlat() {
-            const items = this.allArtifacts[this.activeName]
-            return items
+            const items = this.allArtifacts[this.activeName];
+            return items;
         },
 
         filteredArtifacts() {
-            let results = []
+            let results = [];
 
             for (let artifact of this.artifactsCurrentSlotFlat) {
-                const setName = artifact.setName
-                const mainStatName = artifact.mainTag.name
-                const level = artifact.level ?? 20
+                const setName = artifact.setName;
+                const mainStatName = artifact.mainTag.name;
+                const level = artifact.level ?? 20;
 
                 if (this.filterSet.length > 0 && this.filterSet.indexOf(setName) === -1) {
-                    continue
+                    continue;
                 }
                 if (this.filterMainStat.length > 0 && this.filterMainStat.indexOf(mainStatName) === -1) {
-                    continue
+                    continue;
                 }
                 if (this.ge16 && level < 16) {
-                    continue
+                    continue;
                 }
 
-                results.push(artifact)
+                results.push(artifact);
             }
 
-            return results
+            return results;
         },
 
         artifactToBeDisplayed() {
             // return this.artifactsCurrentSlotFlat
-            return this.filteredArtifacts
+            return this.filteredArtifacts;
             // const start = (this.currentPage - 1) * pageSize
             // const end = Math.min(start + pageSize, this.filteredArtifacts.length)
             //
             // return this.filteredArtifacts.slice(start, end)
         },
-    }
-}
+    },
+};
 </script>
 
 <style scoped lang="scss">
