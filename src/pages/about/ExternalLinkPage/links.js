@@ -48,4 +48,14 @@ export default [
             "https://xingqulaiyuan.chenyuwulu.top/": "https://xingqulaiyuan.chenyuwulu.top/"
         }
     },
+    {
+        name: "某大佬的社区",
+        tags: [
+            "社区"
+        ],
+        url: {
+            "开黑啦": "https://kaihei.co/QQ6zQ4",
+            "https://mew.fun/n/mimi": "https://mew.fun/n/mimi"
+        }
+    }
 ]
