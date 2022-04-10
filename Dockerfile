@@ -6,6 +6,7 @@ RUN cargo run --release --bin gen_meta
 RUN /usr/local/cargo/bin/wasm-pack build
 
 FROM node:14-alpine AS node
+RUN apk update && apk add git
 WORKDIR /mona
 COPY --from=rust /mona .
 RUN npm install
