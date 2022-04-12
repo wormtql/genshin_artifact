@@ -2,6 +2,7 @@ use std::collections::HashMap;
 use smallvec::SmallVec;
 use wasm_bindgen::prelude::*;
 use crate::applications::optimize_artifacts::algorithm::SingleOptimizeAlgorithm;
+use crate::applications::optimize_artifacts::algorithms::cutoff_a_star::AStarCutoff;
 use crate::applications::optimize_artifacts::algorithms::cutoff_heuristic::CutoffAlgorithmHeuristic;
 use crate::applications::team_optimize::hyper_param::TeamOptimizeHyperParam;
 use crate::applications::team_optimize::inter::{OptimizeTeamInterface2, OptimizeTeamObject, OptimizeTeamResult, OptimizeTeamResultEntry, TeamInterface};
@@ -69,7 +70,8 @@ impl TeamOptimizationWasm {
             None => TeamOptimizeHyperParam::default()
         };
 
-        let single_algo: Box<dyn SingleOptimizeAlgorithm> = Box::new(CutoffAlgorithmHeuristic { use_heuristic: true });
+        // let single_algo: Box<dyn SingleOptimizeAlgorithm> = Box::new(CutoffAlgorithmHeuristic { use_heuristic: true });
+        let single_algo: Box<dyn SingleOptimizeAlgorithm> = Box::new(AStarCutoff);
         let result_raw = optimize_team_multi_single(
             &artifacts_ref,
             &input.single_interfaces,
