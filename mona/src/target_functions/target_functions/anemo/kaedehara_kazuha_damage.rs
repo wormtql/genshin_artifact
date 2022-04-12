@@ -135,7 +135,14 @@ impl TargetFunction for KaedeharaKazuhaDamageTargetFunction {
         let swirl = context.swirl_without_element();
 
         type S = <KaedeharaKazuha as CharacterTrait>::DamageEnumType;
+
+        let skill_config = if character.common_data.constellation >= 6 {
+            CharacterSkillConfig::KaedeharaKazuha { after_e_or_q: true }
+        } else {
+            CharacterSkillConfig::KaedeharaKazuha { after_e_or_q: false }
+        };
         let dmg_q = KaedeharaKazuha::damage::<SimpleDamageBuilder>(&context, S::Q2, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_plunging_e = KaedeharaKazuha::damage::<SimpleDamageBuilder>(&context, S::PlungingE2, &skill_config).normal.expectation;
 
         let bonus_for_other = if character.common_data.has_talent2 {
             em * 0.0004
@@ -146,8 +153,10 @@ impl TargetFunction for KaedeharaKazuhaDamageTargetFunction {
         const BONUS_VIRTUAL: f64 = 0.8;
         let ratio = (1.0 + BONUS_VIRTUAL + bonus_for_other) / (1.0 + BONUS_VIRTUAL);
 
-        let dmg_self = dmg_q + swirl * self.swirl_rate;
+        let dmg_self = dmg_q * 5.0 + dmg_plunging_e + swirl * self.swirl_rate * 6.0;
+        let dmg_other = dmg_self * self.other_dmg_ratio * ratio;
 
-        dmg_self * r * (1.0 - self.other_dmg_ratio) + 20000.0 * ratio * self.other_dmg_ratio
+        dmg_self * r + dmg_other
+        // dmg_self * r * (1.0 - self.other_dmg_ratio) + 50000.0 * ratio * self.other_dmg_ratio
     }
 }
