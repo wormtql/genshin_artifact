@@ -51,11 +51,12 @@ export default [
     {
         name: "某大佬的社区",
         tags: [
-            "社区"
+            "社区", "语音", "信息聚合"
         ],
+        word: "这里是由热爱原神的旅行者们所打造的原神社区，在这里你可以寻求大佬的帮助，快速的度过萌新阶段，进一步了解原神的更多有趣好玩的活动、故事，也以在这里扩展自己对原神的认知！欢迎你的加入，旅行者，愿风神护佑你。",
         url: {
-            "开黑啦": "https://kaihei.co/QQ6zQ4",
-            "https://mew.fun/n/mimi": "https://mew.fun/n/mimi"
+            "开黑啦语音社区": "https://kaihei.co/QQ6zQ4",
+            "MEW文字社区": "https://mew.fun/n/mimi"
         }
     }
 ]
