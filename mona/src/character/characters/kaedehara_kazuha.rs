@@ -206,7 +206,7 @@ impl CharacterTrait for KaedeharaKazuha {
             Plunging1 | PlungingE1 => KAEDEHARA_KAZUHA_SKILL.plunging_dmg1[s1],
             Plunging2 | PlungingE2 => KAEDEHARA_KAZUHA_SKILL.plunging_dmg2[s1],
             Plunging3 | PlungingE3 => KAEDEHARA_KAZUHA_SKILL.plunging_dmg3[s1],
-            PlungingElectro | PlungingCryo | PlungingHydro | PlungingPyro => 0.2,
+            PlungingElectro | PlungingCryo | PlungingHydro | PlungingPyro => 2.0,
             E1 => KAEDEHARA_KAZUHA_SKILL.elemental_skill_dmg1[s2],
             E2 => KAEDEHARA_KAZUHA_SKILL.elemental_skill_dmg2[s2],
             Q1 => KAEDEHARA_KAZUHA_SKILL.elemental_burst_dmg1[s3],
