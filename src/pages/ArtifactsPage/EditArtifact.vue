@@ -18,7 +18,8 @@
                 <el-col :span="12">
                     <p class="config-title">位置</p>
                     <select-artifact-slot
-                        v-model="position"
+                        :value="position"
+                        @input="handleChangePosition"
                     ></select-artifact-slot>
                 </el-col>
             </el-row>
@@ -100,7 +101,7 @@
 import flowerIcon from "@image/misc/flower.png"
 import {getArtifact, getArtifactImage, getArtifactImageByArtifact} from "@util/artifacts"
 import { artifactsData } from "@artifact"
-import { artifactTags } from "@const/artifact"
+import { artifactTags, mainStatMap } from "@const/artifact"
 import { positions } from "@const/misc"
 
 import InputArtifactSubStat from "@c/input/InputArtifactSubStat"
@@ -135,6 +136,21 @@ export default {
         }
     },
     methods: {
+        handleChangePosition(position) {
+            this.position = position
+
+            const mainStatList = mainStatMap[this.position]
+            if (mainStatList.indexOf(this.mainStat.name) < 0) {
+                const newMainStatName = mainStatList[0]
+                const newMainStatValue = artifactTags[newMainStatName].max["5"]
+
+                this.mainStat = this.convertStat({
+                    name: newMainStatName,
+                    value: newMainStatValue
+                })
+            }
+        },
+
         convertStat(stat) {
             const data = artifactTags[stat.name]
             if (data.percentage) {

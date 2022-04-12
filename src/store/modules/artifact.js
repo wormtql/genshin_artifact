@@ -126,9 +126,12 @@ let _store = {
             // console.log(original)
             if (original.position !== artifact.position) {
                 removeArtifact(state, id)
+                addArtifact(state, artifact, id)
+            } else {
+                for (const key of Object.keys(artifact)) {
+                    Vue.set(original, key, artifact[key])
+                }
             }
-
-            addArtifact(state, artifact, id)
 
             // const check = name => Object.prototype.hasOwnProperty.call(artifact, name)
             // const attributes = ["setName", "star", "level", "position", "mainTag", "normalTags"]
