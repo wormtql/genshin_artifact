@@ -332,6 +332,17 @@ let _store = {
             return temp;
         },
 
+        twentyCount: (state, getters) => {
+            let count = 0
+            for (let artifact of getters.allFlat) {
+                const level = artifact.level ?? 0
+                if (level === 20) {
+                    count += 1
+                }
+            }
+            return count
+        },
+
         flowerCount: state => {
             return state.flower.length;
         },

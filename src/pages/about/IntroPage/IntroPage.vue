@@ -11,13 +11,6 @@
             <span class="mona">{{ webTitle }}</span>
             V{{ version }}
         </p>
-        
-        <!-- <p style="padding: 0; margin: 0; font-size: 10px;">该网站处处透露着贫穷，欢迎有志者参与开发（美术等）</p> -->
-
-<!--        <migrate-notification-->
-<!--            v-if="needMigrate"-->
-<!--            style="margin-bottom: 16px"-->
-<!--        ></migrate-notification>-->
 
         <el-alert
             class="hidden-sm-and-up"
@@ -96,6 +89,15 @@
                         QQ群(801106595)
                         <font-awesome-icon icon="comment"></font-awesome-icon>
                     </el-button>
+
+                    <div>
+                        <p style="font-size: 12px">站内反馈</p>
+                        <el-input v-model="feedback">
+                            <template #append>
+                                <el-button @click="handleClickSubmitFeedback">提交</el-button>
+                            </template>
+                        </el-input>
+                    </div>
                 </el-card>
             </el-col>
 
@@ -150,27 +152,35 @@
             </el-col>
         </el-row>
 
-        <el-card style="margin-bottom: 16px" shadow="never">
-            <p class="card-title">请莫娜吃饭</p>
-            <el-alert
-                :closable="false"
-                title="才...才不是因为交不起服务器费呢。"
-            ></el-alert>
-            <!-- 暂未开通 -->
-            <div class="pay">
-                <span>微信支付：</span>
-                <img src="./wechat.png">
-            </div>
-            <div class="pay">
-                <span>支付宝：</span>
-                <img src="./alipay.png">
-            </div>
-        </el-card>
+<!--        <el-row :gutter="16">-->
+<!--            <el-col :xs="24" :sm="12">-->
+                <el-card style="margin-bottom: 16px" shadow="never">
+                    <p class="card-title">请莫娜吃饭</p>
+                    <el-alert
+                        :closable="false"
+                        title="才...才不是因为交不起服务器费呢。"
+                    ></el-alert>
+                    <!-- 暂未开通 -->
+                    <div class="pay">
+                        <span>微信支付：</span>
+                        <img src="./wechat.png">
+                    </div>
+                    <div class="pay">
+                        <span>支付宝：</span>
+                        <img src="./alipay.png">
+                    </div>
+                </el-card>
+<!--            </el-col>-->
+<!--            <el-col :xs="24" :sm="12">-->
+<!--                <el-card shadow="never"></el-card>-->
+<!--            </el-col>-->
+<!--        </el-row>-->
     </div>
 </template>
 
 <script>
 import links from "@const/links"
+import { createFeedback } from "@/api/misc"
 
 import MigrateNotification from "./MigrateNotification"
 import UseCaseItem from "./UseCaseItem"
@@ -181,6 +191,11 @@ export default {
         MigrateNotification,
         UseCaseItem,
         // NokNok,
+    },
+    data() {
+        return {
+            feedback: ""
+        }
     },
     created: function() {
         this.links = links;
@@ -196,8 +211,18 @@ export default {
         navigateTo(des) {
             this.$router.replace(des);
         },
+
         newPage(des) {
             window.open(des, "_blank");
+        },
+
+        handleClickSubmitFeedback() {
+            if (this.feedback === "") {
+                return
+            }
+            createFeedback(this.feedback)
+
+            this.$message.success("已发送")
         }
     }
 }
