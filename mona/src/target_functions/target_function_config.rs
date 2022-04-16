@@ -26,6 +26,7 @@ pub enum TargetFunctionConfig {
     JeanDefault { recharge_demand: f64, damage_weight: f64 },
     KaedeharaKazuhaDamage { recharge_demand: f64, other_dmg_ratio: f64, swirl_rate: f64 },
     KaedeharaKazuhaDefault { recharge_demand: f64 },
+    KamisatoAyakaDefault { recharge_demand: f64 },
     LisaDefault { recharge_demand: f64 },
     MonaDefault { recharge_demand: f64 },
     QiqiDefault { recharge_demand: f64 },

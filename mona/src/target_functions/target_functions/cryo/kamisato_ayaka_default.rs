@@ -7,7 +7,7 @@ use crate::character::characters::kamisato_ayaka::KamisatoAyaka;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
 use crate::common::{Element, StatName};
-use crate::common::item_config_type::ItemConfig;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
 use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
@@ -18,7 +18,9 @@ use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
-pub struct KamisatoAyakaDefaultTargetFunction;
+pub struct KamisatoAyakaDefaultTargetFunction {
+    pub recharge_demand: f64
+}
 
 impl TargetFunctionMetaTrait for KamisatoAyakaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
@@ -31,8 +33,23 @@ impl TargetFunctionMetaTrait for KamisatoAyakaDefaultTargetFunction {
         image: TargetFunctionMetaImage::Avatar
     };
 
-    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, _config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        Box::new(KamisatoAyakaDefaultTargetFunction)
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "recharge_demand",
+            title: "充能需求",
+            config: ItemConfigType::Float { default: 1.0, min: 1.0, max: 3.0 }
+        }
+    ]);
+
+    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        let recharge_demand = match *config {
+            TargetFunctionConfig::KamisatoAyakaDefault { recharge_demand } => recharge_demand,
+            _ => 1.0
+        };
+        Box::new(KamisatoAyakaDefaultTargetFunction {
+            recharge_demand
+        })
     }
 }
 
@@ -102,7 +119,7 @@ impl TargetFunction for KamisatoAyakaDefaultTargetFunction {
         let dmg_charged = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::ChargedTimes3, &s_config).normal.expectation;
 
         let recharge = attribute.get_value(AttributeName::Recharge);
-        let r = recharge.min(1.6);
+        let r = recharge.min(self.recharge_demand);
 
         dmg_q * r + dmg_normal + dmg_charged * 0.3
     }

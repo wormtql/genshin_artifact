@@ -258,7 +258,9 @@ impl CharacterTrait for KamisatoAyaka {
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
         let role: KamisatoAyakaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
         match role {
-            KamisatoAyakaRoleEnum::Main => Box::new(KamisatoAyakaDefaultTargetFunction)
+            KamisatoAyakaRoleEnum::Main => Box::new(KamisatoAyakaDefaultTargetFunction {
+                recharge_demand: 1.0
+            })
         }
     }
 }

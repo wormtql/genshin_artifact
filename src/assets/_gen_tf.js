@@ -780,6 +780,8 @@ export default {
         badge: KamisatoAyakaDefault_image,
         config: [
             
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            
         ],
     },
     
