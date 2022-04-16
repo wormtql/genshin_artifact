@@ -38,6 +38,14 @@ const buildDate = `${year}/${month + 1}/${date}`
 
 module.exports = {
     publicPath: process.env.PublicPath || '/',
+    devServer: {
+        proxy: {
+            "^/api": {
+                target: "http://localhost:8000/",
+                changeOrigin: true
+            }
+        }
+    },
     configureWebpack: {
         resolve: {
             extensions: [".vue", ".png", ".jpg", ".webp"],

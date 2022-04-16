@@ -680,6 +680,7 @@ import {buffData} from "@buff"
 import {artifactsData} from "@artifact"
 import {wasmBonusPerStat} from "@/wasm"
 import {wasmSingleOptimize} from "@/wasm/single_optimize"
+import { createComputeResult } from "@/api/misc"
 
 import SelectArtifact from "@c/select/SelectArtifact"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
@@ -1487,6 +1488,37 @@ export default {
                 }
                 this.optimizationResults = results
                 this.handleUseNthOptimizationResult(1)
+
+                // report best result to server, only report player whose 20 artifacts count is above 100
+                if (this.$store.getters["artifacts/twentyCount"] >= 100) {
+                    const characterInterface = this.characterInterface
+                    const weaponInterface = this.weaponInterface
+                    const buffsInterface = this.buffsInterface
+                    const targetFunctionInterface = this.targetFunctionInterface
+
+                    let result_artifacts_wasm_format = []
+                    let first_result = results[0]
+                    result_artifacts_wasm_format.push(first_result.flower)
+                    result_artifacts_wasm_format.push(first_result.feather)
+                    result_artifacts_wasm_format.push(first_result.sand)
+                    result_artifacts_wasm_format.push(first_result.goblet)
+                    result_artifacts_wasm_format.push(first_result.head)
+                    result_artifacts_wasm_format = result_artifacts_wasm_format
+                        .filter(v => v !== null && v !== undefined)
+                        .map(id => this.artifactsById[id])
+                        .filter(a => !!a)
+                        .map(a => convertArtifact(a))
+                    // console.log(result_artifacts_wasm_format)
+
+                    // the return value can be omitted, because there's nothing valuable
+                    createComputeResult(
+                        characterInterface,
+                        weaponInterface,
+                        buffsInterface,
+                        targetFunctionInterface,
+                        result_artifacts_wasm_format
+                    )
+                }
             }).catch(e => {
                 this.$message.error(e)
             }).finally(() => {
