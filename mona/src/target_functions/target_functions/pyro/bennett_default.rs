@@ -6,7 +6,7 @@ use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::Bennett;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
-use crate::common::item_config_type::ItemConfig;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
@@ -18,7 +18,9 @@ use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
-pub struct BennettDefaultTargetFunction;
+pub struct BennettDefaultTargetFunction {
+    pub recharge_demand: f64,
+}
 
 impl TargetFunctionMetaTrait for BennettDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
@@ -31,8 +33,23 @@ impl TargetFunctionMetaTrait for BennettDefaultTargetFunction {
         image: TargetFunctionMetaImage::Avatar
     };
 
-    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, _config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        Box::new(BennettDefaultTargetFunction)
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "recharge_demand",
+            title: "充能需求",
+            config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.6 }
+        }
+    ]);
+
+    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        let recharge_demand = match *config {
+            TargetFunctionConfig::BennettDefault { recharge_demand } => recharge_demand,
+            _ => 1.0
+        };
+        Box::new(BennettDefaultTargetFunction {
+            recharge_demand
+        })
     }
 }
 
@@ -109,7 +126,7 @@ impl TargetFunction for BennettDefaultTargetFunction {
         ).normal.expectation;
 
         let recharge = attribute.get_value(AttributeName::Recharge);
-        let recharge_ratio = recharge.min(1.5);
+        let recharge_ratio = recharge.min(self.recharge_demand);
 
         recharge_ratio * (atk_bonus * 1000.0 + heal)
     }

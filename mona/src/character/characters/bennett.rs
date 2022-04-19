@@ -239,7 +239,9 @@ impl CharacterTrait for Bennett {
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
         let role: BennettRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
         match role {
-            BennettRoleEnum::Aux => Box::new(BennettDefaultTargetFunction)
+            BennettRoleEnum::Aux => Box::new(BennettDefaultTargetFunction {
+                recharge_demand: 2.0
+            })
         }
     }
 }

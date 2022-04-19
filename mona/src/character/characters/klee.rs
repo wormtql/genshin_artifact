@@ -162,7 +162,9 @@ impl CharacterTrait for Klee {
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
         let role: KleeRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
         match role {
-            KleeRoleEnum::MainPyro => Box::new(KleeDefaultTargetFunction)
+            KleeRoleEnum::MainPyro => Box::new(KleeDefaultTargetFunction {
+                recharge_demand: 1.0
+            })
         }
     }
 }

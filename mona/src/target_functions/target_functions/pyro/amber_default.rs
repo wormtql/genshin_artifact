@@ -82,7 +82,7 @@ impl TargetFunction for AmberDefaultTargetFunction {
         }
     }
 
-    fn get_default_artifact_config(&self, team_config: &TeamQuantization) -> ArtifactEffectConfig {
+    fn get_default_artifact_config(&self, _team_config: &TeamQuantization) -> ArtifactEffectConfig {
         Default::default()
     }
 

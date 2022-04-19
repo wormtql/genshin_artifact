@@ -540,6 +540,8 @@ export default {
         badge: BennettDefault_image,
         config: [
             
+            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            
         ],
     },
     
@@ -845,6 +847,8 @@ export default {
         "for": "Klee",
         badge: KleeDefault_image,
         config: [
+            
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
             
         ],
     },

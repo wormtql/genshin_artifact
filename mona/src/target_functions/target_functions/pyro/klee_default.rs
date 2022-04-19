@@ -7,7 +7,7 @@ use crate::character::characters::klee::Klee;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
 use crate::common::{Element, StatName};
-use crate::common::item_config_type::ItemConfig;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
 use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
@@ -18,7 +18,9 @@ use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
-pub struct KleeDefaultTargetFunction;
+pub struct KleeDefaultTargetFunction {
+    pub recharge_demand: f64,
+}
 
 impl TargetFunctionMetaTrait for KleeDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
@@ -31,8 +33,23 @@ impl TargetFunctionMetaTrait for KleeDefaultTargetFunction {
         image: TargetFunctionMetaImage::Avatar
     };
 
-    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, _config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        Box::new(KleeDefaultTargetFunction)
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "recharge_demand",
+            title: "充能需求",
+            config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.0 }
+        }
+    ]);
+
+    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        let recharge_demand = match *config {
+            TargetFunctionConfig::KleeDefault { recharge_demand } => recharge_demand,
+            _ => 1.0
+        };
+        Box::new(KleeDefaultTargetFunction {
+            recharge_demand
+        })
     }
 }
 
@@ -106,7 +123,7 @@ impl TargetFunction for KleeDefaultTargetFunction {
             Klee::damage::<SimpleDamageBuilder>(&context, S::Charged, &config).normal.expectation
         };
 
-        let r = attribute.get_value(AttributeName::Recharge).min(1.6);
+        let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);
 
         r * dmg_q * 24.0 * 0.1 + dmg_charged * 0.9
     }
