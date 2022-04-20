@@ -3,6 +3,7 @@ use crate::character::character_common_data::CharacterCommonData;
 use crate::common::ChangeAttribute;
 use crate::attribute::{Attribute};
 
+pub use traveller::aether_anemo::AetherAnemo;
 pub use albedo::{Albedo};
 pub use aloy::{Aloy};
 pub use amber::{Amber};
@@ -57,6 +58,8 @@ use crate::damage::DamageContext;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+
+pub mod traveller;
 
 pub mod albedo;
 pub mod aloy;

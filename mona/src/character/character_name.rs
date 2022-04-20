@@ -22,6 +22,7 @@ use crate::common::item_config_type::ItemConfig;
 #[derive(Display, FromPrimitive)]
 #[derive(CharacterData, EnumLen)]
 pub enum CharacterName {
+    AetherAnemo,
     Albedo,
     Aloy,
     Amber,

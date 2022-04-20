@@ -1,5 +1,9 @@
 // generated file, do not edit
 
+import AetherAnemo_card from "@image/characters/AetherAnemo_card"
+import AetherAnemo_avatar from "@image/characters/AetherAnemo_avatar"
+import AetherAnemo_splash from "@image/characters/AetherAnemo_splash"
+
 import Albedo_card from "@image/characters/Albedo_card"
 import Albedo_avatar from "@image/characters/Albedo_avatar"
 import Albedo_splash from "@image/characters/Albedo_splash"
@@ -191,6 +195,73 @@ import Zhongli_splash from "@image/characters/Zhongli_splash"
 
 
 export default {
+    
+    AetherAnemo: {
+        name: "AetherAnemo",
+        chs: "空-风",
+        element: "Anemo",
+        weapon: "Sword",
+        star: 5,
+        card: AetherAnemo_card,
+        avatar: AetherAnemo_avatar,
+        splash: AetherAnemo_splash,
+        skillName1: "普通攻击·异邦铁风",
+        skillName2: "风涡剑",
+        skillName3: "风息激荡",
+        skillMap1: [
+            
+            { index: 0, chs: "一段伤害" },
+            
+            { index: 1, chs: "二段伤害" },
+            
+            { index: 2, chs: "三段伤害" },
+            
+            { index: 3, chs: "四段伤害" },
+            
+            { index: 4, chs: "五段伤害" },
+            
+            { index: 5, chs: "重击伤害-1" },
+            
+            { index: 6, chs: "重击伤害-2" },
+            
+            { index: 7, chs: "下坠期间伤害" },
+            
+            { index: 8, chs: "低空坠地冲击伤害" },
+            
+            { index: 9, chs: "高空坠地冲击伤害" },
+            
+        ],
+        skillMap2: [
+            
+            { index: 10, chs: "初始切割伤害" },
+            
+            { index: 11, chs: "最大切割伤害" },
+            
+            { index: 12, chs: "初始爆风伤害" },
+            
+            { index: 13, chs: "最大爆风伤害" },
+            
+        ],
+        skillMap3: [
+            
+            { index: 14, chs: "龙卷风伤害" },
+            
+            { index: 15, chs: "附加火元素伤害" },
+            
+            { index: 18, chs: "附加水元素伤害" },
+            
+            { index: 17, chs: "附加雷元素伤害" },
+            
+            { index: 16, chs: "附加冰元素伤害" },
+            
+        ],
+        config: [
+            
+        ],
+        configSkill: [
+            
+        ],
+    },
     
     Albedo: {
         name: "Albedo",

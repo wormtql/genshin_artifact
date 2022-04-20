@@ -5,7 +5,7 @@
         placeholder="目标函数"
         size="small"
     >
-        <el-option-group label="角色专属" v-if="characterTargetFunctionList">
+        <el-option-group label="角色专属" v-if="characterTargetFunctionList && characterTargetFunctionList.length > 0">
             <el-option
                 v-for="item in characterTargetFunctionList"
                 :key="item.name"
@@ -55,14 +55,16 @@ export default {
     },
     computed: {
         characterTargetFunctionList() {
-            return targetFunctionByCharacterName[this.characterName]
+            return targetFunctionByCharacterName[this.characterName] ?? []
         }
     },
     watch: {
         "characterName": function (newName, oldName) {
             const temp = targetFunctionByCharacterName[newName]
-            if (temp.length > 0) {
+            if (temp && temp.length > 0) {
                 this.$emit("input", temp[0].name)
+            } else {
+                this.$emit("input", this.commonTargetFunctionList[0].name)
             }
         }
     }
