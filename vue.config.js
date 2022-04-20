@@ -40,6 +40,9 @@ module.exports = {
     publicPath: process.env.PublicPath || '/',
     devServer: {
         proxy: {
+            "^/api/compute_result/analysis": {
+                target: "https://www.mona-uranai.com/"
+            },
             "^/api": {
                 target: "http://localhost:8000/",
                 changeOrigin: true

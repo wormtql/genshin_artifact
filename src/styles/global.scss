@@ -111,3 +111,12 @@ body {
         background: #d4d4d4;
     }
 }
+
+.mona-scroll-hidden {
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 0;
+        background: transparent;
+    }
+}

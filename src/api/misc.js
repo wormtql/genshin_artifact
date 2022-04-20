@@ -23,3 +23,7 @@ export async function createComputeResult(characterInterface, weaponInterface, b
 
     return await client.post("/compute_result/create", data)
 }
+
+export async function getComputeResultAnalysis() {
+    return await client.get("/compute_result/analysis")
+}

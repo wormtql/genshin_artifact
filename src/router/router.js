@@ -4,6 +4,7 @@ import VueRouter from "vue-router"
 import NewArtifactPlanPage from "@page/NewArtifactPlanPage"
 import TeamOptimizationPage from "@page/TeamOptimizationPage"
 import NewArtifactPotentialPage from "@page/NewArtifactPotentialPage"
+import MonaDBPage from "@page/MonaDBPage"
 
 const IntroPage = () => ({
     component: import(/* webpackChunkName: "intro-page" */ "@page/about/IntroPage"),
@@ -68,6 +69,14 @@ const webName = process.env.MONA_TITLE;
 
 const routes = [
     {
+        path: "/mona-db",
+        component: MonaDBPage,
+        meta: {
+            title: "莫娜数据库 | " + webName,
+            keepAlive: true
+        }
+    },
+    {
         path: "/team-optimization",
         component: TeamOptimizationPage,
         meta: {
@@ -98,20 +107,6 @@ const routes = [
             title: "导出工具汇总 | 帮助 | " + webName,
         }
     },
-    // {
-    //     path: "/help/target-func-explanation",
-    //     component: TargetFuncExplanationPage,
-    //     meta: {
-    //         title: "目标函数参数说明 | 帮助 | " + webName,
-    //     }
-    // },
-    // {
-    //     path: "/help/basic",
-    //     component: HelpBasicPage,
-    //     meta: {
-    //         title: "基本使用 | 帮助 | " + webName,
-    //     }
-    // },
     {
         path: "/help/faq",
         component: FAQPage,
@@ -166,7 +161,7 @@ const routes = [
             keepAlive: true,
             title: "计算预设 | " + webName,
         }
-    }
+    },
 ]
 
 const router = new VueRouter({
