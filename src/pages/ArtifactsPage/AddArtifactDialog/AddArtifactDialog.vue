@@ -5,27 +5,32 @@
         width="80%"
         :before-close="onCancel"
     >
-        <h3>套装</h3>
-        <choose-artifact-set :value="setName" @input="handleSetNameChange"></choose-artifact-set>
+        <h3 class="item-title">套装</h3>
+        <choose-artifact-set :value="setName" @input="handleSetNameChange"
+            class="hidden-sm-and-down"
+        ></choose-artifact-set>
+        <select-artifact-set :value="setName" @input="handleSetNameChange" class="hidden-md-and-up"></select-artifact-set>
 
-        <h3>位置</h3>
+        <h3 class="item-title">位置</h3>
         <choose-artifact-position
             v-model="position"
             :setName="setName"
+            class="hidden-sm-and-down"
         ></choose-artifact-position>
+        <select-artifact-slot v-model="position" class="hidden-md-and-up"></select-artifact-slot>
 
         <el-row :gutter="16">
-            <el-col :span="12">
-                <h3>品质</h3>
+            <el-col :sm="24" :md="12">
+                <h3 class="item-title">品质</h3>
                 <el-rate
                     @input="handleStarChange"
                     :value="star"
                     :max="artifactData.maxStar"
                 ></el-rate>
             </el-col>
-            <el-col :span="12">
+            <el-col :sm="24" :md="12">
                 <div class="flex-row">
-                    <h3 style="margin-right: 8px">等级</h3>
+                    <h3 style="margin-right: 8px" class="item-title">等级</h3>
                     <el-button icon="el-icon-d-arrow-left" circle size="mini" title="0级"
                         @click="level = 0"
                     ></el-button>
@@ -45,8 +50,8 @@
         </el-row>
 
         <el-row :gutter="16">
-            <el-col :span="12">
-                <h3>主属性</h3>
+            <el-col :sm="24" :md="12">
+                <h3 class="item-title">主属性</h3>
                 <!-- <choose-main-tag v-model="mainTag" :position="position"></choose-main-tag> -->
                 <select-artifact-main-tag
                     :value="mainTag"
@@ -54,9 +59,9 @@
                     @input="handleMainTagChange"
                 ></select-artifact-main-tag>
             </el-col>
-            <el-col :span="12">
+            <el-col :sm="24" :md="12">
                 <div class="flex-row">
-                    <h3 style="margin-right: 8px">副属性</h3>
+                    <h3 style="margin-right: 8px" class="item-title">副属性</h3>
                     <el-button
                         icon="el-icon-refresh"
                         circle
@@ -90,6 +95,8 @@ import ChooseArtifactSet from "./ChooseArtifactSet";
 import ChooseArtifactPosition from "./ChooseArtifactPosition";
 import SelectArtifactNormalTag from "@c/SelectArtifactNormalTag";
 import SelectArtifactMainTag from "@c/SelectArtifactMainTag";
+import SelectArtifactSet from "@c/select/SelectArtifactSet"
+import SelectArtifactSlot from "@c/select/SelectArtifactSlot"
 
 import { getDetailName, getArtifactRealValue } from "@util/utils";
 import randomNormalTag from "@/artifacts_numeric/random_normal_tag";
@@ -117,6 +124,8 @@ export default {
         ChooseArtifactPosition,
         SelectArtifactNormalTag,
         SelectArtifactMainTag,
+        SelectArtifactSet,
+        SelectArtifactSlot
     },
     props: {
         visible: {
@@ -253,6 +262,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@media only screen and (max-width: 992px) {
+    .el-select {
+        width: 100%!important;
+    }
+}
 
+.item-title {
+    font-size: 14px;
+}
 </style>

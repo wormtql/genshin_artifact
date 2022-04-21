@@ -124,3 +124,9 @@ body {
 //* {
 //    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 //}
+@media only screen and (max-width: 992px) {
+    .el-message-box {
+        width: 98%!important;
+        max-width: 420px;
+    }
+}

@@ -6,6 +6,7 @@
         size="small"
         :multiple="multiple"
         :multiple-limit="multipleLimit"
+        :placeholder="placeholder"
     >
         <el-option
             v-if="anyOption"
@@ -68,6 +69,10 @@ export default {
         },
         multipleLimit: {
             default: 2
+        },
+        placeholder: {
+            type: String,
+            default: ""
         }
     }
 }

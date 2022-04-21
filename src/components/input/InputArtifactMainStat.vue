@@ -10,7 +10,7 @@
                 :position="position"
                 :value="name"
                 @input="handleChangeName"
-                style="width: 150px"
+                style="width: 100px"
             ></select-artifact-main-stat>
         </template>
 
