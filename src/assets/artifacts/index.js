@@ -15,6 +15,7 @@ import _artifactsIcon from "./icons";
 
 // import _data from "!../../../loaders/meta_loader.js?type=artifact!../meta"
 import _data from "../_gen_artifact"
+Object.freeze(_data)
 
 export const artifactsData = _data;
 // export const artifactsData = cache;

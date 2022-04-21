@@ -246,17 +246,15 @@
             ></artifact-config>
         </el-dialog>
 
-        <div class="top-things" ref="topThings">
-            <el-breadcrumb>
-                <el-breadcrumb-item>Mona</el-breadcrumb-item>
-            </el-breadcrumb>
-            <el-divider></el-divider>
-        </div>
+<!--        <div class="top-things" ref="topThings">-->
+<!--            <el-breadcrumb>-->
+<!--                <el-breadcrumb-item>Mona</el-breadcrumb-item>-->
+<!--            </el-breadcrumb>-->
+<!--            <el-divider></el-divider>-->
+<!--        </div>-->
 
-        <el-row class="big-container" ref="bigContainer"
-            :style="{ height: miscBigContainerHeight }"
-        >
-            <el-col class="left-container" :span="6">
+        <el-row class="big-container" ref="bigContainer">
+            <el-col class="left-container mona-scroll-hidden" :span="6">
                 <div class="config-character">
                     <img :src="characterSplash" class="character-splash" />
                     <div class="select-character">
@@ -530,7 +528,7 @@
                 </div>
             </el-col>
 
-            <el-col :span="12" class="middle-container">
+            <el-col :span="12" class="middle-container mona-scroll-hidden">
                 <p class="common-title">圣遗物</p>
 
                 <div class="artifact-tool" style="margin-bottom: 12px">
@@ -563,7 +561,7 @@
                 <div class="artifacts">
                     <div
                         v-for="(id, index) in artifactIds"
-                        :key="id"
+                        :key="index"
                         class="artifact-item-or-button"
                     >
                         <artifact-display
@@ -643,7 +641,7 @@
                 ></transformative-damage>
             </el-col>
 
-            <el-col :span="6" class="right-container">
+            <el-col :span="6" class="right-container mona-scroll-hidden">
                 <div class="common-title">面板</div>
 
                 <div class="my-button-list" style="margin-bottom: 12px">
@@ -739,16 +737,6 @@ export default {
     created() {
         // this.characterData = characterData
     },
-    mounted() {
-        const container = this.$refs["bigContainer"]
-        const top = this.$refs["topThings"]
-
-        const heightTop = top.offsetHeight + 24
-        // console.log(heightTop)
-        // container.style.height = `calc(100% - ${heightTop}px)`
-        this.miscBigContainerHeight = `calc(100% - ${heightTop}px)`
-        // console.log(container.style.height)
-    },
     data () {
         return {
             characterName: "Amber",
@@ -817,7 +805,6 @@ export default {
             showEnemyConfigDialog: false,
             showConfigArtifactDialog: false,
 
-            miscBigContainerHeight: "",
             miscPerStatBonus: {},
             miscCurrentPresetName: null,
         }
@@ -1776,23 +1763,23 @@ export default {
     //overflow: hidden;
 
     .left-container, .middle-container, .right-container {
-        height: 100%;
-        overflow-x: hidden;
-        overflow-y: auto;
+        height: calc(100vh - 24px * 2);
+        //overflow-x: hidden;
+        //overflow-y: auto;
         //overflow: visible;
 
-        &::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        &::-webkit-scrollbar-track {
-            background: rgb(247, 247, 247);
-            border-radius: 2px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background: #d4d4d4;
-        }
+        //&::-webkit-scrollbar {
+        //    width: 4px;
+        //}
+        //
+        //&::-webkit-scrollbar-track {
+        //    background: rgb(247, 247, 247);
+        //    border-radius: 2px;
+        //}
+        //
+        //&::-webkit-scrollbar-thumb {
+        //    background: #d4d4d4;
+        //}
     }
 
     .left-container {

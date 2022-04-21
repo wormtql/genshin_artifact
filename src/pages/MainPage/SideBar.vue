@@ -45,7 +45,7 @@
                     <i class="el-icon-magic-stick"></i>
                     圣遗物潜力
                 </el-menu-item>
-                <el-menu-item index="/mona-db">
+                <el-menu-item index="/character">
                     <i class="el-icon-s-data"></i>
                     莫娜数据库
                 </el-menu-item>

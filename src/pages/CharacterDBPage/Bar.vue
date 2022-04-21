@@ -12,7 +12,7 @@ export default {
         style() {
             return {
                 // 100% - image width - image right margin - ...
-                width: `calc((100% - 64px - 12px) * ${this.fraction})`
+                width: `calc((100% - 96px - 12px) * ${this.fraction})`
             }
         }
     }
@@ -23,8 +23,9 @@ export default {
 $height: 24px;
 .bar {
     font-size: 12px;
-    background-color: rgb(236, 245, 255);
-    color: #909399;
+    background-color: #CCBEFFFF;
+    color: #424242;
+    //color: #909399;
     padding-left: 12px;
     height: $height;
     border-radius: 3px;

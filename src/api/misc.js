@@ -25,5 +25,14 @@ export async function createComputeResult(characterInterface, weaponInterface, b
 }
 
 export async function getComputeResultAnalysis() {
-    return await client.get("/compute_result/analysis")
+    const response = await client.get("/compute_result/analysis")
+    if (response.status !== 200) {
+        throw new Error(response.statusText)
+    }
+    const data = response.data
+    if (!data || !data.success) {
+        throw new Error(data.msg ?? "")
+    }
+
+    return data.data
 }

@@ -51,7 +51,7 @@ export default {
     },
     props: {
         value: {
-            type: String,
+            type: String | Array,
             required: true,
         },
         disabled: {

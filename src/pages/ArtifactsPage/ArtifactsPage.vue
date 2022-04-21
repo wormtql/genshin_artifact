@@ -71,7 +71,7 @@
             <el-button size="mini" icon="el-icon-s-opportunity" @click="handleClickRecommendation">推荐</el-button>
 
             <div class="tool-right">
-                <el-button @click="handleYasUIClicked" size="mini" type="primary"> 扫描 </el-button>
+                <el-button @click="handleYasUIClicked" size="mini" type="primary" v-if="deviceIsPC"> 扫描 </el-button>
                 <el-button @click="handleImportJsonClicked" size="mini" type="primary"> 导入 </el-button>
                 <el-button @click="handleOutputJsonClicked" size="mini"> 导出 </el-button>
             </div>
@@ -139,6 +139,7 @@ import {
 } from '@util/artifacts';
 import { positions } from '@const/misc';
 import { downloadString } from '@util/common';
+import { deviceIsPC } from "@util/device"
 
 import flowerIcon from '@image/misc/flower.png';
 import featherIcon from '@image/misc/feather.png';
@@ -179,6 +180,7 @@ export default {
     created: function () {
         this.tabs = tabs;
         this.pageSize = pageSize;
+        this.deviceIsPC = deviceIsPC
     },
     mounted() {
         this.$nextTick(() => {
