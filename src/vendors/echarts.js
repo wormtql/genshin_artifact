@@ -5,6 +5,7 @@ import { CanvasRenderer } from "echarts/renderers"
 import {
     LineChart,
     PieChart,
+    BarChart
 } from "echarts/charts"
 import {
     TooltipComponent,
@@ -19,6 +20,7 @@ use([
     CanvasRenderer,
     LineChart,
     PieChart,
+    BarChart,
     TooltipComponent,
     VisualMapComponent,
     ToolboxComponent,

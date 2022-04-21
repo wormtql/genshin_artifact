@@ -1,10 +1,6 @@
 <template>
-    <div>
-        <el-breadcrumb style="margin-bottom: 12px; height: 24px">
-            <el-breadcrumb-item>角色</el-breadcrumb-item>
-        </el-breadcrumb>
-
-        <el-tabs>
+    <div class="content-div">
+        <el-tabs v-model="activeTab">
             <el-tab-pane
                 v-for="(characters, elementName) in characterByElement"
                 :key="elementName"
@@ -23,7 +19,7 @@
             </el-tab-pane>
         </el-tabs>
 
-        <router-view></router-view>
+        <router-view class="content-view"></router-view>
     </div>
 </template>
 
@@ -35,17 +31,13 @@ export default {
     name: "MonaDBPage",
     data() {
         return {
-            activeTab: "character",
+            activeTab: "Pyro",
 
             characterByElement
         }
     },
     methods: {
         element2Chs,
-        changeTab(name) {
-            this.activeTab = name;
-            this.$router.push(`/mona-db/${name}`)
-        },
 
         handleClickCharacter(e) {
             const element = e.target
@@ -63,29 +55,32 @@ export default {
 <style lang="scss" scoped>
 .character-tab-pane {
     display: grid;
-    gap: 8px;
-    grid-template-columns: repeat(auto-fill, 80px);
-    grid-auto-columns: minmax(64px, 100px);
+    //gap: 8px;
+    //grid-template-columns: repeat(auto-fill, 80px);
+    //grid-auto-columns: minmax(64px, 100px);
+
+    gap: 4px;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
 }
 
-@media only screen and (max-width: 1200px) {
-    .character-tab-pane {
-        grid-template-columns: repeat(8, 1fr);
-    }
-}
-
-@media only screen and (max-width: 992px) {
-    .character-tab-pane {
-        grid-template-columns: repeat(6, 1fr);
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .character-tab-pane {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-auto-columns: 1fr;
-    }
-}
+//@media only screen and (max-width: 1200px) {
+//    .character-tab-pane {
+//        grid-template-columns: repeat(8, 1fr);
+//    }
+//}
+//
+//@media only screen and (max-width: 992px) {
+//    .character-tab-pane {
+//        grid-template-columns: repeat(6, 1fr);
+//    }
+//}
+//
+//@media only screen and (max-width: 768px) {
+//    .character-tab-pane {
+//        grid-template-columns: 1fr 1fr 1fr 1fr;
+//        grid-auto-columns: 1fr;
+//    }
+//}
 
 .character-image {
     //width: 100%;
@@ -102,34 +97,9 @@ export default {
     font-size: 12px;
 }
 
-.analysis-item-title {
-    font-size: 25px;
-    font-weight: bold;
-    color: #525252;
-    position: relative;
-
-    &::before {
-        content: "#"
-    }
-
-    //&::after {
-    //    content: "";
-    //    background-color: #79bbff;
-    //    height: 2px;
-    //    width: 80%;
-    //    position: absolute;
-    //    left: 0;
-    //    bottom: 0px;
-    //}
-}
-
 @media only screen and (min-width: 992px) {
-    .tab-full-height {
-        height: calc(100vh - 40px - 24px - 12px - 55px);
-    }
-
     .content-div {
-        margin: 0 0 0 150px;
+        margin: 0 150px;
         min-width: 60%;
     }
 }

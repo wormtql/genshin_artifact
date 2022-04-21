@@ -480,7 +480,7 @@ export default {
     //height: 100vh;
     display: grid;
     gap: 4px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-auto-columns: 1fr;
     grid-auto-rows: min-content;
 

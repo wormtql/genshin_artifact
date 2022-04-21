@@ -1,11 +1,11 @@
 import { positions } from "@const/misc"
-import {artifactEff} from "@const/artifact"
+import {artifactEff, artifactTags} from "@const/artifact"
 import objectHash from "object-hash"
 import {artifactsData} from "@artifact"
 import { toSnakeCase, deepCopy } from "@util/common"
 import store from "@/store/store"
 import { wasmGetArtifactsRankByCharacter } from "@/wasm"
-import {convertArtifact, convertArtifactNameBack} from "@util/converter"
+import {convertArtifact, convertArtifactNameBack, convertArtifactStatNameBack} from "@util/converter"
 
 // count how many artifacts
 
@@ -291,4 +291,18 @@ export async function getArtifactsRecommendation() {
 export function getArtifactsWasm() {
     const allFlat = store.getters["artifacts/allFlat"]
     return allFlat.map(x => convertArtifact(x))
+}
+
+export function statName2Chs(name) {
+    let data = artifactTags[name]
+    if (!data) {
+        const name2 = convertArtifactStatNameBack(name)
+        data = artifactTags[name2]
+    }
+
+    if (!data) {
+        throw new Error("cannot find name " + name)
+    }
+
+    return data.chs
 }

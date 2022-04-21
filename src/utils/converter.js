@@ -75,6 +75,14 @@ const statNameMap = {
     "physicalBonus": "PhysicalBonus"
 }
 
+let statNameMapReverse = {}
+for (let key in statNameMap) {
+    const value = statNameMap[key]
+    statNameMapReverse[value] = key
+}
+Object.freeze(statNameMapReverse)
+Object.freeze(statNameMap)
+
 function convertStat(stat) {
     return [
         statNameMap[stat.name],
@@ -114,4 +122,8 @@ export function convertArtifactNameBack(name) {
 // dir: 1: old -> new
 export function convertArtifactStatName(name) {
     return statNameMap[name]
+}
+
+export function convertArtifactStatNameBack(name) {
+    return statNameMapReverse[name]
 }

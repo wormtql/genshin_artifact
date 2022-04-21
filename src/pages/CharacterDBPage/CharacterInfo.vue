@@ -10,7 +10,7 @@
                 type="weapon"
             ></w-c-bar>
 
-            <p class="analysis-item-title">最佳圣遗物</p>
+            <p class="analysis-item-title">推荐圣遗物</p>
             <div
                 v-for="(item, index) in characterResult[this.characterName].artifact_set_usage"
                 :key="index"
@@ -19,12 +19,22 @@
                 <artifact-bar :item="item"></artifact-bar>
             </div>
 
-            {{ characterResult[this.characterName] }}
+            <p class="analysis-item-title">推荐主词条</p>
+            <el-row>
+                <el-col
+                    :md="8"
+                    :sm="24"
+                    v-for="slotName in mainStats"
+                >
+                    <basic-pie-chart
+                        :title="slot2Chs[slotName]"
+                        :data="mainStatData[slotName]"
+                    ></basic-pie-chart>
+                </el-col>
+            </el-row>
 
-            <p class="analysis-item-title">最佳主词条</p>
-            <div>
-
-            </div>
+            <p class="analysis-item-title">推荐副词条分布</p>
+            <v-chart :option="optionsForSubStatChart" style="height: 300px" :autoresize="true"></v-chart>
         </div>
     </div>
 </template>
@@ -35,12 +45,15 @@ import {getComputeResultAnalysis} from "@/api/misc"
 
 import ArtifactBar from "./ArtifactBar"
 import WCBar from "./WCBar"
+import BasicPieChart from "@c/display/BasicPieChart"
+import {statName2Chs} from "@util/artifacts"
 
 export default {
     name: "MonaDBCharacter",
     components: {
         ArtifactBar,
-        WCBar
+        WCBar,
+        BasicPieChart
     },
     data() {
         return {
@@ -50,7 +63,13 @@ export default {
             loaded: false,
             error: false,
 
-            characterByElement
+            characterByElement,
+            mainStats: ["Sand", "Goblet", "Head"],
+            slot2Chs: {
+                "Sand": "时之沙",
+                "Goblet": "空之杯",
+                "Head": "理之冠"
+            }
         }
     },
     mounted() {
@@ -60,6 +79,7 @@ export default {
     methods: {
         refresh(name) {
             this.loaded = false
+            this.characterName = name
 
             getComputeResultAnalysis().then(result => {
                 this.analysisResult = result
@@ -79,11 +99,103 @@ export default {
             }
 
             return null
+        },
+
+        mainStatUsage() {
+            if (this.characterResult) {
+                return this.characterResult[this.characterName].main_stat_usage
+            }
+            return null
+        },
+
+        mainStatData() {
+            let result = {}
+            if (this.mainStatUsage) {
+                for (const slot of this.mainStats) {
+                    result[slot] = []
+                    for (const statName in this.mainStatUsage[slot]) {
+                        const value = this.mainStatUsage[slot][statName]
+                        const native = statName2Chs(statName)
+
+                        result[slot].push({
+                            value,
+                            name: native
+                        })
+                    }
+                }
+            }
+
+            return result
+        },
+
+        subStatUsage() {
+            if (this.characterResult) {
+                return this.characterResult[this.characterName].artifact_sub_stat_statistics
+            }
+            return null
+        },
+
+        subStatLabelAndData() {
+            if (!this.subStatUsage) {
+                return [[], []]
+            }
+
+            let temp = []
+            for (const statName in this.subStatUsage) {
+                const chs = statName2Chs(statName)
+                const value = this.subStatUsage[statName]
+                temp.push([chs, value])
+            }
+
+            temp.sort((a, b) => b[1] - a[1])
+
+            const labels = temp.map(x => x[0])
+            const data = temp.map(x => x[1])
+
+            return [labels, data]
+        },
+
+        optionsForSubStatChart() {
+            return {
+                xAxis: {
+                    type: 'category',
+                    data: this.subStatLabelAndData[0],
+                    axisLabel: {
+                        rotate: 60
+                    }
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                tooltip: {
+                    trigger: "item"
+                },
+                series: [
+                    {
+                        data: this.subStatLabelAndData[1],
+                        type: 'bar'
+                    }
+                ]
+            }
         }
-    }
+    },
+    beforeRouteUpdate(to, f ,next) {
+        console.log(to.params.name)
+        this.refresh(to.params.name)
+        next()
+    },
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.analysis-item-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #525252;
+    position: relative;
 
+    &::before {
+        content: "#"
+    }
+}
 </style>
