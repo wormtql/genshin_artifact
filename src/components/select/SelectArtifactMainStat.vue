@@ -32,7 +32,7 @@ export default {
         },
         multiple: { default: false },
         position: { default: null },
-        placeholder: { type: String, default: "" },
+        placeholder: { type: String, default: "请选择" },
     },
     // created() {
     //     this.tagList = list
