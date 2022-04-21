@@ -72,7 +72,7 @@ export default {
         },
         placeholder: {
             type: String,
-            default: ""
+            default: "请选择"
         }
     }
 }

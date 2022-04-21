@@ -232,17 +232,33 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.root {
-    display: flex;
-    gap: 20px;
+@media only screen and (min-width: 992px) {
+    .root {
+        display: flex;
+        gap: 20px;
 
-    .table-div {
-        flex-grow: 1;
-    }
+        .table-div {
+            flex-grow: 1;
+        }
 
-    .chart-div {
-        width: 400px;
-        height: 300px;
+        .chart-div {
+            width: 400px;
+            height: 300px;
+        }
     }
 }
+
+@media only screen and (max-width: 992px) {
+    .root {
+        .table-div {
+            //flex-grow: 1;
+        }
+
+        .chart-div {
+            width: 100%;
+            height: 200px;
+        }
+    }
+}
+
 </style>

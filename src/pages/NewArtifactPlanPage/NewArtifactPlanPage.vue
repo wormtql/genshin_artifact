@@ -2,7 +2,7 @@
     <div>
         <el-dialog
             title="选择圣遗物"
-            width="80%"
+            :width="deviceIsPC ? '80%' : '90%'"
             :visible.sync="showSelectArtifactDialog"
         >
             <select-artifact
@@ -15,7 +15,7 @@
         <el-dialog
             :visible.sync="showDamageAnalysisDialog"
             title="伤害构成"
-            width="60%"
+            :width="deviceIsPC ? '60%' : '90%'"
         >
             <damage-analysis
                 ref="damageAnalysis"
@@ -27,7 +27,7 @@
         <el-dialog
             :visible.sync="showSelectBuffDialog"
             title="选择BUFF"
-            width="60%"
+            :width="deviceIsPC ? '60%' : '90%'"
         >
             <select-buff
                 @select="handleSelectBuff"
@@ -38,7 +38,7 @@
         <el-dialog
             :visible.sync="showConstraintDialog"
             title="计算设置"
-            width="60%"
+            :width="deviceIsPC ? '400px' : '90%'"
         >
             <p class="common-title2">
                 算法
@@ -68,7 +68,8 @@
                 <select-artifact-set
                     multiple
                     v-model="constraintArtifactSet"
-                    style="width: 30%"
+                    :style="{ width: '100%' }"
+                    placeholder="限定套装"
                 ></select-artifact-set>
             </div>
 
@@ -81,7 +82,8 @@
                         :include-any="false"
                         :multiple="true"
                         position="sand"
-                        style="width: 30%"
+                        :style="{ width: 'calc(100% - 48px)' }"
+                        placeholder="限定主词条"
                     ></select-artifact-main-stat>
                 </div>
                 <div class="constraint-main-stat-item">
@@ -91,7 +93,8 @@
                         :include-any="false"
                         :multiple="true"
                         position="cup"
-                        style="width: 30%"
+                        :style="{ width: 'calc(100% - 48px)' }"
+                        placeholder="限定主词条"
                     ></select-artifact-main-stat>
                 </div>
                 <div class="constraint-main-stat-item">
@@ -101,7 +104,8 @@
                         :include-any="false"
                         :multiple="true"
                         position="head"
-                        style="width: 30%"
+                        :style="{ width: 'calc(100% - 48px)' }"
+                        placeholder="限定主词条"
                     ></select-artifact-main-stat>
                 </div>
             </div>
@@ -110,49 +114,49 @@
             <div>
                 <div class="constraint-min-item">
                     <span class="constraint-min-title">元素充能效率</span>
-                    <div style="width: 40%">
+                    <div class="slider-div">
                         <el-slider
                             :min="1"
                             :max="4"
                             :step="0.05"
                             v-model="constraintMinRecharge"
-                            :show-input="true"
+                            :show-input="deviceIsPC"
                         ></el-slider>
                     </div>
                 </div>
                 <div class="constraint-min-item">
                     <span class="constraint-min-title">元素精通</span>
-                    <div style="width: 40%">
+                    <div class="slider-div">
                         <el-slider
                             :min="0"
                             :max="2000"
                             :step="10"
                             v-model="constraintMinElementalMastery"
-                            :show-input="true"
+                            :show-input="deviceIsPC"
                         ></el-slider>
                     </div>
                 </div>
                 <div class="constraint-min-item">
                     <span class="constraint-min-title">暴击率</span>
-                    <div style="width: 40%">
+                    <div class="slider-div">
                         <el-slider
                             :min="0"
                             :max="1"
                             :step="0.01"
                             v-model="constraintMinCritical"
-                            :show-input="true"
+                            :show-input="deviceIsPC"
                         ></el-slider>
                     </div>
                 </div>
                 <div class="constraint-min-item">
                     <span class="constraint-min-title">暴击伤害</span>
-                    <div style="width: 40%">
+                    <div class="slider-div">
                         <el-slider
                             :min="0"
                             :max="4"
                             :step="0.1"
                             v-model="constraintMinCriticalDamage"
-                            :show-input="true"
+                            :show-input="deviceIsPC"
                         ></el-slider>
                     </div>
                 </div>
@@ -174,7 +178,7 @@
         <el-dialog
             :visible.sync="showArtifactAnalysisDialog"
             title="圣遗物分析"
-            width="60%"
+            :width="deviceIsPC ? '60%' : '90%'"
         >
             <artifacts-set-statistics
                 :artifact-ids="artifactIds"
@@ -185,7 +189,7 @@
         <el-dialog
             :visible.sync="showArtifactPerBonusDialog"
             title="词条收益曲线"
-            width="80%"
+            :width="deviceIsPC ? '80%' : '90%'"
         >
             <artifact-per-stat-bonus
                 :data="miscPerStatBonus"
@@ -195,7 +199,7 @@
         <el-dialog
             :visible.sync="showSaveKumiDialog"
             title="新建圣遗物组"
-            width="60%"
+            :width="deviceIsPC ? '60%' : '90%'"
         >
             <save-as-kumi
                 :default-name="kumiDefaultName"
@@ -206,7 +210,7 @@
         <el-dialog
             :visible.sync="showUseKumiDialog"
             title="选择圣遗物组"
-            width="60%"
+            :width="deviceIsPC ? '60%' : '90%'"
         >
             <div style="height: 60vh" class="mona-scroll">
                 <el-tree
@@ -220,7 +224,7 @@
         <el-dialog
             :visible.sync="showEnemyConfigDialog"
             title="敌人设置"
-            width="60%"
+            :width="deviceIsPC ? '60%' : '90%'"
         >
             <enemy-config
                 v-model="enemyConfig"
@@ -230,7 +234,7 @@
         <el-dialog
             :visible.sync="showConfigArtifactDialog"
             title="圣遗物设置"
-            width="60%"
+            :width="deviceIsPC ? '60%' : '90%'"
         >
             <h3 class="common-title2">圣遗物特效模式</h3>
             <el-radio-group
@@ -254,7 +258,7 @@
 <!--        </div>-->
 
         <el-row class="big-container" ref="bigContainer">
-            <el-col class="left-container mona-scroll-hidden" :span="6">
+            <el-col class="left-container mona-scroll-hidden" :sm="24" :md="6">
                 <div class="config-character">
                     <img :src="characterSplash" class="character-splash" />
                     <div class="select-character">
@@ -528,7 +532,7 @@
                 </div>
             </el-col>
 
-            <el-col :span="12" class="middle-container mona-scroll-hidden">
+            <el-col :sm="24" :md="12" class="middle-container mona-scroll-hidden">
                 <p class="common-title">圣遗物</p>
 
                 <div class="artifact-tool" style="margin-bottom: 12px">
@@ -579,7 +583,6 @@
                             v-else
                             @click="handleGotoSelectArtifact(index)"
                             class="add-button"
-                            style="height: 5vw; width: 5vw"
                         ></add-button>
                     </div>
                 </div>
@@ -641,7 +644,7 @@
                 ></transformative-damage>
             </el-col>
 
-            <el-col :span="6" class="right-container mona-scroll-hidden">
+            <el-col :sm="24" :md="6" class="right-container mona-scroll-hidden">
                 <div class="common-title">面板</div>
 
                 <div class="my-button-list" style="margin-bottom: 12px">
@@ -679,6 +682,7 @@ import {artifactsData} from "@artifact"
 import {wasmBonusPerStat} from "@/wasm"
 import {wasmSingleOptimize} from "@/wasm/single_optimize"
 import { createComputeResult } from "@/api/misc"
+import { deviceIsPC } from "@util/device"
 
 import SelectArtifact from "@c/select/SelectArtifact"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
@@ -739,6 +743,8 @@ export default {
     },
     data () {
         return {
+            deviceIsPC,
+
             characterName: "Amber",
             characterLevel: "90",
             characterConfig: "NoConfig",
@@ -1748,73 +1754,57 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-//.outer-container {
-//    display: flex;
-//    flex-direction: column;
-//    height: 100%;
-//}
-
 .big-container {
-    //flex: 1;
-    //flex-grow: 1;
-    //overflow-y: hidden;
-    //overflow-x: visible;
-    //overflow-x: visible;
-    //overflow: hidden;
+    @media only screen and (min-width: 992px) {
+        .left-container, .middle-container, .right-container {
+            height: calc(100vh - 24px * 2);
+        }
 
-    .left-container, .middle-container, .right-container {
-        height: calc(100vh - 24px * 2);
-        //overflow-x: hidden;
-        //overflow-y: auto;
-        //overflow: visible;
+        .left-container {
+            padding-right: 12px;
+        }
 
-        //&::-webkit-scrollbar {
-        //    width: 4px;
-        //}
-        //
-        //&::-webkit-scrollbar-track {
-        //    background: rgb(247, 247, 247);
-        //    border-radius: 2px;
-        //}
-        //
-        //&::-webkit-scrollbar-thumb {
-        //    background: #d4d4d4;
-        //}
+        .middle-container {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        .right-container {
+            // flex: 1;
+            padding-left: 12px;
+            padding-right: 12px;
+            // overflow-y: auto;
+            // overflow-x: hidden;
+        }
     }
 
-    .left-container {
-        // flex: 1;
-        padding-right: 12px;
-        
-    }
-
-    .middle-container {
-        // flex: 2;
-        padding-left: 12px;
-        padding-right: 12px;
-
-        // overflow-y: auto;
-        // overflow-x: hidden;
-    }
-
-    .right-container {
-        // flex: 1;
-        padding-left: 12px;
-        padding-right: 12px;
-        // overflow-y: auto;
-        // overflow-x: hidden;
+    @media only screen and (max-width: 992px) {
+        .left-container, .middle-container {
+            margin-bottom: 12px;
+        }
     }
 }
 
 .middle-container {
     .artifacts {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        align-items: center;
+        //display: flex;
+        gap: 4px;
+        //flex-wrap: wrap;
+        //align-items: center;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-auto-rows: minmax(64px, max-content);
 
         .artifact-item-or-button {
-            
+            .add-button {
+                width: 100%;
+                height: 100%;
+            }
+            .artifact-display {
+                width: 100%;
+                box-sizing: border-box;
+            }
         }
     }
 }
@@ -1943,18 +1933,40 @@ export default {
     }
 
     span {
-        width: 7vw;
+        width: 48px;
         font-size: 0.7rem;
     }
 }
 
-.constraint-min-item {
-    display: flex;
-    align-items: center;
+//@media only screen and (min-width: 992px) {
+//    .constraint-min-item {
+//        display: flex;
+//        align-items: center;
+//
+//        .constraint-min-title {
+//            font-size: 0.7rem;
+//            width: 7vw;
+//        }
+//    }
+//}
+//
+//@media only screen and (max-width: 992px) {
+//    .constraint-min-item {
+//        .constraint-min-title {
+//            font-size: 0.7rem;
+//            display: block;
+//        }
+//    }
+//}
 
+.constraint-min-item {
     .constraint-min-title {
         font-size: 0.7rem;
-        width: 7vw;
+        display: block;
+    }
+
+    .slider-div {
+        width: 100%;
     }
 }
 </style>

@@ -16,12 +16,6 @@
             class="item"
         >
             <span class="title">{{ item.title }}</span>
-<!--            <el-input-->
-<!--                :value="value[item.name]"-->
-<!--                size="small"-->
-<!--                @input="handleInput(item.name, $event)"-->
-<!--                class="input"-->
-<!--            ></el-input>-->
             <el-slider
                 :value="value[item.name]"
                 @input="handleInput(item.name, $event)"
@@ -68,27 +62,50 @@ export default {
 <style scoped lang="scss">
 $width: 150px;
 
-.item {
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    //width: 100%;
+@media only screen and (min-width: 992px) {
+    .item {
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        //width: 100%;
 
-    .title {
-        display: inline-block;
-        //width: 20%;
-        width: $width;
-    }
+        .title {
+            display: inline-block;
+            //width: 20%;
+            width: $width;
+        }
 
-    .input {
-        //width: 80%;
-        //display: inline;
-        //flex-grow: 1;
-        width: calc(100% - 150px);
-    }
+        .input {
+            //width: 80%;
+            //display: inline;
+            //flex-grow: 1;
+            width: calc(100% - 150px);
+        }
 
-    &:last-of-type {
-        margin: 0;
+        &:last-of-type {
+            margin: 0;
+        }
     }
 }
+
+@media only screen and (max-width: 992px) {
+    .item {
+        margin-bottom: 12px;
+
+        .title {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 4px;
+        }
+
+        .input {
+            width: 100%;
+        }
+
+        &:last-of-type {
+            margin: 0;
+        }
+    }
+}
+
 </style>
