@@ -12,13 +12,13 @@
             V{{ version }}
         </p>
 
-        <el-alert
-            class="hidden-sm-and-up"
-            title="使用PC访问以启用全部功能，当前仅能查看信息页"
-            type="error"
-            style="margin-bottom: 16px"
-            :closable="false"
-        ></el-alert>
+<!--        <el-alert-->
+<!--            class="hidden-sm-and-up"-->
+<!--            title="使用PC访问以启用全部功能，当前仅能查看信息页"-->
+<!--            type="error"-->
+<!--            style="margin-bottom: 16px"-->
+<!--            :closable="false"-->
+<!--        ></el-alert>-->
 
         <el-row :gutter="16">
             <el-col :sm="6" :xs="24" class="mb16">
