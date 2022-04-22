@@ -422,7 +422,7 @@ export default {
         //gap: 12px;
         display: grid;
         gap: 4px;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     }
 }
 </style>

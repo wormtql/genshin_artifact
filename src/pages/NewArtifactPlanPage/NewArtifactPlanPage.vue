@@ -1793,7 +1793,7 @@ export default {
         //align-items: center;
 
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         grid-auto-rows: minmax(64px, max-content);
 
         .artifact-item-or-button {
@@ -1810,26 +1810,18 @@ export default {
 }
 
 .config-character {
-    // padding: 16px;
-    // position: relative;
+    //overflow: visible;
+    //position: relative;
 
     .character-splash {
         position: absolute;
         width: 400px;
         opacity: 0.3;
-        // left: -150px;
-        // right: -100px;
-        // top: -32px;
         pointer-events: none;
     }
 
     .character-extra-config {
         margin-top: 16px;
-        // border-left: #222222 solid 3px;
-        // padding: 8px;
-        // background: #12345611;
-        // border-top-right-radius: 3px;
-        // border-bottom-right-radius: 3px;
     }
 
     .config-character-skill {
@@ -1838,10 +1830,6 @@ export default {
             align-items: center;
             gap: 4px;
         }
-    }
-
-    .select-character {
-        // padding-left: 50px;
     }
 }
 

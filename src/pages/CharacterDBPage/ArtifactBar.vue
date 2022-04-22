@@ -84,13 +84,14 @@ export default {
     align-items: center;
 }
 
+$bar-height: 32px;
 .bar {
-    height: 24px;
-    background-color: #CCBEFFFF;
-    border-radius: 3px;
+    height: $bar-height;
+    background-color: #409EFF;
+    //border-radius: 3px;
     font-size: 12px;
     color: #606166;
-    line-height: 24px;
+    line-height: $bar-height;
     padding-left: 12px;
     box-sizing: border-box;
 }

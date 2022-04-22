@@ -114,7 +114,7 @@ export default {
 
     margin: 16px 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     grid-auto-rows: max-content;
     gap: 4px;
 }

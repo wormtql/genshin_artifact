@@ -11,7 +11,10 @@
             size="80%"
         >
             <div style="height: 100%; overflow: auto">
-                <side-bar></side-bar>
+                <side-bar
+                    :do-route="false"
+                    @select="handleSelect"
+                ></side-bar>
             </div>
         </el-drawer>
 
@@ -33,56 +36,8 @@
             </keep-alive>
             <router-view v-if="!$route.meta.keepAlive" class="router-view"></router-view>
 
-            <mona-footer></mona-footer>
+            <mona-footer style="margin-bottom: 24px"></mona-footer>
         </div>
-
-<!--        <el-container id="container">-->
-<!--            <el-drawer-->
-<!--                title="导航"-->
-<!--                :visible.sync="drawerVisible"-->
-<!--                direction="ltr"-->
-<!--                size="80%"-->
-<!--            >-->
-<!--                <div style="height: 100%; overflow: auto">-->
-<!--                    <side-bar></side-bar>-->
-<!--                </div>-->
-<!--            </el-drawer>-->
-
-<!--            <el-aside-->
-<!--                width="15%"-->
-<!--                style="border-right: 1px solid #eee; min-width: 200px"-->
-<!--                class="hidden-sm-and-down aside"-->
-<!--            >-->
-<!--                <side-bar></side-bar>-->
-<!--            </el-aside>-->
-
-<!--            <el-container-->
-<!--                -->
-<!--            >-->
-<!--                <el-header class="hidden-md-and-up" style="background: #409EFF">-->
-<!--                    <div class="flex-row" style="height: 100%">-->
-<!--                        <el-button-->
-<!--                            icon="el-icon-menu"-->
-<!--                            type="text"-->
-<!--                            @click="drawerVisible = true"-->
-<!--                            style="color: white"-->
-<!--                        >-->
-
-<!--                        </el-button>-->
-<!--                    </div>-->
-<!--                </el-header>-->
-<!--                <el-main class="main" style="position: relative">-->
-<!--                    <keep-alive>-->
-<!--                        <router-view v-if="$route.meta.keepAlive" class="router-view"></router-view>-->
-<!--                    </keep-alive>-->
-<!--                    <router-view v-if="!$route.meta.keepAlive" class="router-view"></router-view>-->
-
-<!--                    <mona-footer></mona-footer>-->
-<!--&lt;!&ndash;                    <p>123</p>&ndash;&gt;-->
-<!--                </el-main>-->
-
-<!--            </el-container>-->
-<!--        </el-container>-->
     </div>
 </template>
 
@@ -99,6 +54,12 @@ export default {
     data: function () {
         return {
             drawerVisible: false,
+        }
+    },
+    methods: {
+        handleSelect(index) {
+            this.drawerVisible = false
+            this.$router.push(index)
         }
     }
 }
@@ -143,7 +104,7 @@ $contentPadding: 24px;
         position: fixed;
         top: 0;
         width: 100vw;
-        z-index: 1000;
+        z-index: 10000;
 
         .header-title {
             color: white;
@@ -167,48 +128,8 @@ $contentPadding: 24px;
         min-height: calc(100% - 48px);
         padding: $contentPadding;
         box-sizing: border-box;
+        overflow-x: hidden;
     }
 }
 
-.main {
-
-
-
-}
-
-
-/* body {
-    overflow: auto;
-} */
-
-//@media only screen and (min-width: 992px) {
-//    .router-view {
-//         min-height: 100vh;
-//        /* height: 100vh; */
-//        /*height: 100%;*/
-//    }
-//}
-
-
-#container {
-    /*height: 100vh;*/
-    /*min-height: 100vh;*/
-}
-
-//.main::-webkit-scrollbar {
-//    display: none;
-//}
-
-//.main {
-//    -ms-overflow-style: none;
-//    scrollbar-width: none;
-//}
-
-//.aside {
-//    height: 100vh;
-//}
-
-/*.main {*/
-/*    overflow-x: visible;*/
-/*}*/
 </style>

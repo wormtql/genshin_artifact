@@ -218,7 +218,7 @@ export default {
 .body {
     display: grid;
     gap: 4px;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     grid-auto-rows: min-content;
 
     .item {

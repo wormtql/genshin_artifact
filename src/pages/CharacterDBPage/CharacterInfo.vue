@@ -1,10 +1,18 @@
 <template>
-    <div>
+    <div v-loading="!loaded">
         <el-empty v-if="!loaded"></el-empty>
-        <div v-else class="tab-full-height mona-scroll-hidden content-div">
+        <div v-if="loaded && error">
+            Error
+        </div>
+        <div v-if="loaded && !error" class="tab-full-height mona-scroll-hidden content-div">
+            <p class="analysis-item-title">{{ characterChs }}</p>
+            <div class="character-splash-div">
+                <img :src="characterSplash">
+            </div>
+
             <p class="analysis-item-title">武器使用率</p>
             <w-c-bar
-                v-for="item in characterResult[this.characterName].weapon_usage"
+                v-for="item in weaponUsage"
                 :key="item[0]"
                 :item="item"
                 type="weapon"
@@ -12,7 +20,7 @@
 
             <p class="analysis-item-title">推荐圣遗物</p>
             <div
-                v-for="(item, index) in characterResult[this.characterName].artifact_set_usage"
+                v-for="(item, index) in artifactSetUsage"
                 :key="index"
                 class="bar-item-artifact"
             >
@@ -40,7 +48,7 @@
 </template>
 
 <script>
-import {characterByElement} from "@character"
+import {characterByElement, characterData} from "@character"
 import {getComputeResultAnalysis} from "@/api/misc"
 
 import ArtifactBar from "./ArtifactBar"
@@ -64,6 +72,8 @@ export default {
             error: false,
 
             characterByElement,
+            characterData,
+
             mainStats: ["Sand", "Goblet", "Head"],
             slot2Chs: {
                 "Sand": "时之沙",
@@ -93,12 +103,57 @@ export default {
         },
     },
     computed: {
+        characterSplash() {
+            const data = characterData[this.characterName]
+            if (!data) {
+                return ""
+            }
+
+            return data.splash
+        },
+
+        characterChs() {
+            const data = characterData[this.characterName]
+            if (!data) {
+                return "name"
+            }
+            return data.chs
+        },
+
         characterResult() {
             if (this.analysisResult) {
                 return this.analysisResult.character_result
             }
 
             return null
+        },
+
+        weaponUsage() {
+            if (!this.characterResult) {
+                return []
+            }
+
+            let temp = []
+            for (const item of this.characterResult[this.characterName].weapon_usage) {
+                if (item[1] >= 0.01) {
+                    temp.push(item)
+                }
+            }
+            return temp
+        },
+
+        artifactSetUsage() {
+            if (!this.characterResult) {
+                return []
+            }
+
+            let temp = []
+            for (const item of this.characterResult[this.characterName].artifact_set_usage) {
+                if (item[1] >= 0.01) {
+                    temp.push(item)
+                }
+            }
+            return temp
         },
 
         mainStatUsage() {
@@ -165,7 +220,8 @@ export default {
                     }
                 },
                 yAxis: {
-                    type: 'value'
+                    type: 'value',
+                    name: "词条数"
                 },
                 tooltip: {
                     trigger: "item"
@@ -196,6 +252,12 @@ export default {
 
     &::before {
         content: "#"
+    }
+}
+
+.character-splash-div {
+    img {
+        width: min(400px, 100%);
     }
 }
 </style>

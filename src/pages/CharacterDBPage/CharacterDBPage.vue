@@ -61,6 +61,11 @@ export default {
 
     gap: 4px;
     grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    grid-auto-rows: min-content;
+
+    img {
+        width: 100%;
+    }
 }
 
 //@media only screen and (max-width: 1200px) {
@@ -101,82 +106,6 @@ export default {
     .content-div {
         margin: 0 150px;
         min-width: 60%;
-    }
-}
-
-
-.list-item {
-    height: 48px;
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    transition: 300ms;
-    border-left: 3px solid transparent;
-
-    &:hover {
-        background-color: #f5f7fa;
-        cursor: pointer;
-    }
-
-    &.active {
-        border-left: 3px solid #79bbff;
-        background-color: #ecf5ff;
-    }
-
-    .list-item-image {
-        height: 48px;
-        width: 48px;
-        border-radius: 50%;
-        pointer-events: none;
-    }
-
-    .list-item-title {
-        font-size: 14px;
-        color: #606266;
-        margin-left: 24px;
-        pointer-events: none;
-    }
-}
-
-.bar-item {
-    display: flex;
-    align-items: center;
-
-    .graph-label-image {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        margin-right: 12px;
-    }
-}
-
-.list-item-bar-h {
-    display: flex;
-    align-items: center;
-
-    .list-item-group-h {
-        display: flex;
-        align-items: center;
-
-        .list-group-title {
-            margin-right: 12px;
-        }
-
-        .list-item-h {
-            padding: 4px;
-            border-bottom: 3px solid transparent;
-            &.active {
-                background-color: #ecf5ff;
-                border-bottom: 3px solid #79bbff;
-            }
-        }
-
-        .list-item-image {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            pointer-events: none;
-        }
     }
 }
 
