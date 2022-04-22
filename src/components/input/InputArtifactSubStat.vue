@@ -8,7 +8,7 @@
             <select-artifact-sub-stat
                 :value="value.name"
                 @input="handleChangeName"
-                style="width: 150px"
+                style="width: 100px"
             ></select-artifact-sub-stat>
         </template>
 

@@ -6,6 +6,7 @@
         size="small"
         :multiple="multiple"
         :multiple-limit="multipleLimit"
+        :placeholder="placeholder"
     >
         <el-option
             v-if="anyOption"
@@ -51,7 +52,7 @@ export default {
     },
     props: {
         value: {
-            type: String,
+            type: String | Array,
             required: true,
         },
         disabled: {
@@ -68,6 +69,10 @@ export default {
         },
         multipleLimit: {
             default: 2
+        },
+        placeholder: {
+            type: String,
+            default: "请选择"
         }
     }
 }

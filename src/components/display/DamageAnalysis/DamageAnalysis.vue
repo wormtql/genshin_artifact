@@ -101,7 +101,7 @@
             </div>
         </div>
 
-        <div v-if="!isHeal" class="header-row">
+        <div v-if="!isHeal" class="header-row" style="overflow: auto">
             <div>
                 <div class="big-title def-minus">防御乘区</div>
                 <div class="header-row">

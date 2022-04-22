@@ -230,7 +230,7 @@ export default {
 
 <style lang="scss" scoped>
 .page-root {
-    height: 100%;
+    //height: 100%;
     overflow: auto;
 
     -ms-overflow-style: none;

@@ -1,13 +1,13 @@
 <template>
     <div class="root">
-        <el-row :gutter="16">
-            <el-col :span="16" style="height: 400px">
+        <el-row :gutter="deviceIsPC ? 16 : 0">
+            <el-col :md="16" :sm="24" class="line-chart">
                 <v-chart
                     :option="optionsForECharts"
                     :autoresize="true"
                 ></v-chart>
             </el-col>
-            <el-col :span="8" style="height: 400px">
+            <el-col :md="8" :sm="24" class="pie-chart">
                 <v-chart
                     :option="optionsForPieChart"
                     :autoresize="true"
@@ -20,10 +20,16 @@
 
 <script>
 import { artifactTags } from "@const/artifact"
+import { deviceIsPC } from "@util/device"
 
 export default {
     name: "ArtifactPerStatBonus",
     props: ["data"],
+    data() {
+        return {
+            deviceIsPC
+        }
+    },
     computed: {
         seriesAndLegend() {
             const keysMap = {
@@ -97,11 +103,11 @@ export default {
                 tooltip: {
                     trigger: 'axis'
                 },
-                toolbox: {
+                toolbox: deviceIsPC ? {
                     feature: {
                         saveAsImage: {}
                     }
-                },
+                } : {},
                 legend: {
                     data: legend
                 },
@@ -134,8 +140,34 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.root {
-    height: 400px;
+canvas {
     overflow: visible;
 }
+@media (min-width: 992px) {
+    .root {
+        height: 400px;
+        overflow: visible;
+    }
+
+    .line-chart {
+        height: 400px
+    }
+
+    .pie-chart {
+        height: 400px;
+    }
+}
+
+@media (max-width: 992px) {
+    .root {
+        overflow: visible;
+    }
+    .line-chart {
+        height: 300px;
+    }
+    .pie-chart {
+        height: 300px;
+    }
+}
+
 </style>

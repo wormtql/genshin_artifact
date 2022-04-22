@@ -1,10 +1,5 @@
 <template>
     <div>
-        <el-breadcrumb>
-            <el-breadcrumb-item>计算预设</el-breadcrumb-item>
-        </el-breadcrumb>
-        <el-divider></el-divider>
-
         <el-dialog
             :visible.sync="showImportDialog"
             title="导入"
@@ -21,6 +16,7 @@
         <el-drawer
             :visible.sync="showArtifactsScoreDrawer"
             title="推荐圣遗物"
+            :size="deviceIsPC ? '30%' : '100%'"
         >
             <el-empty v-if="artifactScoreList.length === 0"></el-empty>
             <div v-else class="artifact-score-list-div">
@@ -82,6 +78,7 @@ import { deletePreset, getPresetEntryByName, checkImportFormat, createOrUpdatePr
 import { downloadString } from "@util/common"
 import { convertArtifact } from "@util/converter"
 import { wasmGetArtifactsRankByCharacter } from "@/wasm"
+import { deviceIsPC } from "@util/device"
 
 import PresetItem from "@c/display/PresetItem"
 import ImportBlock from "@c/misc/ImportBlock"
@@ -102,6 +99,8 @@ export default {
             showArtifactsScoreDrawer: false,
 
             artifactScoreList: [],
+
+            deviceIsPC
         }
     },
     methods: {
@@ -216,13 +215,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.item {
-    margin: 0 16px 16px 0;
-}
-
 .body {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    gap: 4px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-auto-rows: min-content;
+
+    .item {
+        width: 100%;
+    }
 }
 
 .toolbar {

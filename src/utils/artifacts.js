@@ -1,12 +1,11 @@
 import { positions } from "@const/misc"
-import {artifactEff} from "@const/artifact"
+import {artifactEff, artifactTags} from "@const/artifact"
 import objectHash from "object-hash"
-import store from "@/store/store"
 import {artifactsData} from "@artifact"
 import { toSnakeCase, deepCopy } from "@util/common"
+import store from "@/store/store"
 import { wasmGetArtifactsRankByCharacter } from "@/wasm"
-import { convertArtifact } from "@util/converter"
-
+import {convertArtifact, convertArtifactNameBack, convertArtifactStatNameBack} from "@util/converter"
 
 // count how many artifacts
 
@@ -94,32 +93,8 @@ export function newDefaultArtifactConfigForWasm() {
             configs[configName] = c
         }
     }
-    // console.log(configs)
 
     return configs
-
-    // return {
-    //     "config_archaic_petra": {
-    //         "element": "Electro",
-    //         rate: 0,
-    //     },
-    //     "config_berserker": { rate: 0 },
-    //     "config_blizzard_strayer": { critical_bonus: 0 },
-    //     "config_bloodstained_chivalry": { rate: 0 },
-    //     "config_brave_heart": { rate: 0 },
-    //     "config_crimson_witch_of_flames": { level: 0 },
-    //     "config_heart_of_depth": { rate: 0 },
-    //     "config_husk_of_opulent_dreams": { level: 0 },
-    //     "config_instructor": { rate: 0 },
-    //     "config_lavawalker": { rate: 0 },
-    //     "config_martial_artist": { rate: 0 },
-    //     "config_noblesse_oblige": { rate: 0 },
-    //     "config_pale_flame": { avg_level: 0, full_rate: 0 },
-    //     "config_retracing_bolide": { rate: 0 },
-    //     "config_shimenawas_reminiscence": { rate: 0 },
-    //     "config_tenacity_of_the_millelith": { rate: 0 },
-    //     "config_thundersoother": { rate: 0 },
-    // }
 }
 
 // toggle artifact omit/not omit
@@ -232,7 +207,10 @@ export async function importMonaJson(rawObj, removeNonExisting) {
 }
 
 export function getArtifactThumbnail(name) {
-    const data = artifactsData[name]
+    let data = artifactsData[name]
+    if (!data) {
+        console.log(name)
+    }
 
     for (let position in positions) {
         if (Object.prototype.hasOwnProperty.call(data, position)) {
@@ -253,6 +231,7 @@ export function upgradeArtifactConfig(oldConfig) {
     }
 
     let newConfig = {}
+
     for (let name in artifactsData) {
         const data = artifactsData[name]
         const name2 = data.name2
@@ -312,4 +291,18 @@ export async function getArtifactsRecommendation() {
 export function getArtifactsWasm() {
     const allFlat = store.getters["artifacts/allFlat"]
     return allFlat.map(x => convertArtifact(x))
+}
+
+export function statName2Chs(name) {
+    let data = artifactTags[name]
+    if (!data) {
+        const name2 = convertArtifactStatNameBack(name)
+        data = artifactTags[name2]
+    }
+
+    if (!data) {
+        throw new Error("cannot find name " + name)
+    }
+
+    return data.chs
 }

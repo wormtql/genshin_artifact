@@ -4,6 +4,7 @@
         @input="$emit('input', $event)"
         size="small"
         :multiple="multiple"
+        :placeholder="placeholder"
     >
         <el-option
             v-if="includeAny"
@@ -30,7 +31,8 @@ export default {
             default: true
         },
         multiple: { default: false },
-        position: { default: null }
+        position: { default: null },
+        placeholder: { type: String, default: "请选择" },
     },
     // created() {
     //     this.tagList = list

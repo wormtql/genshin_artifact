@@ -87,7 +87,6 @@ export default {
 
 <style lang="scss" scoped>
 .item {
-    //box-shadow: 0 0 10px 1px #00000011;
     border: 1px solid #00000011;
     display: inline-block;
     transition: 300ms;
@@ -119,20 +118,18 @@ export default {
 
     .body {
         padding: 8px;
-        display: flex;
+        //display: flex;
+        display: grid;
+        gap: 4px;
+        grid-template-columns: repeat(3, 1fr);
 
         .detail-div {
-            margin-right: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
             span {
-                width: 64px;
-                text-align: center;
-                display: block;
                 padding-top: 8px;
-            }
-
-            &:last-of-type {
-                margin: 0;
             }
         }
     }

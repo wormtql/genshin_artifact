@@ -14,9 +14,6 @@
 
             <span class="name">
                 {{ displayedTitle }}
-                <!-- <span style="color: #e7bf4f">
-                    <i class="el-icon-star-on"></i>{{ displayedStar }}
-                </span> -->
             </span>
 
             <div class="buttons" v-if="buttons">
@@ -242,6 +239,8 @@ export default {
             height: 32px;
             line-height: 32px;
             z-index: 10;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .extra {

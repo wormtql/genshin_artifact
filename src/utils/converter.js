@@ -1,42 +1,50 @@
 const nameMap = {
     "adventurer": "Adventurer",
-    "archaicpetra": "ArchaicPetra",
+    "archaicPetra": "ArchaicPetra",
     "berserker": "Berserker",
-    "blizzardstrayer": "BlizzardStrayer",
-    "bloodstainedchivalry": "BloodstainedChivalry",
-    "braveheart": "BraveHeart",
-    "crimsonwitch": "CrimsonWitchOfFlames",
-    "defenderwill": "DefendersWill",
-    "emblemofseveredfate": "EmblemOfSeveredFate",
+    "blizzardStrayer": "BlizzardStrayer",
+    "bloodstainedChivalry": "BloodstainedChivalry",
+    "braveHeart": "BraveHeart",
+    "crimsonWitch": "CrimsonWitchOfFlames",
+    "defenderWill": "DefendersWill",
+    "emblemOfSeveredFate": "EmblemOfSeveredFate",
     "gambler": "Gambler",
-    "gladiatorfinale": "GladiatorsFinale",
-    "heartofdepth": "HeartOfDepth",
-    "huskofopulentdreams": "HuskOfOpulentDreams",
+    "gladiatorFinale": "GladiatorsFinale",
+    "heartOfDepth": "HeartOfDepth",
+    "huskOfOpulentDreams": "HuskOfOpulentDreams",
     "instructor": "Instructor",
-    "lavawalker": "Lavawalker",
-    "luckydog": "LuckyDog",
-    "maidenbeloved": "MaidenBeloved",
-    "martialartist": "MartialArtist",
-    "noblesseoblige": "NoblesseOblige",
-    "oceanhuedclam": "OceanHuedClam",
-    "paleflame": "PaleFlame",
-    "prayersfordestiny": "PrayersForDestiny",
-    "prayersforillumination": "PrayersForIllumination",
-    "prayersforwisdom": "PrayersForWisdom",
-    "prayerstospringtime": "PrayersToSpringtime",
-    "resolutionofsojourner": "ResolutionOfSojourner",
-    "retracingbolide": "RetracingBolide",
+    "lavaWalker": "Lavawalker",
+    "luckyDog": "LuckyDog",
+    "maidenBeloved": "MaidenBeloved",
+    "martialArtist": "MartialArtist",
+    "noblesseOblige": "NoblesseOblige",
+    "oceanHuedClam": "OceanHuedClam",
+    "paleFlame": "PaleFlame",
+    "prayersForDestiny": "PrayersForDestiny",
+    "prayersForIllumination": "PrayersForIllumination",
+    "prayersForWisdom": "PrayersForWisdom",
+    "prayersToSpringtime": "PrayersToSpringtime",
+    "resolutionOfSojourner": "ResolutionOfSojourner",
+    "retracingBolide": "RetracingBolide",
     "scholar": "Scholar",
-    "shimenawareminiscence": "ShimenawasReminiscence",
-    "tenacityofthemillelith": "TenacityOfTheMillelith",
+    "shimenawaReminiscence": "ShimenawasReminiscence",
+    "tenacityOfTheMillelith": "TenacityOfTheMillelith",
     "exile": "TheExile",
-    "thunderingfury": "ThunderingFury",
-    "thundersmoother": "Thundersoother",
-    "tinymiracle": "TinyMiracle",
-    "travelingdoctor": "TravelingDoctor",
-    "viridescentvenerer": "ViridescentVenerer",
-    "wanderertroupe": "WanderersTroupe",
+    "thunderingFury": "ThunderingFury",
+    "thunderSmoother": "Thundersoother",
+    "tinyMiracle": "TinyMiracle",
+    "travelingDoctor": "TravelingDoctor",
+    "viridescentVenerer": "ViridescentVenerer",
+    "wandererTroupe": "WanderersTroupe",
 }
+Object.freeze(nameMap)
+
+let nameMapReverse = {}
+for (const key of Object.keys(nameMap)) {
+    const value = nameMap[key]
+    nameMapReverse[value] = key
+}
+Object.freeze(nameMapReverse)
 
 const slotMap = {
     "flower": "Flower",
@@ -67,6 +75,14 @@ const statNameMap = {
     "physicalBonus": "PhysicalBonus"
 }
 
+let statNameMapReverse = {}
+for (let key in statNameMap) {
+    const value = statNameMap[key]
+    statNameMapReverse[value] = key
+}
+Object.freeze(statNameMapReverse)
+Object.freeze(statNameMap)
+
 function convertStat(stat) {
     return [
         statNameMap[stat.name],
@@ -87,16 +103,27 @@ export function convertArtifact(artifact) {
 }
 
 export function convertArtifactName(name) {
-    const lower = name.toLowerCase()
-    if (Object.prototype.hasOwnProperty.call(nameMap, lower)) {
-        return nameMap[lower]
+    if (Object.prototype.hasOwnProperty.call(nameMap, name)) {
+        return nameMap[name]
     } else {
         return name
     }
     // return nameMap[name.toLowerCase()]
 }
 
+export function convertArtifactNameBack(name) {
+    if (Object.prototype.hasOwnProperty.call(nameMapReverse, name)) {
+        return nameMapReverse[name]
+    } else {
+        return name
+    }
+}
+
 // dir: 1: old -> new
 export function convertArtifactStatName(name) {
     return statNameMap[name]
+}
+
+export function convertArtifactStatNameBack(name) {
+    return statNameMapReverse[name]
 }

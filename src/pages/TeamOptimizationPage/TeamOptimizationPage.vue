@@ -1,13 +1,9 @@
 <template>
     <div>
-        <el-breadcrumb>
-            <el-breadcrumb-item>全队配装</el-breadcrumb-item>
-        </el-breadcrumb>
-        <el-divider></el-divider>
-
         <el-drawer
             title="面板"
             :visible.sync="showAttributeDrawer"
+            :size="deviceIsPC ? '30%' : '100%'"
         >
             <template v-if="!wasmAttribute">
                 <el-empty>In theory, in should not see this</el-empty>
@@ -23,22 +19,13 @@
 
         <el-row :gutter="16">
             <el-col
-                :span="6"
-                ref="content"
-                :style="{ height: contentHeight }"
-                class="mona-scroll"
+                :md="6"
+                :sm="24"
+                class="mona-scroll-hidden left"
             >
-                <div>
-                    <my-button1
-                        icon="el-icon-caret-right"
-                        title="开始计算"
-                        @click="handleClickStart"
-                    ></my-button1>
-                    <my-button1
-                        icon="el-icon-plus"
-                        title="添加成员"
-                        @click="handleClickAddMember"
-                    ></my-button1>
+                <div style="margin-bottom: 12px">
+                    <el-button type="primary" size="mini" icon="el-icon-cpu" @click="handleClickStart">开始计算</el-button>
+                    <el-button size="mini" icon="el-icon-plus" @click="handleClickAddMember">添加成员</el-button>
                 </div>
 
                 <div
@@ -46,7 +33,7 @@
                     :key="index"
                     class="member-item"
                 >
-                    <div style="display: flex; justify-content: space-between; align-items: center">
+                    <div style="display: flex; justify-content: space-between; align-items: center" class="member-header">
                         <p class="team-title">成员{{ index + 1 }}</p>
                         <div>
                             <el-button
@@ -55,6 +42,7 @@
                                 type="text"
                                 icon="el-icon-delete"
                                 @click="handleDeleteMember(index)"
+                                style="color: white"
                             ></el-button>
                         </div>
                     </div>
@@ -75,14 +63,14 @@
                         style="padding-left: 8px"
                     ></el-slider>
 
-                    <el-divider v-if="index < presetNames.length - 1"></el-divider>
+<!--                    <el-divider v-if="index < presetNames.length - 1"></el-divider>-->
                 </div>
             </el-col>
 
             <el-col
-                :span="18"
-                :style="{ height: contentHeight }"
-                class="mona-scroll"
+                :md="18"
+                :sm="24"
+                class="mona-scroll-hidden right"
             >
                 <template v-if="currentResultEntry">
                     <el-input-number
@@ -112,13 +100,6 @@
                             </div>
 
                             <div class="result-item-buttons">
-<!--                                <el-button-->
-<!--                                    icon="el-icon-plus"-->
-<!--                                    circle-->
-<!--                                    size="mini"-->
-<!--                                    type="text"-->
-<!--                                    title="存为套装"-->
-<!--                                ></el-button>-->
                             </div>
                         </div>
                         <div class="result-item-content">
@@ -153,9 +134,8 @@ import {mapGetters} from "vuex"
 import {convertArtifact} from "@util/converter"
 import {team_optimize, wasmGetAttribute} from "@/wasm"
 import {convertPresetToWasmInterface, getPresetEntryByName} from "@util/preset"
-import { newKumiWithArtifacts } from "@util/kumi"
 import {toggleArtifact} from "@util/artifacts"
-import { deepCopy } from "@util/common"
+import {deviceIsPC} from "@util/device"
 
 import SelectCharacter from "@c/select/SelectCharacter"
 import SelectWeapon from "@c/select/SelectWeapon"
@@ -183,23 +163,14 @@ export default {
             results: [],    // a 3d array
             resultIndex: 0,
 
-            contentHeight: "",
-
             presetNames: [null],
             weights: [],
 
             showAttributeDrawer: false,
             wasmAttribute: null,
-        }
-    },
-    mounted() {
-        const component = this.$refs["content"]
 
-        this.$nextTick(() => {
-            const rect = component.$el.getBoundingClientRect()
-            // console.log(rect)
-            this.contentHeight = `calc(100vh - ${rect.top}px)`
-        })
+            deviceIsPC
+        }
     },
     methods: {
         handleClickAddMember() {
@@ -368,6 +339,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@media (min-width: 992px) {
+    .left, .right {
+        height: calc(100vh - 2 * 24px);
+    }
+}
+
+@media (max-width: 992px) {
+    .el-select {
+        width: 100%;
+    }
+
+    //.left {
+    //    margin-bottom: 12px;
+    //}
+}
+
 .member-item {
     margin-bottom: 16px;
     //box-shadow: 0 0 10px 1px #00000011;
@@ -377,18 +364,23 @@ export default {
         margin-bottom: 64px;
     }
 
-    .title {
-        font-size: 14px;
-        margin: 0;
-        margin-bottom: 12px;
+    .member-header {
+        //background-color: rgb(236, 245, 255);
+        background-color: #409EFF;
+        padding: 0 8px;
+        height: 32px;
+        //border-radius: 3px;
     }
 
-    .image {
-        width: 64px;
-        height: 64px;
-        display: inline-block;
-        border-radius: 50%;
-        margin-top: 12px;
+    .team-title {
+        font-size: 0.9rem;
+        font-weight: bold;
+        //color: #606166;
+        color: white;
+        margin: 0;
+
+        //border-left: 2px solid #409EFF;
+        //padding-left: 12px;
     }
 }
 
@@ -397,13 +389,7 @@ export default {
     color: #666666;
 }
 
-.team-title {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #666666;
-    //border-left: 2px solid #409EFF;
-    //padding-left: 12px;
-}
+
 
 .result-item {
     margin-bottom: 12px;
@@ -430,10 +416,13 @@ export default {
     }
 
     .result-item-content {
-        padding-top: 12px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
+        //padding-top: 12px;
+        //display: flex;
+        //flex-wrap: wrap;
+        //gap: 12px;
+        display: grid;
+        gap: 4px;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     }
 }
 </style>

@@ -1,14 +1,16 @@
 <template>
     <div>
         <div class="filters">
-            <span>主词条：</span>
+<!--            <span>主词条：</span>-->
             <select-artifact-main-stat
                 v-model="filterMainTag"
+                placeholder="主词条"
             ></select-artifact-main-stat>
-            <span>套装：</span>
+<!--            <span>套装：</span>-->
             <select-artifact-set
                 v-model="filterArtifactSetName"
                 any-option
+                placeholder="套装"
             ></select-artifact-set>
         </div>
 
@@ -29,11 +31,15 @@
             :current-page.sync="currentPage"
             :page-size="pageSize"
             :total="artifactList.length"
+            layout="prev, pager, next"
+            :small="!deviceIsPC"
         ></el-pagination>
     </div>
 </template>
 
 <script>
+import { deviceIsPC } from "@util/device"
+
 import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
 import ArtifactDisplay from "@c/display/ArtifactDisplay"
@@ -58,7 +64,9 @@ export default {
             filterMainTag: "any",
             filterArtifactSetName: "any",
 
-            currentPage: 1
+            currentPage: 1,
+
+            deviceIsPC
         }
     },
     computed: {
@@ -98,11 +106,17 @@ export default {
 
 <style lang="scss" scoped>
 .artifacts {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
+    //display: flex;
+    //gap: 16px;
+    //flex-wrap: wrap;
+    //margin: 16px 0;
+    //
+
     margin: 16px 0;
-    
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-auto-rows: max-content;
+    gap: 4px;
 }
 
 .no-artifacts {
@@ -112,9 +126,20 @@ export default {
     justify-content: center;
 }
 
-.filters {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+@media only screen and (min-width: 992px) {
+    .filters {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
 }
+
+@media only screen and (max-width: 992px) {
+    .filters {
+        .el-select {
+            width: 100%;
+        }
+    }
+}
+
 </style>

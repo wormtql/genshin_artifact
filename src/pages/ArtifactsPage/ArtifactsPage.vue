@@ -9,7 +9,7 @@
 
         <yas-ui-dialog :visible.sync="showYasUIDialog"></yas-ui-dialog>
 
-        <el-dialog :visible.sync="showImportDialog" title="导入" width="60%">
+        <el-dialog :visible.sync="showImportDialog" title="导入" :width="deviceIsPC ? '60%' : '90%'">
             <import-block ref="fileUploader"></import-block>
             <el-checkbox v-model="importDeleteUnseen" style="margin-top: 12px">删除不存在的圣遗物</el-checkbox>
 
@@ -19,7 +19,7 @@
             </template>
         </el-dialog>
 
-        <el-drawer title="编辑圣遗物" :visible.sync="showEditArtifactDrawer" direction="rtl">
+        <el-drawer title="编辑圣遗物" :visible.sync="showEditArtifactDrawer" direction="rtl" :size="deviceIsPC ? '30%' : '100%'">
             <edit-artifact
                 ref="editArtifactDrawer"
                 @confirm="handleConfirmEdit"
@@ -27,7 +27,7 @@
             ></edit-artifact>
         </el-drawer>
 
-        <el-drawer title="推荐圣遗物" :visible.sync="showArtifactRecommendationDrawer">
+        <el-drawer title="推荐圣遗物" :visible.sync="showArtifactRecommendationDrawer" :size="deviceIsPC ? '30%' : '100%'">
             <el-empty v-if="recommendationList.length === 0"></el-empty>
             <div v-else style="padding: 0 20px">
                 <artifact-display
@@ -41,11 +41,27 @@
             </div>
         </el-drawer>
 
-        <el-breadcrumb>
+        <el-breadcrumb class="hidden-sm-and-down">
             <el-breadcrumb-item>圣遗物（{{ count }}）</el-breadcrumb-item>
         </el-breadcrumb>
 
-        <div class="tool-bar">
+        <div class="toolbar-mobile hidden-md-and-up" style="margin-bottom: 12px">
+            <el-dropdown @command="handleDropdownCommand" trigger="click">
+                <span class="el-dropdown-link"><i class="el-icon-more"></i></span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="add"><i class="el-icon-plus"></i>添加</el-dropdown-item>
+                    <el-dropdown-item command="deleteAll"><i class="el-icon-delete"></i>清空</el-dropdown-item>
+                    <el-dropdown-item divided command="unlockAll"><i class="el-icon-unlock"></i>启用全部</el-dropdown-item>
+                    <el-dropdown-item divided command="recommend"><i class="el-icon-s-opportunity"></i>推荐</el-dropdown-item>
+                    <el-dropdown-item divided command="importJson"><i class="el-icon-arrow-right"></i>导入</el-dropdown-item>
+                    <el-dropdown-item command="exportJson"><i class="el-icon-arrow-left"></i>导出</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+
+            <div class="m-center">总数：{{ count }}</div>
+        </div>
+
+        <div class="tool-bar hidden-sm-and-down">
             <el-button
                 @click="add"
                 type="primary"
@@ -64,14 +80,14 @@
                 </el-button>
             </el-popconfirm>
 
-            <el-button size="mini" icon="el-icon-unlock" title="启用全部" @click="$store.commit('artifacts/unlockAll')"
+            <el-button size="mini" icon="el-icon-unlock" title="启用全部" @click="unlockAllArtifacts"
                 >启用全部</el-button
             >
 
             <el-button size="mini" icon="el-icon-s-opportunity" @click="handleClickRecommendation">推荐</el-button>
 
             <div class="tool-right">
-                <el-button @click="handleYasUIClicked" size="mini" type="primary"> 扫描 </el-button>
+                <el-button @click="handleYasUIClicked" size="mini" type="primary" v-if="deviceIsPC"> 扫描 </el-button>
                 <el-button @click="handleImportJsonClicked" size="mini" type="primary"> 导入 </el-button>
                 <el-button @click="handleOutputJsonClicked" size="mini"> 导出 </el-button>
             </div>
@@ -79,17 +95,22 @@
 
         <!-- </div> -->
         <div class="filter">
-            <span>套装</span>
-            <select-artifact-set v-model="filterSet" :multiple="true" :multiple-limit="1000"></select-artifact-set>
+            <div class="filter-item">
+                <select-artifact-set v-model="filterSet" :multiple="true" :multiple-limit="1000"
+                    placeholder="套装"
+                ></select-artifact-set>
+            </div>
 
-            <span style="margin-left: 24px">主词条</span>
-            <select-artifact-main-stat
-                v-model="filterMainStat"
-                :include-any="false"
-                :multiple="true"
-            ></select-artifact-main-stat>
+            <div class="filter-item">
+                <select-artifact-main-stat
+                    v-model="filterMainStat"
+                    :include-any="false"
+                    :multiple="true"
+                    placeholder="主词条"
+                ></select-artifact-main-stat>
+            </div>
 
-            <el-checkbox v-model="ge16" style="margin-left: 24px">只显示16级以上</el-checkbox>
+            <el-checkbox v-model="ge16" class="show-only-16">只显示16级以上</el-checkbox>
         </div>
 
         <!-- artifacts display -->
@@ -100,7 +121,7 @@
                 </div>
 
                 <div v-if="filteredArtifacts.length > 0">
-                    <div class="artifacts-div mona-scroll" ref="artifactsDiv" :style="{ height: contentHeight }">
+                    <div class="artifacts-div mona-scroll-hidden">
                         <artifact-display
                             class="artifact-item"
                             v-for="item in artifactToBeDisplayed"
@@ -139,6 +160,7 @@ import {
 } from '@util/artifacts';
 import { positions } from '@const/misc';
 import { downloadString } from '@util/common';
+import { deviceIsPC } from "@util/device"
 
 import flowerIcon from '@image/misc/flower.png';
 import featherIcon from '@image/misc/feather.png';
@@ -179,18 +201,7 @@ export default {
     created: function () {
         this.tabs = tabs;
         this.pageSize = pageSize;
-    },
-    mounted() {
-        this.$nextTick(() => {
-            const component = this.$refs['artifactsDiv']?.[0];
-            if (!component) {
-                return;
-            }
-
-            const rect = component.getBoundingClientRect();
-            // console.log(rect.top)
-            this.contentHeight = `calc(100vh - ${rect.top}px)`;
-        });
+        this.deviceIsPC = deviceIsPC
     },
     data: function () {
         return {
@@ -210,12 +221,43 @@ export default {
             ge16: true,
             // currentPage: 1,
 
-            contentHeight: '',
-
             importDeleteUnseen: false,
         };
     },
     methods: {
+        unlockAllArtifacts() {
+            this.$store.commit('artifacts/unlockAll')
+        },
+
+        handleDropdownCommand(command) {
+            switch (command) {
+                case "add":
+                    this.add()
+                    break
+                case "deleteAll":
+                    this.$confirm("确实删除所有圣遗物？（将同时删除所有套装）", "提示", {
+                        confirmButtonText: "确定",
+                        cancelButtonText: "取消",
+                        type: "warning"
+                    }).then(() => {
+                        this.handleClickDeleteAll()
+                    }).catch(() => {})
+                    break
+                case "unlockAll":
+                    this.unlockAllArtifacts()
+                    break
+                case "recommend":
+                    this.handleClickRecommendation()
+                    break
+                case "importJson":
+                    this.handleImportJsonClicked()
+                    break
+                case "exportJson":
+                    this.handleOutputJsonClicked()
+                    break
+            }
+        },
+
         handleClickDeleteAll() {
             this.$store.commit('artifacts/removeAllArtifacts');
         },
@@ -382,13 +424,50 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.filter {
-    margin-bottom: 12px;
+@media only screen and (min-width: 992px) {
+    .filter {
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
 
-    span {
+        .filter-item {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .show-only-16 {
+            margin-left: 16px;
+        }
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .filter {
+        margin-bottom: 12px;
+
+        .filter-item {
+            .el-select {
+                width: 100%;
+            }
+        }
+
+        .show-only-16 {
+            margin-top: 4px;
+        }
+    }
+
+
+}
+
+.toolbar-mobile {
+    position: relative;
+    .m-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
         font-size: 12px;
-        color: #606266;
-        margin-right: 8px;
+        color: #606166;
     }
 }
 
@@ -397,27 +476,17 @@ export default {
 }
 
 .artifacts-div {
-    //display: flex;
-    //flex-wrap: wrap;
-    //align-items: flex-start;
-    //justify-content: space-between;
-    //gap: 12px;
-    padding-right: 20px;
-    padding-bottom: 20px;
     box-sizing: border-box;
-
+    //height: 100vh;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 200px);
-    justify-content: space-between;
-    align-content: flex-start;
-    grid-gap: 12px;
-
-    //&::after {
-    //    content: "";
-    //    flex: auto;
-    //}
+    gap: 4px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-columns: 1fr;
+    grid-auto-rows: min-content;
 
     .artifact-item {
+        width: 100%;
+        box-sizing: border-box;
         //width: 20%;
         //width: 200px;
     }

@@ -40,6 +40,10 @@ module.exports = {
     publicPath: process.env.PublicPath || '/',
     devServer: {
         proxy: {
+            "^/api/compute_result/analysis": {
+                // target: "http://localhost:8000"
+                target: "https://www.mona-uranai.com/"
+            },
             "^/api": {
                 target: "http://localhost:8000/",
                 changeOrigin: true
@@ -71,7 +75,7 @@ module.exports = {
                 // "genshin_panel": path.resolve(__dirname, "../../ts/genshin/dist"),
             }
         },
-        externals: {
+        externals: process.env.NODE_ENV === "development" ? {} : {
             vue: "Vue",
             "vue-router": "VueRouter",
             vuex: "Vuex",
