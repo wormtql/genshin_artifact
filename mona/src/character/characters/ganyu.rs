@@ -70,18 +70,18 @@ pub const GANYU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 };
 
 pub struct GanyuEffect {
-    talent1_rate: f64,
+    // talent1_rate: f64,
     talent2_rate: f64
 }
 
 impl<T: Attribute> ChangeAttribute<T> for GanyuEffect {
     fn change_attribute(&self, attribute: &mut T) {
-        attribute.set_value_by(AttributeName::CriticalBase, "甘雨天赋：唯此一心", 0.2 * self.talent1_rate);
+        // attribute.set_value_by(AttributeName::CriticalBase, "甘雨天赋：唯此一心", 0.2 * self.talent1_rate);
         attribute.set_value_by(AttributeName::BonusCryo, "甘雨天赋：天地交泰", 0.2 * self.talent2_rate);
     }
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Eq, PartialEq)]
 #[derive(FromPrimitive)]
 pub enum GanyuDamageEnum {
     Normal1,
@@ -171,11 +171,11 @@ impl CharacterTrait for Ganyu {
 
     #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
-        ItemConfig {
-            name: "talent1_rate",
-            title: "天赋「唯此一心」应用比例",
-            config: ItemConfig::RATE01_TYPE
-        },
+        // ItemConfig {
+        //     name: "talent1_rate",
+        //     title: "天赋「唯此一心」应用比例",
+        //     config: ItemConfig::RATE01_TYPE
+        // },
         ItemConfig {
             name: "talent2_rate",
             title: "天赋「天地交泰」应用比例",
@@ -183,9 +183,23 @@ impl CharacterTrait for Ganyu {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) ->D::Result {
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "talent1_rate",
+            title: "天赋「唯此一心」应用比例",
+            config: ItemConfig::RATE01_TYPE
+        }
+    ]);
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) ->D::Result {
         let s: GanyuDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        let talent1_rate = match *config {
+            CharacterSkillConfig::Ganyu { talent1_rate } => talent1_rate,
+            _ => 0.0
+        };
 
         use GanyuDamageEnum::*;
         let ratio = match s {
@@ -208,6 +222,10 @@ impl CharacterTrait for Ganyu {
 
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
+        if s == GanyuDamageEnum::Charged3 || s == GanyuDamageEnum::Charged4 {
+            builder.add_extra_critical("甘雨天赋：唯此一心", talent1_rate * 0.2);
+        }
+
         builder.damage(
             &context.attribute,
             &context.enemy,
@@ -219,12 +237,12 @@ impl CharacterTrait for Ganyu {
 
     fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
         Some(Box::new(match *config {
-            CharacterConfig::Ganyu { talent1_rate, talent2_rate } => GanyuEffect {
-                talent1_rate,
+            CharacterConfig::Ganyu { talent2_rate } => GanyuEffect {
+                // talent1_rate,
                 talent2_rate
             },
             _ => GanyuEffect {
-                talent1_rate: 0.0,
+                // talent1_rate: 0.0,
                 talent2_rate: 0.0
             }
         }))

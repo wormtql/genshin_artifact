@@ -2,7 +2,7 @@ use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize)]
 pub enum CharacterConfig {
-    Ganyu { talent1_rate: f64, talent2_rate: f64 },
+    Ganyu { talent2_rate: f64 },
     HuTao { le_50: bool },
     KamisatoAyaka { talent1_rate: f64, talent2_rate: f64 },
     KamisatoAyato { use_c2: bool },

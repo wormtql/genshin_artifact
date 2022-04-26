@@ -1006,12 +1006,12 @@ export default {
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_rate","title":"天赋「唯此一心」应用比例","type":"float"},
-            
             {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":"天赋「天地交泰」应用比例","type":"float"},
             
         ],
         configSkill: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_rate","title":"天赋「唯此一心」应用比例","type":"float"},
             
         ],
     },

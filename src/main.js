@@ -52,14 +52,14 @@ console.log(`／ ￣￣ ＼
 |  |        | |
 |    |               | |`);
 
-import { listen, emit } from "@tauri-apps/api/event"
-
-(async function () {
-    const unlisten = await listen("test", event => {
-        console.log(event)
-    })
-
-    emit("yas-scan", {
-        min_star: 5
-    })
-})()
+// import { listen, emit } from "@tauri-apps/api/event"
+//
+// (async function () {
+//     const unlisten = await listen("test", event => {
+//         console.log(event)
+//     })
+//
+//     emit("yas-scan", {
+//         min_star: 5
+//     })
+// })()
