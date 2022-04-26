@@ -14,10 +14,11 @@ console.log("revision: ", revision)
 const version = JSON.parse(readFileSync("./package.json").toString()).version || "no version"
 
 function getEnv() {
-    let filename = ".env.development.yaml"
-    if (process.env.NODE_ENV === "production") {
-        filename = ".env.production.yaml"
-    }
+    const filename = process.env.ENV_FILE
+    // let filename = ".env.development.yaml"
+    // if (process.env.NODE_ENV === "production") {
+    //     filename = ".env.production.yaml"
+    // }
 
     let result = {}
     if (existsSync(filename)) {
