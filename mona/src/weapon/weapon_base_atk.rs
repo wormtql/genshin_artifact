@@ -18,8 +18,8 @@ pub enum WeaponBaseATKFamily {
 
 pub fn get_array(family: WeaponBaseATKFamily) -> [i32; 14] {
     match family {
-        WeaponBaseATKFamily::ATK185 => [23, 56, 68, 102, 113, 130, 141, 158, 169, 185, -999, -999, -999, -999],
-        WeaponBaseATKFamily::ATK243 => [33, 80, 91, 139, 151, 174, 186, 209, 220, 243, -999, -999, -999, -999],
+        WeaponBaseATKFamily::ATK185 => [23, 56, 68, 102, 113, 130, 141, 158, 169, 185, 185, 185, 185, 185],
+        WeaponBaseATKFamily::ATK243 => [33, 80, 91, 139, 151, 174, 186, 209, 220, 243, 243, 243, 243, 243],
         WeaponBaseATKFamily::ATK354 => [38, 86, 105, 151, 171, 193, 212, 234, 253, 274, 294, 314, 334, 354],
         WeaponBaseATKFamily::ATK401 => [39, 94, 113, 169, 189, 216, 236, 263, 282, 309, 329, 355, 375, 401],
         WeaponBaseATKFamily::ATK440 => [39, 94, 113, 169, 189, 216, 236, 263, 282, 309, 329, 355, 375, 440],
