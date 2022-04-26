@@ -154,14 +154,15 @@ impl CharacterTrait for YaeMiko {
             Q2 => YAE_MIKO_SKILL.elemental_burst_dmg2[s3],
         };
 
+        let skill_type = s.get_skill_type();
+
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
-        if context.character_common_data.has_talent2 {
+        if context.character_common_data.has_talent2 && skill_type == SkillType::ElementalSkill {
             let em = context.attribute.get_value(AttributeName::ElementalMastery);
             builder.add_extra_bonus("八重神子天赋「启蜇之祝词」", em * 0.0015);
         }
 
-        let skill_type = s.get_skill_type();
         if context.character_common_data.constellation >= 6 && skill_type == SkillType::ElementalSkill {
             builder.add_extra_def_penetration("八重神子六命「大杀生咒禁」", 0.6);
         }
