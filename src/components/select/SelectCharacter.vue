@@ -32,8 +32,10 @@ import qualityColors from "@const/quality_colors";
 export default {
     name: "SelectCharacter",
     props: ["value"],
-    created() {
-        this.characterByElement = characterByElement;
+    data() {
+        return {
+            characterByElement
+        }
     },
     methods: {
         element2Chs(element) {

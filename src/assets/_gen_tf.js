@@ -706,7 +706,7 @@ export default {
             
             {"default":0.5,"max":1.0,"min":0.0,"name":"damage_weight","title":"治疗-伤害比重（0：纯治疗，1：纯伤害）","type":"float"},
             
-            {"default":1.6,"max":1.0,"min":0.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
             
         ],
     },

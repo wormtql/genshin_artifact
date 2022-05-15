@@ -90,6 +90,15 @@ export default {
         doRoute: {
             type: Boolean,
             default: true,
+        },
+        enableMinimize: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data() {
+        return {
+            minimized: false,
         }
     },
     methods: {

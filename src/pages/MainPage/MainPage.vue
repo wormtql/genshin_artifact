@@ -68,6 +68,10 @@ export default {
 <style scoped lang="scss">
 $contentPadding: 24px;
 
+.main {
+    //background-color: #faf6ff;
+}
+
 @media only screen and (min-width: 992px) {
     .root-div {
         display: flex;

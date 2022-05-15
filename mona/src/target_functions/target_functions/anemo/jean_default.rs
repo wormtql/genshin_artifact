@@ -58,7 +58,7 @@ impl TargetFunctionMetaTrait for JeanDefaultTargetFunction {
         ItemConfig {
             name: "recharge_demand",
             title: ItemConfig::DEFAULT_RECHARGE_TITLE,
-            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.6 }
+            config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.0 }
         }
     ]);
 

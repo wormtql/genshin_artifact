@@ -103,9 +103,10 @@ impl TargetFunction for KeqingDefaultTargetFunction {
         let dmg_q = Keqing::damage::<SimpleDamageBuilder>(&context, S::Q2, &config).normal.expectation;
         let dmg_charged = Keqing::damage::<SimpleDamageBuilder>(&context, S::Charged11, &config).normal.expectation;
 
-        let recharge = attribute.get_value(AttributeName::Recharge);
-        let r = recharge.min(1.4);
+        // let recharge = attribute.get_value(AttributeName::Recharge);
+        // let r = recharge.min(1.4);
 
-        r * dmg_q * 19.53 * 0.2 + dmg_charged * 2.094 * 0.8
+        // r * dmg_q * 19.53 * 0.2 + dmg_charged * 2.094 * 0.8
+        dmg_q * 19.53 * 0.2 + dmg_charged * 2.094 * 0.8
     }
 }
