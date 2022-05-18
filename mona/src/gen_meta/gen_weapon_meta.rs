@@ -1,8 +1,10 @@
+use std::collections::HashMap;
 use askama::{Template};
 use crate::common::item_config_type::ItemConfig;
 use crate::weapon::weapons::get_static_data;
 use crate::weapon::weapon_name::WeaponName;
 use crate::weapon::weapon_static_data::WeaponStaticData;
+use lazy_static::lazy_static;
 
 struct WeaponMetaDataForJS {
     name: String,

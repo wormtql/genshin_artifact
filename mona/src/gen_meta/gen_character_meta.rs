@@ -1,10 +1,13 @@
+use std::collections::HashMap;
 use askama::Template;
 use crate::character::{CharacterName, CharacterStaticData};
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem};
 use crate::common::item_config_type::ItemConfig;
+use lazy_static::lazy_static;
 
 struct CharacterMeta {
     name: String,
+    name_for_image: String,
     chs: String,
     star: usize,
     skill1_name: String,
@@ -23,6 +26,37 @@ struct CharacterMeta {
 #[template(path = "character_meta_template.js")]
 struct CharacterMetaTemplate {
     characters: Vec<CharacterMeta>
+}
+
+lazy_static! {
+    static ref IMAGE_NAME_MAP: HashMap<CharacterName, &'static str> = {
+        let mut m = HashMap::new();
+
+        m.insert(CharacterName::Amber, "Ambor");
+        m.insert(CharacterName::KamisatoAyaka, "Ayaka");
+        m.insert(CharacterName::KamisatoAyato, "Ayato");
+        m.insert(CharacterName::Yanfei, "Feiyan");
+        m.insert(CharacterName::HuTao, "Hutao");
+        m.insert(CharacterName::AratakiItto, "Itto");
+        m.insert(CharacterName::KaedeharaKazuha, "Kazuha");
+        m.insert(CharacterName::SangonomiyaKokomi, "Kokomi");
+        m.insert(CharacterName::Noelle, "Noel");
+        m.insert(CharacterName::KujouSara, "Sara");
+        m.insert(CharacterName::RaidenShogun, "Shougun");
+        m.insert(CharacterName::Thoma, "Tohma");
+        m.insert(CharacterName::YaeMiko, "Yae");
+        m.insert(CharacterName::AetherAnemo, "PlayerBoy");
+
+        m
+    };
+}
+
+pub fn convert_image_name(name: CharacterName) -> String {
+    if IMAGE_NAME_MAP.contains_key(&name) {
+        String::from(*IMAGE_NAME_MAP.get(&name).unwrap())
+    } else {
+        name.to_string()
+    }
 }
 
 pub fn gen_character_meta_as_js_file() -> String {
@@ -65,6 +99,7 @@ pub fn gen_character_meta_as_js_file() -> String {
 
         data.push(CharacterMeta {
             name: meta.name.to_string(),
+            name_for_image: convert_image_name(name_enum),
             chs: String::from(meta.chs),
             star: meta.star as usize,
             skill1_name: String::from(meta.skill_name1),
