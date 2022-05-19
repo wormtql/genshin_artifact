@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "cross-env ENV_FILE=.env.development.yaml vue-cli-service serve",
     "serve:tauri": "cross-env ENV_FILE=.env.tauri.yaml vue-cli-service serve",
-    "build": "cross-env ENV_FILE=.env.production.yaml vue-cli-service build",
+    "build": "cross-env ENV_FILE=.env.production.yaml vue-cli-service build --report",
     "lint": "vue-cli-service lint",
     "build:1": "cross-env MONA_TITLE=原神圣遗物工具 MONA_NEED_BEIAN=true MONA_BEIAN_NUMBER=1 MONA_NEED_MIGRATE=true MONA_ROUTE_MODE=hash vue-cli-service build",
     "build:2": "cross-env MONA_TITLE=莫娜占卜铺 MONA_NEED_BEIAN=true MONA_BEIAN_NUMBER=2 MONA_NEED_MIGRATE=false MONA_ROUTE_MODE=history vue-cli-service build",
@@ -13,7 +13,9 @@
     "inspect": "vue inspect > inspect.js",
     "myserve": "serve ./dist",
     "pack": "tar -czvf dist.tar.gz ./dist",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "build:wasm": "wasm-pack build sub/mona_wasm",
+    "gen_meta": "cargo run --release --bin gen_meta --manifest-path sub/mona_generate/Cargo.toml -- --dir src/assets"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -27,7 +29,6 @@
     "echarts": "^5.3.2",
     "element-ui": "^2.15.6",
     "fuse.js": "^6.5.3",
-    "genshin_panel": "^2.21.0",
     "is-electron": "^2.2.0",
     "katex": "^0.13.0",
     "object-hash": "^2.2.0",
@@ -53,6 +54,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.2.0",
     "eslint-plugin-vue": "^8.2.0",
+    "ifdef-loader": "^2.3.2",
     "js-yaml": "^4.1.0",
     "mustache": "^4.2.0",
     "node-html-parser": "^3.2.0",

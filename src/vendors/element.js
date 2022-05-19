@@ -1,5 +1,7 @@
-import Vue from "vue";
-import "element-ui/lib/theme-chalk/index.css";
+import Vue from "vue"
+
+/// #if !USE_CDN
+import "element-ui/lib/theme-chalk/index.css"
 import "element-ui/lib/theme-chalk/display.css"
 import {
     Tree,
@@ -123,3 +125,4 @@ Vue.prototype.$alert = MessageBox.alert;
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$message = Message;
+/// #endif

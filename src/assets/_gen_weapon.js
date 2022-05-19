@@ -1,275 +1,281 @@
 // generated file, do not edit
-
-import MistsplitterReforged_tn from "@image/weapons/MistsplitterReforged_tn"
-
-import AquilaFavonia_tn from "@image/weapons/AquilaFavonia_tn"
-
-import SummitShaper_tn from "@image/weapons/SummitShaper_tn"
-
-import SkywardBlade_tn from "@image/weapons/SkywardBlade_tn"
-
-import FreedomSworn_tn from "@image/weapons/FreedomSworn_tn"
-
-import PrimordialJadeCutter_tn from "@image/weapons/PrimordialJadeCutter_tn"
-
-import TheFlute_tn from "@image/weapons/TheFlute_tn"
-
-import TheBlackSword_tn from "@image/weapons/TheBlackSword_tn"
-
-import TheAlleyFlash_tn from "@image/weapons/TheAlleyFlash_tn"
-
-import SwordOfDescension_tn from "@image/weapons/SwordOfDescension_tn"
-
-import SacrificialSword_tn from "@image/weapons/SacrificialSword_tn"
-
-import RoyalLongsword_tn from "@image/weapons/RoyalLongsword_tn"
-
-import PrototypeRancour_tn from "@image/weapons/PrototypeRancour_tn"
-
-import AmenomaKageuchi_tn from "@image/weapons/AmenomaKageuchi_tn"
-
-import LionsRoar_tn from "@image/weapons/LionsRoar_tn"
-
-import IronSting_tn from "@image/weapons/IronSting_tn"
-
-import FesteringDesire_tn from "@image/weapons/FesteringDesire_tn"
-
-import FavoniusSword_tn from "@image/weapons/FavoniusSword_tn"
-
-import CinnabarSpindle_tn from "@image/weapons/CinnabarSpindle_tn"
-
-import BlackcliffLongsword_tn from "@image/weapons/BlackcliffLongsword_tn"
-
-import HarbingerOfDawn_tn from "@image/weapons/HarbingerOfDawn_tn"
-
-import FilletBlade_tn from "@image/weapons/FilletBlade_tn"
-
-import SkyriderSword_tn from "@image/weapons/SkyriderSword_tn"
-
-import DarkIronSword_tn from "@image/weapons/DarkIronSword_tn"
-
-import CoolSteel_tn from "@image/weapons/CoolSteel_tn"
-
-import TravelersHandySword_tn from "@image/weapons/TravelersHandySword_tn"
-
-import SilverSword_tn from "@image/weapons/SilverSword_tn"
-
-import DullBlade_tn from "@image/weapons/DullBlade_tn"
-
-import HaranGeppakuFutsu_tn from "@image/weapons/HaranGeppakuFutsu_tn"
-
-import WolfsGravestone_tn from "@image/weapons/WolfsGravestone_tn"
-
-import SkywardPride_tn from "@image/weapons/SkywardPride_tn"
-
-import TheUnforged_tn from "@image/weapons/TheUnforged_tn"
-
-import SongOfBrokenPines_tn from "@image/weapons/SongOfBrokenPines_tn"
-
-import RedhornStonethresher_tn from "@image/weapons/RedhornStonethresher_tn"
-
-import Akuoumaru_tn from "@image/weapons/Akuoumaru_tn"
-
-import RoyalGreatsword_tn from "@image/weapons/RoyalGreatsword_tn"
-
-import Whiteblind_tn from "@image/weapons/Whiteblind_tn"
-
-import TheBell_tn from "@image/weapons/TheBell_tn"
-
-import SnowTombedStarsilver_tn from "@image/weapons/SnowTombedStarsilver_tn"
-
-import FavoniusGreatsword_tn from "@image/weapons/FavoniusGreatsword_tn"
-
-import KatsuragikiriNagamasa_tn from "@image/weapons/KatsuragikiriNagamasa_tn"
-
-import SacrificialGreatsword_tn from "@image/weapons/SacrificialGreatsword_tn"
-
-import SerpentSpine_tn from "@image/weapons/SerpentSpine_tn"
-
-import BlackcliffSlasher_tn from "@image/weapons/BlackcliffSlasher_tn"
-
-import Rainslasher_tn from "@image/weapons/Rainslasher_tn"
-
-import PrototypeArchaic_tn from "@image/weapons/PrototypeArchaic_tn"
-
-import LuxuriousSeaLord_tn from "@image/weapons/LuxuriousSeaLord_tn"
-
-import LithicBlade_tn from "@image/weapons/LithicBlade_tn"
-
-import SkyriderGreatsword_tn from "@image/weapons/SkyriderGreatsword_tn"
-
-import DebateClub_tn from "@image/weapons/DebateClub_tn"
-
-import BloodstainedGreatsword_tn from "@image/weapons/BloodstainedGreatsword_tn"
-
-import WhiteIronGreatsword_tn from "@image/weapons/WhiteIronGreatsword_tn"
-
-import FerrousShadow_tn from "@image/weapons/FerrousShadow_tn"
-
-import OldMercsPal_tn from "@image/weapons/OldMercsPal_tn"
-
-import WasterGreatsword_tn from "@image/weapons/WasterGreatsword_tn"
-
-import EngulfingLightning_tn from "@image/weapons/EngulfingLightning_tn"
-
-import SkywardSpine_tn from "@image/weapons/SkywardSpine_tn"
-
-import PrimordialJadeWingedSpear_tn from "@image/weapons/PrimordialJadeWingedSpear_tn"
-
-import CalamityQueller_tn from "@image/weapons/CalamityQueller_tn"
-
-import StaffOfHoma_tn from "@image/weapons/StaffOfHoma_tn"
-
-import VortexVanquisher_tn from "@image/weapons/VortexVanquisher_tn"
-
-import PrototypeStarglitter_tn from "@image/weapons/PrototypeStarglitter_tn"
-
-import LithicSpear_tn from "@image/weapons/LithicSpear_tn"
-
-import KitainCrossSpear_tn from "@image/weapons/KitainCrossSpear_tn"
-
-import TheCatch_tn from "@image/weapons/TheCatch_tn"
-
-import FavoniusLance_tn from "@image/weapons/FavoniusLance_tn"
-
-import DragonspineSpear_tn from "@image/weapons/DragonspineSpear_tn"
-
-import DragonsBane_tn from "@image/weapons/DragonsBane_tn"
-
-import Deathmatch_tn from "@image/weapons/Deathmatch_tn"
-
-import CrescentPike_tn from "@image/weapons/CrescentPike_tn"
-
-import BlackcliffPole_tn from "@image/weapons/BlackcliffPole_tn"
-
-import WavebreakersFin_tn from "@image/weapons/WavebreakersFin_tn"
-
-import RoyalSpear_tn from "@image/weapons/RoyalSpear_tn"
-
-import Halberd_tn from "@image/weapons/Halberd_tn"
-
-import BlackTassel_tn from "@image/weapons/BlackTassel_tn"
-
-import WhiteTassel_tn from "@image/weapons/WhiteTassel_tn"
-
-import IronPoint_tn from "@image/weapons/IronPoint_tn"
-
-import BeginnersProtector_tn from "@image/weapons/BeginnersProtector_tn"
-
-import LostPrayerToTheSacredWinds_tn from "@image/weapons/LostPrayerToTheSacredWinds_tn"
-
-import SkywardAtlas_tn from "@image/weapons/SkywardAtlas_tn"
-
-import EverlastingMoonglow_tn from "@image/weapons/EverlastingMoonglow_tn"
-
-import MemoryOfDust_tn from "@image/weapons/MemoryOfDust_tn"
-
-import WindAndSong_tn from "@image/weapons/WindAndSong_tn"
-
-import TheWidsith_tn from "@image/weapons/TheWidsith_tn"
-
-import SolarPearl_tn from "@image/weapons/SolarPearl_tn"
-
-import SacrificialFragments_tn from "@image/weapons/SacrificialFragments_tn"
-
-import RoyalGrimoire_tn from "@image/weapons/RoyalGrimoire_tn"
-
-import PrototypeAmber_tn from "@image/weapons/PrototypeAmber_tn"
-
-import MappaMare_tn from "@image/weapons/MappaMare_tn"
-
-import HakushinRing_tn from "@image/weapons/HakushinRing_tn"
-
-import Frostbearer_tn from "@image/weapons/Frostbearer_tn"
-
-import FavoniusCodex_tn from "@image/weapons/FavoniusCodex_tn"
-
-import EyeOfPerception_tn from "@image/weapons/EyeOfPerception_tn"
-
-import DodocoTales_tn from "@image/weapons/DodocoTales_tn"
-
-import BlackcliffAgate_tn from "@image/weapons/BlackcliffAgate_tn"
-
-import KagurasVerity_tn from "@image/weapons/KagurasVerity_tn"
-
-import OathswornEye_tn from "@image/weapons/OathswornEye_tn"
-
-import MagicGuide_tn from "@image/weapons/MagicGuide_tn"
-
-import OtherworldlyStory_tn from "@image/weapons/OtherworldlyStory_tn"
-
-import EmeraldOrb_tn from "@image/weapons/EmeraldOrb_tn"
-
-import ThrillingTalesOfDragonSlayers_tn from "@image/weapons/ThrillingTalesOfDragonSlayers_tn"
-
-import TwinNephrite_tn from "@image/weapons/TwinNephrite_tn"
-
-import PocketGrimoire_tn from "@image/weapons/PocketGrimoire_tn"
-
-import ApprenticesNotes_tn from "@image/weapons/ApprenticesNotes_tn"
-
-import PolarStar_tn from "@image/weapons/PolarStar_tn"
-
-import ThunderingPulse_tn from "@image/weapons/ThunderingPulse_tn"
-
-import ElegyOfTheEnd_tn from "@image/weapons/ElegyOfTheEnd_tn"
-
-import SkywardHarp_tn from "@image/weapons/SkywardHarp_tn"
-
-import AmosBow_tn from "@image/weapons/AmosBow_tn"
-
-import AlleyHunter_tn from "@image/weapons/AlleyHunter_tn"
-
-import TheViridescentHunt_tn from "@image/weapons/TheViridescentHunt_tn"
-
-import TheStringless_tn from "@image/weapons/TheStringless_tn"
-
-import SacrificialBow_tn from "@image/weapons/SacrificialBow_tn"
-
-import Rust_tn from "@image/weapons/Rust_tn"
-
-import RoyalBow_tn from "@image/weapons/RoyalBow_tn"
-
-import Predator_tn from "@image/weapons/Predator_tn"
-
-import PrototypeCrescent_tn from "@image/weapons/PrototypeCrescent_tn"
-
-import MouunsMoon_tn from "@image/weapons/MouunsMoon_tn"
-
-import MitternachtsWaltz_tn from "@image/weapons/MitternachtsWaltz_tn"
-
-import Hamayumi_tn from "@image/weapons/Hamayumi_tn"
-
-import FavoniusWarbow_tn from "@image/weapons/FavoniusWarbow_tn"
-
-import CompoundBow_tn from "@image/weapons/CompoundBow_tn"
-
-import BlackcliffWarbow_tn from "@image/weapons/BlackcliffWarbow_tn"
-
-import WindblumeOde_tn from "@image/weapons/WindblumeOde_tn"
-
-import RavenBow_tn from "@image/weapons/RavenBow_tn"
-
-import RecurveBow_tn from "@image/weapons/RecurveBow_tn"
-
-import Messenger_tn from "@image/weapons/Messenger_tn"
-
-import SharpshootersOath_tn from "@image/weapons/SharpshootersOath_tn"
-
-import Slingshot_tn from "@image/weapons/Slingshot_tn"
-
-import SeasonedHuntersBow_tn from "@image/weapons/SeasonedHuntersBow_tn"
-
-import HuntersBow_tn from "@image/weapons/HuntersBow_tn"
-
+// 
+// import MistsplitterReforged_tn from "@image/weapons/MistsplitterReforged_tn"
+// 
+// import AquilaFavonia_tn from "@image/weapons/AquilaFavonia_tn"
+// 
+// import SummitShaper_tn from "@image/weapons/SummitShaper_tn"
+// 
+// import SkywardBlade_tn from "@image/weapons/SkywardBlade_tn"
+// 
+// import FreedomSworn_tn from "@image/weapons/FreedomSworn_tn"
+// 
+// import PrimordialJadeCutter_tn from "@image/weapons/PrimordialJadeCutter_tn"
+// 
+// import TheFlute_tn from "@image/weapons/TheFlute_tn"
+// 
+// import TheBlackSword_tn from "@image/weapons/TheBlackSword_tn"
+// 
+// import TheAlleyFlash_tn from "@image/weapons/TheAlleyFlash_tn"
+// 
+// import SwordOfDescension_tn from "@image/weapons/SwordOfDescension_tn"
+// 
+// import SacrificialSword_tn from "@image/weapons/SacrificialSword_tn"
+// 
+// import RoyalLongsword_tn from "@image/weapons/RoyalLongsword_tn"
+// 
+// import PrototypeRancour_tn from "@image/weapons/PrototypeRancour_tn"
+// 
+// import AmenomaKageuchi_tn from "@image/weapons/AmenomaKageuchi_tn"
+// 
+// import LionsRoar_tn from "@image/weapons/LionsRoar_tn"
+// 
+// import IronSting_tn from "@image/weapons/IronSting_tn"
+// 
+// import FesteringDesire_tn from "@image/weapons/FesteringDesire_tn"
+// 
+// import FavoniusSword_tn from "@image/weapons/FavoniusSword_tn"
+// 
+// import CinnabarSpindle_tn from "@image/weapons/CinnabarSpindle_tn"
+// 
+// import BlackcliffLongsword_tn from "@image/weapons/BlackcliffLongsword_tn"
+// 
+// import HarbingerOfDawn_tn from "@image/weapons/HarbingerOfDawn_tn"
+// 
+// import FilletBlade_tn from "@image/weapons/FilletBlade_tn"
+// 
+// import SkyriderSword_tn from "@image/weapons/SkyriderSword_tn"
+// 
+// import DarkIronSword_tn from "@image/weapons/DarkIronSword_tn"
+// 
+// import CoolSteel_tn from "@image/weapons/CoolSteel_tn"
+// 
+// import TravelersHandySword_tn from "@image/weapons/TravelersHandySword_tn"
+// 
+// import SilverSword_tn from "@image/weapons/SilverSword_tn"
+// 
+// import DullBlade_tn from "@image/weapons/DullBlade_tn"
+// 
+// import HaranGeppakuFutsu_tn from "@image/weapons/HaranGeppakuFutsu_tn"
+// 
+// import WolfsGravestone_tn from "@image/weapons/WolfsGravestone_tn"
+// 
+// import SkywardPride_tn from "@image/weapons/SkywardPride_tn"
+// 
+// import TheUnforged_tn from "@image/weapons/TheUnforged_tn"
+// 
+// import SongOfBrokenPines_tn from "@image/weapons/SongOfBrokenPines_tn"
+// 
+// import RedhornStonethresher_tn from "@image/weapons/RedhornStonethresher_tn"
+// 
+// import Akuoumaru_tn from "@image/weapons/Akuoumaru_tn"
+// 
+// import RoyalGreatsword_tn from "@image/weapons/RoyalGreatsword_tn"
+// 
+// import Whiteblind_tn from "@image/weapons/Whiteblind_tn"
+// 
+// import TheBell_tn from "@image/weapons/TheBell_tn"
+// 
+// import SnowTombedStarsilver_tn from "@image/weapons/SnowTombedStarsilver_tn"
+// 
+// import FavoniusGreatsword_tn from "@image/weapons/FavoniusGreatsword_tn"
+// 
+// import KatsuragikiriNagamasa_tn from "@image/weapons/KatsuragikiriNagamasa_tn"
+// 
+// import SacrificialGreatsword_tn from "@image/weapons/SacrificialGreatsword_tn"
+// 
+// import SerpentSpine_tn from "@image/weapons/SerpentSpine_tn"
+// 
+// import BlackcliffSlasher_tn from "@image/weapons/BlackcliffSlasher_tn"
+// 
+// import Rainslasher_tn from "@image/weapons/Rainslasher_tn"
+// 
+// import PrototypeArchaic_tn from "@image/weapons/PrototypeArchaic_tn"
+// 
+// import LuxuriousSeaLord_tn from "@image/weapons/LuxuriousSeaLord_tn"
+// 
+// import LithicBlade_tn from "@image/weapons/LithicBlade_tn"
+// 
+// import SkyriderGreatsword_tn from "@image/weapons/SkyriderGreatsword_tn"
+// 
+// import DebateClub_tn from "@image/weapons/DebateClub_tn"
+// 
+// import BloodstainedGreatsword_tn from "@image/weapons/BloodstainedGreatsword_tn"
+// 
+// import WhiteIronGreatsword_tn from "@image/weapons/WhiteIronGreatsword_tn"
+// 
+// import FerrousShadow_tn from "@image/weapons/FerrousShadow_tn"
+// 
+// import OldMercsPal_tn from "@image/weapons/OldMercsPal_tn"
+// 
+// import WasterGreatsword_tn from "@image/weapons/WasterGreatsword_tn"
+// 
+// import EngulfingLightning_tn from "@image/weapons/EngulfingLightning_tn"
+// 
+// import SkywardSpine_tn from "@image/weapons/SkywardSpine_tn"
+// 
+// import PrimordialJadeWingedSpear_tn from "@image/weapons/PrimordialJadeWingedSpear_tn"
+// 
+// import CalamityQueller_tn from "@image/weapons/CalamityQueller_tn"
+// 
+// import StaffOfHoma_tn from "@image/weapons/StaffOfHoma_tn"
+// 
+// import VortexVanquisher_tn from "@image/weapons/VortexVanquisher_tn"
+// 
+// import PrototypeStarglitter_tn from "@image/weapons/PrototypeStarglitter_tn"
+// 
+// import LithicSpear_tn from "@image/weapons/LithicSpear_tn"
+// 
+// import KitainCrossSpear_tn from "@image/weapons/KitainCrossSpear_tn"
+// 
+// import TheCatch_tn from "@image/weapons/TheCatch_tn"
+// 
+// import FavoniusLance_tn from "@image/weapons/FavoniusLance_tn"
+// 
+// import DragonspineSpear_tn from "@image/weapons/DragonspineSpear_tn"
+// 
+// import DragonsBane_tn from "@image/weapons/DragonsBane_tn"
+// 
+// import Deathmatch_tn from "@image/weapons/Deathmatch_tn"
+// 
+// import CrescentPike_tn from "@image/weapons/CrescentPike_tn"
+// 
+// import BlackcliffPole_tn from "@image/weapons/BlackcliffPole_tn"
+// 
+// import WavebreakersFin_tn from "@image/weapons/WavebreakersFin_tn"
+// 
+// import RoyalSpear_tn from "@image/weapons/RoyalSpear_tn"
+// 
+// import Halberd_tn from "@image/weapons/Halberd_tn"
+// 
+// import BlackTassel_tn from "@image/weapons/BlackTassel_tn"
+// 
+// import WhiteTassel_tn from "@image/weapons/WhiteTassel_tn"
+// 
+// import IronPoint_tn from "@image/weapons/IronPoint_tn"
+// 
+// import BeginnersProtector_tn from "@image/weapons/BeginnersProtector_tn"
+// 
+// import LostPrayerToTheSacredWinds_tn from "@image/weapons/LostPrayerToTheSacredWinds_tn"
+// 
+// import SkywardAtlas_tn from "@image/weapons/SkywardAtlas_tn"
+// 
+// import EverlastingMoonglow_tn from "@image/weapons/EverlastingMoonglow_tn"
+// 
+// import MemoryOfDust_tn from "@image/weapons/MemoryOfDust_tn"
+// 
+// import WindAndSong_tn from "@image/weapons/WindAndSong_tn"
+// 
+// import TheWidsith_tn from "@image/weapons/TheWidsith_tn"
+// 
+// import SolarPearl_tn from "@image/weapons/SolarPearl_tn"
+// 
+// import SacrificialFragments_tn from "@image/weapons/SacrificialFragments_tn"
+// 
+// import RoyalGrimoire_tn from "@image/weapons/RoyalGrimoire_tn"
+// 
+// import PrototypeAmber_tn from "@image/weapons/PrototypeAmber_tn"
+// 
+// import MappaMare_tn from "@image/weapons/MappaMare_tn"
+// 
+// import HakushinRing_tn from "@image/weapons/HakushinRing_tn"
+// 
+// import Frostbearer_tn from "@image/weapons/Frostbearer_tn"
+// 
+// import FavoniusCodex_tn from "@image/weapons/FavoniusCodex_tn"
+// 
+// import EyeOfPerception_tn from "@image/weapons/EyeOfPerception_tn"
+// 
+// import DodocoTales_tn from "@image/weapons/DodocoTales_tn"
+// 
+// import BlackcliffAgate_tn from "@image/weapons/BlackcliffAgate_tn"
+// 
+// import KagurasVerity_tn from "@image/weapons/KagurasVerity_tn"
+// 
+// import OathswornEye_tn from "@image/weapons/OathswornEye_tn"
+// 
+// import MagicGuide_tn from "@image/weapons/MagicGuide_tn"
+// 
+// import OtherworldlyStory_tn from "@image/weapons/OtherworldlyStory_tn"
+// 
+// import EmeraldOrb_tn from "@image/weapons/EmeraldOrb_tn"
+// 
+// import ThrillingTalesOfDragonSlayers_tn from "@image/weapons/ThrillingTalesOfDragonSlayers_tn"
+// 
+// import TwinNephrite_tn from "@image/weapons/TwinNephrite_tn"
+// 
+// import PocketGrimoire_tn from "@image/weapons/PocketGrimoire_tn"
+// 
+// import ApprenticesNotes_tn from "@image/weapons/ApprenticesNotes_tn"
+// 
+// import PolarStar_tn from "@image/weapons/PolarStar_tn"
+// 
+// import ThunderingPulse_tn from "@image/weapons/ThunderingPulse_tn"
+// 
+// import ElegyOfTheEnd_tn from "@image/weapons/ElegyOfTheEnd_tn"
+// 
+// import SkywardHarp_tn from "@image/weapons/SkywardHarp_tn"
+// 
+// import AmosBow_tn from "@image/weapons/AmosBow_tn"
+// 
+// import AlleyHunter_tn from "@image/weapons/AlleyHunter_tn"
+// 
+// import TheViridescentHunt_tn from "@image/weapons/TheViridescentHunt_tn"
+// 
+// import TheStringless_tn from "@image/weapons/TheStringless_tn"
+// 
+// import SacrificialBow_tn from "@image/weapons/SacrificialBow_tn"
+// 
+// import Rust_tn from "@image/weapons/Rust_tn"
+// 
+// import RoyalBow_tn from "@image/weapons/RoyalBow_tn"
+// 
+// import Predator_tn from "@image/weapons/Predator_tn"
+// 
+// import PrototypeCrescent_tn from "@image/weapons/PrototypeCrescent_tn"
+// 
+// import MouunsMoon_tn from "@image/weapons/MouunsMoon_tn"
+// 
+// import MitternachtsWaltz_tn from "@image/weapons/MitternachtsWaltz_tn"
+// 
+// import Hamayumi_tn from "@image/weapons/Hamayumi_tn"
+// 
+// import FavoniusWarbow_tn from "@image/weapons/FavoniusWarbow_tn"
+// 
+// import CompoundBow_tn from "@image/weapons/CompoundBow_tn"
+// 
+// import BlackcliffWarbow_tn from "@image/weapons/BlackcliffWarbow_tn"
+// 
+// import WindblumeOde_tn from "@image/weapons/WindblumeOde_tn"
+// 
+// import RavenBow_tn from "@image/weapons/RavenBow_tn"
+// 
+// import RecurveBow_tn from "@image/weapons/RecurveBow_tn"
+// 
+// import Messenger_tn from "@image/weapons/Messenger_tn"
+// 
+// import SharpshootersOath_tn from "@image/weapons/SharpshootersOath_tn"
+// 
+// import Slingshot_tn from "@image/weapons/Slingshot_tn"
+// 
+// import SeasonedHuntersBow_tn from "@image/weapons/SeasonedHuntersBow_tn"
+// 
+// import HuntersBow_tn from "@image/weapons/HuntersBow_tn"
+// 
+
+const template = "https://upload-bbs.mihoyo.com/game_record/genshin/equip/UI_EquipIcon_#.png"
+
+const imageUrl = name => template.replace("#", name)
 
 export default {
 
     MistsplitterReforged: {
         name: "MistsplitterReforged",
+        internalName: "Sword_Narukami",
         chs: "雾切之回光",
         star: 5,
-        url: MistsplitterReforged_tn,
+        // url: MistsplitterReforged_tn,
+        url: imageUrl("Sword_Narukami"),
         type: "Sword",
 
         
@@ -287,9 +293,11 @@ export default {
 
     AquilaFavonia: {
         name: "AquilaFavonia",
+        internalName: "Sword_Falcon",
         chs: "风鹰剑",
         star: 5,
-        url: AquilaFavonia_tn,
+        // url: AquilaFavonia_tn,
+        url: imageUrl("Sword_Falcon"),
         type: "Sword",
 
         
@@ -303,9 +311,11 @@ export default {
 
     SummitShaper: {
         name: "SummitShaper",
+        internalName: "Sword_Kunwu",
         chs: "斫峰之刃",
         star: 5,
-        url: SummitShaper_tn,
+        // url: SummitShaper_tn,
+        url: imageUrl("Sword_Kunwu"),
         type: "Sword",
 
         
@@ -325,9 +335,11 @@ export default {
 
     SkywardBlade: {
         name: "SkywardBlade",
+        internalName: "Sword_Dvalin",
         chs: "天空之刃",
         star: 5,
-        url: SkywardBlade_tn,
+        // url: SkywardBlade_tn,
+        url: imageUrl("Sword_Dvalin"),
         type: "Sword",
 
         
@@ -341,9 +353,11 @@ export default {
 
     FreedomSworn: {
         name: "FreedomSworn",
+        internalName: "Sword_Widsith",
         chs: "苍古自由之誓",
         star: 5,
-        url: FreedomSworn_tn,
+        // url: FreedomSworn_tn,
+        url: imageUrl("Sword_Widsith"),
         type: "Sword",
 
         
@@ -361,9 +375,11 @@ export default {
 
     PrimordialJadeCutter: {
         name: "PrimordialJadeCutter",
+        internalName: "Sword_Morax",
         chs: "磐岩结绿",
         star: 5,
-        url: PrimordialJadeCutter_tn,
+        // url: PrimordialJadeCutter_tn,
+        url: imageUrl("Sword_Morax"),
         type: "Sword",
 
         
@@ -377,9 +393,11 @@ export default {
 
     TheFlute: {
         name: "TheFlute",
+        internalName: "Sword_Troupe",
         chs: "笛剑",
         star: 4,
-        url: TheFlute_tn,
+        // url: TheFlute_tn,
+        url: imageUrl("Sword_Troupe"),
         type: "Sword",
 
         
@@ -393,9 +411,11 @@ export default {
 
     TheBlackSword: {
         name: "TheBlackSword",
+        internalName: "Sword_Bloodstained",
         chs: "黑剑",
         star: 4,
-        url: TheBlackSword_tn,
+        // url: TheBlackSword_tn,
+        url: imageUrl("Sword_Bloodstained"),
         type: "Sword",
 
         
@@ -409,9 +429,11 @@ export default {
 
     TheAlleyFlash: {
         name: "TheAlleyFlash",
+        internalName: "Sword_Outlaw",
         chs: "暗巷闪光",
         star: 4,
-        url: TheAlleyFlash_tn,
+        // url: TheAlleyFlash_tn,
+        url: imageUrl("Sword_Outlaw"),
         type: "Sword",
 
         
@@ -429,9 +451,11 @@ export default {
 
     SwordOfDescension: {
         name: "SwordOfDescension",
+        internalName: "Sword_Psalmus",
         chs: "降临之剑",
         star: 4,
-        url: SwordOfDescension_tn,
+        // url: SwordOfDescension_tn,
+        url: imageUrl("Sword_Psalmus"),
         type: "Sword",
 
         
@@ -445,9 +469,11 @@ export default {
 
     SacrificialSword: {
         name: "SacrificialSword",
+        internalName: "Sword_Fossil",
         chs: "祭礼剑",
         star: 4,
-        url: SacrificialSword_tn,
+        // url: SacrificialSword_tn,
+        url: imageUrl("Sword_Fossil"),
         type: "Sword",
 
         
@@ -461,9 +487,11 @@ export default {
 
     RoyalLongsword: {
         name: "RoyalLongsword",
+        internalName: "Sword_Theocrat",
         chs: "宗室长剑",
         star: 4,
-        url: RoyalLongsword_tn,
+        // url: RoyalLongsword_tn,
+        url: imageUrl("Sword_Theocrat"),
         type: "Sword",
 
         
@@ -477,9 +505,11 @@ export default {
 
     PrototypeRancour: {
         name: "PrototypeRancour",
+        internalName: "Sword_Proto",
         chs: "试作斩岩",
         star: 4,
-        url: PrototypeRancour_tn,
+        // url: PrototypeRancour_tn,
+        url: imageUrl("Sword_Proto"),
         type: "Sword",
 
         
@@ -497,9 +527,11 @@ export default {
 
     AmenomaKageuchi: {
         name: "AmenomaKageuchi",
+        internalName: "Sword_Bakufu",
         chs: "天目影打刀",
         star: 4,
-        url: AmenomaKageuchi_tn,
+        // url: AmenomaKageuchi_tn,
+        url: imageUrl("Sword_Bakufu"),
         type: "Sword",
 
         
@@ -513,9 +545,11 @@ export default {
 
     LionsRoar: {
         name: "LionsRoar",
+        internalName: "Sword_Rockkiller",
         chs: "匣里龙吟",
         star: 4,
-        url: LionsRoar_tn,
+        // url: LionsRoar_tn,
+        url: imageUrl("Sword_Rockkiller"),
         type: "Sword",
 
         
@@ -533,9 +567,11 @@ export default {
 
     IronSting: {
         name: "IronSting",
+        internalName: "Sword_Exotic",
         chs: "铁蜂刺",
         star: 4,
-        url: IronSting_tn,
+        // url: IronSting_tn,
+        url: imageUrl("Sword_Exotic"),
         type: "Sword",
 
         
@@ -553,9 +589,11 @@ export default {
 
     FesteringDesire: {
         name: "FesteringDesire",
+        internalName: "Sword_Magnum",
         chs: "腐殖之剑",
         star: 4,
-        url: FesteringDesire_tn,
+        // url: FesteringDesire_tn,
+        url: imageUrl("Sword_Magnum"),
         type: "Sword",
 
         
@@ -569,9 +607,11 @@ export default {
 
     FavoniusSword: {
         name: "FavoniusSword",
+        internalName: "Sword_Zephyrus",
         chs: "西风剑",
         star: 4,
-        url: FavoniusSword_tn,
+        // url: FavoniusSword_tn,
+        url: imageUrl("Sword_Zephyrus"),
         type: "Sword",
 
         
@@ -585,9 +625,11 @@ export default {
 
     CinnabarSpindle: {
         name: "CinnabarSpindle",
+        internalName: "Sword_Opus",
         chs: "辰砂之纺锤",
         star: 4,
-        url: CinnabarSpindle_tn,
+        // url: CinnabarSpindle_tn,
+        url: imageUrl("Sword_Opus"),
         type: "Sword",
 
         
@@ -605,9 +647,11 @@ export default {
 
     BlackcliffLongsword: {
         name: "BlackcliffLongsword",
+        internalName: "Sword_Blackrock",
         chs: "黑岩长剑",
         star: 4,
-        url: BlackcliffLongsword_tn,
+        // url: BlackcliffLongsword_tn,
+        url: imageUrl("Sword_Blackrock"),
         type: "Sword",
 
         
@@ -625,9 +669,11 @@ export default {
 
     HarbingerOfDawn: {
         name: "HarbingerOfDawn",
+        internalName: "Sword_Dawn",
         chs: "黎明神剑",
         star: 3,
-        url: HarbingerOfDawn_tn,
+        // url: HarbingerOfDawn_tn,
+        url: imageUrl("Sword_Dawn"),
         type: "Sword",
 
         
@@ -645,9 +691,11 @@ export default {
 
     FilletBlade: {
         name: "FilletBlade",
+        internalName: "Sword_Sashimi",
         chs: "吃虎鱼刀",
         star: 3,
-        url: FilletBlade_tn,
+        // url: FilletBlade_tn,
+        url: imageUrl("Sword_Sashimi"),
         type: "Sword",
 
         
@@ -661,9 +709,11 @@ export default {
 
     SkyriderSword: {
         name: "SkyriderSword",
+        internalName: "Sword_Mitsurugi",
         chs: "飞天御剑",
         star: 3,
-        url: SkyriderSword_tn,
+        // url: SkyriderSword_tn,
+        url: imageUrl("Sword_Mitsurugi"),
         type: "Sword",
 
         
@@ -681,9 +731,11 @@ export default {
 
     DarkIronSword: {
         name: "DarkIronSword",
+        internalName: "Sword_Darker",
         chs: "暗铁剑",
         star: 3,
-        url: DarkIronSword_tn,
+        // url: DarkIronSword_tn,
+        url: imageUrl("Sword_Darker"),
         type: "Sword",
 
         
@@ -701,9 +753,11 @@ export default {
 
     CoolSteel: {
         name: "CoolSteel",
+        internalName: "Sword_Steel",
         chs: "冷刃",
         star: 3,
-        url: CoolSteel_tn,
+        // url: CoolSteel_tn,
+        url: imageUrl("Sword_Steel"),
         type: "Sword",
 
         
@@ -721,9 +775,11 @@ export default {
 
     TravelersHandySword: {
         name: "TravelersHandySword",
+        internalName: "Sword_Traveler",
         chs: "旅行剑",
         star: 3,
-        url: TravelersHandySword_tn,
+        // url: TravelersHandySword_tn,
+        url: imageUrl("Sword_Traveler"),
         type: "Sword",
 
         
@@ -737,9 +793,11 @@ export default {
 
     SilverSword: {
         name: "SilverSword",
+        internalName: "Sword_Silver",
         chs: "银剑",
         star: 2,
-        url: SilverSword_tn,
+        // url: SilverSword_tn,
+        url: imageUrl("Sword_Silver"),
         type: "Sword",
 
         
@@ -753,9 +811,11 @@ export default {
 
     DullBlade: {
         name: "DullBlade",
+        internalName: "Sword_Blunt",
         chs: "无锋剑",
         star: 1,
-        url: DullBlade_tn,
+        // url: DullBlade_tn,
+        url: imageUrl("Sword_Blunt"),
         type: "Sword",
 
         
@@ -769,9 +829,11 @@ export default {
 
     HaranGeppakuFutsu: {
         name: "HaranGeppakuFutsu",
+        internalName: "Sword_Amenoma",
         chs: "波乱月白经津",
         star: 5,
-        url: HaranGeppakuFutsu_tn,
+        // url: HaranGeppakuFutsu_tn,
+        url: imageUrl("Sword_Amenoma"),
         type: "Sword",
 
         
@@ -789,9 +851,11 @@ export default {
 
     WolfsGravestone: {
         name: "WolfsGravestone",
+        internalName: "Claymore_Wolfmound",
         chs: "狼的末路",
         star: 5,
-        url: WolfsGravestone_tn,
+        // url: WolfsGravestone_tn,
+        url: imageUrl("Claymore_Wolfmound"),
         type: "Claymore",
 
         
@@ -809,9 +873,11 @@ export default {
 
     SkywardPride: {
         name: "SkywardPride",
+        internalName: "Claymore_Dvalin",
         chs: "天空之傲",
         star: 5,
-        url: SkywardPride_tn,
+        // url: SkywardPride_tn,
+        url: imageUrl("Claymore_Dvalin"),
         type: "Claymore",
 
         
@@ -825,9 +891,11 @@ export default {
 
     TheUnforged: {
         name: "TheUnforged",
+        internalName: "Claymore_Kunwu",
         chs: "无工之剑",
         star: 5,
-        url: TheUnforged_tn,
+        // url: TheUnforged_tn,
+        url: imageUrl("Claymore_Kunwu"),
         type: "Claymore",
 
         
@@ -847,9 +915,11 @@ export default {
 
     SongOfBrokenPines: {
         name: "SongOfBrokenPines",
+        internalName: "Claymore_Widsith",
         chs: "松籁响起之时",
         star: 5,
-        url: SongOfBrokenPines_tn,
+        // url: SongOfBrokenPines_tn,
+        url: imageUrl("Claymore_Widsith"),
         type: "Claymore",
 
         
@@ -867,9 +937,11 @@ export default {
 
     RedhornStonethresher: {
         name: "RedhornStonethresher",
+        internalName: "Claymore_Itadorimaru",
         chs: "赤角石溃杵",
         star: 5,
-        url: RedhornStonethresher_tn,
+        // url: RedhornStonethresher_tn,
+        url: imageUrl("Claymore_Itadorimaru"),
         type: "Claymore",
 
         
@@ -883,9 +955,11 @@ export default {
 
     Akuoumaru: {
         name: "Akuoumaru",
+        internalName: "Claymore_Maria",
         chs: "恶王丸",
         star: 4,
-        url: Akuoumaru_tn,
+        // url: Akuoumaru_tn,
+        url: imageUrl("Claymore_Maria"),
         type: "Claymore",
 
         
@@ -903,9 +977,11 @@ export default {
 
     RoyalGreatsword: {
         name: "RoyalGreatsword",
+        internalName: "Claymore_Theocrat",
         chs: "宗室大剑",
         star: 4,
-        url: RoyalGreatsword_tn,
+        // url: RoyalGreatsword_tn,
+        url: imageUrl("Claymore_Theocrat"),
         type: "Claymore",
 
         
@@ -919,9 +995,11 @@ export default {
 
     Whiteblind: {
         name: "Whiteblind",
+        internalName: "Claymore_Exotic",
         chs: "白影剑",
         star: 4,
-        url: Whiteblind_tn,
+        // url: Whiteblind_tn,
+        url: imageUrl("Claymore_Exotic"),
         type: "Claymore",
 
         
@@ -939,9 +1017,11 @@ export default {
 
     TheBell: {
         name: "TheBell",
+        internalName: "Claymore_Troupe",
         chs: "钟剑",
         star: 4,
-        url: TheBell_tn,
+        // url: TheBell_tn,
+        url: imageUrl("Claymore_Troupe"),
         type: "Claymore",
 
         
@@ -959,9 +1039,11 @@ export default {
 
     SnowTombedStarsilver: {
         name: "SnowTombedStarsilver",
+        internalName: "Claymore_Dragonfell",
         chs: "雪葬的星银",
         star: 4,
-        url: SnowTombedStarsilver_tn,
+        // url: SnowTombedStarsilver_tn,
+        url: imageUrl("Claymore_Dragonfell"),
         type: "Claymore",
 
         
@@ -975,9 +1057,11 @@ export default {
 
     FavoniusGreatsword: {
         name: "FavoniusGreatsword",
+        internalName: "Claymore_Zephyrus",
         chs: "西风大剑",
         star: 4,
-        url: FavoniusGreatsword_tn,
+        // url: FavoniusGreatsword_tn,
+        url: imageUrl("Claymore_Zephyrus"),
         type: "Claymore",
 
         
@@ -991,9 +1075,11 @@ export default {
 
     KatsuragikiriNagamasa: {
         name: "KatsuragikiriNagamasa",
+        internalName: "Claymore_Bakufu",
         chs: "桂木斩长正",
         star: 4,
-        url: KatsuragikiriNagamasa_tn,
+        // url: KatsuragikiriNagamasa_tn,
+        url: imageUrl("Claymore_Bakufu"),
         type: "Claymore",
 
         
@@ -1007,9 +1093,11 @@ export default {
 
     SacrificialGreatsword: {
         name: "SacrificialGreatsword",
+        internalName: "Claymore_Fossil",
         chs: "祭礼大剑",
         star: 4,
-        url: SacrificialGreatsword_tn,
+        // url: SacrificialGreatsword_tn,
+        url: imageUrl("Claymore_Fossil"),
         type: "Claymore",
 
         
@@ -1023,9 +1111,11 @@ export default {
 
     SerpentSpine: {
         name: "SerpentSpine",
+        internalName: "Claymore_Kione",
         chs: "螭骨剑",
         star: 4,
-        url: SerpentSpine_tn,
+        // url: SerpentSpine_tn,
+        url: imageUrl("Claymore_Kione"),
         type: "Claymore",
 
         
@@ -1043,9 +1133,11 @@ export default {
 
     BlackcliffSlasher: {
         name: "BlackcliffSlasher",
+        internalName: "Claymore_Blackrock",
         chs: "黑岩斩刀",
         star: 4,
-        url: BlackcliffSlasher_tn,
+        // url: BlackcliffSlasher_tn,
+        url: imageUrl("Claymore_Blackrock"),
         type: "Claymore",
 
         
@@ -1063,9 +1155,11 @@ export default {
 
     Rainslasher: {
         name: "Rainslasher",
+        internalName: "Claymore_Perdue",
         chs: "雨裁",
         star: 4,
-        url: Rainslasher_tn,
+        // url: Rainslasher_tn,
+        url: imageUrl("Claymore_Perdue"),
         type: "Claymore",
 
         
@@ -1083,9 +1177,11 @@ export default {
 
     PrototypeArchaic: {
         name: "PrototypeArchaic",
+        internalName: "Claymore_Proto",
         chs: "试作古华",
         star: 4,
-        url: PrototypeArchaic_tn,
+        // url: PrototypeArchaic_tn,
+        url: imageUrl("Claymore_Proto"),
         type: "Claymore",
 
         
@@ -1099,9 +1195,11 @@ export default {
 
     LuxuriousSeaLord: {
         name: "LuxuriousSeaLord",
+        internalName: "Claymore_MillenniaTuna",
         chs: "衔珠海皇",
         star: 4,
-        url: LuxuriousSeaLord_tn,
+        // url: LuxuriousSeaLord_tn,
+        url: imageUrl("Claymore_MillenniaTuna"),
         type: "Claymore",
 
         
@@ -1115,9 +1213,11 @@ export default {
 
     LithicBlade: {
         name: "LithicBlade",
+        internalName: "Claymore_Lapis",
         chs: "千岩古剑",
         star: 4,
-        url: LithicBlade_tn,
+        // url: LithicBlade_tn,
+        url: imageUrl("Claymore_Lapis"),
         type: "Claymore",
 
         
@@ -1135,9 +1235,11 @@ export default {
 
     SkyriderGreatsword: {
         name: "SkyriderGreatsword",
+        internalName: "Claymore_Mitsurugi",
         chs: "飞天大御剑",
         star: 3,
-        url: SkyriderGreatsword_tn,
+        // url: SkyriderGreatsword_tn,
+        url: imageUrl("Claymore_Mitsurugi"),
         type: "Claymore",
 
         
@@ -1155,9 +1257,11 @@ export default {
 
     DebateClub: {
         name: "DebateClub",
+        internalName: "Claymore_Reasoning",
         chs: "以理服人",
         star: 3,
-        url: DebateClub_tn,
+        // url: DebateClub_tn,
+        url: imageUrl("Claymore_Reasoning"),
         type: "Claymore",
 
         
@@ -1171,9 +1275,11 @@ export default {
 
     BloodstainedGreatsword: {
         name: "BloodstainedGreatsword",
+        internalName: "Claymore_Siegfry",
         chs: "沐浴龙血的剑",
         star: 3,
-        url: BloodstainedGreatsword_tn,
+        // url: BloodstainedGreatsword_tn,
+        url: imageUrl("Claymore_Siegfry"),
         type: "Claymore",
 
         
@@ -1191,9 +1297,11 @@ export default {
 
     WhiteIronGreatsword: {
         name: "WhiteIronGreatsword",
+        internalName: "Claymore_Tin",
         chs: "白铁大剑",
         star: 3,
-        url: WhiteIronGreatsword_tn,
+        // url: WhiteIronGreatsword_tn,
+        url: imageUrl("Claymore_Tin"),
         type: "Claymore",
 
         
@@ -1207,9 +1315,11 @@ export default {
 
     FerrousShadow: {
         name: "FerrousShadow",
+        internalName: "Claymore_Glaive",
         chs: "铁影阔剑",
         star: 3,
-        url: FerrousShadow_tn,
+        // url: FerrousShadow_tn,
+        url: imageUrl("Claymore_Glaive"),
         type: "Claymore",
 
         
@@ -1227,9 +1337,11 @@ export default {
 
     OldMercsPal: {
         name: "OldMercsPal",
+        internalName: "Claymore_Oyaji",
         chs: "佣兵重剑",
         star: 2,
-        url: OldMercsPal_tn,
+        // url: OldMercsPal_tn,
+        url: imageUrl("Claymore_Oyaji"),
         type: "Claymore",
 
         
@@ -1243,9 +1355,11 @@ export default {
 
     WasterGreatsword: {
         name: "WasterGreatsword",
+        internalName: "Claymore_Aniki",
         chs: "训练大剑",
         star: 1,
-        url: WasterGreatsword_tn,
+        // url: WasterGreatsword_tn,
+        url: imageUrl("Claymore_Aniki"),
         type: "Claymore",
 
         
@@ -1259,9 +1373,11 @@ export default {
 
     EngulfingLightning: {
         name: "EngulfingLightning",
+        internalName: "Pole_Narukami",
         chs: "薙草之稻光",
         star: 5,
-        url: EngulfingLightning_tn,
+        // url: EngulfingLightning_tn,
+        url: imageUrl("Pole_Narukami"),
         type: "Polearm",
 
         
@@ -1279,9 +1395,11 @@ export default {
 
     SkywardSpine: {
         name: "SkywardSpine",
+        internalName: "Pole_Dvalin",
         chs: "天空之脊",
         star: 5,
-        url: SkywardSpine_tn,
+        // url: SkywardSpine_tn,
+        url: imageUrl("Pole_Dvalin"),
         type: "Polearm",
 
         
@@ -1295,9 +1413,11 @@ export default {
 
     PrimordialJadeWingedSpear: {
         name: "PrimordialJadeWingedSpear",
+        internalName: "Pole_Morax",
         chs: "和璞鸢",
         star: 5,
-        url: PrimordialJadeWingedSpear_tn,
+        // url: PrimordialJadeWingedSpear_tn,
+        url: imageUrl("Pole_Morax"),
         type: "Polearm",
 
         
@@ -1317,9 +1437,11 @@ export default {
 
     CalamityQueller: {
         name: "CalamityQueller",
+        internalName: "Pole_Santika",
         chs: "息灾",
         star: 5,
-        url: CalamityQueller_tn,
+        // url: CalamityQueller_tn,
+        url: imageUrl("Pole_Santika"),
         type: "Polearm",
 
         
@@ -1339,9 +1461,11 @@ export default {
 
     StaffOfHoma: {
         name: "StaffOfHoma",
+        internalName: "Pole_Homa",
         chs: "护摩之杖",
         star: 5,
-        url: StaffOfHoma_tn,
+        // url: StaffOfHoma_tn,
+        url: imageUrl("Pole_Homa"),
         type: "Polearm",
 
         
@@ -1359,9 +1483,11 @@ export default {
 
     VortexVanquisher: {
         name: "VortexVanquisher",
+        internalName: "Pole_Kunwu",
         chs: "贯虹之槊",
         star: 5,
-        url: VortexVanquisher_tn,
+        // url: VortexVanquisher_tn,
+        url: imageUrl("Pole_Kunwu"),
         type: "Polearm",
 
         
@@ -1381,9 +1507,11 @@ export default {
 
     PrototypeStarglitter: {
         name: "PrototypeStarglitter",
+        internalName: "Pole_Proto",
         chs: "试作星镰",
         star: 4,
-        url: PrototypeStarglitter_tn,
+        // url: PrototypeStarglitter_tn,
+        url: imageUrl("Pole_Proto"),
         type: "Polearm",
 
         
@@ -1401,9 +1529,11 @@ export default {
 
     LithicSpear: {
         name: "LithicSpear",
+        internalName: "Pole_Lapis",
         chs: "千岩长枪",
         star: 4,
-        url: LithicSpear_tn,
+        // url: LithicSpear_tn,
+        url: imageUrl("Pole_Lapis"),
         type: "Polearm",
 
         
@@ -1421,9 +1551,11 @@ export default {
 
     KitainCrossSpear: {
         name: "KitainCrossSpear",
+        internalName: "Pole_Bakufu",
         chs: "喜多院十文字",
         star: 4,
-        url: KitainCrossSpear_tn,
+        // url: KitainCrossSpear_tn,
+        url: imageUrl("Pole_Bakufu"),
         type: "Polearm",
 
         
@@ -1437,9 +1569,11 @@ export default {
 
     TheCatch: {
         name: "TheCatch",
+        internalName: "Pole_Mori",
         chs: "「渔获」",
         star: 4,
-        url: TheCatch_tn,
+        // url: TheCatch_tn,
+        url: imageUrl("Pole_Mori"),
         type: "Polearm",
 
         
@@ -1453,9 +1587,11 @@ export default {
 
     FavoniusLance: {
         name: "FavoniusLance",
+        internalName: "Pole_Zephyrus",
         chs: "西风长枪",
         star: 4,
-        url: FavoniusLance_tn,
+        // url: FavoniusLance_tn,
+        url: imageUrl("Pole_Zephyrus"),
         type: "Polearm",
 
         
@@ -1469,9 +1605,11 @@ export default {
 
     DragonspineSpear: {
         name: "DragonspineSpear",
+        internalName: "Pole_Everfrost",
         chs: "龙脊长枪",
         star: 4,
-        url: DragonspineSpear_tn,
+        // url: DragonspineSpear_tn,
+        url: imageUrl("Pole_Everfrost"),
         type: "Polearm",
 
         
@@ -1485,9 +1623,11 @@ export default {
 
     DragonsBane: {
         name: "DragonsBane",
+        internalName: "Pole_Stardust",
         chs: "匣里灭辰",
         star: 4,
-        url: DragonsBane_tn,
+        // url: DragonsBane_tn,
+        url: imageUrl("Pole_Stardust"),
         type: "Polearm",
 
         
@@ -1505,9 +1645,11 @@ export default {
 
     Deathmatch: {
         name: "Deathmatch",
+        internalName: "Pole_Gladiator",
         chs: "决斗之枪",
         star: 4,
-        url: Deathmatch_tn,
+        // url: Deathmatch_tn,
+        url: imageUrl("Pole_Gladiator"),
         type: "Polearm",
 
         
@@ -1525,9 +1667,11 @@ export default {
 
     CrescentPike: {
         name: "CrescentPike",
+        internalName: "Pole_Exotic",
         chs: "流月针",
         star: 4,
-        url: CrescentPike_tn,
+        // url: CrescentPike_tn,
+        url: imageUrl("Pole_Exotic"),
         type: "Polearm",
 
         
@@ -1541,9 +1685,11 @@ export default {
 
     BlackcliffPole: {
         name: "BlackcliffPole",
+        internalName: "Pole_Blackrock",
         chs: "黑岩刺枪",
         star: 4,
-        url: BlackcliffPole_tn,
+        // url: BlackcliffPole_tn,
+        url: imageUrl("Pole_Blackrock"),
         type: "Polearm",
 
         
@@ -1561,9 +1707,11 @@ export default {
 
     WavebreakersFin: {
         name: "WavebreakersFin",
+        internalName: "Pole_Maria",
         chs: "断浪长鳍",
         star: 4,
-        url: WavebreakersFin_tn,
+        // url: WavebreakersFin_tn,
+        url: imageUrl("Pole_Maria"),
         type: "Polearm",
 
         
@@ -1581,9 +1729,11 @@ export default {
 
     RoyalSpear: {
         name: "RoyalSpear",
+        internalName: "Pole_Theocrat",
         chs: "宗室猎枪",
         star: 4,
-        url: RoyalSpear_tn,
+        // url: RoyalSpear_tn,
+        url: imageUrl("Pole_Theocrat"),
         type: "Polearm",
 
         
@@ -1597,9 +1747,11 @@ export default {
 
     Halberd: {
         name: "Halberd",
+        internalName: "Pole_Halberd",
         chs: "钺矛",
         star: 3,
-        url: Halberd_tn,
+        // url: Halberd_tn,
+        url: imageUrl("Pole_Halberd"),
         type: "Polearm",
 
         
@@ -1613,9 +1765,11 @@ export default {
 
     BlackTassel: {
         name: "BlackTassel",
+        internalName: "Pole_Noire",
         chs: "黑缨枪",
         star: 3,
-        url: BlackTassel_tn,
+        // url: BlackTassel_tn,
+        url: imageUrl("Pole_Noire"),
         type: "Polearm",
 
         
@@ -1633,9 +1787,11 @@ export default {
 
     WhiteTassel: {
         name: "WhiteTassel",
+        internalName: "Pole_Ruby",
         chs: "白缨枪",
         star: 3,
-        url: WhiteTassel_tn,
+        // url: WhiteTassel_tn,
+        url: imageUrl("Pole_Ruby"),
         type: "Polearm",
 
         
@@ -1649,9 +1805,11 @@ export default {
 
     IronPoint: {
         name: "IronPoint",
+        internalName: "Pole_Rod",
         chs: "铁尖枪",
         star: 2,
-        url: IronPoint_tn,
+        // url: IronPoint_tn,
+        url: imageUrl("Pole_Rod"),
         type: "Polearm",
 
         
@@ -1665,9 +1823,11 @@ export default {
 
     BeginnersProtector: {
         name: "BeginnersProtector",
+        internalName: "Pole_Gewalt",
         chs: "新手长枪",
         star: 1,
-        url: BeginnersProtector_tn,
+        // url: BeginnersProtector_tn,
+        url: imageUrl("Pole_Gewalt"),
         type: "Polearm",
 
         
@@ -1681,9 +1841,11 @@ export default {
 
     LostPrayerToTheSacredWinds: {
         name: "LostPrayerToTheSacredWinds",
+        internalName: "Catalyst_Fourwinds",
         chs: "四风原典",
         star: 5,
-        url: LostPrayerToTheSacredWinds_tn,
+        // url: LostPrayerToTheSacredWinds_tn,
+        url: imageUrl("Catalyst_Fourwinds"),
         type: "Catalyst",
 
         
@@ -1701,9 +1863,11 @@ export default {
 
     SkywardAtlas: {
         name: "SkywardAtlas",
+        internalName: "Catalyst_Dvalin",
         chs: "天空之卷",
         star: 5,
-        url: SkywardAtlas_tn,
+        // url: SkywardAtlas_tn,
+        url: imageUrl("Catalyst_Dvalin"),
         type: "Catalyst",
 
         
@@ -1717,9 +1881,11 @@ export default {
 
     EverlastingMoonglow: {
         name: "EverlastingMoonglow",
+        internalName: "Catalyst_Kaleido",
         chs: "不灭月华",
         star: 5,
-        url: EverlastingMoonglow_tn,
+        // url: EverlastingMoonglow_tn,
+        url: imageUrl("Catalyst_Kaleido"),
         type: "Catalyst",
 
         
@@ -1733,9 +1899,11 @@ export default {
 
     MemoryOfDust: {
         name: "MemoryOfDust",
+        internalName: "Catalyst_Kunwu",
         chs: "尘世之锁",
         star: 5,
-        url: MemoryOfDust_tn,
+        // url: MemoryOfDust_tn,
+        url: imageUrl("Catalyst_Kunwu"),
         type: "Catalyst",
 
         
@@ -1755,9 +1923,11 @@ export default {
 
     WindAndSong: {
         name: "WindAndSong",
+        internalName: "Catalyst_Outlaw",
         chs: "暗巷的酒与诗",
         star: 4,
-        url: WindAndSong_tn,
+        // url: WindAndSong_tn,
+        url: imageUrl("Catalyst_Outlaw"),
         type: "Catalyst",
 
         
@@ -1775,9 +1945,11 @@ export default {
 
     TheWidsith: {
         name: "TheWidsith",
+        internalName: "Catalyst_Troupe",
         chs: "流浪乐章",
         star: 4,
-        url: TheWidsith_tn,
+        // url: TheWidsith_tn,
+        url: imageUrl("Catalyst_Troupe"),
         type: "Catalyst",
 
         
@@ -1799,9 +1971,11 @@ export default {
 
     SolarPearl: {
         name: "SolarPearl",
+        internalName: "Catalyst_Resurrection",
         chs: "匣里日月",
         star: 4,
-        url: SolarPearl_tn,
+        // url: SolarPearl_tn,
+        url: imageUrl("Catalyst_Resurrection"),
         type: "Catalyst",
 
         
@@ -1821,9 +1995,11 @@ export default {
 
     SacrificialFragments: {
         name: "SacrificialFragments",
+        internalName: "Catalyst_Fossil",
         chs: "祭礼残章",
         star: 4,
-        url: SacrificialFragments_tn,
+        // url: SacrificialFragments_tn,
+        url: imageUrl("Catalyst_Fossil"),
         type: "Catalyst",
 
         
@@ -1837,9 +2013,11 @@ export default {
 
     RoyalGrimoire: {
         name: "RoyalGrimoire",
+        internalName: "Catalyst_Theocrat",
         chs: "宗室秘法录",
         star: 4,
-        url: RoyalGrimoire_tn,
+        // url: RoyalGrimoire_tn,
+        url: imageUrl("Catalyst_Theocrat"),
         type: "Catalyst",
 
         
@@ -1853,9 +2031,11 @@ export default {
 
     PrototypeAmber: {
         name: "PrototypeAmber",
+        internalName: "Catalyst_Proto",
         chs: "试作金珀",
         star: 4,
-        url: PrototypeAmber_tn,
+        // url: PrototypeAmber_tn,
+        url: imageUrl("Catalyst_Proto"),
         type: "Catalyst",
 
         
@@ -1869,9 +2049,11 @@ export default {
 
     MappaMare: {
         name: "MappaMare",
+        internalName: "Catalyst_Exotic",
         chs: "万国诸海图谱",
         star: 4,
-        url: MappaMare_tn,
+        // url: MappaMare_tn,
+        url: imageUrl("Catalyst_Exotic"),
         type: "Catalyst",
 
         
@@ -1889,9 +2071,11 @@ export default {
 
     HakushinRing: {
         name: "HakushinRing",
+        internalName: "Catalyst_Bakufu",
         chs: "白辰之环",
         star: 4,
-        url: HakushinRing_tn,
+        // url: HakushinRing_tn,
+        url: imageUrl("Catalyst_Bakufu"),
         type: "Catalyst",
 
         
@@ -1905,9 +2089,11 @@ export default {
 
     Frostbearer: {
         name: "Frostbearer",
+        internalName: "Catalyst_Everfrost",
         chs: "忍冬之果",
         star: 4,
-        url: Frostbearer_tn,
+        // url: Frostbearer_tn,
+        url: imageUrl("Catalyst_Everfrost"),
         type: "Catalyst",
 
         
@@ -1921,9 +2107,11 @@ export default {
 
     FavoniusCodex: {
         name: "FavoniusCodex",
+        internalName: "Catalyst_Zephyrus",
         chs: "西风秘典",
         star: 4,
-        url: FavoniusCodex_tn,
+        // url: FavoniusCodex_tn,
+        url: imageUrl("Catalyst_Zephyrus"),
         type: "Catalyst",
 
         
@@ -1937,9 +2125,11 @@ export default {
 
     EyeOfPerception: {
         name: "EyeOfPerception",
+        internalName: "Catalyst_Truelens",
         chs: "昭心",
         star: 4,
-        url: EyeOfPerception_tn,
+        // url: EyeOfPerception_tn,
+        url: imageUrl("Catalyst_Truelens"),
         type: "Catalyst",
 
         
@@ -1953,9 +2143,11 @@ export default {
 
     DodocoTales: {
         name: "DodocoTales",
+        internalName: "Catalyst_Ludiharpastum",
         chs: "嘟嘟可故事集",
         star: 4,
-        url: DodocoTales_tn,
+        // url: DodocoTales_tn,
+        url: imageUrl("Catalyst_Ludiharpastum"),
         type: "Catalyst",
 
         
@@ -1975,9 +2167,11 @@ export default {
 
     BlackcliffAgate: {
         name: "BlackcliffAgate",
+        internalName: "Catalyst_Blackrock",
         chs: "黑岩绯玉",
         star: 4,
-        url: BlackcliffAgate_tn,
+        // url: BlackcliffAgate_tn,
+        url: imageUrl("Catalyst_Blackrock"),
         type: "Catalyst",
 
         
@@ -1995,9 +2189,11 @@ export default {
 
     KagurasVerity: {
         name: "KagurasVerity",
+        internalName: "Catalyst_Narukami",
         chs: "神乐之真意",
         star: 5,
-        url: KagurasVerity_tn,
+        // url: KagurasVerity_tn,
+        url: imageUrl("Catalyst_Narukami"),
         type: "Catalyst",
 
         
@@ -2017,9 +2213,11 @@ export default {
 
     OathswornEye: {
         name: "OathswornEye",
+        internalName: "Catalyst_Jyanome",
         chs: "证誓之明瞳",
         star: 4,
-        url: OathswornEye_tn,
+        // url: OathswornEye_tn,
+        url: imageUrl("Catalyst_Jyanome"),
         type: "Catalyst",
 
         
@@ -2037,9 +2235,11 @@ export default {
 
     MagicGuide: {
         name: "MagicGuide",
+        internalName: "Catalyst_Intro",
         chs: "魔导绪论",
         star: 3,
-        url: MagicGuide_tn,
+        // url: MagicGuide_tn,
+        url: imageUrl("Catalyst_Intro"),
         type: "Catalyst",
 
         
@@ -2057,9 +2257,11 @@ export default {
 
     OtherworldlyStory: {
         name: "OtherworldlyStory",
+        internalName: "Catalyst_Lightnov",
         chs: "异世界行记",
         star: 3,
-        url: OtherworldlyStory_tn,
+        // url: OtherworldlyStory_tn,
+        url: imageUrl("Catalyst_Lightnov"),
         type: "Catalyst",
 
         
@@ -2073,9 +2275,11 @@ export default {
 
     EmeraldOrb: {
         name: "EmeraldOrb",
+        internalName: "Catalyst_Jade",
         chs: "翡玉法球",
         star: 3,
-        url: EmeraldOrb_tn,
+        // url: EmeraldOrb_tn,
+        url: imageUrl("Catalyst_Jade"),
         type: "Catalyst",
 
         
@@ -2093,9 +2297,11 @@ export default {
 
     ThrillingTalesOfDragonSlayers: {
         name: "ThrillingTalesOfDragonSlayers",
+        internalName: "Catalyst_Pulpfic",
         chs: "讨龙英杰谭",
         star: 3,
-        url: ThrillingTalesOfDragonSlayers_tn,
+        // url: ThrillingTalesOfDragonSlayers_tn,
+        url: imageUrl("Catalyst_Pulpfic"),
         type: "Catalyst",
 
         
@@ -2109,9 +2315,11 @@ export default {
 
     TwinNephrite: {
         name: "TwinNephrite",
+        internalName: "Catalyst_Phoney",
         chs: "甲级宝珏",
         star: 3,
-        url: TwinNephrite_tn,
+        // url: TwinNephrite_tn,
+        url: imageUrl("Catalyst_Phoney"),
         type: "Catalyst",
 
         
@@ -2129,9 +2337,11 @@ export default {
 
     PocketGrimoire: {
         name: "PocketGrimoire",
+        internalName: "Catalyst_Pocket",
         chs: "口袋魔导书",
         star: 2,
-        url: PocketGrimoire_tn,
+        // url: PocketGrimoire_tn,
+        url: imageUrl("Catalyst_Pocket"),
         type: "Catalyst",
 
         
@@ -2145,9 +2355,11 @@ export default {
 
     ApprenticesNotes: {
         name: "ApprenticesNotes",
+        internalName: "Catalyst_Apprentice",
         chs: "学徒笔记",
         star: 1,
-        url: ApprenticesNotes_tn,
+        // url: ApprenticesNotes_tn,
+        url: imageUrl("Catalyst_Apprentice"),
         type: "Catalyst",
 
         
@@ -2161,9 +2373,11 @@ export default {
 
     PolarStar: {
         name: "PolarStar",
+        internalName: "Bow_Worldbane",
         chs: "冬极白星",
         star: 5,
-        url: PolarStar_tn,
+        // url: PolarStar_tn,
+        url: imageUrl("Bow_Worldbane"),
         type: "Bow",
 
         
@@ -2181,9 +2395,11 @@ export default {
 
     ThunderingPulse: {
         name: "ThunderingPulse",
+        internalName: "Bow_Narukami",
         chs: "飞雷之弦振",
         star: 5,
-        url: ThunderingPulse_tn,
+        // url: ThunderingPulse_tn,
+        url: imageUrl("Bow_Narukami"),
         type: "Bow",
 
         
@@ -2201,9 +2417,11 @@ export default {
 
     ElegyOfTheEnd: {
         name: "ElegyOfTheEnd",
+        internalName: "Bow_Widsith",
         chs: "终末嗟叹之诗",
         star: 5,
-        url: ElegyOfTheEnd_tn,
+        // url: ElegyOfTheEnd_tn,
+        url: imageUrl("Bow_Widsith"),
         type: "Bow",
 
         
@@ -2221,9 +2439,11 @@ export default {
 
     SkywardHarp: {
         name: "SkywardHarp",
+        internalName: "Bow_Dvalin",
         chs: "天空之翼",
         star: 5,
-        url: SkywardHarp_tn,
+        // url: SkywardHarp_tn,
+        url: imageUrl("Bow_Dvalin"),
         type: "Bow",
 
         
@@ -2237,9 +2457,11 @@ export default {
 
     AmosBow: {
         name: "AmosBow",
+        internalName: "Bow_Amos",
         chs: "阿莫斯之弓",
         star: 5,
-        url: AmosBow_tn,
+        // url: AmosBow_tn,
+        url: imageUrl("Bow_Amos"),
         type: "Bow",
 
         
@@ -2257,9 +2479,11 @@ export default {
 
     AlleyHunter: {
         name: "AlleyHunter",
+        internalName: "Bow_Outlaw",
         chs: "暗巷猎手",
         star: 4,
-        url: AlleyHunter_tn,
+        // url: AlleyHunter_tn,
+        url: imageUrl("Bow_Outlaw"),
         type: "Bow",
 
         
@@ -2277,9 +2501,11 @@ export default {
 
     TheViridescentHunt: {
         name: "TheViridescentHunt",
+        internalName: "Bow_Viridescent",
         chs: "苍翠猎弓",
         star: 4,
-        url: TheViridescentHunt_tn,
+        // url: TheViridescentHunt_tn,
+        url: imageUrl("Bow_Viridescent"),
         type: "Bow",
 
         
@@ -2293,9 +2519,11 @@ export default {
 
     TheStringless: {
         name: "TheStringless",
+        internalName: "Bow_Troupe",
         chs: "绝弦",
         star: 4,
-        url: TheStringless_tn,
+        // url: TheStringless_tn,
+        url: imageUrl("Bow_Troupe"),
         type: "Bow",
 
         
@@ -2309,9 +2537,11 @@ export default {
 
     SacrificialBow: {
         name: "SacrificialBow",
+        internalName: "Bow_Fossil",
         chs: "祭礼弓",
         star: 4,
-        url: SacrificialBow_tn,
+        // url: SacrificialBow_tn,
+        url: imageUrl("Bow_Fossil"),
         type: "Bow",
 
         
@@ -2325,9 +2555,11 @@ export default {
 
     Rust: {
         name: "Rust",
+        internalName: "Bow_Recluse",
         chs: "弓藏",
         star: 4,
-        url: Rust_tn,
+        // url: Rust_tn,
+        url: imageUrl("Bow_Recluse"),
         type: "Bow",
 
         
@@ -2341,9 +2573,11 @@ export default {
 
     RoyalBow: {
         name: "RoyalBow",
+        internalName: "Bow_Theocrat",
         chs: "宗室长弓",
         star: 4,
-        url: RoyalBow_tn,
+        // url: RoyalBow_tn,
+        url: imageUrl("Bow_Theocrat"),
         type: "Bow",
 
         
@@ -2357,9 +2591,11 @@ export default {
 
     Predator: {
         name: "Predator",
+        internalName: "Bow_Predator",
         chs: "掠食者",
         star: 4,
-        url: Predator_tn,
+        // url: Predator_tn,
+        url: imageUrl("Bow_Predator"),
         type: "Bow",
 
         
@@ -2377,9 +2613,11 @@ export default {
 
     PrototypeCrescent: {
         name: "PrototypeCrescent",
+        internalName: "Bow_Proto",
         chs: "试作澹月",
         star: 4,
-        url: PrototypeCrescent_tn,
+        // url: PrototypeCrescent_tn,
+        url: imageUrl("Bow_Proto"),
         type: "Bow",
 
         
@@ -2397,9 +2635,11 @@ export default {
 
     MouunsMoon: {
         name: "MouunsMoon",
+        internalName: "Bow_Maria",
         chs: "曚云之月",
         star: 4,
-        url: MouunsMoon_tn,
+        // url: MouunsMoon_tn,
+        url: imageUrl("Bow_Maria"),
         type: "Bow",
 
         
@@ -2417,9 +2657,11 @@ export default {
 
     MitternachtsWaltz: {
         name: "MitternachtsWaltz",
+        internalName: "Bow_Nachtblind",
         chs: "幽夜华尔兹",
         star: 4,
-        url: MitternachtsWaltz_tn,
+        // url: MitternachtsWaltz_tn,
+        url: imageUrl("Bow_Nachtblind"),
         type: "Bow",
 
         
@@ -2439,9 +2681,11 @@ export default {
 
     Hamayumi: {
         name: "Hamayumi",
+        internalName: "Bow_Bakufu",
         chs: "破魔之弓",
         star: 4,
-        url: Hamayumi_tn,
+        // url: Hamayumi_tn,
+        url: imageUrl("Bow_Bakufu"),
         type: "Bow",
 
         
@@ -2459,9 +2703,11 @@ export default {
 
     FavoniusWarbow: {
         name: "FavoniusWarbow",
+        internalName: "Bow_Zephyrus",
         chs: "西风猎弓",
         star: 4,
-        url: FavoniusWarbow_tn,
+        // url: FavoniusWarbow_tn,
+        url: imageUrl("Bow_Zephyrus"),
         type: "Bow",
 
         
@@ -2475,9 +2721,11 @@ export default {
 
     CompoundBow: {
         name: "CompoundBow",
+        internalName: "Bow_Exotic",
         chs: "钢轮弓",
         star: 4,
-        url: CompoundBow_tn,
+        // url: CompoundBow_tn,
+        url: imageUrl("Bow_Exotic"),
         type: "Bow",
 
         
@@ -2495,9 +2743,11 @@ export default {
 
     BlackcliffWarbow: {
         name: "BlackcliffWarbow",
+        internalName: "Bow_Blackrock",
         chs: "黑岩战弓",
         star: 4,
-        url: BlackcliffWarbow_tn,
+        // url: BlackcliffWarbow_tn,
+        url: imageUrl("Bow_Blackrock"),
         type: "Bow",
 
         
@@ -2515,9 +2765,11 @@ export default {
 
     WindblumeOde: {
         name: "WindblumeOde",
+        internalName: "Bow_Fleurfair",
         chs: "风花之颂",
         star: 4,
-        url: WindblumeOde_tn,
+        // url: WindblumeOde_tn,
+        url: imageUrl("Bow_Fleurfair"),
         type: "Bow",
 
         
@@ -2535,9 +2787,11 @@ export default {
 
     RavenBow: {
         name: "RavenBow",
+        internalName: "Bow_Crowfeather",
         chs: "鸦羽弓",
         star: 3,
-        url: RavenBow_tn,
+        // url: RavenBow_tn,
+        url: imageUrl("Bow_Crowfeather"),
         type: "Bow",
 
         
@@ -2555,9 +2809,11 @@ export default {
 
     RecurveBow: {
         name: "RecurveBow",
+        internalName: "Bow_Curve",
         chs: "反曲弓",
         star: 3,
-        url: RecurveBow_tn,
+        // url: RecurveBow_tn,
+        url: imageUrl("Bow_Curve"),
         type: "Bow",
 
         
@@ -2571,9 +2827,11 @@ export default {
 
     Messenger: {
         name: "Messenger",
+        internalName: "Bow_Msg",
         chs: "信使",
         star: 3,
-        url: Messenger_tn,
+        // url: Messenger_tn,
+        url: imageUrl("Bow_Msg"),
         type: "Bow",
 
         
@@ -2587,9 +2845,11 @@ export default {
 
     SharpshootersOath: {
         name: "SharpshootersOath",
+        internalName: "Bow_Arjuna",
         chs: "神射手之誓",
         star: 3,
-        url: SharpshootersOath_tn,
+        // url: SharpshootersOath_tn,
+        url: imageUrl("Bow_Arjuna"),
         type: "Bow",
 
         
@@ -2607,9 +2867,11 @@ export default {
 
     Slingshot: {
         name: "Slingshot",
+        internalName: "Bow_Sling",
         chs: "弹弓",
         star: 3,
-        url: Slingshot_tn,
+        // url: Slingshot_tn,
+        url: imageUrl("Bow_Sling"),
         type: "Bow",
 
         
@@ -2629,9 +2891,11 @@ export default {
 
     SeasonedHuntersBow: {
         name: "SeasonedHuntersBow",
+        internalName: "Bow_Old",
         chs: "历练的猎弓",
         star: 2,
-        url: SeasonedHuntersBow_tn,
+        // url: SeasonedHuntersBow_tn,
+        url: imageUrl("Bow_Old"),
         type: "Bow",
 
         
@@ -2645,9 +2909,11 @@ export default {
 
     HuntersBow: {
         name: "HuntersBow",
+        internalName: "Bow_Hunters",
         chs: "猎弓",
         star: 1,
-        url: HuntersBow_tn,
+        // url: HuntersBow_tn,
+        url: imageUrl("Bow_Hunters"),
         type: "Bow",
 
         

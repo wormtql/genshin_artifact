@@ -1,6 +1,0 @@
-[general]
-dirs = ["templates"]
-
-[[escaper]]
-path = "crate::common::code_escape::CodeEscaper"
-extensions = ["js"]

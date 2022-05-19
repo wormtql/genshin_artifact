@@ -1,195 +1,195 @@
 // generated file, do not edit
 
 import AetherAnemo_card from "@image/characters/AetherAnemo_card"
-import AetherAnemo_avatar from "@image/characters/AetherAnemo_avatar"
+// import AetherAnemo_avatar from "@image/characters/AetherAnemo_avatar"
 import AetherAnemo_splash from "@image/characters/AetherAnemo_splash"
 
 import Albedo_card from "@image/characters/Albedo_card"
-import Albedo_avatar from "@image/characters/Albedo_avatar"
+// import Albedo_avatar from "@image/characters/Albedo_avatar"
 import Albedo_splash from "@image/characters/Albedo_splash"
 
 import Aloy_card from "@image/characters/Aloy_card"
-import Aloy_avatar from "@image/characters/Aloy_avatar"
+// import Aloy_avatar from "@image/characters/Aloy_avatar"
 import Aloy_splash from "@image/characters/Aloy_splash"
 
 import Amber_card from "@image/characters/Amber_card"
-import Amber_avatar from "@image/characters/Amber_avatar"
+// import Amber_avatar from "@image/characters/Amber_avatar"
 import Amber_splash from "@image/characters/Amber_splash"
 
 import AratakiItto_card from "@image/characters/AratakiItto_card"
-import AratakiItto_avatar from "@image/characters/AratakiItto_avatar"
+// import AratakiItto_avatar from "@image/characters/AratakiItto_avatar"
 import AratakiItto_splash from "@image/characters/AratakiItto_splash"
 
 import Barbara_card from "@image/characters/Barbara_card"
-import Barbara_avatar from "@image/characters/Barbara_avatar"
+// import Barbara_avatar from "@image/characters/Barbara_avatar"
 import Barbara_splash from "@image/characters/Barbara_splash"
 
 import Beidou_card from "@image/characters/Beidou_card"
-import Beidou_avatar from "@image/characters/Beidou_avatar"
+// import Beidou_avatar from "@image/characters/Beidou_avatar"
 import Beidou_splash from "@image/characters/Beidou_splash"
 
 import Bennett_card from "@image/characters/Bennett_card"
-import Bennett_avatar from "@image/characters/Bennett_avatar"
+// import Bennett_avatar from "@image/characters/Bennett_avatar"
 import Bennett_splash from "@image/characters/Bennett_splash"
 
 import Chongyun_card from "@image/characters/Chongyun_card"
-import Chongyun_avatar from "@image/characters/Chongyun_avatar"
+// import Chongyun_avatar from "@image/characters/Chongyun_avatar"
 import Chongyun_splash from "@image/characters/Chongyun_splash"
 
 import Diluc_card from "@image/characters/Diluc_card"
-import Diluc_avatar from "@image/characters/Diluc_avatar"
+// import Diluc_avatar from "@image/characters/Diluc_avatar"
 import Diluc_splash from "@image/characters/Diluc_splash"
 
 import Diona_card from "@image/characters/Diona_card"
-import Diona_avatar from "@image/characters/Diona_avatar"
+// import Diona_avatar from "@image/characters/Diona_avatar"
 import Diona_splash from "@image/characters/Diona_splash"
 
 import Eula_card from "@image/characters/Eula_card"
-import Eula_avatar from "@image/characters/Eula_avatar"
+// import Eula_avatar from "@image/characters/Eula_avatar"
 import Eula_splash from "@image/characters/Eula_splash"
 
 import Fischl_card from "@image/characters/Fischl_card"
-import Fischl_avatar from "@image/characters/Fischl_avatar"
+// import Fischl_avatar from "@image/characters/Fischl_avatar"
 import Fischl_splash from "@image/characters/Fischl_splash"
 
 import Ganyu_card from "@image/characters/Ganyu_card"
-import Ganyu_avatar from "@image/characters/Ganyu_avatar"
+// import Ganyu_avatar from "@image/characters/Ganyu_avatar"
 import Ganyu_splash from "@image/characters/Ganyu_splash"
 
 import Gorou_card from "@image/characters/Gorou_card"
-import Gorou_avatar from "@image/characters/Gorou_avatar"
+// import Gorou_avatar from "@image/characters/Gorou_avatar"
 import Gorou_splash from "@image/characters/Gorou_splash"
 
 import HuTao_card from "@image/characters/HuTao_card"
-import HuTao_avatar from "@image/characters/HuTao_avatar"
+// import HuTao_avatar from "@image/characters/HuTao_avatar"
 import HuTao_splash from "@image/characters/HuTao_splash"
 
 import Jean_card from "@image/characters/Jean_card"
-import Jean_avatar from "@image/characters/Jean_avatar"
+// import Jean_avatar from "@image/characters/Jean_avatar"
 import Jean_splash from "@image/characters/Jean_splash"
 
 import KaedeharaKazuha_card from "@image/characters/KaedeharaKazuha_card"
-import KaedeharaKazuha_avatar from "@image/characters/KaedeharaKazuha_avatar"
+// import KaedeharaKazuha_avatar from "@image/characters/KaedeharaKazuha_avatar"
 import KaedeharaKazuha_splash from "@image/characters/KaedeharaKazuha_splash"
 
 import Kaeya_card from "@image/characters/Kaeya_card"
-import Kaeya_avatar from "@image/characters/Kaeya_avatar"
+// import Kaeya_avatar from "@image/characters/Kaeya_avatar"
 import Kaeya_splash from "@image/characters/Kaeya_splash"
 
 import KamisatoAyaka_card from "@image/characters/KamisatoAyaka_card"
-import KamisatoAyaka_avatar from "@image/characters/KamisatoAyaka_avatar"
+// import KamisatoAyaka_avatar from "@image/characters/KamisatoAyaka_avatar"
 import KamisatoAyaka_splash from "@image/characters/KamisatoAyaka_splash"
 
 import KamisatoAyato_card from "@image/characters/KamisatoAyato_card"
-import KamisatoAyato_avatar from "@image/characters/KamisatoAyato_avatar"
+// import KamisatoAyato_avatar from "@image/characters/KamisatoAyato_avatar"
 import KamisatoAyato_splash from "@image/characters/KamisatoAyato_splash"
 
 import Keqing_card from "@image/characters/Keqing_card"
-import Keqing_avatar from "@image/characters/Keqing_avatar"
+// import Keqing_avatar from "@image/characters/Keqing_avatar"
 import Keqing_splash from "@image/characters/Keqing_splash"
 
 import Klee_card from "@image/characters/Klee_card"
-import Klee_avatar from "@image/characters/Klee_avatar"
+// import Klee_avatar from "@image/characters/Klee_avatar"
 import Klee_splash from "@image/characters/Klee_splash"
 
 import KujouSara_card from "@image/characters/KujouSara_card"
-import KujouSara_avatar from "@image/characters/KujouSara_avatar"
+// import KujouSara_avatar from "@image/characters/KujouSara_avatar"
 import KujouSara_splash from "@image/characters/KujouSara_splash"
 
 import Lisa_card from "@image/characters/Lisa_card"
-import Lisa_avatar from "@image/characters/Lisa_avatar"
+// import Lisa_avatar from "@image/characters/Lisa_avatar"
 import Lisa_splash from "@image/characters/Lisa_splash"
 
 import Mona_card from "@image/characters/Mona_card"
-import Mona_avatar from "@image/characters/Mona_avatar"
+// import Mona_avatar from "@image/characters/Mona_avatar"
 import Mona_splash from "@image/characters/Mona_splash"
 
 import Ningguang_card from "@image/characters/Ningguang_card"
-import Ningguang_avatar from "@image/characters/Ningguang_avatar"
+// import Ningguang_avatar from "@image/characters/Ningguang_avatar"
 import Ningguang_splash from "@image/characters/Ningguang_splash"
 
 import Noelle_card from "@image/characters/Noelle_card"
-import Noelle_avatar from "@image/characters/Noelle_avatar"
+// import Noelle_avatar from "@image/characters/Noelle_avatar"
 import Noelle_splash from "@image/characters/Noelle_splash"
 
 import Qiqi_card from "@image/characters/Qiqi_card"
-import Qiqi_avatar from "@image/characters/Qiqi_avatar"
+// import Qiqi_avatar from "@image/characters/Qiqi_avatar"
 import Qiqi_splash from "@image/characters/Qiqi_splash"
 
 import RaidenShogun_card from "@image/characters/RaidenShogun_card"
-import RaidenShogun_avatar from "@image/characters/RaidenShogun_avatar"
+// import RaidenShogun_avatar from "@image/characters/RaidenShogun_avatar"
 import RaidenShogun_splash from "@image/characters/RaidenShogun_splash"
 
 import Razor_card from "@image/characters/Razor_card"
-import Razor_avatar from "@image/characters/Razor_avatar"
+// import Razor_avatar from "@image/characters/Razor_avatar"
 import Razor_splash from "@image/characters/Razor_splash"
 
 import Rosaria_card from "@image/characters/Rosaria_card"
-import Rosaria_avatar from "@image/characters/Rosaria_avatar"
+// import Rosaria_avatar from "@image/characters/Rosaria_avatar"
 import Rosaria_splash from "@image/characters/Rosaria_splash"
 
 import SangonomiyaKokomi_card from "@image/characters/SangonomiyaKokomi_card"
-import SangonomiyaKokomi_avatar from "@image/characters/SangonomiyaKokomi_avatar"
+// import SangonomiyaKokomi_avatar from "@image/characters/SangonomiyaKokomi_avatar"
 import SangonomiyaKokomi_splash from "@image/characters/SangonomiyaKokomi_splash"
 
 import Sayu_card from "@image/characters/Sayu_card"
-import Sayu_avatar from "@image/characters/Sayu_avatar"
+// import Sayu_avatar from "@image/characters/Sayu_avatar"
 import Sayu_splash from "@image/characters/Sayu_splash"
 
 import Shenhe_card from "@image/characters/Shenhe_card"
-import Shenhe_avatar from "@image/characters/Shenhe_avatar"
+// import Shenhe_avatar from "@image/characters/Shenhe_avatar"
 import Shenhe_splash from "@image/characters/Shenhe_splash"
 
 import Sucrose_card from "@image/characters/Sucrose_card"
-import Sucrose_avatar from "@image/characters/Sucrose_avatar"
+// import Sucrose_avatar from "@image/characters/Sucrose_avatar"
 import Sucrose_splash from "@image/characters/Sucrose_splash"
 
 import Tartaglia_card from "@image/characters/Tartaglia_card"
-import Tartaglia_avatar from "@image/characters/Tartaglia_avatar"
+// import Tartaglia_avatar from "@image/characters/Tartaglia_avatar"
 import Tartaglia_splash from "@image/characters/Tartaglia_splash"
 
 import Thoma_card from "@image/characters/Thoma_card"
-import Thoma_avatar from "@image/characters/Thoma_avatar"
+// import Thoma_avatar from "@image/characters/Thoma_avatar"
 import Thoma_splash from "@image/characters/Thoma_splash"
 
 import Venti_card from "@image/characters/Venti_card"
-import Venti_avatar from "@image/characters/Venti_avatar"
+// import Venti_avatar from "@image/characters/Venti_avatar"
 import Venti_splash from "@image/characters/Venti_splash"
 
 import Xiangling_card from "@image/characters/Xiangling_card"
-import Xiangling_avatar from "@image/characters/Xiangling_avatar"
+// import Xiangling_avatar from "@image/characters/Xiangling_avatar"
 import Xiangling_splash from "@image/characters/Xiangling_splash"
 
 import Xiao_card from "@image/characters/Xiao_card"
-import Xiao_avatar from "@image/characters/Xiao_avatar"
+// import Xiao_avatar from "@image/characters/Xiao_avatar"
 import Xiao_splash from "@image/characters/Xiao_splash"
 
 import Xingqiu_card from "@image/characters/Xingqiu_card"
-import Xingqiu_avatar from "@image/characters/Xingqiu_avatar"
+// import Xingqiu_avatar from "@image/characters/Xingqiu_avatar"
 import Xingqiu_splash from "@image/characters/Xingqiu_splash"
 
 import Xinyan_card from "@image/characters/Xinyan_card"
-import Xinyan_avatar from "@image/characters/Xinyan_avatar"
+// import Xinyan_avatar from "@image/characters/Xinyan_avatar"
 import Xinyan_splash from "@image/characters/Xinyan_splash"
 
 import YaeMiko_card from "@image/characters/YaeMiko_card"
-import YaeMiko_avatar from "@image/characters/YaeMiko_avatar"
+// import YaeMiko_avatar from "@image/characters/YaeMiko_avatar"
 import YaeMiko_splash from "@image/characters/YaeMiko_splash"
 
 import Yanfei_card from "@image/characters/Yanfei_card"
-import Yanfei_avatar from "@image/characters/Yanfei_avatar"
+// import Yanfei_avatar from "@image/characters/Yanfei_avatar"
 import Yanfei_splash from "@image/characters/Yanfei_splash"
 
 import Yoimiya_card from "@image/characters/Yoimiya_card"
-import Yoimiya_avatar from "@image/characters/Yoimiya_avatar"
+// import Yoimiya_avatar from "@image/characters/Yoimiya_avatar"
 import Yoimiya_splash from "@image/characters/Yoimiya_splash"
 
 import Yunjin_card from "@image/characters/Yunjin_card"
-import Yunjin_avatar from "@image/characters/Yunjin_avatar"
+// import Yunjin_avatar from "@image/characters/Yunjin_avatar"
 import Yunjin_splash from "@image/characters/Yunjin_splash"
 
 import Zhongli_card from "@image/characters/Zhongli_card"
-import Zhongli_avatar from "@image/characters/Zhongli_avatar"
+// import Zhongli_avatar from "@image/characters/Zhongli_avatar"
 import Zhongli_splash from "@image/characters/Zhongli_splash"
 
 
@@ -1157,7 +1157,7 @@ export default {
         star: 5,
         card: Jean_card,
         // avatar: Jean_avatar,
-        avatar: getName("Jean"),
+        avatar: getName("Qin"),
         splash: Jean_splash,
         skillName1: "普通攻击·西风剑术",
         skillName2: "风压剑",

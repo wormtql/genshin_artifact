@@ -1,597 +1,601 @@
 // generated file, do not edit
-
-
-import Adventurer_flower from "@image/artifacts/Adventurer_flower"
-
-
-import Adventurer_feather from "@image/artifacts/Adventurer_feather"
-
-
-import Adventurer_sand from "@image/artifacts/Adventurer_sand"
-
-
-import Adventurer_goblet from "@image/artifacts/Adventurer_goblet"
-
-
-import Adventurer_head from "@image/artifacts/Adventurer_head"
-
-
-
-import ArchaicPetra_flower from "@image/artifacts/ArchaicPetra_flower"
-
-
-import ArchaicPetra_feather from "@image/artifacts/ArchaicPetra_feather"
-
-
-import ArchaicPetra_sand from "@image/artifacts/ArchaicPetra_sand"
-
-
-import ArchaicPetra_goblet from "@image/artifacts/ArchaicPetra_goblet"
-
-
-import ArchaicPetra_head from "@image/artifacts/ArchaicPetra_head"
-
-
-
-import Berserker_flower from "@image/artifacts/Berserker_flower"
-
-
-import Berserker_feather from "@image/artifacts/Berserker_feather"
-
-
-import Berserker_sand from "@image/artifacts/Berserker_sand"
-
-
-import Berserker_goblet from "@image/artifacts/Berserker_goblet"
-
-
-import Berserker_head from "@image/artifacts/Berserker_head"
-
-
-
-import BlizzardStrayer_flower from "@image/artifacts/BlizzardStrayer_flower"
-
-
-import BlizzardStrayer_feather from "@image/artifacts/BlizzardStrayer_feather"
-
-
-import BlizzardStrayer_sand from "@image/artifacts/BlizzardStrayer_sand"
-
-
-import BlizzardStrayer_goblet from "@image/artifacts/BlizzardStrayer_goblet"
-
-
-import BlizzardStrayer_head from "@image/artifacts/BlizzardStrayer_head"
-
-
-
-import BloodstainedChivalry_flower from "@image/artifacts/BloodstainedChivalry_flower"
-
-
-import BloodstainedChivalry_feather from "@image/artifacts/BloodstainedChivalry_feather"
-
-
-import BloodstainedChivalry_sand from "@image/artifacts/BloodstainedChivalry_sand"
-
-
-import BloodstainedChivalry_goblet from "@image/artifacts/BloodstainedChivalry_goblet"
-
-
-import BloodstainedChivalry_head from "@image/artifacts/BloodstainedChivalry_head"
-
-
-
-import BraveHeart_flower from "@image/artifacts/BraveHeart_flower"
-
-
-import BraveHeart_feather from "@image/artifacts/BraveHeart_feather"
-
-
-import BraveHeart_sand from "@image/artifacts/BraveHeart_sand"
-
-
-import BraveHeart_goblet from "@image/artifacts/BraveHeart_goblet"
-
-
-import BraveHeart_head from "@image/artifacts/BraveHeart_head"
-
-
-
-import CrimsonWitchOfFlames_flower from "@image/artifacts/CrimsonWitchOfFlames_flower"
-
-
-import CrimsonWitchOfFlames_feather from "@image/artifacts/CrimsonWitchOfFlames_feather"
-
-
-import CrimsonWitchOfFlames_sand from "@image/artifacts/CrimsonWitchOfFlames_sand"
-
-
-import CrimsonWitchOfFlames_goblet from "@image/artifacts/CrimsonWitchOfFlames_goblet"
-
-
-import CrimsonWitchOfFlames_head from "@image/artifacts/CrimsonWitchOfFlames_head"
-
-
-
-import DefendersWill_flower from "@image/artifacts/DefendersWill_flower"
-
-
-import DefendersWill_feather from "@image/artifacts/DefendersWill_feather"
-
-
-import DefendersWill_sand from "@image/artifacts/DefendersWill_sand"
-
-
-import DefendersWill_goblet from "@image/artifacts/DefendersWill_goblet"
-
-
-import DefendersWill_head from "@image/artifacts/DefendersWill_head"
-
-
-
-import EchoesOfAnOffering_flower from "@image/artifacts/EchoesOfAnOffering_flower"
-
-
-import EchoesOfAnOffering_feather from "@image/artifacts/EchoesOfAnOffering_feather"
-
-
-import EchoesOfAnOffering_sand from "@image/artifacts/EchoesOfAnOffering_sand"
-
-
-import EchoesOfAnOffering_goblet from "@image/artifacts/EchoesOfAnOffering_goblet"
-
-
-import EchoesOfAnOffering_head from "@image/artifacts/EchoesOfAnOffering_head"
-
-
-
-import EmblemOfSeveredFate_flower from "@image/artifacts/EmblemOfSeveredFate_flower"
-
-
-import EmblemOfSeveredFate_feather from "@image/artifacts/EmblemOfSeveredFate_feather"
-
-
-import EmblemOfSeveredFate_sand from "@image/artifacts/EmblemOfSeveredFate_sand"
-
-
-import EmblemOfSeveredFate_goblet from "@image/artifacts/EmblemOfSeveredFate_goblet"
-
-
-import EmblemOfSeveredFate_head from "@image/artifacts/EmblemOfSeveredFate_head"
-
-
-
-import Gambler_flower from "@image/artifacts/Gambler_flower"
-
-
-import Gambler_feather from "@image/artifacts/Gambler_feather"
-
-
-import Gambler_sand from "@image/artifacts/Gambler_sand"
-
-
-import Gambler_goblet from "@image/artifacts/Gambler_goblet"
-
-
-import Gambler_head from "@image/artifacts/Gambler_head"
-
-
-
-import GladiatorsFinale_flower from "@image/artifacts/GladiatorsFinale_flower"
-
-
-import GladiatorsFinale_feather from "@image/artifacts/GladiatorsFinale_feather"
-
-
-import GladiatorsFinale_sand from "@image/artifacts/GladiatorsFinale_sand"
-
-
-import GladiatorsFinale_goblet from "@image/artifacts/GladiatorsFinale_goblet"
-
-
-import GladiatorsFinale_head from "@image/artifacts/GladiatorsFinale_head"
-
-
-
-import HeartOfDepth_flower from "@image/artifacts/HeartOfDepth_flower"
-
-
-import HeartOfDepth_feather from "@image/artifacts/HeartOfDepth_feather"
-
-
-import HeartOfDepth_sand from "@image/artifacts/HeartOfDepth_sand"
-
-
-import HeartOfDepth_goblet from "@image/artifacts/HeartOfDepth_goblet"
-
-
-import HeartOfDepth_head from "@image/artifacts/HeartOfDepth_head"
-
-
-
-import HuskOfOpulentDreams_flower from "@image/artifacts/HuskOfOpulentDreams_flower"
-
-
-import HuskOfOpulentDreams_feather from "@image/artifacts/HuskOfOpulentDreams_feather"
-
-
-import HuskOfOpulentDreams_sand from "@image/artifacts/HuskOfOpulentDreams_sand"
-
-
-import HuskOfOpulentDreams_goblet from "@image/artifacts/HuskOfOpulentDreams_goblet"
-
-
-import HuskOfOpulentDreams_head from "@image/artifacts/HuskOfOpulentDreams_head"
-
-
-
-import Instructor_flower from "@image/artifacts/Instructor_flower"
-
-
-import Instructor_feather from "@image/artifacts/Instructor_feather"
-
-
-import Instructor_sand from "@image/artifacts/Instructor_sand"
-
-
-import Instructor_goblet from "@image/artifacts/Instructor_goblet"
-
-
-import Instructor_head from "@image/artifacts/Instructor_head"
-
-
-
-import Lavawalker_flower from "@image/artifacts/Lavawalker_flower"
-
-
-import Lavawalker_feather from "@image/artifacts/Lavawalker_feather"
-
-
-import Lavawalker_sand from "@image/artifacts/Lavawalker_sand"
-
-
-import Lavawalker_goblet from "@image/artifacts/Lavawalker_goblet"
-
-
-import Lavawalker_head from "@image/artifacts/Lavawalker_head"
-
-
-
-import LuckyDog_flower from "@image/artifacts/LuckyDog_flower"
-
-
-import LuckyDog_feather from "@image/artifacts/LuckyDog_feather"
-
-
-import LuckyDog_sand from "@image/artifacts/LuckyDog_sand"
-
-
-import LuckyDog_goblet from "@image/artifacts/LuckyDog_goblet"
-
-
-import LuckyDog_head from "@image/artifacts/LuckyDog_head"
-
-
-
-import MaidenBeloved_flower from "@image/artifacts/MaidenBeloved_flower"
-
-
-import MaidenBeloved_feather from "@image/artifacts/MaidenBeloved_feather"
-
-
-import MaidenBeloved_sand from "@image/artifacts/MaidenBeloved_sand"
-
-
-import MaidenBeloved_goblet from "@image/artifacts/MaidenBeloved_goblet"
-
-
-import MaidenBeloved_head from "@image/artifacts/MaidenBeloved_head"
-
-
-
-import MartialArtist_flower from "@image/artifacts/MartialArtist_flower"
-
-
-import MartialArtist_feather from "@image/artifacts/MartialArtist_feather"
-
-
-import MartialArtist_sand from "@image/artifacts/MartialArtist_sand"
-
-
-import MartialArtist_goblet from "@image/artifacts/MartialArtist_goblet"
-
-
-import MartialArtist_head from "@image/artifacts/MartialArtist_head"
-
-
-
-import NoblesseOblige_flower from "@image/artifacts/NoblesseOblige_flower"
-
-
-import NoblesseOblige_feather from "@image/artifacts/NoblesseOblige_feather"
-
-
-import NoblesseOblige_sand from "@image/artifacts/NoblesseOblige_sand"
-
-
-import NoblesseOblige_goblet from "@image/artifacts/NoblesseOblige_goblet"
-
-
-import NoblesseOblige_head from "@image/artifacts/NoblesseOblige_head"
-
-
-
-import OceanHuedClam_flower from "@image/artifacts/OceanHuedClam_flower"
-
-
-import OceanHuedClam_feather from "@image/artifacts/OceanHuedClam_feather"
-
-
-import OceanHuedClam_sand from "@image/artifacts/OceanHuedClam_sand"
-
-
-import OceanHuedClam_goblet from "@image/artifacts/OceanHuedClam_goblet"
-
-
-import OceanHuedClam_head from "@image/artifacts/OceanHuedClam_head"
-
-
-
-import PaleFlame_flower from "@image/artifacts/PaleFlame_flower"
-
-
-import PaleFlame_feather from "@image/artifacts/PaleFlame_feather"
-
-
-import PaleFlame_sand from "@image/artifacts/PaleFlame_sand"
-
-
-import PaleFlame_goblet from "@image/artifacts/PaleFlame_goblet"
-
-
-import PaleFlame_head from "@image/artifacts/PaleFlame_head"
-
-
-
-
-
-
-
-import PrayersForDestiny_head from "@image/artifacts/PrayersForDestiny_head"
-
-
-
-
-
-
-
-import PrayersForIllumination_head from "@image/artifacts/PrayersForIllumination_head"
-
-
-
-
-
-
-
-import PrayersForWisdom_head from "@image/artifacts/PrayersForWisdom_head"
-
-
-
-
-
-
-
-import PrayersToSpringtime_head from "@image/artifacts/PrayersToSpringtime_head"
-
-
-
-import ResolutionOfSojourner_flower from "@image/artifacts/ResolutionOfSojourner_flower"
-
-
-import ResolutionOfSojourner_feather from "@image/artifacts/ResolutionOfSojourner_feather"
-
-
-import ResolutionOfSojourner_sand from "@image/artifacts/ResolutionOfSojourner_sand"
-
-
-import ResolutionOfSojourner_goblet from "@image/artifacts/ResolutionOfSojourner_goblet"
-
-
-import ResolutionOfSojourner_head from "@image/artifacts/ResolutionOfSojourner_head"
-
-
-
-import RetracingBolide_flower from "@image/artifacts/RetracingBolide_flower"
-
-
-import RetracingBolide_feather from "@image/artifacts/RetracingBolide_feather"
-
-
-import RetracingBolide_sand from "@image/artifacts/RetracingBolide_sand"
-
-
-import RetracingBolide_goblet from "@image/artifacts/RetracingBolide_goblet"
-
-
-import RetracingBolide_head from "@image/artifacts/RetracingBolide_head"
-
-
-
-import Scholar_flower from "@image/artifacts/Scholar_flower"
-
-
-import Scholar_feather from "@image/artifacts/Scholar_feather"
-
-
-import Scholar_sand from "@image/artifacts/Scholar_sand"
-
-
-import Scholar_goblet from "@image/artifacts/Scholar_goblet"
-
-
-import Scholar_head from "@image/artifacts/Scholar_head"
-
-
-
-import ShimenawasReminiscence_flower from "@image/artifacts/ShimenawasReminiscence_flower"
-
-
-import ShimenawasReminiscence_feather from "@image/artifacts/ShimenawasReminiscence_feather"
-
-
-import ShimenawasReminiscence_sand from "@image/artifacts/ShimenawasReminiscence_sand"
-
-
-import ShimenawasReminiscence_goblet from "@image/artifacts/ShimenawasReminiscence_goblet"
-
-
-import ShimenawasReminiscence_head from "@image/artifacts/ShimenawasReminiscence_head"
-
-
-
-import TenacityOfTheMillelith_flower from "@image/artifacts/TenacityOfTheMillelith_flower"
-
-
-import TenacityOfTheMillelith_feather from "@image/artifacts/TenacityOfTheMillelith_feather"
-
-
-import TenacityOfTheMillelith_sand from "@image/artifacts/TenacityOfTheMillelith_sand"
-
-
-import TenacityOfTheMillelith_goblet from "@image/artifacts/TenacityOfTheMillelith_goblet"
-
-
-import TenacityOfTheMillelith_head from "@image/artifacts/TenacityOfTheMillelith_head"
-
-
-
-import TheExile_flower from "@image/artifacts/TheExile_flower"
-
-
-import TheExile_feather from "@image/artifacts/TheExile_feather"
-
-
-import TheExile_sand from "@image/artifacts/TheExile_sand"
-
-
-import TheExile_goblet from "@image/artifacts/TheExile_goblet"
-
-
-import TheExile_head from "@image/artifacts/TheExile_head"
-
-
-
-import ThunderingFury_flower from "@image/artifacts/ThunderingFury_flower"
-
-
-import ThunderingFury_feather from "@image/artifacts/ThunderingFury_feather"
-
-
-import ThunderingFury_sand from "@image/artifacts/ThunderingFury_sand"
-
-
-import ThunderingFury_goblet from "@image/artifacts/ThunderingFury_goblet"
-
-
-import ThunderingFury_head from "@image/artifacts/ThunderingFury_head"
-
-
-
-import Thundersoother_flower from "@image/artifacts/Thundersoother_flower"
-
-
-import Thundersoother_feather from "@image/artifacts/Thundersoother_feather"
-
-
-import Thundersoother_sand from "@image/artifacts/Thundersoother_sand"
-
-
-import Thundersoother_goblet from "@image/artifacts/Thundersoother_goblet"
-
-
-import Thundersoother_head from "@image/artifacts/Thundersoother_head"
-
-
-
-import TinyMiracle_flower from "@image/artifacts/TinyMiracle_flower"
-
-
-import TinyMiracle_feather from "@image/artifacts/TinyMiracle_feather"
-
-
-import TinyMiracle_sand from "@image/artifacts/TinyMiracle_sand"
-
-
-import TinyMiracle_goblet from "@image/artifacts/TinyMiracle_goblet"
-
-
-import TinyMiracle_head from "@image/artifacts/TinyMiracle_head"
-
-
-
-import TravelingDoctor_flower from "@image/artifacts/TravelingDoctor_flower"
-
-
-import TravelingDoctor_feather from "@image/artifacts/TravelingDoctor_feather"
-
-
-import TravelingDoctor_sand from "@image/artifacts/TravelingDoctor_sand"
-
-
-import TravelingDoctor_goblet from "@image/artifacts/TravelingDoctor_goblet"
-
-
-import TravelingDoctor_head from "@image/artifacts/TravelingDoctor_head"
-
-
-
-import VermillionHereafter_flower from "@image/artifacts/VermillionHereafter_flower"
-
-
-import VermillionHereafter_feather from "@image/artifacts/VermillionHereafter_feather"
-
-
-import VermillionHereafter_sand from "@image/artifacts/VermillionHereafter_sand"
-
-
-import VermillionHereafter_goblet from "@image/artifacts/VermillionHereafter_goblet"
-
-
-import VermillionHereafter_head from "@image/artifacts/VermillionHereafter_head"
-
-
-
-import ViridescentVenerer_flower from "@image/artifacts/ViridescentVenerer_flower"
-
-
-import ViridescentVenerer_feather from "@image/artifacts/ViridescentVenerer_feather"
-
-
-import ViridescentVenerer_sand from "@image/artifacts/ViridescentVenerer_sand"
-
-
-import ViridescentVenerer_goblet from "@image/artifacts/ViridescentVenerer_goblet"
-
-
-import ViridescentVenerer_head from "@image/artifacts/ViridescentVenerer_head"
-
-
-
-import WanderersTroupe_flower from "@image/artifacts/WanderersTroupe_flower"
-
-
-import WanderersTroupe_feather from "@image/artifacts/WanderersTroupe_feather"
-
-
-import WanderersTroupe_sand from "@image/artifacts/WanderersTroupe_sand"
-
-
-import WanderersTroupe_goblet from "@image/artifacts/WanderersTroupe_goblet"
-
-
-import WanderersTroupe_head from "@image/artifacts/WanderersTroupe_head"
-
-
+// 
+// 
+// import Adventurer_flower from "@image/artifacts/Adventurer_flower"
+// 
+// 
+// import Adventurer_feather from "@image/artifacts/Adventurer_feather"
+// 
+// 
+// import Adventurer_sand from "@image/artifacts/Adventurer_sand"
+// 
+// 
+// import Adventurer_goblet from "@image/artifacts/Adventurer_goblet"
+// 
+// 
+// import Adventurer_head from "@image/artifacts/Adventurer_head"
+// 
+// 
+// 
+// import ArchaicPetra_flower from "@image/artifacts/ArchaicPetra_flower"
+// 
+// 
+// import ArchaicPetra_feather from "@image/artifacts/ArchaicPetra_feather"
+// 
+// 
+// import ArchaicPetra_sand from "@image/artifacts/ArchaicPetra_sand"
+// 
+// 
+// import ArchaicPetra_goblet from "@image/artifacts/ArchaicPetra_goblet"
+// 
+// 
+// import ArchaicPetra_head from "@image/artifacts/ArchaicPetra_head"
+// 
+// 
+// 
+// import Berserker_flower from "@image/artifacts/Berserker_flower"
+// 
+// 
+// import Berserker_feather from "@image/artifacts/Berserker_feather"
+// 
+// 
+// import Berserker_sand from "@image/artifacts/Berserker_sand"
+// 
+// 
+// import Berserker_goblet from "@image/artifacts/Berserker_goblet"
+// 
+// 
+// import Berserker_head from "@image/artifacts/Berserker_head"
+// 
+// 
+// 
+// import BlizzardStrayer_flower from "@image/artifacts/BlizzardStrayer_flower"
+// 
+// 
+// import BlizzardStrayer_feather from "@image/artifacts/BlizzardStrayer_feather"
+// 
+// 
+// import BlizzardStrayer_sand from "@image/artifacts/BlizzardStrayer_sand"
+// 
+// 
+// import BlizzardStrayer_goblet from "@image/artifacts/BlizzardStrayer_goblet"
+// 
+// 
+// import BlizzardStrayer_head from "@image/artifacts/BlizzardStrayer_head"
+// 
+// 
+// 
+// import BloodstainedChivalry_flower from "@image/artifacts/BloodstainedChivalry_flower"
+// 
+// 
+// import BloodstainedChivalry_feather from "@image/artifacts/BloodstainedChivalry_feather"
+// 
+// 
+// import BloodstainedChivalry_sand from "@image/artifacts/BloodstainedChivalry_sand"
+// 
+// 
+// import BloodstainedChivalry_goblet from "@image/artifacts/BloodstainedChivalry_goblet"
+// 
+// 
+// import BloodstainedChivalry_head from "@image/artifacts/BloodstainedChivalry_head"
+// 
+// 
+// 
+// import BraveHeart_flower from "@image/artifacts/BraveHeart_flower"
+// 
+// 
+// import BraveHeart_feather from "@image/artifacts/BraveHeart_feather"
+// 
+// 
+// import BraveHeart_sand from "@image/artifacts/BraveHeart_sand"
+// 
+// 
+// import BraveHeart_goblet from "@image/artifacts/BraveHeart_goblet"
+// 
+// 
+// import BraveHeart_head from "@image/artifacts/BraveHeart_head"
+// 
+// 
+// 
+// import CrimsonWitchOfFlames_flower from "@image/artifacts/CrimsonWitchOfFlames_flower"
+// 
+// 
+// import CrimsonWitchOfFlames_feather from "@image/artifacts/CrimsonWitchOfFlames_feather"
+// 
+// 
+// import CrimsonWitchOfFlames_sand from "@image/artifacts/CrimsonWitchOfFlames_sand"
+// 
+// 
+// import CrimsonWitchOfFlames_goblet from "@image/artifacts/CrimsonWitchOfFlames_goblet"
+// 
+// 
+// import CrimsonWitchOfFlames_head from "@image/artifacts/CrimsonWitchOfFlames_head"
+// 
+// 
+// 
+// import DefendersWill_flower from "@image/artifacts/DefendersWill_flower"
+// 
+// 
+// import DefendersWill_feather from "@image/artifacts/DefendersWill_feather"
+// 
+// 
+// import DefendersWill_sand from "@image/artifacts/DefendersWill_sand"
+// 
+// 
+// import DefendersWill_goblet from "@image/artifacts/DefendersWill_goblet"
+// 
+// 
+// import DefendersWill_head from "@image/artifacts/DefendersWill_head"
+// 
+// 
+// 
+// import EchoesOfAnOffering_flower from "@image/artifacts/EchoesOfAnOffering_flower"
+// 
+// 
+// import EchoesOfAnOffering_feather from "@image/artifacts/EchoesOfAnOffering_feather"
+// 
+// 
+// import EchoesOfAnOffering_sand from "@image/artifacts/EchoesOfAnOffering_sand"
+// 
+// 
+// import EchoesOfAnOffering_goblet from "@image/artifacts/EchoesOfAnOffering_goblet"
+// 
+// 
+// import EchoesOfAnOffering_head from "@image/artifacts/EchoesOfAnOffering_head"
+// 
+// 
+// 
+// import EmblemOfSeveredFate_flower from "@image/artifacts/EmblemOfSeveredFate_flower"
+// 
+// 
+// import EmblemOfSeveredFate_feather from "@image/artifacts/EmblemOfSeveredFate_feather"
+// 
+// 
+// import EmblemOfSeveredFate_sand from "@image/artifacts/EmblemOfSeveredFate_sand"
+// 
+// 
+// import EmblemOfSeveredFate_goblet from "@image/artifacts/EmblemOfSeveredFate_goblet"
+// 
+// 
+// import EmblemOfSeveredFate_head from "@image/artifacts/EmblemOfSeveredFate_head"
+// 
+// 
+// 
+// import Gambler_flower from "@image/artifacts/Gambler_flower"
+// 
+// 
+// import Gambler_feather from "@image/artifacts/Gambler_feather"
+// 
+// 
+// import Gambler_sand from "@image/artifacts/Gambler_sand"
+// 
+// 
+// import Gambler_goblet from "@image/artifacts/Gambler_goblet"
+// 
+// 
+// import Gambler_head from "@image/artifacts/Gambler_head"
+// 
+// 
+// 
+// import GladiatorsFinale_flower from "@image/artifacts/GladiatorsFinale_flower"
+// 
+// 
+// import GladiatorsFinale_feather from "@image/artifacts/GladiatorsFinale_feather"
+// 
+// 
+// import GladiatorsFinale_sand from "@image/artifacts/GladiatorsFinale_sand"
+// 
+// 
+// import GladiatorsFinale_goblet from "@image/artifacts/GladiatorsFinale_goblet"
+// 
+// 
+// import GladiatorsFinale_head from "@image/artifacts/GladiatorsFinale_head"
+// 
+// 
+// 
+// import HeartOfDepth_flower from "@image/artifacts/HeartOfDepth_flower"
+// 
+// 
+// import HeartOfDepth_feather from "@image/artifacts/HeartOfDepth_feather"
+// 
+// 
+// import HeartOfDepth_sand from "@image/artifacts/HeartOfDepth_sand"
+// 
+// 
+// import HeartOfDepth_goblet from "@image/artifacts/HeartOfDepth_goblet"
+// 
+// 
+// import HeartOfDepth_head from "@image/artifacts/HeartOfDepth_head"
+// 
+// 
+// 
+// import HuskOfOpulentDreams_flower from "@image/artifacts/HuskOfOpulentDreams_flower"
+// 
+// 
+// import HuskOfOpulentDreams_feather from "@image/artifacts/HuskOfOpulentDreams_feather"
+// 
+// 
+// import HuskOfOpulentDreams_sand from "@image/artifacts/HuskOfOpulentDreams_sand"
+// 
+// 
+// import HuskOfOpulentDreams_goblet from "@image/artifacts/HuskOfOpulentDreams_goblet"
+// 
+// 
+// import HuskOfOpulentDreams_head from "@image/artifacts/HuskOfOpulentDreams_head"
+// 
+// 
+// 
+// import Instructor_flower from "@image/artifacts/Instructor_flower"
+// 
+// 
+// import Instructor_feather from "@image/artifacts/Instructor_feather"
+// 
+// 
+// import Instructor_sand from "@image/artifacts/Instructor_sand"
+// 
+// 
+// import Instructor_goblet from "@image/artifacts/Instructor_goblet"
+// 
+// 
+// import Instructor_head from "@image/artifacts/Instructor_head"
+// 
+// 
+// 
+// import Lavawalker_flower from "@image/artifacts/Lavawalker_flower"
+// 
+// 
+// import Lavawalker_feather from "@image/artifacts/Lavawalker_feather"
+// 
+// 
+// import Lavawalker_sand from "@image/artifacts/Lavawalker_sand"
+// 
+// 
+// import Lavawalker_goblet from "@image/artifacts/Lavawalker_goblet"
+// 
+// 
+// import Lavawalker_head from "@image/artifacts/Lavawalker_head"
+// 
+// 
+// 
+// import LuckyDog_flower from "@image/artifacts/LuckyDog_flower"
+// 
+// 
+// import LuckyDog_feather from "@image/artifacts/LuckyDog_feather"
+// 
+// 
+// import LuckyDog_sand from "@image/artifacts/LuckyDog_sand"
+// 
+// 
+// import LuckyDog_goblet from "@image/artifacts/LuckyDog_goblet"
+// 
+// 
+// import LuckyDog_head from "@image/artifacts/LuckyDog_head"
+// 
+// 
+// 
+// import MaidenBeloved_flower from "@image/artifacts/MaidenBeloved_flower"
+// 
+// 
+// import MaidenBeloved_feather from "@image/artifacts/MaidenBeloved_feather"
+// 
+// 
+// import MaidenBeloved_sand from "@image/artifacts/MaidenBeloved_sand"
+// 
+// 
+// import MaidenBeloved_goblet from "@image/artifacts/MaidenBeloved_goblet"
+// 
+// 
+// import MaidenBeloved_head from "@image/artifacts/MaidenBeloved_head"
+// 
+// 
+// 
+// import MartialArtist_flower from "@image/artifacts/MartialArtist_flower"
+// 
+// 
+// import MartialArtist_feather from "@image/artifacts/MartialArtist_feather"
+// 
+// 
+// import MartialArtist_sand from "@image/artifacts/MartialArtist_sand"
+// 
+// 
+// import MartialArtist_goblet from "@image/artifacts/MartialArtist_goblet"
+// 
+// 
+// import MartialArtist_head from "@image/artifacts/MartialArtist_head"
+// 
+// 
+// 
+// import NoblesseOblige_flower from "@image/artifacts/NoblesseOblige_flower"
+// 
+// 
+// import NoblesseOblige_feather from "@image/artifacts/NoblesseOblige_feather"
+// 
+// 
+// import NoblesseOblige_sand from "@image/artifacts/NoblesseOblige_sand"
+// 
+// 
+// import NoblesseOblige_goblet from "@image/artifacts/NoblesseOblige_goblet"
+// 
+// 
+// import NoblesseOblige_head from "@image/artifacts/NoblesseOblige_head"
+// 
+// 
+// 
+// import OceanHuedClam_flower from "@image/artifacts/OceanHuedClam_flower"
+// 
+// 
+// import OceanHuedClam_feather from "@image/artifacts/OceanHuedClam_feather"
+// 
+// 
+// import OceanHuedClam_sand from "@image/artifacts/OceanHuedClam_sand"
+// 
+// 
+// import OceanHuedClam_goblet from "@image/artifacts/OceanHuedClam_goblet"
+// 
+// 
+// import OceanHuedClam_head from "@image/artifacts/OceanHuedClam_head"
+// 
+// 
+// 
+// import PaleFlame_flower from "@image/artifacts/PaleFlame_flower"
+// 
+// 
+// import PaleFlame_feather from "@image/artifacts/PaleFlame_feather"
+// 
+// 
+// import PaleFlame_sand from "@image/artifacts/PaleFlame_sand"
+// 
+// 
+// import PaleFlame_goblet from "@image/artifacts/PaleFlame_goblet"
+// 
+// 
+// import PaleFlame_head from "@image/artifacts/PaleFlame_head"
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// import PrayersForDestiny_head from "@image/artifacts/PrayersForDestiny_head"
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// import PrayersForIllumination_head from "@image/artifacts/PrayersForIllumination_head"
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// import PrayersForWisdom_head from "@image/artifacts/PrayersForWisdom_head"
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// import PrayersToSpringtime_head from "@image/artifacts/PrayersToSpringtime_head"
+// 
+// 
+// 
+// import ResolutionOfSojourner_flower from "@image/artifacts/ResolutionOfSojourner_flower"
+// 
+// 
+// import ResolutionOfSojourner_feather from "@image/artifacts/ResolutionOfSojourner_feather"
+// 
+// 
+// import ResolutionOfSojourner_sand from "@image/artifacts/ResolutionOfSojourner_sand"
+// 
+// 
+// import ResolutionOfSojourner_goblet from "@image/artifacts/ResolutionOfSojourner_goblet"
+// 
+// 
+// import ResolutionOfSojourner_head from "@image/artifacts/ResolutionOfSojourner_head"
+// 
+// 
+// 
+// import RetracingBolide_flower from "@image/artifacts/RetracingBolide_flower"
+// 
+// 
+// import RetracingBolide_feather from "@image/artifacts/RetracingBolide_feather"
+// 
+// 
+// import RetracingBolide_sand from "@image/artifacts/RetracingBolide_sand"
+// 
+// 
+// import RetracingBolide_goblet from "@image/artifacts/RetracingBolide_goblet"
+// 
+// 
+// import RetracingBolide_head from "@image/artifacts/RetracingBolide_head"
+// 
+// 
+// 
+// import Scholar_flower from "@image/artifacts/Scholar_flower"
+// 
+// 
+// import Scholar_feather from "@image/artifacts/Scholar_feather"
+// 
+// 
+// import Scholar_sand from "@image/artifacts/Scholar_sand"
+// 
+// 
+// import Scholar_goblet from "@image/artifacts/Scholar_goblet"
+// 
+// 
+// import Scholar_head from "@image/artifacts/Scholar_head"
+// 
+// 
+// 
+// import ShimenawasReminiscence_flower from "@image/artifacts/ShimenawasReminiscence_flower"
+// 
+// 
+// import ShimenawasReminiscence_feather from "@image/artifacts/ShimenawasReminiscence_feather"
+// 
+// 
+// import ShimenawasReminiscence_sand from "@image/artifacts/ShimenawasReminiscence_sand"
+// 
+// 
+// import ShimenawasReminiscence_goblet from "@image/artifacts/ShimenawasReminiscence_goblet"
+// 
+// 
+// import ShimenawasReminiscence_head from "@image/artifacts/ShimenawasReminiscence_head"
+// 
+// 
+// 
+// import TenacityOfTheMillelith_flower from "@image/artifacts/TenacityOfTheMillelith_flower"
+// 
+// 
+// import TenacityOfTheMillelith_feather from "@image/artifacts/TenacityOfTheMillelith_feather"
+// 
+// 
+// import TenacityOfTheMillelith_sand from "@image/artifacts/TenacityOfTheMillelith_sand"
+// 
+// 
+// import TenacityOfTheMillelith_goblet from "@image/artifacts/TenacityOfTheMillelith_goblet"
+// 
+// 
+// import TenacityOfTheMillelith_head from "@image/artifacts/TenacityOfTheMillelith_head"
+// 
+// 
+// 
+// import TheExile_flower from "@image/artifacts/TheExile_flower"
+// 
+// 
+// import TheExile_feather from "@image/artifacts/TheExile_feather"
+// 
+// 
+// import TheExile_sand from "@image/artifacts/TheExile_sand"
+// 
+// 
+// import TheExile_goblet from "@image/artifacts/TheExile_goblet"
+// 
+// 
+// import TheExile_head from "@image/artifacts/TheExile_head"
+// 
+// 
+// 
+// import ThunderingFury_flower from "@image/artifacts/ThunderingFury_flower"
+// 
+// 
+// import ThunderingFury_feather from "@image/artifacts/ThunderingFury_feather"
+// 
+// 
+// import ThunderingFury_sand from "@image/artifacts/ThunderingFury_sand"
+// 
+// 
+// import ThunderingFury_goblet from "@image/artifacts/ThunderingFury_goblet"
+// 
+// 
+// import ThunderingFury_head from "@image/artifacts/ThunderingFury_head"
+// 
+// 
+// 
+// import Thundersoother_flower from "@image/artifacts/Thundersoother_flower"
+// 
+// 
+// import Thundersoother_feather from "@image/artifacts/Thundersoother_feather"
+// 
+// 
+// import Thundersoother_sand from "@image/artifacts/Thundersoother_sand"
+// 
+// 
+// import Thundersoother_goblet from "@image/artifacts/Thundersoother_goblet"
+// 
+// 
+// import Thundersoother_head from "@image/artifacts/Thundersoother_head"
+// 
+// 
+// 
+// import TinyMiracle_flower from "@image/artifacts/TinyMiracle_flower"
+// 
+// 
+// import TinyMiracle_feather from "@image/artifacts/TinyMiracle_feather"
+// 
+// 
+// import TinyMiracle_sand from "@image/artifacts/TinyMiracle_sand"
+// 
+// 
+// import TinyMiracle_goblet from "@image/artifacts/TinyMiracle_goblet"
+// 
+// 
+// import TinyMiracle_head from "@image/artifacts/TinyMiracle_head"
+// 
+// 
+// 
+// import TravelingDoctor_flower from "@image/artifacts/TravelingDoctor_flower"
+// 
+// 
+// import TravelingDoctor_feather from "@image/artifacts/TravelingDoctor_feather"
+// 
+// 
+// import TravelingDoctor_sand from "@image/artifacts/TravelingDoctor_sand"
+// 
+// 
+// import TravelingDoctor_goblet from "@image/artifacts/TravelingDoctor_goblet"
+// 
+// 
+// import TravelingDoctor_head from "@image/artifacts/TravelingDoctor_head"
+// 
+// 
+// 
+// import VermillionHereafter_flower from "@image/artifacts/VermillionHereafter_flower"
+// 
+// 
+// import VermillionHereafter_feather from "@image/artifacts/VermillionHereafter_feather"
+// 
+// 
+// import VermillionHereafter_sand from "@image/artifacts/VermillionHereafter_sand"
+// 
+// 
+// import VermillionHereafter_goblet from "@image/artifacts/VermillionHereafter_goblet"
+// 
+// 
+// import VermillionHereafter_head from "@image/artifacts/VermillionHereafter_head"
+// 
+// 
+// 
+// import ViridescentVenerer_flower from "@image/artifacts/ViridescentVenerer_flower"
+// 
+// 
+// import ViridescentVenerer_feather from "@image/artifacts/ViridescentVenerer_feather"
+// 
+// 
+// import ViridescentVenerer_sand from "@image/artifacts/ViridescentVenerer_sand"
+// 
+// 
+// import ViridescentVenerer_goblet from "@image/artifacts/ViridescentVenerer_goblet"
+// 
+// 
+// import ViridescentVenerer_head from "@image/artifacts/ViridescentVenerer_head"
+// 
+// 
+// 
+// import WanderersTroupe_flower from "@image/artifacts/WanderersTroupe_flower"
+// 
+// 
+// import WanderersTroupe_feather from "@image/artifacts/WanderersTroupe_feather"
+// 
+// 
+// import WanderersTroupe_sand from "@image/artifacts/WanderersTroupe_sand"
+// 
+// 
+// import WanderersTroupe_goblet from "@image/artifacts/WanderersTroupe_goblet"
+// 
+// 
+// import WanderersTroupe_head from "@image/artifacts/WanderersTroupe_head"
+// 
+// 
+
+const template = "https://upload-bbs.mihoyo.com/game_record/genshin/equip/#.png"
+
+const getIcon = name => template.replace("#", name)
 
 export default {
     
@@ -606,31 +610,36 @@ export default {
         
         flower: {
             chs: "冒险家之花",
-            url: Adventurer_flower,
+            // url: Adventurer_flower,
+            url: getIcon("UI_RelicIcon_10010_4")
         },
         
         
         feather: {
             chs: "冒险家尾羽",
-            url: Adventurer_feather,
+            // url: Adventurer_feather,
+            url: getIcon("UI_RelicIcon_10010_2")
         },
         
         
         sand: {
             chs: "冒险家怀表",
-            url: Adventurer_sand,
+            // url: Adventurer_sand,
+            url: getIcon("UI_RelicIcon_10010_5")
         },
         
         
         cup: {
             chs: "冒险家金杯",
-            url: Adventurer_goblet,
+            // url: Adventurer_goblet,
+            url: getIcon("UI_RelicIcon_10010_1")
         },
         
         
         head: {
             chs: "冒险家头带",
-            url: Adventurer_head,
+            // url: Adventurer_head,
+            url: getIcon("UI_RelicIcon_10010_3")
         },
         
         config4: [
@@ -649,31 +658,36 @@ export default {
         
         flower: {
             chs: "磐陀裂生之花",
-            url: ArchaicPetra_flower,
+            // url: ArchaicPetra_flower,
+            url: getIcon("UI_RelicIcon_15014_4")
         },
         
         
         feather: {
             chs: "嵯峨群峰之翼",
-            url: ArchaicPetra_feather,
+            // url: ArchaicPetra_feather,
+            url: getIcon("UI_RelicIcon_15014_2")
         },
         
         
         sand: {
             chs: "星罗圭壁之晷",
-            url: ArchaicPetra_sand,
+            // url: ArchaicPetra_sand,
+            url: getIcon("UI_RelicIcon_15014_5")
         },
         
         
         cup: {
             chs: "巉岩琢塑之樽",
-            url: ArchaicPetra_goblet,
+            // url: ArchaicPetra_goblet,
+            url: getIcon("UI_RelicIcon_15014_1")
         },
         
         
         head: {
             chs: "不动玄石之相",
-            url: ArchaicPetra_head,
+            // url: ArchaicPetra_head,
+            url: getIcon("UI_RelicIcon_15014_3")
         },
         
         config4: [
@@ -696,31 +710,36 @@ export default {
         
         flower: {
             chs: "战狂的蔷薇",
-            url: Berserker_flower,
+            // url: Berserker_flower,
+            url: getIcon("UI_RelicIcon_10005_4")
         },
         
         
         feather: {
             chs: "战狂的翎羽",
-            url: Berserker_feather,
+            // url: Berserker_feather,
+            url: getIcon("UI_RelicIcon_10005_2")
         },
         
         
         sand: {
             chs: "战狂的时计",
-            url: Berserker_sand,
+            // url: Berserker_sand,
+            url: getIcon("UI_RelicIcon_10005_5")
         },
         
         
         cup: {
             chs: "战狂的骨杯",
-            url: Berserker_goblet,
+            // url: Berserker_goblet,
+            url: getIcon("UI_RelicIcon_10005_1")
         },
         
         
         head: {
             chs: "战狂的鬼面",
-            url: Berserker_head,
+            // url: Berserker_head,
+            url: getIcon("UI_RelicIcon_10005_3")
         },
         
         config4: [
@@ -741,31 +760,36 @@ export default {
         
         flower: {
             chs: "历经风雪的思念",
-            url: BlizzardStrayer_flower,
+            // url: BlizzardStrayer_flower,
+            url: getIcon("UI_RelicIcon_14001_4")
         },
         
         
         feather: {
             chs: "摧冰而行的执望",
-            url: BlizzardStrayer_feather,
+            // url: BlizzardStrayer_feather,
+            url: getIcon("UI_RelicIcon_14001_2")
         },
         
         
         sand: {
             chs: "冰雪故园的终期",
-            url: BlizzardStrayer_sand,
+            // url: BlizzardStrayer_sand,
+            url: getIcon("UI_RelicIcon_14001_5")
         },
         
         
         cup: {
             chs: "遍结寒霜的傲骨",
-            url: BlizzardStrayer_goblet,
+            // url: BlizzardStrayer_goblet,
+            url: getIcon("UI_RelicIcon_14001_1")
         },
         
         
         head: {
             chs: "破冰踏雪的回音",
-            url: BlizzardStrayer_head,
+            // url: BlizzardStrayer_head,
+            url: getIcon("UI_RelicIcon_14001_3")
         },
         
         config4: [
@@ -786,31 +810,36 @@ export default {
         
         flower: {
             chs: "染血的铁之心",
-            url: BloodstainedChivalry_flower,
+            // url: BloodstainedChivalry_flower,
+            url: getIcon("UI_RelicIcon_15008_4")
         },
         
         
         feather: {
             chs: "染血的黑之羽",
-            url: BloodstainedChivalry_feather,
+            // url: BloodstainedChivalry_feather,
+            url: getIcon("UI_RelicIcon_15008_2")
         },
         
         
         sand: {
             chs: "骑士染血之时",
-            url: BloodstainedChivalry_sand,
+            // url: BloodstainedChivalry_sand,
+            url: getIcon("UI_RelicIcon_15008_5")
         },
         
         
         cup: {
             chs: "染血骑士之杯",
-            url: BloodstainedChivalry_goblet,
+            // url: BloodstainedChivalry_goblet,
+            url: getIcon("UI_RelicIcon_15008_1")
         },
         
         
         head: {
             chs: "染血的铁假面",
-            url: BloodstainedChivalry_head,
+            // url: BloodstainedChivalry_head,
+            url: getIcon("UI_RelicIcon_15008_3")
         },
         
         config4: [
@@ -831,31 +860,36 @@ export default {
         
         flower: {
             chs: "勇士的勋章",
-            url: BraveHeart_flower,
+            // url: BraveHeart_flower,
+            url: getIcon("UI_RelicIcon_10002_4")
         },
         
         
         feather: {
             chs: "勇士的期许",
-            url: BraveHeart_feather,
+            // url: BraveHeart_feather,
+            url: getIcon("UI_RelicIcon_10002_2")
         },
         
         
         sand: {
             chs: "勇士的坚毅",
-            url: BraveHeart_sand,
+            // url: BraveHeart_sand,
+            url: getIcon("UI_RelicIcon_10002_5")
         },
         
         
         cup: {
             chs: "勇士的壮行",
-            url: BraveHeart_goblet,
+            // url: BraveHeart_goblet,
+            url: getIcon("UI_RelicIcon_10002_1")
         },
         
         
         head: {
             chs: "勇士的冠冕",
-            url: BraveHeart_head,
+            // url: BraveHeart_head,
+            url: getIcon("UI_RelicIcon_10002_3")
         },
         
         config4: [
@@ -876,31 +910,36 @@ export default {
         
         flower: {
             chs: "魔女的炎之花",
-            url: CrimsonWitchOfFlames_flower,
+            // url: CrimsonWitchOfFlames_flower,
+            url: getIcon("UI_RelicIcon_15006_4")
         },
         
         
         feather: {
             chs: "魔女常燃之羽",
-            url: CrimsonWitchOfFlames_feather,
+            // url: CrimsonWitchOfFlames_feather,
+            url: getIcon("UI_RelicIcon_15006_2")
         },
         
         
         sand: {
             chs: "魔女破灭之时",
-            url: CrimsonWitchOfFlames_sand,
+            // url: CrimsonWitchOfFlames_sand,
+            url: getIcon("UI_RelicIcon_15006_5")
         },
         
         
         cup: {
             chs: "魔女的心之火",
-            url: CrimsonWitchOfFlames_goblet,
+            // url: CrimsonWitchOfFlames_goblet,
+            url: getIcon("UI_RelicIcon_15006_1")
         },
         
         
         head: {
             chs: "焦灼的魔女帽",
-            url: CrimsonWitchOfFlames_head,
+            // url: CrimsonWitchOfFlames_head,
+            url: getIcon("UI_RelicIcon_15006_3")
         },
         
         config4: [
@@ -921,31 +960,36 @@ export default {
         
         flower: {
             chs: "守护之花",
-            url: DefendersWill_flower,
+            // url: DefendersWill_flower,
+            url: getIcon("UI_RelicIcon_10003_4")
         },
         
         
         feather: {
             chs: "守护徽印",
-            url: DefendersWill_feather,
+            // url: DefendersWill_feather,
+            url: getIcon("UI_RelicIcon_10003_2")
         },
         
         
         sand: {
             chs: "守护座钟",
-            url: DefendersWill_sand,
+            // url: DefendersWill_sand,
+            url: getIcon("UI_RelicIcon_10003_5")
         },
         
         
         cup: {
             chs: "守护之皿",
-            url: DefendersWill_goblet,
+            // url: DefendersWill_goblet,
+            url: getIcon("UI_RelicIcon_10003_1")
         },
         
         
         head: {
             chs: "守护束带",
-            url: DefendersWill_head,
+            // url: DefendersWill_head,
+            url: getIcon("UI_RelicIcon_10003_3")
         },
         
         config4: [
@@ -964,31 +1008,36 @@ export default {
         
         flower: {
             chs: "魂香之花",
-            url: EchoesOfAnOffering_flower,
+            // url: EchoesOfAnOffering_flower,
+            url: getIcon("UI_RelicIcon_15024_4")
         },
         
         
         feather: {
             chs: "垂玉之叶",
-            url: EchoesOfAnOffering_feather,
+            // url: EchoesOfAnOffering_feather,
+            url: getIcon("UI_RelicIcon_15024_2")
         },
         
         
         sand: {
             chs: "祝祀之凭",
-            url: EchoesOfAnOffering_sand,
+            // url: EchoesOfAnOffering_sand,
+            url: getIcon("UI_RelicIcon_15024_5")
         },
         
         
         cup: {
             chs: "涌泉之盏",
-            url: EchoesOfAnOffering_goblet,
+            // url: EchoesOfAnOffering_goblet,
+            url: getIcon("UI_RelicIcon_15024_1")
         },
         
         
         head: {
             chs: "浮溯之珏",
-            url: EchoesOfAnOffering_head,
+            // url: EchoesOfAnOffering_head,
+            url: getIcon("UI_RelicIcon_15024_3")
         },
         
         config4: [
@@ -1009,31 +1058,36 @@ export default {
         
         flower: {
             chs: "明威之镡",
-            url: EmblemOfSeveredFate_flower,
+            // url: EmblemOfSeveredFate_flower,
+            url: getIcon("UI_RelicIcon_15020_4")
         },
         
         
         feather: {
             chs: "切落之羽",
-            url: EmblemOfSeveredFate_feather,
+            // url: EmblemOfSeveredFate_feather,
+            url: getIcon("UI_RelicIcon_15020_2")
         },
         
         
         sand: {
             chs: "雷云之笼",
-            url: EmblemOfSeveredFate_sand,
+            // url: EmblemOfSeveredFate_sand,
+            url: getIcon("UI_RelicIcon_15020_5")
         },
         
         
         cup: {
             chs: "绯花之壶",
-            url: EmblemOfSeveredFate_goblet,
+            // url: EmblemOfSeveredFate_goblet,
+            url: getIcon("UI_RelicIcon_15020_1")
         },
         
         
         head: {
             chs: "华饰之兜",
-            url: EmblemOfSeveredFate_head,
+            // url: EmblemOfSeveredFate_head,
+            url: getIcon("UI_RelicIcon_15020_3")
         },
         
         config4: [
@@ -1052,31 +1106,36 @@ export default {
         
         flower: {
             chs: "赌徒的胸花",
-            url: Gambler_flower,
+            // url: Gambler_flower,
+            url: getIcon("UI_RelicIcon_10008_4")
         },
         
         
         feather: {
             chs: "赌徒的羽饰",
-            url: Gambler_feather,
+            // url: Gambler_feather,
+            url: getIcon("UI_RelicIcon_10008_2")
         },
         
         
         sand: {
             chs: "赌徒的怀表",
-            url: Gambler_sand,
+            // url: Gambler_sand,
+            url: getIcon("UI_RelicIcon_10008_5")
         },
         
         
         cup: {
             chs: "赌徒的骰蛊",
-            url: Gambler_goblet,
+            // url: Gambler_goblet,
+            url: getIcon("UI_RelicIcon_10008_1")
         },
         
         
         head: {
             chs: "赌徒的耳环",
-            url: Gambler_head,
+            // url: Gambler_head,
+            url: getIcon("UI_RelicIcon_10008_3")
         },
         
         config4: [
@@ -1095,31 +1154,36 @@ export default {
         
         flower: {
             chs: "角斗士的留恋",
-            url: GladiatorsFinale_flower,
+            // url: GladiatorsFinale_flower,
+            url: getIcon("UI_RelicIcon_15001_4")
         },
         
         
         feather: {
             chs: "角斗士的归宿",
-            url: GladiatorsFinale_feather,
+            // url: GladiatorsFinale_feather,
+            url: getIcon("UI_RelicIcon_15001_2")
         },
         
         
         sand: {
             chs: "角斗士的希冀",
-            url: GladiatorsFinale_sand,
+            // url: GladiatorsFinale_sand,
+            url: getIcon("UI_RelicIcon_15001_5")
         },
         
         
         cup: {
             chs: "角斗士的酣醉",
-            url: GladiatorsFinale_goblet,
+            // url: GladiatorsFinale_goblet,
+            url: getIcon("UI_RelicIcon_15001_1")
         },
         
         
         head: {
             chs: "角斗士的凯旋",
-            url: GladiatorsFinale_head,
+            // url: GladiatorsFinale_head,
+            url: getIcon("UI_RelicIcon_15001_3")
         },
         
         config4: [
@@ -1138,31 +1202,36 @@ export default {
         
         flower: {
             chs: "饰金胸花",
-            url: HeartOfDepth_flower,
+            // url: HeartOfDepth_flower,
+            url: getIcon("UI_RelicIcon_15016_4")
         },
         
         
         feather: {
             chs: "追忆之风",
-            url: HeartOfDepth_feather,
+            // url: HeartOfDepth_feather,
+            url: getIcon("UI_RelicIcon_15016_2")
         },
         
         
         sand: {
             chs: "坚铜罗盘",
-            url: HeartOfDepth_sand,
+            // url: HeartOfDepth_sand,
+            url: getIcon("UI_RelicIcon_15016_5")
         },
         
         
         cup: {
             chs: "沉波之盏",
-            url: HeartOfDepth_goblet,
+            // url: HeartOfDepth_goblet,
+            url: getIcon("UI_RelicIcon_15016_1")
         },
         
         
         head: {
             chs: "酒渍船帽",
-            url: HeartOfDepth_head,
+            // url: HeartOfDepth_head,
+            url: getIcon("UI_RelicIcon_15016_3")
         },
         
         config4: [
@@ -1183,31 +1252,36 @@ export default {
         
         flower: {
             chs: "荣花之期",
-            url: HuskOfOpulentDreams_flower,
+            // url: HuskOfOpulentDreams_flower,
+            url: getIcon("UI_RelicIcon_15021_4")
         },
         
         
         feather: {
             chs: "华馆之羽",
-            url: HuskOfOpulentDreams_feather,
+            // url: HuskOfOpulentDreams_feather,
+            url: getIcon("UI_RelicIcon_15021_2")
         },
         
         
         sand: {
             chs: "众生之谣",
-            url: HuskOfOpulentDreams_sand,
+            // url: HuskOfOpulentDreams_sand,
+            url: getIcon("UI_RelicIcon_15021_5")
         },
         
         
         cup: {
             chs: "梦醒之瓢",
-            url: HuskOfOpulentDreams_goblet,
+            // url: HuskOfOpulentDreams_goblet,
+            url: getIcon("UI_RelicIcon_15021_1")
         },
         
         
         head: {
             chs: "形骸之笠",
-            url: HuskOfOpulentDreams_head,
+            // url: HuskOfOpulentDreams_head,
+            url: getIcon("UI_RelicIcon_15021_3")
         },
         
         config4: [
@@ -1228,31 +1302,36 @@ export default {
         
         flower: {
             chs: "教官的胸花",
-            url: Instructor_flower,
+            // url: Instructor_flower,
+            url: getIcon("UI_RelicIcon_10007_4")
         },
         
         
         feather: {
             chs: "教官的羽饰",
-            url: Instructor_feather,
+            // url: Instructor_feather,
+            url: getIcon("UI_RelicIcon_10007_2")
         },
         
         
         sand: {
             chs: "教官的怀表",
-            url: Instructor_sand,
+            // url: Instructor_sand,
+            url: getIcon("UI_RelicIcon_10007_5")
         },
         
         
         cup: {
             chs: "教官的茶杯",
-            url: Instructor_goblet,
+            // url: Instructor_goblet,
+            url: getIcon("UI_RelicIcon_10007_1")
         },
         
         
         head: {
             chs: "教官的帽子",
-            url: Instructor_head,
+            // url: Instructor_head,
+            url: getIcon("UI_RelicIcon_10007_3")
         },
         
         config4: [
@@ -1273,31 +1352,36 @@ export default {
         
         flower: {
             chs: "渡火者的决绝",
-            url: Lavawalker_flower,
+            // url: Lavawalker_flower,
+            url: getIcon("UI_RelicIcon_14003_4")
         },
         
         
         feather: {
             chs: "渡火者的解脱",
-            url: Lavawalker_feather,
+            // url: Lavawalker_feather,
+            url: getIcon("UI_RelicIcon_14003_2")
         },
         
         
         sand: {
             chs: "渡火者的煎熬",
-            url: Lavawalker_sand,
+            // url: Lavawalker_sand,
+            url: getIcon("UI_RelicIcon_14003_5")
         },
         
         
         cup: {
             chs: "渡火者的醒悟",
-            url: Lavawalker_goblet,
+            // url: Lavawalker_goblet,
+            url: getIcon("UI_RelicIcon_14003_1")
         },
         
         
         head: {
             chs: "渡火者的智慧",
-            url: Lavawalker_head,
+            // url: Lavawalker_head,
+            url: getIcon("UI_RelicIcon_14003_3")
         },
         
         config4: [
@@ -1318,31 +1402,36 @@ export default {
         
         flower: {
             chs: "幸运儿绿花",
-            url: LuckyDog_flower,
+            // url: LuckyDog_flower,
+            url: getIcon("UI_RelicIcon_10011_4")
         },
         
         
         feather: {
             chs: "幸运儿鹰羽",
-            url: LuckyDog_feather,
+            // url: LuckyDog_feather,
+            url: getIcon("UI_RelicIcon_10011_2")
         },
         
         
         sand: {
             chs: "幸运儿沙漏",
-            url: LuckyDog_sand,
+            // url: LuckyDog_sand,
+            url: getIcon("UI_RelicIcon_10011_5")
         },
         
         
         cup: {
             chs: "幸运儿之杯",
-            url: LuckyDog_goblet,
+            // url: LuckyDog_goblet,
+            url: getIcon("UI_RelicIcon_10011_1")
         },
         
         
         head: {
             chs: "幸运儿银冠",
-            url: LuckyDog_head,
+            // url: LuckyDog_head,
+            url: getIcon("UI_RelicIcon_10011_3")
         },
         
         config4: [
@@ -1361,31 +1450,36 @@ export default {
         
         flower: {
             chs: "远方的少女的心",
-            url: MaidenBeloved_flower,
+            // url: MaidenBeloved_flower,
+            url: getIcon("UI_RelicIcon_14004_4")
         },
         
         
         feather: {
             chs: "少女飘摇的思念",
-            url: MaidenBeloved_feather,
+            // url: MaidenBeloved_feather,
+            url: getIcon("UI_RelicIcon_14004_2")
         },
         
         
         sand: {
             chs: "少女苦短的良辰",
-            url: MaidenBeloved_sand,
+            // url: MaidenBeloved_sand,
+            url: getIcon("UI_RelicIcon_14004_5")
         },
         
         
         cup: {
             chs: "少女片刻的闲暇",
-            url: MaidenBeloved_goblet,
+            // url: MaidenBeloved_goblet,
+            url: getIcon("UI_RelicIcon_14004_1")
         },
         
         
         head: {
             chs: "少女易逝的芳颜",
-            url: MaidenBeloved_head,
+            // url: MaidenBeloved_head,
+            url: getIcon("UI_RelicIcon_14004_3")
         },
         
         config4: [
@@ -1404,31 +1498,36 @@ export default {
         
         flower: {
             chs: "武人的红花",
-            url: MartialArtist_flower,
+            // url: MartialArtist_flower,
+            url: getIcon("UI_RelicIcon_10006_4")
         },
         
         
         feather: {
             chs: "武人的羽饰",
-            url: MartialArtist_feather,
+            // url: MartialArtist_feather,
+            url: getIcon("UI_RelicIcon_10006_2")
         },
         
         
         sand: {
             chs: "武人的水漏",
-            url: MartialArtist_sand,
+            // url: MartialArtist_sand,
+            url: getIcon("UI_RelicIcon_10006_5")
         },
         
         
         cup: {
             chs: "武人的酒杯",
-            url: MartialArtist_goblet,
+            // url: MartialArtist_goblet,
+            url: getIcon("UI_RelicIcon_10006_1")
         },
         
         
         head: {
             chs: "武人的头巾",
-            url: MartialArtist_head,
+            // url: MartialArtist_head,
+            url: getIcon("UI_RelicIcon_10006_3")
         },
         
         config4: [
@@ -1449,31 +1548,36 @@ export default {
         
         flower: {
             chs: "宗室之花",
-            url: NoblesseOblige_flower,
+            // url: NoblesseOblige_flower,
+            url: getIcon("UI_RelicIcon_15007_4")
         },
         
         
         feather: {
             chs: "宗室之翎",
-            url: NoblesseOblige_feather,
+            // url: NoblesseOblige_feather,
+            url: getIcon("UI_RelicIcon_15007_2")
         },
         
         
         sand: {
             chs: "宗室时计",
-            url: NoblesseOblige_sand,
+            // url: NoblesseOblige_sand,
+            url: getIcon("UI_RelicIcon_15007_5")
         },
         
         
         cup: {
             chs: "宗室银瓮",
-            url: NoblesseOblige_goblet,
+            // url: NoblesseOblige_goblet,
+            url: getIcon("UI_RelicIcon_15007_1")
         },
         
         
         head: {
             chs: "宗室面具",
-            url: NoblesseOblige_head,
+            // url: NoblesseOblige_head,
+            url: getIcon("UI_RelicIcon_15007_3")
         },
         
         config4: [
@@ -1494,31 +1598,36 @@ export default {
         
         flower: {
             chs: "海染之花",
-            url: OceanHuedClam_flower,
+            // url: OceanHuedClam_flower,
+            url: getIcon("UI_RelicIcon_15022_4")
         },
         
         
         feather: {
             chs: "渊宫之羽",
-            url: OceanHuedClam_feather,
+            // url: OceanHuedClam_feather,
+            url: getIcon("UI_RelicIcon_15022_2")
         },
         
         
         sand: {
             chs: "离别之贝",
-            url: OceanHuedClam_sand,
+            // url: OceanHuedClam_sand,
+            url: getIcon("UI_RelicIcon_15022_5")
         },
         
         
         cup: {
             chs: "真珠之笼",
-            url: OceanHuedClam_goblet,
+            // url: OceanHuedClam_goblet,
+            url: getIcon("UI_RelicIcon_15022_1")
         },
         
         
         head: {
             chs: "海祇之冠",
-            url: OceanHuedClam_head,
+            // url: OceanHuedClam_head,
+            url: getIcon("UI_RelicIcon_15022_3")
         },
         
         config4: [
@@ -1537,31 +1646,36 @@ export default {
         
         flower: {
             chs: "无垢之花",
-            url: PaleFlame_flower,
+            // url: PaleFlame_flower,
+            url: getIcon("UI_RelicIcon_15018_4")
         },
         
         
         feather: {
             chs: "贤医之羽",
-            url: PaleFlame_feather,
+            // url: PaleFlame_feather,
+            url: getIcon("UI_RelicIcon_15018_2")
         },
         
         
         sand: {
             chs: "停摆之刻",
-            url: PaleFlame_sand,
+            // url: PaleFlame_sand,
+            url: getIcon("UI_RelicIcon_15018_5")
         },
         
         
         cup: {
             chs: "超越之盏",
-            url: PaleFlame_goblet,
+            // url: PaleFlame_goblet,
+            url: getIcon("UI_RelicIcon_15018_1")
         },
         
         
         head: {
             chs: "嗤笑之面",
-            url: PaleFlame_head,
+            // url: PaleFlame_head,
+            url: getIcon("UI_RelicIcon_15018_3")
         },
         
         config4: [
@@ -1588,7 +1702,8 @@ export default {
         
         head: {
             chs: "祭水礼冠",
-            url: PrayersForDestiny_head,
+            // url: PrayersForDestiny_head,
+            url: getIcon("UI_RelicIcon_15010_3")
         },
         
         config4: [
@@ -1611,7 +1726,8 @@ export default {
         
         head: {
             chs: "祭火礼冠",
-            url: PrayersForIllumination_head,
+            // url: PrayersForIllumination_head,
+            url: getIcon("UI_RelicIcon_15009_3")
         },
         
         config4: [
@@ -1634,7 +1750,8 @@ export default {
         
         head: {
             chs: "祭雷礼冠",
-            url: PrayersForWisdom_head,
+            // url: PrayersForWisdom_head,
+            url: getIcon("UI_RelicIcon_15011_3")
         },
         
         config4: [
@@ -1657,7 +1774,8 @@ export default {
         
         head: {
             chs: "祭冰礼冠",
-            url: PrayersToSpringtime_head,
+            // url: PrayersToSpringtime_head,
+            url: getIcon("UI_RelicIcon_15013_3")
         },
         
         config4: [
@@ -1676,31 +1794,36 @@ export default {
         
         flower: {
             chs: "故人之心",
-            url: ResolutionOfSojourner_flower,
+            // url: ResolutionOfSojourner_flower,
+            url: getIcon("UI_RelicIcon_10001_4")
         },
         
         
         feather: {
             chs: "归乡之羽",
-            url: ResolutionOfSojourner_feather,
+            // url: ResolutionOfSojourner_feather,
+            url: getIcon("UI_RelicIcon_10001_2")
         },
         
         
         sand: {
             chs: "逐光之石",
-            url: ResolutionOfSojourner_sand,
+            // url: ResolutionOfSojourner_sand,
+            url: getIcon("UI_RelicIcon_10001_5")
         },
         
         
         cup: {
             chs: "异国之盏",
-            url: ResolutionOfSojourner_goblet,
+            // url: ResolutionOfSojourner_goblet,
+            url: getIcon("UI_RelicIcon_10001_1")
         },
         
         
         head: {
             chs: "感别之冠",
-            url: ResolutionOfSojourner_head,
+            // url: ResolutionOfSojourner_head,
+            url: getIcon("UI_RelicIcon_10001_3")
         },
         
         config4: [
@@ -1719,31 +1842,36 @@ export default {
         
         flower: {
             chs: "夏祭之花",
-            url: RetracingBolide_flower,
+            // url: RetracingBolide_flower,
+            url: getIcon("UI_RelicIcon_15015_4")
         },
         
         
         feather: {
             chs: "夏祭终末",
-            url: RetracingBolide_feather,
+            // url: RetracingBolide_feather,
+            url: getIcon("UI_RelicIcon_15015_2")
         },
         
         
         sand: {
             chs: "夏祭之刻",
-            url: RetracingBolide_sand,
+            // url: RetracingBolide_sand,
+            url: getIcon("UI_RelicIcon_15015_5")
         },
         
         
         cup: {
             chs: "夏祭水玉",
-            url: RetracingBolide_goblet,
+            // url: RetracingBolide_goblet,
+            url: getIcon("UI_RelicIcon_15015_1")
         },
         
         
         head: {
             chs: "夏祭之面",
-            url: RetracingBolide_head,
+            // url: RetracingBolide_head,
+            url: getIcon("UI_RelicIcon_15015_3")
         },
         
         config4: [
@@ -1764,31 +1892,36 @@ export default {
         
         flower: {
             chs: "学士的书签",
-            url: Scholar_flower,
+            // url: Scholar_flower,
+            url: getIcon("UI_RelicIcon_10012_4")
         },
         
         
         feather: {
             chs: "学士的羽笔",
-            url: Scholar_feather,
+            // url: Scholar_feather,
+            url: getIcon("UI_RelicIcon_10012_2")
         },
         
         
         sand: {
             chs: "学士的时钟",
-            url: Scholar_sand,
+            // url: Scholar_sand,
+            url: getIcon("UI_RelicIcon_10012_5")
         },
         
         
         cup: {
             chs: "学士的墨杯",
-            url: Scholar_goblet,
+            // url: Scholar_goblet,
+            url: getIcon("UI_RelicIcon_10012_1")
         },
         
         
         head: {
             chs: "学士的镜片",
-            url: Scholar_head,
+            // url: Scholar_head,
+            url: getIcon("UI_RelicIcon_10012_3")
         },
         
         config4: [
@@ -1807,31 +1940,36 @@ export default {
         
         flower: {
             chs: "羁缠之花",
-            url: ShimenawasReminiscence_flower,
+            // url: ShimenawasReminiscence_flower,
+            url: getIcon("UI_RelicIcon_15019_4")
         },
         
         
         feather: {
             chs: "思忆之矢",
-            url: ShimenawasReminiscence_feather,
+            // url: ShimenawasReminiscence_feather,
+            url: getIcon("UI_RelicIcon_15019_2")
         },
         
         
         sand: {
             chs: "朝露之时",
-            url: ShimenawasReminiscence_sand,
+            // url: ShimenawasReminiscence_sand,
+            url: getIcon("UI_RelicIcon_15019_5")
         },
         
         
         cup: {
             chs: "祈望之心",
-            url: ShimenawasReminiscence_goblet,
+            // url: ShimenawasReminiscence_goblet,
+            url: getIcon("UI_RelicIcon_15019_1")
         },
         
         
         head: {
             chs: "无常之面",
-            url: ShimenawasReminiscence_head,
+            // url: ShimenawasReminiscence_head,
+            url: getIcon("UI_RelicIcon_15019_3")
         },
         
         config4: [
@@ -1852,31 +1990,36 @@ export default {
         
         flower: {
             chs: "勋绩之花",
-            url: TenacityOfTheMillelith_flower,
+            // url: TenacityOfTheMillelith_flower,
+            url: getIcon("UI_RelicIcon_15017_4")
         },
         
         
         feather: {
             chs: "昭武翎羽",
-            url: TenacityOfTheMillelith_feather,
+            // url: TenacityOfTheMillelith_feather,
+            url: getIcon("UI_RelicIcon_15017_2")
         },
         
         
         sand: {
             chs: "金铜时晷",
-            url: TenacityOfTheMillelith_sand,
+            // url: TenacityOfTheMillelith_sand,
+            url: getIcon("UI_RelicIcon_15017_5")
         },
         
         
         cup: {
             chs: "盟誓金爵",
-            url: TenacityOfTheMillelith_goblet,
+            // url: TenacityOfTheMillelith_goblet,
+            url: getIcon("UI_RelicIcon_15017_1")
         },
         
         
         head: {
             chs: "将帅兜鍪",
-            url: TenacityOfTheMillelith_head,
+            // url: TenacityOfTheMillelith_head,
+            url: getIcon("UI_RelicIcon_15017_3")
         },
         
         config4: [
@@ -1897,31 +2040,36 @@ export default {
         
         flower: {
             chs: "流放者之花",
-            url: TheExile_flower,
+            // url: TheExile_flower,
+            url: getIcon("UI_RelicIcon_10009_4")
         },
         
         
         feather: {
             chs: "流放者之羽",
-            url: TheExile_feather,
+            // url: TheExile_feather,
+            url: getIcon("UI_RelicIcon_10009_2")
         },
         
         
         sand: {
             chs: "流放者怀表",
-            url: TheExile_sand,
+            // url: TheExile_sand,
+            url: getIcon("UI_RelicIcon_10009_5")
         },
         
         
         cup: {
             chs: "流放者之杯",
-            url: TheExile_goblet,
+            // url: TheExile_goblet,
+            url: getIcon("UI_RelicIcon_10009_1")
         },
         
         
         head: {
             chs: "流放者头冠",
-            url: TheExile_head,
+            // url: TheExile_head,
+            url: getIcon("UI_RelicIcon_10009_3")
         },
         
         config4: [
@@ -1940,31 +2088,36 @@ export default {
         
         flower: {
             chs: "雷鸟的怜悯",
-            url: ThunderingFury_flower,
+            // url: ThunderingFury_flower,
+            url: getIcon("UI_RelicIcon_15005_4")
         },
         
         
         feather: {
             chs: "雷灾的孑遗",
-            url: ThunderingFury_feather,
+            // url: ThunderingFury_feather,
+            url: getIcon("UI_RelicIcon_15005_2")
         },
         
         
         sand: {
             chs: "雷霆的时计",
-            url: ThunderingFury_sand,
+            // url: ThunderingFury_sand,
+            url: getIcon("UI_RelicIcon_15005_5")
         },
         
         
         cup: {
             chs: "降雷的凶兆",
-            url: ThunderingFury_goblet,
+            // url: ThunderingFury_goblet,
+            url: getIcon("UI_RelicIcon_15005_1")
         },
         
         
         head: {
             chs: "唤雷的头冠",
-            url: ThunderingFury_head,
+            // url: ThunderingFury_head,
+            url: getIcon("UI_RelicIcon_15005_3")
         },
         
         config4: [
@@ -1983,31 +2136,36 @@ export default {
         
         flower: {
             chs: "平雷之心",
-            url: Thundersoother_flower,
+            // url: Thundersoother_flower,
+            url: getIcon("UI_RelicIcon_14002_4")
         },
         
         
         feather: {
             chs: "平雷之羽",
-            url: Thundersoother_feather,
+            // url: Thundersoother_feather,
+            url: getIcon("UI_RelicIcon_14002_2")
         },
         
         
         sand: {
             chs: "平雷之刻",
-            url: Thundersoother_sand,
+            // url: Thundersoother_sand,
+            url: getIcon("UI_RelicIcon_14002_5")
         },
         
         
         cup: {
             chs: "平雷之器",
-            url: Thundersoother_goblet,
+            // url: Thundersoother_goblet,
+            url: getIcon("UI_RelicIcon_14002_1")
         },
         
         
         head: {
             chs: "平雷之冠",
-            url: Thundersoother_head,
+            // url: Thundersoother_head,
+            url: getIcon("UI_RelicIcon_14002_3")
         },
         
         config4: [
@@ -2028,31 +2186,36 @@ export default {
         
         flower: {
             chs: "奇迹之花",
-            url: TinyMiracle_flower,
+            // url: TinyMiracle_flower,
+            url: getIcon("UI_RelicIcon_10004_4")
         },
         
         
         feather: {
             chs: "奇迹之羽",
-            url: TinyMiracle_feather,
+            // url: TinyMiracle_feather,
+            url: getIcon("UI_RelicIcon_10004_2")
         },
         
         
         sand: {
             chs: "奇迹之沙",
-            url: TinyMiracle_sand,
+            // url: TinyMiracle_sand,
+            url: getIcon("UI_RelicIcon_10004_5")
         },
         
         
         cup: {
             chs: "奇迹之杯",
-            url: TinyMiracle_goblet,
+            // url: TinyMiracle_goblet,
+            url: getIcon("UI_RelicIcon_10004_1")
         },
         
         
         head: {
             chs: "奇迹耳坠",
-            url: TinyMiracle_head,
+            // url: TinyMiracle_head,
+            url: getIcon("UI_RelicIcon_10004_3")
         },
         
         config4: [
@@ -2071,31 +2234,36 @@ export default {
         
         flower: {
             chs: "游医的银莲",
-            url: TravelingDoctor_flower,
+            // url: TravelingDoctor_flower,
+            url: getIcon("UI_RelicIcon_10013_4")
         },
         
         
         feather: {
             chs: "游医的枭羽",
-            url: TravelingDoctor_feather,
+            // url: TravelingDoctor_feather,
+            url: getIcon("UI_RelicIcon_10013_2")
         },
         
         
         sand: {
             chs: "游医的怀钟",
-            url: TravelingDoctor_sand,
+            // url: TravelingDoctor_sand,
+            url: getIcon("UI_RelicIcon_10013_5")
         },
         
         
         cup: {
             chs: "游医的药壶",
-            url: TravelingDoctor_goblet,
+            // url: TravelingDoctor_goblet,
+            url: getIcon("UI_RelicIcon_10013_1")
         },
         
         
         head: {
             chs: "游医的方巾",
-            url: TravelingDoctor_head,
+            // url: TravelingDoctor_head,
+            url: getIcon("UI_RelicIcon_10013_3")
         },
         
         config4: [
@@ -2114,31 +2282,36 @@ export default {
         
         flower: {
             chs: "生灵之华",
-            url: VermillionHereafter_flower,
+            // url: VermillionHereafter_flower,
+            url: getIcon("UI_RelicIcon_15023_4")
         },
         
         
         feather: {
             chs: "潜光片羽",
-            url: VermillionHereafter_feather,
+            // url: VermillionHereafter_feather,
+            url: getIcon("UI_RelicIcon_15023_2")
         },
         
         
         sand: {
             chs: "阳辔之遗",
-            url: VermillionHereafter_sand,
+            // url: VermillionHereafter_sand,
+            url: getIcon("UI_RelicIcon_15023_5")
         },
         
         
         cup: {
             chs: "结契之刻",
-            url: VermillionHereafter_goblet,
+            // url: VermillionHereafter_goblet,
+            url: getIcon("UI_RelicIcon_15023_1")
         },
         
         
         head: {
             chs: "虺雷之姿",
-            url: VermillionHereafter_head,
+            // url: VermillionHereafter_head,
+            url: getIcon("UI_RelicIcon_15023_3")
         },
         
         config4: [
@@ -2161,31 +2334,36 @@ export default {
         
         flower: {
             chs: "野花记忆的绿野",
-            url: ViridescentVenerer_flower,
+            // url: ViridescentVenerer_flower,
+            url: getIcon("UI_RelicIcon_15002_4")
         },
         
         
         feather: {
             chs: "猎人青翠的箭羽",
-            url: ViridescentVenerer_feather,
+            // url: ViridescentVenerer_feather,
+            url: getIcon("UI_RelicIcon_15002_2")
         },
         
         
         sand: {
             chs: "翠绿猎人的笃定",
-            url: ViridescentVenerer_sand,
+            // url: ViridescentVenerer_sand,
+            url: getIcon("UI_RelicIcon_15002_5")
         },
         
         
         cup: {
             chs: "翠绿猎人的容器",
-            url: ViridescentVenerer_goblet,
+            // url: ViridescentVenerer_goblet,
+            url: getIcon("UI_RelicIcon_15002_1")
         },
         
         
         head: {
             chs: "翠绿的猎人之冠",
-            url: ViridescentVenerer_head,
+            // url: ViridescentVenerer_head,
+            url: getIcon("UI_RelicIcon_15002_3")
         },
         
         config4: [
@@ -2204,31 +2382,36 @@ export default {
         
         flower: {
             chs: "乐团的晨光",
-            url: WanderersTroupe_flower,
+            // url: WanderersTroupe_flower,
+            url: getIcon("UI_RelicIcon_15003_4")
         },
         
         
         feather: {
             chs: "琴师的箭羽",
-            url: WanderersTroupe_feather,
+            // url: WanderersTroupe_feather,
+            url: getIcon("UI_RelicIcon_15003_2")
         },
         
         
         sand: {
             chs: "终幕的时计",
-            url: WanderersTroupe_sand,
+            // url: WanderersTroupe_sand,
+            url: getIcon("UI_RelicIcon_15003_5")
         },
         
         
         cup: {
             chs: "吟游者之壶",
-            url: WanderersTroupe_goblet,
+            // url: WanderersTroupe_goblet,
+            url: getIcon("UI_RelicIcon_15003_1")
         },
         
         
         head: {
             chs: "指挥的礼帽",
-            url: WanderersTroupe_head,
+            // url: WanderersTroupe_head,
+            url: getIcon("UI_RelicIcon_15003_3")
         },
         
         config4: [

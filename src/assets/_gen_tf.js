@@ -1,137 +1,170 @@
 // generated file, do not edit
 
+
 import MaxATK_image from "@image/misc/sword"
+
+
 
 import MaxDEF_image from "@image/misc/sword"
 
+
+
 import MaxHP_image from "@image/misc/sword"
+
+
 
 import MaxEM_image from "@image/misc/sword"
 
+
+
 import PyroDamage_image from "@image/misc/fire_slime"
+
+
 
 import CryoDamage_image from "@image/misc/ice_slime"
 
+
+
 import HydroDamage_image from "@image/misc/water_slime"
+
+
 
 import ElectroDamage_image from "@image/misc/thunder_slime"
 
+
+
 import AnemoDamage_image from "@image/misc/wind_slime"
+
+
 
 import GeoDamage_image from "@image/misc/sword"
 
+
+
 import PhysicalDamage_image from "@image/misc/sword"
+
+
 
 import MaxVaporize_image from "@image/misc/sword"
 
+
+
 import MaxMelt_image from "@image/misc/sword"
+
+
 
 import ExpectVaporize_image from "@image/misc/sword"
 
+
+
 import ExpectMelt_image from "@image/misc/sword"
 
-import AlbedoDefault_image from "@image/characters/Albedo_avatar"
 
-import AloyDefault_image from "@image/characters/Aloy_avatar"
 
-import AmberDefault_image from "@image/characters/Amber_avatar"
 
-import AratakiIttoDefault_image from "@image/characters/AratakiItto_avatar"
 
-import BarbaraDefault_image from "@image/characters/Barbara_avatar"
 
-import BeidouDefault_image from "@image/characters/Beidou_avatar"
 
-import BennettDamage_image from "@image/characters/Bennett_avatar"
 
-import BennettDefault_image from "@image/characters/Bennett_avatar"
 
-import ChongyunDefault_image from "@image/characters/Chongyun_avatar"
 
-import DilucDefault_image from "@image/characters/Diluc_avatar"
 
-import DionaDefault_image from "@image/characters/Diona_avatar"
 
-import EulaDefault_image from "@image/characters/Eula_avatar"
 
-import FischlDefault_image from "@image/characters/Fischl_avatar"
 
-import GanyuDefault_image from "@image/characters/Ganyu_avatar"
 
-import GorouDefault_image from "@image/characters/Gorou_avatar"
 
-import HuTaoDefault_image from "@image/characters/HuTao_avatar"
 
-import JeanDefault_image from "@image/characters/Jean_avatar"
 
-import KaedeharaKazuhaDamage_image from "@image/characters/KaedeharaKazuha_avatar"
 
-import KaedeharaKazuhaDefault_image from "@image/characters/KaedeharaKazuha_avatar"
 
-import KaeyaDefault_image from "@image/characters/Kaeya_avatar"
 
-import KamisatoAyakaDefault_image from "@image/characters/KamisatoAyaka_avatar"
 
-import KamisatoAyakaDps_image from "@image/characters/KamisatoAyaka_avatar"
 
-import KamisatoAyatoDefault_image from "@image/characters/KamisatoAyato_avatar"
 
-import KeqingDefault_image from "@image/characters/Keqing_avatar"
 
-import KleeDefault_image from "@image/characters/Klee_avatar"
 
-import KujouSaraDamage_image from "@image/characters/KujouSara_avatar"
 
-import KujouSaraDefault_image from "@image/characters/KujouSara_avatar"
 
-import LisaDefault_image from "@image/characters/Lisa_avatar"
 
-import MonaDefault_image from "@image/characters/Mona_avatar"
 
-import NingguangDefault_image from "@image/characters/Ningguang_avatar"
 
-import NoelleDefault_image from "@image/characters/Noelle_avatar"
 
-import QiqiDefault_image from "@image/characters/Qiqi_avatar"
 
-import RaidenShogunDefault_image from "@image/characters/RaidenShogun_avatar"
 
-import RazorDefault_image from "@image/characters/Razor_avatar"
 
-import RosariaDefault_image from "@image/characters/Rosaria_avatar"
 
-import SangonomiyaKokomiDefault_image from "@image/characters/SangonomiyaKokomi_avatar"
 
-import SayuDefault_image from "@image/characters/Sayu_avatar"
 
-import ShenheDefault_image from "@image/characters/Shenhe_avatar"
 
-import SucroseDefault_image from "@image/characters/Sucrose_avatar"
 
-import TartagliaDefault_image from "@image/characters/Tartaglia_avatar"
 
-import ThomaDefault_image from "@image/characters/Thoma_avatar"
 
-import VentiDefault_image from "@image/characters/Venti_avatar"
 
-import XianglingDefault_image from "@image/characters/Xiangling_avatar"
 
-import XiaoDefault_image from "@image/characters/Xiao_avatar"
 
-import XingqiuDefault_image from "@image/characters/Xingqiu_avatar"
 
-import XinyanDefault_image from "@image/characters/Xinyan_avatar"
 
-import YaeMikoDefault_image from "@image/characters/YaeMiko_avatar"
 
-import YanfeiDefault_image from "@image/characters/Yanfei_avatar"
 
-import YoimiyaDefault_image from "@image/characters/Yoimiya_avatar"
 
-import YunjinDefault_image from "@image/characters/Yunjin_avatar"
 
-import ZhongliDefault_image from "@image/characters/Zhongli_avatar"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png"
+const getImage = name => template.replace("#", name)
 
 export default {
     
@@ -145,7 +178,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: MaxATK_image,
+        
         config: [
             
         ],
@@ -161,7 +196,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: MaxDEF_image,
+        
         config: [
             
         ],
@@ -177,7 +214,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: MaxHP_image,
+        
         config: [
             
         ],
@@ -193,7 +232,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: MaxEM_image,
+        
         config: [
             
         ],
@@ -209,7 +250,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: PyroDamage_image,
+        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
@@ -227,7 +270,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: CryoDamage_image,
+        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
@@ -245,7 +290,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: HydroDamage_image,
+        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
@@ -263,7 +310,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: ElectroDamage_image,
+        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
@@ -281,7 +330,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: AnemoDamage_image,
+        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
@@ -299,7 +350,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: GeoDamage_image,
+        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
@@ -317,7 +370,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: PhysicalDamage_image,
+        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
@@ -335,7 +390,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: MaxVaporize_image,
+        
         config: [
             
             {"default":0,"name":"t","options":["火","水"],"title":"触发元素","type":"option"},
@@ -355,7 +412,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: MaxMelt_image,
+        
         config: [
             
             {"default":0,"name":"t","options":["火","冰"],"title":"触发元素","type":"option"},
@@ -375,7 +434,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: ExpectVaporize_image,
+        
         config: [
             
             {"default":0,"name":"t","options":["火","水"],"title":"触发元素","type":"option"},
@@ -395,7 +456,9 @@ export default {
             
         ],
         "for": "common",
+        
         badge: ExpectMelt_image,
+        
         config: [
             
             {"default":0,"name":"t","options":["火","冰"],"title":"触发元素","type":"option"},
@@ -415,7 +478,9 @@ export default {
             
         ],
         "for": "Albedo",
-        badge: AlbedoDefault_image,
+        
+        badge: getImage("Albedo"),
+        
         config: [
             
         ],
@@ -431,7 +496,9 @@ export default {
             
         ],
         "for": "Aloy",
-        badge: AloyDefault_image,
+        
+        badge: getImage("Aloy"),
+        
         config: [
             
         ],
@@ -447,7 +514,9 @@ export default {
             
         ],
         "for": "Amber",
-        badge: AmberDefault_image,
+        
+        badge: getImage("Ambor"),
+        
         config: [
             
         ],
@@ -463,7 +532,9 @@ export default {
             
         ],
         "for": "AratakiItto",
-        badge: AratakiIttoDefault_image,
+        
+        badge: getImage("Itto"),
+        
         config: [
             
         ],
@@ -481,7 +552,9 @@ export default {
             
         ],
         "for": "Barbara",
-        badge: BarbaraDefault_image,
+        
+        badge: getImage("Barbara"),
+        
         config: [
             
         ],
@@ -497,7 +570,9 @@ export default {
             
         ],
         "for": "Beidou",
-        badge: BeidouDefault_image,
+        
+        badge: getImage("Beidou"),
+        
         config: [
             
         ],
@@ -517,7 +592,9 @@ export default {
             
         ],
         "for": "Bennett",
-        badge: BennettDamage_image,
+        
+        badge: getImage("Bennett"),
+        
         config: [
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -537,7 +614,9 @@ export default {
             
         ],
         "for": "Bennett",
-        badge: BennettDefault_image,
+        
+        badge: getImage("Bennett"),
+        
         config: [
             
             {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -557,7 +636,9 @@ export default {
             
         ],
         "for": "Chongyun",
-        badge: ChongyunDefault_image,
+        
+        badge: getImage("Chongyun"),
+        
         config: [
             
         ],
@@ -573,7 +654,9 @@ export default {
             
         ],
         "for": "Diluc",
-        badge: DilucDefault_image,
+        
+        badge: getImage("Diluc"),
+        
         config: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化比例","type":"float"},
@@ -595,7 +678,9 @@ export default {
             
         ],
         "for": "Diona",
-        badge: DionaDefault_image,
+        
+        badge: getImage("Diona"),
+        
         config: [
             
         ],
@@ -611,7 +696,9 @@ export default {
             
         ],
         "for": "Eula",
-        badge: EulaDefault_image,
+        
+        badge: getImage("Eula"),
+        
         config: [
             
         ],
@@ -627,7 +714,9 @@ export default {
             
         ],
         "for": "Fischl",
-        badge: FischlDefault_image,
+        
+        badge: getImage("Fischl"),
+        
         config: [
             
         ],
@@ -643,7 +732,9 @@ export default {
             
         ],
         "for": "Ganyu",
-        badge: GanyuDefault_image,
+        
+        badge: getImage("Ganyu"),
+        
         config: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化占比","type":"float"},
@@ -661,7 +752,9 @@ export default {
             
         ],
         "for": "Gorou",
-        badge: GorouDefault_image,
+        
+        badge: getImage("Gorou"),
+        
         config: [
             
             {"default":1.7,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -679,7 +772,9 @@ export default {
             
         ],
         "for": "HuTao",
-        badge: HuTaoDefault_image,
+        
+        badge: getImage("Hutao"),
+        
         config: [
             
             {"default":0.5,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发占比","type":"float"},
@@ -701,7 +796,9 @@ export default {
             
         ],
         "for": "Jean",
-        badge: JeanDefault_image,
+        
+        badge: getImage("Qin"),
+        
         config: [
             
             {"default":0.5,"max":1.0,"min":0.0,"name":"damage_weight","title":"治疗-伤害比重（0：纯治疗，1：纯伤害）","type":"float"},
@@ -723,7 +820,9 @@ export default {
             
         ],
         "for": "KaedeharaKazuha",
-        badge: KaedeharaKazuhaDamage_image,
+        
+        badge: getImage("Kazuha"),
+        
         config: [
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -745,7 +844,9 @@ export default {
             
         ],
         "for": "KaedeharaKazuha",
-        badge: KaedeharaKazuhaDefault_image,
+        
+        badge: getImage("Kazuha"),
+        
         config: [
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -763,7 +864,9 @@ export default {
             
         ],
         "for": "Kaeya",
-        badge: KaeyaDefault_image,
+        
+        badge: getImage("Kaeya"),
+        
         config: [
             
         ],
@@ -779,7 +882,9 @@ export default {
             
         ],
         "for": "KamisatoAyaka",
-        badge: KamisatoAyakaDefault_image,
+        
+        badge: getImage("Ayaka"),
+        
         config: [
             
             {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -797,7 +902,9 @@ export default {
             
         ],
         "for": "KamisatoAyaka",
-        badge: KamisatoAyakaDps_image,
+        
+        badge: getImage("Ayaka"),
+        
         config: [
             
         ],
@@ -813,7 +920,9 @@ export default {
             
         ],
         "for": "KamisatoAyato",
-        badge: KamisatoAyatoDefault_image,
+        
+        badge: getImage("Ayato"),
+        
         config: [
             
         ],
@@ -829,7 +938,9 @@ export default {
             
         ],
         "for": "Keqing",
-        badge: KeqingDefault_image,
+        
+        badge: getImage("Keqing"),
+        
         config: [
             
         ],
@@ -845,7 +956,9 @@ export default {
             
         ],
         "for": "Klee",
-        badge: KleeDefault_image,
+        
+        badge: getImage("Klee"),
+        
         config: [
             
             {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -865,7 +978,9 @@ export default {
             
         ],
         "for": "KujouSara",
-        badge: KujouSaraDamage_image,
+        
+        badge: getImage("Sara"),
+        
         config: [
             
             {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -883,7 +998,9 @@ export default {
             
         ],
         "for": "KujouSara",
-        badge: KujouSaraDefault_image,
+        
+        badge: getImage("Sara"),
+        
         config: [
             
         ],
@@ -899,7 +1016,9 @@ export default {
             
         ],
         "for": "Lisa",
-        badge: LisaDefault_image,
+        
+        badge: getImage("Lisa"),
+        
         config: [
             
             {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -919,7 +1038,9 @@ export default {
             
         ],
         "for": "Mona",
-        badge: MonaDefault_image,
+        
+        badge: getImage("Mona"),
+        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -937,7 +1058,9 @@ export default {
             
         ],
         "for": "Ningguang",
-        badge: NingguangDefault_image,
+        
+        badge: getImage("Ningguang"),
+        
         config: [
             
         ],
@@ -953,7 +1076,9 @@ export default {
             
         ],
         "for": "Noelle",
-        badge: NoelleDefault_image,
+        
+        badge: getImage("Noel"),
+        
         config: [
             
         ],
@@ -969,7 +1094,9 @@ export default {
             
         ],
         "for": "Qiqi",
-        badge: QiqiDefault_image,
+        
+        badge: getImage("Qiqi"),
+        
         config: [
             
             {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -987,7 +1114,9 @@ export default {
             
         ],
         "for": "RaidenShogun",
-        badge: RaidenShogunDefault_image,
+        
+        badge: getImage("Shougun"),
+        
         config: [
             
             {"default":2.6,"max":4.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -1005,7 +1134,9 @@ export default {
             
         ],
         "for": "Razor",
-        badge: RazorDefault_image,
+        
+        badge: getImage("Razor"),
+        
         config: [
             
         ],
@@ -1023,7 +1154,9 @@ export default {
             
         ],
         "for": "Rosaria",
-        badge: RosariaDefault_image,
+        
+        badge: getImage("Rosaria"),
+        
         config: [
             
         ],
@@ -1041,7 +1174,9 @@ export default {
             
         ],
         "for": "SangonomiyaKokomi",
-        badge: SangonomiyaKokomiDefault_image,
+        
+        badge: getImage("Kokomi"),
+        
         config: [
             
         ],
@@ -1059,7 +1194,9 @@ export default {
             
         ],
         "for": "Sayu",
-        badge: SayuDefault_image,
+        
+        badge: getImage("Sayu"),
+        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -1077,7 +1214,9 @@ export default {
             
         ],
         "for": "Shenhe",
-        badge: ShenheDefault_image,
+        
+        badge: getImage("Shenhe"),
+        
         config: [
             
             {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -1095,7 +1234,9 @@ export default {
             
         ],
         "for": "Sucrose",
-        badge: SucroseDefault_image,
+        
+        badge: getImage("Sucrose"),
+        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -1113,7 +1254,9 @@ export default {
             
         ],
         "for": "Tartaglia",
-        badge: TartagliaDefault_image,
+        
+        badge: getImage("Tartaglia"),
+        
         config: [
             
         ],
@@ -1129,7 +1272,9 @@ export default {
             
         ],
         "for": "Thoma",
-        badge: ThomaDefault_image,
+        
+        badge: getImage("Tohma"),
+        
         config: [
             
             {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -1147,7 +1292,9 @@ export default {
             
         ],
         "for": "Venti",
-        badge: VentiDefault_image,
+        
+        badge: getImage("Venti"),
+        
         config: [
             
             {"default":0.7,"max":1.0,"min":0.0,"name":"swirl_rate","title":"扩散占比","type":"float"},
@@ -1165,7 +1312,9 @@ export default {
             
         ],
         "for": "Xiangling",
-        badge: XianglingDefault_image,
+        
+        badge: getImage("Xiangling"),
+        
         config: [
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -1189,7 +1338,9 @@ export default {
             
         ],
         "for": "Xiao",
-        badge: XiaoDefault_image,
+        
+        badge: getImage("Xiao"),
+        
         config: [
             
         ],
@@ -1205,7 +1356,9 @@ export default {
             
         ],
         "for": "Xingqiu",
-        badge: XingqiuDefault_image,
+        
+        badge: getImage("Xingqiu"),
+        
         config: [
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -1223,7 +1376,9 @@ export default {
             
         ],
         "for": "Xinyan",
-        badge: XinyanDefault_image,
+        
+        badge: getImage("Xinyan"),
+        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -1243,7 +1398,9 @@ export default {
             
         ],
         "for": "YaeMiko",
-        badge: YaeMikoDefault_image,
+        
+        badge: getImage("Yae"),
+        
         config: [
             
             {"default":0.0,"max":3.0,"min":0.0,"name":"electro_charged_times","title":"感电相对频率","type":"float"},
@@ -1265,7 +1422,9 @@ export default {
             
         ],
         "for": "Yanfei",
-        badge: YanfeiDefault_image,
+        
+        badge: getImage("Feiyan"),
+        
         config: [
             
         ],
@@ -1281,7 +1440,9 @@ export default {
             
         ],
         "for": "Yoimiya",
-        badge: YoimiyaDefault_image,
+        
+        badge: getImage("Yoimiya"),
+        
         config: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发占比","type":"float"},
@@ -1301,7 +1462,9 @@ export default {
             
         ],
         "for": "Yunjin",
-        badge: YunjinDefault_image,
+        
+        badge: getImage("Yunjin"),
+        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
@@ -1319,7 +1482,9 @@ export default {
             
         ],
         "for": "Zhongli",
-        badge: ZhongliDefault_image,
+        
+        badge: getImage("Zhongli"),
+        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},

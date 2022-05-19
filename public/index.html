@@ -13,11 +13,15 @@
     <title>莫娜占卜铺</title>
     <% } %>
 
-    <% if (NODE_ENV === "production") { %>
-    <!--    <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui@2.15.6/lib/theme-chalk/index.css">-->
-    <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.6/theme-chalk/index.css"
-          type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui@2.15.6/lib/theme-chalk/display.css">
+<!--    <% if (NODE_ENV === "production") { %>-->
+<!--    &lt;!&ndash;    <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui@2.15.6/lib/theme-chalk/index.css">&ndash;&gt;-->
+<!--    <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.6/theme-chalk/index.css"-->
+<!--          type="text/css" rel="stylesheet"/>-->
+<!--    <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui@2.15.6/lib/theme-chalk/display.css">-->
+<!--    <% } %>-->
+
+    <% for (var css of htmlWebpackPlugin.options.cdn.css) { %>
+    <link rel="stylesheet" href="<%= css.url %>" type="text/css"></link>
     <% } %>
 
     <style>
@@ -168,30 +172,28 @@
     }
 </style>
 
+<% for (var js of htmlWebpackPlugin.options.cdn.js) { %>
+<script src="<%= js.url %>"></script>
+<% } %>
 <% if (NODE_ENV === "production") { %>
-<script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/2.6.11/vue.min.js"
-        type="application/javascript"></script>
-<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue-router/3.4.8/vue-router.min.js"
-        type="application/javascript"></script>
-<!--    <script src="https://cdn.bytedance.com/vue-router@3.4.8/dist/vue-router.min.js"></script>-->
-<script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vuex/3.5.1/vuex.min.js"
-        type="application/javascript"></script>
+<!--<script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/2.6.11/vue.min.js"-->
+<!--        type="application/javascript"></script>-->
+<!--<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue-router/3.4.8/vue-router.min.js"-->
+<!--        type="application/javascript"></script>-->
+<!--<script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vuex/3.5.1/vuex.min.js"-->
+<!--        type="application/javascript"></script>-->
 <!--    <script src="https://unpkg.zhimg.com/vuex@3.5.1/dist/vuex.min.js"></script>-->
-<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.6/index.js"
-        type="application/javascript"></script>
-<!--    <script src="https://unpkg.zhimg.com/element-ui@2.15.6/lib/index.js"></script>-->
+<!--<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.6/index.js"-->
+<!--        type="application/javascript"></script>-->
 
-<script src="https://npm.elemecdn.com/@vue/composition-api@1.0.0-rc.3"></script>
-<!--    <script src="https://unpkg.com/@vue/composition-api@1.0.0-rc.3"></script>-->
-<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/echarts/5.3.0/echarts.min.js"
-        type="application/javascript"></script>
-<!--    <script src="https://unpkg.com/echarts@5.3.0"></script>-->
-<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue-echarts/6.0.0-rc.4/index.umd.min.js"
-        type="application/javascript"></script>
-<!--    <script src="https://unpkg.zhimg.com/vue-echarts@6.0.0-rc.4"></script>-->
+<!--<script src="https://npm.elemecdn.com/@vue/composition-api@1.0.0-rc.3"></script>-->
+<!--<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/echarts/5.3.0/echarts.min.js"-->
+<!--        type="application/javascript"></script>-->
+<!--<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue-echarts/6.0.0-rc.4/index.umd.min.js"-->
+<!--        type="application/javascript"></script>-->
 
-<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/fuse.js/6.5.3/fuse.min.js"
-        type="application/javascript"></script>
+<!--<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/fuse.js/6.5.3/fuse.min.js"-->
+<!--        type="application/javascript"></script>-->
 <!--    <script src="https://unpkg.com/fuse.js@6.5.3"></script>-->
 <% } %>
 <!-- built files will be auto injected -->

@@ -1,172 +1,231 @@
 // generated file, do not edit
 
+
 import ATKPercentage_image from "@image/misc/sword"
+
+
 
 import DEFPercentage_image from "@image/misc/sword"
 
+
+
 import HPPercentage_image from "@image/misc/sword"
+
+
 
 import ATKFixed_image from "@image/misc/sword"
 
+
+
 import DEFFixed_image from "@image/misc/sword"
+
+
 
 import HPFixed_image from "@image/misc/sword"
 
+
+
 import Critical_image from "@image/misc/sword"
+
+
 
 import CriticalDamage_image from "@image/misc/sword"
 
+
+
 import CustomBonus_image from "@image/misc/sword"
+
+
 
 import ElementalMastery_image from "@image/misc/sword"
 
+
+
 import Recharge_image from "@image/misc/sword"
+
+
 
 import DEFMinus_image from "@image/misc/sword"
 
+
+
 import ResMinus_image from "@image/misc/sword"
 
-import AlbedoTalent2_image from "@image/characters/Albedo_avatar"
 
-import AloyTalent1_image from "@image/characters/Aloy_avatar"
 
-import AratakiIttoC4_image from "@image/characters/AratakiItto_avatar"
 
-import BeidouC6_image from "@image/characters/Beidou_avatar"
 
-import BennettQ_image from "@image/characters/Bennett_avatar"
 
-import BennettC6_image from "@image/characters/Bennett_avatar"
 
-import ChongyunTalent2_image from "@image/characters/Chongyun_avatar"
 
-import DionaC6G50_image from "@image/characters/Diona_avatar"
 
-import GanyuTalent2_image from "@image/characters/Ganyu_avatar"
 
-import GanyuC1_image from "@image/characters/Ganyu_avatar"
 
-import GorouE1_image from "@image/characters/Gorou_avatar"
 
-import GorouE3_image from "@image/characters/Gorou_avatar"
 
-import GorouTalent1_image from "@image/characters/Gorou_avatar"
 
-import GorouC6_image from "@image/characters/Gorou_avatar"
 
-import HuTaoTalent1_image from "@image/characters/HuTao_avatar"
 
-import JeanC4_image from "@image/characters/Jean_avatar"
 
-import KaedeharaKazuhaTalent2_image from "@image/characters/KaedeharaKazuha_avatar"
 
-import KaedeharaKazuhaC2_image from "@image/characters/KaedeharaKazuha_avatar"
 
-import KamisatoAyakaC4_image from "@image/characters/KamisatoAyaka_avatar"
 
-import KleeC2_image from "@image/characters/Klee_avatar"
 
-import KleeC6_image from "@image/characters/Klee_avatar"
 
-import KujouSaraEOrQ_image from "@image/characters/KujouSara_avatar"
 
-import LisaTalent2_image from "@image/characters/Lisa_avatar"
 
-import MonaQ_image from "@image/characters/Mona_avatar"
 
-import MonaC1_image from "@image/characters/Mona_avatar"
 
-import NingguangTalent2_image from "@image/characters/Ningguang_avatar"
 
-import RaidenShogunE_image from "@image/characters/RaidenShogun_avatar"
 
-import RaidenShogunC4_image from "@image/characters/RaidenShogun_avatar"
 
-import RazorC4_image from "@image/characters/Razor_avatar"
 
-import RosariaTalent2_image from "@image/characters/Rosaria_avatar"
 
-import RosariaC6_image from "@image/characters/Rosaria_avatar"
 
-import ShenheE_image from "@image/characters/Shenhe_avatar"
 
-import ShenheQ_image from "@image/characters/Shenhe_avatar"
 
-import ShenheTalent1_image from "@image/characters/Shenhe_avatar"
 
-import ShenheTalent2_image from "@image/characters/Shenhe_avatar"
 
-import SucroseTalent1_image from "@image/characters/Sucrose_avatar"
 
-import SucroseTalent2_image from "@image/characters/Sucrose_avatar"
 
-import SucroseC6_image from "@image/characters/Sucrose_avatar"
 
-import ThomaTalent1_image from "@image/characters/Thoma_avatar"
 
-import ThomaC6_image from "@image/characters/Thoma_avatar"
 
-import VentiC2_image from "@image/characters/Venti_avatar"
 
-import VentiC6_image from "@image/characters/Venti_avatar"
 
-import XianglingTalent2_image from "@image/characters/Xiangling_avatar"
 
-import XianglingC1_image from "@image/characters/Xiangling_avatar"
 
-import XianglingC6_image from "@image/characters/Xiangling_avatar"
 
-import XingqiuC2_image from "@image/characters/Xingqiu_avatar"
 
-import XinyanC4_image from "@image/characters/Xinyan_avatar"
 
-import XinyanTalent2_image from "@image/characters/Xinyan_avatar"
 
-import YaeMikoC4_image from "@image/characters/YaeMiko_avatar"
 
-import YoimiyaTalent2_image from "@image/characters/Yoimiya_avatar"
 
-import YunjinQ_image from "@image/characters/Yunjin_avatar"
 
-import YunjinC2_image from "@image/characters/Yunjin_avatar"
 
-import ZhongliShield_image from "@image/characters/Zhongli_avatar"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 import FreedomSworn_image from "@image/weapons/FreedomSworn_tn"
 
+
+
 import SongOfBrokenPines_image from "@image/weapons/SongOfBrokenPines_tn"
+
+
 
 import WolfsGravestone_image from "@image/weapons/WolfsGravestone_tn"
 
+
+
 import ThrillingTalesOfDragonSlayers_image from "@image/weapons/ThrillingTalesOfDragonSlayers_tn"
+
+
 
 import ElegyOfTheEnd_image from "@image/weapons/ElegyOfTheEnd_tn"
 
+
+
 import HakushinRing_image from "@image/weapons/HakushinRing_tn"
+
+
 
 import ResonancePyro2_image from "@image/misc/pyro"
 
+
+
 import ResonanceCryo2_image from "@image/misc/cryo"
+
+
 
 import ResonanceGeo2_image from "@image/misc/geo"
 
+
+
 import Instructor4_image from "@image/artifacts/Instructor_flower"
+
+
 
 import NoblesseOblige4_image from "@image/artifacts/NoblesseOblige_flower"
 
+
+
 import ArchaicPetra4_image from "@image/artifacts/ArchaicPetra_flower"
+
+
 
 import ViridescentVenerer4_image from "@image/artifacts/ViridescentVenerer_flower"
 
+
+
 import TenacityOfTheMillelith4_image from "@image/artifacts/TenacityOfTheMillelith_flower"
 
+
+
+const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png"
+const getImage = name => template.replace("#", name)
 
 export default {
     
     "ATKPercentage": {
         name: "ATKPercentage",
         chs: "攻击力%",
+        
         badge: ATKPercentage_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -179,7 +238,9 @@ export default {
     "DEFPercentage": {
         name: "DEFPercentage",
         chs: "防御力%",
+        
         badge: DEFPercentage_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -192,7 +253,9 @@ export default {
     "HPPercentage": {
         name: "HPPercentage",
         chs: "生命值%",
+        
         badge: HPPercentage_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -205,7 +268,9 @@ export default {
     "ATKFixed": {
         name: "ATKFixed",
         chs: "攻击力",
+        
         badge: ATKFixed_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -218,7 +283,9 @@ export default {
     "DEFFixed": {
         name: "DEFFixed",
         chs: "防御力",
+        
         badge: DEFFixed_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -231,7 +298,9 @@ export default {
     "HPFixed": {
         name: "HPFixed",
         chs: "生命值",
+        
         badge: HPFixed_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -244,7 +313,9 @@ export default {
     "Critical": {
         name: "Critical",
         chs: "暴击率",
+        
         badge: Critical_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -257,7 +328,9 @@ export default {
     "CriticalDamage": {
         name: "CriticalDamage",
         chs: "暴击伤害",
+        
         badge: CriticalDamage_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -270,7 +343,9 @@ export default {
     "CustomBonus": {
         name: "CustomBonus",
         chs: "伤害加成",
+        
         badge: CustomBonus_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -283,7 +358,9 @@ export default {
     "ElementalMastery": {
         name: "ElementalMastery",
         chs: "元素精通",
+        
         badge: ElementalMastery_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -296,7 +373,9 @@ export default {
     "Recharge": {
         name: "Recharge",
         chs: "元素充能效率",
+        
         badge: Recharge_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -309,7 +388,9 @@ export default {
     "DEFMinus": {
         name: "DEFMinus",
         chs: "减防",
+        
         badge: DEFMinus_image,
+        
         genre: "Common",
         description: "百分比减防",
         config: [
@@ -322,7 +403,9 @@ export default {
     "ResMinus": {
         name: "ResMinus",
         chs: "减抗",
+        
         badge: ResMinus_image,
+        
         genre: "Common",
         description: "",
         config: [
@@ -335,7 +418,9 @@ export default {
     "AlbedoTalent2": {
         name: "AlbedoTalent2",
         chs: "阿贝多-「瓶中人的天慧」",
-        badge: AlbedoTalent2_image,
+        
+        badge: getImage("Albedo"),
+        
         genre: "Character",
         description: "阿贝多天赋2：释放诞生式·大地之潮时,使附近的队伍中角色的元素精通提高125点，持续10秒",
         config: [
@@ -346,7 +431,9 @@ export default {
     "AloyTalent1": {
         name: "AloyTalent1",
         chs: "埃洛伊-「战斗覆盖」",
-        badge: AloyTalent1_image,
+        
+        badge: getImage("Aloy"),
+        
         genre: "Character",
         description: "埃洛伊天赋1：埃洛伊获得冰尘雪野的线圈效果时，队伍中附近的其他角色的攻击力提升8%，持续10秒。",
         config: [
@@ -357,7 +444,9 @@ export default {
     "AratakiIttoC4": {
         name: "AratakiIttoC4",
         chs: "荒泷一斗-「奉行牢狱，茶饭之所」",
-        badge: AratakiIttoC4_image,
+        
+        badge: getImage("Itto"),
+        
         genre: "Character",
         description: "荒泷一斗命座4：最恶鬼王•一斗轰临！！施加的「怒目鬼王」状态结束后，附近的队伍中所有角色的防御力提升20%，攻击力提升20%，持续10秒。",
         config: [
@@ -368,7 +457,9 @@ export default {
     "BeidouC6": {
         name: "BeidouC6",
         chs: "北斗-「北斗祓幽孽」",
-        badge: BeidouC6_image,
+        
+        badge: getImage("Beidou"),
+        
         genre: "Character",
         description: "北斗命座6：斫雷持续期间，周围敌人的雷元素抗性降低15%。",
         config: [
@@ -379,7 +470,9 @@ export default {
     "BennettQ": {
         name: "BennettQ",
         chs: "班尼特-「美妙旅程」",
-        badge: BennettQ_image,
+        
+        badge: getImage("Bennett"),
+        
         genre: "Character",
         description: "班尼特Q技能：基于班尼特的基础攻击力，以一定比例获得攻击力加成<br>一命：美妙旅程的攻击力提升效果不再有血量限制，数值上追加班尼特基础攻击力的20%。",
         config: [
@@ -396,7 +489,9 @@ export default {
     "BennettC6": {
         name: "BennettC6",
         chs: "班尼特-「烈火与勇气」",
-        badge: BennettC6_image,
+        
+        badge: getImage("Bennett"),
+        
         genre: "Character",
         description: "班尼特命座6：处在美妙旅程领域内的队伍中当前场上单手剑、双手剑、长柄武器角色获得15%火元素伤害加成<br>注：此处不管当前角色的武器类型",
         config: [
@@ -407,7 +502,9 @@ export default {
     "ChongyunTalent2": {
         name: "ChongyunTalent2",
         chs: "重云-「追冰剑诀」",
-        badge: ChongyunTalent2_image,
+        
+        badge: getImage("Chongyun"),
+        
         genre: "Character",
         description: "重云天赋2：灵刃·重华叠霜领域消失时，会唤出一柄灵刃自动攻击附近的敌人，造成相当于灵刃·重华叠霜技能伤害100%的冰元素范围伤害。被击中的敌人冰元素抗性降低10%，持续8秒。",
         config: [
@@ -418,7 +515,9 @@ export default {
     "DionaC6G50": {
         name: "DionaC6G50",
         chs: "迪奥娜-「猫尾打烊之时」",
-        badge: DionaC6G50_image,
+        
+        badge: getImage("Diona"),
+        
         genre: "Character",
         description: "迪奥娜命座6：生命值高于50%时，元素精通提升200。",
         config: [
@@ -429,7 +528,9 @@ export default {
     "GanyuTalent2": {
         name: "GanyuTalent2",
         chs: "甘雨-「天地交泰」",
-        badge: GanyuTalent2_image,
+        
+        badge: getImage("Ganyu"),
+        
         genre: "Character",
         description: "甘雨天赋2：降众天华领域内的队伍中当前场上角色获得20%冰元素伤害加成。",
         config: [
@@ -440,7 +541,9 @@ export default {
     "GanyuC1": {
         name: "GanyuC1",
         chs: "甘雨-「饮露」",
-        badge: GanyuC1_image,
+        
+        badge: getImage("Ganyu"),
+        
         genre: "Character",
         description: "甘雨命座1：二段蓄力重击的霜华矢或霜华绽发命中敌人时，会使敌人的冰元素抗性降低15%，持续6秒。",
         config: [
@@ -451,7 +554,9 @@ export default {
     "GorouE1": {
         name: "GorouE1",
         chs: "五郎-「大将旗指物」-1",
-        badge: GorouE1_image,
+        
+        badge: getImage("Gorou"),
+        
         genre: "Character",
         description: "五郎E技能：一名角色时：「坚牢」：防御力提升。",
         config: [
@@ -464,7 +569,9 @@ export default {
     "GorouE3": {
         name: "GorouE3",
         chs: "五郎-「大将旗指物」-3",
-        badge: GorouE3_image,
+        
+        badge: getImage("Gorou"),
+        
         genre: "Character",
         description: "五郎E技能：三名角色时：「摧碎」：除上述效果外，获得岩元素伤害加成。",
         config: [
@@ -475,7 +582,9 @@ export default {
     "GorouTalent1": {
         name: "GorouTalent1",
         chs: "五郎-「不畏风雨」",
-        badge: GorouTalent1_image,
+        
+        badge: getImage("Gorou"),
+        
         genre: "Character",
         description: "五郎天赋1：施放兽牙逐突形胜战法后的12秒内，附近的队伍中所有角色的防御力提升25%。",
         config: [
@@ -486,7 +595,9 @@ export default {
     "GorouC6": {
         name: "GorouC6",
         chs: "五郎-「犬勇•忠如山」",
-        badge: GorouC6_image,
+        
+        badge: getImage("Gorou"),
+        
         genre: "Character",
         description: "五郎命座6：施放犬坂吠吠方圆阵或兽牙逐突形胜战法后的12秒内，依据施放时的领域等级，提高附近的队伍中所有角色岩元素伤害的暴击伤害。",
         config: [
@@ -499,7 +610,9 @@ export default {
     "HuTaoTalent1": {
         name: "HuTaoTalent1",
         chs: "胡桃-「蝶隐之时」",
-        badge: HuTaoTalent1_image,
+        
+        badge: getImage("Hutao"),
+        
         genre: "Character",
         description: "胡桃天赋1：蝶引来生施加的彼岸蝶舞状态结束后，队伍中所有角色（不包括胡桃自己）的暴击率提高12%，持续8秒。",
         config: [
@@ -510,7 +623,9 @@ export default {
     "JeanC4": {
         name: "JeanC4",
         chs: "琴-「蒲公英的国土」",
-        badge: JeanC4_image,
+        
+        badge: getImage("Qin"),
+        
         genre: "Character",
         description: "琴命座4：在蒲公英之风的领域内，所有敌人的风元素抗性下降40％。",
         config: [
@@ -521,7 +636,9 @@ export default {
     "KaedeharaKazuhaTalent2": {
         name: "KaedeharaKazuhaTalent2",
         chs: "枫原万叶-「风物之诗咏」",
-        badge: KaedeharaKazuhaTalent2_image,
+        
+        badge: getImage("Kazuha"),
+        
         genre: "Character",
         description: "枫原万叶天赋2：枫原万叶触发扩散反应后，枫原万叶的每点元素精通，会为队伍中所有角色提供0.04%对应元素伤害加成，持续8秒。",
         config: [
@@ -536,7 +653,9 @@ export default {
     "KaedeharaKazuhaC2": {
         name: "KaedeharaKazuhaC2",
         chs: "枫原万叶-「山岚残芯」",
-        badge: KaedeharaKazuhaC2_image,
+        
+        badge: getImage("Kazuha"),
+        
         genre: "Character",
         description: "枫原万叶命座2：场上角色的元素精通提升200点。",
         config: [
@@ -547,7 +666,9 @@ export default {
     "KamisatoAyakaC4": {
         name: "KamisatoAyakaC4",
         chs: "神里绫华-「盈缺流返」",
-        badge: KamisatoAyakaC4_image,
+        
+        badge: getImage("Ayaka"),
+        
         genre: "Character",
         description: "绫华命座4：敌人受到神里流•霜灭的霜见雪关扉造成的伤害后，防御力降低30%，持续6秒。",
         config: [
@@ -558,7 +679,9 @@ export default {
     "KleeC2": {
         name: "KleeC2",
         chs: "可莉-「破破弹片」",
-        badge: KleeC2_image,
+        
+        badge: getImage("Klee"),
+        
         genre: "Character",
         description: "可莉命座2：蹦蹦炸弹的诡雷会使敌人防御力降低23％，持续10秒。",
         config: [
@@ -569,7 +692,9 @@ export default {
     "KleeC6": {
         name: "KleeC6",
         chs: "可莉-「火力全开」",
-        badge: KleeC6_image,
+        
+        badge: getImage("Klee"),
+        
         genre: "Character",
         description: "可莉命座6：施放轰轰火花后的25秒内，队伍中所有角色获得10％火元素伤害加成。",
         config: [
@@ -580,7 +705,9 @@ export default {
     "KujouSaraEOrQ": {
         name: "KujouSaraEOrQ",
         chs: "九条裟罗-「天狗咒雷」",
-        badge: KujouSaraEOrQ_image,
+        
+        badge: getImage("Sara"),
+        
         genre: "Character",
         description: "九条裟罗E/Q技能：基于九条裟罗的基础攻击力，以一定比例获得攻击力加成<br>六命：处于天狗咒雷带来的攻击力提升效果状态下的角色，其雷元素伤害的暴击伤害提高60%。",
         config: [
@@ -597,7 +724,9 @@ export default {
     "LisaTalent2": {
         name: "LisaTalent2",
         chs: "丽莎-「静电场力」",
-        badge: LisaTalent2_image,
+        
+        badge: getImage("Lisa"),
+        
         genre: "Character",
         description: "丽莎天赋2：敌人受到蔷薇的雷光攻击后，降低15%防御力，持续10秒。",
         config: [
@@ -608,7 +737,9 @@ export default {
     "MonaQ": {
         name: "MonaQ",
         chs: "莫娜-「星异」",
-        badge: MonaQ_image,
+        
+        badge: getImage("Mona"),
+        
         genre: "Character",
         description: "莫娜Q技能：对敌人施加星异的伤害加成效果，并以此提高这一次造成的伤害。四命：队伍中所有角色攻击处于星异状态下的敌人时，暴击率提升15%",
         config: [
@@ -623,7 +754,9 @@ export default {
     "MonaC1": {
         name: "MonaC1",
         chs: "莫娜-「沉没的预言」",
-        badge: MonaC1_image,
+        
+        badge: getImage("Mona"),
+        
         genre: "Character",
         description: "莫娜命座1：队伍中自己的角色攻击命中处于星异状态下的敌人后的8秒内，水元素相关反应的效果提升：<br>•感电反应造成的伤害提升15%，蒸发反应造成的伤害提升15%，水元素扩散反应造成的伤害提升15%",
         config: [
@@ -634,7 +767,9 @@ export default {
     "NingguangTalent2": {
         name: "NingguangTalent2",
         chs: "凝光-「储之千日，用之一刻」",
-        badge: NingguangTalent2_image,
+        
+        badge: getImage("Ningguang"),
+        
         genre: "Character",
         description: "凝光天赋2：穿过璇玑屏的角色会获得12%岩元素伤害加成，持续10秒。",
         config: [
@@ -645,7 +780,9 @@ export default {
     "RaidenShogunE": {
         name: "RaidenShogunE",
         chs: "雷电将军-「雷罚恶曜之眼」",
-        badge: RaidenShogunE_image,
+        
+        badge: getImage("Shougun"),
+        
         genre: "Character",
         description: "雷电将军E技能：雷罚恶曜之眼的角色在持续期间内，元素爆发造成的伤害获得提升，提升程度基于元素爆发的元素能量。",
         config: [
@@ -660,7 +797,9 @@ export default {
     "RaidenShogunC4": {
         name: "RaidenShogunC4",
         chs: "雷电将军-「誓奉常道」",
-        badge: RaidenShogunC4_image,
+        
+        badge: getImage("Shougun"),
+        
         genre: "Character",
         description: "雷电将军命座4：奥义•梦想真说施加的梦想一心状态结束后，附近的队伍中所有角色（不包括雷电将军自己）的攻击力提升30%，持续10秒。",
         config: [
@@ -671,7 +810,9 @@ export default {
     "RazorC4": {
         name: "RazorC4",
         chs: "雷泽-「撕咬」",
-        badge: RazorC4_image,
+        
+        badge: getImage("Razor"),
+        
         genre: "Character",
         description: "雷泽命座4：利爪与苍雷点按时，会使命中的敌人防御力降低15％，持续7秒。",
         config: [
@@ -682,7 +823,9 @@ export default {
     "RosariaTalent2": {
         name: "RosariaTalent2",
         chs: "罗莎莉亚-「暗中支援的黯色」",
-        badge: RosariaTalent2_image,
+        
+        badge: getImage("Rosaria"),
+        
         genre: "Character",
         description: "罗莎莉亚天赋2：施放终命的圣礼时，基于自身暴击率的15%，提高附近的队伍中所有角色(不包括罗莎莉亚自己)的暴击率，持续10秒。通过这种方式获得的暴击率提升，无法超过15%。",
         config: [
@@ -695,7 +838,9 @@ export default {
     "RosariaC6": {
         name: "RosariaC6",
         chs: "罗莎莉亚-「代行裁判」",
-        badge: RosariaC6_image,
+        
+        badge: getImage("Rosaria"),
+        
         genre: "Character",
         description: "罗莎莉亚命座6：终命的圣礼的攻击会使敌人的物理抗性降低20%，持续10秒。",
         config: [
@@ -706,7 +851,9 @@ export default {
     "ShenheE": {
         name: "ShenheE",
         chs: "申鹤-「冰翎」",
-        badge: ShenheE_image,
+        
+        badge: getImage("Shenhe"),
+        
         genre: "Character",
         description: "申鹤E技能：基于申鹤自己当前的攻击力，提高造成的伤害。",
         config: [
@@ -721,7 +868,9 @@ export default {
     "ShenheQ": {
         name: "ShenheQ",
         chs: "申鹤-「神女遣灵真诀」减抗",
-        badge: ShenheQ_image,
+        
+        badge: getImage("Shenhe"),
+        
         genre: "Character",
         description: "申鹤Q技能：「箓灵」将结成领域，使其中敌人的冰元素抗性与物理抗性降低。",
         config: [
@@ -734,7 +883,9 @@ export default {
     "ShenheTalent1": {
         name: "ShenheTalent1",
         chs: "申鹤-「大洞弥罗尊法」",
-        badge: ShenheTalent1_image,
+        
+        badge: getImage("Shenhe"),
+        
         genre: "Character",
         description: "申鹤天赋1：处于神女遣灵真诀的领域中的当前场上角色，冰元素伤害加成提高15%。二命：领域中的当前场上角色，冰元素伤害的暴击伤害提高15%。",
         config: [
@@ -747,7 +898,9 @@ export default {
     "ShenheTalent2": {
         name: "ShenheTalent2",
         chs: "申鹤-「缚灵通真法印」",
-        badge: ShenheTalent2_image,
+        
+        badge: getImage("Shenhe"),
+        
         genre: "Character",
         description: "申鹤天赋2：申鹤施放仰灵威召将役咒后，将使附近的队伍中所有角色获得如下效果：<br>•点按：元素战技和元素爆发造成的伤害提高15%，持续10秒；<br>•长按：普通攻击、重击和下落攻击造成的伤害提高15%，持续15秒。",
         config: [
@@ -760,7 +913,9 @@ export default {
     "SucroseTalent1": {
         name: "SucroseTalent1",
         chs: "砂糖-「触媒置换术」",
-        badge: SucroseTalent1_image,
+        
+        badge: getImage("Sucrose"),
+        
         genre: "Character",
         description: "砂糖天赋1：砂糖触发扩散反应时，使队伍中所有对应元素类型的角色（不包括砂糖自己）元素精通提升50，持续8秒。",
         config: [
@@ -771,7 +926,9 @@ export default {
     "SucroseTalent2": {
         name: "SucroseTalent2",
         chs: "砂糖-「小小的慧风」",
-        badge: SucroseTalent2_image,
+        
+        badge: getImage("Sucrose"),
+        
         genre: "Character",
         description: "砂糖天赋2：风灵作成·陆叁零捌或禁·风灵作成·染伍同构贰型命中敌人时，基于砂糖元素精通的20%,为队伍中所有角色（不包括砂糖自己）提供元素精通加成，持续8秒。",
         config: [
@@ -784,7 +941,9 @@ export default {
     "SucroseC6": {
         name: "SucroseC6",
         chs: "砂糖-「混元熵增论」",
-        badge: SucroseC6_image,
+        
+        badge: getImage("Sucrose"),
+        
         genre: "Character",
         description: "砂糖命座6：禁·风灵作成·柒伍同构贰型如果发生了元素转化，则使队伍中所有角色在技能持续时间内获得20%的对应元素伤害加成。",
         config: [
@@ -797,7 +956,9 @@ export default {
     "ThomaTalent1": {
         name: "ThomaTalent1",
         chs: "托马-「甲衣交叠」",
-        badge: ThomaTalent1_image,
+        
+        badge: getImage("Tohma"),
+        
         genre: "Character",
         description: "托马天赋1：当前场上自己的角色获取或刷新烈烧佑命护盾时，护盾强效提升5%，持续时间6秒。此效果每0.3秒至多触发一次，至多叠加5次。",
         config: [
@@ -810,7 +971,9 @@ export default {
     "ThomaC6": {
         name: "ThomaC6",
         chs: "托马-「炽烧的至心」",
-        badge: ThomaC6_image,
+        
+        badge: getImage("Tohma"),
+        
         genre: "Character",
         description: "托马命座6：获取或刷新烈烧佑命护盾时，队伍中所有角色的普通攻击，重击与下落攻击造成的伤害提升15%，持续6秒。",
         config: [
@@ -821,7 +984,9 @@ export default {
     "VentiC2": {
         name: "VentiC2",
         chs: "温迪-「眷恋的泠风」",
-        badge: VentiC2_image,
+        
+        badge: getImage("Venti"),
+        
         genre: "Character",
         description: "温迪命座2：高天之歌会使敌人的风元素抗性与物理抗性降低12％，持续10秒。被高天之歌击飞的敌人在落地前，风元素抗性与物理抗性额外降低12％。",
         config: [
@@ -834,7 +999,9 @@ export default {
     "VentiC6": {
         name: "VentiC6",
         chs: "温迪-「抗争的暴风」",
-        badge: VentiC6_image,
+        
+        badge: getImage("Venti"),
+        
         genre: "Character",
         description: "温迪命座6：温迪六命BUFF。受风神之诗伤害的敌人，风元素抗性降低20％。若产生了元素转化，则使转换的元素抗性也降低20％。",
         config: [
@@ -849,7 +1016,9 @@ export default {
     "XianglingTalent2": {
         name: "XianglingTalent2",
         chs: "香菱-「绝云朝天椒」",
-        badge: XianglingTalent2_image,
+        
+        badge: getImage("Xiangling"),
+        
         genre: "Character",
         description: "香菱天赋2：锅巴出击效果结束时，锅巴会在消失的位置留下辣椒。拾取辣椒会提高10%攻击力，持续10秒。",
         config: [
@@ -860,7 +1029,9 @@ export default {
     "XianglingC1": {
         name: "XianglingC1",
         chs: "香菱-「外酥里嫩」",
-        badge: XianglingC1_image,
+        
+        badge: getImage("Xiangling"),
+        
         genre: "Character",
         description: "香菱命座1：受到锅巴攻击的敌人，火元素抗性降低15％，持续6秒。",
         config: [
@@ -871,7 +1042,9 @@ export default {
     "XianglingC6": {
         name: "XianglingC6",
         chs: "香菱-「大龙卷旋火轮」",
-        badge: XianglingC6_image,
+        
+        badge: getImage("Xiangling"),
+        
         genre: "Character",
         description: "香菱命座6；旋火轮持续期间，队伍中所有角色获得15％火元素伤害加成。",
         config: [
@@ -882,7 +1055,9 @@ export default {
     "XingqiuC2": {
         name: "XingqiuC2",
         chs: "行秋-「天青现虹」",
-        badge: XingqiuC2_image,
+        
+        badge: getImage("Xingqiu"),
+        
         genre: "Character",
         description: "行秋命座2：受到剑雨攻击的敌人，水元素抗性降低15％，持续4秒。",
         config: [
@@ -893,7 +1068,9 @@ export default {
     "XinyanC4": {
         name: "XinyanC4",
         chs: "辛焱-「节奏的传染」",
-        badge: XinyanC4_image,
+        
+        badge: getImage("Xinyan"),
+        
         genre: "Character",
         description: "辛焱命座4：热情拂扫的伤害，会使敌人的物理抗性降低15%，持续12秒。",
         config: [
@@ -904,7 +1081,9 @@ export default {
     "XinyanTalent2": {
         name: "XinyanTalent2",
         chs: "辛焱-「这才是摇滚!」",
-        badge: XinyanTalent2_image,
+        
+        badge: getImage("Xinyan"),
+        
         genre: "Character",
         description: "辛焱天赋2：处于热情拂扫的护盾保护下的角色造成的物理伤害提高15%。",
         config: [
@@ -915,7 +1094,9 @@ export default {
     "YaeMikoC4": {
         name: "YaeMikoC4",
         chs: "八重神子-「绯樱引雷章」",
-        badge: YaeMikoC4_image,
+        
+        badge: getImage("Yae"),
+        
         genre: "Character",
         description: "八重神子命座4：杀生樱的落雷命中敌人后，队伍中附近的所有角色获得20%雷元素伤害加成，持续5秒。",
         config: [
@@ -926,7 +1107,9 @@ export default {
     "YoimiyaTalent2": {
         name: "YoimiyaTalent2",
         chs: "宵宫-「炎昼风物诗」",
-        badge: YoimiyaTalent2_image,
+        
+        badge: getImage("Yoimiya"),
+        
         genre: "Character",
         description: "宵宫天赋2：释放琉金云间草后的15秒内，附近的队伍中所有其它角色（不包括宵宫自己）攻击力提高10%。此外，依据宵宫自己释放琉金云间草时固有天赋「袖火百景图」的叠加层数，将额外提升上述的攻击力效果，每层提升1%攻击力。",
         config: [
@@ -939,7 +1122,9 @@ export default {
     "YunjinQ": {
         name: "YunjinQ",
         chs: "云堇-「飞云旗阵」",
-        badge: YunjinQ_image,
+        
+        badge: getImage("Yunjin"),
+        
         genre: "Character",
         description: "云堇Q技能：对敌人造成普通攻击伤害时，基于云堇自己当前的防御力，提高造成的伤害。<br>天赋「莫从恒蹊」：「飞云旗阵」提供的普通攻击伤害提高，当队伍中存在1/2/3/4种元素类型的角色时，数值上进一步追加云堇防御力的2.5%/5.0%/7.5%/11.5%。",
         config: [
@@ -958,7 +1143,9 @@ export default {
     "YunjinC2": {
         name: "YunjinC2",
         chs: "云堇-「诸般切末」",
-        badge: YunjinC2_image,
+        
+        badge: getImage("Yunjin"),
+        
         genre: "Character",
         description: "云堇命座2：施放破嶂见旌仪后，附近队伍中所有角色普通攻击造成的伤害提高15%，持续12秒。",
         config: [
@@ -969,7 +1156,9 @@ export default {
     "ZhongliShield": {
         name: "ZhongliShield",
         chs: "钟离-「玉璋护盾」",
-        badge: ZhongliShield_image,
+        
+        badge: getImage("Zhongli"),
+        
         genre: "Character",
         description: "钟离盾：使附近小范围内敌人的所有元素抗性与物理抗性降低20%",
         config: [
@@ -980,7 +1169,9 @@ export default {
     "FreedomSworn": {
         name: "FreedomSworn",
         chs: "苍古自由之誓-「千年的大乐章·抗争之歌」",
+        
         badge: FreedomSworn_image,
+        
         genre: "Weapon",
         description: "「千年的大乐章·抗争之歌」效果：普通攻击、重击、下落攻击造成的伤害提升16%/20%/24%/28%/32%，攻击力提升20%/25%/30%/35%/40%。",
         config: [
@@ -993,7 +1184,9 @@ export default {
     "SongOfBrokenPines": {
         name: "SongOfBrokenPines",
         chs: "松籁响起之时-「千年的大乐章·揭旗之歌」",
+        
         badge: SongOfBrokenPines_image,
+        
         genre: "Weapon",
         description: "「千年的大乐章·揭旗之歌」效果：普通攻击速度提升12%/15%/18%/21%/24%，攻击力提升20%/25%/30%/35%/40%。",
         config: [
@@ -1006,7 +1199,9 @@ export default {
     "WolfsGravestone": {
         name: "WolfsGravestone",
         chs: "狼的末路-「如狼般狩猎者」",
+        
         badge: WolfsGravestone_image,
+        
         genre: "Weapon",
         description: "攻击命中生命值低于30%的敌人时，队伍中所有成员的攻击力提高40%/50%/60%/70%/80%，持续12秒。该效果30秒只能触发一次。",
         config: [
@@ -1019,7 +1214,9 @@ export default {
     "ThrillingTalesOfDragonSlayers": {
         name: "ThrillingTalesOfDragonSlayers",
         chs: "讨龙英杰谭-「传承」",
+        
         badge: ThrillingTalesOfDragonSlayers_image,
+        
         genre: "Weapon",
         description: "传承：主动切换角色时，新登场的角色攻击力提升24%/30%/36%/42%/48%，持续10秒。该效果每20秒只能触发一次。",
         config: [
@@ -1032,7 +1229,9 @@ export default {
     "ElegyOfTheEnd": {
         name: "ElegyOfTheEnd",
         chs: "终末嗟叹之诗-「千年的大乐章·别离之歌」",
+        
         badge: ElegyOfTheEnd_image,
+        
         genre: "Weapon",
         description: "千年的大乐章·别离之歌」效果：元素精通提高100/125/150/175/200点，攻击力提升20%/25%/30%/35%/40%。",
         config: [
@@ -1045,7 +1244,9 @@ export default {
     "HakushinRing": {
         name: "HakushinRing",
         chs: "白辰之环-「樱之斋宫」",
+        
         badge: HakushinRing_image,
+        
         genre: "Weapon",
         description: "樱之斋宫：装备该武器的角色触发雷元素相关反应后，队伍中附近的与该元素反应相关的元素类型的角色，获得10%/12.5%/15%/17.5%/20%对应元素的元素伤害加成，持续6秒。通过这种方式，角色获得的元素伤害加成无法叠加。",
         config: [
@@ -1060,7 +1261,9 @@ export default {
     "ResonancePyro2": {
         name: "ResonancePyro2",
         chs: "元素共鸣-热诚之火",
+        
         badge: ResonancePyro2_image,
+        
         genre: "Resonance",
         description: "攻击力提升25%。",
         config: [
@@ -1071,7 +1274,9 @@ export default {
     "ResonanceCryo2": {
         name: "ResonanceCryo2",
         chs: "元素共鸣-粉碎之冰",
+        
         badge: ResonanceCryo2_image,
+        
         genre: "Resonance",
         description: "攻击冰元素附着或冻结状态下的敌人时，暴击率提高15%。",
         config: [
@@ -1084,7 +1289,9 @@ export default {
     "ResonanceGeo2": {
         name: "ResonanceGeo2",
         chs: "元素共鸣-坚定之岩",
+        
         badge: ResonanceGeo2_image,
+        
         genre: "Resonance",
         description: "护盾强效提升15%。角色处于护盾保护状态时，①造成的伤害提升15%，对敌人造成伤害时会使敌人的的②岩元素抗性降低20%，持续15秒。",
         config: [
@@ -1099,7 +1306,9 @@ export default {
     "Instructor4": {
         name: "Instructor4",
         chs: "教官4",
+        
         badge: Instructor4_image,
+        
         genre: "Artifact",
         description: "触发元素反应后。队伍中所有角色元素精通提高120点，持续8秒。",
         config: [
@@ -1110,7 +1319,9 @@ export default {
     "NoblesseOblige4": {
         name: "NoblesseOblige4",
         chs: "昔日宗室之仪4",
+        
         badge: NoblesseOblige4_image,
+        
         genre: "Artifact",
         description: "施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。",
         config: [
@@ -1121,7 +1332,9 @@ export default {
     "ArchaicPetra4": {
         name: "ArchaicPetra4",
         chs: "悠古的磐岩4",
+        
         badge: ArchaicPetra4_image,
+        
         genre: "Artifact",
         description: "获得结晶反应形成的晶片时，队伍中所有角色获得35%对应元素伤害加成，持续10秒。",
         config: [
@@ -1134,7 +1347,9 @@ export default {
     "ViridescentVenerer4": {
         name: "ViridescentVenerer4",
         chs: "翠绿之影4",
+        
         badge: ViridescentVenerer4_image,
+        
         genre: "Artifact",
         description: "根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。",
         config: [
@@ -1147,7 +1362,9 @@ export default {
     "TenacityOfTheMillelith4": {
         name: "TenacityOfTheMillelith4",
         chs: "千岩牢固4",
+        
         badge: TenacityOfTheMillelith4_image,
+        
         genre: "Artifact",
         description: "元素战技命中敌人后，使队伍中附近的所有角色攻击力提升20%，护盾强效提升30%，持续3秒。",
         config: [

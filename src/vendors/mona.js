@@ -2,7 +2,7 @@ import Vue from "vue"
 
 async function init() {
     const mona = await import("mona")
-    const { memory } = await import("mona/mona_bg.wasm")
+    const { memory } = await import("mona/mona_wasm_bg.wasm")
 
     mona.memory = memory
     Vue.prototype.$mona = mona

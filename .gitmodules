@@ -1,3 +1,12 @@
 [submodule "sub/yas"]
 	path = sub/yas
 	url = https://github.com/wormtql/yas
+[submodule "sub/genshindata"]
+	path = sub/genshindata
+	url = https://github.com/Dimbreath/GenshinData
+[submodule "sub/mona_generate"]
+	path = sub/mona_generate
+	url = https://github.com/wormtql/mona-generate
+[submodule "sub/mona_wasm"]
+	path = sub/mona_wasm
+	url = https://github.com/wormtql/mona-wasm
