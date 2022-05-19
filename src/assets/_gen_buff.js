@@ -53,6 +53,10 @@ import ResMinus_image from "@image/misc/sword"
 
 
 
+import HealingBonus_image from "@image/misc/sword"
+
+
+
 
 
 
@@ -405,6 +409,21 @@ export default {
         chs: "减抗",
         
         badge: ResMinus_image,
+        
+        genre: "Common",
+        description: "",
+        config: [
+            
+            {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
+            
+        ],
+    },
+    
+    "HealingBonus": {
+        name: "HealingBonus",
+        chs: "治疗加成",
+        
+        badge: HealingBonus_image,
         
         genre: "Common",
         description: "",

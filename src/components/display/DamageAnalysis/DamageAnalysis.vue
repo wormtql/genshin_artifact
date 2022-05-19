@@ -70,7 +70,7 @@
                 <div class="big-title bonus-region">加成</div>
                 <div class="header-row">
                     <damage-analysis-util
-                        :arr="bonusState"
+                        :arr="bonusRegionState"
                         :title="bonusRegionName"
                     ></damage-analysis-util>
                 </div>
@@ -174,7 +174,7 @@ export default {
     },
     methods: {
         setValue(analysis) {
-            console.log(analysis)
+            // console.log(analysis)
             let map = {
                 "atkState": "atk",
                 "atkRatioState": "atk_ratio",
@@ -238,6 +238,14 @@ export default {
                 return "基础治疗"
             } else {
                 return "基础伤害"
+            }
+        },
+
+        bonusRegionState() {
+            if (this.isHeal) {
+                return this.healingBonusState
+            } else {
+                return this.bonusState
             }
         },
 
