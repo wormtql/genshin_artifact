@@ -9,89 +9,157 @@
 
 </div>
 
-[//]: # (原神圣遗物分析工具，[网址在这里]&#40;https://www.mona-uranai.com&#41;  )
-[//]: # (该README有以下语言：  )
-[//]: # ([English]&#40;./README_en.md&#41;)
+
 ## 简介
-- 圣遗物自动搭配
+### 伤害计算与分析
+- 增删BUFF
+- 参数调整
+- 伤害明细
+- 面板构成
+### 圣遗物配装与分析
+- A*优化算法
+- 启发式优化算法
 - 队伍圣遗物自动搭配
-- 响应式伤害计算器
-- 圣遗物潜力
+- 词条收益曲线
 - 圣遗物养成推荐
-- more...
+- 圣遗物词条分析
+- 圣遗物潜力与评分
+### 数据库
+- 基于计算结果的圣遗物、武器统计
 
 ## 本地运行
+### 环境
 该项目依赖[Rust](https://www.rust-lang.org/) 
 1. 安装Rust工具链，详见官网
 2. 安装Rust Webassembly工具链（wasm-pack）
-3. 安装node依赖
+3. node
+### 运行步骤
+1. 克隆仓库
 ```
-npm install
+git clone --recursive https://github.com/wormtql/genshin_artifact
 ```
-4. 编译Rust依赖
+2. 编译wasm依赖
 ```
-cd mona
-cargo run --bin gen_meta
-wasm-pack build
+npm run build:wasm
 ```
-5. 本地运行
+3. 生成数据文件（武器、角色、圣遗物等的信息）
+```
+npm run gen_meta
+```
+4. 运行
 ```
 npm run serve
 ```
-
-## Docker
+5. 打包
 ```
-docker build -t mona .
-docker run -dp 8080:80 mona
+npm run build
 ```
 
-## 贡献
-### 添加目标函数
-目标函数在`mona/src/target_functions/target_functions`
-1. 在上述文件夹的对应位置建立新目标函数文件
-2. 在`target_functions/target_function_name.rs`新建目标函数名
-3. 创建一个struct，必须以`TargetFunction`结尾
-```rust
-pub struct NewTargetFunction {
-    ...
-}
-```
-4. 如果该函数有设置，在`target_functions/target_function_config.rs`新建同名enum
-5. 为`NewTargetFunction`实现两个trait，`TargetFunctionMetaTrait`和`TargetFunction`
-```rust
-impl TargetFunctionMetaTrait for NewTargetFunction {
-    // 该目标函数的元数据
-    #[cfg(not(target_family = "wasm"))]
-    const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
-        name: TargetFunctionName::GanyuDefault,
-        chs: "chs",
-        description: "description",
-        tags: "tag1,tag2",
-        four: TargetFunctionFor::SomeWho(CharacterName::Ganyu),
-        image: TargetFunctionMetaImage::Avatar
-    };
+[//]: # (## Docker)
 
-    // 目标函数的设置，没有设置可以省略
-    #[cfg(not(target_family = "wasm"))]
-    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
-        ItemConfig {
-            name: "melt_rate",
-            title: "融化占比",
-            config: ItemConfig::RATE01_TYPE
-        }
-    ]);
+[//]: # (```)
 
-    fn create(character: &CharacterCommonData, weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        // create boxed target function
-    }
-}
+[//]: # (docker build -t mona .)
 
-impl TargetFunction for NewTargetFunction {
-    // 可以参考其他文件
-}
-```
-6. 在`target_functions/target_functions/<element>/mod.rs`中，重导出`NewTargetFunction`
-```rust
-// in <element>.rs
-pub use new_target_function::NewTargetFunction;
-```
+[//]: # (docker run -dp 8080:80 mona)
+
+[//]: # (```)
+
+[//]: # (## 贡献)
+
+[//]: # (### 添加目标函数)
+
+[//]: # (目标函数位于[https://github.com/wormtql/mona-core]&#40;mona-core&#41;  )
+
+[//]: # (`src/target_functions/target_functions`)
+
+[//]: # (1. 在上述文件夹的对应位置建立新目标函数文件)
+
+[//]: # (2. 在`target_functions/target_function_name.rs`新建目标函数名)
+
+[//]: # (3. 创建一个struct，必须以`TargetFunction`结尾)
+
+[//]: # (```rust)
+
+[//]: # (pub struct NewTargetFunction {)
+
+[//]: # (    ...)
+
+[//]: # (})
+
+[//]: # (```)
+
+[//]: # (4. 如果该函数有设置，在`target_functions/target_function_config.rs`新建同名enum)
+
+[//]: # (5. 为`NewTargetFunction`实现两个trait，`TargetFunctionMetaTrait`和`TargetFunction`)
+
+[//]: # (```rust)
+
+[//]: # (impl TargetFunctionMetaTrait for NewTargetFunction {)
+
+[//]: # (    // 该目标函数的元数据)
+
+[//]: # (    #[cfg&#40;not&#40;target_family = "wasm"&#41;&#41;])
+
+[//]: # (    const META_DATA: TargetFunctionMeta = TargetFunctionMeta {)
+
+[//]: # (        name: TargetFunctionName::GanyuDefault,)
+
+[//]: # (        chs: "chs",)
+
+[//]: # (        description: "description",)
+
+[//]: # (        tags: "tag1,tag2",)
+
+[//]: # (        four: TargetFunctionFor::SomeWho&#40;CharacterName::Ganyu&#41;,)
+
+[//]: # (        image: TargetFunctionMetaImage::Avatar)
+
+[//]: # (    };)
+
+[//]: # ()
+[//]: # (    // 目标函数的设置，没有设置可以省略)
+
+[//]: # (    #[cfg&#40;not&#40;target_family = "wasm"&#41;&#41;])
+
+[//]: # (    const CONFIG: Option<&'static [ItemConfig]> = Some&#40;&[)
+
+[//]: # (        ItemConfig {)
+
+[//]: # (            name: "melt_rate",)
+
+[//]: # (            title: "融化占比",)
+
+[//]: # (            config: ItemConfig::RATE01_TYPE)
+
+[//]: # (        })
+
+[//]: # (    ]&#41;;)
+
+[//]: # ()
+[//]: # (    fn create&#40;character: &CharacterCommonData, weapon: &WeaponCommonData, config: &TargetFunctionConfig&#41; -> Box<dyn TargetFunction> {)
+
+[//]: # (        // create boxed target function)
+
+[//]: # (    })
+
+[//]: # (})
+
+[//]: # ()
+[//]: # (impl TargetFunction for NewTargetFunction {)
+
+[//]: # (    // 可以参考其他文件)
+
+[//]: # (})
+
+[//]: # (```)
+
+[//]: # (6. 在`target_functions/target_functions/<element>/mod.rs`中，重导出`NewTargetFunction`)
+
+[//]: # (```rust)
+
+[//]: # (// in <element>.rs)
+
+[//]: # (pub use new_target_function::NewTargetFunction;)
+
+[//]: # (```)
