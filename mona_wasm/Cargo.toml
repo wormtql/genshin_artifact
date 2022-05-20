@@ -1,0 +1,37 @@
+[package]
+name = "mona_wasm"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["console_error_panic_hook"]
+
+[profile.release]
+lto = true
+opt-level = 3
+strip = true
+#codegen-units = 1
+
+[dependencies]
+mona = { path = "../mona_core" }
+wasm-bindgen = { version = "0.2.63", features = ["serde-serialize"] }
+lazy_static = "1.4.0"
+rand = "0.8.4"
+serde = { version = "1.0.133", features = ["derive"] }
+serde_json = "1.0.78"
+console_error_panic_hook = { version = "0.1.7", optional = true }
+web-sys = { version = "0.3.55", features = ["console"] }
+getrandom = { version = "0.2", features = ["js"] }
+num = "0.4"
+num-derive = "0.3"
+num-traits = "0.2"
+smallvec = "1.8.0"
+askama = "0.11"
+askama_escape = "0.10.2"
+strum = "0.23"
+strum_macros = "0.23"
+rustc-hash = "1.1.0"

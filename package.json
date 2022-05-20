@@ -14,8 +14,8 @@
     "myserve": "serve ./dist",
     "pack": "tar -czvf dist.tar.gz ./dist",
     "tauri": "tauri",
-    "build:wasm": "wasm-pack build sub/mona_wasm",
-    "gen_meta": "cargo run --release --bin gen_meta --manifest-path sub/mona_generate/Cargo.toml -- --dir src/assets"
+    "build:wasm": "wasm-pack build mona_wasm",
+    "gen_meta": "cargo run --release --bin gen_meta --manifest-path mona_generate/Cargo.toml -- --dir src/assets"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",

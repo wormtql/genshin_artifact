@@ -1,0 +1,15 @@
+[package]
+name = "mona_derive"
+version = "0.0.0"
+authors = ["wormtql <584130248@qq.com>"]
+description = "Mona derive"
+keywords = ["template", "proc_macro", "procmacro"]
+edition = "2018"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+quote = "1"
+proc-macro2 = "1.0"
+syn = "1.0"

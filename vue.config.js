@@ -100,7 +100,7 @@ module.exports = {
                 "@worker": path.resolve(__dirname, "src/workers"),
                 "@const": path.resolve(__dirname, "src/constants"),
                 "@enemy": path.resolve(__dirname, "src/enemies"),
-                "mona": path.resolve(__dirname, "sub/mona_wasm/pkg"),
+                "mona": path.resolve(__dirname, "mona_wasm/pkg"),
                 // "monaBg": path.resolve(__dirname, "sub/mona_wasm/pkg")
 
                 "@wasm": path.resolve(__dirname, "src/wasm"),

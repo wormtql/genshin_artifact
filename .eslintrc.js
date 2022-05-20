@@ -30,8 +30,9 @@ module.exports = {
     "ignorePatterns": [
         "node_modules/**/*",
         "src/**/*",
-        "mona/**/*",
+        "mona_wasm/**/*",
         "loaders/**/*",
-        "sub/**/*"
+        "sub/**/*",
+        // "**/*"
     ],
 };
