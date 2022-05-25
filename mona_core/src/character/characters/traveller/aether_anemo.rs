@@ -12,6 +12,9 @@ use crate::damage::DamageContext;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use strum::EnumCount;
+use std::str::FromStr;
 
 pub struct AetherAnemoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -66,7 +69,7 @@ impl<A: Attribute> ChangeAttribute<A> for AetherAnemoEffect {
 }
 
 #[derive(Copy, Clone, Eq, PartialEq)]
-#[derive(FromPrimitive)]
+#[derive(FromPrimitive, EnumCountMacro, EnumString)]
 pub enum AetherAnemoDamageEnum {
     Normal1,
     Normal2,

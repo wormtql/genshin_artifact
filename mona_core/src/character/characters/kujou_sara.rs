@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::KujouSaraDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct KujouSaraSkillType {
     pub normal_dmg1: [f64; 15],
@@ -67,7 +69,7 @@ pub const KUJOU_SARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 
 pub struct KujouSara;
 
-#[derive(Copy, Clone, FromPrimitive)]
+#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro)]
 pub enum KujouSaraDamageEnum {
     Normal1,
     Normal2,

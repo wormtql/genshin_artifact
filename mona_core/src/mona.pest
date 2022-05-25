@@ -1,0 +1,85 @@
+WHITESPACE = _{ (" " | "\n" | "\t" | "\r")+ }
+//WHITESPACE = _{ " " }
+COMMENT = _{ ("/*" ~ (!"*/" ~ ANY)* ~ "*/") }
+bool_true = @{ "true" }
+bool_false = @{ "false" }
+
+number_seq = _{ ASCII_DIGIT+ }
+number = @{ number_seq ~ ("." ~ number_seq?)? }
+
+identifier = @{ (ASCII_ALPHA | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
+
+object_item = { identifier ~ ":" ~ expression }
+object_item_list_non_empty = { object_item ~ ("," ~ object_item)* ~ ","? }
+object_item_list = { object_item_list_non_empty? }
+object_literal = { "{" ~ object_item_list ~ "}" }
+
+array_list_non_empty = { expression ~ ("," ~ expression)* ~ ","? }
+array_list = { array_list_non_empty? }
+array_literal = { "[" ~ array_list ~ "]" }
+
+damage_expression = { identifier ~ "." ~ identifier ~ ("(" ~ expression? ~ ")")? ~ ("." ~ identifier)? }
+damage_definition = { "damage" ~ identifier ~ "=" ~ damage_expression }
+
+
+add = @{ "+" }
+subtract = @{ "-" }
+multiply = @{ "*" }
+divide = @{ "/" }
+power = @{ "^" }
+lt = @{ "<" }
+le = @{ "<=" }
+gt = @{ ">" }
+ge = @{ ">=" }
+equal = @{ "==" }
+unequal = @{ "!=" }
+and = @{ "&&" }
+or = @{ "||" }
+
+expression_list = { expression ~ ("," ~ expression)* ~ ","? }
+
+paren_expression = { "(" ~ expression ~ ")" }
+primary_expression = { bool_false | bool_true | identifier | number | object_literal | array_literal | paren_expression }
+
+//function_call_expression = { function_field_helper ~ ("(" ~ function_call_param_list? ~ ")")* }
+function_call_item = { "(" ~ expression_list? ~ ")" }
+
+field_expression_item = { "." ~ identifier | "[" ~ expression ~ "]" | function_call_item }
+field_expression = { primary_expression ~ (field_expression_item)* }
+
+//function_field_helper = { primary_expression | function_call_expression | field_expression }
+
+unary_expression = { field_expression | (subtract) ~ power_expression }
+
+power_expression = { (unary_expression ~ (power))* ~ unary_expression }
+
+multiplicative_expression = { power_expression ~ ((divide | multiply) ~ power_expression)* }
+
+additive_expression = { multiplicative_expression ~ ((subtract | add) ~ multiplicative_expression)* }
+
+relational_expression = { additive_expression ~ ((lt | le | gt | ge) ~ additive_expression)* }
+
+equality_expression = { relational_expression ~ ((equal | unequal) ~ relational_expression)* }
+
+logical_and_expression = { equality_expression ~ (and ~ equality_expression)* }
+
+logical_or_expression = { logical_and_expression ~ (or ~ logical_and_expression)* }
+
+expression = { logical_or_expression }
+
+
+// declarations and statements =============
+left_value_field_access_item = { "." ~ identifier | "[" ~ expression ~ "]" }
+left_value = { identifier ~ (left_value_field_access_item)* }
+assignment_statement = { left_value ~ "=" ~ expression }
+
+damage_declaration = { "dmg" ~ identifier ~ "=" ~ identifier ~ "." ~ identifier ~ ("(" ~ object_literal? ~ ")")? }
+
+prop_declaration = { "prop" ~ identifier ~ "=" ~ identifier ~ "." ~ identifier }
+
+expression_statement = { expression }
+
+statement = { ( damage_declaration | prop_declaration | assignment_statement | expression_statement) }
+
+
+program = { statement* }

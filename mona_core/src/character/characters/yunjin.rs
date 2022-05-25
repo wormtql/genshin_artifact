@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::YunjinDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct YunjinSkillType {
     pub normal_dmg1: [f64; 15],
@@ -75,7 +77,7 @@ const YUNJIN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 
 pub struct Yunjin;
 
-#[derive(Copy, Clone, FromPrimitive)]
+#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro)]
 pub enum YunjinDamageEnum {
     Normal1,
     Normal2,

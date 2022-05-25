@@ -1,8 +1,12 @@
 use super::character_common_data::CharacterCommonData;
 use crate::common::ChangeAttribute;
-use crate::attribute::Attribute;
+use crate::attribute::{Attribute, SimpleAttributeGraph2};
 use crate::character::CharacterName;
 use crate::character::character_config::CharacterConfig;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::damage_result::SimpleDamageResult;
+use crate::damage::DamageContext;
 use super::characters::get_effect;
 
 pub struct Character<T> {
@@ -46,4 +50,8 @@ impl<T: Attribute> Character<T> {
             character_effect: effect,
         }
     }
+
+    // pub fn damage(&self, ctx: &DamageContext<'_, SimpleAttributeGraph2>, skill_index: usize, skill_config: &CharacterSkillConfig) -> SimpleDamageResult {
+    //     self.common_data.name.damage::<SimpleAttributeGraph2>(ctx, skill_index, skill_config)
+    // }
 }

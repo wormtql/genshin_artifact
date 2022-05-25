@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::XiaoDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct XiaoSkillType {
     pub normal_dmg11: [f64; 15],
@@ -69,7 +71,7 @@ pub const XIAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 
 pub struct Xiao;
 
-#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq, EnumString, EnumCountMacro)]
 pub enum XiaoDamageEnum {
     Normal11,
     Normal12,

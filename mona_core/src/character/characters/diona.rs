@@ -12,6 +12,8 @@ use crate::target_functions::target_functions::DionaDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct DionaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -73,7 +75,7 @@ pub const DIONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 pub struct Diona;
 
 #[derive(Copy, Clone, Eq, PartialEq)]
-#[derive(FromPrimitive)]
+#[derive(FromPrimitive, EnumString, EnumCountMacro)]
 pub enum DionaDamageEnum {
     Normal1,
     Normal2,

@@ -1,5 +1,6 @@
 use serde::{Serialize, Deserialize};
-use strum_macros::Display;
+use strum_macros::{Display, EnumString};
+use strum::*;
 use num_derive::FromPrimitive;
 use mona_derive::{CharacterData, EnumLen};
 use crate::attribute::Attribute;
@@ -15,12 +16,13 @@ use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::common::item_config_type::ItemConfig;
+// required by strum_derive::EnumString
+use std::str::FromStr;
 
 
 #[derive(Serialize, Deserialize)]
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
-#[derive(Display, FromPrimitive)]
-#[derive(CharacterData, EnumLen)]
+#[derive(Display, FromPrimitive, EnumString, CharacterData, EnumLen)]
 pub enum CharacterName {
     AetherAnemo,
     Albedo,

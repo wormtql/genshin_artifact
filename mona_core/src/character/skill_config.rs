@@ -1,6 +1,14 @@
 use serde::{Serialize, Deserialize};
 
-#[derive(Serialize, Deserialize)]
+fn default_true() -> bool {
+    true
+}
+
+fn default_false() -> bool {
+    false
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 pub enum CharacterSkillConfig {
     Albedo { fatal_count: usize },
     Aloy { coil_count: usize },
@@ -10,7 +18,7 @@ pub enum CharacterSkillConfig {
     Ganyu { talent1_rate: f64 },
     HuTao { after_e: bool },
     KaedeharaKazuha { after_e_or_q: bool },
-    KamisatoAyaka { after_dash: bool, use_c6: bool },
+    KamisatoAyaka { #[serde(default = "default_true")] after_dash: bool, #[serde(default = "default_false")] use_c6: bool },
     KamisatoAyato { e_stack: usize, in_q: bool },
     Keqing { after_e: bool },
     Noelle { after_q: bool },

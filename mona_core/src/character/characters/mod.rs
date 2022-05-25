@@ -133,3 +133,7 @@ pub fn get_target_function_by_role(
 ) -> Box<dyn TargetFunction> {
     CharacterName::get_target_function_by_role(role_index, team, character, weapon)
 }
+
+pub fn get_skill_from_str(name: CharacterName, s: &str) -> Option<usize> {
+    name.get_skill_from_str(s)
+}

@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::KaedeharaKazuhaDefaultTargetFunct
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct KaedeharaKazuhaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -72,6 +74,7 @@ pub const KAEDEHARA_KAZUHA_STATIC_DATA: CharacterStaticData = CharacterStaticDat
 pub struct KaedeharaKazuha;
 
 #[derive(Copy, Clone, FromPrimitive)]
+#[derive(EnumString, EnumCountMacro)]
 pub enum KaedeharaKazuhaDamageEnum {
     Normal1,
     Normal2,

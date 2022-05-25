@@ -1,23 +1,23 @@
 use std::time;
-use mona::applications::bonus_per_stat::bonus_per_stat::{bonus_per_stat, BonusPerStatInput};
 
-use mona::attribute::{AttributeName, AttributeUtils, ComplicatedAttributeGraph, SimpleAttributeGraph2};
-use mona::common::{ChangeAttribute, StatName, Element, SkillType};
-use mona::weapon::{WeaponName, WeaponConfig, Weapon};
-use mona::artifacts::{Artifact, ArtifactSetName, ArtifactSlotName};
-use mona::character::character_config::CharacterConfig;
-use mona::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName, TargetFunctionUtils};
-use mona::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
+use mona::applications::bonus_per_stat::bonus_per_stat::{bonus_per_stat, BonusPerStatInput};
 use mona::applications::calculator::interface_calculator::CalculatorInterface;
-use mona::applications::optimize_artifacts::algorithms::CutoffAlgorithm2;
-use mona::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode};
-use mona::character::{Character, CharacterName};
-use mona::character::skill_config::CharacterSkillConfig;
-use mona::damage::DamageContext;
-use mona::enemies::Enemy;
-use mona::target_functions::target_functions::get_target_function;
+use mona::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use mona::applications::optimize_artifacts::algorithm::SingleOptimizeAlgorithm;
 use mona::applications::optimize_artifacts::algorithms::cutoff_heuristic::CutoffAlgorithmHeuristic;
+use mona::applications::optimize_artifacts::algorithms::CutoffAlgorithm2;
+use mona::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode};
+use mona::artifacts::{Artifact, ArtifactSetName, ArtifactSlotName};
+use mona::attribute::{AttributeName, AttributeUtils, ComplicatedAttributeGraph, SimpleAttributeGraph2};
+use mona::character::{Character, CharacterName};
+use mona::character::character_config::CharacterConfig;
+use mona::character::skill_config::CharacterSkillConfig;
+use mona::common::{ChangeAttribute, Element, SkillType, StatName};
+use mona::damage::DamageContext;
+use mona::enemies::Enemy;
+use mona::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName, TargetFunctionUtils};
+use mona::target_functions::target_functions::get_target_function;
+use mona::weapon::{Weapon, WeaponConfig, WeaponName};
 
 fn get_character() -> Character<SimpleAttributeGraph2> {
     Character::new(

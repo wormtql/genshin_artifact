@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::HuTaoDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct HuTaoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -101,6 +103,7 @@ impl<T: Attribute> ChangeAttribute<T> for HuTaoEffect {
 }
 
 #[derive(Copy, Clone, FromPrimitive)]
+#[derive(EnumString, EnumCountMacro)]
 pub enum HuTaoDamageEnum {
     Normal1,
     Normal2,

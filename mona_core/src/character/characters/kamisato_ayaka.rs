@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::cryo::kamisato_ayaka_default::Kam
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct KamisatoAyakaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -97,7 +99,7 @@ impl<A: Attribute> ChangeAttribute<A> for KamisatoAyakaEffect {
 
 pub struct KamisatoAyaka;
 
-#[derive(Copy, Clone, FromPrimitive)]
+#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro)]
 pub enum KamisatoAyakaDamageEnum {
     Normal1,
     Normal2,

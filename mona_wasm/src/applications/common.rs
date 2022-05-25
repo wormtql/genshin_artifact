@@ -72,6 +72,8 @@ impl WeaponInterface {
 pub struct TargetFunctionInterface {
     pub name: TargetFunctionName,
     pub params: TargetFunctionConfig,
+    pub use_dsl: Option<bool>,
+    pub dsl_source: Option<String>,
 }
 
 impl TargetFunctionInterface {

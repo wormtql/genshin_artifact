@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::AratakiIttoDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct AratakiIttoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -81,7 +83,7 @@ pub enum AratakiIttoRoleEnum {
 }
 
 #[derive(Copy, Clone)]
-#[derive(FromPrimitive)]
+#[derive(FromPrimitive, EnumString, EnumCountMacro)]
 pub enum AratakiIttoDamageEnum {
     Normal1,
     Normal2,

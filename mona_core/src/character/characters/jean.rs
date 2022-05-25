@@ -12,6 +12,8 @@ use crate::target_functions::target_functions::JeanDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct JeanSkillType {
     pub normal_dmg1: [f64; 15],
@@ -71,6 +73,7 @@ pub const JEAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 pub struct Jean;
 
 #[derive(Copy, Clone, FromPrimitive)]
+#[derive(EnumString, EnumCountMacro)]
 pub enum JeanDamageEnum {
     Normal1,
     Normal2,

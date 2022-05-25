@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::EulaDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct EulaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -82,6 +84,7 @@ pub const EULA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 pub struct Eula;
 
 #[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+#[derive(EnumString, EnumCountMacro)]
 pub enum EulaDamageEnum {
     Normal1,
     Normal2,

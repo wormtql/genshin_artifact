@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::ThomaDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct ThomaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -73,7 +75,7 @@ pub const THOMA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 
 pub struct Thoma;
 
-#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq, EnumString, EnumCountMacro)]
 pub enum ThomaDamageEnum {
     Normal1,
     Normal2,

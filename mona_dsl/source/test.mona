@@ -1,0 +1,4 @@
+prop x = KamisatoAyaka.recharge
+dmg d = KamisatoAyaka.Q1({ after_dash: true })
+dmg a = KamisatoAyaka.Normal1({ after_dash: true })
+result = 10 * a.n.e + d.n.e * min(x, 1.6)

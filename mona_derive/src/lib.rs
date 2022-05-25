@@ -281,6 +281,8 @@ pub fn derive_character_data(input: TokenStream) -> TokenStream {
     let mut rows_skill_map = String::new();
     let mut rows_config_data = String::new();
     let mut rows_config_skill = String::new();
+    let mut rows_skill_len = String::new();
+    let mut rows_skill_from_str = String::new();
 
     for v in vars.iter() {
         rows_meta_data.push_str(&format!("CharacterName::{n} => crate::character::characters::{n}::STATIC_DATA,\n", n=v));
@@ -290,6 +292,10 @@ pub fn derive_character_data(input: TokenStream) -> TokenStream {
         rows_skill_map.push_str(&format!("CharacterName::{n} => crate::character::characters::{n}::SKILL_MAP,\n", n=v));
         rows_config_data.push_str(&format!("CharacterName::{n} => crate::character::characters::{n}::CONFIG_DATA,\n", n=v));
         rows_config_skill.push_str(&format!("CharacterName::{n} => crate::character::characters::{n}::CONFIG_SKILL,\n", n=v));
+        rows_skill_len.push_str(&format!("CharacterName::{n} => <crate::character::characters::{n} as CharacterTrait>::DamageEnumType::COUNT,\n", n=v));
+        rows_skill_from_str.push_str(
+            &format!("CharacterName::{n} => <crate::character::characters::{n} as CharacterTrait>::DamageEnumType::from_str(s).ok().map(|x| x as usize),\n", n=v)
+        );
     }
 
     let output = format!(
@@ -325,6 +331,16 @@ pub fn derive_character_data(input: TokenStream) -> TokenStream {
             pub fn get_config_skill(&self) -> Option<&'static [ItemConfig]> {{
                 match *self {{ {rows_config_skill} }}
             }}
+
+            pub fn get_skill_len(&self) -> usize {{
+                match *self {{ {rows_skill_len} }}
+            }}
+
+            pub fn get_skill_from_str(&self, s: &str) -> Option<usize> {{
+                match *self {{
+                    {rows_skill_from_str}
+                }}
+            }}
         }}
         "#,
         rows_meta_data=rows_meta_data,
@@ -333,7 +349,9 @@ pub fn derive_character_data(input: TokenStream) -> TokenStream {
         rows_tf=rows_tf,
         rows_skill_map=rows_skill_map,
         rows_config_data=rows_config_data,
-        rows_config_skill=rows_config_skill
+        rows_config_skill=rows_config_skill,
+        rows_skill_len=rows_skill_len,
+        rows_skill_from_str=rows_skill_from_str,
     );
 
     output.parse().unwrap()

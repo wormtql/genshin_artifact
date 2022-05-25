@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::AloyDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct AloySkillType {
     pub normal_dmg11: [f64; 15],
@@ -76,6 +78,7 @@ pub const ALOY_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 pub struct Aloy;
 
 #[derive(Copy, Clone, FromPrimitive)]
+#[derive(EnumString, EnumCountMacro)]
 pub enum AloyDamageEnum {
     Normal11,
     Normal12,

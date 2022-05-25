@@ -12,6 +12,8 @@ use crate::target_functions::target_functions::YaeMikoDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct YaeMikoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -49,7 +51,7 @@ pub const YAE_MIKO_SKILL: YaeMikoSkillType = YaeMikoSkillType {
 
 pub struct YaeMiko;
 
-#[derive(FromPrimitive, Copy, Clone)]
+#[derive(FromPrimitive, Copy, Clone, EnumString, EnumCountMacro)]
 pub enum YaeMikoDamageEnum {
     Normal1,
     Normal2,

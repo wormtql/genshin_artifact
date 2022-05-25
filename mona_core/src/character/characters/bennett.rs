@@ -12,6 +12,8 @@ use crate::target_functions::target_functions::BennettDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct BennettSkillType {
     pub normal_dmg1: [f64; 15],
@@ -89,7 +91,7 @@ impl Bennett {
 }
 
 #[derive(Copy, Clone, Eq, PartialEq)]
-#[derive(FromPrimitive)]
+#[derive(FromPrimitive, EnumCountMacro, EnumString)]
 pub enum BennettDamageEnum {
     Normal1,
     Normal2,

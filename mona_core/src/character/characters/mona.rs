@@ -12,6 +12,8 @@ use crate::target_functions::target_functions::MonaDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct MonaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -88,7 +90,7 @@ impl<T: Attribute> ChangeAttribute<T> for MonaEffect {
 
 pub struct Mona;
 
-#[derive(Copy, Clone, FromPrimitive)]
+#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro)]
 pub enum MonaDamageEnum {
     Normal1,
     Normal2,

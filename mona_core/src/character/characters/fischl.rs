@@ -12,6 +12,8 @@ use crate::target_functions::target_functions::FischlDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct FischlSkillType {
     pub normal_dmg1: [f64; 15],
@@ -65,6 +67,7 @@ pub const FISCHL_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 pub struct Fischl;
 
 #[derive(Copy, Clone, FromPrimitive)]
+#[derive(EnumString, EnumCountMacro)]
 pub enum FischlDamageEnum {
     Normal1,
     Normal2,

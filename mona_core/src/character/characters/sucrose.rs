@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::anemo::sucrose_default::SucroseDe
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct SucroseSkillType {
     pub normal_dmg1: [f64; 15],
@@ -61,7 +63,7 @@ pub const SUCROSE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 
 pub struct Sucrose;
 
-#[derive(Copy, Clone, FromPrimitive)]
+#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro)]
 pub enum SucroseDamageEnum {
     Normal1,
     Normal2,

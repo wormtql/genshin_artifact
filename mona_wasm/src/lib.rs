@@ -10,6 +10,7 @@
 // pub mod buffs;
 // pub mod enemies;
 pub mod applications;
+pub mod target_function;
 // pub mod utils;
 // pub mod damage;
 // pub mod team;

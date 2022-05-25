@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::XianglingDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct XianglingSkillType {
     pub normal_dmg1: [f64; 15],
@@ -69,7 +71,7 @@ pub const XIANGLING_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 
 pub struct Xiangling;
 
-#[derive(Copy, Clone, FromPrimitive)]
+#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro)]
 pub enum XianglingDamageEnum {
     Normal1,
     Normal2,

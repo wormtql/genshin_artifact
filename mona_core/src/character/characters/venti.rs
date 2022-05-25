@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::VentiDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct VentiSkillType {
     pub normal_dmg11: [f64; 15],
@@ -73,7 +75,7 @@ pub const VENTI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 
 pub struct Venti;
 
-#[derive(Copy, Clone, FromPrimitive)]
+#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro)]
 pub enum VentiDamageEnum {
     Normal11,
     Normal12,

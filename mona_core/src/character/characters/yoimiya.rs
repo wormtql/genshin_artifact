@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::YoimiyaDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct YoimiyaSkill {
     pub normal_dmg1: [f64; 15],
@@ -93,7 +95,7 @@ impl<T: Attribute> ChangeAttribute<T> for YoimiyaEffect {
 
 pub struct Yoimiya;
 
-#[derive(Copy, Clone, FromPrimitive)]
+#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro)]
 pub enum YoimiyaDamageEnum {
     Normal1,
     Normal2,

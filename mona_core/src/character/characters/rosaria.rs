@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::cryo::rosaria_default::RosariaDef
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct RosariaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -69,7 +71,7 @@ pub const ROSARIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 
 pub struct Rosaria;
 
-#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq)]
+#[derive(Copy, Clone, FromPrimitive, Eq, PartialEq, EnumString, EnumCountMacro)]
 pub enum RosariaDamageEnum {
     Normal1,
     Normal2,

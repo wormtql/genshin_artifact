@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::YanfeiDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct YanfeiSkillType {
     pub normal1: [f64; 15],
@@ -67,7 +69,7 @@ pub const YANFEI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 
 pub struct Yanfei;
 
-#[derive(Copy, Clone, FromPrimitive)]
+#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro)]
 pub enum YanfeiDamageEnum {
     Normal1,
     Normal2,

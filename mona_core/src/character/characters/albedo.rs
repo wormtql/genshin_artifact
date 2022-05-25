@@ -13,6 +13,8 @@ use crate::target_functions::target_functions::AlbedoDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct AlbedoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -66,7 +68,7 @@ const ALBEDO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 };
 
 #[derive(Copy, Clone, Eq, PartialEq)]
-#[derive(FromPrimitive)]
+#[derive(FromPrimitive, EnumCountMacro, EnumString)]
 pub enum AlbedoDamageEnum {
     Normal1,
     Normal2,

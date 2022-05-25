@@ -8,7 +8,7 @@ use smallvec::{SmallVec, smallvec};
 use mona::artifacts::{Artifact, ArtifactSetName, ArtifactSlotName, ArtifactList};
 use mona::character::{CharacterConfig, CharacterName, Character};
 use mona::weapon::{WeaponName, WeaponConfig, Weapon};
-use mona::target_functions::{TargetFunctionName, TargetFunctionConfig, TargetFunctionUtils};
+use mona::target_functions::{TargetFunctionName, TargetFunctionConfig, TargetFunctionUtils, TargetFunction};
 use mona::buffs::{Buff, BuffConfig};
 use mona::artifacts::effect_config::ArtifactEffectConfig;
 use mona::attribute::{AttributeNoReactive, AttributeName, AttributeUtils, AttributeCommon, Attribute, ComplicatedAttributeGraph, SimpleAttributeGraph2};
@@ -16,6 +16,7 @@ use mona::enemies::Enemy;
 use mona::{utils};
 use crate::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use crate::applications::optimize_artifacts::inter::OptimizeArtifactInterface;
+use crate::target_function::dsl_tf::TargetFunctionDSL;
 
 pub struct OptimizeSingleWasm;
 
@@ -33,7 +34,12 @@ impl OptimizeSingleWasm {
 
         let character = input.character.to_character();
         let weapon = input.weapon.to_weapon(&character);
-        let target_function = input.target_function.to_target_function(&character, &weapon);
+        // let target_function = input.target_function.to_target_function(&character, &weapon);
+        let target_function: Box<dyn TargetFunction> = if let Some(ref x) = input.target_function.dsl_source {
+            Box::new(TargetFunctionDSL::new(x))
+        } else {
+            input.target_function.to_target_function(&character, &weapon)
+        };
         let constraint = input.constraint.unwrap_or(Default::default());
         let buffs: Vec<Box<dyn Buff<SimpleAttributeGraph2>>> = input.buffs.iter().map(|x| x.to_buff()).collect();
         let artifact_config = input.artifact_config.as_ref().map(|x| x.clone().to_config());

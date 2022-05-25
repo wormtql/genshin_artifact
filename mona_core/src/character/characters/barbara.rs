@@ -12,6 +12,8 @@ use crate::target_functions::target_functions::BarbaraDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct BarbaraSkillType {
     pub normal_dmg1: [f64; 15],
@@ -69,7 +71,7 @@ pub const BARBARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 pub struct Barbara;
 
 #[derive(Copy, Clone)]
-#[derive(FromPrimitive)]
+#[derive(FromPrimitive, EnumString, EnumCountMacro)]
 pub enum BarbaraDamageEnum {
     Normal1,
     Normal2,

@@ -12,6 +12,8 @@ use crate::target_functions::target_functions::BeidouDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct BeidouSkillType {
     pub normal_dmg1: [f64; 15],
@@ -73,7 +75,7 @@ const BEIDOU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 pub struct Beidou;
 
 #[derive(Copy, Clone)]
-#[derive(FromPrimitive)]
+#[derive(FromPrimitive, EnumString, EnumCountMacro)]
 pub enum BeidouDamageEnum {
     Normal1,
     Normal2,
