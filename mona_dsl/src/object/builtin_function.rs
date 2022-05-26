@@ -7,7 +7,7 @@ use crate::vm::env::MonaEnv;
 
 pub type ParamVecType = SmallVec<[Rc<RefCell<MonaObject>>; 5]>;
 pub type FunctionReturnType = Result<Option<Rc<RefCell<MonaObject>>>, RuntimeError>;
-pub type BuiltinFunctionType = Box<dyn Fn(ParamVecType) -> FunctionReturnType>;
+pub type BuiltinFunctionType = Box<dyn Fn(ParamVecType, &mut MonaEnv) -> FunctionReturnType>;
 
 pub struct MonaObjectBuiltinFunction {
     // pub param_count: usize,
@@ -16,8 +16,8 @@ pub struct MonaObjectBuiltinFunction {
 }
 
 impl MonaObjectBuiltinFunction {
-    pub fn call(&self, params: ParamVecType) -> FunctionReturnType {
-        (*self.handler)(params)
+    pub fn call(&self, params: ParamVecType, env: &mut MonaEnv) -> FunctionReturnType {
+        (*self.handler)(params, env)
     }
 }
 

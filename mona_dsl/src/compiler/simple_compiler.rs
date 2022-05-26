@@ -19,6 +19,7 @@ use crate::code::byte_code::load_number::ByteCodeLoadNumber;
 use crate::code::byte_code::load_string::ByteCodeLoadString;
 use crate::code::byte_code::mul::ByteCodeMul;
 use crate::code::byte_code::neg::ByteCodeNeg;
+use crate::code::byte_code::pow::ByteCodePow;
 use crate::code::byte_code::sub::ByteCodeSub;
 use crate::compiler::compiler::{CodeObject, CompileContext, Compiler};
 use crate::error::{CompileError, CompileErrorType};
@@ -202,6 +203,7 @@ impl<'i> Compiler<'i> for MonaCompilerASTToCode<'i> {
             "*" => ctx.add_code(Box::new(ByteCodeMul)),
             "/" => ctx.add_code(Box::new(ByteCodeDiv)),
             "-" => ctx.add_code(Box::new(ByteCodeSub)),
+            "^" => ctx.add_code(Box::new(ByteCodePow)),
             _ => todo!()
         }
 

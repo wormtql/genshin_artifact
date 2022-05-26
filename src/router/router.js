@@ -6,6 +6,7 @@ import TeamOptimizationPage from "@page/TeamOptimizationPage"
 import NewArtifactPotentialPage from "@page/NewArtifactPotentialPage"
 import CharacterDBPage from "@page/CharacterDBPage"
 import CharacterInfo from "@page/CharacterDBPage/CharacterInfo"
+import MonaPlaygroundPage from "@page/MonaPlaygroundPage"
 
 const IntroPage = () => ({
     component: import(/* webpackChunkName: "intro-page" */ "@page/about/IntroPage"),
@@ -32,11 +33,20 @@ const CharacterPresetsPage = () => (
 const FAQPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/FAQPage");
 const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/ExportToolPage");
 const KumiPage = () => import (/* webpackChunkName: "kumi-page" */ "@page/KumiPage");
+// const MonaPlaygroundPage = () => import(/* webpackChunkName: "playground-page" */ "@page/MonaPlaygroundPage");
 
 
 const webName = process.env.MONA_TITLE;
 
 const routes = [
+    {
+        path: "/playground",
+        component: MonaPlaygroundPage,
+        meta: {
+            title: "Playground",
+            keepAlive: true
+        }
+    },
     {
         path: "/character",
         component: CharacterDBPage,

@@ -35,8 +35,8 @@ impl OptimizeSingleWasm {
         let character = input.character.to_character();
         let weapon = input.weapon.to_weapon(&character);
         // let target_function = input.target_function.to_target_function(&character, &weapon);
-        let target_function: Box<dyn TargetFunction> = if let Some(ref x) = input.target_function.dsl_source {
-            Box::new(TargetFunctionDSL::new(x))
+        let target_function: Box<dyn TargetFunction> = if input.target_function.use_dsl {
+            Box::new(TargetFunctionDSL::new(&input.target_function.dsl_source.unwrap()))
         } else {
             input.target_function.to_target_function(&character, &weapon)
         };

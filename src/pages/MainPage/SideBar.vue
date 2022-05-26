@@ -52,6 +52,14 @@
             </el-menu-item-group>
 
             <el-menu-item-group>
+                <template #title>附加功能</template>
+                <el-menu-item index="/playground">
+                    <font-awesome-icon :icon="['fas', 'terminal']" style="width: 24px; margin-right: 5px; color: #909399"></font-awesome-icon>
+                    Playground
+                </el-menu-item>
+            </el-menu-item-group>
+
+            <el-menu-item-group>
                 <template #title>
                     关于本站
                 </template>

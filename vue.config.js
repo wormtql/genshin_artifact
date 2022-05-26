@@ -5,6 +5,7 @@ const { readFileSync, existsSync } = require("fs")
 // const webpack = require("webpack")
 const { execSync } = require("child_process")
 const yaml = require("js-yaml")
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin")
 
 // const BEIAN_CODE = "浙ICP备2021004987号";
 
@@ -66,6 +67,7 @@ const resources = {
         { url: "https://npm.elemecdn.com/echarts@5.3.0/dist/echarts.min.js", global: "echarts", name: "echarts" },
         { url: "https://npm.elemecdn.com/vue-echarts@6.0.0-rc.4/dist/index.umd.min.js", global: "VueECharts", name: "vue-echarts" },
         { url: "https://npm.elemecdn.com/fuse.js@6.5.3/dist/fuse.min.js", global: "Fuse", name: "fuse.js" },
+        { url: "", global: "monaco", name: "monaco-editor" }
     ],
     css: [
         { url: "https://npm.elemecdn.com/element-ui@2.15.6/lib/theme-chalk/index.css" },
@@ -126,6 +128,7 @@ module.exports = {
         experiments: {
             asyncWebAssembly: true
         },
+        // plugins: [new MonacoWebpackPlugin()]
     },
     chainWebpack: config => {
         // merge custom env
@@ -140,6 +143,11 @@ module.exports = {
             return definitions
         })
 
+        // use monaco webpack plugin if using non cdn mode
+        if (!customEnv["USE_CDN"]) {
+            config.plugin("monaco").use(new MonacoWebpackPlugin())
+        }
+
         // set ifdef loader
         config.module.rule("js")
             .use("ifdef")
@@ -149,7 +157,7 @@ module.exports = {
             })
 
         // if (process.env.NODE_ENV === "production") {
-        if (true) {
+        if (customEnv["USE_CDN"]) {
             // console.log("externals")
             // config.set("externalsType", "script")
             config.plugin("html").tap(args => {

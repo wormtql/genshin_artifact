@@ -17,6 +17,7 @@ use mona_dsl::compiler::simple_compiler::MonaCompilerASTToCode;
 use mona_dsl::parser::pest::parse_to_cst;
 use mona_dsl::parser::to_ast::ToAST;
 use mona_dsl::vm::env::MonaEnv;
+use mona_dsl::vm::stream::{OutputStream, StringOutputStream};
 
 fn print_tree<T: RuleType>(pair: &Pair<T>, depth: usize) {
     println!("{}{:?}: {}", " ".repeat(depth), pair.as_rule(), pair.as_str());
@@ -77,10 +78,17 @@ fn main() {
         enemy: &enemy
     };
 
+    let os = Box::new(StringOutputStream::new());
+
     let mut vm = MonaEnv::new(code);
+    vm.set_ostream(os);
     vm.add_damage_context(context);
     vm.init_damage();
     vm.init_prop();
     vm.execute().unwrap();
+
+    // let output = unsafe { (*osp).get_string() };
+    let os = vm.ostream.as_any().downcast_ref::<StringOutputStream>().unwrap();
+    println!("{}", os.get_string());
     println!("{:?}", vm.namespace.map.keys().collect::<Vec<_>>());
 }

@@ -31,6 +31,10 @@ pub struct CharacterInterface {
     pub params: CharacterConfig,
 }
 
+fn default_false() -> bool {
+    false
+}
+
 impl CharacterInterface {
     pub fn to_character<T: Attribute>(&self) -> Character<T> {
         Character::new(
@@ -72,7 +76,8 @@ impl WeaponInterface {
 pub struct TargetFunctionInterface {
     pub name: TargetFunctionName,
     pub params: TargetFunctionConfig,
-    pub use_dsl: Option<bool>,
+    #[serde(default = "default_false")]
+    pub use_dsl: bool,
     pub dsl_source: Option<String>,
 }
 

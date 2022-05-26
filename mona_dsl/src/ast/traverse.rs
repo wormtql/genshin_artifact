@@ -1,6 +1,6 @@
 use std::cell::RefCell;
 use std::rc::Rc;
-use crate::ast::expression::expression::{ASTBinaryExpression, ASTBool, ASTExpression, ASTFieldExpression, ASTFunctionCallExpression, ASTIdentifier, ASTNumber, ASTString, ExpressionEnum};
+use crate::ast::expression::expression::{ASTBinaryExpression, ASTBool, ASTExpression, ASTFieldExpression, ASTFunctionCallExpression, ASTIdentifier, ASTNumber, ASTString, ASTUnaryExpression, ExpressionEnum};
 use crate::ast::program::ASTProgram;
 use crate::ast::statement::{ASTAssignmentStatement, ASTDamageStatement, ASTExpressionStatement, ASTLeftValueFieldAccessItem, ASTPropStatement, ASTStatement, StatementEnum};
 
@@ -71,8 +71,13 @@ impl<'i, 'a, T: ASTTraverser<'i>> ASTTraverse<'a, T> {
             ExpressionEnum::Bool(x) => self.traverse_bool(x.clone()),
             ExpressionEnum::FieldExpression(x) => self.traverse_field_expression(x.clone()),
             ExpressionEnum::String(x) => self.traverse_string(x.clone()),
+            ExpressionEnum::UnaryExpression(x) => self.traverse_unary_expression(x.clone()),
             _ => todo!()
         }
+    }
+
+    pub fn traverse_unary_expression(&mut self, node: Rc<RefCell<ASTUnaryExpression<'i>>>) {
+        self.traverse_expression(node.borrow().expr.clone());
     }
 
     pub fn traverse_field_expression(&mut self, node: Rc<RefCell<ASTFieldExpression<'i>>>) {

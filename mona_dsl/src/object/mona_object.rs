@@ -3,7 +3,7 @@ use std::rc::Rc;
 use crate::error::runtime_error::{RuntimeError, RuntimeErrorEnum};
 use crate::object::{MonaObjectBool, MonaObjectNumber, MonaObjectObject};
 use crate::object::builtin_function::MonaObjectBuiltinFunction;
-use crate::object::damage::{MonaObjectDamage, MonaObjectDamageNumber};
+use crate::object::damage::{MonaObjectDamage, MonaObjectDamageNumber, MonaObjectTransformativeDamage};
 use crate::object::damage_config::MonaObjectDamageConfig;
 use crate::object::string::MonaObjectString;
 
@@ -16,6 +16,7 @@ pub enum MonaObjectEnum {
 
     DamageConfig(MonaObjectDamageConfig),
     Damage(MonaObjectDamage),
+    TransformativeDamage(MonaObjectTransformativeDamage),
     DamageNumber(MonaObjectDamageNumber),
 }
 
@@ -35,6 +36,7 @@ impl MonaObject {
             String(_) => "string",
             Damage(_) => "normal_damage",
             DamageNumber(_) => "damage_number",
+            TransformativeDamage(_) => "transformative_damage",
         }
     }
 
@@ -43,6 +45,7 @@ impl MonaObject {
             MonaObjectEnum::Object(x) => x.access(&*key.borrow()),
             MonaObjectEnum::Damage(x) => x.access(&*key.borrow()),
             MonaObjectEnum::DamageNumber(x) => x.access(&*key.borrow()),
+            MonaObjectEnum::TransformativeDamage(x) => x.access(&*key.borrow()),
             _ => todo!()
         }
     }

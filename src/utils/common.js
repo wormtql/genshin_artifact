@@ -96,3 +96,25 @@ export function element2Chs(element) {
             return "草"
     }
 }
+
+export function loadScript(url) {
+    const removeElement = ele => {
+        setTimeout(() => {
+            ele.remove()
+        }, 0)
+    }
+
+    return new Promise((resolve, reject) => {
+        const script = document.createElement("script")
+        script.src = url
+        script.onload = e => {
+            removeElement(script)
+            resolve(e)
+        }
+        script.onerror = e => {
+            removeElement(script)
+            reject(e)
+        }
+        document.head.appendChild(script)
+    })
+}

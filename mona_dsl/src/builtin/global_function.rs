@@ -1,29 +1,36 @@
 use std::cell::RefCell;
 use std::collections::HashMap;
 use std::rc::Rc;
+use crate::error::runtime_error::{RuntimeError, RuntimeErrorEnum};
 use crate::object::builtin_function::{FunctionReturnType, MonaObjectBuiltinFunction, ParamVecType};
 use crate::object::mona_object::{MonaObject, MonaObjectEnum};
+use crate::vm::env::MonaEnv;
 use crate::vm::namespace::Namespace;
 
-fn mona_print_internal(obj: &MonaObject) {
+fn mona_print_internal(obj: &MonaObject, env: &mut MonaEnv) -> Result<(), RuntimeError> {
     match &obj.data {
-        MonaObjectEnum::Number(x) => println!("MONA: {}", x.value),
-        MonaObjectEnum::String(x) => println!("MONA: {}", x.value),
-        MonaObjectEnum::BuiltinFunction(x) => println!("MONA: [[function `{}`]]", x.name),
-        MonaObjectEnum::DamageNumber(x) => println!("MONA: {:?}", x),
-        _ => todo!()
+        MonaObjectEnum::Number(x) => env.ostream.append_str(&format!("MONA: {}", x.value)),
+        MonaObjectEnum::String(x) => env.ostream.append_str(&format!("MONA: {}", x.value)),
+        MonaObjectEnum::BuiltinFunction(x) => env.ostream.append_str(&format!("MONA: [[function `{}`]]", x.name)),
+        MonaObjectEnum::DamageNumber(x) => env.ostream.append_str(&format!("MONA: {:?}", x)),
+        // MonaObjectEnum::TransformativeDamage(x) => env.ostream.append_str(&format!("MONA: {:?}", x.damage)),
+        _ => {
+            return Err(RuntimeError::new(RuntimeErrorEnum::NotSupported, &format!("print type `{}` not implelented", obj.get_type())));
+        }
     }
+
+    Ok(())
 }
 
-pub fn mona_print(params: ParamVecType) -> FunctionReturnType {
+pub fn mona_print(params: ParamVecType, env: &mut MonaEnv) -> FunctionReturnType {
     for item in params.iter() {
-        mona_print_internal(&*item.borrow());
+        mona_print_internal(&*item.borrow(), env)?;
     }
 
     Ok(None)
 }
 
-pub fn mona_type(params: ParamVecType) -> FunctionReturnType {
+pub fn mona_type(params: ParamVecType, _env: &mut MonaEnv) -> FunctionReturnType {
     let item = params[0].clone();
     let name = item.borrow().get_type();
 
@@ -32,7 +39,7 @@ pub fn mona_type(params: ParamVecType) -> FunctionReturnType {
     Ok(Some(Rc::new(RefCell::new(s))))
 }
 
-pub fn mona_max(params: ParamVecType) -> FunctionReturnType {
+pub fn mona_max(params: ParamVecType, _env: &mut MonaEnv) -> FunctionReturnType {
     let mut result = -f64::INFINITY;
     for item in params.iter() {
         let v = item.borrow().assert_number()?;
@@ -45,7 +52,7 @@ pub fn mona_max(params: ParamVecType) -> FunctionReturnType {
     Ok(Some(Rc::new(RefCell::new(obj))))
 }
 
-pub fn mona_min(params: ParamVecType) -> FunctionReturnType {
+pub fn mona_min(params: ParamVecType, _env: &mut MonaEnv) -> FunctionReturnType {
     let mut result = f64::INFINITY;
     for item in params.iter() {
         let v = item.borrow().assert_number()?;

@@ -1,6 +1,7 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 use mona::common::DamageResult;
+use mona::damage::transformative_damage::TransformativeDamage;
 use crate::error::runtime_error::{RuntimeError, RuntimeErrorEnum};
 use crate::object::mona_object::{MonaObject, MonaObjectEnum, MonaObjectTrait};
 
@@ -17,7 +18,7 @@ impl MonaObjectTrait for MonaObjectDamage {
         let k = match &key.data {
             MonaObjectEnum::String(x) => x.value.clone(),
             _ => {
-                return Err(RuntimeError::new(RuntimeErrorEnum::NotSupported, &format!("cannot access `damage` object with type `{}`", key.get_type())));
+                return Err(RuntimeError::new(RuntimeErrorEnum::NotSupported, &format!("cannot access `Damage` object with type `{}`", key.get_type())));
             }
         };
 
@@ -70,7 +71,7 @@ impl MonaObjectTrait for MonaObjectDamageNumber {
         let k = match &key.data {
             MonaObjectEnum::String(x) => x.value.clone(),
             _ => {
-                return Err(RuntimeError::new(RuntimeErrorEnum::NotSupported, &format!("cannot access `damage_number` object with type `{}`", key.get_type())));
+                return Err(RuntimeError::new(RuntimeErrorEnum::NotSupported, &format!("cannot access `DamageNumber` object with type `{}`", key.get_type())));
             }
         };
 
@@ -80,6 +81,38 @@ impl MonaObjectTrait for MonaObjectDamageNumber {
             "non_critical" | "non_crit" | "n" => self.non_critical,
             x => {
                 return Err(RuntimeError::new(RuntimeErrorEnum::DamageNotFound, &format!("damage value `{}` not exist", x)))
+            }
+        };
+
+        let obj = MonaObject::new_number(value);
+        Ok(Rc::new(RefCell::new(obj)))
+    }
+}
+
+pub struct MonaObjectTransformativeDamage {
+    pub damage: TransformativeDamage
+}
+
+impl MonaObjectTrait for MonaObjectTransformativeDamage {
+    fn access(&self, key: &MonaObject) -> Result<Rc<RefCell<MonaObject>>, RuntimeError> {
+        let k = match &key.data {
+            MonaObjectEnum::String(x) => x.value.clone(),
+            _ => {
+                return Err(RuntimeError::new(RuntimeErrorEnum::NotSupported, &format!("cannot access `TransformativeDamage` object with type `{}`", key.get_type())));
+            }
+        };
+
+        let value = match k.as_str() {
+            "swirl_cryo" => self.damage.swirl_cryo,
+            "swirl_pyro" => self.damage.swirl_pyro,
+            "swirl_hydro" => self.damage.swirl_hydro,
+            "swirl_electro" => self.damage.swirl_electro,
+            "overload" => self.damage.overload,
+            "electro_charged" => self.damage.electro_charged,
+            "shatter" => self.damage.shatter,
+            "superconduct" | "super_conduct" => self.damage.superconduct,
+            x => {
+                return Err(RuntimeError::new(RuntimeErrorEnum::NotSupported, &format!("`TransformativeDamage` doesn't have prop name `{}`", x)));
             }
         };
 

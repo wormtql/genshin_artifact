@@ -2,7 +2,7 @@ import { UAParser } from "ua-parser-js"
 
 
 const parser = new UAParser()
-console.log(parser.getResult())
+// console.log(parser.getResult())
 
 
 function _deviceIsPC() {
@@ -11,4 +11,4 @@ function _deviceIsPC() {
 }
 
 export const deviceIsPC = _deviceIsPC()
-console.log(deviceIsPC)
+// console.log(deviceIsPC)

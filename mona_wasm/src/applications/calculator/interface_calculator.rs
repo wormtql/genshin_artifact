@@ -1,16 +1,13 @@
 use std::collections::HashMap;
-use serde::{Serialize, Deserialize};
-use wasm_bindgen::JsValue;
-use wasm_bindgen::prelude::*;
-use crate::applications::common::{BuffInterface, CharacterInterface, EnemyInterface, SkillInterface, TargetFunctionInterface, WeaponInterface};
+
 use mona::artifacts::{Artifact, ArtifactList};
 use mona::artifacts::effect_config::ArtifactEffectConfig;
 use mona::attribute::{AttributeUtils, ComplicatedAttributeGraph, SimpleAttributeGraph2};
 use mona::buffs::{Buff, BuffConfig};
 use mona::character::{Character, CharacterName};
 use mona::character::characters::damage;
-use mona::character::traits::CharacterTrait;
 use mona::character::skill_config::CharacterSkillConfig;
+use mona::character::traits::CharacterTrait;
 use mona::damage::{ComplicatedDamageBuilder, DamageAnalysis, DamageContext, SimpleDamageBuilder};
 use mona::damage::damage_builder::DamageBuilder;
 use mona::damage::damage_result::SimpleDamageResult;
@@ -18,8 +15,13 @@ use mona::damage::transformative_damage::TransformativeDamage;
 use mona::enemies::Enemy;
 use mona::target_functions::TargetFunction;
 use mona::team::TeamQuantization;
-use mona::weapon::Weapon;
 use mona::utils;
+use mona::weapon::Weapon;
+use serde::{Deserialize, Serialize};
+use wasm_bindgen::JsValue;
+use wasm_bindgen::prelude::*;
+
+use crate::applications::common::{BuffInterface, CharacterInterface, EnemyInterface, SkillInterface, TargetFunctionInterface, WeaponInterface};
 
 pub struct CalculatorInterface;
 

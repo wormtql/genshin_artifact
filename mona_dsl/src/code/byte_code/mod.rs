@@ -17,3 +17,4 @@ pub mod load_string;
 pub mod mul;
 pub mod div;
 pub mod sub;
+pub mod pow;

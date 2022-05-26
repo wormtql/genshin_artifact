@@ -33,7 +33,7 @@ impl ByteCode for ByteCodeCall {
             MonaObjectEnum::BuiltinFunction(x) => x,
             _ => return Err(RuntimeError::new(
                 RuntimeErrorEnum::TypeError,
-                &format!("expect `function`, found `{}`", function_object.get_type())
+                &format!("expecting `function`, found `{}`", function_object.get_type())
             ))
         };
 
@@ -42,7 +42,7 @@ impl ByteCode for ByteCodeCall {
             params.push(env.pop_stack());
         }
 
-        let ret = func.call(params)?;
+        let ret = func.call(params, env)?;
 
         if let Some(x) = ret {
             env.push_stack(x);
