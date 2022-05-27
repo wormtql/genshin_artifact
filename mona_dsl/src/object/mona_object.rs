@@ -102,3 +102,5 @@ pub trait MonaObjectTrait {
         Err(RuntimeError::new(RuntimeErrorEnum::NotSupported, "cannot access member in `bool`"))
     }
 }
+
+// impl

@@ -572,6 +572,11 @@ impl<'i> ToAST<'i> {
         let span = pair.as_span();
         let mut result = Vec::new();
         for statement_pair in pair.into_inner() {
+            // println!("{:?}", statement_pair.as_rule());
+            // let rule = statement_pair.as_rule();
+            // if rule == MonaRule::EOI {
+            //     continue;
+            // }
             result.push(self.convert_statement(statement_pair)?);
         }
 

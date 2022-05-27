@@ -10,7 +10,9 @@ lazy_static! {
         "def",
         "hp",
         "em",
-        "crit0"
+        "crit0",
+        "cd0",
+        "heal"
     ];
 }
 
@@ -26,6 +28,8 @@ pub fn get_prop_value(attribute: &SimpleAttributeGraph2, name: &str) -> Result<f
         "hp" => attribute.get_hp(),
         "em" => attribute.get_value(AttributeName::ElementalMastery),
         "crit0" => attribute.get_value(AttributeName::CriticalBase),
+        "cd0" => attribute.get_value(AttributeName::CriticalDamageBase),
+        "heal" => attribute.get_value(AttributeName::HealingBonus),
         _ => panic!("prop name not exist")
     };
 

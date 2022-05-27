@@ -1,6 +1,6 @@
-WHITESPACE = _{ (" " | "\n" | "\t" | "\r\n" | "\r")+ }
+WHITESPACE = _{ " " | "\t" | NEWLINE }
 //WHITESPACE = _{ " " }
-COMMENT = _{ ("/*" ~ (!"*/" ~ ANY)* ~ "*/") }
+COMMENT = _{ ("/*" ~ (!"*/" ~ ANY)* ~ "*/") | ("//" ~ (!("\r\n" | "\n") ~ ANY)*) }
 bool_true = @{ "true" }
 bool_false = @{ "false" }
 
@@ -81,5 +81,4 @@ expression_statement = { expression }
 
 statement = { assignment_statement | damage_declaration | prop_declaration | expression_statement }
 
-
-program = { statement* }
+program = { SOI ~ statement* }
