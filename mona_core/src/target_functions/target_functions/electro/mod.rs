@@ -7,6 +7,7 @@ pub mod lisa_default;
 pub mod raiden_shogun_default;
 pub mod razor_default;
 pub mod yae_miko_default;
+pub mod kuki_shinobu_default;
 
 pub use beidou_default::BeidouDefaultTargetFunction;
 pub use fischl_default::FischlDefaultTargetFunction;
@@ -17,3 +18,4 @@ pub use lisa_default::LisaDefaultTargetFunction;
 pub use raiden_shogun_default::RaidenShogunDefaultTargetFunction;
 pub use razor_default::RazorDefaultTargetFunction;
 pub use yae_miko_default::YaeMikoDefaultTargetFunction;
+pub use kuki_shinobu_default::KukiShinobuDefaultTargetFunction;

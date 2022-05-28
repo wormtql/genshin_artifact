@@ -18,3 +18,5 @@ pub mod mul;
 pub mod div;
 pub mod sub;
 pub mod pow;
+pub mod eq;
+pub mod ne;

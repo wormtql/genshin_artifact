@@ -1,8 +1,11 @@
 use num_derive::FromPrimitive;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+
 use crate::attribute::{Attribute, AttributeName};
-use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
@@ -13,8 +16,6 @@ use crate::target_functions::target_functions::GanyuDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
-use strum::EnumCount;
-use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct GanyuSkillType {
     pub normal_dmg1: [f64; 15],

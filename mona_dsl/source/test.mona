@@ -1,6 +1,4 @@
-
-dmg a = KamisatoAyaka.transformative
-overload = a.overload
-x = 10
-
-print(a.overload ^ 0.5)
+x = 1
+y = 10
+result = select(x != y, 10, 100)
+print(result)

@@ -43,10 +43,12 @@ pub enum TargetFunctionConfig {
     XingqiuDefault { recharge_demand: f64 },
     XinyanDefault { recharge_demand: f64, damage_demand: f64 },
     YaeMikoDefault { recharge_demand: f64, electro_charged_times: f64, overload_times: f64 },
+    YelanDefault { recharge_demand: f64, vaporize_rate: f64 },
     YoimiyaDefault { vaporize_rate: f64, melt_rate: f64 },
     YunjinDefault { recharge_demand: f64 },
     ZhongliDefault { recharge_demand: f64 },
     KujouSaraDamage { recharge_demand: f64 },
+    KukiShinobuDefault { e_ratio: f64 },
 
 
     BennettDamage { recharge_demand: f64, other_dmg_ratio: f64 },

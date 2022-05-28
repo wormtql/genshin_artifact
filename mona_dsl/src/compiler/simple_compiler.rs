@@ -13,11 +13,13 @@ use crate::code::byte_code::{ByteCodeAdd, ByteCodeSaveName};
 use crate::code::byte_code::access::ByteCodeAccess;
 use crate::code::byte_code::call::ByteCodeCall;
 use crate::code::byte_code::div::ByteCodeDiv;
+use crate::code::byte_code::eq::ByteCodeEq;
 use crate::code::byte_code::load_bool::ByteCodeLoadBool;
 use crate::code::byte_code::load_name::ByteCodeLoadName;
 use crate::code::byte_code::load_number::ByteCodeLoadNumber;
 use crate::code::byte_code::load_string::ByteCodeLoadString;
 use crate::code::byte_code::mul::ByteCodeMul;
+use crate::code::byte_code::ne::ByteCodeNe;
 use crate::code::byte_code::neg::ByteCodeNeg;
 use crate::code::byte_code::pow::ByteCodePow;
 use crate::code::byte_code::sub::ByteCodeSub;
@@ -204,6 +206,8 @@ impl<'i> Compiler<'i> for MonaCompilerASTToCode<'i> {
             "/" => ctx.add_code(Box::new(ByteCodeDiv)),
             "-" => ctx.add_code(Box::new(ByteCodeSub)),
             "^" => ctx.add_code(Box::new(ByteCodePow)),
+            "==" => ctx.add_code(Box::new(ByteCodeEq)),
+            "!=" => ctx.add_code(Box::new(ByteCodeNe)),
             _ => todo!()
         }
 

@@ -71,7 +71,9 @@ pub enum TargetFunctionName {
     XinyanDefault,
     YaeMikoDefault,
     YanfeiDefault,
+    YelanDefault,
     YoimiyaDefault,
     YunjinDefault,
     ZhongliDefault,
+    KukiShinobuDefault,
 }

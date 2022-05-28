@@ -51,6 +51,8 @@ pub use yoimiya::{Yoimiya};
 pub use yunjin::{Yunjin};
 pub use zhongli::{Zhongli};
 pub use kamisato_ayato::KamisatoAyato;
+pub use yelan::Yelan;
+pub use kuki_shinobu::KukiShinobu;
 
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::damage::damage_builder::DamageBuilder;
@@ -83,6 +85,7 @@ pub mod kamisato_ayaka;
 pub mod keqing;
 pub mod klee;
 pub mod kujou_sara;
+pub mod kuki_shinobu;
 pub mod lisa;
 pub mod mona;
 pub mod ningguang;
@@ -108,6 +111,7 @@ pub mod yoimiya;
 pub mod yunjin;
 pub mod zhongli;
 pub mod kamisato_ayato;
+pub mod yelan;
 
 pub fn get_static_data(name: CharacterName) -> CharacterStaticData {
     name.get_static_data()

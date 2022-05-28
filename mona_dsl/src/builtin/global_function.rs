@@ -13,6 +13,7 @@ fn mona_print_internal(obj: &MonaObject, env: &mut MonaEnv) -> Result<(), Runtim
         MonaObjectEnum::String(x) => env.ostream.append_str(&format!("MONA: {}", x.value)),
         MonaObjectEnum::BuiltinFunction(x) => env.ostream.append_str(&format!("MONA: [[function `{}`]]", x.name)),
         MonaObjectEnum::DamageNumber(x) => env.ostream.append_str(&format!("MONA: {:?}", x)),
+        MonaObjectEnum::Bool(x) => env.ostream.append_str(&format!("MONA: {}", x.value)),
         // MonaObjectEnum::TransformativeDamage(x) => env.ostream.append_str(&format!("MONA: {:?}", x.damage)),
         _ => {
             return Err(RuntimeError::new(RuntimeErrorEnum::NotSupported, &format!("print type `{}` not implelented", obj.get_type())));
@@ -65,6 +66,21 @@ pub fn mona_min(params: ParamVecType, _env: &mut MonaEnv) -> FunctionReturnType 
     Ok(Some(Rc::new(RefCell::new(obj))))
 }
 
+pub fn mona_select(params: ParamVecType, _env: &mut MonaEnv) -> FunctionReturnType {
+    if params.len() != 3 {
+        return Err(RuntimeError::new(RuntimeErrorEnum::ParamError, &format!("requiring exact 3 params, got {}", params.len())));
+    }
+    let flag = params[0].borrow().assert_bool()?;
+
+    let obj = if flag {
+        params[1].clone()
+    } else {
+        params[2].clone()
+    };
+
+    return Ok(Some(obj))
+}
+
 macro insert_global($m:ident, $name:expr, $func:ident) {
     let t = MonaObjectBuiltinFunction {
         name: String::from($name),
@@ -82,6 +98,7 @@ pub fn setup_global_namespace() -> Namespace {
     insert_global!(map, "type", mona_type);
     insert_global!(map, "max", mona_max);
     insert_global!(map, "min", mona_min);
+    insert_global!(map, "select", mona_select);
 
     Namespace {
         map

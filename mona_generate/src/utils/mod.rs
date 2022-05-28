@@ -113,6 +113,7 @@ lazy_static! {
         m.insert(CharacterName::YaeMiko, "Yae");
         m.insert(CharacterName::AetherAnemo, "PlayerBoy");
         m.insert(CharacterName::Jean, "Qin");
+        m.insert(CharacterName::KukiShinobu, "Shinobu");
 
         m
     };

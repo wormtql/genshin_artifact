@@ -11,6 +11,7 @@ pub enum RuntimeErrorEnum {
     DamageNotFound,
     CharacterContextNotFound,
     DivByZero,
+    ParamError,
 }
 
 pub struct RuntimeError {

@@ -66,6 +66,22 @@ impl MonaObject {
         if let MonaObjectEnum::Number(x) = &self.data { x.value } else { panic!("object is not number") }
     }
 
+    pub fn is_bool(&self) -> bool {
+        if let MonaObjectEnum::Bool(_) = self.data { true } else { false }
+    }
+
+    pub fn get_bool(&self) -> bool {
+        if let MonaObjectEnum::Bool(x) = &self.data { x.value } else { panic!("object is not bool") }
+    }
+
+    pub fn assert_bool(&self) -> Result<bool, RuntimeError> {
+        if let MonaObjectEnum::Bool(x) = &self.data {
+            Ok(x.value)
+        } else {
+            Err(RuntimeError::new(RuntimeErrorEnum::TypeError, &format!("expecting `bool`, found `{}`", self.get_type())))
+        }
+    }
+
     pub fn is_string(&self) -> bool {
         if let MonaObjectEnum::String(_) = self.data { true } else { false }
     }

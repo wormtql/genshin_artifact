@@ -1,6 +1,6 @@
 // generated file, do not edit
 {% for c in characters %}
-import {{ c.name }}_card from "@image/characters/{{ c.name }}_card"
+// import {{ c.name }}_card from "@image/characters/{{ c.name }}_card"
 // import {{ c.name }}_avatar from "@image/characters/{{ c.name }}_avatar"
 import {{ c.name }}_splash from "@image/characters/{{ c.name }}_splash"
 {% endfor %}
@@ -17,7 +17,7 @@ export default {
         element: "{{ c.element }}",
         weapon: "{{ c.weapon }}",
         star: {{ c.star }},
-        card: {{ c.name }}_card,
+        // card: {{ c.name }}_card,
         // avatar: {{ c.name }}_avatar,
         avatar: getName("{{ c.name_for_image }}"),
         splash: {{ c.name }}_splash,

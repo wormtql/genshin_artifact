@@ -1,194 +1,202 @@
 // generated file, do not edit
 
-import AetherAnemo_card from "@image/characters/AetherAnemo_card"
+// import AetherAnemo_card from "@image/characters/AetherAnemo_card"
 // import AetherAnemo_avatar from "@image/characters/AetherAnemo_avatar"
 import AetherAnemo_splash from "@image/characters/AetherAnemo_splash"
 
-import Albedo_card from "@image/characters/Albedo_card"
+// import Albedo_card from "@image/characters/Albedo_card"
 // import Albedo_avatar from "@image/characters/Albedo_avatar"
 import Albedo_splash from "@image/characters/Albedo_splash"
 
-import Aloy_card from "@image/characters/Aloy_card"
+// import Aloy_card from "@image/characters/Aloy_card"
 // import Aloy_avatar from "@image/characters/Aloy_avatar"
 import Aloy_splash from "@image/characters/Aloy_splash"
 
-import Amber_card from "@image/characters/Amber_card"
+// import Amber_card from "@image/characters/Amber_card"
 // import Amber_avatar from "@image/characters/Amber_avatar"
 import Amber_splash from "@image/characters/Amber_splash"
 
-import AratakiItto_card from "@image/characters/AratakiItto_card"
+// import AratakiItto_card from "@image/characters/AratakiItto_card"
 // import AratakiItto_avatar from "@image/characters/AratakiItto_avatar"
 import AratakiItto_splash from "@image/characters/AratakiItto_splash"
 
-import Barbara_card from "@image/characters/Barbara_card"
+// import Barbara_card from "@image/characters/Barbara_card"
 // import Barbara_avatar from "@image/characters/Barbara_avatar"
 import Barbara_splash from "@image/characters/Barbara_splash"
 
-import Beidou_card from "@image/characters/Beidou_card"
+// import Beidou_card from "@image/characters/Beidou_card"
 // import Beidou_avatar from "@image/characters/Beidou_avatar"
 import Beidou_splash from "@image/characters/Beidou_splash"
 
-import Bennett_card from "@image/characters/Bennett_card"
+// import Bennett_card from "@image/characters/Bennett_card"
 // import Bennett_avatar from "@image/characters/Bennett_avatar"
 import Bennett_splash from "@image/characters/Bennett_splash"
 
-import Chongyun_card from "@image/characters/Chongyun_card"
+// import Chongyun_card from "@image/characters/Chongyun_card"
 // import Chongyun_avatar from "@image/characters/Chongyun_avatar"
 import Chongyun_splash from "@image/characters/Chongyun_splash"
 
-import Diluc_card from "@image/characters/Diluc_card"
+// import Diluc_card from "@image/characters/Diluc_card"
 // import Diluc_avatar from "@image/characters/Diluc_avatar"
 import Diluc_splash from "@image/characters/Diluc_splash"
 
-import Diona_card from "@image/characters/Diona_card"
+// import Diona_card from "@image/characters/Diona_card"
 // import Diona_avatar from "@image/characters/Diona_avatar"
 import Diona_splash from "@image/characters/Diona_splash"
 
-import Eula_card from "@image/characters/Eula_card"
+// import Eula_card from "@image/characters/Eula_card"
 // import Eula_avatar from "@image/characters/Eula_avatar"
 import Eula_splash from "@image/characters/Eula_splash"
 
-import Fischl_card from "@image/characters/Fischl_card"
+// import Fischl_card from "@image/characters/Fischl_card"
 // import Fischl_avatar from "@image/characters/Fischl_avatar"
 import Fischl_splash from "@image/characters/Fischl_splash"
 
-import Ganyu_card from "@image/characters/Ganyu_card"
+// import Ganyu_card from "@image/characters/Ganyu_card"
 // import Ganyu_avatar from "@image/characters/Ganyu_avatar"
 import Ganyu_splash from "@image/characters/Ganyu_splash"
 
-import Gorou_card from "@image/characters/Gorou_card"
+// import Gorou_card from "@image/characters/Gorou_card"
 // import Gorou_avatar from "@image/characters/Gorou_avatar"
 import Gorou_splash from "@image/characters/Gorou_splash"
 
-import HuTao_card from "@image/characters/HuTao_card"
+// import HuTao_card from "@image/characters/HuTao_card"
 // import HuTao_avatar from "@image/characters/HuTao_avatar"
 import HuTao_splash from "@image/characters/HuTao_splash"
 
-import Jean_card from "@image/characters/Jean_card"
+// import Jean_card from "@image/characters/Jean_card"
 // import Jean_avatar from "@image/characters/Jean_avatar"
 import Jean_splash from "@image/characters/Jean_splash"
 
-import KaedeharaKazuha_card from "@image/characters/KaedeharaKazuha_card"
+// import KaedeharaKazuha_card from "@image/characters/KaedeharaKazuha_card"
 // import KaedeharaKazuha_avatar from "@image/characters/KaedeharaKazuha_avatar"
 import KaedeharaKazuha_splash from "@image/characters/KaedeharaKazuha_splash"
 
-import Kaeya_card from "@image/characters/Kaeya_card"
+// import Kaeya_card from "@image/characters/Kaeya_card"
 // import Kaeya_avatar from "@image/characters/Kaeya_avatar"
 import Kaeya_splash from "@image/characters/Kaeya_splash"
 
-import KamisatoAyaka_card from "@image/characters/KamisatoAyaka_card"
+// import KamisatoAyaka_card from "@image/characters/KamisatoAyaka_card"
 // import KamisatoAyaka_avatar from "@image/characters/KamisatoAyaka_avatar"
 import KamisatoAyaka_splash from "@image/characters/KamisatoAyaka_splash"
 
-import KamisatoAyato_card from "@image/characters/KamisatoAyato_card"
+// import KamisatoAyato_card from "@image/characters/KamisatoAyato_card"
 // import KamisatoAyato_avatar from "@image/characters/KamisatoAyato_avatar"
 import KamisatoAyato_splash from "@image/characters/KamisatoAyato_splash"
 
-import Keqing_card from "@image/characters/Keqing_card"
+// import Keqing_card from "@image/characters/Keqing_card"
 // import Keqing_avatar from "@image/characters/Keqing_avatar"
 import Keqing_splash from "@image/characters/Keqing_splash"
 
-import Klee_card from "@image/characters/Klee_card"
+// import Klee_card from "@image/characters/Klee_card"
 // import Klee_avatar from "@image/characters/Klee_avatar"
 import Klee_splash from "@image/characters/Klee_splash"
 
-import KujouSara_card from "@image/characters/KujouSara_card"
+// import KujouSara_card from "@image/characters/KujouSara_card"
 // import KujouSara_avatar from "@image/characters/KujouSara_avatar"
 import KujouSara_splash from "@image/characters/KujouSara_splash"
 
-import Lisa_card from "@image/characters/Lisa_card"
+// import KukiShinobu_card from "@image/characters/KukiShinobu_card"
+// import KukiShinobu_avatar from "@image/characters/KukiShinobu_avatar"
+import KukiShinobu_splash from "@image/characters/KukiShinobu_splash"
+
+// import Lisa_card from "@image/characters/Lisa_card"
 // import Lisa_avatar from "@image/characters/Lisa_avatar"
 import Lisa_splash from "@image/characters/Lisa_splash"
 
-import Mona_card from "@image/characters/Mona_card"
+// import Mona_card from "@image/characters/Mona_card"
 // import Mona_avatar from "@image/characters/Mona_avatar"
 import Mona_splash from "@image/characters/Mona_splash"
 
-import Ningguang_card from "@image/characters/Ningguang_card"
+// import Ningguang_card from "@image/characters/Ningguang_card"
 // import Ningguang_avatar from "@image/characters/Ningguang_avatar"
 import Ningguang_splash from "@image/characters/Ningguang_splash"
 
-import Noelle_card from "@image/characters/Noelle_card"
+// import Noelle_card from "@image/characters/Noelle_card"
 // import Noelle_avatar from "@image/characters/Noelle_avatar"
 import Noelle_splash from "@image/characters/Noelle_splash"
 
-import Qiqi_card from "@image/characters/Qiqi_card"
+// import Qiqi_card from "@image/characters/Qiqi_card"
 // import Qiqi_avatar from "@image/characters/Qiqi_avatar"
 import Qiqi_splash from "@image/characters/Qiqi_splash"
 
-import RaidenShogun_card from "@image/characters/RaidenShogun_card"
+// import RaidenShogun_card from "@image/characters/RaidenShogun_card"
 // import RaidenShogun_avatar from "@image/characters/RaidenShogun_avatar"
 import RaidenShogun_splash from "@image/characters/RaidenShogun_splash"
 
-import Razor_card from "@image/characters/Razor_card"
+// import Razor_card from "@image/characters/Razor_card"
 // import Razor_avatar from "@image/characters/Razor_avatar"
 import Razor_splash from "@image/characters/Razor_splash"
 
-import Rosaria_card from "@image/characters/Rosaria_card"
+// import Rosaria_card from "@image/characters/Rosaria_card"
 // import Rosaria_avatar from "@image/characters/Rosaria_avatar"
 import Rosaria_splash from "@image/characters/Rosaria_splash"
 
-import SangonomiyaKokomi_card from "@image/characters/SangonomiyaKokomi_card"
+// import SangonomiyaKokomi_card from "@image/characters/SangonomiyaKokomi_card"
 // import SangonomiyaKokomi_avatar from "@image/characters/SangonomiyaKokomi_avatar"
 import SangonomiyaKokomi_splash from "@image/characters/SangonomiyaKokomi_splash"
 
-import Sayu_card from "@image/characters/Sayu_card"
+// import Sayu_card from "@image/characters/Sayu_card"
 // import Sayu_avatar from "@image/characters/Sayu_avatar"
 import Sayu_splash from "@image/characters/Sayu_splash"
 
-import Shenhe_card from "@image/characters/Shenhe_card"
+// import Shenhe_card from "@image/characters/Shenhe_card"
 // import Shenhe_avatar from "@image/characters/Shenhe_avatar"
 import Shenhe_splash from "@image/characters/Shenhe_splash"
 
-import Sucrose_card from "@image/characters/Sucrose_card"
+// import Sucrose_card from "@image/characters/Sucrose_card"
 // import Sucrose_avatar from "@image/characters/Sucrose_avatar"
 import Sucrose_splash from "@image/characters/Sucrose_splash"
 
-import Tartaglia_card from "@image/characters/Tartaglia_card"
+// import Tartaglia_card from "@image/characters/Tartaglia_card"
 // import Tartaglia_avatar from "@image/characters/Tartaglia_avatar"
 import Tartaglia_splash from "@image/characters/Tartaglia_splash"
 
-import Thoma_card from "@image/characters/Thoma_card"
+// import Thoma_card from "@image/characters/Thoma_card"
 // import Thoma_avatar from "@image/characters/Thoma_avatar"
 import Thoma_splash from "@image/characters/Thoma_splash"
 
-import Venti_card from "@image/characters/Venti_card"
+// import Venti_card from "@image/characters/Venti_card"
 // import Venti_avatar from "@image/characters/Venti_avatar"
 import Venti_splash from "@image/characters/Venti_splash"
 
-import Xiangling_card from "@image/characters/Xiangling_card"
+// import Xiangling_card from "@image/characters/Xiangling_card"
 // import Xiangling_avatar from "@image/characters/Xiangling_avatar"
 import Xiangling_splash from "@image/characters/Xiangling_splash"
 
-import Xiao_card from "@image/characters/Xiao_card"
+// import Xiao_card from "@image/characters/Xiao_card"
 // import Xiao_avatar from "@image/characters/Xiao_avatar"
 import Xiao_splash from "@image/characters/Xiao_splash"
 
-import Xingqiu_card from "@image/characters/Xingqiu_card"
+// import Xingqiu_card from "@image/characters/Xingqiu_card"
 // import Xingqiu_avatar from "@image/characters/Xingqiu_avatar"
 import Xingqiu_splash from "@image/characters/Xingqiu_splash"
 
-import Xinyan_card from "@image/characters/Xinyan_card"
+// import Xinyan_card from "@image/characters/Xinyan_card"
 // import Xinyan_avatar from "@image/characters/Xinyan_avatar"
 import Xinyan_splash from "@image/characters/Xinyan_splash"
 
-import YaeMiko_card from "@image/characters/YaeMiko_card"
+// import YaeMiko_card from "@image/characters/YaeMiko_card"
 // import YaeMiko_avatar from "@image/characters/YaeMiko_avatar"
 import YaeMiko_splash from "@image/characters/YaeMiko_splash"
 
-import Yanfei_card from "@image/characters/Yanfei_card"
+// import Yanfei_card from "@image/characters/Yanfei_card"
 // import Yanfei_avatar from "@image/characters/Yanfei_avatar"
 import Yanfei_splash from "@image/characters/Yanfei_splash"
 
-import Yoimiya_card from "@image/characters/Yoimiya_card"
+// import Yelan_card from "@image/characters/Yelan_card"
+// import Yelan_avatar from "@image/characters/Yelan_avatar"
+import Yelan_splash from "@image/characters/Yelan_splash"
+
+// import Yoimiya_card from "@image/characters/Yoimiya_card"
 // import Yoimiya_avatar from "@image/characters/Yoimiya_avatar"
 import Yoimiya_splash from "@image/characters/Yoimiya_splash"
 
-import Yunjin_card from "@image/characters/Yunjin_card"
+// import Yunjin_card from "@image/characters/Yunjin_card"
 // import Yunjin_avatar from "@image/characters/Yunjin_avatar"
 import Yunjin_splash from "@image/characters/Yunjin_splash"
 
-import Zhongli_card from "@image/characters/Zhongli_card"
+// import Zhongli_card from "@image/characters/Zhongli_card"
 // import Zhongli_avatar from "@image/characters/Zhongli_avatar"
 import Zhongli_splash from "@image/characters/Zhongli_splash"
 
@@ -205,7 +213,7 @@ export default {
         element: "Anemo",
         weapon: "Sword",
         star: 5,
-        card: AetherAnemo_card,
+        // card: AetherAnemo_card,
         // avatar: AetherAnemo_avatar,
         avatar: getName("PlayerBoy"),
         splash: AetherAnemo_splash,
@@ -273,7 +281,7 @@ export default {
         element: "Geo",
         weapon: "Sword",
         star: 5,
-        card: Albedo_card,
+        // card: Albedo_card,
         // avatar: Albedo_avatar,
         avatar: getName("Albedo"),
         splash: Albedo_splash,
@@ -331,7 +339,7 @@ export default {
         element: "Cryo",
         weapon: "Bow",
         star: 5,
-        card: Aloy_card,
+        // card: Aloy_card,
         // avatar: Aloy_avatar,
         avatar: getName("Aloy"),
         splash: Aloy_splash,
@@ -389,7 +397,7 @@ export default {
         element: "Pyro",
         weapon: "Bow",
         star: 4,
-        card: Amber_card,
+        // card: Amber_card,
         // avatar: Amber_avatar,
         avatar: getName("Ambor"),
         splash: Amber_splash,
@@ -445,7 +453,7 @@ export default {
         element: "Geo",
         weapon: "Claymore",
         star: 5,
-        card: AratakiItto_card,
+        // card: AratakiItto_card,
         // avatar: AratakiItto_avatar,
         avatar: getName("Itto"),
         splash: AratakiItto_splash,
@@ -499,7 +507,7 @@ export default {
         element: "Hydro",
         weapon: "Catalyst",
         star: 4,
-        card: Barbara_card,
+        // card: Barbara_card,
         // avatar: Barbara_avatar,
         avatar: getName("Barbara"),
         splash: Barbara_splash,
@@ -553,7 +561,7 @@ export default {
         element: "Electro",
         weapon: "Claymore",
         star: 4,
-        card: Beidou_card,
+        // card: Beidou_card,
         // avatar: Beidou_avatar,
         avatar: getName("Beidou"),
         splash: Beidou_splash,
@@ -613,7 +621,7 @@ export default {
         element: "Pyro",
         weapon: "Sword",
         star: 4,
-        card: Bennett_card,
+        // card: Bennett_card,
         // avatar: Bennett_avatar,
         avatar: getName("Bennett"),
         splash: Bennett_splash,
@@ -679,7 +687,7 @@ export default {
         element: "Cryo",
         weapon: "Claymore",
         star: 4,
-        card: Chongyun_card,
+        // card: Chongyun_card,
         // avatar: Chongyun_avatar,
         avatar: getName("Chongyun"),
         splash: Chongyun_splash,
@@ -731,7 +739,7 @@ export default {
         element: "Pyro",
         weapon: "Claymore",
         star: 5,
-        card: Diluc_card,
+        // card: Diluc_card,
         // avatar: Diluc_avatar,
         avatar: getName("Diluc"),
         splash: Diluc_splash,
@@ -793,7 +801,7 @@ export default {
         element: "Cryo",
         weapon: "Bow",
         star: 4,
-        card: Diona_card,
+        // card: Diona_card,
         // avatar: Diona_avatar,
         avatar: getName("Diona"),
         splash: Diona_splash,
@@ -851,7 +859,7 @@ export default {
         element: "Cryo",
         weapon: "Claymore",
         star: 5,
-        card: Eula_card,
+        // card: Eula_card,
         // avatar: Eula_avatar,
         avatar: getName("Eula"),
         splash: Eula_splash,
@@ -919,7 +927,7 @@ export default {
         element: "Electro",
         weapon: "Bow",
         star: 4,
-        card: Fischl_card,
+        // card: Fischl_card,
         // avatar: Fischl_avatar,
         avatar: getName("Fischl"),
         splash: Fischl_splash,
@@ -975,7 +983,7 @@ export default {
         element: "Cryo",
         weapon: "Bow",
         star: 5,
-        card: Ganyu_card,
+        // card: Ganyu_card,
         // avatar: Ganyu_avatar,
         avatar: getName("Ganyu"),
         splash: Ganyu_splash,
@@ -1039,7 +1047,7 @@ export default {
         element: "Geo",
         weapon: "Bow",
         star: 4,
-        card: Gorou_card,
+        // card: Gorou_card,
         // avatar: Gorou_avatar,
         avatar: getName("Gorou"),
         splash: Gorou_splash,
@@ -1093,7 +1101,7 @@ export default {
         element: "Pyro",
         weapon: "Polearm",
         star: 5,
-        card: HuTao_card,
+        // card: HuTao_card,
         // avatar: HuTao_avatar,
         avatar: getName("Hutao"),
         splash: HuTao_splash,
@@ -1155,7 +1163,7 @@ export default {
         element: "Anemo",
         weapon: "Sword",
         star: 5,
-        card: Jean_card,
+        // card: Jean_card,
         // avatar: Jean_avatar,
         avatar: getName("Qin"),
         splash: Jean_splash,
@@ -1213,7 +1221,7 @@ export default {
         element: "Anemo",
         weapon: "Sword",
         star: 5,
-        card: KaedeharaKazuha_card,
+        // card: KaedeharaKazuha_card,
         // avatar: KaedeharaKazuha_avatar,
         avatar: getName("Kazuha"),
         splash: KaedeharaKazuha_splash,
@@ -1297,7 +1305,7 @@ export default {
         element: "Cryo",
         weapon: "Sword",
         star: 4,
-        card: Kaeya_card,
+        // card: Kaeya_card,
         // avatar: Kaeya_avatar,
         avatar: getName("Kaeya"),
         splash: Kaeya_splash,
@@ -1351,7 +1359,7 @@ export default {
         element: "Cryo",
         weapon: "Sword",
         star: 5,
-        card: KamisatoAyaka_card,
+        // card: KamisatoAyaka_card,
         // avatar: KamisatoAyaka_avatar,
         avatar: getName("Ayaka"),
         splash: KamisatoAyaka_splash,
@@ -1413,7 +1421,7 @@ export default {
         element: "Hydro",
         weapon: "Sword",
         star: 5,
-        card: KamisatoAyato_card,
+        // card: KamisatoAyato_card,
         // avatar: KamisatoAyato_avatar,
         avatar: getName("Ayato"),
         splash: KamisatoAyato_splash,
@@ -1475,7 +1483,7 @@ export default {
         element: "Electro",
         weapon: "Sword",
         star: 5,
-        card: Keqing_card,
+        // card: Keqing_card,
         // avatar: Keqing_avatar,
         avatar: getName("Keqing"),
         splash: Keqing_splash,
@@ -1543,7 +1551,7 @@ export default {
         element: "Pyro",
         weapon: "Catalyst",
         star: 5,
-        card: Klee_card,
+        // card: Klee_card,
         // avatar: Klee_avatar,
         avatar: getName("Klee"),
         splash: Klee_splash,
@@ -1595,7 +1603,7 @@ export default {
         element: "Electro",
         weapon: "Bow",
         star: 4,
-        card: KujouSara_card,
+        // card: KujouSara_card,
         // avatar: KujouSara_avatar,
         avatar: getName("Sara"),
         splash: KujouSara_splash,
@@ -1645,13 +1653,77 @@ export default {
         ],
     },
     
+    KukiShinobu: {
+        name: "KukiShinobu",
+        chs: "久岐忍",
+        element: "Electro",
+        weapon: "Sword",
+        star: 4,
+        // card: KukiShinobu_card,
+        // avatar: KukiShinobu_avatar,
+        avatar: getName("Shinobu"),
+        splash: KukiShinobu_splash,
+        skillName1: "普通攻击·忍流飞刃斩",
+        skillName2: "越祓雷草之轮",
+        skillName3: "御咏鸣神刈山祭",
+        skillMap1: [
+            
+            { index: 0, chs: "一段伤害" },
+            
+            { index: 1, chs: "二段伤害" },
+            
+            { index: 2, chs: "三段伤害" },
+            
+            { index: 3, chs: "四段伤害" },
+            
+            { index: 4, chs: "重击伤害-1" },
+            
+            { index: 5, chs: "重击伤害-2" },
+            
+            { index: 6, chs: "重击伤害" },
+            
+            { index: 7, chs: "下坠期间伤害" },
+            
+            { index: 8, chs: "低空坠地冲击伤害" },
+            
+            { index: 9, chs: "高空坠地冲击伤害" },
+            
+        ],
+        skillMap2: [
+            
+            { index: 10, chs: "技能伤害" },
+            
+            { index: 11, chs: "越祓草轮治疗量" },
+            
+            { index: 12, chs: "越祓草轮伤害" },
+            
+        ],
+        skillMap3: [
+            
+            { index: 13, chs: "单次伤害" },
+            
+            { index: 14, chs: "总伤害" },
+            
+            { index: 15, chs: "总伤害-低血量" },
+            
+        ],
+        config: [
+            
+            {"default":true,"name":"hp_le_50","title":"生命值不高于50%（天赋1：治疗加成+15%）","type":"bool"},
+            
+        ],
+        configSkill: [
+            
+        ],
+    },
+    
     Lisa: {
         name: "Lisa",
         chs: "丽莎",
         element: "Electro",
         weapon: "Catalyst",
         star: 4,
-        card: Lisa_card,
+        // card: Lisa_card,
         // avatar: Lisa_avatar,
         avatar: getName("Lisa"),
         splash: Lisa_splash,
@@ -1709,7 +1781,7 @@ export default {
         element: "Hydro",
         weapon: "Catalyst",
         star: 5,
-        card: Mona_card,
+        // card: Mona_card,
         // avatar: Mona_avatar,
         avatar: getName("Mona"),
         splash: Mona_splash,
@@ -1761,7 +1833,7 @@ export default {
         element: "Geo",
         weapon: "Catalyst",
         star: 4,
-        card: Ningguang_card,
+        // card: Ningguang_card,
         // avatar: Ningguang_avatar,
         avatar: getName("Ningguang"),
         splash: Ningguang_splash,
@@ -1809,7 +1881,7 @@ export default {
         element: "Geo",
         weapon: "Claymore",
         star: 4,
-        card: Noelle_card,
+        // card: Noelle_card,
         // avatar: Noelle_avatar,
         avatar: getName("Noel"),
         splash: Noelle_splash,
@@ -1867,7 +1939,7 @@ export default {
         element: "Cryo",
         weapon: "Sword",
         star: 5,
-        card: Qiqi_card,
+        // card: Qiqi_card,
         // avatar: Qiqi_avatar,
         avatar: getName("Qiqi"),
         splash: Qiqi_splash,
@@ -1933,7 +2005,7 @@ export default {
         element: "Electro",
         weapon: "Polearm",
         star: 5,
-        card: RaidenShogun_card,
+        // card: RaidenShogun_card,
         // avatar: RaidenShogun_avatar,
         avatar: getName("Shougun"),
         splash: RaidenShogun_splash,
@@ -2015,7 +2087,7 @@ export default {
         element: "Electro",
         weapon: "Claymore",
         star: 4,
-        card: Razor_card,
+        // card: Razor_card,
         // avatar: Razor_avatar,
         avatar: getName("Razor"),
         splash: Razor_splash,
@@ -2081,7 +2153,7 @@ export default {
         element: "Cryo",
         weapon: "Polearm",
         star: 4,
-        card: Rosaria_card,
+        // card: Rosaria_card,
         // avatar: Rosaria_avatar,
         avatar: getName("Rosaria"),
         splash: Rosaria_splash,
@@ -2143,7 +2215,7 @@ export default {
         element: "Hydro",
         weapon: "Catalyst",
         star: 5,
-        card: SangonomiyaKokomi_card,
+        // card: SangonomiyaKokomi_card,
         // avatar: SangonomiyaKokomi_avatar,
         avatar: getName("Kokomi"),
         splash: SangonomiyaKokomi_splash,
@@ -2197,7 +2269,7 @@ export default {
         element: "Anemo",
         weapon: "Claymore",
         star: 4,
-        card: Sayu_card,
+        // card: Sayu_card,
         // avatar: Sayu_avatar,
         avatar: getName("Sayu"),
         splash: Sayu_splash,
@@ -2277,7 +2349,7 @@ export default {
         element: "Cryo",
         weapon: "Polearm",
         star: 5,
-        card: Shenhe_card,
+        // card: Shenhe_card,
         // avatar: Shenhe_avatar,
         avatar: getName("Shenhe"),
         splash: Shenhe_splash,
@@ -2335,7 +2407,7 @@ export default {
         element: "Anemo",
         weapon: "Catalyst",
         star: 4,
-        card: Sucrose_card,
+        // card: Sucrose_card,
         // avatar: Sucrose_avatar,
         avatar: getName("Sucrose"),
         splash: Sucrose_splash,
@@ -2393,7 +2465,7 @@ export default {
         element: "Hydro",
         weapon: "Bow",
         star: 5,
-        card: Tartaglia_card,
+        // card: Tartaglia_card,
         // avatar: Tartaglia_avatar,
         avatar: getName("Tartaglia"),
         splash: Tartaglia_splash,
@@ -2477,7 +2549,7 @@ export default {
         element: "Pyro",
         weapon: "Polearm",
         star: 4,
-        card: Thoma_card,
+        // card: Thoma_card,
         // avatar: Thoma_avatar,
         avatar: getName("Tohma"),
         splash: Thoma_splash,
@@ -2529,7 +2601,7 @@ export default {
         element: "Anemo",
         weapon: "Bow",
         star: 5,
-        card: Venti_card,
+        // card: Venti_card,
         // avatar: Venti_avatar,
         avatar: getName("Venti"),
         splash: Venti_splash,
@@ -2599,7 +2671,7 @@ export default {
         element: "Pyro",
         weapon: "Polearm",
         star: 4,
-        card: Xiangling_card,
+        // card: Xiangling_card,
         // avatar: Xiangling_avatar,
         avatar: getName("Xiangling"),
         splash: Xiangling_splash,
@@ -2659,7 +2731,7 @@ export default {
         element: "Anemo",
         weapon: "Polearm",
         star: 5,
-        card: Xiao_card,
+        // card: Xiao_card,
         // avatar: Xiao_avatar,
         avatar: getName("Xiao"),
         splash: Xiao_splash,
@@ -2721,7 +2793,7 @@ export default {
         element: "Hydro",
         weapon: "Sword",
         star: 4,
-        card: Xingqiu_card,
+        // card: Xingqiu_card,
         // avatar: Xingqiu_avatar,
         avatar: getName("Xingqiu"),
         splash: Xingqiu_splash,
@@ -2783,7 +2855,7 @@ export default {
         element: "Pyro",
         weapon: "Claymore",
         star: 4,
-        card: Xinyan_card,
+        // card: Xinyan_card,
         // avatar: Xinyan_avatar,
         avatar: getName("Xinyan"),
         splash: Xinyan_splash,
@@ -2839,7 +2911,7 @@ export default {
         element: "Electro",
         weapon: "Catalyst",
         star: 5,
-        card: YaeMiko_card,
+        // card: YaeMiko_card,
         // avatar: YaeMiko_avatar,
         avatar: getName("Yae"),
         splash: YaeMiko_splash,
@@ -2895,7 +2967,7 @@ export default {
         element: "Pyro",
         weapon: "Catalyst",
         star: 4,
-        card: Yanfei_card,
+        // card: Yanfei_card,
         // avatar: Yanfei_avatar,
         avatar: getName("Feiyan"),
         splash: Yanfei_splash,
@@ -2949,13 +3021,71 @@ export default {
         ],
     },
     
+    Yelan: {
+        name: "Yelan",
+        chs: "夜兰",
+        element: "Hydro",
+        weapon: "Bow",
+        star: 5,
+        // card: Yelan_card,
+        // avatar: Yelan_avatar,
+        avatar: getName("Yelan"),
+        splash: Yelan_splash,
+        skillName1: "普通攻击·潜形隐曜弓",
+        skillName2: "萦络纵命索",
+        skillName3: "渊图玲珑骰",
+        skillMap1: [
+            
+            { index: 0, chs: "一段伤害" },
+            
+            { index: 1, chs: "二段伤害" },
+            
+            { index: 2, chs: "三段伤害" },
+            
+            { index: 3, chs: "四段伤害/2" },
+            
+            { index: 4, chs: "瞄准射击" },
+            
+            { index: 5, chs: "满蓄力瞄准射击" },
+            
+            { index: 6, chs: "破局矢伤害" },
+            
+            { index: 8, chs: "下坠期间伤害" },
+            
+            { index: 9, chs: "低空坠地冲击伤害" },
+            
+            { index: 10, chs: "高空坠地冲击伤害" },
+            
+        ],
+        skillMap2: [
+            
+            { index: 11, chs: "技能伤害" },
+            
+        ],
+        skillMap3: [
+            
+            { index: 12, chs: "技能伤害" },
+            
+            { index: 13, chs: "玄掷玲珑伤害" },
+            
+        ],
+        config: [
+            
+            {"default":4,"max":4,"min":1,"name":"team_element_count","title":"队伍不同元素数量","type":"int"},
+            
+        ],
+        configSkill: [
+            
+        ],
+    },
+    
     Yoimiya: {
         name: "Yoimiya",
         chs: "宵宫",
         element: "Pyro",
         weapon: "Bow",
         star: 5,
-        card: Yoimiya_card,
+        // card: Yoimiya_card,
         // avatar: Yoimiya_avatar,
         avatar: getName("Yoimiya"),
         splash: Yoimiya_splash,
@@ -3015,7 +3145,7 @@ export default {
         element: "Geo",
         weapon: "Polearm",
         star: 4,
-        card: Yunjin_card,
+        // card: Yunjin_card,
         // avatar: Yunjin_avatar,
         avatar: getName("Yunjin"),
         splash: Yunjin_splash,
@@ -3075,7 +3205,7 @@ export default {
         element: "Geo",
         weapon: "Polearm",
         star: 5,
-        card: Zhongli_card,
+        // card: Zhongli_card,
         // avatar: Zhongli_avatar,
         avatar: getName("Zhongli"),
         splash: Zhongli_splash,

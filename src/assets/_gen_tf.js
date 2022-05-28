@@ -163,6 +163,10 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
+
+
+
+
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png"
 const getImage = name => template.replace("#", name)
 
@@ -1430,6 +1434,28 @@ export default {
         ],
     },
     
+    "YelanDefault": {
+        name: "YelanDefault",
+        chs: "夜兰-兰生幽谷",
+        description: "普通输出夜兰。使得Q伤害最大",
+        tags: [
+            
+            "输出",
+            
+        ],
+        "for": "Yelan",
+        
+        badge: getImage("Yelan"),
+        
+        config: [
+            
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发频率","type":"float"},
+            
+        ],
+    },
+    
     "YoimiyaDefault": {
         name: "YoimiyaDefault",
         chs: "宵宫-琉焰华舞",
@@ -1488,6 +1514,26 @@ export default {
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            
+        ],
+    },
+    
+    "KukiShinobuDefault": {
+        name: "KukiShinobuDefault",
+        chs: "久岐忍-烦恼刈除",
+        description: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
+        tags: [
+            
+            "辅助",
+            
+        ],
+        "for": "KukiShinobu",
+        
+        badge: getImage("Shinobu"),
+        
+        config: [
+            
+            {"default":0.6,"max":1.0,"min":0.0,"name":"e_ratio","title":"E技能伤害占比","type":"float"},
             
         ],
     },

@@ -1,0 +1,6 @@
+[book]
+authors = ["wormtql"]
+language = "en"
+multilingual = false
+src = "src"
+title = "莫娜占卜铺使用说明"

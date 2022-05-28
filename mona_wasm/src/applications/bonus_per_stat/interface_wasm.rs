@@ -5,7 +5,9 @@ use crate::applications::bonus_per_stat::bonus_per_stat::{BonusPerStatInput, Bon
 use crate::applications::common::{BuffInterface, CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use mona::artifacts::Artifact;
 use mona::artifacts::effect_config::ArtifactEffectConfig;
+use mona::target_functions::TargetFunction;
 use mona::utils;
+use crate::target_function::dsl_tf::TargetFunctionDSL;
 use super::bonus_per_stat::bonus_per_stat;
 
 #[derive(Serialize, Deserialize)]
@@ -54,7 +56,11 @@ impl BonusPerStat {
         let character = input.character.to_character();
         let weapon = input.weapon.to_weapon(&character);
         let artifacts_ref: Vec<&Artifact> = input.artifacts.iter().collect();
-        let tf = input.tf.to_target_function(&character, &weapon);
+        let tf: Box<dyn TargetFunction> = if input.tf.use_dsl {
+            Box::new(TargetFunctionDSL::new(&input.tf.dsl_source.unwrap()))
+        } else {
+            input.tf.to_target_function(&character, &weapon)
+        };
         let buffs: Vec<_> = input.buffs.iter().map(|b| b.to_buff()).collect();
         let config_ref = input.artifacts_config.as_ref();
 
