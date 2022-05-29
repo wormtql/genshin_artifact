@@ -25,7 +25,7 @@ jobs:
     - name: Build main site docs
       run: mdbook build mona_book
     - name: Build core docs
-      run: cargo doc --manifest-path mona_core/Cargo.toml --no-deps --document_private_items --lib
+      run: cargo doc --manifest-path mona_core/Cargo.toml --no-deps --document-private-items --lib
     - name: Create a big dir
       run: mkdir dist_docs_no_ignore
     - name: Copy docs
