@@ -163,6 +163,12 @@ import HealingBonus_image from "@image/misc/sword"
 
 
 
+
+
+
+
+
+
 import FreedomSworn_image from "@image/weapons/FreedomSworn_tn"
 
 
@@ -1181,6 +1187,51 @@ export default {
         genre: "Character",
         description: "钟离盾：使附近小范围内敌人的所有元素抗性与物理抗性降低20%",
         config: [
+            
+        ],
+    },
+    
+    "YelanTalent2": {
+        name: "YelanTalent2",
+        chs: "夜兰-「妙转随心」",
+        
+        badge: getImage("Yelan"),
+        
+        genre: "Character",
+        description: "夜兰天赋2：「玄掷玲珑」存在期间，能使队伍中自己的当前场上角色造成的伤害提高1%，并且每1秒进一步提高3.5%，至多使角色造成的伤害提高50%。效果存在期间重新施放渊图玲珑骰，将移除原有的上述效果。",
+        config: [
+            
+            {"default":14,"max":14,"min":0,"name":"secs","title":"经过的秒数","type":"int"},
+            
+        ],
+    },
+    
+    "YelanC4": {
+        name: "YelanC4",
+        chs: "夜兰-「诓惑者，接树移花」",
+        
+        badge: getImage("Yelan"),
+        
+        genre: "Character",
+        description: "夜兰4命：依照「络命丝」标记敌人的数量，每次标记将在爆发时使队伍中所有角色的生命值上限提升10%，持续25秒。通过这种方式，生命值上限至多获得40%提升。",
+        config: [
+            
+            {"default":4,"max":4,"min":1,"name":"count","title":"标记数量","type":"int"},
+            
+        ],
+    },
+    
+    "KamisatoAyatoQ": {
+        name: "KamisatoAyatoQ",
+        chs: "神里绫人-「水囿」",
+        
+        badge: getImage("Ayato"),
+        
+        genre: "Character",
+        description: "神里绫人Q技能：展开清净之园囿，熄灭其中一切嚣闹。存在期间，其中会持续降下水花剑，攻击范围内的敌人，造成水元素伤害，并提高其中的角色的普通攻击伤害。",
+        config: [
+            
+            {"default":8,"max":15,"min":1,"name":"skill_level","title":"神里绫人Q技能等级","type":"int"},
             
         ],
     },

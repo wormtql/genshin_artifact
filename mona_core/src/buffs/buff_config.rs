@@ -40,6 +40,9 @@ pub enum BuffConfig {
     VentiC6 { is_convert: bool, element: Element },
     YoimiyaTalent2 { talent1_stack: usize },
     YunjinQ { talent2: bool, skill3: usize, def: f64, ele_count: usize },
+    YelanTalent2 { secs: usize },
+    YelanC4 { count: usize },
+    KamisatoAyatoQ { skill_level: usize },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },

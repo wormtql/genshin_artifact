@@ -78,6 +78,9 @@ pub enum BuffName {
     YunjinQ,
     YunjinC2,
     ZhongliShield,
+    YelanTalent2,
+    YelanC4,
+    KamisatoAyatoQ,
 
     FreedomSworn,
     SongOfBrokenPines,

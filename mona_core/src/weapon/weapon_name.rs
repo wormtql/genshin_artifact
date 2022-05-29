@@ -120,6 +120,7 @@ pub enum WeaponName {
     PocketGrimoire,
     ApprenticesNotes,
 
+    // bows
     PolarStar,
     ThunderingPulse,
     ElegyOfTheEnd,
@@ -147,4 +148,6 @@ pub enum WeaponName {
     Slingshot,
     SeasonedHuntersBow,
     HuntersBow,
+    AquaSimulacra,
+    FadingTwilight,
 }

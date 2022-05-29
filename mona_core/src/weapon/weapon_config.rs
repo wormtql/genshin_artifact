@@ -80,6 +80,8 @@ pub enum WeaponConfig {
     RavenBow { rate: f64 },
     SharpshootersOath { rate: f64 },
     Slingshot { is_effect: bool, rate: f64 },
+    AquaSimulacra { is_enemy_around: bool },
+    FadingTwilight { state: usize },
 }
 
 impl Default for WeaponConfig {

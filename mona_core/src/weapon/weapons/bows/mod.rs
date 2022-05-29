@@ -25,6 +25,8 @@ pub use sharpshooters_oath::SharpshootersOath;
 pub use slingshot::Slingshot;
 pub use seasoned_hunters_bow::SeasonedHuntersBow;
 pub use hunters_bow::HuntersBow;
+pub use aqua_simulacra::AquaSimulacra;
+pub use fading_twilight::FadingTwilight;
 
 pub mod polar_star;
 pub mod thundering_pulse;
@@ -53,3 +55,5 @@ pub mod sharpshooters_oath;
 pub mod slingshot;
 pub mod seasoned_hunters_bow;
 pub mod hunters_bow;
+pub mod aqua_simulacra;
+pub mod fading_twilight;

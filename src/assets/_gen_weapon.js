@@ -262,6 +262,10 @@
 // 
 // import HuntersBow_tn from "@image/weapons/HuntersBow_tn"
 // 
+// import AquaSimulacra_tn from "@image/weapons/AquaSimulacra_tn"
+// 
+// import FadingTwilight_tn from "@image/weapons/FadingTwilight_tn"
+// 
 
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/equip/UI_EquipIcon_#.png"
 
@@ -2922,6 +2926,50 @@ export default {
 
         
         configs: null,
+        
+    },
+
+    AquaSimulacra: {
+        name: "AquaSimulacra",
+        internalName: "Bow_Kirin",
+        chs: "若水",
+        star: 5,
+        // url: AquaSimulacra_tn,
+        url: imageUrl("Bow_Kirin"),
+        type: "Bow",
+
+        
+        effect: "生命值提升16/20/24/28/32%。周围存在敌人时，装备该武器的角色造成的伤害都会提升20/25/30/35/40%，不论该角色处于场上或是处于队伍后台。",
+        
+
+        
+        configs: [
+            
+            {"default":true,"name":"is_enemy_around","title":"周围存在敌人","type":"bool"},
+            
+        ],
+        
+    },
+
+    FadingTwilight: {
+        name: "FadingTwilight",
+        internalName: "Bow_Fallensun",
+        chs: "落霞",
+        star: 4,
+        // url: FadingTwilight_tn,
+        url: imageUrl("Bow_Fallensun"),
+        type: "Bow",
+
+        
+        effect: "具有夕暮、流霞、朝晖三种状态，分别能使造成的伤害提升(6/7.5/9/10.5/12)%:(10/12.5/15/17.5/20)%:(14/17.5/21/24.5/28)%。攻击命中敌人后，将转换为下一种状态，每7秒至多转换一次状态。装备该武器的角色处于队伍后台时该效果依旧能触发转换。",
+        
+
+        
+        configs: [
+            
+            {"default":2,"name":"state","options":["夕暮","流霞","朝晖"],"title":"状态","type":"option"},
+            
+        ],
         
     },
 

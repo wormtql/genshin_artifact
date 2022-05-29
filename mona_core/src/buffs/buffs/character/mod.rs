@@ -30,6 +30,8 @@ pub use yoimiya::BuffYoimiyaTalent2;
 pub use yunjin::{BuffYunjinC2, BuffYunjinQ};
 pub use zhongli::BuffZhongliShield;
 pub use yae_miko::BuffYaeMikoC4;
+pub use yelan::{BuffYelanC4, BuffYelanTalent2};
+pub use kamisato_ayato::BuffKamisatoAyatoQ;
 
 pub mod albedo;
 pub mod aloy;
@@ -63,3 +65,5 @@ pub mod yoimiya;
 pub mod yunjin;
 pub mod zhongli;
 pub mod yae_miko;
+pub mod yelan;
+pub mod kamisato_ayato;
