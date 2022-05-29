@@ -61,8 +61,8 @@ jobs:
     - name: Deploy
       uses: easingthemes/ssh-deploy@main
       env:
-        SSH_PRIVATE_KEY: ${{ MONA_SSH_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.MONA_SSH_KEY }}
         SOURCE: dist_no_ignore
-        REMOTE_HOST: ${{ MONA_REMOTE_HOST }}
-        REMOTE_USER: ${{ MONA_REMOTE_USER }}
-        TARGET: ${{ MONA_TARGET }}
+        REMOTE_HOST: ${{ secrets.MONA_REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.MONA_REMOTE_USER }}
+        TARGET: ${{ secrets.MONA_TARGET }}
