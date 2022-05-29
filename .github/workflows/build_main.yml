@@ -58,4 +58,11 @@ jobs:
         branch: dist_main
         create_branch: true
         push_options: "--force"
-        
+    - name: Deploy
+      uses: easingthemes/ssh-deploy@main
+      env:
+        SSH_PRIVATE_KEY: ${{ MONA_SSH_KEY }}
+        SOURCE: dist_no_ignore
+        REMOTE_HOST: ${{ MONA_REMOTE_HOST }}
+        REMOTE_USER: ${{ MONA_REMOTE_USER }}
+        TARGET: ${{ MONA_TARGET }}
