@@ -57,4 +57,5 @@ jobs:
         commit_message: "ci: Update build result"
         branch: dist_main
         create_branch: true
+        push_options: "--force --delete"
         
