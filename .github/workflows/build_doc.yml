@@ -1,0 +1,37 @@
+name: Build docs
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - name: Setup mdbook
+      run: cargo install mdbook
+    - name: Build MONA_DSL docs
+      run: mdbook build mona_dsl_book
+    - name: Build main site docs
+      run: mdbook build mona_book
+    - name: Build core docs
+      run: cargo doc --manifest-path mona_core/Cargo.toml --no-deps --document_private_items --lib
+    - name: Create a big dir
+      run: mkdir dist_docs_no_ignore
+    - name: Copy docs
+      run: cp -R mona_dsl_book/book dist_docs_no_ignore/dsl && cp -R mona_book/book dist_docs_no_ignore/main && cp -R mona_core/target/doc/mona dist_docs_no_ignore/mona_core
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: docs
+        path: dist_docs_no_ignore
