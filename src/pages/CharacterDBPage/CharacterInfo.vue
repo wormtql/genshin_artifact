@@ -4,7 +4,10 @@
         <div v-if="loaded && error">
             Error
         </div>
-        <div v-if="loaded && !error" class="tab-full-height mona-scroll-hidden content-div">
+        <div v-if="loaded && !error && !hasCharacter">
+            <el-empty description="角色数据过少"></el-empty>
+        </div>
+        <div v-if="loaded && !error && hasCharacter" class="tab-full-height mona-scroll-hidden content-div">
             <p class="analysis-item-title">{{ characterChs }}</p>
             <div class="character-splash-div">
                 <img :src="characterSplash">
@@ -103,6 +106,10 @@ export default {
         },
     },
     computed: {
+        hasCharacter() {
+            return this.characterResult && this.characterResult[this.characterName]
+        },
+
         characterSplash() {
             const data = characterData[this.characterName]
             if (!data) {
