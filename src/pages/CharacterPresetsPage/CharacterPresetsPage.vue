@@ -54,6 +54,7 @@
                 :name="entry.name"
                 @delete="handleDeletePreset(entry.name)"
                 @download="handleDownload(entry.name)"
+                @cpu="handleQuickCalculate(entry.name)"
                 class="item"
                 @click="test(entry.name)"
             ></preset-item>
@@ -110,6 +111,15 @@ export default {
             } else {
                 return "single"
             }
+        },
+
+        handleQuickCalculate(name) {
+            this.$router.push({
+                name: "calculate",
+                params: {
+                    presetName: name
+                }
+            })
         },
 
         async handleImport() {

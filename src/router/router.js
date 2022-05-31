@@ -120,6 +120,7 @@ const routes = [
     },
     {
         path: "/calculate",
+        name: "calculate",
         component: NewArtifactPlanPage,
         meta: {
             keepAlive: true,

@@ -50,23 +50,32 @@ export default {
             default: "Amber"
         }
     },
-    created() {
-        this.commonTargetFunctionList = targetFunctionByCharacterName["common"]
+    data() {
+        return {
+            commonTargetFunctionList: targetFunctionByCharacterName["common"]
+        }
     },
+    // created() {
+    //     this.commonTargetFunctionList = targetFunctionByCharacterName["common"]
+    // },
     computed: {
         characterTargetFunctionList() {
             return targetFunctionByCharacterName[this.characterName] ?? []
         }
     },
     watch: {
-        "characterName": function (newName, oldName) {
-            const temp = targetFunctionByCharacterName[newName]
-            if (temp && temp.length > 0) {
-                this.$emit("input", temp[0].name)
-            } else {
-                this.$emit("input", this.commonTargetFunctionList[0].name)
-            }
-        }
+        // "characterName": function (newName, oldName) {
+        //     const temp = targetFunctionByCharacterName[newName]
+        //     if (temp && temp.length > 0) {
+        //         const firstItem = temp[0]
+        //         console.log(firstItem)
+        //         if (firstItem["for"] !== "common") {
+        //             this.$emit("input", firstItem.name)
+        //         }
+        //     } else {
+        //         this.$emit("input", this.commonTargetFunctionList[0].name)
+        //     }
+        // }
     }
 }
 </script>

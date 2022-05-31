@@ -268,7 +268,8 @@
                         <p class="common-title">角色</p>
                         <div style="display: flex; gap: 12px">
                             <select-character
-                                v-model="characterName"
+                                :value="characterName"
+                                @input="changeCharacter"
                                 style="flex: 1"
                             ></select-character>
                             <select-character-level
@@ -338,7 +339,8 @@
                         <div style="display: flex; gap: 12px; margin-bottom: 8px">
                             <select-weapon
                                 :type="characterWeaponType"
-                                v-model="weaponName"
+                                :value="weaponName"
+                                @input="changeWeapon"
                                 style="flex: 1"
                             ></select-weapon>
                             <select-weapon-level
@@ -445,7 +447,8 @@
                     <el-tabs v-model="miscTargetFunctionTab">
                         <el-tab-pane label="普通" name="normal">
                             <select-target-function
-                                v-model="targetFunctionName"
+                                @input="changeTargetFunction"
+                                :value="targetFunctionName"
                                 :character-name="characterName"
                             ></select-target-function>
                             <div class="target-function-config" v-if="targetFunctionNeedConfig"
@@ -669,14 +672,14 @@ import {getArtifactIdsByKumiId, newKumiWithArtifacts} from "@util/kumi"
 import {deepCopy, toSnakeCase} from "@util/common"
 import {createOrUpdatePreset, getPresetEntryByName} from "@util/preset"
 import {characterData} from "@character"
-import {weaponData} from "@weapon"
-import {targetFunctionData} from "@targetFunction"
+import {weaponByType, weaponData} from "@weapon"
+import {targetFunctionByCharacterName, targetFunctionData} from "@targetFunction"
 import {buffData} from "@buff"
 import {artifactsData} from "@artifact"
 import {wasmBonusPerStat} from "@/wasm"
 import {wasmSingleOptimize} from "@/wasm/single_optimize"
-import { createComputeResult } from "@/api/misc"
-import { deviceIsPC } from "@util/device"
+import {createComputeResult} from "@/api/misc"
+import {deviceIsPC} from "@util/device"
 
 import SelectArtifact from "@c/select/SelectArtifact"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
@@ -748,6 +751,7 @@ export default {
             characterSkill2: 8,
             characterSkill3: 8,
             characterConstellation: 0,
+            characterWeaponType: "Bow",
 
             weaponName: "PolarStar",
             weaponLevel: "90",
@@ -886,10 +890,10 @@ export default {
             return characterData[this.characterName].configSkill
         },
 
-        characterWeaponType() {
-            const item = characterData[this.characterName]
-            return item ? item.weapon : "Bow"
-        },
+        // characterWeaponType() {
+        //     const item = characterData[this.characterName]
+        //     return item ? item.weapon : "Bow"
+        // },
 
         characterInterface() {
             let i = {
@@ -1165,9 +1169,127 @@ export default {
                 })
             }
             return temp
-        }
+        },
+
+        // buffsAll() {
+        //     let temp = []
+        //     for (let buff of this.buffs) {
+        //         temp.push({
+        //             name: buff.name,
+        //             config: buff.config,
+        //         })
+        //     }
+        // }
     },
     methods: {
+        changeWeapon(name) {
+            if (name === this.weaponName) {
+                return
+            }
+
+            this.weaponName = name
+
+            // change config
+            // console.log("change weapon config", name)
+            const hasConfig = !!weaponData[name]?.configs
+            if (hasConfig) {
+                const configs = weaponData[name].configs
+
+                let defaultConfig = {}
+                for (let config of configs) {
+                    defaultConfig[config.name] = config.default
+                }
+
+                this.weaponConfig = {
+                    [name]: defaultConfig
+                }
+            } else {
+                this.weaponConfig = "NoConfig"
+            }
+        },
+
+        changeTargetFunction(name) {
+            if (name === this.targetFunctionName) {
+                return
+            }
+
+            this.targetFunctionName = name
+
+            const hasConfig = targetFunctionData[name].config.length > 0
+
+            if (hasConfig) {
+                let defaultConfig = {}
+                for (let c of targetFunctionData[name].config) {
+                    defaultConfig[c.name] = c.default
+                }
+                this.targetFunctionConfig = {
+                    [name]: defaultConfig
+                }
+            } else {
+                this.targetFunctionConfig = "NoConfig"
+            }
+        },
+
+        changeCharacter(name) {
+            if (name === this.characterName) {
+                return
+            }
+
+            this.characterName = name
+
+            const hasConfigData = characterData[name].config.length > 0;
+            const hasConfigSkill = characterData[name].configSkill.length > 0;
+
+            // change config
+            if (hasConfigData) {
+                const configs = characterData[name].config
+
+                let defaultConfig = {}
+                for (let c of configs) {
+                    defaultConfig[c.name] = c.default
+                }
+                this.characterConfig = {
+                    [name]: defaultConfig
+                }
+            } else {
+                this.characterConfig = "NoConfig"
+            }
+
+            // change skill config
+            if (hasConfigSkill) {
+                let defaultConfig = {}
+                for (let c of characterData[name].configSkill) {
+                    defaultConfig[c.name] = c.default
+                }
+                this.characterSkillConfig = {
+                    [name]: defaultConfig
+                }
+            } else {
+                this.characterSkillConfig = "NoConfig"
+            }
+
+            // change skill index
+            this.characterSkillIndex = 0
+
+            // change weapon
+            const newWeaponType = characterData[name].weapon
+            if (newWeaponType !== this.characterWeaponType) {
+                this.characterWeaponType = newWeaponType
+                const defaultWeaponData = weaponByType[newWeaponType][0]
+                const defaultWeaponName = defaultWeaponData.name
+                this.changeWeapon(defaultWeaponName)
+            }
+
+            // if current target function is common, do not change
+            const currentTargetFunctionData = targetFunctionData[this.targetFunctionName]
+            if (currentTargetFunctionData["for"] !== "common") {
+                // if not common, change to default character specific target function
+                const defaultTargetFunctionData = targetFunctionByCharacterName[name][0]
+                const defaultTargetFunctionName = defaultTargetFunctionData.name
+                this.changeTargetFunction(defaultTargetFunctionName)
+            }
+        },
+
         handleClickArtifactConfig() {
             this.showConfigArtifactDialog = true
         },
@@ -1197,7 +1319,8 @@ export default {
             // use character
             const c = item.character
             if (c) {
-                this.characterName = c.name
+                // this.characterName = c.name
+                this.changeCharacter(c.name)
                 this.characterLevel = c.level.toString() + (c.ascend ? "+" : "-")
                 this.characterConstellation = c.constellation ?? 0
                 this.characterSkill1 = c.skill1 + 1
@@ -1228,10 +1351,19 @@ export default {
             if (tf) {
                 this.targetFunctionName = tf.name
 
-                this.$nextTick(() => {
+                // this.$nextTick(() => {
                     this.targetFunctionConfig = tf.params
-                })
+                // })
             }
+            // is DSL?
+            const use_dsl = !!item.useDSL
+            if (use_dsl) {
+                this.miscTargetFunctionTab = "dsl"
+                this.targetFunctionDSLSource = item.dslSource ?? ""
+            } else {
+                this.miscTargetFunctionTab = "normal"
+            }
+
 
             // use constraint
             const constraint = item.constraint
@@ -1259,6 +1391,8 @@ export default {
 
             // use artifact config
             this.artifactConfig = item.artifactConfig ?? newDefaultArtifactConfigForWasm()
+
+            this.miscCurrentPresetName = name
         },
 
         handleCommandPreset(cmd) {
@@ -1269,8 +1403,6 @@ export default {
                     const name = cmd.slice(6)
 
                     this.usePreset(name)
-
-                    this.miscCurrentPresetName = name
                 }
             }
         },
@@ -1288,9 +1420,22 @@ export default {
 
         getPresetItem() {
             const config = this.getOptimizeArtifactWasmInterface()
+            // console.log(config.buffs)
+            // console.log(this.buffs)
+
+            let buffs = []
+            for (let buff of this.buffs) {
+                buffs.push({
+                    name: buff.name,
+                    config: deepCopy(buff.config),
+                    lock: buff.lock
+                })
+            }
+            // console.log(buffs)
 
             const item = {
-                buffs: deepCopy(config.buffs),
+                // buffs: deepCopy(config.buffs),
+                buffs,
                 character: deepCopy(config.character),
                 weapon: deepCopy(config.weapon),
                 targetFunction: deepCopy(config.target_function),
@@ -1308,7 +1453,9 @@ export default {
                 },
                 artifactConfig: deepCopy(this.artifactConfig),
                 algorithm: this.algorithm,
-                artifactEffectMode: this.artifactEffectMode
+                artifactEffectMode: this.artifactEffectMode,
+                useDSL: this.miscTargetFunctionTab === "dsl",
+                dslSource: this.targetFunctionDSLSource
             }
             return item
         },
@@ -1541,10 +1688,6 @@ export default {
             this.optimizationResultIndex = n
         },
 
-        handleChangeCharacter(name) {
-            this.characterName = name
-        },
-
         handleGotoSelectArtifact(index) {
             const map = ["flower", "feather", "sand", "cup", "head"]
             const slotName = map[index]
@@ -1660,74 +1803,78 @@ export default {
             })
         },
     },
+    // mounted() {
+    //     console.log(this.$route.params)
+    // },
     watch: {
-        weaponName(newName) {
-            // console.log("in watch", newName)
-            const hasConfig = !!weaponData[newName]?.configs
-            if (hasConfig) {
-                const configs = weaponData[newName].configs
+        // weaponName(newName) {
+        //     // console.log("in watch", newName)
+        //     const hasConfig = !!weaponData[newName]?.configs
+        //     if (hasConfig) {
+        //         const configs = weaponData[newName].configs
+        //
+        //         let defaultConfig = {}
+        //         for (let config of configs) {
+        //             defaultConfig[config.name] = config.default
+        //         }
+        //
+        //         this.weaponConfig = {
+        //             [newName]: defaultConfig
+        //         }
+        //     } else {
+        //         this.weaponConfig = "NoConfig"
+        //     }
+        // },
 
-                let defaultConfig = {}
-                for (let config of configs) {
-                    defaultConfig[config.name] = config.default
-                }
+        // characterName(newName) {
+        //     const hasConfigData = characterData[newName].config.length > 0;
+        //     const hasConfigSkill = characterData[newName].configSkill.length > 0;
+        //
+        //     if (hasConfigData) {
+        //         const configs = characterData[newName].config
+        //
+        //         let defaultConfig = {}
+        //         for (let c of configs) {
+        //             defaultConfig[c.name] = c.default
+        //         }
+        //         this.characterConfig = {
+        //             [newName]: defaultConfig
+        //         }
+        //     } else {
+        //         this.characterConfig = "NoConfig"
+        //     }
+        //
+        //     if (hasConfigSkill) {
+        //         let defaultConfig = {}
+        //         for (let c of characterData[newName].configSkill) {
+        //             defaultConfig[c.name] = c.default
+        //         }
+        //         this.characterSkillConfig = {
+        //             [newName]: defaultConfig
+        //         }
+        //     } else {
+        //         this.characterSkillConfig = "NoConfig"
+        //     }
+        //
+        //     this.characterSkillIndex = 0
+        // },
 
-                this.weaponConfig = {
-                    [newName]: defaultConfig
-                }
-            } else {
-                this.weaponConfig = "NoConfig"
-            }
-        },
-
-        characterName(newName) {
-            const hasConfigData = characterData[newName].config.length > 0;
-            const hasConfigSkill = characterData[newName].configSkill.length > 0;
-
-            if (hasConfigData) {
-                const configs = characterData[newName].config
-
-                let defaultConfig = {}
-                for (let c of configs) {
-                    defaultConfig[c.name] = c.default
-                }
-                this.characterConfig = {
-                    [newName]: defaultConfig
-                }
-            } else {
-                this.characterConfig = "NoConfig"
-            }
-
-            if (hasConfigSkill) {
-                let defaultConfig = {}
-                for (let c of characterData[newName].configSkill) {
-                    defaultConfig[c.name] = c.default
-                }
-                this.characterSkillConfig = {
-                    [newName]: defaultConfig
-                }
-            } else {
-                this.characterSkillConfig = "NoConfig"
-            }
-
-            this.characterSkillIndex = 0
-        },
-
-        targetFunctionName(newName) {
-            const hasConfig = targetFunctionData[newName].config.length > 0
-
-            if (hasConfig) {
-                let defaultConfig = {}
-                for (let c of targetFunctionData[newName].config) {
-                    defaultConfig[c.name] = c.default
-                }
-                this.targetFunctionConfig = {
-                    [newName]: defaultConfig
-                }
-            } else {
-                this.targetFunctionConfig = "NoConfig"
-            }
-        },
+        // targetFunctionName(newName) {
+        //     console.log(newName)
+        //     const hasConfig = targetFunctionData[newName].config.length > 0
+        //
+        //     if (hasConfig) {
+        //         let defaultConfig = {}
+        //         for (let c of targetFunctionData[newName].config) {
+        //             defaultConfig[c.name] = c.default
+        //         }
+        //         this.targetFunctionConfig = {
+        //             [newName]: defaultConfig
+        //         }
+        //     } else {
+        //         this.targetFunctionConfig = "NoConfig"
+        //     }
+        // },
 
         artifactNeedConfig4(newName) {
             if (!newName) {

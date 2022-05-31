@@ -4,6 +4,16 @@
             <span class="fs-12">{{ name }}</span>
             <div v-if="toolbar" class="buttons flex-row">
                 <el-button
+                    v-if="calculateIcon"
+                    icon="el-icon-cpu"
+                    type="text"
+                    size="mini"
+                    circle
+                    @click.stop="$emit('cpu')"
+                    class="button"
+                    title="快速计算"
+                ></el-button>
+                <el-button
                     icon="el-icon-delete"
                     type="text"
                     size="mini"
@@ -56,6 +66,9 @@ export default {
         toolbar: {
             type: Boolean,
             default: true,
+        },
+        calculateIcon: {
+            default: true
         }
     },
     computed: {

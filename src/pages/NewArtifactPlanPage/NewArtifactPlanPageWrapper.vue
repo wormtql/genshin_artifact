@@ -1,5 +1,5 @@
 <template>
-    <new-artifact-plan-page></new-artifact-plan-page>
+    <new-artifact-plan-page ref="page"></new-artifact-plan-page>
 </template>
 
 <script>
@@ -37,6 +37,20 @@ export default {
     name: "NewArtifactPlanPageWrapper",
     components: {
         NewArtifactPlanPage
+    },
+    // beforeRouteUpdate() {
+    //     console.log("update", this.$route.params)
+    // },
+    beforeRouteEnter(to, from, next) {
+        next(vm => {
+            // console.log("enter", vm.$route.params)
+            const component = vm.$refs["page"]
+            const presetName = vm.$route.params["presetName"]
+
+            if (component && presetName) {
+                component.usePreset(presetName)
+            }
+        })
     }
 }
 </script>

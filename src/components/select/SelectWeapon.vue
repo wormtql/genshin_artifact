@@ -43,11 +43,11 @@ export default {
         }
     },
     watch: {
-        "type": function (newWeaponType, oldWeaponType) {
-            const defaultWeaponData = weaponByType[newWeaponType][0]
-            const name = defaultWeaponData.name
-            this.$emit("input", name)
-        }
+        // "type": function (newWeaponType, oldWeaponType) {
+        //     const defaultWeaponData = weaponByType[newWeaponType][0]
+        //     const name = defaultWeaponData.name
+        //     this.$emit("input", name)
+        // }
     }
 }
 </script>
