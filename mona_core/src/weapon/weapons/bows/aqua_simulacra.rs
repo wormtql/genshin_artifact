@@ -20,8 +20,10 @@ impl<A: Attribute> WeaponEffect<A> for AquaSimulacraEffect {
         let v1 = refine * 0.04 + 0.12;
         attribute.add_hp_percentage("「若水」被动", v1);
 
-        let v2 = refine * 0.05 + 0.15;
-        attribute.set_value_by(AttributeName::BonusBase, "「若水」被动", v2);
+        if self.is_enemy_around {
+            let v2 = refine * 0.05 + 0.15;
+            attribute.set_value_by(AttributeName::BonusBase, "「若水」被动", v2);
+        }
     }
 }
 
