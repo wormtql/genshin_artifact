@@ -737,6 +737,8 @@ export default {
     },
     created() {
         // this.characterData = characterData
+        // console.log("mounted")
+        this.$emit("created")
     },
     data () {
         return {
@@ -1326,24 +1328,22 @@ export default {
                 this.characterSkill1 = c.skill1 + 1
                 this.characterSkill2 = c.skill2 + 1
                 this.characterSkill3 = c.skill3 + 1
+            }
 
-                this.$nextTick(() => {
-                    this.characterConfig = c.params
+            this.characterConfig = c.params
 
-                    // use weapon
-                    // this has to be executed after character update, because weapon type will be updated if character is different
-                    const w = item.weapon
-                    if (w) {
-                        this.weaponName = w.name
-                        this.weaponLevel = w.level.toString() + (w.ascend ? "+" : "-")
-                        this.weaponRefine = w.refine
+            // use weapon
+            const w = item.weapon
+            if (w) {
+                this.changeWeapon(w.name)
+                // this.weaponName = w.name
+                this.weaponLevel = w.level.toString() + (w.ascend ? "+" : "-")
+                this.weaponRefine = w.refine
 
-                        this.$nextTick(() => {
-                            // console.log("in next tick", w.name)
-                            this.weaponConfig = w.params
-                        })
-                    }
-                })
+                // this.$nextTick(() => {
+                    // console.log("in next tick", w.name)
+                this.weaponConfig = w.params
+                // })
             }
 
             // use target function
