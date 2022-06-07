@@ -1,6 +1,6 @@
 {
   "name": "genshin_artifacts",
-  "version": "5.7.0",
+  "version": "5.7.1",
   "private": true,
   "scripts": {
     "serve": "cross-env ENV_FILE=.env.development.yaml vue-cli-service serve",

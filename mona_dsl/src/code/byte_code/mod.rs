@@ -20,3 +20,7 @@ pub mod sub;
 pub mod pow;
 pub mod eq;
 pub mod ne;
+pub mod lt;
+pub mod le;
+pub mod gt;
+pub mod ge;

@@ -14,10 +14,14 @@ use crate::code::byte_code::access::ByteCodeAccess;
 use crate::code::byte_code::call::ByteCodeCall;
 use crate::code::byte_code::div::ByteCodeDiv;
 use crate::code::byte_code::eq::ByteCodeEq;
+use crate::code::byte_code::ge::ByteCodeGe;
+use crate::code::byte_code::gt::ByteCodeGt;
+use crate::code::byte_code::le::ByteCodeLe;
 use crate::code::byte_code::load_bool::ByteCodeLoadBool;
 use crate::code::byte_code::load_name::ByteCodeLoadName;
 use crate::code::byte_code::load_number::ByteCodeLoadNumber;
 use crate::code::byte_code::load_string::ByteCodeLoadString;
+use crate::code::byte_code::lt::ByteCodeLt;
 use crate::code::byte_code::mul::ByteCodeMul;
 use crate::code::byte_code::ne::ByteCodeNe;
 use crate::code::byte_code::neg::ByteCodeNeg;
@@ -208,6 +212,10 @@ impl<'i> Compiler<'i> for MonaCompilerASTToCode<'i> {
             "^" => ctx.add_code(Box::new(ByteCodePow)),
             "==" => ctx.add_code(Box::new(ByteCodeEq)),
             "!=" => ctx.add_code(Box::new(ByteCodeNe)),
+            "<" => ctx.add_code(Box::new(ByteCodeLt)),
+            "<=" => ctx.add_code(Box::new(ByteCodeLe)),
+            ">" => ctx.add_code(Box::new(ByteCodeGt)),
+            ">=" => ctx.add_code(Box::new(ByteCodeGe)),
             _ => todo!()
         }
 

@@ -81,6 +81,18 @@ pub fn mona_select(params: ParamVecType, _env: &mut MonaEnv) -> FunctionReturnTy
     return Ok(Some(obj))
 }
 
+pub fn mona_abs(params: ParamVecType, _env: &mut MonaEnv) -> FunctionReturnType {
+    if params.len() != 1 {
+        return Err(RuntimeError::new(RuntimeErrorEnum::ParamError, &format!("requiring 1 param, got {}", params.len())));
+    }
+
+    let obj = &params[0];
+    let number = obj.borrow().assert_number()?;
+
+    let obj = MonaObject::new_number(number.abs());
+    Ok(Some(Rc::new(RefCell::new(obj))))
+}
+
 macro insert_global($m:ident, $name:expr, $func:ident) {
     let t = MonaObjectBuiltinFunction {
         name: String::from($name),
@@ -99,6 +111,7 @@ pub fn setup_global_namespace() -> Namespace {
     insert_global!(map, "max", mona_max);
     insert_global!(map, "min", mona_min);
     insert_global!(map, "select", mona_select);
+    insert_global!(map, "abs", mona_abs);
 
     Namespace {
         map

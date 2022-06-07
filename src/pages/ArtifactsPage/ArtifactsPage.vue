@@ -459,7 +459,7 @@ export default {
             this.$notify.info({
                 title: "创建中",
                 message: "莫娜正在创建分享链接",
-                duration: 1
+                duration: 2000
             })
 
             const str = this.getArtifactString()
