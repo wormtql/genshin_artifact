@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-loading.fullscreen="loading">
         <!-- new artifact dialog -->
         <add-artifact-dialog
             :visible="newDialogVisible"
@@ -8,6 +8,19 @@
         ></add-artifact-dialog>
 
         <yas-ui-dialog :visible.sync="showYasUIDialog"></yas-ui-dialog>
+
+        <el-dialog
+            :visible.sync="showOutputShareDialog"
+            title="分享"
+            :width="deviceIsPC ? '500px' : '90%'"
+        >
+            <p>通过分享链接可以快速导入圣遗物，有效期为一天</p>
+            <el-input v-model="shareLink"></el-input>
+
+            <template #footer>
+                <el-button type="primary" @click="handleCopyShareLink">复制</el-button>
+            </template>
+        </el-dialog>
 
         <el-dialog :visible.sync="showImportDialog" title="导入" :width="deviceIsPC ? '60%' : '90%'">
             <import-block ref="fileUploader"></import-block>
@@ -53,8 +66,17 @@
                     <el-dropdown-item command="deleteAll"><i class="el-icon-delete"></i>清空</el-dropdown-item>
                     <el-dropdown-item divided command="unlockAll"><i class="el-icon-unlock"></i>启用全部</el-dropdown-item>
                     <el-dropdown-item divided command="recommend"><i class="el-icon-s-opportunity"></i>推荐</el-dropdown-item>
-                    <el-dropdown-item divided command="importJson"><i class="el-icon-arrow-right"></i>导入</el-dropdown-item>
-                    <el-dropdown-item command="exportJson"><i class="el-icon-arrow-left"></i>导出</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+
+            <el-dropdown trigger="click" style="margin-left: 16px" @command="handleDropdownCommand">
+                <span class="el-dropdown-link"><i class="el-icon-upload2"></i></span>
+
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="importJson"><i class="el-icon-arrow-right"></i>导入</el-dropdown-item>
+
+                    <el-dropdown-item divided command="exportJson"><i class="el-icon-arrow-left"></i>导出莫娜JSON</el-dropdown-item>
+                    <el-dropdown-item command="exportShare"><i class="el-icon-arrow-left"></i>分享链接</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
 
@@ -89,7 +111,15 @@
             <div class="tool-right">
                 <el-button @click="handleYasUIClicked" size="mini" type="primary" v-if="deviceIsPC"> 扫描 </el-button>
                 <el-button @click="handleImportJsonClicked" size="mini" type="primary"> 导入 </el-button>
-                <el-button @click="handleOutputJsonClicked" size="mini"> 导出 </el-button>
+<!--                <el-button @click="handleOutputJsonClicked" size="mini"> 导出 </el-button>-->
+
+                <el-dropdown split-button size="mini" @click="handleOutputJsonClicked" @command="handleOutputCommand">
+                    导出
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item command="monaJson">莫娜JSON</el-dropdown-item>
+                        <el-dropdown-item command="share">分享链接</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
             </div>
         </div>
 
@@ -150,17 +180,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import {mapGetters} from 'vuex';
 import {
+    getArtifactsRecommendation,
+    importMonaJson,
     removeArtifact,
     toggleArtifact,
     updateArtifact,
-    importMonaJson,
-    getArtifactsRecommendation,
 } from '@util/artifacts';
-import { positions } from '@const/misc';
-import { downloadString } from '@util/common';
-import { deviceIsPC } from "@util/device"
+import {positions} from '@const/misc';
+import {downloadString} from '@util/common';
+import {deviceIsPC} from "@util/device"
+import { getRepo, createRepo } from "@/api/repo"
 
 import flowerIcon from '@image/misc/flower.png';
 import featherIcon from '@image/misc/feather.png';
@@ -212,6 +243,7 @@ export default {
             showImportDialog: false,
             showYasUIDialog: false,
             showArtifactRecommendationDrawer: false,
+            showOutputShareDialog: false,
 
             recommendationList: [],
             recommendationInCalculation: false,
@@ -222,11 +254,66 @@ export default {
             // currentPage: 1,
 
             importDeleteUnseen: false,
+
+            loading: false,
+            shareLink: ""
         };
+    },
+    beforeRouteEnter(to, from, next) {
+        next(vm => {
+            const code = to.query.code
+            console.log(code)
+
+            if (code) {
+                vm.loading = true
+                getRepo(code).then(response => {
+                    if (response.status === 200) {
+                        const data = response.data
+                        const content = data.content
+
+                        const doImport = () => {
+                            // vm.$notify.info({
+                            //     title: "正在导入",
+                            //     message: "检测到可导入内容，正在执行导入"
+                            // })
+                            setImmediate(() => {
+                                vm.importJson(content)
+                                vm.loading = false
+                            })
+                            // vm.importJson(content)
+                        }
+
+                        const artifactsCount = vm.$store.getters["artifacts/count"]
+                        if (artifactsCount > 0) {
+                            vm.$confirm("本地已经存在圣遗物，是否继续导入", "提示", {
+                                confirmButtonText: "继续",
+                                cancelButtonText: "取消",
+                                type: "warning"
+                            }).then(() => {
+                                doImport()
+                            }).catch(() => {})
+                        } else {
+                            // console.log(123)
+                            doImport()
+                        }
+                    }
+                }).finally(() => {
+                    // vm.loading = false
+                })
+            }
+        })
     },
     methods: {
         unlockAllArtifacts() {
             this.$store.commit('artifacts/unlockAll')
+        },
+
+        handleCopyShareLink() {
+            if (window.navigator) {
+                navigator.clipboard.writeText(this.shareLink)
+                this.$message.success("复制成功")
+                this.showOutputShareDialog = false
+            }
         },
 
         handleDropdownCommand(command) {
@@ -254,6 +341,9 @@ export default {
                     break
                 case "exportJson":
                     this.handleOutputJsonClicked()
+                    break
+                case "exportShare":
+                    this.shareArtifact()
                     break
             }
         },
@@ -315,6 +405,15 @@ export default {
             this.showYasUIDialog = true;
         },
 
+        async importJson(text, deleteUnseen) {
+            try {
+                const rawObj = JSON.parse(text)
+                await importMonaJson(rawObj, deleteUnseen)
+            } catch (e) {
+                this.$message.error("格式不正确")
+            }
+        },
+
         handleImportJson() {
             const component = this.$refs.fileUploader;
             if (!component) {
@@ -329,13 +428,7 @@ export default {
             component
                 .getReadPromise()
                 .then((text) => {
-                    // console.log(text)
-                    try {
-                        const rawObj = JSON.parse(text);
-                        importMonaJson(rawObj, this.importDeleteUnseen);
-                    } catch (e) {
-                        return Promise.reject('格式不正确');
-                    }
+                    this.importJson(text, this.importDeleteUnseen)
                 })
                 .catch((e) => {
                     this.$message.error(e);
@@ -345,17 +438,54 @@ export default {
                 });
         },
 
-        handleOutputJsonClicked() {
+        getArtifactString() {
             let temp = {
                 version: '1',
-            };
-
-            for (let position in positions) {
-                temp[position] = this.$store.state.artifacts[position];
             }
 
-            const str = JSON.stringify(temp);
+            for (let position in positions) {
+                temp[position] = this.$store.state.artifacts[position]
+            }
+
+            return JSON.stringify(temp)
+        },
+
+        handleOutputJsonClicked() {
+            const str = this.getArtifactString()
             downloadString(str, 'application/json', 'artifacts_mona');
+        },
+
+        shareArtifact() {
+            this.$notify.info({
+                title: "创建中",
+                message: "莫娜正在创建分享链接",
+                duration: 1
+            })
+
+            const str = this.getArtifactString()
+            createRepo(str).then(response => {
+                // console.log(response)
+                if (response.status === 200) {
+                    // console.log("success")
+                    const code = response.data.code
+                    const link = `https://mona-uranai.com/artifacts?code=${code}`
+                    this.shareLink = link
+                    this.showOutputShareDialog = true
+                }
+            })
+        },
+
+        handleOutputCommand(command) {
+            switch (command) {
+                case "monaJson": {
+                    this.handleOutputJsonClicked()
+                    break
+                }
+                case "share": {
+                    this.shareArtifact()
+                    break
+                }
+            }
         },
 
         handleClickRecommendation() {
@@ -464,8 +594,9 @@ export default {
     .m-center {
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
-        top: 0;
+        transform: translateX(-50%) translateY(-50%);
+        top: 50%;
+        //top: 0;
         font-size: 12px;
         color: #606166;
     }

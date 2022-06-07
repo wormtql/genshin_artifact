@@ -108,7 +108,7 @@ $contentPadding: 24px;
         position: fixed;
         top: 0;
         width: 100vw;
-        z-index: 10000;
+        z-index: 2000;
 
         .header-title {
             color: white;
