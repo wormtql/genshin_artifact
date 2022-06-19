@@ -199,6 +199,11 @@ impl CharacterTrait for Diluc {
             CharacterSkillConfig::Diluc { pyro } => pyro,
             _ => false
         };
+        let skill_type = s.get_skill_type();
+        if pyro && context.character_common_data.has_talent2 {
+            builder.add_extra_bonus("天赋：「熔毁之翼」", 0.2);
+        }
+
         builder.damage(
             &context.attribute,
             &context.enemy,
