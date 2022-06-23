@@ -1,16 +1,15 @@
 <template>
-    <div v-loading.fullscreen="loading">
+    <div>
         <!-- new artifact dialog -->
         <add-artifact-dialog
-            :visible="newDialogVisible"
-            @close="newDialogVisible = false"
-            @confirm="handleAddArtifact"
+            v-model="newDialogVisible"
+            @confirm="handleConfirmAddArtifact"
         ></add-artifact-dialog>
 
-        <yas-ui-dialog :visible.sync="showYasUIDialog"></yas-ui-dialog>
+        <yas-ui-dialog v-model:visible="showYasUIDialog"></yas-ui-dialog>
 
         <el-dialog
-            :visible.sync="showOutputShareDialog"
+            v-model="showOutputShareDialog"
             title="分享"
             :width="deviceIsPC ? '500px' : '90%'"
         >
@@ -22,7 +21,7 @@
             </template>
         </el-dialog>
 
-        <el-dialog :visible.sync="showImportDialog" title="导入" :width="deviceIsPC ? '60%' : '90%'">
+        <el-dialog v-model="showImportDialog" title="导入" :width="deviceIsPC ? '60%' : '90%'">
             <import-block ref="fileUploader"></import-block>
             <el-checkbox v-model="importDeleteUnseen" style="margin-top: 12px">删除不存在的圣遗物</el-checkbox>
 
@@ -32,21 +31,21 @@
             </template>
         </el-dialog>
 
-        <el-drawer title="编辑圣遗物" :visible.sync="showEditArtifactDrawer" direction="rtl" :size="deviceIsPC ? '30%' : '100%'">
+        <el-drawer title="编辑圣遗物" v-model="showEditArtifactDrawer" direction="rtl" :size="deviceIsPC ? '30%' : '100%'">
             <edit-artifact
-                ref="editArtifactDrawer"
+                ref="editArtifactComponent"
                 @confirm="handleConfirmEdit"
                 @cancel="showEditArtifactDrawer = false"
             ></edit-artifact>
         </el-drawer>
 
-        <el-drawer title="推荐圣遗物" :visible.sync="showArtifactRecommendationDrawer" :size="deviceIsPC ? '30%' : '100%'">
+        <el-drawer title="推荐圣遗物" v-model="showArtifactRecommendationDrawer" :size="deviceIsPC ? '30%' : '100%'">
             <el-empty v-if="recommendationList.length === 0"></el-empty>
             <div v-else style="padding: 0 20px">
                 <artifact-display
                     v-for="item in recommendationList"
                     :key="item[0]"
-                    :item="artifactsById[item[0]]"
+                    :item="artifactStore.artifacts.get(item[0])"
                     style="width: 100%; margin-bottom: 16px"
                     :show-back="true"
                     :back-value="item[1]"
@@ -55,71 +54,93 @@
         </el-drawer>
 
         <el-breadcrumb class="hidden-sm-and-down">
-            <el-breadcrumb-item>圣遗物（{{ count }}）</el-breadcrumb-item>
+            <el-breadcrumb-item>圣遗物（{{ artifactStore.artifactsCount }}）</el-breadcrumb-item>
         </el-breadcrumb>
 
         <div class="toolbar-mobile hidden-md-and-up" style="margin-bottom: 12px">
-            <el-dropdown @command="handleDropdownCommand" trigger="click">
-                <span class="el-dropdown-link"><i class="el-icon-more"></i></span>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="add"><i class="el-icon-plus"></i>添加</el-dropdown-item>
-                    <el-dropdown-item command="deleteAll"><i class="el-icon-delete"></i>清空</el-dropdown-item>
-                    <el-dropdown-item divided command="unlockAll"><i class="el-icon-unlock"></i>启用全部</el-dropdown-item>
-                    <el-dropdown-item divided command="recommend"><i class="el-icon-s-opportunity"></i>推荐</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
+            <el-button-group>
+                <el-button
+                    @click="handleClickAddArtifact"
+                    type="primary"
+                    :icon="IconEpPlus"
+                    size="small"
+                ></el-button>
 
-            <el-dropdown trigger="click" style="margin-left: 16px" @command="handleDropdownCommand">
-                <span class="el-dropdown-link"><i class="el-icon-upload2"></i></span>
+                <el-dropdown @command="handleDropdownCommand" trigger="click">
+                    <el-button size="small" :icon="IconEpMore"></el-button>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-dropdown-item command="deleteAll" :icon="IconEpDelete">清空</el-dropdown-item>
+                            <el-dropdown-item divided command="unlockAll" :icon="IconEpUnlock">启用全部</el-dropdown-item>
+                            <el-dropdown-item divided command="recommend" :icon="IconFa6Lightbulb">推荐</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
 
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="importJson"><i class="el-icon-arrow-right"></i>导入</el-dropdown-item>
+                <el-dropdown trigger="click" @command="handleDropdownCommand">
+                    <el-button size="small" :icon="IconFa6PaperPlane"></el-button>
 
-                    <el-dropdown-item divided command="exportJson"><i class="el-icon-arrow-left"></i>导出莫娜JSON</el-dropdown-item>
-                    <el-dropdown-item command="exportShare"><i class="el-icon-arrow-left"></i>分享链接</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-dropdown-item command="importJson" :icon="IconFa6SolidUpload">导入</el-dropdown-item>
 
-            <div class="m-center">总数：{{ count }}</div>
+                            <el-dropdown-item divided command="exportJson" :icon="IconFa6SolidDownload">导出莫娜JSON</el-dropdown-item>
+                            <el-dropdown-item command="exportShare" :icon="IconFa6SolidShareNodes">分享链接</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
+            </el-button-group>
+
+            <div class="m-center">总数：{{ artifactStore.artifactsCount }}</div>
         </div>
 
         <div class="tool-bar hidden-sm-and-down">
-            <el-button
-                @click="add"
-                type="primary"
-                icon="el-icon-plus"
-                size="mini"
-                style="margin-right: 8px"
-            ></el-button>
+            <el-button-group>
+                <el-button
+                    @click="handleClickAddArtifact"
+                    type="primary"
+                    :icon="IconEpPlus"
+                    size="small"
+                ></el-button>
 
-            <el-popconfirm
-                title="确定清除吗，将会同时清除圣遗物套装数据"
-                @confirm="handleClickDeleteAll"
-                style="margin-right: 8px"
-            >
-                <el-button slot="reference" size="mini" icon="el-icon-delete" type="danger" title="清空">
-                    清空
-                </el-button>
-            </el-popconfirm>
+                <el-popconfirm
+                    title="确定清除吗，将会同时清除圣遗物套装数据"
+                    @confirm="deleteAllArtifacts"
+                    style="margin-right: 8px"
+                >
+                    <template #reference>
+                        <el-button size="small" :icon="IconEpDelete" type="danger" title="清空">
+                            清空
+                        </el-button>
+                    </template>
 
-            <el-button size="mini" icon="el-icon-unlock" title="启用全部" @click="unlockAllArtifacts"
-                >启用全部</el-button
-            >
+                </el-popconfirm>
 
-            <el-button size="mini" icon="el-icon-s-opportunity" @click="handleClickRecommendation">推荐</el-button>
+                <el-button size="small" :icon="IconEpUnlock" title="启用全部" @click="unlockAllArtifacts">启用全部</el-button>
+
+                <el-button size="small" :icon="IconFa6Lightbulb" @click="handleClickRecommendation">推荐</el-button>
+            </el-button-group>
+
 
             <div class="tool-right">
-                <el-button @click="handleYasUIClicked" size="mini" type="primary" v-if="deviceIsPC"> 扫描 </el-button>
-                <el-button @click="handleImportJsonClicked" size="mini" type="primary"> 导入 </el-button>
-<!--                <el-button @click="handleOutputJsonClicked" size="mini"> 导出 </el-button>-->
+                <el-button-group>
+                    <el-button @click="handleYasUIClicked" size="small" type="primary" v-if="deviceIsPC">扫描</el-button>
+                    <el-button @click="handleImportJsonClicked" size="small" type="primary">导入</el-button>
 
-                <el-dropdown split-button size="mini" @click="handleOutputJsonClicked" @command="handleOutputCommand">
-                    导出
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item command="monaJson">莫娜JSON</el-dropdown-item>
-                        <el-dropdown-item command="share">分享链接</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
+                    <el-dropdown split-button size="small" @click="handleOutputJsonClicked" @command="handleOutputCommand">
+                        导出
+                        <template #dropdown>
+                            <el-dropdown-menu>
+                                <el-dropdown-item command="monaJson">莫娜JSON</el-dropdown-item>
+                                <el-dropdown-item command="share">分享链接</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </template>
+                    </el-dropdown>
+                </el-button-group>
+
+<!--                <el-button @click="handleOutputJsonClicked" size="small"> 导出 </el-button>-->
+
+
             </div>
         </div>
 
@@ -140,15 +161,15 @@
                 ></select-artifact-main-stat>
             </div>
 
-            <el-checkbox v-model="ge16" class="show-only-16">只显示16级以上</el-checkbox>
+            <el-checkbox v-model="filterGe16" class="show-only-16">只显示16级以上</el-checkbox>
         </div>
 
         <!-- artifacts display -->
         <el-tabs v-model="activeName">
             <el-tab-pane v-for="tab in tabs" :key="tab.name" class="panel" :name="tab.name">
-                <div slot="label">
+                <template #label>
                     <img :src="tab.icon" class="icon" />
-                </div>
+                </template>
 
                 <div v-if="filteredArtifacts.length > 0">
                     <div class="artifacts-div mona-scroll-hidden">
@@ -160,16 +181,11 @@
                             :buttons="true"
                             :delete-button="true"
                             :edit-button="true"
-                            @delete="handleClickRemoveArtifact(item.id)"
-                            @toggle="handleClickToggleArtifact(item.id)"
+                            @delete="deleteArtifact(item.id)"
+                            @toggle="toggleArtifact(item.id)"
                             @edit="handleClickEditArtifact(item.id)"
                         ></artifact-display>
                     </div>
-                    <!--                    <el-pagination-->
-                    <!--                        :current-page.sync="currentPage"-->
-                    <!--                        :page-size="pageSize"-->
-                    <!--                        :total="filteredArtifacts.length"-->
-                    <!--                    ></el-pagination>-->
                 </div>
                 <div v-else>
                     <el-empty></el-empty>
@@ -179,19 +195,15 @@
     </div>
 </template>
 
-<script>
-import {mapGetters} from 'vuex';
-import {
-    getArtifactsRecommendation,
-    importMonaJson,
-    removeArtifact,
-    toggleArtifact,
-    updateArtifact,
-} from '@util/artifacts';
-import {positions} from '@const/misc';
-import {downloadString} from '@util/common';
-import {deviceIsPC} from "@util/device"
-import { getRepo, createRepo } from "@/api/repo"
+<script setup lang="ts">
+import {getArtifactsRecommendation, importMonaJson,} from '@/utils/artifacts'
+import {positions} from '@/constants/artifact'
+import {downloadString} from '@/utils/common'
+import {deviceIsPC} from "@/utils/device"
+import {createRepo, getRepo} from "@/api/repo"
+import {computed, nextTick, ref, type Ref} from "vue"
+import {useRoute} from "vue-router"
+import {useArtifactStore} from "@/store/pinia/artifact"
 
 import flowerIcon from '@image/misc/flower.png';
 import featherIcon from '@image/misc/feather.png';
@@ -206,6 +218,66 @@ import SelectArtifactMainStat from '@c/select/SelectArtifactMainStat';
 import ArtifactDisplay from '@c/display/ArtifactDisplay';
 import EditArtifact from './EditArtifact';
 import ImportBlock from '@c/misc/ImportBlock';
+import {type ArtifactPosition, ArtifactSetName, ArtifactStatName, IArtifactContentOnly} from "@/types/artifact"
+import {ElLoading, ElMessage, ElMessageBox, ElNotification} from "element-plus"
+
+import IconEpPlus from "~icons/ep/plus"
+import IconEpUnlock from "~icons/ep/unlock"
+import IconFa6Lightbulb from "~icons/fa6-regular/lightbulb"
+import IconEpMore from "~icons/ep/more"
+import IconEpDelete from "~icons/ep/delete"
+import IconFa6PaperPlane from "~icons/fa6-regular/paper-plane"
+import IconFa6SolidUpload from "~icons/fa6-solid/upload"
+import IconFa6SolidShareNodes from "~icons/fa6-solid/share-nodes"
+import IconFa6SolidDownload from "~icons/fa6-solid/download"
+
+
+// if param is set, load artifacts from remote
+// const loading = ref(false)
+// const route = useRoute()
+// if (route.query.code) {
+//     const code = route.query.code
+//     console.log(code)
+//
+//     if (code) {
+//         loading.value = true
+//         getRepo(code).then(response => {
+//             if (response.status === 200) {
+//                 const data = response.data
+//                 const content = data.content
+//
+//                 const doImport = () => {
+//                     // vm.$notify.info({
+//                     //     title: "正在导入",
+//                     //     message: "检测到可导入内容，正在执行导入"
+//                     // })
+//                     setImmediate(() => {
+//                         importJson(content, false)
+//                         loading.value = false
+//                     })
+//                     // vm.importJson(content)
+//                 }
+//
+//                 const artifactsCount = vm.$store.getters["artifacts/count"]
+//                 if (artifactsCount > 0) {
+//                     vm.$confirm("本地已经存在圣遗物，是否继续导入", "提示", {
+//                         confirmButtonText: "继续",
+//                         cancelButtonText: "取消",
+//                         type: "warning"
+//                     }).then(() => {
+//                         doImport()
+//                     }).catch(() => {})
+//                 } else {
+//                     // console.log(123)
+//                     doImport()
+//                 }
+//             }
+//         }).finally(() => {
+//             // vm.loading = false
+//         })
+//     }
+// }
+
 
 const tabs = [
     { icon: flowerIcon, name: 'flower' },
@@ -215,342 +287,304 @@ const tabs = [
     { icon: headIcon, name: 'head' },
 ];
 Object.freeze(tabs);
+const activeName = ref("flower" as ArtifactPosition)
 
 const pageSize = 20;
 
-export default {
-    name: 'ArtifactsPage',
-    components: {
-        ImportBlock,
-        AddArtifactDialog,
-        SelectArtifactSet,
-        SelectArtifactMainStat,
-        ArtifactDisplay,
-        EditArtifact,
-        YasUiDialog,
-    },
-    created: function () {
-        this.tabs = tabs;
-        this.pageSize = pageSize;
-        this.deviceIsPC = deviceIsPC
-    },
-    data: function () {
-        return {
-            activeName: 'flower',
+const artifactStore = useArtifactStore()
 
-            newDialogVisible: false,
-            showEditArtifactDrawer: false,
-            showImportDialog: false,
-            showYasUIDialog: false,
-            showArtifactRecommendationDrawer: false,
-            showOutputShareDialog: false,
+// artifact crud
+function unlockAllArtifacts() {
+    artifactStore.unlockAll()
+}
 
-            recommendationList: [],
-            recommendationInCalculation: false,
+function deleteAllArtifacts() {
+    artifactStore.deleteAll()
+}
 
-            filterSet: [],
-            filterMainStat: [],
-            ge16: true,
-            // currentPage: 1,
+function removeArtifact(id: number) {
+    artifactStore.removeArtifact(id)
+}
 
-            importDeleteUnseen: false,
+function toggleArtifact(id: number) {
+    artifactStore.toggleArtifact(id)
+}
 
-            loading: false,
-            shareLink: ""
-        };
-    },
-    beforeRouteEnter(to, from, next) {
-        next(vm => {
-            const code = to.query.code
-            console.log(code)
+function deleteArtifact(id: number) {
+    artifactStore.removeArtifact(id)
+}
 
-            if (code) {
-                vm.loading = true
-                getRepo(code).then(response => {
-                    if (response.status === 200) {
-                        const data = response.data
-                        const content = data.content
+// artifacts filters and display
+const filterSet: Ref<ArtifactSetName[]> = ref([])
+const filterMainStat: Ref<ArtifactStatName[]> = ref([])
+const filterGe16 = ref(true)
 
-                        const doImport = () => {
-                            // vm.$notify.info({
-                            //     title: "正在导入",
-                            //     message: "检测到可导入内容，正在执行导入"
-                            // })
-                            setImmediate(() => {
-                                vm.importJson(content)
-                                vm.loading = false
-                            })
-                            // vm.importJson(content)
-                        }
+const artifactsCurrentSlot = computed(() => {
+    return artifactStore.artifactsByPosition.value[activeName.value];
+})
 
-                        const artifactsCount = vm.$store.getters["artifacts/count"]
-                        if (artifactsCount > 0) {
-                            vm.$confirm("本地已经存在圣遗物，是否继续导入", "提示", {
-                                confirmButtonText: "继续",
-                                cancelButtonText: "取消",
-                                type: "warning"
-                            }).then(() => {
-                                doImport()
-                            }).catch(() => {})
-                        } else {
-                            // console.log(123)
-                            doImport()
-                        }
-                    }
-                }).finally(() => {
-                    // vm.loading = false
-                })
-            }
+const filteredArtifacts = computed(() => {
+    let results = [];
+
+    for (let artifact of artifactsCurrentSlot.value) {
+        const setName = artifact.setName;
+        const mainStatName = artifact.mainTag.name;
+        const level = artifact.level;
+
+        if (filterSet.value.length > 0 && filterSet.value.indexOf(setName) === -1) {
+            continue;
+        }
+        if (filterMainStat.value.length > 0 && filterMainStat.value.indexOf(mainStatName) === -1) {
+            continue;
+        }
+        if (filterGe16.value && level < 16) {
+            continue;
+        }
+
+        results.push(artifact);
+    }
+
+    return results;
+})
+
+const artifactToBeDisplayed = computed(() => {
+    return filteredArtifacts.value
+})
+
+
+// new artifact related
+const newDialogVisible = ref(false)
+
+function handleClickAddArtifact() {
+    newDialogVisible.value = true
+}
+
+function handleConfirmAddArtifact(a: IArtifactContentOnly) {
+    const position = a.position
+    newDialogVisible.value = false
+    artifactStore.addArtifact(a)
+    activeName.value = position
+}
+
+
+// YAS-UI related
+const showYasUIDialog = ref(false)
+
+function handleYasUIClicked() {
+    showYasUIDialog.value = true
+}
+
+
+// share functionalities
+const showOutputShareDialog = ref(false)
+const shareLink = ref("")
+
+function handleCopyShareLink() {
+    if (window.navigator) {
+        navigator.clipboard.writeText(shareLink.value)
+        ElMessage({
+            message: "复制成功",
+            type: "success"
         })
-    },
-    methods: {
-        unlockAllArtifacts() {
-            this.$store.commit('artifacts/unlockAll')
-        },
+        showOutputShareDialog.value = false
+    }
+}
 
-        handleCopyShareLink() {
-            if (window.navigator) {
-                navigator.clipboard.writeText(this.shareLink)
-                this.$message.success("复制成功")
-                this.showOutputShareDialog = false
-            }
-        },
+function shareArtifact() {
+    ElNotification({
+        title: "创建中",
+        message: "莫娜正在创建分享链接",
+        duration: 2000
+    })
 
-        handleDropdownCommand(command) {
-            switch (command) {
-                case "add":
-                    this.add()
-                    break
-                case "deleteAll":
-                    this.$confirm("确实删除所有圣遗物？（将同时删除所有套装）", "提示", {
-                        confirmButtonText: "确定",
-                        cancelButtonText: "取消",
-                        type: "warning"
-                    }).then(() => {
-                        this.handleClickDeleteAll()
-                    }).catch(() => {})
-                    break
-                case "unlockAll":
-                    this.unlockAllArtifacts()
-                    break
-                case "recommend":
-                    this.handleClickRecommendation()
-                    break
-                case "importJson":
-                    this.handleImportJsonClicked()
-                    break
-                case "exportJson":
-                    this.handleOutputJsonClicked()
-                    break
-                case "exportShare":
-                    this.shareArtifact()
-                    break
-            }
-        },
+    const str = getArtifactString()
+    createRepo(str).then(response => {
+        // console.log(response)
+        if (response.status === 200) {
+            // console.log("success")
+            const code = response.data.code
+            shareLink.value = `https://mona-uranai.com/artifacts?code=${code}`
+            showOutputShareDialog.value = true
+        }
+    })
+}
 
-        handleClickDeleteAll() {
-            this.$store.commit('artifacts/removeAllArtifacts');
-        },
 
-        handleClickRemoveArtifact(id) {
-            removeArtifact(id);
-        },
+// import/export artifacts
+const showImportDialog = ref(false)
+const fileUploader: Ref<InstanceType<typeof ImportBlock> | null> = ref(null)
+const importDeleteUnseen = ref(false)
 
-        handleClickToggleArtifact(id) {
-            toggleArtifact(id);
-        },
+function handleImportJsonClicked() {
+    showImportDialog.value = true;
+}
 
-        handleClickEditArtifact(id) {
-            // console.log(id)
-            this.showEditArtifactDrawer = true;
+async function importJson(text: string, deleteUnseen: boolean) {
+    try {
+        const rawObj = JSON.parse(text)
+        await importMonaJson(rawObj, deleteUnseen)
+    } catch (e) {
+        ElMessage({
+            message: "格式不正确",
+            type: "error"
+        })
+    }
+}
 
-            this.$nextTick(() => {
-                let component = this.$refs['editArtifactDrawer'];
-                if (!component) {
-                    return;
-                }
-                component.setId(id);
-            });
-        },
+function handleImportJson() {
+    const component = fileUploader.value;
+    if (!component) {
+        return;
+    }
 
-        handleConfirmEdit(id) {
-            let component = this.$refs['editArtifactDrawer'];
-            if (!component) {
-                return;
-            }
-            let newArtifact = component.getNewArtifact();
+    const loading = ElLoading.service({
+        lock: true,
+        text: "导入中"
+    })
 
-            updateArtifact(id, newArtifact);
-
-            this.showEditArtifactDrawer = false;
-        },
-
-        add: function () {
-            this.newDialogVisible = true;
-        },
-
-        handleAddArtifact: function (item) {
-            this.newDialogVisible = false;
-
-            this.activeName = item.position;
-
-            this.$store.commit('artifacts/addArtifact', item);
-        },
-
-        handleImportJsonClicked() {
-            this.showImportDialog = true;
-        },
-
-        handleYasUIClicked() {
-            this.showYasUIDialog = true;
-        },
-
-        async importJson(text, deleteUnseen) {
-            try {
-                const rawObj = JSON.parse(text)
-                await importMonaJson(rawObj, deleteUnseen)
-            } catch (e) {
-                this.$message.error("格式不正确")
-            }
-        },
-
-        handleImportJson() {
-            const component = this.$refs.fileUploader;
-            if (!component) {
-                return;
-            }
-
-            const loading = this.$loading({
-                lock: true,
-                text: '导入中',
-            });
-
-            component
-                .getReadPromise()
-                .then((text) => {
-                    this.importJson(text, this.importDeleteUnseen)
-                })
-                .catch((e) => {
-                    this.$message.error(e);
-                })
-                .finally(() => {
-                    loading.close();
-                });
-        },
-
-        getArtifactString() {
-            let temp = {
-                version: '1',
-            }
-
-            for (let position in positions) {
-                temp[position] = this.$store.state.artifacts[position]
-            }
-
-            return JSON.stringify(temp)
-        },
-
-        handleOutputJsonClicked() {
-            const str = this.getArtifactString()
-            downloadString(str, 'application/json', 'artifacts_mona');
-        },
-
-        shareArtifact() {
-            this.$notify.info({
-                title: "创建中",
-                message: "莫娜正在创建分享链接",
-                duration: 2000
+    if (fileUploader.value) {
+        fileUploader.value
+            .getReadPromise()
+            .then((text: string) => {
+                importJson(text, importDeleteUnseen.value)
             })
-
-            const str = this.getArtifactString()
-            createRepo(str).then(response => {
-                // console.log(response)
-                if (response.status === 200) {
-                    // console.log("success")
-                    const code = response.data.code
-                    const link = `https://mona-uranai.com/artifacts?code=${code}`
-                    this.shareLink = link
-                    this.showOutputShareDialog = true
-                }
+            .catch((e: any) => {
+                ElMessage({
+                    message: e,
+                    type: "error"
+                })
             })
-        },
-
-        handleOutputCommand(command) {
-            switch (command) {
-                case "monaJson": {
-                    this.handleOutputJsonClicked()
-                    break
-                }
-                case "share": {
-                    this.shareArtifact()
-                    break
-                }
-            }
-        },
-
-        handleClickRecommendation() {
-            const presetLength = this.$store.getters['presets/allFlat'].length;
-            if (presetLength === 0) {
-                this.$message.error('添加计算预设以使用该功能');
-                return;
-            }
-
-            this.showArtifactRecommendationDrawer = true;
-
-            getArtifactsRecommendation().then((result) => {
-                let temp = result.slice(0, 50);
-                const maxValue = temp.map((item) => item[1]).reduce((p, c) => Math.max(p, c), 0);
-
-                for (let i = 0; i < temp.length; i++) {
-                    temp[i][1] /= maxValue;
-                }
-
-                this.recommendationList = temp;
+            .finally(() => {
+                loading.close()
+                showImportDialog.value = false
             });
-        },
-    },
-    computed: {
-        ...mapGetters('artifacts', ['allArtifacts', 'artifactsById', 'count']),
+    }
+}
 
-        artifactsCurrentSlotFlat() {
-            const items = this.allArtifacts[this.activeName];
-            return items;
-        },
+function getArtifactString(): string {
+    let temp = {
+        version: '1',
+        flower: [],
+        sand: [],
+        feather: [],
+        cup: [],
+        head: []
+    } as any
 
-        filteredArtifacts() {
-            let results = [];
+    for (let position of positions) {
+        temp[position] = artifactStore.artifactsByPosition.value[position]
+    }
 
-            for (let artifact of this.artifactsCurrentSlotFlat) {
-                const setName = artifact.setName;
-                const mainStatName = artifact.mainTag.name;
-                const level = artifact.level ?? 20;
+    return JSON.stringify(temp)
+}
 
-                if (this.filterSet.length > 0 && this.filterSet.indexOf(setName) === -1) {
-                    continue;
+function handleOutputJsonClicked() {
+    const str = getArtifactString()
+    downloadString(str, 'application/json', 'artifacts_mona');
+}
+
+
+// edit artifacts
+const showEditArtifactDrawer = ref(false)
+const editArtifactComponent: Ref<InstanceType<typeof EditArtifact> | null> = ref(null)
+
+function handleClickEditArtifact(id: number) {
+    showEditArtifactDrawer.value = true;
+
+    nextTick(() => {
+        if (editArtifactComponent.value) {
+            editArtifactComponent.value.setId(id)
+        }
+    });
+}
+
+function handleConfirmEdit(id: number) {
+    if (editArtifactComponent.value) {
+        const newArtifact: IArtifactContentOnly = editArtifactComponent.value.getNewArtifact() as IArtifactContentOnly
+        artifactStore.updateArtifact(id, newArtifact)
+    }
+
+    showEditArtifactDrawer.value = false
+}
+
+
+// artifacts recommendation
+const showArtifactRecommendationDrawer = ref(false)
+const recommendationList: Ref<[number, number][]> = ref([])
+const recommendationInCalculation = ref(false)
+
+function handleClickRecommendation() {
+    // todo
+    // const presetLength = this.$store.getters['presets/allFlat'].length;
+    // if (presetLength === 0) {
+    //     this.$message.error('添加计算预设以使用该功能');
+    //     return;
+    // }
+
+    showArtifactRecommendationDrawer.value = true;
+
+    getArtifactsRecommendation().then((result) => {
+        let temp = result.slice(0, 50);
+        const maxValue = temp.map((item) => item[1]).reduce((p, c) => Math.max(p, c), 0);
+
+        for (let i = 0; i < temp.length; i++) {
+            temp[i][1] /= maxValue;
+        }
+
+        recommendationList.value = temp as [number, number][];
+    });
+}
+
+
+// commands
+function handleDropdownCommand(command: string) {
+    switch (command) {
+        case "add":
+            handleClickAddArtifact()
+            break
+        case "deleteAll":
+            ElMessageBox.confirm(
+                "确实删除所有圣遗物？（将同时删除所有套装）",
+                "提示",
+                {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    type: "warning"
                 }
-                if (this.filterMainStat.length > 0 && this.filterMainStat.indexOf(mainStatName) === -1) {
-                    continue;
-                }
-                if (this.ge16 && level < 16) {
-                    continue;
-                }
+            ).then(() => {
+                deleteAllArtifacts()
+            }).catch(() => {})
+            break
+        case "unlockAll":
+            unlockAllArtifacts()
+            break
+        case "recommend":
+            handleClickRecommendation()
+            break
+        case "importJson":
+            handleImportJsonClicked()
+            break
+        case "exportJson":
+            handleOutputJsonClicked()
+            break
+        case "exportShare":
+            shareArtifact()
+            break
+    }
+}
 
-                results.push(artifact);
-            }
-
-            return results;
-        },
-
-        artifactToBeDisplayed() {
-            // return this.artifactsCurrentSlotFlat
-            return this.filteredArtifacts;
-            // const start = (this.currentPage - 1) * pageSize
-            // const end = Math.min(start + pageSize, this.filteredArtifacts.length)
-            //
-            // return this.filteredArtifacts.slice(start, end)
-        },
-    },
-};
+function handleOutputCommand(command: string) {
+    switch (command) {
+        case "monaJson": {
+            handleOutputJsonClicked()
+            break
+        }
+        case "share": {
+            shareArtifact()
+            break
+        }
+    }
+}
 </script>
 
 <style scoped lang="scss">

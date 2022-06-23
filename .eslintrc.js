@@ -1,25 +1,23 @@
 /* eslint-disable */
 
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
+    // "env": [
+    //   'plugin:vue/vue3-essential',
+    //   'eslint:recommended',
+    //   '@vue/typescript'
+    // ],
+
     "extends": [
-        "plugin:vue/essential",
-        "standard"
+        "plugin:vue/vue3-essential",
+        "eslint:recommended",
+        '@vue/typescript'
     ],
+
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
-    "parserOptions": {
-        "ecmaVersion": 2020,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "vue"
-    ],
+
     "rules": {
         "quotes": ["warn", "double"],
         "indent": ["error", 4],
@@ -27,6 +25,7 @@ module.exports = {
         "comma-dangle": ["warn", "never"],
         "eol-last": ["warn", "always"],
     },
+
     "ignorePatterns": [
         "node_modules/**/*",
         "src/**/*",
@@ -35,4 +34,10 @@ module.exports = {
         "sub/**/*",
         // "**/*"
     ],
+
+    parserOptions: {
+      parser: '@typescript-eslint/parser',
+      ecmaVersion: 2020,
+      sourceType: 'module'
+    }
 };

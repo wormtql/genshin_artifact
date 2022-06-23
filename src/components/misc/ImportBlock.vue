@@ -2,7 +2,7 @@
     <div>
         <div
             class="root"
-            :class="{ over: isDragOver }"
+            :class="{ over: isDragover }"
             ref="rootBox"
             @dragenter="handleDragEnter"
             @dragleave="handleDragLeave"
@@ -11,7 +11,10 @@
             @click="handleClick"
         >
             <div class="center-div">
-                <i class="el-icon-upload"></i>
+                <el-icon>
+                    <i-fa6-solid-upload></i-fa6-solid-upload>
+                </el-icon>
+<!--                <i class="el-icon-upload"></i>-->
                 <span>点击，或拖拽上传</span>
             </div>
         </div>
@@ -24,140 +27,138 @@
 
 </template>
 
-<script>
-export default {
-    name: "ImportBlock",
-    mounted() {
-        // const ele = this.$refs.rootBox
-        // console.log(!!window.FileReader)
-        // ele.ondrop = e => {
-        //     e.preventDefault()
-        //     this.handleDrop(e)
-        // }
-        this.file = null
-    },
-    data() {
-        return {
-            isDragOver: false,
+<script setup lang="ts">
+// drag drop
+import {Ref} from "vue";
 
-            hasFile: false,
-            fileName: "",
-        }
-    },
-    methods: {
-        handleDrop(ev) {
-            ev.preventDefault()
+const isDragover = ref(false)
 
-            this.isDragOver = false
-            // console.log(ev)
+function handleDragEnter(e: DragEvent) {
+    e.preventDefault()
 
-            let file = null
-            if (ev.dataTransfer.items) {
-                // Use DataTransferItemList interface to access the file(s)
-                for (let i = 0; i < ev.dataTransfer.items.length; i++) {
-                    // If dropped items aren't files, reject them
-                    if (ev.dataTransfer.items[i].kind === 'file') {
-                        file = ev.dataTransfer.items[i].getAsFile()
-                        break
-                        // console.log('... file[' + i + '].name = ' + file.name);
-                    }
-                }
-            } else {
-                // Use DataTransfer interface to access the file(s)
-                file = ev.dataTransfer.files[0].name
-            }
+    isDragover.value = true
+}
 
-            // if (!file) {
-            //     return
-            // }
+function handleDragLeave(e: DragEvent) {
+    e.preventDefault()
 
-            // let fileReader = new FileReader()
-            this.file = file
+    isDragover.value = false
+}
 
-            if (file) {
-                this.hasFile = true
-                this.fileName = file.name
-            }
+function handleDragover(e: DragEvent) {
+    e.preventDefault()
+}
 
-            // let df = e.dataTransfer
-            // if (df.length === 0) {
-            //     return;
-            // }
-            //
-            // let file = df.files[0];
-            // let fileReader = new FileReader();
-            //
-            // fileReader.onload = (readResult) => {
-            //     this.json = readResult.target.result;
-            // };
-            // fileReader.readAsText(file);
-        },
 
-        getReadPromise() {
-            return new Promise((resolve, reject) => {
-                if (!this.file) {
-                    reject("未选择文件")
-                }
+// select or drop file
+const file: Ref<null | File> = ref(null)
+const hasFile = ref(false)
+const fileName = ref("")
+const fileInput: Ref<null | HTMLInputElement> = ref(null)
 
-                try {
-                    let fileReader = new FileReader()
+function handleClick() {
+    if (!fileInput.value) {
+        return
+    }
 
-                    fileReader.onload = result => {
-                        resolve(result.target.result)
-                    }
-                    fileReader.onerror = error => {
-                        reject(error)
-                    }
+    fileInput.value.click()
+}
 
-                    fileReader.readAsText(this.file)
-                } catch(e) {
-                    reject(e)
-                }
-            })
-        },
+function handleSelectFile() {
+    if (!fileInput.value) {
+        return
+    }
 
-        handleDragEnter(e) {
-            e.preventDefault()
-
-            this.isDragOver = true
-        },
-
-        handleDragLeave(e) {
-            e.preventDefault()
-
-            this.isDragOver = false
-        },
-
-        handleDragover(e) {
-            e.preventDefault()
-            // console.log(e)
-        },
-
-        handleClick() {
-            const component = this.$refs["fileInput"]
-            if (!component) {
-                return
-            }
-
-            component.click()
-        },
-
-        handleSelectFile(e) {
-            // console.log(e)
-            const component = this.$refs["fileInput"]
-            if (!component) {
-                return
-            }
-            const files = Array.from(component.files)
-            // console.log(files)
-            if (files.length > 0) {
-                this.file = files[0]
-                this.hasFile = true
-                this.fileName = files[0].name
-            }
+    if (fileInput.value.files) {
+        const files = Array.from(fileInput.value.files)
+        // console.log(files)
+        if (files.length > 0) {
+            file.value = files[0]
+            hasFile.value = true
+            fileName.value = files[0].name
         }
     }
 }
+
+function handleDrop(ev: DragEvent) {
+    ev.preventDefault()
+
+    isDragover.value = false
+
+    let f: File | null = null
+
+    if (ev.dataTransfer) {
+        if (ev.dataTransfer.items) {
+            // Use DataTransferItemList interface to access the file(s)
+            for (let i = 0; i < ev.dataTransfer.items.length; i++) {
+                // If dropped items aren't files, reject them
+                if (ev.dataTransfer.items[i].kind === 'file') {
+                    f = ev.dataTransfer.items[i].getAsFile()
+                    break
+                    // console.log('... file[' + i + '].name = ' + file.name);
+                }
+            }
+        } else {
+            // Use DataTransfer interface to access the file(s)
+            f = ev.dataTransfer.files[0]
+        }
+    }
+
+
+    // if (!file) {
+    //     return
+    // }
+
+    // let fileReader = new FileReader()
+    file.value = f
+
+    if (f) {
+        hasFile.value = true
+        fileName.value = f.name
+    }
+
+    // let df = e.dataTransfer
+    // if (df.length === 0) {
+    //     return;
+    // }
+    //
+    // let file = df.files[0];
+    // let fileReader = new FileReader();
+    //
+    // fileReader.onload = (readResult) => {
+    //     this.json = readResult.target.result;
+    // };
+    // fileReader.readAsText(file);
+}
+
+function getReadPromise(): Promise<string> {
+    return new Promise((resolve, reject) => {
+        if (!file.value) {
+            reject("未选择文件")
+        }
+
+        try {
+            let fileReader = new FileReader()
+
+            fileReader.onload = result => {
+                if (result.target) {
+                    resolve(result.target.result as string)
+                }
+            }
+            fileReader.onerror = error => {
+                reject(error)
+            }
+
+            fileReader.readAsText(file.value as File)
+        } catch(e) {
+            reject(e)
+        }
+    })
+}
+
+defineExpose({
+    getReadPromise
+})
 </script>
 
 <style scoped lang="scss">
@@ -188,13 +189,14 @@ export default {
         pointer-events: none;
 
         i {
-            font-size: 67px;
+            font-size: 30px;
             color: #c0c4cc;
         }
 
         span {
             font-size: 14px;
             color: #606266;
+            margin-top: 8px;
         }
     }
 }

@@ -1,5 +1,5 @@
-import _artifactsTagMap from "./artifacts_main_tag.json";
-import _artifactsSecondaryTag from "./artifacts_secondary_tag.json";
+import _artifactsTagMap from "./artifacts_main_tag.json"
+import _artifactsSecondaryTag from "./artifacts_secondary_tag.json"
 import _artifactsIcon from "./icons";
 
 // let cache = {};
@@ -17,7 +17,7 @@ import _artifactsIcon from "./icons";
 import _data from "../_gen_artifact"
 Object.freeze(_data)
 
-export const artifactsData = _data;
+export const artifactsData: any = _data;
 // export const artifactsData = cache;
 export const artifactsTagMap = _artifactsTagMap;
 export const artifactsSecondaryTag = _artifactsSecondaryTag;

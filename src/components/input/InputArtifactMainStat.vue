@@ -1,21 +1,20 @@
 <template>
     <el-input
-        size="small"
-        :value="value.value"
-        @input="handleChangeValue"
+        :model-value="modelValue.value"
+        @update:modelValue="handleChangeValue"
     >
-        <template slot="prepend">
+        <template #prepend>
             <select-artifact-main-stat
                 :include-any="false"
                 :position="position"
-                :value="name"
-                @input="handleChangeName"
+                :model-value="name"
+                @update:modelValue="handleChangeName"
                 style="width: 100px"
             ></select-artifact-main-stat>
         </template>
 
-        <template slot="append">
-            <span v-if="isPercent">%</span>
+        <template v-if="isPercent" #append>
+            <span>%</span>
         </template>
     </el-input>
 </template>
@@ -27,45 +26,38 @@ import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
 
 export default {
     name: "InputArtifactMainStat",
-    props: ["value", "position"],
+    props: ["modelValue", "position"],
+    emits: ["update:modelValue"],
     components: {
         SelectArtifactMainStat
     },
     methods: {
         handleChangeName(name) {
-            console.log(name)
-            if (name !== this.value.name) {
+            if (name !== this.modelValue.name) {
                 let value = artifactTags[name].max[5]
                 const isPercent = artifactTags[name].percentage
                 if (isPercent) {
                     value *= 100
                 }
 
-                this.$emit("input", { name, value })
+                this.$emit("update:modelValue", { name, value })
             }
         },
 
         handleChangeValue(value) {
-            // value = parseFloat(value)
-            // if (isNaN(value)) {
-            //     value = 0
-            // }
-            // if (this.isPercent) {
-            //     value = value / 100
-            // }
-            this.$emit("input", { name: this.value.name, value })
+            this.$emit("update:modelValue", { name: this.modelValue.name, value })
         }
     },
     computed: {
         isPercent() {
-            if (!this.value.name) {
+            if (!this.modelValue.name) {
                 return false
             }
-            return artifactTags[this.value.name].percentage
+            return artifactTags[this.modelValue.name].percentage
         },
 
         name() {
-            return this.value.name
+            return this.modelValue.name
         },
 
         // displayedValue() {

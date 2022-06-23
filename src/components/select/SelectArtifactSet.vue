@@ -1,15 +1,14 @@
 <template>
     <el-select
-        @input="$emit('input', $event)"
-        :value="value"
-        :disabled="disabled"
-        size="small"
-        :multiple="multiple"
-        :multiple-limit="multipleLimit"
-        :placeholder="placeholder"
+        @update:modelValue="emits('update:modelValue', $event)"
+        :model-value="props.modelValue"
+        :disabled="props.disabled"
+        :multiple="props.multiple"
+        :multiple-limit="props.multipleLimit"
+        :placeholder="props.placeholder"
     >
         <el-option
-            v-if="anyOption"
+            v-if="props.anyOption"
             label="任意"
             value="any"
         >
@@ -28,54 +27,47 @@
     </el-select>
 </template>
 
-<script>
-import { artifactsData } from "@asset/artifacts";
-import { getArtifactThumbnailURL } from "@util/utils";
+<script setup lang="ts">
+import { artifactsData } from "@asset/artifacts"
+import { getArtifactThumbnailURL } from "@util/utils"
 
-let allArtifacts = Object.values(artifactsData);
-allArtifacts.sort((a, b) => {
+let allArtifacts = Object.values(artifactsData)
+allArtifacts.sort((a: any, b: any) => {
     return b.maxStar - a.maxStar;
-});
-let allArtifactsName = allArtifacts.map(item => {
+})
+let allArtifactsName = allArtifacts.map((item: any) => {
     return {
         name: item.eng,
         chs: item.chs,
         url: getArtifactThumbnailURL(item.eng),
     };
 });
+Object.freeze(allArtifactsName)
 
 
-export default {
-    name: "SelectArtifactSet",
-    created: function () {
-        this.allArtifactsName = allArtifactsName;
-    },
-    props: {
-        value: {
-            type: String | Array,
-            required: true,
-        },
-        disabled: {
-            type: Boolean,
-            default: false,
-        },
-        anyOption: {
-            type: Boolean,
-            default: false,
-        },
-        multiple: {
-            type: Boolean,
-            default: false,
-        },
-        multipleLimit: {
-            default: 2
-        },
-        placeholder: {
-            type: String,
-            default: "请选择"
-        }
-    }
+interface Emits {
+    (e: "update:modelValue", value: string | string[]): void
 }
+
+const emits = defineEmits<Emits>()
+
+interface Props {
+    modelValue: string | string[],
+    disabled?: boolean,
+    anyOption?: boolean,
+    multiple?: boolean,
+    multipleLimit?: number,
+    placeholder?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    modelValue: "",
+    disabled: false,
+    anyOption: false,
+    multiple: false,
+    multipleLimit: 2,
+    placeholder: "请选择"
+})
 </script>
 
 <style scoped>

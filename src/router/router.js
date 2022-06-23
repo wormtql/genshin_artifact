@@ -1,20 +1,23 @@
+import { defineAsyncComponent } from "vue"
+
 import LoadingComponent from "@c/LoadingComponent"
 import ErrorComponent from "@c/ErrorComponent"
-import VueRouter from "vue-router"
-import NewArtifactPlanPage from "@page/NewArtifactPlanPage"
-import TeamOptimizationPage from "@page/TeamOptimizationPage"
-import NewArtifactPotentialPage from "@page/NewArtifactPotentialPage"
+// import NewArtifactPlanPage from "@page/NewArtifactPlanPage"
+// import TeamOptimizationPage from "@page/TeamOptimizationPage"
+// import NewArtifactPotentialPage from "@page/NewArtifactPotentialPage"
 import CharacterDBPage from "@page/CharacterDBPage"
 import CharacterInfo from "@page/CharacterDBPage/CharacterInfo"
 import MonaPlaygroundPage from "@page/MonaPlaygroundPage"
 
-const IntroPage = () => ({
-    component: import(/* webpackChunkName: "intro-page" */ "@page/about/IntroPage"),
-    loading: LoadingComponent,
-    error: ErrorComponent,
-});
-const ArtifactsPage = () => ({
-    component: import(/* webpackChunkName: "artifacts-page" */"@page/ArtifactsPage"),
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
+
+const IntroPage = defineAsyncComponent({
+    loader: () => import(/* webpackChunkName: "intro-page" */ "@page/about/IntroPage"),
+    loadingComponent: LoadingComponent,
+    errorComponent: ErrorComponent,
+})
+const ArtifactsPage = defineAsyncComponent({
+    loader: () => import(/* webpackChunkName: "artifacts-page" */"@page/ArtifactsPage"),
     loading: LoadingComponent,
     error: ErrorComponent,
 });
@@ -23,13 +26,14 @@ const ExternalLinkPage = () => ({
     loading: LoadingComponent,
     error: ErrorComponent,
 });
-const CharacterPresetsPage = () => (
-    {
-        component: import(/* webpackChunkName: "character-presets-page" */ "@page/CharacterPresetsPage"),
-        loading: LoadingComponent,
-        error: ErrorComponent,
-    }
-);
+// const CharacterPresetsPage = () => (
+//     {
+//         component: import(/* webpackChunkName: "character-presets-page" */ "@page/CharacterPresetsPage"),
+//         loading: LoadingComponent,
+//         error: ErrorComponent,
+//     }
+// );
+const CharacterPresetsPage = () => import(/* webpackChunkName: "character-presets-page" */ "@page/CharacterPresetsPage")
 const FAQPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/FAQPage");
 const ExportToolPage = () => import(/* webpackChunkName: "help-page" */ "@page/helps/ExportToolPage");
 const KumiPage = () => import (/* webpackChunkName: "kumi-page" */ "@page/KumiPage");
@@ -64,14 +68,14 @@ const routes = [
             },
         ]
     },
-    {
-        path: "/team-optimization",
-        component: TeamOptimizationPage,
-        meta: {
-            title: "整队优化",
-            keepAlive: true,
-        }
-    },
+    // {
+    //     path: "/team-optimization",
+    //     component: TeamOptimizationPage,
+    //     meta: {
+    //         title: "整队优化",
+    //         keepAlive: true,
+    //     }
+    // },
     {
         path: "/artifacts-kumi",
         component: KumiPage,
@@ -104,7 +108,7 @@ const routes = [
     },
     {
         path: "/intro",
-        component: IntroPage,
+        component: () => Promise.resolve(IntroPage),
         alias: "/",
         meta: {
             title: "首页",
@@ -118,15 +122,15 @@ const routes = [
             title: "圣遗物",
         }
     },
-    {
-        path: "/calculate",
-        name: "calculate",
-        component: NewArtifactPlanPage,
-        meta: {
-            keepAlive: true,
-            title: "星命定轨",
-        }
-    },
+    // {
+    //     path: "/calculate",
+    //     name: "calculate",
+    //     component: NewArtifactPlanPage,
+    //     meta: {
+    //         keepAlive: true,
+    //         title: "星命定轨",
+    //     }
+    // },
     {
         path: "/tomodachi",
         component: ExternalLinkPage,
@@ -134,15 +138,15 @@ const routes = [
             title: "友情链接",
         }
     },
-    {
-        path: "/potential",
-        // component: ArtifactPotentialPage,
-        component: NewArtifactPotentialPage,
-        meta: {
-            keepAlive: true,
-            title: "圣遗物潜力",
-        }
-    },
+    // {
+    //     path: "/potential",
+    //     // component: ArtifactPotentialPage,
+    //     component: NewArtifactPotentialPage,
+    //     meta: {
+    //         keepAlive: true,
+    //         title: "圣遗物潜力",
+    //     }
+    // },
     {
         path: "/presets",
         component: CharacterPresetsPage,
@@ -153,10 +157,10 @@ const routes = [
     },
 ]
 
-const router = new VueRouter({
-    mode: process.env.MONA_ROUTE_MODE,       // webpack define plugin
+const router = createRouter({
     routes,
-});
+    history: process.env.MONA_ROUTE_MODE === "hash" ? createWebHashHistory() : createWebHistory()
+})
 
 router.beforeEach((to, from, next) => {
     if (to.meta.title) {

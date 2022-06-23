@@ -18,8 +18,8 @@
                 <el-col :span="12">
                     <p class="config-title">位置</p>
                     <select-artifact-slot
-                        :value="position"
-                        @input="handleChangePosition"
+                        :model-value="position"
+                        @update:modelValue="handleChangePosition"
                     ></select-artifact-slot>
                 </el-col>
             </el-row>
@@ -37,7 +37,6 @@
                         v-model="level"
                         :max="20"
                         :min="0"
-                        size="small"
                     ></el-input-number>
                 </el-col>
             </el-row>
@@ -64,8 +63,7 @@
                     ></input-artifact-sub-stat>
 
                     <el-button
-                        size="mini"
-                        icon="el-icon-delete"
+                        :icon="IconEpDelete"
                         type="danger"
                         @click="handleRemoveSubStat(index)"
                     ></el-button>
@@ -73,21 +71,20 @@
             </div>
         </div>
 
-
         <el-divider></el-divider>
 
         <div class="section">
             <el-row :gutter="12">
                 <el-col :span="12">
                     <el-button type="primary" class="button"
-                        @click="$emit('confirm', artifactId)"
+                        @click="emits('confirm', artifactId)"
                     >
                         确定
                     </el-button>
                 </el-col>
                 <el-col :span="12">
                     <el-button class="button"
-                               @click="$emit('cancel')"
+                               @click="emits('cancel')"
                     >
                         取消
                     </el-button>
@@ -97,156 +94,176 @@
     </div>
 </template>
 
-<script>
-import flowerIcon from "@image/misc/flower.png"
-import {getArtifact, getArtifactImage, getArtifactImageByArtifact} from "@util/artifacts"
+<script setup lang="ts">
+import { ref } from "vue"
+
+import {getArtifact, getArtifactImage} from "@/utils/artifacts"
 import { artifactsData } from "@artifact"
-import { artifactTags, mainStatMap } from "@const/artifact"
-import { positions } from "@const/misc"
+import { artifactTags, mainStatMap } from "@/constants/artifact"
+import { positions } from "@/constants/artifact"
 
 import InputArtifactSubStat from "@c/input/InputArtifactSubStat"
 import InputArtifactMainStat from "@c/input/InputArtifactMainStat"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
 import SelectArtifactSlot from "@c/select/SelectArtifactSlot"
+import type {
+    ArtifactPosition,
+    ArtifactSetName,
+    IArtifactTag,
+    ArtifactSubStatName,
+    ArtifactMainStat
+} from "@/types/artifact"
+
+import IconEpDelete from "~icons/ep/delete"
 
 
-export default {
-    name: "EditArtifact",
-    components: {
-        InputArtifactSubStat,
-        InputArtifactMainStat,
-        SelectArtifactSet,
-        SelectArtifactSlot,
-    },
-    data() {
-        return {
-            artifactId: -1,
+interface Emits {
+    (e: "update:modelValue", v: any): void,
+    (e: "confirm", id: number): void,
+    (e: "cancel"): void
+}
 
-            setName: "berserker",
-            star: 5,
-            level: 20,
-            position: "flower",
-            mainStat: { name: "attackStatic", value: 0 },
-            subStats: [
-                { name: null, value: 0 },
-                { name: null, value: 0 },
-                { name: null, value: 0 },
-                { name: null, value: 0 },
-            ]
-        }
-    },
-    methods: {
-        handleChangePosition(position) {
-            this.position = position
+const emits = defineEmits<Emits>()
 
-            const mainStatList = mainStatMap[this.position]
-            if (mainStatList.indexOf(this.mainStat.name) < 0) {
-                const newMainStatName = mainStatList[0]
-                const newMainStatValue = artifactTags[newMainStatName].max["5"]
 
-                this.mainStat = this.convertStat({
-                    name: newMainStatName,
-                    value: newMainStatValue
-                })
-            }
-        },
+const artifactId = ref(-1)
 
-        convertStat(stat) {
-            const data = artifactTags[stat.name]
-            if (data.percentage) {
-                // return { name: stat.name, value: stat.value * 100 }
-                return { name: stat.name, value: (stat.value * 100).toFixed(1) }
-            } else {
-                return { name: stat.name, value: stat.value }
-            }
-        },
+const setName = ref<ArtifactSetName>("berserker")
+const star = ref(5)
+const level = ref(20)
+const position = ref<ArtifactPosition>("flower")
+const mainStat = ref<any>({ name: "attackStatic", value: 0 })
 
-        convertStatBack(stat) {
-            if (!stat.name) {
-                return null
-            }
+interface ArtifactStatNullable {
+    name: null | ArtifactSubStatName,
+    value: number
+}
+const subStats = ref<ArtifactStatNullable[]>([
+    { name: null, value: 0 },
+    { name: null, value: 0 },
+    { name: null, value: 0 },
+    { name: null, value: 0 },
+])
 
-            const data = artifactTags[stat.name]
-            let value = parseFloat(stat.value)
-            if (data.percentage) {
-                value /= 100
-            }
+function convertStat(stat: IArtifactTag) {
+    const data = artifactTags[stat.name]
+    if (data.percentage) {
+        // return { name: stat.name, value: stat.value * 100 }
+        return { name: stat.name, value: (stat.value * 100).toFixed(1) }
+    } else {
+        return { name: stat.name, value: stat.value }
+    }
+}
 
-            return { name: stat.name, value }
-        },
+function handleChangePosition(p: ArtifactPosition) {
+    position.value = p
 
-        setId(id) {
-            const artifact = getArtifact(id)
+    const mainStatList = mainStatMap[p]
+    if (mainStatList.indexOf(mainStat.value.name) < 0) {
+        const newMainStatName = mainStatList[0]
+        const newMainStatValue = artifactTags[newMainStatName].max["5"]
 
-            this.artifactId = artifact.id
-            this.setName = artifact.setName
-            this.star = artifact.star
-            this.level = artifact.level
-            this.position = artifact.position
-            this.mainStat = this.convertStat(artifact.mainTag)
+        mainStat.value = convertStat({
+            name: newMainStatName,
+            value: newMainStatValue
+        })
+    }
+}
 
-            let subStats = []
-            for (let stat of artifact.normalTags) {
-                subStats.push(this.convertStat(stat))
-            }
-            while (subStats.length < 4) {
-                subStats.push({ name: null, value: 0 })
-            }
-            this.subStats = subStats
-        },
+function handleRemoveSubStat(index: number) {
+    subStats.value[index] = { name: null, value: 0 }
+}
 
-        getNewArtifact() {
-            const mainStat = this.convertStatBack(this.mainStat)
-            let subStats = []
-            for (let stat of this.subStats) {
-                const convertResult = this.convertStatBack(stat)
-                if (convertResult) {
-                    subStats.push(convertResult)
-                }
-            }
+function convertStatBack(stat: any) {
+    if (!stat.name || !stat.value) {
+        return null
+    }
 
-            return {
-                setName: this.setName,
-                star: this.star,
-                level: this.level,
-                position: this.position,
-                mainTag: mainStat,
-                normalTags: subStats
-            }
-        },
+    const data = artifactTags[stat.name]
+    let value = parseFloat(stat.value)
+    if (data.percentage) {
+        value /= 100
+    }
+    if (isNaN(value)) {
+        return null
+    }
 
-        handleRemoveSubStat(index) {
-            this.$set(this.subStats, index, { name: null, value: 0 })
-        }
-    },
-    computed: {
-        image() {
-            return getArtifactImage(this.setName, this.position)
-        },
+    return { name: stat.name, value }
+}
 
-        title() {
-            const data = artifactsData[this.setName]
-            return data[this.position].chs
-        }
-    },
-    watch: {
-        setName(newValue, oldValue) {
-            if (newValue === oldValue) {
-                return
-            }
 
-            const data = artifactsData[newValue]
-            if (!data[this.position]) {
-                for (let position in positions) {
-                    if (data[[position]]) {
-                        this.position = position
-                        break
-                    }
-                }
+const image = computed(() => {
+    return getArtifactImage(setName.value, position.value)
+})
+
+const title = computed(() => {
+    const data = artifactsData[setName.value]
+    return data[position.value].chs
+})
+
+watch(() => setName.value, (newValue, oldValue) => {
+    if (newValue === oldValue) {
+        return
+    }
+
+    const data = artifactsData[newValue]
+    if (!data[position.value]) {
+        for (let p of positions) {
+            if (data[p]) {
+                position.value = p
+                break
             }
         }
     }
+})
+
+
+function setId(id: number) {
+    const artifact = getArtifact(id)
+
+    if (artifact) {
+        artifactId.value = artifact.id
+        setName.value = artifact.setName
+        star.value = artifact.star
+        level.value = artifact.level
+        position.value = artifact.position
+        mainStat.value = convertStat(artifact.mainTag)
+
+        let ss: any = []
+        for (let stat of artifact.normalTags) {
+            ss.push(convertStat(stat))
+        }
+        while (ss.length < 4) {
+            ss.push({ name: null, value: 0 })
+        }
+        subStats.value = ss
+    }
 }
+
+function getNewArtifact() {
+    const ms = convertStatBack(mainStat.value)
+    let ss = []
+    for (let stat of subStats.value) {
+        const convertResult = convertStatBack(stat)
+        if (convertResult) {
+            ss.push(convertResult)
+        }
+    }
+
+    return {
+        setName: setName.value,
+        star: star.value,
+        level: level.value,
+        position: position.value,
+        mainTag: ms,
+        normalTags: ss
+    }
+}
+
+defineExpose({
+    setId,
+    getNewArtifact
+})
 </script>
 
 <style scoped lang="scss">

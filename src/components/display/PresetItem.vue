@@ -1,31 +1,31 @@
 <template>
     <div class="item br-3" @click="$emit('click')">
         <div class="header">
-            <span class="fs-12">{{ name }}</span>
+            <span class="fs-12">{{ props.name }}</span>
             <div v-if="toolbar" class="buttons flex-row">
                 <el-button
-                    v-if="calculateIcon"
-                    icon="el-icon-cpu"
-                    type="text"
-                    size="mini"
+                    v-if="props.calculateIcon"
+                    :icon="IconEpCPU"
+                    text
+                    size="small"
                     circle
                     @click.stop="$emit('cpu')"
                     class="button"
                     title="快速计算"
                 ></el-button>
                 <el-button
-                    icon="el-icon-delete"
-                    type="text"
-                    size="mini"
+                    :icon="IconEpDelete"
+                    text
+                    size="small"
                     circle
                     @click.stop="$emit('delete')"
                     class="button"
                     title="删除"
                 ></el-button>
                 <el-button
-                    icon="el-icon-download"
-                    type="text"
-                    size="mini"
+                    :icon="IconFa6SolidDownload"
+                    text
+                    size="small"
                     circle
                     @click.stop="$emit('download')"
                     class="button"
@@ -39,8 +39,8 @@
                 <span>{{ characterChs }}</span>
             </div>
             <div class="detail-div fs-12">
-                <img :src="weaponData.url" class="w-avatar br-50p">
-                <span>{{ weaponData.chs }}</span>
+                <img :src="wData.url" class="w-avatar br-50p">
+                <span>{{ wData.chs }}</span>
             </div>
             <div class="detail-div fs-12">
                 <img :src="tfData.badge" class="tf-avatar br-50p">
@@ -50,52 +50,51 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { characterData } from "@character"
 import { weaponData } from "@weapon"
 import { targetFunctionData } from "@targetFunction"
 
-export default {
-    name: "PresetItem",
-    props: {
-        item: {
-            type: Object,
-            required: true,
-        },
-        name: {},
-        toolbar: {
-            type: Boolean,
-            default: true,
-        },
-        calculateIcon: {
-            default: true
-        }
-    },
-    computed: {
-        characterName() {
-            return this.item.character.name
-        },
+import IconFa6SolidDownload from "~icons/fa6-solid/download"
+import IconEpDelete from "~icons/ep/delete"
+import IconEpCPU from "~icons/ep/cpu"
+import {IPreset} from "@/types/preset"
 
-        characterAvatar() {
-            const data = characterData[this.characterName]
-            return data.avatar
-        },
 
-        characterChs() {
-            const data = characterData[this.characterName]
-            return data.chs
-        },
-
-        weaponData() {
-            return weaponData[this.item.weapon.name]
-        },
-
-        tfData() {
-            return targetFunctionData[this.item.targetFunction.name]
-        }
-    }
-
+interface Props {
+    item: IPreset,
+    name: string,
+    toolbar?: boolean,
+    calculateIcon?: boolean
 }
+
+const props = withDefaults(defineProps<Props>(), {
+    toolbar: true,
+    calculateIcon: true,
+    name: "name"
+})
+
+const characterName = computed(() => {
+    return props.item.character.name
+})
+
+const characterAvatar = computed(() => {
+    const data = characterData[characterName.value]
+    return data.avatar
+})
+
+const characterChs = computed(() => {
+    const data = characterData[characterName.value]
+    return data.chs
+})
+
+const wData = computed(() => {
+    return weaponData[props.item.weapon.name]
+})
+
+const tfData = computed(() => {
+    return targetFunctionData[props.item.targetFunction.name]
+})
 </script>
 
 <style lang="scss" scoped>

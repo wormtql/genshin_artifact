@@ -1,21 +1,22 @@
 <template>
     <el-select
-        size="small"
         :value="value"
         @input="$emit('input', $event)"
         :multiple="multiple"
     >
         <el-option
             v-for="item in positions"
-            :key="item.name"
-            :label="item.chs"
-            :value="item.name"
+            :key="item"
+            :label="item"
+            :value="item"
         ></el-option>
     </el-select>
 </template>
 
 <script>
-import {positions} from "@const/misc"
+import {positions} from "@/constants/artifact"
+
+// const items = []
 
 export default {
     name: "SelectArtifactSlot",

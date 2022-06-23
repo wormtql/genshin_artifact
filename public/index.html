@@ -7,24 +7,7 @@
     <meta name="keywords" content="原神,圣遗物,圣遗物搭配,圣遗物配装,自动配装,莫娜占卜铺">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
 
-    <% if (NODE_ENV === "development") { %>
-    <title>local</title>
-    <% } else { %>
     <title>莫娜占卜铺</title>
-    <% } %>
-
-<!--    <% if (NODE_ENV === "production") { %>-->
-<!--    &lt;!&ndash;    <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui@2.15.6/lib/theme-chalk/index.css">&ndash;&gt;-->
-<!--    <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.6/theme-chalk/index.css"-->
-<!--          type="text/css" rel="stylesheet"/>-->
-<!--    <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui@2.15.6/lib/theme-chalk/display.css">-->
-<!--    <% } %>-->
-
-    <% for (var css of htmlWebpackPlugin.options.cdn.css) { %>
-    <% if (css !== "") { %>
-    <link rel="stylesheet" href="<%= css.url %>" type="text/css"></link>
-    <% } %>
-    <% } %>
 
     <style>
         .loading {
@@ -173,12 +156,6 @@
         }
     }
 </style>
-
-<% for (var js of htmlWebpackPlugin.options.cdn.js) { %>
-<% if (css !== "") { %>
-<script src="<%= js.url %>"></script>
-<% } %>
-<% } %>
 
 <!-- built files will be auto injected -->
 </body>

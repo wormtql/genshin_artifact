@@ -1,10 +1,5 @@
 <template>
     <div class="page-root">
-        <el-breadcrumb>
-            <el-breadcrumb-item>主页</el-breadcrumb-item>
-        </el-breadcrumb>
-        <el-divider></el-divider>
-
         <p
             class="title"
         >
@@ -12,21 +7,16 @@
             V{{ version }}
         </p>
 
-<!--        <el-alert-->
-<!--            class="hidden-sm-and-up"-->
-<!--            title="使用PC访问以启用全部功能，当前仅能查看信息页"-->
-<!--            type="error"-->
-<!--            style="margin-bottom: 16px"-->
-<!--            :closable="false"-->
-<!--        ></el-alert>-->
-
         <el-row :gutter="16">
             <el-col :sm="6" :xs="24" class="mb16">
                 <use-case-item
                     text="伤害计算器/单人配装"
-                    icon="calculator"
                     url="/calculate"
-                ></use-case-item>
+                >
+                    <template #icon>
+                        <i-ep-cpu></i-ep-cpu>
+                    </template>
+                </use-case-item>
             </el-col>
             <el-col :sm="6" :xs="24" class="mb16">
                 <use-case-item
@@ -58,7 +48,8 @@
                         class="source-code-item"
                         @click="newPage(links.frontendProject)"
                     >
-                        <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>
+                        <el-icon><i-fa6-brands-github></i-fa6-brands-github></el-icon>
+<!--                        <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>-->
                         <p class="item-title">Mona</p>
                     </div>
                 </el-col>

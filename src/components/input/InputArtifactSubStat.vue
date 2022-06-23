@@ -1,19 +1,18 @@
 <template>
     <el-input
-        size="small"
-        :value="value.value"
-        @input="handleChangeValue"
+        :model-value="modelValue.value"
+        @update:modelValue="handleChangeValue"
     >
-        <template slot="prepend">
+        <template #prepend>
             <select-artifact-sub-stat
-                :value="value.name"
-                @input="handleChangeName"
+                :model-value="modelValue.name"
+                @update:modelValue="handleChangeName"
                 style="width: 100px"
             ></select-artifact-sub-stat>
         </template>
 
-        <template slot="append">
-            <span v-if="isPercent">%</span>
+        <template v-if="isPercent" #append>
+            <span>%</span>
         </template>
     </el-input>
 </template>
@@ -25,7 +24,8 @@ import SelectArtifactSubStat from "@c/select/SelectArtifactSubStat"
 
 export default {
     name: "InputArtifactSubStat",
-    props: ["value"],
+    props: ["modelValue"],
+    emits: ["update:modelValue"],
     components: {
         SelectArtifactSubStat
     },
@@ -33,22 +33,22 @@ export default {
         handleChangeName(name) {
             let temp = {
                 name,
-                value: this.value.value
+                value: this.modelValue.value
             }
 
-            this.$emit("input", temp)
+            this.$emit("update:modelValue", temp)
         },
 
         handleChangeValue(value) {
-            this.$emit("input", { name: this.value.name, value })
+            this.$emit("update:modelValue", { name: this.modelValue.name, value })
         }
     },
     computed: {
         isPercent() {
-            if (!this.value.name) {
+            if (!this.modelValue.name) {
                 return false
             }
-            return artifactTags[this.value.name].percentage
+            return artifactTags[this.modelValue.name].percentage
         }
     }
 }

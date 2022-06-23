@@ -225,7 +225,7 @@ import {buffData} from "@buff";
 import {characterData} from "@character"
 import {weaponData} from "@weapon"
 import {newDefaultArtifactConfigForWasm} from "@util/artifacts"
-import { mapGetters } from "vuex"
+// import { mapGetters } from "vuex"
 import {artifactsData} from "@artifact";
 import {convertArtifact, convertArtifactName} from "@util/converter";
 import {toSnakeCase} from "@util/common";

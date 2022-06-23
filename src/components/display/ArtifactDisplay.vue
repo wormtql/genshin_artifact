@@ -1,14 +1,13 @@
 <template>
     <div
         class="artifact"
-        :class="{ selectable, omit: item.omit }"
+        :class="{ selectable: props.selectable, omit: props.item.omit }"
         @click="handleClick"
-        :style="artifactStyle"
     >
         <div class="up">
             <div
-                v-if="showBack"
-                :style="{ width: `${backValue * 100}%` }"
+                v-if="props.showBack"
+                :style="{ width: `${props.backValue * 100}%` }"
                 class="back"
             ></div>
 
@@ -16,45 +15,46 @@
                 {{ displayedTitle }}
             </span>
 
-            <div class="buttons" v-if="buttons">
+            <div class="buttons" v-if="props.buttons">
                 <el-button
-                    v-if="lockButton"
-                    :icon="item.omit ? 'el-icon-unlock' : 'el-icon-lock'"
+                    v-if="props.lockButton"
+                    :icon="props.item.omit ? IconEpUnlock : IconEpLock"
                     circle
-                    size="mini"
-                    type="text"
-                    :title="item.omit ? '启用' : '禁用'"
+                    size="small"
+                    text
+                    :title="props.item.omit ? '启用' : '禁用'"
                     class="mybutton"
-                    @click.stop="$emit('toggle')"
+                    @click.stop="emits('toggle')"
                 ></el-button>
                 <el-button
-                    v-if="deleteButton"
-                    icon="el-icon-delete"
+                    v-if="props.deleteButton"
+                    :icon="IconEpDelete"
                     circle
-                    size="mini"
-                    type="text"
+                    size="small"
+                    text
                     title="删除"
                     class="mybutton"
-                    @click.stop="$emit('delete')"
+                    @click.stop="emits('delete')"
                 ></el-button>
                 <el-button
-                    v-if="editButton"
-                    icon="el-icon-edit"
+                    v-if="props.editButton"
+                    :icon="IconEpEdit"
                     circle
-                    size="mini"
-                    type="text"
+                    size="small"
+                    text
                     title="编辑"
                     class="mybutton"
-                    @click.stop="$emit('edit')"
+                    @click.stop="emits('edit')"
                 ></el-button>
             </div>
 
-            <span class="extra fs-12" v-if="extra">{{ extra }}</span>
+            <span class="extra fs-12" v-if="props.extra">{{ props.extra }}</span>
         </div>
         <div class="down">
             <div>
                 <img
                     :src="imageSrc"
+                    alt="图"
                     class="myimage"
                     :style="{ background: imageBackground }"
                 >
@@ -73,124 +73,137 @@
     </div>
 </template>
 
-<script>
-import { displayedTag } from "@util/utils";
-import { artifactsData } from "@asset/artifacts";
+<script setup lang="ts">
+import { computed } from "vue"
 
-import colors from "@const/quality_colors";
+import { artifactsData } from "@asset/artifacts"
 
-export default {
-    name: "ArtifactDisplay",
-    props: {
-        item: {
-            type: Object,
-            default: () => ({
-                setName: "luckyDog",
-                position: "cup",
-                mainTag: {
-                    name: "attackPercentage",
-                    value: 0.1,
-                },
-                normalTags: [
-                    { name: "defendStatic", value: 20, },
-                    { name: "attackPercentage", value: 0.3 },
-                    { name: "attackPercentage", value: 0.3 },
-                    { name: "attackPercentage", value: 0.3 },
-                ],
-                omit: false,
-            })
-        },
+import colors from "@const/quality_colors"
 
-        selectable: {
-            type: Boolean,
-            default: false,
-        },
+import IconEpUnlock from "~icons/ep/unlock"
+import IconEpLock from "~icons/ep/lock"
+import IconEpDelete from "~icons/ep/delete"
+import IconEpEdit from "~icons/ep/edit"
+import {IArtifact, IArtifactContentOnly} from "@/types/artifact"
+import {displayedTag} from "@/utils/artifacts"
 
-        extra: {
-            type: String,
-            default: "",
-        },
+interface Props {
+    item: Omit<IArtifact, "id" | "contentHash">,
+    selectable?: boolean,
+    extra?: string,
+    buttons?: boolean,
+    deleteButton?: boolean,
+    lockButton?: boolean,
+    editButton?: boolean,
 
-        buttons: { default: false },
-        deleteButton: { default: false },
-        lockButton: { default: true },
-        editButton: { default: false },
+    showBack?: boolean,
+    backValue?: number
+}
 
-        showBack: { default: false },
-        backValue: { default: 1.0 },
+interface Emits {
+    (e: "click"): void,
+    (e: "toggle"): void,
+    (e: "delete"): void,
+    (e: "edit"): void,
+}
 
-        // width: {
-        //     type: String,
-        //     default: "unset",
-        // }
-    },
-    methods: {
-        handleClick() {
-            if (this.selectable) {
-                this.$emit("click");
-            }
+const props = withDefaults(defineProps<Props>(), {
+    item: defaultItem,
+    selectable: false,
+    extra: "",
+    buttons: false,
+    deleteButton: false,
+    lockButton: true,
+    editButton: false,
+    showBack: false,
+    backValue: 1
+})
+
+const emits = defineEmits<Emits>()
+
+const displayedTitle = computed(() => {
+    let item = artifactsData[props.item.setName];
+    if (!item) {
+        throw "no artifact";
+    }
+
+    let title = "not exist"
+    if (item[props.item.position]) {
+        title = item[props.item.position].chs;
+        if (Object.prototype.hasOwnProperty.call(props.item, "level")) {
+            title += "+" + (props.item.level);
+        } else {
+            title += "+??";
         }
-    },
-    computed: {
-        displayedTitle() {
-            let item = artifactsData[this.item.setName];
-            if (!item) {
-                throw "no artifact";
-            }
+    }
 
-            let title = "not exist"
-            if (item[this.item.position]) {
-                title = item[this.item.position].chs;
-                if (Object.prototype.hasOwnProperty.call(this.item, "level")) {
-                    title += "+" + (this.item.level);
-                } else {
-                    title += "+??";
-                }
-            }
-            
+    return title;
+})
 
-            return title;
+// const displayedStar = computed(() => {
+//     return props.item.star
+// })
+
+const imageSrc = computed(() => {
+    let item = artifactsData[props.item.setName];
+    if (!item) {
+        throw "no artifact";
+    }
+
+    if (item[props.item.position]) {
+        return item[props.item.position].url;
+    }
+
+    throw "error no position";
+})
+
+const mainDisplayTag = computed(() => {
+    return displayedTag(props.item.mainTag.name, props.item.mainTag.value)
+})
+
+const secTags = computed(() => {
+    let temp = [];
+    for (let tag of props.item.normalTags) {
+        temp.push(displayedTag(tag.name, tag.value))
+    }
+    return temp;
+})
+
+const imageBackground = computed(() => {
+    let star = props.item.star
+    return colors[star - 1]
+})
+
+
+
+function handleClick() {
+    if (props.selectable) {
+        emits("click")
+    }
+}
+</script>
+
+<script lang="ts">
+import type {IArtifactContentOnly} from "@/types/artifact"
+import {IArtifact} from "@/types/artifact";
+
+function defaultItem(): Omit<IArtifact, "id" | "contentHash"> {
+    return {
+        setName: "luckyDog",
+        position: "cup",
+        mainTag: {
+            name: "attackPercentage",
+            value: 0.1,
         },
-
-        displayedStar() {
-            return this.item.star || "??";
-        },
-
-        imageSrc() {
-            let item = artifactsData[this.item.setName];
-            if (!item) {
-                throw "no artifact";
-            }
-
-            if (item[this.item.position]) {
-                return item[this.item.position].url;
-            }
-
-            throw "error no position";
-        },
-
-        mainDisplayTag() {
-            return displayedTag(this.item.mainTag.name, this.item.mainTag.value);
-        },
-
-        secTags() {
-            let temp = [];
-            for (let tag of this.item.normalTags) {
-                temp.push(displayedTag(tag.name, tag.value));
-            }
-            return temp;
-        },
-
-        imageBackground() {
-            let star = this.item.star ?? 5;
-            return colors[star - 1];
-        },
-
-        artifactStyle() {
-            return {
-                // width: this.width,
-            }
-        }
+        normalTags: [
+            { name: "defendStatic", value: 20, },
+            { name: "attackPercentage", value: 0.3 },
+            { name: "attackPercentage", value: 0.3 },
+            { name: "attackPercentage", value: 0.3 },
+        ],
+        level: 20,
+        star: 5,
+        omit: false,
     }
 }
 </script>

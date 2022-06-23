@@ -2,8 +2,7 @@
     <div class="root"
         @click="handleClick"
     >
-        <font-awesome-icon :icon="['fas', icon]" class="icon"></font-awesome-icon>
-        <font-awesome-icon :icon="['fas', icon]" class="icon2"></font-awesome-icon>
+        <el-icon><slot name="icon"></slot></el-icon>
         <p class="text">{{ text }}</p>
     </div>
 </template>
@@ -11,7 +10,7 @@
 <script>
 export default {
     name: "UseCaseItem",
-    props: ["text", "icon", "url"],
+    props: ["text", "url"],
     methods: {
         handleClick() {
             console.log(this.url)

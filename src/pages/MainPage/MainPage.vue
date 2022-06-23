@@ -6,7 +6,7 @@
 
         <el-drawer
             title="导航"
-            :visible.sync="drawerVisible"
+            v-model="drawerVisible"
             direction="ltr"
             size="80%"
         >
@@ -22,19 +22,20 @@
             <div class="flex-row" style="height: 100%">
                 <el-button
                     icon="el-icon-menu"
-                    type="text"
                     @click="drawerVisible = true"
                     style="color: white"
+                    link
                 ></el-button>
                 <span class="header-title">{{ $route.meta.title }}</span>
             </div>
         </div>
 
         <div class="main mona-scroll">
-            <keep-alive>
-                <router-view v-if="$route.meta.keepAlive" class="router-view"></router-view>
-            </keep-alive>
-            <router-view v-if="!$route.meta.keepAlive" class="router-view"></router-view>
+<!--            <keep-alive>-->
+<!--                <router-view v-if="$route.meta.keepAlive" class="router-view"></router-view>-->
+<!--            </keep-alive>-->
+<!--            <router-view v-if="!$route.meta.keepAlive" class="router-view"></router-view>-->
+            <router-view class="router-view"></router-view>
 
             <mona-footer style="margin-bottom: 24px"></mona-footer>
         </div>

@@ -1,96 +1,123 @@
 <template>
     <div>
         <div class="up">
-            <p class="title">{{ data.title }}</p>
+            <p class="title">{{ props.data.title }}</p>
             <div class="buttons">
                 <el-button
-                    type="text"
-                    icon="el-icon-delete"
+                    text
+                    :icon="IconEpDelete"
                     title="删除"
-                    @click="$emit('delete')"
+                    @click="emits('delete')"
+                    circle
                 ></el-button>
                 <el-button
-                    type="text"
-                    icon="el-icon-edit"
+                    text
+                    :icon="IconEpEdit"
                     title="重命名"
-                    @click="$emit('edit')"
+                    @click="emits('edit')"
+                    circle
                 ></el-button>
             </div>
         </div>
         <div class="body">
             <template
-                v-for="pos in positions"
+                v-for="(artifact, index) in artifacts"
+                :key="index"
             >
                 <artifact-display
-                    :key="pos"
-                    v-if="artifactBySlot[pos]"
+                    v-if="artifact"
                     class="artifact-item"
                     width="200px"
-                    :item="artifactBySlot[pos]"
+                    :item="artifact"
                     selectable
-                    @click="$emit('click', pos)"
-                    @delete="$emit('deleteArtifact', artifactBySlot[pos].id)"
+                    @click="emits('click', artifact.position)"
+                    @delete="emits('deleteArtifact', artifact.id)"
                     :buttons="true"
                     :lock-button="false"
                     :delete-button="true"
                 ></artifact-display>
                 <add-button
-                    :key="pos"
                     v-else
                     class="artifact-item"
-                    @click="$emit('click', pos)"
+                    @click="emits('click', positions[index])"
                 ></add-button>
             </template>
         </div>
     </div>
 </template>
 
-<script>
-// import { artifactsIcon } from "@asset/artifacts"
-import { mapGetters } from "vuex"
-import { positions } from "@const/artifact"
+<script setup lang="ts">
+import { positions } from "@/constants/artifact"
 
 import AddButton from "@c/misc/AddButton"
 import ArtifactDisplay from "@c/display/ArtifactDisplay"
-// import SelectArtifact from "@c/select/SelectArtifact"
+import type {KumiItem} from "@/types/kumi"
+import type {IArtifact, ArtifactPosition} from "@/types/artifact"
+import {useArtifactStore} from "@/store/pinia/artifact"
 
-export default {
-    name: "KumiItem",
-    components: {
-        AddButton,
-        ArtifactDisplay,
-        // SelectArtifact,
-    },
-    props: ["data"],
-    created() {
-        this.positions = positions
-    },
-    computed: {
-        ...mapGetters("artifacts", [
-            "artifactsById"
-        ]),
+import IconEpDelete from "~icons/ep/delete"
+import IconEpEdit from "~icons/ep/edit"
 
-        artifacts() {
-            let results = []
-            for (let id of this.data.artifactIds) {
-                if (Object.prototype.hasOwnProperty.call(this.artifactsById, id)) {
-                    results.push(this.artifactsById[id])
-                }
+
+interface Emits {
+    (e: "click", p: ArtifactPosition): void,
+    (e: "deleteArtifact", id: number): void,
+    (e: "click", p: ArtifactPosition): void,
+    (e: "delete"): void,
+    (e: "edit"): void
+}
+
+const emits = defineEmits<Emits>()
+
+interface Props {
+    data: KumiItem
+}
+
+const props = defineProps<Props>()
+
+
+// artifact
+const artifactStore = useArtifactStore()
+
+const artifacts = computed(() => {
+    let results: (IArtifact | null)[] = []
+
+    const temp: Record<ArtifactPosition, IArtifact> = {}
+
+    for (let id of props.data.artifactIds ?? []) {
+        if (id) {
+            const artifact = artifactStore.artifacts.value.get(id)
+            if (artifact) {
+                temp[artifact.position] = artifact
             }
-            return results
-        },
-
-        artifactBySlot() {
-            let results = {}
-            for (let artifact of this.artifacts) {
-                const slot = artifact.position
-                results[slot] = artifact
-            }
-
-            return results
         }
     }
-}
+
+    for (let i = 0; i < 5; i++) {
+        const a = temp[positions[i]]
+        if (a) {
+            results.push(a)
+        } else {
+            results.push(null)
+        }
+    }
+
+    return results
+})
+
+// export default {
+//     computed: {
+//         artifactBySlot() {
+//             let results = {}
+//             for (let artifact of this.artifacts) {
+//                 const slot = artifact.position
+//                 results[slot] = artifact
+//             }
+//
+//             return results
+//         }
+//     }
+// }
 </script>
 
 <style lang="scss" scoped>
@@ -115,7 +142,7 @@ export default {
         button {
             // margin: 0;
             vertical-align: top;
-            padding: 0;
+            //padding: 0;
         }
     }
 }

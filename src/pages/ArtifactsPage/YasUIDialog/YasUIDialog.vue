@@ -1,9 +1,9 @@
 <template>
     <el-dialog
         title="使用YAS WebUI扫描圣遗物"
-        :visible="visible"
+        :model-value="visible"
         width="80%"
-        @update:visible="$emit('update:visible', $event)"
+        @update:modelValue="$emit('update:visible', $event)"
     >
         <div :class="$style.webcapturer">
             <client-comp v-if="visible && !connected" :control="control" @done="onConnected" />
@@ -69,6 +69,7 @@ export default {
             type: Boolean,
         },
     },
+    emits: ["update:visible"],
     data() {
         return {
             control: new CocogoatWebControl(),

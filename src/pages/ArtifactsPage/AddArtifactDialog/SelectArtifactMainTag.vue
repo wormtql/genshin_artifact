@@ -1,13 +1,12 @@
 <template>
     <el-input
-        :value="value.value"
-        @input="handleValueChange"
-        size="small"
+        :model-value="modelValue.value"
+        @update:modelValue="handleValueChange"
     >
-        <template slot="prepend">
+        <template #prepend>
             <el-select
-                :value="value.name"
-                @input="handleTagChange"
+                :model-value="modelValue.name"
+                @update:modelValue="handleTagChange"
                 class="prepend"
             >
                 <el-option
@@ -20,8 +19,8 @@
             </el-select>
         </template>
 
-        <template slot="append">
-            <span v-if="isPercentage">%</span>
+        <template v-if="isPercentage" #append>
+            <span>%</span>
         </template>
     </el-input>
 </template>
@@ -42,7 +41,7 @@ const tagData = {
 export default {
     name: "SelectArtifactMainTag",
     props: {
-        value: {
+        modelValue: {
             type: Object,
             required: true,
         },
@@ -50,19 +49,20 @@ export default {
             type: String,
         },
     },
+    emits: ["update:modelValue"],
     methods: {
         handleTagChange(event) {
-            let temp = Object.assign({}, this.value);
+            let temp = Object.assign({}, this.modelValue);
             temp.name = event;
 
-            this.$emit("input", temp);
+            this.$emit("update:modelValue", temp);
         },
 
         handleValueChange(event) {
-            let temp = Object.assign({}, this.value);
+            let temp = Object.assign({}, this.modelValue);
             temp.value = event;
 
-            this.$emit("input", temp);
+            this.$emit("update:modelValue", temp);
         }
     },
     computed: {
@@ -76,30 +76,22 @@ export default {
         },
 
         isPercentage() {
-            if (!this.value.name) {
+            if (!this.modelValue.name) {
                 return false;
             }
-            return artifactTags[this.value.name].percentage;
+            return artifactTags[this.modelValue.name].percentage;
         },
     },
     watch: {
         position() {
-            if (artifactsTagMap[this.position].indexOf(this.value.name) === -1) {
+            if (artifactsTagMap[this.position].indexOf(this.modelValue.name) === -1) {
                 // the last selected tag does not exist on the new position
                 let autoSelectedTagName = artifactsTagMap[this.position][0];
-                let temp = Object.assign({}, this.value);
+                let temp = Object.assign({}, this.modelValue);
                 temp.name = autoSelectedTagName;
-                this.$emit("input", temp);
+                this.$emit("update:modelValue", temp);
             }
         },
-
-        // "value.name"() {
-        //     let maxValue = artifactTags[this.value.name].max[5];
-        //     let temp = Object.assign({}, this.value);
-
-        //     temp.value = convertDisplayTagValue(temp.name, maxValue);
-        //     this.$emit("input", temp);
-        // }
     }
 }
 </script>

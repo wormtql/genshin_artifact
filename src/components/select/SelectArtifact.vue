@@ -28,80 +28,85 @@
         </div>
 
         <el-pagination
-            :current-page.sync="currentPage"
-            :page-size="pageSize"
-            :total="artifactList.length"
+            v-model:current-page="currentPage"
+            :page-size="PAGE_SIZE"
+            :total="artifactListFiltered.length"
             layout="prev, pager, next"
             :small="!deviceIsPC"
         ></el-pagination>
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { deviceIsPC } from "@util/device"
 
 import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
 import ArtifactDisplay from "@c/display/ArtifactDisplay"
+import type {ArtifactMainStatName, ArtifactPosition, ArtifactSetName, IArtifact} from "@/types/artifact"
+import {useArtifactStore} from "@/store/pinia/artifact"
+import {defaultArtifactSortFunction} from "@/utils/artifacts"
 
-const pageSize = 20
+const PAGE_SIZE = 20
 
-export default {
-    name: "SelectArtifact",
-    components: {
-        SelectArtifactMainStat,
-        SelectArtifactSet,
-        ArtifactDisplay
-    },
-    props: {
-        position: {}
-    },
-    created() {
-        this.pageSize = pageSize
-    },
-    data() {
-        return {
-            filterMainTag: "any",
-            filterArtifactSetName: "any",
-
-            currentPage: 1,
-
-            deviceIsPC
-        }
-    },
-    computed: {
-        artifactListUnfiltered() {
-            if (this.position === "any") {
-                return this.$store.getters["artifacts/allFlat"]
-            }
-            const ret = this.$store.state.artifacts[this.position]
-            return ret
-        },
-
-        artifactList() {
-            let temp = []
-            for (let item of this.artifactListUnfiltered) {
-                if (!(this.filterMainTag === "any" || this.filterMainTag === item.mainTag.name)) {
-                    continue
-                }
-                if (!(this.filterArtifactSetName === "any" || this.filterArtifactSetName === item.setName)) {
-                    continue
-                }
-
-                temp.push(item)
-            }
-
-            return temp
-        },
-
-        artifactListDisplayed() {
-            const start = (this.currentPage - 1) * pageSize
-            const end = Math.min(start + pageSize, this.artifactList.length)
-
-            return this.artifactList.slice(start, end)
-        }
-    }
+interface Props {
+    position: ArtifactPosition | "any"
 }
+
+const props = withDefaults(defineProps<Props>(), {
+    position: "any"
+})
+
+interface Emits {
+    (e: "select", artifactId: number): void
+}
+
+const emits = defineEmits<Emits>()
+
+const artifactStore = useArtifactStore()
+
+// all candidate artifacts
+const artifactListUnfiltered = computed((): IArtifact[] => {
+    if (props.position === "any") {
+        return [...artifactStore.artifacts.value.values()]
+    }
+    let temp = artifactStore.artifactsByPosition.value[props.position]
+    // console.log(props.position)
+    return temp
+})
+
+
+// filter
+const filterMainTag = ref<ArtifactMainStatName | "any">("any")
+const filterArtifactSetName = ref<ArtifactSetName | "any">("any")
+
+const artifactListFiltered = computed((): IArtifact[] => {
+    let temp: IArtifact[] = []
+    for (let item of artifactListUnfiltered.value) {
+        if (!(filterMainTag.value === "any" || filterMainTag.value === item.mainTag.name)) {
+            continue
+        }
+        if (!(filterArtifactSetName.value === "any" || filterArtifactSetName.value === item.setName)) {
+            continue
+        }
+
+        temp.push(item)
+    }
+
+    temp.sort(defaultArtifactSortFunction)
+
+    return temp
+})
+
+// pager
+const currentPage = ref(1)
+
+const artifactListDisplayed = computed(() => {
+    const start = (currentPage.value - 1) * PAGE_SIZE
+    const end = Math.min(start + PAGE_SIZE, artifactListFiltered.value.length)
+
+    return artifactListFiltered.value.slice(start, end)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -130,7 +135,7 @@ export default {
     .filters {
         display: flex;
         align-items: center;
-        gap: 16px;
+        //gap: 16px;
     }
 }
 

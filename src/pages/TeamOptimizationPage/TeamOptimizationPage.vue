@@ -128,23 +128,81 @@
     </div>
 </template>
 
-<script>
-import {mapGetters} from "vuex"
+<script setup lang="ts">
+import { reactive, ref } from "vue"
 
-import {convertArtifact} from "@util/converter"
+import {convertArtifact} from "@/utils/converter"
 import {team_optimize, wasmGetAttribute} from "@/wasm"
-import {convertPresetToWasmInterface, getPresetEntryByName} from "@util/preset"
-import {toggleArtifact} from "@util/artifacts"
-import {deviceIsPC} from "@util/device"
+import {convertPresetToWasmInterface, getPresetEntryByName} from "@/utils/preset"
+import {toggleArtifact} from "@/utils/artifacts"
+import {deviceIsPC} from "@/utils/device"
 
-import SelectCharacter from "@c/select/SelectCharacter"
-import SelectWeapon from "@c/select/SelectWeapon"
-import ItemConfig from "@c/config/ItemConfig"
-import ArtifactDisplay from "@c/display/ArtifactDisplay"
-import MyButton1 from "@c/button/MyButton1"
-import PresetItem from "@c/display/PresetItem"
-import SelectPreset from "@c/select/SelectPreset"
-import AttributePanel from "@c/display/AttributePanel"
+import SelectCharacter from "@/components/select/SelectCharacter"
+import SelectWeapon from "@/components/select/SelectWeapon"
+import ItemConfig from "@/components/config/ItemConfig"
+import ArtifactDisplay from "@/components/display/ArtifactDisplay"
+import MyButton1 from "@/components/button/MyButton1"
+import PresetItem from "@/components/display/PresetItem"
+import SelectPreset from "@/components/select/SelectPreset"
+import AttributePanel from "@/components/display/AttributePanel"
+import {ElMessage} from "element-plus"
+
+
+type MemberPresetName = string | null
+const presetNames = reactive([null] as MemberPresetName[])
+const weights = reactive([0] as number[])
+const MAX_MEMBERS = 8
+
+function handleClickAddMember() {
+    if (presetNames.length === MAX_MEMBERS) {
+        ElMessage({
+            message: "最多支持8个成员",
+            type: "error"
+        })
+        return
+    }
+    presetNames.push(null)
+    weights.push(0)
+}
+
+function handleDeleteMember(index: number) {
+    if (presetNames.length === 1) {
+        return
+    }
+    presetNames.splice(index, 1)
+    weights.splice(index, 1)
+}
+
+
+const showAttributeDrawer = ref(false)
+const wasmAttribute = ref(null as any)
+
+function wasmGetAttributeInterface(index: number) {
+    let artifacts = []
+    if (this.currentResultEntry) {
+        const artifactIds = Object.values(this.currentResultEntry[index])
+        const artifactsOldFormat = artifactIds.map(x => this.artifactsById[x]).filter(x => x)
+        artifacts = artifactsOldFormat.map(a => convertArtifact(a))
+    }
+    // console.log(this.presets[index])
+
+    return {
+        character: this.presets[index].item.character,
+        weapon: this.presets[index].item.weapon,
+        buffs: this.presets[index].item.buffs,
+        artifacts,
+    }
+},
+
+async function handleClickDisplayAttributePanel(index: number) {
+    const input = wasmGetAttributeInterface(index)
+    // console.log(input)
+    const result = await wasmGetAttribute(input)
+    this.wasmAttribute = result
+
+    this.showAttributeDrawer = true
+    // console.log(result)
+},
 
 export default {
     name: "TeamOptimizationPage",
@@ -163,9 +221,6 @@ export default {
             results: [],    // a 3d array
             resultIndex: 0,
 
-            presetNames: [null],
-            weights: [],
-
             showAttributeDrawer: false,
             wasmAttribute: null,
 
@@ -173,23 +228,6 @@ export default {
         }
     },
     methods: {
-        handleClickAddMember() {
-            if (this.presetNames.length === 8) {
-                this.$message.error("最多支持8个成员")
-                return
-            }
-            this.presetNames.push(null)
-            this.weights.push(0)
-        },
-
-        handleDeleteMember(index) {
-            if (this.presetNames.length === 1) {
-                return
-            }
-            this.$delete(this.presetNames, index)
-            this.$delete(this.weights, index)
-        },
-
         handleClickStart() {
             const canStart = this.presets.length === this.presetNames.length
             if (!canStart) {
@@ -316,16 +354,6 @@ export default {
         },
 
         optimizeTeamWasmInterface() {
-            // sort by weight
-            // let temp = []
-            // for (let i = 0; i < this.singleInterfaces.length; i++) {
-            //     temp.push([this.singleInterfaces[i], this.weights[i]])
-            // }
-            // temp.sort((a, b) => b[1] - a[1])
-            //
-            // const interfaces = temp.map(x => x[0])
-            // const weights = temp.map(x => x[1])
-
             return {
                 // single_interfaces: interfaces,
                 // weights: weights,

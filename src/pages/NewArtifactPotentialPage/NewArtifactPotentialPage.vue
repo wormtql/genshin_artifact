@@ -118,7 +118,7 @@ import { potentialFunctionData } from "@potentialFunction"
 import { getPotentialFunctionDefaultConfig } from "@util/potentialFunction"
 import { getArtifactsWasm } from "@util/artifacts"
 import { wasmComputeArtifactPotential } from "@wasm"
-import { mapGetters } from "vuex"
+// import { mapGetters } from "vuex"
 import { deviceIsPC } from "@util/device"
 
 import SelectPotentialFunctionName from "@c/select/SelectPotentialFunctionName"

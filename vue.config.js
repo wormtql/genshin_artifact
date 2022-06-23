@@ -6,8 +6,11 @@ const { readFileSync, existsSync } = require("fs")
 const { execSync } = require("child_process")
 const yaml = require("js-yaml")
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin")
-
-// const BEIAN_CODE = "浙ICP备2021004987号";
+const AutoImport = require("unplugin-auto-import/webpack")
+const Components = require("unplugin-vue-components/webpack")
+const { ElementPlusResolver } = require("unplugin-vue-components/resolvers")
+const IconsResolver = require("unplugin-icons/resolver")
+const Icons = require("unplugin-icons/webpack")
 
 const revision = execSync("git rev-parse HEAD").toString().trim().substring(0, 7)
 console.log("revision: ", revision)
@@ -91,6 +94,31 @@ module.exports = {
         }
     },
     configureWebpack: {
+        plugins: [
+            AutoImport({
+                imports: ["vue"],
+                resolvers: [
+                    ElementPlusResolver(),
+                    IconsResolver({
+                        prefix: "Icon"
+                    })
+                ],
+                dts: path.resolve(__dirname, "src", 'auto-imports.d.ts'),
+            }),
+            Components({
+                resolvers: [
+                    ElementPlusResolver(),
+                    IconsResolver({
+                        enabledCollections: ["ep", "fa6-brands", "fa6-solid"]
+                    })
+                ],
+
+                dts: path.resolve(__dirname, "src", 'components.d.ts'),
+            }),
+            Icons({
+                autoInstall: true
+            })
+        ],
         resolve: {
             extensions: [".vue", ".png", ".jpg", ".webp"],
             alias: {

@@ -664,7 +664,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex"
+// import {mapGetters} from "vuex"
 
 import {convertArtifact, convertArtifactName} from "@util/converter"
 import {newDefaultArtifactConfigForWasm} from "@util/artifacts"

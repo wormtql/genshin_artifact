@@ -1,4 +1,3 @@
-import Vuex from "vuex";
 import Vue from "vue";
 
 import artifacts from "./modules/artifact";

@@ -14,11 +14,11 @@
         <el-tabs v-model="activeTab">
             <template
                 v-for="genre in genres"
+                :key="genre.name"
             >
                 <el-tab-pane
                     :label="genre.chs"
                     :name="genre.name"
-                    :key="genre.name"
                     class="tab-pane mona-scroll"
                 >
                     <div

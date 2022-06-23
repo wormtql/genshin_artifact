@@ -1,0 +1,209 @@
+import {RandomIDProvider} from "@/utils/idProvider"
+import { KumiItem } from "@/types/kumi"
+import {useArtifactStore} from "@/store/pinia/artifact"
+import {positionToIndex} from "@/utils/artifacts"
+
+import { type Ref } from "vue"
+
+
+const artifactStore = useArtifactStore()
+
+function loadLocalKumiOrDefault(): KumiItem[] {
+    let kumi = {
+        0: {
+            id: 0,
+            title: "默认收藏夹",
+            dir: true,
+            children: []
+        }
+    }
+    const local_str = localStorage.getItem("kumi2")
+    if (local_str) {
+        try {
+            const local = JSON.parse(local_str)
+
+            if (typeof local === "object") {
+                if (local.kumi) {
+                    kumi = local.kumi
+                } else {
+                    kumi = local
+                }
+            } else {
+                return local
+            }
+
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    let result: KumiItem[] = [...Object.values(kumi)]
+    result.sort((a, b) => a.id - b.id)
+
+    return result
+}
+
+function store() {
+    const kumi = ref(loadLocalKumiOrDefault())
+    const kumiById: Ref<Map<number, KumiItem>> = ref(new Map())
+
+    const idGenerator = new RandomIDProvider()
+
+    for (let item of kumi.value) {
+        kumiById.value.set(item.id, item)
+    }
+
+    const dirs = computed((): KumiItem[] => {
+        const result = []
+        for (let item of kumi.value) {
+            if (item.dir) {
+                result.push(item)
+            }
+        }
+        return result
+    })
+
+    function createDir(name: string) {
+        let item: KumiItem = {
+            id: idGenerator.generateId(),
+            title: name,
+            dir: true,
+            children: [],
+        }
+
+        kumi.value.push(item)
+        kumiById.value.set(item.id, item)
+    }
+
+    function deleteDir(id: number) {
+        const item = kumiById.value.get(id)
+
+        if (item && item.dir) {
+            let children = item.children ?? []
+            let deleteSet = new Set(children)
+            deleteSet.add(id)
+
+            // delete children and self
+            let i = 0
+            while (i < kumi.value.length) {
+                const temp: KumiItem = kumi.value[i]
+                if (deleteSet.has(temp.id)) {
+                    kumi.value.splice(i, 1)
+                    kumiById.value.delete(temp.id)
+                } else {
+                    i += 1
+                }
+            }
+        }
+    }
+
+    function rename(id: number, name: string) {
+        const item = kumiById.value.get(id)
+        if (item) {
+            item.title = name
+        }
+    }
+
+
+    const kumisByDirId = computed((): Record<number, KumiItem[]> => {
+        let result: Record<number, KumiItem[]> = {}
+
+        for (let item of kumi.value) {
+            if (item.dir) {
+                result[item.id] = result[item.id] ?? []
+
+                if (item.children) {
+                    for (let childId of item.children) {
+                        result[item.id].push(kumiById.value.get(childId) as KumiItem)
+                    }
+                }
+            }
+        }
+
+        return result
+    })
+
+
+    function createKumi(dirId: number, name: string) {
+        let dir = kumiById.value.get(dirId)
+        if (dir) {
+            let item: KumiItem = {
+                id: idGenerator.generateId(),
+                title: name,
+                dir: false,
+                artifactIds: [null, null, null, null, null]
+            }
+
+            kumi.value.push(item)
+            kumiById.value.set(item.id, item)
+
+            if (dir.children) {
+                dir.children.push(item.id)
+            }
+        }
+    }
+
+    function deleteKumi(id: number) {
+        kumiById.value.delete(id)
+
+        const index = kumi.value.findIndex(x => x.id === id)
+        if (index > 0) {
+            kumi.value.splice(index, 1)
+        }
+    }
+
+    function addArtifact(kumiId: number, artifactId: number) {
+        let item = kumiById.value.get(kumiId)
+        if (item) {
+            item.artifactIds = item.artifactIds ?? [null, null, null, null, null]
+            let artifact = artifactStore.artifacts.value.get(artifactId)
+            if (artifact) {
+                const position = artifact.position
+                const index = positionToIndex(position)
+                item.artifactIds[index] = artifactId
+            }
+        }
+    }
+
+    function deleteArtifact(kumiId: number, artifactId: number) {
+        let item = kumiById.value.get(kumiId)
+        if (item) {
+            item.artifactIds = item.artifactIds ?? [null, null, null, null, null]
+
+            let artifact = artifactStore.artifacts.value.get(artifactId)
+            if (artifact) {
+                const position = artifact.position
+                const index = positionToIndex(position)
+                item.artifactIds[index] = null
+            }
+        }
+    }
+
+    function itemById(id: number): KumiItem | undefined {
+        return kumiById.value.get(id)
+    }
+
+    return {
+        kumi,
+        dirs,
+        kumisByDirId,
+
+        itemById,
+
+        createDir,
+        deleteDir,
+        rename,
+
+        createKumi,
+        deleteKumi,
+
+        addArtifact,
+        deleteArtifact,
+    }
+}
+
+const s = store()
+
+export function useKumiStore(): ReturnType<typeof store> {
+    return s
+}

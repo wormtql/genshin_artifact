@@ -1,3 +1,5 @@
+import {ArtifactMainStatName, type ArtifactPosition, ArtifactStatName, ArtifactSubStatName} from "@/types/artifact"
+
 export const artifactEff = {
     "4": {
         critical: [0.022, 0.025, 0.028, 0.031],
@@ -25,7 +27,17 @@ export const artifactEff = {
     }
 }
 
-export const artifactTags = {
+interface ArtifactTagData {
+    name: ArtifactStatName,
+    chs: string,
+    percentage: boolean,
+    max: {
+        4: number,
+        5: number
+    }
+}
+
+export const artifactTags: Record<ArtifactStatName, ArtifactTagData> = {
     "cureEffect": {
         "name": "cureEffect",
         "chs": "治疗加成",
@@ -119,7 +131,11 @@ export const artifactTags = {
     "defendStatic": {
         "name": "defendStatic",
         "chs": "防御力",
-        "percentage": false
+        "percentage": false,
+        "max": {
+            "4": 19,
+            "5": 23
+        }
     },
     "thunderBonus": {
         "name": "thunderBonus",
@@ -186,7 +202,7 @@ export const artifactTags = {
     }
 }
 
-export const mainStatMap = {
+export const mainStatMap: Record<ArtifactPosition, ArtifactMainStatName[]> = {
     flower: ["lifeStatic"],
     feather: ["attackStatic"],
     sand: ["attackPercentage", "lifePercentage", "defendPercentage", "elementalMastery", "recharge"],
@@ -214,7 +230,7 @@ export const mainStatMap = {
     ]
 }
 
-export const subStats = [
+export const subStats: ArtifactSubStatName[] = [
     "critical",
     "criticalDamage",
     "attackStatic",
@@ -227,6 +243,6 @@ export const subStats = [
     "recharge",
 ]
 
-export const positions = [
+export const positions: ArtifactPosition[] = [
     "flower", "feather", "sand", "cup", "head"
 ]

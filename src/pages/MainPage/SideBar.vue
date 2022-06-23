@@ -7,7 +7,7 @@
             :mode="mode"
         >
             <el-menu-item index="/intro">
-                <i class="el-icon-s-home"></i>
+                <el-icon><i-ep-home-filled></i-ep-home-filled></el-icon>
                 <span>首页</span>
             </el-menu-item>
 
@@ -16,15 +16,15 @@
                     我的仓库
                 </template>
                 <el-menu-item index="/artifacts">
-                    <i class="el-icon-s-help"></i>
+                    <el-icon><i-ep-help-filled /></el-icon>
                     圣遗物
                 </el-menu-item>
                 <el-menu-item index="/artifacts-kumi">
-                    <i class="el-icon-s-help"></i>
+                    <el-icon><i-ep-help-filled /></el-icon>
                     圣遗物套装
                 </el-menu-item>
                 <el-menu-item index="/presets">
-                    <i class="el-icon-menu"></i>
+                    <el-icon><i-ep-menu /></el-icon>
                     计算预设
                 </el-menu-item>
             </el-menu-item-group>
@@ -34,19 +34,19 @@
                     计算
                 </template>
                 <el-menu-item index="/calculate">
-                    <i class="el-icon-cpu"></i>
+                    <el-icon><i-ep-cpu /></el-icon>
                     计算器
                 </el-menu-item>
                 <el-menu-item index="/team-optimization">
-                    <i class="el-icon-s-opportunity"></i>
+                    <el-icon><i-ep-cpu /></el-icon>
                     多人优化
                 </el-menu-item>
                 <el-menu-item index="/potential">
-                    <i class="el-icon-magic-stick"></i>
+                    <el-icon><i-ep-opportunity /></el-icon>
                     圣遗物潜力
                 </el-menu-item>
                 <el-menu-item index="/character">
-                    <i class="el-icon-s-data"></i>
+                    <el-icon><i-ep-histogram /></el-icon>
                     莫娜数据库
                 </el-menu-item>
             </el-menu-item-group>
@@ -54,7 +54,7 @@
             <el-menu-item-group>
                 <template #title>附加功能</template>
                 <el-menu-item index="/playground">
-                    <font-awesome-icon :icon="['fas', 'terminal']" style="width: 24px; margin-right: 5px; color: #909399"></font-awesome-icon>
+                    <el-icon><i-fa6-solid-terminal /></el-icon>
                     Playground
                 </el-menu-item>
             </el-menu-item-group>
@@ -63,19 +63,20 @@
                 <template #title>
                     关于本站
                 </template>
-                <el-submenu index="help">
-                    <template slot="title">
+                <el-sub-menu index="help">
+                    <template #title>
+                        <el-icon><i-ep-question-filled /></el-icon>
                         <i class="el-icon-question"></i>
                         帮助
                     </template>
                     <el-menu-item index="/help/export-tools">
-                        <i class="el-icon-aim"></i>
+                        <el-icon><i-ep-aim /></el-icon>
                         导出工具
                     </el-menu-item>
-                </el-submenu>
+                </el-sub-menu>
 
                 <el-menu-item index="/tomodachi">
-                    <i class="el-icon-link"></i>
+                    <el-icon><i-ep-link /></el-icon>
                     友情链接
                 </el-menu-item>
             </el-menu-item-group>
@@ -83,8 +84,10 @@
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue"
+
+export default defineComponent({
     name: "SideBar",
     props: {
         items: {
@@ -110,7 +113,7 @@ export default {
         }
     },
     methods: {
-        handleSelect(index) {
+        handleSelect(index: string) {
             if (this.doRoute) {
                 this.$router.push(index)
             } else {
@@ -118,7 +121,7 @@ export default {
             }
         }
     }
-}
+})
 </script>
 
 <style scoped>
@@ -129,10 +132,6 @@ export default {
     align-items: center;
     justify-content: center;
 }
-
-/* .root {
-    background: #123456;
-} */
 
 .item {
     padding: 0 32px;

@@ -1,27 +1,24 @@
-import store from "@/store/store"
-
 import { deepCopy } from "@util/common"
 import { upgradeCharacterConfig } from "@util/character"
 import { upgradeWeaponConfig } from "@util/weapon"
 import { upgradeTargetFunctionConfig } from "@util/targetFunction"
 import { upgradeArtifactConfig } from "@util/artifacts"
 import { convertArtifactName, convertArtifactStatName } from "@util/converter"
+import {usePresetStore} from "@/store/pinia/preset"
+
+const presetStore = usePresetStore()
 
 export function createOrUpdatePreset(item, name) {
     item = upgradePresetItem(item)
-    store.commit("presets/addOrOverwrite", {
-        item, name
-    })
+    presetStore.addOrOverwrite(name, item)
 }
 
 export function deletePreset(name) {
-    store.commit("presets/delete", {
-        name
-    })
+    presetStore.deletePreset(name)
 }
 
 export function getPresetEntryByName(name) {
-    return store.state.presets.presets[name]
+    return presetStore.presets.value[name]
 }
 
 export function checkImportFormat(obj) {

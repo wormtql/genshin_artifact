@@ -1,8 +1,7 @@
 <template>
     <el-select
-        :value="value"
-        size="small"
-        @input="$emit('input', $event)"
+        :model-value="modelValue"
+        @update:modelValue="$emit('update:modelValue', $event)"
     >
         <el-option
             v-for="item in list"
@@ -27,7 +26,8 @@ Object.freeze(list)
 
 export default {
     name: "SelectArtifactSubStat",
-    props: ["value"],
+    props: ["modelValue"],
+    emits: ["update:modelValue"],
     created() {
         this.list = list
     }

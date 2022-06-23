@@ -69,8 +69,10 @@
 </template>
 
 <script>
-import { ref, defineComponent, toRef, onMounted } from '@vue/composition-api';
+// import { ref, defineComponent, toRef, onMounted } from '@vue/composition-api';
 // format: x.x.x
+import { ref, defineComponent, toRef, onMounted } from "vue"
+
 export function versionCompare(a, b) {
     const aParts = a.split('.');
     const bParts = b.split('.');

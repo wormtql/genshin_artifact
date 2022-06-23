@@ -1,4 +1,3 @@
-import store from "@/store/store"
 
 export function getNextDirName() {
     let existingNames = store.getters["kumi/dirNames"]
