@@ -4,10 +4,11 @@ import LoadingComponent from "@c/LoadingComponent"
 import ErrorComponent from "@c/ErrorComponent"
 // import NewArtifactPlanPage from "@page/NewArtifactPlanPage"
 // import TeamOptimizationPage from "@page/TeamOptimizationPage"
-// import NewArtifactPotentialPage from "@page/NewArtifactPotentialPage"
+import NewArtifactPotentialPage from "@page/NewArtifactPotentialPage"
 import CharacterDBPage from "@page/CharacterDBPage"
 import CharacterInfo from "@page/CharacterDBPage/CharacterInfo"
 import MonaPlaygroundPage from "@page/MonaPlaygroundPage"
+import ArtifactsPage from "@page/ArtifactsPage"
 
 import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
 
@@ -16,11 +17,11 @@ const IntroPage = defineAsyncComponent({
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
 })
-const ArtifactsPage = defineAsyncComponent({
-    loader: () => import(/* webpackChunkName: "artifacts-page" */"@page/ArtifactsPage"),
-    loading: LoadingComponent,
-    error: ErrorComponent,
-});
+// const ArtifactsPage = defineAsyncComponent({
+//     loader: () => import(/* webpackChunkName: "artifacts-page" */"@page/ArtifactsPage"),
+//     loading: LoadingComponent,
+//     error: ErrorComponent,
+// });
 const ExternalLinkPage = () => ({
     component: import(/* webpackChunkName: "about-page" */ "@page/about/ExternalLinkPage"),
     loading: LoadingComponent,
@@ -138,15 +139,14 @@ const routes = [
             title: "友情链接",
         }
     },
-    // {
-    //     path: "/potential",
-    //     // component: ArtifactPotentialPage,
-    //     component: NewArtifactPotentialPage,
-    //     meta: {
-    //         keepAlive: true,
-    //         title: "圣遗物潜力",
-    //     }
-    // },
+    {
+        path: "/potential",
+        component: NewArtifactPotentialPage,
+        meta: {
+            keepAlive: true,
+            title: "圣遗物潜力",
+        }
+    },
     {
         path: "/presets",
         component: CharacterPresetsPage,

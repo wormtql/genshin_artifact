@@ -2,35 +2,45 @@
     <new-artifact-potential-page></new-artifact-potential-page>
 </template>
 
-<script>
-import SimpleLoading from "@c/loading/SimpleLoading"
-import SimpleError from "@c/loading/SimpleError"
+<script setup lang="ts">
+import SimpleLoading from "@/components/loading/SimpleLoading.vue"
+import SimpleError from "@/components/loading/SimpleError.vue"
 
-import { requestMonaWasm } from "@/vendors/mona"
-
-const NewArtifactPotentialPage = () => {
-    const component = requestMonaWasm().then(() => import(
+const NewArtifactPotentialPage = defineAsyncComponent({
+    loader: () => import(
         /* webpackChunkName: "artifact-potential-page" */
         /* webpackPrefetch: true */
-        "./NewArtifactPotentialPage"
-        )
-    )
+        "./NewArtifactPotentialPage.vue"
+    ),
+    errorComponent: SimpleError,
+    loadingComponent: SimpleLoading,
+    delay: 0,
+    timeout: 60000
+})
 
-    return {
-        component,
-        loading: SimpleLoading,
-        error: SimpleError,
-        timeout: 30000,
-        delay: 0,
-    }
-}
+// const NewArtifactPotentialPage = () => {
+//     const component = requestMonaWasm().then(() => import(
+//         /* webpackChunkName: "artifact-potential-page" */
+//         /* webpackPrefetch: true */
+//         "./NewArtifactPotentialPage"
+//         )
+//     )
+//
+//     return {
+//         component,
+//         loading: SimpleLoading,
+//         error: SimpleError,
+//         timeout: 30000,
+//         delay: 0,
+//     }
+// }
 
-export default {
-    name: "NewArtifactPotentialPageWrapper",
-    components: {
-        NewArtifactPotentialPage
-    }
-}
+// export default {
+//     name: "NewArtifactPotentialPageWrapper",
+//     components: {
+//         NewArtifactPotentialPage
+//     }
+// }
 </script>
 
 <style scoped>

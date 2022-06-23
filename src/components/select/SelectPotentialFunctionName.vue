@@ -1,8 +1,7 @@
 <template>
     <el-select
-        :value="value"
-        @input="$emit('input', $event)"
-        size="small"
+        :model-value="modelValue"
+        @update:modelValue="$emit('update:modelValue', $event)"
     >
         <el-option
             v-for="item in potentialFunctionNames"
@@ -27,7 +26,8 @@ Object.freeze(_potentialFunctionNames)
 
 export default {
     name: "SelectPotentialFunctionName",
-    props: ["value"],
+    props: ["modelValue"],
+    emits: ["update:modelValue"],
     created() {
         this.potentialFunctionNames = _potentialFunctionNames
     }

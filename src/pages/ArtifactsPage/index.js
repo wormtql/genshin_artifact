@@ -1,1 +1,1 @@
-export { default } from "./ArtifactsPage";
+export { default } from "./ArtifactsPageWrapper"

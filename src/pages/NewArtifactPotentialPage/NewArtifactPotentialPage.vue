@@ -4,13 +4,12 @@
             <el-col
                 :md="6"
                 :sm="24"
-                ref="content"
                 class="mona-scroll-hidden left"
             >
                 <select-potential-function-name v-model="potentialFunctionName"></select-potential-function-name>
 
                 <div class="pf-detail">
-                    <img :src="pfImage" class="pf-image" >
+                    <img :src="pfImage" class="pf-image" alt="图" >
 
                     <div>
                         <p class="pf-title">{{ pfChs }}</p>
@@ -34,7 +33,6 @@
                 <div>
                     <el-button
                         type="primary"
-                        size="mini"
                         icon="el-icon-cpu"
                         @click="handleClickStart"
                     >开始计算</el-button>
@@ -72,14 +70,12 @@
                     <span class="filter-title">等级</span>
                     <div class="filter-level">
                         <el-input-number
-                            size="small"
                             :min="0"
                             :max="filterLevel[1]"
                             v-model="filterLevel[0]"
                         ></el-input-number>
                         ~
                         <el-input-number
-                            size="small"
                             :min="filterLevel[0]"
                             :max="20"
                             v-model="filterLevel[1]"
@@ -88,20 +84,27 @@
                 </div>
 
                 <div class="artifacts-div">
-                    <artifact-display-by-id
-                        v-for="result in resultsToBeDisplay"
-                        :artifact-id="result[0]"
+<!--                    <artifact-display-by-id-->
+<!--                        v-for="result in resultsToBeDisplay"-->
+<!--                        :artifact-id="result[0]"-->
+<!--                        :extra="result[1].toFixed(2)"-->
+<!--                        :show-back="true"-->
+<!--                        :back-value="result[1] / results[0][1]"-->
+<!--                    ></artifact-display-by-id>-->
+                    <artifact-display
+                        v-for="result in artifactsToBeDisplayed"
+                        :item="result[0]"
                         :extra="result[1].toFixed(2)"
                         :show-back="true"
-                        :back-value="result[1] / results[0][1]"
-                    ></artifact-display-by-id>
+                        :back-value="result[1] / maxScore"
+                    ></artifact-display>
                 </div>
 
                 <div class="pager">
                     <el-pagination
                         :total="filteredResults.length"
                         :page-size="20"
-                        :current-page.sync="currentPage"
+                        v-model:current-page="currentPage"
                         hide-on-single-page
                         layout="prev, pager, next"
                         :small="!deviceIsPC"
@@ -113,13 +116,12 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { potentialFunctionData } from "@potentialFunction"
 import { getPotentialFunctionDefaultConfig } from "@util/potentialFunction"
-import { getArtifactsWasm } from "@util/artifacts"
+import { getArtifactsWasm } from "@/utils/artifacts"
 import { wasmComputeArtifactPotential } from "@wasm"
-// import { mapGetters } from "vuex"
-import { deviceIsPC } from "@util/device"
+import { deviceIsPC } from "@/utils/device"
 
 import SelectPotentialFunctionName from "@c/select/SelectPotentialFunctionName"
 import SelectArtifactSlot from "@c/select/SelectArtifactSlot"
@@ -127,155 +129,183 @@ import SelectArtifactSet from "@c/select/SelectArtifactSet"
 import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
 import ItemConfig from "@c/config/ItemConfig"
 import ArtifactDisplayById from "@c/display/ArtifactDisplayById"
+import ArtifactDisplay from "@/components/display/ArtifactDisplay.vue"
+import type {
+    ArtifactMainStatName,
+    ArtifactPosition,
+    ArtifactSetName,
+    ArtifactStatName,
+    IArtifact
+} from "@/types/artifact"
+import {useArtifactStore} from "@/store/pinia/artifact";
+import {ElLoading, ElMessage} from "element-plus";
 
 
-export default {
-    name: "NewArtifactPotentialPage",
-    components: {
-        ArtifactDisplayById,
-        SelectArtifactMainStat,
-        SelectArtifactSet,
-        SelectArtifactSlot,
-        SelectPotentialFunctionName,
-        ItemConfig,
-    },
-    data() {
-        return {
-            potentialFunctionName: "ArtifactEff",
-            potentialFunctionConfig: getPotentialFunctionDefaultConfig("ArtifactEff"),
+const artifactStore = useArtifactStore()
 
-            results: [],        // [[id, score]] in descending order
-            currentPage: 1,
+// potential function name and corresponding data
+const potentialFunctionName = ref("ArtifactEff")
 
-            filterSlots: [],        // defaults to all
-            filterSetNames: [],
-            filterMainStatNames: [],
-            filterLevel: [0, 20],
+const pfImage = computed(() => {
+    const item = potentialFunctionData[potentialFunctionName.value]
+    return item?.badge
+})
 
-            deviceIsPC
+const pfChs = computed(() => {
+    const item = potentialFunctionData[potentialFunctionName.value]
+    return item?.chs
+})
+
+const pfDescription = computed(() => {
+    const item = potentialFunctionData[potentialFunctionName.value]
+    return item?.description
+})
+
+const pfConfigConfigs = computed(() => {
+    const item = potentialFunctionData[potentialFunctionName.value]
+    if (item) {
+        return item.config
+    } else {
+        return []
+    }
+})
+
+// potential function config
+const potentialFunctionConfig = ref(getPotentialFunctionDefaultConfig("ArtifactEff"))
+
+// results
+const results = ref<[number, number][]>([])     // [id, score][]
+
+const maxScore = computed(() => {
+    if (results.value.length > 0) {
+        return results.value[0][1]
+    } else {
+        return Number.MAX_SAFE_INTEGER
+    }
+})
+
+// filters
+const filterSlots = ref<ArtifactPosition[]>([])
+const filterSetNames = ref<ArtifactSetName[]>([])
+const filterMainStatNames = ref<ArtifactStatName[]>([])
+const filterLevel = ref<[number, number]>([0, 20])
+
+const filteredResults = computed((): [number, number][] => {
+    let r = []
+
+    for (let item of results.value) {
+        const artifact = artifactStore.artifacts.value.get(item[0])
+        if (!artifact) {
+            continue
         }
-    },
-    methods: {
-        handleClickStart() {
-            const artifactsWasm = getArtifactsWasm()
-            const pfInterface = this.potentialFunctionInterface
-            // console.log(pfInterface)
 
-            const loading = this.$loading({
-                text: "莫娜占卜中"
-            })
-
-            wasmComputeArtifactPotential(pfInterface, artifactsWasm).then(results => {
-                // console.log(results)
-                this.results = results
-            }).catch(e => {
-                this.$message.error(e)
-            }).finally(() => {
-                loading.close()
-            })
+        if (filterSlots.value.length > 0) {
+            if (filterSlots.value.indexOf(artifact.position) === -1) {
+                continue
+            }
         }
-    },
-    computed: {
-        ...mapGetters("artifacts", {
-            artifactsById: "artifactsById"
-        }),
 
-        potentialFunctionInterface() {
-            return {
-                name: this.potentialFunctionName,
-                config: this.potentialFunctionConfig
+        if (filterSetNames.value.length > 0) {
+            if (filterSetNames.value.indexOf(artifact.setName) === -1) {
+                continue
             }
-        },
-
-        pfImage() {
-            const item = potentialFunctionData[this.potentialFunctionName]
-            // console.log(item)
-            return item?.badge
-        },
-
-        pfChs() {
-            const item = potentialFunctionData[this.potentialFunctionName]
-            return item?.chs
-        },
-
-        pfDescription() {
-            const item = potentialFunctionData[this.potentialFunctionName]
-            return item?.description
-        },
-
-        pfConfigConfigs() {
-            const item = potentialFunctionData[this.potentialFunctionName]
-            if (item) {
-                return item.config
-            } else {
-                return []
-            }
-        },
-
-        filteredResults() {
-            let results = []
-
-            for (let item of this.results) {
-                const artifact = this.artifactsById[item[0]]
-                if (!artifact) {
-                    continue
-                }
-                if (this.filterSlots.length > 0) {
-                    if (this.filterSlots.indexOf(artifact.position) === -1) {
-                        continue
-                    }
-                }
-
-                if (this.filterSetNames.length > 0) {
-                    if (this.filterSetNames.indexOf(artifact.setName) === -1) {
-                        continue
-                    }
-                }
-
-                if (this.filterMainStatNames.length > 0) {
-                    if (this.filterMainStatNames.indexOf(artifact.mainTag.name) === -1) {
-                        continue
-                    }
-                }
-
-                const level = artifact?.level ?? 20
-                if (level < this.filterLevel[0] || level > this.filterLevel[1]) {
-                    continue
-                }
-
-                results.push(item)
-            }
-
-            return results
-        },
-
-        resultsToBeDisplay() {
-            return this.filteredResults.slice((this.currentPage - 1) * 20, Math.min(this.currentPage * 20, this.filteredResults.length))
         }
-    },
-    watch: {
-        potentialFunctionName(newValue, oldValue) {
-            if (newValue === oldValue) {
-                return
-            }
 
-            const item = potentialFunctionData[newValue]
-            const configConfigs = item.config ?? []
-            if (configConfigs.length === 0) {
-                this.potentialFunctionConfig = "NoConfig"
-            } else {
-                let defaultConfig = {}
-                for (const config of configConfigs) {
-                    defaultConfig[config.name] = config.default
-                }
-
-                this.potentialFunctionConfig = {
-                    [newValue]: defaultConfig
-                }
+        if (filterMainStatNames.value.length > 0) {
+            if (filterMainStatNames.value.indexOf(artifact.mainTag.name) === -1) {
+                continue
             }
+        }
+
+        const level = artifact.level
+        if (level < filterLevel.value[0] || level > filterLevel.value[1]) {
+            continue
+        }
+
+        r.push(item)
+    }
+
+    return r
+})
+
+// pager
+const currentPage = ref(1)
+
+const resultsToBeDisplay = computed((): [number, number][] => {
+    const p = currentPage.value
+    return filteredResults.value
+        .slice((p - 1) * 20, Math.min(p * 20, filteredResults.value.length))
+})
+
+const artifactsToBeDisplayed = computed((): [IArtifact, number][] => {
+    const r = <[IArtifact, number][]>[]
+    for (let item of resultsToBeDisplay.value) {
+        const [artifactId, score] = item
+        const a = artifactStore.artifacts.value.get(artifactId)
+        if (a) {
+            r.push([a, score])
         }
     }
+    return r
+})
+
+// compute
+const potentialFunctionInterface = computed(() => {
+    return {
+        name: potentialFunctionName.value,
+        config: potentialFunctionConfig.value
+    }
+})
+
+function handleClickStart() {
+    const artifactsWasm = getArtifactsWasm()
+    const pfInterface = potentialFunctionInterface.value
+    // console.log(pfInterface)
+
+    const loading = ElLoading.service({
+        text: "莫娜占卜中",
+        lock: true,
+        fullscreen: true
+    })
+
+    wasmComputeArtifactPotential(pfInterface, artifactsWasm).then((res: any) => {
+        // console.log(results)
+        results.value = res
+    }).catch((e: any) => {
+        ElMessage({
+            message: e,
+            type: "error"
+        })
+    }).finally(() => {
+        loading.close()
+    })
 }
+
+// export default {
+
+//     watch: {
+//         potentialFunctionName(newValue, oldValue) {
+//             if (newValue === oldValue) {
+//                 return
+//             }
+//
+//             const item = potentialFunctionData[newValue]
+//             const configConfigs = item.config ?? []
+//             if (configConfigs.length === 0) {
+//                 this.potentialFunctionConfig = "NoConfig"
+//             } else {
+//                 let defaultConfig = {}
+//                 for (const config of configConfigs) {
+//                     defaultConfig[config.name] = config.default
+//                 }
+//
+//                 this.potentialFunctionConfig = {
+//                     [newValue]: defaultConfig
+//                 }
+//             }
+//         }
+//     }
+// }
 </script>
 
 <style scoped lang="scss">

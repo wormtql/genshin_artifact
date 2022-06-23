@@ -34,7 +34,25 @@ export interface IArtifactContentOnly {
 
 export type ArtifactSetName = string
 
-export type ArtifactStatName = string
+export type ArtifactStatName
+    = "lifeStatic"
+    | "attackStatic"
+    | "attackPercentage"
+    | "lifePercentage"
+    | "defendPercentage"
+    | "elementalMastery"
+    | "recharge"
+    | "thunderBonus"
+    | "fireBonus"
+    | "waterBonus"
+    | "iceBonus"
+    | "windBonus"
+    | "rockBonus"
+    | "physicalBonus"
+    | "critical"
+    | "criticalDamage"
+    | "cureEffect"
+    | "defendStatic"
 
 export type ArtifactMainStatName
     = "lifeStatic"

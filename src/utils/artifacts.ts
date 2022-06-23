@@ -249,7 +249,7 @@ export function getArtifactsWasm() {
 export function statName2Chs(name: ArtifactStatName) {
     let data = artifactTags[name]
     if (!data) {
-        const name2 = convertArtifactStatNameBack(name)
+        const name2: ArtifactStatName = convertArtifactStatNameBack(name)
         data = artifactTags[name2]
     }
 
