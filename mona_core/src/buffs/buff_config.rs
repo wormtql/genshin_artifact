@@ -14,11 +14,11 @@ pub enum BuffConfig {
     HPFixed { value: f64 },
     Critical { p: f64 },
     CriticalDamage { p: f64 },
-    CustomBonus { p: f64 },
+    CustomBonus { p: f64, element: Element },
     ElementalMastery { value: f64 },
     Recharge { p: f64 },
     DEFMinus { p: f64 },
-    ResMinus { p: f64 },
+    ResMinus { p: f64, element: Element },
     HealingBonus { p: f64 },
 
     BennettQ { base_atk: f64, c1: bool, skill3: usize },

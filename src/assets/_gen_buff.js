@@ -360,6 +360,8 @@ export default {
         description: "",
         config: [
             
+            {"default":"Electro","name":"element","title":"伤害加成元素","type":"element8"},
+            
             {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
             
         ],
@@ -419,6 +421,8 @@ export default {
         genre: "Common",
         description: "",
         config: [
+            
+            {"default":"Electro","name":"element","title":"减抗元素","type":"element8"},
             
             {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
             
