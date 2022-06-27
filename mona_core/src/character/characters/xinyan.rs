@@ -1,5 +1,5 @@
 use num_derive::FromPrimitive;
-use crate::attribute::Attribute;
+use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
@@ -79,7 +79,7 @@ pub const XINYAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
 
 pub struct Xinyan;
 
-#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro)]
+#[derive(Copy, Clone, Eq, PartialEq, FromPrimitive, EnumString, EnumCountMacro)]
 pub enum XinyanDamageEnum {
     Normal1,
     Normal2,
@@ -158,6 +158,15 @@ impl CharacterTrait for Xinyan {
         ])
     };
 
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "shield_rate",
+            title: "「热情拂扫」护盾覆盖比例",
+            config: ItemConfig::RATE01_TYPE
+        }
+    ]);
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
         let s: XinyanDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -179,8 +188,30 @@ impl CharacterTrait for Xinyan {
             Q2 => XINYAN_SKILL.elemental_burst_dmg2[s3],
         };
 
+        let shield_rate = match *_config {
+            CharacterSkillConfig::Xinyan { shield_rate } => shield_rate,
+            _ => 0.0
+        };
+
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
+
+        let s_element = s.get_element();
+
+        let c4 = context.character_common_data.constellation >= 4;
+		let c6 = context.character_common_data.constellation == 6;
+
+		if c4 && s_element == Element::Physical {
+			builder.add_extra_res_minus("四命：「节奏的传染」", 0.15 * shield_rate);
+		}
+
+		if context.character_common_data.has_talent2 && s_element == Element::Physical {
+			builder.add_extra_bonus("天赋：「...这才是摇滚！」", 0.15 * shield_rate);
+		}
+
+		if (s == XinyanDamageEnum::Charged1 || s == XinyanDamageEnum::Charged2) && c6 {
+			builder.add_extra_atk("六命：「地狱里摇摆」", context.attribute.get_value(AttributeName::DEF) * 0.5);
+		}
 
         builder.damage(
             &context.attribute,
