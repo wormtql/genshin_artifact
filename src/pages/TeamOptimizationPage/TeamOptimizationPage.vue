@@ -2,11 +2,11 @@
     <div>
         <el-drawer
             title="面板"
-            :visible.sync="showAttributeDrawer"
+            v-model="showAttributeDrawer"
             :size="deviceIsPC ? '30%' : '100%'"
         >
             <template v-if="!wasmAttribute">
-                <el-empty>In theory, in should not see this</el-empty>
+                <el-empty>In theory, you should not see this</el-empty>
             </template>
             <template v-else>
                 <div style="padding: 0 20px">
@@ -24,8 +24,8 @@
                 class="mona-scroll-hidden left"
             >
                 <div style="margin-bottom: 12px">
-                    <el-button type="primary" size="mini" icon="el-icon-cpu" @click="handleClickStart">开始计算</el-button>
-                    <el-button size="mini" icon="el-icon-plus" @click="handleClickAddMember">添加成员</el-button>
+                    <el-button type="primary" :icon="IconEpCpu" @click="handleClickStart">开始计算</el-button>
+                    <el-button :icon="IconEpPlus" @click="handleClickAddMember">添加成员</el-button>
                 </div>
 
                 <div
@@ -38,9 +38,8 @@
                         <div>
                             <el-button
                                 circle
-                                size="mini"
-                                type="text"
-                                icon="el-icon-delete"
+                                text
+                                :icon="IconEpDelete"
                                 @click="handleDeleteMember(index)"
                                 style="color: white"
                             ></el-button>
@@ -74,11 +73,10 @@
             >
                 <template v-if="currentResultEntry">
                     <el-input-number
-                        :value="resultIndex + 1"
-                        @input="handleChangeResultIndex"
+                        :model-value="resultIndex + 1"
+                        @update:modelValue="handleChangeResultIndex"
                         :min="1"
                         :max="results.length"
-                        size="small"
                         style="margin-bottom: 12px"
                     ></el-input-number>
                     <div
@@ -90,10 +88,9 @@
                             <div>
 <!--                                <span class="result-item-title">{{ characterChs[index] }}</span>-->
                                 <el-button
-                                    icon="el-icon-s-data"
+                                    :icon="IconEpHistogram"
                                     circle
-                                    size="mini"
-                                    type="text"
+                                    text
                                     title="查看面板"
                                     @click="handleClickDisplayAttributePanel(index)"
                                 ></el-button>
@@ -106,7 +103,7 @@
                             <artifact-display
                                 v-for="artifactId in currentResultEntry[index]"
                                 :key="artifactId"
-                                :item="artifactsById[artifactId]"
+                                :item="artifactStore.artifacts.value.get(artifactId)"
                                 :buttons="true"
                                 :lock-button="true"
                                 :delete-button="false"
@@ -129,240 +126,198 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue"
+import {ref} from "vue"
 
 import {convertArtifact} from "@/utils/converter"
 import {team_optimize, wasmGetAttribute} from "@/wasm"
-import {convertPresetToWasmInterface, getPresetEntryByName} from "@/utils/preset"
-import {toggleArtifact} from "@/utils/artifacts"
+import {convertPresetToWasmInterface} from "@/utils/preset"
 import {deviceIsPC} from "@/utils/device"
-
-import SelectCharacter from "@/components/select/SelectCharacter"
-import SelectWeapon from "@/components/select/SelectWeapon"
-import ItemConfig from "@/components/config/ItemConfig"
-import ArtifactDisplay from "@/components/display/ArtifactDisplay"
-import MyButton1 from "@/components/button/MyButton1"
-import PresetItem from "@/components/display/PresetItem"
-import SelectPreset from "@/components/select/SelectPreset"
+// @ts-ignore
+import ArtifactDisplay from "@/components/display/ArtifactDisplay.vue"
+import SelectPreset from "@/components/select/SelectPreset.vue"
 import AttributePanel from "@/components/display/AttributePanel"
-import {ElMessage} from "element-plus"
+import {useArtifactStore} from "@/store/pinia/artifact"
+import type {IArtifact} from "@/types/artifact"
+import {usePresetStore} from "@/store/pinia/preset"
+import {useMona} from "@/wasm/mona"
+import {deepCopy} from "@/utils/common"
+
+import IconEpCpu from "~icons/ep/cpu"
+import IconEpPlus from "~icons/ep/plus"
+import IconEpDelete from "~icons/ep/delete"
+import IconEpHistogram from "~icons/ep/histogram"
 
 
+const artifactStore = useArtifactStore()
+const presetStore = usePresetStore()
+
+const mona = await useMona()
+
+// members
 type MemberPresetName = string | null
-const presetNames = reactive([null] as MemberPresetName[])
-const weights = reactive([0] as number[])
+const presetNames = ref([null] as MemberPresetName[])
+const weights = ref([0] as number[])
 const MAX_MEMBERS = 8
 
 function handleClickAddMember() {
-    if (presetNames.length === MAX_MEMBERS) {
+    if (presetNames.value.length === MAX_MEMBERS) {
         ElMessage({
             message: "最多支持8个成员",
             type: "error"
         })
         return
     }
-    presetNames.push(null)
-    weights.push(0)
+    presetNames.value.push(null)
+    weights.value.push(0)
 }
 
 function handleDeleteMember(index: number) {
-    if (presetNames.length === 1) {
+    if (presetNames.value.length === 1) {
         return
     }
-    presetNames.splice(index, 1)
-    weights.splice(index, 1)
+    presetNames.value.splice(index, 1)
+    weights.value.splice(index, 1)
+}
+
+const presets = computed(() => {
+    let results = []
+    for (let name of presetNames.value.values()) {
+        if (name) {
+            const preset = presetStore.presets.value[name]
+            if (preset) {
+                results.push(preset)
+            }
+        }
+    }
+    return results
+})
+
+
+// results
+const results = ref<Array<Array<Record<string, number>>>>([])    // a 3d array
+const resultIndex = ref(0)
+const currentResultEntry = computed((): Record<string, number>[] | null => {
+    if (results.value.length === 0) {
+        return null
+    } else {
+        return results.value[resultIndex.value]
+    }
+})
+
+function handleChangeResultIndex(index: number) {
+    resultIndex.value = index - 1
 }
 
 
+// attribute
 const showAttributeDrawer = ref(false)
 const wasmAttribute = ref(null as any)
 
 function wasmGetAttributeInterface(index: number) {
-    let artifacts = []
-    if (this.currentResultEntry) {
-        const artifactIds = Object.values(this.currentResultEntry[index])
-        const artifactsOldFormat = artifactIds.map(x => this.artifactsById[x]).filter(x => x)
+    let artifacts: any[] = []
+    if (currentResultEntry.value) {
+        const artifactIds = Object.values(currentResultEntry.value[index])
+        const artifactsOldFormat: IArtifact[] = []
+        for (let artifactId of artifactIds) {
+            const a = artifactStore.artifacts.value.get(artifactId)
+            if (a) {
+                artifactsOldFormat.push(a)
+            }
+        }
         artifacts = artifactsOldFormat.map(a => convertArtifact(a))
     }
-    // console.log(this.presets[index])
 
     return {
-        character: this.presets[index].item.character,
-        weapon: this.presets[index].item.weapon,
-        buffs: this.presets[index].item.buffs,
+        character: presets.value[index].item.character,
+        weapon: presets.value[index].item.weapon,
+        buffs: presets.value[index].item.buffs,
         artifacts,
     }
-},
+}
 
 async function handleClickDisplayAttributePanel(index: number) {
     const input = wasmGetAttributeInterface(index)
-    // console.log(input)
-    const result = await wasmGetAttribute(input)
-    this.wasmAttribute = result
+    wasmAttribute.value = await mona.CommonInterface.get_attribute(input)
 
-    this.showAttributeDrawer = true
-    // console.log(result)
-},
+    showAttributeDrawer.value = true
+}
 
-export default {
-    name: "TeamOptimizationPage",
-    components: {
-        SelectCharacter,
-        SelectWeapon,
-        ItemConfig,
-        ArtifactDisplay,
-        MyButton1,
-        PresetItem,
-        SelectPreset,
-        AttributePanel,
-    },
-    data() {
-        return {
-            results: [],    // a 3d array
-            resultIndex: 0,
+// artifacts
+function handleToggleArtifact(artifactId: number) {
+    artifactStore.toggleArtifact(artifactId)
+}
 
-            showAttributeDrawer: false,
-            wasmAttribute: null,
-
-            deviceIsPC
+const filteredArtifacts = computed((): IArtifact[] => {
+    let results: IArtifact[] = []
+    for (let artifact of artifactStore.artifacts.value.values()) {
+        if (artifact.level >= 16 && !artifact.omit) {
+            results.push(artifact)
         }
-    },
-    methods: {
-        handleClickStart() {
-            const canStart = this.presets.length === this.presetNames.length
-            if (!canStart) {
-                this.$message.error("请选择计算预设")
-                return
-            }
+    }
+    return results
+})
 
-            const interfaceWasm = this.optimizeTeamWasmInterface
-            const artifacts = this.filteredArtifactsWasm
-            // console.log(artifacts)
-            // console.log(interfaceWasm)
+const filteredArtifactsWasm = computed(() => {
+    return filteredArtifacts.value.map(convertArtifact)
+})
 
-            const loading = this.$loading({
-                lock: true,
-                text: "莫娜占卜中（可能需要数分钟）"
-            })
 
-            team_optimize(interfaceWasm, artifacts).then(result => {
-                // console.log(result)
-                this.results = result.artifacts
-                this.resultIndex = 0
-            }).catch(e => {
-                console.log(e)
-            }).finally(() => {
-                loading.close()
-            })
-        },
+// do calculation
+const singleInterfaces = computed(() => {
+    return presets.value.map(x => convertPresetToWasmInterface(x.item))
+})
 
-        handleChangeResultIndex(index) {
-            this.resultIndex = index - 1
-        },
+const optimizeTeamHyperParamInterface = {
+    mva_step: 5,
+    work_space: 1000,
+    max_re_optimize: 5,
+    max_search: 1000000,
+    count: 1000,
+}
 
-        handleClickDisplayAttributePanel: async function (index) {
-            const input = this.wasmGetAttributeInterface(index)
-            // console.log(input)
-            const result = await wasmGetAttribute(input)
-            this.wasmAttribute = result
+const optimizeTeamWasmInterface = computed(() => {
+    return {
+        // single_interfaces: interfaces,
+        // weights: weights,
+        single_interfaces: singleInterfaces.value,
+        weights: weights.value,
+        hyper_param: optimizeTeamHyperParamInterface
+    }
+})
 
-            this.showAttributeDrawer = true
-            // console.log(result)
-        },
+function handleClickStart() {
+    const canStart = presets.value.length === presetNames.value.length
+    if (!canStart) {
+        ElMessage({
+            message: "请选择计算预设",
+            type: "error"
+        })
+        return
+    }
 
-        wasmGetAttributeInterface(index) {
-            let artifacts = []
-            if (this.currentResultEntry) {
-                const artifactIds = Object.values(this.currentResultEntry[index])
-                const artifactsOldFormat = artifactIds.map(x => this.artifactsById[x]).filter(x => x)
-                artifacts = artifactsOldFormat.map(a => convertArtifact(a))
-            }
-            // console.log(this.presets[index])
+    const interfaceWasm = deepCopy(optimizeTeamWasmInterface.value)
+    // no need to deep copy because it's converted into wasm format, which is not reactive
+    const artifacts = filteredArtifactsWasm.value
 
-            return {
-                character: this.presets[index].item.character,
-                weapon: this.presets[index].item.weapon,
-                buffs: this.presets[index].item.buffs,
-                artifacts,
-            }
-        },
+    const loading = ElLoading.service({
+        text: "莫娜占卜中（可能需要数分钟）",
+        lock: true,
+        fullscreen: true
+    })
 
-        // not used, todo
-        handleClickSaveAsKumi(index) {
-            let artifacts = []
-            if (this.currentResultEntry) {
-                const artifactIds = Object.values(this.currentResultEntry[index])
-                artifacts = artifactIds.map(x => this.artifactsById[x]).filter(x => x)
-            }
-        },
-
-        handleToggleArtifact(artifactId) {
-            toggleArtifact(artifactId)
-        }
-    },
-    computed: {
-        ...mapGetters("artifacts", {
-            artifactsFlat: "allFlat",
-            artifactsById: "artifactsById",
-        }),
-
-        singleInterfaces() {
-            return this.presets.map(x => convertPresetToWasmInterface(x.item))
-        },
-
-        currentResultEntry() {
-            if (this.results.length === 0) {
-                return null
-            } else {
-                return this.results[this.resultIndex]
-            }
-        },
-
-        filteredArtifacts() {
-            let results = []
-            for (let artifact of this.artifactsFlat) {
-                if (artifact.level >= 16) {
-                    results.push(artifact)
-                }
-            }
-            return results.filter(a => !a.omit)
-        },
-
-        filteredArtifactsWasm() {
-            return this.filteredArtifacts.map(convertArtifact)
-        },
-
-        presets() {
-            let results = []
-            for (let name of this.presetNames) {
-                if (name) {
-                    results.push(getPresetEntryByName(name))
-                }
-            }
-            return results
-        },
-
-        optimizeTeamHyperParamInterface() {
-            // todo
-            return {
-                mva_step: 5,
-                work_space: 1000,
-                max_re_optimize: 5,
-                max_search: 1000000,
-                count: 1000,
-            }
-        },
-
-        optimizeTeamWasmInterface() {
-            return {
-                // single_interfaces: interfaces,
-                // weights: weights,
-                single_interfaces: this.singleInterfaces,
-                weights: this.weights,
-                hyper_param: this.optimizeTeamHyperParamInterface
-            }
-        }
-    },
+    team_optimize(interfaceWasm, artifacts).then(result => {
+        // console.log(result)
+        results.value = result.artifacts
+        resultIndex.value = 0
+    }).catch(e => {
+        ElMessage({
+            message: `计算过程发生错误：${e.message ?? e}`,
+            type: "error"
+        })
+        console.error(e)
+    }).finally(() => {
+        loading.close()
+    })
 }
 </script>
 

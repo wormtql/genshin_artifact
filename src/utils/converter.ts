@@ -1,4 +1,13 @@
-const nameMap = {
+import type {
+    ArtifactPosition, ArtifactSetName, ArtifactSetNameWasm, ArtifactSlotNameWasm, ArtifactStatName,
+    ArtifactStatNameWasm,
+    ArtifactStatWasm,
+    IArtifact,
+    IArtifactTag,
+    IArtifactWasm
+} from "@/types/artifact"
+
+const nameMap: any = {
     "adventurer": "Adventurer",
     "archaicPetra": "ArchaicPetra",
     "berserker": "Berserker",
@@ -39,14 +48,14 @@ const nameMap = {
 }
 Object.freeze(nameMap)
 
-let nameMapReverse = {}
-for (const key of Object.keys(nameMap)) {
+let nameMapReverse: any = {}
+for (const key in nameMap) {
     const value = nameMap[key]
     nameMapReverse[value] = key
 }
 Object.freeze(nameMapReverse)
 
-const slotMap = {
+const slotMap: Record<ArtifactPosition, ArtifactSlotNameWasm> = {
     "flower": "Flower",
     "feather": "Feather",
     "sand": "Sand",
@@ -54,7 +63,7 @@ const slotMap = {
     "head": "Head",
 }
 
-const statNameMap = {
+const statNameMap: any = {
     "cureEffect": "HealingBonus",
     "lifeStatic": "HPFixed",
     "lifePercentage": "HPPercentage",
@@ -75,7 +84,7 @@ const statNameMap = {
     "physicalBonus": "PhysicalBonus"
 }
 
-let statNameMapReverse = {}
+let statNameMapReverse: any = {}
 for (let key in statNameMap) {
     const value = statNameMap[key]
     statNameMapReverse[value] = key
@@ -83,14 +92,14 @@ for (let key in statNameMap) {
 Object.freeze(statNameMapReverse)
 Object.freeze(statNameMap)
 
-function convertStat(stat) {
+function convertStat(stat: IArtifactTag): ArtifactStatWasm {
     return [
         statNameMap[stat.name],
         stat.value,
     ]
 }
 
-export function convertArtifact(artifact) {
+export function convertArtifact(artifact: IArtifact): IArtifactWasm {
     return {
         "set_name": convertArtifactName(artifact.setName),
         "slot": slotMap[artifact.position],
@@ -102,16 +111,15 @@ export function convertArtifact(artifact) {
     }
 }
 
-export function convertArtifactName(name) {
+export function convertArtifactName(name: ArtifactSetName): ArtifactSetNameWasm {
     if (Object.prototype.hasOwnProperty.call(nameMap, name)) {
         return nameMap[name]
     } else {
         return name
     }
-    // return nameMap[name.toLowerCase()]
 }
 
-export function convertArtifactNameBack(name) {
+export function convertArtifactNameBack(name: ArtifactSetNameWasm): ArtifactSetName {
     if (Object.prototype.hasOwnProperty.call(nameMapReverse, name)) {
         return nameMapReverse[name]
     } else {
@@ -120,10 +128,10 @@ export function convertArtifactNameBack(name) {
 }
 
 // dir: 1: old -> new
-export function convertArtifactStatName(name) {
+export function convertArtifactStatName(name: ArtifactStatName): ArtifactStatNameWasm {
     return statNameMap[name]
 }
 
-export function convertArtifactStatNameBack(name) {
+export function convertArtifactStatNameBack(name: ArtifactStatNameWasm): ArtifactStatName {
     return statNameMapReverse[name]
 }

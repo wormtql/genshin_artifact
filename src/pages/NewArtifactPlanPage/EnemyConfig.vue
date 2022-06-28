@@ -1,31 +1,29 @@
 <template>
-    <div>
-        <div class="item">
-            <span class="title">等级</span>
-            <el-input-number
-                :value="value.level"
-                @input="handleInput('level', $event)"
-                :min="60"
-                :max="100"
-                size="small"
-            ></el-input-number>
-        </div>
+    <div class="item">
+        <span class="title">等级</span>
+        <el-input-number
+            :model-value="modelValue.level"
+            @update:modelValue="handleInput('level', $event)"
+            :min="60"
+            :max="100"
+        ></el-input-number>
+    </div>
 
-        <div
-            v-for="item in resNames"
-            class="item"
-        >
-            <span class="title">{{ item.title }}</span>
-            <el-slider
-                :value="value[item.name]"
-                @input="handleInput(item.name, $event)"
-                class="input"
-                :min="-1"
-                :max="1"
-                :step="0.1"
-                :show-input="true"
-            ></el-slider>
-        </div>
+    <div
+        v-for="item in resNames"
+        :key="item.name"
+        class="item"
+    >
+        <span class="title">{{ item.title }}</span>
+        <el-slider
+            :model-value="modelValue[item.name]"
+            @update:modelValue="handleInput(item.name, $event)"
+            class="input"
+            :min="-1"
+            :max="1"
+            :step="0.1"
+            :show-input="true"
+        ></el-slider>
     </div>
 </template>
 
@@ -44,16 +42,17 @@ Object.freeze(resNames)
 
 export default {
     name: "EnemyConfig",
-    props: ["value"],
+    props: ["modelValue"],
+    emits: ["update:modelValue"],
     created() {
         this.resNames = resNames
     },
     methods: {
         handleInput(name, value) {
-            let temp = Object.assign({}, this.value)
+            let temp = Object.assign({}, this.modelValue)
             temp[name] = value
 
-            this.$emit("input", temp)
+            this.$emit("update:modelValue", temp)
         }
     }
 }

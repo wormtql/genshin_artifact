@@ -1,129 +1,127 @@
 <template>
-    <div>
-        <div style="margin-bottom: 16px;">
-            <el-radio-group v-model="damageType" size="small" style="margin-right: 24px;">
-                <el-radio-button label="normal">{{ normalDamageName }}</el-radio-button>
-                <el-radio-button v-if="showMeltOption" label="melt">融化</el-radio-button>
-                <el-radio-button v-if="showVaporizeOption" label="vaporize">蒸发</el-radio-button>
-            </el-radio-group>
+    <div style="margin-bottom: 16px;">
+        <el-radio-group v-model="damageType" style="margin-right: 24px;">
+            <el-radio-button label="normal">{{ normalDamageName }}</el-radio-button>
+            <el-radio-button v-if="showMeltOption" label="melt">融化</el-radio-button>
+            <el-radio-button v-if="showVaporizeOption" label="vaporize">蒸发</el-radio-button>
+        </el-radio-group>
 
-            <span class="damage-display" v-if="damageType === 'normal'">{{ Math.round(damageNormal) }}</span>
-            <span class="damage-display" v-if="damageType === 'melt'">{{ Math.round(damageMelt) }}</span>
-            <span class="damage-display" v-if="damageType === 'vaporize'">{{ Math.round(damageVaporize) }}</span>
-        </div>
+        <span class="damage-display" v-if="damageType === 'normal'">{{ Math.round(damageNormal) }}</span>
+        <span class="damage-display" v-if="damageType === 'melt'">{{ Math.round(damageMelt) }}</span>
+        <span class="damage-display" v-if="damageType === 'vaporize'">{{ Math.round(damageVaporize) }}</span>
+    </div>
 
-        <div class="header-row" style="overflow: auto; margin-bottom: 16px;">
-            <div>
-                <div class="big-title base-damage-region">{{ baseRegionName }}</div>
-                <div class="header-row">
-                    <damage-analysis-util
-                        v-if="atkRatioState.length > 0"
-                        :arr="atkState"
-                        title="攻击力"
-                    ></damage-analysis-util>
-                    <damage-analysis-util
-                        v-if="atkRatioState.length > 0"
-                        :arr="atkRatioState"
-                        title="攻击力倍率"
-                    ></damage-analysis-util>
-                    <damage-analysis-util
-                        v-if="defRatioState.length > 0"
-                        :arr="defState"
-                        title="防御力"
-                    ></damage-analysis-util>
-                    <damage-analysis-util
-                        v-if="defRatioState.length > 0"
-                        :arr="defRatioState"
-                        title="防御力倍率"
-                    ></damage-analysis-util>
-                    <damage-analysis-util
-                        v-if="hpRatioState.length > 0"
-                        :arr="hpState"
-                        title="生命值"
-                    ></damage-analysis-util>
-                    <damage-analysis-util
-                        v-if="hpRatioState.length > 0"
-                        :arr="hpRatioState"
-                        title="生命值倍率"
-                    ></damage-analysis-util>
-                    <damage-analysis-util
-                        v-if="extraDamageState.length > 0"
-                        :arr="extraDamageState"
-                        title="其他"
-                    ></damage-analysis-util>
-                </div>
-            </div>
-            <div v-show="!isHeal">
-                <div class="big-title critical-region">暴击</div>
-                <div class="header-row">
-                    <damage-analysis-util
-                        :arr="criticalState"
-                        title="暴击率"
-                    ></damage-analysis-util>
-                    <damage-analysis-util
-                        :arr="criticalDamageState"
-                        title="暴击伤害"
-                    ></damage-analysis-util>
-                </div>
-            </div>
-            <div>
-                <div class="big-title bonus-region">加成</div>
-                <div class="header-row">
-                    <damage-analysis-util
-                        :arr="bonusRegionState"
-                        :title="bonusRegionName"
-                    ></damage-analysis-util>
-                </div>
-            </div>
-            <div v-show="damageType === 'melt' || damageType === 'vaporize'">
-                <div class="big-title reaction-ratio-region">反应倍率</div>
-                <div class="header-row" style="height: 100%; display: flex; align-items: center; justify-content: center">
-                    <span>{{ reactionRatio }}</span>
-                </div>
-            </div>
-            <div v-if="damageType === 'melt'">
-                <div class="big-title melt-region">增幅伤害加成</div>
-                <div class="header-row">
-                    <damage-analysis-util
-                        :arr="meltEnhanceState"
-                        title="融化伤害加成"
-                    ></damage-analysis-util>
-                </div>
-            </div>
-            <div v-if="damageType === 'vaporize'">
-                <div class="big-title vaporize-region">增幅伤害加成</div>
-                <div class="header-row">
-                    <damage-analysis-util
-                        :arr="vaporizeEnhanceState"
-                        title="蒸发伤害加成"
-                    ></damage-analysis-util>
-                </div>
+    <div class="header-row" style="overflow: auto; margin-bottom: 16px;">
+        <div>
+            <div class="big-title base-damage-region">{{ baseRegionName }}</div>
+            <div class="header-row">
+                <damage-analysis-util
+                    v-if="atkRatioState.length > 0"
+                    :arr="atkState"
+                    title="攻击力"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="atkRatioState.length > 0"
+                    :arr="atkRatioState"
+                    title="攻击力倍率"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="defRatioState.length > 0"
+                    :arr="defState"
+                    title="防御力"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="defRatioState.length > 0"
+                    :arr="defRatioState"
+                    title="防御力倍率"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="hpRatioState.length > 0"
+                    :arr="hpState"
+                    title="生命值"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="hpRatioState.length > 0"
+                    :arr="hpRatioState"
+                    title="生命值倍率"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="extraDamageState.length > 0"
+                    :arr="extraDamageState"
+                    title="其他"
+                ></damage-analysis-util>
             </div>
         </div>
-
-        <div v-if="!isHeal" class="header-row" style="overflow: auto">
-            <div>
-                <div class="big-title def-minus">防御乘区</div>
-                <div class="header-row">
-                    <damage-analysis-util
-                        :arr="defMinusState"
-                        title="减防"
-                    ></damage-analysis-util>
-                    <damage-analysis-util
-                        :arr="defPenetrationState"
-                        title="穿防"
-                    ></damage-analysis-util>
-                </div>
+        <div v-show="!isHeal">
+            <div class="big-title critical-region">暴击</div>
+            <div class="header-row">
+                <damage-analysis-util
+                    :arr="criticalState"
+                    title="暴击率"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    :arr="criticalDamageState"
+                    title="暴击伤害"
+                ></damage-analysis-util>
             </div>
+        </div>
+        <div>
+            <div class="big-title bonus-region">加成</div>
+            <div class="header-row">
+                <damage-analysis-util
+                    :arr="bonusRegionState"
+                    :title="bonusRegionName"
+                ></damage-analysis-util>
+            </div>
+        </div>
+        <div v-show="damageType === 'melt' || damageType === 'vaporize'">
+            <div class="big-title reaction-ratio-region">反应倍率</div>
+            <div class="header-row" style="height: 100%; display: flex; align-items: center; justify-content: center">
+                <span>{{ reactionRatio }}</span>
+            </div>
+        </div>
+        <div v-if="damageType === 'melt'">
+            <div class="big-title melt-region">增幅伤害加成</div>
+            <div class="header-row">
+                <damage-analysis-util
+                    :arr="meltEnhanceState"
+                    title="融化伤害加成"
+                ></damage-analysis-util>
+            </div>
+        </div>
+        <div v-if="damageType === 'vaporize'">
+            <div class="big-title vaporize-region">增幅伤害加成</div>
+            <div class="header-row">
+                <damage-analysis-util
+                    :arr="vaporizeEnhanceState"
+                    title="蒸发伤害加成"
+                ></damage-analysis-util>
+            </div>
+        </div>
+    </div>
 
-            <div>
-                <div class="big-title res-minus">抗性乘区</div>
-                <div class="header-row">
-                    <damage-analysis-util
-                        :arr="resMinusState"
-                        title="减抗"
-                    ></damage-analysis-util>
-                </div>
+    <div v-if="!isHeal" class="header-row" style="overflow: auto">
+        <div>
+            <div class="big-title def-minus">防御乘区</div>
+            <div class="header-row">
+                <damage-analysis-util
+                    :arr="defMinusState"
+                    title="减防"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    :arr="defPenetrationState"
+                    title="穿防"
+                ></damage-analysis-util>
+            </div>
+        </div>
+
+        <div>
+            <div class="big-title res-minus">抗性乘区</div>
+            <div class="header-row">
+                <damage-analysis-util
+                    :arr="resMinusState"
+                    title="减抗"
+                ></damage-analysis-util>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
     <el-dialog
         title="添加圣遗物"
         :model-value="props.modelValue"
-        @update:model-value="$emit('update:model-value', $event)"
+        @update:model-value="$emit('update:modelValue', $event)"
         :width="deviceIsPC ? '80%' : '90%'"
     >
         <h3 class="item-title">套装</h3>

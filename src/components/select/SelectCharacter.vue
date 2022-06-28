@@ -1,9 +1,8 @@
 <template>
     <el-select
-        :value="value"
-        @input="$emit('input', $event)"
+        :model-value="modelValue"
+        @update:modelValue="$emit('update:modelValue', $event)"
         placeholder="角色"
-        size="small"
     >
         <el-option-group
             v-for="(group, elementName) in characterByElement"
@@ -31,7 +30,8 @@ import qualityColors from "@const/quality_colors";
 
 export default {
     name: "SelectCharacter",
-    props: ["value"],
+    props: ["modelValue"],
+    emits: ["update:modelValue"],
     data() {
         return {
             characterByElement

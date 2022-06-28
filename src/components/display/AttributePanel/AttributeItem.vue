@@ -2,9 +2,11 @@
     <div class="attribute-item">
         <el-tooltip>
             <span class="title">{{ title }}</span>
-            <div slot="content">
-                <attribute-composition :composition="composition"></attribute-composition>
-            </div>
+            <template #content>
+<!--                <div slot="content">-->
+                    <attribute-composition :composition="composition"></attribute-composition>
+<!--                </div>-->
+            </template>
         </el-tooltip>
         <span class="value">{{ displayValue }}</span>
     </div>

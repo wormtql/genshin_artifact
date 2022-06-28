@@ -41,11 +41,11 @@
 
         <el-drawer title="推荐圣遗物" v-model="showArtifactRecommendationDrawer" :size="deviceIsPC ? '30%' : '100%'">
             <el-empty v-if="recommendationList.length === 0"></el-empty>
-            <div v-else style="padding: 0 20px">
+            <div v-else>
                 <artifact-display
                     v-for="item in recommendationList"
                     :key="item[0]"
-                    :item="artifactStore.artifacts.get(item[0])"
+                    :item="artifactStore.artifacts.value.get(item[0])"
                     style="width: 100%; margin-bottom: 16px"
                     :show-back="true"
                     :back-value="item[1]"
@@ -196,7 +196,7 @@
 </template>
 
 <script setup lang="ts">
-import {getArtifactsRecommendation, importMonaJson,} from '@/utils/artifacts'
+import {importMonaJson} from '@/utils/artifacts'
 import {positions} from '@/constants/artifact'
 import {downloadString} from '@/utils/common'
 import {deviceIsPC} from "@/utils/device"
@@ -204,6 +204,8 @@ import {createRepo, getRepo} from "@/api/repo"
 import {computed, nextTick, ref, type Ref} from "vue"
 import {useRoute} from "vue-router"
 import {useArtifactStore} from "@/store/pinia/artifact"
+import {usePresetStore} from "@/store/pinia/preset"
+import {getArtifactsRecommendation} from "@/utils/artifactRecommendation"
 
 import flowerIcon from '@image/misc/flower.png';
 import featherIcon from '@image/misc/feather.png';
@@ -232,53 +234,6 @@ import IconFa6SolidShareNodes from "~icons/fa6-solid/share-nodes"
 import IconFa6SolidDownload from "~icons/fa6-solid/download"
 
 
-// if param is set, load artifacts from remote
-// const loading = ref(false)
-// const route = useRoute()
-// if (route.query.code) {
-//     const code = route.query.code
-//     console.log(code)
-//
-//     if (code) {
-//         loading.value = true
-//         getRepo(code).then(response => {
-//             if (response.status === 200) {
-//                 const data = response.data
-//                 const content = data.content
-//
-//                 const doImport = () => {
-//                     // vm.$notify.info({
-//                     //     title: "正在导入",
-//                     //     message: "检测到可导入内容，正在执行导入"
-//                     // })
-//                     setImmediate(() => {
-//                         importJson(content, false)
-//                         loading.value = false
-//                     })
-//                     // vm.importJson(content)
-//                 }
-//
-//                 const artifactsCount = vm.$store.getters["artifacts/count"]
-//                 if (artifactsCount > 0) {
-//                     vm.$confirm("本地已经存在圣遗物，是否继续导入", "提示", {
-//                         confirmButtonText: "继续",
-//                         cancelButtonText: "取消",
-//                         type: "warning"
-//                     }).then(() => {
-//                         doImport()
-//                     }).catch(() => {})
-//                 } else {
-//                     // console.log(123)
-//                     doImport()
-//                 }
-//             }
-//         }).finally(() => {
-//             // vm.loading = false
-//         })
-//     }
-// }
-
-
 const tabs = [
     { icon: flowerIcon, name: 'flower' },
     { icon: featherIcon, name: 'feather' },
@@ -292,7 +247,9 @@ const activeName = ref("flower" as ArtifactPosition)
 const pageSize = 20;
 
 const artifactStore = useArtifactStore()
+const presetStore = usePresetStore()
 
+///////////////////////////////////////////////////////////////////
 // artifact crud
 function unlockAllArtifacts() {
     artifactStore.unlockAll()
@@ -314,6 +271,8 @@ function deleteArtifact(id: number) {
     artifactStore.removeArtifact(id)
 }
 
+
+///////////////////////////////////////////////////////////////////
 // artifacts filters and display
 const filterSet: Ref<ArtifactSetName[]> = ref([])
 const filterMainStat: Ref<ArtifactStatName[]> = ref([])
@@ -352,7 +311,8 @@ const artifactToBeDisplayed = computed(() => {
 })
 
 
-// new artifact related
+///////////////////////////////////////////////////////////////////
+// new artifact
 const newDialogVisible = ref(false)
 
 function handleClickAddArtifact() {
@@ -367,7 +327,8 @@ function handleConfirmAddArtifact(a: IArtifactContentOnly) {
 }
 
 
-// YAS-UI related
+///////////////////////////////////////////////////////////////////
+// YAS-UI
 const showYasUIDialog = ref(false)
 
 function handleYasUIClicked() {
@@ -375,7 +336,8 @@ function handleYasUIClicked() {
 }
 
 
-// share functionalities
+///////////////////////////////////////////////////////////////////
+// share
 const showOutputShareDialog = ref(false)
 const shareLink = ref("")
 
@@ -403,13 +365,15 @@ function shareArtifact() {
         if (response.status === 200) {
             // console.log("success")
             const code = response.data.code
-            shareLink.value = `https://mona-uranai.com/artifacts?code=${code}`
+            // shareLink.value = `https://mona-uranai.com/artifacts?code=${code}`
+            shareLink.value = `https://mona-uranai.com/import?type=artifact&code=${code}`
             showOutputShareDialog.value = true
         }
     })
 }
 
 
+///////////////////////////////////////////////////////////////////
 // import/export artifacts
 const showImportDialog = ref(false)
 const fileUploader: Ref<InstanceType<typeof ImportBlock> | null> = ref(null)
@@ -484,6 +448,7 @@ function handleOutputJsonClicked() {
 }
 
 
+///////////////////////////////////////////////////////////////////
 // edit artifacts
 const showEditArtifactDrawer = ref(false)
 const editArtifactComponent: Ref<InstanceType<typeof EditArtifact> | null> = ref(null)
@@ -508,18 +473,20 @@ function handleConfirmEdit(id: number) {
 }
 
 
+///////////////////////////////////////////////////////////////////
 // artifacts recommendation
 const showArtifactRecommendationDrawer = ref(false)
 const recommendationList: Ref<[number, number][]> = ref([])
 const recommendationInCalculation = ref(false)
 
+
 function handleClickRecommendation() {
-    // todo
-    // const presetLength = this.$store.getters['presets/allFlat'].length;
-    // if (presetLength === 0) {
-    //     this.$message.error('添加计算预设以使用该功能');
-    //     return;
-    // }
+    if (presetStore.allFlat.value.length === 0) {
+        ElMessage.error({
+            message: "添加计算预设以使用该功能"
+        })
+        return
+    }
 
     showArtifactRecommendationDrawer.value = true;
 

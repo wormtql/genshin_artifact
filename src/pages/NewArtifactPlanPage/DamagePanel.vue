@@ -2,7 +2,6 @@
     <div>
         <el-table
             :data="tableData"
-            size="small"
         >
             <el-table-column
                 prop="name"
@@ -29,22 +28,6 @@ export default {
     name: "DamageList",
     props: {
         analysisFromWasm: {}
-    },
-    data() {
-        return {
-            showDialog: false
-        }
-    },
-    methods: {
-        // handleClickItem(name) {
-        //     this.showDialog = true
-        //     const analysis = this.damageList[name]
-
-        //     this.$nextTick(() => {
-        //         const component = this.$refs["damageAnalysis"]
-        //         component.setValue(analysis)
-        //     })
-        // }
     },
     computed: {
         element() {

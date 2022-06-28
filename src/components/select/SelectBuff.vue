@@ -1,7 +1,6 @@
 <template>
     <div>
         <el-input
-            size="medium"
             v-model="searchString"
             style="margin-bottom: 16px"
             placeholder="搜索"
@@ -64,6 +63,7 @@ export default {
             default: false
         }
     },
+    emits: ["select"],
     created() {
         this.genres = genres
     },

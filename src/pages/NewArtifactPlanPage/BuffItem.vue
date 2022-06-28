@@ -1,21 +1,23 @@
 <template>
     <div class="buff-root">
-        <div class="top" :class="{ lock: this.lock }">
+        <div class="top" :class="{ lock }">
             <p class="buff-title">{{ data.chs }}</p>
             <div class="buttons">
                 <el-button
-                    type="text"
+                    text
+                    circle
                     class="button"
-                    icon="el-icon-delete"
-                    size="mini"
-                    @click="$emit('delete')"
+                    :icon="IconEpDelete"
+                    @click="emits('delete')"
+                    type="primary"
                 ></el-button>
                 <el-button
-                    type="text"
+                    text
+                    circle
                     class="button"
-                    :icon="lock ? 'el-icon-unlock' : 'el-icon-lock'"
-                    size="mini"
-                    @click="$emit('toggle')"
+                    :icon="lock ? IconEpUnlock : IconEpLock"
+                    @click="emits('toggle')"
+                    type="primary"
                 ></el-button>
             </div>
         </div>
@@ -29,38 +31,50 @@
         
         <item-config
             v-if="data.config.length > 0"
-            :value="buffConfig"
-            @input="handleChangeConfig"
-            :item-name="buff.name"
+            :model-value="buffConfig"
+            @update:modelValue="handleChangeConfig"
+            :item-name="props.buff.name"
             :configs="data.config"
         ></item-config>
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { buffData } from "@buff"
 
 import ItemConfig from "@c/config/ItemConfig"
+import {type BuffEntry} from "@/composables/buff"
 
-export default {
-    name: "BuffItem",
-    components: { ItemConfig },
-    props: ["buff", "buffConfig"],
-    methods: {
-        handleChangeConfig(v) {
-            this.$emit("update:buffConfig", v)
-        }
-    },
-    computed: {
-        data() {
-            return buffData[this.buff.name]
-        },
+import IconEpDelete from "~icons/ep/delete"
+import IconEpLock from "~icons/ep/lock"
+import IconEpUnlock from "~icons/ep/unlock"
 
-        lock() {
-            return this.buff.lock
-        },
-    }
+interface Props {
+    buff: BuffEntry,
+    buffConfig: any
 }
+
+const props = defineProps<Props>()
+
+interface Emits {
+    (e: "update:buffConfig", v: any): void,
+    (e: "delete"): void,
+    (e: "toggle"): void,
+}
+
+const emits = defineEmits<Emits>()
+
+function handleChangeConfig(v: any) {
+    emits("update:buffConfig", v)
+}
+
+const data = computed((): any => {
+    return buffData[props.buff.name]
+})
+
+const lock = computed(() => {
+    return props.buff.lock
+})
 </script>
 
 <style lang="scss" scoped>
@@ -70,7 +84,7 @@ export default {
 
     .top {
         border-bottom: 1px solid #DCDFE6;
-        padding: 6px 12px;
+        padding: 0 12px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -92,9 +106,9 @@ export default {
 
         .buttons {
             display: flex;
-            .button {
-                padding: 0;
-            }
+            //.button {
+            //    padding: 0;
+            //}
         }
     }
 

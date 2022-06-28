@@ -21,10 +21,34 @@
 <script>
 import { artifactTags } from "@const/artifact"
 import { deviceIsPC } from "@util/device"
+import { use } from "echarts/core"
+import { LineChart, PieChart } from "echarts/charts"
+import {
+    TooltipComponent,
+    // VisualMapComponent,
+    ToolboxComponent,
+    LegendComponent,
+    GridComponent,
+    TitleComponent,
+} from "echarts/components"
+import { CanvasRenderer } from "echarts/renderers"
+import VChart from "vue-echarts"
+
+use([
+    CanvasRenderer,
+    LineChart,
+    PieChart,
+    TooltipComponent,
+    ToolboxComponent,
+    LegendComponent,
+    TitleComponent,
+    GridComponent
+])
 
 export default {
     name: "ArtifactPerStatBonus",
     props: ["data"],
+    components: {VChart},
     data() {
         return {
             deviceIsPC

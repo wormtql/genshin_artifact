@@ -117,7 +117,8 @@ module.exports = {
             }),
             Icons({
                 autoInstall: true
-            })
+            }),
+            // require('unplugin-element-plus/webpack')(),
         ],
         resolve: {
             extensions: [".vue", ".png", ".jpg", ".webp"],
@@ -172,9 +173,9 @@ module.exports = {
         })
 
         // use monaco webpack plugin if using non cdn mode
-        if (!customEnv["USE_CDN"]) {
+        // if (!customEnv["USE_CDN"]) {
             config.plugin("monaco").use(new MonacoWebpackPlugin())
-        }
+        // }
 
         // set ifdef loader
         config.module.rule("js")

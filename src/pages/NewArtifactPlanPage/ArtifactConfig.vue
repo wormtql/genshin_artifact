@@ -1,14 +1,13 @@
 <template>
     <div>
         <el-input
-            size="medium"
             v-model="searchString"
             style="margin-bottom: 16px"
             placeholder="搜索"
             clearable
         >
-            <template slot="append">
-                <i class="el-icon-search"></i>
+            <template #append>
+                <i-ep-search></i-ep-search>
             </template>
         </el-input>
 
@@ -30,10 +29,10 @@
                 </div>
 
                 <item-config
-                    :value="value[item.snake]"
+                    :model-value="modelValue[item.snake]"
                     :configs="item.config4"
                     :need-item-name="false"
-                    @input="handleChangeValue(item.snake, $event)"
+                    @update:modelValue="handleChangeValue(item.snake, $event)"
                 ></item-config>
             </div>
         </div>
@@ -48,12 +47,13 @@ import { artifactsData } from "@artifact"
 import { toSnakeCase, deepCopy } from "@util/common"
 import { getArtifactThumbnail } from "@util/artifacts"
 
-import ItemConfig from "@c/config/ItemConfig"
+import ItemConfig from "@/components/config/ItemConfig"
 
 export default {
     name: "ArtifactConfig",
     components: {ItemConfig},
-    props: ["value"],
+    props: ["modelValue"],
+    emits: ["update:modelValue"],
     data() {
         return {
             searchString: ""
@@ -94,9 +94,9 @@ export default {
     },
     methods: {
         handleChangeValue(snake, value) {
-            let temp = deepCopy(this.value)
+            let temp = deepCopy(this.modelValue)
             temp[snake] = value
-            this.$emit("input", temp)
+            this.$emit("update:modelValue", temp)
         }
     }
 }

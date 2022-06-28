@@ -17,30 +17,6 @@ const NewArtifactPotentialPage = defineAsyncComponent({
     delay: 0,
     timeout: 60000
 })
-
-// const NewArtifactPotentialPage = () => {
-//     const component = requestMonaWasm().then(() => import(
-//         /* webpackChunkName: "artifact-potential-page" */
-//         /* webpackPrefetch: true */
-//         "./NewArtifactPotentialPage"
-//         )
-//     )
-//
-//     return {
-//         component,
-//         loading: SimpleLoading,
-//         error: SimpleError,
-//         timeout: 30000,
-//         delay: 0,
-//     }
-// }
-
-// export default {
-//     name: "NewArtifactPotentialPageWrapper",
-//     components: {
-//         NewArtifactPotentialPage
-//     }
-// }
 </script>
 
 <style scoped>

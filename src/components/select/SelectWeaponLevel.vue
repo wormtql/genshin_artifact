@@ -1,8 +1,7 @@
 <template>
     <el-select
-        :value="value"
-        @input="$emit('input', $event)"
-        size="small"
+        :model-value="modelValue"
+        @update:modelValue="$emit('update:modelValue', $event)"
     >
         <el-option-group label=">=60">
             <el-option label="60-" value="60-"></el-option>
@@ -26,6 +25,7 @@
 <script>
 export default {
     name: "SelectWeaponLevel",
-    props: ["value"],
+    props: ["modelValue"],
+    emits: ["update:modelValue"]
 }
 </script>

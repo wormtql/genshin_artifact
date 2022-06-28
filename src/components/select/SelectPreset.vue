@@ -1,8 +1,7 @@
 <template>
     <el-select
-        size="small"
-        :value="value"
-        @input="$emit('input', $event)"
+        :model-value="modelValue"
+        @update:modelValue="$emit('update:modelValue', $event)"
     >
         <el-option
             v-for="item in list"
@@ -13,24 +12,22 @@
     </el-select>
 </template>
 
-<script>
-import { mapGetters } from "vuex"
+<script setup>
+import {usePresetStore} from "@/store/pinia/preset"
 
-export default {
-    name: "SelectPreset",
-    props: ["value"],
-    computed: {
-        ...mapGetters("presets", ["allFlat"]),
+const presetStore = usePresetStore()
 
-        list() {
-            let results = []
-            for (let preset of this.allFlat) {
-                results.push(preset.name)
-            }
-            return results
-        }
+const props = defineProps({
+    modelValue: String
+})
+
+const list = computed(() => {
+    let results = []
+    for (let preset of presetStore.allFlat.value) {
+        results.push(preset.name)
     }
-}
+    return results
+})
 </script>
 
 <style scoped>

@@ -5,3 +5,7 @@ export interface IWeapon {
     params: any,
     refine: number
 }
+
+export type WeaponType = "Bow" | "Claymore" | "Sword" | "Catalyst" | "Polearm"
+
+export type WeaponName = string

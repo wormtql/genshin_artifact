@@ -75,9 +75,9 @@ const f = () => {
         artifacts.value.delete(id)
     }
 
-    function addArtifact(artifact: IArtifactContentOnly) {
+    function addArtifact(artifact: IArtifactContentOnly, omit: boolean = false) {
         let a = deepCopy(artifact) as IArtifact
-        a.omit = false
+        a.omit = omit
         a.id = idProvider.generateId()
         a.contentHash = hashArtifact(artifact)
 
@@ -139,10 +139,21 @@ const f = () => {
         return artifacts.value.size
     })
 
+    const artifacts20Count = computed(() => {
+        let count = 0
+        for (const a of artifacts.value.values()) {
+            if (a.level === 20) {
+                 count += 1
+            }
+        }
+        return count
+    })
+
     return {
         artifacts,
         artifactsByPosition,
         artifactsCount,
+        artifacts20Count,
 
         removeArtifact,
         addArtifact,

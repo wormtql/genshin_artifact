@@ -3,8 +3,32 @@
 </template>
 
 <script>
+import { use } from "echarts/core"
+import { PieChart } from "echarts/charts"
+import {
+    TooltipComponent,
+    // VisualMapComponent,
+    // ToolboxComponent,
+    // LegendComponent,
+    TitleComponent,
+} from "echarts/components"
+import { CanvasRenderer } from "echarts/renderers"
+import VChart from "vue-echarts"
+
+use([
+    CanvasRenderer,
+    PieChart,
+    // VisualMapComponent,
+    TooltipComponent,
+    // LegendComponent,
+    TitleComponent,
+])
+
 export default {
     name: "BasicPieChart",
+    components: {
+        VChart
+    },
     props: ["title", "data"],
     // mounted() {
     //     console.log(this.option)

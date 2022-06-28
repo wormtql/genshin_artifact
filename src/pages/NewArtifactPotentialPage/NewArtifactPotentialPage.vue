@@ -33,7 +33,7 @@
                 <div>
                     <el-button
                         type="primary"
-                        icon="el-icon-cpu"
+                        :icon="IconEpCpu"
                         @click="handleClickStart"
                     >开始计算</el-button>
                 </div>
@@ -128,7 +128,6 @@ import SelectArtifactSlot from "@c/select/SelectArtifactSlot"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
 import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
 import ItemConfig from "@c/config/ItemConfig"
-import ArtifactDisplayById from "@c/display/ArtifactDisplayById"
 import ArtifactDisplay from "@/components/display/ArtifactDisplay.vue"
 import type {
     ArtifactMainStatName,
@@ -137,8 +136,11 @@ import type {
     ArtifactStatName,
     IArtifact
 } from "@/types/artifact"
-import {useArtifactStore} from "@/store/pinia/artifact";
-import {ElLoading, ElMessage} from "element-plus";
+import {useArtifactStore} from "@/store/pinia/artifact"
+// import {ElLoading, ElMessage} from "element-plus"
+// import "element-plus/es/components/message/style/css"
+
+import IconEpCpu from "~icons/ep/cpu"
 
 
 const artifactStore = useArtifactStore()
@@ -272,6 +274,7 @@ function handleClickStart() {
         // console.log(results)
         results.value = res
     }).catch((e: any) => {
+        console.log(e)
         ElMessage({
             message: e,
             type: "error"

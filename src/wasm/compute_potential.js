@@ -17,6 +17,7 @@ export function wasmComputeArtifactPotential(potentialFunctionInterface, artifac
                 worker.postMessage({
                     // potentialFunctionInterface,
                     potentialFunctionInterface: a,
+                    // a,
                     artifacts,
                 })
             } else {
@@ -27,9 +28,10 @@ export function wasmComputeArtifactPotential(potentialFunctionInterface, artifac
             }
         }
 
-        // worker.onerror = e => {
-        //     reject("计算发生错误：" + e)
-        // }
+        worker.onerror = e => {
+            reject("计算发生错误：" + e.message)
+            clearTimeout(timer)
+        }
     }).finally(() => {
         worker.terminate()
     })

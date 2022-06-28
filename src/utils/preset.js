@@ -4,22 +4,6 @@ import { upgradeWeaponConfig } from "@util/weapon"
 import { upgradeTargetFunctionConfig } from "@util/targetFunction"
 import { upgradeArtifactConfig } from "@util/artifacts"
 import { convertArtifactName, convertArtifactStatName } from "@util/converter"
-import {usePresetStore} from "@/store/pinia/preset"
-
-const presetStore = usePresetStore()
-
-export function createOrUpdatePreset(item, name) {
-    item = upgradePresetItem(item)
-    presetStore.addOrOverwrite(name, item)
-}
-
-export function deletePreset(name) {
-    presetStore.deletePreset(name)
-}
-
-export function getPresetEntryByName(name) {
-    return presetStore.presets.value[name]
-}
 
 export function checkImportFormat(obj) {
     if (!Array.isArray(obj)) {

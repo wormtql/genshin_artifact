@@ -1,9 +1,8 @@
 <template>
     <el-select
-        :value="value"
-        @input="$emit('input', $event)"
+        :model-value="modelValue"
+        @update:modelValue="$emit('update:modelValue', $event)"
         placeholder="目标函数"
-        size="small"
     >
         <el-option-group label="角色专属" v-if="characterTargetFunctionList && characterTargetFunctionList.length > 0">
             <el-option
@@ -45,11 +44,12 @@ import { targetFunctionByCharacterName } from "@targetFunction"
 export default {
     name: "SelectTargetFunction",
     props: {
-        value: {},
+        modelValue: {},
         characterName: {
             default: "Amber"
         }
     },
+    emits: ["update:modelValue"],
     data() {
         return {
             commonTargetFunctionList: targetFunctionByCharacterName["common"]

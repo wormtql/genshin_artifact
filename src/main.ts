@@ -1,22 +1,12 @@
 import "./styles/global.scss";
 import "./styles/select.css";
 
-// import "./vendors/element";
-// import "./vendors/fontawesome";
-// import "./vendors/vuerouter";
-// import "./vendors/vue-katex";
-// import "./vendors/echarts";
-import "./vendors/mona";
+// import "./vendors/mona";
 import 'element-plus/theme-chalk/display.css'
-import 'element-plus/theme-chalk/el-message-box.css'
 
 import router from "./router/router"
-import { createPinia } from "pinia"
 
-// install global api
-// import "./global_api";
-
-import { createApp, h } from 'vue';
+import { createApp, h } from 'vue'
 
 // import store from "./store/store";
 
@@ -48,10 +38,6 @@ async function mount() {
 
     // vue router
     monaApp.use(router)
-
-    // pinia
-    const pinia = createPinia()
-    monaApp.use(pinia)
 
     monaApp.mount("#app")
     // let monaApp = new Vue(

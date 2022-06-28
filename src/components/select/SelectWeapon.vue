@@ -1,9 +1,8 @@
 <template>
     <el-select
-        :value="value"
-        @input="$emit('input', $event)"
+        :model-value="modelValue"
+        @update:modelValue="$emit('update:modelValue', $event)"
         placeholder="武器"
-        size="small"
     >
         <el-option
             v-for="weapon in weaponList"
@@ -30,8 +29,9 @@ export default {
         type: {
             default: "Bow",
         },
-        value: {},
+        modelValue: {},
     },
+    emits: ["update:modelValue"],
     computed: {
         weaponList() {
             return weaponByType[this.type] ?? []
@@ -41,13 +41,6 @@ export default {
         getColor(star) {
             return qualityColors[star - 1];
         }
-    },
-    watch: {
-        // "type": function (newWeaponType, oldWeaponType) {
-        //     const defaultWeaponData = weaponByType[newWeaponType][0]
-        //     const name = defaultWeaponData.name
-        //     this.$emit("input", name)
-        // }
     }
 }
 </script>

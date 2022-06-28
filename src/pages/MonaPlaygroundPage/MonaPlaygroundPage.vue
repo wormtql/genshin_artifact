@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-dialog
-            :visible.sync="showSelectBuffDialog"
+            v-model="showSelectBuffDialog"
             title="选择BUFF"
             :width="deviceIsPC ? '60%' : '90%'"
         >
@@ -13,7 +13,7 @@
         <el-dialog
             title="选择圣遗物"
             :width="deviceIsPC ? '80%' : '90%'"
-            :visible.sync="showSelectArtifactDialog"
+            v-model="showSelectArtifactDialog"
         >
             <select-artifact
                 :position="selectArtifactSlot"
@@ -41,7 +41,6 @@
                         <h3 class="common-title2">技能</h3>
                         <div class="skill-div">
                             <el-input-number
-                                size="mini"
                                 controls-position="right"
                                 v-model="characterSkill1"
                                 :min="1"
@@ -49,7 +48,6 @@
                                 style="flex: 1; display: block; width: unset"
                             ></el-input-number>
                             <el-input-number
-                                size="mini"
                                 controls-position="right"
                                 v-model="characterSkill2"
                                 :min="1"
@@ -57,7 +55,6 @@
                                 style="flex: 1; display: block; width: unset"
                             ></el-input-number>
                             <el-input-number
-                                size="mini"
                                 controls-position="right"
                                 v-model="characterSkill3"
                                 :min="1"
@@ -70,7 +67,6 @@
                     <div class="config-character-constellation">
                         <h3 class="common-title2">命之座</h3>
                         <el-input-number
-                            size="mini"
                             controls-position="right"
                             v-model="characterConstellation"
                             :min="0"
@@ -91,7 +87,6 @@
             <el-divider></el-divider>
 
             <div class="config-weapon">
-                <!-- <img :src="weaponSplash" class="weapon-splash" /> -->
                 <div class="select-weapon">
                     <p class="common-title">武器</p>
 
@@ -112,7 +107,6 @@
                     <div class="config-weapon-refine">
                         <h3 class="common-title2">精炼</h3>
                         <el-input-number
-                            size="mini"
                             controls-position="right"
                             v-model="weaponRefine"
                             :min="1"
@@ -135,18 +129,22 @@
             <div class="config-buff">
                 <p class="common-title">BUFF</p>
                 <div class="buff-tool" style="margin-bottom: 12px">
-                    <my-button-1 icon="el-icon-plus" title="添加BUFF"
-                                 @click="handleClickAddBuff"
-                    ></my-button-1>
+                    <el-button
+                        :icon="IconEpPlus"
+                        @click="handleClickAddBuff"
+                        title="添加BUFF"
+                        circle
+                        text
+                    ></el-button>
                 </div>
                 <div class="buffs" v-if="buffs.length > 0">
                     <buff-item
                         v-for="buff in buffs"
                         :key="buff.id"
                         :buff="buff"
-                        :buff-config.sync="buff.config"
-                        @delete="handleClickDeleteBuff(buff.id)"
-                        @toggle="handleClickToggleBuff(buff.id)"
+                        v-model:buffConfig="buff.config"
+                        @delete="deleteBuff(buff.id)"
+                        @toggle="toggleBuff(buff.id)"
                     ></buff-item>
                 </div>
                 <div v-else>
@@ -171,8 +169,8 @@
                             selectable
                             :buttons="true"
                             :delete-button="true"
-                            @delete="handleRemoveArtifact(index)"
-                            @toggle="handleToggleArtifact(id)"
+                            @delete="removeArtifact(index)"
+                            @toggle="toggleArtifact(id)"
                             @click="handleGotoSelectArtifact(index)"
                             class="artifact-display"
                         ></artifact-display>
@@ -183,7 +181,6 @@
                         ></add-button>
                     </div>
                 </div>
-
             </div>
         </el-col>
         <el-col :sm="24" :md="18" class="right mona-scroll-hidden">
@@ -193,8 +190,26 @@
 
             <div class="bottom">
                 <div class="tool-bar">
-                    <my-button1 icon="el-icon-caret-right" title="运行" @click="handleClickRun()"></my-button1>
-                    <my-button1 icon="el-icon-delete-solid" title="清除输出" @click="handleClickClearOutput"></my-button1>
+                    <el-button-group>
+                        <el-button
+                            :icon="IconFa6SolidPlay"
+                            @click="handleClickRun"
+                            size="small"
+                            text
+                            title="运行"
+                            type="primary"
+                        >运行</el-button>
+                        <el-button
+                            :icon="IconFa6SolidBan"
+                            @click="handleClickClearOutput"
+                            text
+                            title="清除输出"
+                            size="small"
+                        ></el-button>
+                    </el-button-group>
+
+<!--                    <my-button1 icon="el-icon-caret-right" title="运行" @click="handleClickRun()"></my-button1>-->
+<!--                    <my-button1 icon="el-icon-delete-solid" title="清除输出" @click="handleClickClearOutput"></my-button1>-->
                 </div>
 
                 <div class="output mona-scroll-hidden">
@@ -205,8 +220,7 @@
     </el-row>
 </template>
 
-<script>
-import MonaMonacoEditor from "@c/MonaMonacoEditor"
+<script setup lang="ts">
 import ItemConfig from "@c/config/ItemConfig"
 import SelectCharacter from "@c/select/SelectCharacter"
 import SelectWeapon from "@c/select/SelectWeapon"
@@ -219,348 +233,224 @@ import SelectBuff from "@c/select/SelectBuff"
 import ArtifactDisplay from "@c/display/ArtifactDisplay"
 import AddButton from "@c/misc/AddButton"
 import SelectArtifact from "@c/select/SelectArtifact"
+import MonaMonacoEditor from "@/components/MonaMonacoEditor.vue"
 
 import {deviceIsPC} from "@util/device"
 import {buffData} from "@buff";
 import {characterData} from "@character"
 import {weaponData} from "@weapon"
 import {newDefaultArtifactConfigForWasm} from "@util/artifacts"
-// import { mapGetters } from "vuex"
 import {artifactsData} from "@artifact";
 import {convertArtifact, convertArtifactName} from "@util/converter";
 import {toSnakeCase} from "@util/common";
+import {useCharacter} from "@/composables/character"
+import {useWeapon} from "@/composables/weapon"
+import {useBuff} from "@/composables/buff"
+import {use5Artifacts} from "@/composables/artifact"
+import type {ArtifactPosition} from "@/types/artifact"
+import {positionToIndex} from "@/utils/artifacts"
+
+import IconEpPlus from "~icons/ep/plus"
+import IconFa6SolidBan from "~icons/fa6-solid/ban"
+import IconFa6SolidPlay from "~icons/fa6-solid/play"
+import {positions} from "@/constants/artifact"
+import {loadScript} from "@/utils/common"
+import {useMona} from "@/wasm/mona"
 
 // const original_source = `dmg x = KamisatoAyaka.Normal1({ after_dash: true })
 // print(x.normal.e)`
 
-export default {
-    name: "MonaPlaygroundPage",
-    components: {
-        MonaMonacoEditor,
-        ItemConfig,
-        SelectCharacter,
-        SelectWeapon,
-        SelectCharacterLevel,
-        SelectWeaponLevel,
-        WeaponDisplay,
-        MyButton1,
-        BuffItem,
-        SelectBuff,
-        ArtifactDisplay,
-        AddButton,
-        SelectArtifact
-    },
-    data() {
-        return {
-            characterName: "Amber",
-            characterLevel: "90",
-            characterConfig: "NoConfig",
-            characterSkill1: 8,
-            characterSkill2: 8,
-            characterSkill3: 8,
-            characterConstellation: 0,
 
-            weaponName: "PolarStar",
-            weaponLevel: "90",
-            weaponRefine: 1,
-            weaponConfig: {
-                "PolarStar": {
-                    stack: 1
+// load dependencies
+async function loadMonaco() {
+    const monacoBase = "https://s1.pstatp.com/cdn/expire-1-y/monaco-editor/0.31.1/min/vs"
+    await loadScript(monacoBase + "/loader.min.js")
+    // @ts-ignore
+    window.require.config({ paths: { vs: monacoBase } })
+    // @ts-ignore
+    window.MonacoEnvironment = {
+        getWorkerUrl(workerId: any, label: any) {
+            return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
+                self.MonacoEnvironment = {
+                    baseUrl: "${monacoBase}"
                 }
-            },
-
-            buffs: [],
-
-            artifactIds: [-1, -1, -1, -1, -1],
-            artifactSingleConfig: null,
-            selectArtifactSlot: "any",
-            // artifactConfig: newDefaultArtifactConfigForWasm(),
-
-            showSelectBuffDialog: false,
-            showSelectArtifactDialog: false,
-
-            deviceIsPC,
-
-            outputs: [],
+                importScripts("${monacoBase + '/base/worker/workerMain.js'}")
+            `)}`
         }
-    },
-    methods: {
-        appendOutput(s) {
-            this.outputs.push(s)
-        },
+    }
+    return await new Promise((resolve, reject) => {
+        window.require(["vs/editor/editor.main"], function () {
+            // console.log(monaco)
+            // @ts-ignore
+            resolve(window.monaco)
+        })
+    })
 
-        handleClickRun() {
-            let x = this.runInputInterface
-            let artifacts = this.artifactWasmFormat
-            let source = this.$refs["editor"].getValue().trim()
-            // console.log(source)
-            // console.log(artifacts)
-            // console.log(x)
+    // return loadScript(monacoBase + "/loader.min.js").then(() => {
+    //     // @ts-ignore
+    //     window.require.config({ paths: { vs: monacoBase } })
+    //
+    //     // @ts-ignore
+    //     window.MonacoEnvironment = {
+    //         getWorkerUrl(workerId: any, label: any) {
+    //             return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
+    //                 self.MonacoEnvironment = {
+    //                     baseUrl: "${monacoBase}"
+    //                 }
+    //                 importScripts("${monacoBase + '/base/worker/workerMain.js'}")
+    //             `)}`
+    //         }
+    //     }
+    //
+    //     return new Promise((resolve, reject) => {
+    //         window.require(["vs/editor/editor.main"], function () {
+    //             // console.log(monaco)
+    //             // @ts-ignore
+    //             resolve(window.monaco)
+    //         })
+    //     })
+    // })
+}
 
-            let ret = this.$mona.DSLInterface.run(source, x, artifacts)
 
-            if (ret.is_error) {
-                this.appendOutput("[error]")
-                for (const item of ret.error_msg.split("\n")) {
-                    this.appendOutput(item)
-                }
-            } else {
-                this.appendOutput("[success]")
-                for (const item of ret.output.split("\n")) {
-                    this.appendOutput(item)
-                }
-                // this.appendOutput(ret.output)
+//////////////////////////////////////////////////////////////////////////
+// character
+const {
+    characterName,
+    characterLevel,
+    characterConfig,
+    characterSkill1,
+    characterSkill2,
+    characterSkill3,
+    characterConstellation,
+    characterWeaponType,
+    characterInterface,
+    characterSplash,
+    characterLevelNumber,
+    characterAscend,
+    characterConfigConfig,
+    characterNeedConfig
+} = useCharacter()
+
+
+//////////////////////////////////////////////////////////////////////////
+// weapon
+const {
+    weaponName, weaponLevel, weaponRefine, weaponConfig,
+    weaponNeedConfig,
+    weaponConfigConfig,
+    weaponAscend,
+    weaponInterface,
+} = useWeapon(characterWeaponType)
+
+
+//////////////////////////////////////////////////////////////////////////
+// buffs
+const {
+    buffs,
+    buffsInterface,
+    addBuff,
+    deleteBuff,
+    toggleBuff
+} = useBuff()
+const showSelectBuffDialog = ref(false)
+
+function handleSelectBuff(name: string) {
+    showSelectBuffDialog.value = false
+    addBuff(name)
+}
+
+function handleClickAddBuff() {
+    showSelectBuffDialog.value = true
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+// artifacts
+const {
+    artifactIds,
+    artifactSingleConfig,
+    artifactConfigForCalculator,
+    artifactWasmFormat,
+    artifactNeedConfig4,
+    artifactConfig4Configs,
+    artifactItems,
+
+    removeArtifact,
+    toggleArtifact,
+    setArtifact,
+} = use5Artifacts()
+const showSelectArtifactDialog = ref(false)
+const selectArtifactSlot = ref<ArtifactPosition>("flower")
+
+function handleSelectArtifact(id: number) {
+    const index = positionToIndex(selectArtifactSlot.value)
+    artifactIds.value[index] = id
+
+    showSelectArtifactDialog.value = false
+}
+
+function handleGotoSelectArtifact(index: number) {
+    const slotName = positions[index]
+    showSelectArtifactDialog.value = true
+    selectArtifactSlot.value = slotName
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+// dsl
+const outputs = ref<string[]>([])
+const editor = ref<null | InstanceType<typeof MonaMonacoEditor>>(null)
+
+const runInputInterface = computed(() => {
+    return {
+        character: characterInterface.value,
+        weapon: weaponInterface.value,
+        buffs: buffsInterface.value,
+        artifact_config: artifactConfigForCalculator.value,
+        enemy: null, // todo
+    }
+})
+
+function appendOutput(s: string) {
+    outputs.value.push(s)
+}
+
+function handleClickClearOutput() {
+    outputs.value = []
+}
+
+async function handleClickRun() {
+    if (editor.value) {
+        const x = runInputInterface.value
+        const artifacts = artifactWasmFormat.value
+        const source = editor.value.getValue().trim()
+
+        const mona = await useMona()
+
+        const ret = mona.DSLInterface.run(source, x, artifacts)
+
+        if (ret.is_error) {
+            appendOutput("[error]")
+            for (const item of ret.error_msg.split("\n")) {
+                appendOutput(item)
             }
-            // console.log(ret)
-        },
-
-        handleClickClearOutput() {
-            this.outputs = []
-        },
-
-        handleSelectArtifact(id) {
-            const map = {
-                "flower": 0,
-                "feather": 1,
-                "sand": 2,
-                "cup": 3,
-                "head": 4
+        } else {
+            appendOutput("[success]")
+            for (const item of ret.output.split("\n")) {
+                appendOutput(item)
             }
-            const index = map[this.selectArtifactSlot]
-            this.$set(this.artifactIds, index, id)
-
-            this.showSelectArtifactDialog = false
-        },
-
-        handleGotoSelectArtifact(index) {
-            const map = ["flower", "feather", "sand", "cup", "head"]
-            const slotName = map[index]
-            this.showSelectArtifactDialog = true
-            this.selectArtifactSlot = slotName
-        },
-
-        handleRemoveArtifact(index) {
-            this.$set(this.artifactIds, index, -1)
-        },
-
-        handleToggleArtifact(id) {
-            this.$store.commit("artifacts/toggleById", { id })
-        },
-
-        handleClickAddBuff() {
-            this.showSelectBuffDialog = true
-        },
-
-        handleClickDeleteBuff(id) {
-            const index = this.buffs.findIndex(e => e.id === id)
-            this.$delete(this.buffs, index)
-        },
-
-        handleClickToggleBuff(id) {
-            const index = this.buffs.findIndex(e => e.id === id)
-            const v = this.buffs[index].lock
-            this.$set(this.buffs[index], "lock", !v)
-        },
-
-        handleSelectBuff(name) {
-            this.showSelectBuffDialog = false
-            this.addBuff(name)
-        },
-
-        addBuff(name) {
-            const data = buffData[name]
-            let defaultConfig = {}
-            for (let c of data.config) {
-                defaultConfig[c.name] = c.default
-            }
-
-            let config;
-            if (data.config.length === 0) {
-                config = "NoConfig"
-            } else {
-                config = {
-                    [name]: defaultConfig
-                }
-            }
-
-            this.buffs.push({
-                name,
-                config,
-                id: Math.floor(Math.random() * 1e9),
-                lock: false
-            })
-        },
-    },
-    computed: {
-        ...mapGetters({
-            artifactsById: "artifacts/artifactsById",
-            allArtifactsFlat: "artifacts/allFlat"
-        }),
-
-        characterInterface() {
-            let i = {
-                name: this.characterName,
-                level: this.characterLevelNumber,
-                ascend: this.characterAscend,
-                constellation: this.characterConstellation,
-                skill1: this.characterSkill1 - 1,
-                skill2: this.characterSkill2 - 1,
-                skill3: this.characterSkill3 - 1,
-                params: this.characterConfig
-            }
-            return i
-        },
-
-        weaponInterface() {
-            return {
-                name: this.weaponName,
-                level: this.weaponLevelNumber,
-                ascend: this.weaponAscend,
-                refine: this.weaponRefine,
-                params: this.weaponConfig
-            }
-        },
-
-        buffsUnlocked() {
-            return this.buffs.filter(e => !e.lock)
-        },
-
-        buffsInterface() {
-            let temp = []
-            for (let buff of this.buffsUnlocked) {
-                temp.push({
-                    name: buff.name,
-                    config: buff.config
-                })
-            }
-            return temp
-        },
-
-        artifactConfigForCalculator() {
-            let base = newDefaultArtifactConfigForWasm()
-
-            if (this.artifactNeedConfig4) {
-                let name = this.artifactConfig4ItemName
-                base[name] = this.artifactSingleConfig[name]
-            }
-
-            // console.log(base)
-            return base
-        },
-
-        runInputInterface() {
-            return {
-                character: this.characterInterface,
-                weapon: this.weaponInterface,
-                buffs: this.buffsInterface,
-                artifact_config: this.artifactConfigForCalculator,
-                enemy: null, // todo
-            }
-        },
-
-        characterSplash() {
-            const data = characterData[this.characterName]
-            return data.splash
-        },
-
-        characterLevelNumber() {
-            return parseInt(this.characterLevel)
-        },
-
-        characterAscend() {
-            return this.characterLevel.includes("+")
-        },
-
-        characterWeaponType() {
-            const item = characterData[this.characterName]
-            return item ? item.weapon : "Bow"
-        },
-
-        weaponNeedConfig() {
-            // return !!weaponConfig[this.weaponName]
-            return !!weaponData[this.weaponName].configs
-        },
-
-        weaponConfigConfig() {
-            return weaponData[this.weaponName].configs
-        },
-
-        weaponLevelNumber() {
-            return parseInt(this.weaponLevel)
-        },
-
-        weaponAscend() {
-            return this.weaponLevel.includes("+")
-        },
-
-        artifactItems() {
-            let temp = []
-            for (let id of this.artifactIds) {
-                if (this.artifactsById[id]) {
-                    temp.push(this.artifactsById[id])
-                } else {
-                    temp.push(null)
-                }
-            }
-            return temp
-        },
-
-        artifactWasmFormat() {
-            let temp = []
-            for (let id of this.artifactIds) {
-                if (id !== -1) {
-                    const artifact = this.$store.getters["artifacts/artifactsById"][id]
-                    if (artifact && !artifact.omit) {
-                        const wasmArtifact = convertArtifact(artifact)
-                        temp.push(wasmArtifact)
-                    }
-                }
-            }
-            return temp
-        },
-
-        artifactNeedConfig4() {
-            // console.log(this.artifactSetCount)
-            for (let setName in this.artifactSetCount) {
-                const count = this.artifactSetCount[setName]
-                if (count >= 4) {
-                    const data = artifactsData[setName]
-                    // console.log(data)
-                    if (data.config4 && data.config4.length > 0) {
-                        return setName
-                    }
-                }
-            }
-
-            return null
-        },
-
-        artifactSetCount() {
-            let temp = {}
-            for (let artifact of this.artifactItems) {
-                if (!artifact) {
-                    continue
-                }
-                const setName = artifact.setName
-                if (!Object.prototype.hasOwnProperty.call(temp, setName)) {
-                    temp[setName] = 0
-                }
-                temp[setName] += 1
-            }
-            return temp
-        },
-
-        artifactConfig4ItemName() {
-            const setNameWasm = convertArtifactName(this.artifactNeedConfig4)
-            return `config_${toSnakeCase(setNameWasm)}`
-        },
+        }
     }
 }
 </script>
 
 <style scoped lang="scss">
+$bottom-height: 300px;
+
 .editor-container {
-    height: calc(100% - 300px)
+    height: calc(100% - #{$bottom-height})
+    //height: 300px;
 }
 
 .left, .right {
@@ -574,7 +464,7 @@ export default {
 
 .bottom {
     background-color: rgb(30,30,30);
-    height: 300px;
+    height: $bottom-height;
 }
 
 .config-character {
@@ -666,6 +556,12 @@ export default {
     display: flex;
     align-items: center;
     border-top: 1px solid rgb(68,68,68);
+    padding-left: 12px;
+
+    //.el-button {
+    //    height: 32px;
+    //    width: 32px;
+    //}
 }
 
 </style>

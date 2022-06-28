@@ -44,10 +44,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: baseline;
-    border-top: 1px solid #eee;
+    //border-top: 1px solid #eee;
     // background: #123456;
-    padding-top: 20px;
-    margin-top: 20px;
+    //padding-top: 20px;
+    //margin-top: 20px;
 
     .footer-item {
         font-size: 0.8rem;

@@ -1,33 +1,29 @@
 <template>
-    <team-optimization-page></team-optimization-page>
+    <div>
+        <suspense>
+            <team-optimization-page></team-optimization-page>
+            <template #fallback>
+                <simple-loading></simple-loading>
+            </template>
+        </suspense>
+    </div>
+
 </template>
 
-<script>
-import { requestMonaWasm } from "@/vendors/mona"
+<script setup lang="ts">
+import SimpleLoading from "@/components/loading/SimpleLoading.vue"
+import SimpleError from "@/components/loading/SimpleError.vue"
 
-import SimpleLoading from "@c/loading/SimpleLoading"
-import SimpleError from "@c/loading/SimpleError"
-
-const TeamOptimizationPage = () => {
-    const component = requestMonaWasm().then(() => import(
+const TeamOptimizationPage = defineAsyncComponent({
+    loader: () => import(
         /* webpackChunkName: "team-optimization-page" */
         /* webpackPrefetch: true */
-        "./TeamOptimizationPage"
-        )
-    )
-
-    return {
-        component,
-        loading: SimpleLoading,
-        error: SimpleError,
-        timeout: 30000,
-    }
-}
-
-export default {
-    name: "TeamOptimizationWrapper",
-    components: { TeamOptimizationPage }
-}
+        "./TeamOptimizationPage.vue"
+    ),
+    loadingComponent: SimpleLoading,
+    errorComponent: SimpleError,
+    timeout: 30000,
+})
 </script>
 
 <style scoped>

@@ -8,3 +8,5 @@ export interface ICharacter {
     skill3: number,
     params: any
 }
+
+export type CharacterName = string

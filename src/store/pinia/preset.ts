@@ -36,7 +36,7 @@ function loadLocalOrDefault() {
     }
 }
 
-interface PresetEntry {
+export interface PresetEntry {
     name: string,
     item: IPreset,
     version: number

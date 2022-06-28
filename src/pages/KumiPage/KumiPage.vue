@@ -131,7 +131,6 @@ import MyList from "@/components/misc/MyList"
 import KumiItem from "./KumiItem"
 import SelectArtifact from "@/components/select/SelectArtifact"
 import {useKumiStore} from "@/store/pinia/kumi"
-import {ElMessageBox} from "element-plus"
 import type {KumiItem as TypeKumiItem} from "@/types/kumi"
 import {deviceIsPC} from "@/utils/device"
 
@@ -192,6 +191,7 @@ function handleDeleteDir(id: number) {
         return
     }
     kumiStore.deleteDir(id)
+    currentDirId.value = 0
 }
 
 function handleRenameDir(id: number) {

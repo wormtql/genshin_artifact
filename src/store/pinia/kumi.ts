@@ -124,7 +124,7 @@ function store() {
     })
 
 
-    function createKumi(dirId: number, name: string) {
+    function createKumi(dirId: number, name: string): number | null {
         let dir = kumiById.value.get(dirId)
         if (dir) {
             let item: KumiItem = {
@@ -140,15 +140,30 @@ function store() {
             if (dir.children) {
                 dir.children.push(item.id)
             }
+
+            return item.id
+        } else {
+            return null
         }
     }
 
     function deleteKumi(id: number) {
+        // delete kumi
         kumiById.value.delete(id)
-
         const index = kumi.value.findIndex(x => x.id === id)
         if (index > 0) {
             kumi.value.splice(index, 1)
+        }
+
+        // remove from parent's children
+        for (const item of kumi.value) {
+            if (item.dir && item.children) {
+                const index = item.children.indexOf(id)
+                if (index !== -1) {
+                    item.children.splice(index, 1)
+                    break
+                }
+            }
         }
     }
 
@@ -185,6 +200,7 @@ function store() {
 
     return {
         kumi,
+        kumiById,
         dirs,
         kumisByDirId,
 

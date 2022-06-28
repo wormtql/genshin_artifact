@@ -1,7 +1,6 @@
 <template>
     <el-table
         :data="tableDataForElementUI"
-        size="small"
     >
         <el-table-column
             prop="chs"

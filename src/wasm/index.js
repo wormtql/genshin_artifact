@@ -1,3 +1,5 @@
+import {useMona} from "./mona"
+
 export { team_optimize } from "./team_optimize"
 export { wasmSingleOptimize } from "./single_optimize"
 export { wasmComputeArtifactPotential } from "./compute_potential"
@@ -21,9 +23,10 @@ export async function wasmGetAttribute(input) {
 }
 
 export async function wasmGetArtifactsRankByCharacter(characterInterface, weaponInterface, tfInterface, artifacts) {
-    const wasm = await initWasm()
+    // const wasm = await initWasm()
+    const mona = await useMona()
 
-    return wasm.CommonInterface.get_artifacts_rank_by_character(
+    return mona.CommonInterface.get_artifacts_rank_by_character(
         characterInterface,
         weaponInterface,
         tfInterface,

@@ -24,60 +24,6 @@
         <attribute-item title="冰元素伤害加成" :composition="attribute.bonus_cryo" :percentage="true"></attribute-item>
         <attribute-item title="岩元素伤害加成" :composition="attribute.bonus_geo" :percentage="true"></attribute-item>
         <attribute-item title="物理伤害加成" :composition="attribute.bonus_physical" :percentage="true"></attribute-item>
-
-<!--        <h3 class="class">元素</h3>-->
-        <!-- <div class="item">
-            <span class="title">元素精通</span>
-            <span class="value">{{ attribute.elementalMastery }}</span>
-        </div>
-        <div class="item">
-            <span class="title">元素充能效率</span>
-            <span class="value">{{ mul100("recharge") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">超载增强</span>
-            <span class="value">{{ mul100("overloadEnhance") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">燃烧增强</span>
-            <span class="value">{{ mul100("burningEnhance") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">感电增强</span>
-            <span class="value">{{ mul100("electroEnhance") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">超导增强</span>
-            <span class="value">{{ mul100("superconductEnhance") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">扩散（雷）增强</span>
-            <span class="value">{{ mul100("swirlThunderEnhance") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">扩散（火）增强</span>
-            <span class="value">{{ mul100("swirlFireEnhance") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">扩散（水）增强</span>
-            <span class="value">{{ mul100("swirlWaterEnhance") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">扩散（冰）增强</span>
-            <span class="value">{{ mul100("swirlIceEnhance") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">扩散增强</span>
-            <span class="value">{{ mul100("swirlEnhance") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">蒸发增强</span>
-            <span class="value">{{ mul100("vaporizeEnhance") }}</span>
-        </div>
-        <div class="item">
-            <span class="title">融化增强</span>
-            <span class="value">{{ mul100("meltEnhance") }}</span>
-        </div> -->
     </div>
 </template>
 
@@ -93,11 +39,6 @@ export default {
         attribute: {
             type: Object,
         },
-    },
-    methods: {
-        mul100(field) {
-            return (this.attribute[field] * 100).toFixed(1) + "%";
-        }
     },
     computed: {
         attack() {

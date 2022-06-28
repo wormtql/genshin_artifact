@@ -2,7 +2,6 @@
     <el-radio-group
         :value="value"
         @input="$emit('input', $event)"
-        size="small"
     >
         <el-radio-button v-if="eleMap.has('Pyro')" label="Pyro">火</el-radio-button>
         <el-radio-button v-if="eleMap.has('Electro')" label="Electro">雷</el-radio-button>

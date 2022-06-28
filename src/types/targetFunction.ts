@@ -4,3 +4,5 @@ export interface ITargetFunction {
     params: any,
     name: string
 }
+
+export type TargetFunctionName = string

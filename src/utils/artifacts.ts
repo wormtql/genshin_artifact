@@ -4,7 +4,7 @@ import objectHash from "object-hash"
 import {artifactsData} from "@/assets/artifacts"
 import { toSnakeCase, deepCopy } from "@/utils/common"
 import { wasmGetArtifactsRankByCharacter } from "@/wasm"
-import {convertArtifact, convertArtifactNameBack, convertArtifactStatNameBack} from "@/utils/converter"
+import {convertArtifact, convertArtifactStatNameBack} from "@/utils/converter"
 import type {
     ArtifactPosition,
     ArtifactSetName, ArtifactStatName,
@@ -20,7 +20,7 @@ import { positions } from "@/constants/artifact"
 const artifactStore = useArtifactStore()
 
 // count min and max upgrade count
-export function howManyUpgradeCount(value: number, tagName: ArtifactSubStatName, star: number): [number, number] {
+export function howManyUpgradeCount(value: number, tagName: ArtifactStatName, star: number): [number, number] {
     const eff = (artifactEff as any)[star][tagName]
     const min = Math.round(value / eff[3])
     const max = Math.round(value / eff[0])
@@ -84,13 +84,19 @@ export function updateArtifact(id: number, newArtifact: IArtifactContentOnly): v
     artifactStore.updateArtifact(id, newArtifact)
 }
 
-export function newArtifact(artifact: IArtifactContentOnly) {
-    artifactStore.addArtifact(artifact)
+export function newArtifact(artifact: IArtifactContentOnly, omit: boolean = false) {
+    artifactStore.addArtifact(artifact, omit)
 }
 
-// import json
-// @param removeNonExisting: whether remove not existing artifacts
-export async function importMonaJson(rawObj: any, removeNonExisting: boolean) {
+
+interface ImportJsonResult {
+    skip: number,
+    upgrade: number,
+    remove: number,
+    add: number,
+}
+
+export function importMonaJson(rawObj: any, removeNonExisting: boolean): ImportJsonResult {
     let hashAll: Record<string, IArtifact> = {}
     let hashEV: Record<string, IArtifact> = {}
     let existingIds = new Set()
@@ -134,7 +140,7 @@ export async function importMonaJson(rawObj: any, removeNonExisting: boolean) {
 
         // new artifact
         newCount += 1
-        newArtifact(artifact)
+        newArtifact(artifact, !!artifact.omit)
     }
 
     let removeCount = 0
@@ -150,6 +156,12 @@ export async function importMonaJson(rawObj: any, removeNonExisting: boolean) {
     }
 
     console.log(`import result: skip${skipCount}, upgrade${upgradeCount}, new${newCount}, remove${removeCount}`)
+    return {
+        skip: skipCount,
+        upgrade: upgradeCount,
+        add: newCount,
+        remove: removeCount
+    }
 }
 
 export function getArtifactThumbnail(name: ArtifactSetName): string {
@@ -202,39 +214,6 @@ export function upgradeArtifactConfig(oldConfig: any) {
     return newConfig
 }
 
-// get artifact recommendation according to current character presets
-// @return [[id, score]]
-export async function getArtifactsRecommendation(): Promise<[number, number][]> {
-    const artifacts: IArtifact[] = [...artifactStore.artifacts.value.values()]
-    const artifacts0 = artifacts.filter(a => a.level === 0)
-    const artifactsWasm = artifacts0.map(a => convertArtifact(a))
-
-    return []
-    // todo
-    // const presetItems = store.getters["presets/allFlat"].map(e => e.item).filter(e => e)
-    //
-    // let scores = {}
-    // for (let presetItem of presetItems) {
-    //     const characterInterface = presetItem.character
-    //     const weaponInterface = presetItem.weapon
-    //     const tfInterface = presetItem.targetFunction
-    //
-    //     const result = await wasmGetArtifactsRankByCharacter(characterInterface, weaponInterface, tfInterface, artifactsWasm)
-    //     for (let item of result) {
-    //         const [id, score] = item
-    //         if (!Object.prototype.hasOwnProperty.call(scores, id)) {
-    //             scores[id] = 0
-    //         }
-    //         scores[id] += score
-    //     }
-    // }
-    //
-    // let temp = Object.keys(scores).map(id => [id, scores[id]])
-    // temp.sort((a, b) => b[1] - a[1])
-    //
-    // return temp
-}
-
 // get all artifacts(including omitted) using wasm format
 export function getArtifactsWasm() {
     // const allFlat = store.getters["artifacts/allFlat"]
@@ -244,20 +223,6 @@ export function getArtifactsWasm() {
         results.push(convertArtifact(a))
     }
     return results
-}
-
-export function statName2Chs(name: ArtifactStatName) {
-    let data = artifactTags[name]
-    if (!data) {
-        const name2: ArtifactStatName = convertArtifactStatNameBack(name)
-        data = artifactTags[name2]
-    }
-
-    if (!data) {
-        throw new Error("cannot find name " + name)
-    }
-
-    return data.chs
 }
 
 export function isArtifactExists(artifact: IArtifactContentOnly): boolean {
@@ -320,4 +285,18 @@ export function defaultArtifactSortFunction(a: IArtifact, b: IArtifact): number 
     } else {
         return a.setName.localeCompare(b.setName)
     }
+}
+
+export function statName2Chs(name: ArtifactStatName): string {
+    let data = artifactTags[name]
+    if (!data) {
+        const name2 = convertArtifactStatNameBack(name as any)
+        data = artifactTags[name2]
+    }
+
+    if (!data) {
+        throw new Error("cannot find name " + name)
+    }
+
+    return data.chs
 }

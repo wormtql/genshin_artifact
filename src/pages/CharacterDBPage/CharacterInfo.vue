@@ -59,12 +59,37 @@ import WCBar from "./WCBar"
 import BasicPieChart from "@c/display/BasicPieChart"
 import {statName2Chs} from "@util/artifacts"
 
+import { use } from "echarts/core"
+import { BarChart } from "echarts/charts"
+import {
+    TooltipComponent,
+    GridComponent,
+    // VisualMapComponent,
+    // ToolboxComponent,
+    // LegendComponent,
+    // TitleComponent,
+} from "echarts/components"
+import { CanvasRenderer } from "echarts/renderers"
+import VChart from "vue-echarts"
+
+use([
+    CanvasRenderer,
+    BarChart,
+    // PieChart,
+    // VisualMapComponent,
+    TooltipComponent,
+    GridComponent,
+    // LegendComponent,
+    // TitleComponent,
+])
+
 export default {
     name: "MonaDBCharacter",
     components: {
         ArtifactBar,
         WCBar,
-        BasicPieChart
+        BasicPieChart,
+        VChart,
     },
     data() {
         return {
@@ -205,7 +230,7 @@ export default {
             let temp = []
             for (const statName in this.subStatUsage) {
                 const chs = statName2Chs(statName)
-                const value = this.subStatUsage[statName]
+                const value = parseFloat(this.subStatUsage[statName].toFixed(2))
                 temp.push([chs, value])
             }
 
@@ -243,7 +268,7 @@ export default {
         }
     },
     beforeRouteUpdate(to, f ,next) {
-        console.log(to.params.name)
+        // console.log(to.params.name)
         this.refresh(to.params.name)
         next()
     },

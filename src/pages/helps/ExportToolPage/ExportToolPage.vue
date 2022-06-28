@@ -1,124 +1,116 @@
 <template>
     <div>
-        <el-breadcrumb>
-            <el-breadcrumb-item>帮助</el-breadcrumb-item>
-            <el-breadcrumb-item>导出工具汇总</el-breadcrumb-item>
-        </el-breadcrumb>
-        <el-divider></el-divider>
+        <export-tool-item
+            v-for="(item, index) in items"
+            :key="index"
+            :name="item.name"
+            :description="item.description"
+            :buttons="item.buttons"
+            class="item"
+        ></export-tool-item>
 
-        <el-card class="item" shadow="never">
-            <div slot="header">
-                <font-awesome-icon :icon="['fas', 'crown']"
-                    style="color: #8a0045; margin-right: 4px;"
-                ></font-awesome-icon>yas
-            </div>
-
-            <p>来自莫娜占卜铺原作者的导出器：Yet Another Scanner，state-of-the-art（速度上）导出器</p>
-
-            <div class="footer">
-                <a target="_blank" href="https://github.com/wormtql/yas"
-                    class="el-button no-deco el-button--primary"
-                >
-                    <i class="el-icon-connection"></i>
-                    项目地址
-                </a>
-            </div>
-        </el-card>
-
-        <el-card class="item" shadow="never">
-            <div slot="header">
-                <font-awesome-icon :icon="['fas', 'crown']"
-                                   style="color: #8a0045; margin-right: 4px;"
-                ></font-awesome-icon>「天目」-- Amenoma
-            </div>
-
-            <p>fork自Genshin Art Scanner</p>
-
-            <div class="footer">
-                <a target="_blank" href="https://github.com/daydreaming666/Amenoma"
-                    class="el-button no-deco el-button--primary"
-                >
-                    <i class="el-icon-connection"></i>
-                    项目地址
-                </a>
-            </div>
-        </el-card>
-
-        <el-card class="item archived" shadow="never">
-            <div slot="header">
-                Genshin Art Scanner
-            </div>
-
-            <p>本地识别，基本实现全自动，无UI模式，速度大致每分钟100-200个</p>
-
-            <div class="footer">
-                <a
-                    target="_blank"
-                    href="https://pan.baidu.com/s/1NSePEf3gzSA45aKASkfZVw"
-                    class="el-button no-deco el-button--primary"
-                >
-                    <i class="el-icon-connection"></i>
-                    百度网盘（提取码：sbqv）
-                </a>
-                <a target="_blank" href="https://github.com/ProblemFactory/GenshinArtScanner" class="el-button no-deco">
-                    <i class="el-icon-connection"></i>
-                    项目地址
-                </a>
-                <a
-                    target="_blank"
-                    href="https://bbs.nga.cn/read.php?tid=26425531&_ff=650&rand=246"
-                    class="el-button no-deco"
-                >
-                    <i class="el-icon-connection"></i>
-                    使用说明
-                </a>
-            </div>
-        </el-card>
-
-        <el-card class="item archived" shadow="never">
-            <div slot="header">椰羊（cocogoat）</div>
-
-            <p>本地识别，基本实现全自动，有UI</p>
-
-            <div class="footer">
-                <a target="_blank" href="https://77.cocogoat.work/v1/ascension/" class="el-button el-button--primary no-deco">
-                    <i class="el-icon-connection"></i>
-                    下载地址
-                </a>
-                <a target="_blank" href="https://github.com/YuehaiTeam/cocogoat" class="el-button no-deco">
-                    <i class="el-icon-connection"></i>
-                    项目地址
-                </a>
-            </div>
-        </el-card>
-
-        <el-card class="item archived" shadow="never">
-            <div slot="header">蹦蹦炸弹</div>
-
-            <p>使用百度API进行远程OCR自动识别，缺点是需要注册百度AI账号</p>
-
-            <div class="footer">
-                <a target="_blank" href="https://github.com/YuehaiTeam/cocogoat" class="el-button no-deco">
-                    <i class="el-icon-connection"></i>
-                    项目地址
-                </a>
-            </div>
-        </el-card>
+        <el-collapse>
+            <el-collapse-item title="其他工具">
+                <el-alert title="这些工具已经停更，请勿使用" type="warning" :closable="false" style="margin-bottom: 12px"></el-alert>
+                <export-tool-item
+                    v-for="(item, index) in nonActiveItems"
+                    :key="index"
+                    :name="item.name"
+                    :description="item.description"
+                    :buttons="item.buttons"
+                    class="item"
+                ></export-tool-item>
+            </el-collapse-item>
+        </el-collapse>
     </div>
 </template>
 
-<script>
-let iter = 0;
+<script setup lang="ts">
+import ExportToolItem from "./ExportToolItem.vue"
 
-export default {
-    name: "ExportToolPage",
-    methods: {
-        getIndex() {
-            iter += 1;
-            return iter;
-        }
+import IconFa6BrandsGithub from "~icons/fa6-brands/github"
+
+const items = [
+    {
+        name: "yas",
+        description: "来自莫娜占卜铺原作者的导出器：Yet Another Scanner，state-of-the-art（速度上）导出器",
+        buttons: [
+            {
+                label: "项目地址",
+                primary: true,
+                link: "https://github.com/wormtql/yas",
+                icon: IconFa6BrandsGithub
+            }
+        ]
+    },
+    {
+        name: "「天目」Amenoma",
+        description: "fork自Genshin Art Scanner",
+        buttons: [
+            {
+                label: "项目地址",
+                primary: true,
+                link: "https://github.com/daydreaming666/Amenoma",
+                icon: IconFa6BrandsGithub
+            }
+        ]
     }
-}
+]
+
+const nonActiveItems = [
+    {
+        name: "Genshin Art Scanner（已停更）",
+        description: "本地识别，基本实现全自动，无UI模式，速度大致每分钟100-200个",
+        buttons: [
+            {
+                label: "项目地址",
+                primary: true,
+                link: "https://github.com/ProblemFactory/GenshinArtScanner",
+                icon: IconFa6BrandsGithub
+            }
+        ]
+    },
+    {
+        name: "椰羊cocogoat（已停更）",
+        description: "本地识别，基本实现全自动，有UI。椰羊的原项目地址已经改为椰羊的成就管理",
+        buttons: [
+            {
+                label: "项目地址",
+                primary: true,
+                link: "https://github.com/YuehaiTeam/cocogoat",
+                icon: IconFa6BrandsGithub
+            },
+            {
+                label: "下载地址",
+                primary: false,
+                link: "https://77.cocogoat.work/v1/ascension/",
+                icon: IconFa6BrandsGithub
+            }
+        ]
+    },
+    {
+        name: "蹦蹦炸弹（已停更）",
+        description: "使用百度API进行远程OCR自动识别，缺点是需要注册百度AI账号",
+        buttons: [
+            {
+                label: "项目地址",
+                primary: true,
+                link: "https://github.com/kites262/JumpyDumpty",
+                icon: IconFa6BrandsGithub
+            },
+        ]
+    },
+]
+
+// export default {
+//     name: "ExportToolPage",
+//     methods: {
+//         getIndex() {
+//             iter += 1;
+//             return iter;
+//         }
+//     }
+// }
 </script>
 
 <style scoped>

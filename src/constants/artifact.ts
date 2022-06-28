@@ -1,6 +1,6 @@
 import {ArtifactMainStatName, type ArtifactPosition, ArtifactStatName, ArtifactSubStatName} from "@/types/artifact"
 
-export const artifactEff = {
+export const artifactEff: Record<number, Record<ArtifactSubStatName, number[]>> = {
     "4": {
         critical: [0.022, 0.025, 0.028, 0.031],
         lifePercentage: [0.033, 0.037, 0.042, 0.047],
