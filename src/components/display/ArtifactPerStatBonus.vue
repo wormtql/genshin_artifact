@@ -19,8 +19,7 @@
 </template>
 
 <script>
-import { artifactTags } from "@const/artifact"
-import { deviceIsPC } from "@util/device"
+/// #if !USE_CDN
 import { use } from "echarts/core"
 import { LineChart, PieChart } from "echarts/charts"
 import {
@@ -32,7 +31,6 @@ import {
     TitleComponent,
 } from "echarts/components"
 import { CanvasRenderer } from "echarts/renderers"
-import VChart from "vue-echarts"
 
 use([
     CanvasRenderer,
@@ -44,6 +42,12 @@ use([
     TitleComponent,
     GridComponent
 ])
+/// #else
+import _e from "echarts"
+/// #endif
+import { artifactTags } from "@const/artifact"
+import { deviceIsPC } from "@util/device"
+import VChart from "vue-echarts"
 
 export default {
     name: "ArtifactPerStatBonus",

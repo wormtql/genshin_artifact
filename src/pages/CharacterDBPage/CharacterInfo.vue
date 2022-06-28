@@ -58,30 +58,26 @@ import ArtifactBar from "./ArtifactBar"
 import WCBar from "./WCBar"
 import BasicPieChart from "@c/display/BasicPieChart"
 import {statName2Chs} from "@util/artifacts"
+import VChart from "vue-echarts"
 
+/// #if !USE_CDN
 import { use } from "echarts/core"
 import { BarChart } from "echarts/charts"
 import {
     TooltipComponent,
     GridComponent,
-    // VisualMapComponent,
-    // ToolboxComponent,
-    // LegendComponent,
-    // TitleComponent,
 } from "echarts/components"
 import { CanvasRenderer } from "echarts/renderers"
-import VChart from "vue-echarts"
 
 use([
     CanvasRenderer,
     BarChart,
-    // PieChart,
-    // VisualMapComponent,
     TooltipComponent,
     GridComponent,
-    // LegendComponent,
-    // TitleComponent,
 ])
+/// #else
+import _e from "echarts"
+/// #endif
 
 export default {
     name: "MonaDBCharacter",

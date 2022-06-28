@@ -138,6 +138,10 @@ export function useCharacterSkill(characterName: Ref<CharacterName>) {
         flush: "sync"
     })
 
+    // watch(() => characterSkillConfig.value, () => {
+    //     console.log("skill config")
+    // })
+
     // watch(() => characterSkillIndex.value, v => {
     //     console.log(v)
     // })

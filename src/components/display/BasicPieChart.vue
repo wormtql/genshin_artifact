@@ -3,26 +3,25 @@
 </template>
 
 <script>
+/// #if !USE_CDN
 import { use } from "echarts/core"
 import { PieChart } from "echarts/charts"
 import {
     TooltipComponent,
-    // VisualMapComponent,
-    // ToolboxComponent,
-    // LegendComponent,
     TitleComponent,
 } from "echarts/components"
 import { CanvasRenderer } from "echarts/renderers"
-import VChart from "vue-echarts"
 
 use([
     CanvasRenderer,
     PieChart,
-    // VisualMapComponent,
     TooltipComponent,
-    // LegendComponent,
     TitleComponent,
 ])
+/// #else
+import _e from "echarts"
+/// #endif
+import VChart from "vue-echarts"
 
 export default {
     name: "BasicPieChart",

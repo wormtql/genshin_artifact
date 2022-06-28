@@ -1,22 +1,12 @@
 import "./styles/global.scss";
 import "./styles/select.css";
-
-// import "./vendors/mona";
 import 'element-plus/theme-chalk/display.css'
 
 import router from "./router/router"
 
 import { createApp, h } from 'vue'
 
-// import store from "./store/store";
-
 import App from './App.vue';
-
-// Vue.config.productionTip = false
-
-// Vue.filter("str", function (value) {
-//     return value.toString();
-// });
 
 declare global {
     interface Window {
@@ -40,17 +30,6 @@ async function mount() {
     monaApp.use(router)
 
     monaApp.mount("#app")
-    // let monaApp = new Vue(
-    //     {
-    //         render: h => h(App),
-    //         methods: {
-    //             message(msg) {
-    //                 this.$message(msg);
-    //         },
-    //     },
-    //     router: Router,
-    //     store,
-    // }).$mount('#app');
 
     window.monaApp = monaApp;
 }

@@ -116,7 +116,13 @@ export default {
         },
 
         handleChangeValue(value) {
-            this.$emit("update:modelValue", value)
+            // console.log("change value", value)
+            // it may be an element plus bug, when value is not changed, slider will also emit update:modelValue
+            if (value !== this.modelValue) {
+                // console.log("model value", this.modelValue)
+                this.$emit("update:modelValue", value)
+            }
+            // this.$emit("update:modelValue", value)
         },
     }
 }

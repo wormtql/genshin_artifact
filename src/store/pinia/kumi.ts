@@ -220,6 +220,12 @@ function store() {
 
 const s = store()
 
+watch(() => s.kumi.value, newValue => {
+    localStorage.setItem("kumi2", JSON.stringify(newValue))
+}, {
+    deep: true
+})
+
 export function useKumiStore(): ReturnType<typeof store> {
     return s
 }

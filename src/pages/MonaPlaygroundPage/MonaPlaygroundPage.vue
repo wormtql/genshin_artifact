@@ -227,7 +227,6 @@ import SelectWeapon from "@c/select/SelectWeapon"
 import SelectCharacterLevel from "@c/select/SelectCharacterLevel"
 import SelectWeaponLevel from "@c/select/SelectWeaponLevel"
 import WeaponDisplay from "@c/display/WeaponDisplay"
-import MyButton1 from "@c/button/MyButton1"
 import BuffItem from "@page/NewArtifactPlanPage/BuffItem"
 import SelectBuff from "@c/select/SelectBuff"
 import ArtifactDisplay from "@c/display/ArtifactDisplay"
@@ -236,13 +235,6 @@ import SelectArtifact from "@c/select/SelectArtifact"
 import MonaMonacoEditor from "@/components/MonaMonacoEditor.vue"
 
 import {deviceIsPC} from "@util/device"
-import {buffData} from "@buff";
-import {characterData} from "@character"
-import {weaponData} from "@weapon"
-import {newDefaultArtifactConfigForWasm} from "@util/artifacts"
-import {artifactsData} from "@artifact";
-import {convertArtifact, convertArtifactName} from "@util/converter";
-import {toSnakeCase} from "@util/common";
 import {useCharacter} from "@/composables/character"
 import {useWeapon} from "@/composables/weapon"
 import {useBuff} from "@/composables/buff"
@@ -254,63 +246,7 @@ import IconEpPlus from "~icons/ep/plus"
 import IconFa6SolidBan from "~icons/fa6-solid/ban"
 import IconFa6SolidPlay from "~icons/fa6-solid/play"
 import {positions} from "@/constants/artifact"
-import {loadScript} from "@/utils/common"
 import {useMona} from "@/wasm/mona"
-
-// const original_source = `dmg x = KamisatoAyaka.Normal1({ after_dash: true })
-// print(x.normal.e)`
-
-
-// load dependencies
-async function loadMonaco() {
-    const monacoBase = "https://s1.pstatp.com/cdn/expire-1-y/monaco-editor/0.31.1/min/vs"
-    await loadScript(monacoBase + "/loader.min.js")
-    // @ts-ignore
-    window.require.config({ paths: { vs: monacoBase } })
-    // @ts-ignore
-    window.MonacoEnvironment = {
-        getWorkerUrl(workerId: any, label: any) {
-            return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
-                self.MonacoEnvironment = {
-                    baseUrl: "${monacoBase}"
-                }
-                importScripts("${monacoBase + '/base/worker/workerMain.js'}")
-            `)}`
-        }
-    }
-    return await new Promise((resolve, reject) => {
-        window.require(["vs/editor/editor.main"], function () {
-            // console.log(monaco)
-            // @ts-ignore
-            resolve(window.monaco)
-        })
-    })
-
-    // return loadScript(monacoBase + "/loader.min.js").then(() => {
-    //     // @ts-ignore
-    //     window.require.config({ paths: { vs: monacoBase } })
-    //
-    //     // @ts-ignore
-    //     window.MonacoEnvironment = {
-    //         getWorkerUrl(workerId: any, label: any) {
-    //             return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
-    //                 self.MonacoEnvironment = {
-    //                     baseUrl: "${monacoBase}"
-    //                 }
-    //                 importScripts("${monacoBase + '/base/worker/workerMain.js'}")
-    //             `)}`
-    //         }
-    //     }
-    //
-    //     return new Promise((resolve, reject) => {
-    //         window.require(["vs/editor/editor.main"], function () {
-    //             // console.log(monaco)
-    //             // @ts-ignore
-    //             resolve(window.monaco)
-    //         })
-    //     })
-    // })
-}
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -326,7 +262,6 @@ const {
     characterWeaponType,
     characterInterface,
     characterSplash,
-    characterLevelNumber,
     characterAscend,
     characterConfigConfig,
     characterNeedConfig

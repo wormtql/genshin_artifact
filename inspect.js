@@ -1,17 +1,18 @@
-revision:  07ab2b4
+revision:  bf7dd01
+[
+  {
+    'process.env': {
+      NODE_ENV: '"development"',
+      BASE_URL: '"/"',
+      MONA_VERSION: '"5.7.1"',
+      MONA_BUILD_DATE: '"2022/6/28"',
+      MONA_REVISION: '"bf7dd01"'
+    }
+  }
+]
 {
   mode: 'development',
   context: 'E:\\vue\\genshin_artifact',
-  externals: {
-    vue: 'Vue',
-    'vue-router': 'VueRouter',
-    vuex: 'Vuex',
-    'element-ui': 'ELEMENT',
-    '@vue/composition-api': 'VueCompositionAPI',
-    echarts: 'echarts',
-    'vue-echarts': 'VueECharts',
-    'fuse.js': 'Fuse'
-  },
   output: {
     hashFunction: 'xxhash64',
     path: 'E:\\vue\\genshin_artifact\\dist',
@@ -22,7 +23,7 @@ revision:  07ab2b4
   resolve: {
     alias: {
       '@': 'E:\\vue\\genshin_artifact\\src',
-      vue$: 'vue/dist/vue.runtime.esm.js',
+      vue$: 'vue/dist/vue.runtime.esm-bundler.js',
       '@c': 'E:\\vue\\genshin_artifact\\src\\components',
       '@asset': 'E:\\vue\\genshin_artifact\\src\\assets',
       '@util': 'E:\\vue\\genshin_artifact\\src\\utils',
@@ -31,7 +32,7 @@ revision:  07ab2b4
       '@worker': 'E:\\vue\\genshin_artifact\\src\\workers',
       '@const': 'E:\\vue\\genshin_artifact\\src\\constants',
       '@enemy': 'E:\\vue\\genshin_artifact\\src\\enemies',
-      mona: 'E:\\vue\\genshin_artifact\\sub\\mona_wasm\\pkg',
+      mona: 'E:\\vue\\genshin_artifact\\mona_wasm\\pkg',
       '@wasm': 'E:\\vue\\genshin_artifact\\src\\wasm',
       '@character': 'E:\\vue\\genshin_artifact\\src\\assets\\character',
       '@weapon': 'E:\\vue\\genshin_artifact\\src\\assets\\weapon',
@@ -42,6 +43,8 @@ revision:  07ab2b4
       '@artifact': 'E:\\vue\\genshin_artifact\\src\\assets\\artifacts'
     },
     extensions: [
+      '.tsx',
+      '.ts',
       '.mjs',
       '.js',
       '.jsx',
@@ -61,8 +64,8 @@ revision:  07ab2b4
   },
   resolveLoader: {
     modules: [
+      'E:\\vue\\genshin_artifact\\node_modules\\@vue\\cli-plugin-typescript\\node_modules',
       'E:\\vue\\genshin_artifact\\node_modules\\@vue\\cli-plugin-babel\\node_modules',
-      'E:\\vue\\genshin_artifact\\node_modules\\@vue\\cli-service\\lib\\config\\vue-loader-v15-resolve-compat',
       'node_modules',
       'E:\\vue\\genshin_artifact\\node_modules',
       'E:\\vue\\genshin_artifact\\node_modules\\@vue\\cli-service\\node_modules'
@@ -82,23 +85,24 @@ revision:  07ab2b4
       {
         test: /\.vue$/,
         use: [
-          /* config.module.rule('vue').use('cache-loader') */
-          {
-            loader: 'E:\\vue\\genshin_artifact\\node_modules\\cache-loader\\dist\\cjs.js',
-            options: {
-              cacheDirectory: 'E:\\vue\\genshin_artifact\\node_modules\\.cache\\vue-loader',
-              cacheIdentifier: '5e58ed0c'
-            }
-          },
           /* config.module.rule('vue').use('vue-loader') */
           {
-            loader: 'E:\\vue\\genshin_artifact\\node_modules\\@vue\\vue-loader-v15\\lib\\index.js',
+            loader: 'E:\\vue\\genshin_artifact\\node_modules\\vue-loader\\dist\\index.js',
             options: {
-              compilerOptions: {
-                whitespace: 'condense'
-              },
               cacheDirectory: 'E:\\vue\\genshin_artifact\\node_modules\\.cache\\vue-loader',
-              cacheIdentifier: '5e58ed0c'
+              cacheIdentifier: 'c0ba2d4e',
+              babelParserPlugins: [
+                'jsx',
+                'classProperties',
+                'decorators-legacy'
+              ]
+            }
+          },
+          /* config.module.rule('vue').use('ifdef') */
+          {
+            loader: 'ifdef-loader',
+            options: {
+              USE_CDN: false
             }
           }
         ]
@@ -1177,14 +1181,56 @@ revision:  07ab2b4
             options: {
               cacheCompression: false,
               cacheDirectory: 'E:\\vue\\genshin_artifact\\node_modules\\.cache\\babel-loader',
-              cacheIdentifier: '9c808dba'
+              cacheIdentifier: '6dbda1ba'
             }
           },
           /* config.module.rule('js').use('ifdef') */
           {
             loader: 'ifdef-loader',
             options: {
-              DEBUG: false
+              USE_CDN: false
+            }
+          }
+        ]
+      },
+      /* config.module.rule('ts') */
+      {
+        test: /\.ts$/,
+        use: [
+          /* config.module.rule('ts').use('babel-loader') */
+          {
+            loader: 'E:\\vue\\genshin_artifact\\node_modules\\babel-loader\\lib\\index.js'
+          },
+          /* config.module.rule('ts').use('ts-loader') */
+          {
+            loader: 'E:\\vue\\genshin_artifact\\node_modules\\ts-loader\\index.js',
+            options: {
+              transpileOnly: true,
+              appendTsSuffixTo: [
+                '\\.vue$'
+              ],
+              happyPackMode: false
+            }
+          }
+        ]
+      },
+      /* config.module.rule('tsx') */
+      {
+        test: /\.tsx$/,
+        use: [
+          /* config.module.rule('tsx').use('babel-loader') */
+          {
+            loader: 'E:\\vue\\genshin_artifact\\node_modules\\babel-loader\\lib\\index.js'
+          },
+          /* config.module.rule('tsx').use('ts-loader') */
+          {
+            loader: 'E:\\vue\\genshin_artifact\\node_modules\\ts-loader\\index.js',
+            options: {
+              transpileOnly: true,
+              happyPackMode: false,
+              appendTsxSuffixTo: [
+                '\\.vue$'
+              ]
             }
           }
         ]
@@ -1253,15 +1299,22 @@ revision:  07ab2b4
   plugins: [
     /* config.plugin('vue-loader') */
     new VueLoaderPlugin(),
+    /* config.plugin('feature-flags') */
+    new DefinePlugin(
+      {
+        __VUE_OPTIONS_API__: 'true',
+        __VUE_PROD_DEVTOOLS__: 'false'
+      }
+    ),
     /* config.plugin('define') */
     new DefinePlugin(
       {
         'process.env': {
           NODE_ENV: '"development"',
           BASE_URL: '"/"',
-          MONA_VERSION: '"5.4.2"',
-          MONA_BUILD_DATE: '"2022/5/19"',
-          MONA_REVISION: '"07ab2b4"'
+          MONA_VERSION: '"5.7.1"',
+          MONA_BUILD_DATE: '"2022/6/28"',
+          MONA_REVISION: '"bf7dd01"'
         }
       }
     ),
@@ -1284,59 +1337,7 @@ revision:  07ab2b4
         title: 'genshin_artifacts',
         scriptLoading: 'defer',
         templateParameters: function () { /* omitted long function */ },
-        template: 'E:\\vue\\genshin_artifact\\public\\index.html',
-        cdn: {
-          js: [
-            {
-              url: 'https://npm.elemecdn.com/vue@2.6.11/dist/vue.min.js',
-              global: 'Vue',
-              name: 'vue'
-            },
-            {
-              url: 'https://npm.elemecdn.com/vue-router@3.4.8/dist/vue-router.min.js',
-              global: 'VueRouter',
-              name: 'vue-router'
-            },
-            {
-              url: 'https://npm.elemecdn.com/vuex@3.5.1/dist/vuex.min.js',
-              global: 'Vuex',
-              name: 'vuex'
-            },
-            {
-              url: 'https://npm.elemecdn.com/element-ui@2.15.6/lib/index.js',
-              global: 'ELEMENT',
-              name: 'element-ui'
-            },
-            {
-              url: 'https://npm.elemecdn.com/@vue/composition-api@1.6.1/dist/vue-composition-api.prod.js',
-              global: 'VueCompositionAPI',
-              name: '@vue/composition-api'
-            },
-            {
-              url: 'https://npm.elemecdn.com/echarts@5.3.0/dist/echarts.min.js',
-              global: 'echarts',
-              name: 'echarts'
-            },
-            {
-              url: 'https://npm.elemecdn.com/vue-echarts@6.0.0-rc.4/dist/index.umd.min.js',
-              global: 'VueECharts',
-              name: 'vue-echarts'
-            },
-            {
-              url: 'https://npm.elemecdn.com/fuse.js@6.5.3/dist/fuse.min.js',
-              global: 'Fuse',
-              name: 'fuse.js'
-            }
-          ],
-          css: [
-            {
-              url: 'https://npm.elemecdn.com/element-ui@2.15.6/lib/theme-chalk/index.css'
-            },
-            {
-              url: 'https://npm.elemecdn.com/element-ui@2.15.6/lib/theme-chalk/display.css'
-            }
-          ]
-        }
+        template: 'E:\\vue\\genshin_artifact\\public\\index.html'
       }
     ),
     /* config.plugin('copy') */
@@ -1367,24 +1368,74 @@ revision:  07ab2b4
         extensions: [
           '.js',
           '.jsx',
-          '.vue'
+          '.vue',
+          '.ts',
+          '.tsx'
         ],
         cwd: 'E:\\vue\\genshin_artifact',
         cache: true,
-        cacheLocation: 'E:\\vue\\genshin_artifact\\node_modules\\.cache\\eslint\\4c81cceb.json',
+        cacheLocation: 'E:\\vue\\genshin_artifact\\node_modules\\.cache\\eslint\\8c822818.json',
         context: 'E:\\vue\\genshin_artifact',
         failOnWarning: false,
         failOnError: true,
         eslintPath: 'E:\\vue\\genshin_artifact\\node_modules\\eslint',
         formatter: 'stylish'
       }
-    )
+    ),
+    /* config.plugin('fork-ts-checker') */
+    new ForkTsCheckerWebpackPlugin(
+      {
+        typescript: {
+          extensions: {
+            vue: {
+              enabled: true,
+              compiler: 'E:\\vue\\genshin_artifact\\node_modules\\vue\\compiler-sfc\\index.js'
+            }
+          },
+          diagnosticOptions: {
+            semantic: true,
+            syntactic: false
+          }
+        }
+      }
+    ),
+    /* config.plugin('monaco') */
+    {},
+    {
+      apply: function () { /* omitted long function */ }
+    },
+    {
+      apply: function () { /* omitted long function */ }
+    },
+    {
+      apply: function () { /* omitted long function */ }
+    }
   ],
   entry: {
     app: [
-      './src/main.js'
+      './src/main.ts'
     ]
   },
+  externals: {
+    vue: [
+      'https://npm.elemecdn.com/vue@3.2.36/dist/vue.global.prod.js',
+      'Vue'
+    ],
+    'vue-router': [
+      'https://npm.elemecdn.com/vue-router@4.0.16/dist/vue-router.global.prod.js',
+      'VueRouter'
+    ],
+    'echarts/core': [
+      'https://npm.elemecdn.com/echarts@5.3.3/core.js',
+      'echarts'
+    ],
+    'vue-echarts': [
+      'https://npm.elemecdn.com/vue-echarts@6.1.0/dist/index.umd.min.js',
+      'VueECharts'
+    ],
+    'monaco-editor': 'var monaco'
+  },
+  externalsType: 'script',
   experiments: {
     asyncWebAssembly: true
   }
