@@ -81,6 +81,7 @@ declare module '@vue/runtime-core' {
     IEpQuestionFilled: typeof import('~icons/ep/question-filled')['default']
     IEpSearch: typeof import('~icons/ep/search')['default']
     IFa6BrandsGithub: typeof import('~icons/fa6-brands/github')['default']
+    IFa6SolidLink: typeof import('~icons/fa6-solid/link')['default']
     IFa6SolidTerminal: typeof import('~icons/fa6-solid/terminal')['default']
     IFa6SolidUpload: typeof import('~icons/fa6-solid/upload')['default']
     ImportBlock: typeof import('./components/misc/ImportBlock.vue')['default']

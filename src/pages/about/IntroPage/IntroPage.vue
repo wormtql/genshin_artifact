@@ -9,144 +9,117 @@
 
         <el-row :gutter="16">
             <el-col :sm="6" :xs="24" class="mb16">
-                <use-case-item
-                    text="伤害计算器/单人配装"
-                    url="/calculate"
-                >
-                    <template #icon>
-                        <i-ep-cpu></i-ep-cpu>
-                    </template>
-                </use-case-item>
-            </el-col>
-            <el-col :sm="6" :xs="24" class="mb16">
-                <use-case-item
-                    text="队伍配装"
-                    icon="bell"
-                    url="/team-optimization"
+                <use-case-item text="伤害计算器/单人配装" url="/calculate" :icon="IconFa6SolidCalculator"
+                    description="- 通过计算机进行单人圣遗物自动搭配，以得到最高输出等内容。<br>- 响应式计算器，所见即所得。"
                 ></use-case-item>
             </el-col>
             <el-col :sm="6" :xs="24" class="mb16">
-                <use-case-item
-                    text="圣遗物潜力"
-                    icon="thumbs-up"
-                    url="/potential"
+                <use-case-item text="队伍配装" url="/team-optimization" :icon="IconFa6SolidUserGroup"
+                               description="队伍配装，圣遗物不冲突"
                 ></use-case-item>
             </el-col>
             <el-col :sm="6" :xs="24" class="mb16">
-                <use-case-item
-                    text="导出工具"
-                    icon="chart-pie"
+                <use-case-item text="圣遗物潜力" url="/potential" :icon="IconFa6SolidRuler"
+                               description="快速计算圣遗物潜力。潜力即圣遗物满级后能够获得的平均得分，能够一定程度上衡量圣遗物的价值"
+                ></use-case-item>
+            </el-col>
+            <el-col :sm="6" :xs="24" class="mb16">
+                <use-case-item text="圣遗物导出" url="/help/export-tools" :icon="IconFa6SolidFileExport"
+                               description="快速导出圣遗物"
                 ></use-case-item>
             </el-col>
         </el-row>
 
-        <el-card class="mb16" shadow="never">
-            <p class="big-card-title">开源地址</p>
-            <el-row :gutter="16">
-                <el-col :xs="24" :sm="12">
-                    <div
-                        class="source-code-item"
-                        @click="newPage(links.frontendProject)"
-                    >
-                        <el-icon><i-fa6-brands-github></i-fa6-brands-github></el-icon>
-<!--                        <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>-->
-                        <p class="item-title">Mona</p>
-                    </div>
-                </el-col>
-                <el-col :xs="24" :sm="12">
-                    <div
-                        class="source-code-item"
-                        @click="newPage(links.yasProject)"
-                    >
-                        <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>
-                        <p class="item-title">YAS</p>
-                    </div>
-                </el-col>
-            </el-row>
-        </el-card>
-
+        <h2>开源地址</h2>
         <el-row :gutter="16">
-            <el-col :xs="24" :sm="12">
-                <el-card class="mb16" shadow="never">
-                    <p class="card-title">反馈</p>
-                    <el-button @click="newPage(links.issue)" class="data-source">
-                        github Issue
-                        <font-awesome-icon :icon="['fab', 'github']"></font-awesome-icon>
-                    </el-button>
-                    <el-button
-                        class="data-source"
-                        @click="newPage('https://qm.qq.com/cgi-bin/qm/qr?k=yQaJgPzRmBgEXXk1uiqNbq7CIrq-0biW&jump_from=webapi')"
-                    >
-                        QQ群(801106595)
-                        <font-awesome-icon icon="comment"></font-awesome-icon>
-                    </el-button>
-
-                    <div>
-                        <p style="font-size: 12px">站内反馈</p>
-                        <el-input v-model="feedback">
-                            <template #append>
-                                <el-button @click="handleClickSubmitFeedback">提交</el-button>
-                            </template>
-                        </el-input>
-                    </div>
-                </el-card>
+            <el-col :xs="24" :sm="12" class="mb16">
+                <use-case-item text="MONA" :icon="IconFa6BrandsGithub"
+                               description="- 前端<br>- 莫娜DSL<br>- DSL Book等"
+                               @click="newPage('https://github.com/wormtql/genshin_artifact')"
+                ></use-case-item>
+<!--                <div-->
+<!--                    class="source-code-item"-->
+<!--                    @click="newPage(links.frontendProject)"-->
+<!--                >-->
+<!--                    <el-icon :size="30"><i-fa6-brands-github></i-fa6-brands-github></el-icon>-->
+<!--                    &lt;!&ndash;                        <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>&ndash;&gt;-->
+<!--                    <p class="item-title">Mona</p>-->
+<!--                </div>-->
             </el-col>
-
-            <el-col :xs="24" :sm="12">
-                <el-card class="mb16" shadow="never">
-                    <p class="card-title">数据来源</p>
-                    <el-button @click="newPage(links.wiki)" class="data-source">
-                        bilibili原神wiki
-                        <font-awesome-icon icon="database"></font-awesome-icon>
-                    </el-button>
-                    <el-button @click="newPage(links.wiki2)" class="data-source">
-                        Genshin Impact Wiki | Fandom
-                        <font-awesome-icon icon="database"></font-awesome-icon>
-                    </el-button>
-                    <el-button @click="newPage(links.wiki3)" class="data-source">
-                        旅行者创作平台-观测枢-原神wiki
-                        <font-awesome-icon icon="database"></font-awesome-icon>
-                    </el-button>
-                </el-card>
+            <el-col :xs="24" :sm="12" class="mb16">
+                <use-case-item text="Yas" :icon="IconFa6BrandsGithub"
+                               description="- YAS导出器"
+                               @click="newPage('https://github.com/wormtql/yas')"
+                ></use-case-item>
+<!--                <div-->
+<!--                    class="source-code-item"-->
+<!--                    @click="newPage(links.yasProject)"-->
+<!--                >-->
+<!--                    <font-awesome-icon :icon="['fab', 'github']" class="icon"></font-awesome-icon>-->
+<!--                    <p class="item-title">YAS</p>-->
+<!--                </div>-->
             </el-col>
         </el-row>
 
+        <h2>反馈</h2>
         <el-row :gutter="16">
-            <el-col :xs="24" :sm="12">
-                <el-card class="mb16" shadow="never">
-                    <p class="card-title">圣遗物导出工具</p>
-                    <el-button
-                        @click="newPage(links.yasDownloadGithub)"
-                        type="primary"
-                        class="data-source"
-                    >
-                        YAS下载地址
-                        <i class="el-icon-aim"></i>
-                    </el-button>
-                    <el-button
-                        @click="$router.push('/help/export-tools')"
-                        class="data-source"
-                    >
-                        导出工具大全
-                        <i class="el-icon-aim"></i>
-                    </el-button>
-                </el-card>
+            <el-col :xs="24" :sm="8" class="mb16">
+                <use-case-item text="Github Issue" :icon="IconFa6BrandsGithub"
+                               description="在Github仓库提出Issue"
+                               @click="newPage('https://github.com/wormtql/genshin_artifact/issues')"
+                ></use-case-item>
             </el-col>
-            <el-col :xs="24" :sm="12">
-                <el-card class="mb16" shadow="never">
-                    <p class="card-title">开发者文档</p>
-                    <a class="el-button no-deco" :href="links.doc" target="_blank">
-                        文档
-                        <i class="el-icon-connection"></i>
-                    </a>
-                </el-card>
+            <el-col :xs="24" :sm="8" class="mb16">
+                <use-case-item text="QQ群" :icon="IconFa6BrandsQQ"
+                               description="在QQ群反馈或是水群（群号：801106595）"
+                               @click="newPage('https://qm.qq.com/cgi-bin/qm/qr?k=yQaJgPzRmBgEXXk1uiqNbq7CIrq-0biW&jump_from=webapi')"
+                ></use-case-item>
+            </el-col>
+            <el-col :xs="24" :sm="8" class="mb16">
+                <use-case-item text="NGA讨论贴" :icon="IconFa6SolidComment"
+                               description="在NGA进行反馈"
+                               @click="newPage('https://nga.178.com/read.php?tid=31180859')"
+                ></use-case-item>
             </el-col>
         </el-row>
 
 <!--        <el-row :gutter="16">-->
 <!--            <el-col :xs="24" :sm="12">-->
+<!--                <el-card class="mb16" shadow="never">-->
+<!--                    <p class="card-title">圣遗物导出工具</p>-->
+<!--                    <el-button-->
+<!--                        @click="newPage(links.yasDownloadGithub)"-->
+<!--                        type="primary"-->
+<!--                        class="data-source"-->
+<!--                    >-->
+<!--                        YAS下载地址-->
+<!--                        <i class="el-icon-aim"></i>-->
+<!--                    </el-button>-->
+<!--                    <el-button-->
+<!--                        @click="$router.push('/help/export-tools')"-->
+<!--                        class="data-source"-->
+<!--                    >-->
+<!--                        导出工具大全-->
+<!--                        <i class="el-icon-aim"></i>-->
+<!--                    </el-button>-->
+<!--                </el-card>-->
+<!--            </el-col>-->
+<!--            <el-col :xs="24" :sm="12">-->
+<!--                <el-card class="mb16" shadow="never">-->
+<!--                    <p class="card-title">开发者文档</p>-->
+<!--                    <a class="el-button no-deco" :href="links.doc" target="_blank">-->
+<!--                        文档-->
+<!--                        <i class="el-icon-connection"></i>-->
+<!--                    </a>-->
+<!--                </el-card>-->
+<!--            </el-col>-->
+<!--        </el-row>-->
+
+<!--        <el-row :gutter="16">-->
+<!--            <el-col :xs="24" :sm="12">-->
+        <h2>请莫娜吃饭</h2>
                 <el-card style="margin-bottom: 16px" shadow="never">
-                    <p class="card-title">请莫娜吃饭</p>
+<!--                    <p class="card-title">请莫娜吃饭</p>-->
                     <el-alert
                         :closable="false"
                         title="才...才不是因为交不起服务器费呢。"
@@ -169,53 +142,54 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import links from "@const/links"
 import { createFeedback } from "@/api/misc"
 
-import MigrateNotification from "./MigrateNotification"
-import UseCaseItem from "./UseCaseItem"
+import IconEpCpu from "~icons/ep/cpu"
+import IconFa6SolidUserGroup from "~icons/fa6-solid/user-group"
+import IconFa6SolidFileExport from "~icons/fa6-solid/file-export"
+import IconFa6SolidCalculator from "~icons/fa6-solid/calculator"
+import IconFa6SolidRuler from "~icons/fa6-solid/ruler"
+import IconFa6SolidComment from "~icons/fa6-solid/comment"
+import IconFa6BrandsGithub from "~icons/fa6-brands/github"
+import IconFa6BrandsQQ from "~icons/fa6-brands/qq"
 
-export default {
-    name: "IntroPage",
-    components: {
-        MigrateNotification,
-        UseCaseItem,
-        // NokNok,
-    },
-    data() {
-        return {
-            feedback: ""
-        }
-    },
-    created: function() {
-        this.links = links;
+import UseCaseItem from "./UseCaseItem.vue"
+import ButtonItem from "./ButtonItem.vue"
+import {useRouter} from "vue-router"
 
-        this.version = process.env.MONA_VERSION;
-        this.webTitle = process.env.MONA_TITLE;
-        this.needMigrate = process.env.MONA_NEED_MIGRATE;
-        this.buildDate = process.env.MONA_BUILD_DATE;
 
-        this.host = location.hostname;
-    },
-    methods: {
-        navigateTo(des) {
-            this.$router.replace(des);
-        },
+const link = links
+const version = process.env.MONA_VERSION
+const webTitle = process.env.MONA_TITLE
+const needMigrate = process.env.MONA_NEED_MIGRATE
+const buildDate = process.env.MONA_BUILD_DATA
+const host = location.hostname
 
-        newPage(des) {
-            window.open(des, "_blank");
-        },
 
-        handleClickSubmitFeedback() {
-            if (this.feedback === "") {
-                return
-            }
-            createFeedback(this.feedback)
+const router = useRouter()
 
-            this.$message.success("已发送")
-        }
+function navigateTo(r: any) {
+    router.push(r)
+}
+
+function newPage(url: string) {
+    window.open(url, "_blank")
+}
+
+
+const feedback = ref("")
+
+function handleClickSubmitFeedback() {
+    if (feedback.value === "") {
+        return
     }
+    createFeedback(feedback.value)
+
+    ElMessage.success({
+        message: "已发送"
+    })
 }
 </script>
 

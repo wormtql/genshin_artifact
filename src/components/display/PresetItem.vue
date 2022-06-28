@@ -65,13 +65,13 @@ interface Props {
     item: IPreset,
     name: string,
     toolbar?: boolean,
-    calculateIcon?: boolean
+    calculateIcon?: boolean,
 }
 
 const props = withDefaults(defineProps<Props>(), {
     toolbar: true,
     calculateIcon: true,
-    name: "name"
+    name: "name",
 })
 
 const characterName = computed(() => {

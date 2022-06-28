@@ -53,11 +53,12 @@
                 v-for="entry in allPresetsFlat"
                 :item="entry.item"
                 :name="entry.name"
+                :calculate-icon="false"
                 @delete="handleDeletePreset(entry.name)"
                 @download="handleDownload(entry.name)"
                 @cpu="handleQuickCalculate(entry.name)"
                 class="item"
-
+                @click="handleClickPreset(entry.name)"
             ></preset-item>
         </div>
         <template v-else>
@@ -81,7 +82,7 @@ import { convertArtifact } from "@util/converter"
 import { wasmGetArtifactsRankByCharacter } from "@/wasm"
 import { deviceIsPC } from "@/utils/device"
 
-import PresetItem from "@c/display/PresetItem"
+import PresetItem from "@/components/display/PresetItem.vue"
 import ImportBlock from "@/components/misc/ImportBlock"
 import ArtifactDisplay from "@/components/display/ArtifactDisplay"
 import {ElMessage} from "element-plus"
@@ -172,7 +173,13 @@ function handleDeletePreset(name: string) {
 
 
 // todo quick calculate
-function handleQuickCalculate(name: string) {
+function handleClickPreset(name: string) {
+    router.push({
+        name: "calculate",
+        params: {
+            presetName: name
+        }
+    })
     // this.$router.push({
     //     name: "calculate",
     //     params: {

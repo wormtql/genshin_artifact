@@ -685,9 +685,9 @@ import {positions} from "@/constants/artifact"
 import {positionToIndex} from "@/utils/artifacts"
 import {useMona} from "@/wasm/mona"
 import {useKumiStore} from "@/store/pinia/kumi"
-import SimpleLoading from "@/components/loading/SimpleLoading.vue";
-import SimpleError from "@/components/loading/SimpleError.vue";
-
+import SimpleLoading from "@/components/loading/SimpleLoading.vue"
+import SimpleError from "@/components/loading/SimpleError.vue"
+import {useRoute} from "vue-router"
 
 
 // stores
@@ -697,6 +697,23 @@ const kumiStore = useKumiStore()
 
 // mona
 const mona = await useMona()
+
+// router
+const route = useRoute()
+
+
+//////////////////////////////////////////////////////////
+// set preset from other place
+function setPresetFromRoute() {
+    const presetName = route.params.presetName
+    if (presetName && typeof presetName === "string") {
+        usePreset(presetName)
+    }
+}
+
+onActivated(setPresetFromRoute)
+
+onMounted(setPresetFromRoute)
 
 
 ////////////////////////////////////////////////////////
@@ -1436,39 +1453,6 @@ function handleOptimizeArtifact() {
         loading.close()
     })
 }
-
-// export default {
-//     computed: {
-//
-
-//         // buff
-
-//
-//
-//     },
-//     methods: {
-//
-
-//
-//         handleRemoveArtifact(index) {
-//             this.$set(this.artifactIds, index, -1)
-//         },
-//
-//         handleToggleArtifact(id) {
-//             this.$store.commit("artifacts/toggleById", { id })
-//         },
-//
-//
-
-//
-//         // BUFF
-//
-//
-//
-//
-//     },
-// };
-
 </script>
 
 <style lang="scss" scoped>
