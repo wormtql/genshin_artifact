@@ -5,12 +5,12 @@
         placeholder="角色"
     >
         <el-option-group
-            v-for="(group, elementName) in characterByElement"
+            v-for="(elementName) in elements"
             :key="elementName"
             :label="element2Chs(elementName)"
         >
             <el-option
-                v-for="character in group"
+                v-for="character in characterByElement[elementName]"
                 :key="character.name"
                 :label="character.chs"
                 :value="character.name"
@@ -34,7 +34,8 @@ export default {
     emits: ["update:modelValue"],
     data() {
         return {
-            characterByElement
+            characterByElement,
+            elements: ["Pyro", "Cryo", "Anemo", "Electro", "Hydro", "Geo", "Dendro"]
         }
     },
     methods: {
