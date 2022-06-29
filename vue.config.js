@@ -147,7 +147,6 @@ module.exports = {
         experiments: {
             asyncWebAssembly: true
         },
-        // plugins: [new MonacoWebpackPlugin()]
     },
     chainWebpack: config => {
         // merge custom env

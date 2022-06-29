@@ -25,7 +25,7 @@
 
 <script>
 import { characterByElement } from "@character"
-import { element2Chs } from "@util/common"
+import { element2Chs } from "@/utils/common"
 
 export default {
     name: "MonaDBPage",

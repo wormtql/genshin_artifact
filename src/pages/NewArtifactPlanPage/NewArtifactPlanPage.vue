@@ -622,16 +622,13 @@
 </template>
 
 <script setup lang="ts">
-import {convertArtifact, convertArtifactName} from "@util/converter"
+import {convertArtifact} from "@util/converter"
 import {newDefaultArtifactConfigForWasm} from "@util/artifacts"
-import {getArtifactIdsByKumiId, newKumiWithArtifacts} from "@util/kumi"
-import {deepCopy, toSnakeCase} from "@/utils/common"
+import {getArtifactIdsByKumiId} from "@util/kumi"
+import {deepCopy} from "@/utils/common"
 import {characterData} from "@character"
-import {weaponByType, weaponData} from "@weapon"
-import {targetFunctionByCharacterName, targetFunctionData} from "@targetFunction"
-import {buffData} from "@buff"
+import {weaponData} from "@weapon"
 import {artifactsData} from "@artifact"
-import {wasmBonusPerStat} from "@/wasm"
 import {wasmSingleOptimize} from "@/wasm/single_optimize"
 import {createComputeResult} from "@/api/misc"
 import {deviceIsPC} from "@util/device"
@@ -663,7 +660,7 @@ import {useCharacter, useCharacterSkill} from "@/composables/character"
 import {useEnemy} from "@/composables/enemy"
 import {useWeapon} from "@/composables/weapon"
 import {useTargetFunction} from "@/composables/targetFunction"
-import type {ArtifactPosition, ArtifactSetName, ArtifactStatName, IArtifact, IArtifactWasm} from "@/types/artifact"
+import type {ArtifactPosition, IArtifact, IArtifactWasm} from "@/types/artifact"
 
 import IconEpCaretRight from "~icons/ep/caret-right"
 import IconEpTools from "~icons/ep/tools"
@@ -672,8 +669,6 @@ import IconEpMenu from "~icons/ep/menu"
 import IconEpHistogram from "~icons/ep/histogram"
 import IconEpStarFilled from "~icons/ep/star-filled"
 import IconEpFolder from "~icons/ep/folder"
-import {WeaponName} from "@/types/weapon";
-import {TargetFunctionName} from "@/types/targetFunction";
 import {useComputeConstraint} from "@/composables/constraint"
 import {BuffEntry, useBuff} from "@/composables/buff"
 import {type PresetEntry, usePresetStore} from "@/store/pinia/preset"

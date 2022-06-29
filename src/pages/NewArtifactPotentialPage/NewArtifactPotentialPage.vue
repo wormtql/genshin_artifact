@@ -117,11 +117,11 @@
 </template>
 
 <script setup lang="ts">
-import { potentialFunctionData } from "@potentialFunction"
-import { getPotentialFunctionDefaultConfig } from "@util/potentialFunction"
-import { getArtifactsWasm } from "@/utils/artifacts"
-import { wasmComputeArtifactPotential } from "@wasm"
-import { deviceIsPC } from "@/utils/device"
+import {potentialFunctionData} from "@potentialFunction"
+import {getPotentialFunctionDefaultConfig} from "@util/potentialFunction"
+import {getArtifactsWasm} from "@/utils/artifacts"
+import {wasmComputeArtifactPotential} from "@wasm"
+import {deviceIsPC} from "@/utils/device"
 
 import SelectPotentialFunctionName from "@c/select/SelectPotentialFunctionName"
 import SelectArtifactSlot from "@c/select/SelectArtifactSlot"
@@ -129,17 +129,10 @@ import SelectArtifactSet from "@c/select/SelectArtifactSet"
 import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
 import ItemConfig from "@c/config/ItemConfig"
 import ArtifactDisplay from "@/components/display/ArtifactDisplay.vue"
-import type {
-    ArtifactMainStatName,
-    ArtifactPosition,
-    ArtifactSetName,
-    ArtifactStatName,
-    IArtifact
-} from "@/types/artifact"
+import type {ArtifactPosition, ArtifactSetName, ArtifactStatName, IArtifact} from "@/types/artifact"
 import {useArtifactStore} from "@/store/pinia/artifact"
 // import {ElLoading, ElMessage} from "element-plus"
 // import "element-plus/es/components/message/style/css"
-
 import IconEpCpu from "~icons/ep/cpu"
 
 

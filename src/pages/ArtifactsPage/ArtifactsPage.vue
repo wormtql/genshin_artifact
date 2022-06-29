@@ -200,9 +200,8 @@ import {importMonaJson} from '@/utils/artifacts'
 import {positions} from '@/constants/artifact'
 import {downloadString} from '@/utils/common'
 import {deviceIsPC} from "@/utils/device"
-import {createRepo, getRepo} from "@/api/repo"
+import {createRepo} from "@/api/repo"
 import {computed, nextTick, ref, type Ref} from "vue"
-import {useRoute} from "vue-router"
 import {useArtifactStore} from "@/store/pinia/artifact"
 import {usePresetStore} from "@/store/pinia/preset"
 import {getArtifactsRecommendation} from "@/utils/artifactRecommendation"
@@ -221,7 +220,7 @@ import ArtifactDisplay from '@c/display/ArtifactDisplay';
 import EditArtifact from './EditArtifact';
 import ImportBlock from '@c/misc/ImportBlock';
 import {type ArtifactPosition, ArtifactSetName, ArtifactStatName, IArtifactContentOnly} from "@/types/artifact"
-import {ElLoading, ElMessage, ElMessageBox, ElNotification} from "element-plus"
+// import {ElLoading, ElMessage, ElMessageBox, ElNotification} from "element-plus"
 
 import IconEpPlus from "~icons/ep/plus"
 import IconEpUnlock from "~icons/ep/unlock"

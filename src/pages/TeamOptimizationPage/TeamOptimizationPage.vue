@@ -129,7 +129,7 @@
 import {ref} from "vue"
 
 import {convertArtifact} from "@/utils/converter"
-import {team_optimize, wasmGetAttribute} from "@/wasm"
+import {team_optimize} from "@/wasm"
 import {convertPresetToWasmInterface} from "@/utils/preset"
 import {deviceIsPC} from "@/utils/device"
 // @ts-ignore

@@ -56,7 +56,6 @@
                 :calculate-icon="false"
                 @delete="handleDeletePreset(entry.name)"
                 @download="handleDownload(entry.name)"
-                @cpu="handleQuickCalculate(entry.name)"
                 class="item"
                 @click="handleClickPreset(entry.name)"
             ></preset-item>
@@ -74,17 +73,14 @@
 </template>
 
 <script setup lang="ts">
-import {ref, computed, Ref} from "vue"
+import {computed, ref, Ref} from "vue"
 import {useRouter} from "vue-router"
-import { deletePreset, getPresetEntryByName, checkImportFormat, upgradePresetItem, createOrUpdatePreset } from "@/utils/preset"
-import { downloadString } from "@/utils/common"
-import { convertArtifact } from "@util/converter"
-import { wasmGetArtifactsRankByCharacter } from "@/wasm"
-import { deviceIsPC } from "@/utils/device"
+import {checkImportFormat} from "@/utils/preset"
+import {downloadString} from "@/utils/common"
+import {deviceIsPC} from "@/utils/device"
 
 import PresetItem from "@/components/display/PresetItem.vue"
 import ImportBlock from "@/components/misc/ImportBlock"
-import ArtifactDisplay from "@/components/display/ArtifactDisplay"
 import {ElMessage} from "element-plus"
 import {usePresetStore} from "@/store/pinia/preset"
 
@@ -138,7 +134,7 @@ async function handleImport() {
         })
     } else {
         for (let entry of obj) {
-            createOrUpdatePreset(entry.item, entry.name)
+            presetStore.addOrOverwrite(entry.name, entry.item)
         }
 
         showImportDialog.value = false
@@ -146,7 +142,7 @@ async function handleImport() {
 }
 
 function handleDownload(name: string) {
-    const entry = getPresetEntryByName(name)
+    const entry = presetStore.presets.value[name]
     const temp = [entry]
     const str = JSON.stringify(temp)
 
@@ -168,7 +164,7 @@ const presetsLength = computed(() => {
 })
 
 function handleDeletePreset(name: string) {
-    deletePreset(name)
+    presetStore.deletePreset(name)
 }
 
 
