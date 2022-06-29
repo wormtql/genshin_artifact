@@ -624,7 +624,6 @@
 <script setup lang="ts">
 import {convertArtifact} from "@util/converter"
 import {newDefaultArtifactConfigForWasm} from "@util/artifacts"
-import {getArtifactIdsByKumiId} from "@util/kumi"
 import {deepCopy} from "@/utils/common"
 import {characterData} from "@character"
 import {weaponData} from "@weapon"
@@ -1333,10 +1332,12 @@ function getAllArtifactsFiltered(): IArtifact[] {
     if (component) {
         const nodes = component.getCheckedNodes(true)
         for (let node of nodes) {
-            const kumiId = node.kumiId
-            const artifactIds = getArtifactIdsByKumiId(kumiId)
-            for (let i of artifactIds) {
-                s.add(i)
+            const kumiId = node.id
+            const kumiItem = kumiStore.kumiById.value.get(kumiId)
+            if (kumiItem && kumiItem.artifactIds) {
+                for (const artifactId of kumiItem.artifactIds) {
+                    s.add(artifactId)
+                }
             }
         }
     }
