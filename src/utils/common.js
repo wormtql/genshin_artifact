@@ -119,3 +119,17 @@ export function loadScript(url) {
         document.head.appendChild(script)
     })
 }
+
+export function pathAccess(obj, path) {
+    let temp = path.split(".")
+
+    let ans = obj
+    for (let p of temp) {
+        if (ans === undefined) {
+            return undefined
+        }
+        ans = ans[p]
+    }
+
+    return ans
+}

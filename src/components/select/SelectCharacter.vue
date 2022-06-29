@@ -10,8 +10,8 @@
             :label="element2Chs(elementName)"
         >
             <el-option
-                v-for="character in characterByElement[elementName]"
-                :key="character.name"
+                v-for="(character, index) in characterByElement[elementName]"
+                :key="index"
                 :label="character.chs"
                 :value="character.name"
             >
