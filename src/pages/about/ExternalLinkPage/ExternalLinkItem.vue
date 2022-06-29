@@ -24,6 +24,7 @@
                     :key="index"
                     :icon="item.icon"
                     :type="item.primary ? 'primary' : undefined"
+                    @click="newPage(item.link)"
                 >{{ item.title }}</el-button>
             </el-button-group>
         </div>
@@ -38,6 +39,10 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
+function newPage(url: string) {
+    window.open(url, "_blank")
+}
 </script>
 
 <style scoped lang="scss">

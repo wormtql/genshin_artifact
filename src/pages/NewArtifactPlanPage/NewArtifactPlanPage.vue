@@ -1083,7 +1083,7 @@ const showDamageAnalysisDialog = ref(false)
 const damageAnalysisComponent = ref<null | InstanceType<typeof DamageAnalysis>>(null)
 
 const damageAnalysisWasmInterface = computed(() => {
-    console.log("123")
+    // console.log("123")
     return {
         character: characterInterface.value,
         weapon: weaponInterface.value,

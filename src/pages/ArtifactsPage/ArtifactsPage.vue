@@ -221,6 +221,8 @@ import EditArtifact from './EditArtifact';
 import ImportBlock from '@c/misc/ImportBlock';
 import {type ArtifactPosition, ArtifactSetName, ArtifactStatName, IArtifactContentOnly} from "@/types/artifact"
 // import {ElLoading, ElMessage, ElMessageBox, ElNotification} from "element-plus"
+// import {ElMessage} from "element-plus"
+// import "element-plus/es/components/message/style/css"
 
 import IconEpPlus from "~icons/ep/plus"
 import IconEpUnlock from "~icons/ep/unlock"
