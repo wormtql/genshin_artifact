@@ -1,5 +1,5 @@
 use num_derive::FromPrimitive;
-use crate::attribute::Attribute;
+use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
@@ -68,6 +68,33 @@ pub const ROSARIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     skill_name2: "噬罪的告解",
     skill_name3: "终命的圣礼"
 };
+
+pub struct RosariaEffect {
+    pub has_talent1: bool,
+    pub e_from_behind: bool,
+}
+
+impl RosariaEffect {
+    pub fn new(common_data: &CharacterCommonData, config: &CharacterConfig) -> RosariaEffect {
+        let e_from_behind = match config {
+            CharacterConfig::Rosaria { e_from_behind } => *e_from_behind,
+            _ => false,
+        };
+
+        RosariaEffect {
+            has_talent1: common_data.has_talent1,
+            e_from_behind,
+        }
+    }
+}
+
+impl<T: Attribute> ChangeAttribute<T> for RosariaEffect {
+    fn change_attribute(&self, attribute: &mut T) {
+        if self.has_talent1 && self.e_from_behind {
+            attribute.set_value_by(AttributeName::CriticalBase, "罗莎莉亚天赋：聆听忏悔的幽影", 0.12);
+        }
+    }
+}
 
 pub struct Rosaria;
 
@@ -155,7 +182,7 @@ impl CharacterTrait for Rosaria {
     };
 
     #[cfg(not(target_family = "wasm"))]
-    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_from_behind",
             title: "应用天赋「聆听忏悔的幽影」效果",
@@ -188,13 +215,13 @@ impl CharacterTrait for Rosaria {
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
 
-        let e_from_behind = match *config {
+        /*let e_from_behind = match *config {
             CharacterSkillConfig::Rosaria { e_from_behind } => e_from_behind,
             _ => false
         };
         if s == E12 && e_from_behind && context.character_common_data.has_talent1 {
             builder.add_extra_critical("罗莎莉亚天赋：聆听忏悔的幽影", 0.12);
-        }
+        }*/
 
         builder.damage(
             &context.attribute,
@@ -205,8 +232,8 @@ impl CharacterTrait for Rosaria {
         )
     }
 
-    fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
-        None
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        Some(Box::new(RosariaEffect::new(common_data, config)))
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {

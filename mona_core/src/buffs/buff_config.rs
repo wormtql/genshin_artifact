@@ -22,6 +22,7 @@ pub enum BuffConfig {
     HealingBonus { p: f64 },
 
     BennettQ { base_atk: f64, c1: bool, skill3: usize },
+    EulaE { skill2: usize },
     GorouE1 { skill2: usize },
     GorouC6 { level: usize },
     KaedeharaKazuhaTalent2 { element: Element, em: f64 },
