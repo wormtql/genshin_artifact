@@ -181,14 +181,34 @@ module.exports = {
             })
 
         if (useCDN) {
-            config.externals({
-                vue: ["https://npm.elemecdn.com/vue@3.2.36/dist/vue.global.prod.js", "Vue"],
-                "vue-router": ["https://npm.elemecdn.com/vue-router@4.0.16/dist/vue-router.global.prod.js", "VueRouter"],
-                "echarts": ["https://npm.elemecdn.com/echarts@5.3.3/dist/echarts.min.js", "echarts"],
-                "vue-echarts": ["https://npm.elemecdn.com/vue-echarts@6.1.0/dist/index.umd.min.js", "VueECharts"],
-                "monaco-editor": "var monaco"
+            const assets = {
+                js: [
+                    { url: "https://npm.elemecdn.com/vue@3.2.36/dist/vue.global.prod.js", name: "vue", global: "Vue" },
+                    { url: "https://npm.elemecdn.com/vue-router@4.0.16/dist/vue-router.global.prod.js", name: "vue-router", global: "VueRouter" },
+                    { url: "https://npm.elemecdn.com/echarts@5.3.3/dist/echarts.min.js", name: "echarts", global: "echarts" },
+                    { url: "https://npm.elemecdn.com/vue-echarts@6.1.0/dist/index.umd.min.js", name: "vue-echarts", global: "VueECharts" },
+                ]
+            }
+
+            const externals = {
+                "monaco-editor": "monaco"
+            }
+
+            for (const item of assets.js) {
+                externals[item.name] = item.global
+            }
+
+            config.externals(externals)
+
+            config.plugin("html").tap(args => {
+                args[0].cdn = assets
+                return args
             })
-            config.set("externalsType", "script")
+
+            // config.externals({
+            //     "monaco-editor": "var monaco",
+            // })
+            // config.set("externalsType", "script")
         }
     },
     productionSourceMap: false,

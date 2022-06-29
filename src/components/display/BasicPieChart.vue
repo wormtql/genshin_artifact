@@ -18,8 +18,6 @@ use([
     TooltipComponent,
     TitleComponent,
 ])
-/// #else
-import _e from "echarts"
 /// #endif
 import VChart from "vue-echarts"
 

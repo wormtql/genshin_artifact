@@ -31,7 +31,9 @@
         })();
     </script>
 
-
+    <% for (var js of htmlWebpackPlugin.options.cdn.js) { %>
+    <script src="<%= js.url %>"></script>
+    <% } %>
 </head>
 <body>
 <noscript>
