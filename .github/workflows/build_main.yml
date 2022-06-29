@@ -27,7 +27,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+#        cache: 'npm'
     - name: Setup Rust
       uses: actions-rs/toolchain@v1
       with:
@@ -40,9 +40,9 @@ jobs:
       run: npm run gen_meta
   
     - name: Install node packages
-      run: npm ci
+      run: yarn install --immutable --immutable-cache --check-cache
     - name: Build
-      run: npm run build --if-present
+      run: yarn build
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
