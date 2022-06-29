@@ -1,7 +1,7 @@
 <template>
     <el-radio-group
-        :value="value"
-        @input="$emit('input', $event)"
+        :model-value="modelValue"
+        @update:modelValue="$emit('update:modelValue', $event)"
     >
         <el-radio-button v-if="eleMap.has('Pyro')" label="Pyro">火</el-radio-button>
         <el-radio-button v-if="eleMap.has('Electro')" label="Electro">雷</el-radio-button>
@@ -17,8 +17,9 @@
 <script>
 export default {
     name: "SelectElementType",
+    emits: ["update:modelValue"],
     props: {
-        value: {
+        modelValue: {
             type: String,
             required: true,
         },
