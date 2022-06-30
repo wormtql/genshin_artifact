@@ -5,7 +5,7 @@
     </aside>
 
     <el-drawer
-        title="导航"
+        :title="t('nav.nav')"
         v-model="drawerVisible"
         direction="ltr"
         size="80%"
@@ -74,6 +74,7 @@ import SimpleLoading from "@/components/loading/SimpleLoading.vue"
 
 import IconEpMenu from "~icons/ep/menu"
 import {useRouter} from "vue-router"
+import {useI18n} from "@/i18n/i18n";
 
 const drawerVisible = ref(false)
 
@@ -83,6 +84,8 @@ function handleSelect(index: string) {
     drawerVisible.value = false
     router.push(index)
 }
+
+const { t } = useI18n()
 </script>
 
 <style scoped lang="scss">

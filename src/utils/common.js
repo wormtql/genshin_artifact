@@ -120,16 +120,24 @@ export function loadScript(url) {
     })
 }
 
-export function pathAccess(obj, path) {
-    let temp = path.split(".")
+export function pathAccess(obj, ...path) {
+    let ret = obj
 
-    let ans = obj
-    for (let p of temp) {
-        if (ans === undefined) {
-            return undefined
+    // console.log(path)
+    for (const p of path) {
+        if (typeof p === "number") {
+            ret = ret[p]
+        } else {
+            let temp = p.split(".")
+
+            for (let a of temp) {
+                if (ret === undefined) {
+                    return undefined
+                }
+                ret = ret[a]
+            }
         }
-        ans = ans[p]
     }
 
-    return ans
+    return ret
 }

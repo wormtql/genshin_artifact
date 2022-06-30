@@ -16,56 +16,56 @@
                 ></use-case-item>
             </el-col>
             <el-col :sm="6" :xs="24" class="mb16">
-                <use-case-item text="队伍配装" url="/team-optimization" :icon="IconFa6SolidUserGroup"
-                               description="队伍配装，圣遗物不冲突"
+                <use-case-item :text="t('intro.useCase2')" url="/team-optimization" :icon="IconFa6SolidUserGroup"
+                               :description="t('intro.useCase2Description')"
                 ></use-case-item>
             </el-col>
             <el-col :sm="6" :xs="24" class="mb16">
-                <use-case-item text="圣遗物潜力" url="/potential" :icon="IconFa6SolidRuler"
-                               description="快速计算圣遗物潜力。潜力即圣遗物满级后能够获得的平均得分，能够一定程度上衡量圣遗物的价值"
+                <use-case-item :text="t('intro.useCase3')" url="/potential" :icon="IconFa6SolidRuler"
+                               :description="t('intro.useCase3Description')"
                 ></use-case-item>
             </el-col>
             <el-col :sm="6" :xs="24" class="mb16">
-                <use-case-item text="圣遗物导出" url="/help/export-tools" :icon="IconFa6SolidFileExport"
-                               description="快速导出圣遗物"
+                <use-case-item :text="t('intro.useCase4')" url="/help/export-tools" :icon="IconFa6SolidFileExport"
+                               :description="t('intro.useCase4Description')"
                 ></use-case-item>
             </el-col>
         </el-row>
 
-        <h2>开源地址</h2>
+        <h2>{{ t("intro.opensource") }}</h2>
         <el-row :gutter="16">
             <el-col :xs="24" :sm="12" class="mb16">
                 <use-case-item text="MONA" :icon="IconFa6BrandsGithub"
-                               description="- 前端<br>- 莫娜DSL<br>- DSL Book等"
+                               :description="t('intro.opensourceMonaDescription')"
                                @click="newPage('https://github.com/wormtql/genshin_artifact')"
                 ></use-case-item>
 
             </el-col>
             <el-col :xs="24" :sm="12" class="mb16">
                 <use-case-item text="Yas" :icon="IconFa6BrandsGithub"
-                               description="- YAS导出器"
+                               :description="t('intro.opensourceYasDescription')"
                                @click="newPage('https://github.com/wormtql/yas')"
                 ></use-case-item>
             </el-col>
         </el-row>
 
-        <h2>{{ t("feedback") }}</h2>
+        <h2>{{ t("intro.feedback") }}</h2>
         <el-row :gutter="16">
             <el-col :xs="24" :sm="8" class="mb16">
-                <use-case-item text="Github Issue" :icon="IconFa6BrandsGithub"
-                               description="在Github仓库提出Issue"
+                <use-case-item :text="t('intro.fbGithubIssue')" :icon="IconFa6BrandsGithub"
+                               :description="t('intro.fbIssueDescription')"
                                @click="newPage('https://github.com/wormtql/genshin_artifact/issues')"
                 ></use-case-item>
             </el-col>
             <el-col :xs="24" :sm="8" class="mb16">
-                <use-case-item text="QQ群" :icon="IconFa6BrandsQQ"
-                               description="在QQ群反馈或是水群（群号：801106595）"
+                <use-case-item :text="t('intro.fbQQ')" :icon="IconFa6BrandsQQ"
+                               :description="t('intro.fbQQDescription')"
                                @click="newPage('https://qm.qq.com/cgi-bin/qm/qr?k=yQaJgPzRmBgEXXk1uiqNbq7CIrq-0biW&jump_from=webapi')"
                 ></use-case-item>
             </el-col>
             <el-col :xs="24" :sm="8" class="mb16">
-                <use-case-item text="NGA讨论贴" :icon="IconFa6SolidComment"
-                               description="在NGA进行反馈"
+                <use-case-item :text="t('intro.fbNGA')" :icon="IconFa6SolidComment"
+                               :description="t('intro.fbNGADescription')"
                                @click="newPage('https://nga.178.com/read.php?tid=31180859')"
                 ></use-case-item>
             </el-col>

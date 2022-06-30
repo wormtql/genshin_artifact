@@ -8,76 +8,76 @@
         >
             <el-menu-item index="/intro">
                 <el-icon><i-ep-home-filled></i-ep-home-filled></el-icon>
-                <span>首页</span>
+                <span>{{ t("nav.home") }}</span>
             </el-menu-item>
 
             <el-menu-item-group>
                 <template #title>
-                    我的仓库
+                    {{ t("nav.repo") }}
                 </template>
                 <el-menu-item index="/artifacts">
                     <el-icon><i-ep-help-filled /></el-icon>
-                    圣遗物
+                    {{ t("nav.artifact") }}
                 </el-menu-item>
                 <el-menu-item index="/artifacts-kumi">
                     <el-icon><i-ep-help-filled /></el-icon>
-                    圣遗物套装
+                    {{ t("nav.kumi") }}
                 </el-menu-item>
                 <el-menu-item index="/presets">
                     <el-icon><i-ep-menu /></el-icon>
-                    计算预设
+                    {{ t("nav.preset") }}
                 </el-menu-item>
             </el-menu-item-group>
 
             <el-menu-item-group>
                 <template #title>
-                    计算
+                    {{ t("nav.compute") }}
                 </template>
                 <el-menu-item index="/calculate">
                     <el-icon><i-ep-cpu /></el-icon>
-                    计算器
+                    {{ t("nav.calculate") }}
                 </el-menu-item>
                 <el-menu-item index="/team-optimization">
                     <el-icon><i-ep-cpu /></el-icon>
-                    多人优化
+                    {{ t("nav.teamOptimize") }}
                 </el-menu-item>
                 <el-menu-item index="/potential">
                     <el-icon><i-ep-opportunity /></el-icon>
-                    圣遗物潜力
+                    {{ t("nav.potential") }}
                 </el-menu-item>
                 <el-menu-item index="/character">
                     <el-icon><i-ep-histogram /></el-icon>
-                    莫娜数据库
+                    {{ t("nav.monaDB") }}
                 </el-menu-item>
             </el-menu-item-group>
 
             <el-menu-item-group>
-                <template #title>附加功能</template>
+                <template #title>{{ t("nav.other") }}</template>
                 <el-menu-item index="/playground">
                     <el-icon><i-fa6-solid-terminal /></el-icon>
-                    Playground
+                    {{ t("nav.playground") }}
                 </el-menu-item>
             </el-menu-item-group>
 
             <el-menu-item-group>
                 <template #title>
-                    关于本站
+                    {{ t("nav.about") }}
                 </template>
                 <el-sub-menu index="help">
                     <template #title>
                         <el-icon><i-ep-question-filled /></el-icon>
                         <i class="el-icon-question"></i>
-                        帮助
+                        {{ t("nav.help") }}
                     </template>
                     <el-menu-item index="/help/export-tools">
                         <el-icon><i-ep-aim /></el-icon>
-                        导出工具
+                        {{ t("nav.exportTool") }}
                     </el-menu-item>
                 </el-sub-menu>
 
                 <el-menu-item index="/tomodachi">
                     <el-icon><i-ep-link /></el-icon>
-                    友情链接
+                    {{ t("nav.link") }}
                 </el-menu-item>
             </el-menu-item-group>
         </el-menu>
@@ -86,6 +86,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
+import {useI18n} from "@/i18n/i18n"
 
 export default defineComponent({
     name: "SideBar",
@@ -120,20 +121,17 @@ export default defineComponent({
                 this.$emit("select", index)
             }
         }
+    },
+    setup() {
+        const { t } = useI18n()
+
+        return {
+            t
+        }
     }
 })
 </script>
 
 <style scoped>
-.top {
-    height: 220px;
-    background: #409eff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.item {
-    padding: 0 32px;
-}
 </style>

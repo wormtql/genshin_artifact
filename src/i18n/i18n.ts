@@ -9,14 +9,14 @@ export function createI18n() {
         "zh-cn": inlineLocale
     }
 
-    function t(s: string) {
+    function t(...s: (string | number)[]) {
         const msg = messages[locale.value]
-        const value = pathAccess(msg, s)
+        const value = pathAccess(msg, ...s)
         if (!value) {
             const msg2 = messages[fallbackLocale.value]
-            const value2 = pathAccess(msg2, s)
+            const value2 = pathAccess(msg2, ...s)
             if (!value2) {
-                return s
+                return s[0]
             } else {
                 return value2
             }

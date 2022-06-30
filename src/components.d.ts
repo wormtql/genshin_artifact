@@ -98,7 +98,6 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SelectArtifact: typeof import('./components/select/SelectArtifact.vue')['default']
     SelectArtifactMainStat: typeof import('./components/select/SelectArtifactMainStat.vue')['default']
-    SelectArtifacts: typeof import('./components/select/SelectArtifacts.vue')['default']
     SelectArtifactSet: typeof import('./components/select/SelectArtifactSet.vue')['default']
     SelectArtifactSlot: typeof import('./components/select/SelectArtifactSlot.vue')['default']
     SelectArtifactSubStat: typeof import('./components/select/SelectArtifactSubStat.vue')['default']

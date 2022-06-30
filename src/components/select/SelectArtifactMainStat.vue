@@ -7,7 +7,7 @@
     >
         <el-option
             v-if="props.includeAny"
-            label="任意"
+            :label="t('misc.any')"
             value="any"
         ></el-option>
         <el-option
@@ -23,6 +23,7 @@
 import { computed } from "vue"
 import { artifactTags, mainStatMap } from "@const/artifact"
 import type {ArtifactMainStatName, ArtifactPosition} from "@/types/artifact"
+import {useI18n} from "@/i18n/i18n";
 
 interface Emits {
     (e: "update:modelValue", v: ModelValue): void
@@ -54,18 +55,22 @@ const tagList = computed(() => {
         for (let name in artifactTags) {
             list.push({
                 name,
-                title: artifactTags[name].chs
+                // title: artifactTags[name].chs
+                title: t("stat", name)
             })
         }
     } else {
         for (let name of mainStatMap[props.position]) {
             list.push({
                 name,
-                title: artifactTags[name].chs
+                // title: artifactTags[name].chs
+                title: t("stat", name)
             })
         }
     }
 
     return list
 })
+
+const { t } = useI18n()
 </script>

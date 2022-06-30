@@ -2,7 +2,7 @@
     <el-select
         :model-value="modelValue"
         @update:modelValue="$emit('update:modelValue', $event)"
-        placeholder="角色"
+        :placeholder="t('misc.character')"
     >
         <el-option-group
             v-for="(elementName) in elements"
@@ -17,7 +17,7 @@
             >
                 <div class="option-item flex-row">
                     <img :src="character.avatar">
-                    <span :style="{ color: getColor(character.star) }">{{ character.chs }}</span>
+                    <span :style="{ color: getColor(character.star) }">{{ t("character." + character.name) }}</span>
                 </div>
             </el-option>
         </el-option-group>
@@ -27,6 +27,7 @@
 <script>
 import { characterByElement } from "@character";
 import qualityColors from "@const/quality_colors";
+import {useI18n} from "@/i18n/i18n";
 
 export default {
     name: "SelectCharacter",
@@ -60,6 +61,13 @@ export default {
 
         getColor(star) {
             return qualityColors[star - 1];
+        }
+    },
+    setup() {
+        const { t } = useI18n()
+
+        return {
+            t
         }
     }
 }

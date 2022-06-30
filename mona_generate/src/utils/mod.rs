@@ -9,6 +9,11 @@ use mona::artifacts::ArtifactSetName;
 use mona::character::CharacterName;
 use serde::{Deserialize};
 
+pub mod character;
+pub mod text_map;
+pub mod artifact;
+
+
 #[derive(Deserialize)]
 struct GenshinDataWeaponItem {
     nameTextMapHash: u64,
