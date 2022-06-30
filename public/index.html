@@ -31,7 +31,11 @@
         })();
     </script>
 
-
+    <% if (process.env.USE_CDN) { %>
+    <% for (var js of htmlWebpackPlugin.options.cdn.js) { %>
+    <script src="<%= js.url %>"></script>
+    <% } %>
+    <% } %>
 </head>
 <body>
 <noscript>

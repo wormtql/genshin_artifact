@@ -58,7 +58,6 @@ import ArtifactBar from "./ArtifactBar"
 import WCBar from "./WCBar"
 import BasicPieChart from "@c/display/BasicPieChart"
 import {statName2Chs} from "@util/artifacts"
-import VChart from "vue-echarts"
 
 /// #if !USE_CDN
 import { use } from "echarts/core"
@@ -75,9 +74,8 @@ use([
     TooltipComponent,
     GridComponent,
 ])
-/// #else
-import _e from "echarts"
 /// #endif
+import VChart from "vue-echarts"
 
 export default {
     name: "MonaDBCharacter",

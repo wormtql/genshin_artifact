@@ -56,7 +56,6 @@
 <script setup lang="ts">
 import { howManyUpgradeCount } from "@/utils/artifacts"
 import { artifactTags, artifactEff } from "@/constants/artifact"
-import VChart from "vue-echarts"
 import {useArtifactStore} from "@/store/pinia/artifact"
 import type {IArtifact} from "@/types/artifact"
 /// #if !USE_CDN
@@ -70,7 +69,6 @@ import {
 } from "echarts/components"
 import { CanvasRenderer } from "echarts/renderers"
 
-
 use([
     CanvasRenderer,
     PieChart,
@@ -79,9 +77,8 @@ use([
     LegendComponent,
     TitleComponent,
 ])
-/// #else
-import _e from "echarts"
 /// #endif
+import VChart from "vue-echarts"
 
 interface Props {
     artifactIds: number[]

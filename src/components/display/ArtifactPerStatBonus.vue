@@ -42,12 +42,11 @@ use([
     TitleComponent,
     GridComponent
 ])
-/// #else
-import _e from "echarts"
 /// #endif
 import { artifactTags } from "@const/artifact"
 import { deviceIsPC } from "@util/device"
 import VChart from "vue-echarts"
+
 
 export default {
     name: "ArtifactPerStatBonus",

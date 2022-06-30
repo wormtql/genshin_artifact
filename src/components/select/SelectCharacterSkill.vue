@@ -2,20 +2,23 @@
     <el-select
         :model-value="props.modelValue"
         @update:modelValue="emits('update:modelValue', $event)"
+        :key="props.characterName"
     >
         <template #prefix>
             <span>技能</span>
         </template>
+
+
 <!--        {{ p(skillMap) }}-->
         <el-option-group
             v-for="(group, index) in skillMap"
-            :key="index"
+            :key="group[0]"
             :label="group[0]"
         >
 <!--            {{ p(group[1]) }}-->
             <el-option
                 v-for="item in group[1]"
-                :key="item.index"
+                :key="item.index.toString()"
                 :label="item.chs"
                 :value="item.index"
             >
@@ -28,6 +31,7 @@
 <script setup lang="ts">
 import { characterData } from "@character"
 import type {CharacterName} from "@/types/character"
+import {deepCopy} from "@/utils/common"
 
 interface Props {
     characterName: CharacterName,
@@ -67,6 +71,7 @@ const skillMap = computed(() => {
     }
     // console.log(map)
 
+    // return deepCopy(map)
     return map
 })
 
