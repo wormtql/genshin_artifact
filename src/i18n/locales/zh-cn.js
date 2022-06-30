@@ -67,6 +67,8 @@ export default {
         edit: "编辑",
         rename: "重命名",
         search: "搜索",
+        calculator: "计算器",
+        preset: "预设",
     },
     character,
     artifact,
@@ -118,5 +120,11 @@ export default {
         renameFolder: "重命名收藏夹",
         enterKumi: "请输入新圣遗物组名",
         renameKumi: "重命名圣遗物组"
+    },
+    presetPage: {
+        exportAll: "导出全部",
+        go: "请前往",
+        toCalc: "页面添加预设",
+        wrongFormat: "导入格式错误"
     }
 }

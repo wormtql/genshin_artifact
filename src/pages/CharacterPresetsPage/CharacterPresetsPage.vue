@@ -2,15 +2,15 @@
     <div>
         <el-dialog
             v-model="showImportDialog"
-            title="导入"
+            :title="t('misc.import')"
             :width="deviceIsPC ? '60%' : '90%'"
         >
 
             <import-block ref="fileImportBlock"></import-block>
 
             <template #footer>
-                <el-button @click="showImportDialog = false">取消</el-button>
-                <el-button type="primary" @click="handleImport">确定</el-button>
+                <el-button @click="showImportDialog = false">{{ t("misc.cancel") }}</el-button>
+                <el-button type="primary" @click="handleImport">{{ t("misc.confirm") }}</el-button>
             </template>
         </el-dialog>
 
@@ -40,11 +40,11 @@
                 <el-button
                     :icon="IconFa6SolidDownload"
                     @click="handleExportAll"
-                >导出全部</el-button>
+                >{{ t("presetPage.exportAll") }}</el-button>
                 <el-button
                     :icon="IconFa6SolidUpload"
                     @click="handleClickImport"
-                >导入</el-button>
+                >{{ t("misc.import") }}</el-button>
             </el-button-group>
         </div>
 
@@ -65,7 +65,7 @@
                 <p
                     style="font-size: 0.9em; color: #606266"
                 >
-                    请前往<span class="route-item" @click="$router.replace('/calculate')">计算器</span>页面添加预设
+                    {{ t("presetPage.go") }}<span class="route-item" @click="$router.replace('/calculate')">{{ t("misc.calculator") }}</span>{{ t("presetPage.toCalc") }}
                 </p>
             </el-empty>
         </template>
@@ -86,7 +86,11 @@ import {usePresetStore} from "@/store/pinia/preset"
 
 import IconFa6SolidUpload from "~icons/fa6-solid/upload"
 import IconFa6SolidDownload from "~icons/fa6-solid/download"
+import {useI18n} from "@/i18n/i18n";
 
+
+// i18n
+const { t } = useI18n()
 
 // store
 const presetStore = usePresetStore()
@@ -129,7 +133,7 @@ async function handleImport() {
 
     if (!checkObj) {
         ElMessage({
-            message: "导入格式错误",
+            message: t("presetPage.wrongFormat"),
             type: "error"
         })
     } else {
@@ -152,7 +156,7 @@ function handleDownload(name: string) {
 function handleExportAll() {
     const str = JSON.stringify(presetStore.allFlat.value)
 
-    downloadString(str, "text/plain", "预设")
+    downloadString(str, "text/plain", t("misc.preset"))
 }
 
 

@@ -67,6 +67,8 @@ export default {
         edit: "Edit",
         rename: "Rename",
         search: "Search",
+        calculator: "Calculator",
+        preset: "Preset",
     },
     stat: {
         cureEffect: "Healing Bonus",
@@ -118,5 +120,11 @@ export default {
         renameFolder: "Rename Folder",
         enterKumi: "Please enter new group name",
         renameKumi: "Rename Artifact Group"
+    },
+    presetPage: {
+        exportAll: "Export All",
+        go: "Please go to",
+        toCalc: "page to add new presets",
+        wrongFormat: "Wrong format"
     }
 }
