@@ -126,6 +126,9 @@ export function pathAccess(obj, ...path) {
     // console.log(path)
     for (const p of path) {
         if (typeof p === "number") {
+            if (ret === undefined) {
+                return undefined
+            }
             ret = ret[p]
         } else {
             let temp = p.split(".")

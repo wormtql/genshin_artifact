@@ -61,10 +61,12 @@ export default {
         scan: "Scan",
         artifactSet: "Artifact set",
         hint: "Hint",
-        lock: "lock",
-        unlock: "unlock",
-        del: "delete",
-        edit: "edit",
+        lock: "Lock",
+        unlock: "Unlock",
+        del: "Delete",
+        edit: "Edit",
+        rename: "Rename",
+        search: "Search",
     },
     stat: {
         cureEffect: "Healing Bonus",
@@ -106,5 +108,15 @@ export default {
         wrongFormat: "Wrong format",
         importing: "Importing...",
         msg1: "Add a calculation preset to use this",
+    },
+    kumiPage: {
+        selectArt: "Select Artifact",
+        newFolder: "New Folder",
+        newKumi: "New Artifact Group",
+        deleteFolder: "Delete Folder",
+        enterFolder: "Please enter new folder name",
+        renameFolder: "Rename Folder",
+        enterKumi: "Please enter new group name",
+        renameKumi: "Rename Artifact Group"
     }
 }

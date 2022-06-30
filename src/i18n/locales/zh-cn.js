@@ -65,7 +65,8 @@ export default {
         unlock: "禁用",
         del: "删除",
         edit: "编辑",
-
+        rename: "重命名",
+        search: "搜索",
     },
     character,
     artifact,
@@ -107,5 +108,15 @@ export default {
         wrongFormat: "格式不正确",
         importing: "导入中",
         msg1: "添加计算预设以使用该功能"
+    },
+    kumiPage: {
+        selectArt: "选择圣遗物",
+        newFolder: "新建收藏夹",
+        newKumi: "新建圣遗物组",
+        deleteFolder: "删除收藏夹",
+        enterFolder: "请输入新收藏夹名",
+        renameFolder: "重命名收藏夹",
+        enterKumi: "请输入新圣遗物组名",
+        renameKumi: "重命名圣遗物组"
     }
 }
