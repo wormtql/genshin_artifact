@@ -68,6 +68,7 @@ pub enum TargetFunctionName {
     XianglingDefault,
     XiaoDefault,
     XingqiuDefault,
+    XinyanDamage,
     XinyanDefault,
     YaeMikoDefault,
     YanfeiDefault,

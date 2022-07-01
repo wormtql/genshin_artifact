@@ -284,4 +284,9 @@ impl ArtifactEffectConfigBuilder {
         self.config.config_heart_of_depth.rate = rate;
         self
     }
+	
+	pub fn bloodstained_chivalry(&mut self, rate: f64) -> &mut Self {
+		self.config.config_bloodstained_chivalry.rate = rate;
+		self
+	}
 }

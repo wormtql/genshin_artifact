@@ -2902,6 +2902,8 @@ export default {
         ],
         configSkill: [
             
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":"「热情拂扫」护盾覆盖比例","type":"float"},
+            
         ],
     },
     
