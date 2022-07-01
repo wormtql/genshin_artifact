@@ -20,17 +20,15 @@
             label="伤害"
         >
             <template #default="{ row }">
-                <template v-if="row && row.value && row.chs">
+                <template v-if="row && row.chs && row.value">
                     <span v-if="row.chs === '感电'"
                           style="color: #c250ff"
                     >{{ row.value.toFixed(1) }}</span>
-                    <span v-if="row.chs === '超载'"
+                    <span v-else-if="row.chs === '超载'"
                           style="color: #ff335a"
                     >{{ row.value.toFixed(1) }}</span>
-                    <span v-if="row.chs !== '感电' && row.chs !== '超载'">{{ row.value.toFixed(1) }}</span>
+                    <span v-else>{{ row.value.toFixed(1) }}</span>
                 </template>
-
-<!--                <span v-if="row.chs !== '感电' && row.chs !== '超载'">{{ f(row) }}</span>-->
             </template>
         </el-table-column>
     </el-table>
