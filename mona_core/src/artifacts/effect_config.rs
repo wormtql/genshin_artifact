@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 use crate::common::Element;
 use crate::common::max_trait::MaxValue;
@@ -61,7 +61,7 @@ impl MaxValue for ConfigPaleFlame {
     fn max_value() -> Self {
         ConfigPaleFlame {
             avg_level: 2.0,
-            full_rate: 1.0
+            full_rate: 1.0,
         }
     }
 }
@@ -112,7 +112,7 @@ pub struct ConfigVermillionHereafter {
 #[derive(Serialize, Deserialize)]
 #[derive(Debug, Clone)]
 pub struct ConfigEchoesOfAnOffering {
-    pub rate: f64
+    pub rate: f64,
 }
 
 impl Default for ConfigEchoesOfAnOffering {
@@ -168,7 +168,7 @@ pub struct ArtifactConfigInterface {
     pub config_tenacity_of_the_millelith: Option<ConfigRate>,
     pub config_thundersoother: Option<ConfigRate>,
     pub config_vermillion_hereafter: Option<ConfigVermillionHereafter>,
-    pub config_echoes_of_an_offering: Option<ConfigEchoesOfAnOffering>
+    pub config_echoes_of_an_offering: Option<ConfigEchoesOfAnOffering>,
 }
 
 impl ArtifactConfigInterface {
@@ -198,7 +198,7 @@ impl ArtifactConfigInterface {
 }
 
 pub struct ArtifactEffectConfigBuilder {
-    pub config: ArtifactEffectConfig
+    pub config: ArtifactEffectConfig,
 }
 
 impl ArtifactEffectConfigBuilder {
@@ -284,9 +284,9 @@ impl ArtifactEffectConfigBuilder {
         self.config.config_heart_of_depth.rate = rate;
         self
     }
-	
-	pub fn bloodstained_chivalry(&mut self, rate: f64) -> &mut Self {
-		self.config.config_bloodstained_chivalry.rate = rate;
-		self
-	}
+
+    pub fn bloodstained_chivalry(&mut self, rate: f64) -> &mut Self {
+        self.config.config_bloodstained_chivalry.rate = rate;
+        self
+    }
 }

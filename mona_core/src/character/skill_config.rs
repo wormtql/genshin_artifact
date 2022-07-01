@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 fn default_true() -> bool {
     true
@@ -27,8 +27,8 @@ pub enum CharacterSkillConfig {
     SangonomiyaKokomi { after_q: bool },
     Xiao { after_q: bool, talent1_stack: f64, talent2_stack: f64 },
     Xingqiu { c4: bool },
-	Xinyan { shield_rate: f64 },
+    Xinyan { shield_rate: f64 },
     Yanfei { after_q: bool },
     Yoimiya { after_e: bool },
-    NoConfig
+    NoConfig,
 }

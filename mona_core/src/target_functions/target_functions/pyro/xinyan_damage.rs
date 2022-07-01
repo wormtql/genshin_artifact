@@ -10,10 +10,10 @@ use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
-use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
 use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
 use crate::target_functions::target_function::TargetFunctionMetaTrait;
 use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
+use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
@@ -28,7 +28,7 @@ impl TargetFunctionMetaTrait for XinyanDamageTargetFunction {
         description: "普通物伤输出辛焱",
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Xinyan),
-        image: TargetFunctionMetaImage::Avatar
+        image: TargetFunctionMetaImage::Avatar,
     };
 
     fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
@@ -60,12 +60,12 @@ impl TargetFunction for XinyanDamageTargetFunction {
             bonus_physical: 1.0,
             sand_main_stats: vec![
                 StatName::ATKPercentage,
-                StatName::DEFPercentage
+                StatName::DEFPercentage,
             ],
             goblet_main_stats: vec![
                 StatName::PhysicalBonus,
                 StatName::ATKPercentage,
-                StatName::DEFPercentage
+                StatName::DEFPercentage,
             ],
             head_main_stats: vec![
                 StatName::CriticalRate,
@@ -78,12 +78,12 @@ impl TargetFunction for XinyanDamageTargetFunction {
                 ArtifactSetName::ShimenawasReminiscence,
                 ArtifactSetName::BloodstainedChivalry,
                 ArtifactSetName::Lavawalker,
-                ArtifactSetName::PaleFlame
+                ArtifactSetName::PaleFlame,
             ]),
             very_critical_set_names: None,
             normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
             critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
-            very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
+            very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD,
         }
     }
 
@@ -100,7 +100,8 @@ impl TargetFunction for XinyanDamageTargetFunction {
     fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
-            attribute, enemy
+            attribute,
+            enemy,
         };
 
         type S = <Xinyan as CharacterTrait>::DamageEnumType;

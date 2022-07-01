@@ -1,8 +1,11 @@
 use num_derive::FromPrimitive;
-use crate::attribute::{Attribute, AttributeName};
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
@@ -13,8 +16,6 @@ use crate::target_functions::target_functions::XinyanDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
-use strum::EnumCount;
-use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct XinyanSkillType {
     pub normal_dmg1: [f64; 15],
@@ -59,7 +60,7 @@ pub const XINYAN_SKILL: XinyanSkillType = XinyanSkillType {
     elemental_skill_shield3_fixed: [693.0, 762.0, 837.0, 918.0, 1005.0, 1097.0, 1195.0, 1299.0, 1409.0, 1524.0, 1656.0, 1773.0, 1905.0, 2044.0, 2188.0],
     elemental_skill_dmg2: [0.336, 0.3612, 0.3864, 0.42, 0.4452, 0.4704, 0.504, 0.5376, 0.5712, 0.6048, 0.6384, 0.672, 0.714, 0.756, 0.798],
     elemental_burst_dmg1: [3.408, 3.6636, 3.9192, 4.26, 4.5156, 4.7712, 5.112, 5.4528, 5.7936, 6.1344, 6.4752, 6.816, 7.242, 7.668, 8.094],
-    elemental_burst_dmg2: [0.4, 0.43, 0.46, 0.5, 0.53, 0.56, 0.6, 0.64, 0.68, 0.72, 0.76, 0.8, 0.85, 0.9, 0.95]
+    elemental_burst_dmg2: [0.4, 0.43, 0.46, 0.5, 0.53, 0.56, 0.6, 0.64, 0.68, 0.72, 0.76, 0.8, 0.85, 0.9, 0.95],
 };
 
 pub const XINYAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
@@ -74,7 +75,7 @@ pub const XINYAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·炎舞",
     skill_name2: "热情拂扫",
-    skill_name3: "叛逆刮弦"
+    skill_name3: "叛逆刮弦",
 };
 
 pub struct Xinyan;
@@ -93,7 +94,7 @@ pub enum XinyanDamageEnum {
     E1,
     E2,
     Q1,
-    Q2
+    Q2,
 }
 
 impl XinyanDamageEnum {
@@ -155,7 +156,7 @@ impl CharacterTrait for Xinyan {
         skill3: Some(&[
             CharacterSkillMapItem { index: XinyanDamageEnum::Q1 as usize, chs: "技能伤害" },
             CharacterSkillMapItem { index: XinyanDamageEnum::Q2 as usize, chs: "火元素持续伤害" },
-        ])
+        ]),
     };
 
     #[cfg(not(target_family = "wasm"))]
@@ -163,11 +164,11 @@ impl CharacterTrait for Xinyan {
         ItemConfig {
             name: "shield_rate",
             title: "「热情拂扫」护盾覆盖比例",
-            config: ItemConfig::RATE01_TYPE
+            config: ItemConfig::RATE01_TYPE,
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
         let s: XinyanDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -188,7 +189,7 @@ impl CharacterTrait for Xinyan {
             Q2 => XINYAN_SKILL.elemental_burst_dmg2[s3],
         };
 
-        let shield_rate = match *_config {
+        let shield_rate = match *config {
             CharacterSkillConfig::Xinyan { shield_rate } => shield_rate,
             _ => 0.0
         };
@@ -199,26 +200,26 @@ impl CharacterTrait for Xinyan {
         let s_element = s.get_element();
 
         let c4 = context.character_common_data.constellation >= 4;
-		let c6 = context.character_common_data.constellation == 6;
+        let c6 = context.character_common_data.constellation == 6;
 
-		if c4 && s_element == Element::Physical {
-			builder.add_extra_res_minus("四命：「节奏的传染」", 0.15 * shield_rate);
-		}
+        if c4 && s_element == Element::Physical {
+            builder.add_extra_res_minus("四命：「节奏的传染」", 0.15 * shield_rate);
+        }
 
-		if context.character_common_data.has_talent2 && s_element == Element::Physical {
-			builder.add_extra_bonus("天赋：「...这才是摇滚！」", 0.15 * shield_rate);
-		}
+        if context.character_common_data.has_talent2 && s_element == Element::Physical {
+            builder.add_extra_bonus("天赋：「...这才是摇滚！」", 0.15 * shield_rate);
+        }
 
-		if (s == XinyanDamageEnum::Charged1 || s == XinyanDamageEnum::Charged2) && c6 {
-			builder.add_extra_atk("六命：「地狱里摇摆」", context.attribute.get_value(AttributeName::DEF) * 0.5);
-		}
+        if (s == XinyanDamageEnum::Charged1 || s == XinyanDamageEnum::Charged2) && c6 {
+            builder.add_extra_atk("六命：「地狱里摇摆」", context.attribute.get_def() * 0.5);
+        }
 
         builder.damage(
             &context.attribute,
             &context.enemy,
-            s.get_element(),
+            s_element,
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
         )
     }
 
