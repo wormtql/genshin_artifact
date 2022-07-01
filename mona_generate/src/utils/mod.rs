@@ -12,6 +12,9 @@ use serde::{Deserialize};
 pub mod character;
 pub mod text_map;
 pub mod artifact;
+pub mod weapon;
+pub mod equip_affix;
+pub mod common;
 
 
 #[derive(Deserialize)]

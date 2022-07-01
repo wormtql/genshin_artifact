@@ -7,12 +7,12 @@
         <el-option-group
             v-for="(elementName) in elements"
             :key="elementName"
-            :label="element2Chs(elementName)"
+            :label="t('ele', elementName)"
         >
             <el-option
                 v-for="(character, index) in characterByElement[elementName]"
                 :key="index"
-                :label="character.chs"
+                :label="t('character', character.name)"
                 :value="character.name"
             >
                 <div class="option-item flex-row">
@@ -40,25 +40,6 @@ export default {
         }
     },
     methods: {
-        element2Chs(element) {
-            switch(element) {
-                case "Pyro":
-                    return "火";
-                case "Cryo":
-                    return "冰";
-                case "Dendro":
-                    return "草";
-                case "Electro":
-                    return "雷";
-                case "Anemo":
-                    return "风";
-                case "Geo":
-                    return "岩";
-                case "Hydro":
-                    return "水";
-            }
-        },
-
         getColor(star) {
             return qualityColors[star - 1];
         }

@@ -1,5 +1,6 @@
 import character from "../character/en"
 import artifact from "../artifact/en"
+import { default as weapon, effect as weaponEffect } from "../weapon/en"
 
 export default {
     webName: "MonaUranai",
@@ -75,6 +76,18 @@ export default {
         lvl: "Lvl",
         random: "Random",
         cont: "Continue",
+        flower: "Flower of Life",
+        feather: "Plume of Death",
+        sand: "Sands of Eon",
+        cup: "Goblet of Eonothem",
+        head: "circlet of Logos",
+        algo: "Algorithm",
+        skill: "Skill",
+        conste: "Constellation",
+        weapon: "Weapon",
+        refine: "Refine",
+        tf: "Target Function",
+        code: "Code",
     },
     stat: {
         cureEffect: "Healing Bonus",
@@ -99,6 +112,18 @@ export default {
     },
     character,
     artifact,
+    weapon,
+    weaponEffect,
+    ele: {
+        Pyro: "Pyro",
+        Cryo: "Cryo",
+        Hydro: "Hydro",
+        Electro: "Electro",
+        Anemo: "Anemo",
+        Dendro: "Dendro",
+        Geo: "Geo",
+        Physical: "Physical",
+    },
     artPage: {
         shareDesc: "Use share link to import artifacts, expires in 1 day",
         deleteUnseen: "delete unseen artifacts",
@@ -132,5 +157,35 @@ export default {
         go: "Please go to",
         toCalc: "page to add new presets",
         wrongFormat: "Wrong format"
+    },
+    calcPage: {
+        selectArt: "Select Artifact",
+        dmgComp: "Damage Composition",
+        selectBuff: "Select BUFF",
+        setupCalc: "Computation Setup",
+        algoDesc: "A*：Recommend<br>Heuristic Cutoff: Not ensure optimal result, but faster<br>Naive: Do not use",
+        plzSetConst: "Please constraint artifact set or main stats, or it might be very time consuming, and leads to timeout",
+        aStar: "A*",
+        heuristic: "Heuristic Cutoff",
+        naive: "Naive",
+        constSet: "Constraint Artifact Set",
+        constMain: "Constraint Main Stats",
+        constMin: "Constraint Min Value",
+        filKumi: "Filter Artifact Group",
+        artAnalysis: "Artifacts Analysis",
+        statCurve: "Stats Gain Curve",
+        selectKumi: "Select Artifact Group",
+        setupEnemy: "Enemy Setup",
+        setupArt: "Artifact Effect Setup",
+        artMode: "Artifact Effect Mode",
+        modeAuto: "Auto",
+        modeCustom: "Custom",
+        artEffect: "Artifact Effects(Only works in custom mode)",
+        start: "Optimize",
+        newPreset: "New Preset",
+        savePreset: "Save Preset",
+        saveAsPreset: "Save as Preset",
+        tfNormal: "Normal",
+        beta: "BETA",
     }
 }

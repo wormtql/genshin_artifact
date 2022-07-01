@@ -1,5 +1,6 @@
 import character from "../character/zh-cn"
 import artifact from "../artifact/zh-cn"
+import { default as weapon, effect as weaponEffect } from "../weapon/zh-cn"
 
 export default {
     webName: "莫娜占卜铺",
@@ -75,9 +76,33 @@ export default {
         lvl: "等级",
         random: "随机",
         cont: "继续",
+        flower: "生之花",
+        feather: "死之羽",
+        sand: "时之沙",
+        cup: "空之杯",
+        head: "理之冠",
+        algo: "算法",
+        skill: "技能",
+        conste: "命之座",
+        weapon: "武器",
+        refine: "精炼",
+        tf: "目标函数",
+        code: "代码",
     },
     character,
     artifact,
+    weapon,
+    weaponEffect,
+    ele: {
+        Pyro: "火",
+        Cryo: "冰",
+        Hydro: "水",
+        Electro: "雷",
+        Anemo: "风",
+        Dendro: "草",
+        Geo: "岩",
+        Physical: "物理",
+    },
     stat: {
         cureEffect: "治疗加成",
         criticalDamage: "暴击伤害",
@@ -136,5 +161,37 @@ export default {
         go: "请前往",
         toCalc: "页面添加预设",
         wrongFormat: "导入格式错误"
+    },
+    calcPage: {
+        selectArt: "选择圣遗物",
+        dmgComp: "伤害构成",
+        selectBuff: "选择BUFF",
+        setupCalc: "计算设置",
+        algoDesc: "A*：推荐<br>启发式剪枝：不保证得到最优解，但是速度快<br>纯枚举：不推荐",
+        plzSetConst: "请限定套装或者主词条，否则计算将十分耗时，可能导致计算超时",
+        aStar: "A*",
+        heuristic: "启发式剪枝",
+        naive: "纯枚举",
+        constSet: "限定套装",
+        constMain: "限定主词条",
+        constMin: "限定最小值",
+        filKumi: "过滤圣遗物组",
+        artAnalysis: "圣遗物分析",
+        statCurve: "词条收益曲线",
+        selectKumi: "选择圣遗物组",
+        setupEnemy: "敌人设置",
+        setupArt: "圣遗物设置",
+        artMode: "圣遗物特效模式",
+        modeAuto: "自动",
+        modeCustom: "手动",
+        artEffect: "圣遗物特效（仅在手动模式下有效）",
+        start: "开始计算",
+        newPreset: "新建预设",
+        savePreset: "保存预设",
+        saveAsPreset: "另存为预设",
+        tfNormal: "普通",
+        beta: "该功能为测试版",
+
+
     }
 }

@@ -3,16 +3,16 @@
         <div class="header">
             <span class="fs-12">{{ props.name }}</span>
             <div v-if="toolbar" class="buttons flex-row">
-                <el-button
-                    v-if="props.calculateIcon"
-                    :icon="IconEpCPU"
-                    text
-                    size="small"
-                    circle
-                    @click.stop="$emit('cpu')"
-                    class="button"
-                    title="快速计算"
-                ></el-button>
+<!--                <el-button-->
+<!--                    v-if="props.calculateIcon"-->
+<!--                    :icon="IconEpCPU"-->
+<!--                    text-->
+<!--                    size="small"-->
+<!--                    circle-->
+<!--                    @click.stop="$emit('cpu')"-->
+<!--                    class="button"-->
+<!--                    title="快速计算"-->
+<!--                ></el-button>-->
                 <el-button
                     :icon="IconEpDelete"
                     text
@@ -20,7 +20,7 @@
                     circle
                     @click.stop="$emit('delete')"
                     class="button"
-                    title="删除"
+                    :title="t('misc.del')"
                 ></el-button>
                 <el-button
                     :icon="IconFa6SolidDownload"
@@ -29,18 +29,20 @@
                     circle
                     @click.stop="$emit('download')"
                     class="button"
-                    title="导出"
+                    :title="t('misc.export')"
                 ></el-button>
             </div>
         </div>
         <div class="body">
             <div class="detail-div fs-12">
                 <img :src="characterAvatar" class="c-avatar br-50p">
-                <span>{{ characterChs }}</span>
+<!--                <span>{{ characterChs }}</span>-->
+                <span>{{ t("character", characterName) }}</span>
             </div>
             <div class="detail-div fs-12">
                 <img :src="wData.url" class="w-avatar br-50p">
-                <span>{{ wData.chs }}</span>
+<!--                <span>{{ wData.chs }}</span>-->
+                <span>{{ t("weapon", props.item.weapon.name) }}</span>
             </div>
             <div class="detail-div fs-12">
                 <img :src="tfData.badge" class="tf-avatar br-50p">
@@ -59,7 +61,10 @@ import IconFa6SolidDownload from "~icons/fa6-solid/download"
 import IconEpDelete from "~icons/ep/delete"
 import IconEpCPU from "~icons/ep/cpu"
 import {IPreset} from "@/types/preset"
+import {useI18n} from "@/i18n/i18n";
 
+
+const { t } = useI18n()
 
 interface Props {
     item: IPreset,
@@ -87,6 +92,10 @@ const characterChs = computed(() => {
     const data = characterData[characterName.value]
     return data.chs
 })
+
+// const cData = computed(() => {
+//     return characterData[characterName]
+// })
 
 const wData = computed(() => {
     return weaponData[props.item.weapon.name]
@@ -139,6 +148,7 @@ const tfData = computed(() => {
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
 
             span {
                 padding-top: 8px;

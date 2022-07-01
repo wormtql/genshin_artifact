@@ -7,6 +7,7 @@ use edit_distance::edit_distance;
 use crate::utils::text_map::get_text_map;
 use std::path::Path;
 use serde::{Serialize, Deserialize};
+use crate::utils::equip_affix::EQUIP_AFFIX_DATA;
 
 #[derive(Deserialize)]
 pub struct ReliquarySetDataItem {
@@ -51,14 +52,6 @@ pub struct ReliquaryDataItem {
     icon: String,
 }
 
-#[derive(Deserialize)]
-pub struct EquipAffixDataItem {
-    id: u64,
-    affixId: u64,
-    nameTextMapHash: u64,
-    descTextMapHash: u64,
-}
-
 #[derive(Debug)]
 pub struct ParsedArtifactData {
     pub effect: HashMap<usize, u64>,
@@ -88,18 +81,6 @@ lazy_static! {
         let mut result = HashMap::new();
         for item in temp {
             result.insert(item.id, item);
-        }
-        result
-    };
-
-    pub static ref EQUIP_AFFIX_DATA: HashMap<u64, EquipAffixDataItem> = {
-        let path = Path::new(&CONFIG.genshin_data_path).join("ExcelBinOutput/EquipAffixExcelConfigData.json");
-        let s = fs::read_to_string(path).unwrap();
-        let temp = serde_json::from_str::<Vec<EquipAffixDataItem>>(&s).unwrap();
-
-        let mut result = HashMap::new();
-        for item in temp {
-            result.insert(item.affixId, item);
         }
         result
     };
