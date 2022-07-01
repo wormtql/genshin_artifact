@@ -48,7 +48,7 @@ impl TargetFunctionMetaTrait for GanyuDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "melt_rate",
-            title: "融化占比",
+            title: "t5",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

@@ -163,7 +163,7 @@ impl CharacterTrait for Xinyan {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "shield_rate",
-            title: "「热情拂扫」护盾覆盖比例",
+            title: "c35",
             config: ItemConfig::RATE01_TYPE,
         }
     ]);

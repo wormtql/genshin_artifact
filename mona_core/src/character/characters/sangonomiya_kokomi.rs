@@ -167,7 +167,7 @@ impl CharacterTrait for SangonomiyaKokomi {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_q",
-            title: "「仪来羽衣」状态",
+            title: "c30",
             config: ItemConfigType::Bool { default: true }
         }
     ]);

@@ -226,12 +226,12 @@ impl CharacterTrait for RaidenShogun {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "under_e",
-            title: "处于雷罚恶曜之眼",
+            title: "c28",
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "resolve_stack",
-            title: "诸愿百眼之愿力层数",
+            title: "c29",
             config: ItemConfigType::Int { min: 0, max: 60, default: 60 }
         }
     ]);

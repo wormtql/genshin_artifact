@@ -181,7 +181,7 @@ impl CharacterTrait for Ganyu {
         // },
         ItemConfig {
             name: "talent2_rate",
-            title: "天赋「天地交泰」应用比例",
+            title: "c1",
             config: ItemConfig::RATE01_TYPE
         }
     ]);
@@ -190,7 +190,7 @@ impl CharacterTrait for Ganyu {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent1_rate",
-            title: "天赋「唯此一心」应用比例",
+            title: "c2",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

@@ -49,7 +49,7 @@ impl TargetFunctionMetaTrait for VentiDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "swirl_rate",
-            title: "扩散占比",
+            title: "t10",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.7 },
         }
     ]);

@@ -187,12 +187,12 @@ impl CharacterTrait for KukiShinobu {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "hp_le_50",
-            title: "生命值不高于50%（天赋1：治疗加成+15%）",
+            title: "c11",
             config: ItemConfigType::Bool { default: true },
         },
         ItemConfig {
             name: "use_c6",
-            title: "启用六命",
+            title: "c12",
             config: ItemConfigType::Bool { default: false },
         }
     ]);

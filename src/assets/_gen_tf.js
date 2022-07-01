@@ -261,7 +261,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
@@ -281,7 +281,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
@@ -301,7 +301,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
@@ -321,7 +321,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
@@ -341,7 +341,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
@@ -361,7 +361,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
@@ -381,7 +381,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
@@ -401,9 +401,9 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","水"],"title":"触发元素","type":"option"},
+            {"default":0,"name":"t","options":["火","水"],"title":"t2","type":"option"},
             
-            {"default":"NormalAttack","name":"skill","title":"技能","type":"skill4"},
+            {"default":"NormalAttack","name":"skill","title":"t3","type":"skill4"},
             
         ],
     },
@@ -423,9 +423,9 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","冰"],"title":"触发元素","type":"option"},
+            {"default":0,"name":"t","options":["火","冰"],"title":"t2","type":"option"},
             
-            {"default":"NormalAttack","name":"skill","title":"技能","type":"skill4"},
+            {"default":"NormalAttack","name":"skill","title":"t3","type":"skill4"},
             
         ],
     },
@@ -445,9 +445,9 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","水"],"title":"触发元素","type":"option"},
+            {"default":0,"name":"t","options":["火","水"],"title":"t2","type":"option"},
             
-            {"default":"NormalAttack","name":"skill","title":"技能","type":"skill4"},
+            {"default":"NormalAttack","name":"skill","title":"t3","type":"skill4"},
             
         ],
     },
@@ -467,9 +467,9 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","冰"],"title":"触发元素","type":"option"},
+            {"default":0,"name":"t","options":["火","冰"],"title":"t2","type":"option"},
             
-            {"default":"NormalAttack","name":"skill","title":"技能","type":"skill4"},
+            {"default":"NormalAttack","name":"skill","title":"t3","type":"skill4"},
             
         ],
     },
@@ -625,7 +625,7 @@ export default {
         
         config: [
             
-            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
@@ -665,9 +665,9 @@ export default {
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"t5","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"t6","type":"float"},
             
         ],
     },
@@ -688,6 +688,8 @@ export default {
         badge: getImage("Diona"),
         
         config: [
+            
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
@@ -743,7 +745,7 @@ export default {
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化占比","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"t5","type":"float"},
             
         ],
     },
@@ -783,9 +785,9 @@ export default {
         
         config: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发占比","type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"t6","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化占比","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"t5","type":"float"},
             
         ],
     },
@@ -807,7 +809,7 @@ export default {
         
         config: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"damage_weight","title":"治疗-伤害比重（0：纯治疗，1：纯伤害）","type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"damage_weight","title":"t7","type":"float"},
             
             {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
@@ -831,11 +833,11 @@ export default {
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"swirl_rate","title":"扩散相对频率","type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"swirl_rate","title":"t8","type":"float"},
             
-            {"default":0.9,"max":1.0,"min":0.0,"name":"other_dmg_ratio","title":"他人伤害比例","type":"float"},
+            {"default":0.9,"max":1.0,"min":0.0,"name":"other_dmg_ratio","title":"t9","type":"float"},
             
         ],
     },
@@ -855,7 +857,7 @@ export default {
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
@@ -893,7 +895,7 @@ export default {
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
@@ -967,7 +969,7 @@ export default {
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
@@ -989,7 +991,7 @@ export default {
         
         config: [
             
-            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
@@ -1125,7 +1127,7 @@ export default {
         
         config: [
             
-            {"default":2.6,"max":4.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":2.6,"max":4.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
@@ -1303,7 +1305,7 @@ export default {
         
         config: [
             
-            {"default":0.7,"max":1.0,"min":0.0,"name":"swirl_rate","title":"扩散占比","type":"float"},
+            {"default":0.7,"max":1.0,"min":0.0,"name":"swirl_rate","title":"t10","type":"float"},
             
         ],
     },
@@ -1325,11 +1327,11 @@ export default {
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化频率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"t5","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发频率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"t6","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_rate","title":"超载频率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_rate","title":"t11","type":"float"},
             
         ],
     },
@@ -1407,7 +1409,7 @@ export default {
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"damage_demand","title":"伤害需求","type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"damage_demand","title":"t12","type":"float"},
             
         ],
     },
@@ -1427,11 +1429,11 @@ export default {
         
         config: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"electro_charged_times","title":"感电相对频率","type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"electro_charged_times","title":"t13","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_times","title":"超载相对频率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_times","title":"t14","type":"float"},
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
@@ -1469,9 +1471,9 @@ export default {
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发频率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"t6","type":"float"},
             
         ],
     },
@@ -1491,9 +1493,9 @@ export default {
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发占比","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"t6","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化占比","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"t5","type":"float"},
             
         ],
     },
@@ -1553,7 +1555,7 @@ export default {
         
         config: [
             
-            {"default":0.6,"max":1.0,"min":0.0,"name":"e_ratio","title":"E技能伤害占比","type":"float"},
+            {"default":0.6,"max":1.0,"min":0.0,"name":"e_ratio","title":"t15","type":"float"},
             
         ],
     },

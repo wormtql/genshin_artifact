@@ -177,7 +177,7 @@ impl CharacterTrait for Eula {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "lightfall_stack",
-            title: "光降之剑能量层数",
+            title: "c23",
             config: ItemConfigType::Int { min: 0, max: 30, default: 0 }
         }
     ]);

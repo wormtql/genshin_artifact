@@ -52,12 +52,12 @@ impl TargetFunctionMetaTrait for YoimiyaDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "vaporize_rate",
-            title: "蒸发占比",
+            title: "t6",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "melt_rate",
-            title: "融化占比",
+            title: "t5",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

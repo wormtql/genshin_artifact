@@ -386,7 +386,7 @@ export default {
         ],
         configSkill: [
             
-            {"default":4,"max":4,"min":0,"name":"coil_count","title":"线圈层数","type":"int"},
+            {"default":4,"max":4,"min":0,"name":"coil_count","title":"c20","type":"int"},
             
         ],
     },
@@ -496,7 +496,7 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"after_q","title":"处于「怒目鬼王」","type":"bool"},
+            {"default":true,"name":"after_q","title":"c21","type":"bool"},
             
         ],
     },
@@ -790,7 +790,7 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"pyro","title":"是否被大招附魔","type":"bool"},
+            {"default":true,"name":"pyro","title":"c22","type":"bool"},
             
         ],
     },
@@ -916,7 +916,7 @@ export default {
         ],
         configSkill: [
             
-            {"default":0,"max":30,"min":0,"name":"lightfall_stack","title":"光降之剑能量层数","type":"int"},
+            {"default":0,"max":30,"min":0,"name":"lightfall_stack","title":"c23","type":"int"},
             
         ],
     },
@@ -1031,12 +1031,12 @@ export default {
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":"天赋「天地交泰」应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":"c1","type":"float"},
             
         ],
         configSkill: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_rate","title":"天赋「唯此一心」应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_rate","title":"c2","type":"float"},
             
         ],
     },
@@ -1147,12 +1147,12 @@ export default {
         ],
         config: [
             
-            {"default":true,"name":"le_50","title":"生命值低于50%","type":"bool"},
+            {"default":true,"name":"le_50","title":"c3","type":"bool"},
             
         ],
         configSkill: [
             
-            {"default":true,"name":"after_e","title":"彼岸蝶舞","type":"bool"},
+            {"default":true,"name":"after_e","title":"c4","type":"bool"},
             
         ],
     },
@@ -1294,7 +1294,7 @@ export default {
         ],
         configSkill: [
             
-            {"default":false,"name":"after_e_or_q","title":"六命：血赤叶红","type":"bool"},
+            {"default":false,"name":"after_e_or_q","title":"c24","type":"bool"},
             
         ],
     },
@@ -1401,16 +1401,16 @@ export default {
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_rate","title":"天赋「天罪国罪镇词」应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_rate","title":"c5","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":"天赋「寒天宣命祝词」应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":"c6","type":"float"},
             
         ],
         configSkill: [
             
-            {"default":true,"name":"after_dash","title":"神里流·霰步","type":"bool"},
+            {"default":true,"name":"after_dash","title":"c7","type":"bool"},
             
-            {"default":false,"name":"use_c6","title":"六命效果","type":"bool"},
+            {"default":false,"name":"use_c6","title":"c8","type":"bool"},
             
         ],
     },
@@ -1470,9 +1470,9 @@ export default {
         ],
         configSkill: [
             
-            {"default":4,"max":5,"min":0,"name":"e_stack","title":"「浪闪」层数","type":"int"},
+            {"default":4,"max":5,"min":0,"name":"e_stack","title":"c25","type":"int"},
             
-            {"default":true,"name":"in_q","title":"处于「水囿」","type":"bool"},
+            {"default":true,"name":"in_q","title":"c26","type":"bool"},
             
         ],
     },
@@ -1535,12 +1535,12 @@ export default {
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":"天赋「玉衡之贵」应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":"c9","type":"float"},
             
         ],
         configSkill: [
             
-            {"default":true,"name":"after_e","title":"E附魔","type":"bool"},
+            {"default":true,"name":"after_e","title":"c10","type":"bool"},
             
         ],
     },
@@ -1709,9 +1709,9 @@ export default {
         ],
         config: [
             
-            {"default":true,"name":"hp_le_50","title":"生命值不高于50%（天赋1：治疗加成+15%）","type":"bool"},
+            {"default":true,"name":"hp_le_50","title":"c11","type":"bool"},
             
-            {"default":false,"name":"use_c6","title":"启用六命","type":"bool"},
+            {"default":false,"name":"use_c6","title":"c12","type":"bool"},
             
         ],
         configSkill: [
@@ -1869,7 +1869,7 @@ export default {
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":"天赋「储之千日，用之一刻」应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":"c13","type":"float"},
             
         ],
         configSkill: [
@@ -1930,7 +1930,7 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"after_q","title":"Q技能之后","type":"bool"},
+            {"default":true,"name":"after_q","title":"c27","type":"bool"},
             
         ],
     },
@@ -2076,9 +2076,9 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"under_e","title":"处于雷罚恶曜之眼","type":"bool"},
+            {"default":true,"name":"under_e","title":"c28","type":"bool"},
             
-            {"default":60,"max":60,"min":0,"name":"resolve_stack","title":"诸愿百眼之愿力层数","type":"int"},
+            {"default":60,"max":60,"min":0,"name":"resolve_stack","title":"c29","type":"int"},
             
         ],
     },
@@ -2139,9 +2139,9 @@ export default {
         ],
         config: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"e_stack","title":"雷之印层数","type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"e_stack","title":"c15","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_ratio","title":"天赋「饥饿」应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_ratio","title":"c16","type":"float"},
             
         ],
         configSkill: [
@@ -2203,7 +2203,7 @@ export default {
         ],
         config: [
             
-            {"default":true,"name":"e_from_behind","title":"应用天赋「聆听忏悔的幽影」效果","type":"bool"},
+            {"default":true,"name":"e_from_behind","title":"c14","type":"bool"},
             
         ],
         configSkill: [
@@ -2260,7 +2260,7 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"after_q","title":"「仪来羽衣」状态","type":"bool"},
+            {"default":true,"name":"after_q","title":"c30","type":"bool"},
             
         ],
     },
@@ -2780,11 +2780,11 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"after_q","title":"靖妖傩舞","type":"bool"},
+            {"default":true,"name":"after_q","title":"c31","type":"bool"},
             
-            {"default":4.0,"max":4.0,"min":0.0,"name":"talent1_stack","title":"天赋「降魔·平妖大圣」应用层数","type":"float"},
+            {"default":4.0,"max":4.0,"min":0.0,"name":"talent1_stack","title":"c32","type":"float"},
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"talent2_stack","title":"天赋「坏劫·国土碾尘」应用层数","type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"talent2_stack","title":"c33","type":"float"},
             
         ],
     },
@@ -2846,7 +2846,7 @@ export default {
         ],
         configSkill: [
             
-            {"default":false,"name":"c4","title":"应用4命效果","type":"bool"},
+            {"default":false,"name":"c4","title":"c34","type":"bool"},
             
         ],
     },
@@ -2904,7 +2904,7 @@ export default {
         ],
         configSkill: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":"「热情拂扫」护盾覆盖比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":"c35","type":"float"},
             
         ],
     },
@@ -3020,7 +3020,7 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"after_q","title":"灼灼","type":"bool"},
+            {"default":true,"name":"after_q","title":"c36","type":"bool"},
             
         ],
     },
@@ -3075,7 +3075,7 @@ export default {
         ],
         config: [
             
-            {"default":4,"max":4,"min":1,"name":"team_element_count","title":"队伍不同元素数量","type":"int"},
+            {"default":4,"max":4,"min":1,"name":"team_element_count","title":"c17","type":"int"},
             
         ],
         configSkill: [
@@ -3133,12 +3133,12 @@ export default {
         ],
         config: [
             
-            {"default":8.0,"max":10.0,"min":0.0,"name":"talent1_level","title":"天赋「袖火百景图」应用层数","type":"float"},
+            {"default":8.0,"max":10.0,"min":0.0,"name":"talent1_level","title":"c18","type":"float"},
             
         ],
         configSkill: [
             
-            {"default":true,"name":"after_e","title":"庭火焰硝","type":"bool"},
+            {"default":true,"name":"after_e","title":"c19","type":"bool"},
             
         ],
     },

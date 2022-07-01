@@ -188,12 +188,12 @@ impl CharacterTrait for Razor {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_stack",
-            title: "雷之印层数",
+            title: "c15",
             config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 0.0 }
         },
         ItemConfig {
             name: "talent2_ratio",
-            title: "天赋「饥饿」应用比例",
+            title: "c16",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

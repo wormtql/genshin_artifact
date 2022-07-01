@@ -38,12 +38,12 @@ impl TargetFunctionMetaTrait for DilucDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "melt_rate",
-            title: "融化比例",
+            title: "t5",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "vaporize_rate",
-            title: "蒸发比例",
+            title: "t6",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

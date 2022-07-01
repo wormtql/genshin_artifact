@@ -106,7 +106,7 @@ impl TargetFunctionMetaTrait for KujouSaraDamageTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "recharge_demand",
-            title: "充能需求",
+            title: "t4",
             config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.6 },
         }
     ]);

@@ -206,12 +206,12 @@ impl CharacterTrait for KamisatoAyato {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_stack",
-            title: "「浪闪」层数",
+            title: "c25",
             config: ItemConfigType::Int { min: 0, max: 5, default: 4 }
         },
         ItemConfig {
             name: "in_q",
-            title: "处于「水囿」",
+            title: "c26",
             config: ItemConfigType::Bool { default: true }
         }
     ]);

@@ -183,7 +183,7 @@ impl CharacterTrait for Yoimiya {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent1_level",
-            title: "天赋「袖火百景图」应用层数",
+            title: "c18",
             config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 8.0 }
         }
     ]);
@@ -192,7 +192,7 @@ impl CharacterTrait for Yoimiya {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_e",
-            title: "庭火焰硝",
+            title: "c19",
             config: ItemConfigType::Bool { default: true }
         }
     ]);

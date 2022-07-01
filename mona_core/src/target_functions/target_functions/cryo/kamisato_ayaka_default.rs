@@ -37,7 +37,7 @@ impl TargetFunctionMetaTrait for KamisatoAyakaDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "recharge_demand",
-            title: "充能需求",
+            title: "t4",
             config: ItemConfigType::Float { default: 1.0, min: 1.0, max: 3.0 }
         }
     ]);

@@ -37,7 +37,7 @@ impl TargetFunctionMetaTrait for KukiShinobuDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_ratio",
-            title: "E技能伤害占比",
+            title: "t15",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.6 }
         }
     ]);

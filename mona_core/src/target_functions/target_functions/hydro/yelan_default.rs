@@ -38,12 +38,12 @@ impl TargetFunctionMetaTrait for YelanDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "recharge_demand",
-            title: "充能需求",
+            title: "t4",
             config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.0 }
         },
         ItemConfig {
             name: "vaporize_rate",
-            title: "蒸发频率",
+            title: "t6",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);

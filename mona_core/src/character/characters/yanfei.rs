@@ -146,7 +146,7 @@ impl CharacterTrait for Yanfei {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_q",
-            title: "灼灼",
+            title: "c36",
             config: ItemConfigType::Bool { default: true }
         }
     ]);

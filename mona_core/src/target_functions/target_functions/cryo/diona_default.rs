@@ -6,7 +6,7 @@ use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::Diona;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
-use crate::common::item_config_type::ItemConfig;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
@@ -32,6 +32,15 @@ impl TargetFunctionMetaTrait for DionaDefaultTargetFunction {
         four: TargetFunctionFor::SomeWho(CharacterName::Diona),
         image: TargetFunctionMetaImage::Avatar
     };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "recharge_demand",
+            title: "t4",
+            config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.0 }
+        }
+    ]);
 
     fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
         let recharge_demand = match *config {

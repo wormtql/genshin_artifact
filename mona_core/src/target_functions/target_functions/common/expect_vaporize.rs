@@ -36,7 +36,7 @@ impl TargetFunctionMetaTrait for ExpectVaporizeTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "t",
-            title: "触发元素",
+            title: "t2",
             config: ItemConfigType::Option {
                 options: "火,水",
                 default: 0
@@ -44,7 +44,7 @@ impl TargetFunctionMetaTrait for ExpectVaporizeTargetFunction {
         },
         ItemConfig {
             name: "skill",
-            title: "技能",
+            title: "t3",
             config: ItemConfigType::Skill4 { default: SkillType::NormalAttack }
         }
     ]);

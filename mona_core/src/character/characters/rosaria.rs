@@ -186,7 +186,7 @@ impl CharacterTrait for Rosaria {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_from_behind",
-            title: "应用天赋「聆听忏悔的幽影」效果",
+            title: "c14",
             config: ItemConfigType::Bool { default: true },
         }
     ]);

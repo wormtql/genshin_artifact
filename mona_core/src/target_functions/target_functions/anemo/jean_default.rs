@@ -52,7 +52,7 @@ impl TargetFunctionMetaTrait for JeanDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "damage_weight",
-            title: "治疗-伤害比重（0：纯治疗，1：纯伤害）",
+            title: "t7",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.5 },
         },
         ItemConfig {

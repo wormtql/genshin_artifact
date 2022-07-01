@@ -150,7 +150,7 @@ impl CharacterTrait for Ningguang {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent2_rate",
-            title: "天赋「储之千日，用之一刻」应用比例",
+            title: "c13",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

@@ -56,7 +56,7 @@ impl TargetFunctionMetaTrait for XinyanDefaultTargetFunction {
         },
         ItemConfig {
             name: "damage_demand",
-            title: "伤害需求",
+            title: "t12",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.5 }
         }
     ]);

@@ -151,7 +151,7 @@ impl CharacterTrait for KaedeharaKazuha {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_e_or_q",
-            title: "六命：血赤叶红",
+            title: "c24",
             config: ItemConfigType::Bool { default: false }
         }
     ]);

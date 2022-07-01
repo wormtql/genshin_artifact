@@ -186,12 +186,12 @@ impl CharacterTrait for KamisatoAyaka {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent1_rate",
-            title: "天赋「天罪国罪镇词」应用比例",
+            title: "c5",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "talent2_rate",
-            title: "天赋「寒天宣命祝词」应用比例",
+            title: "c6",
             config: ItemConfig::RATE01_TYPE
         }
     ]);
@@ -200,12 +200,12 @@ impl CharacterTrait for KamisatoAyaka {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_dash",
-            title: "神里流·霰步",
+            title: "c7",
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "use_c6",
-            title: "六命效果",
+            title: "c8",
             config: ItemConfigType::Bool { default: false }
         }
     ]);

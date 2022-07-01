@@ -167,7 +167,7 @@ impl CharacterTrait for AratakiItto {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_q",
-            title: "处于「怒目鬼王」",
+            title: "c21",
             config: ItemConfigType::Bool { default: true }
         }
     ]);

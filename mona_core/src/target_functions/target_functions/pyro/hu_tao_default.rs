@@ -50,12 +50,12 @@ impl TargetFunctionMetaTrait for HuTaoDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "vaporize_rate",
-            title: "蒸发占比",
+            title: "t6",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.5 }
         },
         ItemConfig {
             name: "melt_rate",
-            title: "融化占比",
+            title: "t5",
             config: ItemConfig::RATE01_TYPE
         }
     ]);
