@@ -9,14 +9,16 @@
         <el-table-column
             label="伤害"
         >
-            <template v-slot="{ row }">
-                <span v-if="row.chs === '感电'"
-                    style="color: #c250ff"
-                >{{ row.value.toFixed(1) }}</span>
-                <span v-else-if="row.chs === '超载'"
-                      style="color: #ff335a"
-                >{{ row.value.toFixed(1) }}</span>
-                <span v-else>{{ row.value.toFixed(1) }}</span>
+            <template #default="{ row }">
+                <template v-if="row && row.chs && row.value">
+                    <span v-if="row.chs === '感电'"
+                          style="color: #c250ff"
+                    >{{ row.value.toFixed(1) }}</span>
+                    <span v-else-if="row.chs === '超载'"
+                          style="color: #ff335a"
+                    >{{ row.value.toFixed(1) }}</span>
+                    <span v-else>{{ row.value.toFixed(1) }}</span>
+                </template>
             </template>
         </el-table-column>
     </el-table>
