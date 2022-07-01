@@ -1,20 +1,21 @@
 use num_derive::FromPrimitive;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+
 use crate::attribute::{Attribute, AttributeName};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
-use crate::damage::{DamageContext};
+use crate::damage::DamageContext;
 use crate::damage::damage_builder::DamageBuilder;
 use crate::target_functions::target_functions::HuTaoDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
-use strum::EnumCount;
-use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct HuTaoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -72,7 +73,7 @@ pub const HU_TAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击·往生秘传枪法",
     skill_name2: "蝶引来生",
-    skill_name3: "安神秘法"
+    skill_name3: "安神秘法",
 };
 
 pub struct HuTaoEffect {
@@ -104,6 +105,7 @@ impl<T: Attribute> ChangeAttribute<T> for HuTaoEffect {
 
 #[derive(Copy, Clone, FromPrimitive)]
 #[derive(EnumString, EnumCountMacro)]
+#[derive(Eq, PartialEq)]
 pub enum HuTaoDamageEnum {
     Normal1,
     Normal2,
@@ -144,7 +146,7 @@ impl HuTaoDamageEnum {
     pub fn get_skill_type(&self) -> SkillType {
         use HuTaoDamageEnum::*;
         match *self {
-            Normal1 | Normal2 |Normal3 | Normal4 | Normal51 | Normal52 | Normal6 => SkillType::NormalAttack,
+            Normal1 | Normal2 | Normal3 | Normal4 | Normal51 | Normal52 | Normal6 => SkillType::NormalAttack,
             Charged => SkillType::ChargedAttack,
             Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
             ElementalSkillBloodBlossom => SkillType::ElementalSkill,
@@ -188,7 +190,7 @@ impl CharacterTrait for HuTao {
         skill3: Some(&[
             CharacterSkillMapItem { index: HuTaoDamageEnum::ElementalBurst1 as usize, chs: "技能伤害" },
             CharacterSkillMapItem { index: HuTaoDamageEnum::ElementalBurstLow1 as usize, chs: "低血量时技能伤害" },
-        ])
+        ]),
     };
 
     #[cfg(not(target_family = "wasm"))]
@@ -196,7 +198,7 @@ impl CharacterTrait for HuTao {
         ItemConfig {
             name: "le_50",
             title: "生命值低于50%",
-            config: ItemConfigType::Bool { default: true }
+            config: ItemConfigType::Bool { default: true },
         }
     ]);
 
@@ -205,7 +207,7 @@ impl CharacterTrait for HuTao {
         ItemConfig {
             name: "after_e",
             title: "彼岸蝶舞",
-            config: ItemConfigType::Bool { default: true }
+            config: ItemConfigType::Bool { default: true },
         }
     ]);
 
@@ -234,6 +236,7 @@ impl CharacterTrait for HuTao {
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
 
+        let c2 = context.character_common_data.constellation >= 2;
         let after_e = match *config {
             CharacterSkillConfig::HuTao { after_e } => after_e,
             _ => false
@@ -244,13 +247,16 @@ impl CharacterTrait for HuTao {
             let atk_bonus = (HU_TAO_SKILL.elemental_skill_atk_bonus[s2] * hp).min(4.0 * atk_base);
             builder.add_extra_atk("胡桃：彼岸蝶舞", atk_bonus);
         }
+        if c2 && s == HuTaoDamageEnum::ElementalSkillBloodBlossom {
+            builder.add_hp_ratio("二命：最不安神晴又复雨", 0.1);
+        }
 
         builder.damage(
             &context.attribute,
             &context.enemy,
             s.get_element(after_e),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
         )
     }
 
@@ -263,7 +269,7 @@ impl CharacterTrait for HuTao {
         match role {
             HuTaoRoleEnum::Main => Box::new(HuTaoDefaultTargetFunction {
                 vaporize_rate: 0.5,
-                melt_rate: 0.0
+                melt_rate: 0.0,
             })
         }
     }

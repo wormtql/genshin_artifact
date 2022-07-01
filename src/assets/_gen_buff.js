@@ -169,6 +169,12 @@ import HealingBonus_image from "@image/misc/sword"
 
 
 
+
+
+
+
+
+
 import FreedomSworn_image from "@image/weapons/FreedomSworn_tn"
 
 
@@ -453,6 +459,32 @@ export default {
         ],
     },
     
+    "AlbedoC4": {
+        name: "AlbedoC4",
+        chs: "阿贝多-「神性之陨」",
+        
+        badge: getImage("Albedo"),
+        
+        genre: "Character",
+        description: "阿贝多命座4：处于阳华的领域中的队伍中当前场上角色，造成的下落攻击伤害提高30%。",
+        config: [
+            
+        ],
+    },
+    
+    "AlbedoC6": {
+        name: "AlbedoC6",
+        chs: "阿贝多-「无垢之土」",
+        
+        badge: getImage("Albedo"),
+        
+        genre: "Character",
+        description: "阿贝多命座6：处在阳华的领域中的队伍中当前场上角色，若处于结晶反应产生的护盾庇护下，造成的伤害提高17%。",
+        config: [
+            
+        ],
+    },
+    
     "AloyTalent1": {
         name: "AloyTalent1",
         chs: "埃洛伊-「战斗覆盖」",
@@ -546,6 +578,21 @@ export default {
         genre: "Character",
         description: "迪奥娜命座6：生命值高于50%时，元素精通提升200。",
         config: [
+            
+        ],
+    },
+    
+    "EulaE": {
+        name: "EulaE",
+        chs: "优菈-「冰潮的涡旋」减抗",
+        
+        badge: getImage("Eula"),
+        
+        genre: "Character",
+        description: "优菈E技能：长按若消耗了冷酷之心效果，会使身边的敌人的物理抗性与冰元素抗性降低。",
+        config: [
+            
+            {"default":9,"max":15,"min":1,"name":"skill2","title":"技能等级","type":"int"},
             
         ],
     },

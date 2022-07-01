@@ -167,6 +167,8 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
+
+
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png"
 const getImage = name => template.replace("#", name)
 
@@ -1366,6 +1368,24 @@ export default {
         config: [
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            
+        ],
+    },
+    
+    "XinyanDamage": {
+        name: "XinyanDamage",
+        chs: "辛焱-输出",
+        description: "普通物伤输出辛焱",
+        tags: [
+            
+            "输出",
+            
+        ],
+        "for": "Xinyan",
+        
+        badge: getImage("Xinyan"),
+        
+        config: [
             
         ],
     },

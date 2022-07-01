@@ -3,8 +3,8 @@ use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 use crate::attribute::{Attribute, AttributeName};
-use crate::character::character_common_data::CharacterCommonData;
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
@@ -58,13 +58,18 @@ pub const KUKI_SHINOBU_SKILL: KukiShinobuSkillType = KukiShinobuSkillType {
 
 pub struct KukiShinobuEffect {
     pub hp_le_50: bool,
+    pub use_c6: bool,
     pub has_talent1: bool,
+    pub has_c6: bool,
 }
 
 impl<A: Attribute> ChangeAttribute<A> for KukiShinobuEffect {
     fn change_attribute(&self, attribute: &mut A) {
         if self.has_talent1 && self.hp_le_50 {
             attribute.set_value_by(AttributeName::HealingBonus, "天赋：破笼之志", 0.15);
+        }
+        if self.has_c6 && self.use_c6 {
+            attribute.set_value_by(AttributeName::ElementalMastery, "六命：割舍软弱之心", 150.0);
         }
     }
 }
@@ -88,7 +93,7 @@ pub enum KukiShinobuDamageEnum {
     E2,
     Q1,
     Q2,
-    Q3
+    Q3,
 }
 
 impl Into<usize> for KukiShinobuDamageEnum {
@@ -145,7 +150,7 @@ impl CharacterTrait for KukiShinobu {
         star: 4,
         skill_name1: "普通攻击·忍流飞刃斩",
         skill_name2: "越祓雷草之轮",
-        skill_name3: "御咏鸣神刈山祭"
+        skill_name3: "御咏鸣神刈山祭",
     };
     type SkillType = KukiShinobuSkillType;
     const SKILL: Self::SkillType = KUKI_SHINOBU_SKILL;
@@ -175,7 +180,7 @@ impl CharacterTrait for KukiShinobu {
             CharacterSkillMapItem { index: KukiShinobuDamageEnum::Q1 as usize, chs: "单次伤害" },
             CharacterSkillMapItem { index: KukiShinobuDamageEnum::Q2 as usize, chs: "总伤害" },
             CharacterSkillMapItem { index: KukiShinobuDamageEnum::Q3 as usize, chs: "总伤害-低血量" },
-        ])
+        ]),
     };
 
     #[cfg(not(target_family = "wasm"))]
@@ -183,7 +188,12 @@ impl CharacterTrait for KukiShinobu {
         ItemConfig {
             name: "hp_le_50",
             title: "生命值不高于50%（天赋1：治疗加成+15%）",
-            config: ItemConfigType::Bool { default: true }
+            config: ItemConfigType::Bool { default: true },
+        },
+        ItemConfig {
+            name: "use_c6",
+            title: "启用六命",
+            config: ItemConfigType::Bool { default: false },
         }
     ]);
 
@@ -230,7 +240,7 @@ impl CharacterTrait for KukiShinobu {
                 &context.enemy,
                 s.get_element(),
                 s.get_skill_type(),
-                context.character_common_data.level
+                context.character_common_data.level,
             )
         } else {
             let ratio = KUKI_SHINOBU_SKILL.elemental_skill_heal1[s2];
@@ -248,14 +258,16 @@ impl CharacterTrait for KukiShinobu {
     }
 
     fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
-        let hp_le_50 = match *config {
-            CharacterConfig::KukiShinobu { hp_le_50 } => hp_le_50,
-            _ => true
+        let (hp_le_50, use_c6) = match *config {
+            CharacterConfig::KukiShinobu { hp_le_50, use_c6 } => (hp_le_50, use_c6),
+            _ => (true, false)
         };
 
         Some(Box::new(KukiShinobuEffect {
             hp_le_50,
-            has_talent1: common_data.has_talent1
+            has_talent1: common_data.has_talent1,
+            use_c6,
+            has_c6: common_data.constellation == 6,
         }))
     }
 
