@@ -1711,6 +1711,8 @@ export default {
             
             {"default":true,"name":"hp_le_50","title":"生命值不高于50%（天赋1：治疗加成+15%）","type":"bool"},
             
+            {"default":false,"name":"use_c6","title":"启用六命","type":"bool"},
+            
         ],
         configSkill: [
             
@@ -2201,10 +2203,10 @@ export default {
         ],
         config: [
             
+            {"default":true,"name":"e_from_behind","title":"应用天赋「聆听忏悔的幽影」效果","type":"bool"},
+            
         ],
         configSkill: [
-            
-            {"default":true,"name":"e_from_behind","title":"应用天赋「聆听忏悔的幽影」效果","type":"bool"},
             
         ],
     },

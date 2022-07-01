@@ -58,13 +58,18 @@ pub const KUKI_SHINOBU_SKILL: KukiShinobuSkillType = KukiShinobuSkillType {
 
 pub struct KukiShinobuEffect {
     pub hp_le_50: bool,
+    pub use_c6: bool,
     pub has_talent1: bool,
+    pub has_c6: bool
 }
 
 impl<A: Attribute> ChangeAttribute<A> for KukiShinobuEffect {
     fn change_attribute(&self, attribute: &mut A) {
         if self.has_talent1 && self.hp_le_50 {
             attribute.set_value_by(AttributeName::HealingBonus, "天赋：破笼之志", 0.15);
+        }
+        if self.has_c6 && self.use_c6 {
+            attribute.set_value_by(AttributeName::ElementalMastery, "六命：割舍软弱之心", 150.0);
         }
     }
 }
@@ -184,6 +189,11 @@ impl CharacterTrait for KukiShinobu {
             name: "hp_le_50",
             title: "生命值不高于50%（天赋1：治疗加成+15%）",
             config: ItemConfigType::Bool { default: true }
+        },
+        ItemConfig {
+            name: "use_c6",
+            title: "启用六命",
+            config: ItemConfigType::Bool { default: false }
         }
     ]);
 
@@ -248,14 +258,16 @@ impl CharacterTrait for KukiShinobu {
     }
 
     fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
-        let hp_le_50 = match *config {
-            CharacterConfig::KukiShinobu { hp_le_50 } => hp_le_50,
-            _ => true
+        let (hp_le_50, use_c6) = match *config {
+            CharacterConfig::KukiShinobu { hp_le_50, use_c6 } => (hp_le_50, use_c6),
+            _ => (true, false)
         };
 
         Some(Box::new(KukiShinobuEffect {
             hp_le_50,
-            has_talent1: common_data.has_talent1
+            has_talent1: common_data.has_talent1,
+            use_c6,
+            has_c6: common_data.constellation == 6
         }))
     }
 

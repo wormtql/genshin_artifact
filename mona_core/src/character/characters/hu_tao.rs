@@ -104,6 +104,7 @@ impl<T: Attribute> ChangeAttribute<T> for HuTaoEffect {
 
 #[derive(Copy, Clone, FromPrimitive)]
 #[derive(EnumString, EnumCountMacro)]
+#[derive(Eq, PartialEq)]
 pub enum HuTaoDamageEnum {
     Normal1,
     Normal2,
@@ -234,6 +235,7 @@ impl CharacterTrait for HuTao {
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
 
+        let c2 = context.character_common_data.constellation >= 2;
         let after_e = match *config {
             CharacterSkillConfig::HuTao { after_e } => after_e,
             _ => false
@@ -243,6 +245,9 @@ impl CharacterTrait for HuTao {
             let atk_base = context.attribute.get_value(AttributeName::ATKBase);
             let atk_bonus = (HU_TAO_SKILL.elemental_skill_atk_bonus[s2] * hp).min(4.0 * atk_base);
             builder.add_extra_atk("胡桃：彼岸蝶舞", atk_bonus);
+        }
+        if c2 && s == HuTaoDamageEnum::ElementalSkillBloodBlossom {
+            builder.add_hp_ratio("二命：最不安神晴又复雨",0.1);
         }
 
         builder.damage(

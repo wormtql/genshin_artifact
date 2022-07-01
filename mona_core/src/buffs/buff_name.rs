@@ -26,6 +26,8 @@ pub enum BuffName {
 
     // character
     AlbedoTalent2,
+    AlbedoC4,
+    AlbedoC6,
     AloyTalent1,
     AratakiIttoC4,
     BeidouC6,
@@ -33,6 +35,7 @@ pub enum BuffName {
     BennettC6,
     ChongyunTalent2,
     DionaC6G50,
+    EulaE,
     GanyuTalent2,
     GanyuC1,
     GorouE1,
