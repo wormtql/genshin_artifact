@@ -69,6 +69,12 @@ export default {
         search: "Search",
         calculator: "Calculator",
         preset: "Preset",
+        artSet: "Artifact Set",
+        artSlot: "Artifact Slot",
+        quality: "Quality",
+        lvl: "Lvl",
+        random: "Random",
+        cont: "Continue",
     },
     stat: {
         cureEffect: "Healing Bonus",

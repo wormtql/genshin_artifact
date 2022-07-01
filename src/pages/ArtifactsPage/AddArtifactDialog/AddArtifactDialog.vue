@@ -1,11 +1,11 @@
 <template>
     <el-dialog
-        title="添加圣遗物"
+        :title="t('artPage.newArt')"
         :model-value="props.modelValue"
         @update:model-value="$emit('update:modelValue', $event)"
         :width="deviceIsPC ? '80%' : '90%'"
     >
-        <h3 class="item-title">套装</h3>
+        <h3 class="item-title">{{ t("misc.artSet") }}</h3>
         <choose-artifact-set
             :model-value="setName"
             @update:modelValue="handleSetNameChange"
@@ -17,7 +17,7 @@
             class="hidden-md-and-up"
         ></select-artifact-set>
 
-        <h3 class="item-title">位置</h3>
+        <h3 class="item-title">{{ t("misc.artSlot") }}</h3>
         <choose-artifact-position
             v-model="position"
             :setName="setName"
@@ -27,7 +27,7 @@
 
         <el-row :gutter="16">
             <el-col :sm="24" :md="12">
-                <h3 class="item-title">品质</h3>
+                <h3 class="item-title">{{ t("misc.quality") }}</h3>
                 <el-rate
                     @update:modelValue="handleStarChange"
                     :model-value="star"
@@ -35,7 +35,7 @@
                 ></el-rate>
             </el-col>
             <el-col :sm="24" :md="12">
-                <h3 style="margin-right: 8px" class="item-title">等级</h3>
+                <h3 style="margin-right: 8px" class="item-title">{{ t("misc.lvl") }}</h3>
 
                 <el-slider
                     v-model="level"
@@ -50,7 +50,7 @@
 
         <el-row :gutter="16">
             <el-col :sm="24" :md="12">
-                <h3 class="item-title">主属性</h3>
+                <h3 class="item-title">{{ t("misc.mainStat") }}</h3>
                 <!-- <choose-main-tag v-model="mainTag" :position="position"></choose-main-tag> -->
                 <select-artifact-main-tag
                     :model-value="mainTag"
@@ -60,13 +60,13 @@
             </el-col>
             <el-col :sm="24" :md="12">
                 <div class="flex-row">
-                    <h3 style="margin-right: 8px" class="item-title">副属性</h3>
+                    <h3 style="margin-right: 8px" class="item-title">{{ t("misc.subStat") }}</h3>
                     <el-button
                         :icon="IconEpRefresh"
                         circle
                         size="small"
                         @click="shuffleNormalTags"
-                        title="随机"
+                        :title="t('misc.random')"
                         text
                     ></el-button>
 <!--                    <el-button-->
@@ -84,8 +84,8 @@
         </el-row>
 
         <template #footer>
-            <el-button @click="emits('update:modelValue', false)">取消</el-button>
-            <el-button type="primary" @click="onConfirm">确定</el-button>
+            <el-button @click="emits('update:modelValue', false)">{{ t("misc.cancel") }}</el-button>
+            <el-button type="primary" @click="onConfirm">{{ t("misc.confirm") }}</el-button>
         </template>
     </el-dialog>
 </template>
@@ -111,6 +111,10 @@ import {ElMessageBox} from "element-plus"
 import {deviceIsPC} from "@/utils/device"
 
 import IconEpRefresh from "~icons/ep/refresh"
+import {useI18n} from "@/i18n/i18n";
+
+
+const { t } = useI18n()
 
 
 interface Props {
@@ -237,11 +241,11 @@ function onConfirm() {
 
     if (isArtifactExists(result)) {
         ElMessageBox.confirm(
-            "检测到已有相同圣遗物，是否继续？",
-            "提示",
+            t("artPage.dup"),
+            t("misc.hint"),
             {
-                confirmButtonText: "继续",
-                cancelButtonText: "取消",
+                confirmButtonText: t("misc.cont"),
+                cancelButtonText: t("misc.cancel"),
                 type: "warning",
             }
         ).then(() => {

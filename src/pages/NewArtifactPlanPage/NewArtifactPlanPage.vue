@@ -1101,7 +1101,31 @@ const characterDamageAnalysis = computed(() => {
 })
 
 const characterTransformativeDamage = computed(() => {
-    return mona.CalculatorInterface.get_transformative_damage(damageAnalysisWasmInterface.value)
+    // return  {
+    //     "electro_charged": 0,
+    //     "overload": 0,
+    //     "shatter": 0,
+    //     "superconduct": 0,
+    //     "swirl_cryo": 0,
+    //     "swirl_pyro": 0,
+    //     "swirl_electro": 0,
+    //     "swirl_hydro": 0
+    // }
+    const temp = mona.CalculatorInterface.get_transformative_damage(damageAnalysisWasmInterface.value)
+    return temp
+    // console.log(temp)
+    // return temp
+    // const ret = {
+    //     "electro_charged": temp.electro_charged,
+    //     "overload": temp.overload,
+    //     "shatter": temp.shatter,
+    //     "superconduct": temp.superconduct,
+    //     "swirl_cryo": temp.swirl_cryo,
+    //     "swirl_pyro": temp.swirl_pyro,
+    //     "swirl_electro": temp.swirl_electro,
+    //     "swirl_hydro": temp.swirl_hydro
+    // }
+    // return ret
 })
 
 function handleDisplayAnalysis() {

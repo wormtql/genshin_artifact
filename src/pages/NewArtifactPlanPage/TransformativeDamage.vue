@@ -1,4 +1,14 @@
 <template>
+<!--    <div v-for="row in tableDataForElementUI">-->
+<!--        <span v-if="row.chs === '感电'"-->
+<!--              style="color: #c250ff"-->
+<!--        >{{ row.value.toFixed(1) }}</span>-->
+<!--        <span v-if="row.chs === '超载'"-->
+<!--              style="color: #ff335a"-->
+<!--        >{{ row.value.toFixed(1) }}</span>-->
+<!--        <span v-if="row.chs !== '感电' && row.chs !== '超载'">{{ row.value.toFixed(1) }}</span>-->
+<!--    </div>-->
+
     <el-table
         :data="tableDataForElementUI"
     >
@@ -9,25 +19,30 @@
         <el-table-column
             label="伤害"
         >
-            <template v-slot="{ row }">
-                <span v-if="row.chs === '感电'"
-                    style="color: #c250ff"
-                >{{ row.value.toFixed(1) }}</span>
-                <span v-else-if="row.chs === '超载'"
-                      style="color: #ff335a"
-                >{{ row.value.toFixed(1) }}</span>
-                <span v-else>{{ row.value.toFixed(1) }}</span>
+            <template #default="{ row }">
+                <template v-if="row && row.value && row.chs">
+                    <span v-if="row.chs === '感电'"
+                          style="color: #c250ff"
+                    >{{ row.value.toFixed(1) }}</span>
+                    <span v-if="row.chs === '超载'"
+                          style="color: #ff335a"
+                    >{{ row.value.toFixed(1) }}</span>
+                    <span v-if="row.chs !== '感电' && row.chs !== '超载'">{{ row.value.toFixed(1) }}</span>
+                </template>
+
+<!--                <span v-if="row.chs !== '感电' && row.chs !== '超载'">{{ f(row) }}</span>-->
             </template>
         </el-table-column>
     </el-table>
 </template>
 
 <script>
-export default {
+export default defineComponent({
     name: "TransformativeDamage",
     props: ["data"],
     computed: {
         tableDataForElementUI() {
+            // console.log(this.data)
             let results = []
             results.push({ chs: "感电", value: this.data.electro_charged })
             results.push({ chs: "超载", value: this.data.overload })
@@ -39,8 +54,19 @@ export default {
             results.push({ chs: "扩散（水）", value: this.data.swirl_hydro })
             return results
         }
+    },
+    methods: {
+        f(row) {
+            console.log(row)
+            return row.value.toFixed(1)
+        }
     }
-}
+    // data() {
+    //     return {
+    //
+    //     }
+    // }
+})
 </script>
 
 <style scoped>

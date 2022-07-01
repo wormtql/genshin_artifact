@@ -69,6 +69,12 @@ export default {
         search: "搜索",
         calculator: "计算器",
         preset: "预设",
+        artSet: "圣遗物套装",
+        artSlot: "圣遗物位置",
+        quality: "品质",
+        lvl: "等级",
+        random: "随机",
+        cont: "继续",
     },
     character,
     artifact,
@@ -109,7 +115,11 @@ export default {
         createDesc: "莫娜正在创建分享链接",
         wrongFormat: "格式不正确",
         importing: "导入中",
-        msg1: "添加计算预设以使用该功能"
+        msg1: "添加计算预设以使用该功能",
+
+        // add artifact dialog
+        newArt: "添加圣遗物",
+        dup: "检测到已有相同圣遗物，是否继续？",
     },
     kumiPage: {
         selectArt: "选择圣遗物",

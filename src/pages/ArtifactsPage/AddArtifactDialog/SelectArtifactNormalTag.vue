@@ -19,7 +19,7 @@
                         <el-option
                             v-for="tagData in secondaryTagData"
                             :key="tagData.name"
-                            :label="tagData.chs"
+                            :label="t('stat', tagData.name)"
                             :value="tagData.name"
                         >
                         </el-option>
@@ -47,6 +47,9 @@ import { deepCopy } from "@/utils/common"
 import { subStats, artifactTags } from "@/constants/artifact"
 import type {ArtifactSubStatName} from "@/types/artifact"
 import IconEpDelete from "~icons/ep/delete"
+import {useI18n} from "@/i18n/i18n"
+
+const { t } = useI18n()
 
 const secondaryTagData = subStats.map(item => artifactTags[item])
 Object.freeze(secondaryTagData)

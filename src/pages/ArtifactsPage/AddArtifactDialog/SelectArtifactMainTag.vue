@@ -12,7 +12,7 @@
                 <el-option
                     v-for="tagData in validTags"
                     :key="tagData.name"
-                    :label="tagData.chs"
+                    :label="t('stat', tagData.name)"
                     :value="tagData.name"
                 >
                 </el-option>
@@ -28,6 +28,7 @@
 <script>
 import { artifactsTagMap } from "@asset/artifacts";
 import { artifactTags } from "@const/artifact";
+import {useI18n} from "@/i18n/i18n";
 // import { convertDisplayTagValue } from "@util/utils";
 
 const tagData = {
@@ -92,13 +93,20 @@ export default {
                 this.$emit("update:modelValue", temp);
             }
         },
+    },
+    setup() {
+        const { t } = useI18n()
+
+        return {
+            t
+        }
     }
 }
 </script>
 
 <style scoped>
 .prepend {
-    width: 100px;
+    /*width: 100px;*/
     text-overflow: ellipsis;
 }
 </style>

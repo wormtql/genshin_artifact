@@ -13,7 +13,7 @@
             >
             </el-image>
             <p class="text">
-                {{ artData.chs }}
+                {{ t("artifact", artData.eng, "setName") }}
             </p>
         </div>
         
@@ -25,6 +25,9 @@
 import { artifactsData } from "../../../assets/artifacts"
 import { getArtifactThumbnailURL } from "@/utils/utils"
 import type {ArtifactSetName} from "@/types/artifact"
+import {useI18n} from "@/i18n/i18n"
+
+const { t } = useI18n()
 
 interface Props {
     modelValue: ArtifactSetName
@@ -55,6 +58,8 @@ const emits = defineEmits<Emits>()
     margin: 0;
     text-align: center;
     width: 48px;
+    word-break: normal;
+    //white-space: break-spaces;
 }
 
 .choose-artifact-set {
