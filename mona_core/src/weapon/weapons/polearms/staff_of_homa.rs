@@ -62,7 +62,7 @@ impl WeaponTrait for StaffOfHoma {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "be50_rate",
-            title: "生命值低于50%时间比例",
+            title: "w24",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

@@ -77,7 +77,7 @@ impl WeaponTrait for MistsplitterReforged {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "emblem_level",
-            title: "「雾切之巴印」层数",
+            title: "w26",
             config: ItemConfigType::Int {
                 min: 0,
                 max: 3,

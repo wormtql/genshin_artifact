@@ -15,6 +15,7 @@ pub mod artifact;
 pub mod weapon;
 pub mod equip_affix;
 pub mod common;
+pub mod config;
 
 
 #[derive(Deserialize)]

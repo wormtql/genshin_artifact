@@ -60,7 +60,7 @@ impl WeaponTrait for Deathmatch {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "ge2",
-            title: "身边至少有2个敌人",
+            title: "w22",
             config: ItemConfigType::Bool { default: true }
         }
     ]);

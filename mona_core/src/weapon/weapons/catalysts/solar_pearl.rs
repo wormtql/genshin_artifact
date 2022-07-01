@@ -58,12 +58,12 @@ impl WeaponTrait for SolarPearl {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate1",
-            title: "效果①比例",
+            title: "w8",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "rate2",
-            title: "效果②比例",
+            title: "w9",
             config: ItemConfig::RATE01_TYPE
         },
     ]);

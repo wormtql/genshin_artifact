@@ -53,7 +53,7 @@ impl WeaponTrait for SerpentSpine {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "被动等效层数",
+            title: "w1",
             config: ItemConfigType::Float { min: 0.0, max: 5.0, default: 0.0 },
         }
     ]);

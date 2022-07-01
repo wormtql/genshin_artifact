@@ -63,7 +63,7 @@ impl WeaponTrait for ThunderingPulse {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "「飞雷之巴印」层数",
+            title: "w13",
             config: ItemConfigType::Int { min: 0, max: 3, default: 0 }
         }
     ]);

@@ -246,7 +246,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":"w4","type":"floatPercentageInput"},
             
         ],
     },
@@ -261,7 +261,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":"w4","type":"floatPercentageInput"},
             
         ],
     },
@@ -276,7 +276,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":"w4","type":"floatPercentageInput"},
             
         ],
     },
@@ -291,7 +291,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"value","title":"数值","type":"floatInput"},
+            {"default":0.0,"name":"value","title":"w4","type":"floatInput"},
             
         ],
     },
@@ -306,7 +306,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"value","title":"数值","type":"floatInput"},
+            {"default":0.0,"name":"value","title":"w4","type":"floatInput"},
             
         ],
     },
@@ -321,7 +321,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"value","title":"数值","type":"floatInput"},
+            {"default":0.0,"name":"value","title":"w4","type":"floatInput"},
             
         ],
     },
@@ -336,7 +336,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":"w4","type":"floatPercentageInput"},
             
         ],
     },
@@ -351,7 +351,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":"w4","type":"floatPercentageInput"},
             
         ],
     },
@@ -366,7 +366,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":"w4","type":"floatPercentageInput"},
             
         ],
     },
@@ -381,7 +381,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"value","title":"数值","type":"floatInput"},
+            {"default":0.0,"name":"value","title":"w4","type":"floatInput"},
             
         ],
     },
@@ -411,7 +411,7 @@ export default {
         description: "百分比减防",
         config: [
             
-            {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":"w4","type":"floatPercentageInput"},
             
         ],
     },
@@ -426,7 +426,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":"w4","type":"floatPercentageInput"},
             
         ],
     },
@@ -441,7 +441,7 @@ export default {
         description: "",
         config: [
             
-            {"default":0.0,"name":"p","title":"数值","type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":"w4","type":"floatPercentageInput"},
             
         ],
     },
@@ -1293,7 +1293,7 @@ export default {
         description: "「千年的大乐章·抗争之歌」效果：普通攻击、重击、下落攻击造成的伤害提升16%/20%/24%/28%/32%，攻击力提升20%/25%/30%/35%/40%。",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":"精炼","type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
             
         ],
     },
@@ -1308,7 +1308,7 @@ export default {
         description: "「千年的大乐章·揭旗之歌」效果：普通攻击速度提升12%/15%/18%/21%/24%，攻击力提升20%/25%/30%/35%/40%。",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":"精炼","type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
             
         ],
     },
@@ -1323,7 +1323,7 @@ export default {
         description: "攻击命中生命值低于30%的敌人时，队伍中所有成员的攻击力提高40%/50%/60%/70%/80%，持续12秒。该效果30秒只能触发一次。",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":"精炼","type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
             
         ],
     },
@@ -1338,7 +1338,7 @@ export default {
         description: "传承：主动切换角色时，新登场的角色攻击力提升24%/30%/36%/42%/48%，持续10秒。该效果每20秒只能触发一次。",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":"精炼","type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
             
         ],
     },
@@ -1353,7 +1353,7 @@ export default {
         description: "千年的大乐章·别离之歌」效果：元素精通提高100/125/150/175/200点，攻击力提升20%/25%/30%/35%/40%。",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":"精炼","type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
             
         ],
     },
@@ -1368,7 +1368,7 @@ export default {
         description: "樱之斋宫：装备该武器的角色触发雷元素相关反应后，队伍中附近的与该元素反应相关的元素类型的角色，获得10%/12.5%/15%/17.5%/20%对应元素的元素伤害加成，持续6秒。通过这种方式，角色获得的元素伤害加成无法叠加。",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":"精炼","type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
             
             {"default":"Electro","name":"element","title":"元素","type":"element8"},
             

@@ -160,10 +160,10 @@ impl ItemConfigType {
 }
 
 impl ItemConfig {
-    pub const DEFAULT_RATE_TITLE: &'static str = "被动应用比例";
-    pub const DEFAULT_STACK_TITLE: &'static str = "被动等效层数";
-    pub const DEFAULT_RECHARGE_TITLE: &'static str = "充能需求";
-    pub const DEFAULT_BUFF_TITLE: &'static str = "数值";
+    pub const DEFAULT_RATE_TITLE: &'static str = "w2";
+    pub const DEFAULT_STACK_TITLE: &'static str = "w1";
+    pub const DEFAULT_RECHARGE_TITLE: &'static str = "w3";
+    pub const DEFAULT_BUFF_TITLE: &'static str = "w4";
 
     pub const RATE01_TYPE: ItemConfigType = ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 };
     pub const RATE01: ItemConfig = ItemConfig { name: "rate", title: Self::DEFAULT_RATE_TITLE, config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 } };
@@ -173,7 +173,7 @@ impl ItemConfig {
     pub const STACK05: ItemConfig = ItemConfig { name: "stack", title: Self::DEFAULT_STACK_TITLE, config: ItemConfigType::Float { min: 0.0, max: 5.0, default: 0.0 } };
     pub const BUFFV1P: ItemConfig = ItemConfig { name: "p", title: Self::DEFAULT_BUFF_TITLE, config: ItemConfigType::FloatPercentageInput { default: 0.0 } };
     pub const BUFFV1: ItemConfig = ItemConfig { name: "value", title: Self::DEFAULT_BUFF_TITLE, config: ItemConfigType::FloatInput { default: 0.0 } };
-    pub const REFINE: ItemConfig = ItemConfig { name: "refine", title: "精炼", config: ItemConfigType::IntInput { min: 1, max: 5, default: 1 } };
+    pub const REFINE: ItemConfig = ItemConfig { name: "refine", title: "w5", config: ItemConfigType::IntInput { min: 1, max: 5, default: 1 } };
 
     pub fn to_json(&self) -> String {
         self.config.to_json(self.title, self.name)

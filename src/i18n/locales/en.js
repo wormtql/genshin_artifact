@@ -1,6 +1,7 @@
 import character from "../character/en"
 import artifact from "../artifact/en"
 import { default as weapon, effect as weaponEffect } from "../weapon/en"
+import config from "../config/en"
 
 export default {
     webName: "MonaUranai",
@@ -114,6 +115,7 @@ export default {
     artifact,
     weapon,
     weaponEffect,
+    config,
     ele: {
         Pyro: "Pyro",
         Cryo: "Cryo",

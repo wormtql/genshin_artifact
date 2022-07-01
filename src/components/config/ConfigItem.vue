@@ -1,6 +1,7 @@
 <template>
     <div>
-        <h3 class="config-title">{{ params.title }}</h3>
+<!--        <h3 class="config-title">{{ // params.title }}</h3>-->
+        <h3 class="config-title">{{ title }}</h3>
         <template v-if="type === 'float'">
             <el-slider
                 :modelValue="modelValue"
@@ -98,6 +99,7 @@ export default {
         modelValue: {},
         type: {},
         params: {},
+        title: {},
     },
     emits: ["update:modelValue"],
     methods: {

@@ -46,7 +46,7 @@ impl WeaponTrait for AquaSimulacra {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "is_enemy_around",
-            title: "周围存在敌人",
+            title: "w6",
             config: ItemConfigType::Bool { default: true }
         }
     ]);

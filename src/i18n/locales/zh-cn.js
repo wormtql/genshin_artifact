@@ -1,6 +1,7 @@
 import character from "../character/zh-cn"
 import artifact from "../artifact/zh-cn"
 import { default as weapon, effect as weaponEffect } from "../weapon/zh-cn"
+import config from "../config/zh-cn"
 
 export default {
     webName: "莫娜占卜铺",
@@ -93,6 +94,7 @@ export default {
     artifact,
     weapon,
     weaponEffect,
+    config,
     ele: {
         Pyro: "火",
         Cryo: "冰",

@@ -67,7 +67,7 @@ impl WeaponTrait for VortexVanquisher {
         },
         ItemConfig {
             name: "shield_rate",
-            title: "护盾覆盖率",
+            title: "w15",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

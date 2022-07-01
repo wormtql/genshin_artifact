@@ -54,7 +54,7 @@ impl WeaponTrait for LithicSpear {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "liyue_count",
-            title: "队伍璃月角色数量",
+            title: "w19",
             config: ItemConfigType::Int { min: 0, max: 4, default: 0 }
         }
     ]);

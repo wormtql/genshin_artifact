@@ -56,12 +56,12 @@ impl WeaponTrait for DodocoTales {
     #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
-            name: "rate1",
+            name: "w8",
             title: "效果1比例",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
-            name: "rate2",
+            name: "w9",
             title: "效果2比例",
             config: ItemConfig::RATE01_TYPE
         },

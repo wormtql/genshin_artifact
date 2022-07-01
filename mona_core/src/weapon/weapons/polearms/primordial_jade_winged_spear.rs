@@ -66,7 +66,7 @@ impl WeaponTrait for PrimordialJadeWingedSpear {
         },
         ItemConfig {
             name: "full_rate",
-            title: "满层状态比例",
+            title: "w23",
             config: ItemConfig::RATE01_TYPE,
         }
     ]);

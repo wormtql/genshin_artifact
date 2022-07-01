@@ -59,7 +59,7 @@ impl WeaponTrait for MemoryOfDust {
         ItemConfig::STACK05,
         ItemConfig {
             name: "shield_rate",
-            title: "护盾覆盖率",
+            title: "w15",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

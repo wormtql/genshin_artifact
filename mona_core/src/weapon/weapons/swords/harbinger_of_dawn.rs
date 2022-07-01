@@ -47,7 +47,7 @@ impl WeaponTrait for HarbingerOfDawn {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "被动应用比例",
+            title: "w2",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);

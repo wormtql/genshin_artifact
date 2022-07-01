@@ -44,12 +44,12 @@ impl WeaponTrait for KagurasVerity {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "被动等效层数",
+            title: "w1",
             config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 3.0 }
         },
         ItemConfig {
             name: "full_rate",
-            title: "满层比例",
+            title: "w14",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);

@@ -48,7 +48,7 @@ impl WeaponTrait for FadingTwilight {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "state",
-            title: "状态",
+            title: "w7",
             config: ItemConfigType::Option { options: "夕暮,流霞,朝晖", default: 2 }
         }
     ]);

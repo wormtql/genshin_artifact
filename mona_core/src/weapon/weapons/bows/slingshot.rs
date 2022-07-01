@@ -52,7 +52,7 @@ impl WeaponTrait for Slingshot {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "is_effect",
-            title: "0.3秒内命中",
+            title: "w12",
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig::RATE01

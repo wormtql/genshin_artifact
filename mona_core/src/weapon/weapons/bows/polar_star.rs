@@ -69,7 +69,7 @@ impl WeaponTrait for PolarStar {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "「白夜极星」层数",
+            title: "w11",
             config: ItemConfigType::Int { min: 0, max: 4, default: 0 }
         }
     ]);

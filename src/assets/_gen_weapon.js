@@ -289,7 +289,7 @@ export default {
         
         configs: [
             
-            {"default":3,"max":3,"min":0,"name":"emblem_level","title":"「雾切之巴印」层数","type":"int"},
+            {"default":3,"max":3,"min":0,"name":"emblem_level","title":"w26","type":"int"},
             
         ],
         
@@ -329,9 +329,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":"护盾覆盖率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":"w15","type":"float"},
             
         ],
         
@@ -371,7 +371,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -447,7 +447,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -523,7 +523,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -563,7 +563,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -585,7 +585,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -643,7 +643,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -665,7 +665,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -687,7 +687,7 @@ export default {
         
         configs: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -727,7 +727,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -749,7 +749,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -771,7 +771,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -847,7 +847,7 @@ export default {
         
         configs: [
             
-            {"default":2.0,"max":2.0,"min":0.0,"name":"stack","title":"「波穗」层数","type":"float"},
+            {"default":2.0,"max":2.0,"min":0.0,"name":"stack","title":"w25","type":"float"},
             
         ],
         
@@ -869,7 +869,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -909,9 +909,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":"护盾覆盖率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":"w15","type":"float"},
             
         ],
         
@@ -933,7 +933,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -973,7 +973,7 @@ export default {
         
         configs: [
             
-            {"default":40,"max":400,"min":40,"name":"energy","title":"队伍能量上限总和","type":"int"},
+            {"default":40,"max":400,"min":40,"name":"energy","title":"w10","type":"int"},
             
         ],
         
@@ -1013,7 +1013,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -1035,7 +1035,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -1129,7 +1129,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -1151,7 +1151,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -1173,7 +1173,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -1231,7 +1231,7 @@ export default {
         
         configs: [
             
-            {"default":0,"max":4,"min":0,"name":"liyue_count","title":"队伍璃月角色数量","type":"int"},
+            {"default":0,"max":4,"min":0,"name":"liyue_count","title":"w19","type":"int"},
             
         ],
         
@@ -1253,7 +1253,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -1293,7 +1293,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -1333,7 +1333,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -1391,7 +1391,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -1431,9 +1431,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":7.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":7.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"full_rate","title":"满层状态比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"full_rate","title":"w23","type":"float"},
             
         ],
         
@@ -1455,9 +1455,9 @@ export default {
         
         configs: [
             
-            {"default":6.0,"max":6.0,"min":0.0,"name":"stack","title":"「圆顿」等效层数","type":"float"},
+            {"default":6.0,"max":6.0,"min":0.0,"name":"stack","title":"w20","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"backend_rate","title":"后台比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"backend_rate","title":"w21","type":"float"},
             
         ],
         
@@ -1479,7 +1479,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"be50_rate","title":"生命值低于50%时间比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"be50_rate","title":"w24","type":"float"},
             
         ],
         
@@ -1501,9 +1501,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":"护盾覆盖率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":"w15","type":"float"},
             
         ],
         
@@ -1525,7 +1525,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -1547,7 +1547,7 @@ export default {
         
         configs: [
             
-            {"default":0,"max":4,"min":0,"name":"liyue_count","title":"队伍璃月角色数量","type":"int"},
+            {"default":0,"max":4,"min":0,"name":"liyue_count","title":"w19","type":"int"},
             
         ],
         
@@ -1641,7 +1641,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -1663,7 +1663,7 @@ export default {
         
         configs: [
             
-            {"default":true,"name":"ge2","title":"身边至少有2个敌人","type":"bool"},
+            {"default":true,"name":"ge2","title":"w22","type":"bool"},
             
         ],
         
@@ -1703,7 +1703,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -1725,7 +1725,7 @@ export default {
         
         configs: [
             
-            {"default":40,"max":400,"min":40,"name":"energy","title":"队伍元素能量上限总和","type":"int"},
+            {"default":40,"max":400,"min":40,"name":"energy","title":"w10","type":"int"},
             
         ],
         
@@ -1783,7 +1783,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -1859,7 +1859,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -1917,9 +1917,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":"护盾覆盖率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":"w15","type":"float"},
             
         ],
         
@@ -1941,7 +1941,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -1963,11 +1963,11 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"t1_rate","title":"宣叙调比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"t1_rate","title":"w16","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"t2_rate","title":"咏叹调比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"t2_rate","title":"w17","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"t3_rate","title":"间奏曲比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"t3_rate","title":"w18","type":"float"},
             
         ],
         
@@ -1989,9 +1989,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate1","title":"效果①比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate1","title":"w8","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate2","title":"效果②比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate2","title":"w9","type":"float"},
             
         ],
         
@@ -2067,7 +2067,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -2161,9 +2161,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate1","title":"效果1比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"w8","title":"效果1比例","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate2","title":"效果2比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"w9","title":"效果2比例","type":"float"},
             
         ],
         
@@ -2185,7 +2185,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -2207,9 +2207,9 @@ export default {
         
         configs: [
             
-            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"full_rate","title":"满层比例","type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"full_rate","title":"w14","type":"float"},
             
         ],
         
@@ -2231,7 +2231,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -2253,7 +2253,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -2293,7 +2293,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -2333,7 +2333,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -2391,7 +2391,7 @@ export default {
         
         configs: [
             
-            {"default":0,"max":4,"min":0,"name":"stack","title":"「白夜极星」层数","type":"int"},
+            {"default":0,"max":4,"min":0,"name":"stack","title":"w11","type":"int"},
             
         ],
         
@@ -2413,7 +2413,7 @@ export default {
         
         configs: [
             
-            {"default":0,"max":3,"min":0,"name":"stack","title":"「飞雷之巴印」层数","type":"int"},
+            {"default":0,"max":3,"min":0,"name":"stack","title":"w13","type":"int"},
             
         ],
         
@@ -2435,7 +2435,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -2475,7 +2475,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -2497,7 +2497,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":10.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":10.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -2609,7 +2609,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -2631,7 +2631,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -2653,7 +2653,7 @@ export default {
         
         configs: [
             
-            {"default":40,"max":400,"min":40,"name":"energy","title":"队伍元素能量上限总和","type":"int"},
+            {"default":40,"max":400,"min":40,"name":"energy","title":"w10","type":"int"},
             
         ],
         
@@ -2675,9 +2675,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate1","title":"效果1比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate1","title":"w8","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate2","title":"效果2比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate2","title":"w9","type":"float"},
             
         ],
         
@@ -2699,7 +2699,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -2739,7 +2739,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -2761,7 +2761,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"被动等效层数","type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -2783,7 +2783,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -2805,7 +2805,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -2863,7 +2863,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -2885,9 +2885,9 @@ export default {
         
         configs: [
             
-            {"default":true,"name":"is_effect","title":"0.3秒内命中","type":"bool"},
+            {"default":true,"name":"is_effect","title":"w12","type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"被动应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         
@@ -2945,7 +2945,7 @@ export default {
         
         configs: [
             
-            {"default":true,"name":"is_enemy_around","title":"周围存在敌人","type":"bool"},
+            {"default":true,"name":"is_enemy_around","title":"w6","type":"bool"},
             
         ],
         
@@ -2967,7 +2967,7 @@ export default {
         
         configs: [
             
-            {"default":2,"name":"state","options":["夕暮","流霞","朝晖"],"title":"状态","type":"option"},
+            {"default":2,"name":"state","options":["夕暮","流霞","朝晖"],"title":"w7","type":"option"},
             
         ],
         
