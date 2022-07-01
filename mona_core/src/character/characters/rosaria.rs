@@ -1,8 +1,11 @@
 use num_derive::FromPrimitive;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+
 use crate::attribute::{Attribute, AttributeName};
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
@@ -13,8 +16,6 @@ use crate::target_functions::target_functions::cryo::rosaria_default::RosariaDef
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
-use strum::EnumCount;
-use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
 pub struct RosariaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -51,7 +52,7 @@ pub const ROSARIA_SKILL: RosariaSkillType = RosariaSkillType {
     elemental_skill_dmg12: [1.36, 1.462, 1.564, 1.7, 1.802, 1.904, 2.04, 2.176, 2.312, 2.448, 2.584, 2.72, 2.89, 3.06, 3.23],
     elemental_burst_dmg11: [1.04, 1.118, 1.196, 1.3, 1.378, 1.456, 1.56, 1.664, 1.768, 1.872, 1.976, 2.08, 2.21, 2.34, 2.47],
     elemental_burst_dmg12: [1.52, 1.634, 1.748, 1.9, 2.014, 2.128, 2.28, 2.432, 2.584, 2.736, 2.888, 3.04, 3.23, 3.42, 3.61],
-    elemental_burst_dmg2: [1.32, 1.419, 1.518, 1.65, 1.749, 1.848, 1.98, 2.112, 2.244, 2.376, 2.508, 2.64, 2.805, 2.97, 3.135]
+    elemental_burst_dmg2: [1.32, 1.419, 1.518, 1.65, 1.749, 1.848, 1.98, 2.112, 2.244, 2.376, 2.508, 2.64, 2.805, 2.97, 3.135],
 };
 
 pub const ROSARIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
@@ -66,7 +67,7 @@ pub const ROSARIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·教会枪术",
     skill_name2: "噬罪的告解",
-    skill_name3: "终命的圣礼"
+    skill_name3: "终命的圣礼",
 };
 
 pub struct RosariaEffect {
@@ -178,7 +179,7 @@ impl CharacterTrait for Rosaria {
             CharacterSkillMapItem { index: RosariaDamageEnum::Q11 as usize, chs: "技能伤害-1" },
             CharacterSkillMapItem { index: RosariaDamageEnum::Q12 as usize, chs: "技能伤害-2" },
             CharacterSkillMapItem { index: RosariaDamageEnum::Q2 as usize, chs: "冰枪持续伤害" },
-        ])
+        ]),
     };
 
     #[cfg(not(target_family = "wasm"))]
@@ -186,7 +187,7 @@ impl CharacterTrait for Rosaria {
         ItemConfig {
             name: "e_from_behind",
             title: "应用天赋「聆听忏悔的幽影」效果",
-            config: ItemConfigType::Bool { default: true }
+            config: ItemConfigType::Bool { default: true },
         }
     ]);
 
@@ -228,7 +229,7 @@ impl CharacterTrait for Rosaria {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
         )
     }
 

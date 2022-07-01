@@ -9,7 +9,7 @@ use crate::character::traits::CharacterTrait;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 
 pub struct BuffEulaE {
-    pub skill2: usize
+    pub skill2: usize,
 }
 
 impl<A: Attribute> Buff<A> for BuffEulaE {
@@ -36,7 +36,7 @@ impl BuffMeta for BuffEulaE {
         ItemConfig {
             name: "skill2",
             title: "技能等级",
-            config: ItemConfigType::Int { min: 1, max: 15, default: 9 }
+            config: ItemConfigType::Int { min: 1, max: 15, default: 9 },
         }
     ]);
 

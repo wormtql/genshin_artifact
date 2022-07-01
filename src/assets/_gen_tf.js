@@ -1375,7 +1375,7 @@ export default {
     "XinyanDamage": {
         name: "XinyanDamage",
         chs: "辛焱-输出",
-        description: "普通主c辛焱",
+        description: "普通物伤输出辛焱",
         tags: [
             
             "输出",

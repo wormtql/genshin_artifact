@@ -48,7 +48,7 @@ impl BuffMeta for BuffAlbedoC4 {
         description: Some("阿贝多命座4：处于阳华的领域中的队伍中当前场上角色，造成的下落攻击伤害提高30%。"),
         from: BuffFrom::Character(CharacterName::Albedo),
     };
-    
+
     fn create<A: Attribute>(_b: &BuffConfig) -> Box<dyn Buff<A>> {
         Box::new(BuffAlbedoC4)
     }
@@ -72,7 +72,7 @@ impl BuffMeta for BuffAlbedoC6 {
         description: Some("阿贝多命座6：处在阳华的领域中的队伍中当前场上角色，若处于结晶反应产生的护盾庇护下，造成的伤害提高17%。"),
         from: BuffFrom::Character(CharacterName::Albedo),
     };
-    
+
     fn create<A: Attribute>(_b: &BuffConfig) -> Box<dyn Buff<A>> {
         Box::new(BuffAlbedoC6)
     }
