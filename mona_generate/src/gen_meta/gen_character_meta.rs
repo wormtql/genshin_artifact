@@ -4,6 +4,7 @@ use mona::character::{CharacterName, CharacterStaticData};
 use mona::character::traits::{CharacterSkillMap, CharacterSkillMapItem};
 use mona::common::item_config_type::ItemConfig;
 use lazy_static::lazy_static;
+use crate::utils::character::get_character_dmg_names_chs;
 use crate::utils::get_internal_character_name;
 
 struct CharacterMeta {
@@ -26,7 +27,17 @@ struct CharacterMeta {
 #[derive(Template)]
 #[template(path = "character_meta_template.js")]
 struct CharacterMetaTemplate {
-    characters: Vec<CharacterMeta>
+    characters: Vec<CharacterMeta>,
+    dmg_name_map: HashMap<String, usize>,
+}
+
+fn get_dmg_name_map() -> HashMap<String, usize> {
+    let v = get_character_dmg_names_chs();
+    let mut result = HashMap::new();
+    for (index, item) in v.into_iter().enumerate() {
+        result.insert(item, index);
+    }
+    result
 }
 
 pub fn gen_character_meta_as_js_file() -> String {
@@ -86,7 +97,8 @@ pub fn gen_character_meta_as_js_file() -> String {
     }
 
     let t = CharacterMetaTemplate {
-        characters: data
+        characters: data,
+        dmg_name_map: get_dmg_name_map(),
     };
 
     t.render().unwrap()

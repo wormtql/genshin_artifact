@@ -20,7 +20,6 @@ declare module '@vue/runtime-core' {
     ConfigItem: typeof import('./components/config/ConfigItem.vue')['default']
     DamageAnalysis: typeof import('./components/display/DamageAnalysis/DamageAnalysis.vue')['default']
     DamageAnalysisUtil: typeof import('./components/display/DamageAnalysis/DamageAnalysisUtil.vue')['default']
-    DamageDisplay: typeof import('./components/display/DamageDisplay.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']

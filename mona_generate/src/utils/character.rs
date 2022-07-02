@@ -5,13 +5,34 @@ use std::path::Path;
 use mona::character::{CharacterName, CharacterStaticData};
 use edit_distance::edit_distance;
 use serde::{Deserialize};
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
+use mona::character::traits::CharacterSkillMap;
+use crate::utils::skill::{get_avatar_skill_data_item, get_avatar_skill_depot_data_item};
 use crate::utils::text_map::get_text_map;
 
 #[derive(Deserialize, Debug)]
 pub struct AvatarExcelDataItem {
     pub nameTextMapHash: u64,
     pub iconName: String,
+    pub skillDepotId: u64,
+}
+
+impl AvatarExcelDataItem {
+    pub fn get_skill_names(&self) -> Vec<u64> {
+        let mut result = Vec::new();
+
+        let skill_depot = get_avatar_skill_depot_data_item(self.skillDepotId);
+        for i in 0..2 {
+            let skill_item = get_avatar_skill_data_item(skill_depot.skills[i]);
+            result.push(skill_item.nameTextMapHash);
+        }
+        if let Some(x) = skill_depot.energySkill {
+            let skill_item = get_avatar_skill_data_item(x);
+            result.push(skill_item.nameTextMapHash);
+        }
+
+        result
+    }
 }
 
 lazy_static! {
@@ -52,4 +73,46 @@ pub fn get_character_data() -> &'static [AvatarExcelDataItem] {
 
 pub fn get_character_data_by_name(name: CharacterName) -> &'static AvatarExcelDataItem {
     *INTERNAL_CHARACTER_ITEM_MAP.get(&name).unwrap()
+}
+
+pub fn get_character_dmg_names_chs() -> Vec<String> {
+    let mut set = HashSet::new();
+    let mut result = Vec::new();
+    for i in 0..CharacterName::LEN {
+        let name: CharacterName = num::FromPrimitive::from_usize(i).unwrap();
+
+        let skill_map: CharacterSkillMap = name.get_skill_map();
+
+        let mut f = |s: &str| {
+            if set.contains(s) {
+                return;
+            }
+            set.insert(s.to_string());
+            result.push(s.to_string());
+        };
+
+        if let Some(x) = skill_map.skill1 {
+            for item in x.iter() {
+                // set.insert(item.chs.to_string());
+                f(item.chs);
+            }
+        }
+        if let Some(x) = skill_map.skill2 {
+            for item in x.iter() {
+                // set.insert(item.chs.to_string());
+                f(item.chs);
+            }
+        }
+        if let Some(x) = skill_map.skill3 {
+            for item in x.iter() {
+                // set.insert(item.chs.to_string());
+                f(item.chs);
+            }
+        }
+    }
+
+    // let mut temp: Vec<String> = set.into_iter().collect();
+    // temp.sort();
+    // temp
+    result
 }

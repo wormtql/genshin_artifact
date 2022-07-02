@@ -508,22 +508,22 @@
             </el-col>
 
             <el-col :sm="24" :md="12" class="middle-container mona-scroll-hidden">
-                <p class="common-title">圣遗物</p>
+                <p class="common-title">{{ t("misc.artifact") }}</p>
 
                 <div class="artifact-tool" style="margin-bottom: 12px">
                     <el-button-group>
                         <el-button
                             :icon="IconEpHistogram"
                             @click="handleClickArtifactAnalysis"
-                        >词条分析</el-button>
+                        >{{ t("calcPage.statAnalysis") }}</el-button>
                         <el-button
                             :icon="IconEpStarFilled"
                             @click="handleClickSaveAsKumi"
-                        >存为套装</el-button>
+                        >{{ t("calcPage.saveKumi") }}</el-button>
                         <el-button
                             :icon="IconEpFolder"
                             @click="handleClickUseKumi"
-                        >应用套装</el-button>
+                        >{{ t("calcPage.useKumi") }}</el-button>
                     </el-button-group>
                 </div>
 
@@ -554,7 +554,7 @@
 
                 <div v-if="artifactNeedConfig4" style="margin-top: 16px">
                     <p class="common-description">
-                        <span class="effect4">四件套效果：</span>
+                        <span class="effect4">{{ t("calcPage.effect4") }}</span>
                         <span v-html="artifactEffect4Text"></span>
                     </p>
                     <item-config
@@ -567,17 +567,17 @@
 
                 <el-divider></el-divider>
 
-                <p class="common-title">伤害计算</p>
+                <p class="common-title">{{ t("calcPage.dmg") }}</p>
                 <div class="my-button-list" style="margin-bottom: 12px">
                     <el-button-group>
                         <el-button
                             :icon="IconEpHistogram"
                             @click="handleDisplayAnalysis"
-                        >明细</el-button>
+                        >{{ t("calcPage.detail") }}</el-button>
                         <el-button
                             :icon="IconEpTools"
                             @click="handleClickEnemyConfig"
-                        >敌人设置</el-button>
+                        >{{ t("calcPage.setupEnemy") }}</el-button>
                     </el-button-group>
                 </div>
                 <div v-if="characterNeedSkillConfig" style="margin-bottom: 16px;">
@@ -598,20 +598,20 @@
                     ></damage-panel>
                 </div>
 
-                <h3 class="common-title2" style="margin-top: 24px">剧变反应伤害</h3>
+                <h3 class="common-title2" style="margin-top: 24px">{{ t("calcPage.dmg2") }}</h3>
                 <transformative-damage
                     :data="characterTransformativeDamage"
                 ></transformative-damage>
             </el-col>
 
             <el-col :sm="24" :md="6" class="right-container mona-scroll-hidden">
-                <div class="common-title">面板</div>
+                <div class="common-title">{{ t("calcPage.panel") }}</div>
 
                 <div class="my-button-list" style="margin-bottom: 12px">
                     <el-button
                         :icon="IconEpHistogram"
                         @click="handleClickAttributeAnalysis"
-                    >词条收益</el-button>
+                    >{{ t("calcPage.statCurve") }}</el-button>
                 </div>
 
                 <attribute-panel

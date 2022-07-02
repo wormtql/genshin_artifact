@@ -26,17 +26,17 @@ export default {
         skillName3: "{{ c.skill3_name }}",
         skillMap1: [
             {% for s in c.skill_map1 %}
-            { index: {{ s.index }}, chs: "{{ s.chs }}" },
+            { index: {{ s.index }}, chs: "{{ s.chs }}", text: {{ dmg_name_map[s.chs] }} },
             {% endfor %}
         ],
         skillMap2: [
             {% for s in c.skill_map2 %}
-            { index: {{ s.index }}, chs: "{{ s.chs }}" },
+            { index: {{ s.index }}, chs: "{{ s.chs }}", text: {{ dmg_name_map[s.chs] }} },
             {% endfor %}
         ],
         skillMap3: [
             {% for s in c.skill_map3 %}
-            { index: {{ s.index }}, chs: "{{ s.chs }}" },
+            { index: {{ s.index }}, chs: "{{ s.chs }}", text: {{ dmg_name_map[s.chs] }} },
             {% endfor %}
         ],
         config: [
