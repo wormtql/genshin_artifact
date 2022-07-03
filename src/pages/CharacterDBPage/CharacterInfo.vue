@@ -5,15 +5,15 @@
             Error
         </div>
         <div v-if="loaded && !error && !hasCharacter">
-            <el-empty description="角色数据过少"></el-empty>
+            <el-empty :description="t('dbPage.tooSmall')"></el-empty>
         </div>
         <div v-if="loaded && !error && hasCharacter" class="tab-full-height mona-scroll-hidden content-div">
-            <p class="analysis-item-title">{{ characterChs }}</p>
+            <p class="analysis-item-title">{{ t("character", characterName) }}</p>
             <div class="character-splash-div">
                 <img :src="characterSplash">
             </div>
 
-            <p class="analysis-item-title">武器使用率</p>
+            <p class="analysis-item-title">{{ t("dbPage.weapon") }}</p>
             <w-c-bar
                 v-for="item in weaponUsage"
                 :key="item[0]"
@@ -21,7 +21,7 @@
                 type="weapon"
             ></w-c-bar>
 
-            <p class="analysis-item-title">推荐圣遗物</p>
+            <p class="analysis-item-title">{{ t("dbPage.art") }}</p>
             <div
                 v-for="(item, index) in artifactSetUsage"
                 :key="index"
@@ -30,7 +30,7 @@
                 <artifact-bar :item="item"></artifact-bar>
             </div>
 
-            <p class="analysis-item-title">推荐主词条</p>
+            <p class="analysis-item-title">{{ t("dbPage.mainStat") }}</p>
             <el-row>
                 <el-col
                     :md="8"
@@ -38,13 +38,13 @@
                     v-for="slotName in mainStats"
                 >
                     <basic-pie-chart
-                        :title="slot2Chs[slotName]"
+                        :title="t('misc', slotName)"
                         :data="mainStatData[slotName]"
                     ></basic-pie-chart>
                 </el-col>
             </el-row>
 
-            <p class="analysis-item-title">推荐副词条分布</p>
+            <p class="analysis-item-title">{{ t("dbPage.subStat") }}</p>
             <v-chart :option="optionsForSubStatChart" style="height: 300px" :autoresize="true"></v-chart>
         </div>
     </div>
@@ -56,8 +56,8 @@ import {getComputeResultAnalysis} from "@/api/misc"
 
 import ArtifactBar from "./ArtifactBar"
 import WCBar from "./WCBar"
-import BasicPieChart from "@c/display/BasicPieChart"
-import {statName2Chs} from "@util/artifacts"
+import BasicPieChart from "@/components/display/BasicPieChart"
+import {statName2Locale} from "@util/artifacts"
 
 /// #if !USE_CDN
 import { use } from "echarts/core"
@@ -76,6 +76,7 @@ use([
 ])
 /// #endif
 import VChart from "vue-echarts"
+import {useI18n} from "../../i18n/i18n";
 
 export default {
     name: "MonaDBCharacter",
@@ -97,11 +98,11 @@ export default {
             characterData,
 
             mainStats: ["Sand", "Goblet", "Head"],
-            slot2Chs: {
-                "Sand": "时之沙",
-                "Goblet": "空之杯",
-                "Head": "理之冠"
-            }
+            // slot2Chs: {
+            //     "Sand": "时之沙",
+            //     "Goblet": "空之杯",
+            //     "Head": "理之冠"
+            // }
         }
     },
     mounted() {
@@ -196,12 +197,17 @@ export default {
                     result[slot] = []
                     for (const statName in this.mainStatUsage[slot]) {
                         const value = this.mainStatUsage[slot][statName]
-                        const native = statName2Chs(statName)
+                        // const native = statName2Chs(statName)
 
-                        result[slot].push({
-                            value,
-                            name: native
-                        })
+                        if (value > 0.01) {
+                            const title = statName2Locale(statName)
+
+                            result[slot].push({
+                                value,
+                                // name: native
+                                name: title,
+                            })
+                        }
                     }
                 }
             }
@@ -223,12 +229,13 @@ export default {
 
             let temp = []
             for (const statName in this.subStatUsage) {
-                const chs = statName2Chs(statName)
+                const locale = statName2Locale(statName)
                 const value = parseFloat(this.subStatUsage[statName].toFixed(2))
-                temp.push([chs, value])
+                temp.push([locale, value])
             }
 
             temp.sort((a, b) => b[1] - a[1])
+            // temp = temp.filter(a => a[1] > 0.01)
 
             const labels = temp.map(x => x[0])
             const data = temp.map(x => x[1])
@@ -247,7 +254,7 @@ export default {
                 },
                 yAxis: {
                     type: 'value',
-                    name: "词条数"
+                    name: this.t("dbPage.count")
                 },
                 tooltip: {
                     trigger: "item"
@@ -266,6 +273,13 @@ export default {
         this.refresh(to.params.name)
         next()
     },
+    setup() {
+        const { t } = useI18n()
+
+        return {
+            t
+        }
+    }
 }
 </script>
 

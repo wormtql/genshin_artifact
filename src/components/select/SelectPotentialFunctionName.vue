@@ -6,7 +6,7 @@
         <el-option
             v-for="item in potentialFunctionNames"
             :key="item.name"
-            :label="item.chs"
+            :label="t('pfName', item.name)"
             :value="item.name"
         ></el-option>
     </el-select>
@@ -14,6 +14,7 @@
 
 <script>
 import { potentialFunctionData } from "@potentialFunction"
+import {useI18n} from "@/i18n/i18n";
 
 let _potentialFunctionNames = []
 for (const name in potentialFunctionData) {
@@ -30,6 +31,13 @@ export default {
     emits: ["update:modelValue"],
     created() {
         this.potentialFunctionNames = _potentialFunctionNames
+    },
+    setup() {
+        const { t } = useI18n()
+
+        return {
+            t
+        }
     }
 }
 </script>

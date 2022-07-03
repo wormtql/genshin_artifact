@@ -67,7 +67,7 @@ const props = withDefaults(defineProps<Props>(), {
     anyOption: false,
     multiple: false,
     multipleLimit: 2,
-    placeholder: "请选择"
+    placeholder: "Select"
 })
 
 const { t } = useI18n()

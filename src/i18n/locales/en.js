@@ -78,10 +78,15 @@ export default {
         random: "Random",
         cont: "Continue",
         flower: "Flower of Life",
+        Flower: "Flower of Life",
         feather: "Plume of Death",
+        Feather: "Plume of Death",
         sand: "Sands of Eon",
+        Sand: "Sands of Eon",
         cup: "Goblet of Eonothem",
+        Goblet: "Goblet of Eonothem",
         head: "circlet of Logos",
+        Head: "circlet of Logos",
         algo: "Algorithm",
         skill: "Skill",
         conste: "Constellation",
@@ -455,5 +460,22 @@ export default {
         member: "Member",
         weight: "Weight",
         showStat: "Show Stats",
+    },
+    poPage: {
+        start: "Start",
+    },
+    pfName: {
+        ArtifactEff: "Artifact Eff",
+    },
+    pfDesc: {
+        ArtifactEff: "1 point for a max-valued roll",
+    },
+    dbPage: {
+        tooSmall: "Too little character data",
+        weapon: "Weapon Usage",
+        art: "Artifact Recommendation",
+        mainStat: "Main Stat Recommendation",
+        subStat: "Sub Stats Distribution Recommendation",
+        count: "Rolls",
     }
 }

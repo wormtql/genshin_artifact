@@ -294,7 +294,7 @@ export function defaultArtifactSortFunction(a: IArtifact, b: IArtifact): number 
     }
 }
 
-export function statName2Chs(name: ArtifactStatName): string {
+export function statName2Locale(name: ArtifactStatName): string {
     let data = artifactTags[name]
     if (!data) {
         const name2 = convertArtifactStatNameBack(name as any)
@@ -305,5 +305,8 @@ export function statName2Chs(name: ArtifactStatName): string {
         throw new Error("cannot find name " + name)
     }
 
-    return data.chs
+    const { t } = useI18n()
+
+    // return data.chs
+    return t("stat", data.name)
 }

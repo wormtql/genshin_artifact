@@ -133,102 +133,102 @@ impl PotentialFunctionMeta for PotentialFunctionArtifactEff {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "atk_use",
-            title: "攻击力有效",
+            title: "p1",
             config: ItemConfigType::Bool { default: false },
         },
         ItemConfig {
             name: "atk_weight",
-            title: "攻击力权重",
+            title: "p2",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },
         ItemConfig {
             name: "atk_p_use",
-            title: "攻击力%有效",
+            title: "p3",
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "atk_p_weight",
-            title: "攻击力%权重",
+            title: "p4",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
         },
         ItemConfig {
             name: "hp_use",
-            title: "生命值有效",
+            title: "p5",
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "hp_weight",
-            title: "生命值权重",
+            title: "p6",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "hp_p_use",
-            title: "生命值%有效",
+            title: "p7",
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "hp_p_weight",
-            title: "生命值%权重",
+            title: "p8",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "def_use",
-            title: "防御力有效",
+            title: "p9",
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "def_weight",
-            title: "防御力权重",
+            title: "p10",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "def_p_use",
-            title: "防御力%有效",
+            title: "p11",
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "def_p_weight",
-            title: "防御力%权重",
+            title: "p12",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "critical_use",
-            title: "暴击率有效",
+            title: "p13",
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "critical_weight",
-            title: "暴击率权重",
+            title: "p14",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
         },
         ItemConfig {
             name: "critical_damage_use",
-            title: "暴击伤害有效",
+            title: "p15",
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "critical_damage_weight",
-            title: "暴击伤害权重",
+            title: "p16",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         },
         ItemConfig {
             name: "elemental_mastery_use",
-            title: "元素精通有效",
+            title: "p17",
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "elemental_mastery_weight",
-            title: "元素精通权重",
+            title: "p18",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "recharge_use",
-            title: "元素充能效率有效",
+            title: "p19",
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "recharge_weight",
-            title: "元素充能效率权重",
+            title: "p20",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

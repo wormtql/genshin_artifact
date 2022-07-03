@@ -46,7 +46,7 @@ const props = withDefaults(defineProps<Props>(), {
     includeAny: true,
     multiple: false,
     position: null,
-    placeholder: "请选择"
+    placeholder: "Select"
 })
 
 const tagList = computed(() => {
