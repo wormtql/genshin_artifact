@@ -44,7 +44,8 @@ export default {
         about: "About",
         help: "Help",
         exportTool: "Export Tools",
-        link: "Other Links"
+        link: "Other Links",
+        setup: "Settings",
     },
     misc: {
         character: "Character",
@@ -105,6 +106,7 @@ export default {
         rollCount: "Roll Count",
         selected: "Selected",
         panel: "Stats",
+        lang: "Language",
     },
     stat: {
         cureEffect: "Healing Bonus",
@@ -477,5 +479,11 @@ export default {
         mainStat: "Main Stat Recommendation",
         subStat: "Sub Stats Distribution Recommendation",
         count: "Rolls",
+    },
+    setupPage: {
+        storage: "Storage",
+        clear: "Clear local storage",
+        confirmClear: "Confirm clear local storage?",
+        loading: "Switching language",
     }
 }

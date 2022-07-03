@@ -50,6 +50,20 @@ export function createI18n() {
 
 const i18n = createI18n()
 
+const validLangs = ["zh-cn", "en"]
+
+export async function initI18n() {
+    const localLang = localStorage.getItem("mona-lang")
+    if (localLang && validLangs.indexOf(localLang) !== -1) {
+        // console.log("set locale", localLang)
+        await i18n.setLocale(localLang)
+    }
+
+    watchEffect(() => {
+        localStorage.setItem("mona-lang", i18n.locale.value)
+    })
+}
+
 export function useI18n() {
     return i18n
 }

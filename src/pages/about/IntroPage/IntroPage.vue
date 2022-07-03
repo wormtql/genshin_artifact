@@ -7,7 +7,7 @@
             V{{ version }}
         </p>
 
-        <el-button @click="handleTest"></el-button>
+<!--        <el-button @click="handleTest"></el-button>-->
 
         <el-row :gutter="16">
             <el-col :sm="6" :xs="24" class="mb16">
@@ -137,11 +137,6 @@ function handleClickSubmitFeedback() {
     ElMessage.success({
         message: "已发送"
     })
-}
-
-async function handleTest() {
-    const { setLocale } = useI18n()
-    await setLocale("en")
 }
 </script>
 

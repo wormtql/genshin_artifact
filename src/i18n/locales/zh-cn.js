@@ -40,6 +40,7 @@ export default {
         help: "帮助",
         exportTool: "导出工具",
         link: "友情链接",
+        setup: "设置",
     },
     misc: {
         character: "角色",
@@ -100,6 +101,7 @@ export default {
         rollCount: "强化次数",
         selected: "选中",
         panel: "面板",
+        lang: "语言",
     },
     character: {
         AetherAnemo: "空（风主）",
@@ -1451,5 +1453,11 @@ export default {
         mainStat: "推荐主词条",
         subStat: "推荐副词条分布",
         count: "词条数",
+    },
+    setupPage: {
+        storage: "存储",
+        clear: "清空本地存储",
+        confirmClear: "确定清空本地存储吗？",
+        loading: "正在切换语言",
     }
 }

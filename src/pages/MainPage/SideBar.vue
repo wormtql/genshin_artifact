@@ -10,6 +10,10 @@
                 <el-icon><i-ep-home-filled></i-ep-home-filled></el-icon>
                 <span>{{ t("nav.home") }}</span>
             </el-menu-item>
+            <el-menu-item index="/setup">
+                <el-icon><i-ep-setting></i-ep-setting></el-icon>
+                <span>{{ t("nav.setup") }}</span>
+            </el-menu-item>
 
             <el-menu-item-group>
                 <template #title>

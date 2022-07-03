@@ -6,7 +6,8 @@ import router from "./router/router"
 
 import { createApp, h } from 'vue'
 
-import App from './App.vue';
+import App from './App.vue'
+import {initI18n} from "@/i18n/i18n"
 
 declare global {
     interface Window {
@@ -25,6 +26,9 @@ async function mount() {
             }
         }
     })
+
+    // i18n
+    await initI18n()
 
     // vue router
     monaApp.use(router)
