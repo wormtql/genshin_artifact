@@ -58,7 +58,7 @@ impl ArtifactTrait for HeartOfDepth {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "效果应用比例",
+            title: "a2",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

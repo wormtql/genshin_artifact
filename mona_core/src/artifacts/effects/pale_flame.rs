@@ -60,12 +60,12 @@ impl ArtifactTrait for PaleFlame {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "avg_level",
-            title: "效果①等效层数",
+            title: "a8",
             config: ItemConfigType::Float { min: 0.0, max: 2.0, default: 0.0 }
         },
         ItemConfig {
             name: "full_rate",
-            title: "满层效果比例",
+            title: "a9",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);

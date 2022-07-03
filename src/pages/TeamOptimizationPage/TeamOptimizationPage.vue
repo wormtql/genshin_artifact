@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-drawer
-            title="面板"
+            :title="t('misc.panel')"
             v-model="showAttributeDrawer"
             :size="deviceIsPC ? '30%' : '100%'"
         >
@@ -24,8 +24,8 @@
                 class="mona-scroll-hidden left"
             >
                 <div style="margin-bottom: 12px">
-                    <el-button type="primary" :icon="IconEpCpu" @click="handleClickStart">开始计算</el-button>
-                    <el-button :icon="IconEpPlus" @click="handleClickAddMember">添加成员</el-button>
+                    <el-button type="primary" :icon="IconEpCpu" @click="handleClickStart">{{ t("teamPage.start") }}</el-button>
+                    <el-button :icon="IconEpPlus" @click="handleClickAddMember">{{ t("teamPage.add") }}</el-button>
                 </div>
 
                 <div
@@ -34,7 +34,7 @@
                     class="member-item"
                 >
                     <div style="display: flex; justify-content: space-between; align-items: center" class="member-header">
-                        <p class="team-title">成员{{ index + 1 }}</p>
+                        <p class="team-title">{{ t("teamPage.member") }}{{ index + 1 }}</p>
                         <div>
                             <el-button
                                 circle
@@ -47,12 +47,12 @@
                     </div>
 
 
-                    <p class="common-title2">计算预设</p>
+                    <p class="common-title2">{{ t("misc.preset") }}</p>
                     <select-preset
                         v-model="presetNames[index]"
                     ></select-preset>
 
-                    <p class="common-title2">权重</p>
+                    <p class="common-title2">{{ t("teamPage.weight") }}</p>
                     <el-slider
                         v-model="weights[index]"
                         :min="0"
@@ -91,7 +91,7 @@
                                     :icon="IconEpHistogram"
                                     circle
                                     text
-                                    title="查看面板"
+                                    :title="t('teamPage.showStat')"
                                     @click="handleClickDisplayAttributePanel(index)"
                                 ></el-button>
                             </div>
@@ -146,6 +146,9 @@ import IconEpCpu from "~icons/ep/cpu"
 import IconEpPlus from "~icons/ep/plus"
 import IconEpDelete from "~icons/ep/delete"
 import IconEpHistogram from "~icons/ep/histogram"
+import {useI18n} from "@/i18n/i18n";
+
+const { t } = useI18n()
 
 
 const artifactStore = useArtifactStore()

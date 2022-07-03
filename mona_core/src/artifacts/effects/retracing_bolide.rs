@@ -58,7 +58,7 @@ impl ArtifactTrait for RetracingBolide {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "护盾覆盖率",
+            title: "a10",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

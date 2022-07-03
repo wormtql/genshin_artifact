@@ -57,7 +57,7 @@ impl ArtifactTrait for Thundersoother {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "敌方雷元素覆盖率",
+            title: "a11",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

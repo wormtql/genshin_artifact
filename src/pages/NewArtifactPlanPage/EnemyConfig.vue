@@ -1,6 +1,6 @@
 <template>
     <div class="item">
-        <span class="title">等级</span>
+        <span class="title">{{ t("misc.lvl") }}</span>
         <el-input-number
             :model-value="modelValue.level"
             @update:modelValue="handleInput('level', $event)"
@@ -10,14 +10,14 @@
     </div>
 
     <div
-        v-for="item in resNames"
-        :key="item.name"
+        v-for="ele in elements8"
+        :key="ele"
         class="item"
     >
-        <span class="title">{{ item.title }}</span>
+        <span class="title">{{ t("res", ele) }}</span>
         <el-slider
-            :model-value="modelValue[item.name]"
-            @update:modelValue="handleInput(item.name, $event)"
+            :model-value="modelValue[resNameMap[ele]]"
+            @update:modelValue="handleInput(ele, $event)"
             class="input"
             :min="-1"
             :max="1"
@@ -28,31 +28,52 @@
 </template>
 
 <script>
-const resNames = [
-    { name: "electro_res", title: "雷抗" },
-    { name: "pyro_res", title: "火抗" },
-    { name: "hydro_res", title: "水抗" },
-    { name: "cryo_res", title: "冰抗" },
-    { name: "geo_res", title: "岩抗" },
-    { name: "anemo_res", title: "风抗" },
-    { name: "dendro_res", title: "草抗" },
-    { name: "physical_res", title: "物抗" }
-]
-Object.freeze(resNames)
+import {useI18n} from "@/i18n/i18n";
+
+const resNameMap = {
+    Electro: "electro_res",
+    Pyro: "pyro_res",
+    Hydro: "hydro_res",
+    Cryo: "cryo_res",
+    Geo: "geo_res",
+    Anemo: "anemo_res",
+    Dendro: "dendro_res",
+    Physical: "physical_res",
+}
+Object.freeze(resNameMap)
+
+import { elements8 } from "@/constants/misc"
 
 export default {
     name: "EnemyConfig",
     props: ["modelValue"],
     emits: ["update:modelValue"],
-    created() {
-        this.resNames = resNames
+    // created() {
+    //     this.resNames = resNames
+    // },
+    data() {
+        return {
+            elements8,
+            resNameMap,
+        }
     },
     methods: {
         handleInput(name, value) {
-            let temp = Object.assign({}, this.modelValue)
-            temp[name] = value
+            const resName = this.resNameMap[name]
 
-            this.$emit("update:modelValue", temp)
+            if (this.modelValue[resName] !== value) {
+                let temp = Object.assign({}, this.modelValue)
+                temp[this.resNameMap[name]] = value
+
+                this.$emit("update:modelValue", temp)
+            }
+        }
+    },
+    setup() {
+        const { t } = useI18n()
+
+        return {
+            t
         }
     }
 }

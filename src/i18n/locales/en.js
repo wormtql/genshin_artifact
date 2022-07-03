@@ -93,6 +93,13 @@ export default {
         general: "General",
         dmg: "DMG",
         type1: "Type",
+        art4: "Set4: ",
+        stat: "Stat",
+        value: "Value",
+        stat1: "Valuable Stat", // todo
+        rollCount: "Roll Count",
+        selected: "Selected",
+        panel: "Stats",
     },
     stat: {
         cureEffect: "Healing Bonus",
@@ -205,6 +212,12 @@ export default {
         detail: "Detail",
         dmg2: "Transformative DMG",
         panel: "Panel",
+        selectDir: "Select Dir",
+        name: "Name",
+        enterName: "Enter Name",
+        bonus1: "1 Roll Gain", // todo
+        statCount: "Roll Count", // todo
+        gain: "Relative Gain",
     },
     tfName: {
         MaxATK: "Max ATK",
@@ -359,6 +372,20 @@ export default {
         swirlPyro: "Swirl(Pyro)",
         swirlCryo: "Swirl(Cryo)",
         swirlHydro: "Swirl(Hydro)",
+        "Pyro": "Pyro DMG",
+        "Hydro": "Hydro DMG",
+        "Electro": "Electro DMG",
+        "Cryo": "Cryo DMG",
+        "Dendro": "Dendro DMG",
+        "Geo": "Geo DMG",
+        "Anemo": "Anemo DMG",
+        "Physical": "Physical DMG",
+        expect: "Expect DMG",
+        crit: "Crit DMG",
+        nonCrit: "Non Crit DMG",
+        melt: "Melt",
+        vaporize: "Vaporize",
+        heal: "Regeneration",
     },
     characterSkill: {
         Albedo: ["Normal Attack: Favonius Bladework - Weiss", "Abiogenesis: Solar Isotoma", "Rite of Progeniture: Tectonic Tide"],
@@ -411,6 +438,22 @@ export default {
         Yunjin: ["Normal Attack: Cloud-Grazing Strike", "Opening Flourish", "Cliffbreaker's Banner"],
         Zhongli: ["Normal Attack: Rain of Stone", "Dominus Lapidis", "Planet Befall"],
     },
-    dmgName: ["1-Hit DMG","2-Hit DMG","3-Hit DMG","4-Hit DMG","5-Hit DMG","Charged Attack-1","Charged Attack-2","Plunge DMG","Low Plunge DMG","High Plunge DMG","Initial Cutting DMG","Max Cutting DMG","Initial Storm DMG","Max Storm DMG","Tornado DMG","Additional Pyro DMG","Additional Hydro DMG","Additional Electro DMG","Additional Cryo DMG","Skill DMG","Transient Blossom DMG","Tectonic Tide DMG","Flower of Life","1-Hit DMG-1","1-Hit DMG-2","2-Hit DMG-1","3-Hit DMG-1","4-Hit DMG-1","Aimed Shot","Fully-Charged Aimed Shot","冰尘弹伤害","Freeze Bomb DMG","Explosion DMG","Fiery Rain DMG Per Wave","Total Fiery Rain DMG","Arataki Kesagiri Combo Slash DMG","Arataki Kesagiri Final Slash DMG","Saichimonji Slash DMG","Charged Attack DMG","Regeneration on Hit","Continuous Regeneration","Droplet DMG","Healing","Charged Attack Spinning DMG","Charged Attack Final DMG","Base DMG","一层伤害","二层伤害","闪电伤害","点按伤害","Charge Level 1 DMG-1","Charge Level 1 DMG-2","Charge Level 2 DMG-1","Charge Level 2 DMG-2","Continuous Regeneration","Slashing DMG","DoT","Explosion DMG","Slashing DMG","Continuous Field DMG","3-Hit DMG-2","5-Hit DMG-1","5-Hit DMG-2","Hold DMG","Icewhirl Brand DMG","Shattered Lightfall Sword","Lightfall Sword","Oz's ATK DMG","Summoning DMG","Falling Thunder DMG","6-Hit DMG","Aimed Shot Charge Level 1","Frostflake Arrow DMG","Frostflake Arrow Bloom DMG","Ice Shard DMG","Crystal Collapse DMG","Blood Blossom DMG","Low HP Skill DMG","Field Entering/Exiting DMG","Field Activation Healing","5-Hit DMG/3","Midare Ranzan: Plunge DMG","Midare Ranzan: Low Plunge DMG","Midare Ranzan: High Plunge DMG","Midare Ranzan: Pyro DMG","Midare Ranzan: Hydro DMG","Midare Ranzan: Cryo DMG","Midare Ranzan: Electro DMG","Press Skill DMG","Hold Skill DMG","4-Hit DMG/3","Charged Attack/3","Cutting DMG","Bloom DMG","Shunsuiken 1-Hit DMG","Shunsuiken 2-Hit DMG","Shunsuiken 3-Hit DMG","Water Illusion DMG","Bloomwater Blade DMG","4-Hit DMG-2","Lightning Stiletto DMG","Thunderclap Slash DMG/2","Consecutive Slash DMG/8","Last Attack DMG","Charged Attack DMG(With Talent)","Jumpy Dumpty DMG","Mine DMG","Sparks 'n' Splash DMG","Tengu Juurai: Ambush DMG","Tengu Juurai: Titanbreaker DMG","Tengu Juurai: Stormcluster DMG","Grass Ring of Sanctification Healing","Grass Ring of Sanctification DMG","Single Instance DMG","Total DMG","Total DMG-Low HP","Non-Conductive Hold DMG","Stack 1 Conductive Hold DMG","Stack 2 Conductive Hold DMG","Stack 3 Conductive Hold DMG","Discharge DMG","Illusory Bubble Explosion DMG","Normal Attack DMG","DMG per Star Jade","DMG Per Gem","Herald of Frost DMG","Coordinated ATK DMG","Musou no Hitotachi Base DMG","Soul Companion-1-Hit DMG","Soul Companion-2-Hit DMG","Soul Companion-3-Hit DMG","Soul Companion-4-Hit DMG","3-Hit DMG/2","Skill DMG-1","Skill DMG-2","Ice Lance DoT","Ripple DMG","Fuufuu Windwheel DMG","Fuufuu Whirlwind Kick Press DMG","Fuufuu Whirlwind Kick Hold DMG","Fuufuu Windwheel Pyro DMG","Fuufuu Windwheel Hydro DMG","Fuufuu Windwheel Cryo DMG","Fuufuu Windwheel Electro DMG","Fuufuu Whirlwind Pyro Elemental DMG","Fuufuu Whirlwind Kick Hydro DMG","Fuufuu Whirlwind Kick Cryo DMG","Fuufuu Whirlwind Kick Electro DMG","Skill Activation DMG","Skill Activation Healing","Muji-Muji Daruma DMG","Muji-Muji Daruma Healing","Riptide Flash DMG","Riptide Burst DMG","Stance Change DMG","6-Hit DMG-1","6-Hit DMG-2","Riptide Slash DMG","Skill DMG: Melee","Skill DMG: Ranged","Riptide Blast DMG","Fiery Collapse DMG","4-Hit DMG/4","Flame DMG","1-Hit Swing DMG","2-Hit Swing DMG","3-Hit Swing DMG","Pyronado DMG","Sword Rain DMG","Swing DMG","Pyro DoT","Sesshou Sakura DMG: Level 1","Sesshou Sakura DMG: Level 2","Sesshou Sakura DMG: Level 3","Sesshou Sakura DMG: Level 4","Tenko Thunderbolt DMG","Charged Attack-No Scarlet Seals","Charged Attack-1 Scarlet Seals","Charged Attack-2 Scarlet Seals","Charged Attack-3 Scarlet Seals","Charged Attack-4 Scarlet Seals","Talent2 Additional DMG","4-Hit DMG/2","Breakthrough Barb DMG","Exquisite Throw DMG","1-Hit DMG/2","Kindling Arrow DMG","Aurous Blaze Explosion DMG","Charge Level 1 DMG","Charge Level 2 DMG","5-Hit DMG/4","Stone Stele DMG","Resonance DMG"]
-
+    dmgName: ["1-Hit DMG","2-Hit DMG","3-Hit DMG","4-Hit DMG","5-Hit DMG","Charged Attack-1","Charged Attack-2","Plunge DMG","Low Plunge DMG","High Plunge DMG","Initial Cutting DMG","Max Cutting DMG","Initial Storm DMG","Max Storm DMG","Tornado DMG","Additional Pyro DMG","Additional Hydro DMG","Additional Electro DMG","Additional Cryo DMG","Skill DMG","Transient Blossom DMG","Tectonic Tide DMG","Flower of Life","1-Hit DMG-1","1-Hit DMG-2","2-Hit DMG-1","3-Hit DMG-1","4-Hit DMG-1","Aimed Shot","Fully-Charged Aimed Shot","冰尘弹伤害","Freeze Bomb DMG","Explosion DMG","Fiery Rain DMG Per Wave","Total Fiery Rain DMG","Arataki Kesagiri Combo Slash DMG","Arataki Kesagiri Final Slash DMG","Saichimonji Slash DMG","Charged Attack DMG","Regeneration on Hit","Continuous Regeneration","Droplet DMG","Healing","Charged Attack Spinning DMG","Charged Attack Final DMG","Base DMG","一层伤害","二层伤害","闪电伤害","点按伤害","Charge Level 1 DMG-1","Charge Level 1 DMG-2","Charge Level 2 DMG-1","Charge Level 2 DMG-2","Continuous Regeneration","Slashing DMG","DoT","Explosion DMG","Slashing DMG","Continuous Field DMG","3-Hit DMG-2","5-Hit DMG-1","5-Hit DMG-2","Hold DMG","Icewhirl Brand DMG","Shattered Lightfall Sword","Lightfall Sword","Oz's ATK DMG","Summoning DMG","Falling Thunder DMG","6-Hit DMG","Aimed Shot Charge Level 1","Frostflake Arrow DMG","Frostflake Arrow Bloom DMG","Ice Shard DMG","Crystal Collapse DMG","Blood Blossom DMG","Low HP Skill DMG","Field Entering/Exiting DMG","Field Activation Healing","5-Hit DMG/3","Midare Ranzan: Plunge DMG","Midare Ranzan: Low Plunge DMG","Midare Ranzan: High Plunge DMG","Midare Ranzan: Pyro DMG","Midare Ranzan: Hydro DMG","Midare Ranzan: Cryo DMG","Midare Ranzan: Electro DMG","Press Skill DMG","Hold Skill DMG","4-Hit DMG/3","Charged Attack/3","Cutting DMG","Bloom DMG","Shunsuiken 1-Hit DMG","Shunsuiken 2-Hit DMG","Shunsuiken 3-Hit DMG","Water Illusion DMG","Bloomwater Blade DMG","4-Hit DMG-2","Lightning Stiletto DMG","Thunderclap Slash DMG/2","Consecutive Slash DMG/8","Last Attack DMG","Charged Attack DMG(With Talent)","Jumpy Dumpty DMG","Mine DMG","Sparks 'n' Splash DMG","Tengu Juurai: Ambush DMG","Tengu Juurai: Titanbreaker DMG","Tengu Juurai: Stormcluster DMG","Grass Ring of Sanctification Healing","Grass Ring of Sanctification DMG","Single Instance DMG","Total DMG","Total DMG-Low HP","Non-Conductive Hold DMG","Stack 1 Conductive Hold DMG","Stack 2 Conductive Hold DMG","Stack 3 Conductive Hold DMG","Discharge DMG","Illusory Bubble Explosion DMG","Normal Attack DMG","DMG per Star Jade","DMG Per Gem","Herald of Frost DMG","Coordinated ATK DMG","Musou no Hitotachi Base DMG","Soul Companion-1-Hit DMG","Soul Companion-2-Hit DMG","Soul Companion-3-Hit DMG","Soul Companion-4-Hit DMG","3-Hit DMG/2","Skill DMG-1","Skill DMG-2","Ice Lance DoT","Ripple DMG","Fuufuu Windwheel DMG","Fuufuu Whirlwind Kick Press DMG","Fuufuu Whirlwind Kick Hold DMG","Fuufuu Windwheel Pyro DMG","Fuufuu Windwheel Hydro DMG","Fuufuu Windwheel Cryo DMG","Fuufuu Windwheel Electro DMG","Fuufuu Whirlwind Pyro Elemental DMG","Fuufuu Whirlwind Kick Hydro DMG","Fuufuu Whirlwind Kick Cryo DMG","Fuufuu Whirlwind Kick Electro DMG","Skill Activation DMG","Skill Activation Healing","Muji-Muji Daruma DMG","Muji-Muji Daruma Healing","Riptide Flash DMG","Riptide Burst DMG","Stance Change DMG","6-Hit DMG-1","6-Hit DMG-2","Riptide Slash DMG","Skill DMG: Melee","Skill DMG: Ranged","Riptide Blast DMG","Fiery Collapse DMG","4-Hit DMG/4","Flame DMG","1-Hit Swing DMG","2-Hit Swing DMG","3-Hit Swing DMG","Pyronado DMG","Sword Rain DMG","Swing DMG","Pyro DoT","Sesshou Sakura DMG: Level 1","Sesshou Sakura DMG: Level 2","Sesshou Sakura DMG: Level 3","Sesshou Sakura DMG: Level 4","Tenko Thunderbolt DMG","Charged Attack-No Scarlet Seals","Charged Attack-1 Scarlet Seals","Charged Attack-2 Scarlet Seals","Charged Attack-3 Scarlet Seals","Charged Attack-4 Scarlet Seals","Talent2 Additional DMG","4-Hit DMG/2","Breakthrough Barb DMG","Exquisite Throw DMG","1-Hit DMG/2","Kindling Arrow DMG","Aurous Blaze Explosion DMG","Charge Level 1 DMG","Charge Level 2 DMG","5-Hit DMG/4","Stone Stele DMG","Resonance DMG"],
+    res: {
+        Pyro: "Pyro Res",
+        Cryo: "Cryo Res",
+        Hydro: "Hydro Res",
+        Electro: "Electro Res",
+        Anemo: "Anemo Res",
+        Dendro: "Dendro Res",
+        Geo: "Geo Res",
+        Physical: "Physical Res",
+    },
+    teamPage: {
+        start: "Start",
+        add: "Add Member",
+        member: "Member",
+        weight: "Weight",
+        showStat: "Show Stats",
+    }
 }

@@ -5,25 +5,28 @@
         >
             <el-table-column
                 prop="name"
-                label="类型"
-            ></el-table-column>
+                :label="t('misc.type1')"
+            >
+            </el-table-column>
             <el-table-column
                 prop="expectation"
-                label="期望伤害"
+                :label="t('dmg.expect')"
             ></el-table-column>
             <el-table-column
                 prop="critical"
-                label="暴击伤害"
+                :label="t('dmg.crit')"
             ></el-table-column>
             <el-table-column
                 prop="nonCritical"
-                label="非暴击伤害"
+                :label="t('dmg.nonCrit')"
             ></el-table-column>
         </el-table>
     </div>
 </template>
 
 <script>
+import {useI18n} from "@/i18n/i18n";
+
 export default {
     name: "DamageList",
     props: {
@@ -35,20 +38,26 @@ export default {
         },
 
         normalDamageTitle() {
+            // if (this.analysisFromWasm.is_heal) {
+            //     return "治疗"
+            // } else {
+            //     const map = {
+            //         "Pyro": "火元素伤害",
+            //         "Hydro": "水元素伤害",
+            //         "Electro": "雷元素伤害",
+            //         "Cryo": "冰元素伤害",
+            //         "Dendro": "草元素伤害",
+            //         "Geo": "岩元素伤害",
+            //         "Anemo": "风元素伤害",
+            //         "Physical": "物理伤害",
+            //     }
+            //     return map[this.element]
+            // }
+
             if (this.analysisFromWasm.is_heal) {
-                return "治疗"
+                return this.t("dmg.heal")
             } else {
-                const map = {
-                    "Pyro": "火元素伤害",
-                    "Hydro": "水元素伤害",
-                    "Electro": "雷元素伤害",
-                    "Cryo": "冰元素伤害",
-                    "Dendro": "草元素伤害",
-                    "Geo": "岩元素伤害",
-                    "Anemo": "风元素伤害",
-                    "Physical": "物理伤害",
-                }
-                return map[this.element]
+                return this.t("dmg", this.element)
             }
         },
 
@@ -63,6 +72,7 @@ export default {
                 critical: r(this.analysisFromWasm.normal?.critical) ?? NO_DATA,
                 nonCritical: r(this.analysisFromWasm.normal?.non_critical) ?? NO_DATA,
                 name: this.normalDamageTitle
+                // name: t("dmg", this.element)
             })
 
             if (this.analysisFromWasm.melt) {
@@ -70,7 +80,7 @@ export default {
                     expectation: r(this.analysisFromWasm.melt?.expectation) ?? NO_DATA,
                     critical: r(this.analysisFromWasm.melt?.critical) ?? NO_DATA,
                     nonCritical: r(this.analysisFromWasm.melt?.non_critical) ?? NO_DATA,
-                    name: "融化"
+                    name: this.t("dmg.melt")
                 })
             }
             if (this.analysisFromWasm.vaporize) {
@@ -78,11 +88,18 @@ export default {
                     expectation: r(this.analysisFromWasm.vaporize?.expectation) ?? NO_DATA,
                     critical: r(this.analysisFromWasm.vaporize?.critical) ?? NO_DATA,
                     nonCritical: r(this.analysisFromWasm.vaporize?.non_critical) ?? NO_DATA,
-                    name: "蒸发"
+                    name: this.t("dmg.vaporize")
                 })
             }
 
             return temp
+        }
+    },
+    setup() {
+        const { t } = useI18n()
+
+        return {
+            t
         }
     }
 }

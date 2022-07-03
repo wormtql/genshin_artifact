@@ -3,7 +3,7 @@
         <el-input
             v-model="searchString"
             style="margin-bottom: 16px"
-            placeholder="搜索"
+            :placeholder="t('misc.search')"
             clearable
         >
             <template #append>
@@ -20,10 +20,10 @@
                 <div class="top">
                     <img :src="item.thumbnail" class="image" >
                     <div>
-                        <h3 class="artifact-title">{{ item.chs }}</h3>
+                        <h3 class="artifact-title">{{ item.title }}</h3>
                         <p style="font-size: 12px;">
-                            <span class="effect-title">四件套：</span>
-                            <span>{{ item.effect4 }}</span>
+                            <span class="effect-title">{{ t("misc.art4") }}</span>
+                            <span class="effect-body">{{ item.effect4 }}</span>
                         </p>
                     </div>
                 </div>
@@ -48,6 +48,7 @@ import { toSnakeCase, deepCopy } from "@util/common"
 import { getArtifactThumbnail } from "@util/artifacts"
 
 import ItemConfig from "@/components/config/ItemConfig"
+import {useI18n} from "@/i18n/i18n";
 
 export default {
     name: "ArtifactConfig",
@@ -69,9 +70,12 @@ export default {
                 if (config.length > 0) {
                     results.push({
                         name: name2,
+                        title: this.t("artifact", d.eng, "setName"),
+                        eng: d.eng,
                         snake: "config_" + toSnakeCase(name2),
                         config4: config,
-                        effect4: d.effect4,
+                        // effect4: d.effect4,
+                        effect4: this.t("artifact", d.eng, "effects.4"),
                         thumbnail: getArtifactThumbnail(name),
                         chs: d.chs,
                     })
@@ -85,7 +89,7 @@ export default {
                 return this.data
             } else {
                 const fuse = new Fuse(this.data, {
-                    keys: ["chs", "effect4"]
+                    keys: ["title", "effect4"]
                 })
                 const results = fuse.search(this.searchString)
                 return results.map(x => x.item)
@@ -97,6 +101,13 @@ export default {
             let temp = deepCopy(this.modelValue)
             temp[snake] = value
             this.$emit("update:modelValue", temp)
+        }
+    },
+    setup() {
+        const { t } = useI18n()
+
+        return {
+            t
         }
     }
 }
@@ -127,6 +138,10 @@ export default {
 
         .effect-title {
             color: #6eb7ff;
+        }
+
+        .effect-body {
+            word-break: normal;
         }
 
         .artifact-title {

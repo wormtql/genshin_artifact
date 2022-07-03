@@ -62,7 +62,7 @@ impl ArtifactTrait for CrimsonWitchOfFlames {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "level",
-            title: "效果等效层数",
+            title: "a4",
             config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 0.0 }
         }
     ]);

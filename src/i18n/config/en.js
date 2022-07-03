@@ -78,4 +78,18 @@ export default {
     t13: "Electro-charged Frequency",
     t14: "Overload Frequency",
     t15: "E-skill DMG Rate",
+
+    a1: "Element",
+    a2: "Effect Apply Ratio",
+    a3: "Equivalent Crit Rate",
+    a4: "Equivalent Stack",
+    a5: "Avg Trigger Rate",
+    a6: "「Curiosity」Equivalent Stack",
+    a7: "Enemy Pyro Coverage",
+    a8: "Effect1 Equivalent Stack",
+    a9: "Full Stack Rate",
+    a10: "Shield Coverage",
+    a11: "Enemy Electro Coverage",
+    a12: "Elemental Burst Rate",
+    a13: "Avg Stack",
 }

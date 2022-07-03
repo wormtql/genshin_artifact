@@ -692,9 +692,9 @@ export default {
         
         config4: [
             
-            {"default":"Electro","name":"element","title":"元素","type":"element4"},
+            {"default":"Electro","name":"element","title":"a1","type":"element4"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },
@@ -744,7 +744,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"效果应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },
@@ -794,7 +794,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":0.4,"min":0.0,"name":"critical_bonus","title":"等效暴击率","type":"float"},
+            {"default":0.0,"max":0.4,"min":0.0,"name":"critical_bonus","title":"a3","type":"float"},
             
         ],
     },
@@ -844,7 +844,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"效果应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },
@@ -894,7 +894,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"效果应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },
@@ -944,7 +944,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"level","title":"效果等效层数","type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"level","title":"a4","type":"float"},
             
         ],
     },
@@ -1042,7 +1042,7 @@ export default {
         
         config4: [
             
-            {"default":0.5053283764473575,"max":1.0,"min":0.0,"name":"rate","title":"平均触发比例","type":"float"},
+            {"default":0.5053283764473575,"max":1.0,"min":0.0,"name":"rate","title":"a5","type":"float"},
             
         ],
     },
@@ -1236,7 +1236,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"效果应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },
@@ -1286,7 +1286,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"level","title":"「问答」效果等效层数","type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"level","title":"a6","type":"float"},
             
         ],
     },
@@ -1336,7 +1336,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"效果应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },
@@ -1386,7 +1386,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"敌人火元素覆盖率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a7","type":"float"},
             
         ],
     },
@@ -1532,7 +1532,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"效果应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },
@@ -1582,7 +1582,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"效果应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },
@@ -1680,9 +1680,9 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":2.0,"min":0.0,"name":"avg_level","title":"效果①等效层数","type":"float"},
+            {"default":0.0,"max":2.0,"min":0.0,"name":"avg_level","title":"a8","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"full_rate","title":"满层效果比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"full_rate","title":"a9","type":"float"},
             
         ],
     },
@@ -1876,7 +1876,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"护盾覆盖率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a10","type":"float"},
             
         ],
     },
@@ -1974,7 +1974,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"效果应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },
@@ -2024,7 +2024,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"效果应用比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },
@@ -2170,7 +2170,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"敌方雷元素覆盖率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a11","type":"float"},
             
         ],
     },
@@ -2316,9 +2316,9 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate_q","title":"元素爆发频率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate_q","title":"a12","type":"float"},
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"平均层数","type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":"a13","type":"float"},
             
         ],
     },

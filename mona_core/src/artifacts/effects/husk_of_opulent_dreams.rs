@@ -58,7 +58,7 @@ impl ArtifactTrait for HuskOfOpulentDreams {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "level",
-            title: "「问答」效果等效层数",
+            title: "a6",
             config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 0.0 }
         }
     ]);

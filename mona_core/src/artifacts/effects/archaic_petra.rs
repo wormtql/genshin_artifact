@@ -62,12 +62,12 @@ impl ArtifactTrait for ArchaicPetra {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "element",
-            title: "元素",
+            title: "a1",
             config: ItemConfigType::Element4 { default: Element::Electro }
         },
         ItemConfig {
             name: "rate",
-            title: "应用比例",
+            title: "a2",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);
