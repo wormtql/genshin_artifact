@@ -25,7 +25,7 @@
         <div class="detail">
             <img :src="data.badge">
             <div>
-                <p v-if="data.description"><span v-html="t('buffDesc', data.name)"></span></p>
+                <p v-if="description"><span v-html="description"></span></p>
             </div>
         </div>
         
@@ -77,6 +77,10 @@ const data = computed((): any => {
 
 const lock = computed(() => {
     return props.buff.lock
+})
+
+const description = computed(() => {
+    return t('buffDesc', data.value.name)
 })
 </script>
 

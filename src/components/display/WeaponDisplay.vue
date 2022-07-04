@@ -10,7 +10,7 @@
                 <img class="image" :src="data.url" >
                 <div class="detail-body">
                     <p class="name">{{ t("weapon", data.name) }}</p>
-                    <p class="description" v-if="data.effect" v-html="t('weaponEffect', data.name)"></p>
+                    <p class="description" v-if="effect" v-html="effect"></p>
                 </div>
 
             </div>
@@ -31,6 +31,10 @@ export default {
         data() {
             return weaponData[this.weaponName]
         },
+
+        effect() {
+            return this.t("weaponEffect", this.data.name)
+        }
     },
     setup() {
         const { t } = useI18n()
