@@ -1,23 +1,32 @@
 <template>
     <el-radio-group
-        :value="value"
-        @input="$emit('input', $event)"
-        size="small"
+        :model-value="modelValue"
+        @update:modelValue="$emit('update:modelValue', $event)"
     >
-        <el-radio-button label="NormalAttack">普通攻击</el-radio-button>
-        <el-radio-button label="ChargedAttack">重击</el-radio-button>
-        <el-radio-button label="ElementalSkill">元素战技</el-radio-button>
-        <el-radio-button label="ElementalBurst">元素爆发</el-radio-button>
+        <el-radio-button label="NormalAttack">{{ t("skillType.a") }}</el-radio-button>
+        <el-radio-button label="ChargedAttack">{{ t("skillType.b") }}</el-radio-button>
+        <el-radio-button label="ElementalSkill">{{ t("skillType.e") }}</el-radio-button>
+        <el-radio-button label="ElementalBurst">{{ t("skillType.q") }}</el-radio-button>
     </el-radio-group>
 </template>
 
 <script>
+import {useI18n} from "../../i18n/i18n"
+
 export default {
     name: "SelectSkillType",
     props: {
-        value: {
+        modelValue: {
             type: String,
             required: true,
+        }
+    },
+    emits: ["update:modelValue"],
+    setup() {
+        const { t } = useI18n()
+
+        return {
+            t
         }
     }
 }

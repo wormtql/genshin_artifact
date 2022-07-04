@@ -5,8 +5,10 @@ import {artifactsData} from "@artifact"
 import {convertArtifact, convertArtifactName} from "@/utils/converter"
 import {toSnakeCase} from "@/utils/common"
 import {newDefaultArtifactConfigForWasm} from "@/utils/artifacts"
+import {useI18n} from "@/i18n/i18n"
 
 export function use5Artifacts() {
+    const { t } = useI18n()
     const artifactStore = useArtifactStore()
 
     const artifactIds = ref([-1, -1, -1, -1, -1])
@@ -71,8 +73,9 @@ export function use5Artifacts() {
         if (!artifactNeedConfig4.value) {
             return ""
         }
-        const data = artifactsData[artifactNeedConfig4.value]
-        return data.effect4
+        // const data = artifactsData[artifactNeedConfig4.value]
+        // return data.effect4
+        return t("artifact", artifactNeedConfig4.value, "effects", 4)
     })
 
     const artifactConfig4Configs = computed(() => {

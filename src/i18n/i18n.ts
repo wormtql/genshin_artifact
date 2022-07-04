@@ -15,7 +15,7 @@ export function createI18n() {
         if (!value) {
             const msg2 = messages[fallbackLocale.value]
             const value2 = pathAccess(msg2, ...s)
-            if (!value2) {
+            if (value2 === undefined) {
                 return s[0]
             } else {
                 return value2

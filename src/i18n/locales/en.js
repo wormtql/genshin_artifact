@@ -1,8 +1,3 @@
-import character from "../character/en"
-import artifact from "../artifact/en"
-import { default as weapon, effect as weaponEffect } from "../weapon/en"
-import config from "../config/en"
-
 export default {
     webName: "MonaUranai",
     intro: {
@@ -133,11 +128,986 @@ export default {
         advanced: "Advanced Stats",
         ele: "Elemental Type",
     },
-    character,
-    artifact,
-    weapon,
-    weaponEffect,
-    config,
+    character: {
+        AetherAnemo: "Aether(Anemo)",
+        Albedo: "Albedo",
+        Aloy: "Aloy",
+        Amber: "Amber",
+        AratakiItto: "Arataki Itto",
+        Barbara: "Barbara",
+        Beidou: "Beidou",
+        Bennett: "Bennett",
+        Chongyun: "Chongyun",
+        Diluc: "Diluc",
+        Diona: "Diona",
+        Eula: "Eula",
+        Fischl: "Fischl",
+        Ganyu: "Ganyu",
+        Gorou: "Gorou",
+        HuTao: "Hu Tao",
+        Jean: "Jean",
+        KaedeharaKazuha: "Kaedehara Kazuha",
+        Kaeya: "Kaeya",
+        KamisatoAyaka: "Kamisato Ayaka",
+        KamisatoAyato: "Kamisato Ayato",
+        Keqing: "Keqing",
+        Klee: "Klee",
+        KujouSara: "Kujou Sara",
+        KukiShinobu: "Kuki Shinobu",
+        Lisa: "Lisa",
+        Mona: "Mona",
+        Ningguang: "Ningguang",
+        Noelle: "Noelle",
+        Qiqi: "Qiqi",
+        RaidenShogun: "Raiden Shogun",
+        Razor: "Razor",
+        Rosaria: "Rosaria",
+        SangonomiyaKokomi: "Sangonomiya Kokomi",
+        Sayu: "Sayu",
+        Shenhe: "Shenhe",
+        Sucrose: "Sucrose",
+        Tartaglia: "Tartaglia",
+        Thoma: "Thoma",
+        Venti: "Venti",
+        Xiangling: "Xiangling",
+        Xiao: "Xiao",
+        Xingqiu: "Xingqiu",
+        Xinyan: "Xinyan",
+        YaeMiko: "Yae Miko",
+        Yanfei: "Yanfei",
+        Yelan: "Yelan",
+        Yoimiya: "Yoimiya",
+        Yunjin: "Yunjin",
+        Zhongli: "Zhongli"
+    },
+    artifact: {
+        "VermillionHereafter": {
+            "setName": "Vermillion Hereafter",
+            "items": [
+                "Flowering Life",
+                "Feather of Nascent Light",
+                "Solar Relic",
+                "Moment of the Pact",
+                "Thundering Poise"
+            ],
+            "effects": {
+                "2": "ATK +18%.",
+                "4": "After using an Elemental Burst, this character will gain the Nascent Light effect, increasing their ATK by 8% for 16s. When the character's HP decreases, their ATK will further increase by 10%. This further increase can occur this way a maximum of 4 times. This effect can be triggered once every 0.8s. Nascent Light will be dispelled when the character leaves the field. If an Elemental Burst is used again during the duration of Nascent Light, the original Nascent Light will be dispelled."
+            }
+        },
+        "bloodstainedChivalry": {
+            "setName": "Bloodstained Chivalry",
+            "items": [
+                "Bloodstained Flower of Iron",
+                "Bloodstained Black Plume",
+                "Bloodstained Final Hour",
+                "Bloodstained Chevalier's Goblet",
+                "Bloodstained Iron Mask"
+            ],
+            "effects": {
+                "4": "After defeating an opponent, increases Charged Attack DMG by 50%, and reduces its Stamina cost to 0 for 10s.",
+                "2": "Physical DMG +25%"
+            }
+        },
+        "exile": {
+            "setName": "The Exile",
+            "items": [
+                "Exile's Flower",
+                "Exile's Feather",
+                "Exile's Pocket Watch",
+                "Exile's Goblet",
+                "Exile's Circlet"
+            ],
+            "effects": {
+                "4": "Using an Elemental Burst regenerates 2 Energy for all party members (excluding the wearer) every 2s for 6s. This effect cannot stack.",
+                "2": "Energy Recharge +20%"
+            }
+        },
+        "EchoesOfAnOffering": {
+            "setName": "Echoes of an Offering",
+            "items": [
+                "Soulscent Bloom",
+                "Jade Leaf",
+                "Symbol of Felicitation",
+                "Chalice of the Font",
+                "Flowing Rings"
+            ],
+            "effects": {
+                "2": "ATK +18%.",
+                "4": "When Normal Attacks hit opponents, there is a 36% chance that it will trigger Valley Rite, which will increase Normal Attack DMG by 70% of ATK. This effect will be dispelled 0.05s after a Normal Attack deals DMG. If a Normal Attack fails to trigger Valley Rite, the odds of it triggering the next time will increase by 20%. This trigger can occur once every 0.2s."
+            }
+        },
+        "viridescentVenerer": {
+            "setName": "Viridescent Venerer",
+            "items": [
+                "In Remembrance of Viridescent Fields",
+                "Viridescent Arrow Feather",
+                "Viridescent Venerer's Determination",
+                "Viridescent Venerer's Vessel",
+                "Viridescent Venerer's Diadem"
+            ],
+            "effects": {
+                "2": "Anemo DMG Bonus +15%",
+                "4": "Increases Swirl DMG by 60%. Decreases opponent's Elemental RES to the element infused in the Swirl by 40% for 10s."
+            }
+        },
+        "thunderSmoother": {
+            "setName": "Thundersoother",
+            "items": [
+                "Thundersoother's Heart",
+                "Thundersoother's Plume",
+                "Hour of Soothing Thunder",
+                "Thundersoother's Goblet",
+                "Thundersoother's Diadem"
+            ],
+            "effects": {
+                "4": "Increases DMG against opponents affected by Electro by 35%.",
+                "2": "Electro RES increased by 40%."
+            }
+        },
+        "maidenBeloved": {
+            "setName": "Maiden Beloved",
+            "items": [
+                "Maiden's Distant Love",
+                "Maiden's Heart-stricken Infatuation",
+                "Maiden's Passing Youth",
+                "Maiden's Fleeting Leisure",
+                "Maiden's Fading Beauty"
+            ],
+            "effects": {
+                "2": "Character Healing Effectiveness +15%",
+                "4": "Using an Elemental Skill or Burst increases healing received by all party members by 20% for 10s."
+            }
+        },
+        "wandererTroupe": {
+            "setName": "Wanderer's Troupe",
+            "items": [
+                "Troupe's Dawnlight",
+                "Bard's Arrow Feather",
+                "Concert's Final Hour",
+                "Wanderer's String-Kettle",
+                "Conductor's Top Hat"
+            ],
+            "effects": {
+                "2": "Increases Elemental Mastery by 80.",
+                "4": "Increases Charged Attack DMG by 35% if the character uses a Catalyst or a Bow."
+            }
+        },
+        "thunderingFury": {
+            "setName": "Thundering Fury",
+            "items": [
+                "Thunderbird's Mercy",
+                "Survivor of Catastrophe",
+                "Hourglass of Thunder",
+                "Omen of Thunderstorm",
+                "Thunder Summoner's Crown"
+            ],
+            "effects": {
+                "2": "Electro DMG Bonus +15%",
+                "4": "Increases damage caused by Overloaded, Electro-Charged and Superconduct by 40%. Triggering such effects decreases Elemental Skill CD by 1s. Can only occur once every 0.8s."
+            }
+        },
+        "emblemOfSeveredFate": {
+            "setName": "Emblem of Severed Fate",
+            "items": [
+                "Magnificent Tsuba",
+                "Sundered Feather",
+                "Storm Cage",
+                "Scarlet Vessel",
+                "Ornate Kabuto"
+            ],
+            "effects": {
+                "2": "Energy Recharge +20%",
+                "4": "Increases Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way."
+            }
+        },
+        "resolutionOfSojourner": {
+            "setName": "Resolution of Sojourner",
+            "items": [
+                "Heart of Comradeship",
+                "Feather of Homecoming",
+                "Sundial of the Sojourner",
+                "Goblet of the Sojourner",
+                "Crown of Parting"
+            ],
+            "effects": {
+                "4": "Increases Charged Attack CRIT Rate by 30%.",
+                "2": "ATK +18%."
+            }
+        },
+        "braveHeart": {
+            "setName": "Brave Heart",
+            "items": [
+                "Medal of the Brave",
+                "Prospect of the Brave",
+                "Fortitude of the Brave",
+                "Outset of the Brave",
+                "Crown of the Brave"
+            ],
+            "effects": {
+                "4": "Increases DMG by 30% against opponents with more than 50% HP.",
+                "2": "ATK +18%."
+            }
+        },
+        "oceanHuedClam": {
+            "setName": "Ocean-Hued Clam",
+            "items": [
+                "Sea-Dyed Blossom",
+                "Deep Palace's Plume",
+                "Cowry of Parting",
+                "Pearl Cage",
+                "Crown of Watatsumi"
+            ],
+            "effects": {
+                "2": "Healing Bonus +15%.",
+                "4": "When the character equipping this artifact set heals a character in the party, a Sea-Dyed Foam will appear for 3 seconds, accumulating the amount of HP recovered from healing (including overflow healing). At the end of the duration, the Sea-Dyed Foam will explode, dealing DMG to nearby opponents based on 90% of the accumulated healing. (This DMG is calculated similarly to Reactions such as Electro-Charged, and Superconduct, but is not affected by Elemental Mastery, Character Levels, or Reaction DMG Bonuses). Only one Sea-Dyed Foam can be produced every 3.5 seconds. Each Sea-Dyed Foam can accumulate up to 30,000 HP (including overflow healing). There can be no more than one Sea-Dyed Foam active at any given time. This effect can still be triggered even when the character who is using this artifact set is not on the field."
+            }
+        },
+        "prayersForWisdom": {
+            "setName": "Prayers for Wisdom",
+            "items": [
+                "Tiara of Thunder"
+            ],
+            "effects": {
+                "1": "Affected by Electro for 40% less time."
+            }
+        },
+        "travelingDoctor": {
+            "setName": "Traveling Doctor",
+            "items": [
+                "Traveling Doctor's Silver Lotus",
+                "Traveling Doctor's Owl Feather",
+                "Traveling Doctor's Pocket Watch",
+                "Traveling Doctor's Medicine Pot",
+                "Traveling Doctor's Handkerchief"
+            ],
+            "effects": {
+                "4": "Using Elemental Burst restores 20% HP.",
+                "2": "Increases incoming healing by 20%."
+            }
+        },
+        "adventurer": {
+            "setName": "Adventurer",
+            "items": [
+                "Adventurer's Flower",
+                "Adventurer's Tail Feather",
+                "Adventurer's Pocket Watch",
+                "Adventurer's Golden Goblet",
+                "Adventurer's Bandana"
+            ],
+            "effects": {
+                "4": "Opening a chest regenerates 30% Max HP over 5s.",
+                "2": "Max HP increased by 1000."
+            }
+        },
+        "heartOfDepth": {
+            "setName": "Heart of Depth",
+            "items": [
+                "Gilded Corsage",
+                "Gust of Nostalgia",
+                "Copper Compass",
+                "Goblet of Thundering Deep",
+                "Wine-Stained Tricorne"
+            ],
+            "effects": {
+                "4": "After using Elemental Skill, increases Normal Attack and Charged Attack DMG by 30% for 15s.",
+                "2": "Hydro DMG Bonus +15%"
+            }
+        },
+        "retracingBolide": {
+            "setName": "Retracing Bolide",
+            "items": [
+                "Summer Night's Bloom",
+                "Summer Night's Finale",
+                "Summer Night's Moment",
+                "Summer Night's Waterballoon",
+                "Summer Night's Mask"
+            ],
+            "effects": {
+                "2": "Increases Shield Strength by 35%.",
+                "4": "While protected by a shield, gain an additional 40% Normal and Charged Attack DMG."
+            }
+        },
+        "huskOfOpulentDreams": {
+            "setName": "Husk of Opulent Dreams",
+            "items": [
+                "Bloom Times",
+                "Plume of Luxury",
+                "Song of Life",
+                "Calabash of Awakening",
+                "Skeletal Hat"
+            ],
+            "effects": {
+                "2": "DEF +30%",
+                "4": "A character equipped with this Artifact set will obtain the Curiosity effect in the following conditions: When on the field, the character gains 1 stack after hitting an opponent with a Geo attack, triggering a maximum of once every 0.3s. When off the field, the character gains 1 stack every 3s. Curiosity can stack up to 4 times, each providing 6% DEF and a 6% Geo DMG Bonus. When 6 seconds pass without gaining a Curiosity stack, 1 stack is lost."
+            }
+        },
+        "lavaWalker": {
+            "setName": "Lavawalker",
+            "items": [
+                "Lavawalker's Resolution",
+                "Lavawalker's Salvation",
+                "Lavawalker's Torment",
+                "Lavawalker's Epiphany",
+                "Lavawalker's Wisdom"
+            ],
+            "effects": {
+                "4": "Increases DMG against opponents affected by Pyro by 35%.",
+                "2": "Pyro RES increased by 40%."
+            }
+        },
+        "crimsonWitch": {
+            "setName": "Crimson Witch of Flames",
+            "items": [
+                "Witch's Flower of Blaze",
+                "Witch's Ever-Burning Plume",
+                "Witch's End Time",
+                "Witch's Heart Flames",
+                "Witch's Scorching Hat"
+            ],
+            "effects": {
+                "4": "Increases Overloaded and Burning DMG by 40%. Increases Vaporize and Melt DMG by 15%. Using Elemental Skill increases the 2-Piece Set Bonus by 50% of its starting value for 10s. Max 3 stacks.",
+                "2": "Pyro DMG Bonus +15%"
+            }
+        },
+        "shimenawaReminiscence": {
+            "setName": "Shimenawa's Reminiscence",
+            "items": [
+                "Entangling Bloom",
+                "Shaft of Remembrance",
+                "Morning Dew's Moment",
+                "Hopeful Heart",
+                "Capricious Visage"
+            ],
+            "effects": {
+                "4": "When casting an Elemental Skill, if the character has 15 or more Energy, they lose 15 Energy and Normal/Charged/Plunging Attack DMG is increased by 50% for 10s. This effect will not trigger again during that duration.",
+                "2": "ATK +18%."
+            }
+        },
+        "blizzardStrayer": {
+            "setName": "Blizzard Strayer",
+            "items": [
+                "Snowswept Memory",
+                "Icebreaker's Resolve",
+                "Frozen Homeland's Demise",
+                "Frost-Weaved Dignity",
+                "Broken Rime's Echo"
+            ],
+            "effects": {
+                "4": "When a character attacks an opponent affected by Cryo, their CRIT Rate is increased by 20%. If the opponent is Frozen, CRIT Rate is increased by an additional 20%.",
+                "2": "Cryo DMG Bonus +15%"
+            }
+        },
+        "noblesseOblige": {
+            "setName": "Noblesse Oblige",
+            "items": [
+                "Royal Flora",
+                "Royal Plume",
+                "Royal Pocket Watch",
+                "Royal Silver Urn",
+                "Royal Masque"
+            ],
+            "effects": {
+                "2": "Elemental Burst DMG +20%",
+                "4": "Using an Elemental Burst increases all party members' ATK by 20% for 12s. This effect cannot stack."
+            }
+        },
+        "gambler": {
+            "setName": "Gambler",
+            "items": [
+                "Gambler's Brooch",
+                "Gambler's Feather Accessory",
+                "Gambler's Pocket Watch",
+                "Gambler's Dice Cup",
+                "Gambler's Earrings"
+            ],
+            "effects": {
+                "4": "Defeating an opponent has a 100% chance to remove Elemental Skill CD. Can only occur once every 15s.",
+                "2": "Increases Elemental Skill DMG by 20%."
+            }
+        },
+        "Empty": {
+            "setName": "Gambler",
+            "items": [
+                "Gambler's Brooch",
+                "Gambler's Feather Accessory",
+                "Gambler's Pocket Watch",
+                "Gambler's Dice Cup",
+                "Gambler's Earrings"
+            ],
+            "effects": {
+                "4": "Defeating an opponent has a 100% chance to remove Elemental Skill CD. Can only occur once every 15s.",
+                "2": "Increases Elemental Skill DMG by 20%."
+            }
+        },
+        "instructor": {
+            "setName": "Instructor",
+            "items": [
+                "Instructor's Brooch",
+                "Instructor's Feather Accessory",
+                "Instructor's Pocket Watch",
+                "Instructor's Tea Cup",
+                "Instructor's Cap"
+            ],
+            "effects": {
+                "2": "Increases Elemental Mastery by 80.",
+                "4": "Upon triggering an Elemental Reaction, increases all party members' Elemental Mastery by 120 for 8s."
+            }
+        },
+        "prayersForIllumination": {
+            "setName": "Prayers for Illumination",
+            "items": [
+                "Tiara of Flame"
+            ],
+            "effects": {
+                "1": "Affected by Pyro for 40% less time."
+            }
+        },
+        "tinyMiracle": {
+            "setName": "Tiny Miracle",
+            "items": [
+                "Tiny Miracle's Flower",
+                "Tiny Miracle's Feather",
+                "Tiny Miracle's Hourglass",
+                "Tiny Miracle's Goblet",
+                "Tiny Miracle's Earrings"
+            ],
+            "effects": {
+                "4": "Incoming elemental DMG increases corresponding Elemental RES by 30% for 10s. Can only occur once every 10s.",
+                "2": "All Elemental RES increased by 20%."
+            }
+        },
+        "martialArtist": {
+            "setName": "Martial Artist",
+            "items": [
+                "Martial Artist's Red Flower",
+                "Martial Artist's Feather Accessory",
+                "Martial Artist's Water Hourglass",
+                "Martial Artist's Wine Cup",
+                "Martial Artist's Bandana"
+            ],
+            "effects": {
+                "2": "Increases Normal Attack and Charged Attack DMG by 15%.",
+                "4": "After using Elemental Skill, increases Normal Attack and Charged Attack DMG by 25% for 8s."
+            }
+        },
+        "prayersForDestiny": {
+            "setName": "Prayers for Destiny",
+            "items": [
+                "Tiara of Torrents"
+            ],
+            "effects": {
+                "1": "Affected by Hydro for 40% less time."
+            }
+        },
+        "archaicPetra": {
+            "setName": "Archaic Petra",
+            "items": [
+                "Flower of Creviced Cliff",
+                "Feather of Jagged Peaks",
+                "Sundial of Enduring Jade",
+                "Goblet of Chiseled Crag",
+                "Mask of Solitude Basalt"
+            ],
+            "effects": {
+                "4": "Upon obtaining an Elemental Shard created through a Crystallize Reaction, all party members gain a 35% DMG Bonus for that particular element for 10s. Only one form of Elemental DMG Bonus can be gained in this manner at any one time.",
+                "2": "Gain a 15% Geo DMG Bonus."
+            }
+        },
+        "paleFlame": {
+            "setName": "Pale Flame",
+            "items": [
+                "Stainless Bloom",
+                "Wise Doctor's Pinion",
+                "Moment of Cessation",
+                "Surpassing Cup",
+                "Mocking Mask"
+            ],
+            "effects": {
+                "2": "Physical DMG is increased by 25%.",
+                "4": "When an Elemental Skill hits an opponent, ATK is increased by 9% for 7s. This effect stacks up to 2 times and can be triggered once every 0.3s. Once 2 stacks are reached, the 2-set effect is increased by 100%."
+            }
+        },
+        "scholar": {
+            "setName": "Scholar",
+            "items": [
+                "Scholar's Bookmark",
+                "Scholar's Quill Pen",
+                "Scholar's Clock",
+                "Scholar's Ink Cup",
+                "Scholar's Lens"
+            ],
+            "effects": {
+                "2": "Energy Recharge +20%",
+                "4": "Gaining Elemental Particles or Orbs gives 3 Energy to all party members who have a bow or a catalyst equipped. Can only occur once every 3s."
+            }
+        },
+        "luckyDog": {
+            "setName": "Lucky Dog",
+            "items": [
+                "Lucky Dog's Clover",
+                "Lucky Dog's Eagle Feather",
+                "Lucky Dog's Hourglass",
+                "Lucky Dog's Goblet",
+                "Lucky Dog's Silver Circlet"
+            ],
+            "effects": {
+                "4": "Picking up Mora restores 300 HP.",
+                "2": "DEF increased by 100."
+            }
+        },
+        "gladiatorFinale": {
+            "setName": "Gladiator's Finale",
+            "items": [
+                "Gladiator's Nostalgia",
+                "Gladiator's Destiny",
+                "Gladiator's Longing",
+                "Gladiator's Intoxication",
+                "Gladiator's Triumphus"
+            ],
+            "effects": {
+                "4": "If the wielder of this artifact set uses a Sword, Claymore or Polearm, increases their Normal Attack DMG by 35%.",
+                "2": "ATK +18%."
+            }
+        },
+        "prayersToSpringtime": {
+            "setName": "Prayers to Springtime",
+            "items": [
+                "Tiara of Frost"
+            ],
+            "effects": {
+                "1": "Affected by Cryo for 40% less time."
+            }
+        },
+        "berserker": {
+            "setName": "Berserker",
+            "items": [
+                "Berserker's Rose",
+                "Berserker's Indigo Feather",
+                "Berserker's Timepiece",
+                "Berserker's Bone Goblet",
+                "Berserker's Battle Mask"
+            ],
+            "effects": {
+                "2": "CRIT Rate +12%",
+                "4": "When HP is below 70%, CRIT Rate increases by an additional 24%."
+            }
+        },
+        "tenacityOfTheMillelith": {
+            "setName": "Tenacity of the Millelith",
+            "items": [
+                "Flower of Accolades",
+                "Ceremonial War-Plume",
+                "Orichalceous Time-Dial",
+                "Noble's Pledging Vessel",
+                "General's Ancient Helm"
+            ],
+            "effects": {
+                "4": "When an Elemental Skill hits an opponent, the ATK of all nearby party members is increased by 20% and their Shield Strength is increased by 30% for 3s. This effect can be triggered once every 0.5s. This effect can still be triggered even when the character who is using this artifact set is not on the field.",
+                "2": "HP increased by 20%."
+            }
+        },
+        "defenderWill": {
+            "setName": "Defender's Will",
+            "items": [
+                "Guardian's Flower",
+                "Guardian's Sigil",
+                "Guardian's Clock",
+                "Guardian's Vessel",
+                "Guardian's Band"
+            ],
+            "effects": {
+                "2": "DEF +30%",
+                "4": "For each different element present in your own party, the wearer's Elemental RES to that corresponding element is increased by 30%."
+            }
+        }
+    },
+    weapon: {
+        MistsplitterReforged: "Mistsplitter Reforged",
+        AquilaFavonia: "Aquila Favonia",
+        SummitShaper: "Summit Shaper",
+        SkywardBlade: "Skyward Blade",
+        FreedomSworn: "Freedom-Sworn",
+        PrimordialJadeCutter: "Primordial Jade Cutter",
+        TheFlute: "The Flute",
+        TheBlackSword: "The Black Sword",
+        TheAlleyFlash: "The Alley Flash",
+        SwordOfDescension: "Sword of Descension",
+        SacrificialSword: "Sacrificial Sword",
+        RoyalLongsword: "Royal Longsword",
+        PrototypeRancour: "Prototype Rancour",
+        AmenomaKageuchi: "Amenoma Kageuchi",
+        LionsRoar: "Lion's Roar",
+        IronSting: "Iron Sting",
+        FesteringDesire: "Festering Desire",
+        FavoniusSword: "Favonius Sword",
+        CinnabarSpindle: "Cinnabar Spindle",
+        BlackcliffLongsword: "Blackcliff Longsword",
+        HarbingerOfDawn: "Harbinger of Dawn",
+        FilletBlade: "Fillet Blade",
+        SkyriderSword: "Skyrider Sword",
+        DarkIronSword: "Dark Iron Sword",
+        CoolSteel: "Cool Steel",
+        TravelersHandySword: "Traveler's Handy Sword",
+        SilverSword: "Silver Sword",
+        DullBlade: "Dull Blade",
+        HaranGeppakuFutsu: "Haran Geppaku Futsu",
+        WolfsGravestone: "Wolf's Gravestone",
+        SkywardPride: "Skyward Pride",
+        TheUnforged: "The Unforged",
+        SongOfBrokenPines: "Song of Broken Pines",
+        RedhornStonethresher: "Redhorn Stonethresher",
+        Akuoumaru: "Akuoumaru",
+        RoyalGreatsword: "Royal Greatsword",
+        Whiteblind: "Whiteblind",
+        TheBell: "The Bell",
+        SnowTombedStarsilver: "Snow-Tombed Starsilver",
+        FavoniusGreatsword: "Favonius Greatsword",
+        KatsuragikiriNagamasa: "Katsuragikiri Nagamasa",
+        SacrificialGreatsword: "Sacrificial Greatsword",
+        SerpentSpine: "Serpent Spine",
+        BlackcliffSlasher: "Blackcliff Slasher",
+        Rainslasher: "Rainslasher",
+        PrototypeArchaic: "Prototype Archaic",
+        LuxuriousSeaLord: "Luxurious Sea-Lord",
+        LithicBlade: "Lithic Blade",
+        SkyriderGreatsword: "Skyrider Greatsword",
+        DebateClub: "Debate Club",
+        BloodstainedGreatsword: "Bloodtainted Greatsword",
+        WhiteIronGreatsword: "White Iron Greatsword",
+        FerrousShadow: "Ferrous Shadow",
+        OldMercsPal: "Old Merc's Pal",
+        WasterGreatsword: "Waster Greatsword",
+        EngulfingLightning: "Engulfing Lightning",
+        SkywardSpine: "Skyward Spine",
+        PrimordialJadeWingedSpear: "Primordial Jade Winged-Spear",
+        CalamityQueller: "Calamity Queller",
+        StaffOfHoma: "Staff of Homa",
+        VortexVanquisher: "Vortex Vanquisher",
+        PrototypeStarglitter: "Prototype Starglitter",
+        LithicSpear: "Lithic Spear",
+        KitainCrossSpear: "Kitain Cross Spear",
+        TheCatch: "\"The Catch\"",
+        FavoniusLance: "Favonius Lance",
+        DragonspineSpear: "Dragonspine Spear",
+        DragonsBane: "Dragon's Bane",
+        Deathmatch: "Deathmatch",
+        CrescentPike: "Crescent Pike",
+        BlackcliffPole: "Blackcliff Pole",
+        WavebreakersFin: "Wavebreaker's Fin",
+        RoyalSpear: "Royal Spear",
+        Halberd: "Halberd",
+        BlackTassel: "Black Tassel",
+        WhiteTassel: "White Tassel",
+        IronPoint: "Iron Point",
+        BeginnersProtector: "Beginner's Protector",
+        LostPrayerToTheSacredWinds: "Lost Prayer to the Sacred Winds",
+        SkywardAtlas: "Skyward Atlas",
+        EverlastingMoonglow: "Everlasting Moonglow",
+        MemoryOfDust: "Memory of Dust",
+        WindAndSong: "Wine and Song",
+        TheWidsith: "The Widsith",
+        SolarPearl: "Solar Pearl",
+        SacrificialFragments: "Sacrificial Fragments",
+        RoyalGrimoire: "Royal Grimoire",
+        PrototypeAmber: "Prototype Amber",
+        MappaMare: "Mappa Mare",
+        HakushinRing: "Hakushin Ring",
+        Frostbearer: "Frostbearer",
+        FavoniusCodex: "Favonius Codex",
+        EyeOfPerception: "Eye of Perception",
+        DodocoTales: "Dodoco Tales",
+        BlackcliffAgate: "Blackcliff Agate",
+        KagurasVerity: "Kagura's Verity",
+        OathswornEye: "Oathsworn Eye",
+        MagicGuide: "Magic Guide",
+        OtherworldlyStory: "Otherworldly Story",
+        EmeraldOrb: "Emerald Orb",
+        ThrillingTalesOfDragonSlayers: "Thrilling Tales of Dragon Slayers",
+        TwinNephrite: "Twin Nephrite",
+        PocketGrimoire: "Pocket Grimoire",
+        ApprenticesNotes: "Apprentice's Notes",
+        PolarStar: "Polar Star",
+        ThunderingPulse: "Thundering Pulse",
+        ElegyOfTheEnd: "Elegy for the End",
+        SkywardHarp: "Skyward Harp",
+        AmosBow: "Amos' Bow",
+        AlleyHunter: "Alley Hunter",
+        TheViridescentHunt: "The Viridescent Hunt",
+        TheStringless: "The Stringless",
+        SacrificialBow: "Sacrificial Bow",
+        Rust: "Rust",
+        RoyalBow: "Royal Bow",
+        Predator: "Predator",
+        PrototypeCrescent: "Prototype Crescent",
+        MouunsMoon: "Mouun's Moon",
+        MitternachtsWaltz: "Mitternachts Waltz",
+        Hamayumi: "Hamayumi",
+        FavoniusWarbow: "Favonius Warbow",
+        CompoundBow: "Compound Bow",
+        BlackcliffWarbow: "Blackcliff Warbow",
+        WindblumeOde: "Windblume Ode",
+        RavenBow: "Raven Bow",
+        RecurveBow: "Recurve Bow",
+        Messenger: "Messenger",
+        SharpshootersOath: "Sharpshooter's Oath",
+        Slingshot: "Slingshot",
+        SeasonedHuntersBow: "Seasoned Hunter's Bow",
+        HuntersBow: "Hunter's Bow",
+        AquaSimulacra: "Aqua Simulacra",
+        FadingTwilight: "Fading Twilight",
+    },
+    weaponEffect: {
+        MistsplitterReforged: "Gain a <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> Elemental DMG Bonus for all elements and receive the might of the Mistsplitter\'s Emblem. At stack levels 1/2/3, the Mistsplitter\'s Emblem provides a <span style=\"color: #99FFFFFF;\">8/16/28%-10/20/35%-12/24/42%-14/28/49%-16/32/56%</span> Elemental DMG Bonus for the character\'s Elemental Type. The character will obtain 1 stack of Mistsplitter\'s Emblem in each of the following scenarios: Normal Attack deals Elemental DMG (stack lasts 5s), casting Elemental Burst (stack lasts 10s); Energy is less than 100% (stack disappears when Energy is full). Each stack\'s duration is calculated independently.",
+        AquilaFavonia: "ATK is increased by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Triggers on taking DMG: the soul of the Falcon of the West awakens, holding the banner of resistance aloft, regenerating HP equal to <span style=\"color: #99FFFFFF;\">100%-115%-130%-145%-160%</span> of ATK and dealing <span style=\"color: #99FFFFFF;\">200%-230%-260%-290%-320%</span> of ATK as DMG to surrounding opponents. This effect can only occur once every 15s.",
+        SummitShaper: "Increases Shield Strength by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Scoring hits on opponents increases ATK by <span style=\"color: #99FFFFFF;\">4%-5%-6%-7%-8%</span> for 8s. Max 5 stacks. Can only occur once every 0.3s. While protected by a shield, this ATK increase effect is increased by 100%.",
+        SkywardBlade: "CRIT Rate increased by <span style=\"color: #99FFFFFF;\">4%-5%-6%-7%-8%</span>. Gains Skypiercing Might upon using an Elemental Burst: Increases Movement SPD by <span style=\"color: #99FFFFFF;\">10%-10%-10%-10%-10%</span>, increases ATK SPD by <span style=\"color: #99FFFFFF;\">10%-10%-10%-10%-10%</span>, and Normal and Charged hits deal additional DMG equal to <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span> of ATK. Skypiercing Might lasts for 12s.",
+        FreedomSworn: "A part of the \"Millennial Movement\" that wanders amidst the winds. Increases DMG by <span style=\"color: #99FFFFFF;\">10%-12.5%-15%-17.5%-20%</span>. When the character wielding this weapon triggers Elemental Reactions, they gain a Sigil of Rebellion. This effect can be triggered once every 0.5s and can be triggered even if said character is not on the field. When you possess 2 Sigils of Rebellion, all of them will be consumed and all nearby party members will obtain \"Millennial Movement: Song of Resistance\" for 12s. \"Millennial Movement: Song of Resistance\" increases Normal, Charged and Plunging Attack DMG by <span style=\"color: #99FFFFFF;\">16%-20%-24%-28%-32%</span> and increases ATK by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Once this effect is triggered, you will not gain Sigils of Rebellion for 20s. Of the many effects of the \"Millennial Movement,\" buffs of the same type will not stack.",
+        PrimordialJadeCutter: "HP increased by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Additionally, provides an ATK Bonus based on <span style=\"color: #99FFFFFF;\">1.2%-1.5%-1.8%-2.1%-2.4%</span> of the wielder\'s Max HP.",
+        TheFlute: "Normal or Charged Attacks grant a Harmonic on hits. Gaining 5 Harmonics triggers the power of music and deals <span style=\"color: #99FFFFFF;\">100%-125%-150%-175%-200%</span> ATK DMG to surrounding opponents. Harmonics last up to 30s, and a maximum of 1 can be gained every 0.5s.",
+        TheBlackSword: "Increases DMG dealt by Normal and Charged Attacks by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Additionally, regenerates <span style=\"color: #99FFFFFF;\">60%-70%-80%-90%-100%</span> of ATK as HP when Normal and Charged Attacks score a CRIT Hit. This effect can occur once every 5s.",
+        TheAlleyFlash: "Increases DMG dealt by the character equipping this weapon by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span>. Taking DMG disables this effect for 5s.",
+        SwordOfDescension: "<span style=\"color: #99FFFFFF;\">Effective only on the following platform: </span><br><span style=\"color: #99FFFFFF;\">\"PlayStation Network\"</span><br>Hitting opponents with Normal and Charged Attacks grants a <span style=\"color: #99FFFFFF;\">50%</span> chance to deal <span style=\"color: #99FFFFFF;\">200%</span> ATK as DMG in a small AoE. This effect can only occur once every 10s. Additionally, if the Traveler equips the Sword of Descension, their ATK is increased by <span style=\"color: #99FFFFFF;\">66</span>.",
+        SacrificialSword: "After damaging an opponent with an Elemental Skill, the skill has a <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> chance to end its own CD. Can only occur once every <span style=\"color: #99FFFFFF;\">30-26-22s-19-16s</span>s.",
+        RoyalLongsword: "Upon damaging an opponent, increases CRIT Rate by <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span>. Max 5 stacks. A CRIT Hit removes all stacks.",
+        PrototypeRancour: "On hit, Normal or Charged Attacks increase ATK and DEF by <span style=\"color: #99FFFFFF;\">4%-5%-6%-7%-8%</span> for 6s. Max 4 stacks. This effect can only occur once every 0.3s.",
+        AmenomaKageuchi: "After casting an Elemental Skill, gain 1 Succession Seed. This effect can be triggered once every 5s. The Succession Seed lasts for 30s. Up to 3 Succession Seeds may exist simultaneously. After using an Elemental Burst, all Succession Seeds are consumed and after 2s, the character regenerates <span style=\"color: #99FFFFFF;\">6-7.5-9-10.5-12</span> Energy for each seed consumed.",
+        LionsRoar: "Increases DMG against opponents affected by Pyro or Electro by <span style=\"color: #99FFFFFF;\">20%-24%-28%-32%-36%</span>.",
+        IronSting: "Dealing Elemental DMG increases all DMG by <span style=\"color: #99FFFFFF;\">6%-7.5%-9%-10.5%-12%</span> for 6s. Max 2 stacks. Can occur once every 1s.",
+        FesteringDesire: "Increases Elemental Skill DMG by <span style=\"color: #99FFFFFF;\">16%-20%-24%-28%-32%</span> and Elemental Skill CRIT Rate by <span style=\"color: #99FFFFFF;\">6%-7.5%-9%-10.5%-12%</span>.",
+        FavoniusSword: "CRIT Hits have a <span style=\"color: #99FFFFFF;\">60%-70%-80%-90%-100%</span> chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every <span style=\"color: #99FFFFFF;\">12-10.5-9-7.5-6</span>s.",
+        CinnabarSpindle: "Elemental Skill DMG is increased by <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> of DEF. The effect will be triggered no more than once every 1.5s and will be cleared 0.1s after the Elemental Skill deals DMG.",
+        BlackcliffLongsword: "After defeating an opponent, ATK is increased by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> for 30s. This effect has a maximum of 3 stacks, and the duration of each stack is independent of the others.",
+        HarbingerOfDawn: "When HP is above 90%, increases CRIT Rate by <span style=\"color: #99FFFFFF;\">14%-17.5%-21%-24.5%-28%</span>.",
+        FilletBlade: "On hit, has a 50% chance to deal <span style=\"color: #99FFFFFF;\">240%-280%-320%-360%-400%</span> ATK DMG to a single opponent. Can only occur once every <span style=\"color: #99FFFFFF;\">15-14-13-12-11</span>s.",
+        SkyriderSword: "Using an Elemental Burst grants a <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> increase in ATK and Movement SPD for 15s.",
+        DarkIronSword: "Upon causing an Overloaded, Superconduct, Electro-Charged, or an Electro-infused Swirl reaction, ATK is increased by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span> for 12s.",
+        CoolSteel: "Increases DMG against opponents affected by Hydro or Cryo by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span>.",
+        TravelersHandySword: "Each Elemental Orb or Particle collected restores <span style=\"color: #99FFFFFF;\">1%-1.25%-1.5%-1.75%-2%</span> HP.",
+        SilverSword: "",
+        DullBlade: "",
+        HaranGeppakuFutsu: "Obtain <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> All Elemental DMG Bonus. When other nearby party members use Elemental Skills, the character equipping this weapon will gain 1 Wavespike stack. Max 2 stacks. This effect can be triggered once every 0.3s. When the character equipping this weapon uses an Elemental Skill, all stacks of Wavespike will be consumed to gain Rippling Upheaval: each stack of Wavespike consumed will increase Normal Attack DMG by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span> for 8s.",
+        WolfsGravestone: "Increases ATK by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. On hit, attacks against opponents with less than 30% HP increase all party members\' ATK by <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> for 12s. Can only occur once every 30s.",
+        SkywardPride: "Increases all DMG by <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span>. After using an Elemental Burst, Normal or Charged Attack, on hit, creates a vacuum blade that does <span style=\"color: #99FFFFFF;\">80%-100%-120%-140%-160%</span> of ATK as DMG to opponents along its path. Lasts for 20s or 8 vacuum blades.",
+        TheUnforged: "Increases Shield Strength by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Scoring hits on opponents increases ATK by <span style=\"color: #99FFFFFF;\">4%-5%-6%-7%-8%</span> for 8s. Max 5 stacks. Can only occur once every 0.3s. While protected by a shield, this ATK increase effect is increased by 100%.",
+        SongOfBrokenPines: "A part of the \"Millennial Movement\" that wanders amidst the winds. Increases ATK by <span style=\"color: #99FFFFFF;\">16%-20%-24%-28%-32%</span>, and when Normal or Charged Attacks hit opponents, the character gains a Sigil of Whispers. This effect can be triggered once every 0.3s. When you possess 4 Sigils of Whispers, all of them will be consumed and all nearby party members will obtain the \"Millennial Movement: Banner-Hymn\" effect for 12s. \"Millennial Movement: Banner-Hymn\" increases Normal ATK SPD by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> and increases ATK by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Once this effect is triggered, you will not gain Sigils of Whispers for 20s. Of the many effects of the \"Millennial Movement,\" buffs of the same type will not stack.",
+        RedhornStonethresher: "DEF is increased by <span style=\"color: #99FFFFFF;\">28%-35%-42%-49%-56%</span>. Normal and Charged Attack DMG is increased by <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> of DEF.",
+        Akuoumaru: "For every point of the entire party\'s combined maximum Energy capacity, the Elemental Burst DMG of the character equipping this weapon is increased by <span style=\"color: #99FFFFFF;\">0.12%-0.15%-0.18%-0.21%-0.24%</span>. A maximum of <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> increased Elemental Burst DMG can be achieved this way.",
+        RoyalGreatsword: "Upon damaging an opponent, increases CRIT Rate by <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span>. Max 5 stacks. A CRIT Hit removes all stacks.",
+        Whiteblind: "On hit, Normal or Charged Attacks increase ATK and DEF by <span style=\"color: #99FFFFFF;\">6%-7.5%-9%-10.5%-12%</span> for 6s. Max 4 stacks. This effect can only occur once every 0.5s.",
+        TheBell: "Taking DMG generates a shield which absorbs DMG up to <span style=\"color: #99FFFFFF;\">20%-23%-26%-29%-32%</span> of Max HP. This shield lasts for 10s or until broken, and can only be triggered once every <span style=\"color: #99FFFFFF;\">45-45-45-45-45</span>s. While protected by a shield, the character gains <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> increased DMG.",
+        SnowTombedStarsilver: "Hitting an opponent with Normal and Charged Attacks has a <span style=\"color: #99FFFFFF;\">60%-70%-80%-90%-100%</span> chance of forming and dropping an Everfrost Icicle above them, dealing AoE DMG equal to <span style=\"color: #99FFFFFF;\">80%-95%-110%-125%-140%</span> of ATK. Opponents affected by Cryo are instead dealt DMG equal to <span style=\"color: #99FFFFFF;\">200%-240%-280%-320%-360%</span> of ATK. Can only occur once every 10s.",
+        FavoniusGreatsword: "CRIT Hits have a <span style=\"color: #99FFFFFF;\">60%-70%-80%-90%-100%</span> chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every <span style=\"color: #99FFFFFF;\">12-10.5-9-7.5-6</span>s.",
+        KatsuragikiriNagamasa: "Increases Elemental Skill DMG by <span style=\"color: #99FFFFFF;\">6%-7.5%-9%-10.5%-12%</span>. After Elemental Skill hits an opponent, the character loses 3 Energy but regenerates <span style=\"color: #99FFFFFF;\">3-3.5-4-4.5-5</span> Energy every 2s for the next 6s. This effect can occur once every 10s. Can be triggered even when the character is not on the field.",
+        SacrificialGreatsword: "After damaging an opponent with an Elemental Skill, the skill has a <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> chance to end its own CD. Can only occur once every <span style=\"color: #99FFFFFF;\">30-26-22s-19-16s</span>s.",
+        SerpentSpine: "Every 4s a character is on the field, they will deal <span style=\"color: #99FFFFFF;\">6%-7%-8%-9%-10%</span> more DMG and take <span style=\"color: #99FFFFFF;\">3%-2.7%-2.4%-2.2%-2%</span> more DMG. This effect has a maximum of 5 stacks and will not be reset if the character leaves the field, but will be reduced by 1 stack when the character takes DMG.",
+        BlackcliffSlasher: "After defeating an opponent, ATK is increased by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> for 30s. This effect has a maximum of 3 stacks, and the duration of each stack is independent of the others.",
+        Rainslasher: "Increases DMG against opponents affected by Hydro or Electro by <span style=\"color: #99FFFFFF;\">20%-24%-28%-32%-36%</span>.",
+        PrototypeArchaic: "On hit, Normal or Charged Attacks have a 50% chance to deal an additional <span style=\"color: #99FFFFFF;\">240%-300%-360%-420%-480%</span> ATK DMG to opponents within a small AoE. Can only occur once every 15s.",
+        LuxuriousSeaLord: "Increases Elemental Burst DMG by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span>. When Elemental Burst hits opponents, there is a 100% chance of summoning a huge onrush of tuna that deals <span style=\"color: #99FFFFFF;\">100%-125%-150%-175%-200%</span> ATK as AoE DMG. This effect can occur once every 15s.",
+        LithicBlade: "For every character in the party who hails from Liyue, the character who equips this weapon gains a <span style=\"color: #99FFFFFF;\">7%-8%-9%-10%-11%</span> ATK increase and a <span style=\"color: #99FFFFFF;\">3%-4%-5%-6%-7%</span> CRIT Rate increase. This effect stacks up to 4 times.",
+        SkyriderGreatsword: "On hit, Normal or Charged Attacks increase ATK by <span style=\"color: #99FFFFFF;\">6%-7%-8%-9%-10%</span> for 6s. Max 4 stacks. Can occur once every 0.5s.",
+        DebateClub: "After using an Elemental Skill, on hit, Normal and Charged Attacks deal additional DMG equal to <span style=\"color: #99FFFFFF;\">60%-75%-90%-105%-120%</span> of ATK in a small AoE. Effect lasts 15s. DMG can only occur once every 3s.",
+        BloodstainedGreatsword: "Increases DMG dealt against opponents affected by Pyro or Electro by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span>.",
+        WhiteIronGreatsword: "Defeating an opponent restores <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span> HP.",
+        FerrousShadow: "When HP falls below <span style=\"color: #99FFFFFF;\">70%-75%-80%-85%-90%</span>, increases Charged Attack DMG by <span style=\"color: #99FFFFFF;\">30%-35%-40%-45%-50%</span> and Charged Attacks become harder to interrupt.",
+        OldMercsPal: "",
+        WasterGreatsword: "",
+        EngulfingLightning: "ATK increased by <span style=\"color: #99FFFFFF;\">28%-35%-42%-49%-56%</span> of Energy Recharge over the base 100%. You can gain a maximum bonus of <span style=\"color: #99FFFFFF;\">80%-90%-100%-110%-120%</span> ATK. Gain <span style=\"color: #99FFFFFF;\">30%-35%-40%-45%-50%</span> Energy Recharge for 12s after using an Elemental Burst.",
+        SkywardSpine: "Increases CRIT Rate by <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span> and increases Normal ATK SPD by <span style=\"color: #99FFFFFF;\">12%-12%-12%-12%-12%</span>. Additionally, Normal and Charged Attacks hits on opponents have a <span style=\"color: #99FFFFFF;\">50%-50%-50%-50%-50%</span> chance to trigger a vacuum blade that deals <span style=\"color: #99FFFFFF;\">40%-55%-70%-85%-100%</span> of ATK as DMG in a small AoE. This effect can occur no more than once every 2s.",
+        PrimordialJadeWingedSpear: "On hit, increases ATK by <span style=\"color: #99FFFFFF;\">3.2%-3.9%-4.6%-5.3%-6%</span> for 6s. Max 7 stacks. This effect can only occur once every 0.3s. While in possession of the maximum possible stacks, DMG dealt is increased by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span>.",
+        CalamityQueller: "Gain <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> All Elemental DMG Bonus. Obtain Consummation for 20s after using an Elemental Skill, causing ATK to increase by <span style=\"color: #99FFFFFF;\">3.2%-4%-4.8%-5.6%-6.4%</span> per second. This ATK increase has a maximum of 6 stacks. When the character equipped with this weapon is not on the field, Consummation\'s ATK increase is doubled.",
+        StaffOfHoma: "HP increased by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Additionally, provides an ATK Bonus based on <span style=\"color: #99FFFFFF;\">0.8%-1%-1.2%-1.4%-1.6%</span> of the wielder\'s Max HP. When the wielder\'s HP is less than 50%, this ATK Bonus is increased by an additional <span style=\"color: #99FFFFFF;\">1%-1.2%-1.4%-1.6%-1.8%</span> of Max HP.",
+        VortexVanquisher: "Increases Shield Strength by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Scoring hits on opponents increases ATK by <span style=\"color: #99FFFFFF;\">4%-5%-6%-7%-8%</span> for 8s. Max 5 stacks. Can only occur once every 0.3s. While protected by a shield, this ATK increase effect is increased by 100%.",
+        PrototypeStarglitter: "After using an Elemental Skill, increases Normal and Charged Attack DMG by <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span> for 12s. Max 2 stacks.",
+        LithicSpear: "For every character in the party who hails from Liyue, the character who equips this weapon gains a <span style=\"color: #99FFFFFF;\">7%-8%-9%-10%-11%</span> ATK increase and a <span style=\"color: #99FFFFFF;\">3%-4%-5%-6%-7%</span> CRIT Rate increase. This effect stacks up to 4 times.",
+        KitainCrossSpear: "Increases Elemental Skill DMG by <span style=\"color: #99FFFFFF;\">6%-7.5%-9%-10.5%-12%</span>. After Elemental Skill hits an opponent, the character loses 3 Energy but regenerates <span style=\"color: #99FFFFFF;\">3-3.5-4-4.5-5</span> Energy every 2s for the next 6s. This effect can occur once every 10s. Can be triggered even when the character is not on the field.",
+        TheCatch: "Increases Elemental Burst DMG by <span style=\"color: #99FFFFFF;\">16%-20%-24%-28%-32%</span> and Elemental Burst CRIT Rate by <span style=\"color: #99FFFFFF;\">6%-7.5%-9%-10.5%-12%</span>.",
+        FavoniusLance: "CRIT Hits have a <span style=\"color: #99FFFFFF;\">60%-70%-80%-90%-100%</span> chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every <span style=\"color: #99FFFFFF;\">12-10.5-9-7.5-6</span>s.",
+        DragonspineSpear: "Hitting an opponent with Normal and Charged Attacks has a <span style=\"color: #99FFFFFF;\">60%-70%-80%-90%-100%</span> chance of forming and dropping an Everfrost Icicle above them, dealing AoE DMG equal to <span style=\"color: #99FFFFFF;\">80%-95%-110%-125%-140%</span> of ATK. Opponents affected by Cryo are instead dealt DMG equal to <span style=\"color: #99FFFFFF;\">200%-240%-280%-320%-360%</span> of ATK. Can only occur once every 10s.",
+        DragonsBane: "Increases DMG against opponents affected by Hydro or Pyro by <span style=\"color: #99FFFFFF;\">20%-24%-28%-32%-36%</span>.",
+        Deathmatch: "If there are at least 2 opponents nearby, ATK is increased by <span style=\"color: #99FFFFFF;\">16%-20%-24%-28%-32%</span> and DEF is increased by <span style=\"color: #99FFFFFF;\">16%-20%-24%-28%-32%</span>. If there are fewer than 2 opponents nearby, ATK is increased by <span style=\"color: #99FFFFFF;\">24%-30%-36%-42%-48%</span>.",
+        CrescentPike: "After picking up an Elemental Orb/Particle, Normal and Charged Attacks deal additional DMG equal to <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span> of ATK for 5s.",
+        BlackcliffPole: "After defeating an enemy, ATK is increased by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> for 30s. This effect has a maximum of 3 stacks, and the duration of each stack is independent of the others.",
+        WavebreakersFin: "For every point of the entire party\'s combined maximum Energy capacity, the Elemental Burst DMG of the character equipping this weapon is increased by <span style=\"color: #99FFFFFF;\">0.12%-0.15%-0.18%-0.21%-0.24%</span>. A maximum of <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> increased Elemental Burst DMG can be achieved this way.",
+        RoyalSpear: "Upon damaging an opponent, increases CRIT Rate by <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span>. Max 5 stacks. A CRIT Hit removes all stacks.",
+        Halberd: "Normal Attacks deal an additional <span style=\"color: #99FFFFFF;\">160%-200%-240%-280%-320%</span> ATK as DMG. Can only occur once every 10s.",
+        BlackTassel: "Increases DMG against slimes by <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span>.",
+        WhiteTassel: "Increases Normal Attack DMG by <span style=\"color: #99FFFFFF;\">24%-30%-36%-42%-48%</span>.",
+        IronPoint: "",
+        BeginnersProtector: "",
+        LostPrayerToTheSacredWinds: "Increases Movement SPD by 10%. When in battle, gain an <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span> Elemental DMG Bonus every 4s. Max 4 stacks. Lasts until the character falls or leaves combat.",
+        SkywardAtlas: "Increases Elemental DMG Bonus by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span>. Normal Attack hits have a 50% chance to earn the favor of the clouds, which actively seek out nearby opponents to attack for 15s, dealing <span style=\"color: #99FFFFFF;\">160%-200%-240%-280%-320%</span> ATK DMG. Can only occur once every 30s.",
+        EverlastingMoonglow: "Healing Bonus increased by <span style=\"color: #99FFFFFF;\">10%-12.5%-15%-17.5%-20%</span>, Normal Attack DMG is increased by <span style=\"color: #99FFFFFF;\">1%-1.5%-2%-2.5%-3%</span> of the Max HP of the character equipping this weapon. For 12s after using an Elemental Burst, Normal Attacks that hit opponents will restore 0.6 Energy. Energy can be restored this way once every 0.1s.",
+        MemoryOfDust: "Increases Shield Strength by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Scoring hits on opponents increases ATK by <span style=\"color: #99FFFFFF;\">4%-5%-6%-7%-8%</span> for 8s. Max 5 stacks. Can only occur once every 0.3s. While protected by a shield, this ATK increase effect is increased by 100%.",
+        WindAndSong: "Hitting an opponent with a Normal Attack decreases the Stamina consumption of Sprint or Alternate Sprint by <span style=\"color: #99FFFFFF;\">14%-16%-18%-20%-22%</span> for 5s. Additionally, using a Sprint or Alternate Sprint ability increases ATK by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span> for 5s.",
+        TheWidsith: "When the character takes the field, they will gain a random theme song for 10s. This can only occur once every 30s. Recitative: ATK is increased by <span style=\"color: #99FFFFFF;\">60%-75%-90%-105%-120%</span>. Aria: Increases all Elemental DMG by <span style=\"color: #99FFFFFF;\">48%-60%-72%-84%-96%</span>. Interlude: Elemental Mastery is increased by <span style=\"color: #99FFFFFF;\">240-300-360-420-480</span>.",
+        SolarPearl: "Normal Attack hits increase Elemental Skill and Elemental Burst DMG by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span> for 6s. Likewise, Elemental Skill or Elemental Burst hits increase Normal Attack DMG by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span> for 6s.",
+        SacrificialFragments: "After damaging an opponent with an Elemental Skill, the skill has a <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> chance to end its own CD. Can only occur once every <span style=\"color: #99FFFFFF;\">30-26-22s-19-16s</span>s.",
+        RoyalGrimoire: "Upon damaging an opponent, increases CRIT Rate by <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span>. Max 5 stacks. A CRIT Hit removes all stacks.",
+        PrototypeAmber: "Using an Elemental Burst regenerates <span style=\"color: #99FFFFFF;\">4-4.5-5-5.5-6</span> Energy every 2s for 6s. All party members will regenerate <span style=\"color: #99FFFFFF;\">4%-4.5%-5%-5.5%-6%</span> HP every 2s for this duration.",
+        MappaMare: "Triggering an Elemental reaction grants a <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span> Elemental DMG Bonus for 10s. Max 2 stacks.",
+        HakushinRing: "After the character equipped with this weapon triggers an Electro elemental reaction, nearby party members of an Elemental Type involved in the elemental reaction receive a <span style=\"color: #99FFFFFF;\">10%-12.5%-15%-17.5%-20%</span> Elemental DMG Bonus for their element, lasting 6s. Elemental Bonuses gained in this way cannot be stacked.",
+        Frostbearer: "Hitting an opponent with Normal and Charged Attacks has a <span style=\"color: #99FFFFFF;\">60%-70%-80%-90%-100%</span> chance of forming and dropping an Everfrost Icicle above them, dealing AoE DMG equal to <span style=\"color: #99FFFFFF;\">80%-95%-110%-125%-140%</span> of ATK. Opponents affected by Cryo are instead dealt DMG equal to <span style=\"color: #99FFFFFF;\">200%-240%-280%-320%-360%</span> of ATK. Can only occur once every 10s.",
+        FavoniusCodex: "CRIT Hits have a <span style=\"color: #99FFFFFF;\">60%-70%-80%-90%-100%</span> chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every <span style=\"color: #99FFFFFF;\">12-10.5-9-7.5-6</span>s.",
+        EyeOfPerception: "Normal and Charged Attacks have a 50% chance to fire a Bolt of Perception, dealing <span style=\"color: #99FFFFFF;\">240%-270%-300%-330%-360%</span> ATK as DMG. This bolt can bounce between opponents a maximum of 4 times. This effect can occur once every <span style=\"color: #99FFFFFF;\">12-11-10-9-8</span>s.",
+        DodocoTales: "Normal Attack hits on opponents increase Charged Attack DMG by <span style=\"color: #99FFFFFF;\">16%-20%-24%-28%-32%</span> for 6s. Charged Attack hits on opponents increase ATK by <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span> for 6s.",
+        BlackcliffAgate: "After defeating an enemy, ATK is increased by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> for 30s. This effect has a maximum of 3 stacks, and the duration of each stack is independent of the others.",
+        KagurasVerity: "Gains the Kagura Dance effect when using an Elemental Skill, causing the Elemental Skill DMG of the character wielding this weapon to increase by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> for 16s. Max 3 stacks. This character will gain <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> All Elemental DMG Bonus when they possess 3 stacks.",
+        OathswornEye: "Increases Energy Recharge by <span style=\"color: #99FFFFFF;\">24%-30%-36%-42%-48%</span> for 10s after using an Elemental Skill.",
+        MagicGuide: "Increases DMG against opponents affected by Hydro or Electro by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span>.",
+        OtherworldlyStory: "Picking up an Elemental Energy Orb/Particle recovers <span style=\"color: #99FFFFFF;\">1%-1.25%-1.5%-1.75%-2%</span> HP.",
+        EmeraldOrb: "Upon causing a Vaporize, Electro-Charged, Frozen, or a Hydro-infused Swirl reaction, increases ATK by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span> for 12s.",
+        ThrillingTalesOfDragonSlayers: "When switching characters, the new character taking the field has their ATK increased by <span style=\"color: #99FFFFFF;\">24%-30%-36%-42%-48%</span> for 10s. This effect can only occur once every 20s.",
+        TwinNephrite: "Defeating an opponent increases Movement SPD and ATK by <span style=\"color: #99FFFFFF;\">12%-14%-16%-18%-20%</span> for 15s.",
+        PocketGrimoire: "",
+        ApprenticesNotes: "",
+        PolarStar: "Elemental Skill and Elemental Burst DMG increased by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span>. After a Normal Attack, Charged Attack, Elemental Skill or Elemental Burst hits an opponent, 1 stack of Ashen Nightstar will be gained for 12s. When 1/2/3/4 stacks of Ashen Nightstar are present, ATK is increased by <span style=\"color: #99FFFFFF;\">10/20/30/48%-12.5/25/37.5/60%-15/30/45/72%-17.5/35/52.5/84%-20/40/60/96%</span>. The stack of Ashen Nightstar created by the Normal Attack, Charged Attack, Elemental Skill or Elemental Burst will be counted independently of the others.",
+        ThunderingPulse: "Increases ATK by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span> and grants the might of the Thunder Emblem. At stack levels 1/2/3, the Thunder Emblem increases Normal Attack DMG by <span style=\"color: #99FFFFFF;\">12/24/40%-15/30/50%-18/36/60%-21/42/70%-24/48/80%</span>. The character will obtain 1 stack of Thunder Emblem in each of the following scenarios: Normal Attack deals DMG (stack lasts 5s), casting Elemental Skill (stack lasts 10s); Energy is less than 100% (stack disappears when Energy is full). Each stack\'s duration is calculated independently.",
+        ElegyOfTheEnd: "A part of the \"Millennial Movement\" that wanders amidst the winds. Increases Elemental Mastery by <span style=\"color: #99FFFFFF;\">60-75-90-105-120</span>. When the Elemental Skills or Elemental Bursts of the character wielding this weapon hit opponents, that character gains a Sigil of Remembrance. This effect can be triggered once every 0.2s and can be triggered even if said character is not on the field. When you possess 4 Sigils of Remembrance, all of them will be consumed and all nearby party members will obtain the \"Millennial Movement: Farewell Song\" effect for 12s. \"Millennial Movement: Farewell Song\" increases Elemental Mastery by <span style=\"color: #99FFFFFF;\">100-125-150-175-200</span> and increases ATK by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Once this effect is triggered, you will not gain Sigils of Remembrance for 20s. Of the many effects of the \"Millennial Movement,\" buffs of the same type will not stack.",
+        SkywardHarp: "Increases CRIT DMG by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. Hits have a <span style=\"color: #99FFFFFF;\">60%-70%-80%-90%-100%</span> chance to inflict a small AoE attack, dealing 125% Physical ATK DMG. Can only occur once every <span style=\"color: #99FFFFFF;\">4-3.5-3-2.5-2</span>s.",
+        AmosBow: "Increases Normal and Charged Attack DMG by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span>. After a Normal or Charged Attack is fired, DMG dealt increases by a further <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span> every 0.1s the arrow is in the air for up to 5 times.",
+        AlleyHunter: "While the character equipped with this weapon is in the party but not on the field, their DMG increases by <span style=\"color: #99FFFFFF;\">2%-2.5%-3%-3.5%-4%</span> every second up to a max of <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. When the character is on the field for more than 4s, the aforementioned DMG buff decreases by <span style=\"color: #99FFFFFF;\">4%-5%-6%-7%-8%</span> per second until it reaches 0%.",
+        TheViridescentHunt: "Upon hit, Normal and Charged Attacks have a 50% chance to generate a Cyclone, which will continuously attract surrounding opponents, dealing <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> of ATK as DMG to these opponents every 0.5s for 4s. This effect can only occur once every <span style=\"color: #99FFFFFF;\">14-13-12-11-10</span>s.",
+        TheStringless: "Increases Elemental Skill and Elemental Burst DMG by <span style=\"color: #99FFFFFF;\">24%-30%-36%-42%-48%</span>.",
+        SacrificialBow: "After damaging an opponent with an Elemental Skill, the skill has a <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> chance to end its own CD. Can only occur once every <span style=\"color: #99FFFFFF;\">30-26-22s-19-16s</span>s.",
+        Rust: "Increases Normal Attack DMG by <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> but decreases Charged Attack DMG by 10%.",
+        RoyalBow: "Upon damaging an opponent, increases CRIT Rate by <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span>. Max 5 stacks. A CRIT Hit removes all stacks.",
+        Predator: "<span style=\"color: #99FFFFFF;\">Effective only on the following platform: </span><br><span style=\"color: #99FFFFFF;\">\"PlayStation Network\"</span><br>Dealing Cryo DMG to opponents increases this character\'s Normal and Charged Attack DMG by 10% for 6s. This effect can have a maximum of 2 stacks. Additionally, when Aloy equips Predator, ATK is increased by 66.",
+        PrototypeCrescent: "Charged Attack hits on weak points increase Movement SPD by 10% and ATK by <span style=\"color: #99FFFFFF;\">36%-45%-54%-63%-72%</span> for 10s.",
+        MouunsMoon: "For every point of the entire party\'s combined maximum Energy capacity, the Elemental Burst DMG of the character equipping this weapon is increased by <span style=\"color: #99FFFFFF;\">0.12%-0.15%-0.18%-0.21%-0.24%</span>. A maximum of <span style=\"color: #99FFFFFF;\">40%-50%-60%-70%-80%</span> increased Elemental Burst DMG can be achieved this way.",
+        MitternachtsWaltz: "Normal Attack hits on opponents increase Elemental Skill DMG by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span> for 5s. Elemental Skill hits on opponents increase Normal Attack DMG by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span> for 5s.",
+        Hamayumi: "Increases Normal Attack DMG by <span style=\"color: #99FFFFFF;\">16%-20%-24%-28%-32%</span> and Charged Attack DMG by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span>. When the equipping character\'s Energy reaches 100%, this effect is increased by 100%.",
+        FavoniusWarbow: "CRIT Hits have a <span style=\"color: #99FFFFFF;\">60%-70%-80%-90%-100%</span> chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every <span style=\"color: #99FFFFFF;\">12-10.5-9-7.5-6</span>s.",
+        CompoundBow: "Normal Attack and Charged Attack hits increase ATK by <span style=\"color: #99FFFFFF;\">4%-5%-6%-7%-8%</span> and Normal ATK SPD by <span style=\"color: #99FFFFFF;\">1.2%-1.5%-1.8%-2.1%-2.4%</span> for 6s. Max 4 stacks. Can only occur once every 0.3s.",
+        BlackcliffWarbow: "After defeating an enemy, ATK is increased by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span> for 30s. This effect has a maximum of 3 stacks, and the duration of each stack is independent of the others.",
+        WindblumeOde: "After using an Elemental Skill, receive a boon from the ancient wish of the Windblume, increasing ATK by <span style=\"color: #99FFFFFF;\">16%-20%-24%-28%-32%</span> for 6s.",
+        RavenBow: "Increases DMG against opponents affected by Hydro or Pyro by <span style=\"color: #99FFFFFF;\">12%-15%-18%-21%-24%</span>.",
+        RecurveBow: "Defeating an opponent restores <span style=\"color: #99FFFFFF;\">8%-10%-12%-14%-16%</span> HP.",
+        Messenger: "Charged Attack hits on weak points deal an additional <span style=\"color: #99FFFFFF;\">100%-125%-150%-175%-200%</span> ATK DMG as CRIT DMG. Can only occur once every 10s.",
+        SharpshootersOath: "Increases DMG against weak spots by <span style=\"color: #99FFFFFF;\">24%-30%-36%-42%-48%</span>.",
+        Slingshot: "If a Normal or Charged Attack hits a target within 0.3s of being fired, increases DMG by <span style=\"color: #99FFFFFF;\">36%-42%-48%-54%-60%</span>. Otherwise, decreases DMG by 10%.",
+        SeasonedHuntersBow: "",
+        HuntersBow: "",
+        AquaSimulacra: "HP is increased by <span style=\"color: #99FFFFFF;\">16%-20%-24%-28%-32%</span>. When there are opponents nearby, the DMG dealt by the wielder of this weapon is increased by <span style=\"color: #99FFFFFF;\">20%-25%-30%-35%-40%</span>. This will take effect whether the character is on-field or not.",
+        FadingTwilight: "Has three states, Evengleam, Afterglow, and Dawnblaze, which increase DMG dealt by <span style=\"color: #99FFFFFF;\">6%/10%/14%-7.5%/12.5%/17.5%-9%/15%/21%-10.5%/17.5%/24.5%-12%/20%/28%</span> respectively. When attacks hit opponents, this weapon will switch to the next state. This weapon can change states once every 7s. The character equipping this weapon can still trigger the state switch while not on the field.",
+    },
+    config: {
+        w1: "Avg Effect Stack",
+        w2: "Avg Effect Ratio",
+        w3: "Recharge demand",
+        w4: "Number",
+        w5: "Refine",
+        w6: "Enemy around",
+        w7: "State",
+        w8: "Effect1 Ratio",
+        w9: "Effect2 Ratio",
+        w10: "Team Energy Number Sum",
+        w11: "「Nightstar」Stack",
+        w12: "Hit in 0.3s",
+        w13: "「Thunder Emblem」Stack",
+        w14: "Full Stack Ratio",
+        w15: "Shield Rate",
+        w16: "「Recitative」Ratio",
+        w17: "「Aria」Ratio",
+        w18: "「Interlude」Ratio",
+        w19: "Team Liyue Character Count",
+        w20: "「Consummation」Avg Stack",
+        w21: "Backend Ratio",
+        w22: "At Least 2 Enemies Around",
+        w23: "Full Stack Ratio",
+        w24: "HP Below 50% Ratio",
+        w25: "「Wavespike」层数",
+        w26: "「Mistsplitter\'s Emblem」层数",
+
+        c1: "天赋「天地交泰」应用比例",
+        c2: "天赋「唯此一心」应用比例",
+        c3: "生命值低于50%",
+        c4: "彼岸蝶舞",
+        c5: "天赋「天罪国罪镇词」应用比例",
+        c6: "天赋「寒天宣命祝词」应用比例",
+        c7: "神里流·霰步",
+        c8: "六命效果",
+        c9: "天赋「玉衡之贵」应用比例",
+        c10: "E附魔",
+        c11: "生命值不高于50%（天赋1：治疗加成+15%）",
+        c12: "启用六命",
+        c13: "天赋「储之千日，用之一刻」应用比例",
+        c14: "应用天赋「聆听忏悔的幽影」效果",
+        c15: "雷之印层数",
+        c16: "天赋「饥饿」应用比例",
+        c17: "队伍不同元素数量",
+        c18: "天赋「袖火百景图」应用层数",
+        c19: "庭火焰硝",
+        c20: "线圈层数",
+        c21: "处于「怒目鬼王」",
+        c22: "是否被大招附魔",
+        c23: "光降之剑能量层数",
+        c24: "六命：血赤叶红",
+        c25: "「浪闪」层数",
+        c26: "处于「水囿」",
+        c27: "Q技能之后",
+        c28: "处于雷罚恶曜之眼",
+        c29: "诸愿百眼之愿力层数",
+        c30: "「仪来羽衣」状态",
+        c31: "靖妖傩舞",
+        c32: "天赋「降魔·平妖大圣」应用层数",
+        c33: "天赋「坏劫·国土碾尘」应用层数",
+        c34: "应用4命效果",
+        c35: "「热情拂扫」护盾覆盖比例",
+        c36: "灼灼",
+
+        t1: "Type",
+        t2: "Trigger Element",
+        t3: "Skill",
+        t4: "Recharge Requirement",
+        t5: "Melt Ratio",
+        t6: "Vaporize Ratio",
+        t7: "Heal-DMG Weight(0: Pure Heal, 1: Pure DMG）",
+        t8: "Swirl Frequency",
+        t9: "Other's DMG Ratio",
+        t10: "Swirl Frequency",
+        t11: "Overload Frequency",
+        t12: "Damage Requirement",
+        t13: "Electro-charged Frequency",
+        t14: "Overload Frequency",
+        t15: "E-skill DMG Rate",
+
+        a1: "Element",
+        a2: "Effect Apply Ratio",
+        a3: "Equivalent Crit Rate",
+        a4: "Equivalent Stack",
+        a5: "Avg Trigger Rate",
+        a6: "「Curiosity」Equivalent Stack",
+        a7: "Enemy Pyro Coverage",
+        a8: "Effect1 Equivalent Stack",
+        a9: "Full Stack Rate",
+        a10: "Shield Coverage",
+        a11: "Enemy Electro Coverage",
+        a12: "Elemental Burst Rate",
+        a13: "Avg Stack",
+
+        p1: "ATK Valid",
+        p2: "ATK Weight",
+        p3: "ATK% Valid",
+        p4: "ATK% Weight",
+        p5: "HP Valid",
+        p6: "HP Weight",
+        p7: "HP% Valid",
+        p8: "HP% Weight",
+        p9: "DEF Valid",
+        p10: "DEF Weight",
+        p11: "DEF% Valid",
+        p12: "DEF% Weight",
+        p13: "Crit Rate Valid",
+        p14: "Crit Rate Weight",
+        p15: "Crit DMG Valid",
+        p16: "Crit DMG Weight",
+        p17: "EM Valid",
+        p18: "EM Weight",
+        p19: "Energy Recharge Valid",
+        p20: "Energy Recharge Weight",
+    },
     ele: {
         Pyro: "Pyro",
         Cryo: "Cryo",
@@ -299,21 +1269,21 @@ export default {
         KukiShinobuDefault: "久岐忍-烦恼刈除",
     },
     tfDesc: {
-        MaxATK: "最大化攻击力",
-        MaxDEF: "最大化防御力",
-        MaxHP: "最大化生命值",
-        MaxEM: "最大化元素精通",
-        PyroDamage: "火元素伤害最大化或最大化期望",
-        CryoDamage: "冰元素伤害最大化或最大化期望",
-        HydroDamage: "水元素伤害最大化或最大化期望",
-        ElectroDamage: "雷元素伤害最大化或最大化期望",
-        AnemoDamage: "风元素伤害最大化或最大化期望",
-        GeoDamage: "岩元素伤害最大化或最大化期望",
-        PhysicalDamage: "物理伤害最大化或最大化期望",
-        MaxVaporize: "使得蒸发反应的伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
-        MaxMelt: "使得融化反应的伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
-        ExpectVaporize: "使得蒸发反应的期望伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
-        ExpectMelt: "使得融化反应的期望伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+        MaxATK: "Maximize ATK",
+        MaxDEF: "Maximize DEF",
+        MaxHP: "Maximize HP",
+        MaxEM: "Maximize Elemental Mastery",
+        PyroDamage: "Maximize Crit or Avg Pyro Damage",
+        CryoDamage: "Maximize Crit or Avg Cryo Damage",
+        HydroDamage: "Maximize Crit or Avg Hydro Damage",
+        ElectroDamage: "Maximize Crit or Avg Electro Damage",
+        AnemoDamage: "Maximize Crit or Avg Anemo Damage",
+        GeoDamage: "Maximize Crit or Avg Geo Damage",
+        PhysicalDamage: "Maximize Crit or Avg Physical Damage",
+        MaxVaporize: "Maximize vaporize DMG<br><b>Attention:</b>This function only calculates the simplest case, some attribute conversions are not considered, you may not use this unless you know what you're doing",
+        MaxMelt: "Maximize vaporize DMG<br><b>Attention:</b>This function only calculates the simplest case, some attribute conversions are not considered, you may not use this unless you know what you're doing",
+        ExpectVaporize: "Maximize vaporize DMG<br><b>Attention:</b>This function only calculates the simplest case, some attribute conversions are not considered, you may not use this unless you know what you're doing",
+        ExpectMelt: "Maximize vaporize DMG<br><b>Attention:</b>This function only calculates the simplest case, some attribute conversions are not considered, you may not use this unless you know what you're doing",
 
         AlbedoDefault: "普通副C阿贝多",
         AloyDefault: "普通输出埃洛伊",
@@ -485,5 +1455,196 @@ export default {
         clear: "Clear local storage",
         confirmClear: "Confirm clear local storage?",
         loading: "Switching language",
+    },
+    skillType: {
+        a: "Normal Attack",
+        b: "Charged Attack",
+        e: "Elemental Skill",
+        q: "ElementalBurst",
+    },
+    buffName: {
+        ATKFixed: "ATK",
+        ATKPercentage: "ATK%",
+        Critical: "Crit Rate",
+        CriticalDamage: "Crit DMG",
+        CustomBonus: "DMG Bonus",
+        DEFFixed: "DEF",
+        DEFMinus: "减防",
+        DEFPercentage: "DEF%",
+        ElementalMastery: "Elemental Mastery",
+        HealingBonus: "Healing Bonus",
+        HPFixed: "HP",
+        HPPercentage: "HP%",
+        Recharge: "Energy Recharge",
+        ResMinus: "减抗",
+        AlbedoTalent2: "Albedo-「Homuncular Nature」",
+        AlbedoC4: "Albedo-「Descent of Divinity」",
+        AlbedoC6: "Albedo-「Dust of Purification」",
+        AloyTalent1: "Aloy-「Combat Override」",
+        AratakiIttoC4: "荒泷一斗-「奉行牢狱，茶饭之所」",
+        BeidouC6: "北斗-「北斗祓幽孽」",
+        BennettQ: "班尼特-「美妙旅程」",
+        BennettC6: "班尼特-「烈火与勇气」",
+        ChongyunTalent2: "重云-「追冰剑诀」",
+        DionaC6G50: "迪奥娜-「猫尾打烊之时」",
+        EulaE: "优菈-「冰潮的涡旋」减抗",
+        GanyuTalent2: "甘雨-「天地交泰」",
+        GanyuC1: "甘雨-「饮露」",
+        GorouE1: "五郎-「大将旗指物」-1",
+        GorouE3: "五郎-「大将旗指物」-3",
+        GorouTalent1: "五郎-「不畏风雨」",
+        GorouC6: "五郎-「犬勇•忠如山」",
+        HuTaoTalent1: "胡桃-「蝶隐之时」",
+        JeanC4: "琴-「蒲公英的国土」",
+        KaedeharaKazuhaTalent2: "枫原万叶-「风物之诗咏」",
+        KaedeharaKazuhaC2: "枫原万叶-「山岚残芯」",
+        KamisatoAyakaC4: "神里绫华-「盈缺流返」",
+        KamisatoAyatoQ: "神里绫人-「水囿」",
+        KleeC2: "可莉-「破破弹片」",
+        KleeC6: "可莉-「火力全开」",
+        KujouSaraEOrQ: "九条裟罗-「天狗咒雷」",
+        LisaTalent2: "丽莎-「静电场力」",
+        MonaQ: "莫娜-「星异」",
+        MonaC1: "莫娜-「沉没的预言」",
+        NingguangTalent2: "凝光-「储之千日，用之一刻」",
+        RaidenShogunE: "雷电将军-「雷罚恶曜之眼」",
+        RaidenShogunC4: "雷电将军-「誓奉常道」",
+        RazorC4: "雷泽-「撕咬」",
+        RosariaTalent2: "罗莎莉亚-「暗中支援的黯色」",
+        RosariaC6: "罗莎莉亚-「代行裁判」",
+        ShenheE: "申鹤-「冰翎」",
+        ShenheQ: "申鹤-「神女遣灵真诀」减抗",
+        ShenheTalent1: "申鹤-「大洞弥罗尊法」",
+        ShenheTalent2: "申鹤-「缚灵通真法印」",
+        SucroseTalent1: "砂糖-「触媒置换术」",
+        SucroseTalent2: "砂糖-「小小的慧风」",
+        SucroseC6: "砂糖-「混元熵增论」",
+        ThomaTalent1: "托马-「甲衣交叠」",
+        ThomaC6: "托马-「炽烧的至心」",
+        VentiC2: "温迪-「眷恋的泠风」",
+        VentiC6: "温迪-「抗争的暴风」",
+        XianglingTalent2: "香菱-「绝云朝天椒」",
+        XianglingC1: "香菱-「外酥里嫩」",
+        XianglingC6: "香菱-「大龙卷旋火轮」",
+        XingqiuC2: "行秋-「天青现虹」",
+        XinyanC4: "辛焱-「节奏的传染」",
+        XinyanTalent2: "辛焱-「这才是摇滚!」",
+        YaeMikoC4: "八重神子-「绯樱引雷章」",
+        YelanTalent2: "夜兰-「妙转随心」",
+        YelanC4: "夜兰-「诓惑者，接树移花」",
+        YoimiyaTalent2: "宵宫-「炎昼风物诗」",
+        YunjinQ: "云堇-「飞云旗阵」",
+        YunjinC2: "云堇-「诸般切末」",
+        ZhongliShield: "钟离-「玉璋护盾」",
+        ElegyOfTheEnd: "终末嗟叹之诗-「千年的大乐章·别离之歌」",
+        HakushinRing: "白辰之环-「樱之斋宫」",
+        ThrillingTalesOfDragonSlayers: "讨龙英杰谭-「传承」",
+        SongOfBrokenPines: "松籁响起之时-「千年的大乐章·揭旗之歌」",
+        WolfsGravestone: "狼的末路-「如狼般狩猎者」",
+        FreedomSworn: "苍古自由之誓-「千年的大乐章·抗争之歌」",
+        ResonancePyro2: "元素共鸣-热诚之火",
+        ResonanceCryo2: "元素共鸣-粉碎之冰",
+        ResonanceGeo2: "元素共鸣-坚定之岩",
+        ArchaicPetra4: "悠古的磐岩4",
+        Instructor4: "教官4",
+        NoblesseOblige4: "昔日宗室之仪4",
+        TenacityOfTheMillelith4: "千岩牢固4",
+        ViridescentVenerer4: "翠绿之影4",
+    },
+    buffDesc: {
+        ATKFixed: "",
+        ATKPercentage: "",
+        Critical: "",
+        CriticalDamage: "",
+        CustomBonus: "",
+        DEFFixed: "",
+        DEFMinus: "",
+        DEFPercentage: "",
+        ElementalMastery: "",
+        HealingBonus: "",
+        HPFixed: "",
+        HPPercentage: "",
+        Recharge: "",
+        ResMinus: "",
+        AlbedoTalent2: "阿贝多天赋2：释放诞生式·大地之潮时,使附近的队伍中角色的元素精通提高125点，持续10秒",
+        AlbedoC4: "阿贝多命座4：处于阳华的领域中的队伍中当前场上角色，造成的下落攻击伤害提高30%。",
+        AlbedoC6: "阿贝多命座6：处在阳华的领域中的队伍中当前场上角色，若处于结晶反应产生的护盾庇护下，造成的伤害提高17%。",
+        AloyTalent1: "埃洛伊天赋1：埃洛伊获得冰尘雪野的线圈效果时，队伍中附近的其他角色的攻击力提升8%，持续10秒。",
+        AratakiIttoC4: "荒泷一斗命座4：最恶鬼王•一斗轰临！！施加的「怒目鬼王」状态结束后，附近的队伍中所有角色的防御力提升20%，攻击力提升20%，持续10秒。",
+        BeidouC6: "北斗命座6：斫雷持续期间，周围敌人的雷元素抗性降低15%。",
+        BennettQ: "班尼特Q技能：基于班尼特的基础攻击力，以一定比例获得攻击力加成<br>一命：美妙旅程的攻击力提升效果不再有血量限制，数值上追加班尼特基础攻击力的20%。",
+        BennettC6: "班尼特命座6：处在美妙旅程领域内的队伍中当前场上单手剑、双手剑、长柄武器角色获得15%火元素伤害加成<br>注：此处不管当前角色的武器类型",
+        ChongyunTalent2: "重云天赋2：灵刃·重华叠霜领域消失时，会唤出一柄灵刃自动攻击附近的敌人，造成相当于灵刃·重华叠霜技能伤害100%的冰元素范围伤害。被击中的敌人冰元素抗性降低10%，持续8秒。",
+        DionaC6G50: "迪奥娜命座6：生命值高于50%时，元素精通提升200。",
+        EulaE: "优菈E技能：长按若消耗了冷酷之心效果，会使身边的敌人的物理抗性与冰元素抗性降低。",
+        GanyuTalent2: "甘雨天赋2：降众天华领域内的队伍中当前场上角色获得20%冰元素伤害加成。",
+        GanyuC1: "甘雨命座1：二段蓄力重击的霜华矢或霜华绽发命中敌人时，会使敌人的冰元素抗性降低15%，持续6秒。",
+        GorouE1: "五郎E技能：一名角色时：「坚牢」：防御力提升。",
+        GorouE3: "五郎E技能：三名角色时：「摧碎」：除上述效果外，获得岩元素伤害加成。",
+        GorouTalent1: "五郎天赋1：施放兽牙逐突形胜战法后的12秒内，附近的队伍中所有角色的防御力提升25%。",
+        GorouC6: "五郎命座6：施放犬坂吠吠方圆阵或兽牙逐突形胜战法后的12秒内，依据施放时的领域等级，提高附近的队伍中所有角色岩元素伤害的暴击伤害。",
+        HuTaoTalent1: "胡桃天赋1：蝶引来生施加的彼岸蝶舞状态结束后，队伍中所有角色（不包括胡桃自己）的暴击率提高12%，持续8秒。",
+        JeanC4: "琴命座4：在蒲公英之风的领域内，所有敌人的风元素抗性下降40％。",
+        KaedeharaKazuhaTalent2: "枫原万叶天赋2：枫原万叶触发扩散反应后，枫原万叶的每点元素精通，会为队伍中所有角色提供0.04%对应元素伤害加成，持续8秒。",
+        KaedeharaKazuhaC2: "枫原万叶命座2：场上角色的元素精通提升200点。",
+        KamisatoAyakaC4: "绫华命座4：敌人受到神里流•霜灭的霜见雪关扉造成的伤害后，防御力降低30%，持续6秒。",
+        KamisatoAyatoQ: "神里绫人Q技能：展开清净之园囿，熄灭其中一切嚣闹。存在期间，其中会持续降下水花剑，攻击范围内的敌人，造成水元素伤害，并提高其中的角色的普通攻击伤害。",
+        KleeC2: "可莉命座2：蹦蹦炸弹的诡雷会使敌人防御力降低23％，持续10秒。",
+        KleeC6: "可莉命座6：施放轰轰火花后的25秒内，队伍中所有角色获得10％火元素伤害加成。",
+        KujouSaraEOrQ: "九条裟罗E/Q技能：基于九条裟罗的基础攻击力，以一定比例获得攻击力加成<br>六命：处于天狗咒雷带来的攻击力提升效果状态下的角色，其雷元素伤害的暴击伤害提高60%。",
+        LisaTalent2: "丽莎天赋2：敌人受到蔷薇的雷光攻击后，降低15%防御力，持续10秒。",
+        MonaQ: "莫娜Q技能：对敌人施加星异的伤害加成效果，并以此提高这一次造成的伤害。四命：队伍中所有角色攻击处于星异状态下的敌人时，暴击率提升15%",
+        MonaC1: "莫娜命座1：队伍中自己的角色攻击命中处于星异状态下的敌人后的8秒内，水元素相关反应的效果提升：<br>•感电反应造成的伤害提升15%，蒸发反应造成的伤害提升15%，水元素扩散反应造成的伤害提升15%",
+        NingguangTalent2: "凝光天赋2：穿过璇玑屏的角色会获得12%岩元素伤害加成，持续10秒。",
+        RaidenShogunE: "雷电将军E技能：雷罚恶曜之眼的角色在持续期间内，元素爆发造成的伤害获得提升，提升程度基于元素爆发的元素能量。",
+        RaidenShogunC4: "雷电将军命座4：奥义•梦想真说施加的梦想一心状态结束后，附近的队伍中所有角色（不包括雷电将军自己）的攻击力提升30%，持续10秒。",
+        RazorC4: "雷泽命座4：利爪与苍雷点按时，会使命中的敌人防御力降低15％，持续7秒。",
+        RosariaTalent2: "罗莎莉亚天赋2：施放终命的圣礼时，基于自身暴击率的15%，提高附近的队伍中所有角色(不包括罗莎莉亚自己)的暴击率，持续10秒。通过这种方式获得的暴击率提升，无法超过15%。",
+        RosariaC6: "罗莎莉亚命座6：终命的圣礼的攻击会使敌人的物理抗性降低20%，持续10秒。",
+        ShenheE: "申鹤E技能：基于申鹤自己当前的攻击力，提高造成的伤害。",
+        ShenheQ: "申鹤Q技能：「箓灵」将结成领域，使其中敌人的冰元素抗性与物理抗性降低。",
+        ShenheTalent1: "申鹤天赋1：处于神女遣灵真诀的领域中的当前场上角色，冰元素伤害加成提高15%。二命：领域中的当前场上角色，冰元素伤害的暴击伤害提高15%。",
+        ShenheTalent2: "申鹤天赋2：申鹤施放仰灵威召将役咒后，将使附近的队伍中所有角色获得如下效果：<br>•点按：元素战技和元素爆发造成的伤害提高15%，持续10秒；<br>•长按：普通攻击、重击和下落攻击造成的伤害提高15%，持续15秒。",
+        SucroseTalent1: "砂糖天赋1：砂糖触发扩散反应时，使队伍中所有对应元素类型的角色（不包括砂糖自己）元素精通提升50，持续8秒。",
+        SucroseTalent2: "砂糖天赋2：风灵作成·陆叁零捌或禁·风灵作成·染伍同构贰型命中敌人时，基于砂糖元素精通的20%,为队伍中所有角色（不包括砂糖自己）提供元素精通加成，持续8秒。",
+        SucroseC6: "砂糖命座6：禁·风灵作成·柒伍同构贰型如果发生了元素转化，则使队伍中所有角色在技能持续时间内获得20%的对应元素伤害加成。",
+        ThomaTalent1: "托马天赋1：当前场上自己的角色获取或刷新烈烧佑命护盾时，护盾强效提升5%，持续时间6秒。此效果每0.3秒至多触发一次，至多叠加5次。",
+        ThomaC6: "托马命座6：获取或刷新烈烧佑命护盾时，队伍中所有角色的普通攻击，重击与下落攻击造成的伤害提升15%，持续6秒。",
+        VentiC2: "温迪命座2：高天之歌会使敌人的风元素抗性与物理抗性降低12％，持续10秒。被高天之歌击飞的敌人在落地前，风元素抗性与物理抗性额外降低12％。",
+        VentiC6: "温迪命座6：温迪六命BUFF。受风神之诗伤害的敌人，风元素抗性降低20％。若产生了元素转化，则使转换的元素抗性也降低20％。",
+        XianglingTalent2: "香菱天赋2：锅巴出击效果结束时，锅巴会在消失的位置留下辣椒。拾取辣椒会提高10%攻击力，持续10秒。",
+        XianglingC1: "香菱命座1：受到锅巴攻击的敌人，火元素抗性降低15％，持续6秒。",
+        XianglingC6: "香菱命座6；旋火轮持续期间，队伍中所有角色获得15％火元素伤害加成。",
+        XingqiuC2: "行秋命座2：受到剑雨攻击的敌人，水元素抗性降低15％，持续4秒。",
+        XinyanC4: "辛焱命座4：热情拂扫的伤害，会使敌人的物理抗性降低15%，持续12秒。",
+        XinyanTalent2: "辛焱天赋2：处于热情拂扫的护盾保护下的角色造成的物理伤害提高15%。",
+        YaeMikoC4: "八重神子命座4：杀生樱的落雷命中敌人后，队伍中附近的所有角色获得20%雷元素伤害加成，持续5秒。",
+        YelanTalent2: "夜兰天赋2：「玄掷玲珑」存在期间，能使队伍中自己的当前场上角色造成的伤害提高1%，并且每1秒进一步提高3.5%，至多使角色造成的伤害提高50%。效果存在期间重新施放渊图玲珑骰，将移除原有的上述效果。",
+        YelanC4: "夜兰4命：依照「络命丝」标记敌人的数量，每次标记将在爆发时使队伍中所有角色的生命值上限提升10%，持续25秒。通过这种方式，生命值上限至多获得40%提升。",
+        YoimiyaTalent2: "宵宫天赋2：释放琉金云间草后的15秒内，附近的队伍中所有其它角色（不包括宵宫自己）攻击力提高10%。此外，依据宵宫自己释放琉金云间草时固有天赋「袖火百景图」的叠加层数，将额外提升上述的攻击力效果，每层提升1%攻击力。",
+        YunjinQ: "云堇Q技能：对敌人造成普通攻击伤害时，基于云堇自己当前的防御力，提高造成的伤害。<br>天赋「莫从恒蹊」：「飞云旗阵」提供的普通攻击伤害提高，当队伍中存在1/2/3/4种元素类型的角色时，数值上进一步追加云堇防御力的2.5%/5.0%/7.5%/11.5%。",
+        YunjinC2: "云堇命座2：施放破嶂见旌仪后，附近队伍中所有角色普通攻击造成的伤害提高15%，持续12秒。",
+        ZhongliShield: "钟离盾：使附近小范围内敌人的所有元素抗性与物理抗性降低20%",
+        ElegyOfTheEnd: "千年的大乐章·别离之歌」效果：元素精通提高100/125/150/175/200点，攻击力提升20%/25%/30%/35%/40%。",
+        HakushinRing: "樱之斋宫：装备该武器的角色触发雷元素相关反应后，队伍中附近的与该元素反应相关的元素类型的角色，获得10%/12.5%/15%/17.5%/20%对应元素的元素伤害加成，持续6秒。通过这种方式，角色获得的元素伤害加成无法叠加。",
+        ThrillingTalesOfDragonSlayers: "传承：主动切换角色时，新登场的角色攻击力提升24%/30%/36%/42%/48%，持续10秒。该效果每20秒只能触发一次。",
+        SongOfBrokenPines: "「千年的大乐章·揭旗之歌」效果：普通攻击速度提升12%/15%/18%/21%/24%，攻击力提升20%/25%/30%/35%/40%。",
+        WolfsGravestone: "攻击命中生命值低于30%的敌人时，队伍中所有成员的攻击力提高40%/50%/60%/70%/80%，持续12秒。该效果30秒只能触发一次。",
+        FreedomSworn: "「千年的大乐章·抗争之歌」效果：普通攻击、重击、下落攻击造成的伤害提升16%/20%/24%/28%/32%，攻击力提升20%/25%/30%/35%/40%。",
+        ResonancePyro2: "攻击力提升25%。",
+        ResonanceCryo2: "攻击冰元素附着或冻结状态下的敌人时，暴击率提高15%。",
+        ResonanceGeo2: "护盾强效提升15%。角色处于护盾保护状态时，①造成的伤害提升15%，对敌人造成伤害时会使敌人的的②岩元素抗性降低20%，持续15秒。",
+        ArchaicPetra4: "获得结晶反应形成的晶片时，队伍中所有角色获得35%对应元素伤害加成，持续10秒。",
+        Instructor4: "触发元素反应后。队伍中所有角色元素精通提高120点，持续8秒。",
+        NoblesseOblige4: "施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。",
+        TenacityOfTheMillelith4: "元素战技命中敌人后，使队伍中附近的所有角色攻击力提升20%，护盾强效提升30%，持续3秒。",
+        ViridescentVenerer4: "根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。",
+    },
+    buffGenre: {
+        Character: "Character BUFF",
+        Weapon: "Weapon BUFF",
+        Artifact: "Artifact BUFF",
+        Resonance: "Resonance",
+        Common: "Custom",
     }
 }

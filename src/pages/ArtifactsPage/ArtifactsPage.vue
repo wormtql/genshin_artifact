@@ -202,7 +202,7 @@ import {positions} from '@/constants/artifact'
 import {downloadString} from '@/utils/common'
 import {deviceIsPC} from "@/utils/device"
 import {createRepo} from "@/api/repo"
-import {computed, nextTick, ref, type Ref} from "vue"
+import {type Ref} from "vue"
 import {useArtifactStore} from "@/store/pinia/artifact"
 import {usePresetStore} from "@/store/pinia/preset"
 import {getArtifactsRecommendation} from "@/utils/artifactRecommendation"
@@ -223,7 +223,6 @@ import ImportBlock from '@c/misc/ImportBlock';
 import {type ArtifactPosition, ArtifactSetName, ArtifactStatName, IArtifactContentOnly} from "@/types/artifact"
 // import {ElLoading, ElMessage, ElMessageBox, ElNotification} from "element-plus"
 // import {ElMessage} from "element-plus"
-// import "element-plus/es/components/message/style/css"
 
 import IconEpPlus from "~icons/ep/plus"
 import IconEpUnlock from "~icons/ep/unlock"
@@ -235,6 +234,8 @@ import IconFa6SolidUpload from "~icons/fa6-solid/upload"
 import IconFa6SolidShareNodes from "~icons/fa6-solid/share-nodes"
 import IconFa6SolidDownload from "~icons/fa6-solid/download"
 import {useI18n} from "@/i18n/i18n"
+
+import "element-plus/es/components/message/style/css"
 
 // i18n
 const { t } = useI18n()
