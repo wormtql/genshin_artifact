@@ -36,8 +36,8 @@ jobs:
       run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
     - name: Build wasm dependency
       run: npm run build:wasm
-    - name: Generate meta
-      run: npm run gen_meta
+#    - name: Generate meta
+#      run: npm run gen_meta
   
     - name: Install node packages
       run: yarn install --immutable --immutable-cache --check-cache
