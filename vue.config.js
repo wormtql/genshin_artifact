@@ -187,6 +187,9 @@ module.exports = {
                     { url: "https://npm.elemecdn.com/vue-router@4.0.16/dist/vue-router.global.prod.js", name: "vue-router", global: "VueRouter" },
                     { url: "https://npm.elemecdn.com/echarts@5.3.3/dist/echarts.min.js", name: "echarts", global: "echarts" },
                     { url: "https://npm.elemecdn.com/vue-echarts@6.1.0/dist/index.umd.min.js", name: "vue-echarts", global: "VueECharts" },
+                ],
+                css: [
+                    { url: "https://npm.elemecdn.com/element-plus@2.2.6/dist/index.css" },
                 ]
             }
 

@@ -107,12 +107,14 @@ import { artifactsData } from "@asset/artifacts"
 import { artifactTags } from "@const/artifact"
 import type {ArtifactPosition, ArtifactSetName, IArtifactContentOnly, IArtifactTag} from "@/types/artifact"
 import { isArtifactExists } from "@/utils/artifacts"
-import {ElMessageBox} from "element-plus"
 import {deviceIsPC} from "@/utils/device"
 
 import IconEpRefresh from "~icons/ep/refresh"
 import {useI18n} from "@/i18n/i18n";
 
+/// #if !USE_CDN
+// import {ElMessageBox} from "element-plus"
+/// #endif
 
 const { t } = useI18n()
 

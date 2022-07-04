@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="overflow: hidden">
         <el-dialog
             :title="t('calcPage.selectArt')"
             :width="deviceIsPC ? '80%' : '90%'"
@@ -626,9 +626,6 @@
 import {convertArtifact} from "@util/converter"
 import {newDefaultArtifactConfigForWasm} from "@util/artifacts"
 import {deepCopy} from "@/utils/common"
-import {characterData} from "@character"
-import {weaponData} from "@weapon"
-import {artifactsData} from "@artifact"
 import {wasmSingleOptimize} from "@/wasm/single_optimize"
 import {createComputeResult} from "@/api/misc"
 import {deviceIsPC} from "@util/device"
@@ -682,9 +679,9 @@ import SimpleLoading from "@/components/loading/SimpleLoading.vue"
 import SimpleError from "@/components/loading/SimpleError.vue"
 import {useRoute} from "vue-router"
 import {useI18n} from "@/i18n/i18n"
+
 import {ElMessage} from "element-plus"
 import "element-plus/es/components/message/style/css"
-
 
 // stores
 const presetStore = usePresetStore()
