@@ -56,7 +56,7 @@ impl BuffMeta for BuffResonanceCryo2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "应用比例",
+            title: "b34",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);
@@ -102,12 +102,12 @@ impl BuffMeta for BuffResonanceGeo2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate1",
-            title: "效果①比例",
+            title: "b35",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         },
         ItemConfig {
             name: "rate2",
-            title: "效果②比例",
+            title: "b36",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);

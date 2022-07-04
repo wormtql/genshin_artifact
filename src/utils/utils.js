@@ -35,10 +35,6 @@ export function getArtifactRealValue(name, value) {
     return temp;
 }
 
-export function getDetailName(setName, position) {
-    return artifactsData[setName][position].chs;
-}
-
 export function getArtifactUpCount(artifact) {
     // historical reasons, star field may not exist, default to 5
     let star = artifact.star ?? 5;

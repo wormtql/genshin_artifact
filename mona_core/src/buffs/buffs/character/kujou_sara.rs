@@ -41,17 +41,17 @@ impl BuffMeta for BuffKujouSaraEOrQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "base_atk",
-            title: "九条裟罗的基础攻击力",
+            title: "b9",
             config: ItemConfigType::FloatInput { default: 700.0 },
         },
         ItemConfig {
             name: "c6",
-            title: "是否六命",
+            title: "b10",
             config: ItemConfigType::Bool { default: false },
         },
         ItemConfig {
             name: "skill2",
-            title: "E技能等级",
+            title: "b11",
             config: ItemConfigType::Int { min: 1, max: 15, default: 10 },
         }
     ]);

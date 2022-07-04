@@ -12,14 +12,14 @@ export default {
     {% for b in buffs %}
     "{{ b.name }}": {
         name: "{{ b.name }}",
-        chs: "{{ b.chs }}",
+        // chs: "{{ b.chs }}",
         {% if b.image_type == "character" %}
         badge: getImage("{{ b.character_internal_name }}"),
         {% else %}
         badge: {{ b.name }}_image,
         {% endif %}
         genre: "{{ b.genre }}",
-        description: "{{ b.description }}",
+        // description: "{{ b.description }}",
         config: [
             {% for config in b.config %}
             {{ config|e("none") }},

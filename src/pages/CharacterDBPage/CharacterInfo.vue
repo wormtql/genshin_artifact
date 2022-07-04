@@ -139,14 +139,6 @@ export default {
             return data.splash
         },
 
-        characterChs() {
-            const data = characterData[this.characterName]
-            if (!data) {
-                return "name"
-            }
-            return data.chs
-        },
-
         characterResult() {
             if (this.analysisResult) {
                 return this.analysisResult.character_result

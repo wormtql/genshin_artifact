@@ -21,7 +21,8 @@ for (let weaponType in _weaponsByType) {
         if (b.star !== a.star) {
             return b.star - a.star
         } else {
-            return a.chs.localeCompare(b.chs)
+            // return a.chs.localeCompare(b.chs)
+            return a.name.localeCompare(b.name)
         }
     });
 }

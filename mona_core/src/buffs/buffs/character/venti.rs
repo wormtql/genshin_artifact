@@ -35,7 +35,7 @@ impl BuffMeta for BuffVentiC2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "levitating",
-            title: "落地前",
+            title: "b25",
             config: ItemConfigType::Bool { default: false }
         }
     ]);
@@ -83,12 +83,12 @@ impl BuffMeta for BuffVentiC6 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "is_convert",
-            title: "发生了元素转化",
+            title: "b26",
             config: ItemConfigType::Bool { default: true },
         },
         ItemConfig {
             name: "element",
-            title: "转化类型",
+            title: "b27",
             config: ItemConfigType::Element4 { default: Element::Electro }
         }
     ]);

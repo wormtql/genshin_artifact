@@ -6,7 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AddButton: typeof import('./components/misc/AddButton.vue')['default']
-    ArtifactDisplay: typeof import('./components/ArtifactDisplay.vue')['default']
+    ArtifactDisplay: typeof import('./components/display/ArtifactDisplay.vue')['default']
     ArtifactDisplayById: typeof import('./components/display/ArtifactDisplayById.vue')['default']
     ArtifactPerStatBonus: typeof import('./components/display/ArtifactPerStatBonus.vue')['default']
     ArtifactsFilter: typeof import('./components/filter/ArtifactsFilter.vue')['default']
@@ -67,7 +67,6 @@ declare module '@vue/runtime-core' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTree: typeof import('element-plus/es')['ElTree']
-    ErrorComponent: typeof import('./components/ErrorComponent.vue')['default']
     FilterPotentialResult: typeof import('./components/filter/FilterPotentialResult.vue')['default']
     IEpAim: typeof import('~icons/ep/aim')['default']
     IEpCpu: typeof import('~icons/ep/cpu')['default']
@@ -90,7 +89,6 @@ declare module '@vue/runtime-core' {
     InputWithAppend: typeof import('./components/InputWithAppend.vue')['default']
     ItemConfig: typeof import('./components/config/ItemConfig.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
-    LoadingComponent: typeof import('./components/LoadingComponent.vue')['default']
     MonaMonacoEditor: typeof import('./components/MonaMonacoEditor.vue')['default']
     MyButton1: typeof import('./components/button/MyButton1.vue')['default']
     MyList: typeof import('./components/misc/MyList.vue')['default']

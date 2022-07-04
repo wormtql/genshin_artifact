@@ -1,5 +1,3 @@
-import LoadingComponent from "@c/LoadingComponent"
-import ErrorComponent from "@c/ErrorComponent"
 import NewArtifactPlanPage from "@page/NewArtifactPlanPage"
 import TeamOptimizationPage from "@page/TeamOptimizationPage"
 import NewArtifactPotentialPage from "@page/NewArtifactPotentialPage"

@@ -12,6 +12,7 @@
 
 <script>
 import { weaponData } from "@weapon"
+import {useI18n} from "../../i18n/i18n";
 
 export default {
     name: "WCBar",
@@ -24,8 +25,10 @@ export default {
         },
 
         tooltip() {
+            const { t } = useI18n()
             if (this.type === "weapon") {
-                return weaponData[this.item[0]].chs
+                // return weaponData[this.item[0]].chs
+                return t("weapon", this.item[0])
             }
         },
 

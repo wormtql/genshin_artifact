@@ -209,7 +209,7 @@ export default {
     
     AetherAnemo: {
         name: "AetherAnemo",
-        chs: "空-风",
+        // chs: "空-风",
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -222,49 +222,49 @@ export default {
         skillName3: "风息激荡",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "重击伤害-1", text: 5 },
+            { index: 5, text: 5 },
             
-            { index: 6, chs: "重击伤害-2", text: 6 },
+            { index: 6, text: 6 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "初始切割伤害", text: 10 },
+            { index: 10, text: 10 },
             
-            { index: 11, chs: "最大切割伤害", text: 11 },
+            { index: 11, text: 11 },
             
-            { index: 12, chs: "初始爆风伤害", text: 12 },
+            { index: 12, text: 12 },
             
-            { index: 13, chs: "最大爆风伤害", text: 13 },
+            { index: 13, text: 13 },
             
         ],
         skillMap3: [
             
-            { index: 14, chs: "龙卷风伤害", text: 14 },
+            { index: 14, text: 14 },
             
-            { index: 15, chs: "附加火元素伤害", text: 15 },
+            { index: 15, text: 15 },
             
-            { index: 18, chs: "附加水元素伤害", text: 16 },
+            { index: 18, text: 16 },
             
-            { index: 17, chs: "附加雷元素伤害", text: 17 },
+            { index: 17, text: 17 },
             
-            { index: 16, chs: "附加冰元素伤害", text: 18 },
+            { index: 16, text: 18 },
             
         ],
         config: [
@@ -277,7 +277,7 @@ export default {
     
     Albedo: {
         name: "Albedo",
-        chs: "阿贝多",
+        // chs: "阿贝多",
         element: "Geo",
         weapon: "Sword",
         star: 5,
@@ -290,39 +290,39 @@ export default {
         skillName3: "诞生式·大地之潮",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "重击伤害-1", text: 5 },
+            { index: 5, text: 5 },
             
-            { index: 6, chs: "重击伤害-2", text: 6 },
+            { index: 6, text: 6 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "技能伤害", text: 19 },
+            { index: 10, text: 19 },
             
-            { index: 11, chs: "刹那之花伤害", text: 20 },
+            { index: 11, text: 20 },
             
         ],
         skillMap3: [
             
-            { index: 12, chs: "爆发伤害", text: 21 },
+            { index: 12, text: 21 },
             
-            { index: 13, chs: "生灭之花", text: 22 },
+            { index: 13, text: 22 },
             
         ],
         config: [
@@ -335,7 +335,7 @@ export default {
     
     Aloy: {
         name: "Aloy",
-        chs: "埃洛伊",
+        // chs: "埃洛伊",
         element: "Cryo",
         weapon: "Bow",
         star: 5,
@@ -348,37 +348,37 @@ export default {
         skillName3: "曙光预言",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害-1", text: 23 },
+            { index: 0, text: 23 },
             
-            { index: 1, chs: "一段伤害-2", text: 24 },
+            { index: 1, text: 24 },
             
-            { index: 2, chs: "二段伤害-1", text: 25 },
+            { index: 2, text: 25 },
             
-            { index: 3, chs: "三段伤害-1", text: 26 },
+            { index: 3, text: 26 },
             
-            { index: 4, chs: "四段伤害-1", text: 27 },
+            { index: 4, text: 27 },
             
-            { index: 5, chs: "瞄准射击", text: 28 },
+            { index: 5, text: 28 },
             
-            { index: 6, chs: "满蓄力瞄准射击", text: 29 },
+            { index: 6, text: 29 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "冰尘弹伤害", text: 30 },
+            { index: 10, text: 30 },
             
-            { index: 11, chs: "冷冻炸弹伤害", text: 31 },
+            { index: 11, text: 31 },
             
         ],
         skillMap3: [
             
-            { index: 12, chs: "技能伤害", text: 19 },
+            { index: 12, text: 19 },
             
         ],
         config: [
@@ -393,7 +393,7 @@ export default {
     
     Amber: {
         name: "Amber",
-        chs: "安柏",
+        // chs: "安柏",
         element: "Pyro",
         weapon: "Bow",
         star: 4,
@@ -406,37 +406,37 @@ export default {
         skillName3: "箭雨",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "瞄准射击", text: 28 },
+            { index: 5, text: 28 },
             
-            { index: 6, chs: "满蓄力瞄准射击", text: 29 },
+            { index: 6, text: 29 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "爆炸伤害", text: 32 },
+            { index: 10, text: 32 },
             
         ],
         skillMap3: [
             
-            { index: 11, chs: "箭雨单次伤害", text: 33 },
+            { index: 11, text: 33 },
             
-            { index: 12, chs: "箭雨总伤害", text: 34 },
+            { index: 12, text: 34 },
             
         ],
         config: [
@@ -449,7 +449,7 @@ export default {
     
     AratakiItto: {
         name: "AratakiItto",
-        chs: "荒泷一斗",
+        // chs: "荒泷一斗",
         element: "Geo",
         weapon: "Claymore",
         star: 5,
@@ -462,30 +462,30 @@ export default {
         skillName3: "最恶鬼王•一斗轰临！！",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "荒泷逆袈裟连斩伤害", text: 35 },
+            { index: 4, text: 35 },
             
-            { index: 5, chs: "荒泷逆袈裟终结伤害", text: 36 },
+            { index: 5, text: 36 },
             
-            { index: 6, chs: "左一文字斩伤害", text: 37 },
+            { index: 6, text: 37 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "技能伤害", text: 19 },
+            { index: 10, text: 19 },
             
         ],
         skillMap3: [
@@ -503,7 +503,7 @@ export default {
     
     Barbara: {
         name: "Barbara",
-        chs: "芭芭拉",
+        // chs: "芭芭拉",
         element: "Hydro",
         weapon: "Catalyst",
         star: 4,
@@ -516,35 +516,35 @@ export default {
         skillName3: "闪耀奇迹♪",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "重击伤害", text: 38 },
+            { index: 4, text: 38 },
             
-            { index: 5, chs: "下坠期间伤害", text: 7 },
+            { index: 5, text: 7 },
             
-            { index: 6, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 6, text: 8 },
             
-            { index: 7, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 7, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 8, chs: "命中治疗量", text: 39 },
+            { index: 8, text: 39 },
             
-            { index: 10, chs: "持续治疗量", text: 40 },
+            { index: 10, text: 40 },
             
-            { index: 9, chs: "水珠伤害", text: 41 },
+            { index: 9, text: 41 },
             
         ],
         skillMap3: [
             
-            { index: 11, chs: "治疗量", text: 42 },
+            { index: 11, text: 42 },
             
         ],
         config: [
@@ -557,7 +557,7 @@ export default {
     
     Beidou: {
         name: "Beidou",
-        chs: "北斗",
+        // chs: "北斗",
         element: "Electro",
         weapon: "Claymore",
         star: 4,
@@ -570,41 +570,41 @@ export default {
         skillName3: "斫雷",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "重击循环伤害", text: 43 },
+            { index: 5, text: 43 },
             
-            { index: 6, chs: "重击终结伤害", text: 44 },
+            { index: 6, text: 44 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "基础伤害", text: 45 },
+            { index: 10, text: 45 },
             
-            { index: 11, chs: "一层伤害", text: 46 },
+            { index: 11, text: 46 },
             
-            { index: 12, chs: "二层伤害", text: 47 },
+            { index: 12, text: 47 },
             
         ],
         skillMap3: [
             
-            { index: 13, chs: "技能伤害", text: 19 },
+            { index: 13, text: 19 },
             
-            { index: 14, chs: "闪电伤害", text: 48 },
+            { index: 14, text: 48 },
             
         ],
         config: [
@@ -617,7 +617,7 @@ export default {
     
     Bennett: {
         name: "Bennett",
-        chs: "班尼特",
+        // chs: "班尼特",
         element: "Pyro",
         weapon: "Sword",
         star: 4,
@@ -630,47 +630,47 @@ export default {
         skillName3: "美妙旅程",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "重击伤害-1", text: 5 },
+            { index: 5, text: 5 },
             
-            { index: 6, chs: "重击伤害-2", text: 6 },
+            { index: 6, text: 6 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "点按伤害", text: 49 },
+            { index: 10, text: 49 },
             
-            { index: 11, chs: "一段蓄力伤害-1", text: 50 },
+            { index: 11, text: 50 },
             
-            { index: 12, chs: "一段蓄力伤害-2", text: 51 },
+            { index: 12, text: 51 },
             
-            { index: 13, chs: "二段蓄力伤害-1", text: 52 },
+            { index: 13, text: 52 },
             
-            { index: 14, chs: "二段蓄力伤害-2", text: 53 },
+            { index: 14, text: 53 },
             
-            { index: 15, chs: "爆炸伤害", text: 32 },
+            { index: 15, text: 32 },
             
         ],
         skillMap3: [
             
-            { index: 16, chs: "技能伤害", text: 19 },
+            { index: 16, text: 19 },
             
-            { index: 17, chs: "持续治疗", text: 54 },
+            { index: 17, text: 54 },
             
         ],
         config: [
@@ -683,7 +683,7 @@ export default {
     
     Chongyun: {
         name: "Chongyun",
-        chs: "重云",
+        // chs: "重云",
         element: "Cryo",
         weapon: "Claymore",
         star: 4,
@@ -696,33 +696,33 @@ export default {
         skillName3: "灵刃·云开星落",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "重击循环伤害", text: 43 },
+            { index: 4, text: 43 },
             
-            { index: 5, chs: "重击终结伤害", text: 44 },
+            { index: 5, text: 44 },
             
-            { index: 6, chs: "下坠期间伤害", text: 7 },
+            { index: 6, text: 7 },
             
-            { index: 7, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 7, text: 8 },
             
-            { index: 8, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 8, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 9, chs: "技能伤害", text: 19 },
+            { index: 9, text: 19 },
             
         ],
         skillMap3: [
             
-            { index: 10, chs: "技能伤害", text: 19 },
+            { index: 10, text: 19 },
             
         ],
         config: [
@@ -735,7 +735,7 @@ export default {
     
     Diluc: {
         name: "Diluc",
-        chs: "迪卢克",
+        // chs: "迪卢克",
         element: "Pyro",
         weapon: "Claymore",
         star: 5,
@@ -748,41 +748,41 @@ export default {
         skillName3: "黎明",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "重击循环伤害", text: 43 },
+            { index: 4, text: 43 },
             
-            { index: 5, chs: "重击终结伤害", text: 44 },
+            { index: 5, text: 44 },
             
-            { index: 6, chs: "下坠期间伤害", text: 7 },
+            { index: 6, text: 7 },
             
-            { index: 7, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 7, text: 8 },
             
-            { index: 8, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 8, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 9, chs: "一段伤害", text: 0 },
+            { index: 9, text: 0 },
             
-            { index: 10, chs: "二段伤害", text: 1 },
+            { index: 10, text: 1 },
             
-            { index: 11, chs: "三段伤害", text: 2 },
+            { index: 11, text: 2 },
             
         ],
         skillMap3: [
             
-            { index: 12, chs: "斩击伤害", text: 55 },
+            { index: 12, text: 55 },
             
-            { index: 13, chs: "持续伤害", text: 56 },
+            { index: 13, text: 56 },
             
-            { index: 14, chs: "爆裂伤害", text: 57 },
+            { index: 14, text: 57 },
             
         ],
         config: [
@@ -797,7 +797,7 @@ export default {
     
     Diona: {
         name: "Diona",
-        chs: "迪奥娜",
+        // chs: "迪奥娜",
         element: "Cryo",
         weapon: "Bow",
         star: 4,
@@ -810,39 +810,39 @@ export default {
         skillName3: "最烈特调",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "瞄准射击", text: 28 },
+            { index: 5, text: 28 },
             
-            { index: 6, chs: "满蓄力瞄准射击", text: 29 },
+            { index: 6, text: 29 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "猫爪伤害", text: 58 },
+            { index: 10, text: 58 },
             
         ],
         skillMap3: [
             
-            { index: 11, chs: "技能伤害", text: 19 },
+            { index: 11, text: 19 },
             
-            { index: 12, chs: "领域持续伤害", text: 59 },
+            { index: 12, text: 59 },
             
-            { index: 13, chs: "持续治疗量", text: 40 },
+            { index: 13, text: 40 },
             
         ],
         config: [
@@ -855,7 +855,7 @@ export default {
     
     Eula: {
         name: "Eula",
-        chs: "优菈",
+        // chs: "优菈",
         element: "Cryo",
         weapon: "Claymore",
         star: 5,
@@ -868,47 +868,47 @@ export default {
         skillName3: "凝浪之光剑",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害-1", text: 26 },
+            { index: 2, text: 26 },
             
-            { index: 3, chs: "三段伤害-2", text: 60 },
+            { index: 3, text: 60 },
             
-            { index: 4, chs: "四段伤害", text: 3 },
+            { index: 4, text: 3 },
             
-            { index: 5, chs: "五段伤害-1", text: 61 },
+            { index: 5, text: 61 },
             
-            { index: 6, chs: "五段伤害-2", text: 62 },
+            { index: 6, text: 62 },
             
-            { index: 7, chs: "重击循环伤害", text: 43 },
+            { index: 7, text: 43 },
             
-            { index: 8, chs: "重击终结伤害", text: 44 },
+            { index: 8, text: 44 },
             
-            { index: 9, chs: "下坠期间伤害", text: 7 },
+            { index: 9, text: 7 },
             
-            { index: 10, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 10, text: 8 },
             
-            { index: 11, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 11, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 12, chs: "点按伤害", text: 49 },
+            { index: 12, text: 49 },
             
-            { index: 13, chs: "长按伤害", text: 63 },
+            { index: 13, text: 63 },
             
-            { index: 14, chs: "冰涡之剑伤害", text: 64 },
+            { index: 14, text: 64 },
             
-            { index: 15, chs: "残缺光降之剑", text: 65 },
+            { index: 15, text: 65 },
             
         ],
         skillMap3: [
             
-            { index: 16, chs: "技能伤害", text: 19 },
+            { index: 16, text: 19 },
             
-            { index: 17, chs: "光降之剑", text: 66 },
+            { index: 17, text: 66 },
             
         ],
         config: [
@@ -923,7 +923,7 @@ export default {
     
     Fischl: {
         name: "Fischl",
-        chs: "菲谢尔",
+        // chs: "菲谢尔",
         element: "Electro",
         weapon: "Bow",
         star: 4,
@@ -936,37 +936,37 @@ export default {
         skillName3: "至夜幻现",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "瞄准射击", text: 28 },
+            { index: 5, text: 28 },
             
-            { index: 6, chs: "满蓄力瞄准射击", text: 29 },
+            { index: 6, text: 29 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "奥兹攻击伤害", text: 67 },
+            { index: 10, text: 67 },
             
-            { index: 11, chs: "召唤伤害", text: 68 },
+            { index: 11, text: 68 },
             
         ],
         skillMap3: [
             
-            { index: 12, chs: "落雷伤害", text: 69 },
+            { index: 12, text: 69 },
             
         ],
         config: [
@@ -979,7 +979,7 @@ export default {
     
     Ganyu: {
         name: "Ganyu",
-        chs: "甘雨",
+        // chs: "甘雨",
         element: "Cryo",
         weapon: "Bow",
         star: 5,
@@ -992,41 +992,41 @@ export default {
         skillName3: "降众天华",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "六段伤害", text: 70 },
+            { index: 5, text: 70 },
             
-            { index: 6, chs: "瞄准射击", text: 28 },
+            { index: 6, text: 28 },
             
-            { index: 7, chs: "一段蓄力瞄准射击", text: 71 },
+            { index: 7, text: 71 },
             
-            { index: 8, chs: "霜华矢命中伤害", text: 72 },
+            { index: 8, text: 72 },
             
-            { index: 9, chs: "霜华矢·霜华绽发伤害", text: 73 },
+            { index: 9, text: 73 },
             
-            { index: 10, chs: "下坠期间伤害", text: 7 },
+            { index: 10, text: 7 },
             
-            { index: 11, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 11, text: 8 },
             
-            { index: 12, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 12, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 13, chs: "技能伤害", text: 19 },
+            { index: 13, text: 19 },
             
         ],
         skillMap3: [
             
-            { index: 14, chs: "冰棱伤害", text: 74 },
+            { index: 14, text: 74 },
             
         ],
         config: [
@@ -1043,7 +1043,7 @@ export default {
     
     Gorou: {
         name: "Gorou",
-        chs: "五郎",
+        // chs: "五郎",
         element: "Geo",
         weapon: "Bow",
         star: 4,
@@ -1056,35 +1056,35 @@ export default {
         skillName3: "兽牙逐突形胜战法",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "瞄准射击", text: 28 },
+            { index: 4, text: 28 },
             
-            { index: 5, chs: "满蓄力瞄准射击", text: 29 },
+            { index: 5, text: 29 },
             
-            { index: 6, chs: "下坠期间伤害", text: 7 },
+            { index: 6, text: 7 },
             
-            { index: 7, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 7, text: 8 },
             
-            { index: 8, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 8, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 9, chs: "技能伤害", text: 19 },
+            { index: 9, text: 19 },
             
         ],
         skillMap3: [
             
-            { index: 10, chs: "技能伤害", text: 19 },
+            { index: 10, text: 19 },
             
-            { index: 11, chs: "岩晶崩破伤害", text: 75 },
+            { index: 11, text: 75 },
             
         ],
         config: [
@@ -1097,7 +1097,7 @@ export default {
     
     HuTao: {
         name: "HuTao",
-        chs: "胡桃",
+        // chs: "胡桃",
         element: "Pyro",
         weapon: "Polearm",
         star: 5,
@@ -1110,39 +1110,39 @@ export default {
         skillName3: "安神秘法",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害-1", text: 61 },
+            { index: 4, text: 61 },
             
-            { index: 5, chs: "五段伤害-2", text: 62 },
+            { index: 5, text: 62 },
             
-            { index: 6, chs: "六段伤害", text: 70 },
+            { index: 6, text: 70 },
             
-            { index: 7, chs: "重击伤害", text: 38 },
+            { index: 7, text: 38 },
             
-            { index: 8, chs: "下坠期间伤害", text: 7 },
+            { index: 8, text: 7 },
             
-            { index: 9, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 9, text: 8 },
             
-            { index: 10, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 10, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 11, chs: "血梅香伤害", text: 76 },
+            { index: 11, text: 76 },
             
         ],
         skillMap3: [
             
-            { index: 12, chs: "技能伤害", text: 19 },
+            { index: 12, text: 19 },
             
-            { index: 13, chs: "低血量时技能伤害", text: 77 },
+            { index: 13, text: 77 },
             
         ],
         config: [
@@ -1159,7 +1159,7 @@ export default {
     
     Jean: {
         name: "Jean",
-        chs: "琴",
+        // chs: "琴",
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -1172,39 +1172,39 @@ export default {
         skillName3: "蒲公英之风",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "重击伤害", text: 38 },
+            { index: 5, text: 38 },
             
-            { index: 6, chs: "下坠期间伤害", text: 7 },
+            { index: 6, text: 7 },
             
-            { index: 7, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 7, text: 8 },
             
-            { index: 8, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 8, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 9, chs: "技能伤害", text: 19 },
+            { index: 9, text: 19 },
             
         ],
         skillMap3: [
             
-            { index: 10, chs: "爆发伤害", text: 21 },
+            { index: 10, text: 21 },
             
-            { index: 11, chs: "出入领域伤害", text: 78 },
+            { index: 11, text: 78 },
             
-            { index: 12, chs: "领域发动治疗量", text: 79 },
+            { index: 12, text: 79 },
             
-            { index: 13, chs: "持续治疗", text: 54 },
+            { index: 13, text: 54 },
             
         ],
         config: [
@@ -1217,7 +1217,7 @@ export default {
     
     KaedeharaKazuha: {
         name: "KaedeharaKazuha",
-        chs: "枫原万叶",
+        // chs: "枫原万叶",
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -1230,63 +1230,63 @@ export default {
         skillName3: "万叶之一刀",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害-1", text: 26 },
+            { index: 2, text: 26 },
             
-            { index: 3, chs: "三段伤害-2", text: 60 },
+            { index: 3, text: 60 },
             
-            { index: 4, chs: "四段伤害", text: 3 },
+            { index: 4, text: 3 },
             
-            { index: 5, chs: "五段伤害/3", text: 80 },
+            { index: 5, text: 80 },
             
-            { index: 6, chs: "重击伤害-1", text: 5 },
+            { index: 6, text: 5 },
             
-            { index: 6, chs: "重击伤害-2", text: 6 },
+            { index: 6, text: 6 },
             
-            { index: 8, chs: "下坠期间伤害", text: 7 },
+            { index: 8, text: 7 },
             
-            { index: 9, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 9, text: 8 },
             
-            { index: 10, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 10, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 11, chs: "乱岚拨止：下坠期间伤害", text: 81 },
+            { index: 11, text: 81 },
             
-            { index: 12, chs: "乱岚拨止：低空坠地冲击伤害", text: 82 },
+            { index: 12, text: 82 },
             
-            { index: 13, chs: "乱岚拨止：高空坠地冲击伤害", text: 83 },
+            { index: 13, text: 83 },
             
-            { index: 14, chs: "乱岚拨止：火元素转化伤害", text: 84 },
+            { index: 14, text: 84 },
             
-            { index: 15, chs: "乱岚拨止：水元素转化伤害", text: 85 },
+            { index: 15, text: 85 },
             
-            { index: 16, chs: "乱岚拨止：冰元素转化伤害", text: 86 },
+            { index: 16, text: 86 },
             
-            { index: 17, chs: "乱岚拨止：雷元素转化伤害", text: 87 },
+            { index: 17, text: 87 },
             
-            { index: 18, chs: "点按技能伤害", text: 88 },
+            { index: 18, text: 88 },
             
-            { index: 19, chs: "长按技能伤害", text: 89 },
+            { index: 19, text: 89 },
             
         ],
         skillMap3: [
             
-            { index: 20, chs: "斩击伤害", text: 55 },
+            { index: 20, text: 55 },
             
-            { index: 21, chs: "持续伤害", text: 56 },
+            { index: 21, text: 56 },
             
-            { index: 22, chs: "附加火元素伤害", text: 15 },
+            { index: 22, text: 15 },
             
-            { index: 23, chs: "附加水元素伤害", text: 16 },
+            { index: 23, text: 16 },
             
-            { index: 24, chs: "附加冰元素伤害", text: 18 },
+            { index: 24, text: 18 },
             
-            { index: 25, chs: "附加雷元素伤害", text: 17 },
+            { index: 25, text: 17 },
             
         ],
         config: [
@@ -1301,7 +1301,7 @@ export default {
     
     Kaeya: {
         name: "Kaeya",
-        chs: "凯亚",
+        // chs: "凯亚",
         element: "Cryo",
         weapon: "Sword",
         star: 4,
@@ -1314,35 +1314,35 @@ export default {
         skillName3: "凛冽轮舞",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "重击伤害-1", text: 5 },
+            { index: 5, text: 5 },
             
-            { index: 6, chs: "重击伤害-2", text: 6 },
+            { index: 6, text: 6 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "技能伤害", text: 19 },
+            { index: 10, text: 19 },
             
         ],
         skillMap3: [
             
-            { index: 11, chs: "技能伤害", text: 19 },
+            { index: 11, text: 19 },
             
         ],
         config: [
@@ -1355,7 +1355,7 @@ export default {
     
     KamisatoAyaka: {
         name: "KamisatoAyaka",
-        chs: "神里绫华",
+        // chs: "神里绫华",
         element: "Cryo",
         weapon: "Sword",
         star: 5,
@@ -1368,35 +1368,35 @@ export default {
         skillName3: "神里流·霜灭",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害/3", text: 90 },
+            { index: 3, text: 90 },
             
-            { index: 5, chs: "五段伤害", text: 4 },
+            { index: 5, text: 4 },
             
-            { index: 6, chs: "重击伤害/3", text: 91 },
+            { index: 6, text: 91 },
             
-            { index: 8, chs: "下坠期间伤害", text: 7 },
+            { index: 8, text: 7 },
             
-            { index: 9, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 9, text: 8 },
             
-            { index: 10, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 10, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 11, chs: "技能伤害", text: 19 },
+            { index: 11, text: 19 },
             
         ],
         skillMap3: [
             
-            { index: 12, chs: "切割伤害", text: 92 },
+            { index: 12, text: 92 },
             
-            { index: 13, chs: "绽放伤害", text: 93 },
+            { index: 13, text: 93 },
             
         ],
         config: [
@@ -1417,7 +1417,7 @@ export default {
     
     KamisatoAyato: {
         name: "KamisatoAyato",
-        chs: "神里绫人",
+        // chs: "神里绫人",
         element: "Hydro",
         weapon: "Sword",
         star: 5,
@@ -1430,39 +1430,39 @@ export default {
         skillName3: "神里流·水囿",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "一段伤害", text: 0 },
+            { index: 1, text: 0 },
             
-            { index: 2, chs: "一段伤害", text: 0 },
+            { index: 2, text: 0 },
             
-            { index: 3, chs: "一段伤害", text: 0 },
+            { index: 3, text: 0 },
             
-            { index: 4, chs: "一段伤害", text: 0 },
+            { index: 4, text: 0 },
             
-            { index: 5, chs: "重击伤害", text: 38 },
+            { index: 5, text: 38 },
             
-            { index: 6, chs: "下坠期间伤害", text: 7 },
+            { index: 6, text: 7 },
             
-            { index: 7, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 7, text: 8 },
             
-            { index: 8, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 8, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 9, chs: "一段瞬水剑伤害", text: 94 },
+            { index: 9, text: 94 },
             
-            { index: 10, chs: "二段瞬水剑伤害", text: 95 },
+            { index: 10, text: 95 },
             
-            { index: 11, chs: "三段瞬水剑伤害", text: 96 },
+            { index: 11, text: 96 },
             
-            { index: 12, chs: "水影伤害", text: 97 },
+            { index: 12, text: 97 },
             
         ],
         skillMap3: [
             
-            { index: 13, chs: "水花剑伤害", text: 98 },
+            { index: 13, text: 98 },
             
         ],
         config: [
@@ -1479,7 +1479,7 @@ export default {
     
     Keqing: {
         name: "Keqing",
-        chs: "刻晴",
+        // chs: "刻晴",
         element: "Electro",
         weapon: "Sword",
         star: 5,
@@ -1492,45 +1492,45 @@ export default {
         skillName3: "天街巡游",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害-1", text: 27 },
+            { index: 3, text: 27 },
             
-            { index: 4, chs: "四段伤害-2", text: 99 },
+            { index: 4, text: 99 },
             
-            { index: 5, chs: "五段伤害", text: 4 },
+            { index: 5, text: 4 },
             
-            { index: 6, chs: "重击伤害-1", text: 5 },
+            { index: 6, text: 5 },
             
-            { index: 7, chs: "重击伤害-2", text: 6 },
+            { index: 7, text: 6 },
             
-            { index: 8, chs: "下坠期间伤害", text: 7 },
+            { index: 8, text: 7 },
             
-            { index: 9, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 9, text: 8 },
             
-            { index: 10, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 10, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 11, chs: "雷楔伤害", text: 100 },
+            { index: 11, text: 100 },
             
-            { index: 12, chs: "斩击伤害", text: 55 },
+            { index: 12, text: 55 },
             
-            { index: 13, chs: "雷暴连斩伤害/2", text: 101 },
+            { index: 13, text: 101 },
             
         ],
         skillMap3: [
             
-            { index: 15, chs: "技能伤害", text: 19 },
+            { index: 15, text: 19 },
             
-            { index: 16, chs: "连斩伤害/8", text: 102 },
+            { index: 16, text: 102 },
             
-            { index: 18, chs: "最后一击伤害", text: 103 },
+            { index: 18, text: 103 },
             
         ],
         config: [
@@ -1547,7 +1547,7 @@ export default {
     
     Klee: {
         name: "Klee",
-        chs: "可莉",
+        // chs: "可莉",
         element: "Pyro",
         weapon: "Catalyst",
         star: 5,
@@ -1560,33 +1560,33 @@ export default {
         skillName3: "轰轰火花",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "重击伤害", text: 38 },
+            { index: 3, text: 38 },
             
-            { index: 4, chs: "重击伤害（带天赋）", text: 104 },
+            { index: 4, text: 104 },
             
-            { index: 5, chs: "下坠期间伤害", text: 7 },
+            { index: 5, text: 7 },
             
-            { index: 6, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 6, text: 8 },
             
-            { index: 7, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 7, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 8, chs: "蹦蹦炸弹伤害", text: 105 },
+            { index: 8, text: 105 },
             
-            { index: 9, chs: "诡雷伤害", text: 106 },
+            { index: 9, text: 106 },
             
         ],
         skillMap3: [
             
-            { index: 10, chs: "轰轰火花伤害", text: 107 },
+            { index: 10, text: 107 },
             
         ],
         config: [
@@ -1599,7 +1599,7 @@ export default {
     
     KujouSara: {
         name: "KujouSara",
-        chs: "九条裟罗",
+        // chs: "九条裟罗",
         element: "Electro",
         weapon: "Bow",
         star: 4,
@@ -1612,37 +1612,37 @@ export default {
         skillName3: "煌煌千道镇式",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "瞄准射击", text: 28 },
+            { index: 5, text: 28 },
             
-            { index: 6, chs: "满蓄力瞄准射击", text: 29 },
+            { index: 6, text: 29 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "天狗咒雷•伏伤害", text: 108 },
+            { index: 10, text: 108 },
             
         ],
         skillMap3: [
             
-            { index: 11, chs: "天狗咒雷•金刚坏伤害", text: 109 },
+            { index: 11, text: 109 },
             
-            { index: 12, chs: "天狗咒雷•雷砾伤害", text: 110 },
+            { index: 12, text: 110 },
             
         ],
         config: [
@@ -1655,7 +1655,7 @@ export default {
     
     KukiShinobu: {
         name: "KukiShinobu",
-        chs: "久岐忍",
+        // chs: "久岐忍",
         element: "Electro",
         weapon: "Sword",
         star: 4,
@@ -1668,43 +1668,43 @@ export default {
         skillName3: "御咏鸣神刈山祭",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "重击伤害-1", text: 5 },
+            { index: 4, text: 5 },
             
-            { index: 5, chs: "重击伤害-2", text: 6 },
+            { index: 5, text: 6 },
             
-            { index: 6, chs: "重击伤害", text: 38 },
+            { index: 6, text: 38 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "技能伤害", text: 19 },
+            { index: 10, text: 19 },
             
-            { index: 11, chs: "越祓草轮治疗量", text: 111 },
+            { index: 11, text: 111 },
             
-            { index: 12, chs: "越祓草轮伤害", text: 112 },
+            { index: 12, text: 112 },
             
         ],
         skillMap3: [
             
-            { index: 13, chs: "单次伤害", text: 113 },
+            { index: 13, text: 113 },
             
-            { index: 14, chs: "总伤害", text: 114 },
+            { index: 14, text: 114 },
             
-            { index: 15, chs: "总伤害-低血量", text: 115 },
+            { index: 15, text: 115 },
             
         ],
         config: [
@@ -1721,7 +1721,7 @@ export default {
     
     Lisa: {
         name: "Lisa",
-        chs: "丽莎",
+        // chs: "丽莎",
         element: "Electro",
         weapon: "Catalyst",
         star: 4,
@@ -1734,39 +1734,39 @@ export default {
         skillName3: "蔷薇的雷光",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "重击伤害", text: 38 },
+            { index: 4, text: 38 },
             
-            { index: 5, chs: "下坠期间伤害", text: 7 },
+            { index: 5, text: 7 },
             
-            { index: 6, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 6, text: 8 },
             
-            { index: 7, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 7, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 8, chs: "点按伤害", text: 49 },
+            { index: 8, text: 49 },
             
-            { index: 9, chs: "无引雷长按伤害", text: 116 },
+            { index: 9, text: 116 },
             
-            { index: 10, chs: "一层引雷长按伤害", text: 117 },
+            { index: 10, text: 117 },
             
-            { index: 11, chs: "二层引雷长按伤害", text: 118 },
+            { index: 11, text: 118 },
             
-            { index: 12, chs: "三层引雷长按伤害", text: 119 },
+            { index: 12, text: 119 },
             
         ],
         skillMap3: [
             
-            { index: 13, chs: "雷光放电伤害", text: 120 },
+            { index: 13, text: 120 },
             
         ],
         config: [
@@ -1779,7 +1779,7 @@ export default {
     
     Mona: {
         name: "Mona",
-        chs: "莫娜",
+        // chs: "莫娜",
         element: "Hydro",
         weapon: "Catalyst",
         star: 5,
@@ -1792,33 +1792,33 @@ export default {
         skillName3: "星命定轨",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "重击伤害", text: 38 },
+            { index: 4, text: 38 },
             
-            { index: 5, chs: "下坠期间伤害", text: 7 },
+            { index: 5, text: 7 },
             
-            { index: 6, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 6, text: 8 },
             
-            { index: 7, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 7, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 8, chs: "持续伤害", text: 56 },
+            { index: 8, text: 56 },
             
-            { index: 9, chs: "爆裂伤害", text: 57 },
+            { index: 9, text: 57 },
             
         ],
         skillMap3: [
             
-            { index: 10, chs: "泡影破裂伤害", text: 121 },
+            { index: 10, text: 121 },
             
         ],
         config: [
@@ -1831,7 +1831,7 @@ export default {
     
     Ningguang: {
         name: "Ningguang",
-        chs: "凝光",
+        // chs: "凝光",
         element: "Geo",
         weapon: "Catalyst",
         star: 4,
@@ -1844,27 +1844,27 @@ export default {
         skillName3: "天权崩玉",
         skillMap1: [
             
-            { index: 0, chs: "普通攻击伤害", text: 122 },
+            { index: 0, text: 122 },
             
-            { index: 1, chs: "重击伤害", text: 38 },
+            { index: 1, text: 38 },
             
-            { index: 2, chs: "星璇伤害", text: 123 },
+            { index: 2, text: 123 },
             
-            { index: 3, chs: "下坠期间伤害", text: 7 },
+            { index: 3, text: 7 },
             
-            { index: 4, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 4, text: 8 },
             
-            { index: 5, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 5, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 6, chs: "技能伤害", text: 19 },
+            { index: 6, text: 19 },
             
         ],
         skillMap3: [
             
-            { index: 7, chs: "每颗宝石伤害", text: 124 },
+            { index: 7, text: 124 },
             
         ],
         config: [
@@ -1879,7 +1879,7 @@ export default {
     
     Noelle: {
         name: "Noelle",
-        chs: "诺艾尔",
+        // chs: "诺艾尔",
         element: "Geo",
         weapon: "Claymore",
         star: 4,
@@ -1892,37 +1892,37 @@ export default {
         skillName3: "大扫除",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "重击循环伤害", text: 43 },
+            { index: 4, text: 43 },
             
-            { index: 5, chs: "重击终结伤害", text: 44 },
+            { index: 5, text: 44 },
             
-            { index: 6, chs: "下坠期间伤害", text: 7 },
+            { index: 6, text: 7 },
             
-            { index: 7, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 7, text: 8 },
             
-            { index: 8, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 8, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 9, chs: "技能伤害", text: 19 },
+            { index: 9, text: 19 },
             
-            { index: 10, chs: "治疗量", text: 42 },
+            { index: 10, text: 42 },
             
         ],
         skillMap3: [
             
-            { index: 11, chs: "爆发伤害", text: 21 },
+            { index: 11, text: 21 },
             
-            { index: 12, chs: "技能伤害", text: 19 },
+            { index: 12, text: 19 },
             
         ],
         config: [
@@ -1937,7 +1937,7 @@ export default {
     
     Qiqi: {
         name: "Qiqi",
-        chs: "七七",
+        // chs: "七七",
         element: "Cryo",
         weapon: "Sword",
         star: 5,
@@ -1950,47 +1950,47 @@ export default {
         skillName3: "仙法·救苦度厄",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害-1", text: 26 },
+            { index: 2, text: 26 },
             
-            { index: 3, chs: "三段伤害-2", text: 60 },
+            { index: 3, text: 60 },
             
-            { index: 4, chs: "四段伤害-1", text: 27 },
+            { index: 4, text: 27 },
             
-            { index: 5, chs: "四段伤害-2", text: 99 },
+            { index: 5, text: 99 },
             
-            { index: 6, chs: "五段伤害", text: 4 },
+            { index: 6, text: 4 },
             
-            { index: 7, chs: "重击伤害-1", text: 5 },
+            { index: 7, text: 5 },
             
-            { index: 8, chs: "重击伤害-2", text: 6 },
+            { index: 8, text: 6 },
             
-            { index: 9, chs: "下坠期间伤害", text: 7 },
+            { index: 9, text: 7 },
             
-            { index: 10, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 10, text: 8 },
             
-            { index: 11, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 11, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 12, chs: "技能伤害", text: 19 },
+            { index: 12, text: 19 },
             
-            { index: 15, chs: "寒病鬼差伤害", text: 125 },
+            { index: 15, text: 125 },
             
-            { index: 13, chs: "命中治疗量", text: 39 },
+            { index: 13, text: 39 },
             
-            { index: 14, chs: "持续治疗量", text: 40 },
+            { index: 14, text: 40 },
             
         ],
         skillMap3: [
             
-            { index: 16, chs: "技能伤害", text: 19 },
+            { index: 16, text: 19 },
             
-            { index: 17, chs: "治疗量", text: 42 },
+            { index: 17, text: 42 },
             
         ],
         config: [
@@ -2003,7 +2003,7 @@ export default {
     
     RaidenShogun: {
         name: "RaidenShogun",
-        chs: "雷电将军",
+        // chs: "雷电将军",
         element: "Electro",
         weapon: "Polearm",
         star: 5,
@@ -2016,59 +2016,59 @@ export default {
         skillName3: "奥义•梦想真说",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害-1", text: 27 },
+            { index: 3, text: 27 },
             
-            { index: 4, chs: "四段伤害-2", text: 99 },
+            { index: 4, text: 99 },
             
-            { index: 5, chs: "五段伤害", text: 4 },
+            { index: 5, text: 4 },
             
-            { index: 6, chs: "重击伤害", text: 38 },
+            { index: 6, text: 38 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "技能伤害", text: 19 },
+            { index: 10, text: 19 },
             
-            { index: 11, chs: "协同攻击伤害", text: 126 },
+            { index: 11, text: 126 },
             
         ],
         skillMap3: [
             
-            { index: 12, chs: "梦想一刀基础伤害", text: 127 },
+            { index: 12, text: 127 },
             
-            { index: 13, chs: "一段伤害", text: 0 },
+            { index: 13, text: 0 },
             
-            { index: 14, chs: "二段伤害", text: 1 },
+            { index: 14, text: 1 },
             
-            { index: 15, chs: "三段伤害", text: 2 },
+            { index: 15, text: 2 },
             
-            { index: 16, chs: "四段伤害-1", text: 27 },
+            { index: 16, text: 27 },
             
-            { index: 17, chs: "四段伤害-2", text: 99 },
+            { index: 17, text: 99 },
             
-            { index: 18, chs: "五段伤害", text: 4 },
+            { index: 18, text: 4 },
             
-            { index: 19, chs: "重击伤害-1", text: 5 },
+            { index: 19, text: 5 },
             
-            { index: 20, chs: "重击伤害-2", text: 6 },
+            { index: 20, text: 6 },
             
-            { index: 21, chs: "下坠期间伤害", text: 7 },
+            { index: 21, text: 7 },
             
-            { index: 22, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 22, text: 8 },
             
-            { index: 23, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 23, text: 9 },
             
         ],
         config: [
@@ -2085,7 +2085,7 @@ export default {
     
     Razor: {
         name: "Razor",
-        chs: "雷泽",
+        // chs: "雷泽",
         element: "Electro",
         weapon: "Claymore",
         star: 4,
@@ -2098,43 +2098,43 @@ export default {
         skillName3: "雷牙",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "重击循环伤害", text: 43 },
+            { index: 4, text: 43 },
             
-            { index: 5, chs: "重击终结伤害", text: 44 },
+            { index: 5, text: 44 },
             
-            { index: 6, chs: "下坠期间伤害", text: 7 },
+            { index: 6, text: 7 },
             
-            { index: 7, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 7, text: 8 },
             
-            { index: 8, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 8, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 9, chs: "点按技能伤害", text: 88 },
+            { index: 9, text: 88 },
             
-            { index: 10, chs: "长按技能伤害", text: 89 },
+            { index: 10, text: 89 },
             
         ],
         skillMap3: [
             
-            { index: 11, chs: "爆发伤害", text: 21 },
+            { index: 11, text: 21 },
             
-            { index: 12, chs: "狼魂-一段伤害", text: 128 },
+            { index: 12, text: 128 },
             
-            { index: 13, chs: "狼魂-二段伤害", text: 129 },
+            { index: 13, text: 129 },
             
-            { index: 14, chs: "狼魂-三段伤害", text: 130 },
+            { index: 14, text: 130 },
             
-            { index: 15, chs: "狼魂-四段伤害", text: 131 },
+            { index: 15, text: 131 },
             
         ],
         config: [
@@ -2151,7 +2151,7 @@ export default {
     
     Rosaria: {
         name: "Rosaria",
-        chs: "罗莎莉亚",
+        // chs: "罗莎莉亚",
         element: "Cryo",
         weapon: "Polearm",
         star: 4,
@@ -2164,41 +2164,41 @@ export default {
         skillName3: "终命的圣礼",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害/2", text: 132 },
+            { index: 2, text: 132 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害-1", text: 61 },
+            { index: 4, text: 61 },
             
-            { index: 5, chs: "五段伤害-2", text: 62 },
+            { index: 5, text: 62 },
             
-            { index: 6, chs: "重击伤害", text: 38 },
+            { index: 6, text: 38 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "技能伤害-1", text: 133 },
+            { index: 10, text: 133 },
             
-            { index: 11, chs: "技能伤害-2", text: 134 },
+            { index: 11, text: 134 },
             
         ],
         skillMap3: [
             
-            { index: 12, chs: "技能伤害-1", text: 133 },
+            { index: 12, text: 133 },
             
-            { index: 13, chs: "技能伤害-2", text: 134 },
+            { index: 13, text: 134 },
             
-            { index: 14, chs: "冰枪持续伤害", text: 135 },
+            { index: 14, text: 135 },
             
         ],
         config: [
@@ -2213,7 +2213,7 @@ export default {
     
     SangonomiyaKokomi: {
         name: "SangonomiyaKokomi",
-        chs: "珊瑚宫心海",
+        // chs: "珊瑚宫心海",
         element: "Hydro",
         weapon: "Catalyst",
         star: 5,
@@ -2226,33 +2226,33 @@ export default {
         skillName3: "海人化羽",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "重击伤害", text: 38 },
+            { index: 3, text: 38 },
             
-            { index: 4, chs: "下坠期间伤害", text: 7 },
+            { index: 4, text: 7 },
             
-            { index: 5, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 5, text: 8 },
             
-            { index: 6, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 6, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 8, chs: "波纹伤害", text: 136 },
+            { index: 8, text: 136 },
             
-            { index: 7, chs: "治疗量", text: 42 },
+            { index: 7, text: 42 },
             
         ],
         skillMap3: [
             
-            { index: 9, chs: "技能伤害", text: 19 },
+            { index: 9, text: 19 },
             
-            { index: 10, chs: "命中治疗量", text: 39 },
+            { index: 10, text: 39 },
             
         ],
         config: [
@@ -2267,7 +2267,7 @@ export default {
     
     Sayu: {
         name: "Sayu",
-        chs: "早柚",
+        // chs: "早柚",
         element: "Anemo",
         weapon: "Claymore",
         star: 4,
@@ -2280,61 +2280,61 @@ export default {
         skillName3: "呜呼流·影貉缭乱",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害-1", text: 26 },
+            { index: 2, text: 26 },
             
-            { index: 3, chs: "三段伤害-2", text: 60 },
+            { index: 3, text: 60 },
             
-            { index: 4, chs: "四段伤害", text: 3 },
+            { index: 4, text: 3 },
             
-            { index: 5, chs: "重击循环伤害", text: 43 },
+            { index: 5, text: 43 },
             
-            { index: 6, chs: "重击终结伤害", text: 44 },
+            { index: 6, text: 44 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "风风轮伤害", text: 137 },
+            { index: 10, text: 137 },
             
-            { index: 11, chs: "风风轮舞踢点按伤害", text: 138 },
+            { index: 11, text: 138 },
             
-            { index: 12, chs: "风风轮舞踢长按伤害", text: 139 },
+            { index: 12, text: 139 },
             
-            { index: 13, chs: "风风轮附带火元素伤害", text: 140 },
+            { index: 13, text: 140 },
             
-            { index: 16, chs: "风风轮附带水元素伤害", text: 141 },
+            { index: 16, text: 141 },
             
-            { index: 15, chs: "风风轮附带冰元素伤害", text: 142 },
+            { index: 15, text: 142 },
             
-            { index: 14, chs: "风风轮附带雷元素伤害", text: 143 },
+            { index: 14, text: 143 },
             
-            { index: 17, chs: "风风轮舞踢长按附带火元素伤害", text: 144 },
+            { index: 17, text: 144 },
             
-            { index: 20, chs: "风风轮舞踢长按附带水元素伤害", text: 145 },
+            { index: 20, text: 145 },
             
-            { index: 19, chs: "风风轮舞踢长按附带冰元素伤害", text: 146 },
+            { index: 19, text: 146 },
             
-            { index: 18, chs: "风风轮舞踢长按附带雷元素伤害", text: 147 },
+            { index: 18, text: 147 },
             
         ],
         skillMap3: [
             
-            { index: 21, chs: "技能发动伤害", text: 148 },
+            { index: 21, text: 148 },
             
-            { index: 22, chs: "技能发动治疗量", text: 149 },
+            { index: 22, text: 149 },
             
-            { index: 23, chs: "不倒貉貉伤害", text: 150 },
+            { index: 23, text: 150 },
             
-            { index: 24, chs: "不倒貉貉治疗量", text: 151 },
+            { index: 24, text: 151 },
             
         ],
         config: [
@@ -2347,7 +2347,7 @@ export default {
     
     Shenhe: {
         name: "Shenhe",
-        chs: "申鹤",
+        // chs: "申鹤",
         element: "Cryo",
         weapon: "Polearm",
         star: 5,
@@ -2360,39 +2360,39 @@ export default {
         skillName3: "神女遣灵真诀",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害-1", text: 27 },
+            { index: 3, text: 27 },
             
-            { index: 4, chs: "四段伤害-2", text: 99 },
+            { index: 4, text: 99 },
             
-            { index: 5, chs: "五段伤害", text: 4 },
+            { index: 5, text: 4 },
             
-            { index: 6, chs: "重击伤害", text: 38 },
+            { index: 6, text: 38 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "点按技能伤害", text: 88 },
+            { index: 10, text: 88 },
             
-            { index: 11, chs: "长按技能伤害", text: 89 },
+            { index: 11, text: 89 },
             
         ],
         skillMap3: [
             
-            { index: 12, chs: "技能伤害", text: 19 },
+            { index: 12, text: 19 },
             
-            { index: 13, chs: "持续伤害", text: 56 },
+            { index: 13, text: 56 },
             
         ],
         config: [
@@ -2405,7 +2405,7 @@ export default {
     
     Sucrose: {
         name: "Sucrose",
-        chs: "砂糖",
+        // chs: "砂糖",
         element: "Anemo",
         weapon: "Catalyst",
         star: 4,
@@ -2418,39 +2418,39 @@ export default {
         skillName3: "禁·风灵作成·柒伍同构贰型",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "重击伤害", text: 38 },
+            { index: 4, text: 38 },
             
-            { index: 5, chs: "下坠期间伤害", text: 7 },
+            { index: 5, text: 7 },
             
-            { index: 6, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 6, text: 8 },
             
-            { index: 7, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 7, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 8, chs: "技能伤害", text: 19 },
+            { index: 8, text: 19 },
             
         ],
         skillMap3: [
             
-            { index: 9, chs: "持续伤害", text: 56 },
+            { index: 9, text: 56 },
             
-            { index: 10, chs: "附加火元素伤害", text: 15 },
+            { index: 10, text: 15 },
             
-            { index: 11, chs: "附加水元素伤害", text: 16 },
+            { index: 11, text: 16 },
             
-            { index: 13, chs: "附加冰元素伤害", text: 18 },
+            { index: 13, text: 18 },
             
-            { index: 12, chs: "附加雷元素伤害", text: 17 },
+            { index: 12, text: 17 },
             
         ],
         config: [
@@ -2463,7 +2463,7 @@ export default {
     
     Tartaglia: {
         name: "Tartaglia",
-        chs: "达达利亚",
+        // chs: "达达利亚",
         element: "Hydro",
         weapon: "Bow",
         star: 5,
@@ -2476,65 +2476,65 @@ export default {
         skillName3: "极恶技·尽灭闪",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "六段伤害", text: 70 },
+            { index: 5, text: 70 },
             
-            { index: 6, chs: "瞄准射击", text: 28 },
+            { index: 6, text: 28 },
             
-            { index: 7, chs: "满蓄力瞄准射击", text: 29 },
+            { index: 7, text: 29 },
             
-            { index: 8, chs: "断流·闪伤害", text: 152 },
+            { index: 8, text: 152 },
             
-            { index: 9, chs: "断流·破伤害", text: 153 },
+            { index: 9, text: 153 },
             
-            { index: 10, chs: "下坠期间伤害", text: 7 },
+            { index: 10, text: 7 },
             
-            { index: 11, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 11, text: 8 },
             
-            { index: 12, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 12, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 13, chs: "状态爆发伤害", text: 154 },
+            { index: 13, text: 154 },
             
-            { index: 14, chs: "一段伤害", text: 0 },
+            { index: 14, text: 0 },
             
-            { index: 15, chs: "二段伤害", text: 1 },
+            { index: 15, text: 1 },
             
-            { index: 16, chs: "三段伤害", text: 2 },
+            { index: 16, text: 2 },
             
-            { index: 17, chs: "四段伤害", text: 3 },
+            { index: 17, text: 3 },
             
-            { index: 18, chs: "五段伤害", text: 4 },
+            { index: 18, text: 4 },
             
-            { index: 19, chs: "六段伤害-1", text: 155 },
+            { index: 19, text: 155 },
             
-            { index: 20, chs: "六段伤害-2", text: 156 },
+            { index: 20, text: 156 },
             
-            { index: 21, chs: "重击伤害-1", text: 5 },
+            { index: 21, text: 5 },
             
-            { index: 22, chs: "重击伤害-2", text: 6 },
+            { index: 22, text: 6 },
             
-            { index: 23, chs: "断流·斩伤害", text: 157 },
+            { index: 23, text: 157 },
             
         ],
         skillMap3: [
             
-            { index: 24, chs: "技能伤害·近战", text: 158 },
+            { index: 24, text: 158 },
             
-            { index: 25, chs: "技能伤害·远程", text: 159 },
+            { index: 25, text: 159 },
             
-            { index: 26, chs: "断流·爆伤害", text: 160 },
+            { index: 26, text: 160 },
             
         ],
         config: [
@@ -2547,7 +2547,7 @@ export default {
     
     Thoma: {
         name: "Thoma",
-        chs: "托马",
+        // chs: "托马",
         element: "Pyro",
         weapon: "Polearm",
         star: 4,
@@ -2560,33 +2560,33 @@ export default {
         skillName3: "真红炽火之大铠",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害/2", text: 132 },
+            { index: 2, text: 132 },
             
-            { index: 4, chs: "四段伤害", text: 3 },
+            { index: 4, text: 3 },
             
-            { index: 5, chs: "重击伤害", text: 38 },
+            { index: 5, text: 38 },
             
-            { index: 6, chs: "下坠期间伤害", text: 7 },
+            { index: 6, text: 7 },
             
-            { index: 7, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 7, text: 8 },
             
-            { index: 8, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 8, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 9, chs: "技能伤害", text: 19 },
+            { index: 9, text: 19 },
             
         ],
         skillMap3: [
             
-            { index: 10, chs: "技能伤害", text: 19 },
+            { index: 10, text: 19 },
             
-            { index: 11, chs: "炽火崩破伤害", text: 161 },
+            { index: 11, text: 161 },
             
         ],
         config: [
@@ -2599,7 +2599,7 @@ export default {
     
     Venti: {
         name: "Venti",
-        chs: "温迪",
+        // chs: "温迪",
         element: "Anemo",
         weapon: "Bow",
         star: 5,
@@ -2612,51 +2612,51 @@ export default {
         skillName3: "风神之诗",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害-1", text: 23 },
+            { index: 0, text: 23 },
             
-            { index: 1, chs: "一段伤害-2", text: 24 },
+            { index: 1, text: 24 },
             
-            { index: 3, chs: "二段伤害", text: 1 },
+            { index: 3, text: 1 },
             
-            { index: 4, chs: "三段伤害", text: 2 },
+            { index: 4, text: 2 },
             
-            { index: 5, chs: "四段伤害-1", text: 27 },
+            { index: 5, text: 27 },
             
-            { index: 6, chs: "四段伤害-2", text: 99 },
+            { index: 6, text: 99 },
             
-            { index: 8, chs: "五段伤害", text: 4 },
+            { index: 8, text: 4 },
             
-            { index: 9, chs: "六段伤害", text: 70 },
+            { index: 9, text: 70 },
             
-            { index: 10, chs: "瞄准射击", text: 28 },
+            { index: 10, text: 28 },
             
-            { index: 11, chs: "满蓄力瞄准射击", text: 29 },
+            { index: 11, text: 29 },
             
-            { index: 12, chs: "下坠期间伤害", text: 7 },
+            { index: 12, text: 7 },
             
-            { index: 13, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 13, text: 8 },
             
-            { index: 14, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 14, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 15, chs: "点按伤害", text: 49 },
+            { index: 15, text: 49 },
             
-            { index: 16, chs: "长按伤害", text: 63 },
+            { index: 16, text: 63 },
             
         ],
         skillMap3: [
             
-            { index: 17, chs: "持续伤害", text: 56 },
+            { index: 17, text: 56 },
             
-            { index: 18, chs: "附加火元素伤害", text: 15 },
+            { index: 18, text: 15 },
             
-            { index: 20, chs: "附加水元素伤害", text: 16 },
+            { index: 20, text: 16 },
             
-            { index: 21, chs: "附加冰元素伤害", text: 18 },
+            { index: 21, text: 18 },
             
-            { index: 19, chs: "附加雷元素伤害", text: 17 },
+            { index: 19, text: 17 },
             
         ],
         config: [
@@ -2669,7 +2669,7 @@ export default {
     
     Xiangling: {
         name: "Xiangling",
-        chs: "香菱",
+        // chs: "香菱",
         element: "Pyro",
         weapon: "Polearm",
         star: 4,
@@ -2682,41 +2682,41 @@ export default {
         skillName3: "旋火轮",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害-1", text: 26 },
+            { index: 2, text: 26 },
             
-            { index: 3, chs: "三段伤害-2", text: 60 },
+            { index: 3, text: 60 },
             
-            { index: 5, chs: "四段伤害/4", text: 162 },
+            { index: 5, text: 162 },
             
-            { index: 7, chs: "五段伤害", text: 4 },
+            { index: 7, text: 4 },
             
-            { index: 8, chs: "重击伤害", text: 38 },
+            { index: 8, text: 38 },
             
-            { index: 9, chs: "下坠期间伤害", text: 7 },
+            { index: 9, text: 7 },
             
-            { index: 10, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 10, text: 8 },
             
-            { index: 11, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 11, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 12, chs: "喷火伤害", text: 163 },
+            { index: 12, text: 163 },
             
         ],
         skillMap3: [
             
-            { index: 13, chs: "一段挥舞伤害", text: 164 },
+            { index: 13, text: 164 },
             
-            { index: 14, chs: "二段挥舞伤害", text: 165 },
+            { index: 14, text: 165 },
             
-            { index: 15, chs: "三段挥舞伤害", text: 166 },
+            { index: 15, text: 166 },
             
-            { index: 16, chs: "旋火轮伤害", text: 167 },
+            { index: 16, text: 167 },
             
         ],
         config: [
@@ -2729,7 +2729,7 @@ export default {
     
     Xiao: {
         name: "Xiao",
-        chs: "魈",
+        // chs: "魈",
         element: "Anemo",
         weapon: "Polearm",
         star: 5,
@@ -2742,34 +2742,34 @@ export default {
         skillName3: "靖妖傩舞",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害-1", text: 23 },
+            { index: 0, text: 23 },
             
-            { index: 1, chs: "一段伤害-2", text: 24 },
+            { index: 1, text: 24 },
             
-            { index: 3, chs: "二段伤害", text: 1 },
+            { index: 3, text: 1 },
             
-            { index: 4, chs: "三段伤害", text: 2 },
+            { index: 4, text: 2 },
             
-            { index: 5, chs: "四段伤害-2", text: 99 },
+            { index: 5, text: 99 },
             
-            { index: 6, chs: "四段伤害-1", text: 27 },
+            { index: 6, text: 27 },
             
-            { index: 8, chs: "五段伤害", text: 4 },
+            { index: 8, text: 4 },
             
-            { index: 9, chs: "六段伤害", text: 70 },
+            { index: 9, text: 70 },
             
-            { index: 10, chs: "重击伤害", text: 38 },
+            { index: 10, text: 38 },
             
-            { index: 11, chs: "下坠期间伤害", text: 7 },
+            { index: 11, text: 7 },
             
-            { index: 12, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 12, text: 8 },
             
-            { index: 13, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 13, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 14, chs: "技能伤害", text: 19 },
+            { index: 14, text: 19 },
             
         ],
         skillMap3: [
@@ -2791,7 +2791,7 @@ export default {
     
     Xingqiu: {
         name: "Xingqiu",
-        chs: "行秋",
+        // chs: "行秋",
         element: "Hydro",
         weapon: "Sword",
         star: 4,
@@ -2804,41 +2804,41 @@ export default {
         skillName3: "古华剑·裁雨留虹",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害-1", text: 26 },
+            { index: 2, text: 26 },
             
-            { index: 3, chs: "三段伤害-2", text: 60 },
+            { index: 3, text: 60 },
             
-            { index: 5, chs: "四段伤害", text: 3 },
+            { index: 5, text: 3 },
             
-            { index: 6, chs: "五段伤害-1", text: 61 },
+            { index: 6, text: 61 },
             
-            { index: 7, chs: "五段伤害-2", text: 62 },
+            { index: 7, text: 62 },
             
-            { index: 9, chs: "重击伤害-1", text: 5 },
+            { index: 9, text: 5 },
             
-            { index: 10, chs: "重击伤害-2", text: 6 },
+            { index: 10, text: 6 },
             
-            { index: 12, chs: "下坠期间伤害", text: 7 },
+            { index: 12, text: 7 },
             
-            { index: 13, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 13, text: 8 },
             
-            { index: 14, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 14, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 15, chs: "技能伤害-1", text: 133 },
+            { index: 15, text: 133 },
             
-            { index: 16, chs: "技能伤害-2", text: 134 },
+            { index: 16, text: 134 },
             
         ],
         skillMap3: [
             
-            { index: 17, chs: "剑雨伤害", text: 168 },
+            { index: 17, text: 168 },
             
         ],
         config: [
@@ -2853,7 +2853,7 @@ export default {
     
     Xinyan: {
         name: "Xinyan",
-        chs: "辛焱",
+        // chs: "辛焱",
         element: "Pyro",
         weapon: "Claymore",
         star: 4,
@@ -2866,37 +2866,37 @@ export default {
         skillName3: "叛逆刮弦",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "重击循环伤害", text: 43 },
+            { index: 4, text: 43 },
             
-            { index: 5, chs: "重击终结伤害", text: 44 },
+            { index: 5, text: 44 },
             
-            { index: 6, chs: "下坠期间伤害", text: 7 },
+            { index: 6, text: 7 },
             
-            { index: 7, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 7, text: 8 },
             
-            { index: 8, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 8, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 9, chs: "挥舞伤害", text: 169 },
+            { index: 9, text: 169 },
             
-            { index: 10, chs: "持续伤害", text: 56 },
+            { index: 10, text: 56 },
             
         ],
         skillMap3: [
             
-            { index: 11, chs: "技能伤害", text: 19 },
+            { index: 11, text: 19 },
             
-            { index: 12, chs: "火元素持续伤害", text: 170 },
+            { index: 12, text: 170 },
             
         ],
         config: [
@@ -2911,7 +2911,7 @@ export default {
     
     YaeMiko: {
         name: "YaeMiko",
-        chs: "八重神子",
+        // chs: "八重神子",
         element: "Electro",
         weapon: "Catalyst",
         star: 5,
@@ -2924,37 +2924,37 @@ export default {
         skillName3: "大密法·天狐显真",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "重击伤害", text: 38 },
+            { index: 3, text: 38 },
             
-            { index: 4, chs: "下坠期间伤害", text: 7 },
+            { index: 4, text: 7 },
             
-            { index: 5, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 5, text: 8 },
             
-            { index: 6, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 6, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 7, chs: "杀生樱伤害·壹阶", text: 171 },
+            { index: 7, text: 171 },
             
-            { index: 8, chs: "杀生樱伤害·贰阶", text: 172 },
+            { index: 8, text: 172 },
             
-            { index: 9, chs: "杀生樱伤害·叁阶", text: 173 },
+            { index: 9, text: 173 },
             
-            { index: 10, chs: "杀生樱伤害·肆阶", text: 174 },
+            { index: 10, text: 174 },
             
         ],
         skillMap3: [
             
-            { index: 11, chs: "技能伤害", text: 19 },
+            { index: 11, text: 19 },
             
-            { index: 12, chs: "天狐霆雷伤害", text: 175 },
+            { index: 12, text: 175 },
             
         ],
         config: [
@@ -2967,7 +2967,7 @@ export default {
     
     Yanfei: {
         name: "Yanfei",
-        chs: "烟绯",
+        // chs: "烟绯",
         element: "Pyro",
         weapon: "Catalyst",
         star: 4,
@@ -2980,39 +2980,39 @@ export default {
         skillName3: "凭此结契",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "重击-无印伤害", text: 176 },
+            { index: 3, text: 176 },
             
-            { index: 4, chs: "重击-1层伤害", text: 177 },
+            { index: 4, text: 177 },
             
-            { index: 5, chs: "重击-2层伤害", text: 178 },
+            { index: 5, text: 178 },
             
-            { index: 6, chs: "重击-3层伤害", text: 179 },
+            { index: 6, text: 179 },
             
-            { index: 7, chs: "重击-4层伤害", text: 180 },
+            { index: 7, text: 180 },
             
-            { index: 8, chs: "天赋2额外伤害", text: 181 },
+            { index: 8, text: 181 },
             
-            { index: 9, chs: "下坠期间伤害", text: 7 },
+            { index: 9, text: 7 },
             
-            { index: 10, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 10, text: 8 },
             
-            { index: 11, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 11, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 12, chs: "技能伤害", text: 19 },
+            { index: 12, text: 19 },
             
         ],
         skillMap3: [
             
-            { index: 13, chs: "技能伤害", text: 19 },
+            { index: 13, text: 19 },
             
         ],
         config: [
@@ -3027,7 +3027,7 @@ export default {
     
     Yelan: {
         name: "Yelan",
-        chs: "夜兰",
+        // chs: "夜兰",
         element: "Hydro",
         weapon: "Bow",
         star: 5,
@@ -3040,37 +3040,37 @@ export default {
         skillName3: "渊图玲珑骰",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害/2", text: 182 },
+            { index: 3, text: 182 },
             
-            { index: 4, chs: "瞄准射击", text: 28 },
+            { index: 4, text: 28 },
             
-            { index: 5, chs: "满蓄力瞄准射击", text: 29 },
+            { index: 5, text: 29 },
             
-            { index: 6, chs: "破局矢伤害", text: 183 },
+            { index: 6, text: 183 },
             
-            { index: 8, chs: "下坠期间伤害", text: 7 },
+            { index: 8, text: 7 },
             
-            { index: 9, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 9, text: 8 },
             
-            { index: 10, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 10, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 11, chs: "技能伤害", text: 19 },
+            { index: 11, text: 19 },
             
         ],
         skillMap3: [
             
-            { index: 12, chs: "技能伤害", text: 19 },
+            { index: 12, text: 19 },
             
-            { index: 13, chs: "玄掷玲珑伤害", text: 184 },
+            { index: 13, text: 184 },
             
         ],
         config: [
@@ -3085,7 +3085,7 @@ export default {
     
     Yoimiya: {
         name: "Yoimiya",
-        chs: "宵宫",
+        // chs: "宵宫",
         element: "Pyro",
         weapon: "Bow",
         star: 5,
@@ -3098,27 +3098,27 @@ export default {
         skillName3: "琉金云间草",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害/2", text: 185 },
+            { index: 0, text: 185 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害/2", text: 182 },
+            { index: 3, text: 182 },
             
-            { index: 4, chs: "五段伤害", text: 4 },
+            { index: 4, text: 4 },
             
-            { index: 5, chs: "瞄准射击", text: 28 },
+            { index: 5, text: 28 },
             
-            { index: 6, chs: "满蓄力瞄准射击", text: 29 },
+            { index: 6, text: 29 },
             
-            { index: 7, chs: "焰硝矢伤害", text: 186 },
+            { index: 7, text: 186 },
             
-            { index: 8, chs: "下坠期间伤害", text: 7 },
+            { index: 8, text: 7 },
             
-            { index: 9, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 9, text: 8 },
             
-            { index: 10, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 10, text: 9 },
             
         ],
         skillMap2: [
@@ -3126,9 +3126,9 @@ export default {
         ],
         skillMap3: [
             
-            { index: 11, chs: "技能伤害", text: 19 },
+            { index: 11, text: 19 },
             
-            { index: 12, chs: "琉金火光爆炸伤害", text: 187 },
+            { index: 12, text: 187 },
             
         ],
         config: [
@@ -3145,7 +3145,7 @@ export default {
     
     Yunjin: {
         name: "Yunjin",
-        chs: "云堇",
+        // chs: "云堇",
         element: "Geo",
         weapon: "Polearm",
         star: 4,
@@ -3158,41 +3158,41 @@ export default {
         skillName3: "破嶂见旌仪",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害-1", text: 26 },
+            { index: 2, text: 26 },
             
-            { index: 3, chs: "三段伤害-2", text: 60 },
+            { index: 3, text: 60 },
             
-            { index: 4, chs: "四段伤害-1", text: 27 },
+            { index: 4, text: 27 },
             
-            { index: 5, chs: "四段伤害-2", text: 99 },
+            { index: 5, text: 99 },
             
-            { index: 6, chs: "五段伤害", text: 4 },
+            { index: 6, text: 4 },
             
-            { index: 7, chs: "重击伤害", text: 38 },
+            { index: 7, text: 38 },
             
-            { index: 8, chs: "下坠期间伤害", text: 7 },
+            { index: 8, text: 7 },
             
-            { index: 9, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 9, text: 8 },
             
-            { index: 10, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 10, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 11, chs: "点按伤害", text: 49 },
+            { index: 11, text: 49 },
             
-            { index: 12, chs: "一段蓄力伤害", text: 188 },
+            { index: 12, text: 188 },
             
-            { index: 13, chs: "二段蓄力伤害", text: 189 },
+            { index: 13, text: 189 },
             
         ],
         skillMap3: [
             
-            { index: 14, chs: "技能伤害", text: 19 },
+            { index: 14, text: 19 },
             
         ],
         config: [
@@ -3205,7 +3205,7 @@ export default {
     
     Zhongli: {
         name: "Zhongli",
-        chs: "钟离",
+        // chs: "钟离",
         element: "Geo",
         weapon: "Polearm",
         star: 5,
@@ -3218,39 +3218,39 @@ export default {
         skillName3: "天星",
         skillMap1: [
             
-            { index: 0, chs: "一段伤害", text: 0 },
+            { index: 0, text: 0 },
             
-            { index: 1, chs: "二段伤害", text: 1 },
+            { index: 1, text: 1 },
             
-            { index: 2, chs: "三段伤害", text: 2 },
+            { index: 2, text: 2 },
             
-            { index: 3, chs: "四段伤害", text: 3 },
+            { index: 3, text: 3 },
             
-            { index: 4, chs: "五段伤害/4", text: 190 },
+            { index: 4, text: 190 },
             
-            { index: 5, chs: "六段伤害", text: 70 },
+            { index: 5, text: 70 },
             
-            { index: 6, chs: "重击伤害", text: 38 },
+            { index: 6, text: 38 },
             
-            { index: 7, chs: "下坠期间伤害", text: 7 },
+            { index: 7, text: 7 },
             
-            { index: 8, chs: "低空坠地冲击伤害", text: 8 },
+            { index: 8, text: 8 },
             
-            { index: 9, chs: "高空坠地冲击伤害", text: 9 },
+            { index: 9, text: 9 },
             
         ],
         skillMap2: [
             
-            { index: 10, chs: "岩脊伤害", text: 191 },
+            { index: 10, text: 191 },
             
-            { index: 11, chs: "共鸣伤害", text: 192 },
+            { index: 11, text: 192 },
             
-            { index: 12, chs: "长按伤害", text: 63 },
+            { index: 12, text: 63 },
             
         ],
         skillMap3: [
             
-            { index: 13, chs: "技能伤害", text: 19 },
+            { index: 13, text: 19 },
             
         ],
         config: [

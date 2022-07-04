@@ -59,13 +59,19 @@ export default {
     },
     methods: {
         handleInput(name, value) {
-            const resName = this.resNameMap[name]
-
-            if (this.modelValue[resName] !== value) {
+            if (name === "level") {
                 let temp = Object.assign({}, this.modelValue)
-                temp[this.resNameMap[name]] = value
-
+                temp["level"] = value
                 this.$emit("update:modelValue", temp)
+            } else {
+                const resName = this.resNameMap[name]
+
+                if (this.modelValue[resName] !== value) {
+                    let temp = Object.assign({}, this.modelValue)
+                    temp[this.resNameMap[name]] = value
+
+                    this.$emit("update:modelValue", temp)
+                }
             }
         }
     },

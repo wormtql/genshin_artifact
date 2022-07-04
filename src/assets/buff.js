@@ -14,7 +14,8 @@ for (let name in _data) {
     _buffByGenre[genre].push(buff)
 }
 for (let genre in _buffByGenre) {
-    _buffByGenre[genre].sort((a, b) => a.chs.localeCompare(b.chs))
+    // _buffByGenre[genre].sort((a, b) => a.chs.localeCompare(b.chs))
+    _buffByGenre[genre].sort((a, b) => a.name.localeCompare(b.name))
 }
 Object.freeze(_buffByGenre)
 

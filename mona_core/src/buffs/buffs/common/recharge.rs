@@ -31,7 +31,7 @@ impl BuffMeta for BuffRecharge {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "p",
-            title: "值",
+            title: "w4",
             config: ItemConfigType::FloatPercentageInput { default: 20.0 },
         }
     ]);

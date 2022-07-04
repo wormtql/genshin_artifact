@@ -36,12 +36,12 @@ impl BuffMeta for BuffKaedeharaKazuhaTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "element",
-            title: "扩散元素",
+            title: "b6",
             config: ItemConfigType::Element4 { default: Element::Electro }
         },
         ItemConfig {
             name: "em",
-            title: "万叶的元素精通",
+            title: "b7",
             config: ItemConfigType::FloatInput { default: 800.0 },
         }
     ]);

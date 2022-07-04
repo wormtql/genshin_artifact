@@ -39,7 +39,7 @@ fn remove_param(s: &str) -> String {
     x.to_string()
 }
 
-pub fn translate(txt: &str, src: &str, dst: &str) -> String {
+pub fn translate(txt: &str, src: &str, dst: &str) -> (String, String) {
     let map1 = get_text_map(src);
     let map2 = get_text_map(dst);
 
@@ -60,5 +60,36 @@ pub fn translate(txt: &str, src: &str, dst: &str) -> String {
     println!("{}", min_key);
 
     let temp = map2.get(&min_key).unwrap().clone();
-    remove_param(&temp)
+    let translated = remove_param(&temp);
+
+    let temp = map1.get(&min_key).unwrap().clone();
+    let original = remove_param(&temp);
+
+    (original, translated)
+}
+
+pub fn translate2(txt: &str, src: &str, dst: &str) -> Option<(String, String)> {
+    let map1 = get_text_map(src);
+    let map2 = get_text_map(dst);
+
+    let mut key = String::new();
+    for (k, v) in map1.iter() {
+        if v.contains(txt) {
+            key = k.clone();
+            // println!("{}", key);
+            break;
+        }
+    }
+
+    if key.is_empty() {
+        return None;
+    }
+
+    let temp = map2.get(&key).unwrap().clone();
+    let translated = remove_param(&temp);
+
+    let temp = map1.get(&key).unwrap().clone();
+    let original = remove_param(&temp);
+
+    Some((original, translated))
 }

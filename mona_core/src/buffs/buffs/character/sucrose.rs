@@ -59,7 +59,7 @@ impl BuffMeta for BuffSucroseTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "em",
-            title: "砂糖的元素精通",
+            title: "b22",
             config: ItemConfigType::FloatInput { default: 200.0 }
         }
     ]);
@@ -103,7 +103,7 @@ impl BuffMeta for BuffSucroseC6 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "element",
-            title: "扩散类型",
+            title: "b23",
             config: ItemConfigType::Element4 { default: Element::Electro }
         }
     ]);

@@ -37,12 +37,12 @@ impl BuffMeta for BuffRaidenShogunE {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill2",
-            title: "雷电将军E技能等级",
+            title: "b14",
             config: ItemConfigType::Int { min: 1, max: 15, default: 8 }
         },
         ItemConfig {
             name: "energy",
-            title: "受BUFF角色最大元素能量",
+            title: "b15",
             config: ItemConfigType::Int { min: 20, max: 100, default: 80 }
         }
     ]);

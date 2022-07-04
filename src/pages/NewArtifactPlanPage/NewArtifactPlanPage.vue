@@ -867,8 +867,10 @@ function handleClickArtifactConfig() {
 // save and use presets
 const miscCurrentPresetName = ref<null | string>(null)
 const presetDefaultName = computed((): string => {
-    const cName = characterData[characterName.value].chs
-    const wName = weaponData[weaponName.value].chs
+    // const cName = characterData[characterName.value].chs
+    // const wName = weaponData[weaponName.value].chs
+    const cName = t("character", characterName.value)
+    const wName = t("weapon", weaponName.value)
     return `${cName}-${wName}`
 })
 
@@ -1201,10 +1203,12 @@ interface Node {
 }
 
 const kumiDefaultName = computed((): string => {
-    let name = characterData[characterName.value].chs
+    // let name = characterData[characterName.value].chs
+    let name = t("character", characterName.value)
     for (const setName in artifactSetCount.value) {
         if (artifactSetCount.value[setName] >= 2) {
-            name += '-' + artifactsData[setName].chs
+            // name += '-' + artifactsData[setName].chs
+            name += '-' + t("artifact", setName, "setName")
         }
     }
     return name

@@ -77,7 +77,7 @@ export default {
                         // effect4: d.effect4,
                         effect4: this.t("artifact", d.eng, "effects.4"),
                         thumbnail: getArtifactThumbnail(name),
-                        chs: d.chs,
+                        // chs: d.chs,
                     })
                 }
             }

@@ -37,12 +37,12 @@ impl BuffMeta for BuffShenheE {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "atk",
-            title: "申鹤的攻击力",
+            title: "b17",
             config: ItemConfigType::FloatInput { default: 3000.0 }
         },
         ItemConfig {
             name: "skill2",
-            title: "申鹤E技能等级",
+            title: "b18",
             config: ItemConfigType::Int { min: 1, max: 15, default: 8 },
         }
     ]);
@@ -87,7 +87,7 @@ impl BuffMeta for BuffShenheQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill3",
-            title: "申鹤Q技能等级",
+            title: "b19",
             config: ItemConfigType::Int { min: 1, max: 15, default: 8 },
         }
     ]);
@@ -133,7 +133,7 @@ impl BuffMeta for BuffShenheTalent1 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "c2",
-            title: "是否二命",
+            title: "b20",
             config: ItemConfigType::Bool { default: false }
         }
     ]);
@@ -183,7 +183,7 @@ impl BuffMeta for BuffShenheTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "t",
-            title: "技能释放方式",
+            title: "b21",
             config: ItemConfigType::Option {
                 options: "点按,长按",
                 default: 0

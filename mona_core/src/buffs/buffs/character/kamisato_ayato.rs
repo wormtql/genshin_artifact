@@ -35,7 +35,7 @@ impl BuffMeta for BuffKamisatoAyatoQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill_level",
-            title: "神里绫人Q技能等级",
+            title: "b8",
             config: ItemConfigType::Int { min: 1, max: 15, default: 8 }
         }
     ]);
