@@ -1,2 +1,2 @@
 # because called from parent directory, cwd is also parent directory
-genshin_data_path: "../sub/genshindata"
+genshin_data_path: "sub/genshindata"

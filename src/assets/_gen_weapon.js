@@ -2161,9 +2161,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"w8","title":"效果1比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate1","title":"w27","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"w9","title":"效果2比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate2","title":"w28","type":"float"},
             
         ],
         
