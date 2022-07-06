@@ -11,6 +11,7 @@ pub struct ArtifactEff {
     pub critical_damage: [f64; 4],
     pub recharge: [f64; 4],
     pub elemental_mastery: [f64; 4],
+    pub healing_bonus: [f64; 4],
 }
 
 impl ArtifactEff {
@@ -27,7 +28,10 @@ impl ArtifactEff {
             CriticalDamage => self.critical_damage[index],
             Recharge => self.recharge[index],
             ElementalMastery => self.elemental_mastery[index],
-            _ => unreachable!()
+            HealingBonus => self.healing_bonus[index],
+            PhysicalBonus => self.def_percentage[index],
+            _ => self.atk_percentage[index],
+            // _ => unreachable!()
         }
     }
 }
@@ -42,7 +46,8 @@ pub const ARTIFACT_EFF4: ArtifactEff = ArtifactEff {
     critical_rate: [0.022, 0.025, 0.028, 0.031],
     critical_damage: [0.044, 0.05, 0.056, 0.062],
     recharge: [0.036, 0.041, 0.047, 0.052],
-    elemental_mastery: [13.0, 15.0, 17.0, 19.0]
+    elemental_mastery: [13.0, 15.0, 17.0, 19.0],
+    healing_bonus: [0.025, 0.029, 0.032, 0.036],
 };
 
 pub const ARTIFACT_EFF5: ArtifactEff = ArtifactEff {
@@ -55,5 +60,6 @@ pub const ARTIFACT_EFF5: ArtifactEff = ArtifactEff {
     critical_rate: [0.027, 0.031, 0.035, 0.039],
     critical_damage: [0.054, 0.062, 0.07, 0.078],
     recharge: [0.045, 0.052, 0.058, 0.065],
-    elemental_mastery: [16.0, 19.0, 21.0, 23.0]
+    elemental_mastery: [16.0, 19.0, 21.0, 23.0],
+    healing_bonus: [0.031, 0.036, 0.04, 0.045],
 };

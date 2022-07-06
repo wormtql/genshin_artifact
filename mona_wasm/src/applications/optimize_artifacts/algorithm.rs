@@ -2,7 +2,6 @@ use serde::{Serialize, Deserialize};
 use crate::applications::optimize_artifacts::algorithms::cutoff_a_star::AStarCutoff;
 use crate::applications::optimize_artifacts::algorithms::cutoff_heu_plus_a_star::CutoffHeuristicPlusAStar;
 use crate::applications::optimize_artifacts::algorithms::cutoff_heuristic::CutoffAlgorithmHeuristic;
-use crate::applications::optimize_artifacts::algorithms::CutoffAlgorithm2;
 use crate::applications::optimize_artifacts::inter::{ConstraintConfig, OptimizationResult};
 use mona::artifacts::Artifact;
 use mona::artifacts::effect_config::ArtifactEffectConfig;
@@ -12,6 +11,7 @@ use mona::character::Character;
 use mona::enemies::Enemy;
 use mona::target_functions::TargetFunction;
 use mona::weapon::Weapon;
+use crate::applications::optimize_artifacts::algorithms::cutoff_algo2::CutoffAlgo2;
 
 pub trait SingleOptimizeAlgorithm {
     fn optimize(
@@ -45,7 +45,8 @@ impl SingleOptimizeAlgorithmName {
     pub fn get_algorithm(&self) -> Box<dyn SingleOptimizeAlgorithm> {
         match *self {
             SingleOptimizeAlgorithmName::AStar => Box::new(AStarCutoff),
-            SingleOptimizeAlgorithmName::Naive => Box::new(CutoffAlgorithmHeuristic { use_heuristic: false }),
+            // SingleOptimizeAlgorithmName::Naive => Box::new(CutoffAlgorithmHeuristic { use_heuristic: false }),
+            SingleOptimizeAlgorithmName::Naive => Box::new(CutoffAlgo2),
             SingleOptimizeAlgorithmName::Heuristic => Box::new(CutoffHeuristicPlusAStar)
         }
     }
