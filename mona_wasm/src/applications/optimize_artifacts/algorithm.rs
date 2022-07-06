@@ -33,6 +33,10 @@ pub enum SingleOptimizeAlgorithmName {
     AStar,
     Naive,
     Heuristic,
+    // ExtendBound80,
+    // ExtendBound70,
+    // ExtendBound60,
+    // ExtendBound50,
 }
 
 impl Default for SingleOptimizeAlgorithmName {
@@ -44,10 +48,15 @@ impl Default for SingleOptimizeAlgorithmName {
 impl SingleOptimizeAlgorithmName {
     pub fn get_algorithm(&self) -> Box<dyn SingleOptimizeAlgorithm> {
         match *self {
-            SingleOptimizeAlgorithmName::AStar => Box::new(AStarCutoff),
+            // SingleOptimizeAlgorithmName::AStar => Box::new(AStarCutoff),
+            SingleOptimizeAlgorithmName::AStar => Box::new(CutoffAlgo2 { accuracy_factor: 1.0 }),
             // SingleOptimizeAlgorithmName::Naive => Box::new(CutoffAlgorithmHeuristic { use_heuristic: false }),
-            SingleOptimizeAlgorithmName::Naive => Box::new(CutoffAlgo2),
-            SingleOptimizeAlgorithmName::Heuristic => Box::new(CutoffHeuristicPlusAStar)
+            SingleOptimizeAlgorithmName::Naive => Box::new(AStarCutoff),
+            SingleOptimizeAlgorithmName::Heuristic => Box::new(CutoffHeuristicPlusAStar),
+            // SingleOptimizeAlgorithmName::ExtendBound80 => Box::new(CutoffAlgo2 { accuracy_factor: 0.8 }),
+            // SingleOptimizeAlgorithmName::ExtendBound70 => Box::new(CutoffAlgo2 { accuracy_factor: 0.7 }),
+            // SingleOptimizeAlgorithmName::ExtendBound60 => Box::new(CutoffAlgo2 { accuracy_factor: 0.6 }),
+            // SingleOptimizeAlgorithmName::ExtendBound50 => Box::new(CutoffAlgo2 { accuracy_factor: 0.5 }),
         }
     }
 }

@@ -87,7 +87,7 @@ fn main() {
         crit_dmg_min: None
     };
 
-    let algo = CutoffAlgo2;
+    let algo = CutoffAlgo2 { accuracy_factor: 1.0 };
     // let algo = AStarCutoff;
     // let algo = CutoffAlgorithmHeuristic {
     //     use_heuristic: true,

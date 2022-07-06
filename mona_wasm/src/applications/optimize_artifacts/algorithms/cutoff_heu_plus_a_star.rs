@@ -9,6 +9,7 @@ use mona::character::Character;
 use mona::enemies::Enemy;
 use mona::target_functions::TargetFunction;
 use mona::weapon::Weapon;
+use crate::applications::optimize_artifacts::algorithms::cutoff_algo2::CutoffAlgo2;
 
 pub struct CutoffHeuristicPlusAStar;
 
@@ -20,7 +21,7 @@ impl SingleOptimizeAlgorithm for CutoffHeuristicPlusAStar {
         let artifacts_vec: Vec<&Artifact> = artifacts.iter().cloned().collect();
         let filtered_artifacts = target_function_opt_config.filter(artifacts_vec);
 
-        let a_star_algo = AStarCutoff;
+        let a_star_algo = CutoffAlgo2 { accuracy_factor: 1.0 };
 
         a_star_algo.optimize(
             &filtered_artifacts,

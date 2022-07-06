@@ -1,8 +1,9 @@
 use std::cmp::{Ordering, Reverse};
 use std::collections::{BinaryHeap, HashMap, HashSet};
+use std::hash::{Hash, Hasher};
 use mona::artifacts::{Artifact, ArtifactList, ArtifactSetName};
 use mona::artifacts::effect_config::ArtifactEffectConfig;
-use mona::attribute::{AttributeUtils, SimpleAttributeGraph2};
+use mona::attribute::{AttributeUtils, SimpleAttributeGraph2, AttributeCommon, Attribute, AttributeName};
 use mona::buffs::Buff;
 use mona::character::Character;
 use mona::common::StatName;
@@ -13,6 +14,7 @@ use crate::applications::optimize_artifacts::inter::{ConstraintConfig, Optimizat
 
 #[derive(Clone)]
 pub struct OptimizationIntermediateResult {
+    // arts must have same slot order
     pub arts: [u64; 5],
     pub score: f64,
 }
@@ -62,7 +64,7 @@ pub struct ValueFunction<'a> {
 }
 
 impl<'a> ValueFunction<'a> {
-    pub fn score(&self, arts: &[&Artifact]) -> f64 {
+    pub fn get_attribute(&self, arts: &[&Artifact]) -> SimpleAttributeGraph2 {
         let art_list = ArtifactList {
             artifacts: arts,
         };
@@ -73,7 +75,10 @@ impl<'a> ValueFunction<'a> {
             &self.weapon,
             &self.buffs
         );
+        attribute
+    }
 
+    pub fn score_attribute(&self, attribute: &SimpleAttributeGraph2, arts: &[&Artifact]) -> f64 {
         let score = self.target_function.target(
             &attribute,
             &self.character,
@@ -81,21 +86,61 @@ impl<'a> ValueFunction<'a> {
             &arts,
             &self.enemy
         );
-
         score
+    }
+
+    pub fn score(&self, arts: &[&Artifact]) -> f64 {
+        let attribute = self.get_attribute(arts);
+
+        self.score_attribute(&attribute, arts)
+    }
+
+    pub fn check_attribute_attribute(&self, attribute: &SimpleAttributeGraph2) -> bool {
+        if attribute.get_atk() < self.constraint.atk_min.unwrap_or(0.0) {
+            return false;
+        }
+        if attribute.get_def() < self.constraint.def_min.unwrap_or(0.0) {
+            return false;
+        }
+        if attribute.get_hp() < self.constraint.hp_min.unwrap_or(0.0) {
+            return false;
+        }
+        if attribute.get_value(AttributeName::ElementalMastery) < self.constraint.em_min.unwrap_or(0.0) {
+            return false;
+        }
+        if attribute.get_value(AttributeName::Recharge) < self.constraint.recharge_min.unwrap_or(0.0) {
+            return false;
+        }
+        let critical = attribute.get_value(AttributeName::CriticalBase).clamp(0.0, 1.0);
+        if critical < self.constraint.crit_min.unwrap_or(0.0) {
+            return false;
+        }
+        if attribute.get_value(AttributeName::CriticalDamageBase) < self.constraint.crit_dmg_min.unwrap_or(0.0) {
+            return false;
+        }
+
+        true
+    }
+
+    pub fn check_attribute(&self, arts: &[&Artifact]) -> bool {
+        let attribute = self.get_attribute(arts);
+
+        self.check_attribute_attribute(&attribute)
     }
 }
 
 pub struct ResultRecorder {
     pub size: usize,
     pub results: BinaryHeap<Reverse<OptimizationIntermediateResult>>,
+    pub result_hash: HashSet<[u64; 5]>,
 }
 
 impl ResultRecorder {
     pub fn new(size: usize) -> ResultRecorder {
         ResultRecorder {
             size,
-            results: BinaryHeap::with_capacity(size + 1)
+            results: BinaryHeap::with_capacity(size + 1),
+            result_hash: HashSet::new(),
         }
     }
 
@@ -111,11 +156,18 @@ impl ResultRecorder {
     }
 
     pub fn push_result(&mut self, arts: [u64; 5], score: f64) {
+        if self.result_hash.contains(&arts) {
+            return;
+        }
+
         self.results.push(Reverse(OptimizationIntermediateResult {
-            arts, score
+            arts: arts.clone(), score
         }));
+        self.result_hash.insert(arts);
+
         if self.results.len() >= self.size + 1 {
-            self.results.pop();
+            let pop = self.results.pop().unwrap();
+            self.result_hash.remove(&pop.0.arts);
         }
     }
 

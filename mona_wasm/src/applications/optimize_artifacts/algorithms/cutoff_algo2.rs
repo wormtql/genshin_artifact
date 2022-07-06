@@ -1,3 +1,4 @@
+use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
 use mona::artifacts::{Artifact, ArtifactSetName, ArtifactSlotName};
 use mona::artifacts::eff::ARTIFACT_EFF5;
@@ -8,12 +9,14 @@ use mona::character::Character;
 use mona::common::StatName;
 use mona::enemies::Enemy;
 use mona::target_functions::TargetFunction;
+use mona::utils::artifact::get_per_slot_artifacts;
 use mona::weapon::Weapon;
 use smallvec::{SmallVec, smallvec};
 use crate::applications::optimize_artifacts::algorithm::SingleOptimizeAlgorithm;
 use crate::applications::optimize_artifacts::algorithms::common::{get_artifacts_group, get_artifacts_group_without_set, get_set_names, get_super_artifacts, get_super_artifacts_without_set, ResultRecorder, ValueFunction};
+use crate::applications::optimize_artifacts::algorithms::cutoff_heuristic::CutoffAlgorithmHeuristic;
 use crate::applications::optimize_artifacts::algorithms::weight_heuristic::{NaiveWeightHeuristic, WeightHeuristicAlgorithm};
-use crate::applications::optimize_artifacts::inter::{ConstraintConfig, OptimizationResult};
+use crate::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode, OptimizationResult};
 
 type SimpleSlotName = usize;
 
@@ -31,6 +34,8 @@ pub struct CutoffAlgo2Helper<'a> {
     pub sand_stats: Vec<StatName>,
     pub goblet_stats: Vec<StatName>,
     pub head_stats: Vec<StatName>,
+
+    pub factor_a: f64,
 }
 
 #[derive(Copy, Clone)]
@@ -40,7 +45,7 @@ pub enum SlotSetName {
 }
 
 impl<'a> CutoffAlgo2Helper<'a> {
-    pub fn new(artifacts: &'a [&'a Artifact], weight_heuristic: Option<HashMap<StatName, f64>>, set_heuristics: Option<HashMap<ArtifactSetName, f64>>) -> CutoffAlgo2Helper<'a> {
+    pub fn new(artifacts: &'a [&'a Artifact], weight_heuristic: Option<HashMap<StatName, f64>>, set_heuristics: Option<HashMap<ArtifactSetName, f64>>, factor_a: f64) -> CutoffAlgo2Helper<'a> {
         let mut sand_stats = HashSet::new();
         let mut goblet_stats = HashSet::new();
         let mut head_stats = HashSet::new();
@@ -119,6 +124,8 @@ impl<'a> CutoffAlgo2Helper<'a> {
             sand_stats,
             goblet_stats,
             head_stats,
+
+            factor_a,
         }
     }
 
@@ -149,13 +156,23 @@ impl<'a> CutoffAlgo2Helper<'a> {
     }
 
     pub fn is_better_than_current_least(&self, arts: &[&Artifact], value_fn: &ValueFunction, rc: &ResultRecorder) -> bool {
-        let score = value_fn.score(&arts);
+        let attribute = value_fn.get_attribute(arts);
+
+        if !value_fn.check_attribute_attribute(&attribute) {
+            return false;
+        }
+
+        let score = value_fn.score_attribute(&attribute, arts);
         let current_least = rc.current_least();
-        score > current_least * 1.2
+        score * self.factor_a > current_least
     }
 
     pub fn update_artifacts(&self, arts: &[&Artifact], value_fn: &ValueFunction, rc: &mut ResultRecorder) {
-        let score = value_fn.score(&arts);
+        let attribute = value_fn.get_attribute(arts);
+        if !value_fn.check_attribute_attribute(&attribute) {
+            return;
+        }
+        let score = value_fn.score_attribute(&attribute, arts);
 
         let art_ids = [
             arts[0].id,
@@ -280,10 +297,10 @@ impl<'a> CutoffAlgo2Helper<'a> {
         }
     }
 
-    pub fn iter_set(&mut self, set_mask: &[[i32; 5]], s1: ArtifactSetName, s2: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+    pub fn iter_set(&self, set_mask: &[[i32; 5]], s1: ArtifactSetName, s2: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
         for &sand in self.sand_stats.iter() {
-            for &goblet in self.goblet_stats.iter() {
-                for &head in self.head_stats.iter() {
+            for &head in self.head_stats.iter() {
+                for &goblet in self.goblet_stats.iter() {
                     let main_stats = [StatName::HPFixed, StatName::ATKFixed, sand, goblet, head];
                     'outer: for set_composition in set_mask.iter() {
                         {
@@ -334,7 +351,7 @@ impl<'a> CutoffAlgo2Helper<'a> {
 
     }
 
-    pub fn iter_set4(&mut self, set_name: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+    pub fn iter_set4(&self, set_name: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
         let set_masks = [
             [0, 1, 1, 1, 1], [1, 0, 1, 1, 1], [1, 1, 0, 1, 1], [1, 1, 1, 0, 1], [1, 1, 1, 1, 0]
         ];
@@ -343,7 +360,7 @@ impl<'a> CutoffAlgo2Helper<'a> {
         self.iter_set(&set_masks, set_name, ArtifactSetName::Empty, value_fn, rc);
     }
 
-    pub fn iter_set22(&mut self, s1: ArtifactSetName, s2: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+    pub fn iter_set22(&self, s1: ArtifactSetName, s2: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
         let set_mask = [
             [0, 1, 1, 2, 2], [0, 1, 2, 1, 2], [0, 1, 2, 2, 1], [0, 2, 1, 1, 2], [0, 2, 1, 2, 1], [0, 2, 2, 1, 1],
             [1, 0, 1, 2, 2], [1, 0, 2, 1, 2], [1, 0, 2, 2, 1], [2, 0, 1, 1, 2], [2, 0, 1, 2, 1], [2, 0, 2, 1, 1],
@@ -356,7 +373,7 @@ impl<'a> CutoffAlgo2Helper<'a> {
         self.iter_set(&set_mask, s1, s2, value_fn, rc);
     }
 
-    pub fn iter_set2(&mut self, set_name: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+    pub fn iter_set2(&self, set_name: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
         let set_masks = [
             [1, 1, 0, 0, 0], [1, 0, 1, 0, 0], [1, 0, 0, 1, 0], [1, 0, 0, 0, 1],
             [0, 1, 1, 0, 0], [0, 1, 0, 1, 0], [0, 1, 0, 0, 1],
@@ -368,56 +385,87 @@ impl<'a> CutoffAlgo2Helper<'a> {
         self.iter_set(&set_masks, set_name, ArtifactSetName::Empty, value_fn, rc);
     }
 
-    pub fn iter_any(&mut self, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+    pub fn iter_any(&self, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
         // let mut set_count = [0; ArtifactSetName::LEN];
 
         // self.iter_set(&[[0, 0, 0, 0, 0]], ArtifactSetName::Empty, ArtifactSetName::Empty, main_stats, value_fn, rc);
         self.iter_set(&[[0, 0, 0, 0, 0]], ArtifactSetName::Empty, ArtifactSetName::Empty, value_fn, rc);
     }
 
-    pub fn do_calculation(&mut self, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
-        // let set_names = get_set_names(&self.artifacts_all);
-        let set_names = self.artifact_sets.clone();
+    pub fn do_calculation(&self, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+        let set_names = &self.artifact_sets;
 
-        // for &sand in stats_sand.iter() {
-        //     for &goblet in stats_goblet.iter() {
-        //         for &head in stats_head.iter() {
-        //             let stats = [StatName::HPFixed, StatName::ATKFixed, sand, goblet, head];
+        let do_set4 = |recorder: &mut ResultRecorder| {
+            for &set_name in set_names.iter() {
+                self.iter_set4(set_name, value_fn, recorder);
+            }
+        };
 
-                    for &set_name in set_names.iter() {
-                        // self.iter_set4(set_name, &stats, value_fn, rc);
-                        self.iter_set4(set_name, value_fn, rc);
+        let do_set22 = |recorder: &mut ResultRecorder| {
+            for i in 0..set_names.len() {
+                let s1 = set_names[i];
+                for j in i..set_names.len() {
+                    let s2 = set_names[j];
+                    self.iter_set22(s1, s2, value_fn, recorder);
+                }
+            }
+        };
+
+        let do_set2x = |recorder: &mut ResultRecorder, set_name: ArtifactSetName| {
+            for &s1 in set_names.iter() {
+                self.iter_set22(s1, set_name, value_fn, recorder);
+            }
+        };
+
+        let do_set2 = |recorder: &mut ResultRecorder| {
+            for &s1 in set_names.iter() {
+                self.iter_set2(s1, value_fn, recorder);
+            }
+        };
+
+        let do_any = |recorder: &mut ResultRecorder| {
+            self.iter_any(value_fn, recorder);
+        };
+
+        let do_no_constraint = |recorder: &mut ResultRecorder| {
+            do_set4(recorder);
+            do_set22(recorder);
+            do_set2(recorder);
+            do_any(recorder);
+        };
+
+        match &value_fn.constraint.set_mode {
+            Some(set_mode) => {
+                match set_mode {
+                    ConstraintSetMode::Any => do_no_constraint(rc),
+                    ConstraintSetMode::Set4(set) => self.iter_set4(*set, value_fn, rc),
+                    ConstraintSetMode::Set22(s1, s2) => self.iter_set22(*s1, *s2, value_fn, rc),
+                    ConstraintSetMode::Set2(set) => {
+                        self.iter_set4(*set, value_fn, rc);
+                        do_set2x(rc, *set);
+                        self.iter_set2(*set, value_fn, rc);
                     }
-
-                    for i in 0..set_names.len() {
-                        let s1 = set_names[i];
-
-                        // self.iter_set4(s1, value_fn, rc);
-
-                        for j in i..set_names.len() {
-                            let s2 = set_names[j];
-                            // self.iter_set22(s1, s2, &stats, value_fn, rc);
-                            self.iter_set22(s1, s2, value_fn, rc);
-                        }
-                    }
-
-                    for &s1 in set_names.iter() {
-                        // self.iter_set2(s1, &stats, value_fn, rc);
-                        self.iter_set2(s1, value_fn, rc);
-                    }
-
-                    // self.iter_any(&stats, value_fn, rc);
-                    self.iter_any(value_fn, rc);
-                // }
-            // }
-        // }
+                }
+            },
+            None => do_no_constraint(rc),
+        }
     }
 }
 
-pub struct CutoffAlgo2;
+pub struct CutoffAlgo2 {
+    pub accuracy_factor: f64,
+}
 
 impl SingleOptimizeAlgorithm for CutoffAlgo2 {
     fn optimize(&self, artifacts: &[&Artifact], artifact_config: Option<ArtifactEffectConfig>, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, target_function: &Box<dyn TargetFunction>, enemy: &Enemy, buffs: &[Box<dyn Buff<SimpleAttributeGraph2>>], constraint: &ConstraintConfig, count: usize) -> Vec<OptimizationResult> {
+        let (flowers, feathers, sands, goblets, heads) = get_per_slot_artifacts(&artifacts);
+
+        let any_zero = vec![flowers, feathers, sands, goblets, heads].iter().any(|x| x.len() == 0);
+        if any_zero {
+            let naive_algo = CutoffAlgorithmHeuristic { use_heuristic: false };
+            return naive_algo.optimize(artifacts, artifact_config, character, weapon, target_function, enemy, buffs, constraint, count);
+        }
+
         let mut result_recorder = ResultRecorder::new(count);
 
         let mut default_effect_config: ArtifactEffectConfig;
@@ -448,9 +496,10 @@ impl SingleOptimizeAlgorithm for CutoffAlgo2 {
         let mut algo = CutoffAlgo2Helper::new(
             artifacts,
             Some(weight_heuristic),
-            Some(set_heuristic)
+            Some(set_heuristic),
             // None,
             // None,
+            self.accuracy_factor
         );
         algo.do_calculation(&value_function, &mut result_recorder);
 

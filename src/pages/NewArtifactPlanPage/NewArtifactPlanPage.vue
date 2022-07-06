@@ -63,6 +63,10 @@
                 <el-radio label="AStar">{{ t("calcPage.aStar") }}</el-radio>
                 <el-radio label="Heuristic">{{t("calcPage.heuristic")}}</el-radio>
                 <el-radio label="Naive">{{ t("calcPage.naive") }}</el-radio>
+<!--                <el-radio label="ExtendBound80">ExtendBound-0.8</el-radio>-->
+<!--                <el-radio label="ExtendBound70">ExtendBound-0.7</el-radio>-->
+<!--                <el-radio label="ExtendBound60">ExtendBound-0.6</el-radio>-->
+<!--                <el-radio label="ExtendBound50">ExtendBound-0.5</el-radio>-->
             </el-radio-group>
 
             <p class="common-title2">{{ t("calcPage.constSet") }}</p>
@@ -1449,7 +1453,7 @@ function handleOptimizeArtifact() {
         handleUseNthOptimizationResult(1)
 
         // report best result to server, only report player whose 20 artifacts count is above 100
-        if (artifactStore.artifacts20Count.value >= 100) {
+        if (artifactStore.artifacts20Count.value >= 100 && process.env.NODE_ENV === 'production') {
             let result_artifacts_wasm_format: any[] = []
             let first_result = results[0]
             result_artifacts_wasm_format.push(first_result.flower)
