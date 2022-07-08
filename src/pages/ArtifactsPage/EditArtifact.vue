@@ -102,7 +102,7 @@ import { artifactsData } from "@artifact"
 import { artifactTags, mainStatMap } from "@/constants/artifact"
 import { positions } from "@/constants/artifact"
 
-import InputArtifactSubStat from "@c/input/InputArtifactSubStat"
+import InputArtifactSubStat from "@/components/input/InputArtifactSubStat.vue"
 import InputArtifactMainStat from "@c/input/InputArtifactMainStat"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
 import SelectArtifactSlot from "@c/select/SelectArtifactSlot"

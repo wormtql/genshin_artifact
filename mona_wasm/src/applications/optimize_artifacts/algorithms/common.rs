@@ -10,6 +10,7 @@ use mona::common::StatName;
 use mona::enemies::Enemy;
 use mona::target_functions::TargetFunction;
 use mona::weapon::Weapon;
+use rustc_hash::FxHashSet;
 use crate::applications::optimize_artifacts::inter::{ConstraintConfig, OptimizationResult};
 
 #[derive(Clone)]
@@ -133,6 +134,7 @@ pub struct ResultRecorder {
     pub size: usize,
     pub results: BinaryHeap<Reverse<OptimizationIntermediateResult>>,
     pub result_hash: HashSet<[u64; 5]>,
+    // pub result_hash: FxHashSet<[u64; 5]>,
 }
 
 impl ResultRecorder {
@@ -141,6 +143,7 @@ impl ResultRecorder {
             size,
             results: BinaryHeap::with_capacity(size + 1),
             result_hash: HashSet::new(),
+            // result_hash: FxHashSet::default(),
         }
     }
 

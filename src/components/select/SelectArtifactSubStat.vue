@@ -32,6 +32,7 @@ export default {
                     title: t("stat", name)
                 })
             }
+            return result
         }
     }
 }
