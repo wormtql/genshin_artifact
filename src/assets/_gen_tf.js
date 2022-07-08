@@ -603,9 +603,9 @@ export default {
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
-            {"default":0.9,"max":1.0,"min":0.0,"name":"other_dmg_ratio","title":"他人伤害占比","type":"float"},
+            {"default":0.9,"max":1.0,"min":0.0,"name":"other_dmg_ratio","title":"t9","type":"float"},
             
         ],
     },

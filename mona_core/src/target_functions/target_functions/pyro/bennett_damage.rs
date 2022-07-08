@@ -38,12 +38,12 @@ impl TargetFunctionMetaTrait for BennettDamageTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "recharge_demand",
-            title: "充能需求",
+            title: "t4",
             config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.8 },
         },
         ItemConfig {
             name: "other_dmg_ratio",
-            title: "他人伤害占比",
+            title: "t9",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.9 },
         }
     ]);
