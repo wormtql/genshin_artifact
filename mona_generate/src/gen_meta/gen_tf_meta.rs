@@ -2,6 +2,7 @@ use askama::Template;
 use mona::common::item_config_type::ItemConfig;
 use mona::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use mona::target_functions::TargetFunctionName;
+use crate::utils::character::get_character_data_by_name;
 use crate::utils::get_internal_character_name;
 
 struct TFMeta {
@@ -14,7 +15,7 @@ struct TFMeta {
     // character | misc
     badge_type: String,
     // if badge is character avatar, use mihoyo image url
-    character_internal_name: String,
+    character_icon_name: String,
     config: Vec<String>,
 }
 
@@ -68,9 +69,10 @@ pub fn gen_tf_meta_as_js_file() -> String {
             four: convert_for(&meta.four),
             badge_path: convert_badge_path(&meta.image, &meta.four),
             badge_type: if let TargetFunctionMetaImage::Avatar = meta.image { String::from("character") } else { String::from("misc") },
-            character_internal_name: if let TargetFunctionMetaImage::Avatar = meta.image {
+            character_icon_name: if let TargetFunctionMetaImage::Avatar = meta.image {
                 if let TargetFunctionFor::SomeWho(c) = meta.four {
-                    get_internal_character_name(c)
+                    let avatar_excel_config_data = get_character_data_by_name(c);
+                    avatar_excel_config_data.iconName.clone()
                 } else {
                     String::new()
                 }

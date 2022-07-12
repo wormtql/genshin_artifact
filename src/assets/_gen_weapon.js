@@ -58,6 +58,8 @@
 // 
 // import HaranGeppakuFutsu_tn from "@image/weapons/HaranGeppakuFutsu_tn"
 // 
+// import CursedBlade_tn from "@image/weapons/CursedBlade_tn"
+// 
 // import WolfsGravestone_tn from "@image/weapons/WolfsGravestone_tn"
 // 
 // import SkywardPride_tn from "@image/weapons/SkywardPride_tn"
@@ -848,6 +850,28 @@ export default {
         configs: [
             
             {"default":2.0,"max":2.0,"min":0.0,"name":"stack","title":"w25","type":"float"},
+            
+        ],
+        
+    },
+
+    CursedBlade: {
+        name: "CursedBlade",
+        internalName: "Sword_Blunt",
+        // chs: "「妖刀」",
+        star: 4,
+        // url: CursedBlade_tn,
+        url: imageUrl("Sword_Blunt"),
+        type: "Sword",
+
+        
+        // effect: "普通攻击、重击或下落攻击命中敌人时，将卷起切落风，造成180%攻击力的范围伤害，并且使攻击力提升15%，持续8秒。该效果每8秒至多触发一次。",
+        
+
+        
+        configs: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         

@@ -2,6 +2,7 @@ use mona::buffs::buff_meta::{BuffImage, BuffMetaData};
 use mona::buffs::buff_name::BuffName;
 use askama::Template;
 use mona::artifacts::artifact_trait::ArtifactMetaData;
+use crate::utils::character::get_character_data_by_name;
 use crate::utils::get_internal_character_name;
 
 struct BuffMeta {
@@ -11,7 +12,7 @@ struct BuffMeta {
     // character | misc
     image_type: String,
     // if image_type is character, use internal name to get mihoyo image url, not using mine
-    character_internal_name: String,
+    character_icon_name: String,
     genre: String,
     config: Vec<String>,
     description: String,
@@ -70,8 +71,9 @@ pub fn gen_buff_meta_as_js_file() -> String {
             chs: String::from(meta.chs),
             image: convert_image(&meta.image),
             image_type: if let BuffImage::Avatar(_) = meta.image { String::from("character") } else { String::from("misc") },
-            character_internal_name: if let BuffImage::Avatar(c) = meta.image {
-                get_internal_character_name(c)
+            character_icon_name: if let BuffImage::Avatar(c) = meta.image {
+                let avatar_excel_config_data = get_character_data_by_name(c);
+                avatar_excel_config_data.iconName.clone()
             } else { String::new() },
             genre: meta.genre.to_string(),
             config,

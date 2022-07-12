@@ -60,6 +60,7 @@ pub enum CharacterName {
     SangonomiyaKokomi,
     Sayu,
     Shenhe,
+    ShikanoinHeizou,
     Sucrose,
     Tartaglia,
     Thoma,

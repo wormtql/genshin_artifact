@@ -5,7 +5,8 @@
 import {{ c.name }}_splash from "@image/characters/{{ c.name }}_splash"
 {% endfor %}
 
-const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png?x-oss-process=image/crop,w_200,h_200,y_5,g_north"
+// const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png?x-oss-process=image/crop,w_200,h_200,y_5,g_north"
+const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png?x-oss-process=image/crop,w_200,h_200,y_5,g_north"
 
 const getName = name => template.replace("#", name)
 
@@ -19,7 +20,7 @@ export default {
         star: {{ c.star }},
         // card: {{ c.name }}_card,
         // avatar: {{ c.name }}_avatar,
-        avatar: getName("{{ c.name_for_image }}"),
+        avatar: getName("{{ c.icon_name }}"),
         splash: {{ c.name }}_splash,
         skillName1: "{{ c.skill1_name }}",
         skillName2: "{{ c.skill2_name }}",

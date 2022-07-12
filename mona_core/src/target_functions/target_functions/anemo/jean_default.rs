@@ -84,9 +84,9 @@ impl TargetFunction for JeanDefaultTargetFunction {
             bonus_electro: 0.0,
             bonus_pyro: 0.0,
             bonus_hydro: 0.0,
-            bonus_anemo: 0.0,
+            bonus_anemo: 1.0,
             bonus_cryo: 0.0,
-            bonus_geo: 2.0,
+            bonus_geo: 0.0,
             bonus_dendro: 0.0,
             bonus_physical: 0.0,
             sand_main_stats: vec![

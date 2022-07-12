@@ -5,7 +5,7 @@ import {{ b.name }}_image from "@image/{{ b.image }}"
 {% endif %}
 {% endfor %}
 
-const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png"
+const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
 export default {
@@ -14,7 +14,7 @@ export default {
         name: "{{ b.name }}",
         // chs: "{{ b.chs }}",
         {% if b.image_type == "character" %}
-        badge: getImage("{{ b.character_internal_name }}"),
+        badge: getImage("{{ b.character_icon_name }}"),
         {% else %}
         badge: {{ b.name }}_image,
         {% endif %}

@@ -18,6 +18,7 @@ pub enum WeaponConfig {
     DarkIronSword { rate: f64 },
     CoolSteel { rate: f64 },
     HaranGeppakuFutsu { stack: f64 },
+    CursedBlade { rate: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },

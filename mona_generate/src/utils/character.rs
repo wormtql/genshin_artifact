@@ -53,7 +53,12 @@ lazy_static! {
             let mut min_dis = 1000;
             let mut min_item = &CHARACTER_DATA[0];
             for item in CHARACTER_DATA.iter() {
-                let dis = edit_distance(&eng_text_map.get(&item.nameTextMapHash.to_string()).unwrap(), &name_enum.to_string());
+                let name_eng = match eng_text_map.get(&item.nameTextMapHash.to_string()) {
+                    Some(x) => x.clone(),
+                    None => continue,
+                };
+
+                let dis = edit_distance(&name_eng, &name_enum.to_string());
                 if dis < min_dis {
                     min_dis = dis;
                     min_item = item;

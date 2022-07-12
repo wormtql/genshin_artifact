@@ -41,6 +41,7 @@ pub enum WeaponName {
     SilverSword,
     DullBlade,
     HaranGeppakuFutsu,
+    CursedBlade,
 
     WolfsGravestone,
     SkywardPride,

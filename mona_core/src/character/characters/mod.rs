@@ -53,6 +53,7 @@ pub use zhongli::{Zhongli};
 pub use kamisato_ayato::KamisatoAyato;
 pub use yelan::Yelan;
 pub use kuki_shinobu::KukiShinobu;
+pub use shikanoin_heizou::ShikanoinHeizou;
 
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::damage::damage_builder::DamageBuilder;
@@ -112,6 +113,7 @@ pub mod yunjin;
 pub mod zhongli;
 pub mod kamisato_ayato;
 pub mod yelan;
+pub mod shikanoin_heizou;
 
 pub fn get_static_data(name: CharacterName) -> CharacterStaticData {
     name.get_static_data()

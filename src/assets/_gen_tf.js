@@ -169,7 +169,9 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
-const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png"
+
+
+const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
 export default {
@@ -485,7 +487,7 @@ export default {
         ],
         "for": "Albedo",
         
-        badge: getImage("Albedo"),
+        badge: getImage("UI_AvatarIcon_Albedo"),
         
         config: [
             
@@ -503,7 +505,7 @@ export default {
         ],
         "for": "Aloy",
         
-        badge: getImage("Aloy"),
+        badge: getImage("UI_AvatarIcon_Aloy"),
         
         config: [
             
@@ -521,7 +523,7 @@ export default {
         ],
         "for": "Amber",
         
-        badge: getImage("Ambor"),
+        badge: getImage("UI_AvatarIcon_Ambor"),
         
         config: [
             
@@ -539,7 +541,7 @@ export default {
         ],
         "for": "AratakiItto",
         
-        badge: getImage("Itto"),
+        badge: getImage("UI_AvatarIcon_Itto"),
         
         config: [
             
@@ -559,7 +561,7 @@ export default {
         ],
         "for": "Barbara",
         
-        badge: getImage("Barbara"),
+        badge: getImage("UI_AvatarIcon_Barbara"),
         
         config: [
             
@@ -577,7 +579,7 @@ export default {
         ],
         "for": "Beidou",
         
-        badge: getImage("Beidou"),
+        badge: getImage("UI_AvatarIcon_Beidou"),
         
         config: [
             
@@ -599,7 +601,7 @@ export default {
         ],
         "for": "Bennett",
         
-        badge: getImage("Bennett"),
+        badge: getImage("UI_AvatarIcon_Bennett"),
         
         config: [
             
@@ -621,7 +623,7 @@ export default {
         ],
         "for": "Bennett",
         
-        badge: getImage("Bennett"),
+        badge: getImage("UI_AvatarIcon_Bennett"),
         
         config: [
             
@@ -643,7 +645,7 @@ export default {
         ],
         "for": "Chongyun",
         
-        badge: getImage("Chongyun"),
+        badge: getImage("UI_AvatarIcon_Chongyun"),
         
         config: [
             
@@ -661,7 +663,7 @@ export default {
         ],
         "for": "Diluc",
         
-        badge: getImage("Diluc"),
+        badge: getImage("UI_AvatarIcon_Diluc"),
         
         config: [
             
@@ -685,7 +687,7 @@ export default {
         ],
         "for": "Diona",
         
-        badge: getImage("Diona"),
+        badge: getImage("UI_AvatarIcon_Diona"),
         
         config: [
             
@@ -705,7 +707,7 @@ export default {
         ],
         "for": "Eula",
         
-        badge: getImage("Eula"),
+        badge: getImage("UI_AvatarIcon_Eula"),
         
         config: [
             
@@ -723,7 +725,7 @@ export default {
         ],
         "for": "Fischl",
         
-        badge: getImage("Fischl"),
+        badge: getImage("UI_AvatarIcon_Fischl"),
         
         config: [
             
@@ -741,7 +743,7 @@ export default {
         ],
         "for": "Ganyu",
         
-        badge: getImage("Ganyu"),
+        badge: getImage("UI_AvatarIcon_Ganyu"),
         
         config: [
             
@@ -761,7 +763,7 @@ export default {
         ],
         "for": "Gorou",
         
-        badge: getImage("Gorou"),
+        badge: getImage("UI_AvatarIcon_Gorou"),
         
         config: [
             
@@ -781,7 +783,7 @@ export default {
         ],
         "for": "HuTao",
         
-        badge: getImage("Hutao"),
+        badge: getImage("UI_AvatarIcon_Hutao"),
         
         config: [
             
@@ -805,7 +807,7 @@ export default {
         ],
         "for": "Jean",
         
-        badge: getImage("Qin"),
+        badge: getImage("UI_AvatarIcon_Qin"),
         
         config: [
             
@@ -829,7 +831,7 @@ export default {
         ],
         "for": "KaedeharaKazuha",
         
-        badge: getImage("Kazuha"),
+        badge: getImage("UI_AvatarIcon_Kazuha"),
         
         config: [
             
@@ -853,7 +855,7 @@ export default {
         ],
         "for": "KaedeharaKazuha",
         
-        badge: getImage("Kazuha"),
+        badge: getImage("UI_AvatarIcon_Kazuha"),
         
         config: [
             
@@ -873,7 +875,7 @@ export default {
         ],
         "for": "Kaeya",
         
-        badge: getImage("Kaeya"),
+        badge: getImage("UI_AvatarIcon_Kaeya"),
         
         config: [
             
@@ -891,7 +893,7 @@ export default {
         ],
         "for": "KamisatoAyaka",
         
-        badge: getImage("Ayaka"),
+        badge: getImage("UI_AvatarIcon_Ayaka"),
         
         config: [
             
@@ -911,7 +913,7 @@ export default {
         ],
         "for": "KamisatoAyaka",
         
-        badge: getImage("Ayaka"),
+        badge: getImage("UI_AvatarIcon_Ayaka"),
         
         config: [
             
@@ -929,7 +931,7 @@ export default {
         ],
         "for": "KamisatoAyato",
         
-        badge: getImage("Ayato"),
+        badge: getImage("UI_AvatarIcon_Ayato"),
         
         config: [
             
@@ -947,7 +949,7 @@ export default {
         ],
         "for": "Keqing",
         
-        badge: getImage("Keqing"),
+        badge: getImage("UI_AvatarIcon_Keqing"),
         
         config: [
             
@@ -965,7 +967,7 @@ export default {
         ],
         "for": "Klee",
         
-        badge: getImage("Klee"),
+        badge: getImage("UI_AvatarIcon_Klee"),
         
         config: [
             
@@ -987,7 +989,7 @@ export default {
         ],
         "for": "KujouSara",
         
-        badge: getImage("Sara"),
+        badge: getImage("UI_AvatarIcon_Sara"),
         
         config: [
             
@@ -1007,7 +1009,7 @@ export default {
         ],
         "for": "KujouSara",
         
-        badge: getImage("Sara"),
+        badge: getImage("UI_AvatarIcon_Sara"),
         
         config: [
             
@@ -1025,7 +1027,7 @@ export default {
         ],
         "for": "Lisa",
         
-        badge: getImage("Lisa"),
+        badge: getImage("UI_AvatarIcon_Lisa"),
         
         config: [
             
@@ -1047,7 +1049,7 @@ export default {
         ],
         "for": "Mona",
         
-        badge: getImage("Mona"),
+        badge: getImage("UI_AvatarIcon_Mona"),
         
         config: [
             
@@ -1067,7 +1069,7 @@ export default {
         ],
         "for": "Ningguang",
         
-        badge: getImage("Ningguang"),
+        badge: getImage("UI_AvatarIcon_Ningguang"),
         
         config: [
             
@@ -1085,7 +1087,7 @@ export default {
         ],
         "for": "Noelle",
         
-        badge: getImage("Noel"),
+        badge: getImage("UI_AvatarIcon_Noel"),
         
         config: [
             
@@ -1103,7 +1105,7 @@ export default {
         ],
         "for": "Qiqi",
         
-        badge: getImage("Qiqi"),
+        badge: getImage("UI_AvatarIcon_Qiqi"),
         
         config: [
             
@@ -1123,7 +1125,7 @@ export default {
         ],
         "for": "RaidenShogun",
         
-        badge: getImage("Shougun"),
+        badge: getImage("UI_AvatarIcon_Shougun"),
         
         config: [
             
@@ -1143,7 +1145,7 @@ export default {
         ],
         "for": "Razor",
         
-        badge: getImage("Razor"),
+        badge: getImage("UI_AvatarIcon_Razor"),
         
         config: [
             
@@ -1163,7 +1165,7 @@ export default {
         ],
         "for": "Rosaria",
         
-        badge: getImage("Rosaria"),
+        badge: getImage("UI_AvatarIcon_Rosaria"),
         
         config: [
             
@@ -1183,7 +1185,7 @@ export default {
         ],
         "for": "SangonomiyaKokomi",
         
-        badge: getImage("Kokomi"),
+        badge: getImage("UI_AvatarIcon_Kokomi"),
         
         config: [
             
@@ -1203,7 +1205,7 @@ export default {
         ],
         "for": "Sayu",
         
-        badge: getImage("Sayu"),
+        badge: getImage("UI_AvatarIcon_Sayu"),
         
         config: [
             
@@ -1223,7 +1225,7 @@ export default {
         ],
         "for": "Shenhe",
         
-        badge: getImage("Shenhe"),
+        badge: getImage("UI_AvatarIcon_Shenhe"),
         
         config: [
             
@@ -1243,7 +1245,7 @@ export default {
         ],
         "for": "Sucrose",
         
-        badge: getImage("Sucrose"),
+        badge: getImage("UI_AvatarIcon_Sucrose"),
         
         config: [
             
@@ -1263,7 +1265,7 @@ export default {
         ],
         "for": "Tartaglia",
         
-        badge: getImage("Tartaglia"),
+        badge: getImage("UI_AvatarIcon_Tartaglia"),
         
         config: [
             
@@ -1281,7 +1283,7 @@ export default {
         ],
         "for": "Thoma",
         
-        badge: getImage("Tohma"),
+        badge: getImage("UI_AvatarIcon_Tohma"),
         
         config: [
             
@@ -1301,7 +1303,7 @@ export default {
         ],
         "for": "Venti",
         
-        badge: getImage("Venti"),
+        badge: getImage("UI_AvatarIcon_Venti"),
         
         config: [
             
@@ -1321,7 +1323,7 @@ export default {
         ],
         "for": "Xiangling",
         
-        badge: getImage("Xiangling"),
+        badge: getImage("UI_AvatarIcon_Xiangling"),
         
         config: [
             
@@ -1347,7 +1349,7 @@ export default {
         ],
         "for": "Xiao",
         
-        badge: getImage("Xiao"),
+        badge: getImage("UI_AvatarIcon_Xiao"),
         
         config: [
             
@@ -1365,7 +1367,7 @@ export default {
         ],
         "for": "Xingqiu",
         
-        badge: getImage("Xingqiu"),
+        badge: getImage("UI_AvatarIcon_Xingqiu"),
         
         config: [
             
@@ -1385,7 +1387,7 @@ export default {
         ],
         "for": "Xinyan",
         
-        badge: getImage("Xinyan"),
+        badge: getImage("UI_AvatarIcon_Xinyan"),
         
         config: [
             
@@ -1403,7 +1405,7 @@ export default {
         ],
         "for": "Xinyan",
         
-        badge: getImage("Xinyan"),
+        badge: getImage("UI_AvatarIcon_Xinyan"),
         
         config: [
             
@@ -1425,7 +1427,7 @@ export default {
         ],
         "for": "YaeMiko",
         
-        badge: getImage("Yae"),
+        badge: getImage("UI_AvatarIcon_Yae"),
         
         config: [
             
@@ -1449,7 +1451,7 @@ export default {
         ],
         "for": "Yanfei",
         
-        badge: getImage("Feiyan"),
+        badge: getImage("UI_AvatarIcon_Feiyan"),
         
         config: [
             
@@ -1467,7 +1469,7 @@ export default {
         ],
         "for": "Yelan",
         
-        badge: getImage("Yelan"),
+        badge: getImage("UI_AvatarIcon_Yelan"),
         
         config: [
             
@@ -1489,7 +1491,7 @@ export default {
         ],
         "for": "Yoimiya",
         
-        badge: getImage("Yoimiya"),
+        badge: getImage("UI_AvatarIcon_Yoimiya"),
         
         config: [
             
@@ -1511,7 +1513,7 @@ export default {
         ],
         "for": "Yunjin",
         
-        badge: getImage("Yunjin"),
+        badge: getImage("UI_AvatarIcon_Yunjin"),
         
         config: [
             
@@ -1531,7 +1533,7 @@ export default {
         ],
         "for": "Zhongli",
         
-        badge: getImage("Zhongli"),
+        badge: getImage("UI_AvatarIcon_Zhongli"),
         
         config: [
             
@@ -1551,11 +1553,29 @@ export default {
         ],
         "for": "KukiShinobu",
         
-        badge: getImage("Shinobu"),
+        badge: getImage("UI_AvatarIcon_Shinobu"),
         
         config: [
             
             {"default":0.6,"max":1.0,"min":0.0,"name":"e_ratio","title":"t15","type":"float"},
+            
+        ],
+    },
+    
+    "ShikanoinHeizouDefault": {
+        name: "ShikanoinHeizouDefault",
+        // chs: "鹿野院平藏-心朝乂安",
+        // description: "输出平藏",
+        tags: [
+            
+            "输出",
+            
+        ],
+        "for": "ShikanoinHeizou",
+        
+        badge: getImage("UI_AvatarIcon_Ayaka"),
+        
+        config: [
             
         ],
     },

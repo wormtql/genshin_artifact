@@ -27,6 +27,7 @@ pub use travelers_handy_sword::TravelersHandySword;
 pub use silver_sword::SilverSword;
 pub use dull_blade::DullBlade;
 pub use haran_geppaku_futsu::HaranGeppakuFutsu;
+pub use cursed_blade::CursedBlade;
 
 pub mod mistsplitter_reforged;
 pub mod aquila_favonia;
@@ -57,3 +58,4 @@ pub mod travelers_handy_sword;
 pub mod silver_sword;
 pub mod dull_blade;
 pub mod haran_geppaku_futsu;
+pub mod cursed_blade;

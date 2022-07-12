@@ -5,7 +5,7 @@ import {{ t.name }}_image from "@image/{{ t.badge_path }}"
 {% endif %}
 {% endfor %}
 
-const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png"
+const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
 export default {
@@ -21,7 +21,7 @@ export default {
         ],
         "for": "{{ t.four }}",
         {% if t.badge_type == "character" %}
-        badge: getImage("{{ t.character_internal_name }}"),
+        badge: getImage("{{ t.character_icon_name }}"),
         {% else %}
         badge: {{ t.name }}_image,
         {% endif %}

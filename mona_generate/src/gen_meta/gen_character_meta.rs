@@ -4,12 +4,13 @@ use mona::character::{CharacterName, CharacterStaticData};
 use mona::character::traits::{CharacterSkillMap, CharacterSkillMapItem};
 use mona::common::item_config_type::ItemConfig;
 use lazy_static::lazy_static;
-use crate::utils::character::get_character_dmg_names_chs;
+use crate::utils::character::{get_character_data, get_character_data_by_name, get_character_dmg_names_chs};
 use crate::utils::get_internal_character_name;
 
 struct CharacterMeta {
     name: String,
-    name_for_image: String,
+    // name_for_image: String,
+    icon_name: String,
     chs: String,
     star: usize,
     skill1_name: String,
@@ -78,9 +79,12 @@ pub fn gen_character_meta_as_js_file() -> String {
             Vec::new()
         };
 
+        let avatar_excel_config_data = get_character_data_by_name(name_enum);
+
         data.push(CharacterMeta {
             name: meta.name.to_string(),
-            name_for_image: get_internal_character_name(name_enum),
+            // name_for_image: get_internal_character_name(name_enum),
+            icon_name: avatar_excel_config_data.iconName.clone(),
             chs: String::from(meta.chs),
             star: meta.star as usize,
             skill1_name: String::from(meta.skill_name1),

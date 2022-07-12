@@ -144,6 +144,10 @@ import Sayu_splash from "@image/characters/Sayu_splash"
 // import Shenhe_avatar from "@image/characters/Shenhe_avatar"
 import Shenhe_splash from "@image/characters/Shenhe_splash"
 
+// import ShikanoinHeizou_card from "@image/characters/ShikanoinHeizou_card"
+// import ShikanoinHeizou_avatar from "@image/characters/ShikanoinHeizou_avatar"
+import ShikanoinHeizou_splash from "@image/characters/ShikanoinHeizou_splash"
+
 // import Sucrose_card from "@image/characters/Sucrose_card"
 // import Sucrose_avatar from "@image/characters/Sucrose_avatar"
 import Sucrose_splash from "@image/characters/Sucrose_splash"
@@ -201,7 +205,8 @@ import Yunjin_splash from "@image/characters/Yunjin_splash"
 import Zhongli_splash from "@image/characters/Zhongli_splash"
 
 
-const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png?x-oss-process=image/crop,w_200,h_200,y_5,g_north"
+// const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png?x-oss-process=image/crop,w_200,h_200,y_5,g_north"
+const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png?x-oss-process=image/crop,w_200,h_200,y_5,g_north"
 
 const getName = name => template.replace("#", name)
 
@@ -215,7 +220,7 @@ export default {
         star: 5,
         // card: AetherAnemo_card,
         // avatar: AetherAnemo_avatar,
-        avatar: getName("PlayerBoy"),
+        avatar: getName("UI_AvatarIcon_Ambor"),
         splash: AetherAnemo_splash,
         skillName1: "普通攻击·异邦铁风",
         skillName2: "风涡剑",
@@ -283,7 +288,7 @@ export default {
         star: 5,
         // card: Albedo_card,
         // avatar: Albedo_avatar,
-        avatar: getName("Albedo"),
+        avatar: getName("UI_AvatarIcon_Albedo"),
         splash: Albedo_splash,
         skillName1: "普通攻击·西风剑术·白",
         skillName2: "创生法·拟造阳华",
@@ -341,7 +346,7 @@ export default {
         star: 5,
         // card: Aloy_card,
         // avatar: Aloy_avatar,
-        avatar: getName("Aloy"),
+        avatar: getName("UI_AvatarIcon_Aloy"),
         splash: Aloy_splash,
         skillName1: "普通攻击·快速射击",
         skillName2: "冰尘雪野",
@@ -399,7 +404,7 @@ export default {
         star: 4,
         // card: Amber_card,
         // avatar: Amber_avatar,
-        avatar: getName("Ambor"),
+        avatar: getName("UI_AvatarIcon_Ambor"),
         splash: Amber_splash,
         skillName1: "普通攻击·神射手",
         skillName2: "爆弹玩偶",
@@ -455,7 +460,7 @@ export default {
         star: 5,
         // card: AratakiItto_card,
         // avatar: AratakiItto_avatar,
-        avatar: getName("Itto"),
+        avatar: getName("UI_AvatarIcon_Itto"),
         splash: AratakiItto_splash,
         skillName1: "普通攻击•喧哗屋传说",
         skillName2: "魔杀绝技•赤牛发破！",
@@ -509,7 +514,7 @@ export default {
         star: 4,
         // card: Barbara_card,
         // avatar: Barbara_avatar,
-        avatar: getName("Barbara"),
+        avatar: getName("UI_AvatarIcon_Barbara"),
         splash: Barbara_splash,
         skillName1: "普通攻击·水之浅唱",
         skillName2: "演唱，开始♪",
@@ -563,7 +568,7 @@ export default {
         star: 4,
         // card: Beidou_card,
         // avatar: Beidou_avatar,
-        avatar: getName("Beidou"),
+        avatar: getName("UI_AvatarIcon_Beidou"),
         splash: Beidou_splash,
         skillName1: "普通攻击·征涛",
         skillName2: "捉浪",
@@ -623,7 +628,7 @@ export default {
         star: 4,
         // card: Bennett_card,
         // avatar: Bennett_avatar,
-        avatar: getName("Bennett"),
+        avatar: getName("UI_AvatarIcon_Bennett"),
         splash: Bennett_splash,
         skillName1: "普通攻击·好运剑",
         skillName2: "热情过载",
@@ -689,7 +694,7 @@ export default {
         star: 4,
         // card: Chongyun_card,
         // avatar: Chongyun_avatar,
-        avatar: getName("Chongyun"),
+        avatar: getName("UI_AvatarIcon_Chongyun"),
         splash: Chongyun_splash,
         skillName1: "普通攻击·灭邪四式",
         skillName2: "灵刃·重华叠霜",
@@ -741,7 +746,7 @@ export default {
         star: 5,
         // card: Diluc_card,
         // avatar: Diluc_avatar,
-        avatar: getName("Diluc"),
+        avatar: getName("UI_AvatarIcon_Diluc"),
         splash: Diluc_splash,
         skillName1: "普通攻击·淬炼之剑",
         skillName2: "逆焰之刃",
@@ -803,7 +808,7 @@ export default {
         star: 4,
         // card: Diona_card,
         // avatar: Diona_avatar,
-        avatar: getName("Diona"),
+        avatar: getName("UI_AvatarIcon_Diona"),
         splash: Diona_splash,
         skillName1: "普通攻击·猎人射术",
         skillName2: "猫爪冻冻",
@@ -861,7 +866,7 @@ export default {
         star: 5,
         // card: Eula_card,
         // avatar: Eula_avatar,
-        avatar: getName("Eula"),
+        avatar: getName("UI_AvatarIcon_Eula"),
         splash: Eula_splash,
         skillName1: "普通攻击·西风剑术·宗室",
         skillName2: "冰潮的涡旋",
@@ -929,7 +934,7 @@ export default {
         star: 4,
         // card: Fischl_card,
         // avatar: Fischl_avatar,
-        avatar: getName("Fischl"),
+        avatar: getName("UI_AvatarIcon_Fischl"),
         splash: Fischl_splash,
         skillName1: "普通攻击·罪灭之矢",
         skillName2: "夜巡影翼",
@@ -985,7 +990,7 @@ export default {
         star: 5,
         // card: Ganyu_card,
         // avatar: Ganyu_avatar,
-        avatar: getName("Ganyu"),
+        avatar: getName("UI_AvatarIcon_Ganyu"),
         splash: Ganyu_splash,
         skillName1: "普通攻击·流天射术",
         skillName2: "山泽麟迹",
@@ -1049,7 +1054,7 @@ export default {
         star: 4,
         // card: Gorou_card,
         // avatar: Gorou_avatar,
-        avatar: getName("Gorou"),
+        avatar: getName("UI_AvatarIcon_Gorou"),
         splash: Gorou_splash,
         skillName1: "普通攻击•呲牙裂扇箭",
         skillName2: "犬坂吠吠方圆阵",
@@ -1103,7 +1108,7 @@ export default {
         star: 5,
         // card: HuTao_card,
         // avatar: HuTao_avatar,
-        avatar: getName("Hutao"),
+        avatar: getName("UI_AvatarIcon_Hutao"),
         splash: HuTao_splash,
         skillName1: "普通攻击·往生秘传枪法",
         skillName2: "蝶引来生",
@@ -1165,7 +1170,7 @@ export default {
         star: 5,
         // card: Jean_card,
         // avatar: Jean_avatar,
-        avatar: getName("Qin"),
+        avatar: getName("UI_AvatarIcon_Qin"),
         splash: Jean_splash,
         skillName1: "普通攻击·西风剑术",
         skillName2: "风压剑",
@@ -1223,7 +1228,7 @@ export default {
         star: 5,
         // card: KaedeharaKazuha_card,
         // avatar: KaedeharaKazuha_avatar,
-        avatar: getName("Kazuha"),
+        avatar: getName("UI_AvatarIcon_Kazuha"),
         splash: KaedeharaKazuha_splash,
         skillName1: "普通攻击·我流剑术",
         skillName2: "千早振",
@@ -1307,7 +1312,7 @@ export default {
         star: 4,
         // card: Kaeya_card,
         // avatar: Kaeya_avatar,
-        avatar: getName("Kaeya"),
+        avatar: getName("UI_AvatarIcon_Kaeya"),
         splash: Kaeya_splash,
         skillName1: "普通攻击·仪典剑术",
         skillName2: "霜袭",
@@ -1361,7 +1366,7 @@ export default {
         star: 5,
         // card: KamisatoAyaka_card,
         // avatar: KamisatoAyaka_avatar,
-        avatar: getName("Ayaka"),
+        avatar: getName("UI_AvatarIcon_Ayaka"),
         splash: KamisatoAyaka_splash,
         skillName1: "普通攻击·神里流·倾",
         skillName2: "神里流·冰华",
@@ -1423,7 +1428,7 @@ export default {
         star: 5,
         // card: KamisatoAyato_card,
         // avatar: KamisatoAyato_avatar,
-        avatar: getName("Ayato"),
+        avatar: getName("UI_AvatarIcon_Ayato"),
         splash: KamisatoAyato_splash,
         skillName1: "普通攻击·神里流·转",
         skillName2: "神里流·镜花",
@@ -1485,7 +1490,7 @@ export default {
         star: 5,
         // card: Keqing_card,
         // avatar: Keqing_avatar,
-        avatar: getName("Keqing"),
+        avatar: getName("UI_AvatarIcon_Keqing"),
         splash: Keqing_splash,
         skillName1: "普通攻击·云来剑法",
         skillName2: "星斗归位",
@@ -1553,7 +1558,7 @@ export default {
         star: 5,
         // card: Klee_card,
         // avatar: Klee_avatar,
-        avatar: getName("Klee"),
+        avatar: getName("UI_AvatarIcon_Klee"),
         splash: Klee_splash,
         skillName1: "普通攻击·砰砰",
         skillName2: "蹦蹦炸弹",
@@ -1605,7 +1610,7 @@ export default {
         star: 4,
         // card: KujouSara_card,
         // avatar: KujouSara_avatar,
-        avatar: getName("Sara"),
+        avatar: getName("UI_AvatarIcon_Sara"),
         splash: KujouSara_splash,
         skillName1: "普通攻击•天狗传弓术",
         skillName2: "鸦羽天狗霆雷召咒",
@@ -1661,7 +1666,7 @@ export default {
         star: 4,
         // card: KukiShinobu_card,
         // avatar: KukiShinobu_avatar,
-        avatar: getName("Shinobu"),
+        avatar: getName("UI_AvatarIcon_Shinobu"),
         splash: KukiShinobu_splash,
         skillName1: "普通攻击·忍流飞刃斩",
         skillName2: "越祓雷草之轮",
@@ -1727,7 +1732,7 @@ export default {
         star: 4,
         // card: Lisa_card,
         // avatar: Lisa_avatar,
-        avatar: getName("Lisa"),
+        avatar: getName("UI_AvatarIcon_Lisa"),
         splash: Lisa_splash,
         skillName1: "普通攻击·指尖雷暴",
         skillName2: "苍雷",
@@ -1785,7 +1790,7 @@ export default {
         star: 5,
         // card: Mona_card,
         // avatar: Mona_avatar,
-        avatar: getName("Mona"),
+        avatar: getName("UI_AvatarIcon_Mona"),
         splash: Mona_splash,
         skillName1: "普通攻击·因果点破",
         skillName2: "水中幻愿",
@@ -1837,7 +1842,7 @@ export default {
         star: 4,
         // card: Ningguang_card,
         // avatar: Ningguang_avatar,
-        avatar: getName("Ningguang"),
+        avatar: getName("UI_AvatarIcon_Ningguang"),
         splash: Ningguang_splash,
         skillName1: "普通攻击·千金掷",
         skillName2: "璇玑屏",
@@ -1885,7 +1890,7 @@ export default {
         star: 4,
         // card: Noelle_card,
         // avatar: Noelle_avatar,
-        avatar: getName("Noel"),
+        avatar: getName("UI_AvatarIcon_Noel"),
         splash: Noelle_splash,
         skillName1: "普通攻击·西风剑术·女仆",
         skillName2: "护心铠",
@@ -1943,7 +1948,7 @@ export default {
         star: 5,
         // card: Qiqi_card,
         // avatar: Qiqi_avatar,
-        avatar: getName("Qiqi"),
+        avatar: getName("UI_AvatarIcon_Qiqi"),
         splash: Qiqi_splash,
         skillName1: "普通攻击·云来古剑法",
         skillName2: "仙法·寒病鬼差",
@@ -2009,7 +2014,7 @@ export default {
         star: 5,
         // card: RaidenShogun_card,
         // avatar: RaidenShogun_avatar,
-        avatar: getName("Shougun"),
+        avatar: getName("UI_AvatarIcon_Shougun"),
         splash: RaidenShogun_splash,
         skillName1: "普通攻击•源流",
         skillName2: "神变•恶曜开眼",
@@ -2091,7 +2096,7 @@ export default {
         star: 4,
         // card: Razor_card,
         // avatar: Razor_avatar,
-        avatar: getName("Razor"),
+        avatar: getName("UI_AvatarIcon_Razor"),
         splash: Razor_splash,
         skillName1: "普通攻击·钢脊",
         skillName2: "利爪与苍雷",
@@ -2157,7 +2162,7 @@ export default {
         star: 4,
         // card: Rosaria_card,
         // avatar: Rosaria_avatar,
-        avatar: getName("Rosaria"),
+        avatar: getName("UI_AvatarIcon_Rosaria"),
         splash: Rosaria_splash,
         skillName1: "普通攻击·教会枪术",
         skillName2: "噬罪的告解",
@@ -2219,7 +2224,7 @@ export default {
         star: 5,
         // card: SangonomiyaKokomi_card,
         // avatar: SangonomiyaKokomi_avatar,
-        avatar: getName("Kokomi"),
+        avatar: getName("UI_AvatarIcon_Kokomi"),
         splash: SangonomiyaKokomi_splash,
         skillName1: "普通攻击•水有常形",
         skillName2: "海月之誓",
@@ -2273,7 +2278,7 @@ export default {
         star: 4,
         // card: Sayu_card,
         // avatar: Sayu_avatar,
-        avatar: getName("Sayu"),
+        avatar: getName("UI_AvatarIcon_Sayu"),
         splash: Sayu_splash,
         skillName1: "普通攻击·忍刀·终末番",
         skillName2: "呜呼流·风隐急进",
@@ -2353,7 +2358,7 @@ export default {
         star: 5,
         // card: Shenhe_card,
         // avatar: Shenhe_avatar,
-        avatar: getName("Shenhe"),
+        avatar: getName("UI_AvatarIcon_Shenhe"),
         splash: Shenhe_splash,
         skillName1: "普通攻击•踏辰摄斗",
         skillName2: "仰灵威召将役咒",
@@ -2403,6 +2408,80 @@ export default {
         ],
     },
     
+    ShikanoinHeizou: {
+        name: "ShikanoinHeizou",
+        // chs: "鹿野院平藏",
+        element: "Anemo",
+        weapon: "Catalyst",
+        star: 4,
+        // card: ShikanoinHeizou_card,
+        // avatar: ShikanoinHeizou_avatar,
+        avatar: getName("UI_AvatarIcon_Ayaka"),
+        splash: ShikanoinHeizou_splash,
+        skillName1: "普通攻击·不动流格斗术",
+        skillName2: "勠心拳",
+        skillName3: "聚风蹴",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 2 },
+            
+            { index: 3, text: 27 },
+            
+            { index: 4, text: 99 },
+            
+            { index: 5, text: 152 },
+            
+            { index: 6, text: 3 },
+            
+            { index: 7, text: 4 },
+            
+            { index: 8, text: 38 },
+            
+            { index: 9, text: 7 },
+            
+            { index: 10, text: 8 },
+            
+            { index: 11, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 12, text: 153 },
+            
+            { index: 13, text: 154 },
+            
+            { index: 14, text: 155 },
+            
+            { index: 15, text: 156 },
+            
+            { index: 16, text: 157 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 17, text: 158 },
+            
+            { index: 18, text: 159 },
+            
+            { index: 20, text: 160 },
+            
+            { index: 21, text: 161 },
+            
+            { index: 19, text: 162 },
+            
+        ],
+        config: [
+            
+        ],
+        configSkill: [
+            
+        ],
+    },
+    
     Sucrose: {
         name: "Sucrose",
         // chs: "砂糖",
@@ -2411,7 +2490,7 @@ export default {
         star: 4,
         // card: Sucrose_card,
         // avatar: Sucrose_avatar,
-        avatar: getName("Sucrose"),
+        avatar: getName("UI_AvatarIcon_Sucrose"),
         splash: Sucrose_splash,
         skillName1: "普通攻击·简式风灵作成",
         skillName2: "风灵作成·陆叁零捌",
@@ -2469,7 +2548,7 @@ export default {
         star: 5,
         // card: Tartaglia_card,
         // avatar: Tartaglia_avatar,
-        avatar: getName("Tartaglia"),
+        avatar: getName("UI_AvatarIcon_Tartaglia"),
         splash: Tartaglia_splash,
         skillName1: "普通攻击·断雨",
         skillName2: "魔王武装·狂澜",
@@ -2492,9 +2571,9 @@ export default {
             
             { index: 7, text: 29 },
             
-            { index: 8, text: 152 },
+            { index: 8, text: 163 },
             
-            { index: 9, text: 153 },
+            { index: 9, text: 164 },
             
             { index: 10, text: 7 },
             
@@ -2505,7 +2584,7 @@ export default {
         ],
         skillMap2: [
             
-            { index: 13, text: 154 },
+            { index: 13, text: 165 },
             
             { index: 14, text: 0 },
             
@@ -2517,24 +2596,24 @@ export default {
             
             { index: 18, text: 4 },
             
-            { index: 19, text: 155 },
+            { index: 19, text: 166 },
             
-            { index: 20, text: 156 },
+            { index: 20, text: 167 },
             
             { index: 21, text: 5 },
             
             { index: 22, text: 6 },
             
-            { index: 23, text: 157 },
+            { index: 23, text: 168 },
             
         ],
         skillMap3: [
             
-            { index: 24, text: 158 },
+            { index: 24, text: 169 },
             
-            { index: 25, text: 159 },
+            { index: 25, text: 170 },
             
-            { index: 26, text: 160 },
+            { index: 26, text: 171 },
             
         ],
         config: [
@@ -2553,7 +2632,7 @@ export default {
         star: 4,
         // card: Thoma_card,
         // avatar: Thoma_avatar,
-        avatar: getName("Tohma"),
+        avatar: getName("UI_AvatarIcon_Tohma"),
         splash: Thoma_splash,
         skillName1: "普通攻击·迅破枪势",
         skillName2: "烈烧佑命之侍护",
@@ -2586,7 +2665,7 @@ export default {
             
             { index: 10, text: 19 },
             
-            { index: 11, text: 161 },
+            { index: 11, text: 172 },
             
         ],
         config: [
@@ -2605,7 +2684,7 @@ export default {
         star: 5,
         // card: Venti_card,
         // avatar: Venti_avatar,
-        avatar: getName("Venti"),
+        avatar: getName("UI_AvatarIcon_Venti"),
         splash: Venti_splash,
         skillName1: "普通攻击·神代射术",
         skillName2: "高天之歌",
@@ -2675,7 +2754,7 @@ export default {
         star: 4,
         // card: Xiangling_card,
         // avatar: Xiangling_avatar,
-        avatar: getName("Xiangling"),
+        avatar: getName("UI_AvatarIcon_Xiangling"),
         splash: Xiangling_splash,
         skillName1: "普通攻击·白案功夫",
         skillName2: "锅巴出击",
@@ -2690,7 +2769,7 @@ export default {
             
             { index: 3, text: 60 },
             
-            { index: 5, text: 162 },
+            { index: 5, text: 173 },
             
             { index: 7, text: 4 },
             
@@ -2705,18 +2784,18 @@ export default {
         ],
         skillMap2: [
             
-            { index: 12, text: 163 },
+            { index: 12, text: 174 },
             
         ],
         skillMap3: [
             
-            { index: 13, text: 164 },
+            { index: 13, text: 175 },
             
-            { index: 14, text: 165 },
+            { index: 14, text: 176 },
             
-            { index: 15, text: 166 },
+            { index: 15, text: 177 },
             
-            { index: 16, text: 167 },
+            { index: 16, text: 178 },
             
         ],
         config: [
@@ -2735,7 +2814,7 @@ export default {
         star: 5,
         // card: Xiao_card,
         // avatar: Xiao_avatar,
-        avatar: getName("Xiao"),
+        avatar: getName("UI_AvatarIcon_Xiao"),
         splash: Xiao_splash,
         skillName1: "普通攻击·卷积微尘",
         skillName2: "风轮两立",
@@ -2797,7 +2876,7 @@ export default {
         star: 4,
         // card: Xingqiu_card,
         // avatar: Xingqiu_avatar,
-        avatar: getName("Xingqiu"),
+        avatar: getName("UI_AvatarIcon_Xingqiu"),
         splash: Xingqiu_splash,
         skillName1: "普通攻击·古华剑法",
         skillName2: "古华剑·画雨笼山",
@@ -2838,7 +2917,7 @@ export default {
         ],
         skillMap3: [
             
-            { index: 17, text: 168 },
+            { index: 17, text: 179 },
             
         ],
         config: [
@@ -2859,7 +2938,7 @@ export default {
         star: 4,
         // card: Xinyan_card,
         // avatar: Xinyan_avatar,
-        avatar: getName("Xinyan"),
+        avatar: getName("UI_AvatarIcon_Xinyan"),
         splash: Xinyan_splash,
         skillName1: "普通攻击·炎舞",
         skillName2: "热情拂扫",
@@ -2887,7 +2966,7 @@ export default {
         ],
         skillMap2: [
             
-            { index: 9, text: 169 },
+            { index: 9, text: 180 },
             
             { index: 10, text: 56 },
             
@@ -2896,7 +2975,7 @@ export default {
             
             { index: 11, text: 19 },
             
-            { index: 12, text: 170 },
+            { index: 12, text: 181 },
             
         ],
         config: [
@@ -2917,7 +2996,7 @@ export default {
         star: 5,
         // card: YaeMiko_card,
         // avatar: YaeMiko_avatar,
-        avatar: getName("Yae"),
+        avatar: getName("UI_AvatarIcon_Yae"),
         splash: YaeMiko_splash,
         skillName1: "普通攻击·狐灵食罪式",
         skillName2: "野干役咒·杀生樱",
@@ -2941,20 +3020,20 @@ export default {
         ],
         skillMap2: [
             
-            { index: 7, text: 171 },
+            { index: 7, text: 182 },
             
-            { index: 8, text: 172 },
+            { index: 8, text: 183 },
             
-            { index: 9, text: 173 },
+            { index: 9, text: 184 },
             
-            { index: 10, text: 174 },
+            { index: 10, text: 185 },
             
         ],
         skillMap3: [
             
             { index: 11, text: 19 },
             
-            { index: 12, text: 175 },
+            { index: 12, text: 186 },
             
         ],
         config: [
@@ -2973,7 +3052,7 @@ export default {
         star: 4,
         // card: Yanfei_card,
         // avatar: Yanfei_avatar,
-        avatar: getName("Feiyan"),
+        avatar: getName("UI_AvatarIcon_Feiyan"),
         splash: Yanfei_splash,
         skillName1: "普通攻击·火漆制印",
         skillName2: "丹书立约",
@@ -2986,17 +3065,17 @@ export default {
             
             { index: 2, text: 2 },
             
-            { index: 3, text: 176 },
+            { index: 3, text: 187 },
             
-            { index: 4, text: 177 },
+            { index: 4, text: 188 },
             
-            { index: 5, text: 178 },
+            { index: 5, text: 189 },
             
-            { index: 6, text: 179 },
+            { index: 6, text: 190 },
             
-            { index: 7, text: 180 },
+            { index: 7, text: 191 },
             
-            { index: 8, text: 181 },
+            { index: 8, text: 192 },
             
             { index: 9, text: 7 },
             
@@ -3033,7 +3112,7 @@ export default {
         star: 5,
         // card: Yelan_card,
         // avatar: Yelan_avatar,
-        avatar: getName("Yelan"),
+        avatar: getName("UI_AvatarIcon_Yelan"),
         splash: Yelan_splash,
         skillName1: "普通攻击·潜形隐曜弓",
         skillName2: "萦络纵命索",
@@ -3046,13 +3125,13 @@ export default {
             
             { index: 2, text: 2 },
             
-            { index: 3, text: 182 },
+            { index: 3, text: 193 },
             
             { index: 4, text: 28 },
             
             { index: 5, text: 29 },
             
-            { index: 6, text: 183 },
+            { index: 6, text: 194 },
             
             { index: 8, text: 7 },
             
@@ -3070,7 +3149,7 @@ export default {
             
             { index: 12, text: 19 },
             
-            { index: 13, text: 184 },
+            { index: 13, text: 195 },
             
         ],
         config: [
@@ -3091,20 +3170,20 @@ export default {
         star: 5,
         // card: Yoimiya_card,
         // avatar: Yoimiya_avatar,
-        avatar: getName("Yoimiya"),
+        avatar: getName("UI_AvatarIcon_Yoimiya"),
         splash: Yoimiya_splash,
         skillName1: "普通攻击·烟火打扬",
         skillName2: "焰硝庭火舞",
         skillName3: "琉金云间草",
         skillMap1: [
             
-            { index: 0, text: 185 },
+            { index: 0, text: 196 },
             
             { index: 1, text: 1 },
             
             { index: 2, text: 2 },
             
-            { index: 3, text: 182 },
+            { index: 3, text: 193 },
             
             { index: 4, text: 4 },
             
@@ -3112,7 +3191,7 @@ export default {
             
             { index: 6, text: 29 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 197 },
             
             { index: 8, text: 7 },
             
@@ -3128,7 +3207,7 @@ export default {
             
             { index: 11, text: 19 },
             
-            { index: 12, text: 187 },
+            { index: 12, text: 198 },
             
         ],
         config: [
@@ -3151,7 +3230,7 @@ export default {
         star: 4,
         // card: Yunjin_card,
         // avatar: Yunjin_avatar,
-        avatar: getName("Yunjin"),
+        avatar: getName("UI_AvatarIcon_Yunjin"),
         splash: Yunjin_splash,
         skillName1: "普通攻击·拂云出手",
         skillName2: "旋云开相",
@@ -3185,9 +3264,9 @@ export default {
             
             { index: 11, text: 49 },
             
-            { index: 12, text: 188 },
+            { index: 12, text: 199 },
             
-            { index: 13, text: 189 },
+            { index: 13, text: 200 },
             
         ],
         skillMap3: [
@@ -3211,7 +3290,7 @@ export default {
         star: 5,
         // card: Zhongli_card,
         // avatar: Zhongli_avatar,
-        avatar: getName("Zhongli"),
+        avatar: getName("UI_AvatarIcon_Zhongli"),
         splash: Zhongli_splash,
         skillName1: "普通攻击·岩雨",
         skillName2: "地心",
@@ -3226,7 +3305,7 @@ export default {
             
             { index: 3, text: 3 },
             
-            { index: 4, text: 190 },
+            { index: 4, text: 201 },
             
             { index: 5, text: 70 },
             
@@ -3241,9 +3320,9 @@ export default {
         ],
         skillMap2: [
             
-            { index: 10, text: 191 },
+            { index: 10, text: 202 },
             
-            { index: 11, text: 192 },
+            { index: 11, text: 203 },
             
             { index: 12, text: 63 },
             

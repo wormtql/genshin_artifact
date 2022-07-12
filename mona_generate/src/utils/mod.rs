@@ -178,7 +178,10 @@ pub fn get_internal_weapon_name(name: WeaponName) -> String {
     let mut result_index = 0;
     for (index, item) in WEAPON_DATA.iter().enumerate() {
         let id_s = item.nameTextMapHash.to_string();
-        let name_eng = ENG_TEXT_MAP.get(&id_s).unwrap();
+        let name_eng = match ENG_TEXT_MAP.get(&id_s) {
+            Some(x) => x.clone(),
+            None => continue
+        };
 
         let dis = edit_distance(&name, &name_eng);
         if dis < min {
