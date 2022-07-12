@@ -1573,7 +1573,7 @@ export default {
         ],
         "for": "ShikanoinHeizou",
         
-        badge: getImage("UI_AvatarIcon_Ayaka"),
+        badge: getImage("UI_AvatarIcon_Heizo"),
         
         config: [
             

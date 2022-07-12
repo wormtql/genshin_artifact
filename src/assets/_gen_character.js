@@ -2416,7 +2416,7 @@ export default {
         star: 4,
         // card: ShikanoinHeizou_card,
         // avatar: ShikanoinHeizou_avatar,
-        avatar: getName("UI_AvatarIcon_Ayaka"),
+        avatar: getName("UI_AvatarIcon_Heizo"),
         splash: ShikanoinHeizou_splash,
         skillName1: "普通攻击·不动流格斗术",
         skillName2: "勠心拳",

@@ -1289,7 +1289,7 @@ export default {
         name: "ShikanoinHeizouTalent2",
         // chs: "鹿野院平藏-因由勘破",
         
-        badge: getImage("UI_AvatarIcon_Ayaka"),
+        badge: getImage("UI_AvatarIcon_Heizo"),
         
         genre: "Character",
         // description: "鹿野院平藏天赋2：勠心拳命中敌人后，队伍中所有角色（不包括鹿野院平藏自己）的元素精通提升80点，持续10秒。",

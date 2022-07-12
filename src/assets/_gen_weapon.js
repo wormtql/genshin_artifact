@@ -857,11 +857,11 @@ export default {
 
     CursedBlade: {
         name: "CursedBlade",
-        internalName: "Sword_Blunt",
+        internalName: "Sword_Youtou",
         // chs: "「妖刀」",
         star: 4,
         // url: CursedBlade_tn,
-        url: imageUrl("Sword_Blunt"),
+        url: imageUrl("Sword_Youtou"),
         type: "Sword",
 
         
