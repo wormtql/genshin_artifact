@@ -45,9 +45,18 @@ export function useTargetFunction(characterName: Ref<CharacterName>) {
         const currentTargetFunctionData = targetFunctionData[targetFunctionName.value]
         if (currentTargetFunctionData["for"] !== "common") {
             // if not common, change to default character specific target function
-            const defaultTargetFunctionData = targetFunctionByCharacterName[name][0]
-            const defaultTargetFunctionName = defaultTargetFunctionData.name
-            targetFunctionName.value = defaultTargetFunctionName
+            const characterTfList = targetFunctionByCharacterName[name]
+            if (characterTfList && characterTfList.length > 0) {
+                targetFunctionName.value = characterTfList[0].name
+            } else {
+                targetFunctionName.value = targetFunctionByCharacterName["common"][0].name
+            }
+        } else {
+            // if current is common, change to character default
+            const characterTfList = targetFunctionByCharacterName[name]
+            if (characterTfList && characterTfList.length > 0) {
+                targetFunctionName.value = characterTfList[0].name
+            }
         }
     }, {
         flush: "sync"

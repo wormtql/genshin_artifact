@@ -220,7 +220,7 @@ export default {
         star: 5,
         // card: AetherAnemo_card,
         // avatar: AetherAnemo_avatar,
-        avatar: getName("UI_AvatarIcon_Ambor"),
+        avatar: getName("UI_AvatarIcon_PlayerBoy"),
         splash: AetherAnemo_splash,
         skillName1: "普通攻击·异邦铁风",
         skillName2: "风涡剑",
