@@ -1027,10 +1027,10 @@ function usePreset(name: string) {
     const constraint = item.constraint
     if (constraint) {
         constraintArtifactSet.value = constraint.setNames ?? []
-        constraintMinCriticalDamage.value = 0
-        constraintMinCritical.value = 0
-        constraintMinElementalMastery.value = 0
-        constraintMinRecharge.value = 1
+        constraintMinCriticalDamage.value = constraint.minCriticalDamage ?? 0
+        constraintMinCritical.value = constraint.minCritical ?? 0
+        constraintMinElementalMastery.value = constraint.minElementalMastery ?? 0
+        constraintMinRecharge.value = constraint.minRecharge ?? 1.0
     }
 
     // use filter
