@@ -2185,9 +2185,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate1","title":"w27","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate1","title":"w8","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate2","title":"w28","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate2","title":"w9","type":"float"},
             
         ],
         
