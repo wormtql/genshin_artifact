@@ -17,16 +17,16 @@
                 <div class="content">
                     由于浏览器限制，自动操作无法在网页完成
                     <a class="dlink" href="https://cocogoat.work/extra/client" target="_blank">
-                        点击此处下载辅助插件<small>(v{{ cVersion }} 300kB)</small>
+                        如果插件没有自动启动，请点击此处下载并运行辅助插件<small>(v{{ cVersion }} 500kB)</small>
                     </a>
                     <div class="absolute-area">
-                        <el-button class="start-btn start-gray" @click="enable(false)">
+                        <el-button v-if="needUpdate" class="start-btn start-gray" @click="enable(false)">
                             <div class="l">
                                 <i class="el-icon-check"></i>
                             </div>
                             <div class="m">
                                 <div class="t">
-                                    {{ needUpdate ? '我已更新并重新运行客户端' : '我已下载并运行客户端' }}
+                                    {{ needUpdate ? '我已更新并重新运行辅助插件' : '我已运行辅助插件' }}
                                 </div>
                                 <div class="d">记得同意控制键鼠的权限申请</div>
                             </div>
@@ -34,6 +34,14 @@
                                 <i class="el-icon-arrow-right"></i>
                             </div>
                         </el-button>
+                        <el-alert
+                            v-else
+                            center
+                            show-icon
+                            title="正在等待辅助插件，启动后将自动连接..."
+                            :closable="false"
+                        >
+                        </el-alert>
                     </div>
                 </div>
             </div>
@@ -71,7 +79,7 @@
 <script>
 // import { ref, defineComponent, toRef, onMounted } from '@vue/composition-api';
 // format: x.x.x
-import { ref, defineComponent, toRef, onMounted } from "vue"
+import { ref, defineComponent, toRef, onMounted } from 'vue';
 
 export function versionCompare(a, b) {
     const aParts = a.split('.');
@@ -110,17 +118,28 @@ export default defineComponent({
         const gameNotFound = ref(false);
         const needUpdate = ref(false);
         const version = ref('');
+        let destroyed = false;
+        const waiting = ref(false);
+        onBeforeUnmount(() => {
+            destroyed = true;
+        });
         const enable = async (force = false) => {
+            if (destroyed) return;
             if (loading.value && !force) return;
-            loading.value = true;
+            if (!waiting.value) loading.value = true;
             denied.value = false;
-            const alive = await w.value.check();
+            let alive = await w.value.check();
+            if (!alive && !waiting.value) await w.value.launch();
+            alive = await w.value.check();
             if (!alive) {
+                console.log('[webcontrol] ping timeout');
+                waiting.value = true;
                 notFound.value = true;
                 loading.value = false;
                 needUpdate.value = false;
+                setTimeout(enable, 2000);
                 return;
-            } else if (versionCompare(w.value.version, '1.2.0') < 0) {
+            } else if (versionCompare(w.value.version, '1.2.5') < 0) {
                 needUpdate.value = true;
                 notFound.value = true;
                 loading.value = false;
@@ -144,6 +163,7 @@ export default defineComponent({
                         }
                         emit('done', windows[0].hWnd);
                     } else {
+                        console.log('denied');
                         denied.value = true;
                     }
                     notFound.value = false;
@@ -163,7 +183,7 @@ export default defineComponent({
             gameNotFound,
             needUpdate,
             version,
-            cVersion: '1.2.0',
+            cVersion: '1.2.5',
         };
     },
 });

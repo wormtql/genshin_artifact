@@ -5,7 +5,12 @@
         width="80%"
         @update:modelValue="$emit('update:visible', $event)"
     >
-        <div :class="$style.webcapturer">
+        <div v-if="win7">
+            <el-alert type="warning" center show-icon :closable="false" title="YAS暂不支持Windows 7系统">
+                您可以换用天目以扫描圣遗物。
+            </el-alert>
+        </div>
+        <div v-else :class="$style.webcapturer">
             <client-comp v-if="visible && !connected" :control="control" @done="onConnected" />
             <div v-if="connected" :class="$style.uimain">
                 <div v-if="step === 2">
@@ -69,7 +74,7 @@ export default {
             type: Boolean,
         },
     },
-    emits: ["update:visible"],
+    emits: ['update:visible'],
     data() {
         return {
             control: new CocogoatWebControl(),
@@ -85,6 +90,7 @@ export default {
             output: [],
             importDeleteUnseen: false,
             hwnd: -1,
+            win7: navigator.userAgent.includes('NT 6'),
         };
     },
     watch: {
