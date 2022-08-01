@@ -40,14 +40,14 @@
                         </div>
                         <el-button class="start-btn start-gray" @click="startScan">
                             <div class="l">
-                                <i class="el-icon-check"></i>
+                                <i-ep-check />
                             </div>
                             <div class="m">
                                 <div class="t">开始扫描</div>
                                 <div class="d">点击后YAS将自动运行...</div>
                             </div>
                             <div class="r">
-                                <i class="el-icon-arrow-right"></i>
+                                <i-ep-arrow-right />
                             </div>
                         </el-button>
                     </el-form>
@@ -202,10 +202,20 @@ export default {
     :global {
         .output {
             width: 100%;
-            height: calc(240px + 10vh);
             box-sizing: border-box;
-            font-family: Consolas, monospace;
-            color: #555;
+            font-family: Consolas, Monaco, Microsoft Yahei, monospace;
+            color: #666;
+            position: absolute;
+            top: 65px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            border: 0;
+            padding: 20px;
+            border-top: 1px solid #eee;
+            resize: none;
+            overflow-y: scroll;
         }
         .start-btn {
             margin-top: 10px;
@@ -233,8 +243,9 @@ export default {
 
             .r {
                 opacity: 0.8;
-                i {
-                    font-size: 30px;
+                svg {
+                    font-size: 18px;
+                    padding-top: 6px;
                 }
             }
 
@@ -242,11 +253,12 @@ export default {
                 flex-grow: 1;
             }
 
-            .l i {
+            .l svg {
                 width: 40px;
-                height: 24px;
+                height: 30px;
                 padding-right: 10px;
                 font-size: 30px;
+                padding-top: 5px;
             }
 
             .d {

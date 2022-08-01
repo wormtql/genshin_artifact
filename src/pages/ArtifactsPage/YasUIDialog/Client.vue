@@ -22,7 +22,7 @@
                     <div class="absolute-area">
                         <el-button v-if="needUpdate" class="start-btn start-gray" @click="enable(false)">
                             <div class="l">
-                                <i class="el-icon-check"></i>
+                                <i-ep-check />
                             </div>
                             <div class="m">
                                 <div class="t">
@@ -31,7 +31,7 @@
                                 <div class="d">记得同意控制键鼠的权限申请</div>
                             </div>
                             <div class="r">
-                                <i class="el-icon-arrow-right"></i>
+                                <i-ep-arrow-right />
                             </div>
                         </el-button>
                         <el-alert
@@ -59,14 +59,14 @@
                     <div class="absolute-area">
                         <el-button class="start-btn start-gray" @click="enable(false)">
                             <div class="l">
-                                <i class="el-icon-check"></i>
+                                <i-ep-check />
                             </div>
                             <div class="m">
                                 <div class="t">点击重试</div>
                                 <div class="d">记得同意控制键鼠的权限申请</div>
                             </div>
                             <div class="r">
-                                <i class="el-icon-arrow-right"></i>
+                                <i-ep-arrow-right />
                             </div>
                         </el-button>
                     </div>

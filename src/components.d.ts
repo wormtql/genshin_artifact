@@ -69,6 +69,8 @@ declare module '@vue/runtime-core' {
     ElTree: typeof import('element-plus/es')['ElTree']
     FilterPotentialResult: typeof import('./components/filter/FilterPotentialResult.vue')['default']
     IEpAim: typeof import('~icons/ep/aim')['default']
+    IEpArrowRight: typeof import('~icons/ep/arrow-right')['default']
+    IEpCheck: typeof import('~icons/ep/check')['default']
     IEpCpu: typeof import('~icons/ep/cpu')['default']
     IEpHelpFilled: typeof import('~icons/ep/help-filled')['default']
     IEpHistogram: typeof import('~icons/ep/histogram')['default']
