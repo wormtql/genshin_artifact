@@ -173,7 +173,7 @@ export class CocogoatWebControl {
     async getWindow(id: number): Promise<IWindow> {
         return (await this.wsInvoke('GET', '/api/windows/' + id)).body;
     }
-    async activeWindow(id: number) {
+    async activateWindow(id: number) {
         return await this.wsInvoke('PATCH', '/api/windows/' + id);
     }
     async getMonitor(): Promise<IWindow> {
