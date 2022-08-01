@@ -116,7 +116,7 @@ export class CocogoatWebControl {
             throw e;
         }
     }
-    wsInvoke(method: string, path: string, querystring?: Record<string, any>) {
+    wsInvoke(method: string, path: string, querystring?: Record<string, any>, body?: Record<string, any>) {
         if (!this.ws) throw new Error('WebSocket not connected');
         const url = path + (querystring ? `?${stringify(querystring)}` : '');
         const id = Math.round(Date.now() * 1000 + Math.random() * 1000).toString(16);
@@ -126,6 +126,7 @@ export class CocogoatWebControl {
             data: {
                 url,
                 method,
+                body: body ? JSON.stringify(body) : undefined,
             },
         };
         const resp = new Promise((resolve) => {
