@@ -1,6 +1,7 @@
 import LoadingComponent from "@c/LoadingComponent"
 import ErrorComponent from "@c/ErrorComponent"
 import NewArtifactPlanPage from "@page/NewArtifactPlanPage"
+import SequentialOptimizationPage from "@page/SequentialOptimizationPage"
 import TeamOptimizationPage from "@page/TeamOptimizationPage"
 import NewArtifactPotentialPage from "@page/NewArtifactPotentialPage"
 import CharacterDBPage from "@page/CharacterDBPage"
@@ -56,6 +57,14 @@ const routes = [
         component: TeamOptimizationPage,
         meta: {
             title: "整队优化",
+            keepAlive: true,
+        }
+    },
+    {
+        path: "/sequential-optimization",
+        component: SequentialOptimizationPage,
+        meta: {
+            title: "队列优化",
             keepAlive: true,
         }
     },

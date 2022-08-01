@@ -170,6 +170,7 @@ function handleDeletePreset(name: string) {
 
 // todo quick calculate
 function handleClickPreset(name: string) {
+    console.log('handle', name)
     router.push({
         name: "calculate",
         params: {

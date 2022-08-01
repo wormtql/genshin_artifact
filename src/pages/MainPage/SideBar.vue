@@ -37,6 +37,10 @@
                     <el-icon><i-ep-cpu /></el-icon>
                     计算器
                 </el-menu-item>
+                <el-menu-item index="/sequential-optimization">
+                    <el-icon><i-ep-cpu /></el-icon>
+                    队列优化
+                </el-menu-item>
                 <el-menu-item index="/team-optimization">
                     <el-icon><i-ep-cpu /></el-icon>
                     多人优化
