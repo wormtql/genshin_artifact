@@ -303,7 +303,7 @@ export default {
         },
 
         critical() {
-            return sum(this.criticalState)
+            return Math.min(sum(this.criticalState), 1)
         },
 
         criticalDamage() {
