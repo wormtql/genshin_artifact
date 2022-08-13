@@ -51,6 +51,8 @@ pub trait AttributeCommon<T> {
 
     fn get_enemy_res_minus(&self, element: Element, skill: SkillType) -> f64;
 
+    fn get_enemy_def_minus(&self, element: Element, skill: SkillType) -> f64;
+
     fn new_with_base_edge() -> T;
 
     fn add_edge1(
@@ -159,6 +161,10 @@ impl<T: Attribute> AttributeCommon<T> for T {
     fn get_enemy_res_minus(&self, element: Element, _skill: SkillType) -> f64 {
         self.get_value(AttributeName::ResMinusBase)
             + self.get_value(AttributeName::res_minus_name_by_element(element))
+    }
+
+    fn get_enemy_def_minus(&self, _element: Element, _skill: SkillType) -> f64 {
+        self.get_value(AttributeName::DefMinus)
     }
 
     fn new_with_base_edge() -> T {

@@ -126,10 +126,11 @@ impl DamageBuilder for SimpleDamageBuilder {
             = attribute.get_critical_damage(element, skill)
             + self.extra_critical_damage;
 
-        let def_minus = self.extra_def_minus + attribute.get_enemy_res_minus(element, skill);
+        let def_minus = self.extra_def_minus + attribute.get_enemy_def_minus(element, skill);
         let def_penetration = self.extra_def_penetration + attribute.get_value(AttributeName::DefPenetration);
         let defensive_ratio = enemy.get_defensive_ratio(character_level, def_minus, def_penetration);
-        let res_minus = self.extra_res_minus + attribute.get_value(AttributeName::ResMinusBase);
+        let res_minus = self.extra_res_minus + attribute.get_enemy_res_minus(element, skill);
+        // let res_minus = self.extra_res_minus + attribute.get_value(AttributeName::ResMinusBase);
         let resistance_ratio = enemy.get_resistance_ratio(element, res_minus);
 
         let normal_damage = DamageResult {
