@@ -13,6 +13,7 @@ pub struct TheViridescentHunt;
 impl WeaponTrait for TheViridescentHunt {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheViridescentHunt,
+        internal_name: "Bow_Viridescent",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate60),
         weapon_base: WeaponBaseATKFamily::ATK510,

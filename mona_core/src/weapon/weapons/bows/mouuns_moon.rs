@@ -40,6 +40,7 @@ pub struct MouunsMoon;
 impl WeaponTrait for MouunsMoon {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MouunsMoon,
+        internal_name: "Bow_Maria",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,

@@ -48,6 +48,7 @@ pub struct StaffOfHoma;
 impl WeaponTrait for StaffOfHoma {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::StaffOfHoma,
+        internal_name: "Pole_Homa",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage144),
         weapon_base: WeaponBaseATKFamily::ATK608,

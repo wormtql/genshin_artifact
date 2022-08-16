@@ -39,6 +39,7 @@ pub struct BlackcliffPole;
 impl WeaponTrait for BlackcliffPole {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BlackcliffPole,
+        internal_name: "Pole_Blackrock",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage120),
         weapon_base: WeaponBaseATKFamily::ATK510,

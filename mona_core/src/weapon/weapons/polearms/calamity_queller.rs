@@ -46,6 +46,7 @@ pub struct CalamityQueller;
 impl WeaponTrait for CalamityQueller {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CalamityQueller,
+        internal_name: "Pole_Santika",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK36),
         weapon_base: WeaponBaseATKFamily::ATK741,

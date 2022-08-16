@@ -3,6 +3,7 @@ use crate::common::{SkillType, Element};
 #[derive(Hash, Eq, PartialEq, Clone, Copy, Debug)]
 pub enum AttributeName {
     HealingBonus,
+    IncomingHealingBonus,
     ElementalMastery,
     Recharge,
     ShieldStrength,

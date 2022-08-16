@@ -45,6 +45,7 @@ pub enum BuffConfig {
     YelanC4 { count: usize },
     KamisatoAyatoQ { skill_level: usize },
     TighnariC4 { after_reaction: bool },
+    DoriC4 { hp_below50: bool, energy_below50: bool },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },
@@ -52,6 +53,8 @@ pub enum BuffConfig {
     ThrillingTalesOfDragonSlayers { refine: usize },
     ElegyOfTheEnd { refine: usize },
     HakushinRing { refine: usize, element: Element },
+    SapwoodBlade { refine: usize, rate: f64 },
+    Moonpiercer { refine: usize },
 
     ResonanceCryo2 { rate: f64 },
     ResonanceGeo2 { rate1: f64, rate2: f64 },

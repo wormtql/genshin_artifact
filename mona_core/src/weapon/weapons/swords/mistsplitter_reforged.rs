@@ -63,6 +63,7 @@ pub struct MistsplitterReforged;
 impl WeaponTrait for MistsplitterReforged {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MistsplitterReforged,
+        internal_name: "Sword_Narukami",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage96),
         weapon_base: WeaponBaseATKFamily::ATK674,

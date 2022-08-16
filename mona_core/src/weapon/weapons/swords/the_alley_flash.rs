@@ -39,6 +39,7 @@ pub struct TheAlleyFlash;
 impl WeaponTrait for TheAlleyFlash {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheAlleyFlash,
+        internal_name: "Sword_Outlaw",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM12),
         weapon_base: WeaponBaseATKFamily::ATK620,

@@ -40,6 +40,7 @@ pub struct AlleyHunter;
 impl WeaponTrait for AlleyHunter {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::AlleyHunter,
+        internal_name: "Bow_Outlaw",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,

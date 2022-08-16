@@ -13,6 +13,7 @@ pub struct FavoniusCodex;
 impl WeaponTrait for FavoniusCodex {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FavoniusCodex,
+        internal_name: "Catalyst_Zephyrus",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge100),
         weapon_base: WeaponBaseATKFamily::ATK510,

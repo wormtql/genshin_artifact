@@ -40,6 +40,7 @@ pub struct PrototypeRancour;
 impl WeaponTrait for PrototypeRancour {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrototypeRancour,
+        internal_name: "Sword_Proto",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus75),
         weapon_base: WeaponBaseATKFamily::ATK565,

@@ -60,6 +60,8 @@
 // 
 // import CursedBlade_tn from "@image/weapons/CursedBlade_tn"
 // 
+// import SapwoodBlade_tn from "@image/weapons/SapwoodBlade_tn"
+// 
 // import WolfsGravestone_tn from "@image/weapons/WolfsGravestone_tn"
 // 
 // import SkywardPride_tn from "@image/weapons/SkywardPride_tn"
@@ -112,6 +114,8 @@
 // 
 // import WasterGreatsword_tn from "@image/weapons/WasterGreatsword_tn"
 // 
+// import ForestRegalia_tn from "@image/weapons/ForestRegalia_tn"
+// 
 // import EngulfingLightning_tn from "@image/weapons/EngulfingLightning_tn"
 // 
 // import SkywardSpine_tn from "@image/weapons/SkywardSpine_tn"
@@ -157,6 +161,8 @@
 // import IronPoint_tn from "@image/weapons/IronPoint_tn"
 // 
 // import BeginnersProtector_tn from "@image/weapons/BeginnersProtector_tn"
+// 
+// import Moonpiercer_tn from "@image/weapons/Moonpiercer_tn"
 // 
 // import LostPrayerToTheSacredWinds_tn from "@image/weapons/LostPrayerToTheSacredWinds_tn"
 // 
@@ -209,6 +215,8 @@
 // import PocketGrimoire_tn from "@image/weapons/PocketGrimoire_tn"
 // 
 // import ApprenticesNotes_tn from "@image/weapons/ApprenticesNotes_tn"
+// 
+// import FruitOfFulfillment_tn from "@image/weapons/FruitOfFulfillment_tn"
 // 
 // import PolarStar_tn from "@image/weapons/PolarStar_tn"
 // 
@@ -267,6 +275,12 @@
 // import AquaSimulacra_tn from "@image/weapons/AquaSimulacra_tn"
 // 
 // import FadingTwilight_tn from "@image/weapons/FadingTwilight_tn"
+// 
+// import HuntersPath_tn from "@image/weapons/HuntersPath_tn"
+// 
+// import Trawler_tn from "@image/weapons/Trawler_tn"
+// 
+// import KingsSquire_tn from "@image/weapons/KingsSquire_tn"
 // 
 
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/equip/UI_EquipIcon_#.png"
@@ -857,15 +871,37 @@ export default {
 
     CursedBlade: {
         name: "CursedBlade",
-        internalName: "Sword_Blunt",
-        // chs: "「妖刀」",
+        internalName: "Sword_Youtou",
+        // chs: "笼钓瓶一心",
         star: 4,
         // url: CursedBlade_tn,
-        url: imageUrl("Sword_Blunt"),
+        url: imageUrl("Sword_Youtou"),
         type: "Sword",
 
         
         // effect: "普通攻击、重击或下落攻击命中敌人时，将卷起切落风，造成180%攻击力的范围伤害，并且使攻击力提升15%，持续8秒。该效果每8秒至多触发一次。",
+        
+
+        
+        configs: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
+            
+        ],
+        
+    },
+
+    SapwoodBlade: {
+        name: "SapwoodBlade",
+        internalName: "Sword_Sapwood",
+        // chs: "",
+        star: 4,
+        // url: SapwoodBlade_tn,
+        url: imageUrl("Sword_Sapwood"),
+        type: "Sword",
+
+        
+        // effect: null,
         
 
         
@@ -1399,6 +1435,28 @@ export default {
         
     },
 
+    ForestRegalia: {
+        name: "ForestRegalia",
+        internalName: "Claymore_Regalia",
+        // chs: "",
+        star: 4,
+        // url: ForestRegalia_tn,
+        url: imageUrl("Claymore_Regalia"),
+        type: "Claymore",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
+            
+        ],
+        
+    },
+
     EngulfingLightning: {
         name: "EngulfingLightning",
         internalName: "Pole_Narukami",
@@ -1864,6 +1922,28 @@ export default {
 
         
         configs: null,
+        
+    },
+
+    Moonpiercer: {
+        name: "Moonpiercer",
+        internalName: "Pole_Moonpiercer",
+        // chs: "",
+        star: 4,
+        // url: Moonpiercer_tn,
+        url: imageUrl("Pole_Moonpiercer"),
+        type: "Polearm",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
+            
+        ],
         
     },
 
@@ -2396,6 +2476,28 @@ export default {
 
         
         configs: null,
+        
+    },
+
+    FruitOfFulfillment: {
+        name: "FruitOfFulfillment",
+        internalName: "Catalyst_FruitOfFulfillment",
+        // chs: "",
+        star: 4,
+        // url: FruitOfFulfillment_tn,
+        url: imageUrl("Catalyst_FruitOfFulfillment"),
+        type: "Catalyst",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
+            
+        ],
         
     },
 
@@ -2992,6 +3094,68 @@ export default {
         configs: [
             
             {"default":2,"name":"state","options":["夕暮","流霞","朝晖"],"title":"w7","type":"option"},
+            
+        ],
+        
+    },
+
+    HuntersPath: {
+        name: "HuntersPath",
+        internalName: "Bow_hunters",
+        // chs: "",
+        star: 5,
+        // url: HuntersPath_tn,
+        url: imageUrl("Bow_hunters"),
+        type: "Bow",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
+            
+        ],
+        
+    },
+
+    Trawler: {
+        name: "Trawler",
+        internalName: "Bow_Trawler",
+        // chs: "",
+        star: 4,
+        // url: Trawler_tn,
+        url: imageUrl("Bow_Trawler"),
+        type: "Bow",
+
+        
+        // effect: null,
+        
+
+        
+        configs: null,
+        
+    },
+
+    KingsSquire: {
+        name: "KingsSquire",
+        internalName: "Bow_KingsSquire",
+        // chs: "",
+        star: 4,
+        // url: KingsSquire_tn,
+        url: imageUrl("Bow_KingsSquire"),
+        type: "Bow",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         

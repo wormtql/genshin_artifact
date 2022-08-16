@@ -34,6 +34,7 @@ pub struct FadingTwilight;
 impl WeaponTrait for FadingTwilight {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FadingTwilight,
+        internal_name: "Bow_Fallensun",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge67),
         weapon_base: WeaponBaseATKFamily::ATK565,

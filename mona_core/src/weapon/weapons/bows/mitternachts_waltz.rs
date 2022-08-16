@@ -43,6 +43,7 @@ pub struct MitternachtsWaltz;
 impl WeaponTrait for MitternachtsWaltz {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MitternachtsWaltz,
+        internal_name: "Bow_Nachtblind",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus113),
         weapon_base: WeaponBaseATKFamily::ATK510,

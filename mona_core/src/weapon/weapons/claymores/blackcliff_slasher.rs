@@ -39,6 +39,7 @@ pub struct BlackcliffSlasher;
 impl WeaponTrait for BlackcliffSlasher {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BlackcliffSlasher,
+        internal_name: "Claymore_Blackrock",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage120),
         weapon_base: WeaponBaseATKFamily::ATK510,

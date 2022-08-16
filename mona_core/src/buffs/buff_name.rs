@@ -86,13 +86,17 @@ pub enum BuffName {
     KamisatoAyatoQ,
     ShikanoinHeizouTalent2,
     TighnariC4,
+    DoriC4,
 
+    // weapon
     FreedomSworn,
     SongOfBrokenPines,
     WolfsGravestone,
     ThrillingTalesOfDragonSlayers,
     ElegyOfTheEnd,
     HakushinRing,
+    SapwoodBlade,
+    Moonpiercer,
 
     ResonancePyro2,
     ResonanceCryo2,

@@ -28,6 +28,7 @@ pub struct SkywardHarp;
 impl WeaponTrait for SkywardHarp {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SkywardHarp,
+        internal_name: "Bow_Dvalin",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate48),
         weapon_base: WeaponBaseATKFamily::ATK674,

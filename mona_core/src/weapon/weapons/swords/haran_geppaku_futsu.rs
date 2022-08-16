@@ -30,6 +30,7 @@ pub struct HaranGeppakuFutsu;
 impl WeaponTrait for HaranGeppakuFutsu {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::HaranGeppakuFutsu,
+        internal_name: "Sword_Amenoma",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate72),
         weapon_base: WeaponBaseATKFamily::ATK608,

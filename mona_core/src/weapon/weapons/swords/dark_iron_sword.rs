@@ -33,6 +33,7 @@ pub struct DarkIronSword;
 impl WeaponTrait for DarkIronSword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::DarkIronSword,
+        internal_name: "Sword_Darker",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM31),
         weapon_base: WeaponBaseATKFamily::ATK401,

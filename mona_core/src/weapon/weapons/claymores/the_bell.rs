@@ -39,6 +39,7 @@ pub struct TheBell;
 impl WeaponTrait for TheBell {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheBell,
+        internal_name: "Claymore_Troupe",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::HP90),
         weapon_base: WeaponBaseATKFamily::ATK510,

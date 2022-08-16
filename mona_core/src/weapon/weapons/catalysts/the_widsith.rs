@@ -44,6 +44,7 @@ pub struct TheWidsith;
 impl WeaponTrait for TheWidsith {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheWidsith,
+        internal_name: "Catalyst_Troupe",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage120),
         weapon_base: WeaponBaseATKFamily::ATK510,

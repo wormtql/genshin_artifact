@@ -32,6 +32,7 @@ pub struct AquaSimulacra;
 impl WeaponTrait for AquaSimulacra {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::AquaSimulacra,
+        internal_name: "Bow_Kirin",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage192),
         weapon_base: WeaponBaseATKFamily::ATK542,

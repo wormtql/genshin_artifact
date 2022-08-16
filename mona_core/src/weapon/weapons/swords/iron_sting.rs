@@ -39,6 +39,7 @@ pub struct IronSting;
 impl WeaponTrait for IronSting {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::IronSting,
+        internal_name: "Sword_Exotic",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,

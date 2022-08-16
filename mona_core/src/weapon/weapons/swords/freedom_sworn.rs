@@ -46,6 +46,7 @@ pub struct FreedomSworn;
 impl WeaponTrait for FreedomSworn {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FreedomSworn,
+        internal_name: "Sword_Widsith",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM43),
         weapon_base: WeaponBaseATKFamily::ATK608,

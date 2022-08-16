@@ -42,6 +42,7 @@ pub struct LithicBlade;
 impl WeaponTrait for LithicBlade {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::LithicBlade,
+        internal_name: "Claymore_Lapis",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,

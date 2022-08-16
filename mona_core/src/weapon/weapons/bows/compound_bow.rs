@@ -42,6 +42,7 @@ pub struct CompoundBow;
 impl WeaponTrait for CompoundBow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CompoundBow,
+        internal_name: "Bow_Exotic",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus150),
         weapon_base: WeaponBaseATKFamily::ATK454,

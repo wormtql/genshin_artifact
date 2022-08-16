@@ -33,6 +33,7 @@ pub struct RedhornStonethresher;
 impl WeaponTrait for RedhornStonethresher {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::RedhornStonethresher,
+        internal_name: "Claymore_Itadorimaru",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage192),
         weapon_base: WeaponBaseATKFamily::ATK542,

@@ -42,6 +42,7 @@ pub struct Hamayumi;
 impl WeaponTrait for Hamayumi {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Hamayumi,
+        internal_name: "Bow_Bakufu",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK120),
         weapon_base: WeaponBaseATKFamily::ATK454,

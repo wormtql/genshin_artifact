@@ -13,6 +13,7 @@ pub struct SacrificialFragments;
 impl WeaponTrait for SacrificialFragments {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SacrificialFragments,
+        internal_name: "Catalyst_Fossil",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM48),
         weapon_base: WeaponBaseATKFamily::ATK454,

@@ -39,6 +39,7 @@ pub struct MappaMare;
 impl WeaponTrait for MappaMare {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MappaMare,
+        internal_name: "Catalyst_Exotic",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM24),
         weapon_base: WeaponBaseATKFamily::ATK565,

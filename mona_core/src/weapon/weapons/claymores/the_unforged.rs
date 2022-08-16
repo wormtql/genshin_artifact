@@ -44,6 +44,7 @@ pub struct TheUnforged;
 impl WeaponTrait for TheUnforged {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheUnforged,
+        internal_name: "Claymore_Kunwu",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK108),
         weapon_base: WeaponBaseATKFamily::ATK608,

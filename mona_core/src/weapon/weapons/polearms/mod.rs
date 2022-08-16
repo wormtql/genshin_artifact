@@ -21,6 +21,7 @@ pub use black_tassel::BlackTassel;
 pub use white_tassel::WhiteTassel;
 pub use iron_point::IronPoint;
 pub use beginners_protector::BeginnersProtector;
+pub use moonpiercer::Moonpiercer;
 
 pub mod engulfing_lightning;
 pub mod skyward_spine;
@@ -45,3 +46,4 @@ pub mod black_tassel;
 pub mod white_tassel;
 pub mod iron_point;
 pub mod beginners_protector;
+pub mod moonpiercer;

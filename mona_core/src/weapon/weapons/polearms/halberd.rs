@@ -13,6 +13,7 @@ pub struct Halberd;
 impl WeaponTrait for Halberd {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Halberd,
+        internal_name: "Pole_Halberd",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK51),
         weapon_base: WeaponBaseATKFamily::ATK448,

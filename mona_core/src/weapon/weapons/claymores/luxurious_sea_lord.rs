@@ -29,6 +29,7 @@ pub struct LuxuriousSeaLord;
 impl WeaponTrait for LuxuriousSeaLord {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::LuxuriousSeaLord,
+        internal_name: "Claymore_MillenniaTuna",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK120),
         weapon_base: WeaponBaseATKFamily::ATK454,

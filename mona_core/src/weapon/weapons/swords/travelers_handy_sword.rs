@@ -13,6 +13,7 @@ pub struct TravelersHandySword;
 impl WeaponTrait for TravelersHandySword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TravelersHandySword,
+        internal_name: "Sword_Traveler",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::DEF64),
         weapon_base: WeaponBaseATKFamily::ATK448,

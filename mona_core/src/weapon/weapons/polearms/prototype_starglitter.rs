@@ -40,6 +40,7 @@ pub struct PrototypeStarglitter;
 impl WeaponTrait for PrototypeStarglitter {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrototypeStarglitter,
+        internal_name: "Pole_Proto",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge100),
         weapon_base: WeaponBaseATKFamily::ATK510,

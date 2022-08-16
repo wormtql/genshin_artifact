@@ -24,6 +24,7 @@ pub struct WhiteTassel;
 impl WeaponTrait for WhiteTassel {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::WhiteTassel,
+        internal_name: "Pole_Ruby",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate51),
         weapon_base: WeaponBaseATKFamily::ATK401,

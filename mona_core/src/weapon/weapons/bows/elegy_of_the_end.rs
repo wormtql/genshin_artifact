@@ -42,6 +42,7 @@ pub struct ElegyOfTheEnd;
 impl WeaponTrait for ElegyOfTheEnd {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::ElegyOfTheEnd,
+        internal_name: "Bow_Widsith",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge120),
         weapon_base: WeaponBaseATKFamily::ATK608,

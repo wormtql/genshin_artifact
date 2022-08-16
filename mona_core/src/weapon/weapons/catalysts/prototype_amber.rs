@@ -13,6 +13,7 @@ pub struct PrototypeAmber;
 impl WeaponTrait for PrototypeAmber {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrototypeAmber,
+        internal_name: "Catalyst_Proto",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::HP90),
         weapon_base: WeaponBaseATKFamily::ATK510,

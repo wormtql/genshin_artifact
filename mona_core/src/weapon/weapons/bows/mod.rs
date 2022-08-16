@@ -27,6 +27,9 @@ pub use seasoned_hunters_bow::SeasonedHuntersBow;
 pub use hunters_bow::HuntersBow;
 pub use aqua_simulacra::AquaSimulacra;
 pub use fading_twilight::FadingTwilight;
+pub use hunters_path::HuntersPath;
+pub use trawler::Trawler;
+pub use kings_squire::KingsSquire;
 
 pub mod polar_star;
 pub mod thundering_pulse;
@@ -57,3 +60,6 @@ pub mod seasoned_hunters_bow;
 pub mod hunters_bow;
 pub mod aqua_simulacra;
 pub mod fading_twilight;
+pub mod hunters_path;
+pub mod trawler;
+pub mod kings_squire;

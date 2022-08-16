@@ -24,7 +24,6 @@
         </template>
         <template v-if="type === 'intInput'">
             <el-input-number
-                size="mini"
                 :modelValue="modelValue"
                 @update:modelValue="handleChangeValue"
                 :min="params.min"

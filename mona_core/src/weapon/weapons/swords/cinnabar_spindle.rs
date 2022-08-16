@@ -39,6 +39,7 @@ pub struct CinnabarSpindle;
 impl WeaponTrait for CinnabarSpindle {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CinnabarSpindle,
+        internal_name: "Sword_Opus",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::DEF150),
         weapon_base: WeaponBaseATKFamily::ATK454,
