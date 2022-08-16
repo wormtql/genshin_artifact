@@ -113,6 +113,22 @@
 // 
 // 
 // 
+// import DeepwoodMemories_flower from "@image/artifacts/DeepwoodMemories_flower"
+// 
+// 
+// import DeepwoodMemories_feather from "@image/artifacts/DeepwoodMemories_feather"
+// 
+// 
+// import DeepwoodMemories_sand from "@image/artifacts/DeepwoodMemories_sand"
+// 
+// 
+// import DeepwoodMemories_goblet from "@image/artifacts/DeepwoodMemories_goblet"
+// 
+// 
+// import DeepwoodMemories_head from "@image/artifacts/DeepwoodMemories_head"
+// 
+// 
+// 
 // import DefendersWill_flower from "@image/artifacts/DefendersWill_flower"
 // 
 // 
@@ -174,6 +190,22 @@
 // 
 // 
 // import Gambler_head from "@image/artifacts/Gambler_head"
+// 
+// 
+// 
+// import GildedDreams_flower from "@image/artifacts/GildedDreams_flower"
+// 
+// 
+// import GildedDreams_feather from "@image/artifacts/GildedDreams_feather"
+// 
+// 
+// import GildedDreams_sand from "@image/artifacts/GildedDreams_sand"
+// 
+// 
+// import GildedDreams_goblet from "@image/artifacts/GildedDreams_goblet"
+// 
+// 
+// import GildedDreams_head from "@image/artifacts/GildedDreams_head"
 // 
 // 
 // 
@@ -949,6 +981,56 @@ export default {
         ],
     },
     
+    "DeepwoodMemories": {
+        eng: "DeepwoodMemories",
+        // chs: "深林的记忆",
+        name2: "DeepwoodMemories",
+        minStar: 4,
+        maxStar: 5,
+        // effect2: "",
+        // effect4: "",
+        
+        flower: {
+            // chs: "迷宫的游人",
+            // url: DeepwoodMemories_flower,
+            url: getIcon("UI_RelicIcon_15005_4")
+        },
+        
+        
+        feather: {
+            // chs: "翠蔓的智者",
+            // url: DeepwoodMemories_feather,
+            url: getIcon("UI_RelicIcon_15005_4")
+        },
+        
+        
+        sand: {
+            // chs: "贤智的定期",
+            // url: DeepwoodMemories_sand,
+            url: getIcon("UI_RelicIcon_15005_4")
+        },
+        
+        
+        cup: {
+            // chs: "迷误者之灯",
+            // url: DeepwoodMemories_goblet,
+            url: getIcon("UI_RelicIcon_10009_4")
+        },
+        
+        
+        head: {
+            // chs: "月桂的宝冠",
+            // url: DeepwoodMemories_head,
+            url: getIcon("UI_RelicIcon_15005_3")
+        },
+        
+        config4: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
+            
+        ],
+    },
+    
     "defenderWill": {
         eng: "defenderWill",
         // chs: "守护之心",
@@ -1139,6 +1221,60 @@ export default {
         },
         
         config4: [
+            
+        ],
+    },
+    
+    "GildedDreams": {
+        eng: "GildedDreams",
+        // chs: "",
+        name2: "GildedDreams",
+        minStar: 4,
+        maxStar: 5,
+        // effect2: "",
+        // effect4: "",
+        
+        flower: {
+            // chs: "梦中的铁花",
+            // url: GildedDreams_flower,
+            url: getIcon("UI_RelicIcon_10007_4")
+        },
+        
+        
+        feather: {
+            // chs: "裁断的翎羽",
+            // url: GildedDreams_feather,
+            url: getIcon("UI_RelicIcon_10005_2")
+        },
+        
+        
+        sand: {
+            // chs: "沉金的岁月",
+            // url: GildedDreams_sand,
+            url: getIcon("UI_RelicIcon_15005_4")
+        },
+        
+        
+        cup: {
+            // chs: "如蜜的终宴",
+            // url: GildedDreams_goblet,
+            url: getIcon("UI_RelicIcon_15005_4")
+        },
+        
+        
+        head: {
+            // chs: "沙王的投影",
+            // url: GildedDreams_head,
+            url: getIcon("UI_RelicIcon_15005_4")
+        },
+        
+        config4: [
+            
+            {"default":0,"max":3,"min":0,"name":"same_count","title":"a14","type":"int"},
+            
+            {"default":0,"max":3,"min":0,"name":"diff_count","title":"a15","type":"int"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },
