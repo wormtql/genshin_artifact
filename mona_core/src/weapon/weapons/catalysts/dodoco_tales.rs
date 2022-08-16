@@ -57,12 +57,12 @@ impl WeaponTrait for DodocoTales {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate1",
-            title: "w27",
+            title: "w8",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "rate2",
-            title: "w28",
+            title: "w9",
             config: ItemConfig::RATE01_TYPE
         },
     ]);

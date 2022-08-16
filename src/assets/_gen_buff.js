@@ -177,6 +177,8 @@ import HealingBonus_image from "@image/misc/sword"
 
 
 
+
+
 import FreedomSworn_image from "@image/weapons/FreedomSworn_tn"
 
 
@@ -1294,6 +1296,21 @@ export default {
         genre: "Character",
         // description: "鹿野院平藏天赋2：勠心拳命中敌人后，队伍中所有角色（不包括鹿野院平藏自己）的元素精通提升80点，持续10秒。",
         config: [
+            
+        ],
+    },
+    
+    "TighnariC4": {
+        name: "TighnariC4",
+        // chs: "",
+        
+        badge: getImage("UI_AvatarIcon_Diona"),
+        
+        genre: "Character",
+        // description: "",
+        config: [
+            
+            {"default":false,"name":"after_reaction","title":"b38","type":"bool"},
             
         ],
     },

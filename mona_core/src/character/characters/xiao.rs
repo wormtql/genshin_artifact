@@ -56,6 +56,7 @@ pub const XIAO_SKILL: XiaoSkillType = XiaoSkillType {
 
 pub const XIAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Xiao,
+    internal_name: "Xiao",
     chs: "魈",
     element: Element::Anemo,
     hp: [991, 2572, 3422, 5120, 5724, 6586, 7391, 8262, 8866, 9744, 10348, 11236, 11840, 12736],

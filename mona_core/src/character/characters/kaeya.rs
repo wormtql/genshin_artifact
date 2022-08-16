@@ -48,6 +48,7 @@ pub const KAEYA_SKILL: KaeyaSkillType = KaeyaSkillType {
 
 pub const KAEYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Kaeya,
+    internal_name: "Kaeya",
     chs: "凯亚",
     element: Element::Cryo,
     hp: [976, 2506, 3235, 4846, 5364, 6170, 6860, 7666, 8184, 8989, 9507, 10312, 10830, 11636],

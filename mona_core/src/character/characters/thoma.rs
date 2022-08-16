@@ -60,6 +60,7 @@ pub const THOMA_SKILL: ThomaSkillType = ThomaSkillType {
 
 pub const THOMA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Thoma,
+    internal_name: "Tohma",
     chs: "托马",
     element: Element::Pyro,
     hp: [866, 2225, 2872, 4302, 4762, 5478, 6091, 6806, 7266, 7981, 8440, 9156, 9616, 10331],

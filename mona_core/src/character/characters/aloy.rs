@@ -62,6 +62,7 @@ pub const ALOY_SKILL: AloySkillType = AloySkillType {
 
 pub const ALOY_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Aloy,
+    internal_name: "Aloy",
     chs: "埃洛伊",
     element: Element::Cryo,
     hp: [848, 2201, 2928, 4382, 4899, 5636, 6325, 7070, 7587, 8339, 8856, 9616, 10133, 10899],

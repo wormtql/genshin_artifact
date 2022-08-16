@@ -95,6 +95,7 @@ pub enum YaeMikoRoleEnum {
 impl CharacterTrait for YaeMiko {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::YaeMiko,
+        internal_name: "Yae",
         chs: "八重神子",
         element: Element::Electro,
         hp: [807, 2095, 2787, 4170, 4662, 5364, 6020, 6729, 7220, 7936, 8428, 9151, 9643, 10372],

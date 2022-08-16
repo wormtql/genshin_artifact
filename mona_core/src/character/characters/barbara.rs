@@ -55,6 +55,7 @@ pub const BARBARA_SKILL: BarbaraSkillType = BarbaraSkillType {
 
 pub const BARBARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Barbara,
+    internal_name: "Barbara",
     chs: "芭芭拉",
     element: Element::Hydro,
     hp: [821, 2108, 2721, 4076, 4512, 5189, 5770, 6448, 6884, 7561, 7996, 8674, 9110, 9787],

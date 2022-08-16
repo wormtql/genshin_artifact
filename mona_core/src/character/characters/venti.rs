@@ -60,6 +60,7 @@ pub const VENTI_SKILL: VentiSkillType = VentiSkillType {
 
 pub const VENTI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Venti,
+    internal_name: "Venti",
     chs: "温迪",
     element: Element::Anemo,
     hp: [820, 2127, 2830, 4234, 4734, 5446, 6112, 6832, 7331, 8058, 8557, 9292, 9791, 10531],

@@ -53,6 +53,7 @@ pub const AMBER_SKILL: AmberSkillType = AmberSkillType {
 
 pub const AMBER_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Amber,
+    internal_name: "Ambor",
     chs: "安柏",
     element: Element::Pyro,
     hp: [793, 2038, 2630, 3940, 4361, 5016, 5578, 6233, 6654, 7309, 7730, 8358, 8806, 9461],

@@ -80,6 +80,7 @@ pub const RAIDEN_SHOGUN_SKILL: RaidenShogunSkill = RaidenShogunSkill {
 
 pub const RAIDEN_SHOGUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::RaidenShogun,
+    internal_name: "Shougun",
     chs: "雷电将军",
     element: Element::Electro,
     hp: [1005, 2606, 3468, 5189, 5801, 6675, 7491, 8373, 8985, 9875, 10487, 11388, 12000, 12907],

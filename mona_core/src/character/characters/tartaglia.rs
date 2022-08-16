@@ -80,6 +80,7 @@ pub const TARTAGLIA_SKILL: TartagliaSkillType = TartagliaSkillType {
 
 pub const TARTAGLIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Tartaglia,
+    internal_name: "Tartaglia",
     chs: "达达利亚",
     element: Element::Hydro,
     hp: [1020, 2646, 3521, 5268, 5889, 6776, 7604, 8500, 9121, 10025, 10647, 11561, 12182, 13103],

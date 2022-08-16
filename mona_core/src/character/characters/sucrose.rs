@@ -48,6 +48,7 @@ pub const SUCROSE_SKILL: SucroseSkillType = SucroseSkillType {
 
 pub const SUCROSE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Sucrose,
+    internal_name: "Sucrose",
     chs: "砂糖",
     element: Element::Anemo,
     hp: [775, 1991, 2570, 3850, 4261, 4901, 5450, 6090, 6501, 7141, 7552, 8192, 8604, 9244],

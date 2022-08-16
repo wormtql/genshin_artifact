@@ -54,6 +54,7 @@ const ALBEDO_SKILL: AlbedoSkillType = AlbedoSkillType {
 
 const ALBEDO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Albedo,
+    internal_name: "Albedo",
     chs: "阿贝多",
     element: Element::Geo,
     hp: [1030, 2671, 3554, 5317, 5944, 6839, 7675, 8579, 9207, 10119, 10746, 11669, 12296, 13226],

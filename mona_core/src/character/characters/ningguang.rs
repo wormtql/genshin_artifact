@@ -44,6 +44,7 @@ pub const NINGGUANG_SKILL: NingguangSkillType = NingguangSkillType {
 
 pub const NINGGUANG_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Ningguang,
+    internal_name: "Ningguang",
     chs: "凝光",
     element: Element::Geo,
     hp: [821, 2108, 2721, 4076, 4512, 5189, 5770, 6448, 6884, 7561, 7996, 8674, 9110, 9787],

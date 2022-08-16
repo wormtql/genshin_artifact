@@ -65,6 +65,7 @@ pub const XINYAN_SKILL: XinyanSkillType = XinyanSkillType {
 
 pub const XINYAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Xinyan,
+    internal_name: "Xinyan",
     chs: "辛焱",
     element: Element::Pyro,
     hp: [939, 2413, 3114, 4665, 5163, 5939, 6604, 7379, 7878, 8653, 9151, 9927, 10425, 11201],

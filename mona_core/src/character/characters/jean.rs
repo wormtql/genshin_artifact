@@ -57,6 +57,7 @@ pub const JEAN_SKILL: JeanSkillType = JeanSkillType {
 
 pub const JEAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Jean,
+    internal_name: "Qin",
     chs: "琴",
     element: Element::Anemo,
     hp: [1144, 2967, 3948, 5908, 6605, 7599, 8528, 9533, 10230, 11243, 11940, 12965, 13662, 14695],

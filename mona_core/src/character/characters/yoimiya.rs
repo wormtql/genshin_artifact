@@ -54,6 +54,7 @@ pub const YOIMIYA_SKILL: YoimiyaSkill = YoimiyaSkill {
 
 pub const YOIMIYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Yoimiya,
+    internal_name: "Yoimiya",
     chs: "宵宫",
     element: Element::Pyro,
     hp: [791, 2053, 2731, 4086, 4568, 5256, 5899, 6593, 7075, 7777, 8259, 8968, 9450, 10164],

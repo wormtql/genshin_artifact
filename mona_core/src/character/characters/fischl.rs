@@ -51,6 +51,7 @@ pub const FISCHL_SKILL: FischlSkillType = FischlSkillType {
 
 pub const FISCHL_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Fischl,
+    internal_name: "Fischl",
     chs: "菲谢尔",
     element: Element::Electro,
     hp: [770, 1979, 2555, 3827, 4236, 4872, 5418, 6054, 6463, 7099, 7508, 8144, 8553, 9189],

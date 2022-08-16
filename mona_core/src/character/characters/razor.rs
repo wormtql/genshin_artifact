@@ -54,6 +54,7 @@ pub const RAZOR_SKILL: RazorSkillType = RazorSkillType {
 
 pub const RAZOR_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Razor,
+    internal_name: "Razor",
     chs: "雷泽",
     element: Element::Electro,
     hp: [1003, 2577, 3326, 4982, 5514, 6343, 7052, 7881, 8413, 9241, 9773, 10602, 11134, 11962],

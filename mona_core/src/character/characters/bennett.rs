@@ -65,6 +65,7 @@ pub const BENNETT_SKILL: BennettSkillType = BennettSkillType {
 
 pub const BENNETT_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Bennett,
+    internal_name: "Bennett",
     chs: "班尼特",
     element: Element::Pyro,
     hp: [1039, 2670, 3447, 5163, 5715, 6573, 7309, 8186, 8719, 9577, 10129, 10987, 11539, 12397],

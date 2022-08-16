@@ -58,6 +58,7 @@ const SHENHE_SKILL: ShenheSkillType = ShenheSkillType {
 
 const SHENHE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Shenhe,
+    internal_name: "Shenhe",
     chs: "申鹤",
     element: Element::Cryo,
     hp: [1011, 2624, 3491, 5224, 5840, 6719, 7540, 8429, 9045, 9941, 10557, 11463, 12080, 12993],

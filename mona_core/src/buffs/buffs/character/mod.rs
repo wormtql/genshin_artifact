@@ -34,6 +34,7 @@ pub use yoimiya::BuffYoimiyaTalent2;
 pub use yunjin::{BuffYunjinC2, BuffYunjinQ};
 pub use zhongli::BuffZhongliShield;
 pub use shikanoin_heizou::BuffShikanoinHeizouTalent2;
+pub use tighnari::BuffTighnariC4;
 
 pub mod albedo;
 pub mod aloy;
@@ -71,3 +72,4 @@ pub mod yae_miko;
 pub mod yelan;
 pub mod kamisato_ayato;
 pub mod shikanoin_heizou;
+pub mod tighnari;

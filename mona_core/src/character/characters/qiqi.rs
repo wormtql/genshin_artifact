@@ -68,6 +68,7 @@ pub const QIQI_SKILL: QiqiSkillType = QiqiSkillType {
 
 pub const QIQI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Qiqi,
+    internal_name: "Qiqi",
     chs: "七七",
     element: Element::Cryo,
     hp: [963, 2498, 3323, 4973, 5559, 6396, 7178, 8023, 8610, 9463, 10050, 10912, 11499, 12368],

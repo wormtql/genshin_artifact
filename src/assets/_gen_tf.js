@@ -171,6 +171,8 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
+
+
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
@@ -1574,6 +1576,24 @@ export default {
         "for": "ShikanoinHeizou",
         
         badge: getImage("UI_AvatarIcon_Heizo"),
+        
+        config: [
+            
+        ],
+    },
+    
+    "TighnariDefault": {
+        name: "TighnariDefault",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "Tighnari",
+        
+        badge: getImage("UI_AvatarIcon_Diona"),
         
         config: [
             

@@ -58,6 +58,7 @@ pub const KAEDEHARA_KAZUHA_SKILL: KaedeharaKazuhaSkillType = KaedeharaKazuhaSkil
 
 pub const KAEDEHARA_KAZUHA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::KaedeharaKazuha,
+    internal_name: "Kazuha",
     chs: "枫原万叶",
     element: Element::Anemo,
     hp: [1039, 2695, 3586, 5366, 5999, 6902, 7747, 8659, 9292, 10213, 10849, 11777, 12410, 13348],

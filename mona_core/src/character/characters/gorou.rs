@@ -51,6 +51,7 @@ pub const GOROU_SKILL: GorouSkillType = GorouSkillType {
 
 pub const GOROU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Gorou,
+    internal_name: "Gorou",
     chs: "五郎",
     element: Element::Geo,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],

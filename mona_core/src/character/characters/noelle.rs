@@ -62,6 +62,7 @@ pub const NOELLE_SKILL: NoelleSkillType = NoelleSkillType {
 
 pub const NOELLE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Noelle,
+    internal_name: "Noel",
     chs: "诺艾尔",
     element: Element::Geo,
     hp: [1012, 2600, 3356, 5027, 5564, 6400, 7117, 7953, 8490, 9325, 9862, 10698, 11235, 12071],

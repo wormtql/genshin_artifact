@@ -58,6 +58,7 @@ pub const XINGQIU_SKILL: XingqiuSkillType = XingqiuSkillType {
 
 pub const XINGQIU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Xingqiu,
+    internal_name: "Xingqiu",
     chs: "行秋",
     element: Element::Hydro,
     hp: [857, 2202, 2842, 4257, 4712, 5420, 6027, 6735, 7190, 7897, 8352, 9060, 9514, 10222],

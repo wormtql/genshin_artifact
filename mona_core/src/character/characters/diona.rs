@@ -59,6 +59,7 @@ pub const DIONA_SKILL: DionaSkillType = DionaSkillType {
 
 pub const DIONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Diona,
+    internal_name: "Diona",
     chs: "迪奥娜",
     element: Element::Cryo,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],

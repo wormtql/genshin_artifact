@@ -58,6 +58,7 @@ pub const KEQING_SKILL: KeqingSkillType = KeqingSkillType {
 
 pub const KEQING_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Keqing,
+    internal_name: "Keqing",
     chs: "刻晴",
     element: Element::Electro,
     hp: [1020, 2646, 3521, 5268, 5889, 6776, 7604, 8500, 9121, 10025, 10647, 11561, 12182, 13103],

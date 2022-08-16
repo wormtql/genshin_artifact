@@ -117,6 +117,7 @@ pub struct ShikanoinHeizou;
 impl CharacterTrait for ShikanoinHeizou {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::ShikanoinHeizou,
+        internal_name: "Heizo",
         chs: "鹿野院平藏",
         element: Element::Anemo,
         hp: [894, 2296, 2963, 4438, 4913, 5651, 6283, 7021, 7495, 8233, 8707, 9445, 9919, 10657],

@@ -46,6 +46,7 @@ pub const KLEE_SKILL: KleeSkillType = KleeSkillType {
 
 pub const KLEE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Klee,
+    internal_name: "Klee",
     chs: "可莉",
     element: Element::Pyro,
     hp: [801, 2077, 2764, 4136, 4623, 5319, 5970, 6673, 7161, 7870, 8358, 9076, 9563, 10287],

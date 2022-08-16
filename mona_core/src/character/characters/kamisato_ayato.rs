@@ -151,6 +151,7 @@ pub struct KamisatoAyato;
 impl CharacterTrait for KamisatoAyato {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::KamisatoAyato,
+        internal_name: "Ayato",
         chs: "神里绫人",
         element: Element::Hydro,
         hp: [1068, 2770, 3685, 5514, 6165, 7092, 7960, 8897, 9548, 10494, 11144, 12101, 12751, 13715],

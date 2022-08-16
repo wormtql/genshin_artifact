@@ -54,6 +54,7 @@ pub const LISA_SKILL: LisaSkillType = LisaSkillType {
 
 pub const LISA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Lisa,
+    internal_name: "Lisa",
     chs: "丽莎",
     element: Element::Electro,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],

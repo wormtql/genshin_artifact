@@ -44,6 +44,7 @@ pub enum BuffConfig {
     YelanTalent2 { secs: usize },
     YelanC4 { count: usize },
     KamisatoAyatoQ { skill_level: usize },
+    TighnariC4 { after_reaction: bool },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },

@@ -68,6 +68,7 @@ pub const SAYU_SKILL: SayuSkillType = SayuSkillType {
 
 pub const SAYU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Sayu,
+    internal_name: "Sayu",
     chs: "早柚",
     element: Element::Anemo,
     hp: [994, 2553, 3296, 4937, 5464, 6285, 6988, 7809, 8337, 9157, 9684, 10505, 11033, 11854],

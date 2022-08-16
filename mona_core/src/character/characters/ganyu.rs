@@ -59,6 +59,7 @@ pub const GANYU_SKILL: GanyuSkillType = GanyuSkillType {
 
 pub const GANYU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Ganyu,
+    internal_name: "Ganyu",
     chs: "甘雨",
     element: Element::Cryo,
     hp: [763, 1978, 2632, 3939, 4403, 5066, 5686, 6355, 6820, 7495, 7960, 8643, 9108, 9797],

@@ -56,6 +56,7 @@ pub const DILUC_SKILL: DilucSkillType = DilucSkillType {
 
 const DILUC_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Diluc,
+    internal_name: "Diluc",
     chs: "迪卢克",
     element: Element::Pyro,
     hp: [1011, 2621, 3488, 5219, 5834, 6712, 7533, 8421, 9036, 9932, 10547, 11453, 12068, 12981],

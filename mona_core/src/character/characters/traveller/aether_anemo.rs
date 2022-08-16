@@ -134,6 +134,7 @@ pub struct AetherAnemo;
 impl CharacterTrait for AetherAnemo {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::AetherAnemo,
+        internal_name: "PlayerBoy",
         chs: "空-风",
         element: Element::Anemo,
         hp: [912, 2342, 3024, 4529, 5031, 5766, 6411, 7164, 7648, 8401, 8885, 9638, 10122, 10875],

@@ -68,6 +68,7 @@ pub const EULA_SKILL: EulaSkillType = EulaSkillType {
 
 pub const EULA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Eula,
+    internal_name: "Eula",
     chs: "优菈",
     element: Element::Cryo,
     hp: [1030, 2671, 3554, 5317, 5944, 6839, 7675, 8579, 9207, 10119, 10746, 11699, 12296, 13226],

@@ -85,6 +85,7 @@ pub enum BuffName {
     YelanC4,
     KamisatoAyatoQ,
     ShikanoinHeizouTalent2,
+    TighnariC4,
 
     FreedomSworn,
     SongOfBrokenPines,

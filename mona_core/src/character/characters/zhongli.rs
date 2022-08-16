@@ -58,6 +58,7 @@ pub const ZHONGLI_SKILL: ZhongliSkillType = ZhongliSkillType {
 
 pub const ZHONGLI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Zhongli,
+    internal_name: "Zhongli",
     chs: "钟离",
     element:Element::Geo,
     hp: [1144, 2967, 3948, 5908, 6605, 7599, 8528, 9533, 10230, 11243, 11940, 12965, 13662, 14695],

@@ -49,6 +49,7 @@ pub const MONA_SKILL: MonaSkillType = MonaSkillType {
 
 pub const MONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Mona,
+    internal_name: "Mona",
     chs: "莫娜",
     element: Element::Hydro,
     hp: [810, 2102, 2797, 4185, 4678, 5383, 6041, 6752, 7246, 7964, 8458, 9184, 9677, 10409],

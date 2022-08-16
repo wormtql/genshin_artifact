@@ -62,6 +62,7 @@ const YUNJIN_SKILL: YunjinSkillType = YunjinSkillType {
 
 const YUNJIN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Yunjin,
+    internal_name: "Yunjin",
     chs: "云堇",
     element: Element::Geo,
     hp: [894, 2296, 2963, 4438, 4913, 5651, 6283, 7021, 7495, 8233, 8707, 9445, 9919, 10657],

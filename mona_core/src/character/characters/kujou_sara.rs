@@ -54,6 +54,7 @@ pub const KUJOU_SARA_SKILL: KujouSaraSkillType = KujouSaraSkillType {
 
 pub const KUJOU_SARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::KujouSara,
+    internal_name: "Sara",
     chs: "九条裟罗",
     element: Element::Electro,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],

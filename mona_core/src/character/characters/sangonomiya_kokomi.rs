@@ -58,6 +58,7 @@ pub const SANGONOMIYA_KOKOMI_SKILL: SangonomiyaKokomiSkillType = SangonomiyaKoko
 
 pub const SANGONOMIYA_KOKOMI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::SangonomiyaKokomi,
+    internal_name: "Kokomi",
     chs: "珊瑚宫心海",
     element: Element::Hydro,
     hp: [1049, 2720, 3619, 5416, 6055, 6966, 7818, 8738, 9377, 10306, 10945, 11885, 12524, 13471],

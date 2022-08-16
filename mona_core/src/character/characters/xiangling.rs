@@ -56,6 +56,7 @@ pub const XIANGLING_SKILL: XianglingSkillType = XianglingSkillType {
 
 pub const XIANGLING_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Xiangling,
+    internal_name: "Xiangling",
     chs: "香菱",
     element: Element::Pyro,
     hp: [912, 2342, 3024, 4529, 5013, 5766, 6411, 7164, 7648, 8401, 8885, 9638, 10122, 10875],

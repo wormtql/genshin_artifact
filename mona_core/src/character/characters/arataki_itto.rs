@@ -50,6 +50,7 @@ pub const ARATAKI_ITTO_SKILL: AratakiIttoSkillType = AratakiIttoSkillType {
 
 const ARATAKI_ITTO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::AratakiItto,
+    internal_name: "Itto",
     chs: "荒泷一斗",
     element: Element::Geo,
     hp: [1001, 2579, 3455, 5170, 5779, 6649, 7462, 8341, 8951, 9838, 10448, 11345, 11954, 12858],

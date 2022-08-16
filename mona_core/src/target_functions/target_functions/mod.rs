@@ -12,6 +12,7 @@ pub mod anemo;
 pub mod cryo;
 pub mod hydro;
 pub mod common;
+pub mod dendro;
 
 pub use pyro::*;
 pub use electro::*;
@@ -20,6 +21,7 @@ pub use anemo::*;
 pub use cryo::*;
 pub use hydro::*;
 pub use common::*;
+pub use dendro::*;
 
 pub fn get_target_function(
     name: TargetFunctionName,

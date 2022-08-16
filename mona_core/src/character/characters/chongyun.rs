@@ -47,6 +47,7 @@ pub const CHONGYUN_SKILL: ChongyunSkillType = ChongyunSkillType {
 
 pub const CHONGYUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Chongyun,
+    internal_name: "Chongyun",
     chs: "重云",
     element: Element::Cryo,
     hp: [921, 2366, 3054, 4574, 5063, 5824, 6475, 7236, 7725, 8485, 8974, 9734, 10223, 10984],

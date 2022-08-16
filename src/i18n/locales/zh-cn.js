@@ -155,6 +155,9 @@ export default {
         Yunjin: "云堇",
         Zhongli: "钟离",
         ShikanoinHeizou: "鹿野院平藏",
+        Collei: "柯莱",
+        Tighnari: "提纳里",
+        Dori: "多莉",
     },
     artifact: {
         "thunderSmoother": {
@@ -1034,6 +1037,10 @@ export default {
         c34: "应用4命效果",
         c35: "「热情拂扫」护盾覆盖比例",
         c36: "灼灼",
+        c37: "处于后台",
+        c38: "天赋「眼识殊明」应用比例",
+        c39: "命座2「由茎干剖析来缘」应用比例",
+        c40: "「漫掷万镒」",
 
         t1: "类型",
         t2: "触发元素",
@@ -1123,6 +1130,7 @@ export default {
         b35: "效果①比例",
         b36: "效果②比例",
         b37: "结晶元素",
+        b38: "造生缠藤箭触发了燃烧、绽放、原激化或蔓激化反应",
     },
     ele: {
         Pyro: "火",
@@ -1313,6 +1321,7 @@ export default {
         ZhongliDefault: "钟离-尘世闲游",
         KukiShinobuDefault: "久岐忍-烦恼刈除",
         ShikanoinHeizouDefault: "鹿野院平藏-心朝乂安",
+        TighnariDefault: "提纳里-浅蔚轻行"
     },
     tfDesc: {
         MaxATK: "最大化攻击力",
@@ -1386,6 +1395,7 @@ export default {
         ZhongliDefault: "普通爆发钟离",
         KukiShinobuDefault: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
         ShikanoinHeizouDefault: "输出平藏，使得E技能4层伤害最大",
+        TighnariDefault: "使得提纳里的重击伤害最大",
     },
     dmg: {
         electroCharged: "感电",
@@ -1462,6 +1472,9 @@ export default {
         Yunjin: ["普通攻击·拂云出手", "旋云开相", "破嶂见旌仪"],
         Zhongli: ["普通攻击·岩雨", "地心", "天星"],
         ShikanoinHeizou: ["普通攻击·不动流格斗术", "勠心拳", "聚风蹴"],
+        Collei: ["普通攻击·祈颂射艺", "拂花偈叶", "猫猫秘宝"],
+        Tighnari: ["普通攻击·藏蕴破障", "识果种雷", "造生缠藤箭"],
+        Dori: ["普通攻击·妙显剑舞·改", "镇灵之灯·烦恼解决炮", "卡萨扎莱宫的无微不至"],
     },
     dmgName: [
         "一段伤害",
@@ -1667,7 +1680,16 @@ export default {
         "二段蓄力伤害",
         "五段伤害/4",
         "岩脊伤害",
-        "共鸣伤害"
+        "共鸣伤害",
+        "跃动伤害",
+        "花筥箭伤害",
+        "藏蕴花矢伤害",
+        "缠藤箭伤害",
+        "次级缠藤箭伤害",
+        "二段伤害-2",
+        "断除烦恼炮伤害",
+        "售后服务弹伤害",
+        "连接伤害",
     ],
     res: {
         Pyro: "火抗",
@@ -1803,7 +1825,8 @@ export default {
         NoblesseOblige4: "昔日宗室之仪4",
         TenacityOfTheMillelith4: "千岩牢固4",
         ViridescentVenerer4: "翠绿之影4",
-        ShikanoinHeizouTalent2: "鹿野院平藏-因由勘破"
+        ShikanoinHeizouTalent2: "鹿野院平藏-因由勘破",
+        TighnariC4: "提纳里-「由片叶管窥枯荣」",
     },
     buffDesc: {
         ATKFixed: "",
@@ -1894,6 +1917,7 @@ export default {
         TenacityOfTheMillelith4: "元素战技命中敌人后，使队伍中附近的所有角色攻击力提升20%，护盾强效提升30%，持续3秒。",
         ViridescentVenerer4: "根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。",
         ShikanoinHeizouTalent2: "鹿野院平藏天赋2：勠心拳命中敌人后，队伍中所有角色（不包括鹿野院平藏自己）的元素精通提升80点，持续10秒。",
+        TighnariC4: "提纳里命座4：施放造生缠藤箭时，队伍中附近的所有角色的元素精通提升60点，持续8秒。若造生缠藤箭触发了燃烧、绽放、原激化或蔓激化反应，元素精通将进一步提升60点，并刷新该状态的持续时间。"
     },
     buffGenre: {
         Character: "角色引发的BUFF",

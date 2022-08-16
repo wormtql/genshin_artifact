@@ -50,6 +50,7 @@ pub const KAMISATO_AYAKA_SKILL: KamisatoAyakaSkillType = KamisatoAyakaSkillType 
 
 pub const KAMISATO_AYAKA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::KamisatoAyaka,
+    internal_name: "Ayaka",
     chs: "神里绫华",
     element: Element::Cryo,
     hp: [1011, 2597, 3455, 5170, 5779, 6649, 7462, 8341, 8951, 9838, 10448, 11345, 11954, 12858],

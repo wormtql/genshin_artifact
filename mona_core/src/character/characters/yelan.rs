@@ -132,6 +132,7 @@ pub struct Yelan;
 impl CharacterTrait for Yelan {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Yelan,
+        internal_name: "Yelan",
         chs: "夜兰",
         element: Element::Hydro,
         hp: [1125, 2918, 3883, 5810, 6495, 7472, 8386, 9374, 10059, 11056, 11741, 12749, 13434, 14450],

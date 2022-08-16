@@ -54,6 +54,7 @@ pub const YANFEI_SKILL: YanfeiSkillType = YanfeiSkillType {
 
 pub const YANFEI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Yanfei,
+    internal_name: "Feiyan",
     chs: "烟绯",
     element: Element::Pyro,
     hp: [784, 2014, 2160, 3895, 4311, 4959, 5514, 6161, 6578, 7225, 7641, 8289, 8705, 9352],

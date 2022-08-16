@@ -59,6 +59,7 @@ pub const BEIDOU_SKILL: BeidouSkillType = BeidouSkillType {
 
 const BEIDOU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Beidou,
+    internal_name: "Beidou",
     chs: "北斗",
     element: Element::Electro,
     hp: [1094, 2811, 3628, 5435, 6015, 6919, 7694, 8597, 9178, 10081, 10662, 11565, 12146, 13050],

@@ -140,6 +140,7 @@ pub struct KukiShinobu;
 impl CharacterTrait for KukiShinobu {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::KukiShinobu,
+        internal_name: "Shinobu",
         chs: "久岐忍",
         element: Element::Electro,
         hp: [1030, 2647, 3417, 5118, 5665, 6516, 7245, 8096, 8643, 9493, 10040, 10891, 11438, 12289],

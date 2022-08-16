@@ -63,6 +63,7 @@ pub const HU_TAO_SKILL: HuTaoSkillType = HuTaoSkillType {
 
 pub const HU_TAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::HuTao,
+    internal_name: "Hutao",
     chs: "胡桃",
     element: Element::Pyro,
     hp: [1211, 3141, 4179, 6253, 6990, 8042, 9026, 10089, 10826, 11899, 12637, 13721, 14459, 15552],
