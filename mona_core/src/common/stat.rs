@@ -112,7 +112,7 @@ impl StatName {
             ArtifactSlotName::Flower => return HPFixed,
             ArtifactSlotName::Feather => return ATKFixed,
             ArtifactSlotName::Sand => vec![ATKPercentage, DEFPercentage, HPPercentage, ElementalMastery, Recharge],
-            ArtifactSlotName::Goblet => vec![ATKPercentage, DEFPercentage, HPPercentage, ElementalMastery, PyroBonus, ElectroBonus, HydroBonus, CryoBonus, AnemoBonus, GeoBonus, PhysicalBonus],
+            ArtifactSlotName::Goblet => vec![ATKPercentage, DEFPercentage, HPPercentage, ElementalMastery, DendroBonus, PyroBonus, ElectroBonus, HydroBonus, CryoBonus, AnemoBonus, GeoBonus, PhysicalBonus],
             ArtifactSlotName::Head => vec![ATKPercentage, DEFPercentage, HPPercentage, ElementalMastery, CriticalRate, CriticalDamage, HealingBonus]
         };
 
@@ -135,7 +135,7 @@ impl StatName {
             CriticalDamage => 0.622,
             HealingBonus => 0.359,
             ElementalMastery => 187.0,
-            PyroBonus | ElectroBonus | HydroBonus | CryoBonus | AnemoBonus | GeoBonus => 0.466,
+            PyroBonus | ElectroBonus | HydroBonus | CryoBonus | AnemoBonus | GeoBonus | DendroBonus => 0.466,
             PhysicalBonus => 0.583,
             _ => unreachable!()
         }

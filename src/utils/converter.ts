@@ -81,7 +81,8 @@ const statNameMap: any = {
     "iceBonus": "CryoBonus",
     "windBonus": "AnemoBonus",
     "rockBonus": "GeoBonus",
-    "physicalBonus": "PhysicalBonus"
+    "physicalBonus": "PhysicalBonus",
+    "dendroBonus": "DendroBonus",
 }
 
 let statNameMapReverse: any = {}

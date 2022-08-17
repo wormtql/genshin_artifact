@@ -1469,6 +1469,9 @@ export default {
         heal: "治疗",
         spread: "蔓激化",
         aggravate: "超激化",
+        bloom: "绽放",
+        hyperbloom: "超绽放",
+        burgeon: "烈绽放",
     },
     characterSkill: {
         Albedo: ["普通攻击·西风剑术·白", "创生法·拟造阳华", "诞生式·大地之潮"],
