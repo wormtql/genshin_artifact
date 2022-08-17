@@ -30,7 +30,9 @@ pub struct DamageAnalysis {
 
     pub normal: DamageResult,
     pub melt: Option<DamageResult>,
-    pub vaporize: Option<DamageResult>
+    pub vaporize: Option<DamageResult>,
+    pub spread: Option<DamageResult>,
+    pub aggravate: Option<DamageResult>,
 }
 
 pub struct HealAnalysis {

@@ -11,7 +11,13 @@ pub enum TransformativeType {
     Overload,
     Burning,
     ElectroCharged,
-    Shatter
+    Shatter,
+
+    Bloom,
+    // 烈绽放
+    Burgeon,
+    // 超绽放
+    Hyperbloom,
 }
 
 #[derive(Serialize, Deserialize, Eq, PartialEq, Copy, Clone)]

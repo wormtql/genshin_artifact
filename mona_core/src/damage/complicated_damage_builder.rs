@@ -5,6 +5,7 @@ use crate::damage::damage_analysis::DamageAnalysis;
 use crate::enemies::Enemy;
 use crate::common::EntryType;
 use crate::damage::damage_builder::{DamageBuilder};
+use crate::damage::level_coefficient::LEVEL_MULTIPLIER;
 use crate::damage::reaction::Reaction;
 use crate::damage::SimpleDamageBuilder;
 
@@ -178,6 +179,26 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             None
         };
 
+        let damage_spread_or_aggravate = if element != Element::Dendro && element != Element::Electro {
+            None
+        } else {
+            let em = attribute.get_value(AttributeName::ElementalMastery);
+            let spread_base_damage = {
+                let reaction_ratio = if element == Element::Dendro { 1.25 } else { 1.15 };
+                let bonus = Reaction::catalyze(em);
+                base_damage + LEVEL_MULTIPLIER[character_level - 1] * reaction_ratio * (1.0 + bonus)
+            };
+
+            let dmg = DamageResult {
+                critical: spread_base_damage * (1.0 + bonus) * (1.0 + critical_damage),
+                non_critical: spread_base_damage * (1.0 + bonus),
+                expectation: spread_base_damage * (1.0 + bonus) * (1.0 + critical_damage * critical),
+                is_heal: false,
+                is_shield: false
+            } * (defensive_ratio * resistance_ratio);
+            Some(dmg)
+        };
+
         DamageAnalysis {
             atk: atk_comp.0,
             atk_ratio: atk_ratio_comp.0,
@@ -205,7 +226,9 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
             normal: damage_normal,
             melt: damage_melt,
-            vaporize: damage_vaporize
+            vaporize: damage_vaporize,
+            spread: if element == Element::Dendro { damage_spread_or_aggravate.clone() } else { None },
+            aggravate: if element == Element::Electro { damage_spread_or_aggravate } else { None }
         }
     }
 
@@ -259,7 +282,9 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
             normal: damage_normal,
             melt: None,
-            vaporize: None
+            vaporize: None,
+            spread: None,
+            aggravate: None,
         }
     }
 
@@ -313,7 +338,9 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
             normal: damage_normal,
             melt: None,
-            vaporize: None
+            vaporize: None,
+            spread: None,
+            aggravate: None,
         }
     }
 }

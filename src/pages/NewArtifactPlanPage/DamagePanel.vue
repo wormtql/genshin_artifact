@@ -67,29 +67,48 @@ export default {
 
             const r = (x) => Math.round(x)
 
-            temp.push({
-                expectation: r(this.analysisFromWasm.normal?.expectation) ?? NO_DATA,
-                critical: r(this.analysisFromWasm.normal?.critical) ?? NO_DATA,
-                nonCritical: r(this.analysisFromWasm.normal?.non_critical) ?? NO_DATA,
-                name: this.normalDamageTitle
-                // name: t("dmg", this.element)
-            })
-
-            if (this.analysisFromWasm.melt) {
+            const push = (name, title) => {
                 temp.push({
-                    expectation: r(this.analysisFromWasm.melt?.expectation) ?? NO_DATA,
-                    critical: r(this.analysisFromWasm.melt?.critical) ?? NO_DATA,
-                    nonCritical: r(this.analysisFromWasm.melt?.non_critical) ?? NO_DATA,
-                    name: this.t("dmg.melt")
+                    expectation: r(this.analysisFromWasm[name]?.expectation) ?? NO_DATA,
+                    critical: r(this.analysisFromWasm[name]?.critical) ?? NO_DATA,
+                    nonCritical: r(this.analysisFromWasm[name]?.non_critical) ?? NO_DATA,
+                    name: title,
                 })
             }
+
+            // temp.push({
+            //     expectation: r(this.analysisFromWasm.normal?.expectation) ?? NO_DATA,
+            //     critical: r(this.analysisFromWasm.normal?.critical) ?? NO_DATA,
+            //     nonCritical: r(this.analysisFromWasm.normal?.non_critical) ?? NO_DATA,
+            //     name: this.normalDamageTitle
+            //     // name: t("dmg", this.element)
+            // })
+
+            push("normal", this.normalDamageTitle)
+
+            if (this.analysisFromWasm.melt) {
+                push("melt", this.t("dmg.melt"))
+                // temp.push({
+                //     expectation: r(this.analysisFromWasm.melt?.expectation) ?? NO_DATA,
+                //     critical: r(this.analysisFromWasm.melt?.critical) ?? NO_DATA,
+                //     nonCritical: r(this.analysisFromWasm.melt?.non_critical) ?? NO_DATA,
+                //     name: this.t("dmg.melt")
+                // })
+            }
             if (this.analysisFromWasm.vaporize) {
-                temp.push({
-                    expectation: r(this.analysisFromWasm.vaporize?.expectation) ?? NO_DATA,
-                    critical: r(this.analysisFromWasm.vaporize?.critical) ?? NO_DATA,
-                    nonCritical: r(this.analysisFromWasm.vaporize?.non_critical) ?? NO_DATA,
-                    name: this.t("dmg.vaporize")
-                })
+                push("vaporize", this.t("dmg.vaporize"))
+                // temp.push({
+                //     expectation: r(this.analysisFromWasm.vaporize?.expectation) ?? NO_DATA,
+                //     critical: r(this.analysisFromWasm.vaporize?.critical) ?? NO_DATA,
+                //     nonCritical: r(this.analysisFromWasm.vaporize?.non_critical) ?? NO_DATA,
+                //     name: this.t("dmg.vaporize")
+                // })
+            }
+            if (this.analysisFromWasm.spread) {
+                push("spread", this.t("dmg.spread"))
+            }
+            if (this.analysisFromWasm.aggravate) {
+                push("aggravate", this.t("dmg.aggravate"))
             }
 
             return temp

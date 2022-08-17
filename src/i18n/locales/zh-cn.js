@@ -1467,6 +1467,8 @@ export default {
         melt: "融化",
         vaporize: "蒸发",
         heal: "治疗",
+        spread: "蔓激化",
+        aggravate: "超激化",
     },
     characterSkill: {
         Albedo: ["普通攻击·西风剑术·白", "创生法·拟造阳华", "诞生式·大地之潮"],

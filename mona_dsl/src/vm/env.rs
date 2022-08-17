@@ -102,6 +102,8 @@ impl MonaEnv {
                     normal: damage.normal.clone(),
                     melt: damage.melt.clone(),
                     vaporize: damage.vaporize.clone(),
+                    spread: damage.spread.clone(),
+                    aggravate: damage.aggravate.clone(),
                     is_heal: damage.is_heal,
                     is_shield: damage.is_shield
                 };

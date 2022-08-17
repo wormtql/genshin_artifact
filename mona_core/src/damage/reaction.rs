@@ -8,4 +8,8 @@ impl Reaction {
     pub fn transformative(em: f64) -> f64 {
         em * 16.0 / (em + 2000.0)
     }
+
+    pub fn catalyze(em: f64) -> f64 {
+        em * 5.0 / (em + 1200.0)
+    }
 }

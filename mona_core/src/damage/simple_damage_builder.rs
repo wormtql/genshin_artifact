@@ -2,6 +2,7 @@ use crate::attribute::{Attribute, AttributeCommon, AttributeName, SimpleAttribut
 use crate::common::{DamageResult, Element, SkillType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::damage_result::SimpleDamageResult;
+use crate::damage::level_coefficient::LEVEL_MULTIPLIER;
 use crate::damage::reaction::Reaction;
 use crate::enemies::Enemy;
 
@@ -105,6 +106,7 @@ impl DamageBuilder for SimpleDamageBuilder {
         let atk = attribute.get_atk() + self.extra_atk;
         let def = attribute.get_def() + self.extra_def;
         let hp = attribute.get_hp() + self.extra_hp;
+        let em = self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
 
         let base
             = (attribute.get_def_ratio(element, skill) + self.ratio_def) * def
@@ -126,12 +128,16 @@ impl DamageBuilder for SimpleDamageBuilder {
             = attribute.get_critical_damage(element, skill)
             + self.extra_critical_damage;
 
-        let def_minus = self.extra_def_minus + attribute.get_enemy_def_minus(element, skill);
-        let def_penetration = self.extra_def_penetration + attribute.get_value(AttributeName::DefPenetration);
-        let defensive_ratio = enemy.get_defensive_ratio(character_level, def_minus, def_penetration);
-        let res_minus = self.extra_res_minus + attribute.get_enemy_res_minus(element, skill);
-        // let res_minus = self.extra_res_minus + attribute.get_value(AttributeName::ResMinusBase);
-        let resistance_ratio = enemy.get_resistance_ratio(element, res_minus);
+
+        let defensive_ratio = {
+            let def_minus = self.extra_def_minus + attribute.get_enemy_def_minus(element, skill);
+            let def_penetration = self.extra_def_penetration + attribute.get_value(AttributeName::DefPenetration);
+            enemy.get_defensive_ratio(character_level, def_minus, def_penetration)
+        };
+        let resistance_ratio = {
+            let res_minus = self.extra_res_minus + attribute.get_enemy_res_minus(element, skill);
+            enemy.get_resistance_ratio(element, res_minus)
+        };
 
         let normal_damage = DamageResult {
             critical: base * (1.0 + bonus) * (1.0 + critical_damage),
@@ -141,7 +147,6 @@ impl DamageBuilder for SimpleDamageBuilder {
             is_shield: false
         } * (defensive_ratio * resistance_ratio);
 
-        let em = self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
         let em_amp = Reaction::amp(em);
 
         let melt_damage = if element != Element::Pyro && element != Element::Cryo {
@@ -160,10 +165,31 @@ impl DamageBuilder for SimpleDamageBuilder {
             Some(normal_damage * (reaction_ratio * (1.0 + enhance)))
         };
 
+        let spread_or_aggravate_damage = if element != Element::Dendro && element != Element::Electro {
+            None
+        } else {
+            let spread_base_damage = {
+                let reaction_ratio = if element == Element::Dendro { 1.25 } else { 1.15 };
+                let bonus = Reaction::catalyze(em);
+                base + LEVEL_MULTIPLIER[character_level - 1] * reaction_ratio * (1.0 + bonus)
+            };
+
+            let dmg = DamageResult {
+                critical: spread_base_damage * (1.0 + bonus) * (1.0 + critical_damage),
+                non_critical: spread_base_damage * (1.0 + bonus),
+                expectation: spread_base_damage * (1.0 + bonus) * (1.0 + critical_damage * critical_rate),
+                is_heal: false,
+                is_shield: false
+            } * (defensive_ratio * resistance_ratio);
+            Some(dmg)
+        };
+
         SimpleDamageResult {
             normal: normal_damage,
             melt: melt_damage,
             vaporize: vaporize_damage,
+            spread: if element == Element::Dendro { spread_or_aggravate_damage.clone() } else { None },
+            aggravate: if element == Element::Electro { spread_or_aggravate_damage.clone() } else { None },
             is_shield: false,
             is_heal: false,
         }
@@ -191,6 +217,8 @@ impl DamageBuilder for SimpleDamageBuilder {
             normal: result,
             melt: None,
             vaporize: None,
+            spread: None,
+            aggravate: None,
             is_heal: true,
             is_shield: false,
         };
@@ -218,6 +246,8 @@ impl DamageBuilder for SimpleDamageBuilder {
             normal: result,
             melt: None,
             vaporize: None,
+            spread: None,
+            aggravate: None,
             is_shield: true,
             is_heal: false,
         };
