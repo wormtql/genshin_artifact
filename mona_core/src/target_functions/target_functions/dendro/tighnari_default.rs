@@ -6,6 +6,7 @@ use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::tighnari::Tighnari;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
 use crate::target_functions::target_function::TargetFunctionMetaTrait;
@@ -16,11 +17,13 @@ use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
-pub struct TighnariDefaultTargetFunction;
+pub struct TighnariDefaultTargetFunction {
+    pub spread_rate: f64,
+}
 
 impl TargetFunction for TighnariDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
-        todo!()
+        unimplemented!()
     }
 
     fn get_default_artifact_config(&self, team_config: &TeamQuantization) -> ArtifactEffectConfig {
@@ -36,7 +39,10 @@ impl TargetFunction for TighnariDefaultTargetFunction {
         type S = <Tighnari as CharacterTrait>::DamageEnumType;
         let dmg_b = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::Charged3, &CharacterSkillConfig::NoConfig);
 
-        dmg_b.normal.expectation
+        let normal_rate = 1.0 - self.spread_rate;
+        let dmg = dmg_b.normal.expectation * normal_rate + dmg_b.spread.unwrap().expectation * self.spread_rate;
+
+        dmg
     }
 }
 
@@ -51,7 +57,20 @@ impl TargetFunctionMetaTrait for TighnariDefaultTargetFunction {
         image: TargetFunctionMetaImage::Avatar
     };
 
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "spread_rate",
+            title: "t16",
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
+        }
+    ]);
+
     fn create(character: &CharacterCommonData, weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        Box::new(TighnariDefaultTargetFunction)
+        let spread_rate = match *config {
+            TargetFunctionConfig::TighnariDefault { spread_rate } => spread_rate,
+            _ => 0.0
+        };
+        Box::new(TighnariDefaultTargetFunction { spread_rate: spread_rate.clamp(0.0, 1.0) })
     }
 }
