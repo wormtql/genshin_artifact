@@ -20,6 +20,7 @@ pub enum BuffConfig {
     DEFMinus { p: f64 },
     ResMinus { p: f64 },
     HealingBonus { p: f64 },
+    BaseDmg { value: f64 },
 
     BennettQ { base_atk: f64, c1: bool, skill3: usize },
     EulaE { skill2: usize },

@@ -23,6 +23,7 @@ pub enum BuffName {
     DEFMinus,
     ResMinus,
     HealingBonus,
+    BaseDmg,
 
     // character
     AlbedoTalent2,

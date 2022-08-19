@@ -1882,6 +1882,7 @@ export default {
         DoriC4: "多莉-「酌盈剂虚」",
         SapwoodBlade: "原木刀/森林王器-「种识之叶」",
         Moonpiercer: "贯月矢-「苏生之叶」",
+        BaseDmg: "基础伤害",
     },
     buffDesc: {
         ATKFixed: "",
@@ -1976,6 +1977,7 @@ export default {
         DoriC4: "多莉命座4：与灯中幽精相连的角色，依据当前的生命值与元素能量，获得以下提升：<br>·生命值低于50%时，提升50%受治疗加成；<br>·元素能量低于50%时，提升30%元素充能效率。",
         SapwoodBlade: "拾取种识之叶的角色元素精通提升60/75/90/105/120点",
         Moonpiercer: "拾取苏生之叶的角色攻击力提升16%/20%/24%/28%/32%",
+        BaseDmg: "跟攻击力*倍率同一个乘区",
     },
     buffGenre: {
         Character: "角色引发的BUFF",
