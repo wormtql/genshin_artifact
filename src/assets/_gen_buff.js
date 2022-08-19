@@ -57,6 +57,10 @@ import HealingBonus_image from "@image/misc/sword"
 
 
 
+import BaseDmg_image from "@image/misc/sword"
+
+
+
 
 
 
@@ -442,6 +446,21 @@ export default {
         config: [
             
             {"default":0.0,"name":"p","title":"w4","type":"floatPercentageInput"},
+            
+        ],
+    },
+    
+    "BaseDmg": {
+        name: "BaseDmg",
+        // chs: "基础伤害",
+        
+        badge: BaseDmg_image,
+        
+        genre: "Common",
+        // description: "",
+        config: [
+            
+            {"default":0.0,"name":"value","title":"w4","type":"floatInput"},
             
         ],
     },

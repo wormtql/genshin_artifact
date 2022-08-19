@@ -19,6 +19,8 @@ pub struct DamageAnalysis {
     pub vaporize_enhance: HashMap<String, f64>,
     pub healing_bonus: HashMap<String, f64>,
     pub shield_strength: HashMap<String, f64>,
+    pub spread_compose: HashMap<String, f64>,
+    pub aggravate_compose: HashMap<String, f64>,
 
     pub def_minus: HashMap<String, f64>,
     pub def_penetration: HashMap<String, f64>,

@@ -165,13 +165,14 @@ impl DamageBuilder for SimpleDamageBuilder {
             Some(normal_damage * (reaction_ratio * (1.0 + enhance)))
         };
 
-        let spread_or_aggravate_damage = if element != Element::Dendro && element != Element::Electro {
+        let spread_damage = if element != Element::Dendro {
             None
         } else {
             let spread_base_damage = {
-                let reaction_ratio = if element == Element::Dendro { 1.25 } else { 1.15 };
+                let reaction_ratio = 1.25;
                 let bonus = Reaction::catalyze(em);
-                base + LEVEL_MULTIPLIER[character_level - 1] * reaction_ratio * (1.0 + bonus)
+                let enhance_spread = attribute.get_value(AttributeName::EnhanceSpread);
+                base + LEVEL_MULTIPLIER[character_level - 1] * reaction_ratio * (1.0 + bonus + enhance_spread)
             };
 
             let dmg = DamageResult {
@@ -184,12 +185,32 @@ impl DamageBuilder for SimpleDamageBuilder {
             Some(dmg)
         };
 
+        let aggravate_damage = if element != Element::Electro {
+            None
+        } else {
+            let aggravate_base_damage = {
+                let reaction_ratio = 1.15;
+                let bonus = Reaction::catalyze(em);
+                let enhance_aggravate = attribute.get_value(AttributeName::EnhanceAggravate);
+                base + LEVEL_MULTIPLIER[character_level - 1] * reaction_ratio * (1.0 + bonus + enhance_aggravate)
+            };
+
+            let dmg = DamageResult {
+                critical: aggravate_base_damage * (1.0 + bonus) * (1.0 + critical_damage),
+                non_critical: aggravate_base_damage * (1.0 + bonus),
+                expectation: aggravate_base_damage * (1.0 + bonus) * (1.0 + critical_damage * critical_rate),
+                is_heal: false,
+                is_shield: false
+            } * (defensive_ratio * resistance_ratio);
+            Some(dmg)
+        };
+
         SimpleDamageResult {
             normal: normal_damage,
             melt: melt_damage,
             vaporize: vaporize_damage,
-            spread: if element == Element::Dendro { spread_or_aggravate_damage.clone() } else { None },
-            aggravate: if element == Element::Electro { spread_or_aggravate_damage.clone() } else { None },
+            spread: spread_damage,
+            aggravate: aggravate_damage,
             is_shield: false,
             is_heal: false,
         }

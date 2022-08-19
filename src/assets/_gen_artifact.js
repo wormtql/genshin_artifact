@@ -993,28 +993,28 @@ export default {
         flower: {
             // chs: "迷宫的游人",
             // url: DeepwoodMemories_flower,
-            url: getIcon("UI_RelicIcon_15005_4")
+            url: getIcon("UI_RelicIcon_10013_1")
         },
         
         
         feather: {
             // chs: "翠蔓的智者",
             // url: DeepwoodMemories_feather,
-            url: getIcon("UI_RelicIcon_15005_4")
+            url: getIcon("UI_RelicIcon_10013_1")
         },
         
         
         sand: {
             // chs: "贤智的定期",
             // url: DeepwoodMemories_sand,
-            url: getIcon("UI_RelicIcon_15005_4")
+            url: getIcon("UI_RelicIcon_10013_1")
         },
         
         
         cup: {
             // chs: "迷误者之灯",
             // url: DeepwoodMemories_goblet,
-            url: getIcon("UI_RelicIcon_10009_4")
+            url: getIcon("UI_RelicIcon_10009_1")
         },
         
         
@@ -1251,21 +1251,21 @@ export default {
         sand: {
             // chs: "沉金的岁月",
             // url: GildedDreams_sand,
-            url: getIcon("UI_RelicIcon_15005_4")
+            url: getIcon("UI_RelicIcon_10013_1")
         },
         
         
         cup: {
             // chs: "如蜜的终宴",
             // url: GildedDreams_goblet,
-            url: getIcon("UI_RelicIcon_15005_4")
+            url: getIcon("UI_RelicIcon_10013_1")
         },
         
         
         head: {
             // chs: "沙王的投影",
             // url: GildedDreams_head,
-            url: getIcon("UI_RelicIcon_15005_4")
+            url: getIcon("UI_RelicIcon_10013_1")
         },
         
         config4: [

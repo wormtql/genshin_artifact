@@ -88,6 +88,9 @@ pub enum AttributeName {
     BonusDendro,
     BonusPhysical,
 
+    EnhanceBurgeon,
+    EnhanceHyperbloom,
+    EnhanceBloom,
     EnhanceOverload,
     EnhanceBurning,
     EnhanceShatter,
@@ -100,6 +103,8 @@ pub enum AttributeName {
     EnhanceSwirlBase,
     EnhanceVaporize,
     EnhanceMelt,
+    EnhanceAggravate,
+    EnhanceSpread,
 
     HPRatioBase,
     HPRatioNormalAttack,

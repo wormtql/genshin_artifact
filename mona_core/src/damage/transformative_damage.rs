@@ -54,6 +54,9 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &
     let enhance_superconduct = attribute.get_value(AttributeName::EnhanceSuperconduct);
     let enhance_shatter = attribute.get_value(AttributeName::EnhanceShatter);
     let enhance_electro_charged = attribute.get_value(AttributeName::EnhanceElectroCharged);
+    let enhance_bloom = attribute.get_value(AttributeName::EnhanceBloom);
+    let enhance_hyperbloom = attribute.get_value(AttributeName::EnhanceHyperbloom);
+    let enhance_burgeon = attribute.get_value(AttributeName::EnhanceBurgeon);
 
     let base_swirl = get_transformative_base(level, TransformativeType::SwirlPyro);
     let base_overload = get_transformative_base(level, TransformativeType::Overload);
@@ -91,9 +94,9 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &
     let dmg_shatter = base_shatter * res_ratio_physical * (1.0 + em_bonus + enhance_shatter);
     let dmg_electro_charged = base_electro_charged * res_ratio_electro * (1.0 + em_bonus + enhance_electro_charged);
     // todo specific enhance
-    let dmg_bloom = base_bloom * res_ratio_dendro * (1.0 + em_bonus);
-    let dmg_hyperbloom = base_hyperbloom * res_ratio_dendro * (1.0 + em_bonus);
-    let dmg_burgeon = base_burgeon * res_ratio_dendro * (1.0 + em_bonus);
+    let dmg_bloom = base_bloom * res_ratio_dendro * (1.0 + em_bonus + enhance_bloom);
+    let dmg_hyperbloom = base_hyperbloom * res_ratio_dendro * (1.0 + em_bonus + enhance_hyperbloom);
+    let dmg_burgeon = base_burgeon * res_ratio_dendro * (1.0 + em_bonus + enhance_burgeon);
 
     TransformativeDamage {
         swirl_cryo: dmg_swirl_cryo,
