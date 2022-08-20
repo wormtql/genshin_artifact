@@ -121,8 +121,8 @@ impl EulaDamageEnum {
         match *self {
             Charged1 | Charged2 => SkillType::ChargedAttack,
             Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
-            E1 | E2 | E3 | EShatteredLightfall => SkillType::ElementalSkill,
-            Q1 | QLightfall => SkillType::ElementalBurst,
+            E1 | E2 | E3 => SkillType::ElementalSkill,
+            Q1 | QLightfall | EShatteredLightfall => SkillType::ElementalBurst,
             _ => SkillType::NormalAttack
         }
     }
