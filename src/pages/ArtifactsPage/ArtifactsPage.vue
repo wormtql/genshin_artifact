@@ -161,6 +161,14 @@
                     :placeholder="t('misc.mainStat')"
                 ></select-artifact-main-stat>
             </div>
+            <div class="filter-item">
+                <select-artifact-main-stat
+                    v-model="filterSubStat"
+                    :include-any="false"
+                    :multiple="true"
+                    :placeholder="t('misc.subStat')"
+                ></select-artifact-main-stat>
+            </div>
 
             <el-checkbox v-model="filterGe16" class="show-only-16">{{ t("artPage.show16") }}</el-checkbox>
         </div>
@@ -283,6 +291,7 @@ function deleteArtifact(id: number) {
 // artifacts filters and display
 const filterSet: Ref<ArtifactSetName[]> = ref([])
 const filterMainStat: Ref<ArtifactStatName[]> = ref([])
+const filterSubStat: Ref<Array<ArtifactStatName>> = ref([])
 const filterGe16 = ref(true)
 
 const artifactsCurrentSlot = computed(() => {
@@ -291,12 +300,11 @@ const artifactsCurrentSlot = computed(() => {
 
 const filteredArtifacts = computed(() => {
     let results = [];
-
     for (let artifact of artifactsCurrentSlot.value) {
         const setName = artifact.setName;
         const mainStatName = artifact.mainTag.name;
         const level = artifact.level;
-
+        const subStatName = [...artifact.normalTags.flatMap(item => item.name), mainStatName]
         if (filterSet.value.length > 0 && filterSet.value.indexOf(setName) === -1) {
             continue;
         }
@@ -305,6 +313,9 @@ const filteredArtifacts = computed(() => {
         }
         if (filterGe16.value && level < 16) {
             continue;
+        }
+        if (filterSubStat.value.length > 0 && !filterSubStat.value.every(item => subStatName.includes(item))) {
+            continue
         }
 
         results.push(artifact);
@@ -638,5 +649,8 @@ function handleOutputCommand(command: string) {
 
 .tool-bar .tool-right {
     float: right;
+}
+.el-select{
+    margin-right: 10px
 }
 </style>
