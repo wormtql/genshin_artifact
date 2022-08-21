@@ -167,6 +167,7 @@
                     :include-any="false"
                     :multiple="true"
                     :placeholder="t('misc.subStat')"
+                    :limitNum="4"
                 ></select-artifact-main-stat>
             </div>
 

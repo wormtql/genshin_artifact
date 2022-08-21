@@ -4,6 +4,7 @@
         @update:modelValue="emits('update:modelValue', $event)"
         :multiple="props.multiple"
         :placeholder="props.placeholder"
+        :multiple-limit="props.limitNum"
     >
         <el-option
             v-if="props.includeAny"
@@ -24,11 +25,9 @@ import { computed } from "vue"
 import { artifactTags, mainStatMap } from "@const/artifact"
 import type {ArtifactMainStatName, ArtifactPosition} from "@/types/artifact"
 import {useI18n} from "@/i18n/i18n";
-
 interface Emits {
     (e: "update:modelValue", v: ModelValue): void
 }
-
 const emits = defineEmits<Emits>()
 
 type ModelValue = "any" | ArtifactMainStatName | ArtifactMainStatName[] | null
@@ -39,6 +38,7 @@ interface Props {
     multiple?: boolean,
     position?: ArtifactPosition | null,
     placeholder?: string
+    limitNum: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -46,7 +46,8 @@ const props = withDefaults(defineProps<Props>(), {
     includeAny: true,
     multiple: false,
     position: null,
-    placeholder: "Select"
+    placeholder: "Select",
+    limitNum: 1000
 })
 
 const tagList = computed(() => {
