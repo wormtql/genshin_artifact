@@ -205,8 +205,8 @@ export const artifactTags: Record<ArtifactStatName, ArtifactTagData> = {
         "chs": "草元素伤害加成",
         "percentage": true,
         "max": {
-            "4": 0.435,
-            "5": 0.583
+            "4": 0.348,
+            "5": 0.466
         }
     }
 }
