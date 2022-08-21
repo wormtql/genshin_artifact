@@ -19,11 +19,13 @@ impl<A: Attribute> WeaponEffect<A> for HuntersPathEffect {
         let refine = data.refine as f64;
         attribute.add_elemental_bonus("猎人之径被动", refine * 0.03 + 0.09);
 
+        let rate = self.rate;
+
         attribute.add_edge1(
             AttributeName::ElementalMastery,
             AttributeName::ExtraDmgChargedAttack,
-            Box::new(move |em: f64, _| (0.4 * refine + 1.2) * em),
-            Box::new(move |grad, x1, _x2| (grad * (0.4 * refine + 1.2), 0.0)),
+            Box::new(move |em: f64, _| (0.4 * refine + 1.2) * em * rate),
+            Box::new(move |grad, x1, _x2| (grad * (0.4 * refine + 1.2) * rate, 0.0)),
             "猎人之径被动等效"
         );
     }
