@@ -61,12 +61,8 @@
             ></el-alert>
             <el-radio-group v-model="algorithm">
                 <el-radio label="AStar">{{ t("calcPage.aStar") }}</el-radio>
-                <el-radio label="Heuristic">{{t("calcPage.heuristic")}}</el-radio>
+<!--                <el-radio label="Heuristic">{{t("calcPage.heuristic")}}</el-radio>-->
                 <el-radio label="Naive">{{ t("calcPage.naive") }}</el-radio>
-<!--                <el-radio label="ExtendBound80">ExtendBound-0.8</el-radio>-->
-<!--                <el-radio label="ExtendBound70">ExtendBound-0.7</el-radio>-->
-<!--                <el-radio label="ExtendBound60">ExtendBound-0.6</el-radio>-->
-<!--                <el-radio label="ExtendBound50">ExtendBound-0.5</el-radio>-->
             </el-radio-group>
 
             <p class="common-title2">{{ t("calcPage.constSet") }}</p>
@@ -1075,6 +1071,10 @@ function usePreset(name: string) {
 
     // use compute mode
     algorithm.value = item.algorithm ?? "AStar"
+    // disable heuristic algorithm in 5.11
+    if (algorithm.value === "Heuristic") {
+        algorithm.value = "AStar"
+    }
 
     // use artifact effect mode
     artifactEffectMode.value = item.artifactEffectMode ?? "auto"
