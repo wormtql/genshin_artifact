@@ -1296,6 +1296,8 @@ export default {
         bonus1: "1词条收益",
         statCount: "词条数",
         gain: "相对提升幅度",
+        lockAll: "锁定全部",
+        unlockAll: "解锁全部",
     },
     tfName: {
         MaxATK: "最大攻击力",

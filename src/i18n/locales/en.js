@@ -1236,6 +1236,8 @@ export default {
         bonus1: "1 Roll Gain", // todo
         statCount: "Roll Count", // todo
         gain: "Relative Gain",
+        lockAll: "Lock All",
+        unlockAll: "Unlock All",
     },
     tfName: {
         MaxATK: "Max ATK",

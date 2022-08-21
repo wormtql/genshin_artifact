@@ -111,6 +111,16 @@ export function use5Artifacts() {
         return base
     })
 
+    const artifactCount = computed(() => {
+        let count = 0
+        for (const id of artifactIds.value) {
+            if (id !== -1) {
+                count += 1
+            }
+        }
+        return count
+    })
+
     function setArtifact(index: number, id: number) {
         artifactIds.value[index] = id
     }
@@ -150,6 +160,7 @@ export function use5Artifacts() {
 
     return {
         artifactIds,
+        artifactCount,
         artifactSingleConfig,
         artifactWasmFormat,
 

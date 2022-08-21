@@ -528,6 +528,11 @@
                             :icon="IconEpFolder"
                             @click="handleClickUseKumi"
                         >{{ t("calcPage.useKumi") }}</el-button>
+                        <el-button
+                            v-show="artifactCount > 0"
+                            :icon="isAllLocked ? IconEpUnlock : IconEpLock"
+                            @click="() => { isAllLocked ? handleUnlockAll() : handleLockAll() }"
+                        >{{ isAllLocked ? t("calcPage.unlockAll") : t("calcPage.lockAll") }}</el-button>
                     </el-button-group>
                 </div>
 
@@ -668,6 +673,8 @@ import IconEpMenu from "~icons/ep/menu"
 import IconEpHistogram from "~icons/ep/histogram"
 import IconEpStarFilled from "~icons/ep/star-filled"
 import IconEpFolder from "~icons/ep/folder"
+import IconEpLock from "~icons/ep/lock"
+import IconEpUnlock from "~icons/ep/unlock"
 import {useComputeConstraint} from "@/composables/constraint"
 import {BuffEntry, useBuff} from "@/composables/buff"
 import {type PresetEntry, usePresetStore} from "@/store/pinia/preset"
@@ -797,6 +804,7 @@ watch(() => miscTargetFunctionTab.value, v => {
 // artifacts
 const {
     artifactIds,
+    artifactCount,
     artifactSingleConfig,
     artifactWasmFormat,
 
@@ -827,6 +835,30 @@ function handleSelectArtifact(id: number) {
 
     showSelectArtifactDialog.value = false
 }
+
+function handleLockAll() {
+    for (const id of artifactIds.value) {
+        artifactStore.lockArtifact(id)
+    }
+}
+
+function handleUnlockAll() {
+    for (const id of artifactIds.value) {
+        artifactStore.unlockArtifact(id)
+    }
+}
+
+const isAllLocked = computed(() => {
+    for (const id of artifactIds.value) {
+        let artifact = artifactStore.getArtifact(id)
+        if (artifact) {
+            if (!artifact.omit) {
+                return false
+            }
+        }
+    }
+    return true
+})
 
 
 //////////////////////////////////////////////////////////////
