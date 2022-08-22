@@ -37,6 +37,10 @@ import AnemoDamage_image from "@image/misc/wind_slime"
 
 
 
+import DendroDamage_image from "@image/misc/dendro"
+
+
+
 import GeoDamage_image from "@image/misc/sword"
 
 
@@ -342,6 +346,26 @@ export default {
         "for": "common",
         
         badge: AnemoDamage_image,
+        
+        config: [
+            
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
+            
+        ],
+    },
+    
+    "DendroDamage": {
+        name: "DendroDamage",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "common",
+        
+        badge: DendroDamage_image,
         
         config: [
             
@@ -1593,7 +1617,7 @@ export default {
         ],
         "for": "Tighnari",
         
-        badge: getImage("UI_AvatarIcon_Diona"),
+        badge: getImage("UI_AvatarIcon_Tighnari"),
         
         config: [
             

@@ -213,6 +213,14 @@ import ResonanceGeo2_image from "@image/misc/geo"
 
 
 
+import ResonanceHydro2_image from "@image/misc/hydro"
+
+
+
+import ResonanceDendro2_image from "@image/misc/dendro"
+
+
+
 import Instructor4_image from "@image/artifacts/Instructor_flower"
 
 
@@ -1443,7 +1451,7 @@ export default {
         name: "SapwoodBlade",
         // chs: "",
         
-        badge: getImageW("Sword_Sapwood"),
+        badge: getImageW("Sword_Arakalari"),
         
         genre: "Weapon",
         // description: "",
@@ -1460,7 +1468,7 @@ export default {
         name: "Moonpiercer",
         // chs: "",
         
-        badge: getImageW("Pole_Moonpiercer"),
+        badge: getImageW("Pole_Arakalari"),
         
         genre: "Weapon",
         // description: "",
@@ -1507,6 +1515,36 @@ export default {
         
         genre: "Resonance",
         // description: "护盾强效提升15%。角色处于护盾保护状态时，①造成的伤害提升15%，对敌人造成伤害时会使敌人的的②岩元素抗性降低20%，持续15秒。",
+        config: [
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":"b35","type":"float"},
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":"b36","type":"float"},
+            
+        ],
+    },
+    
+    "ResonanceHydro2": {
+        name: "ResonanceHydro2",
+        // chs: "元素共鸣-愈疗之水",
+        
+        badge: ResonanceHydro2_image,
+        
+        genre: "Resonance",
+        // description: "",
+        config: [
+            
+        ],
+    },
+    
+    "ResonanceDendro2": {
+        name: "ResonanceDendro2",
+        // chs: "元素共鸣-蔓生之草",
+        
+        badge: ResonanceDendro2_image,
+        
+        genre: "Resonance",
+        // description: "",
         config: [
             
             {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":"b35","type":"float"},

@@ -26,7 +26,7 @@ pub struct SapwoodBlade;
 impl WeaponTrait for SapwoodBlade {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SapwoodBlade,
-        internal_name: "Sword_Sapwood", // todo
+        internal_name: "Sword_Arakalari",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge67),
         weapon_base: WeaponBaseATKFamily::ATK565,

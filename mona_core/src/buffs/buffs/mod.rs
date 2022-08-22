@@ -2,7 +2,7 @@ use crate::attribute::Attribute;
 use crate::buffs::{Buff, BuffConfig};
 
 pub use common::*;
-pub use resonance::{BuffResonanceGeo2, BuffResonancePyro2, BuffResonanceCryo2};
+pub use resonance::*;
 pub use character::*;
 pub use weapon::*;
 pub use artifact::instructor::BuffInstructor4;

@@ -27,7 +27,7 @@ pub struct Moonpiercer;
 impl WeaponTrait for Moonpiercer {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Moonpiercer,
-        internal_name: "Pole_Moonpiercer", // todo
+        internal_name: "Pole_Arakalari",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM24),
         weapon_base: WeaponBaseATKFamily::ATK565,

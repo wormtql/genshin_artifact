@@ -13,7 +13,7 @@ pub struct Trawler;
 impl WeaponTrait for Trawler {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Trawler,
-        internal_name: "Bow_Trawler", // todo
+        internal_name: "Bow_Fin",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge100),
         weapon_base: WeaponBaseATKFamily::ATK510,

@@ -17,7 +17,7 @@ pub struct ForestRegalia;
 impl WeaponTrait for ForestRegalia {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::ForestRegalia,
-        internal_name: "Claymore_Regalia", // todo
+        internal_name: "Claymore_Arakalari",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge67),
         weapon_base: WeaponBaseATKFamily::ATK565,

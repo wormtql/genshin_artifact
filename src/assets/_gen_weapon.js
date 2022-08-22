@@ -893,11 +893,11 @@ export default {
 
     SapwoodBlade: {
         name: "SapwoodBlade",
-        internalName: "Sword_Sapwood",
+        internalName: "Sword_Arakalari",
         // chs: "",
         star: 4,
         // url: SapwoodBlade_tn,
-        url: imageUrl("Sword_Sapwood"),
+        url: imageUrl("Sword_Arakalari"),
         type: "Sword",
 
         
@@ -1437,11 +1437,11 @@ export default {
 
     ForestRegalia: {
         name: "ForestRegalia",
-        internalName: "Claymore_Regalia",
+        internalName: "Claymore_Arakalari",
         // chs: "",
         star: 4,
         // url: ForestRegalia_tn,
-        url: imageUrl("Claymore_Regalia"),
+        url: imageUrl("Claymore_Arakalari"),
         type: "Claymore",
 
         
@@ -1927,11 +1927,11 @@ export default {
 
     Moonpiercer: {
         name: "Moonpiercer",
-        internalName: "Pole_Moonpiercer",
+        internalName: "Pole_Arakalari",
         // chs: "",
         star: 4,
         // url: Moonpiercer_tn,
-        url: imageUrl("Pole_Moonpiercer"),
+        url: imageUrl("Pole_Arakalari"),
         type: "Polearm",
 
         
@@ -2481,11 +2481,11 @@ export default {
 
     FruitOfFulfillment: {
         name: "FruitOfFulfillment",
-        internalName: "Catalyst_FruitOfFulfillment",
+        internalName: "Catalyst_Arakalari",
         // chs: "",
         star: 4,
         // url: FruitOfFulfillment_tn,
-        url: imageUrl("Catalyst_FruitOfFulfillment"),
+        url: imageUrl("Catalyst_Arakalari"),
         type: "Catalyst",
 
         
@@ -3101,11 +3101,11 @@ export default {
 
     HuntersPath: {
         name: "HuntersPath",
-        internalName: "Bow_hunters",
+        internalName: "Bow_Ayus",
         // chs: "",
         star: 5,
         // url: HuntersPath_tn,
-        url: imageUrl("Bow_hunters"),
+        url: imageUrl("Bow_Ayus"),
         type: "Bow",
 
         
@@ -3123,11 +3123,11 @@ export default {
 
     Trawler: {
         name: "Trawler",
-        internalName: "Bow_Trawler",
+        internalName: "Bow_Fin",
         // chs: "",
         star: 4,
         // url: Trawler_tn,
-        url: imageUrl("Bow_Trawler"),
+        url: imageUrl("Bow_Fin"),
         type: "Bow",
 
         
@@ -3141,11 +3141,11 @@ export default {
 
     KingsSquire: {
         name: "KingsSquire",
-        internalName: "Bow_KingsSquire",
+        internalName: "Bow_Arakalari",
         // chs: "",
         star: 4,
         // url: KingsSquire_tn,
-        url: imageUrl("Bow_KingsSquire"),
+        url: imageUrl("Bow_Arakalari"),
         type: "Bow",
 
         

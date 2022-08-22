@@ -28,7 +28,7 @@ pub struct KingsSquire;
 impl WeaponTrait for KingsSquire {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::KingsSquire,
-        internal_name: "Bow_KingsSquire", // todo
+        internal_name: "Bow_Arakalari",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK120),
         weapon_base: WeaponBaseATKFamily::ATK454,

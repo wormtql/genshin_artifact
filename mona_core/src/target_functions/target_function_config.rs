@@ -11,6 +11,7 @@ pub enum TargetFunctionConfig {
     ElectroDamage { t: usize },
     AnemoDamage { t: usize },
     GeoDamage { t: usize },
+    DendroDamage { t: usize },
     PhysicalDamage { t: usize },
     MaxVaporize { t: usize, skill: SkillType },
     MaxMelt { t: usize, skill: SkillType },

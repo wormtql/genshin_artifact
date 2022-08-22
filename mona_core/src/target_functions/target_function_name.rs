@@ -16,6 +16,7 @@ pub enum TargetFunctionName {
     HydroDamage,
     ElectroDamage,
     AnemoDamage,
+    DendroDamage,
     GeoDamage,
     PhysicalDamage,
     MaxVaporize,

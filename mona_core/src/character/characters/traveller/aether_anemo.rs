@@ -224,6 +224,6 @@ impl CharacterTrait for AetherAnemo {
     }
 
     fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {
-        todo!()
+        unimplemented!()
     }
 }

@@ -28,7 +28,7 @@ pub struct FruitOfFulfillment;
 impl WeaponTrait for FruitOfFulfillment {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FruitOfFulfillment,
-        internal_name: "Catalyst_FruitOfFulfillment", // todo
+        internal_name: "Catalyst_Arakalari",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge100),
         weapon_base: WeaponBaseATKFamily::ATK510,

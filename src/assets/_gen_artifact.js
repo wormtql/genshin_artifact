@@ -993,35 +993,35 @@ export default {
         flower: {
             // chs: "迷宫的游人",
             // url: DeepwoodMemories_flower,
-            url: getIcon("UI_RelicIcon_10013_1")
+            url: getIcon("UI_RelicIcon_15025_4")
         },
         
         
         feather: {
             // chs: "翠蔓的智者",
             // url: DeepwoodMemories_feather,
-            url: getIcon("UI_RelicIcon_10013_1")
+            url: getIcon("UI_RelicIcon_15025_2")
         },
         
         
         sand: {
             // chs: "贤智的定期",
             // url: DeepwoodMemories_sand,
-            url: getIcon("UI_RelicIcon_10013_1")
+            url: getIcon("UI_RelicIcon_15025_5")
         },
         
         
         cup: {
             // chs: "迷误者之灯",
             // url: DeepwoodMemories_goblet,
-            url: getIcon("UI_RelicIcon_10009_1")
+            url: getIcon("UI_RelicIcon_15025_1")
         },
         
         
         head: {
             // chs: "月桂的宝冠",
             // url: DeepwoodMemories_head,
-            url: getIcon("UI_RelicIcon_15005_3")
+            url: getIcon("UI_RelicIcon_15025_3")
         },
         
         config4: [
@@ -1237,35 +1237,35 @@ export default {
         flower: {
             // chs: "梦中的铁花",
             // url: GildedDreams_flower,
-            url: getIcon("UI_RelicIcon_10007_4")
+            url: getIcon("UI_RelicIcon_15026_4")
         },
         
         
         feather: {
             // chs: "裁断的翎羽",
             // url: GildedDreams_feather,
-            url: getIcon("UI_RelicIcon_10005_2")
+            url: getIcon("UI_RelicIcon_15026_2")
         },
         
         
         sand: {
             // chs: "沉金的岁月",
             // url: GildedDreams_sand,
-            url: getIcon("UI_RelicIcon_10013_1")
+            url: getIcon("UI_RelicIcon_15026_5")
         },
         
         
         cup: {
             // chs: "如蜜的终宴",
             // url: GildedDreams_goblet,
-            url: getIcon("UI_RelicIcon_10013_1")
+            url: getIcon("UI_RelicIcon_15026_1")
         },
         
         
         head: {
             // chs: "沙王的投影",
             // url: GildedDreams_head,
-            url: getIcon("UI_RelicIcon_10013_1")
+            url: getIcon("UI_RelicIcon_15026_3")
         },
         
         config4: [

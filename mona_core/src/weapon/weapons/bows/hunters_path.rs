@@ -36,7 +36,7 @@ pub struct HuntersPath;
 impl WeaponTrait for HuntersPath {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::HuntersPath,
-        internal_name: "Bow_hunters", // todo
+        internal_name: "Bow_Ayus",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate96),
         weapon_base: WeaponBaseATKFamily::ATK542,

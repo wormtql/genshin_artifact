@@ -93,7 +93,6 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &
     let dmg_superconduct = base_superconduct * res_ratio_cryo * (1.0 + em_bonus + enhance_superconduct);
     let dmg_shatter = base_shatter * res_ratio_physical * (1.0 + em_bonus + enhance_shatter);
     let dmg_electro_charged = base_electro_charged * res_ratio_electro * (1.0 + em_bonus + enhance_electro_charged);
-    // todo specific enhance
     let dmg_bloom = base_bloom * res_ratio_dendro * (1.0 + em_bonus + enhance_bloom);
     let dmg_hyperbloom = base_hyperbloom * res_ratio_dendro * (1.0 + em_bonus + enhance_hyperbloom);
     let dmg_burgeon = base_burgeon * res_ratio_dendro * (1.0 + em_bonus + enhance_burgeon);

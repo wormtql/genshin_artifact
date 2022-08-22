@@ -102,6 +102,8 @@ pub enum BuffName {
     ResonancePyro2,
     ResonanceCryo2,
     ResonanceGeo2,
+    ResonanceHydro2,
+    ResonanceDendro2,
 
     Instructor4,
     NoblesseOblige4,

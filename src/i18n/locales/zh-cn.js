@@ -1315,6 +1315,7 @@ export default {
         MaxMelt: "最大融化伤害",
         ExpectVaporize: "期望蒸发伤害",
         ExpectMelt: "期望融化伤害",
+        DendroDamage: "草伤",
 
         AlbedoDefault: "阿贝多-白垩之子",
         AloyDefault: "埃洛伊-「异界的救世主」",
@@ -1389,6 +1390,7 @@ export default {
         MaxMelt: "使得融化反应的伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
         ExpectVaporize: "使得蒸发反应的期望伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
         ExpectMelt: "使得融化反应的期望伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+        DendroDamage: "草元素伤害最大化或最大化期望",
 
         AlbedoDefault: "普通副C阿贝多",
         AloyDefault: "普通输出埃洛伊",
@@ -1886,6 +1888,8 @@ export default {
         SapwoodBlade: "原木刀/森林王器-「种识之叶」",
         Moonpiercer: "贯月矢-「苏生之叶」",
         BaseDmg: "基础伤害",
+        ResonanceHydro2: "元素共鸣-愈疗之水",
+        ResonanceDendro2: "元素共鸣-蔓生之草",
     },
     buffDesc: {
         ATKFixed: "",
@@ -1981,6 +1985,8 @@ export default {
         SapwoodBlade: "拾取种识之叶的角色元素精通提升60/75/90/105/120点",
         Moonpiercer: "拾取苏生之叶的角色攻击力提升16%/20%/24%/28%/32%",
         BaseDmg: "跟攻击力*倍率同一个乘区",
+        ResonanceHydro2: "火元素附着的持续时间下降40%。生命值上限提升25%",
+        ResonanceDendro2: "元素精通提升50点。触发燃烧、原激化、绽放反应后，队伍中附近的所有角色元素精通提升30点，持续6秒。触发超激化、蔓激化、超绽放、烈绽放反应后，队伍中附近的所有角色元素精通提升20点,持续6秒。以上效果的持续时间独立计算。",
     },
     buffGenre: {
         Character: "角色引发的BUFF",

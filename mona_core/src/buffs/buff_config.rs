@@ -59,6 +59,7 @@ pub enum BuffConfig {
 
     ResonanceCryo2 { rate: f64 },
     ResonanceGeo2 { rate1: f64, rate2: f64 },
+    ResonanceDendro2 { rate1: f64, rate2: f64 },
 
     ArchaicPetra4 { element: Element },
     ViridescentVenerer4 { element: Element },
