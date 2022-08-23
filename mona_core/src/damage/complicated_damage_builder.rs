@@ -115,7 +115,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         character_level: usize,
         fumo: Option<Element>
     ) -> Self::Result {
-        let element = if element == Element::Physical {
+        let element = if skill == SkillType::NormalAttack || skill == SkillType::ChargedAttack || skill == SkillType::PlungingAttack {
             if let Some(x) = fumo {
                 x
             } else {
