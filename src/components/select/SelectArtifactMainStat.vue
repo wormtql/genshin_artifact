@@ -38,7 +38,7 @@ interface Props {
     multiple?: boolean,
     position?: ArtifactPosition | null,
     placeholder?: string
-    limitNum: number
+    limitNum?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
