@@ -33,6 +33,7 @@ pub struct SkyriderGreatsword;
 impl WeaponTrait for SkyriderGreatsword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SkyriderGreatsword,
+        internal_name: "Claymore_Mitsurugi",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus96),
         weapon_base: WeaponBaseATKFamily::ATK401,

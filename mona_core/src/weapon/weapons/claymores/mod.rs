@@ -24,6 +24,7 @@ pub use white_iron_greatsword::WhiteIronGreatsword;
 pub use ferrous_shadow::FerrousShadow;
 pub use old_mercs_pal::OldMercsPal;
 pub use waster_greatsword::WasterGreatsword;
+pub use forest_regalia::ForestRegalia;
 
 pub mod wolfs_gravestone;
 pub mod skyward_pride;
@@ -51,3 +52,4 @@ pub mod white_iron_greatsword;
 pub mod ferrous_shadow;
 pub mod old_mercs_pal;
 pub mod waster_greatsword;
+pub mod forest_regalia;

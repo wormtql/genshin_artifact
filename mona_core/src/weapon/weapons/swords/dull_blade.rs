@@ -12,6 +12,7 @@ pub struct DullBlade;
 impl WeaponTrait for DullBlade {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::DullBlade,
+        internal_name: "Sword_Blunt",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: None,
         weapon_base: WeaponBaseATKFamily::ATK185,

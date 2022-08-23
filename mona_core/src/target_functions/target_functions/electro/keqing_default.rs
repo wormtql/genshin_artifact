@@ -100,8 +100,8 @@ impl TargetFunction for KeqingDefaultTargetFunction {
 
         let config = CharacterSkillConfig::Keqing { after_e: true };
         type S = <Keqing as CharacterTrait>::DamageEnumType;
-        let dmg_q = Keqing::damage::<SimpleDamageBuilder>(&context, S::Q2, &config).normal.expectation;
-        let dmg_charged = Keqing::damage::<SimpleDamageBuilder>(&context, S::Charged11, &config).normal.expectation;
+        let dmg_q = Keqing::damage::<SimpleDamageBuilder>(&context, S::Q2, &config, None).normal.expectation;
+        let dmg_charged = Keqing::damage::<SimpleDamageBuilder>(&context, S::Charged11, &config, None).normal.expectation;
 
         // let recharge = attribute.get_value(AttributeName::Recharge);
         // let r = recharge.min(1.4);

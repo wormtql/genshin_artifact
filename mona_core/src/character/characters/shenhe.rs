@@ -58,6 +58,7 @@ const SHENHE_SKILL: ShenheSkillType = ShenheSkillType {
 
 const SHENHE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Shenhe,
+    internal_name: "Shenhe",
     chs: "申鹤",
     element: Element::Cryo,
     hp: [1011, 2624, 3491, 5224, 5840, 6719, 7540, 8429, 9045, 9941, 10557, 11463, 12080, 12993],
@@ -154,7 +155,7 @@ impl CharacterTrait for Shenhe {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: ShenheDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -183,7 +184,8 @@ impl CharacterTrait for Shenhe {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

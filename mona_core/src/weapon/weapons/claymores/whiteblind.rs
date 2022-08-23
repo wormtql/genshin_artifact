@@ -40,6 +40,7 @@ pub struct Whiteblind;
 impl WeaponTrait for Whiteblind {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Whiteblind,
+        internal_name: "Claymore_Exotic",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::DEF113),
         weapon_base: WeaponBaseATKFamily::ATK510,

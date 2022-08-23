@@ -113,7 +113,7 @@ impl TargetFunction for RaidenShogunDefaultTargetFunction {
 
         let config = CharacterSkillConfig::RaidenShogun { under_e: true, resolve_stack: 40 };
         type S = <RaidenShogun as CharacterTrait>::DamageEnumType;
-        let dmg_q1 = RaidenShogun::damage::<SimpleDamageBuilder>(&context, S::Q1, &config).normal.expectation;
+        let dmg_q1 = RaidenShogun::damage::<SimpleDamageBuilder>(&context, S::Q1, &config, None).normal.expectation;
 
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);
 

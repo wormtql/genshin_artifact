@@ -38,6 +38,7 @@ pub struct Slingshot;
 impl WeaponTrait for Slingshot {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Slingshot,
+        internal_name: "Bow_Sling",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate68),
         weapon_base: WeaponBaseATKFamily::ATK354,

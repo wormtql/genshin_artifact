@@ -39,6 +39,7 @@ pub struct WindAndSong;
 impl WeaponTrait for WindAndSong {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::WindAndSong,
+        internal_name: "Catalyst_Outlaw",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge67),
         weapon_base: WeaponBaseATKFamily::ATK565,

@@ -117,6 +117,7 @@ pub struct ShikanoinHeizou;
 impl CharacterTrait for ShikanoinHeizou {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::ShikanoinHeizou,
+        internal_name: "Heizo",
         chs: "鹿野院平藏",
         element: Element::Anemo,
         hp: [894, 2296, 2963, 4438, 4913, 5651, 6283, 7021, 7495, 8233, 8707, 9445, 9919, 10657],
@@ -166,7 +167,7 @@ impl CharacterTrait for ShikanoinHeizou {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: ShikanoinHeizouDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -221,7 +222,8 @@ impl CharacterTrait for ShikanoinHeizou {
             &context.enemy,
             element,
             skill,
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 
@@ -230,6 +232,6 @@ impl CharacterTrait for ShikanoinHeizou {
     }
 
     fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {
-        todo!()
+        unimplemented!()
     }
 }

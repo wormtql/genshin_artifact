@@ -60,6 +60,7 @@ pub const VENTI_SKILL: VentiSkillType = VentiSkillType {
 
 pub const VENTI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Venti,
+    internal_name: "Venti",
     chs: "温迪",
     element: Element::Anemo,
     hp: [820, 2127, 2830, 4234, 4734, 5446, 6112, 6832, 7331, 8058, 8557, 9292, 9791, 10531],
@@ -174,7 +175,7 @@ impl CharacterTrait for Venti {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: VentiDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -208,7 +209,8 @@ impl CharacterTrait for Venti {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

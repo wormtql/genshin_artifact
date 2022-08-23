@@ -12,6 +12,7 @@ pub struct OldMercsPal;
 impl WeaponTrait for OldMercsPal {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::OldMercsPal,
+        internal_name: "Claymore_Oyaji",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: None,
         weapon_base: WeaponBaseATKFamily::ATK243,

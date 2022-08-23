@@ -1,14 +1,18 @@
 <template>
-    <div style="margin-bottom: 16px;">
+    <div style="margin-bottom: 16px;" class="flex-row">
         <el-radio-group v-model="damageType" style="margin-right: 24px;">
             <el-radio-button label="normal">{{ normalDamageName }}</el-radio-button>
             <el-radio-button v-if="showMeltOption" label="melt">融化</el-radio-button>
             <el-radio-button v-if="showVaporizeOption" label="vaporize">蒸发</el-radio-button>
+            <el-radio-button v-if="showSpreadOption" label="spread">蔓激化</el-radio-button>
+            <el-radio-button v-if="showAggravateOption" label="aggravate">超激化</el-radio-button>
         </el-radio-group>
 
         <span class="damage-display" v-if="damageType === 'normal'">{{ Math.round(damageNormal) }}</span>
         <span class="damage-display" v-if="damageType === 'melt'">{{ Math.round(damageMelt) }}</span>
         <span class="damage-display" v-if="damageType === 'vaporize'">{{ Math.round(damageVaporize) }}</span>
+        <span class="damage-display" v-if="damageType === 'spread'">{{ Math.round(damageSpread) }}</span>
+        <span class="damage-display" v-if="damageType === 'aggravate'">{{ Math.round(damageAggravate) }}</span>
     </div>
 
     <div class="header-row" style="overflow: auto; margin-bottom: 16px;">
@@ -49,6 +53,16 @@
                     v-if="extraDamageState.length > 0"
                     :arr="extraDamageState"
                     title="其他"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="spreadState.length > 0 && element === 'Dendro'"
+                    :arr="spreadState"
+                    title="蔓激化"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="aggravateState.length > 0 && element === 'Electro'"
+                    :arr="aggravateState"
+                    title="超激化"
                 ></damage-analysis-util>
             </div>
         </div>
@@ -129,6 +143,7 @@
 
 <script>
 import DamageAnalysisUtil from "./DamageAnalysisUtil"
+import { LEVEL_MULTIPLIER } from "@/constants/levelMultiplier"
 
 function sum(arr) {
     let s = 0
@@ -159,6 +174,8 @@ export default {
             hpState: [],
             hpRatioState: [],
             extraDamageState: [],
+            spreadState: [],
+            aggravateState: [],
             criticalState: [],
             criticalDamageState: [],
             meltEnhanceState: [],
@@ -172,7 +189,7 @@ export default {
     },
     methods: {
         setValue(analysis) {
-            // console.log(analysis)
+            console.log(analysis)
             let map = {
                 "atkState": "atk",
                 "atkRatioState": "atk_ratio",
@@ -189,7 +206,9 @@ export default {
                 "defMinusState": "def_minus",
                 "defPenetrationState": "def_penetration",
                 "resMinusState": "res_minus",
-                "healingBonusState": "healing_bonus"
+                "healingBonusState": "healing_bonus",
+                "aggravateState": "aggravate_compose",
+                "spreadState": "spread_compose",
             }
             this.element = analysis.element
             this.isHeal = analysis.is_heal
@@ -229,6 +248,14 @@ export default {
 
         showVaporizeOption() {
             return this.element === "Pyro" || this.element === "Hydro"
+        },
+
+        showSpreadOption() {
+            return this.element === "Dendro"
+        },
+
+        showAggravateOption() {
+            return this.element === "Electro"
         },
         
         baseRegionName() {
@@ -334,13 +361,28 @@ export default {
             return this.atk * this.atkRatio + this.def * this.defRatio + this.hp * this.hpRatio + this.extraDamage;
         },
 
-        damageNormal() {
-            const enemyLevel = this.enemyConfig.level
-            const characterLevel = this.characterLevel
-            const c = 100 + characterLevel
-            const def_ratio = c / ((1 - this.defPenetration) * (1 - this.defMinus) * (100 + enemyLevel) + c)
-            const res = 0.1 - this.resMinus
+        spreadEnhance() {
+            return sum(this.spreadState)
+        },
 
+        aggravateEnhance() {
+            console.log(this.aggravateState)
+            return sum(this.aggravateState)
+        },
+
+        baseDamageSpread() {
+            return this.baseDamage + LEVEL_MULTIPLIER[this.characterLevel - 1] * 1.25 * (1 + this.spreadEnhance)
+        },
+
+        baseDamageAggravate() {
+            return this.baseDamage + LEVEL_MULTIPLIER[this.characterLevel - 1] * 1.15 * (1 + this.aggravateEnhance)
+        },
+
+        resRatio() {
+            // default res to 0.1
+            // console.log(this.enemyConfig)
+            const originalRes = this.enemyConfig[this.element.toLowerCase() + "_res"]
+            const res = originalRes - this.resMinus
             let res_ratio
             if (res > 0.75) {
                 res_ratio = 1 / (1 + res * 4)
@@ -349,11 +391,30 @@ export default {
             } else {
                 res_ratio = 1 - res / 2
             }
+            return res_ratio
+        },
+
+        defMultiplier() {
+            const enemyLevel = this.enemyConfig.level
+            const characterLevel = this.characterLevel
+            const c = 100 + characterLevel
+            return c / ((1 - this.defPenetration) * (1 - this.defMinus) * (100 + enemyLevel) + c)
+        },
+
+        damageSpread() {
+            return this.baseDamageSpread * (1 + this.critical * this.criticalDamage) * (1 + this.bonus) * this.resRatio * this.defMultiplier
+        },
+
+        damageAggravate() {
+            return this.baseDamageAggravate * (1 + this.critical * this.criticalDamage) * (1 + this.bonus) * this.resRatio * this.defMultiplier
+        },
+
+        damageNormal() {
             let d
             if (this.isHeal) {
                 d = this.baseDamage * (1 + this.healingBonus)
             } else {
-                d = this.baseDamage * (1 + this.critical * this.criticalDamage) * (1 + this.bonus) * res_ratio * def_ratio
+                d = this.baseDamage * (1 + this.critical * this.criticalDamage) * (1 + this.bonus) * this.resRatio * this.defMultiplier
             }
             return d
         },

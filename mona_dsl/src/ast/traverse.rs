@@ -69,7 +69,6 @@ impl<'i, 'a, T: ASTTraverser<'i>> ASTTraverse<'a, T> {
             ExpressionEnum::Number(x) => self.traverse_number(x.clone()),
             ExpressionEnum::FunctionCall(x) => self.traverse_function_call_expression(x.clone()),
             ExpressionEnum::Bool(x) => self.traverse_bool(x.clone()),
-            ExpressionEnum::FieldExpression(x) => self.traverse_field_expression(x.clone()),
             ExpressionEnum::String(x) => self.traverse_string(x.clone()),
             ExpressionEnum::UnaryExpression(x) => self.traverse_unary_expression(x.clone()),
             _ => todo!()

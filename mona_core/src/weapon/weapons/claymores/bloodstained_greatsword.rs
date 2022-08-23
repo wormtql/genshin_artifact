@@ -33,6 +33,7 @@ pub struct BloodstainedGreatsword;
 impl WeaponTrait for BloodstainedGreatsword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BloodstainedGreatsword,
+        internal_name: "Claymore_Siegfry",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM41),
         weapon_base: WeaponBaseATKFamily::ATK354,

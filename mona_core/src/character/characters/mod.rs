@@ -1,6 +1,6 @@
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_common_data::CharacterCommonData;
-use crate::common::ChangeAttribute;
+use crate::common::{ChangeAttribute, Element};
 use crate::attribute::{Attribute};
 
 pub use traveller::aether_anemo::AetherAnemo;
@@ -54,6 +54,9 @@ pub use kamisato_ayato::KamisatoAyato;
 pub use yelan::Yelan;
 pub use kuki_shinobu::KukiShinobu;
 pub use shikanoin_heizou::ShikanoinHeizou;
+pub use collei::Collei;
+pub use tighnari::Tighnari;
+pub use dori::Dori;
 
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::damage::damage_builder::DamageBuilder;
@@ -114,6 +117,9 @@ pub mod zhongli;
 pub mod kamisato_ayato;
 pub mod yelan;
 pub mod shikanoin_heizou;
+pub mod collei;
+pub mod tighnari;
+pub mod dori;
 
 pub fn get_static_data(name: CharacterName) -> CharacterStaticData {
     name.get_static_data()
@@ -127,8 +133,8 @@ pub fn get_effect<T: Attribute>(
     name.get_effect(common_data, config)
 }
 
-pub fn damage<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, skill_index: usize, skill_config: &CharacterSkillConfig) -> D::Result {
-    CharacterName::damage::<D>(context, skill_index, skill_config)
+pub fn damage<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, skill_index: usize, skill_config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
+    CharacterName::damage::<D>(context, skill_index, skill_config, fumo)
 }
 
 pub fn get_target_function_by_role(

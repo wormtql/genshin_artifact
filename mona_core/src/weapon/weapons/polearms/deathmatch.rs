@@ -46,6 +46,7 @@ pub struct Deathmatch;
 impl WeaponTrait for Deathmatch {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Deathmatch,
+        internal_name: "Pole_Gladiator",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate80),
         weapon_base: WeaponBaseATKFamily::ATK454,

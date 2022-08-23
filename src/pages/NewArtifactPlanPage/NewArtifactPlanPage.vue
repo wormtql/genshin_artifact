@@ -61,12 +61,8 @@
             ></el-alert>
             <el-radio-group v-model="algorithm">
                 <el-radio label="AStar">{{ t("calcPage.aStar") }}</el-radio>
-                <el-radio label="Heuristic">{{t("calcPage.heuristic")}}</el-radio>
+<!--                <el-radio label="Heuristic">{{t("calcPage.heuristic")}}</el-radio>-->
                 <el-radio label="Naive">{{ t("calcPage.naive") }}</el-radio>
-<!--                <el-radio label="ExtendBound80">ExtendBound-0.8</el-radio>-->
-<!--                <el-radio label="ExtendBound70">ExtendBound-0.7</el-radio>-->
-<!--                <el-radio label="ExtendBound60">ExtendBound-0.6</el-radio>-->
-<!--                <el-radio label="ExtendBound50">ExtendBound-0.5</el-radio>-->
             </el-radio-group>
 
             <p class="common-title2">{{ t("calcPage.constSet") }}</p>
@@ -528,6 +524,11 @@
                             :icon="IconEpFolder"
                             @click="handleClickUseKumi"
                         >{{ t("calcPage.useKumi") }}</el-button>
+                        <el-button
+                            v-show="artifactCount > 0"
+                            :icon="isAllLocked ? IconEpUnlock : IconEpLock"
+                            @click="() => { isAllLocked ? handleUnlockAll() : handleLockAll() }"
+                        >{{ isAllLocked ? t("calcPage.unlockAll") : t("calcPage.lockAll") }}</el-button>
                     </el-button-group>
                 </div>
 
@@ -584,6 +585,15 @@
                         >{{ t("calcPage.setupEnemy") }}</el-button>
                     </el-button-group>
                 </div>
+
+                <div>
+                    <h3 class="common-title2">{{ t("calcPage.fumo") }}</h3>
+                    <select-element-type
+                        v-model="fumo"
+                        :elements="['Pyro', 'Electro', 'Hydro', 'Anemo', 'Geo', 'Cryo', 'Dendro', 'None']"
+                    ></select-element-type>
+                </div>
+
                 <div v-if="characterNeedSkillConfig" style="margin-bottom: 16px;">
                     <item-config
                         v-model="characterSkillConfig"
@@ -592,6 +602,7 @@
                     ></item-config>
                 </div>
                 <div class="damage-analysis-div">
+                    <h3 class="common-title2">{{ t("calcPage.skill") }}</h3>
                     <select-character-skill
                         v-model="characterSkillIndex"
                         :character-name="characterName"
@@ -668,6 +679,8 @@ import IconEpMenu from "~icons/ep/menu"
 import IconEpHistogram from "~icons/ep/histogram"
 import IconEpStarFilled from "~icons/ep/star-filled"
 import IconEpFolder from "~icons/ep/folder"
+import IconEpLock from "~icons/ep/lock"
+import IconEpUnlock from "~icons/ep/unlock"
 import {useComputeConstraint} from "@/composables/constraint"
 import {BuffEntry, useBuff} from "@/composables/buff"
 import {type PresetEntry, usePresetStore} from "@/store/pinia/preset"
@@ -686,6 +699,7 @@ import {useI18n} from "@/i18n/i18n"
 
 import {ElMessage} from "element-plus"
 import "element-plus/es/components/message/style/css"
+import SelectElementType from "@/components/select/SelectElementType.vue";
 
 // stores
 const presetStore = usePresetStore()
@@ -756,6 +770,8 @@ const {
     characterSkillInterface,
 } = useCharacterSkill(characterName)
 
+const fumo = ref("None")
+
 
 //////////////////////////////////////////////////////////////
 // weapon
@@ -797,6 +813,7 @@ watch(() => miscTargetFunctionTab.value, v => {
 // artifacts
 const {
     artifactIds,
+    artifactCount,
     artifactSingleConfig,
     artifactWasmFormat,
 
@@ -827,6 +844,30 @@ function handleSelectArtifact(id: number) {
 
     showSelectArtifactDialog.value = false
 }
+
+function handleLockAll() {
+    for (const id of artifactIds.value) {
+        artifactStore.lockArtifact(id)
+    }
+}
+
+function handleUnlockAll() {
+    for (const id of artifactIds.value) {
+        artifactStore.unlockArtifact(id)
+    }
+}
+
+const isAllLocked = computed(() => {
+    for (const id of artifactIds.value) {
+        let artifact = artifactStore.getArtifact(id)
+        if (artifact) {
+            if (!artifact.omit) {
+                return false
+            }
+        }
+    }
+    return true
+})
 
 
 //////////////////////////////////////////////////////////////
@@ -1043,6 +1084,10 @@ function usePreset(name: string) {
 
     // use compute mode
     algorithm.value = item.algorithm ?? "AStar"
+    // disable heuristic algorithm in 5.11
+    if (algorithm.value === "Heuristic") {
+        algorithm.value = "AStar"
+    }
 
     // use artifact effect mode
     artifactEffectMode.value = item.artifactEffectMode ?? "auto"
@@ -1103,7 +1148,11 @@ const damageAnalysisWasmInterface = computed(() => {
 })
 
 const characterDamageAnalysis = computed(() => {
-    const temp = mona.CalculatorInterface.get_damage_analysis(damageAnalysisWasmInterface.value)
+    let fumo2 = null
+    if (fumo.value !== "None") {
+        fumo2 = fumo.value
+    }
+    const temp = mona.CalculatorInterface.get_damage_analysis(damageAnalysisWasmInterface.value, fumo2)
     // console.log(temp)
     return temp
 })

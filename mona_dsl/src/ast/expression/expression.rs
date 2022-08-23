@@ -233,4 +233,18 @@ impl<'i> ASTExpression<'i> {
             _ => None
         }
     }
+
+    pub fn as_identifier(&self) -> Option<Rc<RefCell<ASTIdentifier<'i>>>> {
+        match &self.expression {
+            ExpressionEnum::Identifier(i) => Some(i.clone()),
+            _ => None
+        }
+    }
+
+    pub fn as_string(&self) -> Option<Rc<RefCell<ASTString<'i>>>> {
+        match &self.expression {
+            ExpressionEnum::String(s) => Some(s.clone()),
+            _ => None
+        }
+    }
 }

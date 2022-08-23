@@ -140,6 +140,7 @@ pub struct KukiShinobu;
 impl CharacterTrait for KukiShinobu {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::KukiShinobu,
+        internal_name: "Shinobu",
         chs: "久岐忍",
         element: Element::Electro,
         hp: [1030, 2647, 3417, 5118, 5665, 6516, 7245, 8096, 8643, 9493, 10040, 10891, 11438, 12289],
@@ -197,7 +198,7 @@ impl CharacterTrait for KukiShinobu {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: KukiShinobuDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -241,6 +242,7 @@ impl CharacterTrait for KukiShinobu {
                 s.get_element(),
                 s.get_skill_type(),
                 context.character_common_data.level,
+                fumo,
             )
         } else {
             let ratio = KUKI_SHINOBU_SKILL.elemental_skill_heal1[s2];
@@ -272,6 +274,6 @@ impl CharacterTrait for KukiShinobu {
     }
 
     fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {
-        todo!()
+        unimplemented!()
     }
 }

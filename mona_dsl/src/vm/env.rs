@@ -96,12 +96,16 @@ impl MonaEnv {
                 let var_name = &damage_config.var_name;
                 self.namespace.insert(var_name.clone(), obj);
             } else {
-                let damage: SimpleDamageResult = damage::<SimpleDamageBuilder>(&context, damage_config.skill_index, &damage_config.skill_config);
+                let damage: SimpleDamageResult = damage::<SimpleDamageBuilder>(
+                    &context, damage_config.skill_index, &damage_config.skill_config, damage_config.fumo.clone(),
+                );
                 // let damage: SimpleDamageResult = name.damage(context, damage_config.skill_index, &damage_config.skill_config);
                 let obj = MonaObjectDamage {
                     normal: damage.normal.clone(),
                     melt: damage.melt.clone(),
                     vaporize: damage.vaporize.clone(),
+                    spread: damage.spread.clone(),
+                    aggravate: damage.aggravate.clone(),
                     is_heal: damage.is_heal,
                     is_shield: damage.is_shield
                 };

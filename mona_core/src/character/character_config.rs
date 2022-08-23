@@ -12,5 +12,7 @@ pub enum CharacterConfig {
     Razor { e_stack: f64, talent2_ratio: f64 },
     Yelan { team_element_count: usize },
     Yoimiya { talent1_level: f64 },
+    Collei { background: bool },
+    Tighnari { talent1_ratio: f64, c2_ratio: f64 },
     NoConfig,
 }

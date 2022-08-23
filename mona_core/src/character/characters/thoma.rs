@@ -60,6 +60,7 @@ pub const THOMA_SKILL: ThomaSkillType = ThomaSkillType {
 
 pub const THOMA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Thoma,
+    internal_name: "Tohma",
     chs: "托马",
     element: Element::Pyro,
     hp: [866, 2225, 2872, 4302, 4762, 5478, 6091, 6806, 7266, 7981, 8440, 9156, 9616, 10331],
@@ -151,7 +152,7 @@ impl CharacterTrait for Thoma {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: ThomaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -181,7 +182,8 @@ impl CharacterTrait for Thoma {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

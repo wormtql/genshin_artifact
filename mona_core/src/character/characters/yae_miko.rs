@@ -95,6 +95,7 @@ pub enum YaeMikoRoleEnum {
 impl CharacterTrait for YaeMiko {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::YaeMiko,
+        internal_name: "Yae",
         chs: "八重神子",
         element: Element::Electro,
         hp: [807, 2095, 2787, 4170, 4662, 5364, 6020, 6729, 7220, 7936, 8428, 9151, 9643, 10372],
@@ -135,7 +136,7 @@ impl CharacterTrait for YaeMiko {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: YaeMikoDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -174,7 +175,8 @@ impl CharacterTrait for YaeMiko {
             &context.enemy,
             Element::Electro,
             skill_type,
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

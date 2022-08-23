@@ -80,6 +80,7 @@ pub const RAIDEN_SHOGUN_SKILL: RaidenShogunSkill = RaidenShogunSkill {
 
 pub const RAIDEN_SHOGUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::RaidenShogun,
+    internal_name: "Shougun",
     chs: "雷电将军",
     element: Element::Electro,
     hp: [1005, 2606, 3468, 5189, 5801, 6675, 7491, 8373, 8985, 9875, 10487, 11388, 12000, 12907],
@@ -236,7 +237,7 @@ impl CharacterTrait for RaidenShogun {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: RaidenShogunDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -300,7 +301,8 @@ impl CharacterTrait for RaidenShogun {
             &context.enemy,
             s.get_element(),
             skill_type,
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

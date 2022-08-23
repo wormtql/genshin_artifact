@@ -57,6 +57,7 @@ pub const JEAN_SKILL: JeanSkillType = JeanSkillType {
 
 pub const JEAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Jean,
+    internal_name: "Qin",
     chs: "琴",
     element: Element::Anemo,
     hp: [1144, 2967, 3948, 5908, 6605, 7599, 8528, 9533, 10230, 11243, 11940, 12965, 13662, 14695],
@@ -162,7 +163,7 @@ impl CharacterTrait for Jean {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: JeanDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -205,7 +206,8 @@ impl CharacterTrait for Jean {
                 &context.enemy,
                 s.get_element(),
                 s.get_skill_type(),
-                context.character_common_data.level
+                context.character_common_data.level,
+                fumo,
             )
         }
     }

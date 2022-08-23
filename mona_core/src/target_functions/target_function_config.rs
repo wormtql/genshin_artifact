@@ -11,6 +11,7 @@ pub enum TargetFunctionConfig {
     ElectroDamage { t: usize },
     AnemoDamage { t: usize },
     GeoDamage { t: usize },
+    DendroDamage { t: usize },
     PhysicalDamage { t: usize },
     MaxVaporize { t: usize, skill: SkillType },
     MaxMelt { t: usize, skill: SkillType },
@@ -49,6 +50,7 @@ pub enum TargetFunctionConfig {
     ZhongliDefault { recharge_demand: f64 },
     KujouSaraDamage { recharge_demand: f64 },
     KukiShinobuDefault { e_ratio: f64 },
+    TighnariDefault { spread_rate: f64 },
 
 
     BennettDamage { recharge_demand: f64, other_dmg_ratio: f64 },

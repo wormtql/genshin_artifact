@@ -12,6 +12,7 @@ pub struct SilverSword;
 impl WeaponTrait for SilverSword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SilverSword,
+        internal_name: "Sword_Silver",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: None,
         weapon_base: WeaponBaseATKFamily::ATK243,

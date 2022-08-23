@@ -39,6 +39,7 @@ pub struct WindblumeOde;
 impl WeaponTrait for WindblumeOde {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::WindblumeOde,
+        internal_name: "Bow_Fleurfair",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,

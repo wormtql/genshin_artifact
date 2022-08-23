@@ -30,6 +30,7 @@ pub struct RoyalGreatsword;
 impl WeaponTrait for RoyalGreatsword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::RoyalGreatsword,
+        internal_name: "Claymore_Theocrat",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,

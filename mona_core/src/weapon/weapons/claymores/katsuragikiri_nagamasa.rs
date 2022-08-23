@@ -29,6 +29,7 @@ pub struct KatsuragikiriNagamasa;
 impl WeaponTrait for KatsuragikiriNagamasa {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::KatsuragikiriNagamasa,
+        internal_name: "Claymore_Bakufu",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge100),
         weapon_base: WeaponBaseATKFamily::ATK510,

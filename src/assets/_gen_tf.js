@@ -37,6 +37,10 @@ import AnemoDamage_image from "@image/misc/wind_slime"
 
 
 
+import DendroDamage_image from "@image/misc/dendro"
+
+
+
 import GeoDamage_image from "@image/misc/sword"
 
 
@@ -58,6 +62,8 @@ import ExpectVaporize_image from "@image/misc/sword"
 
 
 import ExpectMelt_image from "@image/misc/sword"
+
+
 
 
 
@@ -340,6 +346,26 @@ export default {
         "for": "common",
         
         badge: AnemoDamage_image,
+        
+        config: [
+            
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
+            
+        ],
+    },
+    
+    "DendroDamage": {
+        name: "DendroDamage",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "common",
+        
+        badge: DendroDamage_image,
         
         config: [
             
@@ -1576,6 +1602,26 @@ export default {
         badge: getImage("UI_AvatarIcon_Heizo"),
         
         config: [
+            
+        ],
+    },
+    
+    "TighnariDefault": {
+        name: "TighnariDefault",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "Tighnari",
+        
+        badge: getImage("UI_AvatarIcon_Tighnari"),
+        
+        config: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"spread_rate","title":"t16","type":"float"},
             
         ],
     },

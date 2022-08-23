@@ -36,6 +36,7 @@ pub struct RoyalLongsword;
 impl WeaponTrait for RoyalLongsword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::RoyalLongsword,
+        internal_name: "Sword_Theocrat",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,

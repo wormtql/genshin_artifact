@@ -123,6 +123,14 @@ impl Default for ConfigEchoesOfAnOffering {
     }
 }
 
+#[derive(Serialize, Deserialize)]
+#[derive(Debug, Clone, Default)]
+pub struct ConfigGildedDreams {
+    pub same_count: usize,
+    pub diff_count: usize,
+    pub rate: f64,
+}
+
 #[derive(Default, Debug, Clone)]
 #[derive(Serialize, Deserialize)]
 pub struct ArtifactEffectConfig {
@@ -145,6 +153,8 @@ pub struct ArtifactEffectConfig {
     pub config_thundersoother: ConfigRate,
     pub config_vermillion_hereafter: ConfigVermillionHereafter,
     pub config_echoes_of_an_offering: ConfigEchoesOfAnOffering,
+    pub config_deepwood_memories: ConfigRate,
+    pub config_gilded_dreams: ConfigGildedDreams,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -169,6 +179,8 @@ pub struct ArtifactConfigInterface {
     pub config_thundersoother: Option<ConfigRate>,
     pub config_vermillion_hereafter: Option<ConfigVermillionHereafter>,
     pub config_echoes_of_an_offering: Option<ConfigEchoesOfAnOffering>,
+    pub config_deepwood_memories: Option<ConfigRate>,
+    pub config_gilded_dreams: Option<ConfigGildedDreams>,
 }
 
 impl ArtifactConfigInterface {
@@ -193,6 +205,8 @@ impl ArtifactConfigInterface {
             config_thundersoother: self.config_thundersoother.unwrap_or(Default::default()),
             config_vermillion_hereafter: self.config_vermillion_hereafter.unwrap_or(Default::default()),
             config_echoes_of_an_offering: self.config_echoes_of_an_offering.unwrap_or(Default::default()),
+            config_deepwood_memories: self.config_deepwood_memories.unwrap_or(Default::default()),
+            config_gilded_dreams: self.config_gilded_dreams.unwrap_or(Default::default()),
         }
     }
 }

@@ -28,6 +28,7 @@ pub use silver_sword::SilverSword;
 pub use dull_blade::DullBlade;
 pub use haran_geppaku_futsu::HaranGeppakuFutsu;
 pub use cursed_blade::CursedBlade;
+pub use sapwood_blade::SapwoodBlade;
 
 pub mod mistsplitter_reforged;
 pub mod aquila_favonia;
@@ -59,3 +60,4 @@ pub mod silver_sword;
 pub mod dull_blade;
 pub mod haran_geppaku_futsu;
 pub mod cursed_blade;
+pub mod sapwood_blade;

@@ -16,6 +16,8 @@ impl<T: Attribute> ArtifactEffect<T> for ThunderingFuryEffect {
         attribute.set_value_by(AttributeName::EnhanceOverload, "如雷的盛怒4", 0.4);
         attribute.set_value_by(AttributeName::EnhanceElectroCharged, "如雷的盛怒4", 0.4);
         attribute.set_value_by(AttributeName::EnhanceSuperconduct, "如雷的盛怒4", 0.4);
+        attribute.set_value_by(AttributeName::EnhanceHyperbloom, "如雷的盛怒4", 0.4);
+        attribute.set_value_by(AttributeName::EnhanceAggravate, "如雷的盛怒4", 0.2);
     }
 }
 

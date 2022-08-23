@@ -29,6 +29,7 @@ pub struct KitainCrossSpear;
 impl WeaponTrait for KitainCrossSpear {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::KitainCrossSpear,
+        internal_name: "Pole_Bakufu",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM24),
         weapon_base: WeaponBaseATKFamily::ATK565,

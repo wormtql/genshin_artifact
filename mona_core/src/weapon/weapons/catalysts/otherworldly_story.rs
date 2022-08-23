@@ -13,6 +13,7 @@ pub struct OtherworldlyStory;
 impl WeaponTrait for OtherworldlyStory {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::OtherworldlyStory,
+        internal_name: "Catalyst_Lightnov",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge85),
         weapon_base: WeaponBaseATKFamily::ATK401,

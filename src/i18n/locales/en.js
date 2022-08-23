@@ -180,8 +180,39 @@ export default {
         Yunjin: "Yunjin",
         Zhongli: "Zhongli",
         ShikanoinHeizou: "Shikanoin Heizou",
+        Collei: "Collei",
+        Tighnari: "Tighnari",
+        Dori: "Dori",
     },
     artifact: {
+        "DeepwoodMemories": {
+            "setName": "Deepwood Memories",
+            "items": [
+                "Labyrinth Wayfarer",
+                "Scholar of Vines",
+                "A Time of Insight",
+                "Lamp of the Lost",
+                "Laurel Coronet",
+            ],
+            "effects": {
+                "2": "Dendro DMG Bonus +15%.",
+                "4": "After Elemental Skills or Bursts hit opponents, the targets’ Dendro RES will be decreased by 30% for 8s. This effect can be triggered even if the equipping character is not on the field.",
+            }
+        },
+        "GildedDreams": {
+            "setName": "Gilded Dreams",
+            "items": [
+                "Dreaming Steelbloom",
+                "Feather of Judgment",
+                "The Sunken Years",
+                "Honeyed Final Feast",
+                "Shadow of the Sand King",
+            ],
+            "effects": {
+                "2": "Elemental Mastery +80.",
+                "4": "Within 8s of triggering an Elemental Reaction, the character equipping this will obtain buffs based on the Elemental Type of the other party members. ATK is increased by 14% for each party member whose Elemental Type is the same as the equipping character, and Elemental Mastery is increased by 50 for every party member with a different Elemental Type. Each of the aforementioned buffs will count up to 3 characters. This effect can be triggered once every 8s. The character who equips this can still trigger its effects when not on the field.",
+            }
+        },
         "VermillionHereafter": {
             "setName": "Vermillion Hereafter",
             "items": [
@@ -857,7 +888,14 @@ export default {
         HuntersBow: "Hunter's Bow",
         AquaSimulacra: "Aqua Simulacra",
         FadingTwilight: "Fading Twilight",
-        CursedBlade: "Cursed Blade"
+        CursedBlade: "Kagotsurube Isshin",
+        HuntersPath: "Hunter's Path",
+        Trawler: "Trawler",
+        SapwoodBlade: "Sapwood Blade",
+        ForestRegalia: "Forest Regalia",
+        Moonpiercer: "Moonpiercer",
+        FruitOfFulfillment: "Fruit of Fulfillment",
+        KingsSquire: "King's Squire",
     },
     weaponEffect: {
         MistsplitterReforged: "Gain a <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> Elemental DMG Bonus for all elements and receive the might of the Mistsplitter\'s Emblem. At stack levels 1/2/3, the Mistsplitter\'s Emblem provides a <span style=\"color: #409EFF;\">8/16/28%-10/20/35%-12/24/42%-14/28/49%-16/32/56%</span> Elemental DMG Bonus for the character\'s Elemental Type. The character will obtain 1 stack of Mistsplitter\'s Emblem in each of the following scenarios: Normal Attack deals Elemental DMG (stack lasts 5s), casting Elemental Burst (stack lasts 10s); Energy is less than 100% (stack disappears when Energy is full). Each stack\'s duration is calculated independently.",
@@ -994,6 +1032,13 @@ export default {
         HuntersBow: "",
         AquaSimulacra: "HP is increased by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>. When there are opponents nearby, the DMG dealt by the wielder of this weapon is increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. This will take effect whether the character is on-field or not.",
         FadingTwilight: "Has three states, Evengleam, Afterglow, and Dawnblaze, which increase DMG dealt by <span style=\"color: #409EFF;\">6%/10%/14%-7.5%/12.5%/17.5%-9%/15%/21%-10.5%/17.5%/24.5%-12%/20%/28%</span> respectively. When attacks hit opponents, this weapon will switch to the next state. This weapon can change states once every 7s. The character equipping this weapon can still trigger the state switch while not on the field.",
+        HuntersPath: "Gain <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> All Elemental DMG Bonus. Obtain the Tireless Hunt effect after hitting an opponent with a Charged Attack. This effect increases Charged Attack DMG by <span style=\"color: #409EFF;\">160%-200%-240%-280%-320%</span> of Elemental Mastery. This effect will be removed after 12 Charged Attacks or 10s. Only 1 instance of Tireless Hunt can be gained every 12s.",
+        Trawler: "Triggers the Flowrider effect after using an Elemental Skill, dealing <span style=\"color: #409EFF;\">80%-100%-120%-140%-160%</span> ATK as AoE DMG upon hitting an opponent with an attack. Flowrider will be removed after 15s or after causing 3 instances of AoE DMG. Only 1 instance of AoE DMG can be caused every 2s in this way. Flowrider can be triggered once every 12s.",
+        SapwoodBlade: "After triggering Burning, Quicken, Aggravate, Spread, Bloom, Hyperbloom, or Burgeon, a Leaf of Consciousness will be created around the character for a maximum of 10s. When picked up, the Leaf will grant the character <span style=\"color: #409EFF;\">60-75-90-105-120</span> Elemental Mastery for 12s. Only 1 Leaf can be generated this way every 20s. This effect can still be triggered if the character is not on the field. The Leaf of Consciousness' effect cannot stack.",
+        ForestRegalia: "After triggering Burning, Quicken, Aggravate, Spread, Bloom, Hyperbloom, or Burgeon, a Leaf of Consciousness will be created around the character for a maximum of 10s. When picked up, the Leaf will grant the character <span style=\"color: #409EFF;\">60-75-90-105-120</span> Elemental Mastery for 12s. Only 1 Leaf can be generated this way every 20s. This effect can still be triggered if the character is not on the field. The Leaf of Consciousness' effect cannot stack.",
+        Moonpiercer: "After triggering Burning, Quicken, Aggravate, Spread, Bloom, Hyperbloom, or Burgeon, a Leaf of Revival will be created around the character for a maximum of 10s. When picked up, the Leaf will grant the character <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> ATK for 12s. Only 1 Leaf can be generated this way every 20s. This effect can still be triggered if the character is not on the field.",
+        FruitOfFulfillment: "Obtain the \"Wax and Wane\" effect after an Elemental Reaction is triggered, gaining <span style=\"color: #409EFF;\">24-27-30-33-36</span> Elemental Mastery while losing 5% ATK. For every 0.3s, 1 stack of Wax and Wane can be gained. Max 5 stacks. For every 6s that go by without an Elemental Reaction being triggered, 1 stack will be lost. This effect can be triggered even when the character is off-field.",
+        KingsSquire: "Obtain the Teachings of the Forest effect when unleashing Elemental Skills and Bursts, increasing Elemental Mastery by <span style=\"color: #409EFF;\">60-80-100-120-140</span> for 12s. This effect will be removed when switching characters. When the Teachings of the Forest effect ends or is removed, it will deal <span style=\"color: #409EFF;\">100%-120%-140%-160%-180%</span> of ATK as DMG to 1 nearby opponent. The Teachings of the Forest effect can be triggered once every 20s.",
     },
     config: {
         w1: "Avg Effect Stack",
@@ -1059,6 +1104,10 @@ export default {
         c34: "Use C4",
         c35: "「Sweeping Fervor」Shield Coverage",
         c36: "Brilliance",
+        c37: "Off the Field",
+        c38: "Talent「Keen Sight」Ratio",
+        c39: "C2「Origins Known From the Stem」Ratio",
+        c40: "C6「Sprinkling Weight」",
 
         t1: "Type",
         t2: "Trigger Element",
@@ -1075,6 +1124,7 @@ export default {
         t13: "Electro-charged Frequency",
         t14: "Overload Frequency",
         t15: "E-skill DMG Rate",
+        t16: "Spread Ratio",
 
         a1: "Element",
         a2: "Effect Apply Ratio",
@@ -1089,6 +1139,8 @@ export default {
         a11: "Enemy Electro Coverage",
         a12: "Elemental Burst Rate",
         a13: "Avg Stack",
+        a14: "Same Element Count",
+        a15: "Different Element Count",
 
         p1: "ATK Valid",
         p2: "ATK Weight",
@@ -1148,6 +1200,10 @@ export default {
         b35: "Effect① Ratio",
         b36: "Effect② Ratio",
         b37: "Crystallize Element",
+        b38: "Triggered Burning, Bloom, Catalyze or Spread",
+        b39: "HP Below 50%",
+        b40: "Energy Below 50%",
+        b41: "Apply Ratio",
     },
     ele: {
         Pyro: "Pyro",
@@ -1158,6 +1214,7 @@ export default {
         Dendro: "Dendro",
         Geo: "Geo",
         Physical: "Physical",
+        None: "None",
     },
     artPage: {
         shareDesc: "Use share link to import artifacts, expires in 1 day",
@@ -1176,6 +1233,8 @@ export default {
         wrongFormat: "Wrong format",
         importing: "Importing...",
         msg1: "Add a calculation preset to use this",
+        newArt: "Add Artifact",
+        dup: "Duplicate artifact detected, continue?",
     },
     kumiPage: {
         selectArt: "Select Artifact",
@@ -1236,6 +1295,10 @@ export default {
         bonus1: "1 Roll Gain", // todo
         statCount: "Roll Count", // todo
         gain: "Relative Gain",
+        lockAll: "Lock All",
+        unlockAll: "Unlock All",
+        skill: "Skill",
+        fumo: "附魔", // todo
     },
     tfName: {
         MaxATK: "Max ATK",
@@ -1253,6 +1316,7 @@ export default {
         MaxMelt: "Max Melt DMG",
         ExpectVaporize: "Expect Vaporize DMG",
         ExpectMelt: "Expect Melt DMG",
+        DendroDamage: "Dendro DMG",
 
         AlbedoDefault: "Albedo-Kreideprinz",
         AloyDefault: "Aloy-Savior From Another World",
@@ -1309,6 +1373,7 @@ export default {
         ZhongliDefault: "Zhongli-Vago Mundo",
         KukiShinobuDefault: "Shinobu-Mender of Tribulations",
         ShikanoinHeizouDefault: "Shikanoin Heizou-Analytical Harmony",
+        TighnariDefault: "Tighnari-Verdant Strider",
     },
     tfDesc: {
         MaxATK: "Maximize ATK",
@@ -1326,6 +1391,7 @@ export default {
         MaxMelt: "Maximize vaporize DMG<br><b>Attention:</b>This function only calculates the simplest case, some attribute conversions are not considered, you may not use this unless you know what you're doing",
         ExpectVaporize: "Maximize vaporize DMG<br><b>Attention:</b>This function only calculates the simplest case, some attribute conversions are not considered, you may not use this unless you know what you're doing",
         ExpectMelt: "Maximize vaporize DMG<br><b>Attention:</b>This function only calculates the simplest case, some attribute conversions are not considered, you may not use this unless you know what you're doing",
+        DendroDamage: "Maximize Crit or Avg Dendro Damage",
 
         AlbedoDefault: "Sub DPS Albedo",
         AloyDefault: "DPS Aloy",
@@ -1382,6 +1448,7 @@ export default {
         ZhongliDefault: "DPS Zhongli",
         KukiShinobuDefault: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
         ShikanoinHeizouDefault: "DPS Heizou, maximizing E Stack-4 DMG",
+        TighnariDefault: "Maximize Tighnari Charged Attack",
     },
     dmg: {
         electroCharged: "Electro-Charged",
@@ -1406,6 +1473,11 @@ export default {
         melt: "Melt",
         vaporize: "Vaporize",
         heal: "Regeneration",
+        spread: "Spread",
+        aggravate: "Aggravate",
+        bloom: "Bloom",
+        hyperbloom: "HyperBloom",
+        burgeon: "Burgeon",
     },
     characterSkill: {
         Albedo: ["Normal Attack: Favonius Bladework - Weiss", "Abiogenesis: Solar Isotoma", "Rite of Progeniture: Tectonic Tide"],
@@ -1458,6 +1530,9 @@ export default {
         Yunjin: ["Normal Attack: Cloud-Grazing Strike", "Opening Flourish", "Cliffbreaker's Banner"],
         Zhongli: ["Normal Attack: Rain of Stone", "Dominus Lapidis", "Planet Befall"],
         ShikanoinHeizou: ["Normal Attack: Fudou Style Martial Arts", "Heartstopper Strike", "Windmuster Kick"],
+        Collei: ["Normal Attack: Supplicant’s Bowmanship", "Floral Brush", "Trump-Card Kitty"],
+        Tighnari: ["Normal Attack: Khanda Barrier-Buster", "Vijnana-Phala Mine", "Fashioner’s Tanglevine Shaft"],
+        Dori: ["Normal Attack: Marvelous Sword-Dance (Modified)", "Spirit-Warding Lamp: Troubleshooter Cannon", "Alcazarzaray’s Exactitude"],
     },
     dmgName: [
         "1-Hit DMG",
@@ -1663,7 +1738,16 @@ export default {
         "Charge Level 2 DMG",
         "5-Hit DMG/4",
         "Stone Stele DMG",
-        "Resonance DMG"
+        "Resonance DMG",
+        "Leap DMG",
+        "Wreath Arrow DMG",
+        "Clusterbloom Arrow DMG",
+        "Tanglevine Shaft DMG",
+        "Secondary Tanglevine Shaft DMG",
+        "2-Hit DMG-2",
+        "Troubleshooter Shot DMG",
+        "After-Sales Service Round DMG",
+        "Connector DMG",
     ],
     res: {
         Pyro: "Pyro Res",
@@ -1800,6 +1884,13 @@ export default {
         TenacityOfTheMillelith4: "Tenacity of the Millelith 4",
         ViridescentVenerer4: "Viridescent Venerer 4",
         ShikanoinHeizouTalent2: "Shikanoin Heizou-Penetrative Reasoning",
+        TighnariC4: "Tighnari-「Withering Glimpsed in the Leaves」",
+        DoriC4: "Dori-「Discretionary Supplement」",
+        SapwoodBlade: "Sapwood Blade/Forest Regalia-「Leaf of Consciousness」",
+        Moonpiercer: "Moonpiercer-「Leaf of Revival」",
+        BaseDmg: "Base DMG",
+        ResonanceHydro2: "Resonance-Soothing Water",
+        ResonanceDendro2: "Resonance-Sprawling Greenery",
     },
     buffDesc: {
         ATKFixed: "",
@@ -1889,7 +1980,14 @@ export default {
         NoblesseOblige4: "施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。",
         TenacityOfTheMillelith4: "元素战技命中敌人后，使队伍中附近的所有角色攻击力提升20%，护盾强效提升30%，持续3秒。",
         ViridescentVenerer4: "根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。",
-        ShikanoinHeizouTalent2: "Shikanoin Heizou Talent: After Shikanoin Heizou's Heartstopper Strike hits an opponent, increases all party members' (excluding Shikanoin Heizou) Elemental Mastery by 80 for 10s."
+        ShikanoinHeizouTalent2: "Shikanoin Heizou Talent: After Shikanoin Heizou's Heartstopper Strike hits an opponent, increases all party members' (excluding Shikanoin Heizou) Elemental Mastery by 80 for 10s.",
+        TighnariC4: "Tighnari C4: When Fashioner’s Tanglevine Shaft is unleashed, all nearby party members gain 60 Elemental Mastery for 8s. If the Fashioner’s Tanglevine Shaft triggers a Burning, Bloom, Aggravate, or Spread reaction, their Elemental Mastery will be further increased by 60. This latter case will also refresh the buff state’s duration.",
+        DoriC4: "Dori C4: The character connected to the Jinni will obtain the following buffs based on their current HP and Energy:<br>·When their HP is lower than 50%, they gain 50% Incoming Healing Bonus.<br>·When their Energy is less than 50%, they gain 30% Energy Recharge.",
+        SapwoodBlade: "When picked up, the Leaf will grant the character 60 Elemental Mastery for 12s",
+        Moonpiercer: "When picked up, the Leaf will grant the character 16% ATK for 12s",
+        BaseDmg: "Flat DMG",
+        ResonanceHydro2: "", // todo
+        ResonanceDendro2: "", // todo
     },
     buffGenre: {
         Character: "Character BUFF",

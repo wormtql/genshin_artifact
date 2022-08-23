@@ -13,6 +13,7 @@ pub struct TheFlute;
 impl WeaponTrait for TheFlute {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheFlute,
+        internal_name: "Sword_Troupe",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,

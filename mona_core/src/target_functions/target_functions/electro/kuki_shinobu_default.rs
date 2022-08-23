@@ -112,8 +112,8 @@ impl TargetFunction for KukiShinobuDefaultTargetFunction {
         };
 
         type S = <KukiShinobu as CharacterTrait>::DamageEnumType;
-        let dmg_q = KukiShinobu::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig);
-        let dmg_e = KukiShinobu::damage::<SimpleDamageBuilder>(&context, S::E2, &CharacterSkillConfig::NoConfig);
+        let dmg_q = KukiShinobu::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig, None);
+        let dmg_e = KukiShinobu::damage::<SimpleDamageBuilder>(&context, S::E2, &CharacterSkillConfig::NoConfig, None);
 
         let result = dmg_q.normal.expectation * (1.0 - self.e_ratio) + dmg_e.normal.expectation * self.e_ratio;
 

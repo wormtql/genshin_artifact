@@ -59,6 +59,7 @@ pub const GANYU_SKILL: GanyuSkillType = GanyuSkillType {
 
 pub const GANYU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Ganyu,
+    internal_name: "Ganyu",
     chs: "甘雨",
     element: Element::Cryo,
     hp: [763, 1978, 2632, 3939, 4403, 5066, 5686, 6355, 6820, 7495, 7960, 8643, 9108, 9797],
@@ -195,7 +196,7 @@ impl CharacterTrait for Ganyu {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) ->D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) ->D::Result {
         let s: GanyuDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -234,7 +235,8 @@ impl CharacterTrait for Ganyu {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

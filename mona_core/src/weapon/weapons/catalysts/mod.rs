@@ -24,6 +24,7 @@ pub use emerald_orb::EmeraldOrb;
 pub use twin_nephrite::TwinNephrite;
 pub use pocket_grimoire::PocketGrimoire;
 pub use apprentices_notes::ApprenticesNotes;
+pub use fruit_of_fulfillment::FruitOfFulfillment;
 
 pub mod lost_prayer_to_the_sacred_winds;
 pub mod skyward_atlas;
@@ -51,3 +52,4 @@ pub mod emerald_orb;
 pub mod twin_nephrite;
 pub mod pocket_grimoire;
 pub mod apprentices_notes;
+pub mod fruit_of_fulfillment;

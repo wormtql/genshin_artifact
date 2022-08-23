@@ -39,6 +39,7 @@ pub struct Rainslasher;
 impl WeaponTrait for Rainslasher {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Rainslasher,
+        internal_name: "Claymore_Perdue",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,

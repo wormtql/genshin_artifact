@@ -151,6 +151,7 @@ pub struct KamisatoAyato;
 impl CharacterTrait for KamisatoAyato {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::KamisatoAyato,
+        internal_name: "Ayato",
         chs: "神里绫人",
         element: Element::Hydro,
         hp: [1068, 2770, 3685, 5514, 6165, 7092, 7960, 8897, 9548, 10494, 11144, 12101, 12751, 13715],
@@ -216,7 +217,7 @@ impl CharacterTrait for KamisatoAyato {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: KamisatoAyatoDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -261,7 +262,8 @@ impl CharacterTrait for KamisatoAyato {
             &context.enemy,
             s.get_element(),
             skill_type,
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

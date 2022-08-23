@@ -47,6 +47,9 @@ export default defineComponent({
         tableDataForElementUI() {
             // console.log(this.data)
             let results = []
+            results.push({ value: this.data.hyperbloom, key: "hyperbloom" })
+            results.push({ value: this.data.burgeon, key: "burgeon" })
+            results.push({ value: this.data.bloom, key: "bloom" })
             results.push({ value: this.data.electro_charged, key: "electroCharged" })
             results.push({ value: this.data.overload, key: "overload" })
             results.push({ value: this.data.shatter, key: "shattered" })

@@ -30,6 +30,7 @@ pub struct TheStringless;
 impl WeaponTrait for TheStringless {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheStringless,
+        internal_name: "Bow_Troupe",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,

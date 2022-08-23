@@ -14,6 +14,7 @@ pub struct ThrillingTalesOfDragonSlayers;
 impl WeaponTrait for ThrillingTalesOfDragonSlayers {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::ThrillingTalesOfDragonSlayers,
+        internal_name: "Catalyst_Pulpfic",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::HP77),
         weapon_base: WeaponBaseATKFamily::ATK401,

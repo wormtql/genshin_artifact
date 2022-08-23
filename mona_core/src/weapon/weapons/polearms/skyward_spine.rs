@@ -29,6 +29,7 @@ pub struct SkywardSpine;
 impl WeaponTrait for SkywardSpine {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SkywardSpine,
+        internal_name: "Pole_Dvalin",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge80),
         weapon_base: WeaponBaseATKFamily::ATK674,

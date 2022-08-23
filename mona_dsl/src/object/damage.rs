@@ -9,6 +9,8 @@ pub struct MonaObjectDamage {
     pub normal: DamageResult,
     pub melt: Option<DamageResult>,
     pub vaporize: Option<DamageResult>,
+    pub spread: Option<DamageResult>,
+    pub aggravate: Option<DamageResult>,
     pub is_heal: bool,
     pub is_shield: bool,
 }
@@ -38,6 +40,20 @@ impl MonaObjectTrait for MonaObjectDamage {
                     return Err(RuntimeError::new(RuntimeErrorEnum::DamageNotFound, "damage `vaporize` not exist"));
                 }
             },
+            "spread" => {
+                if let Some(ref x) = self.spread {
+                    MonaObjectDamageNumber::from_damage_result(x)
+                } else {
+                    return Err(RuntimeError::new(RuntimeErrorEnum::DamageNotFound, "damage `spread` not exist"));
+                }
+            },
+            "aggravate" => {
+                if let Some(ref x) = self.aggravate {
+                    MonaObjectDamageNumber::from_damage_result(x)
+                } else {
+                    return Err(RuntimeError::new(RuntimeErrorEnum::DamageNotFound, "damage `aggravate` not exist"));
+                }
+            }
             x => return Err(RuntimeError::new(RuntimeErrorEnum::DamageNotFound, &format!("damage `{}` not exist", x)))
         };
 
@@ -111,6 +127,9 @@ impl MonaObjectTrait for MonaObjectTransformativeDamage {
             "electro_charged" => self.damage.electro_charged,
             "shatter" => self.damage.shatter,
             "superconduct" | "super_conduct" => self.damage.superconduct,
+            "bloom" => self.damage.bloom,
+            "burgeon" => self.damage.burgeon,
+            "hyperbloom" => self.damage.hyperbloom,
             x => {
                 return Err(RuntimeError::new(RuntimeErrorEnum::NotSupported, &format!("`TransformativeDamage` doesn't have prop name `{}`", x)));
             }

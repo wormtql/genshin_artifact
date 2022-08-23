@@ -97,7 +97,7 @@ impl TargetFunction for RazorDefaultTargetFunction {
         };
 
         type S = <Razor as CharacterTrait>::DamageEnumType;
-        let dmg_a = Razor::damage::<SimpleDamageBuilder>(&context, S::Normal1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_a = Razor::damage::<SimpleDamageBuilder>(&context, S::Normal1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         dmg_a
     }

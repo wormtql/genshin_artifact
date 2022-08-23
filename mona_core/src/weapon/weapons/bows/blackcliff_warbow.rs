@@ -39,6 +39,7 @@ pub struct BlackcliffWarbow;
 impl WeaponTrait for BlackcliffWarbow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BlackcliffWarbow,
+        internal_name: "Bow_Blackrock",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage80),
         weapon_base: WeaponBaseATKFamily::ATK565,

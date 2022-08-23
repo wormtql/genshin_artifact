@@ -13,6 +13,7 @@ pub struct HakushinRing;
 impl WeaponTrait for HakushinRing {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::HakushinRing,
+        internal_name: "Catalyst_Bakufu",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge67),
         weapon_base: WeaponBaseATKFamily::ATK565,

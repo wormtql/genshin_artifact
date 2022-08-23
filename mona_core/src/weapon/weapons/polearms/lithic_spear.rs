@@ -40,6 +40,7 @@ pub struct LithicSpear;
 impl WeaponTrait for LithicSpear {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::LithicSpear,
+        internal_name: "Pole_Lapis",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,

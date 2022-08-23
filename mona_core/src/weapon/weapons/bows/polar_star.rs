@@ -55,6 +55,7 @@ pub struct PolarStar;
 impl WeaponTrait for PolarStar {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PolarStar,
+        internal_name: "Bow_Worldbane",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate72),
         weapon_base: WeaponBaseATKFamily::ATK608,

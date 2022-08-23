@@ -48,6 +48,7 @@ pub const KAEYA_SKILL: KaeyaSkillType = KaeyaSkillType {
 
 pub const KAEYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Kaeya,
+    internal_name: "Kaeya",
     chs: "凯亚",
     element: Element::Cryo,
     hp: [976, 2506, 3235, 4846, 5364, 6170, 6860, 7666, 8184, 8989, 9507, 10312, 10830, 11636],
@@ -140,7 +141,7 @@ impl CharacterTrait for Kaeya {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: KaeyaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -166,7 +167,8 @@ impl CharacterTrait for Kaeya {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

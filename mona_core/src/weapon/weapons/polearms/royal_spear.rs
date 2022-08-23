@@ -30,6 +30,7 @@ pub struct RoyalSpear;
 impl WeaponTrait for RoyalSpear {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::RoyalSpear,
+        internal_name: "Pole_Theocrat",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,

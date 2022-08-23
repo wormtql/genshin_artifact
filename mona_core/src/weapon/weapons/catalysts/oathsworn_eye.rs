@@ -27,6 +27,7 @@ pub struct OathswornEye;
 impl WeaponTrait for OathswornEye {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::OathswornEye,
+        internal_name: "Catalyst_Jyanome",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,

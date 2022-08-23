@@ -97,7 +97,7 @@ impl TargetFunction for XiaoDefaultTargetFunction {
 
         type S = <Xiao as CharacterTrait>::DamageEnumType;
         let config = CharacterSkillConfig::Xiao { after_q: true, talent1_stack: 2.5, talent2_stack: 0.0 };
-        let dmg_plunge = Xiao::damage::<SimpleDamageBuilder>(&context, S::Plunging1, &config).normal.expectation;
+        let dmg_plunge = Xiao::damage::<SimpleDamageBuilder>(&context, S::Plunging1, &config, None).normal.expectation;
 
         dmg_plunge
     }

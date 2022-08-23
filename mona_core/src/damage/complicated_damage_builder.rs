@@ -5,6 +5,7 @@ use crate::damage::damage_analysis::DamageAnalysis;
 use crate::enemies::Enemy;
 use crate::common::EntryType;
 use crate::damage::damage_builder::{DamageBuilder};
+use crate::damage::level_coefficient::LEVEL_MULTIPLIER;
 use crate::damage::reaction::Reaction;
 use crate::damage::SimpleDamageBuilder;
 
@@ -111,8 +112,19 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         enemy: &Enemy,
         element: Element,
         skill: SkillType,
-        character_level: usize
+        character_level: usize,
+        fumo: Option<Element>
     ) -> Self::Result {
+        let element = if skill == SkillType::NormalAttack || skill == SkillType::ChargedAttack || skill == SkillType::PlungingAttack {
+            if let Some(x) = fumo {
+                x
+            } else {
+                element
+            }
+        } else {
+            element
+        };
+
         let atk_comp = self.get_atk_composition(attribute);
         let atk = atk_comp.sum();
         let atk_ratio_comp = self.get_atk_ratio_composition(attribute, element, skill);
@@ -155,6 +167,10 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         let melt_enhance = melt_enhance_comp.sum();
         let vaporize_enhance_comp = self.get_enhance_vaporize_composition(attribute);
         let vaporize_enhance = vaporize_enhance_comp.sum();
+        let spread_enhance_comp = self.get_enhance_spread_composition(attribute);
+        let spread_enhance = spread_enhance_comp.sum();
+        let aggravate_enhance_comp = self.get_enhance_aggravate_composition(attribute);
+        let aggravate_enhance = aggravate_enhance_comp.sum();
 
         let melt_ratio = if element == Element::Pyro { 2.0 } else { 1.5 };
         let vaporize_ratio = if element == Element::Hydro { 2.0 } else { 1.5 };
@@ -178,6 +194,42 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             None
         };
 
+        let damage_spread = if element != Element::Dendro {
+            None
+        } else {
+            let spread_base_damage = {
+                let reaction_ratio = 1.25;
+                base_damage + LEVEL_MULTIPLIER[character_level - 1] * reaction_ratio * (1.0 + spread_enhance)
+            };
+
+            let dmg = DamageResult {
+                critical: spread_base_damage * (1.0 + bonus) * (1.0 + critical_damage),
+                non_critical: spread_base_damage * (1.0 + bonus),
+                expectation: spread_base_damage * (1.0 + bonus) * (1.0 + critical_damage * critical),
+                is_heal: false,
+                is_shield: false
+            } * (defensive_ratio * resistance_ratio);
+            Some(dmg)
+        };
+
+        let damage_aggravate = if element != Element::Electro {
+            None
+        } else {
+            let aggravate_base_damage = {
+                let reaction_ratio = 1.15;
+                base_damage + LEVEL_MULTIPLIER[character_level - 1] * reaction_ratio * (1.0 + aggravate_enhance)
+            };
+
+            let dmg = DamageResult {
+                critical: aggravate_base_damage * (1.0 + bonus) * (1.0 + critical_damage),
+                non_critical: aggravate_base_damage * (1.0 + bonus),
+                expectation: aggravate_base_damage * (1.0 + bonus) * (1.0 + critical_damage * critical),
+                is_heal: false,
+                is_shield: false
+            } * (defensive_ratio * resistance_ratio);
+            Some(dmg)
+        };
+
         DamageAnalysis {
             atk: atk_comp.0,
             atk_ratio: atk_ratio_comp.0,
@@ -189,6 +241,8 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             bonus: bonus_comp.0,
             critical: critical_comp.0,
             critical_damage: critical_damage_comp.0,
+            spread_compose: spread_enhance_comp.0,
+            aggravate_compose: aggravate_enhance_comp.0,
 
             melt_enhance: melt_enhance_comp.0,
             vaporize_enhance: vaporize_enhance_comp.0,
@@ -205,7 +259,9 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
             normal: damage_normal,
             melt: damage_melt,
-            vaporize: damage_vaporize
+            vaporize: damage_vaporize,
+            spread: damage_spread,
+            aggravate: damage_aggravate,
         }
     }
 
@@ -239,6 +295,8 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             def: def_comp.0,
             def_ratio: self.ratio_def.0.clone(),
             extra_damage: self.extra_damage.0.clone(),
+            spread_compose: HashMap::new(),
+            aggravate_compose: HashMap::new(),
 
             bonus: HashMap::new(),
             critical: HashMap::new(),
@@ -259,7 +317,9 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
             normal: damage_normal,
             melt: None,
-            vaporize: None
+            vaporize: None,
+            spread: None,
+            aggravate: None,
         }
     }
 
@@ -293,6 +353,8 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             def: def_comp.0,
             def_ratio: self.ratio_def.0.clone(),
             extra_damage: self.extra_damage.0.clone(),
+            spread_compose: HashMap::new(),
+            aggravate_compose: HashMap::new(),
 
             bonus: HashMap::new(),
             critical: HashMap::new(),
@@ -313,7 +375,9 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
             normal: damage_normal,
             melt: None,
-            vaporize: None
+            vaporize: None,
+            spread: None,
+            aggravate: None,
         }
     }
 }
@@ -378,6 +442,24 @@ impl ComplicatedDamageBuilder {
         let em = self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
         if em > 0.0 {
             comp.add_value("精通", Reaction::amp(em));
+        }
+        comp
+    }
+
+    fn get_enhance_spread_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
+        let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceSpread);
+        let em = &self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
+        if em > 0.0 {
+            comp.add_value("精通", Reaction::catalyze(em));
+        }
+        comp
+    }
+
+    fn get_enhance_aggravate_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
+        let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceAggravate);
+        let em = &self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
+        if em > 0.0 {
+            comp.add_value("精通", Reaction::catalyze(em));
         }
         comp
     }

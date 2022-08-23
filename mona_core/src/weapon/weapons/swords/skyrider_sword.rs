@@ -33,6 +33,7 @@ pub struct SkyriderSword;
 impl WeaponTrait for SkyriderSword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SkyriderSword,
+        internal_name: "Sword_Mitsurugi",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge113),
         weapon_base: WeaponBaseATKFamily::ATK354,

@@ -49,6 +49,7 @@ pub struct ThunderingPulse;
 impl WeaponTrait for ThunderingPulse {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::ThunderingPulse,
+        internal_name: "Bow_Narukami",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage144),
         weapon_base: WeaponBaseATKFamily::ATK608,

@@ -134,7 +134,7 @@ impl TargetFunction for BennettDamageTargetFunction {
         };
 
         type S = <Bennett as CharacterTrait>::DamageEnumType;
-        let dmg_q = Bennett::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_q = Bennett::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         let d = r * dmg_q * (1.0 - self.other_dmg_ratio) + (atk_bonus + VIRTUAL_BASE_ATK) / VIRTUAL_BASE_ATK * 20000.0 * self.other_dmg_ratio;
 

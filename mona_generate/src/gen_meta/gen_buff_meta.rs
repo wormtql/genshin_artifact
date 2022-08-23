@@ -2,6 +2,8 @@ use mona::buffs::buff_meta::{BuffImage, BuffMetaData};
 use mona::buffs::buff_name::BuffName;
 use askama::Template;
 use mona::artifacts::artifact_trait::ArtifactMetaData;
+use mona::character::CharacterStaticData;
+use mona::weapon::weapon_static_data::WeaponStaticData;
 use crate::utils::character::get_character_data_by_name;
 use crate::utils::get_internal_character_name;
 
@@ -9,10 +11,12 @@ struct BuffMeta {
     name: String,
     chs: String,
     image: String,
-    // character | misc
+    // character | misc | weapon
     image_type: String,
     // if image_type is character, use internal name to get mihoyo image url, not using mine
-    character_icon_name: String,
+    // character_icon_name: String,
+    character_internal_name: String,
+    weapon_internal_name: String,
     genre: String,
     config: Vec<String>,
     description: String,
@@ -66,15 +70,35 @@ pub fn gen_buff_meta_as_js_file() -> String {
             String::new()
         };
 
+        let image_type = if let BuffImage::Avatar(_) = meta.image {
+            String::from("character")
+        } else if let BuffImage::Weapon(_) = meta.image {
+            String::from("weapon")
+        } else {
+            String::from("misc")
+        };
+
         data.push(BuffMeta {
             name: meta.name.to_string(),
             chs: String::from(meta.chs),
             image: convert_image(&meta.image),
-            image_type: if let BuffImage::Avatar(_) = meta.image { String::from("character") } else { String::from("misc") },
-            character_icon_name: if let BuffImage::Avatar(c) = meta.image {
-                let avatar_excel_config_data = get_character_data_by_name(c);
-                avatar_excel_config_data.iconName.clone()
+            image_type,
+            // character_icon_name: if let BuffImage::Avatar(c) = meta.image {
+            //     let avatar_excel_config_data = get_character_data_by_name(c);
+            //     avatar_excel_config_data.iconName.clone()
+            // } else { String::new() },
+            character_internal_name: if let BuffImage::Avatar(c) = meta.image {
+                // let avatar_excel_config_data = get_character_data_by_name(c);
+                // avatar_excel_config_data.iconName.clone()
+                let c_meta: CharacterStaticData = c.get_static_data();
+                String::from(c_meta.internal_name)
             } else { String::new() },
+            weapon_internal_name: if let BuffImage::Weapon(w) = meta.image {
+                let w_meta: WeaponStaticData = w.get_static_data();
+                String::from(w_meta.internal_name)
+            } else {
+                String::new()
+            },
             genre: meta.genre.to_string(),
             config,
             description,

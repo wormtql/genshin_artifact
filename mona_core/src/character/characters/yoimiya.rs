@@ -54,6 +54,7 @@ pub const YOIMIYA_SKILL: YoimiyaSkill = YoimiyaSkill {
 
 pub const YOIMIYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Yoimiya,
+    internal_name: "Yoimiya",
     chs: "宵宫",
     element: Element::Pyro,
     hp: [791, 2053, 2731, 4086, 4568, 5256, 5899, 6593, 7075, 7777, 8259, 8968, 9450, 10164],
@@ -197,7 +198,7 @@ impl CharacterTrait for Yoimiya {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: YoimiyaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -236,7 +237,8 @@ impl CharacterTrait for Yoimiya {
             &context.enemy,
             s.get_element(after_e),
             skill_type,
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

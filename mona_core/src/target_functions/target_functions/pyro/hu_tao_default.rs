@@ -134,7 +134,7 @@ impl TargetFunction for HuTaoDefaultTargetFunction {
 
         type S = <HuTao as CharacterTrait>::DamageEnumType;
         let damage_charged = HuTao::damage::<SimpleDamageBuilder>(
-            &context, S::Charged, &CharacterSkillConfig::HuTao { after_e: true }
+            &context, S::Charged, &CharacterSkillConfig::HuTao { after_e: true }, None,
         );
 
         let normal = 0.0_f64.max(1.0 - self.melt_rate - self.vaporize_rate);

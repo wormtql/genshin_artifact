@@ -58,6 +58,7 @@ pub const KEQING_SKILL: KeqingSkillType = KeqingSkillType {
 
 pub const KEQING_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Keqing,
+    internal_name: "Keqing",
     chs: "刻晴",
     element: Element::Electro,
     hp: [1020, 2646, 3521, 5268, 5889, 6776, 7604, 8500, 9121, 10025, 10647, 11561, 12182, 13103],
@@ -213,7 +214,7 @@ impl CharacterTrait for Keqing {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: KeqingDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -249,7 +250,8 @@ impl CharacterTrait for Keqing {
             &context.enemy,
             s.get_element(after_e),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 
@@ -258,10 +260,11 @@ impl CharacterTrait for Keqing {
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
-        let role: KeqingRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
-        match role {
-            KeqingRoleEnum::MainElectro => Box::new(KeqingDefaultTargetFunction),
-            KeqingRoleEnum::MainPhysical => todo!()
-        }
+        // let role: KeqingRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        // match role {
+        //     KeqingRoleEnum::MainElectro => Box::new(KeqingDefaultTargetFunction),
+        //     KeqingRoleEnum::MainPhysical =>
+        // }
+        unimplemented!()
     }
 }

@@ -7,6 +7,7 @@ use super::weapon_base_atk::WeaponBaseATKFamily;
 
 pub struct WeaponStaticData {
     pub name: WeaponName,
+    pub internal_name: &'static str,
     pub weapon_type: WeaponType,
     pub weapon_sub_stat: Option<WeaponSubStatFamily>,
     pub weapon_base: WeaponBaseATKFamily,

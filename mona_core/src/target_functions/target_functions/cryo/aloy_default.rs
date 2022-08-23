@@ -95,7 +95,7 @@ impl TargetFunction for AloyDefaultTargetFunction {
 
         type S = <Aloy as CharacterTrait>::DamageEnumType;
         let config = CharacterSkillConfig::Aloy { coil_count: 4 };
-        let dmg_a = Aloy::damage::<SimpleDamageBuilder>(&context, S::Normal11, &config).normal.expectation;
+        let dmg_a = Aloy::damage::<SimpleDamageBuilder>(&context, S::Normal11, &config, None).normal.expectation;
 
         dmg_a
     }

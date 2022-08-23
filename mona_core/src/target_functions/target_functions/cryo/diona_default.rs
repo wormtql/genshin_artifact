@@ -108,7 +108,7 @@ impl TargetFunction for DionaDefaultTargetFunction {
 
         type S = <Diona as CharacterTrait>::DamageEnumType;
         let q_heal = Diona::damage::<SimpleDamageBuilder>(
-            &context, S::QHeal, &CharacterSkillConfig::NoConfig
+            &context, S::QHeal, &CharacterSkillConfig::NoConfig, None
         ).normal.expectation;
 
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);

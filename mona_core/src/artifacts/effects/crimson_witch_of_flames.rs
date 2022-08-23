@@ -27,6 +27,7 @@ impl<T: Attribute> ArtifactEffect<T> for CrimsonWitchOfFlamesEffect {
         let key = "炽烈的炎之魔女4";
         attribute.set_value_by(AttributeName::EnhanceOverload, key, 0.4);
         attribute.set_value_by(AttributeName::EnhanceBurning, key, 0.4);
+        attribute.set_value_by(AttributeName::EnhanceBurgeon, key, 0.4);
         attribute.set_value_by(AttributeName::EnhanceVaporize, key, 0.15);
         attribute.set_value_by(AttributeName::EnhanceMelt, key, 0.15);
         attribute.set_value_by(AttributeName::BonusPyro, key, self.level * 0.075);

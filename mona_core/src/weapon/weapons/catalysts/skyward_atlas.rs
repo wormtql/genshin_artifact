@@ -29,6 +29,7 @@ pub struct SkywardAtlas;
 impl WeaponTrait for SkywardAtlas {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SkywardAtlas,
+        internal_name: "Catalyst_Dvalin",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK72),
         weapon_base: WeaponBaseATKFamily::ATK674,

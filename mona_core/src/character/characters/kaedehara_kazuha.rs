@@ -58,6 +58,7 @@ pub const KAEDEHARA_KAZUHA_SKILL: KaedeharaKazuhaSkillType = KaedeharaKazuhaSkil
 
 pub const KAEDEHARA_KAZUHA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::KaedeharaKazuha,
+    internal_name: "Kazuha",
     chs: "枫原万叶",
     element: Element::Anemo,
     hp: [1039, 2695, 3586, 5366, 5999, 6902, 7747, 8659, 9292, 10213, 10849, 11777, 12410, 13348],
@@ -192,7 +193,7 @@ impl CharacterTrait for KaedeharaKazuha {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: KaedeharaKazuhaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -237,7 +238,8 @@ impl CharacterTrait for KaedeharaKazuha {
             &context.enemy,
             s.get_element(after_e_or_q),
             skill_type,
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

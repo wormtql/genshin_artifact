@@ -62,6 +62,7 @@ pub const ALOY_SKILL: AloySkillType = AloySkillType {
 
 pub const ALOY_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Aloy,
+    internal_name: "Aloy",
     chs: "埃洛伊",
     element: Element::Cryo,
     hp: [848, 2201, 2928, 4382, 4899, 5636, 6325, 7070, 7587, 8339, 8856, 9616, 10133, 10899],
@@ -173,7 +174,7 @@ impl CharacterTrait for Aloy {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: AloyDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -222,7 +223,8 @@ impl CharacterTrait for Aloy {
             &context.enemy,
             s.get_element(coil_count >= 4),
             skill_type,
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

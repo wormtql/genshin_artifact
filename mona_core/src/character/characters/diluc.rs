@@ -56,6 +56,7 @@ pub const DILUC_SKILL: DilucSkillType = DilucSkillType {
 
 const DILUC_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Diluc,
+    internal_name: "Diluc",
     chs: "迪卢克",
     element: Element::Pyro,
     hp: [1011, 2621, 3488, 5219, 5834, 6712, 7533, 8421, 9036, 9932, 10547, 11453, 12068, 12981],
@@ -169,7 +170,7 @@ impl CharacterTrait for Diluc {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: DilucDamageEnum = num::FromPrimitive::from_usize(s).expect("wrong skill index");
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -209,7 +210,8 @@ impl CharacterTrait for Diluc {
             &context.enemy,
             s.get_element(pyro),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

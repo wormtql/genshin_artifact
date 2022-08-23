@@ -44,6 +44,7 @@ pub struct SolarPearl;
 impl WeaponTrait for SolarPearl {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SolarPearl,
+        internal_name: "Catalyst_Resurrection",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate60),
         weapon_base: WeaponBaseATKFamily::ATK510,

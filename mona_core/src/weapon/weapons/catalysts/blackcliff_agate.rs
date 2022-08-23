@@ -39,6 +39,7 @@ pub struct BlackcliffAgate;
 impl WeaponTrait for BlackcliffAgate {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BlackcliffAgate,
+        internal_name: "Catalyst_Blackrock",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage120),
         weapon_base: WeaponBaseATKFamily::ATK510,

@@ -199,6 +199,15 @@ export const artifactTags: Record<ArtifactStatName, ArtifactTagData> = {
             "4": 0.435,
             "5": 0.583
         }
+    },
+    "dendroBonus": {
+        "name": "dendroBonus",
+        "chs": "草元素伤害加成",
+        "percentage": true,
+        "max": {
+            "4": 0.348,
+            "5": 0.466
+        }
     }
 }
 
@@ -213,6 +222,7 @@ export const mainStatMap: Record<ArtifactPosition, ArtifactMainStatName[]> = {
         "iceBonus",
         "windBonus",
         "rockBonus",
+        "dendroBonus",
         "physicalBonus",
         "attackPercentage",
         "lifePercentage",

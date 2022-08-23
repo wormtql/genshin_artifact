@@ -40,6 +40,7 @@ pub struct WavebreakersFin;
 impl WeaponTrait for WavebreakersFin {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::WavebreakersFin,
+        internal_name: "Pole_Maria",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK30),
         weapon_base: WeaponBaseATKFamily::ATK620,

@@ -12,6 +12,7 @@ pub struct PocketGrimoire;
 impl WeaponTrait for PocketGrimoire {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PocketGrimoire,
+        internal_name: "Catalyst_Pocket",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: None,
         weapon_base: WeaponBaseATKFamily::ATK243,

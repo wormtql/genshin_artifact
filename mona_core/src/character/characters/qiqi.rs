@@ -68,6 +68,7 @@ pub const QIQI_SKILL: QiqiSkillType = QiqiSkillType {
 
 pub const QIQI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Qiqi,
+    internal_name: "Qiqi",
     chs: "七七",
     element: Element::Cryo,
     hp: [963, 2498, 3323, 4973, 5559, 6396, 7178, 8023, 8610, 9463, 10050, 10912, 11499, 12368],
@@ -180,7 +181,7 @@ impl CharacterTrait for Qiqi {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: QiqiDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -229,7 +230,8 @@ impl CharacterTrait for Qiqi {
                 &context.enemy,
                 s.get_element(),
                 s.get_skill_type(),
-                context.character_common_data.level
+                context.character_common_data.level,
+                fumo,
             )
         }
     }

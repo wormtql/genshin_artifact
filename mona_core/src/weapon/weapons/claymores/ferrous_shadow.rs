@@ -33,6 +33,7 @@ pub struct FerrousShadow;
 impl WeaponTrait for FerrousShadow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FerrousShadow,
+        internal_name: "Claymore_Glaive",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::HP77),
         weapon_base: WeaponBaseATKFamily::ATK401,

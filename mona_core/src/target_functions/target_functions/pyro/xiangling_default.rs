@@ -161,7 +161,7 @@ impl TargetFunction for XianglingDefaultTargetFunction {
         };
 
         type S = <Xiangling as CharacterTrait>::DamageEnumType;
-        let dmg_q = Xiangling::damage::<SimpleDamageBuilder>(&context, S::Q4, &CharacterSkillConfig::NoConfig);
+        let dmg_q = Xiangling::damage::<SimpleDamageBuilder>(&context, S::Q4, &CharacterSkillConfig::NoConfig, None);
 
         let normal = dmg_q.normal.expectation;
         let melt = dmg_q.melt.unwrap().expectation;

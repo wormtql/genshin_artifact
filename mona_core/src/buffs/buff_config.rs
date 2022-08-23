@@ -20,6 +20,7 @@ pub enum BuffConfig {
     DEFMinus { p: f64 },
     ResMinus { p: f64 },
     HealingBonus { p: f64 },
+    BaseDmg { value: f64 },
 
     BennettQ { base_atk: f64, c1: bool, skill3: usize },
     EulaE { skill2: usize },
@@ -44,6 +45,8 @@ pub enum BuffConfig {
     YelanTalent2 { secs: usize },
     YelanC4 { count: usize },
     KamisatoAyatoQ { skill_level: usize },
+    TighnariC4 { after_reaction: bool },
+    DoriC4 { hp_below50: bool, energy_below50: bool },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },
@@ -51,9 +54,12 @@ pub enum BuffConfig {
     ThrillingTalesOfDragonSlayers { refine: usize },
     ElegyOfTheEnd { refine: usize },
     HakushinRing { refine: usize, element: Element },
+    SapwoodBlade { refine: usize, rate: f64 },
+    Moonpiercer { refine: usize },
 
     ResonanceCryo2 { rate: f64 },
     ResonanceGeo2 { rate1: f64, rate2: f64 },
+    ResonanceDendro2 { rate1: f64, rate2: f64 },
 
     ArchaicPetra4 { element: Element },
     ViridescentVenerer4 { element: Element },

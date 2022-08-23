@@ -58,6 +58,7 @@ pub const ZHONGLI_SKILL: ZhongliSkillType = ZhongliSkillType {
 
 pub const ZHONGLI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Zhongli,
+    internal_name: "Zhongli",
     chs: "钟离",
     element:Element::Geo,
     hp: [1144, 2967, 3948, 5908, 6605, 7599, 8528, 9533, 10230, 11243, 11940, 12965, 13662, 14695],
@@ -178,7 +179,7 @@ impl CharacterTrait for Zhongli {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: ZhongliDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -207,7 +208,8 @@ impl CharacterTrait for Zhongli {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

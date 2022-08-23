@@ -62,6 +62,7 @@ pub const NOELLE_SKILL: NoelleSkillType = NoelleSkillType {
 
 pub const NOELLE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Noelle,
+    internal_name: "Noel",
     chs: "诺艾尔",
     element: Element::Geo,
     hp: [1012, 2600, 3356, 5027, 5564, 6400, 7117, 7953, 8490, 9325, 9862, 10698, 11235, 12071],
@@ -177,7 +178,7 @@ impl CharacterTrait for Noelle {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: NoelleDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -240,7 +241,8 @@ impl CharacterTrait for Noelle {
                 &context.enemy,
                 s.get_element(after_q),
                 s.get_skill_type(),
-                context.character_common_data.level
+                context.character_common_data.level,
+                fumo,
             )
         }
     }

@@ -119,7 +119,7 @@ impl TargetFunction for YelanDefaultTargetFunction {
         };
 
         type S = <Yelan as CharacterTrait>::DamageEnumType;
-        let dmg_q = Yelan::damage::<SimpleDamageBuilder>(&context, S::Q2, &CharacterSkillConfig::NoConfig);
+        let dmg_q = Yelan::damage::<SimpleDamageBuilder>(&context, S::Q2, &CharacterSkillConfig::NoConfig, None);
 
         let normal = dmg_q.normal.expectation;
         let vaporize = dmg_q.vaporize.unwrap().expectation;

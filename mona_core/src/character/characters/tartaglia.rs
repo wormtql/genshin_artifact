@@ -80,6 +80,7 @@ pub const TARTAGLIA_SKILL: TartagliaSkillType = TartagliaSkillType {
 
 pub const TARTAGLIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Tartaglia,
+    internal_name: "Tartaglia",
     chs: "达达利亚",
     element: Element::Hydro,
     hp: [1020, 2646, 3521, 5268, 5889, 6776, 7604, 8500, 9121, 10025, 10647, 11561, 12182, 13103],
@@ -204,7 +205,7 @@ impl CharacterTrait for Tartaglia {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: TartagliaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -246,7 +247,8 @@ impl CharacterTrait for Tartaglia {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

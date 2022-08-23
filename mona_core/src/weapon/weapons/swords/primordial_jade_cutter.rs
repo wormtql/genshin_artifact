@@ -40,6 +40,7 @@ pub struct PrimordialJadeCutter;
 impl WeaponTrait for PrimordialJadeCutter {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrimordialJadeCutter,
+        internal_name: "Sword_Morax",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate96),
         weapon_base: WeaponBaseATKFamily::ATK542,

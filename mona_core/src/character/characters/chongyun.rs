@@ -47,6 +47,7 @@ pub const CHONGYUN_SKILL: ChongyunSkillType = ChongyunSkillType {
 
 pub const CHONGYUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Chongyun,
+    internal_name: "Chongyun",
     chs: "重云",
     element: Element::Cryo,
     hp: [921, 2366, 3054, 4574, 5063, 5824, 6475, 7236, 7725, 8485, 8974, 9734, 10223, 10984],
@@ -138,7 +139,7 @@ impl CharacterTrait for Chongyun {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: ChongyunDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -164,7 +165,8 @@ impl CharacterTrait for Chongyun {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

@@ -33,6 +33,7 @@ pub struct HarbingerOfDawn;
 impl WeaponTrait for HarbingerOfDawn {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::HarbingerOfDawn,
+        internal_name: "Sword_Dawn",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage102),
         weapon_base: WeaponBaseATKFamily::ATK401,

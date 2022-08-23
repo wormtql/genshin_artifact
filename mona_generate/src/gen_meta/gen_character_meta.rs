@@ -10,7 +10,8 @@ use crate::utils::get_internal_character_name;
 struct CharacterMeta {
     name: String,
     // name_for_image: String,
-    icon_name: String,
+    internal_name: String,
+    // icon_name: String,
     chs: String,
     star: usize,
     skill1_name: String,
@@ -84,7 +85,8 @@ pub fn gen_character_meta_as_js_file() -> String {
         data.push(CharacterMeta {
             name: meta.name.to_string(),
             // name_for_image: get_internal_character_name(name_enum),
-            icon_name: avatar_excel_config_data.iconName.clone(),
+            // icon_name: avatar_excel_config_data.iconName.clone(),
+            internal_name: String::from(meta.internal_name),
             chs: String::from(meta.chs),
             star: meta.star as usize,
             skill1_name: String::from(meta.skill_name1),

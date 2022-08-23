@@ -58,6 +58,7 @@ pub const XINGQIU_SKILL: XingqiuSkillType = XingqiuSkillType {
 
 pub const XINGQIU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Xingqiu,
+    internal_name: "Xingqiu",
     chs: "行秋",
     element: Element::Hydro,
     hp: [857, 2202, 2842, 4257, 4712, 5420, 6027, 6735, 7190, 7897, 8352, 9060, 9514, 10222],
@@ -188,7 +189,7 @@ impl CharacterTrait for Xingqiu {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: XingqiuDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -230,7 +231,8 @@ impl CharacterTrait for Xingqiu {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

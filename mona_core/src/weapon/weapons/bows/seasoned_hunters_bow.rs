@@ -13,6 +13,7 @@ pub struct SeasonedHuntersBow;
 impl WeaponTrait for SeasonedHuntersBow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SeasonedHuntersBow,
+        internal_name: "Bow_Old",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: None,
         weapon_base: WeaponBaseATKFamily::ATK243,

@@ -39,6 +39,7 @@ pub struct SerpentSpine;
 impl WeaponTrait for SerpentSpine {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SerpentSpine,
+        internal_name: "Claymore_Kione",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate60),
         weapon_base: WeaponBaseATKFamily::ATK510,

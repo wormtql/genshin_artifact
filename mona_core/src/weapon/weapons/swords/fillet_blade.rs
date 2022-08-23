@@ -13,6 +13,7 @@ pub struct FilletBlade;
 impl WeaponTrait for FilletBlade {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FilletBlade,
+        internal_name: "Sword_Sashimi",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK77),
         weapon_base: WeaponBaseATKFamily::ATK401,

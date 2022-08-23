@@ -7,6 +7,14 @@ bool_false = @{ "false" }
 number_seq = _{ ASCII_DIGIT+ }
 number = @{ number_seq ~ ("." ~ number_seq?)? }
 
+string_literal = @{ "\"" ~ inner ~ "\"" }
+inner = @{ char* }
+char = _{
+   !("\"" | "\\") ~ ANY
+   | "\\" ~ ("\"" | "\\" | "/" | "b" | "f" | "n" | "r" | "t")
+   | "\\" ~ ("u" ~ ASCII_HEX_DIGIT{4})
+}
+
 identifier = @{ (ASCII_ALPHA | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
 
 object_item = { identifier ~ ":" ~ expression }
@@ -39,7 +47,7 @@ or = @{ "||" }
 expression_list = { expression ~ ("," ~ expression)* ~ ","? }
 
 paren_expression = { "(" ~ expression ~ ")" }
-primary_expression = { bool_false | bool_true | identifier | number | object_literal | array_literal | paren_expression }
+primary_expression = { bool_false | bool_true | identifier | number | string_literal | object_literal | array_literal | paren_expression }
 
 //function_call_expression = { function_field_helper ~ ("(" ~ function_call_param_list? ~ ")")* }
 function_call_item = { "(" ~ expression_list? ~ ")" }

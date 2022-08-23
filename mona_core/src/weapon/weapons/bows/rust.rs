@@ -29,6 +29,7 @@ pub struct Rust;
 impl WeaponTrait for Rust {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Rust,
+        internal_name: "Bow_Recluse",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,

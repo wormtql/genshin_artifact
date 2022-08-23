@@ -93,7 +93,7 @@ impl TargetFunction for ShikanoinHeizouDefaultTargetFunction {
         };
 
         type S = <ShikanoinHeizou as CharacterTrait>::DamageEnumType;
-        let dmg_e4 = ShikanoinHeizou::damage::<SimpleDamageBuilder>(&context, S::E4, &CharacterSkillConfig::NoConfig);
+        let dmg_e4 = ShikanoinHeizou::damage::<SimpleDamageBuilder>(&context, S::E4, &CharacterSkillConfig::NoConfig, None);
 
         return dmg_e4.normal.expectation
     }

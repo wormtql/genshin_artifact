@@ -30,6 +30,7 @@ pub struct KagurasVerity;
 impl WeaponTrait for KagurasVerity {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::KagurasVerity,
+        internal_name: "Catalyst_Narukami",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage144),
         weapon_base: WeaponBaseATKFamily::ATK608,

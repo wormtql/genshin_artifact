@@ -134,6 +134,7 @@ pub struct AetherAnemo;
 impl CharacterTrait for AetherAnemo {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::AetherAnemo,
+        internal_name: "PlayerBoy",
         chs: "空-风",
         element: Element::Anemo,
         hp: [912, 2342, 3024, 4529, 5031, 5766, 6411, 7164, 7648, 8401, 8885, 9638, 10122, 10875],
@@ -180,7 +181,7 @@ impl CharacterTrait for AetherAnemo {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: AetherAnemoDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -212,7 +213,8 @@ impl CharacterTrait for AetherAnemo {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 
@@ -223,6 +225,6 @@ impl CharacterTrait for AetherAnemo {
     }
 
     fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {
-        todo!()
+        unimplemented!()
     }
 }

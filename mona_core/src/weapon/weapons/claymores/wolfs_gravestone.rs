@@ -41,6 +41,7 @@ pub struct WolfsGravestone;
 impl WeaponTrait for WolfsGravestone {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::WolfsGravestone,
+        internal_name: "Claymore_Wolfmound",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK108),
         weapon_base: WeaponBaseATKFamily::ATK608,

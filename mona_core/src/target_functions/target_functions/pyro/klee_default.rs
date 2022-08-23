@@ -116,11 +116,11 @@ impl TargetFunction for KleeDefaultTargetFunction {
 
         let config = CharacterSkillConfig::NoConfig;
         type S = <Klee as CharacterTrait>::DamageEnumType;
-        let dmg_q = Klee::damage::<SimpleDamageBuilder>(&context, S::Q1, &config).normal.expectation;
+        let dmg_q = Klee::damage::<SimpleDamageBuilder>(&context, S::Q1, &config, None).normal.expectation;
         let dmg_charged = if character.common_data.has_talent1 {
-            Klee::damage::<SimpleDamageBuilder>(&context, S::ChargedWithTalent, &config).normal.expectation
+            Klee::damage::<SimpleDamageBuilder>(&context, S::ChargedWithTalent, &config, None).normal.expectation
         } else {
-            Klee::damage::<SimpleDamageBuilder>(&context, S::Charged, &config).normal.expectation
+            Klee::damage::<SimpleDamageBuilder>(&context, S::Charged, &config, None).normal.expectation
         };
 
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);

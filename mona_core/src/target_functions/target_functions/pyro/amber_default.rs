@@ -101,7 +101,7 @@ impl TargetFunction for AmberDefaultTargetFunction {
         };
 
         type S = <Amber as CharacterTrait>::DamageEnumType;
-        let dmg_charged = Amber::damage::<SimpleDamageBuilder>(&context, S::Charged2, &CharacterSkillConfig::NoConfig);
+        let dmg_charged = Amber::damage::<SimpleDamageBuilder>(&context, S::Charged2, &CharacterSkillConfig::NoConfig, None);
 
         dmg_charged.normal.expectation
     }

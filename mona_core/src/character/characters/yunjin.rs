@@ -62,6 +62,7 @@ const YUNJIN_SKILL: YunjinSkillType = YunjinSkillType {
 
 const YUNJIN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Yunjin,
+    internal_name: "Yunjin",
     chs: "云堇",
     element: Element::Geo,
     hp: [894, 2296, 2963, 4438, 4913, 5651, 6283, 7021, 7495, 8233, 8707, 9445, 9919, 10657],
@@ -160,7 +161,7 @@ impl CharacterTrait for Yunjin {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: YunjinDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -196,7 +197,8 @@ impl CharacterTrait for Yunjin {
             &context.enemy,
             s.get_element(),
             skill_type,
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

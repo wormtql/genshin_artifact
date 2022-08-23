@@ -83,9 +83,67 @@ pub fn get_character_data_by_name(name: CharacterName) -> &'static AvatarExcelDa
 pub fn get_character_dmg_names_chs() -> Vec<String> {
     let mut set = HashSet::new();
     let mut result = Vec::new();
-    for i in 0..CharacterName::LEN {
-        let name: CharacterName = num::FromPrimitive::from_usize(i).unwrap();
 
+    use CharacterName::*;
+    let names_order = vec![
+        AetherAnemo,
+        Albedo,
+        Aloy,
+        Amber,
+        AratakiItto,
+        Barbara,
+        Beidou,
+        Bennett,
+        Chongyun,
+        Diluc,
+        Diona,
+        Eula,
+        Fischl,
+        Ganyu,
+        Gorou,
+        HuTao,
+        Jean,
+        KaedeharaKazuha,
+        Kaeya,
+        KamisatoAyaka,
+        KamisatoAyato,
+        Keqing,
+        Klee,
+        KujouSara,
+        KukiShinobu,
+        Lisa,
+        Mona,
+        Ningguang,
+        Noelle,
+        Qiqi,
+        RaidenShogun,
+        Razor,
+        Rosaria,
+        SangonomiyaKokomi,
+        Sayu,
+        Shenhe,
+        ShikanoinHeizou,
+        Sucrose,
+        Tartaglia,
+        Thoma,
+        // Traveler,
+        Venti,
+        Xiangling,
+        Xiao,
+        Xingqiu,
+        Xinyan,
+        YaeMiko,
+        Yanfei,
+        Yelan,
+        Yoimiya,
+        Yunjin,
+        Zhongli,
+        Collei,
+        Tighnari,
+        Dori,
+    ];
+
+    for &name in names_order.iter() {
         let skill_map: CharacterSkillMap = name.get_skill_map();
 
         let mut f = |s: &str| {

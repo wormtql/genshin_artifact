@@ -16,7 +16,7 @@ pub struct CursedBladeEffect {
 
 impl<A: Attribute> WeaponEffect<A> for CursedBladeEffect {
     fn apply(&self, data: &WeaponCommonData, attribute: &mut A) {
-        attribute.add_atk_percentage("「妖刀」被动", 0.15 * self.rate);
+        attribute.add_atk_percentage("笼钓瓶一心被动", 0.15 * self.rate);
     }
 }
 
@@ -25,6 +25,7 @@ pub struct CursedBlade;
 impl WeaponTrait for CursedBlade {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CursedBlade,
+        internal_name: "Sword_Youtou",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,
@@ -32,7 +33,7 @@ impl WeaponTrait for CursedBlade {
         #[cfg(not(target_family = "wasm"))]
         effect: Some("普通攻击、重击或下落攻击命中敌人时，将卷起切落风，造成180%攻击力的范围伤害，并且使攻击力提升15%，持续8秒。该效果每8秒至多触发一次。"),
         #[cfg(not(target_family = "wasm"))]
-        chs: "「妖刀」"
+        chs: "笼钓瓶一心"
     };
 
     #[cfg(not(target_family = "wasm"))]

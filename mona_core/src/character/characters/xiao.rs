@@ -56,6 +56,7 @@ pub const XIAO_SKILL: XiaoSkillType = XiaoSkillType {
 
 pub const XIAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Xiao,
+    internal_name: "Xiao",
     chs: "魈",
     element: Element::Anemo,
     hp: [991, 2572, 3422, 5120, 5724, 6586, 7391, 8262, 8866, 9744, 10348, 11236, 11840, 12736],
@@ -177,7 +178,7 @@ impl CharacterTrait for Xiao {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: XiaoDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -225,7 +226,8 @@ impl CharacterTrait for Xiao {
             &context.enemy,
             s.get_element(after_q),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

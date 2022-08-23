@@ -63,6 +63,7 @@ pub const HU_TAO_SKILL: HuTaoSkillType = HuTaoSkillType {
 
 pub const HU_TAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::HuTao,
+    internal_name: "Hutao",
     chs: "胡桃",
     element: Element::Pyro,
     hp: [1211, 3141, 4179, 6253, 6990, 8042, 9026, 10089, 10826, 11899, 12637, 13721, 14459, 15552],
@@ -211,7 +212,7 @@ impl CharacterTrait for HuTao {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: HuTaoDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -257,6 +258,7 @@ impl CharacterTrait for HuTao {
             s.get_element(after_e),
             s.get_skill_type(),
             context.character_common_data.level,
+            fumo,
         )
     }
 

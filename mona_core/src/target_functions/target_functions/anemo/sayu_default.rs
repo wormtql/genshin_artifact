@@ -159,7 +159,7 @@ impl TargetFunction for SayuDefaultTargetFunction {
         };
 
         type S = <Sayu as CharacterTrait>::DamageEnumType;
-        let dmg_q = Sayu::damage::<SimpleDamageBuilder>(&context, S::Q2, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_q = Sayu::damage::<SimpleDamageBuilder>(&context, S::Q2, &CharacterSkillConfig::NoConfig, None).normal.expectation;
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);
 
         r * dmg_q

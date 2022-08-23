@@ -13,6 +13,7 @@ pub struct SnowTombedStarsilver;
 impl WeaponTrait for SnowTombedStarsilver {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SnowTombedStarsilver,
+        internal_name: "Claymore_Dragonfell",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus75),
         weapon_base: WeaponBaseATKFamily::ATK565,

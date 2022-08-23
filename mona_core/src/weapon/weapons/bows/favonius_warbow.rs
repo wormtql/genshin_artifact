@@ -13,6 +13,7 @@ pub struct FavoniusWarbow;
 impl WeaponTrait for FavoniusWarbow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FavoniusWarbow,
+        internal_name: "Bow_Zephyrus",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge133),
         weapon_base: WeaponBaseATKFamily::ATK454,
