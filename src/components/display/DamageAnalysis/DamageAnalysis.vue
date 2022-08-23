@@ -55,12 +55,12 @@
                     title="其他"
                 ></damage-analysis-util>
                 <damage-analysis-util
-                    v-if="spreadState.length > 0"
+                    v-if="spreadState.length > 0 && element === 'Dendro'"
                     :arr="spreadState"
                     title="蔓激化"
                 ></damage-analysis-util>
                 <damage-analysis-util
-                    v-if="aggravateState.length > 0"
+                    v-if="aggravateState.length > 0 && element === 'Electro'"
                     :arr="aggravateState"
                     title="超激化"
                 ></damage-analysis-util>
@@ -189,7 +189,7 @@ export default {
     },
     methods: {
         setValue(analysis) {
-            // console.log(analysis)
+            console.log(analysis)
             let map = {
                 "atkState": "atk",
                 "atkRatioState": "atk_ratio",
