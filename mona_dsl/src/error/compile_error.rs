@@ -15,6 +15,7 @@ pub enum CompileErrorType {
     DamageNameDuplicate,
     PropNameNotFound,
     PropNameDup,
+    ElementNotFound,
 }
 
 pub struct CompileError {

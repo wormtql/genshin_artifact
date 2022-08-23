@@ -102,11 +102,21 @@ impl DamageBuilder for SimpleDamageBuilder {
         self.extra_res_minus += value
     }
 
-    fn damage(&self, attribute: &Self::AttributeType, enemy: &Enemy, element: Element, skill: SkillType, character_level: usize) -> Self::Result {
+    fn damage(&self, attribute: &Self::AttributeType, enemy: &Enemy, element: Element, skill: SkillType, character_level: usize, fumo: Option<Element>) -> Self::Result {
         let atk = attribute.get_atk() + self.extra_atk;
         let def = attribute.get_def() + self.extra_def;
         let hp = attribute.get_hp() + self.extra_hp;
         let em = self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
+
+        let element = if element == Element::Physical {
+            if let Some(x) = fumo {
+                x
+            } else {
+                element
+            }
+        } else {
+            element
+        };
 
         let base
             = (attribute.get_def_ratio(element, skill) + self.ratio_def) * def

@@ -37,7 +37,7 @@ impl TargetFunction for TighnariDefaultTargetFunction {
         };
 
         type S = <Tighnari as CharacterTrait>::DamageEnumType;
-        let dmg_b = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::Charged3, &CharacterSkillConfig::NoConfig);
+        let dmg_b = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::Charged3, &CharacterSkillConfig::NoConfig, None);
 
         let normal_rate = 1.0 - self.spread_rate;
         let dmg = dmg_b.normal.expectation * normal_rate + dmg_b.spread.unwrap().expectation * self.spread_rate;

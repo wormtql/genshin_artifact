@@ -1189,6 +1189,7 @@ export default {
         Dendro: "草",
         Geo: "岩",
         Physical: "物理",
+        None: "无",
     },
     stat: {
         cureEffect: "治疗加成",
@@ -1298,6 +1299,8 @@ export default {
         gain: "相对提升幅度",
         lockAll: "锁定全部",
         unlockAll: "解锁全部",
+        skill: "技能",
+        fumo: "附魔",
     },
     tfName: {
         MaxATK: "最大攻击力",

@@ -173,7 +173,7 @@ impl CharacterTrait for AratakiItto {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let after_q = match *config {
             CharacterSkillConfig::AratakiItto { after_q } => after_q,
             _ => false
@@ -214,7 +214,8 @@ impl CharacterTrait for AratakiItto {
             &context.enemy,
             s.get_element(after_q),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

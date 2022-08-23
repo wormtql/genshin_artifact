@@ -99,7 +99,7 @@ impl TargetFunction for NingguangDefaultTargetFunction {
         };
 
         type S = <Ningguang as CharacterTrait>::DamageEnumType;
-        let dmg_charged = Ningguang::damage::<SimpleDamageBuilder>(&context, S::Charged1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_charged = Ningguang::damage::<SimpleDamageBuilder>(&context, S::Charged1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         dmg_charged
     }

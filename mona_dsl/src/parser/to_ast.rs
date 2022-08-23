@@ -117,11 +117,24 @@ impl<'i> ToAST<'i> {
             MonaRule::field_expression => self.convert_field_expression(pair),
             MonaRule::object_literal => self.convert_object_literal(pair),
             MonaRule::bool_false | MonaRule::bool_true => Ok(self.convert_bool(pair)),
+            MonaRule::string_literal => Ok(self.convert_string_literal(pair)),
             _ => {
                 println!("todo rule: {:?}", rule);
                 todo!()
             }
         }
+    }
+
+    pub fn convert_string_literal(&self, pair: Pair<'i, MonaRule>) -> WrapperExpression<'i> {
+        let node = ASTString {
+            common: NodeCommon {
+                input: self.input,
+                span: pair.as_span(),
+            },
+            value: pair.as_str().to_string()
+        }.wrap_expression();
+
+        Rc::new(RefCell::new(node))
     }
 
     pub fn convert_bool(&self, pair: Pair<'i, MonaRule>) -> WrapperExpression<'i> {

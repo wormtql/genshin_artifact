@@ -3,6 +3,7 @@
         :model-value="modelValue"
         @update:modelValue="$emit('update:modelValue', $event)"
     >
+        <el-radio-button v-if="eleMap.has('None')" label="None">{{ t("ele.None") }}</el-radio-button>
         <el-radio-button v-if="eleMap.has('Pyro')" label="Pyro">{{ t("ele.Pyro") }}</el-radio-button>
         <el-radio-button v-if="eleMap.has('Electro')" label="Electro">{{ t("ele.Electro") }}</el-radio-button>
         <el-radio-button v-if="eleMap.has('Hydro')" label="Hydro">{{ t("ele.Hydro") }}</el-radio-button>
@@ -30,6 +31,9 @@ export default {
                 return ["Pyro", "Electro", "Hydro", "Anemo", "Geo", "Cryo", "Dendro", "Physical"];
             }
         },
+        clearable: {
+            default: false,
+        }
     },
     computed: {
         eleMap() {

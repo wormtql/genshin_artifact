@@ -88,7 +88,7 @@ impl TargetFunction for YaeMikoDefaultTargetFunction {
         };
 
         type S = <YaeMiko as CharacterTrait>::DamageEnumType;
-        let dmg_e = YaeMiko::damage::<SimpleDamageBuilder>(&context, S::E3, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_e = YaeMiko::damage::<SimpleDamageBuilder>(&context, S::E3, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         let transformative = context.transformative();
         let dmg_electro_charged = transformative.electro_charged;

@@ -85,7 +85,7 @@ impl TargetFunction for KujouSaraDamageTargetFunction {
         };
 
         type S = <KujouSara as CharacterTrait>::DamageEnumType;
-        let dmg_q = KujouSara::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_q = KujouSara::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         dmg_q
     }

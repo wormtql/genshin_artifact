@@ -127,7 +127,7 @@ impl TargetFunction for VentiDefaultTargetFunction {
         }
 
         type S = <Venti as CharacterTrait>::DamageEnumType;
-        let dmg_q = Venti::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_q = Venti::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
         let dmg_swirl = context.swirl_without_element();
 
         let vv_ratio = if vv_count >= 4 {

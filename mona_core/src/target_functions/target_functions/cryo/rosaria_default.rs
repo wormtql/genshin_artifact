@@ -138,7 +138,7 @@ impl TargetFunction for RosariaDefaultTargetFunction {
         let atk_for_other = attribute.get_value(AttributeName::ATKBonusForOther);
         let bonus_crit = attribute.get_value(AttributeName::ATKBase).min(1.0) * 0.15;
 
-        let dmg_q = Rosaria::damage::<SimpleDamageBuilder>(&context, S::Q11, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_q = Rosaria::damage::<SimpleDamageBuilder>(&context, S::Q11, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         let other_damage_times = (1.0 + atk_for_other / (1.0 + self.other_atk_bonus_percentage)) * (1.0 + bonus_crit * self.other_critical_damage / (1.0 + self.other_critical * self.other_critical_damage));
         other_damage_times * dmg_q.ln()

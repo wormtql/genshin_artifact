@@ -161,7 +161,7 @@ impl CharacterTrait for Diona {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: DionaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -204,7 +204,8 @@ impl CharacterTrait for Diona {
                 &context.enemy,
                 s.get_element(),
                 s.get_skill_type(),
-                context.character_common_data.level
+                context.character_common_data.level,
+                fumo,
             )
         }
     }

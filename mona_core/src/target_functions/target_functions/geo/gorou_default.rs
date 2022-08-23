@@ -121,7 +121,7 @@ impl TargetFunction for GorouDefaultTargetFunction {
 
         type S = <Gorou as CharacterTrait>::DamageEnumType;
         let dmg_q = Gorou::damage::<SimpleDamageBuilder>(
-            &context, S::Q2, &CharacterSkillConfig::NoConfig
+            &context, S::Q2, &CharacterSkillConfig::NoConfig, None
         ).normal.expectation;
 
         let recharge = attribute.get_value(AttributeName::Recharge);

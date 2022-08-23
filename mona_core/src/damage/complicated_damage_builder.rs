@@ -112,8 +112,19 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         enemy: &Enemy,
         element: Element,
         skill: SkillType,
-        character_level: usize
+        character_level: usize,
+        fumo: Option<Element>
     ) -> Self::Result {
+        let element = if element == Element::Physical {
+            if let Some(x) = fumo {
+                x
+            } else {
+                element
+            }
+        } else {
+            element
+        };
+
         let atk_comp = self.get_atk_composition(attribute);
         let atk = atk_comp.sum();
         let atk_ratio_comp = self.get_atk_ratio_composition(attribute, element, skill);

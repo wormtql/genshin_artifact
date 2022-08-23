@@ -126,7 +126,7 @@ impl TargetFunction for ExpectMeltTargetFunction {
         };
 
         let builder = SimpleDamageBuilder::new(3.0, 0.0, 0.0);
-        let result = builder.damage(&attribute, &enemy, element, self.skill, 90);
+        let result = builder.damage(&attribute, &enemy, element, self.skill, 90, None);
 
         result.melt.unwrap().expectation
     }

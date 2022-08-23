@@ -1,12 +1,13 @@
 use crate::attribute::{Attribute, ComplicatedAttributeGraph};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::Element;
 use crate::damage::transformative_damage::{TransformativeDamage, transformative_damage, swirl_without_element};
 use crate::enemies::Enemy;
 
 pub struct DamageContext<'a, A> {
     pub character_common_data: &'a CharacterCommonData,
     pub attribute: &'a A,
-    pub enemy: &'a Enemy
+    pub enemy: &'a Enemy,
 }
 
 impl<'a, A: Attribute> DamageContext<'a, A> {

@@ -122,7 +122,8 @@ impl TargetFunction for BennettDefaultTargetFunction {
         let heal = Bennett::damage::<SimpleDamageBuilder>(
             &context,
             <Bennett as CharacterTrait>::DamageEnumType::QHeal,
-            &CharacterSkillConfig::NoConfig
+            &CharacterSkillConfig::NoConfig,
+            None
         ).normal.expectation;
 
         let recharge = attribute.get_value(AttributeName::Recharge);

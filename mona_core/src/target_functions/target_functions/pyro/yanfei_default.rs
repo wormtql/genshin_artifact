@@ -97,8 +97,8 @@ impl TargetFunction for YanfeiDefaultTargetFunction {
 
         type S = <Yanfei as CharacterTrait>::DamageEnumType;
         let config = CharacterSkillConfig::Yanfei { after_q: true };
-        let dmg_charged5 = Yanfei::damage::<SimpleDamageBuilder>(&context, S::Charged5, &config).normal.expectation;
-        let dmg_talent2 = Yanfei::damage::<SimpleDamageBuilder>(&context, S::DmgTalent2, &config).normal.expectation;
+        let dmg_charged5 = Yanfei::damage::<SimpleDamageBuilder>(&context, S::Charged5, &config, None).normal.expectation;
+        let dmg_talent2 = Yanfei::damage::<SimpleDamageBuilder>(&context, S::DmgTalent2, &config, None).normal.expectation;
 
         let critical = attribute.get_critical_rate(Element::Pyro, SkillType::ChargedAttack).min(1.0);
 

@@ -156,7 +156,7 @@ impl CharacterTrait for Albedo {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s = num::FromPrimitive::from_usize(s).unwrap();
         let fatal_count = match *config {
             CharacterSkillConfig::Albedo { fatal_count } => fatal_count,
@@ -197,7 +197,8 @@ impl CharacterTrait for Albedo {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            90
+            90,
+            fumo,
         )
     }
 

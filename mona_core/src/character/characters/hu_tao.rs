@@ -212,7 +212,7 @@ impl CharacterTrait for HuTao {
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: HuTaoDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -258,6 +258,7 @@ impl CharacterTrait for HuTao {
             s.get_element(after_e),
             s.get_skill_type(),
             context.character_common_data.level,
+            fumo,
         )
     }
 

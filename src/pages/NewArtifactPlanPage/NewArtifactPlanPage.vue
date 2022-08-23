@@ -585,6 +585,15 @@
                         >{{ t("calcPage.setupEnemy") }}</el-button>
                     </el-button-group>
                 </div>
+
+                <div>
+                    <h3 class="common-title2">{{ t("calcPage.fumo") }}</h3>
+                    <select-element-type
+                        v-model="fumo"
+                        :elements="['Pyro', 'Electro', 'Hydro', 'Anemo', 'Geo', 'Cryo', 'Dendro', 'None']"
+                    ></select-element-type>
+                </div>
+
                 <div v-if="characterNeedSkillConfig" style="margin-bottom: 16px;">
                     <item-config
                         v-model="characterSkillConfig"
@@ -593,6 +602,7 @@
                     ></item-config>
                 </div>
                 <div class="damage-analysis-div">
+                    <h3 class="common-title2">{{ t("calcPage.skill") }}</h3>
                     <select-character-skill
                         v-model="characterSkillIndex"
                         :character-name="characterName"
@@ -689,6 +699,7 @@ import {useI18n} from "@/i18n/i18n"
 
 import {ElMessage} from "element-plus"
 import "element-plus/es/components/message/style/css"
+import SelectElementType from "@/components/select/SelectElementType.vue";
 
 // stores
 const presetStore = usePresetStore()
@@ -758,6 +769,8 @@ const {
     characterSkillConfigConfig,
     characterSkillInterface,
 } = useCharacterSkill(characterName)
+
+const fumo = ref("None")
 
 
 //////////////////////////////////////////////////////////////
@@ -1135,7 +1148,11 @@ const damageAnalysisWasmInterface = computed(() => {
 })
 
 const characterDamageAnalysis = computed(() => {
-    const temp = mona.CalculatorInterface.get_damage_analysis(damageAnalysisWasmInterface.value)
+    let fumo2 = null
+    if (fumo.value !== "None") {
+        fumo2 = fumo.value
+    }
+    const temp = mona.CalculatorInterface.get_damage_analysis(damageAnalysisWasmInterface.value, fumo2)
     // console.log(temp)
     return temp
 })

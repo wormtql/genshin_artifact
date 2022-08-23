@@ -141,8 +141,8 @@ impl TargetFunction for KaedeharaKazuhaDamageTargetFunction {
         } else {
             CharacterSkillConfig::KaedeharaKazuha { after_e_or_q: false }
         };
-        let dmg_q = KaedeharaKazuha::damage::<SimpleDamageBuilder>(&context, S::Q2, &CharacterSkillConfig::NoConfig).normal.expectation;
-        let dmg_plunging_e = KaedeharaKazuha::damage::<SimpleDamageBuilder>(&context, S::PlungingE2, &skill_config).normal.expectation;
+        let dmg_q = KaedeharaKazuha::damage::<SimpleDamageBuilder>(&context, S::Q2, &CharacterSkillConfig::NoConfig, None).normal.expectation;
+        let dmg_plunging_e = KaedeharaKazuha::damage::<SimpleDamageBuilder>(&context, S::PlungingE2, &skill_config, None).normal.expectation;
 
         let bonus_for_other = if character.common_data.has_talent2 {
             em * 0.0004

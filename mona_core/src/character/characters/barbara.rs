@@ -149,7 +149,7 @@ impl CharacterTrait for Barbara {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: BarbaraDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
 
         let s1 = context.character_common_data.skill1;
@@ -197,7 +197,8 @@ impl CharacterTrait for Barbara {
                 &context.enemy,
                 Element::Hydro,
                 s.get_skill_type(),
-                context.character_common_data.level
+                context.character_common_data.level,
+                fumo,
             )
         }
     }

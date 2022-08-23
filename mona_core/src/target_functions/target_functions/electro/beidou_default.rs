@@ -96,7 +96,7 @@ impl TargetFunction for BeidouDefaultTargetFunction {
         };
 
         type S = <Beidou as CharacterTrait>::DamageEnumType;
-        let damage_e = Beidou::damage::<SimpleDamageBuilder>(&context, S::E3, &CharacterSkillConfig::NoConfig);
+        let damage_e = Beidou::damage::<SimpleDamageBuilder>(&context, S::E3, &CharacterSkillConfig::NoConfig, None);
 
         const Z: f64 = 0.8;
         const T: f64 = 1.6;

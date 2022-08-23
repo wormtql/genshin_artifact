@@ -124,9 +124,9 @@ impl TargetFunction for JeanDefaultTargetFunction {
         };
 
         type S = <Jean as CharacterTrait>::DamageEnumType;
-        let dmg_q = Jean::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_q = Jean::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
         let dmg_q = dmg_q * 1.8;
-        let heal_q = Jean::damage::<SimpleDamageBuilder>(&context, S::QHeal1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let heal_q = Jean::damage::<SimpleDamageBuilder>(&context, S::QHeal1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
         let heal_q = heal_q * 1.3;
 
         let recharge = attribute.get_value(AttributeName::Recharge);

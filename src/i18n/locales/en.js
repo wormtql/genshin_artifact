@@ -1214,6 +1214,7 @@ export default {
         Dendro: "Dendro",
         Geo: "Geo",
         Physical: "Physical",
+        None: "None",
     },
     artPage: {
         shareDesc: "Use share link to import artifacts, expires in 1 day",
@@ -1296,6 +1297,8 @@ export default {
         gain: "Relative Gain",
         lockAll: "Lock All",
         unlockAll: "Unlock All",
+        skill: "Skill",
+        fumo: "附魔", // todo
     },
     tfName: {
         MaxATK: "Max ATK",

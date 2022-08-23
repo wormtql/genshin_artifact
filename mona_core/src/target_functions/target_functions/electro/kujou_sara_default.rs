@@ -93,7 +93,7 @@ impl TargetFunction for KujouSaraDefaultTargetFunction {
             attribute, enemy
         };
         type S = <KujouSara as CharacterTrait>::DamageEnumType;
-        let dmg_q = KujouSara::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_q = KujouSara::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         let atk_for_other_using_other_base = attribute.get_value(AttributeName::ATKBonusForOther);
         let self_base_atk = attribute.get_value(AttributeName::ATKBase);

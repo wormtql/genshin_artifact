@@ -132,7 +132,7 @@ impl TargetFunction for YoimiyaDefaultTargetFunction {
 
         type S = <Yoimiya as CharacterTrait>::DamageEnumType;
         let config = CharacterSkillConfig::Yoimiya { after_e: true };
-        let dmg = Yoimiya::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config);
+        let dmg = Yoimiya::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config, None);
 
         let pyro = dmg.normal.expectation;
         let melt = dmg.melt.unwrap().expectation;

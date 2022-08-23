@@ -9,6 +9,7 @@ use crate::damage::DamageContext;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use crate::common::element::Element;
 
 #[derive(Clone)]
 pub struct CharacterSkillMapItem {
@@ -45,10 +46,10 @@ pub trait CharacterTrait {
     #[cfg(not(target_family = "wasm"))]
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = None;
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result;
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result;
 
-    fn damage<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: Self::DamageEnumType, config: &CharacterSkillConfig) -> D::Result {
-        Self::damage_internal::<D>(context, s.into(), config)
+    fn damage<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: Self::DamageEnumType, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
+        Self::damage_internal::<D>(context, s.into(), config, fumo)
     }
 
     fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>>;

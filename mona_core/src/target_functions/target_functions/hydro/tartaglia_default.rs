@@ -96,8 +96,8 @@ impl TargetFunction for TartagliaDefaultTargetFunction {
         };
 
         type S = <Tartaglia as CharacterTrait>::DamageEnumType;
-        let dmg_ea = Tartaglia::damage::<SimpleDamageBuilder>(&context, S::ENormal1, &CharacterSkillConfig::NoConfig).normal.expectation;
-        let dmg_q = Tartaglia::damage::<SimpleDamageBuilder>(&context, S::QRiptideBlast, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_ea = Tartaglia::damage::<SimpleDamageBuilder>(&context, S::ENormal1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
+        let dmg_q = Tartaglia::damage::<SimpleDamageBuilder>(&context, S::QRiptideBlast, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         dmg_ea * 10.0 + dmg_q
     }

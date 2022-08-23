@@ -125,17 +125,17 @@ impl TargetFunction for GanyuDefaultTargetFunction {
 
         type S = <Ganyu as CharacterTrait>::DamageEnumType;
         let charged_dmg3 = Ganyu::damage::<SimpleDamageBuilder>(
-            &context, S::Charged3, &CharacterSkillConfig::Ganyu { talent1_rate: 1.0 }
+            &context, S::Charged3, &CharacterSkillConfig::Ganyu { talent1_rate: 1.0 }, None
         );
         let charged_dmg4 = Ganyu::damage::<SimpleDamageBuilder>(
-            &context, S::Charged4, &CharacterSkillConfig::Ganyu { talent1_rate: 1.0 }
+            &context, S::Charged4, &CharacterSkillConfig::Ganyu { talent1_rate: 1.0 }, None
         );
 
         let charged_mean = (1.0 - self.melt_rate) * (charged_dmg3.normal.expectation * 0.8 + charged_dmg4.normal.expectation * 1.2)
             + self.melt_rate * (charged_dmg3.melt.unwrap().expectation * 0.8 + charged_dmg4.melt.unwrap().expectation * 1.2);
 
         let q_dmg = Ganyu::damage::<SimpleDamageBuilder>(
-            &context, S::Q1, &CharacterSkillConfig::NoConfig
+            &context, S::Q1, &CharacterSkillConfig::NoConfig, None
         );
         let q_mean = (1.0 - self.melt_rate) * q_dmg.normal.expectation + self.melt_rate * q_dmg.melt.unwrap().expectation;
 
