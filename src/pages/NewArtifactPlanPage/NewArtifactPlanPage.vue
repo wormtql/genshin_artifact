@@ -595,6 +595,7 @@
                 </div>
 
                 <div v-if="characterNeedSkillConfig" style="margin-bottom: 16px;">
+                    <h3 class="common-title2">{{ t("calcPage.skillConfig") }}</h3>
                     <item-config
                         v-model="characterSkillConfig"
                         :item-name="characterName"

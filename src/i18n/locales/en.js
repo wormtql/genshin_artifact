@@ -1299,6 +1299,7 @@ export default {
         unlockAll: "Unlock All",
         skill: "Skill",
         fumo: "附魔", // todo
+        skillConfig: "Skill Config",
     },
     tfName: {
         MaxATK: "Max ATK",

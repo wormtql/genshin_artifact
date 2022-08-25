@@ -1301,6 +1301,7 @@ export default {
         unlockAll: "解锁全部",
         skill: "技能",
         fumo: "附魔",
+        skillConfig: "技能设置",
     },
     tfName: {
         MaxATK: "最大攻击力",
