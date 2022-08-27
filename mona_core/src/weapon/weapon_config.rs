@@ -42,6 +42,7 @@ pub enum WeaponConfig {
     PrimordialJadeWingedSpear { stack: f64, full_rate: f64 },
     CalamityQueller { stack: f64, backend_rate: f64 },
     StaffOfHoma { be50_rate: f64 },
+    StaffOfScarletSands { stack:f64 },
     VortexVanquisher { stack: f64, shield_rate: f64 },
     PrototypeStarglitter { stack: f64 },
     LithicSpear { liyue_count: usize },

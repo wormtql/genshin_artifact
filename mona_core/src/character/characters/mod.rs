@@ -57,6 +57,7 @@ pub use shikanoin_heizou::ShikanoinHeizou;
 pub use collei::Collei;
 pub use tighnari::Tighnari;
 pub use dori::Dori;
+pub use cyno::Cyno;
 
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::damage::damage_builder::DamageBuilder;
@@ -120,6 +121,7 @@ pub mod shikanoin_heizou;
 pub mod collei;
 pub mod tighnari;
 pub mod dori;
+pub mod cyno;
 
 pub fn get_static_data(name: CharacterName) -> CharacterStaticData {
     name.get_static_data()

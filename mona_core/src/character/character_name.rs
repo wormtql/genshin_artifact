@@ -36,6 +36,7 @@ pub enum CharacterName {
     Bennett,
     Chongyun,
     Collei,
+    Cyno,
     Diluc,
     Diona,
     Dori,
