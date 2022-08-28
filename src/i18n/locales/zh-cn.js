@@ -1108,6 +1108,10 @@ export default {
         t15: "E技能伤害占比",
         t16: "蔓激化比例",
         t17: "超激化比例",
+        t18: "一轮QTE内普通攻击命中次数",
+        t19: "一轮QTE内普通攻击触发反应次数",
+        t20: "感电比例",
+        t21: "超载比例",
 
         a1: "元素",
         a2: "效果应用比例",
@@ -1385,8 +1389,7 @@ export default {
         KukiShinobuDefault: "久岐忍-烦恼刈除",
         ShikanoinHeizouDefault: "鹿野院平藏-心朝乂安",
         TighnariDefault: "提纳里-浅蔚轻行",
-        CynoAggravate: "赛诺-超激化输出",
-        CynoMono: "赛诺-纯雷伤",
+        CynoDefault: "赛诺-超激化输出",//TODO:修好赛诺title
     },
     tfDesc: {
         MaxATK: "最大化攻击力",
@@ -1462,8 +1465,7 @@ export default {
         KukiShinobuDefault: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
         ShikanoinHeizouDefault: "输出平藏，使得E技能4层伤害最大",
         TighnariDefault: "使得提纳里的重击伤害最大",
-        CynoAggravate:"激化输出赛诺,手法7ae循环，打qte并释放渡荒之雷，共5次激化，比例留1表示所有循环都按标准激化次数计算，激化覆盖率不足比例应小于1，攻速变高时比例应大于1",
-        CynoMono:"普通雷伤赛诺",
+        CynoDefault:"以一轮QTE内的伤害为标准计算，打QTE并释放渡荒之雷",
     },
     dmg: {
         electroCharged: "感电",

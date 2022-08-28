@@ -80,6 +80,5 @@ pub enum TargetFunctionName {
     KukiShinobuDefault,
     ShikanoinHeizouDefault,
     TighnariDefault,
-    CynoAggravate,
-    CynoMono,
+    CynoDefault,
 }
