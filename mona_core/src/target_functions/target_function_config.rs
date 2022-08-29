@@ -51,7 +51,7 @@ pub enum TargetFunctionConfig {
     KujouSaraDamage { recharge_demand: f64 },
     KukiShinobuDefault { e_ratio: f64 },
     TighnariDefault { spread_rate: f64 },
-    CynoDefault {recharge_requirement:f64,hit_within_qte:f64,reaction_times:f64,aggravate_rate: f64,elecharged_rate:f64,overload_rate:f64},
+    CynoDefault { recharge_requirement:f64, hit_within_qte:f64, reaction_times:f64, extra_bolts:f64, aggravate_rate:f64, elecharged_rate:f64, overload_rate:f64},
 
     BennettDamage { recharge_demand: f64, other_dmg_ratio: f64 },
 

@@ -22,6 +22,7 @@ pub struct CynoDefaultTargetFunction {
     pub recharge_requirement:f64,
     pub hit_within_qte:f64,
     pub reaction_times:f64,
+    pub extra_bolts:f64,
     pub aggravate_rate: f64,
     pub elecharged_rate:f64,
     pub overload_rate:f64
@@ -33,6 +34,7 @@ impl CynoDefaultTargetFunction {
                 recharge_requirement,
                 hit_within_qte,
                 reaction_times,
+                extra_bolts,
                 aggravate_rate,
                 elecharged_rate,
                 overload_rate
@@ -41,6 +43,7 @@ impl CynoDefaultTargetFunction {
                                                             recharge_requirement,
                                                             hit_within_qte,
                                                             reaction_times,
+                                                            extra_bolts,
                                                             aggravate_rate,
                                                             elecharged_rate,
                                                             overload_rate  
@@ -49,17 +52,19 @@ impl CynoDefaultTargetFunction {
                                                             recharge_requirement,
                                                             hit_within_qte,
                                                             reaction_times,
+                                                            extra_bolts,
                                                             aggravate_rate,
                                                             elecharged_rate,
                                                             overload_rate
                                                         ),
-            _ => (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            _ => (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
         };
 
         Self {
             recharge_requirement,
             hit_within_qte,
             reaction_times,
+            extra_bolts,
             aggravate_rate,
             elecharged_rate,
             overload_rate
@@ -93,7 +98,12 @@ impl TargetFunctionMetaTrait for CynoDefaultTargetFunction {
         ItemConfig {
             name: "reaction_times",
             title: "t19", //一轮QTE内普通攻击触发反应次数
-            config: ItemConfigType::Float { min: 0.0, max: 6.0 , default: 3.5}
+            config: ItemConfigType::Float { min: 0.0, max: 10.0 , default: 5.5}
+        },
+        ItemConfig {
+            name: "extra_bolts",
+            title: "t22", //一轮QTE内普通攻击触发反应次数
+            config: ItemConfigType::Float { min: 0.0, max: 5.0 , default: 0.0}
         },
         ItemConfig {
             name: "aggravate_rate",
@@ -222,11 +232,11 @@ impl TargetFunction for CynoDefaultTargetFunction {
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_requirement);
 
         r*(
-            normal_dmg + e2_normal*1.25 + e3_normal*3.0 +
+            normal_dmg + e2_normal*1.25 + e3_normal*(3.0 + self.extra_bolts) +
                         (
-                            (self.reaction_times+2.25) * agg_bonus * self.aggravate_rate +
-                            (self.reaction_times+2.25).min(4.0) * dmg_electro_charged * self.elecharged_rate +
-                            (self.reaction_times+2.25) * dmg_overload * self.overload_rate
+                            (self.reaction_times) * agg_bonus * self.aggravate_rate +
+                            (self.reaction_times).min(4.0) * dmg_electro_charged * self.elecharged_rate +
+                            (self.reaction_times) * dmg_overload * self.overload_rate
                         ) 
             
         )
