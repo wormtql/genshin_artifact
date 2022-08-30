@@ -17,6 +17,10 @@ use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFun
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+extern crate web_sys;
+
+// A target function for Cyno by Cor
+// if you have any question or suggestions about this file, feel free to email 736674365@qq.com or corinthusyu@gmail.com
 
 pub struct CynoDefaultTargetFunction {
     pub recharge_requirement:f64,
@@ -77,7 +81,7 @@ impl TargetFunctionMetaTrait for CynoDefaultTargetFunction {
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::CynoDefault,
         chs: "赛诺-激化",
-        description: "以一轮QTE内的伤害为标准计算，打QTE并释放渡荒之雷",
+        description: "打QTE并释放渡荒之雷,普攻命中次数、反应触发次数和6命参考数据：零命 7.0 5.0 0.0，，一命 9.0 5.0 0.0，六命 9.0 5.0 4.0 ",
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Cyno),
         image: TargetFunctionMetaImage::Avatar
@@ -88,22 +92,22 @@ impl TargetFunctionMetaTrait for CynoDefaultTargetFunction {
         ItemConfig {
             name: "recharge_requirement",
             title: ItemConfig::DEFAULT_RECHARGE_TITLE,
-            config: ItemConfigType::Float { min:1.0, max: 3.0 , default:1.3}
+            config: ItemConfigType::Float { min:1.0, max: 3.0 , default:1.3 }
         },
         ItemConfig {
             name: "hit_within_qte",
             title: "t18", //一轮QTE内普通攻击命中次数
-            config: ItemConfigType::Float { min: 0.0, max: 15.0, default: 9.0 }
+            config: ItemConfigType::Float { min: 0.0, max: 15.0, default: 7.0 }
         },
         ItemConfig {
             name: "reaction_times",
-            title: "t19", //一轮QTE内普通攻击触发反应次数
-            config: ItemConfigType::Float { min: 0.0, max: 10.0 , default: 5.5}
+            title: "t19", //一轮QTE内触发反应次数
+            config: ItemConfigType::Float { min: 0.0, max: 10.0 , default: 5.0 }
         },
         ItemConfig {
             name: "extra_bolts",
-            title: "t22", //一轮QTE内普通攻击触发反应次数
-            config: ItemConfigType::Float { min: 0.0, max: 5.0 , default: 0.0}
+            title: "t22", //6命额外渡荒之雷
+            config: ItemConfigType::Float { min: 0.0, max: 4.0 , default: 0.0 }
         },
         ItemConfig {
             name: "aggravate_rate",
@@ -204,7 +208,7 @@ impl TargetFunction for CynoDefaultTargetFunction {
         let dmg_e2 = Cyno::damage::<SimpleDamageBuilder>(&context, S::E2, &config, None);
         let dmg_e3=Cyno::damage::<SimpleDamageBuilder>(&context, S::E3, &config, None);
 
-        let normal1_agg = dmg_normal1.aggravate.unwrap().expectation;
+        
         let normal1_normal = dmg_normal1.normal.expectation;
         let normal2_normal = dmg_normal2.normal.expectation;
         let normal3_normal = dmg_normal3.normal.expectation;
@@ -213,12 +217,28 @@ impl TargetFunction for CynoDefaultTargetFunction {
 
         let e2_normal = dmg_e2.normal.expectation;
         let e3_normal = dmg_e3.normal.expectation;
-        
-        let agg_bonus=normal1_agg-normal1_normal;
 
-        let transformative = context.transformative();
-        let dmg_electro_charged = transformative.electro_charged;
-        let dmg_overload = transformative.overload;
+        let mut e2_agg=0.0;
+        let mut normal1_agg = 0.0;
+        let mut agg_bonus=0.0;
+        let mut agg_bonus_e2 = 0.0;
+
+        if (self.aggravate_rate == 0.0) == false {
+            e2_agg=dmg_e2.aggravate.unwrap().expectation;
+            normal1_agg = dmg_normal1.aggravate.unwrap().expectation;
+            agg_bonus=normal1_agg-normal1_normal;
+            agg_bonus_e2=e2_agg-e2_normal;
+        }
+        //let s = format!("{}",agg_bonus);
+        //web_sys::console::log_1(&s.into());
+        let mut dmg_electro_charged = 0.0;
+        let mut dmg_overload = 0.0;
+
+        if (self.elecharged_rate == 0.0 && self.overload_rate == 0.0) == false {
+            let transformative = context.transformative();
+            dmg_electro_charged = transformative.electro_charged;
+            dmg_overload = transformative.overload;
+        }
 
         let hits = [normal1_normal,normal2_normal,normal3_normal,normal4_normal,normal4_normal,normal5_normal,normal1_normal,normal2_normal,normal3_normal,normal4_normal,normal4_normal,normal5_normal];
         let hit_index=self.hit_within_qte.floor() as usize;
@@ -226,7 +246,7 @@ impl TargetFunction for CynoDefaultTargetFunction {
 
         let mut normal_dmg:f64 = (self.hit_within_qte - hit_index as f64)*hits[hit_index];
         for d in hits_actual.iter(){
-            normal_dmg+=d;
+            normal_dmg += d;
         }
 
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_requirement);
@@ -234,7 +254,7 @@ impl TargetFunction for CynoDefaultTargetFunction {
         r*(
             normal_dmg + e2_normal*1.25 + e3_normal*(3.0 + self.extra_bolts) +
                         (
-                            (self.reaction_times) * agg_bonus * self.aggravate_rate +
+                            ((self.reaction_times-1.0).min(0.0) * agg_bonus + 1.25*agg_bonus_e2) * self.aggravate_rate +
                             (self.reaction_times).min(4.0) * dmg_electro_charged * self.elecharged_rate +
                             (self.reaction_times) * dmg_overload * self.overload_rate
                         ) 
