@@ -314,10 +314,10 @@ impl CharacterTrait for Cyno {
         if has_talent2 {
             let em = context.attribute.get_value(AttributeName::ElementalMastery);
             if skill_group == CynoSkillgroupEnum::Q && skill_type == SkillType::NormalAttack {
-                builder.add_extra_damage("天赋：「九弓的执命」加成",em*1.25);
+                builder.add_extra_damage("天赋3：「九弓的执命」加成",em*1.25);
             }
             if skill_group == CynoSkillgroupEnum::E3 && skill_type == SkillType::ElementalSkill {
-                builder.add_extra_damage("天赋：「九弓的执命」加成",em*2.5);
+                builder.add_extra_damage("天赋3：「九弓的执命」加成",em*2.5);
             }
 
         }
