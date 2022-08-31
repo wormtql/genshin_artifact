@@ -218,16 +218,20 @@ impl TargetFunction for CynoDefaultTargetFunction {
         let e2_normal = dmg_e2.normal.expectation;
         let e3_normal = dmg_e3.normal.expectation;
 
-        let mut e2_agg=0.0;
+        let mut e2_agg = 0.0;
+        let mut e3_agg = 0.0;
         let mut normal1_agg = 0.0;
-        let mut agg_bonus=0.0;
+        let mut agg_bonus = 0.0;
         let mut agg_bonus_e2 = 0.0;
+        let mut agg_bonus_e3 = 0.0;
 
         if (self.aggravate_rate == 0.0) == false {
             e2_agg=dmg_e2.aggravate.unwrap().expectation;
+            e3_agg=dmg_e3.aggravate.unwrap().expectation;
             normal1_agg = dmg_normal1.aggravate.unwrap().expectation;
             agg_bonus=normal1_agg-normal1_normal;
             agg_bonus_e2=e2_agg-e2_normal;
+            agg_bonus_e3=e2_agg-e3_normal;
         }
         //let s = format!("{}",agg_bonus);
         //web_sys::console::log_1(&s.into());
@@ -250,11 +254,21 @@ impl TargetFunction for CynoDefaultTargetFunction {
         }
 
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_requirement);
+        let mut bolts_agg_times:f64=0.0;
+        if self.aggravate_rate == 0.0 {
+            bolts_agg_times = 0.0;
+        } else if self.extra_bolts == 0.0 {
+            bolts_agg_times = 1.0;
+        } else if self.extra_bolts > 0.0 && self.extra_bolts < 3.0 {
+            bolts_agg_times = 2.0;
+        } else if self.extra_bolts > 3.0 || self.extra_bolts == 3.0 {
+            bolts_agg_times = 3.0;
+        }
 
         r*(
             normal_dmg + e2_normal*1.25 + e3_normal*(3.0 + self.extra_bolts) +
                         (
-                            ((self.reaction_times-1.0).min(0.0) * agg_bonus + 1.25*agg_bonus_e2) * self.aggravate_rate +
+                            ((self.reaction_times-1.0-bolts_agg_times).min(0.0) * agg_bonus + 1.25*agg_bonus_e2 + bolts_agg_times * agg_bonus_e3) * self.aggravate_rate +
                             (self.reaction_times).min(4.0) * dmg_electro_charged * self.elecharged_rate +
                             (self.reaction_times) * dmg_overload * self.overload_rate
                         ) 
