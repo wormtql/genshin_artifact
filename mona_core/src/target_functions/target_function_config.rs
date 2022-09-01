@@ -51,6 +51,7 @@ pub enum TargetFunctionConfig {
     KujouSaraDamage { recharge_demand: f64 },
     KukiShinobuDefault { e_ratio: f64 },
     TighnariDefault { spread_rate: f64 },
+    KeqingDefault { aggravate_rate: f64 },
 
 
     BennettDamage { recharge_demand: f64, other_dmg_ratio: f64 },

@@ -1125,6 +1125,7 @@ export default {
         t14: "Overload Frequency",
         t15: "E-skill DMG Rate",
         t16: "Spread Ratio",
+        t17: "Aggravate Ratio",
 
         a1: "Element",
         a2: "Effect Apply Ratio",
