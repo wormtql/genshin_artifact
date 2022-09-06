@@ -37,21 +37,20 @@ use crate::character::macros::{skill_type, damage_enum};
 
 
 //
-skill_type!(CynoSkillType normal_dmg1 normal_dmg2 normal_dmg3 normal_dmg4 charged_dmg plunging_dmg1 plunging_dmg2 plunging_dmg3 e1 e2 e3 qnormal1 qnormal2 qnormal3 qnormal4 qnormal5 qcharged qplunging1 qplunging2 qplunging3);
+skill_type!(CynoSkillType normal_dmg1 normal_dmg2 normal_dmg3 normal_dmg4 charged_dmg plunging_dmg1 plunging_dmg2 plunging_dmg3 e1 e2 qnormal1 qnormal2 qnormal3 qnormal4 qnormal5 qcharged qplunging1 qplunging2 qplunging3);
 
 pub const CYNO_SKILL: CynoSkillType = CynoSkillType {
     normal_dmg1: [0.4926,0.5327,0.5728,0.63,0.6701,0.716,0.779,0.842,0.905,0.9737,1.0424,1.1112,1.1799,1.2486,1.3173],
     normal_dmg2: [0.4792,0.5182,0.5572,0.6129,0.6519,0.6965,0.7578,0.8191,0.8804,0.9473,1.0141,1.081,1.1479,1.2147,1.2816],
     normal_dmg3: [0.2931,0.3169,0.3408,0.3748,0.3987,0.426,0.4634,0.5009,0.5384,0.5793,0.6202,0.6611,0.702,0.7429,0.7838],
     normal_dmg4: [0.7589,0.8207,0.8824,0.9707,1.0325,1.1031,1.2001,1.2972,1.3943,1.5002,1.6061,1.712,1.8178,1.9237,2.0296],
-    charged_dmg: [1.161,1.2555,1.35,1.485,1.5795,1.6875,1.836,1.9845,2.133,2.295,2.457,2.619,2.781,2.943,3.105],
+    charged_dmg: [1.2238,1.3234,1.423,1.5653,1.6649,1.7787,1.9353,2.0918,2.2483,2.4191,2.5899,2.7606,2.9314,3.1021,3.2729],
     plunging_dmg1: [0.6393,0.6914,0.7434,0.8177,0.8698,0.9293,1.011,1.0928,1.1746,1.2638,1.353,1.4422,1.5314,1.6206,1.7098],
     plunging_dmg2: [1.2784,1.3824,1.4865,1.6351,1.7392,1.8581,2.0216,2.1851,2.3486,2.527,2.7054,2.8838,3.0622,3.2405,3.4189],
     plunging_dmg3: [1.5968,1.7267,1.8567,2.0424,2.1723,2.3209,2.5251,2.7293,2.9336,3.1564,3.3792,3.602,3.8248,4.0476,4.2704],
 
     e1: [1.304,1.4018,1.4996,1.63,1.7278,1.8256,1.956,2.0864,2.2168,2.3472,2.4776,2.608,2.771,2.934,3.097],
     e2: [1.568,1.6856,1.8032,1.96,2.0776,2.1952,2.352,2.5088,2.6656,2.8224,2.9792,3.136,3.332,3.528,3.724],
-    e3: [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5],
 
     qnormal1: [0.7828,0.8466,0.9103,1.0013,1.065,1.1378,1.238,1.3381,1.4382,1.5475,1.6567,1.7659,1.8752,1.9844,2.0936],
     qnormal2: [0.8247,0.8918,0.9589,1.0548,1.122,1.1987,1.3042,1.4096,1.5151,1.6302,1.7453,1.8603,1.9754,2.0905,2.2056],
@@ -76,8 +75,7 @@ pub struct CynoEffect {
 impl<A: Attribute> ChangeAttribute<A> for CynoEffect {
     fn change_attribute(&self, attribute: &mut A) {
         if self.c2 {
-            attribute.set_value_by(AttributeName::CriticalNormalAttack, "赛诺2命：「令仪·引谒归灵」", 0.03 * self.c2_stack);
-            attribute.set_value_by(AttributeName::CriticalDamageNormalAttack, "赛诺2命：「令仪·引谒归灵」", 0.06 * self.c2_stack);
+            attribute.set_value_by(AttributeName::BonusElectro, "赛诺2命：「令仪·引谒归灵」", 0.1 * self.c2_stack);
         }
         if self.after_q {
             attribute.set_value_by(AttributeName::ElementalMastery, "「启途誓使」精通加成", 100.0);
@@ -281,7 +279,7 @@ impl CharacterTrait for Cyno {
             QPlunging3 => CYNO_SKILL.qplunging3[s3],
             E1 => CYNO_SKILL.e1[s2],
             E2 => CYNO_SKILL.e2[s2],
-            E3 => CYNO_SKILL.e3[s2],
+            E3 => 1.0,
         };
 
         let mut builder = D::new();
@@ -314,7 +312,7 @@ impl CharacterTrait for Cyno {
         if has_talent2 {
             let em = context.attribute.get_value(AttributeName::ElementalMastery);
             if skill_group == CynoSkillgroupEnum::Q && skill_type == SkillType::NormalAttack {
-                builder.add_extra_damage("天赋3：「九弓的执命」加成",em*1.25);
+                builder.add_extra_damage("天赋3：「九弓的执命」加成",em*1.5);
             }
             if skill_group == CynoSkillgroupEnum::E3 && skill_type == SkillType::ElementalSkill {
                 builder.add_extra_damage("天赋3：「九弓的执命」加成",em*2.5);
