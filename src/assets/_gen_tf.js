@@ -979,6 +979,8 @@ export default {
         
         config: [
             
+            {"default":0.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":"t17","type":"float"},
+            
         ],
     },
     
