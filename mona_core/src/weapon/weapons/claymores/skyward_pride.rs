@@ -29,6 +29,7 @@ pub struct SkywardPride;
 impl WeaponTrait for SkywardPride {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SkywardPride,
+        internal_name: "Claymore_Dvalin",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge80),
         weapon_base: WeaponBaseATKFamily::ATK674,

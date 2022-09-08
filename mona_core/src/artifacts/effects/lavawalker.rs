@@ -57,7 +57,7 @@ impl ArtifactTrait for Lavawalker {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "敌人火元素覆盖率",
+            title: "a7",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

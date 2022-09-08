@@ -1,12 +1,5 @@
 use std::time;
 
-use mona::applications::bonus_per_stat::bonus_per_stat::{bonus_per_stat, BonusPerStatInput};
-use mona::applications::calculator::interface_calculator::CalculatorInterface;
-use mona::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
-use mona::applications::optimize_artifacts::algorithm::SingleOptimizeAlgorithm;
-use mona::applications::optimize_artifacts::algorithms::cutoff_heuristic::CutoffAlgorithmHeuristic;
-use mona::applications::optimize_artifacts::algorithms::CutoffAlgorithm2;
-use mona::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode};
 use mona::artifacts::{Artifact, ArtifactSetName, ArtifactSlotName};
 use mona::attribute::{AttributeName, AttributeUtils, ComplicatedAttributeGraph, SimpleAttributeGraph2};
 use mona::character::{Character, CharacterName};
@@ -18,6 +11,11 @@ use mona::enemies::Enemy;
 use mona::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName, TargetFunctionUtils};
 use mona::target_functions::target_functions::get_target_function;
 use mona::weapon::{Weapon, WeaponConfig, WeaponName};
+use mona_wasm::applications::optimize_artifacts::algorithm::SingleOptimizeAlgorithm;
+use mona_wasm::applications::optimize_artifacts::algorithms::cutoff_a_star::AStarCutoff;
+use mona_wasm::applications::optimize_artifacts::algorithms::cutoff_algo2::{CutoffAlgo2, CutoffAlgo2Helper};
+use mona_wasm::applications::optimize_artifacts::algorithms::weight_heuristic::{NaiveWeightHeuristic, WeightHeuristicAlgorithm};
+use mona_wasm::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode};
 
 fn get_character() -> Character<SimpleAttributeGraph2> {
     Character::new(
@@ -89,7 +87,8 @@ fn main() {
         crit_dmg_min: None
     };
 
-    let algo = CutoffAlgorithm2;
+    let algo = CutoffAlgo2 { accuracy_factor: 1.0 };
+    // let algo = AStarCutoff;
     // let algo = CutoffAlgorithmHeuristic {
     //     use_heuristic: true,
     // };
@@ -107,5 +106,13 @@ fn main() {
 
     println!("{:?}", results);
 
-    println!("{}s", now.elapsed().unwrap().as_secs())
+    println!("{}ms", now.elapsed().unwrap().as_millis());
+
+    let weight_heu_algo = NaiveWeightHeuristic {
+        character: &character,
+        weapon: &weapon
+    };
+
+    let weights = weight_heu_algo.generate_stat(&target_function);
+    println!("{:?}", weights);
 }

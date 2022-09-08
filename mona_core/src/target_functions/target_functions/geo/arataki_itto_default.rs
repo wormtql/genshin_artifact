@@ -107,7 +107,7 @@ impl TargetFunction for AratakiIttoDefaultTargetFunction {
 
         type DamageEnum = <AratakiItto as CharacterTrait>::DamageEnumType;
         const CONFIG: CharacterSkillConfig = CharacterSkillConfig::AratakiItto { after_q: true };
-        let damage_kesa = AratakiItto::damage::<SimpleDamageBuilder>(&context, DamageEnum::KesagiriCombo, &CONFIG);
+        let damage_kesa = AratakiItto::damage::<SimpleDamageBuilder>(&context, DamageEnum::KesagiriCombo, &CONFIG, None);
         damage_kesa.normal.expectation
     }
 }

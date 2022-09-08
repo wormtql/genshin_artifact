@@ -56,7 +56,7 @@ impl BuffMeta for BuffResonanceCryo2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "应用比例",
+            title: "b34",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);
@@ -102,12 +102,12 @@ impl BuffMeta for BuffResonanceGeo2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate1",
-            title: "效果①比例",
+            title: "b35",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         },
         ItemConfig {
             name: "rate2",
-            title: "效果②比例",
+            title: "b36",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);
@@ -119,6 +119,80 @@ impl BuffMeta for BuffResonanceGeo2 {
         };
 
         Box::new(BuffResonanceGeo2 {
+            rate1, rate2
+        })
+    }
+}
+
+
+pub struct BuffResonanceHydro2;
+
+impl<A: Attribute> Buff<A> for BuffResonanceHydro2 {
+    fn change_attribute(&self, attribute: &mut A) {
+        attribute.add_hp_percentage("元素共鸣-愈疗之水", 0.25);
+    }
+}
+
+impl BuffMeta for BuffResonanceHydro2 {
+    #[cfg(not(target_family = "wasm"))]
+    const META_DATA: BuffMetaData = BuffMetaData {
+        name: BuffName::ResonanceHydro2,
+        chs: "元素共鸣-愈疗之水",
+        image: BuffImage::Misc("hydro"),
+        genre: BuffGenre::Resonance,
+        description: Some(""),
+        from: BuffFrom::Resonance
+    };
+
+    fn create<A: Attribute>(b: &BuffConfig) -> Box<dyn Buff<A>> {
+        Box::new(BuffResonanceHydro2)
+    }
+}
+
+pub struct BuffResonanceDendro2 {
+    pub rate1: f64,
+    pub rate2: f64,
+}
+
+impl<A: Attribute> Buff<A> for BuffResonanceDendro2 {
+    fn change_attribute(&self, attribute: &mut A) {
+        let value = 50.0 + self.rate1 * 30.0 + self.rate2 * 20.0;
+        attribute.set_value_by(AttributeName::ElementalMastery, "元素共鸣-蔓生之草", value);
+    }
+}
+
+impl BuffMeta for BuffResonanceDendro2 {
+    #[cfg(not(target_family = "wasm"))]
+    const META_DATA: BuffMetaData = BuffMetaData {
+        name: BuffName::ResonanceDendro2,
+        chs: "元素共鸣-蔓生之草",
+        image: BuffImage::Misc("dendro"),
+        genre: BuffGenre::Resonance,
+        description: Some(""),
+        from: BuffFrom::Resonance
+    };
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "rate1",
+            title: "b35",
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
+        },
+        ItemConfig {
+            name: "rate2",
+            title: "b36",
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
+        }
+    ]);
+
+    fn create<A: Attribute>(b: &BuffConfig) -> Box<dyn Buff<A>> {
+        let (rate1, rate2) = match *b {
+            BuffConfig::ResonanceDendro2 { rate1, rate2 } => (rate1, rate2),
+            _ => (0.0, 0.0)
+        };
+
+        Box::new(BuffResonanceDendro2 {
             rate1, rate2
         })
     }

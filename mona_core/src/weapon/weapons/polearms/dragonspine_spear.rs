@@ -13,6 +13,7 @@ pub struct DragonspineSpear;
 impl WeaponTrait for DragonspineSpear {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::DragonspineSpear,
+        internal_name: "Pole_Everfrost",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus150),
         weapon_base: WeaponBaseATKFamily::ATK454,

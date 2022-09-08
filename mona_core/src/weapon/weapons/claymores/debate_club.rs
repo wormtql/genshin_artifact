@@ -13,6 +13,7 @@ pub struct DebateClub;
 impl WeaponTrait for DebateClub {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::DebateClub,
+        internal_name: "Claymore_Reasoning",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK77),
         weapon_base: WeaponBaseATKFamily::ATK401,

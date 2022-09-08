@@ -39,17 +39,17 @@ impl TargetFunctionMetaTrait for KaedeharaKazuhaDamageTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "recharge_demand",
-            title: "充能需求",
+            title: "t4",
             config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.8 }
         },
         ItemConfig {
             name: "swirl_rate",
-            title: "扩散相对频率",
+            title: "t8",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.5 }
         },
         ItemConfig {
             name: "other_dmg_ratio",
-            title: "他人伤害比例",
+            title: "t9",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.9 }
         }
     ]);
@@ -141,8 +141,8 @@ impl TargetFunction for KaedeharaKazuhaDamageTargetFunction {
         } else {
             CharacterSkillConfig::KaedeharaKazuha { after_e_or_q: false }
         };
-        let dmg_q = KaedeharaKazuha::damage::<SimpleDamageBuilder>(&context, S::Q2, &CharacterSkillConfig::NoConfig).normal.expectation;
-        let dmg_plunging_e = KaedeharaKazuha::damage::<SimpleDamageBuilder>(&context, S::PlungingE2, &skill_config).normal.expectation;
+        let dmg_q = KaedeharaKazuha::damage::<SimpleDamageBuilder>(&context, S::Q2, &CharacterSkillConfig::NoConfig, None).normal.expectation;
+        let dmg_plunging_e = KaedeharaKazuha::damage::<SimpleDamageBuilder>(&context, S::PlungingE2, &skill_config, None).normal.expectation;
 
         let bonus_for_other = if character.common_data.has_talent2 {
             em * 0.0004

@@ -29,6 +29,7 @@ pub struct AquilaFavonia;
 impl WeaponTrait for AquilaFavonia {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::AquilaFavonia,
+        internal_name: "Sword_Falcon",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus90),
         weapon_base: WeaponBaseATKFamily::ATK674,

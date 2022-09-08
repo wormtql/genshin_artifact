@@ -33,6 +33,7 @@ pub struct BlackTassel;
 impl WeaponTrait for BlackTassel {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BlackTassel,
+        internal_name: "Pole_Noire",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::HP102),
         weapon_base: WeaponBaseATKFamily::ATK354,

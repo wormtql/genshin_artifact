@@ -12,6 +12,7 @@ pub struct ApprenticesNotes;
 impl WeaponTrait for ApprenticesNotes {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::ApprenticesNotes,
+        internal_name: "Catalyst_Apprentice",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: None,
         weapon_base: WeaponBaseATKFamily::ATK185,

@@ -46,6 +46,7 @@ pub struct Deathmatch;
 impl WeaponTrait for Deathmatch {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Deathmatch,
+        internal_name: "Pole_Gladiator",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate80),
         weapon_base: WeaponBaseATKFamily::ATK454,
@@ -60,7 +61,7 @@ impl WeaponTrait for Deathmatch {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "ge2",
-            title: "身边至少有2个敌人",
+            title: "w22",
             config: ItemConfigType::Bool { default: true }
         }
     ]);

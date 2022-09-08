@@ -33,6 +33,7 @@ pub struct MagicGuide;
 impl WeaponTrait for MagicGuide {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MagicGuide,
+        internal_name: "Catalyst_Intro",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM41),
         weapon_base: WeaponBaseATKFamily::ATK354,

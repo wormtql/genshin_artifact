@@ -35,7 +35,7 @@ impl BuffMeta for BuffEulaE {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill2",
-            title: "技能等级",
+            title: "b3",
             config: ItemConfigType::Int { min: 1, max: 15, default: 9 },
         }
     ]);

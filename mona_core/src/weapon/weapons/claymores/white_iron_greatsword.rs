@@ -13,6 +13,7 @@ pub struct WhiteIronGreatsword;
 impl WeaponTrait for WhiteIronGreatsword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::WhiteIronGreatsword,
+        internal_name: "Claymore_Tin",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::DEF96),
         weapon_base: WeaponBaseATKFamily::ATK401,

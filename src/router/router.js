@@ -1,5 +1,3 @@
-import LoadingComponent from "@c/LoadingComponent"
-import ErrorComponent from "@c/ErrorComponent"
 import NewArtifactPlanPage from "@page/NewArtifactPlanPage"
 import SequentialOptimizationPage from "@page/SequentialOptimizationPage"
 import TeamOptimizationPage from "@page/TeamOptimizationPage"
@@ -9,6 +7,7 @@ import CharacterInfo from "@page/CharacterDBPage/CharacterInfo"
 import MonaPlaygroundPage from "@page/MonaPlaygroundPage"
 import ArtifactsPage from "@page/ArtifactsPage"
 // import ExternalLinkPage from "@/pages/about/ExternalLinkPage"
+import SetupPage from "@page/SetupPage"
 
 import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
 import {getRepo} from "@/api/repo"
@@ -27,6 +26,14 @@ const ExternalLinkPage = () => import(/* webpackChunkName: "about-page" */ "@pag
 const webName = process.env.MONA_TITLE;
 
 const routes = [
+    {
+        path: "/setup",
+        component: SetupPage,
+        name: "setup",
+        meta: {
+            title: "设置"
+        }
+    },
     {
         path: "/playground",
         component: MonaPlaygroundPage,

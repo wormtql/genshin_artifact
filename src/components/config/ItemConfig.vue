@@ -6,6 +6,7 @@
             v-for="config in configs"
             :key="config.name"
             :params="config"
+            :title="t('config', config.title)"
             :type="config.type"
             :modelValue="value2[config.name]"
             @update:modelValue="handleInput(config.name, $event)"
@@ -15,6 +16,7 @@
 
 <script>
 import ConfigItem from "./ConfigItem"
+import {useI18n} from "@/i18n/i18n"
 
 export default {
     name: "ItemConfig",
@@ -65,6 +67,12 @@ export default {
                 obj[name] = value
                 this.$emit("update:modelValue", obj)
             }
+        }
+    },
+    setup() {
+        const { t } = useI18n()
+        return {
+            t
         }
     }
 }

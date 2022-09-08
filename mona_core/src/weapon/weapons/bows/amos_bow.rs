@@ -41,6 +41,7 @@ pub struct AmosBow;
 impl WeaponTrait for AmosBow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::AmosBow,
+        internal_name: "Bow_Amos",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK108),
         weapon_base: WeaponBaseATKFamily::ATK608,

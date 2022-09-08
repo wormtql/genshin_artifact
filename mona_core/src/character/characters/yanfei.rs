@@ -54,6 +54,7 @@ pub const YANFEI_SKILL: YanfeiSkillType = YanfeiSkillType {
 
 pub const YANFEI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Yanfei,
+    internal_name: "Feiyan",
     chs: "烟绯",
     element: Element::Pyro,
     hp: [784, 2014, 2160, 3895, 4311, 4959, 5514, 6161, 6578, 7225, 7641, 8289, 8705, 9352],
@@ -146,12 +147,12 @@ impl CharacterTrait for Yanfei {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_q",
-            title: "灼灼",
+            title: "c36",
             config: ItemConfigType::Bool { default: true }
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: YanfeiDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -191,7 +192,8 @@ impl CharacterTrait for Yanfei {
             &context.enemy,
             Element::Pyro,
             skill_type,
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

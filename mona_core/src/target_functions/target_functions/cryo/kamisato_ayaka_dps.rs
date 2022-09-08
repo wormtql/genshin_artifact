@@ -104,16 +104,16 @@ impl TargetFunction for KamisatoAyakaDpsTargetFunction {
         type S = <KamisatoAyaka as CharacterTrait>::DamageEnumType;
 
         let config = CharacterSkillConfig::KamisatoAyaka { after_dash: true, use_c6: false };
-        let dmg_a1 = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config).normal.expectation;
+        let dmg_a1 = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config, None).normal.expectation;
         let dmg_a = dmg_a1 * (1.0 + 1.0656 + 1.3698 + 0.4955 * 3.0);
         let time_a = 2.66;
 
-        let dmg_b = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::ChargedTimes3, &config).normal.expectation;
+        let dmg_b = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::ChargedTimes3, &config, None).normal.expectation;
 
-        let dmg_e = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::E1, &config).normal.expectation;
+        let dmg_e = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::E1, &config, None).normal.expectation;
         let time_e = 2.53;
 
-        let dmg_q1 = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::Q1, &config).normal.expectation;
+        let dmg_q1 = KamisatoAyaka::damage::<SimpleDamageBuilder>(&context, S::Q1, &config, None).normal.expectation;
         let dmg_q = dmg_q1 * (19.0 + 1.5);
         let time_q = 2.16;
 

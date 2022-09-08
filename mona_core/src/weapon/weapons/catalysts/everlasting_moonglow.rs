@@ -30,6 +30,7 @@ pub struct EverlastingMoonglow;
 impl WeaponTrait for EverlastingMoonglow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::EverlastingMoonglow,
+        internal_name: "Catalyst_Kaleido",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::HP108),
         weapon_base: WeaponBaseATKFamily::ATK608,

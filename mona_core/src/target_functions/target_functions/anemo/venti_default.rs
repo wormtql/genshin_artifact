@@ -49,7 +49,7 @@ impl TargetFunctionMetaTrait for VentiDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "swirl_rate",
-            title: "扩散占比",
+            title: "t10",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.7 },
         }
     ]);
@@ -127,7 +127,7 @@ impl TargetFunction for VentiDefaultTargetFunction {
         }
 
         type S = <Venti as CharacterTrait>::DamageEnumType;
-        let dmg_q = Venti::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_q = Venti::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
         let dmg_swirl = context.swirl_without_element();
 
         let vv_ratio = if vv_count >= 4 {

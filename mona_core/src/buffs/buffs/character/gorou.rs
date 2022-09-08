@@ -35,7 +35,7 @@ impl BuffMeta for BuffGorouE1 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill2",
-            title: "五郎E技能等级",
+            title: "b4",
             config: ItemConfigType::Int { min: 1, max: 15, default: 10 }
         }
     ]);
@@ -131,7 +131,7 @@ impl BuffMeta for BuffGorouC6 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "level",
-            title: "领域等级",
+            title: "b5",
             config: ItemConfigType::Int { min: 1, max: 3, default: 1 },
         }
     ]);

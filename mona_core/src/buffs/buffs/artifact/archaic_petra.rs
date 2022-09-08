@@ -34,7 +34,7 @@ impl BuffMeta for BuffArchaicPetra4 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "element",
-            title: "结晶元素",
+            title: "b37",
             config: ItemConfigType::Element4 { default: Element::Electro }
         }
     ]);

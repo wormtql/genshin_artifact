@@ -23,6 +23,7 @@ pub enum BuffName {
     DEFMinus,
     ResMinus,
     HealingBonus,
+    BaseDmg,
 
     // character
     AlbedoTalent2,
@@ -84,17 +85,25 @@ pub enum BuffName {
     YelanTalent2,
     YelanC4,
     KamisatoAyatoQ,
+    ShikanoinHeizouTalent2,
+    TighnariC4,
+    DoriC4,
 
+    // weapon
     FreedomSworn,
     SongOfBrokenPines,
     WolfsGravestone,
     ThrillingTalesOfDragonSlayers,
     ElegyOfTheEnd,
     HakushinRing,
+    SapwoodBlade,
+    Moonpiercer,
 
     ResonancePyro2,
     ResonanceCryo2,
     ResonanceGeo2,
+    ResonanceHydro2,
+    ResonanceDendro2,
 
     Instructor4,
     NoblesseOblige4,

@@ -6,3 +6,4 @@ pub mod buffs;
 pub mod buff_config;
 pub mod buff_meta;
 pub mod buff_name;
+pub mod macros;

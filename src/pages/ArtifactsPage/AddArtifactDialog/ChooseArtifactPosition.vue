@@ -12,7 +12,8 @@
                 class="image"
             >
             <p class="text">
-                {{ selectedArtData[position].chs }}
+<!--                {{ selectedArtData[position].chs }}-->
+                {{ t("artifact", selectedArtData.eng, "items", positionToIndex(position)) }}
             </p>
         </div>
     </div>
@@ -24,6 +25,12 @@ import { computed, watch } from "vue"
 import { artifactsData } from "../../../assets/artifacts"
 import type {ArtifactPosition, ArtifactSetName} from "@/types/artifact"
 import { positions } from "@/constants/artifact"
+import {useI18n} from "@/i18n/i18n"
+import {positionToIndex} from "@/utils/artifacts"
+
+
+const { t } = useI18n()
+
 
 interface Props {
     modelValue: ArtifactPosition,
@@ -92,6 +99,7 @@ watch(() => props.setName, () => {
     font-size: 12px;
     text-align: center;
     width: 48px;
+    word-break: normal;
 }
 
 .image {

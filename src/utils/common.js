@@ -119,3 +119,28 @@ export function loadScript(url) {
         document.head.appendChild(script)
     })
 }
+
+export function pathAccess(obj, ...path) {
+    let ret = obj
+
+    // console.log(path)
+    for (const p of path) {
+        if (typeof p === "number") {
+            if (ret === undefined) {
+                return undefined
+            }
+            ret = ret[p]
+        } else {
+            let temp = p.split(".")
+
+            for (let a of temp) {
+                if (ret === undefined) {
+                    return undefined
+                }
+                ret = ret[a]
+            }
+        }
+    }
+
+    return ret
+}

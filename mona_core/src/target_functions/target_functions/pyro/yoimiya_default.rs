@@ -52,12 +52,12 @@ impl TargetFunctionMetaTrait for YoimiyaDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "vaporize_rate",
-            title: "蒸发占比",
+            title: "t6",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "melt_rate",
-            title: "融化占比",
+            title: "t5",
             config: ItemConfig::RATE01_TYPE
         }
     ]);
@@ -132,7 +132,7 @@ impl TargetFunction for YoimiyaDefaultTargetFunction {
 
         type S = <Yoimiya as CharacterTrait>::DamageEnumType;
         let config = CharacterSkillConfig::Yoimiya { after_e: true };
-        let dmg = Yoimiya::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config);
+        let dmg = Yoimiya::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config, None);
 
         let pyro = dmg.normal.expectation;
         let melt = dmg.melt.unwrap().expectation;

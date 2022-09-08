@@ -37,7 +37,7 @@ impl TargetFunctionMetaTrait for KukiShinobuDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_ratio",
-            title: "E技能伤害占比",
+            title: "t15",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.6 }
         }
     ]);
@@ -112,8 +112,8 @@ impl TargetFunction for KukiShinobuDefaultTargetFunction {
         };
 
         type S = <KukiShinobu as CharacterTrait>::DamageEnumType;
-        let dmg_q = KukiShinobu::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig);
-        let dmg_e = KukiShinobu::damage::<SimpleDamageBuilder>(&context, S::E2, &CharacterSkillConfig::NoConfig);
+        let dmg_q = KukiShinobu::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig, None);
+        let dmg_e = KukiShinobu::damage::<SimpleDamageBuilder>(&context, S::E2, &CharacterSkillConfig::NoConfig, None);
 
         let result = dmg_q.normal.expectation * (1.0 - self.e_ratio) + dmg_e.normal.expectation * self.e_ratio;
 

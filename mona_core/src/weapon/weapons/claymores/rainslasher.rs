@@ -39,6 +39,7 @@ pub struct Rainslasher;
 impl WeaponTrait for Rainslasher {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Rainslasher,
+        internal_name: "Claymore_Perdue",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,
@@ -53,7 +54,7 @@ impl WeaponTrait for Rainslasher {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "被动应用比例",
+            title: "w2",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);

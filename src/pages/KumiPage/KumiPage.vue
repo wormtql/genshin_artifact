@@ -2,7 +2,7 @@
     <div>
         <el-dialog
             v-model="showSelectArtifactDialog"
-            title="选择圣遗物"
+            :title="t('kumiPage.selectArt')"
             :width="deviceIsPC ? '80%' : '90%'"
         >
             <select-artifact
@@ -17,10 +17,10 @@
 
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <el-dropdown-item command="add" :icon="IconEpFolderAdd">新建收藏夹</el-dropdown-item>
-                        <el-dropdown-item command="addKumi" :icon="IconEpPlus">新建圣遗物组</el-dropdown-item>
-                        <el-dropdown-item command="delete" v-if="currentDirId !== 0" :icon="IconEpDelete">删除"{{ currentDirTitle }}"</el-dropdown-item>
-                        <el-dropdown-item command="rename" v-if="currentDirId !== 0" :icon="IconEpEdit">重命名</el-dropdown-item>
+                        <el-dropdown-item command="add" :icon="IconEpFolderAdd">{{ t("kumiPage.newFolder") }}</el-dropdown-item>
+                        <el-dropdown-item command="addKumi" :icon="IconEpPlus">{{ t("kumiPage.newKumi") }}</el-dropdown-item>
+                        <el-dropdown-item command="delete" v-if="currentDirId !== 0" :icon="IconEpDelete">{{ t("misc.del") }}"{{ currentDirTitle }}"</el-dropdown-item>
+                        <el-dropdown-item command="rename" v-if="currentDirId !== 0" :icon="IconEpEdit">{{ t("misc.rename") }}</el-dropdown-item>
                         <el-dropdown-item
                             v-for="(item, index) in dirItems"
                             :key="item.index"
@@ -41,7 +41,7 @@
             <div class="left mona-scroll-hidden hidden-sm-and-down">
                 <div class="toolbar">
                     <el-button type="primary" :icon="IconEpPlus" @click="handleNewDir">
-                        新建收藏夹
+                        {{ t("kumiPage.newFolder") }}
                     </el-button>
                 </div>
 
@@ -57,7 +57,7 @@
                     <el-input
                         v-model="searchString"
                         style="margin-bottom: 12px"
-                        placeholder="搜索"
+                        :placeholder="t('misc.search')"
                     >
                         <template #append>
                             <i-ep-search />
@@ -70,11 +70,11 @@
                             type="primary"
                             :icon="IconEpPlus"
                             @click="handleNewKumi"
-                        >新建组</el-button>
+                        >{{ t("kumiPage.newKumi") }}</el-button>
                         <el-input
                             v-model="searchString"
                             style="margin-left: 16px"
-                            placeholder="搜索"
+                            :placeholder="t('misc.search')"
                         >
                             <template #append>
                                 <el-icon><i-ep-search /></el-icon>
@@ -88,12 +88,12 @@
                                 v-if="currentDirId !== 0"
                                 :icon="IconEpEdit"
                                 @click="handleRenameDir(currentDirId)"
-                            >重命名</el-button>
+                            >{{ t("misc.rename") }}</el-button>
                             <el-button
                                 type="danger"
                                 @click="handleDeleteDir(currentDirId)"
                                 v-if="currentDirId !== 0"
-                                title="删除收藏夹"
+                                :title="t('kumiPage.deleteFolder')"
                                 :icon="IconEpDelete"
                             ></el-button>
 
@@ -141,9 +141,14 @@ import IconEpMore from "~icons/ep/more"
 import IconEpFolder from "~icons/ep/folder"
 import IconEpFolderAdd from "~icons/ep/folder-add"
 import type {ArtifactPosition} from "@/types/artifact"
+import {useI18n} from "@/i18n/i18n";
 
 
 const kumiStore = useKumiStore()
+
+
+// i18n
+const { t } = useI18n()
 
 
 // dirs
@@ -176,9 +181,9 @@ const currentDirTitle = computed(() => {
 })
 
 function handleNewDir() {
-    ElMessageBox.prompt("请输入新收藏夹名", "新建收藏夹", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消"
+    ElMessageBox.prompt(t("kumiPage.enterFolder"), t("kumiPage.newFolder"), {
+        confirmButtonText: t("misc.confirm"),
+        cancelButtonText: t("misc.cancel")
     }).then(({ value }) => {
         if (value) {
             kumiStore.createDir(value)
@@ -195,9 +200,9 @@ function handleDeleteDir(id: number) {
 }
 
 function handleRenameDir(id: number) {
-    ElMessageBox.prompt("请输入新收藏夹名", "重命名收藏夹", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消"
+    ElMessageBox.prompt(t("kumiPage.enterFolder"), t("kumiPage.renameFolder"), {
+        confirmButtonText: t("misc.confirm"),
+        cancelButtonText: t("misc.cancel")
     }).then(({ value }) => {
         if (value) {
             kumiStore.rename(id, value)
@@ -212,9 +217,9 @@ const currentKumiList = computed((): TypeKumiItem[] => {
 })
 
 function handleNewKumi() {
-    ElMessageBox.prompt("请输入新圣遗物组名", "新建圣遗物组", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消"
+    ElMessageBox.prompt(t("kumiPage.enterKumi"), t("kumiPage.newKumi"), {
+        confirmButtonText: t("misc.confirm"),
+        cancelButtonText: t("misc.cancel")
     }).then(({ value }) => {
         if (value) {
             kumiStore.createKumi(currentDirId.value, value)
@@ -227,9 +232,9 @@ function handleDeleteKumi(id: number) {
 }
 
 function handleEditKumi(id: number) {
-    ElMessageBox.prompt("请输入新圣遗物组名", "重命名圣遗物组", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消"
+    ElMessageBox.prompt(t("kumiPage.enterKumi"), t("kumiPage.renameKumi"), {
+        confirmButtonText: t("misc.confirm"),
+        cancelButtonText: t("misc.cancel")
     }).then(({ value }) => {
         if (value) {
             kumiStore.rename(id, value)

@@ -12,6 +12,7 @@ pub struct HuntersBow;
 impl WeaponTrait for HuntersBow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::HuntersBow,
+        internal_name: "Bow_Hunters",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: None,
         weapon_base: WeaponBaseATKFamily::ATK185,

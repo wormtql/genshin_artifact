@@ -72,17 +72,17 @@ impl TargetFunctionMetaTrait for XianglingDefaultTargetFunction {
         },
         ItemConfig {
             name: "melt_rate",
-            title: "融化频率",
+            title: "t5",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         },
         ItemConfig {
             name: "vaporize_rate",
-            title: "蒸发频率",
+            title: "t6",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         },
         ItemConfig {
             name: "overload_rate",
-            title: "超载频率",
+            title: "t11",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);
@@ -161,7 +161,7 @@ impl TargetFunction for XianglingDefaultTargetFunction {
         };
 
         type S = <Xiangling as CharacterTrait>::DamageEnumType;
-        let dmg_q = Xiangling::damage::<SimpleDamageBuilder>(&context, S::Q4, &CharacterSkillConfig::NoConfig);
+        let dmg_q = Xiangling::damage::<SimpleDamageBuilder>(&context, S::Q4, &CharacterSkillConfig::NoConfig, None);
 
         let normal = dmg_q.normal.expectation;
         let melt = dmg_q.melt.unwrap().expectation;

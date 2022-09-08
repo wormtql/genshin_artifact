@@ -13,6 +13,7 @@ pub struct EyeOfPerception;
 impl WeaponTrait for EyeOfPerception {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::EyeOfPerception,
+        internal_name: "Catalyst_Truelens",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK120),
         weapon_base: WeaponBaseATKFamily::ATK454,

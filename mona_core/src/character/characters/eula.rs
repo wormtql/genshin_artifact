@@ -68,6 +68,7 @@ pub const EULA_SKILL: EulaSkillType = EulaSkillType {
 
 pub const EULA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Eula,
+    internal_name: "Eula",
     chs: "优菈",
     element: Element::Cryo,
     hp: [1030, 2671, 3554, 5317, 5944, 6839, 7675, 8579, 9207, 10119, 10746, 11699, 12296, 13226],
@@ -120,8 +121,8 @@ impl EulaDamageEnum {
         match *self {
             Charged1 | Charged2 => SkillType::ChargedAttack,
             Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
-            E1 | E2 | E3 | EShatteredLightfall => SkillType::ElementalSkill,
-            Q1 | QLightfall => SkillType::ElementalBurst,
+            E1 | E2 | E3 => SkillType::ElementalSkill,
+            Q1 | QLightfall | EShatteredLightfall => SkillType::ElementalBurst,
             _ => SkillType::NormalAttack
         }
     }
@@ -177,12 +178,12 @@ impl CharacterTrait for Eula {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "lightfall_stack",
-            title: "光降之剑能量层数",
+            title: "c23",
             config: ItemConfigType::Int { min: 0, max: 30, default: 0 }
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: EulaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -223,7 +224,8 @@ impl CharacterTrait for Eula {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

@@ -33,7 +33,7 @@ impl BuffMeta for BuffYoimiyaTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent1_stack",
-            title: "「袖火百景图」叠加层数",
+            title: "b29",
             config: ItemConfigType::Int { min: 0, max: 10, default: 0 }
         }
     ]);

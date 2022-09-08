@@ -49,6 +49,7 @@ pub struct ThunderingPulse;
 impl WeaponTrait for ThunderingPulse {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::ThunderingPulse,
+        internal_name: "Bow_Narukami",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage144),
         weapon_base: WeaponBaseATKFamily::ATK608,
@@ -63,7 +64,7 @@ impl WeaponTrait for ThunderingPulse {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "「飞雷之巴印」层数",
+            title: "w13",
             config: ItemConfigType::Int { min: 0, max: 3, default: 0 }
         }
     ]);

@@ -54,6 +54,7 @@ pub const RAZOR_SKILL: RazorSkillType = RazorSkillType {
 
 pub const RAZOR_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Razor,
+    internal_name: "Razor",
     chs: "雷泽",
     element: Element::Electro,
     hp: [1003, 2577, 3326, 4982, 5514, 6343, 7052, 7881, 8413, 9241, 9773, 10602, 11134, 11962],
@@ -188,17 +189,17 @@ impl CharacterTrait for Razor {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_stack",
-            title: "雷之印层数",
+            title: "c15",
             config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 0.0 }
         },
         ItemConfig {
             name: "talent2_ratio",
-            title: "天赋「饥饿」应用比例",
+            title: "c16",
             config: ItemConfig::RATE01_TYPE
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: RazorDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -228,7 +229,8 @@ impl CharacterTrait for Razor {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

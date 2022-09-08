@@ -54,6 +54,7 @@ const ALBEDO_SKILL: AlbedoSkillType = AlbedoSkillType {
 
 const ALBEDO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Albedo,
+    internal_name: "Albedo",
     chs: "阿贝多",
     element: Element::Geo,
     hp: [1030, 2671, 3554, 5317, 5944, 6839, 7675, 8579, 9207, 10119, 10746, 11669, 12296, 13226],
@@ -155,7 +156,7 @@ impl CharacterTrait for Albedo {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s = num::FromPrimitive::from_usize(s).unwrap();
         let fatal_count = match *config {
             CharacterSkillConfig::Albedo { fatal_count } => fatal_count,
@@ -196,7 +197,8 @@ impl CharacterTrait for Albedo {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            90
+            90,
+            fumo,
         )
     }
 

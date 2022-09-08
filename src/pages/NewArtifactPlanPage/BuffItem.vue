@@ -1,7 +1,7 @@
 <template>
     <div class="buff-root">
         <div class="top" :class="{ lock }">
-            <p class="buff-title">{{ data.chs }}</p>
+            <p class="buff-title">{{ t("buffName", data.name) }}</p>
             <div class="buttons">
                 <el-button
                     text
@@ -25,13 +25,13 @@
         <div class="detail">
             <img :src="data.badge">
             <div>
-                <p v-if="data.description"><span v-html="data.description"></span></p>
+                <p v-if="description"><span v-html="description"></span></p>
             </div>
         </div>
         
         <item-config
             v-if="data.config.length > 0"
-            :model-value="buffConfig"
+            :model-value="props.buffConfig"
             @update:modelValue="handleChangeConfig"
             :item-name="props.buff.name"
             :configs="data.config"
@@ -48,6 +48,9 @@ import {type BuffEntry} from "@/composables/buff"
 import IconEpDelete from "~icons/ep/delete"
 import IconEpLock from "~icons/ep/lock"
 import IconEpUnlock from "~icons/ep/unlock"
+import {useI18n} from "@/i18n/i18n";
+
+const { t } = useI18n()
 
 interface Props {
     buff: BuffEntry,
@@ -74,6 +77,10 @@ const data = computed((): any => {
 
 const lock = computed(() => {
     return props.buff.lock
+})
+
+const description = computed(() => {
+    return t('buffDesc', data.value.name)
 })
 </script>
 

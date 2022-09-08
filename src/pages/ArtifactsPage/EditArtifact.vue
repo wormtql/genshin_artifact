@@ -10,13 +10,13 @@
         <div style="padding: 0 20px">
             <el-row :gutter="16">
                 <el-col :span="12">
-                    <p class="config-title">套装</p>
+                    <p class="config-title">{{ t("misc.artifactSet") }}</p>
                     <select-artifact-set
                         v-model="setName"
                     ></select-artifact-set>
                 </el-col>
                 <el-col :span="12">
-                    <p class="config-title">位置</p>
+                    <p class="config-title">{{ t("misc.artSlot") }}</p>
                     <select-artifact-slot
                         :model-value="position"
                         @update:modelValue="handleChangePosition"
@@ -26,13 +26,13 @@
 
             <el-row :gutter="16">
                 <el-col :span="12">
-                    <p class="config-title">品质</p>
+                    <p class="config-title">{{ t("misc.quality") }}</p>
                     <el-rate
                         v-model="star"
                     ></el-rate>
                 </el-col>
                 <el-col :span="12">
-                    <p class="config-title">等级</p>
+                    <p class="config-title">{{ t("misc.lvl") }}</p>
                     <el-input-number
                         v-model="level"
                         :max="20"
@@ -45,7 +45,7 @@
         <el-divider></el-divider>
 
         <div class="section">
-            <p class="config-title">词条</p>
+            <p class="config-title">{{ t("misc.stat") }}</p>
 
             <input-artifact-main-stat v-model="mainStat"
                 style="margin-bottom: 24px"
@@ -79,14 +79,14 @@
                     <el-button type="primary" class="button"
                         @click="emits('confirm', artifactId)"
                     >
-                        确定
+                        {{ t("misc.confirm") }}
                     </el-button>
                 </el-col>
                 <el-col :span="12">
                     <el-button class="button"
                                @click="emits('cancel')"
                     >
-                        取消
+                        {{ t("misc.cancel") }}
                     </el-button>
                 </el-col>
             </el-row>
@@ -97,12 +97,12 @@
 <script setup lang="ts">
 import { ref } from "vue"
 
-import {getArtifact, getArtifactImage} from "@/utils/artifacts"
+import {getArtifact, getArtifactImage, positionToIndex} from "@/utils/artifacts"
 import { artifactsData } from "@artifact"
 import { artifactTags, mainStatMap } from "@/constants/artifact"
 import { positions } from "@/constants/artifact"
 
-import InputArtifactSubStat from "@c/input/InputArtifactSubStat"
+import InputArtifactSubStat from "@/components/input/InputArtifactSubStat.vue"
 import InputArtifactMainStat from "@c/input/InputArtifactMainStat"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
 import SelectArtifactSlot from "@c/select/SelectArtifactSlot"
@@ -113,9 +113,13 @@ import type {
     ArtifactSubStatName,
     ArtifactMainStat
 } from "@/types/artifact"
+import type { ArtifactStatName } from "@/types/artifact"
 
 import IconEpDelete from "~icons/ep/delete"
+import {useI18n} from "@/i18n/i18n";
 
+
+const { t } = useI18n()
 
 interface Emits {
     (e: "update:modelValue", v: any): void,
@@ -179,7 +183,7 @@ function convertStatBack(stat: any) {
         return null
     }
 
-    const data = artifactTags[stat.name]
+    const data = artifactTags[stat.name as ArtifactStatName]
     let value = parseFloat(stat.value)
     if (data.percentage) {
         value /= 100
@@ -197,8 +201,9 @@ const image = computed(() => {
 })
 
 const title = computed(() => {
-    const data = artifactsData[setName.value]
-    return data[position.value].chs
+    // const data = artifactsData[setName.value]
+    // return data[position.value].chs
+    return t("artifact", setName.value, "items", positionToIndex(position.value))
 })
 
 watch(() => setName.value, (newValue, oldValue) => {

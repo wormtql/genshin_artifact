@@ -33,6 +33,7 @@ pub struct CoolSteel;
 impl WeaponTrait for CoolSteel {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CoolSteel,
+        internal_name: "Sword_Steel",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK77),
         weapon_base: WeaponBaseATKFamily::ATK401,

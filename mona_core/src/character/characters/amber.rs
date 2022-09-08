@@ -53,6 +53,7 @@ pub const AMBER_SKILL: AmberSkillType = AmberSkillType {
 
 pub const AMBER_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Amber,
+    internal_name: "Ambor",
     chs: "安柏",
     element: Element::Pyro,
     hp: [793, 2038, 2630, 3940, 4361, 5016, 5578, 6233, 6654, 7309, 7730, 8358, 8806, 9461],
@@ -170,7 +171,7 @@ impl CharacterTrait for Amber {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         use AmberDamageEnum::*;
         let s: AmberDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
 
@@ -201,7 +202,8 @@ impl CharacterTrait for Amber {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

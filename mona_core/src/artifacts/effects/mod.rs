@@ -44,6 +44,8 @@ pub use traveling_doctor::TravelingDoctor;
 pub use vermillion_hereafter::VermillionHereafter;
 pub use viridescent_venerer::ViridescentVenerer;
 pub use wanderers_troupe::WanderersTroupe;
+pub use deepwood_memories::DeepwoodMemories;
+pub use gilded_dreams::GildedDreams;
 
 pub mod empty;
 pub mod adventurer;
@@ -85,6 +87,8 @@ pub mod viridescent_venerer;
 pub mod wanderers_troupe;
 pub mod vermillion_hereafter;
 pub mod echoes_of_an_offering;
+pub mod deepwood_memories;
+pub mod gilded_dreams;
 
 pub fn get_effect<T: Attribute>(name: ArtifactSetName, config: &ArtifactEffectConfig, character: &Character<T>) -> Box<dyn ArtifactEffect<T>> {
     name.create_effect(config, &character.common_data)

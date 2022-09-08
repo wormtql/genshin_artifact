@@ -40,6 +40,7 @@ pub struct WavebreakersFin;
 impl WeaponTrait for WavebreakersFin {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::WavebreakersFin,
+        internal_name: "Pole_Maria",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK30),
         weapon_base: WeaponBaseATKFamily::ATK620,
@@ -54,7 +55,7 @@ impl WeaponTrait for WavebreakersFin {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "energy",
-            title: "队伍元素能量上限总和",
+            title: "w10",
             config: ItemConfigType::Int { min: 40, max: 400, default: 40 }
         }
     ]);

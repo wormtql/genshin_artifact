@@ -121,10 +121,10 @@ impl TargetFunction for EulaDefaultTargetFunction {
 
         type S = <Eula as CharacterTrait>::DamageEnumType;
         let dmg_q = Eula::damage::<SimpleDamageBuilder>(
-            &context, S::QLightfall, &skill_config
+            &context, S::QLightfall, &skill_config, None
         ).normal.expectation;
         let dmg_a = Eula::damage::<SimpleDamageBuilder>(
-            &context, S::Normal1, &skill_config
+            &context, S::Normal1, &skill_config, None
         ).normal.expectation;
 
         dmg_q + dmg_a * 25.0

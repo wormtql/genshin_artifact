@@ -54,6 +54,7 @@ pub const KUJOU_SARA_SKILL: KujouSaraSkillType = KujouSaraSkillType {
 
 pub const KUJOU_SARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::KujouSara,
+    internal_name: "Sara",
     chs: "九条裟罗",
     element: Element::Electro,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],
@@ -148,7 +149,7 @@ impl CharacterTrait for KujouSara {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: KujouSaraDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -175,7 +176,8 @@ impl CharacterTrait for KujouSara {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

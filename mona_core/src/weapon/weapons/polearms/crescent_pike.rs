@@ -13,6 +13,7 @@ pub struct CrescentPike;
 impl WeaponTrait for CrescentPike {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CrescentPike,
+        internal_name: "Pole_Exotic",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus75),
         weapon_base: WeaponBaseATKFamily::ATK565,

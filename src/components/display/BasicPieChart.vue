@@ -20,6 +20,7 @@ use([
 ])
 /// #endif
 import VChart from "vue-echarts"
+import {useI18n} from "../../i18n/i18n";
 
 export default {
     name: "BasicPieChart",
@@ -63,7 +64,14 @@ export default {
                 ]
             }
         }
-    }
+    },
+    // setup() {
+    //     const { t } = useI18n()
+    //
+    //     return {
+    //         t
+    //     }
+    // }
 }
 </script>
 

@@ -13,6 +13,7 @@ pub struct AmenomaKageuchi;
 impl WeaponTrait for AmenomaKageuchi {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::AmenomaKageuchi,
+        internal_name: "Sword_Bakufu",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK120),
         weapon_base: WeaponBaseATKFamily::ATK454,

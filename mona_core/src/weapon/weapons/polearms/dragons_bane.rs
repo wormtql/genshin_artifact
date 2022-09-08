@@ -39,6 +39,7 @@ pub struct DragonsBane;
 impl WeaponTrait for DragonsBane {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::DragonsBane,
+        internal_name: "Pole_Stardust",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM48),
         weapon_base: WeaponBaseATKFamily::ATK454,

@@ -39,6 +39,7 @@ pub struct IronSting;
 impl WeaponTrait for IronSting {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::IronSting,
+        internal_name: "Sword_Exotic",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,
@@ -53,7 +54,7 @@ impl WeaponTrait for IronSting {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "被动等效层数",
+            title: "w1",
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 2.0,

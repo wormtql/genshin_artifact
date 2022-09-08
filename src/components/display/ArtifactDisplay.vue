@@ -22,7 +22,7 @@
                     circle
                     size="small"
                     text
-                    :title="props.item.omit ? '启用' : '禁用'"
+                    :title="props.item.omit ? t('misc.unlock') : t('misc.lock')"
                     class="mybutton"
                     @click.stop="emits('toggle')"
                 ></el-button>
@@ -32,7 +32,7 @@
                     circle
                     size="small"
                     text
-                    title="删除"
+                    :title="t('misc.del')"
                     class="mybutton"
                     @click.stop="emits('delete')"
                 ></el-button>
@@ -42,7 +42,7 @@
                     circle
                     size="small"
                     text
-                    title="编辑"
+                    :title="t('misc.edit')"
                     class="mybutton"
                     @click.stop="emits('edit')"
                 ></el-button>
@@ -85,7 +85,11 @@ import IconEpLock from "~icons/ep/lock"
 import IconEpDelete from "~icons/ep/delete"
 import IconEpEdit from "~icons/ep/edit"
 import {IArtifact, IArtifactContentOnly} from "@/types/artifact"
-import {displayedTag} from "@/utils/artifacts"
+import {displayedTag, positionToIndex} from "@/utils/artifacts"
+import {useI18n} from "@/i18n/i18n"
+
+// i18n
+const { t } = useI18n()
 
 interface Props {
     item: Omit<IArtifact, "id" | "contentHash">,
@@ -129,7 +133,9 @@ const displayedTitle = computed(() => {
 
     let title = "not exist"
     if (item[props.item.position]) {
-        title = item[props.item.position].chs;
+        const positionIndex = positionToIndex(props.item.position)
+        title = t("artifact", item.eng, "items", positionIndex)
+        // title = item[props.item.position].chs;
         if (Object.prototype.hasOwnProperty.call(props.item, "level")) {
             title += "+" + (props.item.level);
         } else {
@@ -254,6 +260,8 @@ function defaultItem(): Omit<IArtifact, "id" | "contentHash"> {
             z-index: 10;
             text-overflow: ellipsis;
             white-space: nowrap;
+            overflow: hidden;
+            //max-width: 110px;
         }
 
         .extra {

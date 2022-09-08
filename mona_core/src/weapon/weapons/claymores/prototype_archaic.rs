@@ -13,6 +13,7 @@ pub struct PrototypeArchaic;
 impl WeaponTrait for PrototypeArchaic {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrototypeArchaic,
+        internal_name: "Claymore_Proto",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,

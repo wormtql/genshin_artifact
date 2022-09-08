@@ -46,6 +46,7 @@ pub struct CalamityQueller;
 impl WeaponTrait for CalamityQueller {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CalamityQueller,
+        internal_name: "Pole_Santika",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK36),
         weapon_base: WeaponBaseATKFamily::ATK741,
@@ -60,12 +61,12 @@ impl WeaponTrait for CalamityQueller {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "「圆顿」等效层数",
+            title: "w20",
             config: ItemConfigType::Float { min: 0.0, max: 6.0, default: 6.0 }
         },
         ItemConfig {
             name: "backend_rate",
-            title: "后台比例",
+            title: "w21",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

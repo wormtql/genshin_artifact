@@ -50,6 +50,7 @@ pub const ARATAKI_ITTO_SKILL: AratakiIttoSkillType = AratakiIttoSkillType {
 
 const ARATAKI_ITTO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::AratakiItto,
+    internal_name: "Itto",
     chs: "荒泷一斗",
     element: Element::Geo,
     hp: [1001, 2579, 3455, 5170, 5779, 6649, 7462, 8341, 8951, 9838, 10448, 11345, 11954, 12858],
@@ -167,12 +168,12 @@ impl CharacterTrait for AratakiItto {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_q",
-            title: "处于「怒目鬼王」",
+            title: "c21",
             config: ItemConfigType::Bool { default: true }
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let after_q = match *config {
             CharacterSkillConfig::AratakiItto { after_q } => after_q,
             _ => false
@@ -213,7 +214,8 @@ impl CharacterTrait for AratakiItto {
             &context.enemy,
             s.get_element(after_q),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

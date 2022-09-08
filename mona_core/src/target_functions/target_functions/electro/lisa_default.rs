@@ -119,7 +119,7 @@ impl TargetFunction for LisaDefaultTargetFunction {
         };
 
         type S = <Lisa as CharacterTrait>::DamageEnumType;
-        let dmg_e = Lisa::damage::<SimpleDamageBuilder>(&context, S::E1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_e = Lisa::damage::<SimpleDamageBuilder>(&context, S::E1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);
         r * dmg_e

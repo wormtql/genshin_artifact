@@ -52,7 +52,7 @@ impl TargetFunctionMetaTrait for JeanDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "damage_weight",
-            title: "治疗-伤害比重（0：纯治疗，1：纯伤害）",
+            title: "t7",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.5 },
         },
         ItemConfig {
@@ -84,9 +84,9 @@ impl TargetFunction for JeanDefaultTargetFunction {
             bonus_electro: 0.0,
             bonus_pyro: 0.0,
             bonus_hydro: 0.0,
-            bonus_anemo: 0.0,
+            bonus_anemo: 1.0,
             bonus_cryo: 0.0,
-            bonus_geo: 2.0,
+            bonus_geo: 0.0,
             bonus_dendro: 0.0,
             bonus_physical: 0.0,
             sand_main_stats: vec![
@@ -124,9 +124,9 @@ impl TargetFunction for JeanDefaultTargetFunction {
         };
 
         type S = <Jean as CharacterTrait>::DamageEnumType;
-        let dmg_q = Jean::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_q = Jean::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
         let dmg_q = dmg_q * 1.8;
-        let heal_q = Jean::damage::<SimpleDamageBuilder>(&context, S::QHeal1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let heal_q = Jean::damage::<SimpleDamageBuilder>(&context, S::QHeal1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
         let heal_q = heal_q * 1.3;
 
         let recharge = attribute.get_value(AttributeName::Recharge);

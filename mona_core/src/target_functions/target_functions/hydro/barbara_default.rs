@@ -92,7 +92,7 @@ impl TargetFunction for BarbaraDefaultTargetFunction {
         };
 
         type S = <Barbara as CharacterTrait>::DamageEnumType;
-        let heal_e1 = Barbara::damage::<SimpleDamageBuilder>(&context, S::EHeal1, &CharacterSkillConfig::NoConfig);
+        let heal_e1 = Barbara::damage::<SimpleDamageBuilder>(&context, S::EHeal1, &CharacterSkillConfig::NoConfig, None);
         const ENV_CHARGE: f64 = 2.3;
         const E1_COUNT: f64 = 10.0;
         const E2_COUNT: f64 = 3.0;

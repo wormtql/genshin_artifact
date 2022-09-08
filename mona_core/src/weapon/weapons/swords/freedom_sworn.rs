@@ -46,6 +46,7 @@ pub struct FreedomSworn;
 impl WeaponTrait for FreedomSworn {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FreedomSworn,
+        internal_name: "Sword_Widsith",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM43),
         weapon_base: WeaponBaseATKFamily::ATK608,
@@ -60,7 +61,7 @@ impl WeaponTrait for FreedomSworn {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "被动应用比例",
+            title: "w2",
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 1.0,

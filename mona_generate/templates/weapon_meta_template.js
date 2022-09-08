@@ -12,16 +12,16 @@ export default {
     {{ weapon.name }}: {
         name: "{{ weapon.name }}",
         internalName: "{{ weapon.internal_name }}",
-        chs: "{{ weapon.chs }}",
+        // chs: "{{ weapon.chs }}",
         star: {{ weapon.star }},
         // url: {{ weapon.name }}_tn,
         url: imageUrl("{{ weapon.internal_name }}"),
         type: "{{ weapon.t }}",
 
         {% if weapon.effect.len() > 0 %}
-        effect: "{{ weapon.effect }}",
+        // effect: "{{ weapon.effect }}",
         {% else %}
-        effect: null,
+        // effect: null,
         {% endif %}
 
         {% if weapon.configs.len() > 0 %}

@@ -56,7 +56,7 @@ impl TargetFunctionMetaTrait for XinyanDefaultTargetFunction {
         },
         ItemConfig {
             name: "damage_demand",
-            title: "伤害需求",
+            title: "t12",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.5 }
         }
     ]);
@@ -135,7 +135,7 @@ impl TargetFunction for XinyanDefaultTargetFunction {
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand) / self.recharge_demand;
 
         type S = <Xinyan as CharacterTrait>::DamageEnumType;
-        let dmg_q = Xinyan::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_q = Xinyan::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         ((1.0 + atk_for_other) * r) * (r * dmg_q * self.damage_demand + def * 10.0 * (1.0 - self.damage_demand))
     }

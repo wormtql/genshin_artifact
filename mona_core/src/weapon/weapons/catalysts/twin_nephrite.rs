@@ -33,6 +33,7 @@ pub struct TwinNephrite;
 impl WeaponTrait for TwinNephrite {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TwinNephrite,
+        internal_name: "Catalyst_Phoney",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate34),
         weapon_base: WeaponBaseATKFamily::ATK448,

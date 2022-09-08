@@ -39,17 +39,17 @@ impl BuffMeta for BuffBennettQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "base_atk",
-            title: "班尼特的基础攻击力",
+            title: "b1",
             config: ItemConfigType::FloatInput { default: 800.0 },
         },
         ItemConfig {
             name: "c1",
-            title: "是否1命",
+            title: "b2",
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "skill3",
-            title: "技能等级",
+            title: "b3",
             config: ItemConfigType::Int { min: 1, max: 15, default: 10 }
         }
     ]);

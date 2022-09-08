@@ -38,6 +38,7 @@ pub struct Slingshot;
 impl WeaponTrait for Slingshot {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Slingshot,
+        internal_name: "Bow_Sling",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate68),
         weapon_base: WeaponBaseATKFamily::ATK354,
@@ -52,7 +53,7 @@ impl WeaponTrait for Slingshot {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "is_effect",
-            title: "0.3秒内命中",
+            title: "w12",
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig::RATE01

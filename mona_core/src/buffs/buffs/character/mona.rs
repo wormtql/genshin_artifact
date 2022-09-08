@@ -39,12 +39,12 @@ impl BuffMeta for BuffMonaQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill3",
-            title: "Q技能等级",
+            title: "b12",
             config: ItemConfigType::Int { min: 1, max: 15, default: 9 }
         },
         ItemConfig {
             name: "c4",
-            title: "是否4命",
+            title: "b13",
             config: ItemConfigType::Bool { default: false }
         }
     ]);

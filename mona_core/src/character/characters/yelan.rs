@@ -132,6 +132,7 @@ pub struct Yelan;
 impl CharacterTrait for Yelan {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Yelan,
+        internal_name: "Yelan",
         chs: "夜兰",
         element: Element::Hydro,
         hp: [1125, 2918, 3883, 5810, 6495, 7472, 8386, 9374, 10059, 11056, 11741, 12749, 13434, 14450],
@@ -176,12 +177,12 @@ impl CharacterTrait for Yelan {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "team_element_count",
-            title: "队伍不同元素数量",
+            title: "c17",
             config: ItemConfigType::Int { min: 1, max: 4, default: 4 }
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: YelanDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -215,7 +216,8 @@ impl CharacterTrait for Yelan {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 
@@ -231,6 +233,6 @@ impl CharacterTrait for Yelan {
     }
 
     fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {
-        todo!()
+        unimplemented!()
     }
 }

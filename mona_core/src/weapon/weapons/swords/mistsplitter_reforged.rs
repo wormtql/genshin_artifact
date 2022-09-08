@@ -63,6 +63,7 @@ pub struct MistsplitterReforged;
 impl WeaponTrait for MistsplitterReforged {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MistsplitterReforged,
+        internal_name: "Sword_Narukami",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage96),
         weapon_base: WeaponBaseATKFamily::ATK674,
@@ -77,7 +78,7 @@ impl WeaponTrait for MistsplitterReforged {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "emblem_level",
-            title: "「雾切之巴印」层数",
+            title: "w26",
             config: ItemConfigType::Int {
                 min: 0,
                 max: 3,

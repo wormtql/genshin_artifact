@@ -56,12 +56,12 @@ impl ArtifactTrait for VermillionHereafter {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate_q",
-            title: "元素爆发频率",
+            title: "a12",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "stack",
-            title: "平均层数",
+            title: "a13",
             config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 0.0 }
         }
     ]);

@@ -12,6 +12,7 @@ pub mod recharge;
 pub mod def_minus;
 pub mod res_minus;
 pub mod healing_bonus;
+pub mod base_dmg;
 
 pub use atk_percentage::BuffATKPercentage;
 pub use def_percentage::BuffDEFPercentage;
@@ -27,3 +28,4 @@ pub use recharge::BuffRecharge;
 pub use def_minus::BuffDEFMinus;
 pub use res_minus::BuffResMinus;
 pub use healing_bonus::BuffHealingBonus;
+pub use base_dmg::BuffBaseDmg;

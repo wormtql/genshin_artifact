@@ -34,6 +34,7 @@ pub struct FadingTwilight;
 impl WeaponTrait for FadingTwilight {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FadingTwilight,
+        internal_name: "Bow_Fallensun",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge67),
         weapon_base: WeaponBaseATKFamily::ATK565,
@@ -48,7 +49,7 @@ impl WeaponTrait for FadingTwilight {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "state",
-            title: "状态",
+            title: "w7",
             config: ItemConfigType::Option { options: "夕暮,流霞,朝晖", default: 2 }
         }
     ]);

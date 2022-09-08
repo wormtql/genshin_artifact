@@ -15,6 +15,7 @@ import type {
 import { useArtifactStore } from "@/store/pinia/artifact"
 import { hash, hashExceptValue } from "@/utils/artifactHash"
 import { positions } from "@/constants/artifact"
+import {useI18n} from "@/i18n/i18n";
 
 
 const artifactStore = useArtifactStore()
@@ -235,6 +236,8 @@ export function isArtifactExists(artifact: IArtifactContentOnly): boolean {
  * attackStatic, 20 => "攻击力+20"
  */
 export function displayedTag(name: ArtifactStatName, value: number) {
+    const { t } = useI18n()
+
     let tagData = artifactTags[name];
     if (!tagData) {
         throw "tag name not exist";
@@ -244,18 +247,22 @@ export function displayedTag(name: ArtifactStatName, value: number) {
     switch (name) {
         case "attackPercentage":
         case "attackStatic":
-            left = "攻击力";
+            // left = "攻击力";
+            left = t("stat.attackStatic")
             break;
         case "lifePercentage":
         case "lifeStatic":
-            left = "生命值";
+            // left = "生命值";
+            left = t("stat.lifeStatic")
             break;
         case "defendPercentage":
         case "defendStatic":
-            left = "防御力";
+            // left = "防御力";
+            left = t("stat.defendStatic")
             break;
         default:
-            left = tagData.chs;
+            // left = tagData.chs;
+            left = t("stat", name)
             break;
     }
 
@@ -287,7 +294,7 @@ export function defaultArtifactSortFunction(a: IArtifact, b: IArtifact): number 
     }
 }
 
-export function statName2Chs(name: ArtifactStatName): string {
+export function statName2Locale(name: ArtifactStatName): string {
     let data = artifactTags[name]
     if (!data) {
         const name2 = convertArtifactStatNameBack(name as any)
@@ -298,5 +305,8 @@ export function statName2Chs(name: ArtifactStatName): string {
         throw new Error("cannot find name " + name)
     }
 
-    return data.chs
+    const { t } = useI18n()
+
+    // return data.chs
+    return t("stat", data.name)
 }

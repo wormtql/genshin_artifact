@@ -30,6 +30,7 @@ pub struct TheBlackSword;
 impl WeaponTrait for TheBlackSword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheBlackSword,
+        internal_name: "Sword_Bloodstained",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate60),
         weapon_base: WeaponBaseATKFamily::ATK510,

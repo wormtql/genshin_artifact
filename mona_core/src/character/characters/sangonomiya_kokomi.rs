@@ -58,6 +58,7 @@ pub const SANGONOMIYA_KOKOMI_SKILL: SangonomiyaKokomiSkillType = SangonomiyaKoko
 
 pub const SANGONOMIYA_KOKOMI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::SangonomiyaKokomi,
+    internal_name: "Kokomi",
     chs: "珊瑚宫心海",
     element: Element::Hydro,
     hp: [1049, 2720, 3619, 5416, 6055, 6966, 7818, 8738, 9377, 10306, 10945, 11885, 12524, 13471],
@@ -167,12 +168,12 @@ impl CharacterTrait for SangonomiyaKokomi {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_q",
-            title: "「仪来羽衣」状态",
+            title: "c30",
             config: ItemConfigType::Bool { default: true }
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: SangonomiyaKokomiDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -243,7 +244,8 @@ impl CharacterTrait for SangonomiyaKokomi {
                 &context.enemy,
                 Element::Hydro,
                 skill_type,
-                context.character_common_data.level
+                context.character_common_data.level,
+                fumo,
             )
         }
     }

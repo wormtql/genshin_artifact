@@ -54,7 +54,7 @@ impl ArtifactTrait for EchoesOfAnOffering {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "平均触发比例",
+            title: "a5",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 / AVG_TRIGGER }
         }
     ]);

@@ -44,6 +44,7 @@ pub const NINGGUANG_SKILL: NingguangSkillType = NingguangSkillType {
 
 pub const NINGGUANG_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Ningguang,
+    internal_name: "Ningguang",
     chs: "凝光",
     element: Element::Geo,
     hp: [821, 2108, 2721, 4076, 4512, 5189, 5770, 6448, 6884, 7561, 7996, 8674, 9110, 9787],
@@ -150,12 +151,12 @@ impl CharacterTrait for Ningguang {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent2_rate",
-            title: "天赋「储之千日，用之一刻」应用比例",
+            title: "c13",
             config: ItemConfig::RATE01_TYPE
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: NingguangDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -177,7 +178,8 @@ impl CharacterTrait for Ningguang {
             &context.enemy,
             Element::Geo,
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

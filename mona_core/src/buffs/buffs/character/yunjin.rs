@@ -50,22 +50,22 @@ impl BuffMeta for BuffYunjinQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill3",
-            title: "Q技能等级",
+            title: "b12",
             config: ItemConfigType::Int { min: 1, max: 15, default: 10 }
         },
         ItemConfig {
             name: "def",
-            title: "云堇的防御力",
+            title: "b30",
             config: ItemConfigType::FloatInput { default: 2000.0 }
         },
         ItemConfig {
             name: "talent2",
-            title: "60级突破",
+            title: "b31",
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "ele_count",
-            title: "队伍不同属性数量",
+            title: "b32",
             config: ItemConfigType::Int { min: 1, max: 4, default: 4 }
         }
     ]);

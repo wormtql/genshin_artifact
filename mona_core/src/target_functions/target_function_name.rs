@@ -16,6 +16,7 @@ pub enum TargetFunctionName {
     HydroDamage,
     ElectroDamage,
     AnemoDamage,
+    DendroDamage,
     GeoDamage,
     PhysicalDamage,
     MaxVaporize,
@@ -77,4 +78,6 @@ pub enum TargetFunctionName {
     YunjinDefault,
     ZhongliDefault,
     KukiShinobuDefault,
+    ShikanoinHeizouDefault,
+    TighnariDefault,
 }

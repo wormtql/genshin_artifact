@@ -96,7 +96,7 @@ impl TargetFunction for KaeyaDefaultTargetFunction {
         };
 
         type S = <Kaeya as CharacterTrait>::DamageEnumType;
-        let dmg_q = Kaeya::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_q = Kaeya::damage::<SimpleDamageBuilder>(&context, S::Q1, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         let recharge = attribute.get_value(AttributeName::Recharge);
         let recharge_ratio = recharge.min(1.4);

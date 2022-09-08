@@ -2,10 +2,10 @@
     <el-dialog
         :model-value="props.modelValue"
         @update:modelValue="emits('update:modelValue', $event)"
-        title="保存圣遗物组"
+        :title="t('calcPage.saveKumi')"
         :width="deviceIsPC ? '60%' : '90%'"
     >
-        <p class="title">选择收藏夹</p>
+        <p class="title">{{ t("calcPage.selectDir") }}</p>
         <el-checkbox-group
             v-model="checkList"
             :min="1"
@@ -19,15 +19,15 @@
             >{{ dir.title }}</el-checkbox>
         </el-checkbox-group>
 
-        <p class="title">名称</p>
+        <p class="title">{{ t("calcPage.name") }}</p>
         <el-input
             v-model="name"
-            placeholder="请输入名称"
+            :placeholder="t('calcPage.enterName')"
         ></el-input>
 
         <template #footer>
-            <el-button @click="$emit('update:modelValue', false)">取消</el-button>
-            <el-button type="primary" :disabled="name === ''" @click="handleConfirm">确定</el-button>
+            <el-button @click="$emit('update:modelValue', false)">{{ t("misc.cancel") }}</el-button>
+            <el-button type="primary" :disabled="name === ''" @click="handleConfirm">{{ t("misc.confirm") }}</el-button>
         </template>
 
 <!--        <div class="buttons" style="text-align: right; margin-top: 32px">-->
@@ -44,6 +44,9 @@
 <script setup lang="ts">
 import {deviceIsPC} from "@/utils/device"
 import {useKumiStore} from "@/store/pinia/kumi"
+import {useI18n} from "@/i18n/i18n"
+
+const { t } = useI18n()
 
 const kumiStore = useKumiStore()
 

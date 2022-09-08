@@ -12,6 +12,7 @@ use crate::common::item_config_type::ItemConfig;
 #[derive(FromPrimitive, Display)]
 #[derive(WeaponData, EnumLen)]
 pub enum WeaponName {
+    // sword
     MistsplitterReforged,
     AquilaFavonia,
     SummitShaper,
@@ -41,7 +42,10 @@ pub enum WeaponName {
     SilverSword,
     DullBlade,
     HaranGeppakuFutsu,
+    CursedBlade,
+    SapwoodBlade,
 
+    // claymore
     WolfsGravestone,
     SkywardPride,
     TheUnforged,
@@ -68,7 +72,9 @@ pub enum WeaponName {
     FerrousShadow,
     OldMercsPal,
     WasterGreatsword,
+    ForestRegalia,
 
+    // polearm
     EngulfingLightning,
     SkywardSpine,
     PrimordialJadeWingedSpear,
@@ -92,7 +98,9 @@ pub enum WeaponName {
     WhiteTassel,
     IronPoint,
     BeginnersProtector,
+    Moonpiercer,
 
+    // catalyst
     LostPrayerToTheSacredWinds,
     SkywardAtlas,
     EverlastingMoonglow,
@@ -119,6 +127,7 @@ pub enum WeaponName {
     TwinNephrite,
     PocketGrimoire,
     ApprenticesNotes,
+    FruitOfFulfillment,
 
     // bows
     PolarStar,
@@ -150,4 +159,7 @@ pub enum WeaponName {
     HuntersBow,
     AquaSimulacra,
     FadingTwilight,
+    HuntersPath,
+    Trawler,
+    KingsSquire,
 }

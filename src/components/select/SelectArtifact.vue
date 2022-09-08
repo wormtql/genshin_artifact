@@ -46,6 +46,7 @@ import ArtifactDisplay from "@c/display/ArtifactDisplay"
 import type {ArtifactMainStatName, ArtifactPosition, ArtifactSetName, IArtifact} from "@/types/artifact"
 import {useArtifactStore} from "@/store/pinia/artifact"
 import {defaultArtifactSortFunction} from "@/utils/artifacts"
+import {useI18n} from "@/i18n/i18n";
 
 const PAGE_SIZE = 20
 
@@ -107,6 +108,10 @@ const artifactListDisplayed = computed(() => {
 
     return artifactListFiltered.value.slice(start, end)
 })
+
+
+// i18n
+const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>

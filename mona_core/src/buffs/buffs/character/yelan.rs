@@ -33,7 +33,7 @@ impl BuffMeta for BuffYelanTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "secs",
-            title: "经过的秒数",
+            title: "b28",
             config: ItemConfigType::Int { min: 0, max: 14, default: 14 }
         }
     ]);

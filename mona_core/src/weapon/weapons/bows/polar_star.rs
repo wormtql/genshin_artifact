@@ -55,6 +55,7 @@ pub struct PolarStar;
 impl WeaponTrait for PolarStar {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PolarStar,
+        internal_name: "Bow_Worldbane",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate72),
         weapon_base: WeaponBaseATKFamily::ATK608,
@@ -69,7 +70,7 @@ impl WeaponTrait for PolarStar {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "「白夜极星」层数",
+            title: "w11",
             config: ItemConfigType::Int { min: 0, max: 4, default: 0 }
         }
     ]);

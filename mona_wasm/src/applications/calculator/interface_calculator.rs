@@ -8,6 +8,7 @@ use mona::character::{Character, CharacterName};
 use mona::character::characters::damage;
 use mona::character::skill_config::CharacterSkillConfig;
 use mona::character::traits::CharacterTrait;
+use mona::common::Element;
 use mona::damage::{ComplicatedDamageBuilder, DamageAnalysis, DamageContext, SimpleDamageBuilder};
 use mona::damage::damage_builder::DamageBuilder;
 use mona::damage::damage_result::SimpleDamageResult;
@@ -68,11 +69,12 @@ pub struct CalculatorConfigInterface {
 
 #[wasm_bindgen]
 impl CalculatorInterface {
-    pub fn get_damage_analysis(value: &JsValue) -> JsValue {
+    pub fn get_damage_analysis(value: &JsValue, fumo: &JsValue) -> JsValue {
         utils::set_panic_hook();
         // utils::log!("start");
 
         let input: CalculatorConfigInterface = value.into_serde().unwrap();
+        let fumo: Option<Element> = fumo.into_serde().unwrap();
 
         let character: Character<ComplicatedAttributeGraph> = input.character.to_character();
         let weapon = input.weapon.to_weapon(&character);
@@ -100,7 +102,8 @@ impl CalculatorInterface {
             &artifact_config,
             input.skill.index,
             &input.skill.config,
-            &enemy
+            &enemy,
+            fumo,
         );
 
         JsValue::from_serde(&result).unwrap()
@@ -179,7 +182,8 @@ impl CalculatorInterface {
         artifact_config: &ArtifactEffectConfig,
         skill_index: usize,
         skill_config: &CharacterSkillConfig,
-        enemy: &Enemy
+        enemy: &Enemy,
+        fumo: Option<Element>,
     ) -> DamageAnalysis {
         // let mut ans: HashMap<String, DamageAnalysis> = HashMap::new();
 
@@ -201,7 +205,7 @@ impl CalculatorInterface {
             enemy: &enemy
         };
 
-        let damage: DamageAnalysis = damage::<ComplicatedDamageBuilder>(&context, skill_index, skill_config);
+        let damage: DamageAnalysis = damage::<ComplicatedDamageBuilder>(&context, skill_index, skill_config, fumo);
         damage
     }
 }

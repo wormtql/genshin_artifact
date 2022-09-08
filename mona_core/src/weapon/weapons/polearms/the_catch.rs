@@ -30,6 +30,7 @@ pub struct TheCatch;
 impl WeaponTrait for TheCatch {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheCatch,
+        internal_name: "Pole_Mori",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge100),
         weapon_base: WeaponBaseATKFamily::ATK510,

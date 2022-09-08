@@ -117,7 +117,7 @@ impl TargetFunction for QiqiDefaultTargetFunction {
         };
 
         type S = <Qiqi as CharacterTrait>::DamageEnumType;
-        let heal_e = Qiqi::damage::<SimpleDamageBuilder>(&context, S::EHeal2, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let heal_e = Qiqi::damage::<SimpleDamageBuilder>(&context, S::EHeal2, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);
 

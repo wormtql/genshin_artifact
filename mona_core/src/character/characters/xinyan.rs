@@ -65,6 +65,7 @@ pub const XINYAN_SKILL: XinyanSkillType = XinyanSkillType {
 
 pub const XINYAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Xinyan,
+    internal_name: "Xinyan",
     chs: "辛焱",
     element: Element::Pyro,
     hp: [939, 2413, 3114, 4665, 5163, 5939, 6604, 7379, 7878, 8653, 9151, 9927, 10425, 11201],
@@ -163,12 +164,12 @@ impl CharacterTrait for Xinyan {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "shield_rate",
-            title: "「热情拂扫」护盾覆盖比例",
+            title: "c35",
             config: ItemConfig::RATE01_TYPE,
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: XinyanDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -220,6 +221,7 @@ impl CharacterTrait for Xinyan {
             s_element,
             s.get_skill_type(),
             context.character_common_data.level,
+            fumo,
         )
     }
 

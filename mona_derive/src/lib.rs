@@ -287,7 +287,7 @@ pub fn derive_character_data(input: TokenStream) -> TokenStream {
     for v in vars.iter() {
         rows_meta_data.push_str(&format!("CharacterName::{n} => crate::character::characters::{n}::STATIC_DATA,\n", n=v));
         rows_effect.push_str(&format!("CharacterName::{n} => crate::character::characters::{n}::new_effect(common_data, config),\n", n=v));
-        rows_damage.push_str(&format!("CharacterName::{n} => crate::character::characters::{n}::damage_internal::<D>(context, skill_index, skill_config),\n", n=v));
+        rows_damage.push_str(&format!("CharacterName::{n} => crate::character::characters::{n}::damage_internal::<D>(context, skill_index, skill_config, fumo),\n", n=v));
         rows_tf.push_str(&format!("CharacterName::{n} => crate::character::characters::{n}::get_target_function_by_role(role_index, team, character, weapon),\n", n=v));
         rows_skill_map.push_str(&format!("CharacterName::{n} => crate::character::characters::{n}::SKILL_MAP,\n", n=v));
         rows_config_data.push_str(&format!("CharacterName::{n} => crate::character::characters::{n}::CONFIG_DATA,\n", n=v));
@@ -309,7 +309,7 @@ pub fn derive_character_data(input: TokenStream) -> TokenStream {
                 match *self {{ {rows_effect} }}
             }}
 
-            pub fn damage<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, skill_index: usize, skill_config: &CharacterSkillConfig) -> D::Result {{
+            pub fn damage<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, skill_index: usize, skill_config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {{
                 match context.character_common_data.name {{ {rows_damage} }}
             }}
 

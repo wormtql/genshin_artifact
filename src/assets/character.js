@@ -8,10 +8,10 @@ let _charactersByElement = {
     Pyro: [],
     Cryo: [],
     Anemo: [],
-    // grass: [],
     Electro: [],
     Hydro: [],
     Geo: [],
+    Dendro: [],
 }
 for (let character of Object.values(characterData)) {
     if (Object.prototype.hasOwnProperty.call(_charactersByElement, character.element)) {

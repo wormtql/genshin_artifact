@@ -45,6 +45,7 @@ pub struct PrimordialJadeWingedSpear;
 impl WeaponTrait for PrimordialJadeWingedSpear {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrimordialJadeWingedSpear,
+        internal_name: "Pole_Morax",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate48),
         weapon_base: WeaponBaseATKFamily::ATK674,
@@ -66,7 +67,7 @@ impl WeaponTrait for PrimordialJadeWingedSpear {
         },
         ItemConfig {
             name: "full_rate",
-            title: "满层状态比例",
+            title: "w23",
             config: ItemConfig::RATE01_TYPE,
         }
     ]);

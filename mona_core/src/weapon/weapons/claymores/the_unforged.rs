@@ -44,6 +44,7 @@ pub struct TheUnforged;
 impl WeaponTrait for TheUnforged {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheUnforged,
+        internal_name: "Claymore_Kunwu",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK108),
         weapon_base: WeaponBaseATKFamily::ATK608,
@@ -58,7 +59,7 @@ impl WeaponTrait for TheUnforged {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "被动等效层数",
+            title: "w1",
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 5.0,
@@ -67,7 +68,7 @@ impl WeaponTrait for TheUnforged {
         },
         ItemConfig {
             name: "shield_rate",
-            title: "护盾覆盖率",
+            title: "w15",
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 1.0,

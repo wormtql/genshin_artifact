@@ -13,6 +13,7 @@ pub struct SwordOfDescension;
 impl WeaponTrait for SwordOfDescension {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SwordOfDescension,
+        internal_name: "Sword_Psalmus",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK77),
         weapon_base: WeaponBaseATKFamily::ATK440,

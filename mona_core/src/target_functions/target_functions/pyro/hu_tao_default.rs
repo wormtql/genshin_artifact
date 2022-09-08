@@ -50,12 +50,12 @@ impl TargetFunctionMetaTrait for HuTaoDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "vaporize_rate",
-            title: "蒸发占比",
+            title: "t6",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.5 }
         },
         ItemConfig {
             name: "melt_rate",
-            title: "融化占比",
+            title: "t5",
             config: ItemConfig::RATE01_TYPE
         }
     ]);
@@ -134,7 +134,7 @@ impl TargetFunction for HuTaoDefaultTargetFunction {
 
         type S = <HuTao as CharacterTrait>::DamageEnumType;
         let damage_charged = HuTao::damage::<SimpleDamageBuilder>(
-            &context, S::Charged, &CharacterSkillConfig::HuTao { after_e: true }
+            &context, S::Charged, &CharacterSkillConfig::HuTao { after_e: true }, None,
         );
 
         let normal = 0.0_f64.max(1.0 - self.melt_rate - self.vaporize_rate);

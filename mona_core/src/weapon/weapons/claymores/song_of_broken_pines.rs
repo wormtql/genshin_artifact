@@ -40,6 +40,7 @@ pub struct SongOfBrokenPines;
 impl WeaponTrait for SongOfBrokenPines {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SongOfBrokenPines,
+        internal_name: "Claymore_Widsith",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus45),
         weapon_base: WeaponBaseATKFamily::ATK741,
@@ -54,7 +55,7 @@ impl WeaponTrait for SongOfBrokenPines {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "被动应用比例",
+            title: "w2",
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 1.0,

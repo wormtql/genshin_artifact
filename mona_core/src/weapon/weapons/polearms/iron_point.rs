@@ -13,6 +13,7 @@ pub struct IronPoint;
 impl WeaponTrait for IronPoint {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::IronPoint,
+        internal_name: "Pole_Rod",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: None,
         weapon_base: WeaponBaseATKFamily::ATK243,

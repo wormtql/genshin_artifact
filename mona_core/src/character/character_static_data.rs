@@ -4,6 +4,7 @@ use super::character_sub_stat::CharacterSubStatFamily;
 
 pub struct CharacterStaticData {
     pub name: CharacterName,
+    pub internal_name: &'static str,
     pub chs: &'static str,
     pub element: Element,
     pub hp: [i32; 14],

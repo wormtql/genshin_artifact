@@ -33,7 +33,7 @@ impl TargetFunctionMetaTrait for ElectroDamageTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "t",
-            title: "类型",
+            title: "t1",
             config: ItemConfigType::Option {
                 options: "期望,最大值",
                 default: 0

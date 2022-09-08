@@ -30,6 +30,7 @@ pub struct RoyalGrimoire;
 impl WeaponTrait for RoyalGrimoire {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::RoyalGrimoire,
+        internal_name: "Catalyst_Theocrat",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,

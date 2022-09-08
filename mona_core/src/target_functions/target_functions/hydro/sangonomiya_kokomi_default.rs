@@ -103,7 +103,7 @@ impl TargetFunction for SangonomiyaKokomiDefaultTargetFunction {
 
         type S = <SangonomiyaKokomi as CharacterTrait>::DamageEnumType;
         let config = CharacterSkillConfig::SangonomiyaKokomi { after_q: true };
-        let dmg_a = SangonomiyaKokomi::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config).normal.expectation;
+        let dmg_a = SangonomiyaKokomi::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config, None).normal.expectation;
 
         let dmg_other = if ohc_count >= 4 {
             10000.0

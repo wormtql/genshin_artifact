@@ -33,6 +33,7 @@ pub struct RavenBow;
 impl WeaponTrait for RavenBow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::RavenBow,
+        internal_name: "Bow_Crowfeather",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM20),
         weapon_base: WeaponBaseATKFamily::ATK448,

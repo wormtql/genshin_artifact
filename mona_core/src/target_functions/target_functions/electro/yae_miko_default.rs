@@ -88,7 +88,7 @@ impl TargetFunction for YaeMikoDefaultTargetFunction {
         };
 
         type S = <YaeMiko as CharacterTrait>::DamageEnumType;
-        let dmg_e = YaeMiko::damage::<SimpleDamageBuilder>(&context, S::E3, &CharacterSkillConfig::NoConfig).normal.expectation;
+        let dmg_e = YaeMiko::damage::<SimpleDamageBuilder>(&context, S::E3, &CharacterSkillConfig::NoConfig, None).normal.expectation;
 
         let transformative = context.transformative();
         let dmg_electro_charged = transformative.electro_charged;
@@ -115,17 +115,17 @@ impl TargetFunctionMetaTrait for YaeMikoDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "electro_charged_times",
-            title: "感电相对频率",
+            title: "t13",
             config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 0.0 }
         },
         ItemConfig {
             name: "overload_times",
-            title: "超载相对频率",
+            title: "t14",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         },
         ItemConfig {
             name: "recharge_demand",
-            title: "充能需求",
+            title: "t4",
             config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.0 }
         }
     ]);

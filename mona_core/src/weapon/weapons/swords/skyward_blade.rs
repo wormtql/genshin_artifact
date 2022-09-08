@@ -29,6 +29,7 @@ pub struct SkywardBlade;
 impl WeaponTrait for SkywardBlade {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SkywardBlade,
+        internal_name: "Sword_Dvalin",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge120),
         weapon_base: WeaponBaseATKFamily::ATK608,

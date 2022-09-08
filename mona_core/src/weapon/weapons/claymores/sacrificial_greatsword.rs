@@ -13,6 +13,7 @@ pub struct SacrificialGreatsword;
 impl WeaponTrait for SacrificialGreatsword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SacrificialGreatsword,
+        internal_name: "Claymore_Fossil",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge67),
         weapon_base: WeaponBaseATKFamily::ATK565,

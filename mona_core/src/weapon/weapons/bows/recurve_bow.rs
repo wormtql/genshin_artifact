@@ -13,6 +13,7 @@ pub struct RecurveBow;
 impl WeaponTrait for RecurveBow {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::RecurveBow,
+        internal_name: "Bow_Curve",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::HP102),
         weapon_base: WeaponBaseATKFamily::ATK354,

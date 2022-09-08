@@ -106,7 +106,7 @@ impl TargetFunction for XinyanDamageTargetFunction {
 
         type S = <Xinyan as CharacterTrait>::DamageEnumType;
         let config = CharacterSkillConfig::Xinyan { shield_rate: 0.7 };
-        let dmg_c = Xinyan::damage::<SimpleDamageBuilder>(&context, S::Charged1, &config).normal.expectation;
+        let dmg_c = Xinyan::damage::<SimpleDamageBuilder>(&context, S::Charged1, &config, None).normal.expectation;
 
         dmg_c
     }

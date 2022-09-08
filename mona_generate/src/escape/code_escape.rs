@@ -3,6 +3,19 @@ use askama_escape::Escaper;
 
 pub struct CodeEscaper;
 
+pub fn escape_code(s: &str) -> String {
+    let mut x = String::new();
+    for c in s.chars() {
+        match c {
+            '\"' => x.write_str("\\\""),
+            '\'' => x.write_str("\\\'"),
+            '\\' => x.write_str("\\\\"),
+            _ => x.write_char(c)
+        }.unwrap();
+    }
+    x
+}
+
 impl Escaper for CodeEscaper {
     fn write_escaped<W>(&self, mut fmt: W, string: &str) -> std::fmt::Result where W: Write {
         let mut x = String::new();

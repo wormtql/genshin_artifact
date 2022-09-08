@@ -12,7 +12,7 @@
                     <img :src="pfImage" class="pf-image" alt="图" >
 
                     <div>
-                        <p class="pf-title">{{ pfChs }}</p>
+                        <p class="pf-title">{{ t("pfName", potentialFunctionName) }}</p>
                         <p class="pf-description">{{ pfDescription }}</p>
                     </div>
                 </div>
@@ -35,12 +35,12 @@
                         type="primary"
                         :icon="IconEpCpu"
                         @click="handleClickStart"
-                    >开始计算</el-button>
+                    >{{ t("poPage.start") }}</el-button>
                 </div>
 
                 <div class="filter">
                     <span class="filter-item">
-                        <span class="filter-title">位置</span>
+                        <span class="filter-title">{{ t("misc.artSlot") }}</span>
                         <select-artifact-slot
                             v-model="filterSlots"
                             :multiple="true"
@@ -48,7 +48,7 @@
                     </span>
 
                     <span class="filter-item">
-                        <span class="filter-title">套装</span>
+                        <span class="filter-title">{{ t("misc.artifactSet") }}</span>
                         <select-artifact-set
                             v-model="filterSetNames"
                             :multiple="true"
@@ -57,7 +57,7 @@
                     </span>
 
                     <span class="filter-item">
-                        <span class="filter-title">主词条</span>
+                        <span class="filter-title">{{ t("misc.mainStat") }}</span>
                         <select-artifact-main-stat
                             v-model="filterMainStatNames"
                             :multiple="true"
@@ -67,7 +67,7 @@
                 </div>
 
                 <div style="margin: 0 0 20px 0">
-                    <span class="filter-title">等级</span>
+                    <span class="filter-title">{{ t("misc.lvl") }}</span>
                     <div class="filter-level">
                         <el-input-number
                             :min="0"
@@ -123,10 +123,10 @@ import {getArtifactsWasm} from "@/utils/artifacts"
 import {wasmComputeArtifactPotential} from "@wasm"
 import {deviceIsPC} from "@/utils/device"
 
-import SelectPotentialFunctionName from "@c/select/SelectPotentialFunctionName"
+import SelectPotentialFunctionName from "@/components/select/SelectPotentialFunctionName.vue"
 import SelectArtifactSlot from "@c/select/SelectArtifactSlot"
-import SelectArtifactSet from "@c/select/SelectArtifactSet"
-import SelectArtifactMainStat from "@c/select/SelectArtifactMainStat"
+import SelectArtifactSet from "@/components/select/SelectArtifactSet.vue"
+import SelectArtifactMainStat from "@/components/select/SelectArtifactMainStat.vue"
 import ItemConfig from "@c/config/ItemConfig"
 import ArtifactDisplay from "@/components/display/ArtifactDisplay.vue"
 import type {ArtifactPosition, ArtifactSetName, ArtifactStatName, IArtifact} from "@/types/artifact"
@@ -134,6 +134,9 @@ import {useArtifactStore} from "@/store/pinia/artifact"
 // import {ElLoading, ElMessage} from "element-plus"
 // import "element-plus/es/components/message/style/css"
 import IconEpCpu from "~icons/ep/cpu"
+import {useI18n} from "@/i18n/i18n"
+
+const { t } = useI18n()
 
 
 const artifactStore = useArtifactStore()
@@ -146,14 +149,19 @@ const pfImage = computed(() => {
     return item?.badge
 })
 
-const pfChs = computed(() => {
-    const item = potentialFunctionData[potentialFunctionName.value]
-    return item?.chs
-})
+// const pfChs = computed(() => {
+//     const item = potentialFunctionData[potentialFunctionName.value]
+//     return item?.chs
+// })
+
+// const pfTitle = computed(() => {
+//     const item = potentialFunctionData[potentialFunctionName]
+// })
 
 const pfDescription = computed(() => {
-    const item = potentialFunctionData[potentialFunctionName.value]
-    return item?.description
+    // const item = potentialFunctionData[potentialFunctionName.value]
+    // return item?.description
+    return t("pfDesc", potentialFunctionName.value)
 })
 
 const pfConfigConfigs = computed(() => {

@@ -51,6 +51,7 @@ pub const GOROU_SKILL: GorouSkillType = GorouSkillType {
 
 pub const GOROU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Gorou,
+    internal_name: "Gorou",
     chs: "五郎",
     element: Element::Geo,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],
@@ -144,7 +145,7 @@ impl CharacterTrait for Gorou {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: GorouDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -187,7 +188,8 @@ impl CharacterTrait for Gorou {
             &context.enemy,
             s.get_element(),
             skill_type,
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

@@ -37,7 +37,7 @@ impl BuffMeta for BuffHakushinRing {
         ItemConfig::REFINE,
         ItemConfig {
             name: "element",
-            title: "元素",
+            title: "b33",
             config: ItemConfigType::Element8 { default: Element::Electro }
         }
     ]);

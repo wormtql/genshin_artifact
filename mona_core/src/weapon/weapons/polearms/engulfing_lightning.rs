@@ -60,6 +60,7 @@ pub struct EngulfingLightning;
 impl WeaponTrait for EngulfingLightning {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::EngulfingLightning,
+        internal_name: "Pole_Narukami",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge120),
         weapon_base: WeaponBaseATKFamily::ATK608,

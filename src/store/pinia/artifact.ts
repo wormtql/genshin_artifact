@@ -66,6 +66,10 @@ const f = () => {
         incHash(hash, 1)
     }
 
+    function getArtifact(id: number): IArtifact | undefined {
+        return artifacts.value.get(id)
+    }
+
     function removeArtifact(id: number) {
         const a = artifacts.value.get(id)
         if (a) {
@@ -99,6 +103,20 @@ const f = () => {
         let a = artifacts.value.get(id)
         if (a) {
             a.omit = !a.omit
+        }
+    }
+
+    function lockArtifact(id: number) {
+        let a = artifacts.value.get(id)
+        if (a) {
+            a.omit = true
+        }
+    }
+
+    function unlockArtifact(id: number) {
+        let a = artifacts.value.get(id)
+        if (a) {
+            a.omit = false
         }
     }
 
@@ -160,7 +178,10 @@ const f = () => {
         unlockAll,
         deleteAll,
         toggleArtifact,
+        lockArtifact,
+        unlockArtifact,
         updateArtifact,
+        getArtifact,
 
         isHashExists
     }

@@ -48,6 +48,7 @@ pub struct StaffOfHoma;
 impl WeaponTrait for StaffOfHoma {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::StaffOfHoma,
+        internal_name: "Pole_Homa",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage144),
         weapon_base: WeaponBaseATKFamily::ATK608,
@@ -62,7 +63,7 @@ impl WeaponTrait for StaffOfHoma {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "be50_rate",
-            title: "生命值低于50%时间比例",
+            title: "w24",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

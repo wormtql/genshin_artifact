@@ -51,6 +51,7 @@ pub const FISCHL_SKILL: FischlSkillType = FischlSkillType {
 
 pub const FISCHL_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Fischl,
+    internal_name: "Fischl",
     chs: "菲谢尔",
     element: Element::Electro,
     hp: [770, 1979, 2555, 3827, 4236, 4872, 5418, 6054, 6463, 7099, 7508, 8144, 8553, 9189],
@@ -146,7 +147,7 @@ impl CharacterTrait for Fischl {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: FischlDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -174,7 +175,8 @@ impl CharacterTrait for Fischl {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

@@ -107,10 +107,11 @@ impl TargetFunction for ChongyunDefaultTargetFunction {
         let dmg_q = Chongyun::damage::<SimpleDamageBuilder>(
             &context,
             S::Q1,
-            &CharacterSkillConfig::NoConfig
+            &CharacterSkillConfig::NoConfig,
+            None
         ).normal.expectation;
         let dmg_e = Chongyun::damage::<SimpleDamageBuilder>(
-            &context, S::E1, &CharacterSkillConfig::NoConfig
+            &context, S::E1, &CharacterSkillConfig::NoConfig, None
         ).normal.expectation;
 
         let recharge = attribute.get_value(AttributeName::Recharge);

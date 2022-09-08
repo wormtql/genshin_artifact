@@ -44,6 +44,7 @@ pub struct MemoryOfDust;
 impl WeaponTrait for MemoryOfDust {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MemoryOfDust,
+        internal_name: "Catalyst_Kunwu",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK108),
         weapon_base: WeaponBaseATKFamily::ATK608,
@@ -59,7 +60,7 @@ impl WeaponTrait for MemoryOfDust {
         ItemConfig::STACK05,
         ItemConfig {
             name: "shield_rate",
-            title: "护盾覆盖率",
+            title: "w15",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

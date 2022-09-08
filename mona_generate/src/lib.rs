@@ -4,3 +4,4 @@
 pub mod gen_meta;
 pub mod escape;
 pub mod utils;
+pub mod gen_locale;

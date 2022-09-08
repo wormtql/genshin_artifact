@@ -39,6 +39,7 @@ pub struct SerpentSpine;
 impl WeaponTrait for SerpentSpine {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SerpentSpine,
+        internal_name: "Claymore_Kione",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate60),
         weapon_base: WeaponBaseATKFamily::ATK510,
@@ -53,7 +54,7 @@ impl WeaponTrait for SerpentSpine {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "被动等效层数",
+            title: "w1",
             config: ItemConfigType::Float { min: 0.0, max: 5.0, default: 0.0 },
         }
     ]);

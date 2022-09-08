@@ -38,12 +38,12 @@ impl TargetFunctionMetaTrait for DilucDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "melt_rate",
-            title: "融化比例",
+            title: "t5",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "vaporize_rate",
-            title: "蒸发比例",
+            title: "t6",
             config: ItemConfig::RATE01_TYPE
         }
     ]);
@@ -131,7 +131,7 @@ impl TargetFunction for DilucDefaultTargetFunction {
         const CONFIG: CharacterSkillConfig = CharacterSkillConfig::Diluc { pyro: true };
         type S = <Diluc as CharacterTrait>::DamageEnumType;
         let dmg_e = Diluc::damage::<SimpleDamageBuilder>(
-            &context, S::E1, &CONFIG
+            &context, S::E1, &CONFIG, None
         );
 
         let e_normal = dmg_e.normal.expectation;
@@ -139,7 +139,7 @@ impl TargetFunction for DilucDefaultTargetFunction {
         let e_vaporize = dmg_e.vaporize.unwrap().expectation;
 
         let dmg_q = Diluc::damage::<SimpleDamageBuilder>(
-            &context, S::Q1, &CONFIG
+            &context, S::Q1, &CONFIG, None
         );
 
         let q_normal = dmg_q.normal.expectation;

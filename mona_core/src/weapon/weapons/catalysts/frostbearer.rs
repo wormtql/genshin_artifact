@@ -13,6 +13,7 @@ pub struct Frostbearer;
 impl WeaponTrait for Frostbearer {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Frostbearer,
+        internal_name: "Catalyst_Everfrost",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,

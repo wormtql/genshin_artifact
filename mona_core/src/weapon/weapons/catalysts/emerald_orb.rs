@@ -33,6 +33,7 @@ pub struct EmeraldOrb;
 impl WeaponTrait for EmeraldOrb {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::EmeraldOrb,
+        internal_name: "Catalyst_Jade",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM20),
         weapon_base: WeaponBaseATKFamily::ATK448,

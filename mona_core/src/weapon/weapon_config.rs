@@ -18,6 +18,8 @@ pub enum WeaponConfig {
     DarkIronSword { rate: f64 },
     CoolSteel { rate: f64 },
     HaranGeppakuFutsu { stack: f64 },
+    CursedBlade { rate: f64 },
+    SapwoodBlade { rate: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },
@@ -33,6 +35,7 @@ pub enum WeaponConfig {
     SkyriderGreatsword { stack: f64 },
     BloodstainedGreatsword { rate: f64 },
     FerrousShadow { rate: f64 },
+    ForestRegalia { rate: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },
@@ -47,6 +50,7 @@ pub enum WeaponConfig {
     BlackcliffPole { stack: f64 },
     WavebreakersFin { energy: usize },
     BlackTassel { rate: f64 },
+    Moonpiercer { rate: f64 },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },
@@ -62,6 +66,7 @@ pub enum WeaponConfig {
     MagicGuide { rate: f64 },
     EmeraldOrb { rate: f64 },
     TwinNephrite { rate: f64 },
+    FruitOfFulfillment { stack: f64 },
 
     // Bow
     PolarStar { stack: usize },
@@ -82,6 +87,8 @@ pub enum WeaponConfig {
     Slingshot { is_effect: bool, rate: f64 },
     AquaSimulacra { is_enemy_around: bool },
     FadingTwilight { state: usize },
+    HuntersPath { rate: f64 },
+    KingsSquire { rate: f64 },
 }
 
 impl Default for WeaponConfig {

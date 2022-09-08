@@ -2,17 +2,17 @@
     <el-select
         :model-value="modelValue"
         @update:modelValue="$emit('update:modelValue', $event)"
-        placeholder="武器"
+        :placeholder="t('misc.weapon')"
     >
         <el-option
             v-for="weapon in weaponList"
             :key="weapon.name"
             :value="weapon.name"
-            :label="weapon.chs"
+            :label="t('weapon', weapon.name)"
         >
             <div class="option-item">
                 <img :src="weapon.url">
-                <span :style="{ color: getColor(weapon.star) }">{{ weapon.chs }}</span>
+                <span :style="{ color: getColor(weapon.star) }">{{ t("weapon", weapon.name) }}</span>
             </div>
         </el-option>
         
@@ -22,6 +22,7 @@
 <script>
 import { weaponByType } from "@weapon";
 import qualityColors from "@const/quality_colors";
+import {useI18n} from "@/i18n/i18n";
 
 export default {
     name: "SelectWeapon",
@@ -40,6 +41,13 @@ export default {
     methods: {
         getColor(star) {
             return qualityColors[star - 1];
+        }
+    },
+    setup() {
+        const { t } = useI18n()
+
+        return {
+            t
         }
     }
 }

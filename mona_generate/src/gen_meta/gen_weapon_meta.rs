@@ -40,7 +40,8 @@ pub fn gen_weapon_meta_as_js_file() -> String {
 
         let my_data = WeaponMetaDataForJS {
             name: weapon_name.to_string(),
-            internal_name: get_internal_weapon_name(weapon_name),
+            // internal_name: get_internal_weapon_name(weapon_name),
+            internal_name: String::from(meta_data.internal_name),
             chs: String::from(meta_data.chs),
             star: meta_data.star,
             t: meta_data.weapon_type.to_string(),

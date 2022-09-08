@@ -39,6 +39,7 @@ pub struct LostPrayerToTheSacredWinds;
 impl WeaponTrait for LostPrayerToTheSacredWinds {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::LostPrayerToTheSacredWinds,
+        internal_name: "Catalyst_Fourwinds",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate72),
         weapon_base: WeaponBaseATKFamily::ATK608,

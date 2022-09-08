@@ -3,7 +3,7 @@
         <el-input
             v-model="searchString"
             style="margin-bottom: 16px"
-            placeholder="搜索"
+            :placeholder="t('misc.search')"
             clearable
         >
             <template slot="append">
@@ -13,22 +13,22 @@
         <el-tabs v-model="activeTab">
             <template
                 v-for="genre in genres"
-                :key="genre.name"
+                :key="genre"
             >
                 <el-tab-pane
-                    :label="genre.chs"
-                    :name="genre.name"
+                    :label="t('buffGenre', genre)"
+                    :name="genre"
                     class="tab-pane mona-scroll"
                 >
                     <div
-                        v-for="buff in buffByGenre[genre.name]"
+                        v-for="buff in buffByGenre[genre]"
                         :key="buff.name"
                         class="buff-item"
                         @click="handleClick(buff.name)"
                     >
                         <img :src="buff.badge" class="buff-image" >
                         <div class="detail-right">
-                            <p class="buff-name">{{ buff.chs }}</p>
+                            <p class="buff-name">{{ buff.title }}</p>
                             <p class="buff-description" v-html="buff.description"></p>
                         </div>
                         
@@ -40,66 +40,92 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { buffFlat } from "@buff"
 import Fuse from "fuse.js"
+import {useI18n} from "@/i18n/i18n";
 
 const genres = [
-    { name: "Character", chs: "角色引发的BUFF" },
-    { name: "Weapon", chs: "武器引发的BUFF" },
-    { name: "Artifact", chs: "圣遗物引发的BUFF" },
-    { name: "Resonance", chs: "元素共鸣" },
-    { name: "Common", chs: "自定义" }
+    "Character",
+    "Weapon",
+    "Artifact",
+    "Resonance",
+    "Common",
 ]
 
-const fuse = new Fuse(buffFlat, {
-    keys: ["chs", "description"]
+
+// interface Props {
+//     selectable: boolean,
+// }
+//
+// const props = withDefaults(defineProps<Props>(), {
+//     selectable: false
+// })
+
+interface Emits {
+    (e: "select", buffName: string): void
+}
+
+const emits = defineEmits<Emits>()
+
+const { t } = useI18n()
+
+
+// tab
+const activeTab = ref("Character")
+
+// buffs
+interface BuffInterface {
+    name: string,
+    description: string,
+    title: string,
+    genre: string,
+    badge: string,
+}
+
+const buffsFlatWithLocale = computed((): BuffInterface[] => {
+    let result: BuffInterface[] = []
+    for (const item of buffFlat) {
+        result.push({
+            name: item.name,
+            title: t("buffName", item.name),
+            description: t("buffDesc", item.name),
+            genre: item.genre,
+            badge: item.badge
+        })
+    }
+
+    return result
 })
 
-export default {
-    name: "SelectBuff",
-    props: {
-        selectable: {
-            default: false
-        }
-    },
-    emits: ["select"],
-    created() {
-        this.genres = genres
-    },
-    data() {
-        return {
-            activeTab: "Character",
-            searchString: "",
-        }
-    },
-    methods: {
-        handleClick(name) {
-            if (!this.selectable) {
-                this.$emit("select", name)
-            }
-        }
-    },
-    computed: {
-        filteredBuffFlat() {
-            if (this.searchString === "") {
-                return buffFlat
-            }
-            const filtered = fuse.search(this.searchString)
-            return filtered.map(x => x.item)
-        },
+const searchString = ref("")
 
-        buffByGenre() {
-            let temp = {}
-            for (let item of this.filteredBuffFlat) {
-                if (!Object.prototype.hasOwnProperty.call(temp, item.genre)) {
-                    temp[item.genre] = []
-                }
-                temp[item.genre].push(item)
-            }
-            return temp
-        }
+const filteredBuffFlat = computed((): BuffInterface[] => {
+    if (searchString.value === "") {
+        return buffsFlatWithLocale.value
     }
+    const fuse = new Fuse(buffsFlatWithLocale.value, {
+        keys: ["title", "description"]
+    })
+    const filtered = fuse.search(searchString.value)
+    return filtered.map(x => x.item) as any
+})
+
+const buffByGenre = computed(() => {
+    let temp: Record<string, BuffInterface[]> = {}
+    for (let item of filteredBuffFlat.value) {
+        if (!Object.prototype.hasOwnProperty.call(temp, item.genre)) {
+            temp[item.genre] = []
+        }
+        temp[item.genre].push(item)
+    }
+    return temp
+})
+
+function handleClick(name: string) {
+    // if (!props.selectable) {
+        emits("select", name)
+    // }
 }
 </script>
 

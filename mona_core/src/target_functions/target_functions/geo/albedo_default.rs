@@ -109,9 +109,9 @@ impl TargetFunction for AlbedoDefaultTargetFunction {
 
         let config = CharacterSkillConfig::Albedo { fatal_count: 4 };
 
-        let damage_transient_blossom = Albedo::damage::<SimpleDamageBuilder>(&context, SkillEnum::ETransientBlossom, &config);
-        let damage_q_blossom = Albedo::damage::<SimpleDamageBuilder>(&context, SkillEnum::QFatalBlossom, &config);
-        let damage_q1 = Albedo::damage::<SimpleDamageBuilder>(&context, SkillEnum::Q1, &config);
+        let damage_transient_blossom = Albedo::damage::<SimpleDamageBuilder>(&context, SkillEnum::ETransientBlossom, &config, None);
+        let damage_q_blossom = Albedo::damage::<SimpleDamageBuilder>(&context, SkillEnum::QFatalBlossom, &config, None);
+        let damage_q1 = Albedo::damage::<SimpleDamageBuilder>(&context, SkillEnum::Q1, &config, None);
 
         damage_transient_blossom.normal.expectation * 14.0
         + damage_q1.normal.expectation * 1.0

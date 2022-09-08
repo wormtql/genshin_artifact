@@ -57,6 +57,7 @@ pub const ROSARIA_SKILL: RosariaSkillType = RosariaSkillType {
 
 pub const ROSARIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Rosaria,
+    internal_name: "Rosaria",
     chs: "罗莎莉亚",
     element: Element::Cryo,
     hp: [1030, 2647, 3417, 5118, 5665, 6516, 7245, 8096, 8643, 9493, 10040, 10891, 11438, 12289],
@@ -186,12 +187,12 @@ impl CharacterTrait for Rosaria {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_from_behind",
-            title: "应用天赋「聆听忏悔的幽影」效果",
+            title: "c14",
             config: ItemConfigType::Bool { default: true },
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: RosariaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -230,6 +231,7 @@ impl CharacterTrait for Rosaria {
             s.get_element(),
             s.get_skill_type(),
             context.character_common_data.level,
+            fumo,
         )
     }
 

@@ -13,3 +13,4 @@ pub mod weapon_effect;
 pub mod weapon_config;
 pub mod weapon_trait;
 pub mod royal_series;
+pub mod macros;

@@ -13,25 +13,25 @@
             title="分享"
             :width="deviceIsPC ? '500px' : '90%'"
         >
-            <p>通过分享链接可以快速导入圣遗物，有效期为一天</p>
+            <p>{{ t("artPage.shareDesc") }}</p>
             <el-input v-model="shareLink"></el-input>
 
             <template #footer>
-                <el-button type="primary" @click="handleCopyShareLink">复制</el-button>
+                <el-button type="primary" @click="handleCopyShareLink">{{ t("misc.copy") }}</el-button>
             </template>
         </el-dialog>
 
-        <el-dialog v-model="showImportDialog" title="导入" :width="deviceIsPC ? '60%' : '90%'">
+        <el-dialog v-model="showImportDialog" :title="t('misc.import')" :width="deviceIsPC ? '60%' : '90%'">
             <import-block ref="fileUploader"></import-block>
-            <el-checkbox v-model="importDeleteUnseen" style="margin-top: 12px">删除不存在的圣遗物</el-checkbox>
+            <el-checkbox v-model="importDeleteUnseen" style="margin-top: 12px">{{ t("artPage.deleteUnseen") }}</el-checkbox>
 
             <template #footer>
-                <el-button @click="showImportDialog = false">取消</el-button>
-                <el-button type="primary" @click="handleImportJson">确定</el-button>
+                <el-button @click="showImportDialog = false">{{ t("misc.cancel") }}</el-button>
+                <el-button type="primary" @click="handleImportJson">{{ t("misc.confirm") }}</el-button>
             </template>
         </el-dialog>
 
-        <el-drawer title="编辑圣遗物" v-model="showEditArtifactDrawer" direction="rtl" :size="deviceIsPC ? '30%' : '100%'">
+        <el-drawer :title="t('artPage.edit')" v-model="showEditArtifactDrawer" direction="rtl" :size="deviceIsPC ? '30%' : '100%'">
             <edit-artifact
                 ref="editArtifactComponent"
                 @confirm="handleConfirmEdit"
@@ -39,7 +39,7 @@
             ></edit-artifact>
         </el-drawer>
 
-        <el-drawer title="推荐圣遗物" v-model="showArtifactRecommendationDrawer" :size="deviceIsPC ? '30%' : '100%'">
+        <el-drawer :title="t('artPage.recommend')" v-model="showArtifactRecommendationDrawer" :size="deviceIsPC ? '30%' : '100%'">
             <el-empty v-if="recommendationList.length === 0"></el-empty>
             <div v-else>
                 <artifact-display
@@ -54,7 +54,7 @@
         </el-drawer>
 
         <el-breadcrumb class="hidden-sm-and-down">
-            <el-breadcrumb-item>圣遗物（{{ artifactStore.artifactsCount }}）</el-breadcrumb-item>
+            <el-breadcrumb-item>{{ t("misc.artifact") }}（{{ artifactStore.artifactsCount }}）</el-breadcrumb-item>
         </el-breadcrumb>
 
         <div class="toolbar-mobile hidden-md-and-up" style="margin-bottom: 12px">
@@ -70,9 +70,9 @@
                     <el-button size="small" :icon="IconEpMore"></el-button>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item command="deleteAll" :icon="IconEpDelete">清空</el-dropdown-item>
-                            <el-dropdown-item divided command="unlockAll" :icon="IconEpUnlock">启用全部</el-dropdown-item>
-                            <el-dropdown-item divided command="recommend" :icon="IconFa6Lightbulb">推荐</el-dropdown-item>
+                            <el-dropdown-item command="deleteAll" :icon="IconEpDelete">{{ t("misc.clear") }}</el-dropdown-item>
+                            <el-dropdown-item divided command="unlockAll" :icon="IconEpUnlock">{{ t("artPage.unlockAll") }}</el-dropdown-item>
+                            <el-dropdown-item divided command="recommend" :icon="IconFa6Lightbulb">{{ t("misc.recommend") }}</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
@@ -82,16 +82,16 @@
 
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item command="importJson" :icon="IconFa6SolidUpload">导入</el-dropdown-item>
+                            <el-dropdown-item command="importJson" :icon="IconFa6SolidUpload">{{ t("misc.import") }}</el-dropdown-item>
 
-                            <el-dropdown-item divided command="exportJson" :icon="IconFa6SolidDownload">导出莫娜JSON</el-dropdown-item>
-                            <el-dropdown-item command="exportShare" :icon="IconFa6SolidShareNodes">分享链接</el-dropdown-item>
+                            <el-dropdown-item divided command="exportJson" :icon="IconFa6SolidDownload">{{ t("artPage.exportMona") }}</el-dropdown-item>
+                            <el-dropdown-item command="exportShare" :icon="IconFa6SolidShareNodes">{{ t("artPage.shareLink") }}</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
             </el-button-group>
 
-            <div class="m-center">总数：{{ artifactStore.artifactsCount }}</div>
+            <div class="m-center">{{ t("misc.total") }}：{{ artifactStore.artifactsCount }}</div>
         </div>
 
         <div class="tool-bar hidden-sm-and-down">
@@ -104,35 +104,36 @@
                 ></el-button>
 
                 <el-popconfirm
-                    title="确定清除吗，将会同时清除圣遗物套装数据"
+                    :title="t('artPage.confirmClear')"
                     @confirm="deleteAllArtifacts"
                     style="margin-right: 8px"
                 >
                     <template #reference>
-                        <el-button size="small" :icon="IconEpDelete" type="danger" title="清空">
-                            清空
+                        <el-button size="small" :icon="IconEpDelete" type="danger" :title="t('misc.clear')">
+                            {{ t("misc.clear") }}
                         </el-button>
                     </template>
 
                 </el-popconfirm>
 
-                <el-button size="small" :icon="IconEpUnlock" title="启用全部" @click="unlockAllArtifacts">启用全部</el-button>
+                <el-button size="small" :icon="IconEpUnlock" :title="t('artPage.unlockAll')" @click="unlockAllArtifacts">
+                    {{ t("artPage.unlockAll") }}</el-button>
 
-                <el-button size="small" :icon="IconFa6Lightbulb" @click="handleClickRecommendation">推荐</el-button>
+                <el-button size="small" :icon="IconFa6Lightbulb" @click="handleClickRecommendation">{{ t("misc.recommend") }}</el-button>
             </el-button-group>
 
 
             <div class="tool-right">
                 <el-button-group>
-                    <el-button @click="handleYasUIClicked" size="small" type="primary" v-if="deviceIsPC">扫描</el-button>
-                    <el-button @click="handleImportJsonClicked" size="small" type="primary">导入</el-button>
+                    <el-button @click="handleYasUIClicked" size="small" type="primary" v-if="deviceIsPC">{{ t("misc.scan") }}</el-button>
+                    <el-button @click="handleImportJsonClicked" size="small" type="primary">{{ t("misc.import") }}</el-button>
 
                     <el-dropdown split-button size="small" @click="handleOutputJsonClicked" @command="handleOutputCommand">
-                        导出
+                        {{ t("misc.export") }}
                         <template #dropdown>
                             <el-dropdown-menu>
-                                <el-dropdown-item command="monaJson">莫娜JSON</el-dropdown-item>
-                                <el-dropdown-item command="share">分享链接</el-dropdown-item>
+                                <el-dropdown-item command="monaJson">{{ t("artPage.monaJSON") }}</el-dropdown-item>
+                                <el-dropdown-item command="share">{{ t("artPage.shareLink") }}</el-dropdown-item>
                             </el-dropdown-menu>
                         </template>
                     </el-dropdown>
@@ -148,7 +149,7 @@
         <div class="filter">
             <div class="filter-item">
                 <select-artifact-set v-model="filterSet" :multiple="true" :multiple-limit="1000"
-                    placeholder="套装"
+                    :placeholder="t('misc.artifactSet')"
                 ></select-artifact-set>
             </div>
 
@@ -157,11 +158,11 @@
                     v-model="filterMainStat"
                     :include-any="false"
                     :multiple="true"
-                    placeholder="主词条"
+                    :placeholder="t('misc.mainStat')"
                 ></select-artifact-main-stat>
             </div>
 
-            <el-checkbox v-model="filterGe16" class="show-only-16">只显示16级以上</el-checkbox>
+            <el-checkbox v-model="filterGe16" class="show-only-16">{{ t("artPage.show16") }}</el-checkbox>
         </div>
 
         <!-- artifacts display -->
@@ -201,7 +202,7 @@ import {positions} from '@/constants/artifact'
 import {downloadString} from '@/utils/common'
 import {deviceIsPC} from "@/utils/device"
 import {createRepo} from "@/api/repo"
-import {computed, nextTick, ref, type Ref} from "vue"
+import {type Ref} from "vue"
 import {useArtifactStore} from "@/store/pinia/artifact"
 import {usePresetStore} from "@/store/pinia/preset"
 import {getArtifactsRecommendation} from "@/utils/artifactRecommendation"
@@ -222,7 +223,6 @@ import ImportBlock from '@c/misc/ImportBlock';
 import {type ArtifactPosition, ArtifactSetName, ArtifactStatName, IArtifactContentOnly} from "@/types/artifact"
 // import {ElLoading, ElMessage, ElMessageBox, ElNotification} from "element-plus"
 // import {ElMessage} from "element-plus"
-// import "element-plus/es/components/message/style/css"
 
 import IconEpPlus from "~icons/ep/plus"
 import IconEpUnlock from "~icons/ep/unlock"
@@ -233,6 +233,12 @@ import IconFa6PaperPlane from "~icons/fa6-regular/paper-plane"
 import IconFa6SolidUpload from "~icons/fa6-solid/upload"
 import IconFa6SolidShareNodes from "~icons/fa6-solid/share-nodes"
 import IconFa6SolidDownload from "~icons/fa6-solid/download"
+import {useI18n} from "@/i18n/i18n"
+
+import "element-plus/es/components/message/style/css"
+
+// i18n
+const { t } = useI18n()
 
 
 const tabs = [
@@ -346,7 +352,7 @@ function handleCopyShareLink() {
     if (window.navigator) {
         navigator.clipboard.writeText(shareLink.value)
         ElMessage({
-            message: "复制成功",
+            message: t("artPage.copied"),
             type: "success"
         })
         showOutputShareDialog.value = false
@@ -355,8 +361,8 @@ function handleCopyShareLink() {
 
 function shareArtifact() {
     ElNotification({
-        title: "创建中",
-        message: "莫娜正在创建分享链接",
+        title: t("artPage.creating"),
+        message: t("artPage.createDesc"),
         duration: 2000
     })
 
@@ -390,7 +396,7 @@ async function importJson(text: string, deleteUnseen: boolean) {
         await importMonaJson(rawObj, deleteUnseen)
     } catch (e) {
         ElMessage({
-            message: "格式不正确",
+            message: t("artPage.wrongFormat"),
             type: "error"
         })
     }
@@ -404,7 +410,7 @@ function handleImportJson() {
 
     const loading = ElLoading.service({
         lock: true,
-        text: "导入中"
+        text: t("artPage.importing")
     })
 
     if (fileUploader.value) {
@@ -484,7 +490,7 @@ const recommendationInCalculation = ref(false)
 function handleClickRecommendation() {
     if (presetStore.allFlat.value.length === 0) {
         ElMessage.error({
-            message: "添加计算预设以使用该功能"
+            message: t("artPage.msg1")
         })
         return
     }
@@ -512,11 +518,11 @@ function handleDropdownCommand(command: string) {
             break
         case "deleteAll":
             ElMessageBox.confirm(
-                "确实删除所有圣遗物？（将同时删除所有套装）",
-                "提示",
+                t("artPage.confirmClear"),
+                t("misc.hint"),
                 {
-                    confirmButtonText: "确定",
-                    cancelButtonText: "取消",
+                    confirmButtonText: t("misc.confirm"),
+                    cancelButtonText: t("misc.cancel"),
                     type: "warning"
                 }
             ).then(() => {

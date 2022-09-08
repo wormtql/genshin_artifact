@@ -34,7 +34,7 @@ impl BuffMeta for BuffViridescentVenerer4 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "element",
-            title: "扩散元素",
+            title: "b6",
             config: ItemConfigType::Element4 { default: Element::Electro }
         }
     ]);

@@ -57,7 +57,7 @@ impl ArtifactTrait for Berserker {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "效果应用比例",
+            title: "a2",
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);

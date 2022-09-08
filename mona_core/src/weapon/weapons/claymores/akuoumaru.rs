@@ -40,6 +40,7 @@ pub struct Akuoumaru;
 impl WeaponTrait for Akuoumaru {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Akuoumaru,
+        internal_name: "Claymore_Maria",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,
@@ -54,7 +55,7 @@ impl WeaponTrait for Akuoumaru {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "energy",
-            title: "队伍能量上限总和",
+            title: "w10",
             config: ItemConfigType::Int {
                 min: 40,
                 max: 400,

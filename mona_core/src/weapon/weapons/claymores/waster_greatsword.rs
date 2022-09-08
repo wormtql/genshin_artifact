@@ -12,6 +12,7 @@ pub struct WasterGreatsword;
 impl WeaponTrait for WasterGreatsword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::WasterGreatsword,
+        internal_name: "Claymore_Aniki",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: None,
         weapon_base: WeaponBaseATKFamily::ATK185,

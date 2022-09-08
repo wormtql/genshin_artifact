@@ -13,6 +13,7 @@ pub struct SacrificialSword;
 impl WeaponTrait for SacrificialSword {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SacrificialSword,
+        internal_name: "Sword_Fossil",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge133),
         weapon_base: WeaponBaseATKFamily::ATK454,

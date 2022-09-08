@@ -45,6 +45,7 @@ pub struct SummitShaper;
 impl WeaponTrait for SummitShaper {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SummitShaper,
+        internal_name: "Sword_Kunwu",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK108),
         weapon_base: WeaponBaseATKFamily::ATK608,
@@ -60,7 +61,7 @@ impl WeaponTrait for SummitShaper {
         ItemConfig::STACK05,
         ItemConfig {
             name: "shield_rate",
-            title: "护盾覆盖率",
+            title: "w15",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

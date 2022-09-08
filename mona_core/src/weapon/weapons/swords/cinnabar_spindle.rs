@@ -39,6 +39,7 @@ pub struct CinnabarSpindle;
 impl WeaponTrait for CinnabarSpindle {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::CinnabarSpindle,
+        internal_name: "Sword_Opus",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::DEF150),
         weapon_base: WeaponBaseATKFamily::ATK454,
@@ -53,7 +54,7 @@ impl WeaponTrait for CinnabarSpindle {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "被动应用比例",
+            title: "w2",
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 1.0,

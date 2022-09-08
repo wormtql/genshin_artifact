@@ -59,6 +59,7 @@ pub const BEIDOU_SKILL: BeidouSkillType = BeidouSkillType {
 
 const BEIDOU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Beidou,
+    internal_name: "Beidou",
     chs: "北斗",
     element: Element::Electro,
     hp: [1094, 2811, 3628, 5435, 6015, 6919, 7694, 8597, 9178, 10081, 10662, 11565, 12146, 13050],
@@ -158,7 +159,7 @@ impl CharacterTrait for Beidou {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: BeidouDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -189,7 +190,8 @@ impl CharacterTrait for Beidou {
             &context.enemy,
             s.get_element(),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

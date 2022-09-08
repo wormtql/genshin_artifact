@@ -48,6 +48,7 @@ pub struct Predator;
 impl WeaponTrait for Predator {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Predator,
+        internal_name: "Bow_Predator",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,

@@ -12,6 +12,7 @@ pub struct BeginnersProtector;
 impl WeaponTrait for BeginnersProtector {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BeginnersProtector,
+        internal_name: "Pole_Gewalt",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: None,
         weapon_base: WeaponBaseATKFamily::ATK185,

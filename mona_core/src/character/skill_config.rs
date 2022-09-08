@@ -29,5 +29,6 @@ pub enum CharacterSkillConfig {
     Xinyan { shield_rate: f64 },
     Yanfei { after_q: bool },
     Yoimiya { after_e: bool },
+    Dori { c6: bool },
     NoConfig,
 }

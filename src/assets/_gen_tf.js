@@ -37,6 +37,10 @@ import AnemoDamage_image from "@image/misc/wind_slime"
 
 
 
+import DendroDamage_image from "@image/misc/dendro"
+
+
+
 import GeoDamage_image from "@image/misc/sword"
 
 
@@ -169,15 +173,19 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
-const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png"
+
+
+
+
+const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
 export default {
     
     "MaxATK": {
         name: "MaxATK",
-        chs: "最大攻击力",
-        description: "最大化攻击力",
+        // chs: "最大攻击力",
+        // description: "最大化攻击力",
         tags: [
             
             "攻击",
@@ -194,8 +202,8 @@ export default {
     
     "MaxDEF": {
         name: "MaxDEF",
-        chs: "最大防御力",
-        description: "最大化防御力",
+        // chs: "最大防御力",
+        // description: "最大化防御力",
         tags: [
             
             "防御",
@@ -212,8 +220,8 @@ export default {
     
     "MaxHP": {
         name: "MaxHP",
-        chs: "最大生命值",
-        description: "最大化生命值",
+        // chs: "最大生命值",
+        // description: "最大化生命值",
         tags: [
             
             "生命",
@@ -230,8 +238,8 @@ export default {
     
     "MaxEM": {
         name: "MaxEM",
-        chs: "最大元素精通",
-        description: "最大化元素精通",
+        // chs: "最大元素精通",
+        // description: "最大化元素精通",
         tags: [
             
             "元素精通",
@@ -248,8 +256,8 @@ export default {
     
     "PyroDamage": {
         name: "PyroDamage",
-        chs: "火伤",
-        description: "火元素伤害最大化或最大化期望",
+        // chs: "火伤",
+        // description: "火元素伤害最大化或最大化期望",
         tags: [
             
             "输出",
@@ -261,15 +269,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
     
     "CryoDamage": {
         name: "CryoDamage",
-        chs: "冰伤",
-        description: "冰元素伤害最大化或最大化期望",
+        // chs: "冰伤",
+        // description: "冰元素伤害最大化或最大化期望",
         tags: [
             
             "输出",
@@ -281,15 +289,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
     
     "HydroDamage": {
         name: "HydroDamage",
-        chs: "水伤",
-        description: "水元素伤害最大化或最大化期望",
+        // chs: "水伤",
+        // description: "水元素伤害最大化或最大化期望",
         tags: [
             
             "输出",
@@ -301,15 +309,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
     
     "ElectroDamage": {
         name: "ElectroDamage",
-        chs: "雷伤",
-        description: "雷元素伤害最大化或最大化期望",
+        // chs: "雷伤",
+        // description: "雷元素伤害最大化或最大化期望",
         tags: [
             
             "输出",
@@ -321,15 +329,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
     
     "AnemoDamage": {
         name: "AnemoDamage",
-        chs: "风伤",
-        description: "风元素伤害最大化或最大化期望",
+        // chs: "风伤",
+        // description: "风元素伤害最大化或最大化期望",
         tags: [
             
             "输出",
@@ -341,15 +349,35 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
+            
+        ],
+    },
+    
+    "DendroDamage": {
+        name: "DendroDamage",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "common",
+        
+        badge: DendroDamage_image,
+        
+        config: [
+            
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
     
     "GeoDamage": {
         name: "GeoDamage",
-        chs: "岩伤",
-        description: "岩元素伤害最大化或最大化期望",
+        // chs: "岩伤",
+        // description: "岩元素伤害最大化或最大化期望",
         tags: [
             
             "输出",
@@ -361,15 +389,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
     
     "PhysicalDamage": {
         name: "PhysicalDamage",
-        chs: "物伤",
-        description: "物理伤害最大化或最大化期望",
+        // chs: "物伤",
+        // description: "物理伤害最大化或最大化期望",
         tags: [
             
             "输出",
@@ -381,15 +409,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":"类型","type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":"t1","type":"option"},
             
         ],
     },
     
     "MaxVaporize": {
         name: "MaxVaporize",
-        chs: "最大蒸发伤害",
-        description: "使得蒸发反应的伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+        // chs: "最大蒸发伤害",
+        // description: "使得蒸发反应的伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
         tags: [
             
             "输出",
@@ -401,17 +429,17 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","水"],"title":"触发元素","type":"option"},
+            {"default":0,"name":"t","options":["火","水"],"title":"t2","type":"option"},
             
-            {"default":"NormalAttack","name":"skill","title":"技能","type":"skill4"},
+            {"default":"NormalAttack","name":"skill","title":"t3","type":"skill4"},
             
         ],
     },
     
     "MaxMelt": {
         name: "MaxMelt",
-        chs: "最大融化伤害",
-        description: "使得融化反应的伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+        // chs: "最大融化伤害",
+        // description: "使得融化反应的伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
         tags: [
             
             "输出",
@@ -423,17 +451,17 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","冰"],"title":"触发元素","type":"option"},
+            {"default":0,"name":"t","options":["火","冰"],"title":"t2","type":"option"},
             
-            {"default":"NormalAttack","name":"skill","title":"技能","type":"skill4"},
+            {"default":"NormalAttack","name":"skill","title":"t3","type":"skill4"},
             
         ],
     },
     
     "ExpectVaporize": {
         name: "ExpectVaporize",
-        chs: "期望蒸发伤害",
-        description: "使得蒸发反应的期望伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+        // chs: "期望蒸发伤害",
+        // description: "使得蒸发反应的期望伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
         tags: [
             
             "输出",
@@ -445,17 +473,17 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","水"],"title":"触发元素","type":"option"},
+            {"default":0,"name":"t","options":["火","水"],"title":"t2","type":"option"},
             
-            {"default":"NormalAttack","name":"skill","title":"技能","type":"skill4"},
+            {"default":"NormalAttack","name":"skill","title":"t3","type":"skill4"},
             
         ],
     },
     
     "ExpectMelt": {
         name: "ExpectMelt",
-        chs: "期望融化伤害",
-        description: "使得融化反应的期望伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+        // chs: "期望融化伤害",
+        // description: "使得融化反应的期望伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
         tags: [
             
             "输出",
@@ -467,17 +495,17 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","冰"],"title":"触发元素","type":"option"},
+            {"default":0,"name":"t","options":["火","冰"],"title":"t2","type":"option"},
             
-            {"default":"NormalAttack","name":"skill","title":"技能","type":"skill4"},
+            {"default":"NormalAttack","name":"skill","title":"t3","type":"skill4"},
             
         ],
     },
     
     "AlbedoDefault": {
         name: "AlbedoDefault",
-        chs: "阿贝多-白垩之子",
-        description: "普通副C阿贝多",
+        // chs: "阿贝多-白垩之子",
+        // description: "普通副C阿贝多",
         tags: [
             
             "输出",
@@ -485,7 +513,7 @@ export default {
         ],
         "for": "Albedo",
         
-        badge: getImage("Albedo"),
+        badge: getImage("UI_AvatarIcon_Albedo"),
         
         config: [
             
@@ -494,8 +522,8 @@ export default {
     
     "AloyDefault": {
         name: "AloyDefault",
-        chs: "埃洛伊-「异界的救世主」",
-        description: "普通输出埃洛伊",
+        // chs: "埃洛伊-「异界的救世主」",
+        // description: "普通输出埃洛伊",
         tags: [
             
             "输出",
@@ -503,7 +531,7 @@ export default {
         ],
         "for": "Aloy",
         
-        badge: getImage("Aloy"),
+        badge: getImage("UI_AvatarIcon_Aloy"),
         
         config: [
             
@@ -512,8 +540,8 @@ export default {
     
     "AmberDefault": {
         name: "AmberDefault",
-        chs: "安柏-侦察骑士",
-        description: "普通输出安柏",
+        // chs: "安柏-侦察骑士",
+        // description: "普通输出安柏",
         tags: [
             
             "输出",
@@ -521,7 +549,7 @@ export default {
         ],
         "for": "Amber",
         
-        badge: getImage("Ambor"),
+        badge: getImage("UI_AvatarIcon_Ambor"),
         
         config: [
             
@@ -530,8 +558,8 @@ export default {
     
     "AratakiIttoDefault": {
         name: "AratakiIttoDefault",
-        chs: "荒泷一斗-最恶鬼王！",
-        description: "荒泷一斗输出",
+        // chs: "荒泷一斗-最恶鬼王！",
+        // description: "荒泷一斗输出",
         tags: [
             
             "输出",
@@ -539,7 +567,7 @@ export default {
         ],
         "for": "AratakiItto",
         
-        badge: getImage("Itto"),
+        badge: getImage("UI_AvatarIcon_Itto"),
         
         config: [
             
@@ -548,8 +576,8 @@ export default {
     
     "BarbaraDefault": {
         name: "BarbaraDefault",
-        chs: "芭芭拉-闪耀偶像",
-        description: "使得芭芭拉Q技能治疗效果最好",
+        // chs: "芭芭拉-闪耀偶像",
+        // description: "使得芭芭拉Q技能治疗效果最好",
         tags: [
             
             "治疗",
@@ -559,7 +587,7 @@ export default {
         ],
         "for": "Barbara",
         
-        badge: getImage("Barbara"),
+        badge: getImage("UI_AvatarIcon_Barbara"),
         
         config: [
             
@@ -568,8 +596,8 @@ export default {
     
     "BeidouDefault": {
         name: "BeidouDefault",
-        chs: "北斗-无冕的龙王",
-        description: "普通北斗弹反流",
+        // chs: "北斗-无冕的龙王",
+        // description: "普通北斗弹反流",
         tags: [
             
             "输出",
@@ -577,7 +605,7 @@ export default {
         ],
         "for": "Beidou",
         
-        badge: getImage("Beidou"),
+        badge: getImage("UI_AvatarIcon_Beidou"),
         
         config: [
             
@@ -586,8 +614,8 @@ export default {
     
     "BennettDamage": {
         name: "BennettDamage",
-        chs: "班尼特-副C",
-        description: "普通副C班尼特",
+        // chs: "班尼特-副C",
+        // description: "普通副C班尼特",
         tags: [
             
             "辅助",
@@ -599,21 +627,21 @@ export default {
         ],
         "for": "Bennett",
         
-        badge: getImage("Bennett"),
+        badge: getImage("UI_AvatarIcon_Bennett"),
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
-            {"default":0.9,"max":1.0,"min":0.0,"name":"other_dmg_ratio","title":"他人伤害占比","type":"float"},
+            {"default":0.9,"max":1.0,"min":0.0,"name":"other_dmg_ratio","title":"t9","type":"float"},
             
         ],
     },
     
     "BennettDefault": {
         name: "BennettDefault",
-        chs: "班尼特-命运试金石",
-        description: "普通辅助班尼特",
+        // chs: "班尼特-命运试金石",
+        // description: "普通辅助班尼特",
         tags: [
             
             "辅助",
@@ -621,19 +649,19 @@ export default {
         ],
         "for": "Bennett",
         
-        badge: getImage("Bennett"),
+        badge: getImage("UI_AvatarIcon_Bennett"),
         
         config: [
             
-            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
     
     "ChongyunDefault": {
         name: "ChongyunDefault",
-        chs: "重云-雪融有踪",
-        description: "普通副C重云",
+        // chs: "重云-雪融有踪",
+        // description: "普通副C重云",
         tags: [
             
             "副C",
@@ -643,7 +671,7 @@ export default {
         ],
         "for": "Chongyun",
         
-        badge: getImage("Chongyun"),
+        badge: getImage("UI_AvatarIcon_Chongyun"),
         
         config: [
             
@@ -652,8 +680,8 @@ export default {
     
     "DilucDefault": {
         name: "DilucDefault",
-        chs: "迪卢克-晨曦酒庄的贵公子",
-        description: "普通输出迪卢克",
+        // chs: "迪卢克-晨曦酒庄的贵公子",
+        // description: "普通输出迪卢克",
         tags: [
             
             "输出",
@@ -661,21 +689,21 @@ export default {
         ],
         "for": "Diluc",
         
-        badge: getImage("Diluc"),
+        badge: getImage("UI_AvatarIcon_Diluc"),
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"t5","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发比例","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"t6","type":"float"},
             
         ],
     },
     
     "DionaDefault": {
         name: "DionaDefault",
-        chs: "迪奥娜-猫尾特调",
-        description: "普通治疗、护盾辅助",
+        // chs: "迪奥娜-猫尾特调",
+        // description: "普通治疗、护盾辅助",
         tags: [
             
             "治疗",
@@ -685,17 +713,19 @@ export default {
         ],
         "for": "Diona",
         
-        badge: getImage("Diona"),
+        badge: getImage("UI_AvatarIcon_Diona"),
         
         config: [
+            
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
     
     "EulaDefault": {
         name: "EulaDefault",
-        chs: "优菈-浪花骑士",
-        description: "普通优菈输出",
+        // chs: "优菈-浪花骑士",
+        // description: "普通优菈输出",
         tags: [
             
             "输出",
@@ -703,7 +733,7 @@ export default {
         ],
         "for": "Eula",
         
-        badge: getImage("Eula"),
+        badge: getImage("UI_AvatarIcon_Eula"),
         
         config: [
             
@@ -712,8 +742,8 @@ export default {
     
     "FischlDefault": {
         name: "FischlDefault",
-        chs: "菲谢尔-断罪皇女！！",
-        description: "普通元素输出菲谢尔",
+        // chs: "菲谢尔-断罪皇女！！",
+        // description: "普通元素输出菲谢尔",
         tags: [
             
             "输出",
@@ -721,7 +751,7 @@ export default {
         ],
         "for": "Fischl",
         
-        badge: getImage("Fischl"),
+        badge: getImage("UI_AvatarIcon_Fischl"),
         
         config: [
             
@@ -730,8 +760,8 @@ export default {
     
     "GanyuDefault": {
         name: "GanyuDefault",
-        chs: "甘雨-循循守月",
-        description: "普通输出甘雨",
+        // chs: "甘雨-循循守月",
+        // description: "普通输出甘雨",
         tags: [
             
             "输出",
@@ -739,19 +769,19 @@ export default {
         ],
         "for": "Ganyu",
         
-        badge: getImage("Ganyu"),
+        badge: getImage("UI_AvatarIcon_Ganyu"),
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化占比","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"t5","type":"float"},
             
         ],
     },
     
     "GorouDefault": {
         name: "GorouDefault",
-        chs: "五郎-戎犬锵锵",
-        description: "普通岩辅五郎",
+        // chs: "五郎-戎犬锵锵",
+        // description: "普通岩辅五郎",
         tags: [
             
             "辅助",
@@ -759,19 +789,19 @@ export default {
         ],
         "for": "Gorou",
         
-        badge: getImage("Gorou"),
+        badge: getImage("UI_AvatarIcon_Gorou"),
         
         config: [
             
-            {"default":1.7,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.7,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "HuTaoDefault": {
         name: "HuTaoDefault",
-        chs: "胡桃-雪霁梅香",
-        description: "普通输出主C胡桃",
+        // chs: "胡桃-雪霁梅香",
+        // description: "普通输出主C胡桃",
         tags: [
             
             "输出",
@@ -779,21 +809,21 @@ export default {
         ],
         "for": "HuTao",
         
-        badge: getImage("Hutao"),
+        badge: getImage("UI_AvatarIcon_Hutao"),
         
         config: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发占比","type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"t6","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化占比","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"t5","type":"float"},
             
         ],
     },
     
     "JeanDefault": {
         name: "JeanDefault",
-        chs: "琴-蒲公英骑士",
-        description: "普通六边形琴",
+        // chs: "琴-蒲公英骑士",
+        // description: "普通六边形琴",
         tags: [
             
             "副C",
@@ -803,21 +833,21 @@ export default {
         ],
         "for": "Jean",
         
-        badge: getImage("Qin"),
+        badge: getImage("UI_AvatarIcon_Qin"),
         
         config: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"damage_weight","title":"治疗-伤害比重（0：纯治疗，1：纯伤害）","type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"damage_weight","title":"t7","type":"float"},
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "KaedeharaKazuhaDamage": {
         name: "KaedeharaKazuhaDamage",
-        chs: "枫原万叶-输出",
-        description: "普通输出枫原万叶（兼辅助）",
+        // chs: "枫原万叶-输出",
+        // description: "普通输出枫原万叶（兼辅助）",
         tags: [
             
             "输出",
@@ -827,23 +857,23 @@ export default {
         ],
         "for": "KaedeharaKazuha",
         
-        badge: getImage("Kazuha"),
+        badge: getImage("UI_AvatarIcon_Kazuha"),
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"swirl_rate","title":"扩散相对频率","type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"swirl_rate","title":"t8","type":"float"},
             
-            {"default":0.9,"max":1.0,"min":0.0,"name":"other_dmg_ratio","title":"他人伤害比例","type":"float"},
+            {"default":0.9,"max":1.0,"min":0.0,"name":"other_dmg_ratio","title":"t9","type":"float"},
             
         ],
     },
     
     "KaedeharaKazuhaDefault": {
         name: "KaedeharaKazuhaDefault",
-        chs: "枫原万叶-红叶逐荒波",
-        description: "普通辅助万叶",
+        // chs: "枫原万叶-红叶逐荒波",
+        // description: "普通辅助万叶",
         tags: [
             
             "辅助",
@@ -851,19 +881,19 @@ export default {
         ],
         "for": "KaedeharaKazuha",
         
-        badge: getImage("Kazuha"),
+        badge: getImage("UI_AvatarIcon_Kazuha"),
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
     
     "KaeyaDefault": {
         name: "KaeyaDefault",
-        chs: "凯亚-寒风剑士",
-        description: "普通冰伤凯亚",
+        // chs: "凯亚-寒风剑士",
+        // description: "普通冰伤凯亚",
         tags: [
             
             "输出",
@@ -871,7 +901,7 @@ export default {
         ],
         "for": "Kaeya",
         
-        badge: getImage("Kaeya"),
+        badge: getImage("UI_AvatarIcon_Kaeya"),
         
         config: [
             
@@ -880,8 +910,8 @@ export default {
     
     "KamisatoAyakaDefault": {
         name: "KamisatoAyakaDefault",
-        chs: "神里绫华-白鹭霜华",
-        description: "普通主C绫华",
+        // chs: "神里绫华-白鹭霜华",
+        // description: "普通主C绫华",
         tags: [
             
             "输出",
@@ -889,19 +919,19 @@ export default {
         ],
         "for": "KamisatoAyaka",
         
-        badge: getImage("Ayaka"),
+        badge: getImage("UI_AvatarIcon_Ayaka"),
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
     
     "KamisatoAyakaDps": {
         name: "KamisatoAyakaDps",
-        chs: "神里绫华-DPS",
-        description: "期望DPS输出，输出手法模拟如下循环：4s 左右辅助铺场，平a4段接重击，有e放e，有大开大",
+        // chs: "神里绫华-DPS",
+        // description: "期望DPS输出，输出手法模拟如下循环：4s 左右辅助铺场，平a4段接重击，有e放e，有大开大",
         tags: [
             
             "输出",
@@ -909,7 +939,7 @@ export default {
         ],
         "for": "KamisatoAyaka",
         
-        badge: getImage("Ayaka"),
+        badge: getImage("UI_AvatarIcon_Ayaka"),
         
         config: [
             
@@ -918,8 +948,8 @@ export default {
     
     "KamisatoAyatoDefault": {
         name: "KamisatoAyatoDefault",
-        chs: "神里绫人-磐祭叶守",
-        description: "普通水系输出绫人",
+        // chs: "神里绫人-磐祭叶守",
+        // description: "普通水系输出绫人",
         tags: [
             
             "输出",
@@ -927,7 +957,7 @@ export default {
         ],
         "for": "KamisatoAyato",
         
-        badge: getImage("Ayato"),
+        badge: getImage("UI_AvatarIcon_Ayato"),
         
         config: [
             
@@ -936,8 +966,8 @@ export default {
     
     "KeqingDefault": {
         name: "KeqingDefault",
-        chs: "刻晴-霆霓快雨",
-        description: "普通雷伤刻晴",
+        // chs: "刻晴-霆霓快雨",
+        // description: "普通雷伤刻晴",
         tags: [
             
             "输出",
@@ -945,17 +975,19 @@ export default {
         ],
         "for": "Keqing",
         
-        badge: getImage("Keqing"),
+        badge: getImage("UI_AvatarIcon_Keqing"),
         
         config: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":"t17","type":"float"},
             
         ],
     },
     
     "KleeDefault": {
         name: "KleeDefault",
-        chs: "可莉-逃跑的太阳",
-        description: "可莉火伤输出",
+        // chs: "可莉-逃跑的太阳",
+        // description: "可莉火伤输出",
         tags: [
             
             "输出",
@@ -963,19 +995,19 @@ export default {
         ],
         "for": "Klee",
         
-        badge: getImage("Klee"),
+        badge: getImage("UI_AvatarIcon_Klee"),
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
     
     "KujouSaraDamage": {
         name: "KujouSaraDamage",
-        chs: "九条裟罗-副C",
-        description: "副C九条裟罗",
+        // chs: "九条裟罗-副C",
+        // description: "副C九条裟罗",
         tags: [
             
             "输出",
@@ -985,19 +1017,19 @@ export default {
         ],
         "for": "KujouSara",
         
-        badge: getImage("Sara"),
+        badge: getImage("UI_AvatarIcon_Sara"),
         
         config: [
             
-            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
     
     "KujouSaraDefault": {
         name: "KujouSaraDefault",
-        chs: "九条裟罗-黑羽鸣镝",
-        description: "普通雷系辅助九条",
+        // chs: "九条裟罗-黑羽鸣镝",
+        // description: "普通雷系辅助九条",
         tags: [
             
             "辅助",
@@ -1005,7 +1037,7 @@ export default {
         ],
         "for": "KujouSara",
         
-        badge: getImage("Sara"),
+        badge: getImage("UI_AvatarIcon_Sara"),
         
         config: [
             
@@ -1014,8 +1046,8 @@ export default {
     
     "LisaDefault": {
         name: "LisaDefault",
-        chs: "丽莎-蔷薇魔女",
-        description: "普通输出丽莎",
+        // chs: "丽莎-蔷薇魔女",
+        // description: "普通输出丽莎",
         tags: [
             
             "输出",
@@ -1023,19 +1055,19 @@ export default {
         ],
         "for": "Lisa",
         
-        badge: getImage("Lisa"),
+        badge: getImage("UI_AvatarIcon_Lisa"),
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "MonaDefault": {
         name: "MonaDefault",
-        chs: "莫娜-星天水镜",
-        description: "普通输出莫娜",
+        // chs: "莫娜-星天水镜",
+        // description: "普通输出莫娜",
         tags: [
             
             "输出",
@@ -1045,19 +1077,19 @@ export default {
         ],
         "for": "Mona",
         
-        badge: getImage("Mona"),
+        badge: getImage("UI_AvatarIcon_Mona"),
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "NingguangDefault": {
         name: "NingguangDefault",
-        chs: "凝光-掩月天权",
-        description: "普通输出凝光",
+        // chs: "凝光-掩月天权",
+        // description: "普通输出凝光",
         tags: [
             
             "输出",
@@ -1065,7 +1097,7 @@ export default {
         ],
         "for": "Ningguang",
         
-        badge: getImage("Ningguang"),
+        badge: getImage("UI_AvatarIcon_Ningguang"),
         
         config: [
             
@@ -1074,8 +1106,8 @@ export default {
     
     "NoelleDefault": {
         name: "NoelleDefault",
-        chs: "诺艾尔-未授勋之花",
-        description: "普通输出诺艾尔",
+        // chs: "诺艾尔-未授勋之花",
+        // description: "普通输出诺艾尔",
         tags: [
             
             "输出",
@@ -1083,7 +1115,7 @@ export default {
         ],
         "for": "Noelle",
         
-        badge: getImage("Noel"),
+        badge: getImage("UI_AvatarIcon_Noel"),
         
         config: [
             
@@ -1092,8 +1124,8 @@ export default {
     
     "QiqiDefault": {
         name: "QiqiDefault",
-        chs: "七七-冻冻回魂夜",
-        description: "普通治疗辅助七七",
+        // chs: "七七-冻冻回魂夜",
+        // description: "普通治疗辅助七七",
         tags: [
             
             "治疗",
@@ -1101,19 +1133,19 @@ export default {
         ],
         "for": "Qiqi",
         
-        badge: getImage("Qiqi"),
+        badge: getImage("UI_AvatarIcon_Qiqi"),
         
         config: [
             
-            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "RaidenShogunDefault": {
         name: "RaidenShogunDefault",
-        chs: "雷电将军-一心净土",
-        description: "普通输出雷军",
+        // chs: "雷电将军-一心净土",
+        // description: "普通输出雷军",
         tags: [
             
             "输出",
@@ -1121,19 +1153,19 @@ export default {
         ],
         "for": "RaidenShogun",
         
-        badge: getImage("Shougun"),
+        badge: getImage("UI_AvatarIcon_Shougun"),
         
         config: [
             
-            {"default":2.6,"max":4.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":2.6,"max":4.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
     
     "RazorDefault": {
         name: "RazorDefault",
-        chs: "雷泽-奔狼领的传说",
-        description: "普通输出物理雷泽",
+        // chs: "雷泽-奔狼领的传说",
+        // description: "普通输出物理雷泽",
         tags: [
             
             "输出",
@@ -1141,7 +1173,7 @@ export default {
         ],
         "for": "Razor",
         
-        badge: getImage("Razor"),
+        badge: getImage("UI_AvatarIcon_Razor"),
         
         config: [
             
@@ -1150,8 +1182,8 @@ export default {
     
     "RosariaDefault": {
         name: "RosariaDefault",
-        chs: "罗莎莉亚-棘冠恩典",
-        description: "普通辅助罗莎莉亚兼一定的输出",
+        // chs: "罗莎莉亚-棘冠恩典",
+        // description: "普通辅助罗莎莉亚兼一定的输出",
         tags: [
             
             "辅助",
@@ -1161,7 +1193,7 @@ export default {
         ],
         "for": "Rosaria",
         
-        badge: getImage("Rosaria"),
+        badge: getImage("UI_AvatarIcon_Rosaria"),
         
         config: [
             
@@ -1170,8 +1202,8 @@ export default {
     
     "SangonomiyaKokomiDefault": {
         name: "SangonomiyaKokomiDefault",
-        chs: "珊瑚宫心海-真珠之智",
-        description: "普通输出心海",
+        // chs: "珊瑚宫心海-真珠之智",
+        // description: "普通输出心海",
         tags: [
             
             "输出",
@@ -1181,7 +1213,7 @@ export default {
         ],
         "for": "SangonomiyaKokomi",
         
-        badge: getImage("Kokomi"),
+        badge: getImage("UI_AvatarIcon_Kokomi"),
         
         config: [
             
@@ -1190,8 +1222,8 @@ export default {
     
     "SayuDefault": {
         name: "SayuDefault",
-        chs: "早柚-忍里之貉",
-        description: "普通输出型早柚",
+        // chs: "早柚-忍里之貉",
+        // description: "普通输出型早柚",
         tags: [
             
             "输出",
@@ -1201,19 +1233,19 @@ export default {
         ],
         "for": "Sayu",
         
-        badge: getImage("Sayu"),
+        badge: getImage("UI_AvatarIcon_Sayu"),
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "ShenheDefault": {
         name: "ShenheDefault",
-        chs: "申鹤-孤辰茕怀",
-        description: "普通辅助申鹤",
+        // chs: "申鹤-孤辰茕怀",
+        // description: "普通辅助申鹤",
         tags: [
             
             "辅助",
@@ -1221,19 +1253,19 @@ export default {
         ],
         "for": "Shenhe",
         
-        badge: getImage("Shenhe"),
+        badge: getImage("UI_AvatarIcon_Shenhe"),
         
         config: [
             
-            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "SucroseDefault": {
         name: "SucroseDefault",
-        chs: "砂糖-无害甜度",
-        description: "普通辅助砂糖",
+        // chs: "砂糖-无害甜度",
+        // description: "普通辅助砂糖",
         tags: [
             
             "辅助",
@@ -1241,19 +1273,19 @@ export default {
         ],
         "for": "Sucrose",
         
-        badge: getImage("Sucrose"),
+        badge: getImage("UI_AvatarIcon_Sucrose"),
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "TartagliaDefault": {
         name: "TartagliaDefault",
-        chs: "达达利亚-「公子」",
-        description: "普通输出达达利鸭",
+        // chs: "达达利亚-「公子」",
+        // description: "普通输出达达利鸭",
         tags: [
             
             "输出",
@@ -1261,7 +1293,7 @@ export default {
         ],
         "for": "Tartaglia",
         
-        badge: getImage("Tartaglia"),
+        badge: getImage("UI_AvatarIcon_Tartaglia"),
         
         config: [
             
@@ -1270,8 +1302,8 @@ export default {
     
     "ThomaDefault": {
         name: "ThomaDefault",
-        chs: "托马-渡来介者",
-        description: "普通盾辅托马",
+        // chs: "托马-渡来介者",
+        // description: "普通盾辅托马",
         tags: [
             
             "辅助",
@@ -1279,19 +1311,19 @@ export default {
         ],
         "for": "Thoma",
         
-        badge: getImage("Tohma"),
+        badge: getImage("UI_AvatarIcon_Tohma"),
         
         config: [
             
-            {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "VentiDefault": {
         name: "VentiDefault",
-        chs: "温迪-风色诗人",
-        description: "普通输出温迪",
+        // chs: "温迪-风色诗人",
+        // description: "普通输出温迪",
         tags: [
             
             "输出",
@@ -1299,19 +1331,19 @@ export default {
         ],
         "for": "Venti",
         
-        badge: getImage("Venti"),
+        badge: getImage("UI_AvatarIcon_Venti"),
         
         config: [
             
-            {"default":0.7,"max":1.0,"min":0.0,"name":"swirl_rate","title":"扩散占比","type":"float"},
+            {"default":0.7,"max":1.0,"min":0.0,"name":"swirl_rate","title":"t10","type":"float"},
             
         ],
     },
     
     "XianglingDefault": {
         name: "XianglingDefault",
-        chs: "香菱-万民百味",
-        description: "普通输出火伤香菱",
+        // chs: "香菱-万民百味",
+        // description: "普通输出火伤香菱",
         tags: [
             
             "输出",
@@ -1319,25 +1351,25 @@ export default {
         ],
         "for": "Xiangling",
         
-        badge: getImage("Xiangling"),
+        badge: getImage("UI_AvatarIcon_Xiangling"),
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化频率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"t5","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发频率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"t6","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_rate","title":"超载频率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_rate","title":"t11","type":"float"},
             
         ],
     },
     
     "XiaoDefault": {
         name: "XiaoDefault",
-        chs: "魈-护法夜叉",
-        description: "普通输出魈",
+        // chs: "魈-护法夜叉",
+        // description: "普通输出魈",
         tags: [
             
             "输出",
@@ -1345,7 +1377,7 @@ export default {
         ],
         "for": "Xiao",
         
-        badge: getImage("Xiao"),
+        badge: getImage("UI_AvatarIcon_Xiao"),
         
         config: [
             
@@ -1354,8 +1386,8 @@ export default {
     
     "XingqiuDefault": {
         name: "XingqiuDefault",
-        chs: "行秋-少年春衫薄",
-        description: "普通副C行秋",
+        // chs: "行秋-少年春衫薄",
+        // description: "普通副C行秋",
         tags: [
             
             "输出",
@@ -1363,19 +1395,19 @@ export default {
         ],
         "for": "Xingqiu",
         
-        badge: getImage("Xingqiu"),
+        badge: getImage("UI_AvatarIcon_Xingqiu"),
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "XinyanDamage": {
         name: "XinyanDamage",
-        chs: "辛焱-输出",
-        description: "普通物伤输出辛焱",
+        // chs: "辛焱-输出",
+        // description: "普通物伤输出辛焱",
         tags: [
             
             "输出",
@@ -1383,7 +1415,7 @@ export default {
         ],
         "for": "Xinyan",
         
-        badge: getImage("Xinyan"),
+        badge: getImage("UI_AvatarIcon_Xinyan"),
         
         config: [
             
@@ -1392,8 +1424,8 @@ export default {
     
     "XinyanDefault": {
         name: "XinyanDefault",
-        chs: "辛焱-燥热旋律",
-        description: "普通辅助辛焱",
+        // chs: "辛焱-燥热旋律",
+        // description: "普通辅助辛焱",
         tags: [
             
             "辅助",
@@ -1401,21 +1433,21 @@ export default {
         ],
         "for": "Xinyan",
         
-        badge: getImage("Xinyan"),
+        badge: getImage("UI_AvatarIcon_Xinyan"),
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"damage_demand","title":"伤害需求","type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"damage_demand","title":"t12","type":"float"},
             
         ],
     },
     
     "YaeMikoDefault": {
         name: "YaeMikoDefault",
-        chs: "八重神子-浮世笑百姿",
-        description: "普通输出八重神子",
+        // chs: "八重神子-浮世笑百姿",
+        // description: "普通输出八重神子",
         tags: [
             
             "输出",
@@ -1423,23 +1455,23 @@ export default {
         ],
         "for": "YaeMiko",
         
-        badge: getImage("Yae"),
+        badge: getImage("UI_AvatarIcon_Yae"),
         
         config: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"electro_charged_times","title":"感电相对频率","type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"electro_charged_times","title":"t13","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_times","title":"超载相对频率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_times","title":"t14","type":"float"},
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
         ],
     },
     
     "YanfeiDefault": {
         name: "YanfeiDefault",
-        chs: "烟绯-智明无邪",
-        description: "普通输出烟绯",
+        // chs: "烟绯-智明无邪",
+        // description: "普通输出烟绯",
         tags: [
             
             "输出",
@@ -1447,7 +1479,7 @@ export default {
         ],
         "for": "Yanfei",
         
-        badge: getImage("Feiyan"),
+        badge: getImage("UI_AvatarIcon_Feiyan"),
         
         config: [
             
@@ -1456,8 +1488,8 @@ export default {
     
     "YelanDefault": {
         name: "YelanDefault",
-        chs: "夜兰-兰生幽谷",
-        description: "普通输出夜兰。使得Q伤害最大",
+        // chs: "夜兰-兰生幽谷",
+        // description: "普通输出夜兰。使得Q伤害最大",
         tags: [
             
             "输出",
@@ -1465,21 +1497,21 @@ export default {
         ],
         "for": "Yelan",
         
-        badge: getImage("Yelan"),
+        badge: getImage("UI_AvatarIcon_Yelan"),
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发频率","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"t6","type":"float"},
             
         ],
     },
     
     "YoimiyaDefault": {
         name: "YoimiyaDefault",
-        chs: "宵宫-琉焰华舞",
-        description: "普通输出宵宫",
+        // chs: "宵宫-琉焰华舞",
+        // description: "普通输出宵宫",
         tags: [
             
             "输出",
@@ -1487,21 +1519,21 @@ export default {
         ],
         "for": "Yoimiya",
         
-        badge: getImage("Yoimiya"),
+        badge: getImage("UI_AvatarIcon_Yoimiya"),
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"蒸发占比","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":"t6","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"融化占比","type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":"t5","type":"float"},
             
         ],
     },
     
     "YunjinDefault": {
         name: "YunjinDefault",
-        chs: "云堇-红毹婵娟",
-        description: "普通增伤辅助云堇",
+        // chs: "云堇-红毹婵娟",
+        // description: "普通增伤辅助云堇",
         tags: [
             
             "辅助",
@@ -1509,19 +1541,19 @@ export default {
         ],
         "for": "Yunjin",
         
-        badge: getImage("Yunjin"),
+        badge: getImage("UI_AvatarIcon_Yunjin"),
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "ZhongliDefault": {
         name: "ZhongliDefault",
-        chs: "钟离-尘世闲游",
-        description: "普通爆发钟离",
+        // chs: "钟离-尘世闲游",
+        // description: "普通爆发钟离",
         tags: [
             
             "爆发",
@@ -1529,19 +1561,19 @@ export default {
         ],
         "for": "Zhongli",
         
-        badge: getImage("Zhongli"),
+        badge: getImage("UI_AvatarIcon_Zhongli"),
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"充能需求","type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },
     
     "KukiShinobuDefault": {
         name: "KukiShinobuDefault",
-        chs: "久岐忍-烦恼刈除",
-        description: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
+        // chs: "久岐忍-烦恼刈除",
+        // description: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
         tags: [
             
             "辅助",
@@ -1549,11 +1581,49 @@ export default {
         ],
         "for": "KukiShinobu",
         
-        badge: getImage("Shinobu"),
+        badge: getImage("UI_AvatarIcon_Shinobu"),
         
         config: [
             
-            {"default":0.6,"max":1.0,"min":0.0,"name":"e_ratio","title":"E技能伤害占比","type":"float"},
+            {"default":0.6,"max":1.0,"min":0.0,"name":"e_ratio","title":"t15","type":"float"},
+            
+        ],
+    },
+    
+    "ShikanoinHeizouDefault": {
+        name: "ShikanoinHeizouDefault",
+        // chs: "鹿野院平藏-心朝乂安",
+        // description: "输出平藏",
+        tags: [
+            
+            "输出",
+            
+        ],
+        "for": "ShikanoinHeizou",
+        
+        badge: getImage("UI_AvatarIcon_Heizo"),
+        
+        config: [
+            
+        ],
+    },
+    
+    "TighnariDefault": {
+        name: "TighnariDefault",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "Tighnari",
+        
+        badge: getImage("UI_AvatarIcon_Tighnari"),
+        
+        config: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"spread_rate","title":"t16","type":"float"},
             
         ],
     },

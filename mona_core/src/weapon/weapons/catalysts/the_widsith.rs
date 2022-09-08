@@ -44,6 +44,7 @@ pub struct TheWidsith;
 impl WeaponTrait for TheWidsith {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TheWidsith,
+        internal_name: "Catalyst_Troupe",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage120),
         weapon_base: WeaponBaseATKFamily::ATK510,
@@ -58,17 +59,17 @@ impl WeaponTrait for TheWidsith {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "t1_rate",
-            title: "宣叙调比例",
+            title: "w16",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "t2_rate",
-            title: "咏叹调比例",
+            title: "w17",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "t3_rate",
-            title: "间奏曲比例",
+            title: "w18",
             config: ItemConfig::RATE01_TYPE
         },
     ]);

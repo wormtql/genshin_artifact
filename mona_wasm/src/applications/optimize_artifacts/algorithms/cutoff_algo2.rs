@@ -1,819 +1,517 @@
-use std::cmp::{Ordering, Reverse};
-use std::collections::{HashMap, HashSet, BinaryHeap};
-use rand::Rng;
-use smallvec::SmallVec;
-use strum::IntoEnumIterator;
-
-use crate::applications::optimize_artifacts::algorithm::SingleOptimizeAlgorithm;
-use crate::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode, OptimizationResult};
-use mona::artifacts::{Artifact, ArtifactList, ArtifactSetName, ArtifactSlotName};
-use ArtifactSlotName::*;
+use std::cell::RefCell;
+use std::collections::{HashMap, HashSet};
+use mona::artifacts::{Artifact, ArtifactSetName, ArtifactSlotName};
 use mona::artifacts::eff::ARTIFACT_EFF5;
 use mona::artifacts::effect_config::ArtifactEffectConfig;
-use mona::attribute::{AttributeUtils, SimpleAttributeGraph2};
+use mona::attribute::SimpleAttributeGraph2;
 use mona::buffs::Buff;
 use mona::character::Character;
 use mona::common::StatName;
 use mona::enemies::Enemy;
 use mona::target_functions::TargetFunction;
-use mona::utils::artifact::{get_per_slot_artifacts, get_artifacts_by_id};
+use mona::utils::artifact::get_per_slot_artifacts;
 use mona::weapon::Weapon;
+use smallvec::{SmallVec, smallvec};
+use crate::applications::optimize_artifacts::algorithm::SingleOptimizeAlgorithm;
+use crate::applications::optimize_artifacts::algorithms::common::{get_artifacts_group, get_artifacts_group_without_set, get_set_names, get_super_artifacts, get_super_artifacts_without_set, ResultRecorder, ValueFunction};
+use crate::applications::optimize_artifacts::algorithms::cutoff_heuristic::CutoffAlgorithmHeuristic;
+use crate::applications::optimize_artifacts::algorithms::weight_heuristic::{NaiveWeightHeuristic, WeightHeuristicAlgorithm};
+use crate::applications::optimize_artifacts::inter::{ConstraintConfig, ConstraintSetMode, OptimizationResult};
+
+type SimpleSlotName = usize;
 
 
-type SuperArtifactType = HashMap<(ArtifactSlotName, StatName, ArtifactSetName), Artifact>;
-type SuperArtifactType2 = HashMap<(ArtifactSlotName, StatName), Artifact>;
+pub struct CutoffAlgo2Helper<'a> {
+    // make sure vec length is not 0
+    pub artifacts: HashMap<(ArtifactSetName, SimpleSlotName, StatName), Vec<&'a Artifact>>,
+    pub artifacts_without_set: HashMap<(SimpleSlotName, StatName), Vec<&'a Artifact>>,
+    pub artifacts_all: &'a [&'a Artifact],
+    pub artifact_sets: Vec<ArtifactSetName>,
 
+    pub super_artifacts: HashMap<(ArtifactSetName, SimpleSlotName, StatName), Artifact>,
+    pub super_artifacts_without_set: HashMap<(SimpleSlotName, StatName), Artifact>,
 
-#[derive(Debug)]
-struct SuperArtifactStruct {
-    super_artifacts: SuperArtifactType,
-    super_artifacts2: SuperArtifactType2
+    pub sand_stats: Vec<StatName>,
+    pub goblet_stats: Vec<StatName>,
+    pub head_stats: Vec<StatName>,
+
+    pub factor_a: f64,
 }
 
-impl SuperArtifactStruct {
-    fn from_artifacts(artifacts: &[&Artifact]) -> Self {
-        let mut result1 = HashMap::new();
+#[derive(Copy, Clone)]
+pub enum SlotSetName {
+    Some(ArtifactSetName),
+    Any,
+}
 
-        let main_stat_names = vec![
-            get_slot_main_stat_names(artifacts, ArtifactSlotName::Flower),
-            get_slot_main_stat_names(artifacts, ArtifactSlotName::Feather),
-            get_slot_main_stat_names(artifacts, ArtifactSlotName::Sand),
-            get_slot_main_stat_names(artifacts, ArtifactSlotName::Goblet),
-            get_slot_main_stat_names(artifacts, ArtifactSlotName::Head),
+impl<'a> CutoffAlgo2Helper<'a> {
+    pub fn new(artifacts: &'a [&'a Artifact], weight_heuristic: Option<HashMap<StatName, f64>>, set_heuristics: Option<HashMap<ArtifactSetName, f64>>, factor_a: f64) -> CutoffAlgo2Helper<'a> {
+        let mut sand_stats = HashSet::new();
+        let mut goblet_stats = HashSet::new();
+        let mut head_stats = HashSet::new();
+
+        for art in artifacts.iter() {
+            let slot = art.slot;
+            let main_stat = art.main_stat.0;
+            if slot == ArtifactSlotName::Sand {
+                sand_stats.insert(main_stat);
+            } else if slot == ArtifactSlotName::Goblet {
+                goblet_stats.insert(main_stat);
+            } else if slot == ArtifactSlotName::Head {
+                head_stats.insert(main_stat);
+            }
+        }
+
+        let mut sand_stats: Vec<StatName> = sand_stats.into_iter().collect();
+        let mut goblet_stats: Vec<StatName> = goblet_stats.into_iter().collect();
+        let mut head_stats: Vec<StatName> = head_stats.into_iter().collect();
+
+        let mut artifacts_group = get_artifacts_group(artifacts);
+        let mut artifacts_group_without_set = get_artifacts_group_without_set(artifacts);
+
+        if let Some(ref weights) = weight_heuristic {
+            sand_stats.sort_by_cached_key(|x| {
+                -(weights.get(x).cloned().unwrap_or(0.0) * 100.0) as usize
+            });
+            goblet_stats.sort_by_cached_key(|x| {
+                -(weights.get(x).cloned().unwrap_or(0.0) * 100.0) as usize
+            });
+            head_stats.sort_by_cached_key(|x| {
+                -(weights.get(x).cloned().unwrap_or(0.0) * 100.0) as usize
+            });
+            // println!("{:?}", sand_stats);
+
+            for (_, arts) in artifacts_group.iter_mut() {
+                arts.sort_by_cached_key(|x| {
+                    let mut score = 0.0;
+                    for &(stat_name, value) in x.sub_stats.iter() {
+                        let weight = weights.get(&stat_name).cloned().unwrap_or(0.0);
+                        let eff = value / ARTIFACT_EFF5.get_value(stat_name, 3);
+                        score += weight * eff;
+                    }
+                    -(score * 100.0) as usize
+                })
+            }
+            for (_, arts) in artifacts_group_without_set.iter_mut() {
+                arts.sort_by_cached_key(|x| {
+                    let mut score = 0.0;
+                    for &(stat_name, value) in x.sub_stats.iter() {
+                        let weight = weights.get(&stat_name).cloned().unwrap_or(0.0);
+                        let eff = value / ARTIFACT_EFF5.get_value(stat_name, 3);
+                        score += weight * eff;
+                    }
+                    -(score * 100.0) as usize
+                })
+            }
+        }
+
+        let mut sets = get_set_names(artifacts);
+        if let Some(ref h) = set_heuristics {
+            sets.sort_by_key(|x| {
+                let v = h.get(x).cloned().unwrap_or(0.0);
+                -(v * 100.0) as usize
+            })
+        }
+
+        CutoffAlgo2Helper {
+            artifacts: artifacts_group,
+            artifacts_without_set: artifacts_group_without_set,
+            artifacts_all: artifacts,
+            artifact_sets: sets,
+            super_artifacts: get_super_artifacts(artifacts),
+            super_artifacts_without_set: get_super_artifacts_without_set(artifacts),
+
+            sand_stats,
+            goblet_stats,
+            head_stats,
+
+            factor_a,
+        }
+    }
+
+    pub fn get_arts(&self, set_name: SlotSetName, main_stat: StatName, slot: SimpleSlotName) -> Option<&[&Artifact]> {
+        match set_name {
+            SlotSetName::Some(x) => {
+                if let Some(arts) = self.artifacts.get(&(x, slot, main_stat)) {
+                    Some(&arts)
+                } else {
+                    None
+                }
+            },
+            SlotSetName::Any => {
+                if let Some(arts) = self.artifacts_without_set.get(&(slot, main_stat)) {
+                    Some(&arts)
+                } else {
+                    None
+                }
+            }
+        }
+    }
+
+    pub fn get_super_art(&self, set_name: SlotSetName, main_stat: StatName, slot: SimpleSlotName) -> Option<&Artifact> {
+        match set_name {
+            SlotSetName::Some(x) => self.super_artifacts.get(&(x, slot, main_stat)),
+            SlotSetName::Any => self.super_artifacts_without_set.get(&(slot, main_stat)),
+        }
+    }
+
+    pub fn is_better_than_current_least(&self, arts: &[&Artifact], value_fn: &ValueFunction, rc: &ResultRecorder) -> bool {
+        let attribute = value_fn.get_attribute(arts);
+
+        if !value_fn.check_attribute_attribute(&attribute) {
+            return false;
+        }
+
+        let score = value_fn.score_attribute(&attribute, arts);
+        let current_least = rc.current_least();
+        score * self.factor_a > current_least
+    }
+
+    pub fn update_artifacts(&self, arts: &[&Artifact], value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+        let attribute = value_fn.get_attribute(arts);
+        if !value_fn.check_attribute_attribute(&attribute) {
+            return;
+        }
+        let score = value_fn.score_attribute(&attribute, arts);
+
+        let art_ids = [
+            arts[0].id,
+            arts[1].id,
+            arts[2].id,
+            arts[3].id,
+            arts[4].id,
         ];
-        // println!("{:?}", main_stat_names);
+        rc.push_result(art_ids, score);
+    }
 
-        let set_names = vec![
-            get_slot_set_names(artifacts, ArtifactSlotName::Flower),
-            get_slot_set_names(artifacts, ArtifactSlotName::Feather),
-            get_slot_set_names(artifacts, ArtifactSlotName::Sand),
-            get_slot_set_names(artifacts, ArtifactSlotName::Goblet),
-            get_slot_set_names(artifacts, ArtifactSlotName::Head),
-        ];
+    pub fn do_iter(&self, set_names: &[SlotSetName], main_stats: &[StatName], value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+        let arts: SmallVec<[&[&Artifact]; 5]> = {
+            let mut temp: SmallVec<[&[&Artifact]; 5]> = SmallVec::new();
+            for i in 0..5 {
+                let maybe_arts = self.get_arts(set_names[i], main_stats[i], i);
+                if maybe_arts.is_none() {
+                    return;
+                }
+                temp.push(maybe_arts.unwrap());
+            }
+            // temp.sort_by_cached_key(|x| {
+            //     x.len()
+            // });
+            temp
+        };
 
-        for slot_index in 0..5 {
-            let slot_enum: ArtifactSlotName = num::FromPrimitive::from_usize(slot_index).unwrap();
-            for &main_stat_name in main_stat_names[slot_index].iter() {
-                for &set_name in set_names[slot_index].iter() {
-                    if let Some(super_artifact) = merge_super_artifact(artifacts, slot_enum, set_name, main_stat_name, false) {
-                        result1.insert((slot_enum, main_stat_name, set_name), super_artifact);
+        for i0 in 0..arts[0].len() {
+            {
+                let mut super_arts: SmallVec<[&Artifact; 5]> = SmallVec::new();
+                super_arts.push(arts[0][i0]);
+
+                for i in 1..5 {
+                    if let Some(super_art) = self.get_super_art(set_names[i], main_stats[i], i) {
+                        super_arts.push(super_art);
+                    } else {
+                        return;
                     }
                 }
-            }
-        }
 
-        let mut result2 = HashMap::new();
-        for slot_index in 0..5 {
-            let slot_enum: ArtifactSlotName = num::FromPrimitive::from_usize(slot_index).unwrap();
-            for &main_stat_name in main_stat_names[slot_index].iter() {
-                if let Some(super_artifact) = merge_super_artifact(artifacts, slot_enum, ArtifactSetName::Adventurer, main_stat_name, true) {
-                    result2.insert((slot_enum, main_stat_name), super_artifact);
-                }
-            }
-        }
-
-        SuperArtifactStruct {
-            super_artifacts: result1,
-            super_artifacts2: result2,
-        }
-    }
-
-    fn get_with_set_name(&self, slot: ArtifactSlotName, main_stat: StatName, set_name: ArtifactSetName) -> Option<&Artifact> {
-        self.super_artifacts.get(&(slot, main_stat, set_name))
-    }
-
-    fn get_without_set_name(&self, slot: ArtifactSlotName, main_stat: StatName) -> &Artifact {
-        self.super_artifacts2.get(&(slot, main_stat)).unwrap()
-    }
-}
-
-struct ArtifactStatistics<'a> {
-    slot_main_stat_names: HashMap<ArtifactSlotName, HashSet<StatName>>,
-    // slot_set_names: HashMap<ArtifactSlotName, HashSet<ArtifactSetName>>,
-    slot_stat_set_names: HashMap<(ArtifactSlotName, StatName), HashSet<ArtifactSetName>>,
-    all_set_names: HashSet<ArtifactSetName>,
-    all_set_names_flat: Vec<ArtifactSetName>,
-    artifact_group: HashMap<(ArtifactSlotName, StatName, ArtifactSetName), Vec<&'a Artifact>>,
-    artifact_group2: HashMap<(ArtifactSlotName, StatName), Vec<&'a Artifact>>,
-}
-
-fn group_artifact<'a>(artifacts: &[&'a Artifact]) -> HashMap<(ArtifactSlotName, StatName, ArtifactSetName), Vec<&'a Artifact>> {
-    let mut result = HashMap::new();
-
-    for artifact in artifacts.iter() {
-        let key = (artifact.slot, artifact.main_stat.0, artifact.set_name);
-        result.entry(key).or_insert(Vec::new()).push(*artifact);
-    }
-
-    result
-}
-
-fn group_artifact2<'a>(artifacts: &[&'a Artifact]) -> HashMap<(ArtifactSlotName, StatName), Vec<&'a Artifact>> {
-    let mut result = HashMap::new();
-
-    for artifact in artifacts.iter() {
-        let key = (artifact.slot, artifact.main_stat.0);
-        result.entry(key).or_insert(Vec::new()).push(*artifact);
-    }
-
-    result
-}
-
-impl<'a> ArtifactStatistics<'a> {
-    fn from_artifacts(artifacts: &[&'a Artifact]) -> Self {
-        let all_set_names = get_all_set_names(artifacts);
-
-        let mut slot_main_stat_names = HashMap::new();
-        let mut slot_stat_set_names = HashMap::new();
-
-        for slot in ArtifactSlotName::iter() {
-            slot_main_stat_names.insert(slot, get_slot_main_stat_names(artifacts, slot));
-            // slot_set_names.insert(slot, get_slot_set_names(artifacts, slot));
-        }
-
-        for artifact in artifacts.iter() {
-            let key = (artifact.slot, artifact.main_stat.0);
-            slot_stat_set_names.entry(key).or_insert(HashSet::new()).insert(artifact.set_name);
-        }
-
-        ArtifactStatistics {
-            slot_main_stat_names,
-            // slot_set_names,
-            slot_stat_set_names,
-            all_set_names_flat: all_set_names.clone().drain().collect(),
-            all_set_names,
-            artifact_group: group_artifact(artifacts),
-            artifact_group2: group_artifact2(artifacts),
-        }
-    }
-
-    fn get_artifacts_with_set_name(&self, slot: ArtifactSlotName, stat_name: StatName, set_name: ArtifactSetName) -> &[&Artifact] {
-        self.artifact_group.get(&(slot, stat_name, set_name)).unwrap()
-    }
-
-    fn get_artifacts_without_set_name(&self, slot: ArtifactSlotName, stat_name: StatName) -> &[&Artifact] {
-        self.artifact_group2.get(&(slot, stat_name)).unwrap()
-    }
-}
-
-struct BinaryHeapItem {
-    artifacts: SmallVec<[u64; 5]>,
-    score: f64,
-}
-
-impl PartialEq for BinaryHeapItem {
-    fn eq(&self, other: &Self) -> bool {
-        self.score == other.score
-    }
-}
-
-impl Eq for BinaryHeapItem {}
-
-impl PartialOrd for BinaryHeapItem {
-    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        self.score.partial_cmp(&other.score)
-    }
-}
-
-impl Ord for BinaryHeapItem {
-    fn cmp(&self, other: &Self) -> Ordering {
-        self.partial_cmp(other).unwrap()
-    }
-}
-
-struct ResultRecorder<'a> {
-    records: BinaryHeap<Reverse<BinaryHeapItem>>,
-
-    capacity: usize,
-
-    character: &'a Character<SimpleAttributeGraph2>,
-    weapon: &'a Weapon<SimpleAttributeGraph2>,
-    enemy: &'a Enemy,
-    target_function: &'a Box<dyn TargetFunction>,
-    buffs: &'a [Box<dyn Buff<SimpleAttributeGraph2>>],
-    artifact_config: &'a ArtifactEffectConfig,
-}
-
-impl<'a> ResultRecorder<'a> {
-    fn value(&self, artifacts: &[&Artifact]) -> f64 {
-        let artifact_list = ArtifactList {
-            artifacts,
-        };
-        let attribute = AttributeUtils::create_attribute_from_big_config(
-            &artifact_list,
-            self.artifact_config,
-            self.character,
-            self.weapon,
-            self.buffs
-        );
-
-        let v = self.target_function.target(&attribute, self.character, self.weapon, artifacts, self.enemy);
-        v
-    }
-
-    fn max_value(&self) -> f64 {
-        self.records.iter().map(|x| x.0.score).fold(0.0, f64::max)
-    }
-
-    fn is_better(&self, artifacts: &[&Artifact]) -> bool {
-        if self.records.len() == 0 {
-            true
-        } else {
-            let v = self.value(artifacts);
-
-            v > self.records.peek().unwrap().0.score
-        }
-
-    }
-
-    fn is_better_map(&self, artifacts: &HashMap<ArtifactSlotName, &Artifact>) -> bool {
-        let mut vec: SmallVec<[&Artifact; 5]> = SmallVec::new();
-        for a in artifacts.iter() {
-            vec.push(*a.1);
-        }
-
-        self.is_better(&vec)
-    }
-
-    fn update(&mut self, artifacts: &[&Artifact]) {
-        let value = self.value(artifacts);
-
-        let mut record = BinaryHeapItem {
-            artifacts: SmallVec::new(),
-            score: value,
-        };
-        for artifact in artifacts.iter() {
-            record.artifacts.push(artifact.id);
-        }
-
-        if self.records.len() < self.capacity {
-            self.records.push(Reverse(record));
-        } else {
-            let current_min = self.records.peek().unwrap().0.score;
-            if value > current_min {
-                self.records.pop();
-                self.records.push(Reverse(record));
-            }
-        }
-    }
-
-    fn update_map(&mut self, artifacts: &HashMap<ArtifactSlotName, &Artifact>) {
-        let mut vec: SmallVec<[&Artifact; 5]> = SmallVec::new();
-        for a in artifacts.iter() {
-            vec.push(*a.1);
-        }
-
-        self.update(&vec);
-    }
-}
-
-fn merge_super_artifact(artifacts: &[&Artifact], slot: ArtifactSlotName, set_name: ArtifactSetName, main_stat_name: StatName, is_all: bool) -> Option<Artifact> {
-    let mut value_map = HashMap::new();
-
-    let artifacts: Vec<&Artifact> = artifacts.iter()
-        .map(|x| *x)
-        .filter(move |x| x.main_stat.0 == main_stat_name && x.slot == slot && ((!is_all && x.set_name == set_name) || is_all))
-        .collect();
-
-    if artifacts.len() == 0 {
-        return None;
-    }
-
-    let mut max_main_stat_value: f64 = 0.0;
-    for artifact in artifacts.iter() {
-        for &(name, value) in artifact.sub_stats.iter() {
-            if !value_map.contains_key(&name) {
-                value_map.insert(name, 0.0);
-            }
-            let old_value: f64 = *value_map.get(&name).unwrap();
-            value_map.insert(name, old_value.max(value));
-        }
-
-        max_main_stat_value = max_main_stat_value.max(artifact.main_stat.1);
-    }
-
-    let mut super_sub_stats = Vec::new();
-    for (name, value) in value_map {
-        super_sub_stats.push((name, value));
-    }
-
-    let artifact = Artifact {
-        set_name,
-        slot,
-        level: 20,
-        star: 5,
-        sub_stats: super_sub_stats,
-        main_stat: (main_stat_name, max_main_stat_value),
-        id: rand::thread_rng().gen(),
-    };
-
-    Some(artifact)
-}
-
-fn get_set_names(artifacts: &[&Artifact]) -> HashMap<(ArtifactSlotName, StatName, ArtifactSetName), usize> {
-    let mut result = HashMap::new();
-    for artifact in artifacts.iter() {
-        let key = (artifact.slot, artifact.main_stat.0, artifact.set_name);
-        *result.entry(key).or_insert(0) += 1;
-    }
-
-    result
-}
-
-fn get_slot_main_stat_names(artifacts: &[&Artifact], slot: ArtifactSlotName) -> HashSet<StatName> {
-    artifacts.iter()
-        .filter(|a| a.slot == slot)
-        .map(|a| a.main_stat.0)
-        .collect()
-}
-
-fn get_slot_set_names(artifacts: &[&Artifact], slot: ArtifactSlotName) -> HashSet<ArtifactSetName> {
-    artifacts.iter()
-        .filter(|a| a.slot == slot)
-        .map(|a| a.set_name)
-        .collect()
-}
-
-fn get_all_set_names(artifacts: &[&Artifact]) -> HashSet<ArtifactSetName> {
-    artifacts.iter().map(|a| a.set_name).collect()
-}
-
-fn select_main_stat_name(slot: ArtifactSlotName, n1: StatName, n2: StatName, n3: StatName) -> StatName {
-    match slot {
-        ArtifactSlotName::Flower => StatName::HPFixed,
-        ArtifactSlotName::Feather => StatName::ATKFixed,
-        ArtifactSlotName::Sand => n1,
-        ArtifactSlotName::Goblet => n2,
-        ArtifactSlotName::Head => n3
-    }
-}
-
-fn do_iter(artifacts: &HashMap<ArtifactSlotName, &[&Artifact]>, super_artifacts: &SuperArtifactStruct, s: &ArtifactStatistics, recorder: &mut ResultRecorder, n1: StatName, n2: StatName, n3: StatName) {
-    let mut slot_count: HashMap<ArtifactSlotName, usize> = HashMap::new();
-
-    for slot in ArtifactSlotName::iter() {
-        slot_count.insert(slot, artifacts.get(&slot).unwrap().len());
-    }
-
-    let mut temp: Vec<(ArtifactSlotName, usize)> = slot_count.drain().collect();
-    temp.sort_by(|a, b| a.1.cmp(&b.1));
-
-    let slot_order = temp.iter().map(|x| x.0).collect::<Vec<_>>();
-
-    let s0 = slot_order[0];
-    let s1 = slot_order[1];
-    let s2 = slot_order[2];
-    let s3 = slot_order[3];
-    let s4 = slot_order[4];
-
-    let sm0 = select_main_stat_name(s0, n1, n2, n3);
-    let sm1 = select_main_stat_name(s1, n1, n2, n3);
-    let sm2 = select_main_stat_name(s2, n1, n2, n3);
-    let sm3 = select_main_stat_name(s3, n1, n2, n3);
-    let sm4 = select_main_stat_name(s4, n1, n2, n3);
-
-    let mut artifacts_buffer10 = HashMap::new();
-    let mut artifacts_buffer11 = HashMap::new();
-    let mut artifacts_buffer20 = HashMap::new();
-    let mut artifacts_buffer21 = HashMap::new();
-    let mut artifacts_buffer30 = HashMap::new();
-    let mut artifacts_buffer31 = HashMap::new();
-    let mut artifacts_buffer40 = HashMap::new();
-    let mut artifacts_buffer41 = HashMap::new();
-    let mut artifacts_buffer50 = HashMap::new();
-    for &sn1 in s.slot_stat_set_names.get(&(s0, sm0)).unwrap() {
-        artifacts_buffer10.clear();
-        // fill super artifacts
-        for slot in ArtifactSlotName::iter() {
-            let stat_name = select_main_stat_name(slot, n1, n2, n3);
-            if slot == s0 {
-                // let result = super_artifacts.get_with_set_name(s0, stat_name, sn1);
-                artifacts_buffer10.insert(slot, super_artifacts.get_with_set_name(slot, stat_name, sn1).unwrap());
-            } else {
-                artifacts_buffer10.insert(slot, super_artifacts.get_without_set_name(slot, stat_name));
-            }
-        }
-        if !recorder.is_better_map(&artifacts_buffer10) {
-            continue;
-        }
-
-        for &a1 in artifacts.get(&s0).unwrap().iter() {
-            artifacts_buffer11.clone_from(&artifacts_buffer10);
-            artifacts_buffer11.insert(s0, a1);
-            if !recorder.is_better_map(&artifacts_buffer11) {
-                continue;
-            }
-
-            for &sn2 in s.slot_stat_set_names.get(&(s1, sm1)).unwrap().iter() {
-                artifacts_buffer20.clone_from(&artifacts_buffer11);
-                artifacts_buffer20.insert(s1, super_artifacts.get_with_set_name(s1, sm1, sn2).unwrap());
-                if !recorder.is_better_map(&artifacts_buffer20) {
+                if !self.is_better_than_current_least(&super_arts, value_fn, rc) {
                     continue;
                 }
+            }
 
-                for &a2 in artifacts.get(&s1).unwrap().iter() {
-                    artifacts_buffer21.clone_from(&artifacts_buffer20);
-                    artifacts_buffer21.insert(s1, a2);
-                    if !recorder.is_better_map(&artifacts_buffer21) {
-                        continue;
+            for i1 in 0..arts[1].len() {
+                {
+                    let mut super_arts: SmallVec<[&Artifact; 5]> = SmallVec::new();
+                    super_arts.push(arts[0][i0]);
+                    super_arts.push(arts[1][i1]);
+
+                    for i in 2..5 {
+                        if let Some(super_art) = self.get_super_art(set_names[i], main_stats[i], i) {
+                            super_arts.push(super_art);
+                        } else {
+                            return;
+                        }
                     }
 
-                    for &sn3 in s.slot_stat_set_names.get(&(s2, sm2)).unwrap().iter() {
-                        artifacts_buffer30.clone_from(&artifacts_buffer21);
-                        artifacts_buffer30.insert(s2, super_artifacts.get_with_set_name(s2, sm2, sn3).unwrap());
-                        if !recorder.is_better_map(&artifacts_buffer30) {
+                    if !self.is_better_than_current_least(&super_arts, value_fn, rc) {
+                        continue;
+                    }
+                }
+
+                for i2 in 0..arts[2].len() {
+                    {
+                        let mut super_arts: SmallVec<[&Artifact; 5]> = smallvec![
+                            arts[0][i0],
+                            arts[1][i1],
+                            arts[2][i2],
+                        ];
+
+                        for i in 3..5 {
+                            if let Some(super_art) = self.get_super_art(set_names[i], main_stats[i], i) {
+                                super_arts.push(super_art);
+                            } else {
+                                return;
+                            }
+                        }
+
+                        if !self.is_better_than_current_least(&super_arts, value_fn, rc) {
                             continue;
                         }
+                    }
 
-                        for &a3 in artifacts.get(&s2).unwrap().iter() {
-                            artifacts_buffer31.clone_from(&artifacts_buffer30);
-                            artifacts_buffer31.insert(s2, a3);
-                            if !recorder.is_better_map(&artifacts_buffer31) {
+                    for i3 in 0..arts[3].len() {
+                        {
+                            let mut super_arts: SmallVec<[&Artifact; 5]> = smallvec![
+                                arts[0][i0],
+                                arts[1][i1],
+                                arts[2][i2],
+                                arts[3][i3],
+                            ];
+
+                            for i in 4..5 {
+                                if let Some(super_art) = self.get_super_art(set_names[i], main_stats[i], i) {
+                                    super_arts.push(super_art);
+                                } else {
+                                    return;
+                                }
+                            }
+
+                            if !self.is_better_than_current_least(&super_arts, value_fn, rc) {
                                 continue;
                             }
+                        }
 
-                            for &sn4 in s.slot_stat_set_names.get(&(s3, sm3)).unwrap().iter() {
-                                artifacts_buffer40.clone_from(&artifacts_buffer31);
-                                artifacts_buffer40.insert(s3, super_artifacts.get_with_set_name(s3, sm3, sn4).unwrap());
-                                if !recorder.is_better_map(&artifacts_buffer40) {
-                                    continue;
-                                }
+                        for i4 in 0..arts[4].len() {
+                            let artifacts: SmallVec<[&Artifact; 5]> = smallvec![
+                                arts[0][i0],
+                                arts[1][i1],
+                                arts[2][i2],
+                                arts[3][i3],
+                                arts[4][i4],
+                            ];
 
-                                for &a4 in artifacts.get(&s3).unwrap().iter() {
-                                    artifacts_buffer41.clone_from(&artifacts_buffer40);
-                                    artifacts_buffer41.insert(s3, a4);
-                                    if !recorder.is_better_map(&artifacts_buffer41) {
-                                        continue;
-                                    }
-
-                                    for &sn5 in s.slot_stat_set_names.get(&(s4, sm4)).unwrap().iter() {
-                                        artifacts_buffer50.clone_from(&artifacts_buffer41);
-                                        artifacts_buffer50.insert(s4, super_artifacts.get_with_set_name(s4, sm4, sn5).unwrap());
-                                        if !recorder.is_better_map(&artifacts_buffer50) {
-                                            continue;
-                                        }
-
-                                        for &a5 in artifacts.get(&s4).unwrap().iter() {
-                                            artifacts_buffer50.insert(s4, a5);
-                                            recorder.update_map(&artifacts_buffer50);
-                                        }
-                                    }
-                                }
-                            }
+                            self.update_artifacts(&artifacts, value_fn, rc);
                         }
                     }
                 }
             }
         }
     }
-}
 
-fn iter_set4(super_artifacts: &SuperArtifactStruct, recorder: &mut ResultRecorder, s: &ArtifactStatistics, fixed_set: Option<ArtifactSetName>) {
-    let mut artifacts_buffer: SmallVec<[&Artifact; 5]> = SmallVec::new();
-    let mut filter_artifacts_buffer: HashMap<ArtifactSlotName, &[&Artifact]> = HashMap::with_capacity(5);
-    for &sand_main_stat_name in s.slot_main_stat_names.get(&Sand).unwrap() {
-        for &goblet_main_stat_name in s.slot_main_stat_names.get(&Goblet).unwrap() {
-            for &head_main_stat_name in s.slot_main_stat_names.get(&Head).unwrap() {
-                for &set_name in s.all_set_names.iter() {
-                    if fixed_set.is_some() && set_name != fixed_set.unwrap() {
-                        continue;
-                    }
-
-                    'any_slot: for slot in ArtifactSlotName::iter() {
-                        // slot is any
-                        artifacts_buffer.clear();
-
-                        for slot2 in ArtifactSlotName::iter() {
-                            let stat_name = select_main_stat_name(slot2, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                            if slot == slot2 {
-                                artifacts_buffer.push(super_artifacts.get_without_set_name(slot, stat_name));
-                            } else {
-                                let result = super_artifacts.get_with_set_name(slot2, stat_name, set_name);
-                                if let Some(a) = result {
-                                    artifacts_buffer.push(a);
+    pub fn iter_set(&self, set_mask: &[[i32; 5]], s1: ArtifactSetName, s2: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+        for &sand in self.sand_stats.iter() {
+            for &head in self.head_stats.iter() {
+                for &goblet in self.goblet_stats.iter() {
+                    let main_stats = [StatName::HPFixed, StatName::ATKFixed, sand, goblet, head];
+                    'outer: for set_composition in set_mask.iter() {
+                        {
+                            let mut super_artifacts: SmallVec<[&Artifact; 5]> = SmallVec::new();
+                            for (index, &mask) in set_composition.iter().enumerate() {
+                                let slot_set_name = if mask == 0 {
+                                    SlotSetName::Any
+                                } else if mask == 1 {
+                                    SlotSetName::Some(s1)
                                 } else {
-                                    continue 'any_slot;
-                                }
-                            }
-                        }
+                                    SlotSetName::Some(s2)
+                                };
 
-                        if !recorder.is_better(&artifacts_buffer) {
-                            // do cutoff
-                            continue;
-                        }
-
-                        for slot2 in ArtifactSlotName::iter() {
-                            let stat_name = select_main_stat_name(slot2, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                            if slot == slot2 {
-                                filter_artifacts_buffer.insert(slot2, s.get_artifacts_without_set_name(slot2, stat_name));
-                            } else {
-                                filter_artifacts_buffer.insert(slot2, s.get_artifacts_with_set_name(slot2, stat_name, set_name));
-                            }
-                        }
-
-                        do_iter(&filter_artifacts_buffer, super_artifacts, s, recorder, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                    }
-                }
-            }
-        }
-    }
-}
-
-fn iter_set22(super_artifacts: &SuperArtifactStruct, recorder: &mut ResultRecorder, s: &ArtifactStatistics, fixed1: Option<ArtifactSetName>, fixed2: Option<ArtifactSetName>) {
-    let mut index_buffer: [usize; 4] = [0; 4];
-    let mut index_buffer2: [usize; 4] = [0; 4];
-    let mut artifacts_buffer: HashMap<ArtifactSlotName, &Artifact> = HashMap::with_capacity(5);
-    let mut filter_artifacts_buffer: HashMap<ArtifactSlotName, &[&Artifact]> = HashMap::with_capacity(5);
-
-    for &sand_main_stat_name in s.slot_main_stat_names.get(&Sand).unwrap() {
-        for &goblet_main_stat_name in s.slot_main_stat_names.get(&Goblet).unwrap() {
-            for &head_main_stat_name in s.slot_main_stat_names.get(&Head).unwrap() {
-                for any_slot_index in 0..5 {
-                    let any_slot: ArtifactSlotName = num::FromPrimitive::from_usize(any_slot_index).unwrap();
-                    let any_slot_stat_name = select_main_stat_name(any_slot, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                    artifacts_buffer.clear();
-                    artifacts_buffer.insert(any_slot, super_artifacts.get_without_set_name(any_slot, any_slot_stat_name));
-
-                    let mut ii = 0;
-                    for i in 0..5 {
-                        if i != any_slot_index {
-                            index_buffer[ii] = i;
-                            ii += 1;
-                        }
-                    }
-
-                    for a in 0..3 {
-                        for b in a + 1..4 {
-                            // a, b is set name 1
-                            let aa = index_buffer[a];
-                            let bb = index_buffer[b];
-
-                            index_buffer2[0] = aa;
-                            index_buffer2[1] = bb;
-
-                            let mut it = 2;
-                            for c in 0..4 {
-                                let cc = index_buffer[c];
-                                if cc != aa && cc != bb {
-                                    index_buffer2[it] = cc;
-                                    it += 1;
-                                }
-                            }
-
-                            let s1 = num::FromPrimitive::from_usize(index_buffer2[0]).unwrap();
-                            let s2 = num::FromPrimitive::from_usize(index_buffer2[1]).unwrap();
-                            let s3 = num::FromPrimitive::from_usize(index_buffer2[2]).unwrap();
-                            let s4 = num::FromPrimitive::from_usize(index_buffer2[3]).unwrap();
-
-                            let ms1 = select_main_stat_name(s1, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                            let ms2 = select_main_stat_name(s2, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                            let ms3 = select_main_stat_name(s3, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                            let ms4 = select_main_stat_name(s4, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-
-                            for sn1_index in 0_usize..s.all_set_names_flat.len() {
-                                let sn1 = s.all_set_names_flat[sn1_index];
-                                if fixed1.is_some() && fixed1.unwrap() != sn1 {
-                                    continue;
-                                }
-
-                                if let Some(a) = super_artifacts.get_with_set_name(s1, ms1, sn1) {
-                                    artifacts_buffer.insert(s1, a);
+                                let super_art = if let Some(x) = self.get_super_art(slot_set_name, main_stats[index], index) {
+                                    x
                                 } else {
-                                    continue;
-                                }
-                                if let Some(a) = super_artifacts.get_with_set_name(s2, ms2, sn1) {
-                                    artifacts_buffer.insert(s2, a);
+                                    continue 'outer;
+                                };
+
+                                super_artifacts.push(super_art);
+                            }
+
+                            if !self.is_better_than_current_least(&super_artifacts, value_fn, rc) {
+                                continue 'outer;
+                            }
+                        }
+
+                        // do iter
+                        let set_names = {
+                            let mut temp: SmallVec<[SlotSetName; 5]> = SmallVec::new();
+                            for &mask in set_composition.iter() {
+                                if mask == 0 {
+                                    temp.push(SlotSetName::Any);
+                                } else if mask == 1 {
+                                    temp.push(SlotSetName::Some(s1));
                                 } else {
-                                    continue;
-                                }
-                                artifacts_buffer.insert(s3, super_artifacts.get_without_set_name(s3, ms3));
-                                artifacts_buffer.insert(s4, super_artifacts.get_without_set_name(s4, ms4));
-
-                                if !recorder.is_better_map(&artifacts_buffer) {
-                                    continue;
-                                }
-
-                                for sn2_index in sn1_index..s.all_set_names_flat.len() {
-                                    let sn2 = s.all_set_names_flat[sn2_index];
-                                    if fixed2.is_some() && fixed2.unwrap() != sn2 {
-                                        continue;
-                                    }
-
-                                    if let Some(a) = super_artifacts.get_with_set_name(s3, ms3, sn2) {
-                                        artifacts_buffer.insert(s3, a);
-                                    } else {
-                                        continue;
-                                    }
-                                    if let Some(a) = super_artifacts.get_with_set_name(s4, ms4, sn2) {
-                                        artifacts_buffer.insert(s4, a);
-                                    } else {
-                                        continue;
-                                    }
-
-                                    if !recorder.is_better_map(&artifacts_buffer) {
-                                        continue;
-                                    }
-
-                                    filter_artifacts_buffer.insert(any_slot, s.get_artifacts_without_set_name(any_slot, any_slot_stat_name));
-                                    filter_artifacts_buffer.insert(s1, s.get_artifacts_with_set_name(s1, ms1, sn1));
-                                    filter_artifacts_buffer.insert(s2, s.get_artifacts_with_set_name(s2, ms2, sn1));
-                                    filter_artifacts_buffer.insert(s3, s.get_artifacts_with_set_name(s3, ms3, sn2));
-                                    filter_artifacts_buffer.insert(s4, s.get_artifacts_with_set_name(s4, ms4, sn2));
-
-                                    do_iter(&filter_artifacts_buffer, super_artifacts, s, recorder, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
+                                    temp.push(SlotSetName::Some(s2));
                                 }
                             }
-                        }
+                            temp
+                        };
+
+                        self.do_iter(&set_names, &main_stats, value_fn, rc);
                     }
                 }
             }
         }
+
     }
-}
 
-fn iter_set2(super_artifacts: &SuperArtifactStruct, recorder: &mut ResultRecorder, s: &ArtifactStatistics, fixed: Option<ArtifactSetName>) {
-    let mut artifacts_buffer = HashMap::with_capacity(5);
-    let mut filter_artifacts_buffer: HashMap<ArtifactSlotName, &[&Artifact]> = HashMap::with_capacity(5);
-    let mut index_buffer = [0_usize; 3];
-    for &sand_main_stat_name in s.slot_main_stat_names.get(&Sand).unwrap() {
-        for &goblet_main_stat_name in s.slot_main_stat_names.get(&Goblet).unwrap() {
-            for &head_main_stat_name in s.slot_main_stat_names.get(&Head).unwrap() {
-                for &set_name in s.all_set_names.iter() {
-                    if fixed.is_some() && set_name != fixed.unwrap() {
-                        continue;
-                    }
+    pub fn iter_set4(&self, set_name: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+        let set_masks = [
+            [0, 1, 1, 1, 1], [1, 0, 1, 1, 1], [1, 1, 0, 1, 1], [1, 1, 1, 0, 1], [1, 1, 1, 1, 0]
+        ];
 
-                    'iter_sn1: for a in 0..4 {
-                        'iter_sn2: for b in a + 1..5 {
-                            let mut it = 0;
-                            for i in 0..5 {
-                                if i != a && i != b {
-                                    index_buffer[it] = i;
-                                    it += 1;
-                                }
-                            }
+        // self.iter_set(&set_masks, set_name, ArtifactSetName::Empty, main_stats, value_fn, rc);
+        self.iter_set(&set_masks, set_name, ArtifactSetName::Empty, value_fn, rc);
+    }
 
-                            // 1, 2 are of set name
-                            let s1: ArtifactSlotName = num::FromPrimitive::from_usize(a).unwrap();
-                            let s2: ArtifactSlotName = num::FromPrimitive::from_usize(b).unwrap();
-                            let s3: ArtifactSlotName = num::FromPrimitive::from_usize(index_buffer[0]).unwrap();
-                            let s4: ArtifactSlotName = num::FromPrimitive::from_usize(index_buffer[1]).unwrap();
-                            let s5: ArtifactSlotName = num::FromPrimitive::from_usize(index_buffer[2]).unwrap();
+    pub fn iter_set22(&self, s1: ArtifactSetName, s2: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+        let set_mask = [
+            [0, 1, 1, 2, 2], [0, 1, 2, 1, 2], [0, 1, 2, 2, 1], [0, 2, 1, 1, 2], [0, 2, 1, 2, 1], [0, 2, 2, 1, 1],
+            [1, 0, 1, 2, 2], [1, 0, 2, 1, 2], [1, 0, 2, 2, 1], [2, 0, 1, 1, 2], [2, 0, 1, 2, 1], [2, 0, 2, 1, 1],
+            [1, 1, 0, 2, 2], [1, 2, 0, 1, 2], [1, 2, 0, 2, 1], [2, 1, 0, 1, 2], [2, 1, 0, 2, 1], [2, 2, 0, 1, 1],
+            [1, 1, 2, 0, 2], [1, 2, 1, 0, 2], [1, 2, 2, 0, 1], [2, 1, 1, 0, 2], [2, 1, 2, 0, 1], [2, 2, 1, 0, 1],
+            [1, 1, 2, 2, 0], [1, 2, 1, 2, 0], [1, 2, 2, 1, 0], [2, 1, 1, 2, 0], [2, 1, 2, 1, 0], [2, 2, 1, 1, 0],
+        ];
 
-                            let sm1 = select_main_stat_name(s1, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                            let sm2 = select_main_stat_name(s2, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                            let sm3 = select_main_stat_name(s3, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                            let sm4 = select_main_stat_name(s4, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                            let sm5 = select_main_stat_name(s5, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
+        // self.iter_set(&set_mask, s1, s2, main_stats, value_fn, rc);
+        self.iter_set(&set_mask, s1, s2, value_fn, rc);
+    }
 
-                            if let Some(a) = super_artifacts.get_with_set_name(s1, sm1, set_name) {
-                                artifacts_buffer.insert(s1, a);
-                            } else {
-                                continue 'iter_sn1;
-                            }
-                            if let Some(a) = super_artifacts.get_with_set_name(s2, sm2, set_name) {
-                                artifacts_buffer.insert(s2, a);
-                            } else {
-                                continue;
-                            }
-                            artifacts_buffer.insert(s3, super_artifacts.get_without_set_name(s3, sm3));
-                            artifacts_buffer.insert(s4, super_artifacts.get_without_set_name(s4, sm4));
-                            artifacts_buffer.insert(s5, super_artifacts.get_without_set_name(s5, sm5));
+    pub fn iter_set2(&self, set_name: ArtifactSetName, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+        let set_masks = [
+            [1, 1, 0, 0, 0], [1, 0, 1, 0, 0], [1, 0, 0, 1, 0], [1, 0, 0, 0, 1],
+            [0, 1, 1, 0, 0], [0, 1, 0, 1, 0], [0, 1, 0, 0, 1],
+            [0, 0, 1, 1, 0], [0, 0, 1, 0, 1],
+            [0, 0, 0, 1, 1]
+        ];
 
-                            if !recorder.is_better_map(&artifacts_buffer) {
-                                continue;
-                            }
+        // self.iter_set(&set_masks, set_name, ArtifactSetName::Empty, main_stats, value_fn, rc);
+        self.iter_set(&set_masks, set_name, ArtifactSetName::Empty, value_fn, rc);
+    }
 
-                            filter_artifacts_buffer.insert(s1, s.get_artifacts_with_set_name(s1, sm1, set_name));
-                            filter_artifacts_buffer.insert(s2, s.get_artifacts_with_set_name(s2, sm2, set_name));
-                            filter_artifacts_buffer.insert(s3, s.get_artifacts_without_set_name(s3, sm3));
-                            filter_artifacts_buffer.insert(s4, s.get_artifacts_without_set_name(s4, sm4));
-                            filter_artifacts_buffer.insert(s5, s.get_artifacts_without_set_name(s5, sm5));
+    pub fn iter_any(&self, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+        // let mut set_count = [0; ArtifactSetName::LEN];
 
-                            do_iter(&filter_artifacts_buffer, super_artifacts, s, recorder, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                        }
-                    }
+        // self.iter_set(&[[0, 0, 0, 0, 0]], ArtifactSetName::Empty, ArtifactSetName::Empty, main_stats, value_fn, rc);
+        self.iter_set(&[[0, 0, 0, 0, 0]], ArtifactSetName::Empty, ArtifactSetName::Empty, value_fn, rc);
+    }
+
+    pub fn do_calculation(&self, value_fn: &ValueFunction, rc: &mut ResultRecorder) {
+        let set_names = &self.artifact_sets;
+
+        let do_set4 = |recorder: &mut ResultRecorder| {
+            for &set_name in set_names.iter() {
+                self.iter_set4(set_name, value_fn, recorder);
+            }
+        };
+
+        let do_set22 = |recorder: &mut ResultRecorder| {
+            for i in 0..set_names.len() {
+                let s1 = set_names[i];
+                for j in i..set_names.len() {
+                    let s2 = set_names[j];
+                    self.iter_set22(s1, s2, value_fn, recorder);
                 }
             }
-        }
-    }
-}
+        };
 
-fn iter_any(super_artifacts: &SuperArtifactStruct, recorder: &mut ResultRecorder, s: &ArtifactStatistics) {
-    let mut filter_artifacts_buffer: HashMap<ArtifactSlotName, &[&Artifact]> = HashMap::with_capacity(5);
-    for &sand_main_stat_name in s.slot_main_stat_names.get(&Sand).unwrap() {
-        for &goblet_main_stat_name in s.slot_main_stat_names.get(&Goblet).unwrap() {
-            for &head_main_stat_name in s.slot_main_stat_names.get(&Head).unwrap() {
-                let sm1 = select_main_stat_name(Sand, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                let sm2 = select_main_stat_name(Goblet, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-                let sm3 = select_main_stat_name(Head, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
-
-                filter_artifacts_buffer.insert(Flower, s.get_artifacts_without_set_name(Flower, StatName::HPFixed));
-                filter_artifacts_buffer.insert(Feather, s.get_artifacts_without_set_name(Feather, StatName::ATKFixed));
-                filter_artifacts_buffer.insert(Sand, s.get_artifacts_without_set_name(Sand, sm1));
-                filter_artifacts_buffer.insert(Goblet, s.get_artifacts_without_set_name(Goblet, sm2));
-                filter_artifacts_buffer.insert(Head, s.get_artifacts_without_set_name(Head, sm3));
-
-                do_iter(&filter_artifacts_buffer, super_artifacts, s, recorder, sand_main_stat_name, goblet_main_stat_name, head_main_stat_name);
+        let do_set2x = |recorder: &mut ResultRecorder, set_name: ArtifactSetName| {
+            for &s1 in set_names.iter() {
+                self.iter_set22(s1, set_name, value_fn, recorder);
             }
+        };
+
+        let do_set2 = |recorder: &mut ResultRecorder| {
+            for &s1 in set_names.iter() {
+                self.iter_set2(s1, value_fn, recorder);
+            }
+        };
+
+        let do_any = |recorder: &mut ResultRecorder| {
+            self.iter_any(value_fn, recorder);
+        };
+
+        let do_no_constraint = |recorder: &mut ResultRecorder| {
+            do_set4(recorder);
+            do_set22(recorder);
+            do_set2(recorder);
+            do_any(recorder);
+        };
+
+        match &value_fn.constraint.set_mode {
+            Some(set_mode) => {
+                match set_mode {
+                    ConstraintSetMode::Any => do_no_constraint(rc),
+                    ConstraintSetMode::Set4(set) => self.iter_set4(*set, value_fn, rc),
+                    ConstraintSetMode::Set22(s1, s2) => self.iter_set22(*s1, *s2, value_fn, rc),
+                    ConstraintSetMode::Set2(set) => {
+                        self.iter_set4(*set, value_fn, rc);
+                        do_set2x(rc, *set);
+                        self.iter_set2(*set, value_fn, rc);
+                    }
+                }
+            },
+            None => do_no_constraint(rc),
         }
     }
 }
 
-fn entry_to_result(entry: &BinaryHeapItem, m: &HashMap<u64, &Artifact>, max_value: f64) -> OptimizationResult {
-    let mut temp: HashMap<ArtifactSlotName, &Artifact> = HashMap::new();
-
-    for &id in entry.artifacts.iter() {
-        if let Some(a) = m.get(&id) {
-            let slot = a.slot;
-            temp.insert(slot, *a);
-        }
-    }
-
-    OptimizationResult {
-        flower: temp.get(&Flower).map(|x| x.id),
-        feather: temp.get(&Feather).map(|x| x.id),
-        sand: temp.get(&Sand).map(|x| x.id),
-        goblet: temp.get(&Goblet).map(|x| x.id),
-        head: temp.get(&Head).map(|x| x.id),
-        value: entry.score,
-        ratio: entry.score / max_value
-    }
+pub struct CutoffAlgo2 {
+    pub accuracy_factor: f64,
 }
 
-pub struct CutoffAlgorithm2;
+impl SingleOptimizeAlgorithm for CutoffAlgo2 {
+    fn optimize(&self, artifacts: &[&Artifact], artifact_config: Option<ArtifactEffectConfig>, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, target_function: &Box<dyn TargetFunction>, enemy: &Enemy, buffs: &[Box<dyn Buff<SimpleAttributeGraph2>>], constraint: &ConstraintConfig, count: usize) -> Vec<OptimizationResult> {
+        let (flowers, feathers, sands, goblets, heads) = get_per_slot_artifacts(&artifacts);
 
-impl SingleOptimizeAlgorithm for CutoffAlgorithm2 {
-    fn optimize(
-        &self,
-        artifacts: &[&Artifact],
-        artifact_config: Option<ArtifactEffectConfig>,
-        character: &Character<SimpleAttributeGraph2>,
-        weapon: &Weapon<SimpleAttributeGraph2>,
-        target_function: &Box<dyn TargetFunction>,
-        enemy: &Enemy,
-        buffs: &[Box<dyn Buff<SimpleAttributeGraph2>>],
-        constraint: &ConstraintConfig,
-        count: usize
-    ) -> Vec<OptimizationResult> {
-        // setup enemy
-        let mut enemy = enemy.clone();
-        for buff in buffs.iter() {
-            buff.change_enemy(&mut enemy);
+        let any_zero = vec![flowers, feathers, sands, goblets, heads].iter().any(|x| x.len() == 0);
+        if any_zero {
+            let naive_algo = CutoffAlgorithmHeuristic { use_heuristic: false };
+            return naive_algo.optimize(artifacts, artifact_config, character, weapon, target_function, enemy, buffs, constraint, count);
         }
 
-        // get artifact config
-        let artifact_config = if let Some(x) = artifact_config {
+        let mut result_recorder = ResultRecorder::new(count);
+
+        let mut default_effect_config: ArtifactEffectConfig;
+        let effect_config = if let Some(ref x) = artifact_config {
             x
         } else {
-            target_function.get_default_artifact_config(&Default::default())
+            default_effect_config = target_function.get_default_artifact_config(&Default::default());
+            &default_effect_config
         };
 
-        let super_artifacts = SuperArtifactStruct::from_artifacts(artifacts);
-        let artifacts_statistics = ArtifactStatistics::from_artifacts(artifacts);
-
-        let mut recorder = ResultRecorder {
-            records: BinaryHeap::with_capacity(count + 1),
-            capacity: count,
-            character,
-            weapon,
+        let value_function = ValueFunction {
+            artifact_effect_config: &effect_config,
+            character: &character,
+            weapon: &weapon,
+            target_function: &target_function,
+            buffs: &buffs,
             enemy: &enemy,
-            target_function,
-            buffs,
-            artifact_config: &artifact_config
+            constraint: &constraint
         };
 
-        let set_mode = constraint.set_mode.as_ref().unwrap_or(&ConstraintSetMode::Any);
-        match *set_mode {
-            ConstraintSetMode::Any => {
-                iter_set4(&super_artifacts, &mut recorder, &artifacts_statistics, None);
-                iter_set22(&super_artifacts, &mut recorder, &artifacts_statistics, None, None);
-                iter_set2(&super_artifacts, &mut recorder, &artifacts_statistics, None);
-                iter_any(&super_artifacts, &mut recorder, &artifacts_statistics);
-            },
-            ConstraintSetMode::Set4(set_name) => {
-                iter_set4(&super_artifacts, &mut recorder, &artifacts_statistics, Some(set_name));
-            },
-            ConstraintSetMode::Set22(sn1, sn2) => {
-                iter_set22(&super_artifacts, &mut recorder, &artifacts_statistics, Some(sn1), Some(sn2));
-            },
-            ConstraintSetMode::Set2(set_name) => {
-                iter_set4(&super_artifacts, &mut recorder, &artifacts_statistics, Some(set_name));
-                iter_set22(&super_artifacts, &mut recorder, &artifacts_statistics, Some(set_name), None);
-                iter_set2(&super_artifacts, &mut recorder, &artifacts_statistics, Some(set_name));
-            }
+        let weight_heuristic_algo = NaiveWeightHeuristic {
+            character,
+            weapon
+        };
+        let weight_heuristic = weight_heuristic_algo.generate_stat(&target_function);
+        let set_heuristic = weight_heuristic_algo.generate_set(&target_function);
+
+        let mut algo = CutoffAlgo2Helper::new(
+            artifacts,
+            Some(weight_heuristic),
+            Some(set_heuristic),
+            // None,
+            // None,
+            self.accuracy_factor
+        );
+        algo.do_calculation(&value_function, &mut result_recorder);
+
+        let intermediate_results = result_recorder.get_results_descend();
+        let max_score = intermediate_results.iter().map(|x| x.score)
+            .fold(f64::NEG_INFINITY, f64::max);
+
+        let mut result = Vec::new();
+        for item in intermediate_results.iter() {
+            result.push(item.to_result(max_score));
         }
 
-        let artifacts_by_id = get_artifacts_by_id(artifacts);
-        let max_score = recorder.max_value();
-
-        let mut results = Vec::new();
-        for item in recorder.records.iter() {
-            results.push(entry_to_result(&item.0, &artifacts_by_id, max_score));
-        }
-
-        println!("{:?}", results);
-
-        results
+        result
     }
 }

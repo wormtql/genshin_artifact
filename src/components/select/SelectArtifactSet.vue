@@ -9,19 +9,19 @@
     >
         <el-option
             v-if="props.anyOption"
-            label="任意"
+            :label="t('misc.any')"
             value="any"
         >
         </el-option>
         <el-option
             v-for="item in allArtifactsName"
             :key="item.name"
-            :label="item.chs"
+            :label="t('artifact', item.name, 'setName')"
             :value="item.name"
         >
             <div class="item">
                 <img :src="item.url" class="tn">
-                <span>{{ item.chs }}</span>
+                <span>{{ t("artifact", item.name, "setName") }}</span>
             </div>
         </el-option>
     </el-select>
@@ -30,6 +30,7 @@
 <script setup lang="ts">
 import { artifactsData } from "@asset/artifacts"
 import { getArtifactThumbnailURL } from "@util/utils"
+import {useI18n} from "@/i18n/i18n"
 
 let allArtifacts = Object.values(artifactsData)
 allArtifacts.sort((a: any, b: any) => {
@@ -38,7 +39,7 @@ allArtifacts.sort((a: any, b: any) => {
 let allArtifactsName = allArtifacts.map((item: any) => {
     return {
         name: item.eng,
-        chs: item.chs,
+        // chs: item.chs,
         url: getArtifactThumbnailURL(item.eng),
     };
 });
@@ -66,8 +67,10 @@ const props = withDefaults(defineProps<Props>(), {
     anyOption: false,
     multiple: false,
     multipleLimit: 2,
-    placeholder: "请选择"
+    placeholder: "Select"
 })
+
+const { t } = useI18n()
 </script>
 
 <style scoped>

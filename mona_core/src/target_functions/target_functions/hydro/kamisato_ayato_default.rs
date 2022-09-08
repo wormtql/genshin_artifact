@@ -98,7 +98,7 @@ impl TargetFunction for KamisatoAyatoDefaultTargetFunction {
 
         type S = <KamisatoAyato as CharacterTrait>::DamageEnumType;
         let skill_config = CharacterSkillConfig::KamisatoAyato { e_stack: 4, in_q: true };
-        let dmg_e1 = KamisatoAyato::damage::<SimpleDamageBuilder>(&context, S::ENormal1, &skill_config).normal.expectation;
+        let dmg_e1 = KamisatoAyato::damage::<SimpleDamageBuilder>(&context, S::ENormal1, &skill_config, None).normal.expectation;
 
         dmg_e1
     }

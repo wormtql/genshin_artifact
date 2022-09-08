@@ -44,9 +44,9 @@ fn main() {
 
     let ast = to_ast.convert_program(object).unwrap();
 
-    // for item in ast.borrow().statements.iter() {
-    //     println!("{}", item.borrow().common.span.as_str());
-    // }
+    for item in ast.borrow().statements.iter() {
+        println!("{}", item.borrow().common.span.as_str());
+    }
 
     let compiler = MonaCompilerASTToCode::new(ast);
     let code = compiler.compile().unwrap();

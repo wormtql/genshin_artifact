@@ -49,6 +49,7 @@ pub const MONA_SKILL: MonaSkillType = MonaSkillType {
 
 pub const MONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Mona,
+    internal_name: "Mona",
     chs: "莫娜",
     element: Element::Hydro,
     hp: [810, 2102, 2797, 4185, 4678, 5383, 6041, 6752, 7246, 7964, 8458, 9184, 9677, 10409],
@@ -159,7 +160,7 @@ impl CharacterTrait for Mona {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: MonaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -184,7 +185,8 @@ impl CharacterTrait for Mona {
             &context.enemy,
             Element::Hydro,
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

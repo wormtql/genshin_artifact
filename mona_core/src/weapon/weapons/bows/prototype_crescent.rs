@@ -39,6 +39,7 @@ pub struct PrototypeCrescent;
 impl WeaponTrait for PrototypeCrescent {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrototypeCrescent,
+        internal_name: "Bow_Proto",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,

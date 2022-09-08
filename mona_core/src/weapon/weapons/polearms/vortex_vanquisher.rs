@@ -44,6 +44,7 @@ pub struct VortexVanquisher;
 impl WeaponTrait for VortexVanquisher {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::VortexVanquisher,
+        internal_name: "Pole_Kunwu",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK108),
         weapon_base: WeaponBaseATKFamily::ATK608,
@@ -67,7 +68,7 @@ impl WeaponTrait for VortexVanquisher {
         },
         ItemConfig {
             name: "shield_rate",
-            title: "护盾覆盖率",
+            title: "w15",
             config: ItemConfig::RATE01_TYPE
         }
     ]);

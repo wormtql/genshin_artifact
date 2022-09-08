@@ -14,15 +14,15 @@
                     width="48"
                 ></el-table-column>
                 <el-table-column
-                    label="词条"
+                    :label="t('misc.stat')"
                 >
                     <template #default="{ row }">
-                        {{ row.chs }}
+                        {{ row.title }}
                         <!--                    <el-checkbox>{{ row.chs }}</el-checkbox>-->
                     </template>
                 </el-table-column>
                 <el-table-column
-                    label="值"
+                    :label="t('misc.value')"
                 >
                     <template #default="{ row }">
                         <template v-if="row.percentage">
@@ -34,21 +34,21 @@
                     </template>
                 </el-table-column>
                 <el-table-column
-                    label="有效词条数"
+                    :label="t('misc.stat1')"
                 >
                     <template #default="scope">
                         {{ scope.row.eff.toFixed(3) }}
                     </template>
                 </el-table-column>
                 <el-table-column
-                    label="强化次数"
+                    :label="t('misc.rollCount')"
                 >
                     <template #default="scope">
                         [{{ scope.row.upgradeCount[0] }}, {{ scope.row.upgradeCount[1] }}]
                     </template>
                 </el-table-column>
             </el-table>
-            <p style="font-size: 12px">选中：{{ selectedEff.toFixed(1) }}</p>
+            <p style="font-size: 12px">{{ t("misc.selected") }}: {{ selectedEff.toFixed(1) }}</p>
         </div>
     </div>
 </template>
@@ -58,6 +58,7 @@ import { howManyUpgradeCount } from "@/utils/artifacts"
 import { artifactTags, artifactEff } from "@/constants/artifact"
 import {useArtifactStore} from "@/store/pinia/artifact"
 import type {IArtifact} from "@/types/artifact"
+import {useI18n} from "@/i18n/i18n"
 /// #if !USE_CDN
 import { use } from "echarts/core"
 import { PieChart } from "echarts/charts"
@@ -80,6 +81,9 @@ use([
 /// #endif
 import VChart from "vue-echarts"
 
+
+const { t } = useI18n()
+
 interface Props {
     artifactIds: number[]
 }
@@ -91,7 +95,7 @@ interface StatData {
     name: string,
     upgradeCount: [number, number],
     value: number,
-    chs: string,
+    title: string,
     eff: number,
     percentage: boolean
 }
@@ -131,7 +135,8 @@ const statData = computed((): Record<string, StatData> => {
                     name,
                     upgradeCount: [min, max],
                     value,
-                    chs: artifactTags[name].chs,
+                    // chs: artifactTags[name].chs,
+                    title: t("stat", name),
                     eff,
                     percentage: artifactTags[name].percentage
                 }
@@ -153,7 +158,8 @@ const chartOptionForEChart = computed(() => {
     for (let name in statData.value) {
         data.push({
             value: statData.value[name].eff,
-            name: statData.value[name].chs
+            // name: statData.value[name].chs
+            name: statData.value[name].title
         })
     }
     data.sort((a, b) => a.value - b.value)

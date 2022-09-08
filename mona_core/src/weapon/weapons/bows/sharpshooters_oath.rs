@@ -33,6 +33,7 @@ pub struct SharpshootersOath;
 impl WeaponTrait for SharpshootersOath {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SharpshootersOath,
+        internal_name: "Bow_Arjuna",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage102),
         weapon_base: WeaponBaseATKFamily::ATK401,

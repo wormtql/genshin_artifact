@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div style="overflow: hidden">
         <el-dialog
-            title="选择圣遗物"
+            :title="t('calcPage.selectArt')"
             :width="deviceIsPC ? '80%' : '90%'"
             v-model="showSelectArtifactDialog"
         >
@@ -14,7 +14,7 @@
 <!--        damage analysis-->
         <el-dialog
             v-model="showDamageAnalysisDialog"
-            title="伤害构成"
+            :title="t('calcPage.dmgComp')"
             :width="deviceIsPC ? '60%' : '90%'"
         >
             <damage-analysis
@@ -27,7 +27,7 @@
 <!--    select buff    -->
         <el-dialog
             v-model="showSelectBuffDialog"
-            title="选择BUFF"
+            :title="t('calcPage.selectBuff')"
             :width="deviceIsPC ? '60%' : '90%'"
         >
             <select-buff
@@ -38,83 +38,84 @@
 <!--    computation setup    -->
         <el-dialog
             v-model="showConstraintDialog"
-            title="计算设置"
+            :title="t('calcPage.setupCalc')"
             :width="deviceIsPC ? '400px' : '90%'"
         >
             <p class="common-title2">
-                算法
+                {{ t("misc.algo") }}
                 <el-tooltip>
-                    <i class="el-icon-question" content=""></i>
+                    <i-fa6-solid-circle-question></i-fa6-solid-circle-question>
                     <template #content>
-                        A*：推荐<br>
-                        启发式剪枝：不保证得到最优解，但是速度快<br>
-                        纯枚举：不推荐
+                        <span v-html="t('calcPage.algoDesc')">
+
+                        </span>
+<!--                        {{ t("calcPage.algoDesc") }}-->
                     </template>
                 </el-tooltip>
             </p>
             <el-alert
                 v-if="algorithm === 'Naive'"
-                title="请限定套装或者主词条，否则计算将十分耗时，可能导致计算超时"
+                :title="t('calcPage.plzSetConst')"
                 type="warning"
                 style="margin-bottom: 12px"
             ></el-alert>
             <el-radio-group v-model="algorithm">
-                <el-radio label="AStar">A*</el-radio>
-                <el-radio label="Heuristic">启发式剪枝</el-radio>
-                <el-radio label="Naive">纯枚举</el-radio>
+                <el-radio label="AStar">{{ t("calcPage.aStar") }}</el-radio>
+<!--                <el-radio label="Heuristic">{{t("calcPage.heuristic")}}</el-radio>-->
+                <el-radio label="Naive">{{ t("calcPage.naive") }}</el-radio>
             </el-radio-group>
 
-            <p class="common-title2">限定套装</p>
+            <p class="common-title2">{{ t("calcPage.constSet") }}</p>
             <div style="margin-top: 12px; margin-bottom: 12px">
                 <select-artifact-set
                     multiple
                     v-model="constraintArtifactSet"
                     :style="{ width: '100%' }"
-                    placeholder="限定套装"
+                    :placeholder="t('calcPage.constSet')"
                 ></select-artifact-set>
             </div>
 
-            <p class="common-title2">限定主词条</p>
+            <p class="common-title2">{{ t("calcPage.constMain") }}</p>
             <div style="margin-top: 12px; margin-bottom: 12px">
                 <div class="constraint-main-stat-item">
-                    <span>时之沙</span>
+                    <span>{{ t("misc.sand") }}</span>
                     <select-artifact-main-stat
                         v-model="constraintSandMainStats"
                         :include-any="false"
                         :multiple="true"
                         position="sand"
                         :style="{ width: 'calc(100% - 48px)' }"
-                        placeholder="限定主词条"
+                        :placeholder="t('calcPage.constMain')"
                     ></select-artifact-main-stat>
                 </div>
                 <div class="constraint-main-stat-item">
-                    <span>空之杯</span>
+                    <span>{{ t("misc.cup") }}</span>
                     <select-artifact-main-stat
                         v-model="constraintGobletMainStats"
                         :include-any="false"
                         :multiple="true"
                         position="cup"
                         :style="{ width: 'calc(100% - 48px)' }"
-                        placeholder="限定主词条"
+                        :placeholder="t('calcPage.constMain')"
                     ></select-artifact-main-stat>
                 </div>
                 <div class="constraint-main-stat-item">
-                    <span>理之冠</span>
+                    <span>{{ t("misc.head") }}</span>
                     <select-artifact-main-stat
                         v-model="constraintHeadMainStats"
                         :include-any="false"
                         :multiple="true"
                         position="head"
                         :style="{ width: 'calc(100% - 48px)' }"
-                        placeholder="限定主词条"
+                        :placeholder="t('calcPage.constMain')"
                     ></select-artifact-main-stat>
                 </div>
             </div>
 
-            <p class="constraint-title">限定最小值</p>
+            <p class="constraint-title">{{ t("calcPage.constMin") }}</p>
             <div>
                 <div class="constraint-min-item">
-                    <span class="constraint-min-title">元素充能效率</span>
+                    <span class="constraint-min-title">{{ t("stat.recharge") }}</span>
                     <div class="slider-div">
                         <el-slider
                             :min="1"
@@ -126,7 +127,7 @@
                     </div>
                 </div>
                 <div class="constraint-min-item">
-                    <span class="constraint-min-title">元素精通</span>
+                    <span class="constraint-min-title">{{ t("stat.elementalMastery") }}</span>
                     <div class="slider-div">
                         <el-slider
                             :min="0"
@@ -138,7 +139,7 @@
                     </div>
                 </div>
                 <div class="constraint-min-item">
-                    <span class="constraint-min-title">暴击率</span>
+                    <span class="constraint-min-title">{{ t("stat.critical") }}</span>
                     <div class="slider-div">
                         <el-slider
                             :min="0"
@@ -150,7 +151,7 @@
                     </div>
                 </div>
                 <div class="constraint-min-item">
-                    <span class="constraint-min-title">暴击伤害</span>
+                    <span class="constraint-min-title">{{ t("stat.criticalDamage") }}</span>
                     <div class="slider-div">
                         <el-slider
                             :min="0"
@@ -163,7 +164,7 @@
                 </div>
             </div>
 
-            <p class="common-title2">过滤圣遗物组</p>
+            <p class="common-title2">{{ t("calcPage.filKumi") }}</p>
             <div style="max-height: 50vh; overflow: auto" class="mona-scroll">
                 <el-tree
                     :data="kumiTreeDataForElementUI"
@@ -177,7 +178,7 @@
 <!--    artifacts analysis    -->
         <el-dialog
             v-model="showArtifactAnalysisDialog"
-            title="圣遗物分析"
+            :title="t('calcPage.artAnalysis')"
             :width="deviceIsPC ? '60%' : '90%'"
         >
             <artifacts-set-statistics
@@ -188,7 +189,7 @@
 <!--    stats marginal bonus    -->
         <el-dialog
             v-model="showArtifactPerBonusDialog"
-            title="词条收益曲线"
+            :title="t('calcPage.statCurve')"
             :width="deviceIsPC ? '80%' : '90%'"
         >
             <artifact-per-stat-bonus
@@ -206,7 +207,7 @@
 <!--    select artifact kumi    -->
         <el-dialog
             v-model="showUseKumiDialog"
-            title="选择圣遗物组"
+            :title="t('calcPage.selectKumi')"
             :width="deviceIsPC ? '60%' : '90%'"
         >
             <div style="height: 60vh" class="mona-scroll">
@@ -221,7 +222,7 @@
 <!--        enemy config-->
         <el-dialog
             v-model="showEnemyConfigDialog"
-            title="敌人设置"
+            :title="t('calcPage.setupEnemy')"
             :width="deviceIsPC ? '60%' : '90%'"
         >
             <enemy-config-component
@@ -232,18 +233,18 @@
 <!--        artifact config-->
         <el-dialog
             v-model="showConfigArtifactDialog"
-            title="圣遗物设置"
+            :title="t('calcPage.setupArt')"
             :width="deviceIsPC ? '60%' : '90%'"
         >
-            <h3 class="common-title2">圣遗物特效模式</h3>
+            <h3 class="common-title2">{{ t("calcPage.artMode") }}</h3>
             <el-radio-group
                 v-model="artifactEffectMode"
             >
-                <el-radio label="auto">自动</el-radio>
-                <el-radio label="custom">手动</el-radio>
+                <el-radio label="auto">{{ t("calcPage.modeAuto") }}</el-radio>
+                <el-radio label="custom">{{ t("calcPage.modeCustom") }}</el-radio>
             </el-radio-group>
 
-            <h3 class="common-title2">圣遗物特效（仅在手动模式下有效）</h3>
+            <h3 class="common-title2">{{ t("calcPage.artEffect") }}</h3>
             <artifact-config
                 v-model="artifactConfig"
             ></artifact-config>
@@ -254,7 +255,7 @@
                 <div class="config-character">
                     <img :src="characterSplash" alt="角色" class="character-splash" />
                     <div class="select-character">
-                        <p class="common-title">角色</p>
+                        <p class="common-title">{{ t("misc.character") }}</p>
                         <div style="display: flex; gap: 12px">
 <!--                            <select-character-->
 <!--                                :model-value="characterName"-->
@@ -272,7 +273,7 @@
                         </div>
 
                         <div class="config-character-skill">
-                            <h3 class="common-title2">技能</h3>
+                            <h3 class="common-title2">{{ t("misc.skill") }}</h3>
                             <div class="skill-div">
                                 <el-input-number
                                     controls-position="right"
@@ -299,7 +300,7 @@
                         </div>
 
                         <div class="config-character-constellation">
-                            <h3 class="common-title2">命之座</h3>
+                            <h3 class="common-title2">{{ t("misc.conste") }}</h3>
                             <el-input-number
                                 controls-position="right"
                                 v-model="characterConstellation"
@@ -323,7 +324,7 @@
                 <div class="config-weapon">
                     <!-- <img :src="weaponSplash" class="weapon-splash" /> -->
                     <div class="select-weapon">
-                        <p class="common-title">武器</p>
+                        <p class="common-title">{{ t("misc.weapon") }}</p>
 
                         <div style="display: flex; gap: 12px; margin-bottom: 8px">
 <!--                            <select-weapon-->
@@ -346,7 +347,7 @@
                         <weapon-display :weapon-name="weaponName"></weapon-display>
 
                         <div class="config-weapon-refine">
-                            <h3 class="common-title2">精炼</h3>
+                            <h3 class="common-title2">{{ t("misc.refine") }}</h3>
                             <el-input-number
                                 controls-position="right"
                                 v-model="weaponRefine"
@@ -368,24 +369,24 @@
                 <el-divider></el-divider>
 
                 <div class="config-target-function">
-                    <p class="common-title">目标函数</p>
+                    <p class="common-title">{{ t("misc.tf") }}</p>
                     <div class="my-button-list" style="margin-bottom: 12px">
                         <el-button-group>
                             <el-button
                                 type="primary"
                                 :icon="IconEpCaretRight"
                                 @click="handleOptimizeArtifact"
-                            >开始计算</el-button>
+                            >{{ t("calcPage.start") }}</el-button>
 
                             <el-button
                                 :icon="IconEpTools"
                                 @click="handleClickSetupOptimization"
-                            >计算设置</el-button>
+                            >{{ t("calcPage.setupCalc") }}</el-button>
 
                             <el-button
                                 :icon="IconEpTools"
                                 @click="handleClickArtifactConfig"
-                            >圣遗物设置</el-button>
+                            >{{ t("calcPage.setupArt") }}</el-button>
                         </el-button-group>
                     </div>
 
@@ -396,8 +397,8 @@
                             @click="handleSavePreset(miscCurrentPresetName)"
                             split-button
                         >
-                            <template v-if="!miscCurrentPresetName">新建预设</template>
-                            <template v-else>保存预设「{{ miscCurrentPresetName }}」</template>
+                            <template v-if="!miscCurrentPresetName">{{ t("calcPage.newPreset") }}</template>
+                            <template v-else>{{ t("calcPage.savePreset") }}「{{ miscCurrentPresetName }}」</template>
 
                             <template #dropdown>
                                 <el-dropdown-menu>
@@ -405,7 +406,7 @@
                                         v-if="miscCurrentPresetName"
                                         icon="el-icon-s-tools"
                                         command="save-preset"
-                                    >另存为预设</el-dropdown-item>
+                                    >{{ t("calcPage.saveAsPreset") }}</el-dropdown-item>
 
                                     <el-dropdown-item
                                         v-for="(item, index) in presetStore.allFlat.value"
@@ -420,7 +421,7 @@
                     </div>
 
                     <el-tabs v-model="miscTargetFunctionTab">
-                        <el-tab-pane label="普通" name="normal">
+                        <el-tab-pane :label="t('calcPage.tfNormal')" name="normal">
                             <select-target-function
                                 v-model="targetFunctionName"
                                 :character-name="characterName"
@@ -448,8 +449,8 @@
                             </div>
                         </el-tab-pane>
                         <el-tab-pane label="MONA-DSL" name="dsl">
-                            <el-alert type="warning" title="该功能为测试版" :closable="false" style="margin-bottom: 8px"></el-alert>
-                            <el-input type="textarea" :rows="10" placeholder="代码" v-model="targetFunctionDSLSource" class="code-input"></el-input>
+                            <el-alert type="warning" :title="t('calcPage.beta')" :closable="false" style="margin-bottom: 8px"></el-alert>
+                            <el-input type="textarea" :rows="10" :placeholder="t('misc.code')" v-model="targetFunctionDSLSource" class="code-input"></el-input>
                         </el-tab-pane>
                     </el-tabs>
 
@@ -507,22 +508,27 @@
             </el-col>
 
             <el-col :sm="24" :md="12" class="middle-container mona-scroll-hidden">
-                <p class="common-title">圣遗物</p>
+                <p class="common-title">{{ t("misc.artifact") }}</p>
 
                 <div class="artifact-tool" style="margin-bottom: 12px">
                     <el-button-group>
                         <el-button
                             :icon="IconEpHistogram"
                             @click="handleClickArtifactAnalysis"
-                        >词条分析</el-button>
+                        >{{ t("calcPage.statAnalysis") }}</el-button>
                         <el-button
                             :icon="IconEpStarFilled"
                             @click="handleClickSaveAsKumi"
-                        >存为套装</el-button>
+                        >{{ t("calcPage.saveKumi") }}</el-button>
                         <el-button
                             :icon="IconEpFolder"
                             @click="handleClickUseKumi"
-                        >应用套装</el-button>
+                        >{{ t("calcPage.useKumi") }}</el-button>
+                        <el-button
+                            v-show="artifactCount > 0"
+                            :icon="isAllLocked ? IconEpUnlock : IconEpLock"
+                            @click="() => { isAllLocked ? handleUnlockAll() : handleLockAll() }"
+                        >{{ isAllLocked ? t("calcPage.unlockAll") : t("calcPage.lockAll") }}</el-button>
                     </el-button-group>
                 </div>
 
@@ -553,7 +559,7 @@
 
                 <div v-if="artifactNeedConfig4" style="margin-top: 16px">
                     <p class="common-description">
-                        <span class="effect4">四件套效果：</span>
+                        <span class="effect4">{{ t("calcPage.effect4") }}</span>
                         <span v-html="artifactEffect4Text"></span>
                     </p>
                     <item-config
@@ -566,20 +572,30 @@
 
                 <el-divider></el-divider>
 
-                <p class="common-title">伤害计算</p>
+                <p class="common-title">{{ t("calcPage.dmg") }}</p>
                 <div class="my-button-list" style="margin-bottom: 12px">
                     <el-button-group>
                         <el-button
                             :icon="IconEpHistogram"
                             @click="handleDisplayAnalysis"
-                        >明细</el-button>
+                        >{{ t("calcPage.detail") }}</el-button>
                         <el-button
                             :icon="IconEpTools"
                             @click="handleClickEnemyConfig"
-                        >敌人设置</el-button>
+                        >{{ t("calcPage.setupEnemy") }}</el-button>
                     </el-button-group>
                 </div>
+
+                <div>
+                    <h3 class="common-title2">{{ t("calcPage.fumo") }}</h3>
+                    <select-element-type
+                        v-model="fumo"
+                        :elements="['Pyro', 'Electro', 'Hydro', 'Anemo', 'Geo', 'Cryo', 'Dendro', 'None']"
+                    ></select-element-type>
+                </div>
+
                 <div v-if="characterNeedSkillConfig" style="margin-bottom: 16px;">
+                    <h3 class="common-title2">{{ t("calcPage.skillConfig") }}</h3>
                     <item-config
                         v-model="characterSkillConfig"
                         :item-name="characterName"
@@ -587,6 +603,7 @@
                     ></item-config>
                 </div>
                 <div class="damage-analysis-div">
+                    <h3 class="common-title2">{{ t("calcPage.skill") }}</h3>
                     <select-character-skill
                         v-model="characterSkillIndex"
                         :character-name="characterName"
@@ -597,20 +614,20 @@
                     ></damage-panel>
                 </div>
 
-                <h3 class="common-title2" style="margin-top: 24px">剧变反应伤害</h3>
+                <h3 class="common-title2" style="margin-top: 24px">{{ t("calcPage.dmg2") }}</h3>
                 <transformative-damage
                     :data="characterTransformativeDamage"
                 ></transformative-damage>
             </el-col>
 
             <el-col :sm="24" :md="6" class="right-container mona-scroll-hidden">
-                <div class="common-title">面板</div>
+                <div class="common-title">{{ t("calcPage.panel") }}</div>
 
                 <div class="my-button-list" style="margin-bottom: 12px">
                     <el-button
                         :icon="IconEpHistogram"
                         @click="handleClickAttributeAnalysis"
-                    >词条收益</el-button>
+                    >{{ t("calcPage.statCurve") }}</el-button>
                 </div>
 
                 <attribute-panel
@@ -625,13 +642,9 @@
 import {convertArtifact} from "@util/converter"
 import {newDefaultArtifactConfigForWasm} from "@util/artifacts"
 import {deepCopy} from "@/utils/common"
-import {characterData} from "@character"
-import {weaponData} from "@weapon"
-import {artifactsData} from "@artifact"
 import {wasmSingleOptimize} from "@/wasm/single_optimize"
 import {createComputeResult} from "@/api/misc"
 import {deviceIsPC} from "@util/device"
-
 import SelectArtifact from "@/components/select/SelectArtifact.vue"
 import SelectArtifactSet from "@c/select/SelectArtifactSet"
 import SelectCharacter from "@/components/select/SelectCharacter.vue"
@@ -647,7 +660,7 @@ import DamagePanel from "./DamagePanel"
 import AttributePanel from "@c/display/AttributePanel"
 import ItemConfig from "@c/config/ItemConfig"
 import BuffItem from "./BuffItem"
-import WeaponDisplay from "@c/display/WeaponDisplay"
+import WeaponDisplay from "@/components/display/WeaponDisplay.vue"
 import SaveAsKumi from "./SaveAsKumi.vue"
 import TransformativeDamage from "./TransformativeDamage"
 import ValueDisplay from "./ValueDisplay"
@@ -660,7 +673,6 @@ import {useEnemy} from "@/composables/enemy"
 import {useWeapon} from "@/composables/weapon"
 import {useTargetFunction} from "@/composables/targetFunction"
 import type {ArtifactPosition, IArtifact, IArtifactWasm} from "@/types/artifact"
-
 import IconEpCaretRight from "~icons/ep/caret-right"
 import IconEpTools from "~icons/ep/tools"
 import IconEpPlus from "~icons/ep/plus"
@@ -668,6 +680,8 @@ import IconEpMenu from "~icons/ep/menu"
 import IconEpHistogram from "~icons/ep/histogram"
 import IconEpStarFilled from "~icons/ep/star-filled"
 import IconEpFolder from "~icons/ep/folder"
+import IconEpLock from "~icons/ep/lock"
+import IconEpUnlock from "~icons/ep/unlock"
 import {useComputeConstraint} from "@/composables/constraint"
 import {BuffEntry, useBuff} from "@/composables/buff"
 import {type PresetEntry, usePresetStore} from "@/store/pinia/preset"
@@ -682,7 +696,11 @@ import {useKumiStore} from "@/store/pinia/kumi"
 import SimpleLoading from "@/components/loading/SimpleLoading.vue"
 import SimpleError from "@/components/loading/SimpleError.vue"
 import {useRoute} from "vue-router"
+import {useI18n} from "@/i18n/i18n"
 
+import {ElMessage} from "element-plus"
+import "element-plus/es/components/message/style/css"
+import SelectElementType from "@/components/select/SelectElementType.vue";
 
 // stores
 const presetStore = usePresetStore()
@@ -694,6 +712,9 @@ const mona = await useMona()
 
 // router
 const route = useRoute()
+
+// i18n
+const { t } = useI18n()
 
 
 //////////////////////////////////////////////////////////
@@ -750,6 +771,8 @@ const {
     characterSkillInterface,
 } = useCharacterSkill(characterName)
 
+const fumo = ref("None")
+
 
 //////////////////////////////////////////////////////////////
 // weapon
@@ -791,6 +814,7 @@ watch(() => miscTargetFunctionTab.value, v => {
 // artifacts
 const {
     artifactIds,
+    artifactCount,
     artifactSingleConfig,
     artifactWasmFormat,
 
@@ -821,6 +845,30 @@ function handleSelectArtifact(id: number) {
 
     showSelectArtifactDialog.value = false
 }
+
+function handleLockAll() {
+    for (const id of artifactIds.value) {
+        artifactStore.lockArtifact(id)
+    }
+}
+
+function handleUnlockAll() {
+    for (const id of artifactIds.value) {
+        artifactStore.unlockArtifact(id)
+    }
+}
+
+const isAllLocked = computed(() => {
+    for (const id of artifactIds.value) {
+        let artifact = artifactStore.getArtifact(id)
+        if (artifact) {
+            if (!artifact.omit) {
+                return false
+            }
+        }
+    }
+    return true
+})
 
 
 //////////////////////////////////////////////////////////////
@@ -862,8 +910,10 @@ function handleClickArtifactConfig() {
 // save and use presets
 const miscCurrentPresetName = ref<null | string>(null)
 const presetDefaultName = computed((): string => {
-    const cName = characterData[characterName.value].chs
-    const wName = weaponData[weaponName.value].chs
+    // const cName = characterData[characterName.value].chs
+    // const wName = weaponData[weaponName.value].chs
+    const cName = t("character", characterName.value)
+    const wName = t("weapon", weaponName.value)
     return `${cName}-${wName}`
 })
 
@@ -1019,10 +1069,10 @@ function usePreset(name: string) {
     const constraint = item.constraint
     if (constraint) {
         constraintArtifactSet.value = constraint.setNames ?? []
-        constraintMinCriticalDamage.value = 0
-        constraintMinCritical.value = 0
-        constraintMinElementalMastery.value = 0
-        constraintMinRecharge.value = 1
+        constraintMinCriticalDamage.value = constraint.minCriticalDamage ?? 0
+        constraintMinCritical.value = constraint.minCritical ?? 0
+        constraintMinElementalMastery.value = constraint.minElementalMastery ?? 0
+        constraintMinRecharge.value = constraint.minRecharge ?? 1.0
     }
 
     // use filter
@@ -1035,6 +1085,10 @@ function usePreset(name: string) {
 
     // use compute mode
     algorithm.value = item.algorithm ?? "AStar"
+    // disable heuristic algorithm in 5.11
+    if (algorithm.value === "Heuristic") {
+        algorithm.value = "AStar"
+    }
 
     // use artifact effect mode
     artifactEffectMode.value = item.artifactEffectMode ?? "auto"
@@ -1095,13 +1149,41 @@ const damageAnalysisWasmInterface = computed(() => {
 })
 
 const characterDamageAnalysis = computed(() => {
-    const temp = mona.CalculatorInterface.get_damage_analysis(damageAnalysisWasmInterface.value)
+    let fumo2 = null
+    if (fumo.value !== "None") {
+        fumo2 = fumo.value
+    }
+    const temp = mona.CalculatorInterface.get_damage_analysis(damageAnalysisWasmInterface.value, fumo2)
     // console.log(temp)
     return temp
 })
 
 const characterTransformativeDamage = computed(() => {
-    return mona.CalculatorInterface.get_transformative_damage(damageAnalysisWasmInterface.value)
+    // return  {
+    //     "electro_charged": 0,
+    //     "overload": 0,
+    //     "shatter": 0,
+    //     "superconduct": 0,
+    //     "swirl_cryo": 0,
+    //     "swirl_pyro": 0,
+    //     "swirl_electro": 0,
+    //     "swirl_hydro": 0
+    // }
+    const temp = mona.CalculatorInterface.get_transformative_damage(damageAnalysisWasmInterface.value)
+    return temp
+    // console.log(temp)
+    // return temp
+    // const ret = {
+    //     "electro_charged": temp.electro_charged,
+    //     "overload": temp.overload,
+    //     "shatter": temp.shatter,
+    //     "superconduct": temp.superconduct,
+    //     "swirl_cryo": temp.swirl_cryo,
+    //     "swirl_pyro": temp.swirl_pyro,
+    //     "swirl_electro": temp.swirl_electro,
+    //     "swirl_hydro": temp.swirl_hydro
+    // }
+    // return ret
 })
 
 function handleDisplayAnalysis() {
@@ -1172,10 +1254,12 @@ interface Node {
 }
 
 const kumiDefaultName = computed((): string => {
-    let name = characterData[characterName.value].chs
+    // let name = characterData[characterName.value].chs
+    let name = t("character", characterName.value)
     for (const setName in artifactSetCount.value) {
         if (artifactSetCount.value[setName] >= 2) {
-            name += '-' + artifactsData[setName].chs
+            // name += '-' + artifactsData[setName].chs
+            name += '-' + t("artifact", setName, "setName")
         }
     }
     return name
@@ -1419,7 +1503,7 @@ function handleOptimizeArtifact() {
         handleUseNthOptimizationResult(1)
 
         // report best result to server, only report player whose 20 artifacts count is above 100
-        if (artifactStore.artifacts20Count.value >= 100) {
+        if (artifactStore.artifacts20Count.value >= 100 && process.env.NODE_ENV === 'production') {
             let result_artifacts_wasm_format: any[] = []
             let first_result = results[0]
             result_artifacts_wasm_format.push(first_result.flower)

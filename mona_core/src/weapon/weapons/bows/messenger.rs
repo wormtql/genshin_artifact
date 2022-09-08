@@ -13,6 +13,7 @@ pub struct Messenger;
 impl WeaponTrait for Messenger {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::Messenger,
+        internal_name: "Bow_Msg",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage68),
         weapon_base: WeaponBaseATKFamily::ATK448,

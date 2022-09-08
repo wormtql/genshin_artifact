@@ -40,6 +40,7 @@ pub struct PrototypeRancour;
 impl WeaponTrait for PrototypeRancour {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::PrototypeRancour,
+        internal_name: "Sword_Proto",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::PhysicalBonus75),
         weapon_base: WeaponBaseATKFamily::ATK565,
@@ -54,7 +55,7 @@ impl WeaponTrait for PrototypeRancour {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "被动等效层数",
+            title: "w1",
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 4.0,

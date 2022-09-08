@@ -101,7 +101,7 @@ impl TargetFunction for NoelleDefaultTargetFunction {
 
         type S = <Noelle as CharacterTrait>::DamageEnumType;
         let config = CharacterSkillConfig::Noelle { after_q: true };
-        let dmg_a = Noelle::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config).normal.expectation;
+        let dmg_a = Noelle::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config, None).normal.expectation;
 
         dmg_a
     }

@@ -39,6 +39,7 @@ pub struct LionsRoar;
 impl WeaponTrait for LionsRoar {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::LionsRoar,
+        internal_name: "Sword_Rockkiller",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,
@@ -53,7 +54,7 @@ impl WeaponTrait for LionsRoar {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "被动应用比例",
+            title: "w2",
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 1.0,

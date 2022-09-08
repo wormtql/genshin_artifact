@@ -65,6 +65,7 @@ pub const BENNETT_SKILL: BennettSkillType = BennettSkillType {
 
 pub const BENNETT_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Bennett,
+    internal_name: "Bennett",
     chs: "班尼特",
     element: Element::Pyro,
     hp: [1039, 2670, 3447, 5163, 5715, 6573, 7309, 8186, 8719, 9577, 10129, 10987, 11539, 12397],
@@ -184,7 +185,7 @@ impl CharacterTrait for Bennett {
         ])
     };
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, _config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: BennettDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -229,7 +230,8 @@ impl CharacterTrait for Bennett {
                 &context.enemy,
                 s.get_element(),
                 s.get_skill_type(),
-                context.character_common_data.level
+                context.character_common_data.level,
+                fumo,
             )
         }
     }

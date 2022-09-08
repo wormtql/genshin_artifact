@@ -30,6 +30,7 @@ pub struct HaranGeppakuFutsu;
 impl WeaponTrait for HaranGeppakuFutsu {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::HaranGeppakuFutsu,
+        internal_name: "Sword_Amenoma",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate72),
         weapon_base: WeaponBaseATKFamily::ATK608,
@@ -44,7 +45,7 @@ impl WeaponTrait for HaranGeppakuFutsu {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "「波穗」层数",
+            title: "w25",
             config: ItemConfigType::Float { min: 0.0, max: 2.0, default: 2.0 }
         }
     ]);

@@ -32,6 +32,7 @@ pub struct FesteringDesire;
 impl WeaponTrait for FesteringDesire {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::FesteringDesire,
+        internal_name: "Sword_Magnum",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::Recharge100),
         weapon_base: WeaponBaseATKFamily::ATK510,

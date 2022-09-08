@@ -36,7 +36,7 @@ impl TargetFunctionMetaTrait for ExpectVaporizeTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "t",
-            title: "触发元素",
+            title: "t2",
             config: ItemConfigType::Option {
                 options: "火,水",
                 default: 0
@@ -44,7 +44,7 @@ impl TargetFunctionMetaTrait for ExpectVaporizeTargetFunction {
         },
         ItemConfig {
             name: "skill",
-            title: "技能",
+            title: "t3",
             config: ItemConfigType::Skill4 { default: SkillType::NormalAttack }
         }
     ]);
@@ -126,7 +126,7 @@ impl TargetFunction for ExpectVaporizeTargetFunction {
         };
 
         let builder = SimpleDamageBuilder::new(3.0, 0.0, 0.0);
-        let result = builder.damage(&attribute, &enemy, element, self.skill, 90);
+        let result = builder.damage(&attribute, &enemy, element, self.skill, 90, None);
 
         result.vaporize.unwrap().expectation
     }

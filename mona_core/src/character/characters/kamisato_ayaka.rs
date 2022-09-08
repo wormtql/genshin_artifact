@@ -50,6 +50,7 @@ pub const KAMISATO_AYAKA_SKILL: KamisatoAyakaSkillType = KamisatoAyakaSkillType 
 
 pub const KAMISATO_AYAKA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::KamisatoAyaka,
+    internal_name: "Ayaka",
     chs: "神里绫华",
     element: Element::Cryo,
     hp: [1011, 2597, 3455, 5170, 5779, 6649, 7462, 8341, 8951, 9838, 10448, 11345, 11954, 12858],
@@ -186,12 +187,12 @@ impl CharacterTrait for KamisatoAyaka {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent1_rate",
-            title: "天赋「天罪国罪镇词」应用比例",
+            title: "c5",
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "talent2_rate",
-            title: "天赋「寒天宣命祝词」应用比例",
+            title: "c6",
             config: ItemConfig::RATE01_TYPE
         }
     ]);
@@ -200,17 +201,17 @@ impl CharacterTrait for KamisatoAyaka {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_dash",
-            title: "神里流·霰步",
+            title: "c7",
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "use_c6",
-            title: "六命效果",
+            title: "c8",
             config: ItemConfigType::Bool { default: false }
         }
     ]);
 
-    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig) -> D::Result {
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: KamisatoAyakaDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
@@ -249,7 +250,8 @@ impl CharacterTrait for KamisatoAyaka {
             &context.enemy,
             s.get_element(after_dash),
             s.get_skill_type(),
-            context.character_common_data.level
+            context.character_common_data.level,
+            fumo,
         )
     }
 

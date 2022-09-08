@@ -32,6 +32,7 @@ pub struct AquaSimulacra;
 impl WeaponTrait for AquaSimulacra {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::AquaSimulacra,
+        internal_name: "Bow_Kirin",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage192),
         weapon_base: WeaponBaseATKFamily::ATK542,
@@ -46,7 +47,7 @@ impl WeaponTrait for AquaSimulacra {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "is_enemy_around",
-            title: "周围存在敌人",
+            title: "w6",
             config: ItemConfigType::Bool { default: true }
         }
     ]);

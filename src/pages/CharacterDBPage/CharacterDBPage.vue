@@ -4,7 +4,7 @@
             <el-tab-pane
                 v-for="(characters, elementName) in characterByElement"
                 :key="elementName"
-                :label="element2Chs(elementName)"
+                :label="t('ele', elementName)"
                 :name="elementName"
                 class="character-tab-pane"
                 @click.native="handleClickCharacter"
@@ -26,6 +26,7 @@
 <script>
 import { characterByElement } from "@character"
 import { element2Chs } from "@/utils/common"
+import {useI18n} from "../../i18n/i18n";
 
 export default {
     name: "MonaDBPage",
@@ -47,7 +48,12 @@ export default {
             }
         }
     },
-    computed: {
+    setup() {
+        const { t } = useI18n()
+
+        return {
+            t
+        }
     }
 }
 </script>

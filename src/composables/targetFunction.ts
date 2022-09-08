@@ -3,6 +3,7 @@ import type {TargetFunctionName} from "@/types/targetFunction"
 import {targetFunctionByCharacterName, targetFunctionData} from "@targetFunction"
 import {type Ref} from "vue"
 import type {CharacterName} from "@/types/character"
+import {useI18n} from "@/i18n/i18n";
 
 export function useTargetFunction(characterName: Ref<CharacterName>) {
     const targetFunctionName = ref<TargetFunctionName>("AmberDefault")
@@ -10,12 +11,15 @@ export function useTargetFunction(characterName: Ref<CharacterName>) {
     const targetFunctionUseDSL = ref(false)
     const targetFunctionDSLSource = ref("")
 
+    const { t } = useI18n()
+
     const targetFunctionBadge = computed(() => {
         return targetFunctionData[targetFunctionName.value].badge
     })
 
     const targetFunctionDescription = computed(() => {
-        return targetFunctionData[targetFunctionName.value].description
+        // return targetFunctionData[targetFunctionName.value].description
+        return t("tfDesc", targetFunctionName.value)
     })
 
     const targetFunctionNeedConfig = computed(() => {
@@ -41,9 +45,18 @@ export function useTargetFunction(characterName: Ref<CharacterName>) {
         const currentTargetFunctionData = targetFunctionData[targetFunctionName.value]
         if (currentTargetFunctionData["for"] !== "common") {
             // if not common, change to default character specific target function
-            const defaultTargetFunctionData = targetFunctionByCharacterName[name][0]
-            const defaultTargetFunctionName = defaultTargetFunctionData.name
-            targetFunctionName.value = defaultTargetFunctionName
+            const characterTfList = targetFunctionByCharacterName[name]
+            if (characterTfList && characterTfList.length > 0) {
+                targetFunctionName.value = characterTfList[0].name
+            } else {
+                targetFunctionName.value = targetFunctionByCharacterName["common"][0].name
+            }
+        } else {
+            // if current is common, change to character default
+            const characterTfList = targetFunctionByCharacterName[name]
+            if (characterTfList && characterTfList.length > 0) {
+                targetFunctionName.value = characterTfList[0].name
+            }
         }
     }, {
         flush: "sync"
