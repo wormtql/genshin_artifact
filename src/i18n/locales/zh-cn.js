@@ -1390,7 +1390,7 @@ export default {
         KukiShinobuDefault: "久岐忍-烦恼刈除",
         ShikanoinHeizouDefault: "鹿野院平藏-心朝乂安",
         TighnariDefault: "提纳里-浅蔚轻行",
-        CynoDefault: "赛诺-超激化输出",//TODO:修好赛诺title
+        CynoDefault: "赛诺-输出",//TODO:修好赛诺title
     },
     tfDesc: {
         MaxATK: "最大化攻击力",
