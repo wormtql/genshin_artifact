@@ -31,6 +31,7 @@ export default {
         preset: "计算预设",
         compute: "计算",
         calculate: "计算器",
+        sequentialOptimize: "队列优化",
         teamOptimize: "多人优化",
         potential: "圣遗物潜力",
         monaDB: "莫娜数据库",

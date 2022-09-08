@@ -3,7 +3,7 @@
         <apply-preset-dialog ref="applyPresetDialog" @selected="addPreset"></apply-preset-dialog>
 
         <el-dialog title="选择圣遗物" :width="deviceIsPC ? '80%' : '90%'" v-model="showSelectArtifactDialog">
-            <select-artifact :position="selectArtifactSlot" @select="handleSelectArtifact!"></select-artifact>
+            <select-artifact :position="selectArtifactSlot" @select="handleSelectArtifact"></select-artifact>
         </el-dialog>
 
         <el-row style="margin-bottom: 12px">
@@ -21,47 +21,47 @@
                 <div style="float: right">
                     <el-button-group>
                         <el-button type="primary" size="default" :icon="IconEpStarOn"
-                            @click="handleClickSaveToDirectory">存至收藏夹</el-button>
+                            @click="handleClickSaveToDirectory">
+                            存至收藏夹
+                        </el-button>
                         <el-dropdown trigger="click" @command="handleClickImportFromDirectory">
                             <el-button size="default" :icon="IconEpDownload">导入</el-button>
-                            <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item v-for="item in directories" :key="item.id" :command="item.id">
-                                    {{ item.title }}</el-dropdown-item>
-                            </el-dropdown-menu>
+                            <template #dropdown>
+                                <el-dropdown-menu>
+                                    <el-dropdown-item v-for="item in directories" :key="item.id" :command="item.id">
+                                        {{ item.title }}
+                                    </el-dropdown-item>
+                                </el-dropdown-menu>
+                            </template>
                         </el-dropdown>
                         <el-dropdown trigger="click" @command="handleClickCompareWithDirectory">
-                            <el-button size="default" :icon="IconEpDocumentCopy">对比{{ oldDirectoryId !== null ? '中' : ''
-                            }}</el-button>
-                            <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item v-for="item in directories" :key="item.id" :command="item.id"
-                                    :class="{ 'directory-active': oldDirectoryId == item.id }">{{ item.title }}
-                                </el-dropdown-item>
-                                <el-dropdown-item v-if="oldDirectoryId !== null" divided command="cancel">取消
-                                </el-dropdown-item>
-                            </el-dropdown-menu>
+                            <el-button size="default" :icon="IconEpDocumentCopy">
+                                对比{{ oldDirectoryId !== null ? '中' : ''}}
+                            </el-button>
+                            <template #dropdown>
+                                <el-dropdown-menu>
+                                    <el-dropdown-item v-for="item in directories" :key="item.id" :command="item.id"
+                                        :class="{ 'directory-active': oldDirectoryId == item.id }">
+                                        {{ item.title }}
+                                    </el-dropdown-item>
+                                    <el-dropdown-item v-if="oldDirectoryId !== null" divided command="cancel">
+                                        取消
+                                    </el-dropdown-item>
+                                </el-dropdown-menu>
+                            </template>
                         </el-dropdown>
                     </el-button-group>
                 </div>
             </el-col>
         </el-row>
 
-            <!-- tag="transition-group" -->
-        <draggable
-            tag="transition-group"
-            :component-data="{
-                // tag: 'ul',
-                type: 'transition-group',
-                name: !dragging ? 'flip-list' : null
-            }"
-            v-model="sequenceData"
-            handle=".member-item"
-            :animation="300"
-            :disabled="false"
-            ghostClass="ghost"
-            @start="dragging = true"
-            @end="dragging = false"
-            item-key="id"
-        >
+        <!-- https://github.com/SortableJS/vue.draggable.next/issues/159 -->
+        <!-- don't add tag="transition-group" -->
+        <draggable :component-data="{
+            type: 'transition-group',
+            name: !dragging ? 'flip-list' : null
+        }" :list="sequenceData" handle=".member-item" :animation="300" :disabled="false" ghostClass="ghost"
+            @start="dragging = true" @end="dragging = false" item-key="id">
             <template #item="{ element: { id, name, arts }, index }">
                 <el-row :gutter="16">
                     <el-col :md="6" :sm="24" class="mona-scroll-hidden left member-item">
@@ -69,12 +69,12 @@
                             class="member-header">
                             <p class="team-title">成员{{ index + 1 }}</p>
                             <div>
-                                <el-button circle size="small" type="text" :icon="IconEpArrowUp" :disabled="index === 0"
+                                <el-button circle size="small" link :icon="IconEpArrowUp" :disabled="index === 0"
                                     @click="handleUpMember(index)" style="color: white"></el-button>
-                                <el-button circle size="small" type="text" :icon="IconEpArrowDown"
+                                <el-button circle size="small" link :icon="IconEpArrowDown"
                                     :disabled="index === sequenceData.length - 1" @click="handleDownMember(index)"
                                     style="color: white"></el-button>
-                                <el-button circle size="small" type="text" :icon="IconEpDelete"
+                                <el-button circle size="small" link :icon="IconEpDelete"
                                     @click="handleDeleteMember(index)" style="color: white"></el-button>
                             </div>
                         </div>
@@ -100,8 +100,8 @@
                         </div>
                         <div class="result-item-content">
                             <div v-for="(artId, artIndex) in arts" :key="artIndex" class="artifact-item-or-button">
-                                <artifact-display v-if="artifactsById.get(artId)" :item="artifactsById.get(artId)" selectable
-                                    :buttons="true" :delete-button="true"
+                                <artifact-display v-if="artifactsById.get(artId)" :item="artifactsById.get(artId)"
+                                    selectable :buttons="true" :delete-button="true"
                                     @delete="handleRemoveArtifact(index, artIndex)"
                                     @toggle="handleToggleArtifact(artId)"
                                     @click="handleGotoSelectArtifact(index, artIndex)" class="artifact-display"
@@ -149,6 +149,7 @@ import SelectArtifact from "@/components/select/SelectArtifact.vue"
 import objectHash from "object-hash"
 import { useMona } from "@/wasm/mona"
 import { convertArtifact } from "@/utils/converter"
+import { deepCopy } from "@/utils/common"
 import { wasmSingleOptimize } from "@/wasm/single_optimize"
 import { convertPresetToWasmInterface } from "@/utils/preset"
 import { deviceIsPC } from "@/utils/device"
@@ -218,7 +219,7 @@ const presets = computed(() => presetNames.value.map(name => presetStore.presets
 const savedSequenceHash = ref<string | null>(null)
 const sequenceDirty = computed(() => {
     const hash = objectHash(presetNames.value)
-    return hash !== savedSequenceHash
+    return hash !== savedSequenceHash.value
 })
 
 function handleClickSaveSequence() {
@@ -274,17 +275,17 @@ async function handleStartCompute(start: number, end?: number) {
     for (let i = start; i < end; i++) {
         const item = sequenceData[i]
         item.arts = [-1, -1, -1, -1, -1]
-        const singleInterface = {
+        const singleInterface = deepCopy({
             ...convertPresetToWasmInterface(presets.value[i].item),
             // max_result_num: 1,
-        }
+        })
         const loading = ElLoading.service({
             target: '#' + item.id,
             lock: true,
             text: "莫娜占卜中",
             // background: 'rgba(0, 0, 0, 0.7)',
         })
-        const usedArts = sequenceData.slice(0, i).map(({arts}) => arts)
+        const usedArts = sequenceData.slice(0, i).map(({ arts }) => arts)
         const availableArts = getFilteredArtifactsWasm(usedArts)
         const [promise, cancel] = wasmSingleOptimize(singleInterface, availableArts, 120000, true)
         cancelOptimizeArtifact.value = cancel
@@ -345,7 +346,7 @@ function handleRedirectToCalculator(index: number) {
 // select artifact
 const showSelectArtifactDialog = ref(false)
 const selectArtifactSlot = ref<ArtifactPosition>("flower")
-const handleSelectArtifact = ref<((artId: number) => void) | null>(null)
+const handleSelectArtifact = ref<((artId: number) => void)>(() => { })
 
 function handleRemoveArtifact(index: number, artIndex: number) {
     sequenceData[index].arts[artIndex] = -1
@@ -362,6 +363,7 @@ function handleGotoSelectArtifact(index: number, artIndex: number) {
     handleSelectArtifact.value = id => {
         sequenceData[index].arts[artIndex] = id
         showSelectArtifactDialog.value = false
+        handleSelectArtifact.value = () => { }
     }
     showSelectArtifactDialog.value = true
 }
@@ -412,7 +414,7 @@ function handleClickSaveToDirectory() {
             }
         }
     }
-    ElMessage.info(`已保存到"${dirName}"收藏夹`)
+    ElMessage.success({ message: `已保存到"${dirName}"收藏夹` })
 }
 
 const oldDirectoryId = ref<number | null>(null)
@@ -432,282 +434,6 @@ function handleClickImportFromDirectory(dirId: number) {
 function handleClickCompareWithDirectory(dirId: number | 'cancel') {
     oldDirectoryId.value = dirId === 'cancel' ? null : dirId
 }
-
-/* export default defineComponent({
-    name: "SequentialOptimizationPage",
-    components: {
-        draggable,
-        ArtifactDisplay,
-        PresetItem,
-        SelectPreset,
-        AddButton,
-        ApplyPresetDialog,
-        SelectArtifact,
-    },
-    data() {
-        return {
-            sequenceData: [],
-            savedSequenceHash: null,
-            dragging: false,
-
-            showSelectArtifactDialog: false,
-            selectArtifactSlot: "any",
-            handleSelectArtifact: null,
-
-            cancelOptimizeArtifact: null,
-
-            oldDirectoryId: null,
-
-            deviceIsPC,
-        }
-    },
-    computed: {
-        ...mapGetters("artifacts", {
-            artifactsFlat: "allFlat",
-            artifactsById: "artifactsById",
-        }),
-
-        ...mapGetters("kumi", {
-            directories: "directories",
-        }),
-
-        presetNames() {
-            return this.sequenceData.map(({name}) => name)
-        },
-
-        presets() {
-            return this.presetNames.map(name => getPresetEntryByName(name))
-        },
-
-        sequenceDirty() {
-            const hash = objectHash(this.presetNames)
-            return hash !== this.savedSequenceHash
-        },
-
-        oldDirectory() {
-            return this.getArtifactsFromDirectory(this.oldDirectoryId)
-        }
-    },
-    methods: {
-        genUniqueId() {
-            return 'arts' + String(Math.floor(Math.random() * 1e8))
-        },
-
-        addPreset(name) {
-            this.sequenceData.push({
-                name,
-                id: this.genUniqueId(),
-                arts: [-1, -1, -1, -1, -1],
-            })
-        },
-
-        swap(arr, i, j) {
-            let temp = arr[i]
-            this.$set(arr, i, arr[j])
-            this.$set(arr, j, temp)
-        },
-
-        handleUpMember(index) {
-            this.swap(this.sequenceData, index, index - 1)
-        },
-
-        handleDownMember(index) {
-            this.swap(this.sequenceData, index, index + 1)
-        },
-
-        handleDeleteMember(index) {
-            this.$delete(this.sequenceData, index)
-        },
-
-        artifactObjectToArray(art) {
-            return [
-                art.flower || -1,
-                art.feather || -1,
-                art.sand || -1,
-                art.goblet || art.cup || -1,
-                art.head || -1,
-            ]
-        },
-
-        getFilteredArtifactsWasm(excludeResults) {
-            let results = []
-            for (let artifact of this.artifactsFlat) {
-                if (artifact.level >= 16) {
-                    results.push(artifact)
-                }
-            }
-            let used = new Set()
-            for (let artIds of excludeResults) {
-                for (let artId of artIds) {
-                    used.add(artId)
-                }
-            }
-            return results.filter(a => !a.omit && !used.has(a.id)).map(convertArtifact)
-        },
-
-        async handleStartCompute(start, end) {
-            if (end === undefined) {
-                end = this.presets.length
-            }
-            const canStart = this.presets.slice(start, end).every(x => x)
-            if (!canStart) {
-                this.$message.error("计算范围内有计算预设已被删除")
-                return
-            }
-
-            for (let i = start; i < end; i++) {
-                const item = this.sequenceData[i]
-                item.arts = [-1, -1, -1, -1, -1]
-                const singleInterface = {
-                    ...convertPresetToWasmInterface(this.presets[i].item),
-                    max_result_num: 1,
-                }
-                let loading = this.$loading({
-                    target: '#' + item.id,
-                    lock: true,
-                    text: "莫娜占卜中",
-                    // background: 'rgba(0, 0, 0, 0.7)',
-                })
-                let usedArts = this.sequenceData.map(({arts}) => arts).slice(0, i)
-                let availableArts = this.getFilteredArtifactsWasm(usedArts)
-                let [promise, cancel] = wasmSingleOptimize(singleInterface, availableArts)
-                this.cancelOptimizeArtifact = cancel
-                let results
-                try {
-                    results = await promise;
-                } catch (e) {
-                    this.$message.error(e)
-                    break
-                } finally {
-                    this.cancelOptimizeArtifact = null
-                    loading.close()
-                }
-                if (results.length === 0) {
-                    this.$message.error("没有符合条件的圣遗物")
-                    break
-                }
-                item.arts = this.artifactObjectToArray(results[0])
-            }
-        },
-
-        async handleClickStart() {
-            if (this.sequenceDirty) {
-                try {
-                    await this.$confirm("是否保存序列？", "警告", {
-                        confirmButtonText: "确定",
-                        cancelButtonText: "取消",
-                        type: 'warning'
-                    })
-                    this.handleClickSaveSequence()
-                } catch (e) {
-                }
-            }
-            await this.handleStartCompute(0)
-        },
-
-        handleClickSaveToDirectory() {
-            let dirName = new Date().toLocaleString()
-            newDir(dirName)
-            let dirId = getDirByName(dirName)
-            for (let i = 0; i < this.presets.length; i++) {
-                const item = this.sequenceData[i]
-                newKumiWithArtifacts(dirId, item.name, item.arts)
-            }
-            this.$message.info(`已保存到"${dirName}"收藏夹`)
-        },
-
-        getArtifactsFromDirectory(dirId) {
-            //preset in page includes name artID & arts,
-            //while preset in dir use id, title & artifactIds
-            //get array of kumisID by dirID
-            let kumiArr = getKumisByDir(dirId)
-            //order arts and transform kumisID to map
-            let orderedArtsMap = new Map()
-            for (let kumi of kumiArr) {
-                let tempOrderdArtsSeq = {}
-                for (let artId of kumi.artifactIds) {
-                    let art = this.artifactsById[artId]
-                    if (art) {
-                        tempOrderdArtsSeq[art.position] = art.id
-                    }
-                }
-                orderedArtsMap.set(kumi.title, this.artifactObjectToArray(tempOrderdArtsSeq))
-            }
-
-            return orderedArtsMap
-        },
-
-        handleClickImportFromDirectory(dirId) {
-            let artsMap = this.getArtifactsFromDirectory(dirId)
-            //iterate sequenceData
-            for (let item of this.sequenceData) {
-                if (artsMap.has(item.name)) {
-                    item.arts = artsMap.get(item.name)
-                }
-            }
-        },
-
-        handleClickCompareWithDirectory(dirId) {
-            this.oldDirectoryId = dirId === 'cancel' ? null : dirId
-        },
-
-        handleClickSaveSequence() {
-            this.$store.commit('sequence/save', this.presetNames)
-            this.savedSequenceHash = objectHash(this.presetNames)
-            this.$message.info('保存序列成功')
-        },
-
-        handleClickImportSequence() {
-            let names = this.$store.state.sequence.sequence.slice()
-            this.sequenceData = names.map(name => ({
-                name,
-                id: this.genUniqueId(),
-                arts: [-1, -1, -1, -1, -1],
-            }))
-            this.savedSequenceHash = objectHash(this.presetNames)
-        },
-
-        handleRedirectToCalculator(index) {
-            const item = this.sequenceData[index]
-            if (this.oldDirectory.has(item.name)) {
-                this.$router.push({
-                    name: "calculate",
-                    params: {
-                        presetName: item.name,
-                        artifactGroups: [item.arts, this.oldDirectory.get(item.name)]
-                    }
-                })
-            } else {
-                this.$router.push({
-                    name: "calculate",
-                    params: {
-                        presetName: item.name,
-                        artifacts: item.arts,
-                    }
-                })
-            }
-        },
-
-        handleRemoveArtifact(index, artIndex) {
-            this.$set(this.sequenceData[index].arts, artIndex, -1)
-        },
-
-        handleToggleArtifact(id) {
-            this.$store.commit("artifacts/toggleById", { id })
-        },
-
-        handleGotoSelectArtifact(index, artIndex) {
-            const map = ["flower", "feather", "sand", "cup", "head"]
-            const slotName = map[artIndex]
-            this.selectArtifactSlot = slotName
-            this.handleSelectArtifact = id => {
-                this.$set(this.sequenceData[index].arts, artIndex, id)
-                this.showSelectArtifactDialog = false
-            }
-            this.showSelectArtifactDialog = true
-        },
-    },
-})*/
 </script>
 
 <style scoped lang="scss">
@@ -855,7 +581,7 @@ function handleClickCompareWithDirectory(dirId: number | 'cancel') {
                         background-color: rgb(148, 199, 251);
                         background-repeat: no-repeat;
                         background-position: 0 0;
-                        animation: hint 3s linear infinite;
+                        animation: hint 1.5s linear infinite;
                     }
 
                     &::after {

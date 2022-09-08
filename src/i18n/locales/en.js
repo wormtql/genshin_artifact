@@ -31,6 +31,7 @@ export default {
         preset: "Preset",
         compute: "Computation",
         calculate: "Calculator",
+        sequentialOptimize: "Sequence Optimize",
         teamOptimize: "Team Optimize",
         potential: "Artifact Potential",
         monaDB: "Mona DB",
