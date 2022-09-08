@@ -1466,7 +1466,7 @@ export default {
         KukiShinobuDefault: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
         ShikanoinHeizouDefault: "输出平藏，使得E技能4层伤害最大",
         TighnariDefault: "使得提纳里的重击伤害最大",
-        CynoDefault:"打QTE并释放渡荒之雷，普攻命中次数、反应触发次数和6命渡荒之雷数量参考数据：</br>零命 7.0 | 5.0 | 0.0 </br> 一命 9.0 | 5.0 | 0.0 </br>六命 9.0 | 7.0 | 4.0",
+        CynoDefault:"打QTE并释放渡荒之雷，会根据套装自动选择手法",
     },
     dmg: {
         electroCharged: "感电",

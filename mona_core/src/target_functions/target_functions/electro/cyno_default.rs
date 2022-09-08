@@ -103,7 +103,7 @@ impl TargetFunctionMetaTrait for CynoDefaultTargetFunction {
         ItemConfig {
             name: "until_expire",
             title: "t18", //a到大招完全结束
-            config: ItemConfigType::Int { min: 0, max: 5, default: 3 }
+            config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "aggravate_rate",
@@ -282,13 +282,13 @@ impl TargetFunction for CynoDefaultTargetFunction {
                 _ => 0.0,
             };
             if self.aggravate_rate > 0.0 {
-                dmgsum_agg += normal1_agg*match (is_thunderingfury,self.combo,self.until_expire) {
+                dmgsum_agg += agg_bonus_normal*match (is_thunderingfury,self.combo,self.until_expire) {
                     (false,0,true) => 3.0*4.0+1.0, //qe 5a+1aE 5a+1aE 5a+1aE 5a+1aE 4a
                     (false,0,false) => 3.0*3.0, //qe 5a+1aE 5a+1aE 5a+1aE
                     (false,1,true) => 3.0*4.0, //qe 3ad4aE 3ad4aE 3ad4aE 3ad4aE 2a
                     (false,1,false) => 3.0*3.0, //qe 3ad4aE 3ad4aE 3ad4aE
-                    (true, 0,true) | (true, 1,true) => 3.0*3.0, //qe 3ae3aE 3ae3aE 3ae3aE 3ae3aE 2a
-                    (true, 0,false) | (true, 1,false) => 3.0*4.0, //qe 3ae3aE 3ae3aE 3ae3aE 
+                    (true, 0,true) | (true, 1,true) => 2.25*4.0, //qe 3ae3aE 3ae3aE 3ae3aE 3ae3aE 2a
+                    (true, 0,false) | (true, 1,false) => 2.33*3.0, //qe 3ae3aE 3ae3aE 3ae3aE 
                     _ => 0.0,
                 };
             }
@@ -311,7 +311,7 @@ impl TargetFunction for CynoDefaultTargetFunction {
                     (true, 1,true) => 4.0*4.0, // qe 4ae4aE 4ae4aE 4ae4aE 4ae4aE 2a
                     (true, 1,false) => 4.0*3.0, // qe 4ae4aE 4ae4aE 4ae4aE
                     (false,0,true) => 3.0*4.0+1.0, // qe 5a+3aE 5a+3aE 5a+3aE 5a+3aE 2a
-                    (false,0,false) => 3.0*4.0+0.33, // qe 5a+3aE 5a+3aE 5a+3aE
+                    (false,0,false) => 3.0*3.0+0.33, // qe 5a+3aE 5a+3aE 5a+3aE
                     (false,1,true) => 4.0*4.0,// qe 4ad5aE 4ad5aE 4ad5aE 4ad5aE
                     (false,1,false) => 4.0*3.0, // qe 4ad5aE 4ad5aE 4ad5aE 
                     _ => 0.0,
