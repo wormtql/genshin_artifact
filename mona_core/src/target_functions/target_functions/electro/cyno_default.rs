@@ -1,13 +1,14 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::{ArtifactEffectConfig, ArtifactEffectConfigBuilder, ConfigLevel, ConfigRate};
 use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
-use crate::character::{Character, CharacterName};
+use crate::character::{Character, CharacterName, character_common_data};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::cyno::Cyno;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
+use crate::damage::damage_result::SimpleDamageResult;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
 use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
@@ -24,54 +25,54 @@ extern crate web_sys;
 
 pub struct CynoDefaultTargetFunction {
     pub recharge_requirement:f64,
-    pub hit_within_qte:f64,
-    pub reaction_times:f64,
-    pub extra_bolts:f64,
-    pub aggravate_rate: f64,
+    pub combo:usize,
+    pub until_expire:bool,
+    pub aggravate_rate:f64,
     pub elecharged_rate:f64,
-    pub overload_rate:f64
+    pub overload_rate:f64,
+    pub hyperbloom_rate:f64
 }
 
 impl CynoDefaultTargetFunction {
     pub fn new(config: &TargetFunctionConfig) -> Self {
         let (
                 recharge_requirement,
-                hit_within_qte,
-                reaction_times,
-                extra_bolts,
+                combo,
+                until_expire,
                 aggravate_rate,
                 elecharged_rate,
-                overload_rate
+                overload_rate,
+                hyperbloom_rate
             ) = match *config {
                     TargetFunctionConfig::CynoDefault {
                                                             recharge_requirement,
-                                                            hit_within_qte,
-                                                            reaction_times,
-                                                            extra_bolts,
+                                                            combo,
+                                                            until_expire,
                                                             aggravate_rate,
                                                             elecharged_rate,
-                                                            overload_rate  
+                                                            overload_rate,
+                                                            hyperbloom_rate
                                                         } => 
                                                         (
                                                             recharge_requirement,
-                                                            hit_within_qte,
-                                                            reaction_times,
-                                                            extra_bolts,
+                                                            combo,
+                                                            until_expire,
                                                             aggravate_rate,
                                                             elecharged_rate,
-                                                            overload_rate
+                                                            overload_rate,
+                                                            hyperbloom_rate
                                                         ),
-            _ => (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            _ => (0.0, 0, false, 0.0, 0.0, 0.0, 0.0)
         };
 
         Self {
-            recharge_requirement,
-            hit_within_qte,
-            reaction_times,
-            extra_bolts,
-            aggravate_rate,
-            elecharged_rate,
-            overload_rate
+                recharge_requirement,
+                combo,
+                until_expire,
+                aggravate_rate,
+                elecharged_rate,
+                overload_rate,
+                hyperbloom_rate
         }
     }
 }
@@ -95,23 +96,18 @@ impl TargetFunctionMetaTrait for CynoDefaultTargetFunction {
             config: ItemConfigType::Float { min:1.0, max: 3.0 , default:1.3 }
         },
         ItemConfig {
-            name: "hit_within_qte",
-            title: "t18", //一轮QTE内普通攻击命中次数
-            config: ItemConfigType::Float { min: 0.0, max: 15.0, default: 7.0 }
+            name: "combo",
+            title: "t17", //连招选择
+            config: ItemConfigType::Option { options: "乱a不取消,取消第五段", default: 0 }
         },
         ItemConfig {
-            name: "reaction_times",
-            title: "t19", //一轮QTE内触发反应次数
-            config: ItemConfigType::Float { min: 0.0, max: 10.0 , default: 5.0 }
-        },
-        ItemConfig {
-            name: "extra_bolts",
-            title: "t22", //6命额外渡荒之雷
-            config: ItemConfigType::Float { min: 0.0, max: 4.0 , default: 0.0 }
+            name: "until_expire",
+            title: "t18", //a到大招完全结束
+            config: ItemConfigType::Int { min: 0, max: 5, default: 3 }
         },
         ItemConfig {
             name: "aggravate_rate",
-            title: "t17", //超激化比例
+            title: "t19", //超激化比例
             config: ItemConfigType::Float { min:0.0, max: 1.0 , default:1.0}
         },
         ItemConfig {
@@ -122,6 +118,11 @@ impl TargetFunctionMetaTrait for CynoDefaultTargetFunction {
         ItemConfig {
             name: "overload_rate",
             title: "t21", //超载比例
+            config: ItemConfigType::Float { min: 0.0, max: 1.0 , default:0.0}
+        },
+        ItemConfig {
+            name: "hyperbloom_rate",
+            title: "t22", //超绽放比例
             config: ItemConfigType::Float { min: 0.0, max: 1.0 , default:0.0}
         },
     ]);
@@ -192,87 +193,141 @@ impl TargetFunction for CynoDefaultTargetFunction {
         .build()
     }
 
-    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
+    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
             attribute, enemy
         };
-        //Cyno::SKILL.normal_dmg1[]
         type S = <Cyno as CharacterTrait>::DamageEnumType;
         let config = CharacterSkillConfig::Cyno { under_judication: true };
-        let dmg_normal1 = Cyno::damage::<SimpleDamageBuilder>(&context, S::QNormal1, &config, None);
+        let dmg_normal1:SimpleDamageResult = Cyno::damage::<SimpleDamageBuilder>(&context, S::QNormal1, &config, None);
         let dmg_normal2 = Cyno::damage::<SimpleDamageBuilder>(&context, S::QNormal2, &config, None);
         let dmg_normal3 = Cyno::damage::<SimpleDamageBuilder>(&context, S::QNormal3, &config, None);
         let dmg_normal4 = Cyno::damage::<SimpleDamageBuilder>(&context, S::QNormal4, &config, None);
         let dmg_normal5 = Cyno::damage::<SimpleDamageBuilder>(&context, S::QNormal5, &config, None);
         let dmg_e2 = Cyno::damage::<SimpleDamageBuilder>(&context, S::E2, &config, None);
         let dmg_e3=Cyno::damage::<SimpleDamageBuilder>(&context, S::E3, &config, None);
+        let config_tf = CharacterSkillConfig::Cyno { under_judication: false };
+        let dmg_e2_noqte = Cyno::damage::<SimpleDamageBuilder>(&context, S::E2, &config_tf, None);
 
-        
+        let mut tf_count = 0;
+        for a in artifacts.iter() {
+            if a.set_name == ArtifactSetName::ThunderingFury {
+                tf_count+=1;
+            }
+        }
+        let is_thunderingfury=if tf_count<4 {false} else {true};
+
+        // auto combo selecton
+        // | non-tf |  C0   |  C1   |
+        // | combo0 | 5a+1a | 5a+3a | 
+        // | combo1 | 3ad4a | 4ad5a |
+        // 
+        // |   tf   |   C0   |   C1   |
+        // | combo0 | 3ae3aE | 3ae4aE | 
+        // | combo1 | 3ae3aE | 4ae4aE |
+        // 
+
         let normal1_normal = dmg_normal1.normal.expectation;
         let normal2_normal = dmg_normal2.normal.expectation;
         let normal3_normal = dmg_normal3.normal.expectation;
         let normal4_normal = dmg_normal4.normal.expectation;
         let normal5_normal = dmg_normal5.normal.expectation;
-
         let e2_normal = dmg_e2.normal.expectation;
         let e3_normal = dmg_e3.normal.expectation;
+        let e2_noqte_normal = dmg_e2_noqte.normal.expectation;
+        
+        let normal1_agg = dmg_normal1.aggravate.unwrap().expectation;
+        let e2_agg=dmg_e2.aggravate.unwrap().expectation;
+        let e2_noqte_agg = dmg_e2_noqte.aggravate.unwrap().expectation;
+        let e3_agg=dmg_e3.aggravate.unwrap().expectation;
 
-        let mut e2_agg = 0.0;
-        let mut e3_agg = 0.0;
-        let mut normal1_agg = 0.0;
-        let mut agg_bonus = 0.0;
-        let mut agg_bonus_e2 = 0.0;
-        let mut agg_bonus_e3 = 0.0;
+        let agg_bonus_normal = normal1_agg - normal1_normal;
+        let agg_bonus_e2 = e2_agg - e2_normal;
+        let agg_bonus_e3 = e3_agg - e3_normal;
+        let agg_bonus_e2_noqte = e2_noqte_agg - e2_noqte_normal;
+        
+        let rounds_count=if self.until_expire {4.0} else {3.0};
 
-        if (self.aggravate_rate == 0.0) == false {
-            e2_agg=dmg_e2.aggravate.unwrap().expectation;
-            e3_agg=dmg_e3.aggravate.unwrap().expectation;
-            normal1_agg = dmg_normal1.aggravate.unwrap().expectation;
-            agg_bonus=normal1_agg-normal1_normal;
-            agg_bonus_e2=e2_agg-e2_normal;
-            agg_bonus_e3=e2_agg-e3_normal;
-        }
         //let s = format!("{}",agg_bonus);
         //web_sys::console::log_1(&s.into());
         let mut dmg_electro_charged = 0.0;
         let mut dmg_overload = 0.0;
-
-        if (self.elecharged_rate == 0.0 && self.overload_rate == 0.0) == false {
+        let mut dmg_hyperbloom = 0.0;
+        let ec_count = 2.5*rounds_count+1.0;
+        let ol_count = 2.0*(rounds_count-2.0);
+        let hb_count = 3.0*3.0;
+        
+        //if transformative > 0: calc transformative dmg
+        if self.elecharged_rate > 0.0 && self.overload_rate > 0.0 && self.hyperbloom_rate > 0.0 {
             let transformative = context.transformative();
             dmg_electro_charged = transformative.electro_charged;
             dmg_overload = transformative.overload;
-        }
-
-        let hits = [normal1_normal,normal2_normal,normal3_normal,normal4_normal,normal4_normal,normal5_normal,normal1_normal,normal2_normal,normal3_normal,normal4_normal,normal4_normal,normal5_normal];
-        let hit_index=self.hit_within_qte.floor() as usize;
-        let hits_actual = &hits[0..hit_index];
-
-        let mut normal_dmg:f64 = (self.hit_within_qte - hit_index as f64)*hits[hit_index];
-        for d in hits_actual.iter(){
-            normal_dmg += d;
-        }
-
-        let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_requirement);
-        let mut bolts_agg_times:f64=0.0;
-        if self.aggravate_rate == 0.0 {
-            bolts_agg_times = 0.0;
-        } else if self.extra_bolts == 0.0 {
-            bolts_agg_times = 1.0;
-        } else if self.extra_bolts > 0.0 && self.extra_bolts < 3.0 {
-            bolts_agg_times = 2.0;
-        } else if self.extra_bolts > 3.0 || self.extra_bolts == 3.0 {
-            bolts_agg_times = 3.0;
-        }
-
-        r*(
-            normal_dmg + e2_normal*1.25 + e3_normal*(3.0 + self.extra_bolts) +
-                        (
-                            ((self.reaction_times-1.0-bolts_agg_times).min(0.0) * agg_bonus + 1.25*agg_bonus_e2 + bolts_agg_times * agg_bonus_e3) * self.aggravate_rate +
-                            (self.reaction_times).min(4.0) * dmg_electro_charged * self.elecharged_rate +
-                            (self.reaction_times) * dmg_overload * self.overload_rate
-                        ) 
+            dmg_hyperbloom = transformative.hyperbloom;
             
+        }
+        
+
+        let mut dmgsum_normal = e2_noqte_normal+(e2_normal+e3_normal*3.0+(if is_thunderingfury {e2_noqte_normal} else {0.0}))*rounds_count;
+        let mut dmgsum_agg = agg_bonus_e2_noqte+(agg_bonus_e2+agg_bonus_e3+(if is_thunderingfury {agg_bonus_e2_noqte} else {0.0}))*rounds_count;
+
+        if character.common_data.constellation == 0 {
+            dmgsum_normal += match (is_thunderingfury,self.combo,self.until_expire) {
+                (false,0,true) => (normal1_normal+normal2_normal+normal3_normal+normal4_normal*2.0)*5.0+normal5_normal*4.0+normal1_normal, //qe 5a+1aE 5a+1aE 5a+1aE 5a+1aE 4a
+                (false,0,false) => (normal1_normal*2.0+normal2_normal+normal3_normal+normal4_normal*2.0+normal5_normal)*3.0+normal1_normal, //qe 5a+1aE 5a+1aE 5a+1aE
+                (false,1,true) => (normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0+normal4_normal*2.0*1.0)*4.0+normal1_normal+normal2_normal, //qe 3ad4aE 3ad4aE 3ad4aE 3ad4aE 2a
+                (false,1,false) => (normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0+normal4_normal*2.0*1.0)*3.0, //qe 3ad4aE 3ad4aE 3ad4aE
+                (true, 0,true) | (true, 1,true) => e2_noqte_normal*4.0+(normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0)*4.0+normal1_normal+normal2_normal, //qe 3ae3aE 3ae3aE 3ae3aE 3ae3aE 2a
+                (true, 0,false) | (true, 1,false) => e2_noqte_normal*3.0+(normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0)*3.0, //qe 3ae3aE 3ae3aE 3ae3aE 
+                _ => 0.0,
+            };
+            if self.aggravate_rate > 0.0 {
+                dmgsum_agg += normal1_agg*match (is_thunderingfury,self.combo,self.until_expire) {
+                    (false,0,true) => 3.0*4.0+1.0, //qe 5a+1aE 5a+1aE 5a+1aE 5a+1aE 4a
+                    (false,0,false) => 3.0*3.0, //qe 5a+1aE 5a+1aE 5a+1aE
+                    (false,1,true) => 3.0*4.0, //qe 3ad4aE 3ad4aE 3ad4aE 3ad4aE 2a
+                    (false,1,false) => 3.0*3.0, //qe 3ad4aE 3ad4aE 3ad4aE
+                    (true, 0,true) | (true, 1,true) => 3.0*3.0, //qe 3ae3aE 3ae3aE 3ae3aE 3ae3aE 2a
+                    (true, 0,false) | (true, 1,false) => 3.0*4.0, //qe 3ae3aE 3ae3aE 3ae3aE 
+                    _ => 0.0,
+                };
+            }
+        } else {
+            dmgsum_normal += match (is_thunderingfury,self.combo,self.until_expire) {
+                (true, 0, true) => (normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0+normal4_normal*2.0)*4.0+normal5_normal*2.0, // qe 3ae4aE 3ae4aE 3ae4aE 3ae4aE plus a5*2
+                (true, 0, false) => (normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0+normal4_normal*2.0)*3.0+normal5_normal*1.33, // qe 3ae4aE 3ae4aE 3ae4aE plus a5*1.33
+                (true, 1, true) => (normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0+normal4_normal*2.0*2.0)*4.0+normal1_normal+normal2_normal, // qe 4ae4aE 4ae4aE 4ae4aE 4ae4aE 2a
+                (true, 1, false) => (normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0+normal4_normal*2.0*2.0)*3.0, // qe 4ae4aE 4ae4aE 4ae4aE
+                (false,0, true) => (normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0+normal4_normal*2.0*1.0+normal5_normal*1.0)*4.0+normal1_normal+normal2_normal, // qe 5a+3aE 5a+3aE 5a+3aE 5a+3aE 2a
+                (false,0, false) => (normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0+normal4_normal*2.0*1.0+normal5_normal*1.0)*3.0, // qe 5a+3aE 5a+3aE 5a+3aE
+                (false,1, true) => (normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0+normal4_normal*2.0*2.0+normal5_normal*1.0)*4.0,// qe 4ad5aE 4ad5aE 4ad5aE 4ad5aE
+                (false,1, false) => (normal1_normal*2.0+normal2_normal*2.0+normal3_normal*2.0+normal4_normal*2.0*2.0+normal5_normal*1.0)*3.0, // qe 4ad5aE 4ad5aE 4ad5aE 
+                _ => 0.0
+            };  
+            if self.aggravate_rate > 0.0 {
+                dmgsum_agg += agg_bonus_normal*match (is_thunderingfury,self.combo,self.until_expire) {
+                    (true, 0,true) => 3.0*4.0+1.0, // qe 3ae4aE 3ae4aE 3ae4aE 3ae4aE plus a5*2
+                    (true, 0,false) => 3.0*3.0+1.33, // qe 3ae4aE 3ae4aE 3ae4aE plus a5*1.33
+                    (true, 1,true) => 4.0*4.0, // qe 4ae4aE 4ae4aE 4ae4aE 4ae4aE 2a
+                    (true, 1,false) => 4.0*3.0, // qe 4ae4aE 4ae4aE 4ae4aE
+                    (false,0,true) => 3.0*4.0+1.0, // qe 5a+3aE 5a+3aE 5a+3aE 5a+3aE 2a
+                    (false,0,false) => 3.0*4.0+0.33, // qe 5a+3aE 5a+3aE 5a+3aE
+                    (false,1,true) => 4.0*4.0,// qe 4ad5aE 4ad5aE 4ad5aE 4ad5aE
+                    (false,1,false) => 4.0*3.0, // qe 4ad5aE 4ad5aE 4ad5aE 
+                    _ => 0.0,
+                };
+            }
+        }
+
+        if character.common_data.constellation == 6 {
+            dmgsum_normal += e3_normal*4.0*(if is_thunderingfury {e2_noqte_normal} else {0.0});
+            if self.aggravate_rate > 0.0 {
+                dmgsum_agg += agg_bonus_e3*2.0*(if is_thunderingfury {e2_noqte_normal} else {0.0})
+            }
+        }
+        let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_requirement);
+        r*(
+           dmgsum_normal + dmgsum_agg*self.aggravate_rate + dmg_electro_charged*ec_count*self.elecharged_rate + dmg_overload*ol_count*self.overload_rate + dmg_hyperbloom*hb_count*dmg_hyperbloom
         )
     }
 }
