@@ -3,6 +3,8 @@
   "version": "5.11.0",
   "private": true,
   "scripts": {
+    "build:gh": "cross-env ENV_FILE=.env.github_page.yaml PublicPath=/genshin_artifact/ vue-cli-service build",
+    "deploy:gh": "npm run build:gh && node ./script/deploy_gh.js",
     "serve": "cross-env ENV_FILE=.env.development.yaml vue-cli-service serve",
     "build": "cross-env ENV_FILE=.env.production.yaml vue-cli-service build --report",
     "lint": "vue-cli-service lint",
@@ -58,6 +60,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.2.0",
+    "gh-pages": "^4.0.0",
     "ifdef-loader": "^2.3.2",
     "js-yaml": "^4.1.0",
     "monaco-editor-webpack-plugin": "^7.0.1",
