@@ -14,6 +14,17 @@
                 <el-icon><i-ep-setting></i-ep-setting></el-icon>
                 <span>{{ t("nav.setup") }}</span>
             </el-menu-item>
+            <el-menu-item index="/account">
+                <el-icon><i-ep-user /></el-icon>
+                {{ t("nav.account") }}
+                <div class="sync-icon">
+                    <el-icon>
+                        <i-ep-folder-checked v-if="syncStatus === 'synced'" />
+                        <i-ep-sort v-else-if="syncStatus === 'syncing'" />
+                        <i-ep-folder-remove v-else/>
+                    </el-icon>
+                </div>
+            </el-menu-item>
 
             <el-menu-item-group>
                 <template #title>
@@ -95,6 +106,7 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import {useI18n} from "@/i18n/i18n"
+import { useAccountStore } from "@/store/pinia/account"
 
 export default defineComponent({
     name: "SideBar",
@@ -132,9 +144,11 @@ export default defineComponent({
     },
     setup() {
         const { t } = useI18n()
+        const accountStore = useAccountStore()
 
         return {
-            t
+            t,
+            syncStatus: accountStore.syncStatus,
         }
     }
 })
@@ -144,5 +158,10 @@ export default defineComponent({
 
 .item {
     padding: 0 32px;
+}
+
+.sync-icon {
+    width: 100%;
+    text-align: right;
 }
 </style>
