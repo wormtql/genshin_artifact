@@ -20,7 +20,28 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+
+      "@c/*": ["src/components/*"],
+      "@asset/*": ["src/assets/*"],
+      "@util/*": ["src/utils/*"],
+      "@alg/*": ["src/algorithms/*"],
+      "@page/*": ["src/pages/*"],
+      "@worker/*": ["src/workers/*"],
+      "@const/*": ["src/constants/*"],
+      "@enemy/*": ["src/enemies/*"],
+      "mona/*": ["mona_wasm/pkg/*"],
+      // "monaBg/*": ["sub/mona_wasm/pk/*g])
+
+      "@wasm/*": ["src/wasm/*"],
+      "@character/*": ["src/assets/character/*"],
+      "@weapon/*": ["src/assets/weapon/*"],
+      "@targetFunction/*": ["src/assets/target_function/*"],
+      "@potentialFunction/*": ["src/assets/potential_function/*"],
+      "@buff/*": ["src/assets/buff/*"],
+      "@image/*": ["src/images/*"],
+      "@artifact/*": ["src/assets/artifacts/*"],
+      // "genshin_panel": ["../../ts/genshin/dist"],
     },
     "lib": [
       "esnext",

@@ -371,7 +371,9 @@ function handleGotoSelectArtifact(index: number, artIndex: number) {
     showSelectArtifactDialog.value = true
 }
 
+////////////////////////////////////
 // save, import and compare kumis
+
 function artifactObjectToArray(art: Record<string, number>) {
     return [
         art.flower || -1,

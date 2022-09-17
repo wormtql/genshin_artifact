@@ -1,5 +1,10 @@
 <template>
     <div style="overflow: hidden">
+        <apply-preset-dialog
+            ref="applyPresetDialog"
+            @selected="name => usePreset(name)"
+        ></apply-preset-dialog>
+
         <el-dialog
             :title="t('calcPage.selectArt')"
             :width="deviceIsPC ? '80%' : '90%'"
@@ -39,140 +44,146 @@
         <el-dialog
             v-model="showConstraintDialog"
             :title="t('calcPage.setupCalc')"
-            :width="deviceIsPC ? '400px' : '90%'"
+            :width="deviceIsPC ? '900px' : '90%'"
         >
-            <p class="common-title2">
-                {{ t("misc.algo") }}
-                <el-tooltip>
-                    <i-fa6-solid-circle-question></i-fa6-solid-circle-question>
-                    <template #content>
-                        <span v-html="t('calcPage.algoDesc')">
+            <el-row justify="space-between">
+                <el-col :span="14">
+                    <p class="common-title2">
+                        {{ t("misc.algo") }}
+                        <el-tooltip>
+                            <i-fa6-solid-circle-question></i-fa6-solid-circle-question>
+                            <template #content>
+                                <span v-html="t('calcPage.algoDesc')">
 
-                        </span>
-<!--                        {{ t("calcPage.algoDesc") }}-->
-                    </template>
-                </el-tooltip>
-            </p>
-            <el-alert
-                v-if="algorithm === 'Naive'"
-                :title="t('calcPage.plzSetConst')"
-                type="warning"
-                style="margin-bottom: 12px"
-            ></el-alert>
-            <el-radio-group v-model="algorithm">
-                <el-radio label="AStar">{{ t("calcPage.aStar") }}</el-radio>
-<!--                <el-radio label="Heuristic">{{t("calcPage.heuristic")}}</el-radio>-->
-                <el-radio label="Naive">{{ t("calcPage.naive") }}</el-radio>
-            </el-radio-group>
+                                </span>
+        <!--                        {{ t("calcPage.algoDesc") }}-->
+                            </template>
+                        </el-tooltip>
+                    </p>
+                    <el-alert
+                        v-if="algorithm === 'Naive'"
+                        :title="t('calcPage.plzSetConst')"
+                        type="warning"
+                        style="margin-bottom: 12px"
+                    ></el-alert>
+                    <el-radio-group v-model="algorithm">
+                        <el-radio label="AStar">{{ t("calcPage.aStar") }}</el-radio>
+        <!--                <el-radio label="Heuristic">{{t("calcPage.heuristic")}}</el-radio>-->
+                        <el-radio label="Naive">{{ t("calcPage.naive") }}</el-radio>
+                    </el-radio-group>
 
-            <p class="common-title2">{{ t("calcPage.constSet") }}</p>
-            <div style="margin-top: 12px; margin-bottom: 12px">
-                <select-artifact-set
-                    multiple
-                    v-model="constraintArtifactSet"
-                    :style="{ width: '100%' }"
-                    :placeholder="t('calcPage.constSet')"
-                ></select-artifact-set>
-            </div>
-
-            <p class="common-title2">{{ t("calcPage.constMain") }}</p>
-            <div style="margin-top: 12px; margin-bottom: 12px">
-                <div class="constraint-main-stat-item">
-                    <span>{{ t("misc.sand") }}</span>
-                    <select-artifact-main-stat
-                        v-model="constraintSandMainStats"
-                        :include-any="false"
-                        :multiple="true"
-                        position="sand"
-                        :style="{ width: 'calc(100% - 48px)' }"
-                        :placeholder="t('calcPage.constMain')"
-                    ></select-artifact-main-stat>
-                </div>
-                <div class="constraint-main-stat-item">
-                    <span>{{ t("misc.cup") }}</span>
-                    <select-artifact-main-stat
-                        v-model="constraintGobletMainStats"
-                        :include-any="false"
-                        :multiple="true"
-                        position="cup"
-                        :style="{ width: 'calc(100% - 48px)' }"
-                        :placeholder="t('calcPage.constMain')"
-                    ></select-artifact-main-stat>
-                </div>
-                <div class="constraint-main-stat-item">
-                    <span>{{ t("misc.head") }}</span>
-                    <select-artifact-main-stat
-                        v-model="constraintHeadMainStats"
-                        :include-any="false"
-                        :multiple="true"
-                        position="head"
-                        :style="{ width: 'calc(100% - 48px)' }"
-                        :placeholder="t('calcPage.constMain')"
-                    ></select-artifact-main-stat>
-                </div>
-            </div>
-
-            <p class="constraint-title">{{ t("calcPage.constMin") }}</p>
-            <div>
-                <div class="constraint-min-item">
-                    <span class="constraint-min-title">{{ t("stat.recharge") }}</span>
-                    <div class="slider-div">
-                        <el-slider
-                            :min="1"
-                            :max="4"
-                            :step="0.05"
-                            v-model="constraintMinRecharge"
-                            :show-input="deviceIsPC"
-                        ></el-slider>
+                    <p class="common-title2">{{ t("calcPage.constSet") }}</p>
+                    <div style="margin-top: 12px; margin-bottom: 12px">
+                        <select-artifact-set
+                            multiple
+                            v-model="constraintArtifactSet"
+                            :style="{ width: '100%' }"
+                            :placeholder="t('calcPage.constSet')"
+                        ></select-artifact-set>
                     </div>
-                </div>
-                <div class="constraint-min-item">
-                    <span class="constraint-min-title">{{ t("stat.elementalMastery") }}</span>
-                    <div class="slider-div">
-                        <el-slider
-                            :min="0"
-                            :max="2000"
-                            :step="10"
-                            v-model="constraintMinElementalMastery"
-                            :show-input="deviceIsPC"
-                        ></el-slider>
-                    </div>
-                </div>
-                <div class="constraint-min-item">
-                    <span class="constraint-min-title">{{ t("stat.critical") }}</span>
-                    <div class="slider-div">
-                        <el-slider
-                            :min="0"
-                            :max="1"
-                            :step="0.01"
-                            v-model="constraintMinCritical"
-                            :show-input="deviceIsPC"
-                        ></el-slider>
-                    </div>
-                </div>
-                <div class="constraint-min-item">
-                    <span class="constraint-min-title">{{ t("stat.criticalDamage") }}</span>
-                    <div class="slider-div">
-                        <el-slider
-                            :min="0"
-                            :max="4"
-                            :step="0.1"
-                            v-model="constraintMinCriticalDamage"
-                            :show-input="deviceIsPC"
-                        ></el-slider>
-                    </div>
-                </div>
-            </div>
 
-            <p class="common-title2">{{ t("calcPage.filKumi") }}</p>
-            <div style="max-height: 50vh; overflow: auto" class="mona-scroll">
-                <el-tree
-                    :data="kumiTreeDataForElementUI"
-                    show-checkbox
-                    ref="filterKumiRef"
-                >
-                </el-tree>
-            </div>
+                    <p class="common-title2">{{ t("calcPage.constMain") }}</p>
+                    <div style="margin-top: 12px; margin-bottom: 12px">
+                        <div class="constraint-main-stat-item">
+                            <span>{{ t("misc.sand") }}</span>
+                            <select-artifact-main-stat
+                                v-model="constraintSandMainStats"
+                                :include-any="false"
+                                :multiple="true"
+                                position="sand"
+                                :style="{ width: 'calc(100% - 48px)' }"
+                                :placeholder="t('calcPage.constMain')"
+                            ></select-artifact-main-stat>
+                        </div>
+                        <div class="constraint-main-stat-item">
+                            <span>{{ t("misc.cup") }}</span>
+                            <select-artifact-main-stat
+                                v-model="constraintGobletMainStats"
+                                :include-any="false"
+                                :multiple="true"
+                                position="cup"
+                                :style="{ width: 'calc(100% - 48px)' }"
+                                :placeholder="t('calcPage.constMain')"
+                            ></select-artifact-main-stat>
+                        </div>
+                        <div class="constraint-main-stat-item">
+                            <span>{{ t("misc.head") }}</span>
+                            <select-artifact-main-stat
+                                v-model="constraintHeadMainStats"
+                                :include-any="false"
+                                :multiple="true"
+                                position="head"
+                                :style="{ width: 'calc(100% - 48px)' }"
+                                :placeholder="t('calcPage.constMain')"
+                            ></select-artifact-main-stat>
+                        </div>
+                    </div>
+
+                    <p class="constraint-title">{{ t("calcPage.constMin") }}</p>
+                    <div>
+                        <div class="constraint-min-item">
+                            <span class="constraint-min-title">{{ t("stat.recharge") }}</span>
+                            <div class="slider-div">
+                                <el-slider
+                                    :min="1"
+                                    :max="4"
+                                    :step="0.05"
+                                    v-model="constraintMinRecharge"
+                                    :show-input="deviceIsPC"
+                                ></el-slider>
+                            </div>
+                        </div>
+                        <div class="constraint-min-item">
+                            <span class="constraint-min-title">{{ t("stat.elementalMastery") }}</span>
+                            <div class="slider-div">
+                                <el-slider
+                                    :min="0"
+                                    :max="2000"
+                                    :step="10"
+                                    v-model="constraintMinElementalMastery"
+                                    :show-input="deviceIsPC"
+                                ></el-slider>
+                            </div>
+                        </div>
+                        <div class="constraint-min-item">
+                            <span class="constraint-min-title">{{ t("stat.critical") }}</span>
+                            <div class="slider-div">
+                                <el-slider
+                                    :min="0"
+                                    :max="1"
+                                    :step="0.01"
+                                    v-model="constraintMinCritical"
+                                    :show-input="deviceIsPC"
+                                ></el-slider>
+                            </div>
+                        </div>
+                        <div class="constraint-min-item">
+                            <span class="constraint-min-title">{{ t("stat.criticalDamage") }}</span>
+                            <div class="slider-div">
+                                <el-slider
+                                    :min="0"
+                                    :max="4"
+                                    :step="0.1"
+                                    v-model="constraintMinCriticalDamage"
+                                    :show-input="deviceIsPC"
+                                ></el-slider>
+                            </div>
+                        </div>
+                    </div>
+                </el-col>
+
+                <el-col :span="9">
+                    <p class="common-title2">{{ t("calcPage.filKumi") }}</p>
+                    <div style="max-height: 50vh; overflow: auto" class="mona-scroll">
+                        <el-tree
+                            :data="kumiTreeDataForElementUI"
+                            show-checkbox
+                            ref="filterKumiRef"
+                        >
+                        </el-tree>
+                    </div>
+                </el-col>
+            </el-row>
         </el-dialog>
 
 <!--    artifacts analysis    -->
@@ -250,7 +261,58 @@
             ></artifact-config>
         </el-dialog>
 
-        <el-row class="big-container">
+        <div>
+            <el-row>
+                <el-col :span="6">
+                    <!-- <el-breadcrumb>
+                        <el-breadcrumb-item>计算器</el-breadcrumb-item>
+                    </el-breadcrumb> -->
+                    <span>计算器</span>
+                </el-col>
+                <el-col :span="18">
+                    <div style="float: right">
+                        <template v-if="cancelOptimizeArtifact">
+                            <el-button
+                                type="danger"
+                                size="small"
+                                :icon="IconEpWarning"
+                                @click="cancelOptimizeArtifact"
+                            >中止计算</el-button>
+                            <el-divider direction="vertical"></el-divider>
+                        </template>
+                        <el-button
+                            v-if="miscCurrentPresetName"
+                            type="primary"
+                            size="small"
+                            :icon="IconEpFolderChecked"
+                            :disabled="!presetDirty"
+                            @click="handleSavePreset(miscCurrentPresetName)"
+                        >保存预设「{{ miscCurrentPresetName }}」</el-button>
+                        <el-button
+                            :type="!miscCurrentPresetName ? 'primary' : 'default'"
+                            size="small"
+                            :icon="IconEpFolderAdd"
+                            @click="handleSavePreset(null)"
+                        >存为新预设</el-button>
+                        <!-- <el-button
+                            type="default"
+                            size="small"
+                            icon="IconEpRefresh"
+                            @click="handleOptimizeArtifact"
+                        >重置页面</el-button> -->
+                        <el-button
+                            type="default"
+                            size="small"
+                            :icon="IconEpFolderOpened"
+                            @click="applyPresetDialog.open()"
+                        >导入预设</el-button>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-divider style="margin: 12px 0"></el-divider>
+        </div>
+
+        <el-row class="big-container" ref="bigContainer">
             <el-col class="left-container mona-scroll-hidden" :sm="24" :md="6">
                 <div class="config-character">
                     <img :src="characterSplash" alt="角色" class="character-splash" />
@@ -263,7 +325,8 @@
 <!--                                style="flex: 1"-->
 <!--                            ></select-character>-->
                             <select-character
-                                v-model="characterName"
+                                :model-value="characterName"
+                                @update:model-value="handleSelectCharacter"
                                 style="flex: 1"
                             ></select-character>
                             <select-character-level
@@ -301,12 +364,11 @@
 
                         <div class="config-character-constellation">
                             <h3 class="common-title2">{{ t("misc.conste") }}</h3>
-                            <el-input-number
-                                controls-position="right"
+                            <select-small-int
                                 v-model="characterConstellation"
                                 :min="0"
                                 :max="6"
-                            ></el-input-number>
+                            ></select-small-int>
                         </div>
 
                         <div class="character-extra-config" v-if="characterNeedConfig">
@@ -348,12 +410,11 @@
 
                         <div class="config-weapon-refine">
                             <h3 class="common-title2">{{ t("misc.refine") }}</h3>
-                            <el-input-number
-                                controls-position="right"
+                            <select-small-int
                                 v-model="weaponRefine"
                                 :min="1"
                                 :max="5"
-                            ></el-input-number>
+                            ></select-small-int>
                         </div>
 
                         <div class="weapon-extra-config" v-if="weaponNeedConfig">
@@ -370,55 +431,6 @@
 
                 <div class="config-target-function">
                     <p class="common-title">{{ t("misc.tf") }}</p>
-                    <div class="my-button-list" style="margin-bottom: 12px">
-                        <el-button-group>
-                            <el-button
-                                type="primary"
-                                :icon="IconEpCaretRight"
-                                @click="handleOptimizeArtifact"
-                            >{{ t("calcPage.start") }}</el-button>
-
-                            <el-button
-                                :icon="IconEpTools"
-                                @click="handleClickSetupOptimization"
-                            >{{ t("calcPage.setupCalc") }}</el-button>
-
-                            <el-button
-                                :icon="IconEpTools"
-                                @click="handleClickArtifactConfig"
-                            >{{ t("calcPage.setupArt") }}</el-button>
-                        </el-button-group>
-                    </div>
-
-                    <div class="my-button-list" style="margin-bottom: 12px">
-                        <el-dropdown
-                            trigger="click"
-                            @command="handleCommandPreset"
-                            @click="handleSavePreset(miscCurrentPresetName)"
-                            split-button
-                        >
-                            <template v-if="!miscCurrentPresetName">{{ t("calcPage.newPreset") }}</template>
-                            <template v-else>{{ t("calcPage.savePreset") }}「{{ miscCurrentPresetName }}」</template>
-
-                            <template #dropdown>
-                                <el-dropdown-menu>
-                                    <el-dropdown-item
-                                        v-if="miscCurrentPresetName"
-                                        icon="el-icon-s-tools"
-                                        command="save-preset"
-                                    >{{ t("calcPage.saveAsPreset") }}</el-dropdown-item>
-
-                                    <el-dropdown-item
-                                        v-for="(item, index) in presetStore.allFlat.value"
-                                        :divided="index === 0 && !!miscCurrentPresetName"
-                                        :key="item.name"
-                                        :icon="IconEpMenu"
-                                        :command="'apply-' + item.name"
-                                    >{{ item.name }}</el-dropdown-item>
-                                </el-dropdown-menu>
-                            </template>
-                        </el-dropdown>
-                    </div>
 
                     <el-tabs v-model="miscTargetFunctionTab">
                         <el-tab-pane :label="t('calcPage.tfNormal')" name="normal">
@@ -453,29 +465,6 @@
                             <el-input type="textarea" :rows="10" :placeholder="t('misc.code')" v-model="targetFunctionDSLSource" class="code-input"></el-input>
                         </el-tab-pane>
                     </el-tabs>
-
-
-                    <div v-if="optimizationResults.length > 0"
-                        style="margin-top: 12px"
-                    >
-                        <el-alert
-                            :title="`共计算${optimizationResults.length}组圣遗物搭配`"
-                            type="success"
-                            style="margin-bottom: 12px"
-                        ></el-alert>
-                        <el-input-number
-                            :model-value="optimizationResultIndex"
-                            @update:modelValue="handleUseNthOptimizationResult"
-                            :min="1"
-                            :max="optimizationResults.length"
-                            style="width: 100%"
-                        ></el-input-number>
-                        <value-display
-                            :value="optimizationResults[optimizationResultIndex - 1].ratio"
-                            :extra="optimizationResults[optimizationResultIndex - 1].value.toFixed(1)"
-                            style="margin-top: 12px"
-                        ></value-display>
-                    </div>
                 </div>
 
                 <el-divider></el-divider>
@@ -507,15 +496,52 @@
                 </div>
             </el-col>
 
-            <el-col :sm="24" :md="12" class="middle-container mona-scroll-hidden">
-                <p class="common-title">{{ t("misc.artifact") }}</p>
-
-                <div class="artifact-tool" style="margin-bottom: 12px">
+            <el-col :sm="24" :md="9" class="middle-container mona-scroll-hidden">
+                <div class="my-button-list" style="margin-bottom: 12px">
                     <el-button-group>
                         <el-button
-                            :icon="IconEpHistogram"
-                            @click="handleClickArtifactAnalysis"
-                        >{{ t("calcPage.statAnalysis") }}</el-button>
+                            type="primary"
+                            :icon="IconEpCaretRight"
+                            @click="handleOptimizeArtifact"
+                        >{{ t("calcPage.start") }}</el-button>
+
+                        <el-button
+                            :icon="IconEpTools"
+                            @click="handleClickSetupOptimization"
+                        >{{ t("calcPage.setupCalc") }}</el-button>
+
+                        <el-button
+                            :icon="IconEpTools"
+                            @click="handleClickArtifactConfig"
+                        >{{ t("calcPage.setupArt") }}</el-button>
+                    </el-button-group>
+                </div>
+
+                <p class="common-title">{{ t("misc.artifact") }}</p>
+
+                <div
+                    v-if="optimizationResults.length > 0"
+                    style="margin: 12px 0"
+                >
+                    <div style="width: 100%">
+                        <el-slider
+                            :model-value="optimizationResultIndex"
+                            @update:model-value="handleUseNthOptimizationResult"
+                            :min="1"
+                            :max="optimizationResults.length"
+                            show-input
+                            show-stops
+                        ></el-slider>
+                    </div>
+                    <value-display
+                        :value="optimizationResults[optimizationResultIndex - 1].ratio"
+                        :extra="optimizationResults[optimizationResultIndex - 1].value.toFixed(1)"
+                        style="margin-top: 12px"
+                    ></value-display>
+                </div>
+
+                <div class="artifact-tool" style="margin-bottom: 12px">
+                    <el-button-group style="margin-bottom: 6px">
                         <el-button
                             :icon="IconEpStarFilled"
                             @click="handleClickSaveAsKumi"
@@ -529,6 +555,16 @@
                             :icon="isAllLocked ? IconEpUnlock : IconEpLock"
                             @click="() => { isAllLocked ? handleUnlockAll() : handleLockAll() }"
                         >{{ isAllLocked ? t("calcPage.unlockAll") : t("calcPage.lockAll") }}</el-button>
+                    </el-button-group>
+                    <el-button-group>
+                        <el-button
+                            :icon="IconEpHistogram"
+                            @click="handleClickArtifactAnalysis"
+                        >{{ t("calcPage.statAnalysis") }}</el-button>
+                        <el-button
+                            :icon="IconEpHistogram"
+                            @click="handleClickAttributeAnalysis"
+                        >{{ t("calcPage.statCurve") }}</el-button>
                     </el-button-group>
                 </div>
 
@@ -589,6 +625,13 @@
                         :configs="artifactConfig4Configs"
                     ></item-config>
                 </div>
+            </el-col>
+
+            <el-col :sm="24" :md="9" class="right-container mona-scroll-hidden">
+                <div class="common-title">{{ t("calcPage.panel") }}</div>
+                <attribute-panel
+                    :attribute="attributeFromWasm"
+                ></attribute-panel>
 
                 <el-divider></el-divider>
 
@@ -639,21 +682,6 @@
                     :data="characterTransformativeDamage"
                 ></transformative-damage>
             </el-col>
-
-            <el-col :sm="24" :md="6" class="right-container mona-scroll-hidden">
-                <div class="common-title">{{ t("calcPage.panel") }}</div>
-
-                <div class="my-button-list" style="margin-bottom: 12px">
-                    <el-button
-                        :icon="IconEpHistogram"
-                        @click="handleClickAttributeAnalysis"
-                    >{{ t("calcPage.statCurve") }}</el-button>
-                </div>
-
-                <attribute-panel
-                    :attribute="attributeFromWasm"
-                ></attribute-panel>
-            </el-col>
         </el-row>
     </div>
 </template>
@@ -674,6 +702,7 @@ import SelectWeaponLevel from "@/components/select/SelectWeaponLevel.vue"
 import SelectTargetFunction from "@/components/select/SelectTargetFunction.vue"
 import SelectCharacterSkill from "@/components/select/SelectCharacterSkill.vue"
 import SelectBuff from "@/components/select/SelectBuff.vue"
+import SelectSmallInt from "@/components/select/SelectSmallInt.vue"
 import ArtifactDisplay from "@c/display/ArtifactDisplay"
 import AddButton from "@c/misc/AddButton"
 import DamagePanel from "./DamagePanel"
@@ -696,12 +725,15 @@ import type {ArtifactPosition, IArtifact, IArtifactWasm} from "@/types/artifact"
 import IconEpCaretRight from "~icons/ep/caret-right"
 import IconEpTools from "~icons/ep/tools"
 import IconEpPlus from "~icons/ep/plus"
-import IconEpMenu from "~icons/ep/menu"
 import IconEpHistogram from "~icons/ep/histogram"
 import IconEpStarFilled from "~icons/ep/star-filled"
 import IconEpFolder from "~icons/ep/folder"
 import IconEpLock from "~icons/ep/lock"
 import IconEpUnlock from "~icons/ep/unlock"
+import IconEpWarning from "~icons/ep/warning"
+import IconEpFolderChecked from "~icons/ep/folder-checked"
+import IconEpFolderAdd from "~icons/ep/folder-add"
+import IconEpFolderOpened from "~icons/ep/folder-opened"
 import {useComputeConstraint} from "@/composables/constraint"
 import {BuffEntry, useBuff} from "@/composables/buff"
 import {type PresetEntry, usePresetStore} from "@/store/pinia/preset"
@@ -718,6 +750,8 @@ import SimpleError from "@/components/loading/SimpleError.vue"
 import {useRoute} from "vue-router"
 import {useI18n} from "@/i18n/i18n"
 import {useAccountStore} from "@/store/pinia/account"
+import ApplyPresetDialog from "./ApplyPresetDialog.vue"
+import objectHash from "object-hash"
 
 import {ElMessage} from "element-plus"
 import "element-plus/es/components/message/style/css"
@@ -738,6 +772,9 @@ const route = useRoute()
 // i18n
 const { t } = useI18n()
 
+// refs
+const applyPresetDialog = ref()
+const bigContainer = ref()
 
 //////////////////////////////////////////////////////////
 // set preset from other place
@@ -754,7 +791,6 @@ function setPresetFromRoute() {
 }
 
 onActivated(setPresetFromRoute)
-
 onMounted(setPresetFromRoute)
 
 
@@ -799,6 +835,12 @@ const {
 } = useCharacterSkill(characterName)
 
 const fumo = ref("None")
+
+function handleSelectCharacter(newCharacter: string) {
+    characterName.value = newCharacter
+    miscCurrentPresetName.value = null
+    savedPresetHash.value = ''
+}
 
 
 //////////////////////////////////////////////////////////////
@@ -958,49 +1000,35 @@ const presetDefaultName = computed((): string => {
     const wName = t("weapon", weaponName.value)
     return `${cName}-${wName}`
 })
+const savedPresetHash = ref('')
+const presetDirty = computed(() => objectHash(getPresetItem()) !== savedPresetHash.value)
 
-function handleCommandPreset(cmd: string) {
-    if (cmd === "save-preset") {
-        handleClickSaveOptimizeConfig()
-    } else {
-        if (cmd.startsWith("apply-")) {
-            const name = cmd.slice(6)
-
-            usePreset(name)
-        }
-    }
-}
-
-function handleSavePreset(name: string) {
-    if (!name) {
-        handleClickSaveOptimizeConfig()
-    } else {
-        const item = getPresetItem()
-        // console.log(item)
-        item.name = name
-        presetStore.addOrOverwrite(name, item)
-
-        ElMessage.success({
-            message: "已保存"
-        })
-    }
-}
-
-function handleClickSaveOptimizeConfig() {
+async function handleSavePreset(name: string | null) {
     const item = getPresetItem()
-
-    ElMessageBox.prompt("输入名称（重复名称将覆盖）", "存为预设", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        inputPattern: /[^\s]+$/,
-        inputValue: presetDefaultName.value
-    }).then(({ value }) => {
-        item.name = value
-        presetStore.addOrOverwrite(value, item)
-        miscCurrentPresetName.value = value
-        ElMessage.success({
-            message: "保存成功"
-        })
+    if (!name) {
+        name = (await ElMessageBox.prompt("输入名称", "存为预设", {
+            confirmButtonText: "确定",
+            cancelButtonText: "取消",
+            inputPattern: /[^\s]+$/,
+            inputValue: presetDefaultName.value
+        })).value
+        if (presetStore.presets.value[name]) {
+            try {
+                await ElMessageBox.confirm("已存在该名称的预设，确定覆盖？", "警告", {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    type: 'warning'
+                })
+            } catch (e) {
+                return
+            }
+        }
+        miscCurrentPresetName.value = name
+    }
+    presetStore.addOrOverwrite(name, item)
+    savedPresetHash.value = objectHash(item)
+    ElMessage.success({
+        message: "保存成功"
     })
 }
 
@@ -1139,6 +1167,7 @@ function usePreset(name: string) {
     artifactConfig.value = item.artifactConfig ?? newDefaultArtifactConfigForWasm()
 
     miscCurrentPresetName.value = name
+    savedPresetHash.value = objectHash(getPresetItem())
 }
 
 
@@ -1519,9 +1548,12 @@ function getArtifactsToBeCalculated(): IArtifactWasm[] {
     return artifacts16
 }
 
-function handleOptimizeArtifact() {
+const cancelOptimizeArtifact = ref<(() => void) | null>(null)
+
+async function handleOptimizeArtifact() {
     const start = new Date()
     const loading = ElLoading.service({
+        target: bigContainer.value.$el,
         lock: true,
         fullscreen: true,
         text: "莫娜占卜中"
@@ -1530,10 +1562,13 @@ function handleOptimizeArtifact() {
     const optimizeInterface = getOptimizeArtifactWasmInterface()
     const artifacts = getArtifactsToBeCalculated()
 
-    wasmSingleOptimize(optimizeInterface, artifacts).then(results => {
+    const [promise, cancel] = wasmSingleOptimize(optimizeInterface, artifacts, 120000, true)
+    cancelOptimizeArtifact.value = cancel
+    try {
+        const results = await promise
         const end = new Date()
         // @ts-ignore
-        console.log(`time: ${(end - start) / 1000}s`)
+        console.log(`optimize time: ${(end - start) / 1000}s`)
 
         if (results.length === 0) {
             ElMessage.error({
@@ -1568,19 +1603,21 @@ function handleOptimizeArtifact() {
                 result_artifacts_wasm_format
             )
         }
-    }).catch(e => {
+    } catch (e: any) {
         ElMessage.error({
             message: e.message ?? e
         })
-    }).finally(() => {
+    } finally {
+        cancelOptimizeArtifact.value = null
         loading.close()
-    })
+    }
 }
 
 watch(() => accountStore.currentAccountId.value, () => {
     optimizationResults.value = []
     optimizationResultIndex.value = 0
     miscCurrentPresetName.value = null
+    savedPresetHash.value = ''
     resetArtifactGroups()
 })
 </script>
@@ -1589,7 +1626,7 @@ watch(() => accountStore.currentAccountId.value, () => {
 .big-container {
     @media only screen and (min-width: 992px) {
         .left-container, .middle-container, .right-container {
-            height: calc(100vh - 24px * 2);
+            height: calc(100vh - 24px * 4);
         }
 
         .left-container {

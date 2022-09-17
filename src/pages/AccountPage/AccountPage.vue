@@ -41,7 +41,7 @@
                     </div>
                 </el-col>
             </el-row>
-            <el-divider></el-divider>
+            <el-divider style="margin: 12px 0"></el-divider>
         </div>
 
         <div class="toolbar">

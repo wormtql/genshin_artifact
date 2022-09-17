@@ -1,57 +1,57 @@
 <template>
-    <el-select
-        :model-value="modelValue"
-        @update:modelValue="$emit('update:modelValue', $event)"
-        :placeholder="t('misc.character')"
+    <el-cascader
+        :model-value="props.modelValue"
+        :options="options"
+        :props="{ expandTrigger: 'hover', emitPath: false }"
+        placeholder="角色"
+        :show-all-levels="false"
+        style="width: 100%"
+        @change="emits('update:modelValue', $event)"
     >
-        <el-option-group
-            v-for="(elementName) in elements"
-            :key="elementName"
-            :label="t('ele', elementName)"
-        >
-            <el-option
-                v-for="(character, index) in characterByElement[elementName]"
-                :key="index"
-                :label="t('character', character.name)"
-                :value="character.name"
-            >
-                <div class="option-item flex-row">
-                    <img :src="character.avatar">
-                    <span :style="{ color: getColor(character.star) }">{{ t("character." + character.name) }}</span>
-                </div>
-            </el-option>
-        </el-option-group>
-    </el-select>
+        <template #default="{ node, data }">
+            <div v-if="!node.isLeaf">
+                <span>{{ data.label }}</span>
+            </div>
+            <div v-else class="option-item flex-row">
+                <img :src="data.avatar">
+                <span :style="{ color: data.color }">{{ data.label }}</span>
+            </div>
+        </template>
+    </el-cascader>
 </template>
 
-<script>
-import { characterByElement } from "@character";
-import qualityColors from "@const/quality_colors";
-import {useI18n} from "@/i18n/i18n";
+<script setup lang="ts">
+// @ts-ignore
+import { characterByElement } from "@character"
+import qualityColors from "@const/quality_colors"
+import {useI18n} from "@/i18n/i18n"
 
-export default {
-    name: "SelectCharacter",
-    props: ["modelValue"],
-    emits: ["update:modelValue"],
-    data() {
-        return {
-            characterByElement,
-            elements: ["Pyro", "Cryo", "Anemo", "Electro", "Hydro", "Geo", "Dendro"]
-        }
-    },
-    methods: {
-        getColor(star) {
-            return qualityColors[star - 1];
-        }
-    },
-    setup() {
-        const { t } = useI18n()
+const { t } = useI18n()
 
-        return {
-            t
-        }
+const props = defineProps<{
+    modelValue: string
+}>()
+
+const emits = defineEmits<{
+    (e: 'update:modelValue', value: string): void
+}>()
+
+const options = computed(() => {
+    const options = []
+    for (const element in characterByElement) {
+        options.push({
+            label: t('ele', element),
+            value: element,
+            children: characterByElement[element].map((character: any) => ({
+                label: t('character.' + character.name),
+                value: character.name,
+                avatar: character.avatar,
+                color: qualityColors[character.star - 1],
+            }))
+        })
     }
-}
+    return options
+})
 </script>
 
 <style lang="scss" scoped>

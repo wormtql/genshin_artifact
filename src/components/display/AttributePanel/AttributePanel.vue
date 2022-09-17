@@ -1,30 +1,34 @@
 <template>
-    <div>
-        <h3 class="class">{{ t("stat.base") }}</h3>
-        <attribute-item :title="t('stat.lifeStatic')" :composition="attribute.hp"></attribute-item>
-        <attribute-item :title="t('stat.attackStatic')" :composition="attribute.atk"></attribute-item>
-        <attribute-item :title="t('stat.defendStatic')" :composition="attribute.def"></attribute-item>
-        
-        <attribute-item :title="t('stat.elementalMastery')" :composition="attribute.elemental_mastery"></attribute-item>
+    <el-row type="flex" justify="space-between">
+        <el-col :span="11">
+            <h3 class="class">{{ t("stat.base") }}</h3>
+            <attribute-item :title="t('stat.lifeStatic')" :composition="attribute.hp"></attribute-item>
+            <attribute-item :title="t('stat.attackStatic')" :composition="attribute.atk"></attribute-item>
+            <attribute-item :title="t('stat.defendStatic')" :composition="attribute.def"></attribute-item>
 
-        <h3 class="class">{{ t("stat.advanced") }}</h3>
-        <attribute-item :title="t('stat.critical')" :composition="attribute.critical" :percentage="true"></attribute-item>
-        <attribute-item :title="t('stat.criticalDamage')" :composition="attribute.critical_damage" :percentage="true"></attribute-item>
+            <attribute-item :title="t('stat.elementalMastery')" :composition="attribute.elemental_mastery"></attribute-item>
 
-        <attribute-item :title="t('stat.cureEffect')" :composition="attribute.healing_bonus" :percentage="true"></attribute-item>
-        <attribute-item :title="t('stat.recharge')" :composition="attribute.recharge" :percentage="true"></attribute-item>
-        <attribute-item :title="t('stat.shield')" :composition="attribute.shield_strength" :percentage="true"></attribute-item>
+            <h3 class="class">{{ t("stat.advanced") }}</h3>
+            <attribute-item :title="t('stat.critical')" :composition="attribute.critical" :percentage="true"></attribute-item>
+            <attribute-item :title="t('stat.criticalDamage')" :composition="attribute.critical_damage" :percentage="true"></attribute-item>
 
-        <h3 class="class">{{ t("stat.ele") }}</h3>
-        <attribute-item :title="t('stat.fireBonus')" :composition="attribute.bonus_pyro" :percentage="true"></attribute-item>
-        <attribute-item :title="t('stat.waterBonus')" :composition="attribute.bonus_hydro" :percentage="true"></attribute-item>
-        <attribute-item :title="t('stat.dendroBonus')" :composition="attribute.bonus_dendro" :percentage="true"></attribute-item>
-        <attribute-item :title="t('stat.thunderBonus')" :composition="attribute.bonus_electro" :percentage="true"></attribute-item>
-        <attribute-item :title="t('stat.windBonus')" :composition="attribute.bonus_anemo" :percentage="true"></attribute-item>
-        <attribute-item :title="t('stat.iceBonus')" :composition="attribute.bonus_cryo" :percentage="true"></attribute-item>
-        <attribute-item :title="t('stat.rockBonus')" :composition="attribute.bonus_geo" :percentage="true"></attribute-item>
-        <attribute-item :title="t('stat.physicalBonus')" :composition="attribute.bonus_physical" :percentage="true"></attribute-item>
-    </div>
+            <attribute-item :title="t('stat.cureEffect')" :composition="attribute.healing_bonus" :percentage="true"></attribute-item>
+            <attribute-item :title="t('stat.recharge')" :composition="attribute.recharge" :percentage="true"></attribute-item>
+            <attribute-item :title="t('stat.shield')" :composition="attribute.shield_strength" :percentage="true"></attribute-item>
+        </el-col>
+
+        <el-col :span="11">
+            <h3 class="class">{{ t("stat.ele") }}</h3>
+            <attribute-item :title="t('stat.fireBonus')" :composition="attribute.bonus_pyro" :percentage="true"></attribute-item>
+            <attribute-item :title="t('stat.waterBonus')" :composition="attribute.bonus_hydro" :percentage="true"></attribute-item>
+            <attribute-item :title="t('stat.dendroBonus')" :composition="attribute.bonus_dendro" :percentage="true"></attribute-item>
+            <attribute-item :title="t('stat.thunderBonus')" :composition="attribute.bonus_electro" :percentage="true"></attribute-item>
+            <attribute-item :title="t('stat.windBonus')" :composition="attribute.bonus_anemo" :percentage="true"></attribute-item>
+            <attribute-item :title="t('stat.iceBonus')" :composition="attribute.bonus_cryo" :percentage="true"></attribute-item>
+            <attribute-item :title="t('stat.rockBonus')" :composition="attribute.bonus_geo" :percentage="true"></attribute-item>
+            <attribute-item :title="t('stat.physicalBonus')" :composition="attribute.bonus_physical" :percentage="true"></attribute-item>
+        </el-col>
+    </el-row>
 </template>
 
 <script>

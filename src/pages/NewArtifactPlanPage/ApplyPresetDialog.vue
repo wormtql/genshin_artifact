@@ -56,11 +56,10 @@ import PresetItem from "@/components/display/PresetItem.vue"
 import {usePresetStore} from "@/store/pinia/preset"
 
 const presetStore = usePresetStore()
-
 const presetsAllFlat = presetStore.allFlat
 
 const emit = defineEmits<{
-    (e: 'selected', name: string): void,
+    (e: 'selected', name: string): void
 }>()
 
 const visible = ref(false)
