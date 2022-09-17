@@ -158,6 +158,7 @@ import type { ArtifactPosition } from "@/types/artifact"
 import { useArtifactStore } from "@/store/pinia/artifact"
 import { useKumiStore } from "@/store/pinia/kumi"
 import { useSequenceStore } from "@/store/pinia/sequence"
+import { useAccountStore } from "@/store/pinia/account"
 import { useRouter } from "vue-router"
 
 const artifactStore = useArtifactStore()
@@ -165,6 +166,7 @@ const artifactsById = artifactStore.artifacts
 const presetStore = usePresetStore()
 const kumiStore = useKumiStore()
 const sequenceStore = useSequenceStore()
+const accountStore = useAccountStore()
 const router = useRouter()
 
 // sequence management
@@ -434,6 +436,11 @@ function handleClickImportFromDirectory(dirId: number) {
 function handleClickCompareWithDirectory(dirId: number | 'cancel') {
     oldDirectoryId.value = dirId === 'cancel' ? null : dirId
 }
+
+// watch account change
+watch(() => accountStore.currentAccountId.value, () => {
+    sequenceData.splice(0, sequenceData.length)
+})
 </script>
 
 <style scoped lang="scss">
