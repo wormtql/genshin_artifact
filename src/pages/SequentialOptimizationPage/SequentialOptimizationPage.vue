@@ -331,15 +331,16 @@ function handleRedirectToCalculator(index: number) {
             name: "calculate",
             params: {
                 presetName: item.name,
-                artifactGroups: [item.arts, oldDirectory.value.get(item.name)]
+                artifactGroups: JSON.stringify([item.arts, oldDirectory.value.get(item.name)])
             }
         })
     } else {
+        console.log(item.arts)
         router.push({
             name: "calculate",
             params: {
                 presetName: item.name,
-                artifacts: item.arts,
+                artifacts: JSON.stringify(item.arts),
             }
         })
     }

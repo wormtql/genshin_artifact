@@ -7,13 +7,78 @@ import {toSnakeCase} from "@/utils/common"
 import {newDefaultArtifactConfigForWasm} from "@/utils/artifacts"
 import {useI18n} from "@/i18n/i18n"
 
+interface ArtifactGroupItem {
+    id: string
+    artIds: number[]
+    artConfig: any
+}
+
 export function use5Artifacts() {
     const { t } = useI18n()
     const artifactStore = useArtifactStore()
 
-    const artifactIds = ref([-1, -1, -1, -1, -1])
+    let groupIdCounter = 0
+
+    function getGroupDefault(): ArtifactGroupItem {
+        return {
+            id: String(groupIdCounter++),
+            artIds: [-1, -2, -3, -4, -5],
+            artConfig: null,
+        }
+    }
+
+    const artifactGroups = reactive([
+        getGroupDefault(),
+        getGroupDefault(),
+    ])
+    const currentGroupId = ref(artifactGroups[0].id)
+
+    function resetArtifactGroups() {
+        artifactGroups.unshift(getGroupDefault(), getGroupDefault())
+        currentGroupId.value = artifactGroups[0].id
+        artifactGroups.splice(2)
+    }
+
+    function loadArtifactGroups(groups: number[][]) {
+        artifactGroups.unshift(...groups.map(artIds => ({
+            ...getGroupDefault(),
+            artIds: artIds.slice(),
+        })))
+        currentGroupId.value = artifactGroups[0].id
+        artifactGroups.splice(groups.length)
+    }
+
+    function addArtifactGroup() {
+        const group = getGroupDefault()
+        artifactGroups.push(group)
+        currentGroupId.value = group.id
+    }
+
+    function removeArtifactGroup(id: string) {
+        for (let i = 0; i < artifactGroups.length; i++) {
+            const group = artifactGroups[i]
+            if (group.id === id) {
+                if (currentGroupId.value === id) {
+                    const nextGroup = artifactGroups[i + 1] ?? artifactGroups[i - 1]
+                    currentGroupId.value = nextGroup.id
+                }
+                artifactGroups.splice(i, 1)
+                break
+            }
+        }
+    }
+
+    const currentGroup = computed(() => artifactGroups.find(g => g.id === currentGroupId.value)!)
+
+    const artifactIds = computed({
+        get: () => currentGroup.value.artIds,
+        set: value => currentGroup.value.artIds = value
+    })
     // artifact set 4 config
-    const artifactSingleConfig = ref<any>(null)
+    const artifactSingleConfig = computed({
+        get: () => currentGroup.value.artConfig,
+        set: value => currentGroup.value.artConfig = value
+    })
 
     const artifactItems = computed(() => {
         let temp: (IArtifact | null)[] = []
@@ -159,6 +224,13 @@ export function use5Artifacts() {
     })
 
     return {
+        artifactGroups,
+        currentGroupId,
+        resetArtifactGroups,
+        loadArtifactGroups,
+        addArtifactGroup,
+        removeArtifactGroup,
+
         artifactIds,
         artifactCount,
         artifactSingleConfig,

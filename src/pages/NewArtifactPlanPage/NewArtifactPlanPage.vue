@@ -532,29 +532,49 @@
                     </el-button-group>
                 </div>
 
-                <div class="artifacts">
-                    <div
-                        v-for="(id, index) in artifactIds"
-                        :key="index"
-                        class="artifact-item-or-button"
+                <div>
+                    <el-tabs
+                        v-model="currentGroupId"
+                        type="card"
+                        addable
+                        @edit="handleArtifactTabsEdit"
+                        style="width: 100%"
                     >
-                        <artifact-display
-                            v-if="artifactItems[index]"
-                            :item="artifactItems[index]"
-                            selectable
-                            :buttons="true"
-                            :delete-button="true"
-                            @delete="removeArtifact(index)"
-                            @toggle="artifactStore.toggleArtifact(artifactItems[index].id)"
-                            @click="handleGotoSelectArtifact(index)"
-                            class="artifact-display"
-                        ></artifact-display>
-                        <add-button
-                            v-else
-                            @click="handleGotoSelectArtifact(index)"
-                            class="add-button"
-                        ></add-button>
-                    </div>
+                        <el-tab-pane
+                            v-for="(group, index) in artifactGroups"
+                            :key="group.id"
+                            :name="group.id"
+                            :label="`圣遗物组${index + 1}`"
+                            :closable="artifactGroups.length > 1"
+                            lazy
+                            class="artifacts"
+                            style="width: 100%"
+                        >
+                            <div
+                                v-for="(id, index) in artifactIds"
+                                :key="index"
+                                class="artifact-item-or-button"
+                            >
+                                <artifact-display
+                                    v-if="artifactItems[index]"
+                                    :item="artifactItems[index]"
+                                    selectable
+                                    :buttons="true"
+                                    :delete-button="true"
+                                    @delete="removeArtifact(index)"
+                                    @toggle="artifactStore.toggleArtifact(id)"
+                                    @click="handleGotoSelectArtifact(index)"
+                                    class="artifact-display"
+                                ></artifact-display>
+                                <add-button
+                                    v-else
+                                    @click="handleGotoSelectArtifact(index)"
+                                    class="add-button"
+                                ></add-button>
+                            </div>
+
+                        </el-tab-pane>
+                    </el-tabs>
                 </div>
 
                 <div v-if="artifactNeedConfig4" style="margin-top: 16px">
@@ -722,9 +742,14 @@ const { t } = useI18n()
 //////////////////////////////////////////////////////////
 // set preset from other place
 function setPresetFromRoute() {
-    const presetName = route.params.presetName
+    const { presetName, artifacts, artifactGroups } = route.params
     if (presetName && typeof presetName === "string") {
         usePreset(presetName)
+    }
+    if (artifactGroups && typeof artifactGroups === "string") {
+        loadArtifactGroups(JSON.parse(artifactGroups))
+    } else if (artifacts && typeof artifacts === "string") {
+        artifactIds.value = JSON.parse(artifacts)
     }
 }
 
@@ -815,6 +840,13 @@ watch(() => miscTargetFunctionTab.value, v => {
 //////////////////////////////////////////////////////////
 // artifacts
 const {
+    artifactGroups,
+    currentGroupId,
+    resetArtifactGroups,
+    loadArtifactGroups,
+    addArtifactGroup,
+    removeArtifactGroup,
+
     artifactIds,
     artifactCount,
     artifactSingleConfig,
@@ -831,6 +863,14 @@ const {
     setArtifact,
     removeArtifact,
 } = use5Artifacts()
+
+function handleArtifactTabsEdit(paneName: any, action: string) {
+    if (action === 'add') {
+        addArtifactGroup()
+    } else if (action === 'remove') {
+        removeArtifactGroup(paneName)
+    }
+}
 
 const showSelectArtifactDialog = ref(false)
 const selectArtifactSlot = ref<ArtifactPosition>("flower")
@@ -1541,7 +1581,7 @@ watch(() => accountStore.currentAccountId.value, () => {
     optimizationResults.value = []
     optimizationResultIndex.value = 0
     miscCurrentPresetName.value = null
-    artifactIds.value = [-1, -1, -1, -1, -1]
+    resetArtifactGroups()
 })
 </script>
 
