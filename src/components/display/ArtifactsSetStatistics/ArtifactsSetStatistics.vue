@@ -128,7 +128,7 @@ const statData = computed((): Record<string, StatData> => {
             const value = stat.value
 
             const [min, max] = howManyUpgradeCount(value, name, star)
-            const eff = value / artifactEff[star][name][3]
+            const eff = value / (artifactEff[star][name][0] + artifactEff[star][name][3]) * 2
 
             if (!Object.prototype.hasOwnProperty.call(result, name)) {
                 result[name] = {
