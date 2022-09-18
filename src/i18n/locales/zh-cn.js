@@ -1466,7 +1466,7 @@ export default {
         KukiShinobuDefault: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
         ShikanoinHeizouDefault: "输出平藏，使得E技能4层伤害最大",
         TighnariDefault: "使得提纳里的重击伤害最大",
-        CynoDefault:"打QTE并释放渡荒之雷，会根据套装自动选择手法",
+        CynoDefault:"打QTE并释放渡荒之雷，会根据套装自动选择手法，如激化草全覆盖则激化比例留1.0即可",
     },
     dmg: {
         electroCharged: "感电",
