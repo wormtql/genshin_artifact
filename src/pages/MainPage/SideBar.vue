@@ -1,10 +1,11 @@
 <template>
     <div class="root">
         <el-menu
-            default-active="intro"
+            :default-active="doRoute ? $route.fullPath : '/intro'"
             style="border: none"
-            @select="handleSelect"
+            @select="doRoute ? undefined : handleSelect"
             :mode="mode"
+            :router="doRoute"
         >
             <el-menu-item index="/intro">
                 <el-icon><i-ep-home-filled></i-ep-home-filled></el-icon>
@@ -135,11 +136,7 @@ export default defineComponent({
     },
     methods: {
         handleSelect(index: string) {
-            if (this.doRoute) {
-                this.$router.push(index)
-            } else {
-                this.$emit("select", index)
-            }
+            this.$emit("select", index)
         }
     },
     setup() {

@@ -119,6 +119,7 @@ declare module '@vue/runtime-core' {
     SelectPreset: typeof import('./components/select/SelectPreset.vue')['default']
     SelectReactionType: typeof import('./components/select/SelectReactionType.vue')['default']
     SelectSkillType: typeof import('./components/select/SelectSkillType.vue')['default']
+    SelectSmallInt: typeof import('./components/select/SelectSmallInt.vue')['default']
     SelectTargetFunction: typeof import('./components/select/SelectTargetFunction.vue')['default']
     SelectWeapon: typeof import('./components/select/SelectWeapon.vue')['default']
     SelectWeaponLevel: typeof import('./components/select/SelectWeaponLevel.vue')['default']
