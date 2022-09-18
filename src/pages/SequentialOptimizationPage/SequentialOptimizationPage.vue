@@ -217,6 +217,17 @@ function handleDeleteMember(index: number) {
 const presetNames = computed(() => sequenceData.map(item => item.name))
 const presets = computed(() => presetNames.value.map(name => presetStore.presets.value[name]))
 
+const presetValid = computed(() => presets.value.every(preset => preset))
+watch(() => presetValid.value, valid => {
+    if (!valid) {
+        for (let i = sequenceData.length - 1; i >= 0; i--) {
+            if (!presets.value[i]) {
+                sequenceData.splice(i, 1)
+            }
+        }
+    }
+})
+
 // sequence management: save or restore the sequence data
 const savedSequenceHash = ref<string | null>(null)
 const sequenceDirty = computed(() => {
