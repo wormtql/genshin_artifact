@@ -56,6 +56,9 @@ pub enum BuffConfig {
     HakushinRing { refine: usize, element: Element },
     SapwoodBlade { refine: usize, rate: f64 },
     Moonpiercer { refine: usize },
+    XiphosMoonlight { refine: usize, em: f64, },
+    MakhairaAquamarine { refine: usize, em: f64 },
+    KeyOfKhajNisut { refine: usize, hp: f64 },
 
     ResonanceCryo2 { rate: f64 },
     ResonanceGeo2 { rate1: f64, rate2: f64 },

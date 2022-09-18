@@ -201,6 +201,12 @@ import BaseDmg_image from "@image/misc/sword"
 
 
 
+
+
+
+
+
+
 import ResonancePyro2_image from "@image/misc/pyro"
 
 
@@ -1475,6 +1481,57 @@ export default {
         config: [
             
             {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
+            
+        ],
+    },
+    
+    "XiphosMoonlight": {
+        name: "XiphosMoonlight",
+        // chs: "",
+        
+        badge: getImageW("todo"),
+        
+        genre: "Weapon",
+        // description: "",
+        config: [
+            
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
+            
+            {"default":900.0,"name":"em","title":"w27","type":"floatInput"},
+            
+        ],
+    },
+    
+    "MakhairaAquamarine": {
+        name: "MakhairaAquamarine",
+        // chs: "",
+        
+        badge: getImageW("todo"),
+        
+        genre: "Weapon",
+        // description: "",
+        config: [
+            
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
+            
+            {"default":900.0,"name":"em","title":"w27","type":"floatInput"},
+            
+        ],
+    },
+    
+    "KeyOfKhajNisut": {
+        name: "KeyOfKhajNisut",
+        // chs: "",
+        
+        badge: getImageW("todo"),
+        
+        genre: "Weapon",
+        // description: "",
+        config: [
+            
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
+            
+            {"default":20000.0,"name":"hp","title":"w28","type":"floatInput"},
             
         ],
     },

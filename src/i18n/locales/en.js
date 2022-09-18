@@ -896,6 +896,12 @@ export default {
         Moonpiercer: "Moonpiercer",
         FruitOfFulfillment: "Fruit of Fulfillment",
         KingsSquire: "King's Squire",
+        XiphosMoonlight: "Xiphos' Moonlight",
+        MakhairaAquamarine: "Makhaira Aquamarine",
+        MissiveWindspear: "Missive Windspear",
+        WanderingEvenstar: "Wandering Evenstar",
+        KeyOfKhajNisut: "Key of Khaj-Nisut",
+        StaffOfTheScarletSands: "Staff of the Scarlet Sands",
     },
     weaponEffect: {
         MistsplitterReforged: "Gain a <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> Elemental DMG Bonus for all elements and receive the might of the Mistsplitter\'s Emblem. At stack levels 1/2/3, the Mistsplitter\'s Emblem provides a <span style=\"color: #409EFF;\">8/16/28%-10/20/35%-12/24/42%-14/28/49%-16/32/56%</span> Elemental DMG Bonus for the character\'s Elemental Type. The character will obtain 1 stack of Mistsplitter\'s Emblem in each of the following scenarios: Normal Attack deals Elemental DMG (stack lasts 5s), casting Elemental Burst (stack lasts 10s); Energy is less than 100% (stack disappears when Energy is full). Each stack\'s duration is calculated independently.",
@@ -1039,6 +1045,12 @@ export default {
         Moonpiercer: "After triggering Burning, Quicken, Aggravate, Spread, Bloom, Hyperbloom, or Burgeon, a Leaf of Revival will be created around the character for a maximum of 10s. When picked up, the Leaf will grant the character <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> ATK for 12s. Only 1 Leaf can be generated this way every 20s. This effect can still be triggered if the character is not on the field.",
         FruitOfFulfillment: "Obtain the \"Wax and Wane\" effect after an Elemental Reaction is triggered, gaining <span style=\"color: #409EFF;\">24-27-30-33-36</span> Elemental Mastery while losing 5% ATK. For every 0.3s, 1 stack of Wax and Wane can be gained. Max 5 stacks. For every 6s that go by without an Elemental Reaction being triggered, 1 stack will be lost. This effect can be triggered even when the character is off-field.",
         KingsSquire: "Obtain the Teachings of the Forest effect when unleashing Elemental Skills and Bursts, increasing Elemental Mastery by <span style=\"color: #409EFF;\">60-80-100-120-140</span> for 12s. This effect will be removed when switching characters. When the Teachings of the Forest effect ends or is removed, it will deal <span style=\"color: #409EFF;\">100%-120%-140%-160%-180%</span> of ATK as DMG to 1 nearby opponent. The Teachings of the Forest effect can be triggered once every 20s.",
+        XiphosMoonlight: "The following effect will trigger every 10s: The equipping character will gain <span style=\"color: #409EFF;\">0.036%-0.045%-0.054%-0.063%-0.072%</span> Energy Recharge for each point of Elemental Mastery they possess for 12s, with nearby party members gaining 30% of this buff for the same duration. Multiple instances of this weapon can allow this buff to stack. This effect will still trigger even if the character is not on the field.",
+        MakhairaAquamarine: "The following effect will trigger every 10s: The equipping character will gain <span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span> of their Elemental Mastery as bonus ATK for 12s, with nearby party members gaining 30% of this buff for the same duration. Multiple instances of this weapon can allow this buff to stack. This effect will still trigger even if the character is not on the field.",
+        MissiveWindspear: "Within 10s after an Elemental Reaction is triggered, ATK is increased by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> and Elemental Mastery is increased by <span style=\"color: #409EFF;\">48-60-72-84-96</span>.",
+        WanderingEvenstar: "The following effect will trigger every 10s: The equipping character will gain <span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span> of their Elemental Mastery as bonus ATK for 12s, with nearby party members gaining 30% of this buff for the same duration. Multiple instances of this weapon can allow this buff to stack. This effect will still trigger even if the character is not on the field.",
+        KeyOfKhajNisut: "HP increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. When an Elemental Skill hits opponents, you gain the Grand Hymn effect for 20s. This effect increases the equipping character's Elemental Mastery by <span style=\"color: #409EFF;\">0.12%-0.15%-0.18%-0.21%-0.24%</span> of their Max HP. This effect can trigger once every 0.3s. Max 3 stacks. When this effect gains 3 stacks, or when the third stack's duration is refreshed, the Elemental Mastery of all nearby party members will be increased by <span style=\"color: #409EFF;\">0.2%-0.25%-0.3%-0.35%-0.4%</span> of the equipping character's max HP for 20s.",
+        StaffOfTheScarletSands: "The equipping character gains <span style=\"color: #409EFF;\">52%-65%-78%-91%-104%</span> of their Elemental Mastery as bonus ATK. When an Elemental Skill hits opponents, the Dream of the Scarlet Sands effect will be gained for 10s: The equipping character will gain <span style=\"color: #409EFF;\">28%-35%-42%-49%-56%</span> of their Elemental Mastery as bonus ATK. Max 3 stacks.",
     },
     config: {
         w1: "Avg Effect Stack",
@@ -1067,6 +1079,8 @@ export default {
         w24: "HP Below 50% Ratio",
         w25: "「Wavespike」Stack",
         w26: "「Mistsplitter\'s Emblem」Stack",
+        w27: "EM",
+        w28: "HP",
 
         c1: "Talent「Harmony Between Heaven and Earth」Apply Ratio",
         c2: "Talent「Undivided Heart」Apply Ratio",
@@ -1893,6 +1907,9 @@ export default {
         BaseDmg: "Base DMG",
         ResonanceHydro2: "Resonance-Soothing Water",
         ResonanceDendro2: "Resonance-Sprawling Greenery",
+        XiphosMoonlight: "Xiphos’ Moonlight-「Whisper of the Jinn」",
+        MakhairaAquamarine: "Makhaira Aquamarine-「Desert Pavilion」",
+        KeyOfKhajNisut: "Key of Khaj-Nisut-「Sunken Song of the Sands」",
     },
     buffDesc: {
         ATKFixed: "",
@@ -1990,6 +2007,9 @@ export default {
         BaseDmg: "Flat DMG",
         ResonanceHydro2: "", // todo
         ResonanceDendro2: "", // todo
+        XiphosMoonlight: "The equipping character will gain 0.036%/0.045%/0.054%/0.063%/0.072% Energy Recharge for each point of Elemental Mastery they possess for 12s, with nearby party members gaining 30% of this buff for the same duration. Multiple instances of this weapon can allow this buff to stack. This effect will still trigger even if the character is not on the field.",
+        MakhairaAquamarine: "The equipping character will gain 24%/30%/36%/42%/48% of their Elemental Mastery as bonus ATK for 12s, with nearby party members gaining 30% of this buff for the same duration. Multiple instances of this weapon can allow this buff to stack. This effect will still trigger even if the character is not on the field.",
+        KeyOfKhajNisut: "The Elemental Mastery of all nearby party members will be increased by 0.2%/0.25%/0.3%/0.35%/0.4% of the equipping character’s max HP for 20s.",
     },
     buffGenre: {
         Character: "Character BUFF",

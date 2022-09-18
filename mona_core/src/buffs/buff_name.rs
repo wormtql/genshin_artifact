@@ -98,6 +98,9 @@ pub enum BuffName {
     HakushinRing,
     SapwoodBlade,
     Moonpiercer,
+    XiphosMoonlight,
+    MakhairaAquamarine,
+    KeyOfKhajNisut,
 
     ResonancePyro2,
     ResonanceCryo2,

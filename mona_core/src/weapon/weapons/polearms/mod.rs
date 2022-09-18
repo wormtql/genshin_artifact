@@ -22,6 +22,8 @@ pub use white_tassel::WhiteTassel;
 pub use iron_point::IronPoint;
 pub use beginners_protector::BeginnersProtector;
 pub use moonpiercer::Moonpiercer;
+pub use missive_windspear::MissiveWindspear;
+pub use staff_of_the_scarlet_sands::StaffOfTheScarletSands;
 
 pub mod engulfing_lightning;
 pub mod skyward_spine;
@@ -47,3 +49,5 @@ pub mod white_tassel;
 pub mod iron_point;
 pub mod beginners_protector;
 pub mod moonpiercer;
+pub mod missive_windspear;
+pub mod staff_of_the_scarlet_sands;
