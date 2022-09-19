@@ -88,6 +88,8 @@ pub enum BuffName {
     ShikanoinHeizouTalent2,
     TighnariC4,
     DoriC4,
+    NilouTalent1,
+    NilouTalent2,
 
     // weapon
     FreedomSworn,

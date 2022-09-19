@@ -116,6 +116,10 @@ import Lisa_splash from "@image/characters/Lisa_splash"
 // import Mona_avatar from "@image/characters/Mona_avatar"
 import Mona_splash from "@image/characters/Mona_splash"
 
+// import Nilou_card from "@image/characters/Nilou_card"
+// import Nilou_avatar from "@image/characters/Nilou_avatar"
+import Nilou_splash from "@image/characters/Nilou_splash"
+
 // import Ningguang_card from "@image/characters/Ningguang_card"
 // import Ningguang_avatar from "@image/characters/Ningguang_avatar"
 import Ningguang_splash from "@image/characters/Ningguang_splash"
@@ -1953,6 +1957,72 @@ export default {
             
         ],
         config: [
+            
+        ],
+        configSkill: [
+            
+        ],
+    },
+    
+    Nilou: {
+        name: "Nilou",
+        // chs: "妮露",
+        element: "Hydro",
+        weapon: "Sword",
+        star: 5,
+        // card: Nilou_card,
+        // avatar: Nilou_avatar,
+        avatar: getName("nilou"),
+        splash: Nilou_splash,
+        skillName1: "",
+        skillName2: "",
+        skillName3: "",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 2 },
+            
+            { index: 3, text: 5 },
+            
+            { index: 4, text: 6 },
+            
+            { index: 5, text: 7 },
+            
+            { index: 6, text: 8 },
+            
+            { index: 7, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 8, text: 19 },
+            
+            { index: 9, text: 213 },
+            
+            { index: 10, text: 214 },
+            
+            { index: 11, text: 215 },
+            
+            { index: 12, text: 216 },
+            
+            { index: 13, text: 217 },
+            
+            { index: 14, text: 218 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 15, text: 19 },
+            
+            { index: 16, text: 219 },
+            
+        ],
+        config: [
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"golden_rate","title":"c41","type":"float"},
             
         ],
         configSkill: [

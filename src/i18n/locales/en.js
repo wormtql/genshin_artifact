@@ -183,6 +183,7 @@ export default {
         Collei: "Collei",
         Tighnari: "Tighnari",
         Dori: "Dori",
+        Nilou: "Nilou",
     },
     artifact: {
         "DeepwoodMemories": {
@@ -1122,6 +1123,7 @@ export default {
         c38: "Talent「Keen Sight」Ratio",
         c39: "C2「Origins Known From the Stem」Ratio",
         c40: "C6「Sprinkling Weight」",
+        c41: "「Golden Chalice's Bounty」Ratio",
 
         t1: "Type",
         t2: "Trigger Element",
@@ -1219,6 +1221,7 @@ export default {
         b39: "HP Below 50%",
         b40: "Energy Below 50%",
         b41: "Apply Ratio",
+        b42: "Nilou's HP",
     },
     ele: {
         Pyro: "Pyro",
@@ -1390,6 +1393,7 @@ export default {
         KukiShinobuDefault: "Shinobu-Mender of Tribulations",
         ShikanoinHeizouDefault: "Shikanoin Heizou-Analytical Harmony",
         TighnariDefault: "Tighnari-Verdant Strider",
+        NilouDefault: "Nilou-Dance of Lotuslight",
     },
     tfDesc: {
         MaxATK: "Maximize ATK",
@@ -1465,6 +1469,7 @@ export default {
         KukiShinobuDefault: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
         ShikanoinHeizouDefault: "DPS Heizou, maximizing E Stack-4 DMG",
         TighnariDefault: "Maximize Tighnari Charged Attack",
+        NilouDefault: "Nilou DPS",
     },
     dmg: {
         electroCharged: "Electro-Charged",
@@ -1549,6 +1554,7 @@ export default {
         Collei: ["Normal Attack: Supplicant’s Bowmanship", "Floral Brush", "Trump-Card Kitty"],
         Tighnari: ["Normal Attack: Khanda Barrier-Buster", "Vijnana-Phala Mine", "Fashioner’s Tanglevine Shaft"],
         Dori: ["Normal Attack: Marvelous Sword-Dance (Modified)", "Spirit-Warding Lamp: Troubleshooter Cannon", "Alcazarzaray’s Exactitude"],
+        Nilou: ["Normal Attack: Dance of Samser", "Dance of Haftkarsvar", "Dance of Abzendegi: Distant Dreams, Listening Spring"],
     },
     dmgName: [
         "1-Hit DMG",
@@ -1910,6 +1916,8 @@ export default {
         XiphosMoonlight: "Xiphos’ Moonlight-「Whisper of the Jinn」",
         MakhairaAquamarine: "Makhaira Aquamarine-「Desert Pavilion」",
         KeyOfKhajNisut: "Key of Khaj-Nisut-「Sunken Song of the Sands」",
+        NilouTalent1: "Nilou-「Court of Dancing Petals」",
+        NilouTalent2: "Nilou-「Dreamy Dance of Aeons」",
     },
     buffDesc: {
         ATKFixed: "",
@@ -2010,6 +2018,8 @@ export default {
         XiphosMoonlight: "The equipping character will gain 0.036%/0.045%/0.054%/0.063%/0.072% Energy Recharge for each point of Elemental Mastery they possess for 12s, with nearby party members gaining 30% of this buff for the same duration. Multiple instances of this weapon can allow this buff to stack. This effect will still trigger even if the character is not on the field.",
         MakhairaAquamarine: "The equipping character will gain 24%/30%/36%/42%/48% of their Elemental Mastery as bonus ATK for 12s, with nearby party members gaining 30% of this buff for the same duration. Multiple instances of this weapon can allow this buff to stack. This effect will still trigger even if the character is not on the field.",
         KeyOfKhajNisut: "The Elemental Mastery of all nearby party members will be increased by 0.2%/0.25%/0.3%/0.35%/0.4% of the equipping character’s max HP for 20s.",
+        NilouTalent1: "Characters under the effect of Golden Chalice’s Bounty will increase the Elemental Mastery of all nearby characters by 100 for 10s whenever they are hit by Dendro attacks",
+        NilouTalent2: "Each 1,000 points of Nilou’s Max HP above 30,000 will cause the DMG dealt by Bountiful Cores created by characters affected by Golden Chalice’s Bounty to increase by 7%.<br>The maximum increase in Bountiful Core DMG that can be achieved this way is 300%.",
     },
     buffGenre: {
         Character: "Character BUFF",

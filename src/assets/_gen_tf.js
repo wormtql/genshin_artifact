@@ -177,6 +177,8 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
+
+
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
@@ -1624,6 +1626,30 @@ export default {
         config: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"spread_rate","title":"t16","type":"float"},
+            
+        ],
+    },
+    
+    "NilouDefault": {
+        name: "NilouDefault",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "Nilou",
+        
+        badge: getImage("UI_AvatarIcon_Diluc"),
+        
+        config: [
+            
+            {"default":5.0,"max":10.0,"min":0.0,"name":"e_ratio","title":"t18","type":"float"},
+            
+            {"default":1.0,"max":10.0,"min":0.0,"name":"q_ratio","title":"t19","type":"float"},
+            
+            {"default":3.0,"max":10.0,"min":0.0,"name":"bloom_ratio","title":"t20","type":"float"},
             
         ],
     },

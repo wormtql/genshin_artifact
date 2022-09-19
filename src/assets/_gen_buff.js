@@ -207,6 +207,10 @@ import BaseDmg_image from "@image/misc/sword"
 
 
 
+
+
+
+
 import ResonancePyro2_image from "@image/misc/pyro"
 
 
@@ -1357,6 +1361,34 @@ export default {
             {"default":false,"name":"hp_below50","title":"b39","type":"bool"},
             
             {"default":true,"name":"energy_below50","title":"b40","type":"bool"},
+            
+        ],
+    },
+    
+    "NilouTalent1": {
+        name: "NilouTalent1",
+        // chs: "",
+        
+        badge: getImage("nilou"),
+        
+        genre: "Character",
+        // description: "",
+        config: [
+            
+        ],
+    },
+    
+    "NilouTalent2": {
+        name: "NilouTalent2",
+        // chs: "",
+        
+        badge: getImage("nilou"),
+        
+        genre: "Character",
+        // description: "",
+        config: [
+            
+            {"default":60000.0,"name":"hp","title":"b42","type":"floatInput"},
             
         ],
     },
