@@ -15,5 +15,6 @@ pub enum CharacterConfig {
     Collei { background: bool },
     Tighnari { talent1_ratio: f64, c2_ratio: f64 },
     Nilou { golden_rate: f64 },
+    Candace { c2_rate: f64 },
     NoConfig,
 }

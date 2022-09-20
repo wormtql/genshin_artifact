@@ -211,6 +211,10 @@ import BaseDmg_image from "@image/misc/sword"
 
 
 
+
+
+
+
 import ResonancePyro2_image from "@image/misc/pyro"
 
 
@@ -1389,6 +1393,34 @@ export default {
         config: [
             
             {"default":60000.0,"name":"hp","title":"b42","type":"floatInput"},
+            
+        ],
+    },
+    
+    "CandaceQ": {
+        name: "CandaceQ",
+        // chs: "",
+        
+        badge: getImage("candance"),
+        
+        genre: "Character",
+        // description: "",
+        config: [
+            
+        ],
+    },
+    
+    "CandaceTalent2": {
+        name: "CandaceTalent2",
+        // chs: "",
+        
+        badge: getImage("candance"),
+        
+        genre: "Character",
+        // description: "",
+        config: [
+            
+            {"default":30000.0,"name":"hp","title":"b43","type":"floatInput"},
             
         ],
     },

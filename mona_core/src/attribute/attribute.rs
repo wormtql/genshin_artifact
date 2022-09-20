@@ -138,8 +138,13 @@ impl<T: Attribute> AttributeCommon<T> for T {
         let key1 = AttributeName::bonus_name_by_element(element);
         let key2 = AttributeName::bonus_name_by_skill_type(skill);
 
-        self.get_value(AttributeName::BonusBase)
-            + self.get_value(key1) + self.get_value(key2)
+        let mut temp = self.get_value(AttributeName::BonusBase)
+            + self.get_value(key1) + self.get_value(key2);
+        // todo refactor
+        if element != Element::Physical && skill == SkillType::NormalAttack {
+            temp += self.get_value(AttributeName::BonusNormalAndElemental);
+        }
+        temp
     }
 
     fn get_critical_rate(&self, element: Element, skill: SkillType) -> f64 {

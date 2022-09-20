@@ -37,6 +37,7 @@ pub use shikanoin_heizou::BuffShikanoinHeizouTalent2;
 pub use tighnari::BuffTighnariC4;
 pub use dori::BuffDoriC4;
 pub use nilou::{BuffNilouTalent2, BuffNilouTalent1};
+pub use candace::{BuffCandaceQ, BuffCandaceTalent2};
 
 pub mod albedo;
 pub mod aloy;
@@ -77,3 +78,4 @@ pub mod shikanoin_heizou;
 pub mod tighnari;
 pub mod dori;
 pub mod nilou;
+pub mod candace;

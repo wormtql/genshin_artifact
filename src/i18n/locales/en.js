@@ -184,6 +184,7 @@ export default {
         Tighnari: "Tighnari",
         Dori: "Dori",
         Nilou: "Nilou",
+        Candace: "Candace",
     },
     artifact: {
         "DeepwoodMemories": {
@@ -1124,6 +1125,8 @@ export default {
         c39: "C2「Origins Known From the Stem」Ratio",
         c40: "C6「Sprinkling Weight」",
         c41: "「Golden Chalice's Bounty」Ratio",
+        c42: "C2 Ratio",
+        c43: "Prayer of the Crimson Crown",
 
         t1: "Type",
         t2: "Trigger Element",
@@ -1142,6 +1145,9 @@ export default {
         t15: "E-skill DMG Rate",
         t16: "Spread Ratio",
         t17: "Aggravate Ratio",
+        t18: "Elemental Skill Times",
+        t19: "Elemental Burst Times",
+        t20: "Bloom Times",
 
         a1: "Element",
         a2: "Effect Apply Ratio",
@@ -1222,6 +1228,7 @@ export default {
         b40: "Energy Below 50%",
         b41: "Apply Ratio",
         b42: "Nilou's HP",
+        b43: "Candace's HP",
     },
     ele: {
         Pyro: "Pyro",
@@ -1555,6 +1562,7 @@ export default {
         Tighnari: ["Normal Attack: Khanda Barrier-Buster", "Vijnana-Phala Mine", "Fashioner’s Tanglevine Shaft"],
         Dori: ["Normal Attack: Marvelous Sword-Dance (Modified)", "Spirit-Warding Lamp: Troubleshooter Cannon", "Alcazarzaray’s Exactitude"],
         Nilou: ["Normal Attack: Dance of Samser", "Dance of Haftkarsvar", "Dance of Abzendegi: Distant Dreams, Listening Spring"],
+        Candace: ["Normal Attack: Gleaming Spear – Guardian Stance", "Sacred Rite: Heron’s Sanctum", "Sacred Rite: Wagtail’s Tide"],
     },
     dmgName: [
         "1-Hit DMG",
@@ -1918,6 +1926,8 @@ export default {
         KeyOfKhajNisut: "Key of Khaj-Nisut-「Sunken Song of the Sands」",
         NilouTalent1: "Nilou-「Court of Dancing Petals」",
         NilouTalent2: "Nilou-「Dreamy Dance of Aeons」",
+        CandaceQ: "Candace-「Prayer of the Crimson Crown」",
+        CandaceTalent2: "Candace-「Celestial Dome of Sand」",
     },
     buffDesc: {
         ATKFixed: "",
@@ -2020,6 +2030,8 @@ export default {
         KeyOfKhajNisut: "The Elemental Mastery of all nearby party members will be increased by 0.2%/0.25%/0.3%/0.35%/0.4% of the equipping character’s max HP for 20s.",
         NilouTalent1: "Characters under the effect of Golden Chalice’s Bounty will increase the Elemental Mastery of all nearby characters by 100 for 10s whenever they are hit by Dendro attacks",
         NilouTalent2: "Each 1,000 points of Nilou’s Max HP above 30,000 will cause the DMG dealt by Bountiful Cores created by characters affected by Golden Chalice’s Bounty to increase by 7%.<br>The maximum increase in Bountiful Core DMG that can be achieved this way is 300%.",
+        CandaceQ: "Characters deal increased Elemental DMG with their Normal Attacks(20%)",
+        CandaceTalent2: "Characters affected by the Prayer of the Crimson Crown caused by Sacred Rite: Wagtail’s Tide will deal 0.5% increased DMG to opponents for every 1,000 points of Candace’s Max HP when they deal Elemental DMG with their Normal Attacks.",
     },
     buffGenre: {
         Character: "Character BUFF",

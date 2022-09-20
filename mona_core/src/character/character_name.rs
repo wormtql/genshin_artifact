@@ -34,6 +34,7 @@ pub enum CharacterName {
     Barbara,
     Beidou,
     Bennett,
+    Candace,
     Chongyun,
     Collei,
     Diluc,

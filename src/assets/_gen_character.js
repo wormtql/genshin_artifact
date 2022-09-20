@@ -32,6 +32,10 @@ import Beidou_splash from "@image/characters/Beidou_splash"
 // import Bennett_avatar from "@image/characters/Bennett_avatar"
 import Bennett_splash from "@image/characters/Bennett_splash"
 
+// import Candace_card from "@image/characters/Candace_card"
+// import Candace_avatar from "@image/characters/Candace_avatar"
+import Candace_splash from "@image/characters/Candace_splash"
+
 // import Chongyun_card from "@image/characters/Chongyun_card"
 // import Chongyun_avatar from "@image/characters/Chongyun_avatar"
 import Chongyun_splash from "@image/characters/Chongyun_splash"
@@ -698,6 +702,66 @@ export default {
             
         ],
         configSkill: [
+            
+        ],
+    },
+    
+    Candace: {
+        name: "Candace",
+        // chs: "",
+        element: "Hydro",
+        weapon: "Polearm",
+        star: 4,
+        // card: Candace_card,
+        // avatar: Candace_avatar,
+        avatar: getName("candance"),
+        splash: Candace_splash,
+        skillName1: "",
+        skillName2: "",
+        skillName3: "",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 26 },
+            
+            { index: 3, text: 60 },
+            
+            { index: 4, text: 3 },
+            
+            { index: 5, text: 38 },
+            
+            { index: 6, text: 7 },
+            
+            { index: 7, text: 8 },
+            
+            { index: 8, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 9, text: 45 },
+            
+            { index: 10, text: 220 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 11, text: 19 },
+            
+            { index: 12, text: 221 },
+            
+        ],
+        config: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"c2_rate","title":"c42","type":"float"},
+            
+        ],
+        configSkill: [
+            
+            {"default":true,"name":"crown","title":"c43","type":"bool"},
             
         ],
     },

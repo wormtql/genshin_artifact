@@ -30,5 +30,6 @@ pub enum CharacterSkillConfig {
     Yanfei { after_q: bool },
     Yoimiya { after_e: bool },
     Dori { c6: bool },
+    Candace { crown: bool },
     NoConfig,
 }
