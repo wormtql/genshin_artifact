@@ -183,6 +183,7 @@ export default {
         Collei: "Collei",
         Tighnari: "Tighnari",
         Dori: "Dori",
+        Cyno: "Cyno",
     },
     artifact: {
         "DeepwoodMemories": {
@@ -896,6 +897,7 @@ export default {
         Moonpiercer: "Moonpiercer",
         FruitOfFulfillment: "Fruit of Fulfillment",
         KingsSquire: "King's Squire",
+        StaffOfScarletSands: "Staff Of Scarlet Sands",
     },
     weaponEffect: {
         MistsplitterReforged: "Gain a <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> Elemental DMG Bonus for all elements and receive the might of the Mistsplitter\'s Emblem. At stack levels 1/2/3, the Mistsplitter\'s Emblem provides a <span style=\"color: #409EFF;\">8/16/28%-10/20/35%-12/24/42%-14/28/49%-16/32/56%</span> Elemental DMG Bonus for the character\'s Elemental Type. The character will obtain 1 stack of Mistsplitter\'s Emblem in each of the following scenarios: Normal Attack deals Elemental DMG (stack lasts 5s), casting Elemental Burst (stack lasts 10s); Energy is less than 100% (stack disappears when Energy is full). Each stack\'s duration is calculated independently.",
@@ -1039,6 +1041,7 @@ export default {
         Moonpiercer: "After triggering Burning, Quicken, Aggravate, Spread, Bloom, Hyperbloom, or Burgeon, a Leaf of Revival will be created around the character for a maximum of 10s. When picked up, the Leaf will grant the character <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> ATK for 12s. Only 1 Leaf can be generated this way every 20s. This effect can still be triggered if the character is not on the field.",
         FruitOfFulfillment: "Obtain the \"Wax and Wane\" effect after an Elemental Reaction is triggered, gaining <span style=\"color: #409EFF;\">24-27-30-33-36</span> Elemental Mastery while losing 5% ATK. For every 0.3s, 1 stack of Wax and Wane can be gained. Max 5 stacks. For every 6s that go by without an Elemental Reaction being triggered, 1 stack will be lost. This effect can be triggered even when the character is off-field.",
         KingsSquire: "Obtain the Teachings of the Forest effect when unleashing Elemental Skills and Bursts, increasing Elemental Mastery by <span style=\"color: #409EFF;\">60-80-100-120-140</span> for 12s. This effect will be removed when switching characters. When the Teachings of the Forest effect ends or is removed, it will deal <span style=\"color: #409EFF;\">100%-120%-140%-160%-180%</span> of ATK as DMG to 1 nearby opponent. The Teachings of the Forest effect can be triggered once every 20s.",
+        StaffOfScarletSands: "The equipping character gains <span style=\"color: #409EFF;\">52%/65%/78%/91%/104%</span> of their Elemental Mastery as bonus ATK. When an Elemental Skill hits opponents, the Dream of the Scarlet Sands effect will be gained for 10s: The equipping character will gain <span style=\"color: #409EFF;\">28%/35%/42%/49%/56%</span> of their Elemental Mastery as bonus ATK. Max 3 stacks.",
     },
     config: {
         w1: "Avg Effect Stack",
@@ -1067,6 +1070,7 @@ export default {
         w24: "HP Below 50% Ratio",
         w25: "「Wavespike」Stack",
         w26: "「Mistsplitter\'s Emblem」Stack",
+        w27: "「the Dream of the Scarlet Sands」Stack",
 
         c1: "Talent「Harmony Between Heaven and Earth」Apply Ratio",
         c2: "Talent「Undivided Heart」Apply Ratio",
@@ -1108,6 +1112,9 @@ export default {
         c38: "Talent「Keen Sight」Ratio",
         c39: "C2「Origins Known From the Stem」Ratio",
         c40: "C6「Sprinkling Weight」",
+        c41: "Pactsworn Pathclearer",
+        c42: "Enable 「Judication」",
+        c43: "C2「Ceremony: Homecoming of Spirits」Stacks",
 
         t1: "Type",
         t2: "Trigger Element",
@@ -1125,6 +1132,12 @@ export default {
         t14: "Overload Frequency",
         t15: "E-skill DMG Rate",
         t16: "Spread Ratio",
+        t17: "Combo",
+        t18: "Attack Till Burst Expires",
+        t19: "Aggravate Ratio",
+        t20: "Electro-charge Ratio",
+        t21: "Overload Ratio",
+        t22: "Hyperbloom Ratio",
 
         a1: "Element",
         a2: "Effect Apply Ratio",
@@ -1375,6 +1388,7 @@ export default {
         KukiShinobuDefault: "Shinobu-Mender of Tribulations",
         ShikanoinHeizouDefault: "Shikanoin Heizou-Analytical Harmony",
         TighnariDefault: "Tighnari-Verdant Strider",
+        CynoDefault: "Cyno DPS"
     },
     tfDesc: {
         MaxATK: "Maximize ATK",
@@ -1450,6 +1464,7 @@ export default {
         KukiShinobuDefault: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
         ShikanoinHeizouDefault: "DPS Heizou, maximizing E Stack-4 DMG",
         TighnariDefault: "Maximize Tighnari Charged Attack",
+        CynoDefault: "Perform QTE and unleash Duststalker Bolts, best combo would be applied automatically basing on artifact set"
     },
     dmg: {
         electroCharged: "Electro-Charged",
@@ -1534,6 +1549,7 @@ export default {
         Collei: ["Normal Attack: Supplicant’s Bowmanship", "Floral Brush", "Trump-Card Kitty"],
         Tighnari: ["Normal Attack: Khanda Barrier-Buster", "Vijnana-Phala Mine", "Fashioner’s Tanglevine Shaft"],
         Dori: ["Normal Attack: Marvelous Sword-Dance (Modified)", "Spirit-Warding Lamp: Troubleshooter Cannon", "Alcazarzaray’s Exactitude"],
+        Cyno: ["Normal Attack: Invoker's Spear","Secret Rite: Chasmic Soulfarer","Sacred Rite: Wolf’s Swiftness"],
     },
     dmgName: [
         "1-Hit DMG",
@@ -1749,6 +1765,17 @@ export default {
         "Troubleshooter Shot DMG",
         "After-Sales Service Round DMG",
         "Connector DMG",
+        "Pactsworn Pathclearer: 1-Hit DMG",
+        "Pactsworn Pathclearer: 2-Hit DMG",
+        "Pactsworn Pathclearer: 3-Hit DMG",
+        "Pactsworn Pathclearer: 4-Hit DMG/2",
+        "Pactsworn Pathclearer: 5-Hit DMG",
+        "Pactsworn Pathclearer: Charged DMG",
+        "Pactsworn Pathclearer: Plunge DMG",
+        "Pactsworn Pathclearer: Low Plunging DMG",
+        "Pactsworn Pathclearer: High Plunging DMG",
+        "Pactsworn Pathclearer: Mortuary Rite DMG",
+        "Pactsworn Pathclearer: Duststalker Bolt DMG",
     ],
     res: {
         Pyro: "Pyro Res",
