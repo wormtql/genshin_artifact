@@ -16,27 +16,6 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::character::macros::{skill_type, damage_enum};
 
-// pub struct CynoSkillType {
-//     pub normal_dmg1: [f64; 15],
-//     pub normal_dmg2: [f64; 15],
-//     pub normal_dmg3: [f64; 15],
-//     pub normal_dmg4: [f64; 15],
-//     pub charged_dmg1: [f64; 15],
-//     pub charged_dmg2: [f64; 15],
-//     pub charged_dmg3: [f64; 15],
-//     pub charged_dmg4: [f64; 15],
-//     pub plunging_dmg1: [f64; 15],
-//     pub plunging_dmg2: [f64; 15],
-//     pub plunging_dmg3: [f64; 15],
-//
-//     pub e1: [f64; 15],
-//
-//     pub q1: [f64; 15],
-//     pub q2: [f64; 15],
-// }
-
-
-//
 skill_type!(CynoSkillType normal_dmg1 normal_dmg2 normal_dmg3 normal_dmg4 charged_dmg plunging_dmg1 plunging_dmg2 plunging_dmg3 e1 e2 qnormal1 qnormal2 qnormal3 qnormal4 qnormal5 qcharged qplunging1 qplunging2 qplunging3);
 
 pub const CYNO_SKILL: CynoSkillType = CynoSkillType {
@@ -82,31 +61,6 @@ impl<A: Attribute> ChangeAttribute<A> for CynoEffect {
         }
     }
 }
-
-// #[derive(Copy, Clone, Eq, PartialEq, EnumString)]
-// #[derive(FromPrimitive, EnumCountMacro)]
-// pub enum CynoDamageEnum {
-//     Normal1,
-//     Normal2,
-//     Normal3,
-//     Normal4,
-//     Charged1,
-//     Charged2,
-//     Charged3,
-//     Charged4,
-//     Plunging1,
-//     Plunging2,
-//     Plunging3,
-//     E1,
-//     Q1,
-//     Q2
-// }
-//
-// impl Into<usize> for CynoDamageEnum {
-//     fn into(self) -> usize {
-//         self as usize
-//     }
-// }
 
 damage_enum!(
     CynoDamageEnum
@@ -230,12 +184,12 @@ impl CharacterTrait for Cyno {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "c2_stack",
-            title: "c43",
+            title: "c46",
             config: ItemConfigType::Float { min: 0.0, max: 5.0, default: 4.0 },
         },
         ItemConfig {
             name: "after_q",
-            title: "c41",
+            title: "c44",
             config: ItemConfigType::Bool { default: true }
         },
     ]);
@@ -244,14 +198,9 @@ impl CharacterTrait for Cyno {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "under_judication",
-            title: "c42",
+            title: "c45",
             config: ItemConfigType::Bool { default: true }
         },
-        // ItemConfig {
-        //     name: "after_q",
-        //     title: "c41",
-        //     config: ItemConfigType::Bool { default: true }
-        // },
     ]);
 
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
@@ -289,21 +238,11 @@ impl CharacterTrait for Cyno {
         let skill_group = s.get_skill_group();
         let has_talent1=context.character_common_data.has_talent1;
         let has_talent2=context.character_common_data.has_talent2;
-        let (under_judication/* ,after_q */)= match *config {
-            CharacterSkillConfig::Cyno {under_judication/* , after_q */ } => (under_judication/* ,after_q */),
-            _ => (false/* ,false */)
+        let (under_judication)= match *config {
+            CharacterSkillConfig::Cyno {under_judication} => (under_judication),
+            _ => (false)
         };
-        // if context.character_common_data.has_talent2 && (skill_type == SkillType::ChargedAttack || skill_type == SkillType::ElementalBurst) {
-        //     let em = context.attribute.get_value(AttributeName::ElementalMastery);
-        //     let bonus = 0.6_f64.min(0.0006 * em);
-        //     builder.add_extra_bonus("提纳里天赋「诸叶辨通」", bonus);
-        // }
 
-        //q em bonus
-        // if after_q {
-        //     builder.add_extra_em("启途誓使精通加成", 100.0);
-        // }
-        //talent2: add 35 dmg bonus to e
         if skill_group==CynoSkillgroupEnum::E2 && has_talent1 && under_judication {
             builder.add_extra_bonus("「裁定」效果",0.35);
         }
@@ -331,10 +270,7 @@ impl CharacterTrait for Cyno {
     }
 
     fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
-        // let (talent1_ratio, c2_ratio) = match *config {
-        //     CharacterConfig::Cyno { talent1_ratio, c2_ratio } => (talent1_ratio, c2_ratio),
-        //     _ => (0.0, 0.0)
-        // };
+
         let (c2_stack,after_q)= match *config {
             CharacterConfig::Cyno {c2_stack ,after_q} => (c2_stack,after_q),
             _ => (0.0,false)

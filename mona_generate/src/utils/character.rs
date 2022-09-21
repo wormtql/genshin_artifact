@@ -141,7 +141,6 @@ pub fn get_character_dmg_names_chs() -> Vec<String> {
         Collei,
         Tighnari,
         Dori,
-        Cyno,
         Nilou,
         Candace,
         Cyno,

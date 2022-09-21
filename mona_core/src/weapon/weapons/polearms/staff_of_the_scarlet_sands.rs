@@ -1,30 +1,43 @@
 use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
-use crate::common::item_config_type::ItemConfig;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
+use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::weapon::weapon_effect::WeaponEffect;
 use crate::weapon::weapon_static_data::WeaponStaticData;
-use crate::weapon::weapon_trait::WeaponTrait;
-use crate::weapon::{WeaponConfig, WeaponName};
-use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
+use crate::weapon::{WeaponConfig, WeaponName};
+use crate::weapon::weapon_trait::WeaponTrait;
 
 pub struct StaffOfTheScarletSandsEffect {
-    pub stack: f64,
+    stack: f64
 }
 
-impl<A: Attribute> WeaponEffect<A> for StaffOfTheScarletSandsEffect {
-    fn apply(&self, data: &WeaponCommonData, attribute: &mut A) {
-        let refine = data.refine as f64;
+impl StaffOfTheScarletSandsEffect {
+    pub fn new(config: &WeaponConfig) -> StaffOfTheScarletSandsEffect {
+        match *config {
+            WeaponConfig::StaffOfScarletSands { stack } => StaffOfTheScarletSandsEffect {
+                stack
+            },
+            _ => StaffOfTheScarletSandsEffect {
+                stack: 0.0,
+            }
+        }
+    }
+}
 
-        let value = (0.13 * refine + 0.39) + (0.07 * refine + 0.21) * self.stack;
+impl<T: Attribute> WeaponEffect<T> for StaffOfTheScarletSandsEffect {
+    fn apply(&self, data: &WeaponCommonData, attribute: &mut T) {
+        let refine = data.refine as f64;
+        let atk_bonus_1 = refine * 0.13 + 0.39;
+        let atk_bonus_2 = (refine * 0.07 + 0.21)*self.stack;
         attribute.add_edge1(
             AttributeName::ElementalMastery,
             AttributeName::ATKFixed,
-            Box::new(move |em, _| em * value),
-            Box::new(move |em, _, grad| (value * grad, 0.0)),
-            "赤沙之杖被动等效",
+            Box::new(move |x, _| x * (atk_bonus_1+atk_bonus_2)),
+            Box::new(move |grad, _x1, _x2| (atk_bonus_1+atk_bonus_2, 0.0)),
+            "赤沙之杖被动等效"
         );
     }
 }
@@ -34,28 +47,27 @@ pub struct StaffOfTheScarletSands;
 impl WeaponTrait for StaffOfTheScarletSands {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::StaffOfTheScarletSands,
-        internal_name: "todo", // todo
+        internal_name: "", //todo
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate96),
         weapon_base: WeaponBaseATKFamily::ATK542,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some(""),
+        effect: Some("基于装备者元素精通的52%，获得攻击力加成。元素战技命中敌人时，将产生持续10秒的「赤沙之梦」效果：基于装备者元素精通的28%，获得攻击力加成，该效果至多叠加3层。"),
         #[cfg(not(target_family = "wasm"))]
-        chs: ""
+        chs: "赤沙之杖"
     };
 
     #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
-        ItemConfig::STACK03
+        ItemConfig {
+            name: "stack",
+            title: "w29",
+            config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 1.5 }
+        }
     ]);
 
-    fn get_effect<A: Attribute>(character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
-        let stack = match *config {
-            WeaponConfig::StaffOfTheScarletSands { stack } => stack,
-            _ => 0.0
-        };
-
-        Some(Box::new(StaffOfTheScarletSandsEffect { stack }))
+    fn get_effect<A: Attribute>(_character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
+        Some(Box::new(StaffOfTheScarletSandsEffect::new(config)))
     }
 }

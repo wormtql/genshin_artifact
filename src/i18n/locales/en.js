@@ -186,12 +186,6 @@ export default {
         Nilou: "Nilou",
         Candace: "Candace",
         Cyno: "Cyno",
-<<<<<<< HEAD
-        Cyno: "Cyno",
-=======
-        Nilou: "Nilou",
-        Candace: "Candace",
->>>>>>> 1c1b0a0b04a3b7bcad1cf55741924547e2565d90
     },
     artifact: {
         "DeepwoodMemories": {
@@ -1419,7 +1413,7 @@ export default {
         ShikanoinHeizouDefault: "Shikanoin Heizou-Analytical Harmony",
         TighnariDefault: "Tighnari-Verdant Strider",
         NilouDefault: "Nilou-Dance of Lotuslight",
-        CynoDefault: "Cyno DPS",
+        CynoDefault: "Cyno-Judicator of Secrets",
     },
     tfDesc: {
         MaxATK: "Maximize ATK",

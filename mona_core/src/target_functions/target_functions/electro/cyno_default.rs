@@ -81,7 +81,7 @@ impl TargetFunctionMetaTrait for CynoDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::CynoDefault,
-        chs: "赛诺-激化",
+        chs: "赛诺-缄默的裁遣",
         description: "打QTE并释放渡荒之雷,普攻命中次数、反应触发次数和6命参考数据：零命 7.0 5.0 0.0，，一命 9.0 5.0 0.0，六命 9.0 5.0 4.0 ",
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Cyno),
@@ -97,32 +97,32 @@ impl TargetFunctionMetaTrait for CynoDefaultTargetFunction {
         },
         ItemConfig {
             name: "combo",
-            title: "t17", //连招选择
+            title: "t21", //连招选择
             config: ItemConfigType::Option { options: "乱a不取消,取消第五段", default: 0 }
         },
         ItemConfig {
             name: "until_expire",
-            title: "t18", //a到大招完全结束
+            title: "t22", //a到大招完全结束
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "aggravate_rate",
-            title: "t19", //超激化比例
+            title: "t17", //超激化比例
             config: ItemConfigType::Float { min:0.0, max: 1.0 , default:1.0}
         },
         ItemConfig {
             name: "elecharged_rate",
-            title: "t20", //感电比例
+            title: "t24", //感电比例
             config: ItemConfigType::Float { min: 0.0, max: 1.0 , default: 0.0}
         },
         ItemConfig {
             name: "overload_rate",
-            title: "t21", //超载比例
+            title: "t25", //超载比例
             config: ItemConfigType::Float { min: 0.0, max: 1.0 , default:0.0}
         },
         ItemConfig {
             name: "hyperbloom_rate",
-            title: "t22", //超绽放比例
+            title: "t26", //超绽放比例
             config: ItemConfigType::Float { min: 0.0, max: 1.0 , default:0.0}
         },
     ]);

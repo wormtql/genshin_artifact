@@ -83,7 +83,6 @@ pub enum WeaponName {
     PrimordialJadeWingedSpear,
     CalamityQueller,
     StaffOfHoma,
-    StaffOfScarletSands,
     VortexVanquisher,
     PrototypeStarglitter,
     LithicSpear,
