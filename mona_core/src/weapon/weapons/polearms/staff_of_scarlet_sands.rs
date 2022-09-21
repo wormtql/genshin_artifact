@@ -63,7 +63,7 @@ impl WeaponTrait for StaffOfScarletSands {
         ItemConfig {
             name: "stack",
             title: "w27",
-            config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 4.0 }
+            config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 1.5 }
         }
     ]);
 
