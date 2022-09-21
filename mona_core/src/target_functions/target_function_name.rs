@@ -81,4 +81,5 @@ pub enum TargetFunctionName {
     ShikanoinHeizouDefault,
     TighnariDefault,
     CynoDefault,
+    NilouDefault,
 }

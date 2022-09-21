@@ -486,6 +486,10 @@ impl ComplicatedDamageBuilder {
             AttributeName::bonus_name_by_element(element),
             AttributeName::bonus_name_by_skill_type(skill)
         ]);
+        if element != Element::Physical && skill == SkillType::NormalAttack {
+            // todo refactor
+            comp.merge(&attribute.get_attribute_composition(AttributeName::BonusNormalAndElemental));
+        }
         comp.merge(&self.extra_bonus);
         comp
     }

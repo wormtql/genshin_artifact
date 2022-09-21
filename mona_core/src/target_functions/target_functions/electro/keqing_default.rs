@@ -6,7 +6,7 @@ use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::keqing::Keqing;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
-use crate::common::item_config_type::ItemConfig;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
@@ -18,7 +18,9 @@ use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
-pub struct KeqingDefaultTargetFunction;
+pub struct KeqingDefaultTargetFunction {
+    pub aggravate_rate: f64,
+}
 
 impl TargetFunctionMetaTrait for KeqingDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
@@ -31,8 +33,23 @@ impl TargetFunctionMetaTrait for KeqingDefaultTargetFunction {
         image: TargetFunctionMetaImage::Avatar
     };
 
-    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, _config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        Box::new(KeqingDefaultTargetFunction)
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "aggravate_rate",
+            title: "t17",
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
+        }
+    ]);
+
+    fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
+        let rate = match *config {
+            TargetFunctionConfig::KeqingDefault { aggravate_rate } => aggravate_rate,
+            _ => 0.0
+        };
+        Box::new(KeqingDefaultTargetFunction {
+            aggravate_rate: rate.clamp(0.0, 1.0)
+        })
     }
 }
 
@@ -100,13 +117,16 @@ impl TargetFunction for KeqingDefaultTargetFunction {
 
         let config = CharacterSkillConfig::Keqing { after_e: true };
         type S = <Keqing as CharacterTrait>::DamageEnumType;
-        let dmg_q = Keqing::damage::<SimpleDamageBuilder>(&context, S::Q2, &config, None).normal.expectation;
-        let dmg_charged = Keqing::damage::<SimpleDamageBuilder>(&context, S::Charged11, &config, None).normal.expectation;
+        let dmg_q = Keqing::damage::<SimpleDamageBuilder>(&context, S::Q2, &config, None);
+        let dmg_charged = Keqing::damage::<SimpleDamageBuilder>(&context, S::Charged11, &config, None);
 
         // let recharge = attribute.get_value(AttributeName::Recharge);
         // let r = recharge.min(1.4);
 
         // r * dmg_q * 19.53 * 0.2 + dmg_charged * 2.094 * 0.8
-        dmg_q * 19.53 * 0.2 + dmg_charged * 2.094 * 0.8
+        let normal = dmg_q.normal.expectation * 19.53 * 0.2 + dmg_charged.normal.expectation * 2.094 * 0.8;
+        let aggravate = dmg_q.aggravate.unwrap().expectation * 19.53 * 0.2 + dmg_charged.aggravate.unwrap().expectation * 2.094 * 0.8;
+
+        normal * (1.0 - self.aggravate_rate) + aggravate * self.aggravate_rate
     }
 }
