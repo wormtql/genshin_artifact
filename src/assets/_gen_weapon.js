@@ -2049,21 +2049,21 @@ export default {
 
     StaffOfTheScarletSands: {
         name: "StaffOfTheScarletSands",
-        internalName: "todo",
-        // chs: "",
+        internalName: "",
+        // chs: "赤沙之杖",
         star: 5,
         // url: StaffOfTheScarletSands_tn,
-        url: imageUrl("todo"),
+        url: imageUrl(""),
         type: "Polearm",
 
         
-        // effect: null,
+        // effect: "基于装备者元素精通的52%，获得攻击力加成。元素战技命中敌人时，将产生持续10秒的「赤沙之梦」效果：基于装备者元素精通的28%，获得攻击力加成，该效果至多叠加3层。",
         
 
         
         configs: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
+            {"default":1.5,"max":3.0,"min":0.0,"name":"stack","title":"w29","type":"float"},
             
         ],
         

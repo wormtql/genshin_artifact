@@ -44,6 +44,10 @@ import Chongyun_splash from "@image/characters/Chongyun_splash"
 // import Collei_avatar from "@image/characters/Collei_avatar"
 import Collei_splash from "@image/characters/Collei_splash"
 
+// import Cyno_card from "@image/characters/Cyno_card"
+// import Cyno_avatar from "@image/characters/Cyno_avatar"
+import Cyno_splash from "@image/characters/Cyno_splash"
+
 // import Diluc_card from "@image/characters/Diluc_card"
 // import Diluc_avatar from "@image/characters/Diluc_avatar"
 import Diluc_splash from "@image/characters/Diluc_splash"
@@ -870,6 +874,82 @@ export default {
             
         ],
         configSkill: [
+            
+        ],
+    },
+    
+    Cyno: {
+        name: "Cyno",
+        // chs: "赛诺",
+        element: "Electro",
+        weapon: "Polearm",
+        star: 5,
+        // card: Cyno_card,
+        // avatar: Cyno_avatar,
+        avatar: getName("Cyno"),
+        splash: Cyno_splash,
+        skillName1: "普通攻击·七圣枪术",
+        skillName2: "秘仪·律渊渡魂",
+        skillName3: "圣仪·煟煌随狼行",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 132 },
+            
+            { index: 3, text: 3 },
+            
+            { index: 4, text: 38 },
+            
+            { index: 5, text: 7 },
+            
+            { index: 6, text: 8 },
+            
+            { index: 7, text: 9 },
+            
+            { index: 11, text: 222 },
+            
+            { index: 12, text: 223 },
+            
+            { index: 13, text: 224 },
+            
+            { index: 14, text: 225 },
+            
+            { index: 15, text: 226 },
+            
+            { index: 16, text: 227 },
+            
+            { index: 17, text: 228 },
+            
+            { index: 18, text: 229 },
+            
+            { index: 19, text: 230 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 8, text: 19 },
+            
+            { index: 9, text: 231 },
+            
+            { index: 10, text: 232 },
+            
+        ],
+        skillMap3: [
+            
+        ],
+        config: [
+            
+            {"default":4.0,"max":5.0,"min":0.0,"name":"c2_stack","title":"c46","type":"float"},
+            
+            {"default":true,"name":"after_q","title":"c44","type":"bool"},
+            
+        ],
+        configSkill: [
+            
+            {"default":true,"name":"under_judication","title":"c45","type":"bool"},
             
         ],
     },
