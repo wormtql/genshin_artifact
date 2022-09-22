@@ -17,7 +17,7 @@ pub struct StaffOfTheScarletSandsEffect {
 impl StaffOfTheScarletSandsEffect {
     pub fn new(config: &WeaponConfig) -> StaffOfTheScarletSandsEffect {
         match *config {
-            WeaponConfig::StaffOfScarletSands { stack } => StaffOfTheScarletSandsEffect {
+            WeaponConfig::StaffOfTheScarletSands { stack } => StaffOfTheScarletSandsEffect {
                 stack
             },
             _ => StaffOfTheScarletSandsEffect {
