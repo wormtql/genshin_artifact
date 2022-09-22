@@ -35,13 +35,59 @@ fn get_reaction_coefficient(t: TransformativeType) -> f64 {
 }
 
 #[inline]
-fn get_transformative_base(level: usize, t: TransformativeType) -> f64 {
+pub fn get_transformative_base(level: usize, t: TransformativeType) -> f64 {
     LEVEL_MULTIPLIER[level - 1] * get_reaction_coefficient(t)
 }
 
 #[inline]
-fn get_em_bonus(em: f64) -> f64 {
+pub fn get_em_bonus(em: f64) -> f64 {
     16.0 * em / (em + 2000.0)
+}
+
+pub fn transformative_damage_simple(level: usize, em: f64, enemy: &Enemy) -> TransformativeDamage {
+    let base_swirl = get_transformative_base(level, TransformativeType::SwirlPyro);
+    let base_overload = get_transformative_base(level, TransformativeType::Overload);
+    let base_superconduct = get_transformative_base(level, TransformativeType::Superconduct);
+    let base_shatter = get_transformative_base(level, TransformativeType::Shatter);
+    let base_electro_charged = get_transformative_base(level, TransformativeType::ElectroCharged);
+    let base_bloom = get_transformative_base(level, TransformativeType::Bloom);
+    let base_hyperbloom = get_transformative_base(level, TransformativeType::Hyperbloom);
+    let base_burgeon = base_hyperbloom;
+
+    let em_bonus = get_em_bonus(em);
+
+    let res_ratio_pyro = enemy.get_resistance_ratio(Element::Pyro, 0.0);
+    let res_ratio_cryo = enemy.get_resistance_ratio(Element::Cryo, 0.0);
+    let res_ratio_electro = enemy.get_resistance_ratio(Element::Electro, 0.0);
+    let res_ratio_hydro = enemy.get_resistance_ratio(Element::Hydro, 0.0);
+    let res_ratio_physical = enemy.get_resistance_ratio(Element::Physical, 0.0);
+    let res_ratio_dendro = enemy.get_resistance_ratio(Element::Dendro, 0.0);
+
+    let dmg_swirl_pyro = base_swirl * res_ratio_pyro * (1.0 + em_bonus);
+    let dmg_swirl_cryo = base_swirl * res_ratio_cryo * (1.0 + em_bonus);
+    let dmg_swirl_electro = base_swirl * res_ratio_electro * (1.0 + em_bonus);
+    let dmg_swirl_hydro = base_swirl * res_ratio_hydro * (1.0 + em_bonus);
+    let dmg_overload = base_overload * res_ratio_pyro * (1.0 + em_bonus);
+    let dmg_superconduct = base_superconduct * res_ratio_cryo * (1.0 + em_bonus);
+    let dmg_shatter = base_shatter * res_ratio_physical * (1.0 + em_bonus);
+    let dmg_electro_charged = base_electro_charged * res_ratio_electro * (1.0 + em_bonus);
+    let dmg_bloom = base_bloom * res_ratio_dendro * (1.0 + em_bonus);
+    let dmg_hyperbloom = base_hyperbloom * res_ratio_dendro * (1.0 + em_bonus);
+    let dmg_burgeon = base_burgeon * res_ratio_dendro * (1.0 + em_bonus);
+
+    TransformativeDamage {
+        swirl_cryo: dmg_swirl_cryo,
+        swirl_hydro: dmg_swirl_hydro,
+        swirl_pyro: dmg_swirl_pyro,
+        swirl_electro: dmg_swirl_electro,
+        overload: dmg_overload,
+        electro_charged: dmg_electro_charged,
+        shatter: dmg_shatter,
+        superconduct: dmg_superconduct,
+        bloom: dmg_bloom,
+        hyperbloom: dmg_hyperbloom,
+        burgeon: dmg_burgeon
+    }
 }
 
 pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &Enemy) -> TransformativeDamage {

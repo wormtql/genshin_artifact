@@ -1,14 +1,16 @@
 use crate::artifacts::Artifact;
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::SimpleAttributeGraph2;
+use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::Nilou;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
+use crate::common::Element;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::common::reaction_type::TransformativeType;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
-use crate::damage::transformative_damage::transformative_damage;
+use crate::damage::transformative_damage::{get_em_bonus, get_transformative_base, transformative_damage, transformative_damage_simple};
 use crate::enemies::Enemy;
 use crate::target_functions::target_function::TargetFunctionMetaTrait;
 use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
@@ -22,6 +24,8 @@ pub struct NilouDefaultTargetFunction {
     pub e_ratio: f64,
     pub q_ratio: f64,
     pub bloom_ratio: f64,
+    pub other_em: f64,
+    pub other_bloom_ratio: f64,
 }
 
 impl TargetFunction for NilouDefaultTargetFunction {
@@ -50,7 +54,19 @@ impl TargetFunction for NilouDefaultTargetFunction {
 
         let bloom = transformative_damage(character.common_data.level, attribute, enemy).bloom;
 
-        dmg_e1 * self.e_ratio + dmg_q1 * self.q_ratio + bloom * self.bloom_ratio
+        let other_bloom = {
+            let bloom_base = get_transformative_base(character.common_data.level, TransformativeType::Bloom);
+            let res_ratio = enemy.get_resistance_ratio(Element::Dendro, 0.0);
+            let em = self.other_em + 100.0;
+            let bonus_em = get_em_bonus(em);
+            let hp = attribute.get_value(AttributeName::HP);
+            let bonus_hp = (((hp - 30000.0) / 1000.0).floor() * 0.009).clamp(0.0, 4.0);
+            let bonus = bonus_em + bonus_hp;
+
+            bloom_base * res_ratio * (1.0 + bonus)
+        };
+
+        dmg_e1 * self.e_ratio + dmg_q1 * self.q_ratio + bloom * self.bloom_ratio + other_bloom * self.other_bloom_ratio
     }
 }
 
@@ -81,16 +97,27 @@ impl TargetFunctionMetaTrait for NilouDefaultTargetFunction {
             name: "bloom_ratio",
             title: "t20",
             config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 3.0 },
+        },
+        ItemConfig {
+            name: "other_em",
+            title: "t21",
+            config: ItemConfigType::Float { min: 0.0, max: 3000.0, default: 1000.0 }
+        },
+        ItemConfig {
+            name: "other_bloom_ratio",
+            title: "t22",
+            config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 7.0 },
         }
     ]);
 
     fn create(character: &CharacterCommonData, weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        let (e_ratio, q_ratio, bloom_ratio) = match *config {
-            TargetFunctionConfig::NilouDefault { e_ratio, q_ratio, bloom_ratio } => (e_ratio, q_ratio, bloom_ratio),
-            _ => (0.0, 0.0, 0.0)
+        let (e_ratio, q_ratio, bloom_ratio, other_em, other_bloom_ratio) = match *config {
+            TargetFunctionConfig::NilouDefault { e_ratio, q_ratio, bloom_ratio, other_em, other_bloom_ratio } =>
+                (e_ratio, q_ratio, bloom_ratio, other_em, other_bloom_ratio),
+            _ => (0.0, 0.0, 0.0, 0.0, 0.0)
         };
         Box::new(NilouDefaultTargetFunction {
-            e_ratio, q_ratio, bloom_ratio
+            e_ratio, q_ratio, bloom_ratio, other_em, other_bloom_ratio
         })
     }
 }

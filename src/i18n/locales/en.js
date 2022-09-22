@@ -1148,6 +1148,8 @@ export default {
         t18: "Elemental Skill Times",
         t19: "Elemental Burst Times",
         t20: "Bloom Times",
+        t21: "Teammates' equivalent EM",
+        t22: "Teammates' Bloom Times",
 
         a1: "Element",
         a2: "Effect Apply Ratio",

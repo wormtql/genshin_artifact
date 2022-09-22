@@ -1651,6 +1651,10 @@ export default {
             
             {"default":3.0,"max":10.0,"min":0.0,"name":"bloom_ratio","title":"t20","type":"float"},
             
+            {"default":1000.0,"max":3000.0,"min":0.0,"name":"other_em","title":"t21","type":"float"},
+            
+            {"default":7.0,"max":10.0,"min":0.0,"name":"other_bloom_ratio","title":"t22","type":"float"},
+            
         ],
     },
     
