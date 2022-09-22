@@ -13,6 +13,7 @@ pub enum CharacterSkillConfig {
     Albedo { fatal_count: usize },
     Aloy { coil_count: usize },
     AratakiItto { after_q: bool },
+
     Diluc { pyro: bool },
     Eula { lightfall_stack: usize },
     Ganyu { talent1_rate: f64 },
@@ -31,5 +32,6 @@ pub enum CharacterSkillConfig {
     Yoimiya { after_e: bool },
     Dori { c6: bool },
     Candace { crown: bool },
+    Cyno { under_judication: bool },
     NoConfig,
 }

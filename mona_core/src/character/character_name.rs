@@ -37,6 +37,7 @@ pub enum CharacterName {
     Candace,
     Chongyun,
     Collei,
+    Cyno,
     Diluc,
     Diona,
     Dori,

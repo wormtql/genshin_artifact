@@ -179,6 +179,8 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
+
+
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
@@ -1626,6 +1628,38 @@ export default {
         config: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"spread_rate","title":"t16","type":"float"},
+            
+        ],
+    },
+    
+    "CynoDefault": {
+        name: "CynoDefault",
+        // chs: "赛诺-缄默的裁遣",
+        // description: "打QTE并释放渡荒之雷,普攻命中次数、反应触发次数和6命参考数据：零命 7.0 5.0 0.0，，一命 9.0 5.0 0.0，六命 9.0 5.0 4.0 ",
+        tags: [
+            
+            "输出",
+            
+        ],
+        "for": "Cyno",
+        
+        badge: getImage("UI_AvatarIcon_Xiao"),
+        
+        config: [
+            
+            {"default":1.3,"max":3.0,"min":1.0,"name":"recharge_requirement","title":"w3","type":"float"},
+            
+            {"default":0,"name":"combo","options":["乱a不取消","取消第五段"],"title":"t23","type":"option"},
+            
+            {"default":false,"name":"until_expire","title":"t24","type":"bool"},
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":"t17","type":"float"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"elecharged_rate","title":"t25","type":"float"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_rate","title":"t26","type":"float"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"hyperbloom_rate","title":"t27","type":"float"},
             
         ],
     },

@@ -57,6 +57,7 @@ pub use shikanoin_heizou::ShikanoinHeizou;
 pub use collei::Collei;
 pub use tighnari::Tighnari;
 pub use dori::Dori;
+pub use cyno::Cyno;
 pub use nilou::Nilou;
 pub use candace::Candace;
 
@@ -122,6 +123,7 @@ pub mod shikanoin_heizou;
 pub mod collei;
 pub mod tighnari;
 pub mod dori;
+pub mod cyno;
 pub mod nilou;
 pub mod candace;
 
