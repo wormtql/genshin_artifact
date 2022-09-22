@@ -26,9 +26,11 @@ impl<A: Attribute> WeaponEffect<A> for SlingshotEffect {
         let refine = data.refine as f64;
         if self.is_effect {
             let value = (refine * 0.06 + 0.3) * self.rate;
-            attribute.set_value_by(AttributeName::BonusBase, "弹弓被动等效", value);
+            attribute.set_value_by(AttributeName::BonusNormalAttack, "弹弓被动等效", value);
+            attribute.set_value_by(AttributeName::BonusChargedAttack, "弹弓被动等效", value);
         } else {
-            attribute.set_value_by(AttributeName::BonusBase, "弹弓被动", -0.1);
+            attribute.set_value_by(AttributeName::BonusNormalAttack, "弹弓被动", -0.1);
+            attribute.set_value_by(AttributeName::BonusChargedAttack, "弹弓被动", -0.1);
         }
     }
 }
