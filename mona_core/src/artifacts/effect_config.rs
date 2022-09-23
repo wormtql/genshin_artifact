@@ -303,4 +303,11 @@ impl ArtifactEffectConfigBuilder {
         self.config.config_bloodstained_chivalry.rate = rate;
         self
     }
+
+    pub fn gilded_dreams(&mut self, same_count: usize, diff_count: usize, rate: f64) -> &mut Self {
+        self.config.config_gilded_dreams.same_count = same_count;
+        self.config.config_gilded_dreams.diff_count = diff_count;
+        self.config.config_gilded_dreams.rate = rate;
+        self
+    }
 }

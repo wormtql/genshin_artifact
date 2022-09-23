@@ -192,6 +192,7 @@ impl TargetFunction for CynoDefaultTargetFunction {
             .shimenawas_reminiscence(0.35)
             .thundersoother(1.0)
             .echoes_of_an_offering_avg()
+            .gilded_dreams(1, 3, 1.0)
             .build()
     }
 
