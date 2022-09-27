@@ -1373,7 +1373,7 @@ export default {
         name: "NilouTalent1",
         // chs: "",
         
-        badge: getImage("nilou"),
+        badge: getImage("Nilou"),
         
         genre: "Character",
         // description: "",
@@ -1386,7 +1386,7 @@ export default {
         name: "NilouTalent2",
         // chs: "",
         
-        badge: getImage("nilou"),
+        badge: getImage("Nilou"),
         
         genre: "Character",
         // description: "",
@@ -1401,7 +1401,7 @@ export default {
         name: "CandaceQ",
         // chs: "",
         
-        badge: getImage("candance"),
+        badge: getImage("Candace"),
         
         genre: "Character",
         // description: "",
@@ -1414,7 +1414,7 @@ export default {
         name: "CandaceTalent2",
         // chs: "",
         
-        badge: getImage("candance"),
+        badge: getImage("Candace"),
         
         genre: "Character",
         // description: "",
@@ -1553,7 +1553,7 @@ export default {
         name: "XiphosMoonlight",
         // chs: "",
         
-        badge: getImageW("todo"),
+        badge: getImageW("Sword_Pleroma"),
         
         genre: "Weapon",
         // description: "",
@@ -1570,7 +1570,7 @@ export default {
         name: "MakhairaAquamarine",
         // chs: "",
         
-        badge: getImageW("todo"),
+        badge: getImageW("Claymore_Pleroma"),
         
         genre: "Weapon",
         // description: "",
@@ -1587,7 +1587,7 @@ export default {
         name: "KeyOfKhajNisut",
         // chs: "",
         
-        badge: getImageW("todo"),
+        badge: getImageW("Sword_Deshret"),
         
         genre: "Weapon",
         // description: "",

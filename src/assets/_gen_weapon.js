@@ -927,11 +927,11 @@ export default {
 
     XiphosMoonlight: {
         name: "XiphosMoonlight",
-        internalName: "todo",
+        internalName: "Sword_Pleroma",
         // chs: "西福斯的月光",
         star: 4,
         // url: XiphosMoonlight_tn,
-        url: imageUrl("todo"),
+        url: imageUrl("Sword_Pleroma"),
         type: "Sword",
 
         
@@ -949,11 +949,11 @@ export default {
 
     KeyOfKhajNisut: {
         name: "KeyOfKhajNisut",
-        internalName: "todo",
+        internalName: "Sword_Deshret",
         // chs: "",
         star: 5,
         // url: KeyOfKhajNisut_tn,
-        url: imageUrl("todo"),
+        url: imageUrl("Sword_Deshret"),
         type: "Sword",
 
         
@@ -1515,11 +1515,11 @@ export default {
 
     MakhairaAquamarine: {
         name: "MakhairaAquamarine",
-        internalName: "todo",
+        internalName: "Claymore_Pleroma",
         // chs: "",
         star: 4,
         // url: MakhairaAquamarine_tn,
-        url: imageUrl("todo"),
+        url: imageUrl("Claymore_Pleroma"),
         type: "Claymore",
 
         
@@ -2027,11 +2027,11 @@ export default {
 
     MissiveWindspear: {
         name: "MissiveWindspear",
-        internalName: "todo",
+        internalName: "Pole_Windvane",
         // chs: "",
         star: 4,
         // url: MissiveWindspear_tn,
-        url: imageUrl("todo"),
+        url: imageUrl("Pole_Windvane"),
         type: "Polearm",
 
         
@@ -2049,11 +2049,11 @@ export default {
 
     StaffOfTheScarletSands: {
         name: "StaffOfTheScarletSands",
-        internalName: "todo",
+        internalName: "Pole_Deshret",
         // chs: "",
         star: 5,
         // url: StaffOfTheScarletSands_tn,
-        url: imageUrl("todo"),
+        url: imageUrl("Pole_Deshret"),
         type: "Polearm",
 
         
@@ -2625,11 +2625,11 @@ export default {
 
     WanderingEvenstar: {
         name: "WanderingEvenstar",
-        internalName: "todo",
+        internalName: "Catalyst_Pleroma",
         // chs: "",
         star: 4,
         // url: WanderingEvenstar_tn,
-        url: imageUrl("todo"),
+        url: imageUrl("Catalyst_Pleroma"),
         type: "Catalyst",
 
         

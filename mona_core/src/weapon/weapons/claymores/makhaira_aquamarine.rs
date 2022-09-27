@@ -33,7 +33,7 @@ pub struct MakhairaAquamarine;
 impl WeaponTrait for MakhairaAquamarine {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MakhairaAquamarine,
-        internal_name: "todo", // todo
+        internal_name: "Claymore_Pleroma",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,

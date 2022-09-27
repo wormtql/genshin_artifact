@@ -132,7 +132,7 @@ pub struct Cyno;
 impl CharacterTrait for Cyno {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Cyno,
-        internal_name: "Cyno", // todo
+        internal_name: "Cyno",
         chs: "赛诺",
         element: Element::Electro,
         hp: [972, 2522, 3356, 5022, 5614, 6459, 7249, 8103, 8695, 9557, 10149, 11020, 11613, 12491],

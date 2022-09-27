@@ -15,7 +15,7 @@ pub struct WanderingEvenstar;
 impl WeaponTrait for WanderingEvenstar {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::WanderingEvenstar,
-        internal_name: "todo", // todo
+        internal_name: "Catalyst_Pleroma",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,

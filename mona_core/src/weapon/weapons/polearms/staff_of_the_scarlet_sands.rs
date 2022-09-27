@@ -34,7 +34,7 @@ pub struct StaffOfTheScarletSands;
 impl WeaponTrait for StaffOfTheScarletSands {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::StaffOfTheScarletSands,
-        internal_name: "todo", // todo
+        internal_name: "Pole_Deshret",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate96),
         weapon_base: WeaponBaseATKFamily::ATK542,

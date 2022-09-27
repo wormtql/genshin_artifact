@@ -156,7 +156,7 @@ pub struct Nilou;
 impl CharacterTrait for Nilou {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Nilou,
-        internal_name: "nilou", // todo
+        internal_name: "Nilou", // todo
         chs: "妮露",
         element: Element::Hydro,
         hp: [1182, 3066, 4080, 6105, 6825, 7852, 8813, 9850, 10571, 11618, 12338, 13397, 14117, 15185],
@@ -278,7 +278,7 @@ impl CharacterTrait for Nilou {
     }
 
     fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {
-        todo!()
+        unimplemented!()
     }
 }
 

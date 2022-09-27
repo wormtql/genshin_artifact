@@ -119,7 +119,7 @@ pub struct Candace;
 impl CharacterTrait for Candace {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Candace,
-        internal_name: "candance", // todo
+        internal_name: "Candace",
         chs: "",
         element: Element::Hydro,
         hp: [912, 2342, 3024, 4529, 5013, 5766, 6411, 7164, 7648, 8401, 8885, 9638, 10122, 10875],
@@ -248,6 +248,6 @@ impl CharacterTrait for Candace {
     }
 
     fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {
-        todo!()
+        unimplemented!()
     }
 }

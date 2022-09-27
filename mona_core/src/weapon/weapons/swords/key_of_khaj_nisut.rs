@@ -34,7 +34,7 @@ pub struct KeyOfKhajNisut;
 impl WeaponTrait for KeyOfKhajNisut {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::KeyOfKhajNisut,
-        internal_name: "todo", // todo
+        internal_name: "Sword_Deshret",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::HP144),
         weapon_base: WeaponBaseATKFamily::ATK542,

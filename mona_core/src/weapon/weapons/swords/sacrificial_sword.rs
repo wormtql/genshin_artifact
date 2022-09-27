@@ -28,5 +28,3 @@ impl WeaponTrait for SacrificialSword {
         None
     }
 }
-
-// todo how to represent its effect

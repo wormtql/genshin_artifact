@@ -33,7 +33,7 @@ pub struct XiphosMoonlight;
 impl WeaponTrait for XiphosMoonlight {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::XiphosMoonlight,
-        internal_name: "todo", // todo
+        internal_name: "Sword_Pleroma",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,

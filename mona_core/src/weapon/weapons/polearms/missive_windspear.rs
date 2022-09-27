@@ -27,7 +27,7 @@ pub struct MissiveWindspear;
 impl WeaponTrait for MissiveWindspear {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MissiveWindspear,
-        internal_name: "todo", // todo
+        internal_name: "Pole_Windvane",
         weapon_type: WeaponType::Polearm,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK90),
         weapon_base: WeaponBaseATKFamily::ATK510,

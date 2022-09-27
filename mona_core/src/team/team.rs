@@ -27,7 +27,7 @@ impl<A: Attribute> Team<A> {
     pub fn new(members: Vec<TeamEntry<A>>) -> Team<A> {
         Team {
             members,
-            quant: Default::default() // todo generate team quant
+            quant: Default::default()
         }
     }
 
