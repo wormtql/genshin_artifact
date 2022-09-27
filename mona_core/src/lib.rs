@@ -16,6 +16,7 @@ pub mod utils;
 pub mod damage;
 pub mod team;
 pub mod potential_function;
+pub mod upgrade_predicate;
 // pub mod ast;
 // pub mod compiler;
 // pub mod parser;
