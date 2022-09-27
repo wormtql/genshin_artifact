@@ -1643,7 +1643,7 @@ export default {
         ],
         "for": "Cyno",
         
-        badge: getImage("UI_AvatarIcon_Xiao"),
+        badge: getImage("UI_AvatarIcon_Cyno"),
         
         config: [
             
@@ -1675,7 +1675,7 @@ export default {
         ],
         "for": "Nilou",
         
-        badge: getImage("UI_AvatarIcon_Diluc"),
+        badge: getImage("UI_AvatarIcon_Nilou"),
         
         config: [
             

@@ -192,6 +192,7 @@ impl TargetFunction for CynoDefaultTargetFunction {
             .shimenawas_reminiscence(0.35)
             .thundersoother(1.0)
             .echoes_of_an_offering_avg()
+            .gilded_dreams(1, 3, 1.0)
             .build()
     }
 
@@ -321,9 +322,9 @@ impl TargetFunction for CynoDefaultTargetFunction {
         }
 
         if character.common_data.constellation == 6 {
-            dmgsum_normal += e3_normal * 4.0 * (if is_thunderingfury { e2_noqte_normal } else { 0.0 });
+            dmgsum_normal += e3_normal * 4.0 * rounds_count;
             if self.aggravate_rate > 0.0 {
-                dmgsum_agg += agg_bonus_e3 * 2.0 * (if is_thunderingfury { e2_noqte_normal } else { 0.0 })
+                dmgsum_agg += agg_bonus_e3 * 2.0 * rounds_count;
             }
         }
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_requirement);
