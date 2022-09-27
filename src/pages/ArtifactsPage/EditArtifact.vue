@@ -77,7 +77,7 @@
             <el-row :gutter="12">
                 <el-col :span="12">
                     <el-button type="primary" class="button"
-                        @click="emits('confirm', artifactId)"
+                        @click="handleClickConfirmButton(artifactId)"
                     >
                         {{ t("misc.confirm") }}
                     </el-button>
@@ -124,6 +124,7 @@ const { t } = useI18n()
 interface Emits {
     (e: "update:modelValue", v: any): void,
     (e: "confirm", id: number): void,
+    (e: "copy", id: number): void,
     (e: "cancel"): void
 }
 
@@ -137,7 +138,7 @@ const star = ref(5)
 const level = ref(20)
 const position = ref<ArtifactPosition>("flower")
 const mainStat = ref<any>({ name: "attackStatic", value: 0 })
-
+const isCopy = ref<boolean>(false)
 interface ArtifactStatNullable {
     name: null | ArtifactSubStatName,
     value: number
@@ -225,15 +226,14 @@ watch(() => setName.value, (newValue, oldValue) => {
 
 function setId(id: number) {
     const artifact = getArtifact(id)
-
     if (artifact) {
+        isCopy.value = false
         artifactId.value = artifact.id
         setName.value = artifact.setName
         star.value = artifact.star
         level.value = artifact.level
         position.value = artifact.position
         mainStat.value = convertStat(artifact.mainTag)
-
         let ss: any = []
         for (let stat of artifact.normalTags) {
             ss.push(convertStat(stat))
@@ -254,7 +254,6 @@ function getNewArtifact() {
             ss.push(convertResult)
         }
     }
-
     return {
         setName: setName.value,
         star: star.value,
@@ -264,10 +263,39 @@ function getNewArtifact() {
         normalTags: ss
     }
 }
-
+function copyArtifact(id: number) {
+    const artifact = getArtifact(id)
+    if (artifact) {
+        isCopy.value = true
+        artifactId.value = artifact.id
+        setName.value = artifact.setName
+        star.value = artifact.star
+        level.value = artifact.level
+        position.value = artifact.position
+        mainStat.value = convertStat(artifact.mainTag)
+        let ss: any = []
+        for (let stat of artifact.normalTags) {
+            ss.push(convertStat(stat))
+        }
+        while (ss.length < 4) {
+            ss.push({ name: null, value: 0 })
+        }
+        subStats.value = ss
+    }
+}
+function handleClickConfirmButton (artifactId: number) {
+    console.log(isCopy.value)
+    if (isCopy.value) {
+        emits('copy', artifactId)
+    } else {
+        emits('confirm', artifactId)
+    }
+    // emits('copy', artifactId)
+}
 defineExpose({
     setId,
-    getNewArtifact
+    getNewArtifact,
+    copyArtifact
 })
 </script>
 

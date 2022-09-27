@@ -46,6 +46,16 @@
                     class="mybutton"
                     @click.stop="emits('edit')"
                 ></el-button>
+                <el-button
+                    v-if="props.editButton"
+                    :icon="IconEpDocumentCopy"
+                    circle
+                    size="small"
+                    text
+                    :title="t('misc.edit')"
+                    class="mybutton"
+                    @click.stop="emits('copy')"
+                ></el-button>
             </div>
 
             <span class="extra fs-12" v-if="props.extra">{{ props.extra }}</span>
@@ -84,6 +94,8 @@ import IconEpUnlock from "~icons/ep/unlock"
 import IconEpLock from "~icons/ep/lock"
 import IconEpDelete from "~icons/ep/delete"
 import IconEpEdit from "~icons/ep/edit"
+import IconEpDocumentCopy from '~icons/ep/document-copy'
+
 import {IArtifact, IArtifactContentOnly} from "@/types/artifact"
 import {displayedTag, positionToIndex} from "@/utils/artifacts"
 import {useI18n} from "@/i18n/i18n"
@@ -109,6 +121,7 @@ interface Emits {
     (e: "toggle"): void,
     (e: "delete"): void,
     (e: "edit"): void,
+    (e: "copy"): void
 }
 
 const props = withDefaults(defineProps<Props>(), {

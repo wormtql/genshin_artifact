@@ -35,6 +35,7 @@
             <edit-artifact
                 ref="editArtifactComponent"
                 @confirm="handleConfirmEdit"
+                @copy="handleConfirmCopy"
                 @cancel="showEditArtifactDrawer = false"
             ></edit-artifact>
         </el-drawer>
@@ -194,6 +195,7 @@
                             @delete="deleteArtifact(item.id)"
                             @toggle="toggleArtifact(item.id)"
                             @edit="handleClickEditArtifact(item.id)"
+                            @copy="handleClickCopyArtifact(item.id)"
                         ></artifact-display>
                     </div>
                 </div>
@@ -274,7 +276,9 @@ function unlockAllArtifacts() {
 function deleteAllArtifacts() {
     artifactStore.deleteAll()
 }
-
+function addArtifacts(artifact: IArtifactContentOnly) {
+    artifactStore.addArtifact(artifact)
+}
 function removeArtifact(id: number) {
     artifactStore.removeArtifact(id)
 }
@@ -474,18 +478,35 @@ const editArtifactComponent: Ref<InstanceType<typeof EditArtifact> | null> = ref
 
 function handleClickEditArtifact(id: number) {
     showEditArtifactDrawer.value = true;
-
     nextTick(() => {
         if (editArtifactComponent.value) {
             editArtifactComponent.value.setId(id)
         }
     });
 }
+function handleClickCopyArtifact(id: number) {
+    showEditArtifactDrawer.value = true;
+    nextTick(() => {
+        if (editArtifactComponent.value) {
+            // editArtifactComponent.value.getNewArtifact()
+            editArtifactComponent.value.copyArtifact(id)
+        }
+    });
+}
+
 
 function handleConfirmEdit(id: number) {
     if (editArtifactComponent.value) {
         const newArtifact: IArtifactContentOnly = editArtifactComponent.value.getNewArtifact() as IArtifactContentOnly
         artifactStore.updateArtifact(id, newArtifact)
+    }
+
+    showEditArtifactDrawer.value = false
+}
+function handleConfirmCopy(id: number) {
+    if (editArtifactComponent.value) {
+        const newArtifact: IArtifactContentOnly = editArtifactComponent.value.getNewArtifact() as IArtifactContentOnly
+        artifactStore.addArtifact(newArtifact)
     }
 
     showEditArtifactDrawer.value = false
