@@ -4,6 +4,7 @@ use serde::{Serialize, Deserialize};
 pub enum WeaponConfig {
     NoConfig,
 
+    // sword
     MistsplitterReforged { emblem_level: usize },
     SummitShaper { stack: f64, shield_rate: f64 },
     FreedomSworn { rate: f64 },
@@ -20,6 +21,8 @@ pub enum WeaponConfig {
     HaranGeppakuFutsu { stack: f64 },
     CursedBlade { rate: f64 },
     SapwoodBlade { rate: f64 },
+    XiphosMoonlight { rate: f64 },
+    KeyOfKhajNisut { stack: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },
@@ -36,6 +39,7 @@ pub enum WeaponConfig {
     BloodstainedGreatsword { rate: f64 },
     FerrousShadow { rate: f64 },
     ForestRegalia { rate: f64 },
+    MakhairaAquamarine { rate: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },
@@ -51,6 +55,8 @@ pub enum WeaponConfig {
     WavebreakersFin { energy: usize },
     BlackTassel { rate: f64 },
     Moonpiercer { rate: f64 },
+    MissiveWindspear { rate: f64 },
+    StaffOfTheScarletSands { stack: f64 },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },
@@ -67,6 +73,7 @@ pub enum WeaponConfig {
     EmeraldOrb { rate: f64 },
     TwinNephrite { rate: f64 },
     FruitOfFulfillment { stack: f64 },
+    WanderingEvenstar { rate: f64 },
 
     // Bow
     PolarStar { stack: usize },

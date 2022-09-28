@@ -48,6 +48,7 @@ pub enum WeaponSubStatFamily {
     HP90,
     HP102,
     HP108,
+    HP144,
 
     PhysicalBonus45,
     PhysicalBonus75,
@@ -112,6 +113,7 @@ pub fn get_stat_name_from_family(family: WeaponSubStatFamily) -> StatName {
         WeaponSubStatFamily::HP90 => StatName::HPPercentage,
         WeaponSubStatFamily::HP102 => StatName::HPPercentage,
         WeaponSubStatFamily::HP108 => StatName::HPPercentage,
+        WeaponSubStatFamily::HP144 => StatName::HPPercentage,
 
         WeaponSubStatFamily::PhysicalBonus45 => StatName::PhysicalBonus,
         WeaponSubStatFamily::PhysicalBonus75 => StatName::PhysicalBonus,
@@ -177,6 +179,7 @@ pub fn get_value_array(family: WeaponSubStatFamily) -> [f64; 8] {
         WeaponSubStatFamily::HP90 => [0.09, 0.159, 0.232, 0.268, 0.304, 0.341, 0.377, 0.413],
         WeaponSubStatFamily::HP102 => [0.102, 0.18, 0.263, 0.304, 0.345, 0.386, 0.427, 0.469],
         WeaponSubStatFamily::HP108 => [0.108, 0.191, 0.278, 0.322, 0.365, 0.409, 0.453, 0.496],
+        WeaponSubStatFamily::HP144 => [0.144, 0.2544, 0.3708, 0.429, 0.4872, 0.5452, 0.6034, 0.6615],
 
         WeaponSubStatFamily::PhysicalBonus45 => [0.045, 0.08, 0.116, 0.134, 0.152, 0.17, 0.189, 0.207],
         WeaponSubStatFamily::PhysicalBonus75 => [0.075, 0.133, 0.193, 0.224, 0.254, 0.284, 0.315, 0.345],

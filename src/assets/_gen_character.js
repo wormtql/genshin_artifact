@@ -32,6 +32,10 @@ import Beidou_splash from "@image/characters/Beidou_splash"
 // import Bennett_avatar from "@image/characters/Bennett_avatar"
 import Bennett_splash from "@image/characters/Bennett_splash"
 
+// import Candace_card from "@image/characters/Candace_card"
+// import Candace_avatar from "@image/characters/Candace_avatar"
+import Candace_splash from "@image/characters/Candace_splash"
+
 // import Chongyun_card from "@image/characters/Chongyun_card"
 // import Chongyun_avatar from "@image/characters/Chongyun_avatar"
 import Chongyun_splash from "@image/characters/Chongyun_splash"
@@ -39,6 +43,10 @@ import Chongyun_splash from "@image/characters/Chongyun_splash"
 // import Collei_card from "@image/characters/Collei_card"
 // import Collei_avatar from "@image/characters/Collei_avatar"
 import Collei_splash from "@image/characters/Collei_splash"
+
+// import Cyno_card from "@image/characters/Cyno_card"
+// import Cyno_avatar from "@image/characters/Cyno_avatar"
+import Cyno_splash from "@image/characters/Cyno_splash"
 
 // import Diluc_card from "@image/characters/Diluc_card"
 // import Diluc_avatar from "@image/characters/Diluc_avatar"
@@ -115,6 +123,10 @@ import Lisa_splash from "@image/characters/Lisa_splash"
 // import Mona_card from "@image/characters/Mona_card"
 // import Mona_avatar from "@image/characters/Mona_avatar"
 import Mona_splash from "@image/characters/Mona_splash"
+
+// import Nilou_card from "@image/characters/Nilou_card"
+// import Nilou_avatar from "@image/characters/Nilou_avatar"
+import Nilou_splash from "@image/characters/Nilou_splash"
 
 // import Ningguang_card from "@image/characters/Ningguang_card"
 // import Ningguang_avatar from "@image/characters/Ningguang_avatar"
@@ -698,6 +710,66 @@ export default {
         ],
     },
     
+    Candace: {
+        name: "Candace",
+        // chs: "",
+        element: "Hydro",
+        weapon: "Polearm",
+        star: 4,
+        // card: Candace_card,
+        // avatar: Candace_avatar,
+        avatar: getName("Candace"),
+        splash: Candace_splash,
+        skillName1: "",
+        skillName2: "",
+        skillName3: "",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 26 },
+            
+            { index: 3, text: 60 },
+            
+            { index: 4, text: 3 },
+            
+            { index: 5, text: 38 },
+            
+            { index: 6, text: 7 },
+            
+            { index: 7, text: 8 },
+            
+            { index: 8, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 9, text: 45 },
+            
+            { index: 10, text: 220 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 11, text: 19 },
+            
+            { index: 12, text: 221 },
+            
+        ],
+        config: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"c2_rate","title":"c42","type":"float"},
+            
+        ],
+        configSkill: [
+            
+            {"default":true,"name":"crown","title":"c43","type":"bool"},
+            
+        ],
+    },
+    
     Chongyun: {
         name: "Chongyun",
         // chs: "重云",
@@ -802,6 +874,82 @@ export default {
             
         ],
         configSkill: [
+            
+        ],
+    },
+    
+    Cyno: {
+        name: "Cyno",
+        // chs: "赛诺",
+        element: "Electro",
+        weapon: "Polearm",
+        star: 5,
+        // card: Cyno_card,
+        // avatar: Cyno_avatar,
+        avatar: getName("Cyno"),
+        splash: Cyno_splash,
+        skillName1: "普通攻击·七圣枪术",
+        skillName2: "秘仪·律渊渡魂",
+        skillName3: "圣仪·煟煌随狼行",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 132 },
+            
+            { index: 3, text: 3 },
+            
+            { index: 4, text: 38 },
+            
+            { index: 5, text: 7 },
+            
+            { index: 6, text: 8 },
+            
+            { index: 7, text: 9 },
+            
+            { index: 11, text: 222 },
+            
+            { index: 12, text: 223 },
+            
+            { index: 13, text: 224 },
+            
+            { index: 14, text: 225 },
+            
+            { index: 15, text: 226 },
+            
+            { index: 16, text: 227 },
+            
+            { index: 17, text: 228 },
+            
+            { index: 18, text: 229 },
+            
+            { index: 19, text: 230 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 8, text: 19 },
+            
+            { index: 9, text: 231 },
+            
+            { index: 10, text: 232 },
+            
+        ],
+        skillMap3: [
+            
+        ],
+        config: [
+            
+            {"default":4.0,"max":5.0,"min":0.0,"name":"c2_stack","title":"c46","type":"float"},
+            
+            {"default":true,"name":"after_q","title":"c44","type":"bool"},
+            
+        ],
+        configSkill: [
+            
+            {"default":true,"name":"under_judication","title":"c45","type":"bool"},
             
         ],
     },
@@ -1953,6 +2101,72 @@ export default {
             
         ],
         config: [
+            
+        ],
+        configSkill: [
+            
+        ],
+    },
+    
+    Nilou: {
+        name: "Nilou",
+        // chs: "妮露",
+        element: "Hydro",
+        weapon: "Sword",
+        star: 5,
+        // card: Nilou_card,
+        // avatar: Nilou_avatar,
+        avatar: getName("Nilou"),
+        splash: Nilou_splash,
+        skillName1: "",
+        skillName2: "",
+        skillName3: "",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 2 },
+            
+            { index: 3, text: 5 },
+            
+            { index: 4, text: 6 },
+            
+            { index: 5, text: 7 },
+            
+            { index: 6, text: 8 },
+            
+            { index: 7, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 8, text: 19 },
+            
+            { index: 9, text: 213 },
+            
+            { index: 10, text: 214 },
+            
+            { index: 11, text: 215 },
+            
+            { index: 12, text: 216 },
+            
+            { index: 13, text: 217 },
+            
+            { index: 14, text: 218 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 15, text: 19 },
+            
+            { index: 16, text: 219 },
+            
+        ],
+        config: [
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"golden_rate","title":"c41","type":"float"},
             
         ],
         configSkill: [

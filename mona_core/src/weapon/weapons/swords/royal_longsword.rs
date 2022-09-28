@@ -25,7 +25,7 @@ impl<T: Attribute> WeaponEffect<T> for RoyalLongswordEffect {
             AttributeName::CriticalBase,
             AttributeName::CriticalAttacking,
             Box::new(move |x, _| royal_series_critical_bonus(refine, x)),
-            Box::new(|grad, _x1, _x2| (grad, 0.0)), // todo
+            Box::new(|grad, _x1, _x2| (grad, 0.0)),
             "宗室被动等效"
         )
     }

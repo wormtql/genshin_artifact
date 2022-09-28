@@ -87,6 +87,7 @@ pub enum AttributeName {
     BonusGeo,
     BonusDendro,
     BonusPhysical,
+    BonusNormalAndElemental, // 普通攻击&元素伤害 todo 以后应该重构掉
 
     EnhanceBurgeon,
     EnhanceHyperbloom,

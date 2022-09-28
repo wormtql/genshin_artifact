@@ -1,20 +1,22 @@
 use std::collections::HashMap;
 
-use rand::{thread_rng, Rng};
-use rand::prelude::*;
-use rand::distributions::WeightedIndex;
+use mona_derive::{ArtifactData, EnumLen};
 use num_derive::FromPrimitive;
-use serde::{Serialize, Deserialize};
+use rand::{Rng, thread_rng};
+use rand::distributions::{WeightedIndex};
+use rand::prelude::*;
+use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
-use mona_derive::{ArtifactData, EnumLen};
+use crate::artifacts::eff::ARTIFACT_EFF5;
 
-use crate::common::StatName;
-use crate::attribute::{Attribute};
-use super::effect_config::ArtifactEffectConfig;
-use crate::character::{Character};
-use super::effects::get_effect;
 use crate::artifacts::effect::ArtifactEffect;
+use crate::attribute::Attribute;
+use crate::character::Character;
+use crate::common::StatName;
+
+use super::effect_config::ArtifactEffectConfig;
+use super::effects::get_effect;
 
 #[derive(Serialize, Deserialize)]
 #[derive(Hash, Eq, PartialEq, Debug, Copy, Clone)]
@@ -140,6 +142,53 @@ impl Artifact {
         (self.star == 5 && self.level == 20)
         || (self.star == 4 && self.level == 16)
         || (self.star <= 3 && self.level == 12)
+    }
+
+    pub fn random0(set_name: ArtifactSetName, slot: ArtifactSlotName, main_stat: StatName) -> Artifact {
+        let mut temp = Artifact {
+            set_name,
+            slot,
+            level: 0,
+            star: 5,
+            sub_stats: vec![],
+            main_stat: (main_stat, StatName::artifact_main_stat_max_value(main_stat)),
+            id: thread_rng().gen()
+        };
+
+        let flag = thread_rng().gen::<usize>() % 3;
+        let count = if flag == 0 { 4 } else { 3 };
+
+        for _ in 0..count {
+            temp.upgrade();
+        }
+        temp.level = 0;
+
+        temp
+    }
+
+    pub fn upgrade(&mut self) {
+        if self.is_max_level() {
+            return;
+        }
+
+        self.level = (self.level / 4 + 1) * 4;
+
+        if self.sub_stats.len() == 4 {
+            let index = thread_rng().gen::<usize>() % 4;
+            let stat_name = self.sub_stats[index].0;
+            let add_value = ARTIFACT_EFF5.get_value(stat_name, thread_rng().gen::<usize>() % 4);
+            self.sub_stats[index].1 += add_value;
+        } else {
+            let next_stat_name_dist = self.get_next_stat_name_dist().unwrap();
+            let w = WeightedIndex::new(next_stat_name_dist.iter().map(|x| x.1)).unwrap();
+            let index = w.sample(&mut thread_rng());
+            let selected_main_stat = next_stat_name_dist[index].0;
+
+            // random value;
+            let value_index = thread_rng().gen::<usize>() % 4;
+            let value = ARTIFACT_EFF5.get_value(selected_main_stat, value_index);
+            self.sub_stats.push((selected_main_stat, value));
+        }
     }
 
     // return statname, and the probability of that stat

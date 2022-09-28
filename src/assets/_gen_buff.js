@@ -201,6 +201,20 @@ import BaseDmg_image from "@image/misc/sword"
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import ResonancePyro2_image from "@image/misc/pyro"
 
 
@@ -1355,6 +1369,62 @@ export default {
         ],
     },
     
+    "NilouTalent1": {
+        name: "NilouTalent1",
+        // chs: "",
+        
+        badge: getImage("Nilou"),
+        
+        genre: "Character",
+        // description: "",
+        config: [
+            
+        ],
+    },
+    
+    "NilouTalent2": {
+        name: "NilouTalent2",
+        // chs: "",
+        
+        badge: getImage("Nilou"),
+        
+        genre: "Character",
+        // description: "",
+        config: [
+            
+            {"default":60000.0,"name":"hp","title":"b42","type":"floatInput"},
+            
+        ],
+    },
+    
+    "CandaceQ": {
+        name: "CandaceQ",
+        // chs: "",
+        
+        badge: getImage("Candace"),
+        
+        genre: "Character",
+        // description: "",
+        config: [
+            
+        ],
+    },
+    
+    "CandaceTalent2": {
+        name: "CandaceTalent2",
+        // chs: "",
+        
+        badge: getImage("Candace"),
+        
+        genre: "Character",
+        // description: "",
+        config: [
+            
+            {"default":30000.0,"name":"hp","title":"b43","type":"floatInput"},
+            
+        ],
+    },
+    
     "FreedomSworn": {
         name: "FreedomSworn",
         // chs: "苍古自由之誓-「千年的大乐章·抗争之歌」",
@@ -1475,6 +1545,57 @@ export default {
         config: [
             
             {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
+            
+        ],
+    },
+    
+    "XiphosMoonlight": {
+        name: "XiphosMoonlight",
+        // chs: "",
+        
+        badge: getImageW("Sword_Pleroma"),
+        
+        genre: "Weapon",
+        // description: "",
+        config: [
+            
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
+            
+            {"default":900.0,"name":"em","title":"w27","type":"floatInput"},
+            
+        ],
+    },
+    
+    "MakhairaAquamarine": {
+        name: "MakhairaAquamarine",
+        // chs: "",
+        
+        badge: getImageW("Claymore_Pleroma"),
+        
+        genre: "Weapon",
+        // description: "",
+        config: [
+            
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
+            
+            {"default":900.0,"name":"em","title":"w27","type":"floatInput"},
+            
+        ],
+    },
+    
+    "KeyOfKhajNisut": {
+        name: "KeyOfKhajNisut",
+        // chs: "",
+        
+        badge: getImageW("Sword_Deshret"),
+        
+        genre: "Weapon",
+        // description: "",
+        config: [
+            
+            {"default":1,"max":5,"min":1,"name":"refine","title":"w5","type":"intInput"},
+            
+            {"default":20000.0,"name":"hp","title":"w28","type":"floatInput"},
             
         ],
     },
