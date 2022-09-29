@@ -1,7 +1,7 @@
 <template>
     <div>
         <suspense>
-            <new-artifact-plan-page></new-artifact-plan-page>
+            <page></page>
 
             <template #fallback>
                 <simple-loading></simple-loading>
@@ -14,17 +14,15 @@
 import SimpleLoading from "@/components/loading/SimpleLoading.vue"
 import SimpleError from "@/components/loading/SimpleError.vue"
 
-
-const NewArtifactPlanPage = defineAsyncComponent({
+const Page = defineAsyncComponent({
     loader: () => import(
-        /* webpackChunkName: "artifact-plan-page" */
+        /* webpackChunkName: "artifact-best-set-page" */
         /* webpackPrefetch: true */
-        "./NewArtifactPlanPage.vue"
-    ),
+        "./CalcBestArtifactSetPage.vue"
+        ),
     loadingComponent: SimpleLoading,
     errorComponent: SimpleError,
-    delay: 0,
-    timeout: 60000
+    timeout: 60000,
 })
 </script>
 

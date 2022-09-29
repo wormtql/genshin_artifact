@@ -41,6 +41,7 @@ export default {
         exportTool: "导出工具",
         link: "友情链接",
         setup: "设置",
+        bestSet: "最佳圣遗物",
     },
     misc: {
         character: "角色",

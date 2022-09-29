@@ -41,6 +41,7 @@ export default {
         exportTool: "Export Tools",
         link: "Other Links",
         setup: "Settings",
+        bestSet: "Best Set",
     },
     misc: {
         character: "Character",

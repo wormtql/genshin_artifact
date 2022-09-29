@@ -53,6 +53,10 @@ function f() {
         }
     }
 
+    function getPreset(name: string): PresetEntry | undefined {
+        return presets.value[name]
+    }
+
     function deletePreset(name: string) {
         delete presets.value[name]
     }
@@ -70,6 +74,7 @@ function f() {
 
         addOrOverwrite,
         deletePreset,
+        getPreset,
 
         allFlat,
         count
