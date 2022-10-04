@@ -5,6 +5,7 @@ use std::str::FromStr;
 use mona::character::CharacterName;
 use mona::character::skill_config::CharacterSkillConfig;
 use mona::common::Element;
+use mona::common::SkillType;
 use pest::Span;
 use crate::ast::expression::expression::{ASTBinaryExpression, ASTBool, ASTExpression, ASTFieldExpression, ASTFunctionCallExpression, ASTIdentifier, ASTNumber, ASTString, ASTUnaryExpression};
 use crate::ast::program::ASTProgram;
@@ -30,6 +31,7 @@ use crate::code::byte_code::pow::ByteCodePow;
 use crate::code::byte_code::sub::ByteCodeSub;
 use crate::compiler::compiler::{CodeObject, CompileContext, Compiler};
 use crate::error::{CompileError, CompileErrorType};
+use crate::object::damage_config::MonaCustomSkill;
 use crate::object::damage_config::MonaObjectDamageConfig;
 use crate::object::prop::{is_valid_prop_name, MonaObjectPropConfig};
 
@@ -322,11 +324,12 @@ impl<'i> Compiler<'i> for MonaCompilerASTToCode<'i> {
         };
 
         let transformative = skill_name.as_str() == "transformative";
+        let custom = skill_name.as_str() == "CustomSkill";
         // check character skill existence
         let character_skill: usize = match character_name_enum.get_skill_from_str(skill_name.as_str()) {
             Some(s) => s,
             None => {
-                if transformative {
+                if transformative || custom {
                     0
                 } else {
                     let span = get_my_span(&node.borrow().skill_index_name.borrow().common.span);
@@ -341,12 +344,14 @@ impl<'i> Compiler<'i> for MonaCompilerASTToCode<'i> {
         };
 
         let mut fumo: Option<Element> = None;
+        let mut custom_skill = MonaCustomSkill::default();
         let skill_config = match &node.borrow().skill_param {
             None => {
                 CharacterSkillConfig::NoConfig
             },
             Some(x) => {
                 let mut temp = String::new();
+                custom_skill.skill_type = Some(SkillType::Custom);
                 for (k, v) in x.borrow().items.iter() {
                     if k.borrow().ident == "fumo" {
                         let value_str = if let Some(x) = v.borrow().as_string() {
@@ -375,6 +380,123 @@ impl<'i> Compiler<'i> for MonaCompilerASTToCode<'i> {
                         continue;
                     }
 
+                    if custom {
+                        match &k.borrow().ident as &str {
+                            "type" => {let value_str = if let Some(x) = v.borrow().as_string() {
+                                    (*x.borrow()).value.clone()
+                                } else {
+                                    let err = CompileError {
+                                        span: get_my_span(&v.borrow().common.span),
+                                        desc: format!("type have to be a string"),
+                                        t: CompileErrorType::TypeError
+                                    };
+                                    return Err(err);
+                                };
+
+                                custom_skill.skill_type = match value_str.as_str() {
+                                    "\"n\"" => Some(SkillType::NormalAttack),
+                                    "\"c\"" => Some(SkillType::ChargedAttack),
+                                    "\"p\"" => Some(SkillType::PlungingAttack),
+                                    "\"e\"" => Some(SkillType::ElementalSkill),
+                                    "\"q\"" => Some(SkillType::ElementalBurst),
+                                    _ => Some(SkillType::Custom),
+                                };
+                                continue;
+                            },
+                            "atk_ratio" => {let value_num = if let Some(x) = v.borrow().as_number() {
+                                    (*x.borrow()).value.clone()
+                                } else {
+                                    let err = CompileError {
+                                        span: get_my_span(&v.borrow().common.span),
+                                        desc: format!("ratio have to be a number"),
+                                        t: CompileErrorType::TypeError
+                                    };
+                                    return Err(err);
+                                };
+                                custom_skill.atk_ratio = value_num;
+                                continue;
+                            },
+                            "hp_ratio" => {let value_num = if let Some(x) = v.borrow().as_number() {
+                                    (*x.borrow()).value.clone()
+                                } else {
+                                    let err = CompileError {
+                                        span: get_my_span(&v.borrow().common.span),
+                                        desc: format!("ratio have to be a number"),
+                                        t: CompileErrorType::TypeError
+                                    };
+                                    return Err(err);
+                                };
+                                custom_skill.hp_ratio = value_num;
+                                continue;
+                            },
+                            "def_ratio" => {let value_num = if let Some(x) = v.borrow().as_number() {
+                                    (*x.borrow()).value.clone()
+                                } else {
+                                    let err = CompileError {
+                                        span: get_my_span(&v.borrow().common.span),
+                                        desc: format!("ratio have to be a number"),
+                                        t: CompileErrorType::TypeError
+                                    };
+                                    return Err(err);
+                                };
+                                custom_skill.def_ratio = value_num;
+                                continue;
+                            },
+                            /*"em_ratio" => {let value_num = if let Some(x) = v.borrow().as_number() {
+                                    (*x.borrow()).value.clone()
+                                } else {
+                                    let err = CompileError {
+                                        span: get_my_span(&v.borrow().common.span),
+                                        desc: format!("ratio have to be a number"),
+                                        t: CompileErrorType::TypeError
+                                    };
+                                    return Err(err);
+                                };
+                                custom_skill.em_ratio = value_num;
+                                continue;
+                            },*/
+                            "base_dmg" => {let value_num = if let Some(x) = v.borrow().as_number() {
+                                    (*x.borrow()).value.clone()
+                                } else {
+                                    let err = CompileError {
+                                        span: get_my_span(&v.borrow().common.span),
+                                        desc: format!("base_dmg have to be a number"),
+                                        t: CompileErrorType::TypeError
+                                    };
+                                    return Err(err);
+                                };
+                                custom_skill.base_dmg = value_num;
+                                continue;
+                            },
+                            "is_heal" => {let value_bool = if let Some(x) = v.borrow().as_bool() {
+                                    (*x.borrow()).value.clone()
+                                } else {
+                                    let err = CompileError {
+                                        span: get_my_span(&v.borrow().common.span),
+                                        desc: format!("is_heal have to be a bool"),
+                                        t: CompileErrorType::TypeError
+                                    };
+                                    return Err(err);
+                                };
+                                custom_skill.heal = value_bool;
+                                continue;
+                            },
+                            "is_shield" => {let value_bool = if let Some(x) = v.borrow().as_bool() {
+                                    (*x.borrow()).value.clone()
+                                } else {
+                                    let err = CompileError {
+                                        span: get_my_span(&v.borrow().common.span),
+                                        desc: format!("is_shield have to be a bool"),
+                                        t: CompileErrorType::TypeError
+                                    };
+                                    return Err(err);
+                                };
+                                custom_skill.shield = value_bool;
+                                continue;
+                            },
+                            _ => (),
+                        }
+                    }
                     let value_str = if let Some(x) = &(*v.borrow()).value {
                         x.to_string()
                     } else {
@@ -389,6 +511,20 @@ impl<'i> Compiler<'i> for MonaCompilerASTToCode<'i> {
 
                     temp.push_str(&format!("\"{}\": {},", k.borrow().ident, value_str));
                 }
+
+                if custom_skill.shield && custom_skill.heal {
+                    let err = CompileError {
+                        span: get_my_span(&node.borrow().common.span),
+                        desc: format!("is_heal and is_shield both true"),
+                        t: CompileErrorType::TypeError
+                    };
+                    return Err(err);
+                }
+                custom_skill.element = match fumo {
+                    None => Some(Element::Physical),
+                    Some(x) => Some(x.clone()),
+                    _ => Some(Element::Physical),
+                };
 
                 if temp.len() == 0 {
                     CharacterSkillConfig::NoConfig
@@ -419,6 +555,8 @@ impl<'i> Compiler<'i> for MonaCompilerASTToCode<'i> {
             skill_config,
             var_name: var_name.clone(),
             is_transformative: transformative,
+            is_custom: custom,
+            custom_skill,
             fumo,
         };
 

@@ -166,6 +166,8 @@ pub enum AttributeName {
     ExtraDmgGeo,
     ExtraDmgDendro,
     ExtraDmgPhysical,
+
+    Custom,
 }
 
 impl AttributeName {
@@ -189,6 +191,7 @@ impl AttributeName {
             SkillType::PlungingAttack => AttributeName::BonusPlungingAttack,
             SkillType::ElementalSkill => AttributeName::BonusElementalSkill,
             SkillType::ElementalBurst => AttributeName::BonusElementalBurst,
+            SkillType::Custom => AttributeName::Custom,
         }
     }
 
@@ -212,6 +215,7 @@ impl AttributeName {
             SkillType::PlungingAttack => AttributeName::CriticalPlungingAttack,
             SkillType::ElementalSkill => AttributeName::CriticalElementalSkill,
             SkillType::ElementalBurst => AttributeName::CriticalElementalBurst,
+            SkillType::Custom => AttributeName::Custom,
         }
     }
 
@@ -235,6 +239,7 @@ impl AttributeName {
             SkillType::PlungingAttack => AttributeName::CriticalDamagePlungingAttack,
             SkillType::ElementalSkill => AttributeName::CriticalDamageElementalSkill,
             SkillType::ElementalBurst => AttributeName::CriticalDamageElementalBurst,
+            SkillType::Custom => AttributeName::Custom,
         }
     }
 
@@ -258,6 +263,7 @@ impl AttributeName {
             SkillType::PlungingAttack => AttributeName::HPRatioPlungingAttack,
             SkillType::ElementalSkill => AttributeName::HPRatioElementalSkill,
             SkillType::ElementalBurst => AttributeName::HPRatioElementalBurst,
+            SkillType::Custom => AttributeName::Custom,
         }
     }
 
@@ -281,6 +287,7 @@ impl AttributeName {
             SkillType::PlungingAttack => AttributeName::DEFRatioPlungingAttack,
             SkillType::ElementalSkill => AttributeName::DEFRatioElementalSkill,
             SkillType::ElementalBurst => AttributeName::DEFRatioElementalBurst,
+            SkillType::Custom => AttributeName::Custom,
         }
     }
 
@@ -304,6 +311,7 @@ impl AttributeName {
             SkillType::PlungingAttack => AttributeName::ATKRatioPlungingAttack,
             SkillType::ElementalSkill => AttributeName::ATKRatioElementalSkill,
             SkillType::ElementalBurst => AttributeName::ATKRatioElementalBurst,
+            SkillType::Custom => AttributeName::Custom,
         }
     }
 
@@ -327,6 +335,7 @@ impl AttributeName {
             SkillType::PlungingAttack => AttributeName::ExtraDmgPlungingAttack,
             SkillType::ElementalSkill => AttributeName::ExtraDmgElementalSkill,
             SkillType::ElementalBurst => AttributeName::ExtraDmgElementalBurst,
+            SkillType::Custom => AttributeName::Custom,
         }
     }
 

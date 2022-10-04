@@ -8,4 +8,5 @@ pub enum SkillType {
     PlungingAttack,
     ElementalSkill,
     ElementalBurst,
+    Custom,
 }

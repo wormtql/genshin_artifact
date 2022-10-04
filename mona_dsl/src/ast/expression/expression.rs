@@ -247,4 +247,18 @@ impl<'i> ASTExpression<'i> {
             _ => None
         }
     }
+
+    pub fn as_number(&self) -> Option<Rc<RefCell<ASTNumber<'i>>>> {
+        match &self.expression {
+            ExpressionEnum::Number(n) => Some(n.clone()),
+            _ => None
+        }
+    }
+
+    pub fn as_bool(&self) -> Option<Rc<RefCell<ASTBool<'i>>>> {
+        match &self.expression {
+            ExpressionEnum::Bool(b) => Some(b.clone()),
+            _ => None
+        }
+    }
 }

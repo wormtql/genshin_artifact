@@ -4,6 +4,7 @@ use std::rc::Rc;
 use mona::attribute::SimpleAttributeGraph2;
 use mona::character::{Character, CharacterName};
 use mona::character::characters::damage;
+use mona::damage::damage_builder::DamageBuilder;
 use mona::damage::damage_result::SimpleDamageResult;
 use mona::damage::{DamageContext, SimpleDamageBuilder};
 use crate::builtin::global_function::setup_global_namespace;
@@ -91,6 +92,34 @@ impl MonaEnv {
                 };
                 let obj = MonaObject {
                     data: MonaObjectEnum::TransformativeDamage(obj)
+                };
+
+                let var_name = &damage_config.var_name;
+                self.namespace.insert(var_name.clone(), obj);
+            } else if damage_config.is_custom {
+                let damage: SimpleDamageResult;
+                let custom_skill = &damage_config.custom_skill;
+                let mut builder = SimpleDamageBuilder::new(custom_skill.atk_ratio, custom_skill.def_ratio, custom_skill.hp_ratio);
+                builder.add_extra_damage("", custom_skill.base_dmg);
+                if custom_skill.heal {
+                    damage = builder.heal(&context.attribute);
+                } else if custom_skill.shield {
+                    damage = builder.shield(&context.attribute, context.character_common_data.static_data.element);
+                } else {
+                    damage = builder.damage(&context.attribute, &context.enemy, custom_skill.element.unwrap(), 
+                        custom_skill.skill_type.unwrap(), context.character_common_data.level, damage_config.fumo.clone());
+                }
+                let obj = MonaObjectDamage {
+                    normal: damage.normal.clone(),
+                    melt: damage.melt.clone(),
+                    vaporize: damage.vaporize.clone(),
+                    spread: damage.spread.clone(),
+                    aggravate: damage.aggravate.clone(),
+                    is_heal: damage.is_heal,
+                    is_shield: damage.is_shield
+                };
+                let obj = MonaObject {
+                    data: MonaObjectEnum::Damage(obj)
                 };
 
                 let var_name = &damage_config.var_name;
