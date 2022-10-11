@@ -17,7 +17,9 @@
 
     <div class="header-row" style="overflow: auto; margin-bottom: 16px;">
         <div>
-            <div class="big-title base-damage-region">{{ baseRegionName }}</div>
+            <div class="big-title base-damage-region" :title="Math.round(baseDamageSpread*1000)/1000" v-if="damageType === 'spread'">{{ baseRegionName }}</div>
+            <div class="big-title base-damage-region" :title="Math.round(baseDamageAggravate*1000)/1000" v-else-if="damageType === 'aggravate'">{{ baseRegionName }}</div>
+            <div class="big-title base-damage-region" :title="Math.round(baseDamage*1000)/1000" v-else>{{ baseRegionName }}</div>
             <div class="header-row">
                 <damage-analysis-util
                     v-if="atkRatioState.length > 0"
@@ -54,20 +56,32 @@
                     :arr="extraDamageState"
                     title="其他"
                 ></damage-analysis-util>
+                <div v-if="damageType === 'spread'" style="min-width: 100px">
+                    <div class="big-title" style="background: rgb(236, 245, 255)">蔓激化基础伤害</div>
+                    <div class="header-row" style="height: 100%; display: flex; align-items: center; justify-content: center">
+                        <span>{{ Math.round(baseDamageQuicken * 1000) / 1000 }}</span>
+                    </div>
+                </div>
+                <div v-if="damageType === 'aggravate'" style="min-width: 100px">
+                    <div class="big-title" style="background: rgb(236, 245, 255)">超激化基础伤害</div>
+                    <div class="header-row" style="height: 100%; display: flex; align-items: center; justify-content: center">
+                        <span>{{ Math.round(baseDamageQuicken * 1000) / 1000 }}</span>
+                    </div>
+                </div>
                 <damage-analysis-util
-                    v-if="spreadState.length > 0 && element === 'Dendro'"
+                    v-if="damageType === 'spread'"
                     :arr="spreadState"
-                    title="蔓激化"
+                    title="蔓激化伤害提升"
                 ></damage-analysis-util>
                 <damage-analysis-util
-                    v-if="aggravateState.length > 0 && element === 'Electro'"
+                    v-if="damageType === 'aggravate'"
                     :arr="aggravateState"
-                    title="超激化"
+                    title="超激化伤害提升"
                 ></damage-analysis-util>
             </div>
         </div>
         <div v-show="!isHeal">
-            <div class="big-title critical-region">暴击</div>
+            <div class="big-title critical-region" :title="Math.round(this.critical * this.criticalDamage * 1000)/1000">暴击</div>
             <div class="header-row">
                 <damage-analysis-util
                     :arr="criticalState"
@@ -88,7 +102,7 @@
                 ></damage-analysis-util>
             </div>
         </div>
-        <div v-show="damageType === 'melt' || damageType === 'vaporize'">
+        <div v-if="damageType === 'melt' || damageType === 'vaporize'">
             <div class="big-title reaction-ratio-region">反应倍率</div>
             <div class="header-row" style="height: 100%; display: flex; align-items: center; justify-content: center">
                 <span>{{ reactionRatio }}</span>
@@ -239,15 +253,15 @@ export default {
                 "Cryo": "冰元素伤害",
                 "Physical": "物理伤害"
             }
-            return map[this.element]
+            return this.isHeal ? "治疗量" : map[this.element]
         },
 
         showMeltOption() {
-            return this.element === "Cryo" || this.element === "Pyro"
+            return (this.element === "Cryo" || this.element === "Pyro") && !this.isHeal
         },
 
         showVaporizeOption() {
-            return this.element === "Pyro" || this.element === "Hydro"
+            return (this.element === "Pyro" || this.element === "Hydro") && !this.isHeal
         },
 
         showSpreadOption() {
@@ -376,6 +390,10 @@ export default {
 
         baseDamageAggravate() {
             return this.baseDamage + LEVEL_MULTIPLIER[this.characterLevel - 1] * 1.15 * (1 + this.aggravateEnhance)
+        },
+
+        baseDamageQuicken() {
+            return LEVEL_MULTIPLIER[this.characterLevel - 1] * (this.damageType === "spread" ? 1.25 : 1.15)
         },
 
         resRatio() {

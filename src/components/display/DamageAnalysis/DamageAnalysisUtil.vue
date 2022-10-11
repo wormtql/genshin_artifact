@@ -1,6 +1,6 @@
 <template>
     <div style="min-width: 100px">
-        <div class="header">{{ title }}</div>
+        <div class="header" :title="result">{{ title }}</div>
         <div>
             <div
                 v-for="item in arr"
@@ -27,6 +27,17 @@ export default {
         title: {
             default: "title"
         },
+    },
+    computed: {
+        result() {
+            let s = 0
+            for (let item of this.arr) {
+                if (item.checked) {
+                    s += parseFloat(item.value)
+                }
+            }
+            return Math.round(s*1000)/1000
+        }
     }
 }
 </script>
