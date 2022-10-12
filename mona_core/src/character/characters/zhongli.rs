@@ -7,7 +7,6 @@ use crate::character::prelude::CharacterTrait;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem};
 use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
-use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::target_functions::ZhongliDefaultTargetFunction;
@@ -99,7 +98,7 @@ impl<T: Attribute> ChangeAttribute<T> for ZhongliEffect {
 
 pub struct Zhongli;
 
-#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro, PartialEq)]
+#[derive(Copy, Clone, FromPrimitive, EnumString, EnumCountMacro)]
 pub enum ZhongliDamageEnum {
     Normal1,
     Normal2,
@@ -182,15 +181,6 @@ impl CharacterTrait for Zhongli {
         ])
     };
 
-    #[cfg(not(target_family = "wasm"))]
-    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
-        ItemConfig {
-            name: "talent1_stack",
-            title: "c47",
-            config: ItemConfigType::Int { min: 0, max: 5, default: 5 }
-        }
-    ]);
-
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: ZhongliDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
@@ -206,9 +196,6 @@ impl CharacterTrait for Zhongli {
             };
             builder.add_hp_ratio("技能倍率", radio);
             builder.add_extra_damage("技能倍率", fixed);
-            if context.character_common_data.has_talent1 {
-                builder.add_extra_shield_strength("钟离天赋：悬岩宸断", 0.05 * talent1_stack as f64);
-            }
             builder.shield(&context.attribute, s.get_element())
         } else {
             let ratio = match s {

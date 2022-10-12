@@ -1132,7 +1132,6 @@ export default {
         c44: "Pactsworn Pathclearer",
         c45: "Enable 「Judication」",
         c46: "C2「Ceremony: Homecoming of Spirits」Stacks",
-        c47: "Talent「Resonant Waves」Apply Ratio",
 
         t1: "Type",
         t2: "Trigger Element",
@@ -1242,6 +1241,7 @@ export default {
         b41: "Apply Ratio",
         b42: "Nilou's HP",
         b43: "Candace's HP",
+        b44: "Opponents Marked",
     },
     ele: {
         Pyro: "Pyro",
