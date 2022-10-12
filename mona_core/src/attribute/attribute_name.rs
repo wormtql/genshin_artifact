@@ -7,6 +7,7 @@ pub enum AttributeName {
     ElementalMastery,
     Recharge,
     ShieldStrength,
+    ShieldBonus,
 
     DefMinus,
     DefPenetration,

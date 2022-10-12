@@ -2,6 +2,30 @@
     <div>
         <el-table
             :data="tableData"
+            v-if="analysisFromWasm.is_shield"
+        >
+            <el-table-column
+                prop="name"
+                :label="t('misc.type1')"
+            >
+            </el-table-column>
+            <el-table-column
+                prop="expectation"
+                :label="t('dmg.shieldNormal')"
+            ></el-table-column>
+            <el-table-column
+                prop="critical"
+                :label="t('dmg.shieldSameElem')"
+            ></el-table-column>
+            <el-table-column
+                prop="nonCritical"
+                :label="t('dmg.shieldDiffElem')"
+            ></el-table-column>
+        </el-table>
+        
+        <el-table
+            :data="tableData"
+            v-else
         >
             <el-table-column
                 prop="name"
@@ -56,6 +80,8 @@ export default {
 
             if (this.analysisFromWasm.is_heal) {
                 return this.t("dmg.heal")
+            } else if (this.analysisFromWasm.is_shield) {
+                return this.t("dmg.shield")
             } else {
                 return this.t("dmg", this.element)
             }

@@ -54,10 +54,12 @@ export default defineComponent({
             results.push({ value: this.data.overload, key: "overload" })
             results.push({ value: this.data.shatter, key: "shattered" })
             results.push({ value: this.data.superconduct, key: "superConduct" })
+            results.push({ value: this.data.burning, key: "burning" })
             results.push({ value: this.data.swirl_electro, key: "swirlElectro" })
             results.push({ value: this.data.swirl_pyro, key: "swirlPyro" })
             results.push({ value: this.data.swirl_cryo, key: "swirlCryo" })
             results.push({ value: this.data.swirl_hydro, key: "swirlHydro" })
+            results.push({ value: this.data.crystallize, key: "crystallize" })
             return results
         }
     },

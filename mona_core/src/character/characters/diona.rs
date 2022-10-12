@@ -89,6 +89,8 @@ pub enum DionaDamageEnum {
     Plunging2,
     Plunging3,
     E1,
+    ETapShield,
+    EHoldShield,
     Q1,
     Q2,
     QHeal
@@ -99,10 +101,18 @@ impl DionaDamageEnum {
         *self == DionaDamageEnum::QHeal
     }
 
+    pub fn is_shield(&self) -> bool {
+        use DionaDamageEnum::*;
+        match *self {
+            ETapShield | EHoldShield => true,
+            _ => false
+        }
+    }
+
     pub fn get_element(&self) -> Element {
         use DionaDamageEnum::*;
         match *self {
-            Charged2 | E1 | Q1 | Q2 => Element::Cryo,
+            Charged2 | E1 | ETapShield | EHoldShield | Q1 | Q2 => Element::Cryo,
             _ => Element::Physical
         }
     }
@@ -113,7 +123,7 @@ impl DionaDamageEnum {
             Normal1 | Normal2 | Normal3 | Normal4 | Normal5 => SkillType::NormalAttack,
             Charged1 | Charged2 => SkillType::ChargedAttack,
             Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
-            E1 => SkillType::ElementalSkill,
+            E1 | ETapShield | EHoldShield => SkillType::ElementalSkill,
             Q1 | Q2 | QHeal => SkillType::ElementalBurst
         }
     }
@@ -153,6 +163,8 @@ impl CharacterTrait for Diona {
         ]),
         skill2: Some(&[
             CharacterSkillMapItem { index: DionaDamageEnum::E1 as usize, chs: "猫爪伤害" },
+            CharacterSkillMapItem { index: DionaDamageEnum::ETapShield as usize, chs: "点按护盾吸收量" },
+            CharacterSkillMapItem { index: DionaDamageEnum::EHoldShield as usize, chs: "长按护盾吸收量" },
         ]),
         skill3: Some(&[
             CharacterSkillMapItem { index: DionaDamageEnum::Q1 as usize, chs: "技能伤害" },
@@ -179,6 +191,24 @@ impl CharacterTrait for Diona {
             builder.add_hp_ratio("技能倍率", ratio);
             builder.add_extra_damage("技能倍率", fixed);
             builder.heal(&context.attribute)
+        } else if s.is_shield() {
+            let ratio = match s {
+                ETapShield => DIONA_SKILL.elemental_skill_shield1[s2],
+                EHoldShield => DIONA_SKILL.elemental_skill_shield1[s2] * 1.75,
+                _ => 0.0
+            };
+            let fixed = match s {
+                ETapShield => DIONA_SKILL.elemental_skill_shield1_fixed[s2],
+                EHoldShield => DIONA_SKILL.elemental_skill_shield1_fixed[s2] * 1.75,
+                _ => 0.0
+            };
+            let mut builder = D::new();
+            builder.add_hp_ratio("技能倍率", ratio);
+            builder.add_extra_damage("技能倍率", fixed);
+            if context.character_common_data.constellation >= 2 {
+                builder.add_extra_shield_bonus("迪奥娜二命「猫爪冰摇」", 0.15);
+            }
+            builder.shield(&context.attribute, s.get_element())
         } else {
             let ratio = match s {
                 Normal1 => DIONA_SKILL.normal_dmg1[s1],
@@ -198,6 +228,9 @@ impl CharacterTrait for Diona {
             };
             let mut builder = D::new();
             builder.add_atk_ratio("技能倍率", ratio);
+            if context.character_common_data.constellation >= 2 && s == E1 {
+                builder.add_extra_bonus("迪奥娜二命「猫爪冰摇」", 0.15);
+            }
 
             builder.damage(
                 &context.attribute,

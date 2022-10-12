@@ -33,5 +33,6 @@ pub enum CharacterSkillConfig {
     Dori { c6: bool },
     Candace { crown: bool },
     Cyno { under_judication: bool },
+    Zhongli { talent1_stack: usize },
     NoConfig,
 }

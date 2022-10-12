@@ -1,4 +1,6 @@
 use std::collections::HashMap;
+use serde_json::map::Entry;
+
 use crate::attribute::{Attribute, AttributeName, ComplicatedAttributeGraph};
 use crate::common::{DamageResult, Element, SkillType};
 use crate::damage::damage_analysis::DamageAnalysis;
@@ -19,6 +21,8 @@ pub struct ComplicatedDamageBuilder {
     pub extra_def: EntryType,
     pub extra_hp: EntryType,
     pub extra_healing_bonus: EntryType,
+    pub extra_shield_strength: EntryType,
+    pub extra_shield_bonus: EntryType,
 
     pub extra_enhance_melt: EntryType,
     pub extra_enhance_vaporize: EntryType,
@@ -103,6 +107,18 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
     fn add_extra_res_minus(&mut self, key: &str, value: f64) {
         *self.extra_res_minus.0.entry(String::from(key)).or_insert(0.0) += value;
+    }
+
+    fn add_extra_shield_strength(&mut self, key: &str, value: f64) {
+        *self.extra_shield_strength.0.entry(String::from(key)).or_insert(0.0) += value;
+    }
+
+    fn add_extra_healing_bonus(&mut self, key: &str, value: f64) {
+        *self.extra_healing_bonus.0.entry(String::from(key)).or_insert(0.0) += value;
+    }
+
+    fn add_extra_shield_bonus(&mut self, key: &str, value: f64) {
+        *self.extra_shield_bonus.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn damage(
@@ -249,6 +265,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
             healing_bonus: HashMap::new(),
             shield_strength: HashMap::new(),
+            shield_bonus: HashMap::new(),
             def_minus: def_minus_comp.0,
             def_penetration: def_penetration_comp.0,
             res_minus: res_minus_comp.0,
@@ -307,6 +324,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
             healing_bonus: healing_bonus_comp.0,
             shield_strength: HashMap::new(),
+            shield_bonus: HashMap::new(),
             def_minus: HashMap::new(),
             def_penetration: HashMap::new(),
             res_minus: HashMap::new(),
@@ -333,14 +351,16 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
         let shield_strength_comp = self.get_shield_strength_composition(attribute);
         let shield_strength = shield_strength_comp.sum();
+        let shield_bonus_comp = self.get_shield_bonus_composition(attribute);
+        let shield_bonus = shield_bonus_comp.sum();
 
         let base = atk * self.ratio_atk.sum() + hp * self.ratio_hp.sum() + def * self.ratio_def.sum() + self.extra_damage.sum();
 
-        let shield_value = base * (1.0 + shield_strength);
+        let shield_value = base * (1.0 + shield_strength) * (1.0 + shield_bonus);
         let damage_normal = DamageResult {
             expectation: shield_value,
-            critical: 0.0,
-            non_critical: 0.0,
+            critical: shield_value * if element == Element::Geo {1.5} else {2.5},
+            non_critical: shield_value * if element == Element::Geo {1.5} else {1.0},
             is_heal: false,
             is_shield: true
         };
@@ -365,13 +385,14 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
             healing_bonus: HashMap::new(),
             shield_strength: shield_strength_comp.0,
+            shield_bonus: shield_bonus_comp.0,
             def_minus: HashMap::new(),
             def_penetration: HashMap::new(),
             res_minus: HashMap::new(),
 
             element,
-            is_heal: true,
-            is_shield: false,
+            is_heal: false,
+            is_shield: true,
 
             normal: damage_normal,
             melt: None,
@@ -422,7 +443,13 @@ impl ComplicatedDamageBuilder {
 
     fn get_shield_strength_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::ShieldStrength);
-        // todo, for now there is no extra shield strength
+        comp.merge(&self.extra_shield_strength);
+        comp
+    }
+
+    fn get_shield_bonus_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
+        let mut comp = attribute.get_attribute_composition(AttributeName::ShieldBonus);
+        comp.merge(&self.extra_shield_bonus);
         comp
     }
 

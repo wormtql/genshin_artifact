@@ -90,14 +90,19 @@ pub enum NoelleDamageEnum {
     Plunging2,
     Plunging3,
     E1,
-    EHeal1,
+    EHeal,
+    EShield,
     Q1,
     Q2
 }
 
 impl NoelleDamageEnum {
     pub fn is_heal(&self) -> bool {
-        *self == NoelleDamageEnum::EHeal1
+        *self == NoelleDamageEnum::EHeal
+    }
+
+    pub fn is_shield(&self) -> bool {
+        *self == NoelleDamageEnum::EShield
     }
 
     pub fn is_def_ratio(&self) -> bool {
@@ -110,7 +115,7 @@ impl NoelleDamageEnum {
         } else {
             use NoelleDamageEnum::*;
             match *self {
-                E1 | Q1 | Q2 => Element::Geo,
+                E1 | EShield | Q1 | Q2 => Element::Geo,
                 _ => Element::Physical
             }
         }
@@ -122,7 +127,7 @@ impl NoelleDamageEnum {
             Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
             Charged1 | Charged2 => SkillType::ChargedAttack,
             Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
-            E1 | EHeal1 => SkillType::ElementalSkill,
+            E1 | EHeal | EShield => SkillType::ElementalSkill,
             Q1 | Q2 => SkillType::ElementalBurst
         }
     }
@@ -161,7 +166,8 @@ impl CharacterTrait for Noelle {
         ]),
         skill2: Some(&[
             CharacterSkillMapItem { index: NoelleDamageEnum::E1 as usize, chs: "技能伤害" },
-            CharacterSkillMapItem { index: NoelleDamageEnum::EHeal1 as usize, chs: "治疗量" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::EHeal as usize, chs: "治疗量" },
+            CharacterSkillMapItem { index: NoelleDamageEnum::EShield as usize, chs: "护盾吸收量" },
         ]),
         skill3: Some(&[
             CharacterSkillMapItem { index: NoelleDamageEnum::Q1 as usize, chs: "爆发伤害" },
@@ -185,18 +191,35 @@ impl CharacterTrait for Noelle {
         use NoelleDamageEnum::*;
 
         let mut builder = D::new();
+        let after_q = match *config {
+            CharacterSkillConfig::Noelle { after_q } => after_q,
+            _ => false
+        };
+        
         if s.is_heal() {
             let ratio = match s {
-                EHeal1 => NOELLE_SKILL.elemental_skill_heal1[s2],
+                EHeal => NOELLE_SKILL.elemental_skill_heal1[s2],
                 _ => 0.0
             };
             let fixed = match s {
-                EHeal1 => NOELLE_SKILL.elemental_skill_heal1_fixed[s2],
+                EHeal => NOELLE_SKILL.elemental_skill_heal1_fixed[s2],
                 _ => 0.0
             };
             builder.add_def_ratio("技能倍率", ratio);
             builder.add_extra_damage("技能倍率", fixed);
             builder.heal(&context.attribute)
+        } else if s.is_shield() {
+            let ratio = match s {
+                EShield => NOELLE_SKILL.elemental_skill_shield1[s2],
+                _ => 0.0
+            };
+            let fixed = match s {
+                EShield => NOELLE_SKILL.elemental_skill_shield1_fixed[s2],
+                _ => 0.0
+            };
+            builder.add_def_ratio("技能倍率", ratio);
+            builder.add_extra_damage("技能倍率", fixed);
+            builder.shield(&context.attribute, s.get_element(after_q))
         } else {
             let ratio = match s {
                 Normal1 => NOELLE_SKILL.normal_dmg1[s1],
@@ -220,10 +243,6 @@ impl CharacterTrait for Noelle {
                 builder.add_atk_ratio("技能倍率", ratio);
             }
 
-            let after_q = match *config {
-                CharacterSkillConfig::Noelle { after_q } => after_q,
-                _ => false
-            };
             if after_q {
                 let def = context.attribute.get_value(AttributeName::DEF);
                 let is_conste6 = context.character_common_data.constellation == 6;

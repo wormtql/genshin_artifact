@@ -80,7 +80,7 @@
                 ></damage-analysis-util>
             </div>
         </div>
-        <div v-show="!isHeal">
+        <div v-show="isDamage">
             <div class="big-title critical-region" :title="Math.round(this.critical * this.criticalDamage * 1000)/1000">暴击</div>
             <div class="header-row">
                 <damage-analysis-util
@@ -93,12 +93,34 @@
                 ></damage-analysis-util>
             </div>
         </div>
+        <div v-show="isShield">
+            <div class="big-title critical-region">吸收效果</div>
+            <div class="header-row">
+                <div style="min-width: 100px">
+                    <div class="big-title" style="background: rgb(236, 245, 255)">同元素吸收效果</div>
+                    <div class="header-row" style="height: 100%; display: flex; align-items: center; justify-content: center">
+                        <span>{{ element === 'Geo' ? 1.5 : 2.5 }}</span>
+                    </div>
+                </div>
+                <div style="min-width: 100px">
+                    <div class="big-title" style="background: rgb(236, 245, 255)">异元素吸收效果</div>
+                    <div class="header-row" style="height: 100%; display: flex; align-items: center; justify-content: center">
+                        <span>{{ element === 'Geo' ? 1.5 : 1.0 }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div>
             <div class="big-title bonus-region">加成</div>
             <div class="header-row">
                 <damage-analysis-util
                     :arr="bonusRegionState"
                     :title="bonusRegionName"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="isShield"
+                    :arr="shieldBonusState"
+                    title="护盾吸收量提高"
                 ></damage-analysis-util>
             </div>
         </div>
@@ -128,7 +150,7 @@
         </div>
     </div>
 
-    <div v-if="!isHeal" class="header-row" style="overflow: auto">
+    <div v-if="isDamage" class="header-row" style="overflow: auto">
         <div>
             <div class="big-title def-minus">防御乘区</div>
             <div class="header-row">
@@ -180,6 +202,8 @@ export default {
             damageType: "normal",
             element: "Pyro",
             isHeal: false,
+            isShield: false,
+            isDamage: true,
 
             atkState: [{ name: "test", value: 1000, checked: true }],
             atkRatioState: [{ name: "test", value: 1000, checked: true }],
@@ -198,7 +222,9 @@ export default {
             defPenetrationState: [],
             resMinusState: [],
             bonusState: [],
-            healingBonusState: []
+            healingBonusState: [],
+            shieldStrengthState: [],
+            shieldBonusState: [],
         }
     },
     methods: {
@@ -221,11 +247,15 @@ export default {
                 "defPenetrationState": "def_penetration",
                 "resMinusState": "res_minus",
                 "healingBonusState": "healing_bonus",
+                "shieldStrengthState": "shield_strength",
+                "shieldBonusState": "shield_bonus",
                 "aggravateState": "aggravate_compose",
                 "spreadState": "spread_compose",
             }
             this.element = analysis.element
             this.isHeal = analysis.is_heal
+            this.isShield = analysis.is_shield
+            this.isDamage = !this.isHeal && !this.isShield
             this.damageType = "normal"
             for (let key in map) {
                 let fromKey = map[key]
@@ -253,15 +283,21 @@ export default {
                 "Cryo": "冰元素伤害",
                 "Physical": "物理伤害"
             }
-            return this.isHeal ? "治疗量" : map[this.element]
+            if (this.isHeal) {
+                return "治疗量"
+            } else if (this.isShield) {
+                return "护盾量"
+            } else {
+                return map[this.element]
+            }
         },
 
         showMeltOption() {
-            return (this.element === "Cryo" || this.element === "Pyro") && !this.isHeal
+            return (this.element === "Cryo" || this.element === "Pyro") && this.isDamage
         },
 
         showVaporizeOption() {
-            return (this.element === "Pyro" || this.element === "Hydro") && !this.isHeal
+            return (this.element === "Pyro" || this.element === "Hydro") && this.isDamage
         },
 
         showSpreadOption() {
@@ -275,6 +311,8 @@ export default {
         baseRegionName() {
             if (this.isHeal) {
                 return "基础治疗"
+            } else if (this.isShield) {
+                return "基础盾量"
             } else {
                 return "基础伤害"
             }
@@ -283,6 +321,8 @@ export default {
         bonusRegionState() {
             if (this.isHeal) {
                 return this.healingBonusState
+            } else if (this.isShield) {
+                return this.shieldStrengthState
             } else {
                 return this.bonusState
             }
@@ -291,7 +331,9 @@ export default {
         bonusRegionName() {
             if (this.isHeal) {
                 return "治疗加成"
-            } else {
+            } else if (this.isShield) {
+                return "护盾强效"
+            } {
                 return "伤害加成"
             }
         },
@@ -341,6 +383,14 @@ export default {
 
         healingBonus() {
             return sum(this.healingBonusState)
+        },
+
+        shieldStrength() {
+            return sum(this.shieldStrengthState)
+        },
+
+        shieldBonus(){
+            return sum(this.shieldBonusState)
         },
 
         critical() {
@@ -431,6 +481,8 @@ export default {
             let d
             if (this.isHeal) {
                 d = this.baseDamage * (1 + this.healingBonus)
+            } else if (this.isShield) {
+                d = this.baseDamage * (1 + this.shieldStrength)
             } else {
                 d = this.baseDamage * (1 + this.critical * this.criticalDamage) * (1 + this.bonus) * this.resRatio * this.defMultiplier
             }
