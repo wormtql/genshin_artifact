@@ -88,15 +88,26 @@ pub enum ThomaDamageEnum {
     Plunging2,
     Plunging3,
     E1,
+    EShield1,
+    EShield2,
     Q1,
-    Q2
+    Q2,
+    QShield,
 }
 
 impl ThomaDamageEnum {
+    pub fn is_shield(&self) -> bool {
+        use ThomaDamageEnum::*;
+        match *self {
+            EShield1 | EShield2 | QShield => true,
+            _ => false
+        }
+    }
+
     pub fn get_element(&self) -> Element {
         use ThomaDamageEnum::*;
         match *self {
-            E1 | Q1 | Q2 => Element::Pyro,
+            E1 | EShield1 | EShield2 | Q1 | Q2 | QShield => Element::Pyro,
             _ => Element::Physical
         }
     }
@@ -107,8 +118,8 @@ impl ThomaDamageEnum {
             Normal1 | Normal2 | Normal3 | Normal4 | Normal3Times2 => SkillType::NormalAttack,
             Charged => SkillType::ChargedAttack,
             Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
-            E1 => SkillType::ElementalSkill,
-            Q1 | Q2 => SkillType::ElementalBurst
+            E1 | EShield1 | EShield2 => SkillType::ElementalSkill,
+            Q1 | Q2 | QShield => SkillType::ElementalBurst
         }
     }
 }
@@ -145,10 +156,13 @@ impl CharacterTrait for Thoma {
         ]),
         skill2: Some(&[
             CharacterSkillMapItem { index: ThomaDamageEnum::E1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: ThomaDamageEnum::EShield1 as usize, chs: "护盾吸收量" },
+            CharacterSkillMapItem { index: ThomaDamageEnum::EShield2 as usize, chs: "护盾吸收量上限" },
         ]),
         skill3: Some(&[
             CharacterSkillMapItem { index: ThomaDamageEnum::Q1 as usize, chs: "技能伤害" },
             CharacterSkillMapItem { index: ThomaDamageEnum::Q2 as usize, chs: "炽火崩破伤害" },
+            CharacterSkillMapItem { index: ThomaDamageEnum::QShield as usize, chs: "护盾吸收量" },
         ])
     };
 
@@ -157,34 +171,54 @@ impl CharacterTrait for Thoma {
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
         use ThomaDamageEnum::*;
-        let ratio = match s {
-            Normal1 => THOMA_SKILL.normal_dmg1[s1],
-            Normal2 => THOMA_SKILL.normal_dmg2[s1],
-            Normal3 => THOMA_SKILL.normal_dmg3[s1],
-            Normal3Times2 => THOMA_SKILL.normal_dmg3[s1] * 2.0,
-            Normal4 => THOMA_SKILL.normal_dmg4[s1],
-            Charged => THOMA_SKILL.charged_dmg1[s1],
-            Plunging1 => THOMA_SKILL.plunging_dmg1[s1],
-            Plunging2 => THOMA_SKILL.plunging_dmg2[s1],
-            Plunging3 => THOMA_SKILL.plunging_dmg3[s1],
-            E1 => THOMA_SKILL.elemental_skill_dmg1[s2],
-            Q1 => THOMA_SKILL.elemental_burst_dmg1[s3],
-            Q2 => THOMA_SKILL.elemental_burst_dmg2[s3],
-        };
-
         let mut builder = D::new();
-        builder.add_atk_ratio("技能倍率", ratio);
-        if s == Q2 && context.character_common_data.has_talent2 {
-            builder.add_hp_ratio("托马天赋：烈火攻燔", 0.022);
+        if s.is_shield() {
+            let ratio = match s {
+                EShield1 => THOMA_SKILL.elemental_skill_shield1[s2],
+                EShield2 => THOMA_SKILL.elemental_skill_shield2[s2],
+                QShield => THOMA_SKILL.elemental_burst_shield1[s3],
+                _ => 0.0
+            };
+            let fixed = match s {
+                EShield1 => THOMA_SKILL.elemental_skill_shield1_fixed[s2],
+                EShield2 => THOMA_SKILL.elemental_skill_shield2_fixed[s2],
+                QShield => THOMA_SKILL.elemental_burst_shield1_fixed[s3],
+                _ => 0.0
+            };
+
+            builder.add_hp_ratio("技能倍率", ratio);
+            builder.add_extra_damage("技能倍率", fixed);
+            builder.shield(&context.attribute, s.get_element())
+        } else {
+            let ratio = match s {
+                Normal1 => THOMA_SKILL.normal_dmg1[s1],
+                Normal2 => THOMA_SKILL.normal_dmg2[s1],
+                Normal3 => THOMA_SKILL.normal_dmg3[s1],
+                Normal3Times2 => THOMA_SKILL.normal_dmg3[s1] * 2.0,
+                Normal4 => THOMA_SKILL.normal_dmg4[s1],
+                Charged => THOMA_SKILL.charged_dmg1[s1],
+                Plunging1 => THOMA_SKILL.plunging_dmg1[s1],
+                Plunging2 => THOMA_SKILL.plunging_dmg2[s1],
+                Plunging3 => THOMA_SKILL.plunging_dmg3[s1],
+                E1 => THOMA_SKILL.elemental_skill_dmg1[s2],
+                Q1 => THOMA_SKILL.elemental_burst_dmg1[s3],
+                Q2 => THOMA_SKILL.elemental_burst_dmg2[s3],
+                _ => 0.0
+            };
+
+            builder.add_atk_ratio("技能倍率", ratio);
+            if s == Q2 && context.character_common_data.has_talent2 {
+                builder.add_hp_ratio("托马天赋：烈火攻燔", 0.022);
+            }
+            builder.damage(
+                &context.attribute,
+                &context.enemy,
+                s.get_element(),
+                s.get_skill_type(),
+                context.character_common_data.level,
+                fumo,
+            )
         }
-        builder.damage(
-            &context.attribute,
-            &context.enemy,
-            s.get_element(),
-            s.get_skill_type(),
-            context.character_common_data.level,
-            fumo,
-        )
     }
 
     fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {

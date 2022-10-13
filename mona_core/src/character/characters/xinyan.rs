@@ -94,15 +94,26 @@ pub enum XinyanDamageEnum {
     Plunging3,
     E1,
     E2,
+    EShield1,
+    EShield2,
+    EShield3,
     Q1,
     Q2,
 }
 
 impl XinyanDamageEnum {
+    pub fn is_shield(&self) -> bool {
+        use XinyanDamageEnum::*;
+        match *self {
+            EShield1 | EShield2 | EShield3 => true,
+            _ => false
+        }
+    }
+
     pub fn get_element(&self) -> Element {
         use XinyanDamageEnum::*;
         match *self {
-            E1 | E2 | Q2 => Element::Pyro,
+            E1 | E2 | EShield1 | EShield2 | EShield3 | Q2 => Element::Pyro,
             _ => Element::Physical
         }
     }
@@ -113,7 +124,7 @@ impl XinyanDamageEnum {
             Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
             Charged1 | Charged2 => SkillType::ChargedAttack,
             Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
-            E1 | E2 => SkillType::ElementalSkill,
+            E1 | E2 | EShield1 | EShield2 | EShield3 => SkillType::ElementalSkill,
             Q1 | Q2 => SkillType::ElementalBurst
         }
     }
@@ -153,6 +164,9 @@ impl CharacterTrait for Xinyan {
         skill2: Some(&[
             CharacterSkillMapItem { index: XinyanDamageEnum::E1 as usize, chs: "挥舞伤害" },
             CharacterSkillMapItem { index: XinyanDamageEnum::E2 as usize, chs: "持续伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::EShield1 as usize, chs: "一级护盾吸收量" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::EShield2 as usize, chs: "二级护盾吸收量" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::EShield3 as usize, chs: "三级护盾吸收量" },
         ]),
         skill3: Some(&[
             CharacterSkillMapItem { index: XinyanDamageEnum::Q1 as usize, chs: "技能伤害" },
@@ -174,55 +188,75 @@ impl CharacterTrait for Xinyan {
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
         use XinyanDamageEnum::*;
-        let ratio = match s {
-            Normal1 => XINYAN_SKILL.normal_dmg1[s1],
-            Normal2 => XINYAN_SKILL.normal_dmg2[s1],
-            Normal3 => XINYAN_SKILL.normal_dmg3[s1],
-            Normal4 => XINYAN_SKILL.normal_dmg4[s1],
-            Charged1 => XINYAN_SKILL.charged_dmg1[s1],
-            Charged2 => XINYAN_SKILL.charged_dmg2[s1],
-            Plunging1 => XINYAN_SKILL.plunging_dmg1[s1],
-            Plunging2 => XINYAN_SKILL.plunging_dmg2[s1],
-            Plunging3 => XINYAN_SKILL.plunging_dmg3[s1],
-            E1 => XINYAN_SKILL.elemental_skill_dmg1[s2],
-            E2 => XINYAN_SKILL.elemental_skill_dmg2[s2],
-            Q1 => XINYAN_SKILL.elemental_burst_dmg1[s3],
-            Q2 => XINYAN_SKILL.elemental_burst_dmg2[s3],
-        };
-
         let shield_rate = match *config {
             CharacterSkillConfig::Xinyan { shield_rate } => shield_rate,
             _ => 0.0
         };
 
         let mut builder = D::new();
-        builder.add_atk_ratio("技能倍率", ratio);
+        if s.is_shield() {
+            let ratio = match s {
+                EShield1 => XINYAN_SKILL.elemental_skill_shield1[s2],
+                EShield2 => XINYAN_SKILL.elemental_skill_shield2[s2],
+                EShield3 => XINYAN_SKILL.elemental_skill_shield3[s2],
+                _ => 0.0
+            };
+            let fixed = match s {
+                EShield1 => XINYAN_SKILL.elemental_skill_shield1_fixed[s2],
+                EShield2 => XINYAN_SKILL.elemental_skill_shield2_fixed[s2],
+                EShield3 => XINYAN_SKILL.elemental_skill_shield3_fixed[s2],
+                _ => 0.0
+            };
 
-        let s_element = s.get_element();
+            builder.add_def_ratio("技能倍率", ratio);
+            builder.add_extra_damage("技能倍率", fixed);
+            builder.shield(&context.attribute, s.get_element())
+        } else {
+            let ratio = match s {
+                Normal1 => XINYAN_SKILL.normal_dmg1[s1],
+                Normal2 => XINYAN_SKILL.normal_dmg2[s1],
+                Normal3 => XINYAN_SKILL.normal_dmg3[s1],
+                Normal4 => XINYAN_SKILL.normal_dmg4[s1],
+                Charged1 => XINYAN_SKILL.charged_dmg1[s1],
+                Charged2 => XINYAN_SKILL.charged_dmg2[s1],
+                Plunging1 => XINYAN_SKILL.plunging_dmg1[s1],
+                Plunging2 => XINYAN_SKILL.plunging_dmg2[s1],
+                Plunging3 => XINYAN_SKILL.plunging_dmg3[s1],
+                E1 => XINYAN_SKILL.elemental_skill_dmg1[s2],
+                E2 => XINYAN_SKILL.elemental_skill_dmg2[s2],
+                Q1 => XINYAN_SKILL.elemental_burst_dmg1[s3],
+                Q2 => XINYAN_SKILL.elemental_burst_dmg2[s3],
+                _ => 0.0
+            };
 
-        let c4 = context.character_common_data.constellation >= 4;
-        let c6 = context.character_common_data.constellation == 6;
+            builder.add_atk_ratio("技能倍率", ratio);
 
-        if c4 && s_element == Element::Physical {
-            builder.add_extra_res_minus("四命：「节奏的传染」", 0.15 * shield_rate);
+            let s_element = s.get_element();
+
+            let c4 = context.character_common_data.constellation >= 4;
+            let c6 = context.character_common_data.constellation == 6;
+
+            if c4 && s_element == Element::Physical {
+                builder.add_extra_res_minus("四命：「节奏的传染」", 0.15 * shield_rate);
+            }
+
+            if context.character_common_data.has_talent2 && s_element == Element::Physical {
+                builder.add_extra_bonus("天赋：「...这才是摇滚！」", 0.15 * shield_rate);
+            }
+
+            if (s == XinyanDamageEnum::Charged1 || s == XinyanDamageEnum::Charged2) && c6 {
+                builder.add_extra_atk("六命：「地狱里摇摆」", context.attribute.get_def() * 0.5);
+            }
+
+            builder.damage(
+                &context.attribute,
+                &context.enemy,
+                s_element,
+                s.get_skill_type(),
+                context.character_common_data.level,
+                fumo,
+            )
         }
-
-        if context.character_common_data.has_talent2 && s_element == Element::Physical {
-            builder.add_extra_bonus("天赋：「...这才是摇滚！」", 0.15 * shield_rate);
-        }
-
-        if (s == XinyanDamageEnum::Charged1 || s == XinyanDamageEnum::Charged2) && c6 {
-            builder.add_extra_atk("六命：「地狱里摇摆」", context.attribute.get_def() * 0.5);
-        }
-
-        builder.damage(
-            &context.attribute,
-            &context.enemy,
-            s_element,
-            s.get_skill_type(),
-            context.character_common_data.level,
-            fumo,
-        )
     }
 
     fn new_effect<A: Attribute>(_common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {

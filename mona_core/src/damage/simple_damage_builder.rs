@@ -14,6 +14,9 @@ pub struct SimpleDamageBuilder {
     pub extra_atk: f64,
     pub extra_def: f64,
     pub extra_hp: f64,
+    pub extra_shield_strength: f64,
+    pub extra_shield_bonus: f64,
+    pub extra_healing_bonus: f64,
 
     pub extra_def_minus: f64,
     pub extra_res_minus: f64,
@@ -100,6 +103,18 @@ impl DamageBuilder for SimpleDamageBuilder {
 
     fn add_extra_res_minus(&mut self, _key: &str, value: f64) {
         self.extra_res_minus += value
+    }
+
+    fn add_extra_shield_strength(&mut self, _key: &str, value: f64) {
+        self.extra_shield_strength += value;
+    }
+
+    fn add_extra_shield_bonus(&mut self, _key: &str, value: f64) {
+        self.extra_shield_bonus += value;
+    }
+
+    fn add_extra_healing_bonus(&mut self, _key: &str, value: f64) {
+        self.extra_healing_bonus += value;
     }
 
     fn damage(&self, attribute: &Self::AttributeType, enemy: &Enemy, element: Element, skill: SkillType, character_level: usize, fumo: Option<Element>) -> Self::Result {
@@ -243,7 +258,7 @@ impl DamageBuilder for SimpleDamageBuilder {
 
         let base = self.ratio_def * def + self.ratio_hp * hp + self.ratio_atk * atk + self.extra_damage;
 
-        let healing_bonus = attribute.get_value(AttributeName::HealingBonus);
+        let healing_bonus = attribute.get_value(AttributeName::HealingBonus) + self.extra_healing_bonus;
         let heal_value = base * (1.0 + healing_bonus);
         let result = {
             DamageResult {
@@ -265,20 +280,21 @@ impl DamageBuilder for SimpleDamageBuilder {
         };
     }
 
-    fn shield(&self, attribute: &Self::AttributeType, _element: Element) -> Self::Result {
+    fn shield(&self, attribute: &Self::AttributeType, element: Element) -> Self::Result {
         let atk = attribute.get_atk() + self.extra_atk;
         let def = attribute.get_def() + self.extra_def;
         let hp = attribute.get_hp() + self.extra_hp;
 
         let base = self.ratio_def * def + self.ratio_hp * hp + self.ratio_atk * atk + self.extra_damage;
 
-        let shield_strength = attribute.get_value(AttributeName::ShieldStrength);
-        let shield_value = base * (1.0 + shield_strength);
+        let shield_strength = attribute.get_value(AttributeName::ShieldStrength) + self.extra_shield_strength;
+        let shield_bonus = attribute.get_value(AttributeName::ShieldBonus) + self.extra_shield_bonus;
+        let shield_value = base * (1.0 + shield_strength) * (1.0 + shield_bonus);
         let result = {
             DamageResult {
                 critical: shield_value,
-                non_critical: shield_value,
-                expectation: shield_value,
+                non_critical: shield_value * if element == Element::Geo {1.5} else {2.5},
+                expectation: shield_value * if element == Element::Geo {1.5} else {1.0},
                 is_heal: false,
                 is_shield: true
             }
@@ -307,6 +323,9 @@ impl SimpleDamageBuilder {
             extra_enhance_melt: 0.0,
             ratio_def,
             extra_atk: 0.0,
+            extra_healing_bonus: 0.0,
+            extra_shield_strength: 0.0,
+            extra_shield_bonus: 0.0,
 
             extra_def: 0.0,
             extra_hp: 0.0,
