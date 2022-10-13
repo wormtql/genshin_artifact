@@ -1501,6 +1501,8 @@ export default {
         swirlPyro: "Swirl(Pyro)",
         swirlCryo: "Swirl(Cryo)",
         swirlHydro: "Swirl(Hydro)",
+        burning: "Burning",
+        crystallize: "Crystallize Shield",
         "Pyro": "Pyro DMG",
         "Hydro": "Hydro DMG",
         "Electro": "Electro DMG",

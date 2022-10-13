@@ -3,7 +3,7 @@ use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::common::{Element, SkillType};
 use crate::common::reaction_type::TransformativeType;
 use crate::enemies::Enemy;
-use crate::damage::level_coefficient::LEVEL_MULTIPLIER;
+use crate::damage::level_coefficient::{LEVEL_MULTIPLIER, CRYSTALLIZE_BASE};
 
 #[wasm_bindgen]
 pub struct TransformativeDamage {
@@ -18,6 +18,8 @@ pub struct TransformativeDamage {
     pub bloom: f64,
     pub hyperbloom: f64,
     pub burgeon: f64,
+    pub burning: f64,
+    pub crystallize: f64,
 }
 
 #[inline]
@@ -53,6 +55,7 @@ pub fn transformative_damage_simple(level: usize, em: f64, enemy: &Enemy) -> Tra
     let base_bloom = get_transformative_base(level, TransformativeType::Bloom);
     let base_hyperbloom = get_transformative_base(level, TransformativeType::Hyperbloom);
     let base_burgeon = base_hyperbloom;
+    let base_burning = get_transformative_base(level, TransformativeType::Burning);
 
     let em_bonus = get_em_bonus(em);
 
@@ -74,6 +77,9 @@ pub fn transformative_damage_simple(level: usize, em: f64, enemy: &Enemy) -> Tra
     let dmg_bloom = base_bloom * res_ratio_dendro * (1.0 + em_bonus);
     let dmg_hyperbloom = base_hyperbloom * res_ratio_dendro * (1.0 + em_bonus);
     let dmg_burgeon = base_burgeon * res_ratio_dendro * (1.0 + em_bonus);
+    let dmg_burning = base_burning * res_ratio_pyro * (1.0 + em_bonus);
+    let shield_crystallize = CRYSTALLIZE_BASE[level - 1] * (1.0 + 40.0 / 9.0 * em / (em + 1400.0));
+
 
     TransformativeDamage {
         swirl_cryo: dmg_swirl_cryo,
@@ -86,7 +92,9 @@ pub fn transformative_damage_simple(level: usize, em: f64, enemy: &Enemy) -> Tra
         superconduct: dmg_superconduct,
         bloom: dmg_bloom,
         hyperbloom: dmg_hyperbloom,
-        burgeon: dmg_burgeon
+        burgeon: dmg_burgeon,
+        burning: dmg_burning,
+        crystallize: shield_crystallize,
     }
 }
 
@@ -103,6 +111,7 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &
     let enhance_bloom = attribute.get_value(AttributeName::EnhanceBloom);
     let enhance_hyperbloom = attribute.get_value(AttributeName::EnhanceHyperbloom);
     let enhance_burgeon = attribute.get_value(AttributeName::EnhanceBurgeon);
+    let enhance_burning = attribute.get_value(AttributeName::EnhanceBurning);
 
     let base_swirl = get_transformative_base(level, TransformativeType::SwirlPyro);
     let base_overload = get_transformative_base(level, TransformativeType::Overload);
@@ -112,6 +121,7 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &
     let base_bloom = get_transformative_base(level, TransformativeType::Bloom);
     let base_hyperbloom = get_transformative_base(level, TransformativeType::Hyperbloom);
     let base_burgeon = base_hyperbloom;
+    let base_burning = get_transformative_base(level, TransformativeType::Burning);
 
     let em = attribute.get_value(AttributeName::ElementalMastery);
     let em_bonus = get_em_bonus(em);
@@ -142,6 +152,8 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &
     let dmg_bloom = base_bloom * res_ratio_dendro * (1.0 + em_bonus + enhance_bloom);
     let dmg_hyperbloom = base_hyperbloom * res_ratio_dendro * (1.0 + em_bonus + enhance_hyperbloom);
     let dmg_burgeon = base_burgeon * res_ratio_dendro * (1.0 + em_bonus + enhance_burgeon);
+    let dmg_burning = base_burning * res_ratio_pyro * (1.0 + em_bonus + enhance_burning);
+    let shield_crystallize = CRYSTALLIZE_BASE[level - 1] * (1.0 + 40.0 / 9.0 * em / (em + 1400.0));
 
     TransformativeDamage {
         swirl_cryo: dmg_swirl_cryo,
@@ -154,7 +166,9 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &
         superconduct: dmg_superconduct,
         bloom: dmg_bloom,
         hyperbloom: dmg_hyperbloom,
-        burgeon: dmg_burgeon
+        burgeon: dmg_burgeon,
+        burning: dmg_burning,
+        crystallize: shield_crystallize,
     }
 }
 
