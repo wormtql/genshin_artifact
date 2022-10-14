@@ -138,6 +138,7 @@ export async function deleteAccount(id: number) {
 }
 
 export async function reload() {
+    loadingAccountData = true
     accountStore.init(await backend.getItem('mona_accounts') as any)
     await loadAccountData()
 }
@@ -222,5 +223,8 @@ function accountWatchContent() {
 }
 
 watch(accountWatchContent, value => {
+    if (loadingAccountData) {
+        return
+    }
     backend.setItem('mona_accounts', deepCopy(value))
 }, { deep: true })
