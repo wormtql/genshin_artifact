@@ -14,5 +14,8 @@ pub enum CharacterConfig {
     Yoimiya { talent1_level: f64 },
     Collei { background: bool },
     Tighnari { talent1_ratio: f64, c2_ratio: f64 },
+    Cyno { c2_stack: f64, after_q: bool },
+    Nilou { golden_rate: f64 },
+    Candace { c2_rate: f64 },
     NoConfig,
 }

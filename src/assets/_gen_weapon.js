@@ -62,6 +62,10 @@
 // 
 // import SapwoodBlade_tn from "@image/weapons/SapwoodBlade_tn"
 // 
+// import XiphosMoonlight_tn from "@image/weapons/XiphosMoonlight_tn"
+// 
+// import KeyOfKhajNisut_tn from "@image/weapons/KeyOfKhajNisut_tn"
+// 
 // import WolfsGravestone_tn from "@image/weapons/WolfsGravestone_tn"
 // 
 // import SkywardPride_tn from "@image/weapons/SkywardPride_tn"
@@ -116,6 +120,8 @@
 // 
 // import ForestRegalia_tn from "@image/weapons/ForestRegalia_tn"
 // 
+// import MakhairaAquamarine_tn from "@image/weapons/MakhairaAquamarine_tn"
+// 
 // import EngulfingLightning_tn from "@image/weapons/EngulfingLightning_tn"
 // 
 // import SkywardSpine_tn from "@image/weapons/SkywardSpine_tn"
@@ -163,6 +169,10 @@
 // import BeginnersProtector_tn from "@image/weapons/BeginnersProtector_tn"
 // 
 // import Moonpiercer_tn from "@image/weapons/Moonpiercer_tn"
+// 
+// import MissiveWindspear_tn from "@image/weapons/MissiveWindspear_tn"
+// 
+// import StaffOfTheScarletSands_tn from "@image/weapons/StaffOfTheScarletSands_tn"
 // 
 // import LostPrayerToTheSacredWinds_tn from "@image/weapons/LostPrayerToTheSacredWinds_tn"
 // 
@@ -217,6 +227,8 @@
 // import ApprenticesNotes_tn from "@image/weapons/ApprenticesNotes_tn"
 // 
 // import FruitOfFulfillment_tn from "@image/weapons/FruitOfFulfillment_tn"
+// 
+// import WanderingEvenstar_tn from "@image/weapons/WanderingEvenstar_tn"
 // 
 // import PolarStar_tn from "@image/weapons/PolarStar_tn"
 // 
@@ -913,6 +925,50 @@ export default {
         
     },
 
+    XiphosMoonlight: {
+        name: "XiphosMoonlight",
+        internalName: "Sword_Pleroma",
+        // chs: "西福斯的月光",
+        star: 4,
+        // url: XiphosMoonlight_tn,
+        url: imageUrl("Sword_Pleroma"),
+        type: "Sword",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
+            
+        ],
+        
+    },
+
+    KeyOfKhajNisut: {
+        name: "KeyOfKhajNisut",
+        internalName: "Sword_Deshret",
+        // chs: "",
+        star: 5,
+        // url: KeyOfKhajNisut_tn,
+        url: imageUrl("Sword_Deshret"),
+        type: "Sword",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
+            
+        ],
+        
+    },
+
     WolfsGravestone: {
         name: "WolfsGravestone",
         internalName: "Claymore_Wolfmound",
@@ -1457,6 +1513,28 @@ export default {
         
     },
 
+    MakhairaAquamarine: {
+        name: "MakhairaAquamarine",
+        internalName: "Claymore_Pleroma",
+        // chs: "",
+        star: 4,
+        // url: MakhairaAquamarine_tn,
+        url: imageUrl("Claymore_Pleroma"),
+        type: "Claymore",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
+            
+        ],
+        
+    },
+
     EngulfingLightning: {
         name: "EngulfingLightning",
         internalName: "Pole_Narukami",
@@ -1942,6 +2020,50 @@ export default {
         configs: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
+            
+        ],
+        
+    },
+
+    MissiveWindspear: {
+        name: "MissiveWindspear",
+        internalName: "Pole_Windvane",
+        // chs: "",
+        star: 4,
+        // url: MissiveWindspear_tn,
+        url: imageUrl("Pole_Windvane"),
+        type: "Polearm",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
+            
+        ],
+        
+    },
+
+    StaffOfTheScarletSands: {
+        name: "StaffOfTheScarletSands",
+        internalName: "Pole_Deshret",
+        // chs: "",
+        star: 5,
+        // url: StaffOfTheScarletSands_tn,
+        url: imageUrl("Pole_Deshret"),
+        type: "Polearm",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
@@ -2496,6 +2618,28 @@ export default {
         configs: [
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
+            
+        ],
+        
+    },
+
+    WanderingEvenstar: {
+        name: "WanderingEvenstar",
+        internalName: "Catalyst_Pleroma",
+        // chs: "",
+        star: 4,
+        // url: WanderingEvenstar_tn,
+        url: imageUrl("Catalyst_Pleroma"),
+        type: "Catalyst",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
             
         ],
         

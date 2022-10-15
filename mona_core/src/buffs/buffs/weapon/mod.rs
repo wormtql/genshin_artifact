@@ -12,3 +12,6 @@ pub use bow::elegy_of_the_end::BuffElegyOfTheEnd;
 pub use catalyst::hakushin_ring::BuffHakushinRing;
 pub use sword::sapwood_blade::BuffSapwoodBlade;
 pub use polearm::moonpiercer::BuffMoonpiercer;
+pub use sword::xiphos_moonlight::BuffXiphosMoonlight;
+pub use claymore::makhaira_aquamarine::BuffMakhairaAquamarine;
+pub use sword::key_of_khaj_nisut::BuffKeyOfKhajNisut;

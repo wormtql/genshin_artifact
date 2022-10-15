@@ -29,6 +29,8 @@ pub use dull_blade::DullBlade;
 pub use haran_geppaku_futsu::HaranGeppakuFutsu;
 pub use cursed_blade::CursedBlade;
 pub use sapwood_blade::SapwoodBlade;
+pub use xiphos_moonlight::XiphosMoonlight;
+pub use key_of_khaj_nisut::KeyOfKhajNisut;
 
 pub mod mistsplitter_reforged;
 pub mod aquila_favonia;
@@ -61,3 +63,5 @@ pub mod dull_blade;
 pub mod haran_geppaku_futsu;
 pub mod cursed_blade;
 pub mod sapwood_blade;
+pub mod xiphos_moonlight;
+pub mod key_of_khaj_nisut;

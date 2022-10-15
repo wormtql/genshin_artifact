@@ -195,12 +195,13 @@ impl CharacterTrait for Mona {
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
-        let role: MonaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
-        match role {
-            MonaRoleEnum::General => Box::new(MonaDefaultTargetFunction {
-                recharge_demand: 1.4
-            }),
-            _ => todo!()
-        }
+        // let role: MonaRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
+        // match role {
+        //     MonaRoleEnum::General => Box::new(MonaDefaultTargetFunction {
+        //         recharge_demand: 1.4
+        //     }),
+        //     _ =>
+        // }
+        unimplemented!()
     }
 }

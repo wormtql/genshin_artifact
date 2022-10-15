@@ -88,6 +88,10 @@ pub enum BuffName {
     ShikanoinHeizouTalent2,
     TighnariC4,
     DoriC4,
+    NilouTalent1,
+    NilouTalent2,
+    CandaceQ,
+    CandaceTalent2,
 
     // weapon
     FreedomSworn,
@@ -98,6 +102,9 @@ pub enum BuffName {
     HakushinRing,
     SapwoodBlade,
     Moonpiercer,
+    XiphosMoonlight,
+    MakhairaAquamarine,
+    KeyOfKhajNisut,
 
     ResonancePyro2,
     ResonanceCryo2,

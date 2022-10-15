@@ -44,6 +44,8 @@ pub enum WeaponName {
     HaranGeppakuFutsu,
     CursedBlade,
     SapwoodBlade,
+    XiphosMoonlight,
+    KeyOfKhajNisut,
 
     // claymore
     WolfsGravestone,
@@ -73,6 +75,7 @@ pub enum WeaponName {
     OldMercsPal,
     WasterGreatsword,
     ForestRegalia,
+    MakhairaAquamarine,
 
     // polearm
     EngulfingLightning,
@@ -99,6 +102,8 @@ pub enum WeaponName {
     IronPoint,
     BeginnersProtector,
     Moonpiercer,
+    MissiveWindspear,
+    StaffOfTheScarletSands,
 
     // catalyst
     LostPrayerToTheSacredWinds,
@@ -128,6 +133,7 @@ pub enum WeaponName {
     PocketGrimoire,
     ApprenticesNotes,
     FruitOfFulfillment,
+    WanderingEvenstar,
 
     // bows
     PolarStar,
