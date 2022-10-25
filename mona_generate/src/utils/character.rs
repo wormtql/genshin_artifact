@@ -144,6 +144,7 @@ pub fn get_character_dmg_names_chs() -> Vec<String> {
         Nilou,
         Candace,
         Cyno,
+        Nahida
     ];
 
     for &name in names_order.iter() {

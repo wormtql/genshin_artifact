@@ -22,6 +22,7 @@ pub struct SimpleDamageBuilder {
     pub ratio_atk: f64,
     pub ratio_def: f64,
     pub ratio_hp: f64,
+    pub ratio_em: f64,
 
     pub extra_enhance_melt: f64,
     pub extra_enhance_vaporize: f64,
@@ -36,6 +37,10 @@ impl DamageBuilder for SimpleDamageBuilder {
 
     fn new() -> Self {
         Self::new(0.0, 0.0, 0.0)
+    }
+
+    fn add_em_ratio(&mut self, _key: &str, value: f64) {
+        self.ratio_em += value;
     }
 
     fn add_atk_ratio(&mut self, _key: &str, value: f64) {
@@ -132,6 +137,7 @@ impl DamageBuilder for SimpleDamageBuilder {
             = (attribute.get_def_ratio(element, skill) + self.ratio_def) * def
             + (attribute.get_hp_ratio(element, skill) + self.ratio_hp) * hp
             + (attribute.get_atk_ratio(element, skill) + self.ratio_atk) * atk
+            + em * self.ratio_em
             + attribute.get_extra_damage(element, skill)
             + self.extra_damage;
 
@@ -306,6 +312,7 @@ impl SimpleDamageBuilder {
             ratio_hp,
             extra_enhance_melt: 0.0,
             ratio_def,
+            ratio_em: 0.0,
             extra_atk: 0.0,
 
             extra_def: 0.0,

@@ -181,6 +181,8 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
+
+
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
@@ -1688,6 +1690,24 @@ export default {
             {"default":1000.0,"max":3000.0,"min":0.0,"name":"other_em","title":"t21","type":"float"},
             
             {"default":7.0,"max":10.0,"min":0.0,"name":"other_bloom_ratio","title":"t22","type":"float"},
+            
+        ],
+    },
+    
+    "NahidaDefault": {
+        name: "NahidaDefault",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "Nahida",
+        
+        badge: getImage("UI_AvatarIcon_Lisa"),
+        
+        config: [
             
         ],
     },

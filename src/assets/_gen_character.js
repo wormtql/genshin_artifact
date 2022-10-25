@@ -124,6 +124,10 @@ import Lisa_splash from "@image/characters/Lisa_splash"
 // import Mona_avatar from "@image/characters/Mona_avatar"
 import Mona_splash from "@image/characters/Mona_splash"
 
+// import Nahida_card from "@image/characters/Nahida_card"
+// import Nahida_avatar from "@image/characters/Nahida_avatar"
+import Nahida_splash from "@image/characters/Nahida_splash"
+
 // import Nilou_card from "@image/characters/Nilou_card"
 // import Nilou_avatar from "@image/characters/Nilou_avatar"
 import Nilou_splash from "@image/characters/Nilou_splash"
@@ -2104,6 +2108,62 @@ export default {
             
         ],
         configSkill: [
+            
+        ],
+    },
+    
+    Nahida: {
+        name: "Nahida",
+        // chs: "",
+        element: "Dendro",
+        weapon: "Catalyst",
+        star: 5,
+        // card: Nahida_card,
+        // avatar: Nahida_avatar,
+        avatar: getName("Nahida"),
+        splash: Nahida_splash,
+        skillName1: "",
+        skillName2: "",
+        skillName3: "",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 2 },
+            
+            { index: 3, text: 3 },
+            
+            { index: 4, text: 38 },
+            
+            { index: 5, text: 7 },
+            
+            { index: 6, text: 8 },
+            
+            { index: 7, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 8, text: 49 },
+            
+            { index: 9, text: 63 },
+            
+            { index: 10, text: 233 },
+            
+        ],
+        skillMap3: [
+            
+        ],
+        config: [
+            
+        ],
+        configSkill: [
+            
+            {"default":true,"name":"q_bonus","title":"c47","type":"bool"},
+            
+            {"default":2,"max":2,"min":1,"name":"q_bonus_count","title":"c48","type":"int"},
             
         ],
     },

@@ -60,6 +60,7 @@ pub use dori::Dori;
 pub use cyno::Cyno;
 pub use nilou::Nilou;
 pub use candace::Candace;
+pub use nahida::Nahida;
 
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::damage::damage_builder::DamageBuilder;
@@ -126,6 +127,7 @@ pub mod dori;
 pub mod cyno;
 pub mod nilou;
 pub mod candace;
+pub mod nahida;
 
 pub fn get_static_data(name: CharacterName) -> CharacterStaticData {
     name.get_static_data()

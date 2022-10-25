@@ -187,6 +187,7 @@ export default {
         Nilou: "Nilou",
         Candace: "Candace",
         Cyno: "Cyno",
+        Nahida: "Nahida",
     },
     artifact: {
         "DeepwoodMemories": {
@@ -1132,6 +1133,8 @@ export default {
         c44: "Pactsworn Pathclearer",
         c45: "Enable 「Judication」",
         c46: "C2「Ceremony: Homecoming of Spirits」Stacks",
+        c47: "Q Pyro Bonus",
+        c48: "Q Pyro Count",
 
         t1: "Type",
         t2: "Trigger Element",
@@ -1414,6 +1417,7 @@ export default {
         TighnariDefault: "Tighnari-Verdant Strider",
         NilouDefault: "Nilou-Dance of Lotuslight",
         CynoDefault: "Cyno-Judicator of Secrets",
+        NahidaDefault: "Nahida-Physic of Purity"
     },
     tfDesc: {
         MaxATK: "Maximize ATK",
@@ -1491,6 +1495,7 @@ export default {
         TighnariDefault: "Maximize Tighnari Charged Attack",
         NilouDefault: "Nilou DPS",
         CynoDefault: "Perform QTE and unleash Duststalker Bolts, best combo would be applied automatically basing on artifact set",
+        NahidaDefault: "Maximize Nahida's Tri-Karma Purification DMG",
     },
     dmg: {
         electroCharged: "Electro-Charged",
@@ -1578,6 +1583,7 @@ export default {
         Nilou: ["Normal Attack: Dance of Samser", "Dance of Haftkarsvar", "Dance of Abzendegi: Distant Dreams, Listening Spring"],
         Candace: ["Normal Attack: Gleaming Spear – Guardian Stance", "Sacred Rite: Heron’s Sanctum", "Sacred Rite: Wagtail’s Tide"],
         Cyno: ["Normal Attack: Invoker's Spear","Secret Rite: Chasmic Soulfarer","Sacred Rite: Wolf’s Swiftness"],
+        Nahida: ["Normal Attack: Akara", "All Schemes to Know", "Illusory Heart"],
     },
     dmgName: [
         "1-Hit DMG",
@@ -1813,6 +1819,7 @@ export default {
         "Pactsworn Pathclearer: High Plunging DMG",
         "Pactsworn Pathclearer: Mortuary Rite DMG",
         "Pactsworn Pathclearer: Duststalker Bolt DMG",
+        "Tri-Karma Purification DMG",
     ],
     res: {
         Pyro: "Pyro Res",

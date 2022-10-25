@@ -162,6 +162,7 @@ export default {
         Nilou: "妮露",
         Candace: "坎蒂丝",
         Cyno: "赛诺",
+        Nahida: "纳西妲",
     },
     artifact: {
         "DeepwoodMemories": {
@@ -1107,6 +1108,8 @@ export default {
         c44: "启途誓使",
         c45: "触发「裁定」效果",
         c46: "命座2「令仪·引谒归灵」等效层数",
+        c47: "Q技能火元素加伤",
+        c48: "Q技能火元素个数",
 
         t1: "类型",
         t2: "触发元素",
@@ -1416,6 +1419,7 @@ export default {
         TighnariDefault: "提纳里-浅蔚轻行",
         NilouDefault: "妮露-莲光落舞筵",
         CynoDefault: "赛诺-缄秘的裁谴",
+        NahidaDefault: "纳西妲-白草净华"
     },
     tfDesc: {
         MaxATK: "最大化攻击力",
@@ -1493,6 +1497,7 @@ export default {
         TighnariDefault: "使得提纳里的重击伤害最大",
         NilouDefault: "普通输出妮露",
         CynoDefault:"打QTE并释放渡荒之雷，会根据套装自动选择手法，如激化草全覆盖则激化比例留1.0即可",
+        NahidaDefault: "使纳西妲灭净三业伤害最大",
     },
     dmg: {
         electroCharged: "感电",
@@ -1580,6 +1585,7 @@ export default {
         Nilou: ["普通攻击·弦月舞步", "七域舞步", "浮莲舞步·远梦聆泉"],
         Candace: ["普通攻击·流耀枪术·守势", "圣仪·苍鹭庇卫", "圣仪·灰鸰衒潮"],
         Cyno: ["普通攻击·七圣枪术", "秘仪·律渊渡魂", "圣仪·煟煌随狼行"],
+        Nahida: ["普通攻击·行相", "所闻遍计", "心景幻成"],
     },
     dmgName: [
         "一段伤害",
@@ -1815,6 +1821,7 @@ export default {
         "启途誓使：高空坠地冲击伤害",
         "启途誓使：冥祭伤害",
         "启途誓使：渡荒之雷伤害",
+        "灭净三业伤害",
     ],
     res: {
         Pyro: "火抗",
