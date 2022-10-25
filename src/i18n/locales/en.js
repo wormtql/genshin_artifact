@@ -1241,6 +1241,7 @@ export default {
         b41: "Apply Ratio",
         b42: "Nilou's HP",
         b43: "Candace's HP",
+        b44: "Opponents Marked",
     },
     ele: {
         Pyro: "Pyro",

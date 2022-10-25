@@ -204,7 +204,7 @@ impl CharacterTrait for Noelle {
                 Normal3 => NOELLE_SKILL.normal_dmg3[s1],
                 Normal4 => NOELLE_SKILL.normal_dmg4[s1],
                 Charged1 => NOELLE_SKILL.charged_dmg1[s1],
-                Charged2 => NOELLE_SKILL.charged_dmg1[s1],
+                Charged2 => NOELLE_SKILL.charged_dmg2[s1],
                 Plunging1 => NOELLE_SKILL.plunging_dmg1[s1],
                 Plunging2 => NOELLE_SKILL.plunging_dmg2[s1],
                 Plunging3 => NOELLE_SKILL.plunging_dmg3[s1],
