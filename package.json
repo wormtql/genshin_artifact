@@ -36,7 +36,7 @@
     "object-hash": "^2.2.0",
     "pinia": "^2.0.14",
     "ua-parser-js": "^1.0.2",
-    "vue": "^3.2.36",
+    "vue": "^3.2.41",
     "vue-echarts": "^6.1.0",
     "vue-i18n": "9",
     "vue-router": "4"
