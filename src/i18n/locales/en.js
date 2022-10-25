@@ -907,6 +907,7 @@ export default {
         WanderingEvenstar: "Wandering Evenstar",
         KeyOfKhajNisut: "Key of Khaj-Nisut",
         StaffOfTheScarletSands: "Staff of the Scarlet Sands",
+        AThousandFloatingDreams: "A Thousand Floating Dreams",
     },
     weaponEffect: {
         MistsplitterReforged: "Gain a <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> Elemental DMG Bonus for all elements and receive the might of the Mistsplitter\'s Emblem. At stack levels 1/2/3, the Mistsplitter\'s Emblem provides a <span style=\"color: #409EFF;\">8/16/28%-10/20/35%-12/24/42%-14/28/49%-16/32/56%</span> Elemental DMG Bonus for the character\'s Elemental Type. The character will obtain 1 stack of Mistsplitter\'s Emblem in each of the following scenarios: Normal Attack deals Elemental DMG (stack lasts 5s), casting Elemental Burst (stack lasts 10s); Energy is less than 100% (stack disappears when Energy is full). Each stack\'s duration is calculated independently.",
@@ -1056,6 +1057,7 @@ export default {
         WanderingEvenstar: "The following effect will trigger every 10s: The equipping character will gain <span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span> of their Elemental Mastery as bonus ATK for 12s, with nearby party members gaining 30% of this buff for the same duration. Multiple instances of this weapon can allow this buff to stack. This effect will still trigger even if the character is not on the field.",
         KeyOfKhajNisut: "HP increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. When an Elemental Skill hits opponents, you gain the Grand Hymn effect for 20s. This effect increases the equipping character's Elemental Mastery by <span style=\"color: #409EFF;\">0.12%-0.15%-0.18%-0.21%-0.24%</span> of their Max HP. This effect can trigger once every 0.3s. Max 3 stacks. When this effect gains 3 stacks, or when the third stack's duration is refreshed, the Elemental Mastery of all nearby party members will be increased by <span style=\"color: #409EFF;\">0.2%-0.25%-0.3%-0.35%-0.4%</span> of the equipping character's max HP for 20s.",
         StaffOfTheScarletSands: "The equipping character gains <span style=\"color: #409EFF;\">52%-65%-78%-91%-104%</span> of their Elemental Mastery as bonus ATK. When an Elemental Skill hits opponents, the Dream of the Scarlet Sands effect will be gained for 10s: The equipping character will gain <span style=\"color: #409EFF;\">28%-35%-42%-49%-56%</span> of their Elemental Mastery as bonus ATK. Max 3 stacks.",
+        AThousandFloatingDreams: "Party members other than the equipping character will provide the equipping character with buffs based on whether their Elemental Type is the same as the latter or not. If their Elemental Types are the same, increase Elemental Mastery by <span style=\"color: #409EFF;\">32-40-48-56-64</span>. If not, increase the equipping character’s DMG Bonus from their Elemental Type by <span style=\"color: #409EFF;\">10%-14%-18%-22%-26%</span>. Each of the aforementioned effects can have up to 3 stacks. Additionally, all nearby party members other than the equipping character will have their Elemental Mastery increased by <span style=\"color: #409EFF;\">40-42-44-46-48</span>. Multiple such effects from multiple such weapons can stack.",
     },
     config: {
         w1: "Avg Effect Stack",
@@ -1086,6 +1088,8 @@ export default {
         w26: "「Mistsplitter\'s Emblem」Stack",
         w27: "EM",
         w28: "HP",
+        w29: "Same Element Count",
+        w30: "Diff Element Count",
 
         c1: "Talent「Harmony Between Heaven and Earth」Apply Ratio",
         c2: "Talent「Undivided Heart」Apply Ratio",
