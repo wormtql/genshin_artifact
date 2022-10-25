@@ -92,6 +92,7 @@ pub enum BuffName {
     NilouTalent2,
     CandaceQ,
     CandaceTalent2,
+    NahidaTalent1,
 
     // weapon
     FreedomSworn,

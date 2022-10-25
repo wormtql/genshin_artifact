@@ -1,3 +1,4 @@
+use pest::consumes_to;
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
@@ -77,6 +78,20 @@ impl NahidaDamageEnum {
     }
 }
 
+pub struct NahidaEffect {
+    pub c4: bool,
+    pub e_count: usize,
+}
+
+impl<A: Attribute> ChangeAttribute<A> for NahidaEffect {
+    fn change_attribute(&self, attribute: &mut A) {
+        if self.c4 {
+            let em = 20.0 * self.e_count as f64 + 80.0;
+            attribute.set_value_by(AttributeName::ElementalMastery, "C4: 比量现行之茎", em);
+        }
+    }
+}
+
 pub struct Nahida;
 
 impl CharacterTrait for Nahida {
@@ -123,6 +138,15 @@ impl CharacterTrait for Nahida {
     };
 
     #[cfg(not(target_family = "wasm"))]
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "c4_e_count",
+            title: "c49",
+            config: ItemConfigType::Int { min: 0, max: 4, default: 4 },
+        }
+    ]);
+
+    #[cfg(not(target_family = "wasm"))]
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "q_bonus",
@@ -166,13 +190,15 @@ impl CharacterTrait for Nahida {
             builder.add_atk_ratio("技能倍率", ratio_atk);
             builder.add_em_ratio("技能倍率", ratio_em);
 
-            let em = context.attribute.get_value(AttributeName::ElementalMastery);
-            if em > 200.0 {
-                let bonus = (em - 200.0) * 0.001;
-                let bonus_crit = (em - 200.0) * 0.0003;
+            if context.character_common_data.has_talent2 {
+                let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                if em > 200.0 {
+                    let bonus = (em - 200.0) * 0.001;
+                    let bonus_crit = (em - 200.0) * 0.0003;
 
-                builder.add_extra_critical("慧明缘觉智论", bonus_crit);
-                builder.add_extra_bonus("慧明缘觉智论", bonus);
+                    builder.add_extra_critical("慧明缘觉智论", bonus_crit);
+                    builder.add_extra_bonus("慧明缘觉智论", bonus);
+                }
             }
 
             let (q_bonus, q_bonus_count) = match *config {
@@ -200,7 +226,14 @@ impl CharacterTrait for Nahida {
     }
 
     fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
-        None
+        let e_count = match *config {
+            CharacterConfig::Nahida { c4_e_count } => c4_e_count,
+            _ => 0
+        };
+        Some(Box::new(NahidaEffect {
+            c4: common_data.constellation >= 4,
+            e_count
+        }))
     }
 
     fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {

@@ -38,6 +38,7 @@ pub use tighnari::BuffTighnariC4;
 pub use dori::BuffDoriC4;
 pub use nilou::{BuffNilouTalent2, BuffNilouTalent1};
 pub use candace::{BuffCandaceQ, BuffCandaceTalent2};
+pub use nahida::BuffNahidaTalent1;
 
 pub mod albedo;
 pub mod aloy;
@@ -79,3 +80,4 @@ pub mod tighnari;
 pub mod dori;
 pub mod nilou;
 pub mod candace;
+pub mod nahida;

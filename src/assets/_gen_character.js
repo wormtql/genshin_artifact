@@ -2158,6 +2158,8 @@ export default {
         ],
         config: [
             
+            {"default":4,"max":4,"min":0,"name":"c4_e_count","title":"c49","type":"int"},
+            
         ],
         configSkill: [
             

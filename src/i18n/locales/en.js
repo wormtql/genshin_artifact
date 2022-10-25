@@ -1135,6 +1135,7 @@ export default {
         c46: "C2「Ceremony: Homecoming of Spirits」Stacks",
         c47: "Q Pyro Bonus",
         c48: "Q Pyro Count",
+        c49: "(C4) Schemes to Know‘s Seeds of Skandha Enemy Count",
 
         t1: "Type",
         t2: "Trigger Element",
@@ -1970,6 +1971,7 @@ export default {
         NilouTalent2: "Nilou-「Dreamy Dance of Aeons」",
         CandaceQ: "Candace-「Prayer of the Crimson Crown」",
         CandaceTalent2: "Candace-「Celestial Dome of Sand」",
+        NahidaTalent1: "Nahida-「Compassion Illuminated」",
     },
     buffDesc: {
         ATKFixed: "",
@@ -2074,6 +2076,7 @@ export default {
         NilouTalent2: "Each 1,000 points of Nilou’s Max HP above 30,000 will cause the DMG dealt by Bountiful Cores created by characters affected by Golden Chalice’s Bounty to increase by 7%.<br>The maximum increase in Bountiful Core DMG that can be achieved this way is 300%.",
         CandaceQ: "Characters deal increased Elemental DMG with their Normal Attacks(20%)",
         CandaceTalent2: "Characters affected by the Prayer of the Crimson Crown caused by Sacred Rite: Wagtail’s Tide will deal 0.5% increased DMG to opponents for every 1,000 points of Candace’s Max HP when they deal Elemental DMG with their Normal Attacks.",
+        NahidaTalent1: "When unleashing Illusory Heart, the Shrine of Maya will gain the following effects:<br>The Elemental Mastery of the active character within the field will be increased by 25% of the Elemental Mastery of the party member with the highest Elemental Mastery. You can gain a maximum of 250 Elemental Mastery in this manner.",
     },
     buffGenre: {
         Character: "Character BUFF",

@@ -215,6 +215,8 @@ import BaseDmg_image from "@image/misc/sword"
 
 
 
+
+
 import ResonancePyro2_image from "@image/misc/pyro"
 
 
@@ -1421,6 +1423,21 @@ export default {
         config: [
             
             {"default":30000.0,"name":"hp","title":"b43","type":"floatInput"},
+            
+        ],
+    },
+    
+    "NahidaTalent1": {
+        name: "NahidaTalent1",
+        // chs: "",
+        
+        badge: getImage("Nahida"),
+        
+        genre: "Character",
+        // description: "",
+        config: [
+            
+            {"default":1000.0,"max":3000.0,"min":0.0,"name":"max_em","title":"b44","type":"float"},
             
         ],
     },

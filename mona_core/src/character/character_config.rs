@@ -17,5 +17,6 @@ pub enum CharacterConfig {
     Cyno { c2_stack: f64, after_q: bool },
     Nilou { golden_rate: f64 },
     Candace { c2_rate: f64 },
+    Nahida { c4_e_count: usize },
     NoConfig,
 }
