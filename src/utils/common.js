@@ -77,27 +77,6 @@ export function downloadString(text, fileType, filename) {
     setTimeout(function() { URL.revokeObjectURL(a.href) }, 1500)
 }
 
-export function element2Chs(element) {
-    switch (element) {
-        case "Pyro":
-            return "火"
-        case "Hydro":
-            return "水"
-        case "Electro":
-            return "雷"
-        case "Anemo":
-            return "风"
-        case "Cryo":
-            return "冰"
-        case "Geo":
-            return "岩"
-        case "Physical":
-            return "物理"
-        case "Dendro":
-            return "草"
-    }
-}
-
 export function loadScript(url) {
     const removeElement = ele => {
         setTimeout(() => {

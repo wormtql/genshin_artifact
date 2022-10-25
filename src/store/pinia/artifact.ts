@@ -79,7 +79,7 @@ const f = () => {
         artifacts.value.delete(id)
     }
 
-    function addArtifact(artifact: IArtifactContentOnly, omit: boolean = false) {
+    function addArtifact(artifact: IArtifactContentOnly, omit: boolean = false): number {
         let a = deepCopy(artifact) as IArtifact
         a.omit = omit
         a.id = idProvider.generateId()
@@ -87,6 +87,8 @@ const f = () => {
 
         incHash(a.contentHash, 1)
         artifacts.value.set(a.id, a)
+
+        return a.id
     }
 
     function unlockAll() {

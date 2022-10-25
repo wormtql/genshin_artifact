@@ -123,6 +123,28 @@ function store() {
         return result
     })
 
+    function addKumi(dirId: number, name: string, artifactIds: number[]): number | null {
+        let dir = kumiById.value.get(dirId)
+        if (dir) {
+            let item: KumiItem = {
+                id: idGenerator.generateId(),
+                title: name,
+                dir: false,
+                artifactIds: artifactIds as any,
+            }
+
+            kumi.value.push(item)
+            kumiById.value.set(item.id, item)
+
+            if (dir.children) {
+                dir.children.push(item.id)
+            }
+
+            return item.id
+        } else {
+            return null
+        }
+    }
 
     function createKumi(dirId: number, name: string): number | null {
         let dir = kumiById.value.get(dirId)
@@ -212,6 +234,7 @@ function store() {
 
         createKumi,
         deleteKumi,
+        addKumi,
 
         addArtifact,
         deleteArtifact,

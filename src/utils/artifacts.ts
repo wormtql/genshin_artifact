@@ -16,6 +16,7 @@ import { useArtifactStore } from "@/store/pinia/artifact"
 import { hash, hashExceptValue } from "@/utils/artifactHash"
 import { positions } from "@/constants/artifact"
 import {useI18n} from "@/i18n/i18n";
+import {useKumiStore} from "@/store/pinia/kumi";
 
 
 const artifactStore = useArtifactStore()
@@ -85,8 +86,8 @@ export function updateArtifact(id: number, newArtifact: IArtifactContentOnly): v
     artifactStore.updateArtifact(id, newArtifact)
 }
 
-export function newArtifact(artifact: IArtifactContentOnly, omit: boolean = false) {
-    artifactStore.addArtifact(artifact, omit)
+export function newArtifact(artifact: IArtifactContentOnly, omit: boolean = false): number {
+    return artifactStore.addArtifact(artifact, omit)
 }
 
 
@@ -98,9 +99,13 @@ interface ImportJsonResult {
 }
 
 export function importMonaJson(rawObj: any, removeNonExisting: boolean): ImportJsonResult {
+    // hash of level, main stat, sub stats, rarity, set name, slot
     let hashAll: Record<string, IArtifact> = {}
+    // hash of level, main stat without value, sub stats without value, rarity, set name, slot
     let hashEV: Record<string, IArtifact> = {}
     let existingIds = new Set()
+
+    let equips: Map<string, number[]> = new Map()
 
     for (let artifact of artifactStore.artifacts.value.values()) {
         const h = hash(artifact)
@@ -118,30 +123,40 @@ export function importMonaJson(rawObj: any, removeNonExisting: boolean): ImportJ
     for (let artifact of importFlat) {
         const h = hash(artifact)
         const hev = hashExceptValue(artifact)
+        let artifactId = 0
 
         if (hashAll[h]) {
             // this artifacts exists
             const id = hashAll[h].id
             skipCount += 1
             existingIds.add(id)
-            continue
-        }
-
-        if (hashEV[hev] && artifact.level > hashEV[hev].level) {
+            artifactId = id
+        } else if (hashEV[hev] && artifact.level > hashEV[hev].level) {
             // this artifacts is upgraded
-            console.log("upgrade")
-            console.log("old", JSON.stringify(hashEV[hev]))
-            console.log("new", JSON.stringify(artifact))
+            // console.log("upgrade")
+            // console.log("old", JSON.stringify(hashEV[hev]))
+            // console.log("new", JSON.stringify(artifact))
             const id = hashEV[hev].id
             updateArtifact(id, artifact)
             upgradeCount += 1
             existingIds.add(id)
-            continue
+            artifactId = id
+        } else {
+            // new artifact
+            newCount += 1
+            artifactId = newArtifact(artifact, !!artifact.omit)
         }
 
-        // new artifact
-        newCount += 1
-        newArtifact(artifact, !!artifact.omit)
+        if (artifact.equip && artifact.equip !== "") {
+            // artifact has equip data
+            const equipCharacter = artifact.equip
+            let arr = equips.get(equipCharacter)
+            if (arr === undefined) {
+                arr = []
+                equips.set(equipCharacter, arr)
+            }
+            arr.push(artifactId)
+        }
     }
 
     let removeCount = 0
@@ -157,6 +172,16 @@ export function importMonaJson(rawObj: any, removeNonExisting: boolean): ImportJ
     }
 
     console.log(`import result: skip${skipCount}, upgrade${upgradeCount}, new${newCount}, remove${removeCount}`)
+
+    // add new artifacts groups to store
+    const kumiStore = useKumiStore()
+    for (const equipName of equips.keys()) {
+        const artifacts = equips.get(equipName)
+        if (artifacts !== undefined) {
+            kumiStore.addKumi(0, equipName, artifacts)
+        }
+    }
+
     return {
         skip: skipCount,
         upgrade: upgradeCount,
