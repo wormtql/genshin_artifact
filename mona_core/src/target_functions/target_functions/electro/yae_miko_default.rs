@@ -3,7 +3,7 @@ use crate::artifacts::effect_config::{ArtifactEffectConfig, ArtifactEffectConfig
 use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
-use crate::character::characters::yae_miko::YaeMiko;
+use crate::character::characters::electro::yae_miko::YaeMiko;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};

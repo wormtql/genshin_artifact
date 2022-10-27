@@ -116,6 +116,10 @@ import KujouSara_splash from "@image/characters/KujouSara_splash"
 // import KukiShinobu_avatar from "@image/characters/KukiShinobu_avatar"
 import KukiShinobu_splash from "@image/characters/KukiShinobu_splash"
 
+// import Layla_card from "@image/characters/Layla_card"
+// import Layla_avatar from "@image/characters/Layla_avatar"
+import Layla_splash from "@image/characters/Layla_splash"
+
 // import Lisa_card from "@image/characters/Lisa_card"
 // import Lisa_avatar from "@image/characters/Lisa_avatar"
 import Lisa_splash from "@image/characters/Lisa_splash"
@@ -1995,6 +1999,58 @@ export default {
             {"default":true,"name":"hp_le_50","title":"c11","type":"bool"},
             
             {"default":false,"name":"use_c6","title":"c12","type":"bool"},
+            
+        ],
+        configSkill: [
+            
+        ],
+    },
+    
+    Layla: {
+        name: "Layla",
+        // chs: "",
+        element: "Cryo",
+        weapon: "Sword",
+        star: 4,
+        // card: Layla_card,
+        // avatar: Layla_avatar,
+        avatar: getName("Layla"),
+        splash: Layla_splash,
+        skillName1: "",
+        skillName2: "",
+        skillName3: "",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 2 },
+            
+            { index: 3, text: 5 },
+            
+            { index: 4, text: 6 },
+            
+            { index: 5, text: 7 },
+            
+            { index: 6, text: 8 },
+            
+            { index: 7, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 8, text: 19 },
+            
+            { index: 9, text: 234 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 10, text: 235 },
+            
+        ],
+        config: [
             
         ],
         configSkill: [

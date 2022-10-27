@@ -3,7 +3,7 @@ use crate::artifacts::effect_config::{ArtifactEffectConfig, ConfigRate};
 use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
-use crate::character::characters::raiden_shogun::RaidenShogun;
+use crate::character::characters::electro::raiden_shogun::RaidenShogun;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};

@@ -55,6 +55,7 @@ pub enum CharacterName {
     Klee,
     KujouSara,
     KukiShinobu,
+    Layla,
     Lisa,
     Mona,
     Nahida,

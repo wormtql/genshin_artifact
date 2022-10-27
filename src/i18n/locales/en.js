@@ -188,6 +188,7 @@ export default {
         Candace: "Candace",
         Cyno: "Cyno",
         Nahida: "Nahida",
+        Layla: "Layla"
     },
     artifact: {
         "DeepwoodMemories": {
@@ -1589,6 +1590,7 @@ export default {
         Candace: ["Normal Attack: Gleaming Spear – Guardian Stance", "Sacred Rite: Heron’s Sanctum", "Sacred Rite: Wagtail’s Tide"],
         Cyno: ["Normal Attack: Invoker's Spear","Secret Rite: Chasmic Soulfarer","Sacred Rite: Wolf’s Swiftness"],
         Nahida: ["Normal Attack: Akara", "All Schemes to Know", "Illusory Heart"],
+        Layla: ["Normal Attack: Sword of the Radiant Path", "Nights of Formal Focus", "Dream of the Star-Stream Shaker"],
     },
     dmgName: [
         "1-Hit DMG",
@@ -1825,6 +1827,8 @@ export default {
         "Pactsworn Pathclearer: Mortuary Rite DMG",
         "Pactsworn Pathclearer: Duststalker Bolt DMG",
         "Tri-Karma Purification DMG",
+        "Shooting Star DMG",
+        "Starlight Slug DMG",
     ],
     res: {
         Pyro: "Pyro Res",

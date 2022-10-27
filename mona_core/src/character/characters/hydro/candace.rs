@@ -6,7 +6,6 @@ use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::macros::skill_map;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
@@ -17,6 +16,7 @@ use crate::target_functions::target_functions::TartagliaDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use crate::character::macros::{skill_type, damage_enum, skill_map, damage_ratio};
 
 pub struct CandaceSkillType {
     pub normal_dmg1: [f64; 15],

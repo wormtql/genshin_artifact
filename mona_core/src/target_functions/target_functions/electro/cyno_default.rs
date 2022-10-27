@@ -5,7 +5,7 @@ use crate::artifacts::effect_config::{ArtifactEffectConfig, ArtifactEffectConfig
 use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
 use crate::character::{Character, character_common_data, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
-use crate::character::characters::cyno::Cyno;
+use crate::character::characters::electro::cyno::Cyno;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};

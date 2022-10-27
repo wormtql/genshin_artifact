@@ -4,7 +4,7 @@ use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::traits::CharacterTrait;
-use crate::character::characters::jean::Jean;
+use crate::character::characters::anemo::jean::Jean;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
