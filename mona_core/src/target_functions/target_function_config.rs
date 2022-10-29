@@ -54,6 +54,7 @@ pub enum TargetFunctionConfig {
     CynoDefault { recharge_requirement: f64, combo: usize, until_expire: bool, aggravate_rate: f64, elecharged_rate: f64, overload_rate: f64, hyperbloom_rate: f64 },
     KeqingDefault { aggravate_rate: f64 },
     NilouDefault { e_ratio: f64, q_ratio: f64, bloom_ratio: f64, other_em: f64, other_bloom_ratio: f64 },
+    NahidaDefault { em_requirement:usize, spread_rate: f64, bloom_count: f64, burn_duration:f64,pryo_teammate_count: usize, },
 
 
     BennettDamage { recharge_demand: f64, other_dmg_ratio: f64 },
