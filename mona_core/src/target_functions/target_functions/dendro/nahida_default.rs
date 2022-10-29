@@ -120,7 +120,7 @@ impl TargetFunction for NahidaDefaultTargetFunction {
             attribute: &attribute,
             enemy
         };
-        let em_req=self.em_requirement as f64;
+        let em_req=if self.em_requirement==0 { self.em_requirement+1 } else { self.em_requirement } as f64;
         type S = <Nahida as CharacterTrait>::DamageEnumType;
         
         let pryo_count=
