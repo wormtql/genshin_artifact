@@ -139,9 +139,10 @@ impl TargetFunction for NahidaDefaultTargetFunction {
         let dmg_e3 = Nahida::damage::<SimpleDamageBuilder>(&context, S::E3, &skill_config, None);
         let trans = context.transformative();
 
-        (dmg_e3.spread.unwrap().expectation * self.spread_rate + dmg_e3.normal.expectation * (1.0 - self.spread_rate) +
-            self.bloom_count * trans.bloom
-            //+self.burn_duration*trans.burn
+        (     dmg_e3.spread.unwrap().expectation * self.spread_rate 
+            + dmg_e3.normal.expectation * (1.0 - self.spread_rate)
+            + self.bloom_count * trans.bloom
+            + self.burn_duration * trans.burning*4.0
         ) * (em_req.min(attribute.get_value(AttributeName::ElementalMastery)))
     }
 }
