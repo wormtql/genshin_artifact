@@ -1518,6 +1518,8 @@ export default {
         swirlPyro: "扩散（火）",
         swirlCryo: "扩散（冰）",
         swirlHydro: "扩散（水）",
+        burning: "燃烧",
+        crystallize: "结晶盾",
         "Pyro": "火元素伤害",
         "Hydro": "水元素伤害",
         "Electro": "雷元素伤害",
