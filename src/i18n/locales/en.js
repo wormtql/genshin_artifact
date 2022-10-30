@@ -1169,6 +1169,9 @@ export default {
         t25: "Electro-charge Ratio",
         t26: "Overload Ratio",
         t27: "Hyperbloom Ratio",
+        t28: "Elemental Mastery Requirement",
+        t29: "Buring Duration",
+        t30: "Pryo Team Member Count",
 
         a1: "Element",
         a2: "Effect Apply Ratio",

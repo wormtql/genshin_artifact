@@ -1144,6 +1144,9 @@ export default {
         t25: "感电比例",
         t26: "超载比例",
         t27: "超绽放比例",
+        t28: "精通需求",
+        t29: "燃烧持续时间（秒）",
+        t30: "火系队友数量",
 
         a1: "元素",
         a2: "效果应用比例",
@@ -1504,7 +1507,7 @@ export default {
         TighnariDefault: "使得提纳里的重击伤害最大",
         NilouDefault: "普通输出妮露",
         CynoDefault:"打QTE并释放渡荒之雷，会根据套装自动选择手法，如激化草全覆盖则激化比例留1.0即可",
-        NahidaDefault: "使纳西妲灭净三业伤害最大",
+        NahidaDefault: "使纳西妲灭净三业及反应伤害最大",
     },
     dmg: {
         electroCharged: "感电",
