@@ -1,24 +1,25 @@
 use crate::artifacts::Artifact;
 use crate::artifacts::effect_config::{ArtifactEffectConfig, ArtifactEffectConfigBuilder};
-use crate::attribute::{SimpleAttributeGraph2, Attribute};
-use crate::character::{Character, CharacterName, character_common_data};
+use crate::attribute::{Attribute, SimpleAttributeGraph2};
+use crate::attribute::attribute_name::AttributeName;
+use crate::character::{Character, character_common_data, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::Nahida;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
+use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
 use crate::target_functions::target_function::TargetFunctionMetaTrait;
 use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
-use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
-use crate::attribute::attribute_name::AttributeName;
-use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+
 pub struct NahidaDefaultTargetFunction {
-    pub em_requirement:usize,
+    pub em_requirement: usize,
     pub spread_rate: f64,
     pub bloom_count: f64,
     pub burn_duration: f64,
@@ -27,23 +28,24 @@ pub struct NahidaDefaultTargetFunction {
 
 impl NahidaDefaultTargetFunction {
     pub fn new(config: &TargetFunctionConfig) -> Self {
-        let (em_requirement, 
-            spread_rate, 
-            bloom_count, 
-            burn_duration, 
+        let (em_requirement,
+            spread_rate,
+            bloom_count,
+            burn_duration,
             pryo_teammate_count
         ) = match *config {
             TargetFunctionConfig::NahidaDefault {
-                em_requirement, 
-                spread_rate, 
-                bloom_count, 
-                burn_duration, 
-                pryo_teammate_count }  => 
-                ( em_requirement, 
-                    spread_rate, 
-                    bloom_count, 
-                    burn_duration, 
-                    pryo_teammate_count ),
+                em_requirement,
+                spread_rate,
+                bloom_count,
+                burn_duration,
+                pryo_teammate_count
+            } =>
+                (em_requirement,
+                 spread_rate,
+                 bloom_count,
+                 burn_duration,
+                 pryo_teammate_count),
             _ => (0, 0.0, 0.0, 0.0, 0),
         };
 
@@ -65,7 +67,7 @@ impl TargetFunctionMetaTrait for NahidaDefaultTargetFunction {
         description: "",
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Nahida),
-        image: TargetFunctionMetaImage::Avatar
+        image: TargetFunctionMetaImage::Avatar,
     };
 
     #[cfg(not(target_family = "wasm"))]
@@ -109,34 +111,37 @@ impl TargetFunction for NahidaDefaultTargetFunction {
 
     fn get_default_artifact_config(&self, team_config: &TeamQuantization) -> ArtifactEffectConfig {
         ArtifactEffectConfigBuilder::new()
-        .gilded_dreams(1, 2, 0.8)
-        .deepwood_memories(1.0)
-        .build()
+            .gilded_dreams(1, 2, 0.8)
+            .deepwood_memories(1.0)
+            .build()
     }
 
     fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
             attribute: &attribute,
-            enemy
+            enemy,
         };
-        let em_req=if self.em_requirement==0 { self.em_requirement+1 } else { self.em_requirement } as f64;
+        let em_req = if self.em_requirement == 0 { self.em_requirement + 1 } else { self.em_requirement } as f64;
         type S = <Nahida as CharacterTrait>::DamageEnumType;
-        
-        let pryo_count=
-        if character.common_data.constellation >= 1 {
-            (self.pryo_teammate_count + 1).min(2)
-        } else {
-            self.pryo_teammate_count.min(2)};
 
-        let skill_config = CharacterSkillConfig::Nahida { q_bonus: if self.pryo_teammate_count > 0 {true} else {false}, 
-                                                                                q_bonus_count: self.pryo_teammate_count };
+        let pryo_count =
+            if character.common_data.constellation >= 1 {
+                (self.pryo_teammate_count + 1).min(2)
+            } else {
+                self.pryo_teammate_count.min(2)
+            };
+
+        let skill_config = CharacterSkillConfig::Nahida {
+            q_bonus: if self.pryo_teammate_count > 0 { true } else { false },
+            q_bonus_count: self.pryo_teammate_count,
+        };
         let dmg_e3 = Nahida::damage::<SimpleDamageBuilder>(&context, S::E3, &skill_config, None);
-        let trans=context.transformative();
+        let trans = context.transformative();
 
-        (dmg_e3.spread.unwrap().expectation * self.spread_rate + dmg_e3.normal.expectation * (1.0-self.spread_rate) + 
-        self.bloom_count * trans.bloom
-        //+self.burn_duration*trans.burn
-        )*(em_req.min(attribute.get_value(AttributeName::ElementalMastery)))
+        (dmg_e3.spread.unwrap().expectation * self.spread_rate + dmg_e3.normal.expectation * (1.0 - self.spread_rate) +
+            self.bloom_count * trans.bloom
+            //+self.burn_duration*trans.burn
+        ) * (em_req.min(attribute.get_value(AttributeName::ElementalMastery)))
     }
 }
