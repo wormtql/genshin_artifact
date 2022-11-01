@@ -46,11 +46,15 @@ npm run build:wasm
 ```
 npm run gen_meta
 ```
-4. 运行
+4. 安装 npm 依赖
+```
+npm install
+```
+5. 运行
 ```
 npm run serve
 ```
-5. 打包
+6. 打包
 ```
 npm run build
 ```

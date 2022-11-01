@@ -1705,7 +1705,7 @@ export default {
         ],
         "for": "Nahida",
         
-        badge: getImage("UI_AvatarIcon_Lisa"),
+        badge: getImage("UI_AvatarIcon_Nahida"),
         
         config: [
             

@@ -32,7 +32,7 @@ pub struct AThousandFloatingDreams;
 impl WeaponTrait for AThousandFloatingDreams {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::AThousandFloatingDreams,
-        internal_name: "todo", // todo
+        internal_name: "Catalyst_Ayus",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM58),
         weapon_base: WeaponBaseATKFamily::ATK542,

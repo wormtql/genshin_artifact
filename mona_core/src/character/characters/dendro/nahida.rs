@@ -96,7 +96,7 @@ pub struct Nahida;
 impl CharacterTrait for Nahida {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Nahida,
-        internal_name: "Nahida", // todo
+        internal_name: "Nahida",
         chs: "",
         element: Element::Dendro,
         hp: [807, 2092, 2784, 4165, 4656, 5357, 6012, 6721, 7212, 7926, 8418, 9140, 9632, 10360],
