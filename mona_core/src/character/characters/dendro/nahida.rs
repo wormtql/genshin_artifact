@@ -192,8 +192,8 @@ impl CharacterTrait for Nahida {
             if context.character_common_data.has_talent2 {
                 let em = context.attribute.get_value(AttributeName::ElementalMastery);
                 if em > 200.0 {
-                    let bonus = (em - 200.0) * 0.001;
-                    let bonus_crit = (em - 200.0) * 0.0003;
+                    let bonus = 0.8.min((em - 200.0) * 0.001);
+                    let bonus_crit = 0.24.min((em - 200.0) * 0.0003);
 
                     builder.add_extra_critical("慧明缘觉智论", bonus_crit);
                     builder.add_extra_bonus("慧明缘觉智论", bonus);
