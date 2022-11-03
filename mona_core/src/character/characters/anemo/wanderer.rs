@@ -1,0 +1,242 @@
+use crate::attribute::{Attribute, AttributeName};
+use crate::character::character_common_data::CharacterCommonData;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
+use crate::character::character_sub_stat::CharacterSubStatFamily;
+use crate::character::skill_config::CharacterSkillConfig;
+use crate::character::traits::{CharacterSkillMap, CharacterTrait, CharacterSkillMapItem};
+use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+use crate::damage::damage_builder::DamageBuilder;
+use crate::damage::DamageContext;
+use crate::target_functions::TargetFunction;
+use crate::team::TeamQuantization;
+use crate::weapon::weapon_common_data::WeaponCommonData;
+use crate::character::macros::{skill_type, damage_enum, skill_map, damage_ratio};
+pub struct WandererSkillType {
+    pub normal_dmg1: [f64; 15],
+    pub normal_dmg2: [f64; 15],
+    pub normal_dmg3: [f64; 15],
+    pub charged_dmg1: [f64; 15],
+    pub plunging_dmg1: [f64; 15],
+    pub plunging_dmg2: [f64; 15],
+    pub plunging_dmg3: [f64; 15],
+
+    pub e_dmg: [f64; 15],
+    pub e_bonus_normal: [f64; 15],
+    pub e_bonus_charged: [f64; 15],
+
+    pub q_dmg: [f64; 15],
+}
+
+pub const WANDERER_SKILL: WandererSkillType=  WandererSkillType {
+    normal_dmg1: [0.7979,0.8628,0.9278,1.0205,1.0855,1.1597,1.2618,1.3638,1.4659,1.5772,1.6885,1.7999,1.9112,2.0225,2.1338],
+    normal_dmg2: [0.6958,0.7525,0.8091,0.89,0.9466,1.0114,1.1004,1.1894,1.2784,1.3755,1.4726,1.5697,1.6667,1.7638,1.8609],
+    normal_dmg3: [0.5612,0.6034,0.6638,0.706,0.7543,0.8207,0.887,0.9534,1.0258,1.0982,1.1707,1.2431,1.3155,1.3879,1.388],
+    charged_dmg1: [1.3208,1.4199,1.5189,1.651,1.7501,1.8491,1.9812,2.1133,2.2454,2.3774,2.5095,2.6416,2.8067,2.9718,3.1369],
+    plunging_dmg1: [0.5683,0.6145,0.6608,0.7269,0.7731,0.826,0.8987,0.9714,1.0441,1.1234,1.2027,1.282,1.3612,1.4405,1.5198],
+    plunging_dmg2: [1.1363,1.2288,1.3213,1.4535,1.5459,1.6516,1.797,1.9423,2.0877,2.2462,2.4048,2.5634,2.7219,2.8805,3.039],
+    plunging_dmg3: [1.4193,1.5349,1.6504,1.8154,1.931,2.063,2.2445,2.4261,2.6076,2.8057,3.0037,3.2018,3.3998,3.5979,3.7959],
+    e_dmg: [0.952,1.0234,1.0948,1.19,1.2614,1.3328,1.428,1.5232,1.6184,1.7136,1.8088,1.904,2.023,2.142,2.261],
+    e_bonus_normal: [0.4175,0.4425,0.4675,0.5,0.525,0.55,0.5825,0.615,0.6475,0.68,0.7125,0.745,0.7775,0.81,0.8425],
+    e_bonus_charged: [0.334,0.354,0.374,0.4,0.42,0.44,0.466,0.492,0.518,0.544,0.57,0.596,0.622,0.648,0.674],
+    q_dmg: [1.472,1.5824,1.6928,1.84,1.9504,2.0608,2.208,2.3552,2.5024,2.6496,2.7968,2.944,3.128,3.312,3.496],
+};
+
+damage_enum!(
+    WandererDamageEnum
+    Normal1
+    Normal2
+    Normal3
+    NormalC6
+    Charged1
+    Dash1
+    Plunging1
+    Plunging2
+    Plunging3
+    E1
+    Q1
+);
+
+impl WandererDamageEnum {
+    pub fn get_skill_type(&self) -> SkillType {
+        use WandererDamageEnum::*;
+        match *self {
+            E1 | Dash1 => SkillType::ElementalSkill, //TODO: dash1 => e not confirmed
+            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Charged1 => SkillType::ChargedAttack,
+            Normal1 | Normal2 | Normal3 | NormalC6 => SkillType::NormalAttack,
+            Q1 => SkillType::ElementalBurst,
+        }
+    }
+}
+
+// pub struct WandererEffect {
+//     pub talent1: bool,
+//     pub e_enabled
+//     pub e_pyro: f64,
+//     pub e_cryo: f64,
+// }
+
+// impl<A: Attribute> ChangeAttribute<A> for WandererEffect {
+//     fn change_attribute(&self, attribute: &mut A) {
+//         if self.talent1 {
+//             attribute.set_value_by(AttributeName::ATKPercentage, "天赋「拾玉得花」染火加成", 0.3*self.e_pyro);
+//             attribute.set_value_by(AttributeName::CriticalBase, "天赋「拾玉得花」染冰加成", 0.2*self.e_cryo);
+//         }
+//     }
+// }
+
+pub struct Wanderer;
+
+impl CharacterTrait for Wanderer {
+    const STATIC_DATA: CharacterStaticData = CharacterStaticData {
+        name: CharacterName::Wanderer,
+        internal_name: "Wanderer", // todo
+        chs: "流浪者",
+        element: Element::Anemo,
+        hp: [791,2053,2731,4086,4568,5256,5899,6593,7076,7777,8259,8968,9450,10164],
+        atk: [26,66,88,132,147,169,190,213,228,251,266,289,305,328],
+        def: [47,123,163,244,273,314,352,394,423,465,493,536,564,607],
+        sub_stat: CharacterSubStatFamily::CriticalRate192,
+        weapon_type: WeaponType::Catalyst,
+        star: 5,
+        skill_name1: "普通攻击·行幡鸣弦",
+        skill_name2: "羽画·风姿华歌",
+        skill_name3: "狂言·式乐五番",
+    };
+    type SkillType = WandererSkillType;
+    const SKILL: Self::SkillType = WANDERER_SKILL;
+    type DamageEnumType = WandererDamageEnum;
+    type RoleEnum = ();
+
+    #[cfg(not(target_family = "wasm"))]
+    const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
+        skill1: skill_map!(
+            WandererDamageEnum
+            Normal1 "一段伤害"
+            Normal2 "二段伤害"
+            Normal3 "三段伤害/2"
+            NormalC6 "六命额外伤害"
+            Charged1 "重击伤害"
+            Dash1 "「梦迹一风」风矢伤害"
+            Plunging1 "下坠期间伤害"
+            Plunging2 "低空坠地冲击伤害"
+            Plunging3 "高空坠地冲击伤害"
+        ),
+        skill2: skill_map!(
+            WandererDamageEnum
+            E1 "技能伤害"
+        ),
+        skill3: skill_map!(
+            WandererDamageEnum
+            Q1 "技能伤害/5"
+        )
+    };
+
+    // #[cfg(not(target_family = "wasm"))]
+    // const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        
+    // ]);
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "e_enabled",
+            title: "c50", 
+            config: ItemConfigType::Bool { default: true }
+        },
+        ItemConfig {
+            name: "e_hydro",
+            title: "c51",
+            config: ItemConfigType::Bool { default: false }
+        },
+        ItemConfig {
+            name: "e_pyro",
+            title: "c52",
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
+        },
+        ItemConfig {
+            name: "e_cryo",
+            title: "c53",
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
+        },
+        ItemConfig {
+            name: "sdpoints",
+            title: "c54",
+            config: ItemConfigType::Float { min: 0.0, max: 120.0, default: 50.0 },
+        },
+    ]);
+
+    fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
+        let s: WandererDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
+        let (s1, s2, s3) = context.character_common_data.get_3_skill();
+
+        use WandererDamageEnum::*;
+
+        let mut builder = D::new();
+
+        let ratio = match s {
+            Normal1 => WANDERER_SKILL.normal_dmg1[s1],
+            Normal2 => WANDERER_SKILL.normal_dmg2[s1],
+            Normal3 => WANDERER_SKILL.normal_dmg3[s1],
+            NormalC6 => 0.4,
+            Charged1 => WANDERER_SKILL.charged_dmg1[s1],
+            Plunging1 => WANDERER_SKILL.plunging_dmg1[s1],
+            Plunging2 => WANDERER_SKILL.plunging_dmg2[s1],
+            Plunging3 => WANDERER_SKILL.plunging_dmg3[s1],
+            Dash1 => 0.35,
+            E1 => WANDERER_SKILL.e_dmg[s2],
+            Q1 => WANDERER_SKILL.q_dmg[s3],
+            _ => 0.0
+        };
+        builder.add_atk_ratio("技能倍率", ratio);
+
+        let (e_enabled, e_hydro, e_pyro, e_cryo, sdpoints)  = match *config {
+            CharacterSkillConfig::Wanderer { e_enabled, e_hydro, e_pyro, e_cryo, sdpoints } => (e_enabled, e_hydro, e_pyro, e_cryo, sdpoints),
+            _ => (false, false, 0.0, 0.0, 0.0),
+        };
+
+        if e_enabled {
+            let bonus = match s {
+                Normal1 | Normal2 | Normal3 => WANDERER_SKILL.e_bonus_normal[s2],
+                Charged1 => WANDERER_SKILL.e_bonus_charged[s2],
+                _ => 0.0,
+            };
+            if bonus > 0.0 {
+                builder.add_extra_bonus("「优风倾姿」伤害加成", bonus);
+            }
+
+            let max_sdpoints = if e_hydro {120.0} else {100.0};
+            let q_bonus = ((max_sdpoints-sdpoints).max(0.0)*0.03).min(1.5);
+            if context.character_common_data.constellation >= 2 && s == Q1 {
+                builder.add_extra_bonus("二命「二番·箙岛月白浪」伤害加成", q_bonus)
+            }
+        }
+
+        builder.damage(
+            &context.attribute,
+            &context.enemy,
+            Element::Anemo,
+            s.get_skill_type(),
+            context.character_common_data.level,
+            fumo
+        )
+    }
+
+    fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        // let (e_pyro, e_cryo) = match *config {
+        //     CharacterConfig::Wanderer { e_pyro, e_cryo } => (e_pyro, e_cryo),
+        //     _ => (0.0, 0.0),
+        // };
+        // Some(Box::new(WandererEffect {
+        //     common_data.has_talent1,
+        //     e_pyro,
+        //     e_cryo,
+        // }))
+        None
+    }
+
+    fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {
+        unimplemented!()
+    }
+}

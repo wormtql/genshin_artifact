@@ -75,6 +75,7 @@ pub enum WeaponConfig {
     FruitOfFulfillment { stack: f64 },
     WanderingEvenstar { rate: f64 },
     AThousandFloatingDreams { same_count: usize, diff_count: usize },
+    TullaytullahsRemembrance { stack: f64 },
 
     // Bow
     PolarStar { stack: usize },

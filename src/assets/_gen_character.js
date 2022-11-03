@@ -196,6 +196,10 @@ import Tighnari_splash from "@image/characters/Tighnari_splash"
 // import Venti_avatar from "@image/characters/Venti_avatar"
 import Venti_splash from "@image/characters/Venti_splash"
 
+// import Wanderer_card from "@image/characters/Wanderer_card"
+// import Wanderer_avatar from "@image/characters/Wanderer_avatar"
+import Wanderer_splash from "@image/characters/Wanderer_splash"
+
 // import Xiangling_card from "@image/characters/Xiangling_card"
 // import Xiangling_avatar from "@image/characters/Xiangling_avatar"
 import Xiangling_splash from "@image/characters/Xiangling_splash"
@@ -3262,6 +3266,68 @@ export default {
             
         ],
         configSkill: [
+            
+        ],
+    },
+    
+    Wanderer: {
+        name: "Wanderer",
+        // chs: "流浪者",
+        element: "Anemo",
+        weapon: "Catalyst",
+        star: 5,
+        // card: Wanderer_card,
+        // avatar: Wanderer_avatar,
+        avatar: getName("Wanderer"),
+        splash: Wanderer_splash,
+        skillName1: "普通攻击·行幡鸣弦",
+        skillName2: "羽画·风姿华歌",
+        skillName3: "狂言·式乐五番",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 132 },
+            
+            { index: 3, text: 236 },
+            
+            { index: 4, text: 38 },
+            
+            { index: 5, text: 237 },
+            
+            { index: 6, text: 7 },
+            
+            { index: 7, text: 8 },
+            
+            { index: 8, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 9, text: 19 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 10, text: 238 },
+            
+        ],
+        config: [
+            
+        ],
+        configSkill: [
+            
+            {"default":true,"name":"e_enabled","title":"c50","type":"bool"},
+            
+            {"default":false,"name":"e_hydro","title":"c51","type":"bool"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"e_pyro","title":"c52","type":"float"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"e_cryo","title":"c53","type":"float"},
+            
+            {"default":50.0,"max":120.0,"min":0.0,"name":"sdpoints","title":"c54","type":"float"},
             
         ],
     },

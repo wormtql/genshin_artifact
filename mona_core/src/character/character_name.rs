@@ -76,6 +76,7 @@ pub enum CharacterName {
     Tighnari,
     // Traveler,
     Venti,
+    Wanderer,
     Xiangling,
     Xiao,
     Xingqiu,

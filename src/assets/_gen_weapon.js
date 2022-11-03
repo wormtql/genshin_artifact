@@ -232,6 +232,8 @@
 // 
 // import AThousandFloatingDreams_tn from "@image/weapons/AThousandFloatingDreams_tn"
 // 
+// import TullaytullahsRemembrance_tn from "@image/weapons/TullaytullahsRemembrance_tn"
+// 
 // import PolarStar_tn from "@image/weapons/PolarStar_tn"
 // 
 // import ThunderingPulse_tn from "@image/weapons/ThunderingPulse_tn"
@@ -2666,6 +2668,28 @@ export default {
             {"default":1,"max":3,"min":0,"name":"same_count","title":"w29","type":"int"},
             
             {"default":2,"max":3,"min":0,"name":"diff_count","title":"w30","type":"int"},
+            
+        ],
+        
+    },
+
+    TullaytullahsRemembrance: {
+        name: "TullaytullahsRemembrance",
+        internalName: "Alaya",
+        // chs: "",
+        star: 5,
+        // url: TullaytullahsRemembrance_tn,
+        url: imageUrl("Alaya"),
+        type: "Catalyst",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":7.0,"max":10.0,"min":0.0,"name":"stack","title":"w1","type":"float"},
             
         ],
         
