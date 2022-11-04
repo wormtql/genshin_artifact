@@ -1306,7 +1306,7 @@ export default {
         // description: "夜兰4命：依照「络命丝」标记敌人的数量，每次标记将在爆发时使队伍中所有角色的生命值上限提升10%，持续25秒。通过这种方式，生命值上限至多获得40%提升。",
         config: [
             
-            {"default":4,"max":4,"min":1,"name":"count","title":"标记数量","type":"int"},
+            {"default":4,"max":4,"min":1,"name":"count","title":"b45","type":"int"},
             
         ],
     },

@@ -88,7 +88,7 @@ pub struct Layla;
 impl CharacterTrait for Layla {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Layla,
-        internal_name: "Layla", // todo
+        internal_name: "Layla",
         chs: "",
         element: Element::Cryo,
         hp: [930, 2389, 3084, 4619, 5113, 5881, 6540, 7308, 7801, 8569, 9062, 9831, 10324, 11092],

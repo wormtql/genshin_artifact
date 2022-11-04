@@ -2651,11 +2651,11 @@ export default {
 
     AThousandFloatingDreams: {
         name: "AThousandFloatingDreams",
-        internalName: "todo",
+        internalName: "Catalyst_Ayus",
         // chs: "",
         star: 5,
         // url: AThousandFloatingDreams_tn,
-        url: imageUrl("todo"),
+        url: imageUrl("Catalyst_Ayus"),
         type: "Catalyst",
 
         

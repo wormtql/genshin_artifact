@@ -76,7 +76,7 @@ impl BuffMeta for BuffYelanC4 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "count",
-            title: "标记数量",
+            title: "b45",
             config: ItemConfigType::Int { min: 1, max: 4, default: 4 }
         }
     ]);
