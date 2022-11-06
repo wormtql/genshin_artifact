@@ -190,10 +190,10 @@ impl CharacterTrait for Nahida {
             builder.add_em_ratio("技能倍率", ratio_em);
 
             if context.character_common_data.has_talent2 {
-                let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                let em:f64 = context.attribute.get_value(AttributeName::ElementalMastery);
                 if em > 200.0 {
-                    let bonus = 0.8.min((em - 200.0) * 0.001);
-                    let bonus_crit = 0.24.min((em - 200.0) * 0.0003);
+                    let bonus:f64 = 0.8_f64.min((em - 200.0) * 0.001);
+                    let bonus_crit:f64 = 0.24_f64.min((em - 200.0) * 0.0003);
 
                     builder.add_extra_critical("慧明缘觉智论", bonus_crit);
                     builder.add_extra_bonus("慧明缘觉智论", bonus);

@@ -131,6 +131,18 @@ pub struct ConfigGildedDreams {
     pub rate: f64,
 }
 
+// #[derive(Serialize, Deserialize)]
+// #[derive(Debug, Clone, Default)]
+// pub struct ConfigDesertPavilionChronicle {
+//     pub rate: f64,
+// }
+
+#[derive(Serialize, Deserialize)]
+#[derive(Debug, Clone, Default)]
+pub struct ConfigFlowerOfParadiseLost {
+    pub stack: f64,
+}
+
 #[derive(Default, Debug, Clone)]
 #[derive(Serialize, Deserialize)]
 pub struct ArtifactEffectConfig {
@@ -155,6 +167,8 @@ pub struct ArtifactEffectConfig {
     pub config_echoes_of_an_offering: ConfigEchoesOfAnOffering,
     pub config_deepwood_memories: ConfigRate,
     pub config_gilded_dreams: ConfigGildedDreams,
+    pub config_desert_pavilion_chronicle: ConfigRate,
+    pub config_flower_of_paradise_lost: ConfigFlowerOfParadiseLost,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -181,6 +195,8 @@ pub struct ArtifactConfigInterface {
     pub config_echoes_of_an_offering: Option<ConfigEchoesOfAnOffering>,
     pub config_deepwood_memories: Option<ConfigRate>,
     pub config_gilded_dreams: Option<ConfigGildedDreams>,
+    pub config_desert_pavilion_chronicle: Option<ConfigRate>,
+    pub config_flower_of_paradise_lost: Option<ConfigFlowerOfParadiseLost>,
 }
 
 impl ArtifactConfigInterface {
@@ -207,6 +223,8 @@ impl ArtifactConfigInterface {
             config_echoes_of_an_offering: self.config_echoes_of_an_offering.unwrap_or(Default::default()),
             config_deepwood_memories: self.config_deepwood_memories.unwrap_or(Default::default()),
             config_gilded_dreams: self.config_gilded_dreams.unwrap_or(Default::default()),
+            config_desert_pavilion_chronicle: self.config_desert_pavilion_chronicle.unwrap_or(Default::default()),
+            config_flower_of_paradise_lost: self.config_flower_of_paradise_lost.unwrap_or(Default::default()),
         }
     }
 }
@@ -315,4 +333,15 @@ impl ArtifactEffectConfigBuilder {
         self.config.config_deepwood_memories.rate = rate;
         self
     }
+    
+    pub fn desert_pavilion(&mut self, rate:f64) -> &mut Self {
+        self.config.config_desert_pavilion_chronicle.rate = rate;
+        self
+    }
+
+    pub fn flower_of_paradise_lost(&mut self, stack:f64) -> &mut Self {
+        self.config.config_flower_of_paradise_lost.stack = stack;
+        self
+    }
+
 }
