@@ -29,6 +29,8 @@ pub trait Attribute: Default {
 }
 
 pub trait AttributeCommon<T> {
+    fn get_em_all(&self) -> f64;
+
     fn get_atk(&self) -> f64;
 
     fn get_hp(&self) -> f64;
@@ -84,6 +86,10 @@ pub trait AttributeCommon<T> {
 }
 
 impl<T: Attribute> AttributeCommon<T> for T {
+    fn get_em_all(&self) -> f64 {
+        self.get_value(AttributeName::ElementalMastery) + self.get_value(AttributeName::ElementalMasteryExtra)
+    }
+
     fn get_atk(&self) -> f64 {
         self.get_value(AttributeName::ATKBase)
             + self.get_value(AttributeName::ATKPercentage)
