@@ -172,7 +172,7 @@
                     <img :src="tab.icon" class="icon" />
                 </template>
 
-                <div v-if="filteredArtifacts.length > 0">
+                <div v-if="filteredArtifacts.length > 0 && activeName == tab.name">
                     <div class="artifacts-div mona-scroll-hidden">
                         <artifact-display
                             class="artifact-item"
