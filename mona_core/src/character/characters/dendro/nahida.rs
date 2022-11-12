@@ -1,4 +1,4 @@
-use crate::attribute::{Attribute, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
@@ -190,7 +190,7 @@ impl CharacterTrait for Nahida {
             builder.add_em_ratio("技能倍率", ratio_em);
 
             if context.character_common_data.has_talent2 {
-                let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                let em = context.attribute.get_em_all();
                 if em > 200.0 {
                     let bonus = 0.8_f64.min((em - 200.0) * 0.001);
                     let bonus_crit = 0.24_f64.min((em - 200.0) * 0.0003);
