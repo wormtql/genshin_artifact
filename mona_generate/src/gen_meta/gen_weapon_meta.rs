@@ -4,7 +4,6 @@ use mona::common::item_config_type::ItemConfig;
 use mona::weapon::weapons::get_static_data;
 use mona::weapon::weapon_name::WeaponName;
 use mona::weapon::weapon_static_data::WeaponStaticData;
-use crate::utils::get_internal_weapon_name;
 
 struct WeaponMetaDataForJS {
     name: String,

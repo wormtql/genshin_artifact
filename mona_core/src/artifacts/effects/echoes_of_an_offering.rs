@@ -47,7 +47,8 @@ impl ArtifactTrait for EchoesOfAnOffering {
         effect2: Some("攻击力提高18%。"),
         effect3: None,
         effect4: Some("普通攻击命中敌人时，有36%概率触发「幽谷祝祀」：普通攻击造成的伤害提高，伤害提高值为攻击力的70%，该效果将在普通攻击造成伤害后的0.05秒后清除。普通攻击未触发「幽谷祝祀」时，会使下次触发概率提升20%；0.2秒内至多判定1次触发与否。（注：平均触发比例为50.53%）"),
-        effect5: None
+        effect5: None,
+        internal_id: 15024,
     };
 
     #[cfg(not(target_family = "wasm"))]

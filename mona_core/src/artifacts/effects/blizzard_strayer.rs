@@ -50,7 +50,8 @@ impl ArtifactTrait for BlizzardStrayer {
         effect2: Some("获得15%冰元素伤害加成"),
         effect3: None,
         effect4: Some("攻击处于冰元素影响状态下的敌人时，暴击率提高20%；若敌人处于冰冻状态下，暴击率额外提高20%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 14001,
     };
 
     #[cfg(not(target_family = "wasm"))]

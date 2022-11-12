@@ -28,5 +28,6 @@ impl ArtifactTrait for TinyMiracle {
         effect3: None,
         effect4: Some("受到某个元素类型的伤害后，相应的抗性提升30%，持续10秒。该效果每10秒只能触发一次。"),
         effect5: None,
+        internal_id: 10004,
     };
 }

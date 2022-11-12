@@ -35,6 +35,7 @@ impl ArtifactTrait for TheExile {
         effect2: Some("元素充能效率提高20%"),
         effect3: None,
         effect4: Some("施放元素爆发后，每2秒为队伍中所有角色（不包括自己）恢复2点元素能量。该效果持续6秒，无法叠加。"),
-        effect5: None
+        effect5: None,
+        internal_id: 10009,
     };
 }

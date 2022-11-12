@@ -53,7 +53,8 @@ impl ArtifactTrait for PaleFlame {
         effect2: Some("造成的物理伤害提高25%。"),
         effect3: None,
         effect4: Some("元素战技命中敌人后，①攻击力提升9%。该效果持续7秒，至多叠加2层，每0.3秒至多触发一次。叠满2层时，②2件套的效果提升100%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15018,
     };
 
     #[cfg(not(target_family = "wasm"))]

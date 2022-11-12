@@ -51,7 +51,8 @@ impl ArtifactTrait for BraveHeart {
         effect2: Some("攻击力提高18%。"),
         effect3: None,
         effect4: Some("对生命值高于50%的敌人，造成的伤害增加30%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 10002,
     };
 
     #[cfg(not(target_family = "wasm"))]
