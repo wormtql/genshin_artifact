@@ -16,7 +16,7 @@
             </el-menu-item>
             <el-menu-item index="/account">
                 <el-icon><i-ep-user /></el-icon>
-                {{ t("nav.account") }}
+                {{ t("nav.account") }} ( {{ currentAccountName }} )
                 <div class="sync-icon">
                     <el-icon>
                         <i-ep-folder-checked v-if="syncStatus === 'synced'" />
@@ -149,6 +149,7 @@ export default defineComponent({
         return {
             t,
             syncStatus: accountStore.syncStatus,
+            currentAccountName: accountStore.currentAccountName,
         }
     }
 })
