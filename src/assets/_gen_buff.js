@@ -215,6 +215,8 @@ import BaseDmg_image from "@image/misc/sword"
 
 
 
+
+
 import ResonancePyro2_image from "@image/misc/pyro"
 
 
@@ -1304,7 +1306,7 @@ export default {
         // description: "夜兰4命：依照「络命丝」标记敌人的数量，每次标记将在爆发时使队伍中所有角色的生命值上限提升10%，持续25秒。通过这种方式，生命值上限至多获得40%提升。",
         config: [
             
-            {"default":4,"max":4,"min":1,"name":"count","title":"标记数量","type":"int"},
+            {"default":4,"max":4,"min":1,"name":"count","title":"b45","type":"int"},
             
         ],
     },
@@ -1421,6 +1423,21 @@ export default {
         config: [
             
             {"default":30000.0,"name":"hp","title":"b43","type":"floatInput"},
+            
+        ],
+    },
+    
+    "NahidaTalent1": {
+        name: "NahidaTalent1",
+        // chs: "",
+        
+        badge: getImage("Nahida"),
+        
+        genre: "Character",
+        // description: "",
+        config: [
+            
+            {"default":1000.0,"max":3000.0,"min":0.0,"name":"max_em","title":"b44","type":"float"},
             
         ],
     },

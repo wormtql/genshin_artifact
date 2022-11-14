@@ -74,6 +74,7 @@ pub enum WeaponConfig {
     TwinNephrite { rate: f64 },
     FruitOfFulfillment { stack: f64 },
     WanderingEvenstar { rate: f64 },
+    AThousandFloatingDreams { same_count: usize, diff_count: usize },
 
     // Bow
     PolarStar { stack: usize },

@@ -1,9 +1,8 @@
 use askama::Template;
+use mona::character::CharacterStaticData;
 use mona::common::item_config_type::ItemConfig;
 use mona::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use mona::target_functions::TargetFunctionName;
-use crate::utils::character::get_character_data_by_name;
-use crate::utils::get_internal_character_name;
 
 struct TFMeta {
     name: String,
@@ -59,8 +58,6 @@ pub fn gen_tf_meta_as_js_file() -> String {
             Vec::new()
         };
 
-
-
         data.push(TFMeta {
             name: meta.name.to_string(),
             chs: String::from(meta.chs),
@@ -71,8 +68,8 @@ pub fn gen_tf_meta_as_js_file() -> String {
             badge_type: if let TargetFunctionMetaImage::Avatar = meta.image { String::from("character") } else { String::from("misc") },
             character_icon_name: if let TargetFunctionMetaImage::Avatar = meta.image {
                 if let TargetFunctionFor::SomeWho(c) = meta.four {
-                    let avatar_excel_config_data = get_character_data_by_name(c);
-                    avatar_excel_config_data.iconName.clone()
+                    let c_meta: CharacterStaticData = c.get_static_data();
+                    format!("UI_AvatarIcon_{}", c_meta.internal_name)
                 } else {
                     String::new()
                 }

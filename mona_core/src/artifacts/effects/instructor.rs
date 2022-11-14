@@ -50,7 +50,8 @@ impl ArtifactTrait for Instructor {
         effect2: Some("元素精通提高80点。"),
         effect3: None,
         effect4: Some("触发元素反应后。队伍中所有角色元素精通提高120点，持续8秒。"),
-        effect5: None
+        effect5: None,
+        internal_id: 10007,
     };
 
     #[cfg(not(target_family = "wasm"))]

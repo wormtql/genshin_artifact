@@ -50,7 +50,8 @@ impl ArtifactTrait for Thundersoother {
         effect2: Some("雷元素抗性提高40%。"),
         effect3: None,
         effect4: Some("对处于雷元素影响下的敌人造成的伤害提升35%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 14002,
     };
 
     #[cfg(not(target_family = "wasm"))]

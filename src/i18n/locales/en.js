@@ -42,6 +42,7 @@ export default {
         exportTool: "Export Tools",
         link: "Other Links",
         setup: "Settings",
+        bestSet: "Best Set",
     },
     misc: {
         character: "Character",
@@ -187,6 +188,8 @@ export default {
         Nilou: "Nilou",
         Candace: "Candace",
         Cyno: "Cyno",
+        Nahida: "Nahida",
+        Layla: "Layla"
     },
     artifact: {
         "DeepwoodMemories": {
@@ -906,6 +909,7 @@ export default {
         WanderingEvenstar: "Wandering Evenstar",
         KeyOfKhajNisut: "Key of Khaj-Nisut",
         StaffOfTheScarletSands: "Staff of the Scarlet Sands",
+        AThousandFloatingDreams: "A Thousand Floating Dreams",
     },
     weaponEffect: {
         MistsplitterReforged: "Gain a <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> Elemental DMG Bonus for all elements and receive the might of the Mistsplitter\'s Emblem. At stack levels 1/2/3, the Mistsplitter\'s Emblem provides a <span style=\"color: #409EFF;\">8/16/28%-10/20/35%-12/24/42%-14/28/49%-16/32/56%</span> Elemental DMG Bonus for the character\'s Elemental Type. The character will obtain 1 stack of Mistsplitter\'s Emblem in each of the following scenarios: Normal Attack deals Elemental DMG (stack lasts 5s), casting Elemental Burst (stack lasts 10s); Energy is less than 100% (stack disappears when Energy is full). Each stack\'s duration is calculated independently.",
@@ -1055,6 +1059,7 @@ export default {
         WanderingEvenstar: "The following effect will trigger every 10s: The equipping character will gain <span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span> of their Elemental Mastery as bonus ATK for 12s, with nearby party members gaining 30% of this buff for the same duration. Multiple instances of this weapon can allow this buff to stack. This effect will still trigger even if the character is not on the field.",
         KeyOfKhajNisut: "HP increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. When an Elemental Skill hits opponents, you gain the Grand Hymn effect for 20s. This effect increases the equipping character's Elemental Mastery by <span style=\"color: #409EFF;\">0.12%-0.15%-0.18%-0.21%-0.24%</span> of their Max HP. This effect can trigger once every 0.3s. Max 3 stacks. When this effect gains 3 stacks, or when the third stack's duration is refreshed, the Elemental Mastery of all nearby party members will be increased by <span style=\"color: #409EFF;\">0.2%-0.25%-0.3%-0.35%-0.4%</span> of the equipping character's max HP for 20s.",
         StaffOfTheScarletSands: "The equipping character gains <span style=\"color: #409EFF;\">52%-65%-78%-91%-104%</span> of their Elemental Mastery as bonus ATK. When an Elemental Skill hits opponents, the Dream of the Scarlet Sands effect will be gained for 10s: The equipping character will gain <span style=\"color: #409EFF;\">28%-35%-42%-49%-56%</span> of their Elemental Mastery as bonus ATK. Max 3 stacks.",
+        AThousandFloatingDreams: "Party members other than the equipping character will provide the equipping character with buffs based on whether their Elemental Type is the same as the latter or not. If their Elemental Types are the same, increase Elemental Mastery by <span style=\"color: #409EFF;\">32-40-48-56-64</span>. If not, increase the equipping character’s DMG Bonus from their Elemental Type by <span style=\"color: #409EFF;\">10%-14%-18%-22%-26%</span>. Each of the aforementioned effects can have up to 3 stacks. Additionally, all nearby party members other than the equipping character will have their Elemental Mastery increased by <span style=\"color: #409EFF;\">40-42-44-46-48</span>. Multiple such effects from multiple such weapons can stack.",
     },
     config: {
         w1: "Avg Effect Stack",
@@ -1085,6 +1090,8 @@ export default {
         w26: "「Mistsplitter\'s Emblem」Stack",
         w27: "EM",
         w28: "HP",
+        w29: "Same Element Count",
+        w30: "Diff Element Count",
 
         c1: "Talent「Harmony Between Heaven and Earth」Apply Ratio",
         c2: "Talent「Undivided Heart」Apply Ratio",
@@ -1132,6 +1139,9 @@ export default {
         c44: "Pactsworn Pathclearer",
         c45: "Enable 「Judication」",
         c46: "C2「Ceremony: Homecoming of Spirits」Stacks",
+        c47: "Q Pyro Bonus",
+        c48: "Q Pyro Count",
+        c49: "(C4) Schemes to Know‘s Seeds of Skandha Enemy Count",
 
         t1: "Type",
         t2: "Trigger Element",
@@ -1160,6 +1170,9 @@ export default {
         t25: "Electro-charge Ratio",
         t26: "Overload Ratio",
         t27: "Hyperbloom Ratio",
+        t28: "Elemental Mastery Requirement",
+        t29: "Buring Duration",
+        t30: "Pryo Team Member Count",
 
         a1: "Element",
         a2: "Effect Apply Ratio",
@@ -1241,7 +1254,8 @@ export default {
         b41: "Apply Ratio",
         b42: "Nilou's HP",
         b43: "Candace's HP",
-        b44: "Opponents Marked",
+        b44: "Max EM in Team",
+        b45: "Opponents Marked",
     },
     ele: {
         Pyro: "Pyro",
@@ -1415,6 +1429,7 @@ export default {
         TighnariDefault: "Tighnari-Verdant Strider",
         NilouDefault: "Nilou-Dance of Lotuslight",
         CynoDefault: "Cyno-Judicator of Secrets",
+        NahidaDefault: "Nahida-Physic of Purity"
     },
     tfDesc: {
         MaxATK: "Maximize ATK",
@@ -1492,6 +1507,7 @@ export default {
         TighnariDefault: "Maximize Tighnari Charged Attack",
         NilouDefault: "Nilou DPS",
         CynoDefault: "Perform QTE and unleash Duststalker Bolts, best combo would be applied automatically basing on artifact set",
+        NahidaDefault: "Maximize Nahida's Tri-Karma Purification DMG",
     },
     dmg: {
         electroCharged: "Electro-Charged",
@@ -1502,6 +1518,8 @@ export default {
         swirlPyro: "Swirl(Pyro)",
         swirlCryo: "Swirl(Cryo)",
         swirlHydro: "Swirl(Hydro)",
+        burning: "Burning",
+        crystallize: "Crystallize Shield",
         "Pyro": "Pyro DMG",
         "Hydro": "Hydro DMG",
         "Electro": "Electro DMG",
@@ -1579,6 +1597,8 @@ export default {
         Nilou: ["Normal Attack: Dance of Samser", "Dance of Haftkarsvar", "Dance of Abzendegi: Distant Dreams, Listening Spring"],
         Candace: ["Normal Attack: Gleaming Spear – Guardian Stance", "Sacred Rite: Heron’s Sanctum", "Sacred Rite: Wagtail’s Tide"],
         Cyno: ["Normal Attack: Invoker's Spear","Secret Rite: Chasmic Soulfarer","Sacred Rite: Wolf’s Swiftness"],
+        Nahida: ["Normal Attack: Akara", "All Schemes to Know", "Illusory Heart"],
+        Layla: ["Normal Attack: Sword of the Radiant Path", "Nights of Formal Focus", "Dream of the Star-Stream Shaker"],
     },
     dmgName: [
         "1-Hit DMG",
@@ -1814,6 +1834,9 @@ export default {
         "Pactsworn Pathclearer: High Plunging DMG",
         "Pactsworn Pathclearer: Mortuary Rite DMG",
         "Pactsworn Pathclearer: Duststalker Bolt DMG",
+        "Tri-Karma Purification DMG",
+        "Shooting Star DMG",
+        "Starlight Slug DMG",
     ],
     res: {
         Pyro: "Pyro Res",
@@ -1964,6 +1987,7 @@ export default {
         NilouTalent2: "Nilou-「Dreamy Dance of Aeons」",
         CandaceQ: "Candace-「Prayer of the Crimson Crown」",
         CandaceTalent2: "Candace-「Celestial Dome of Sand」",
+        NahidaTalent1: "Nahida-「Compassion Illuminated」",
     },
     buffDesc: {
         ATKFixed: "",
@@ -2068,6 +2092,7 @@ export default {
         NilouTalent2: "Each 1,000 points of Nilou’s Max HP above 30,000 will cause the DMG dealt by Bountiful Cores created by characters affected by Golden Chalice’s Bounty to increase by 7%.<br>The maximum increase in Bountiful Core DMG that can be achieved this way is 300%.",
         CandaceQ: "Characters deal increased Elemental DMG with their Normal Attacks(20%)",
         CandaceTalent2: "Characters affected by the Prayer of the Crimson Crown caused by Sacred Rite: Wagtail’s Tide will deal 0.5% increased DMG to opponents for every 1,000 points of Candace’s Max HP when they deal Elemental DMG with their Normal Attacks.",
+        NahidaTalent1: "When unleashing Illusory Heart, the Shrine of Maya will gain the following effects:<br>The Elemental Mastery of the active character within the field will be increased by 25% of the Elemental Mastery of the party member with the highest Elemental Mastery. You can gain a maximum of 250 Elemental Mastery in this manner.",
     },
     buffGenre: {
         Character: "Character BUFF",

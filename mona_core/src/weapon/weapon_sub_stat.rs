@@ -43,6 +43,7 @@ pub enum WeaponSubStatFamily {
     EM41,
     EM43,
     EM48,
+    EM58,
 
     HP77,
     HP90,
@@ -108,6 +109,7 @@ pub fn get_stat_name_from_family(family: WeaponSubStatFamily) -> StatName {
         WeaponSubStatFamily::EM41 => StatName::ElementalMastery,
         WeaponSubStatFamily::EM43 => StatName::ElementalMastery,
         WeaponSubStatFamily::EM48 => StatName::ElementalMastery,
+        WeaponSubStatFamily::EM58 => StatName::ElementalMastery,
 
         WeaponSubStatFamily::HP77 => StatName::HPPercentage,
         WeaponSubStatFamily::HP90 => StatName::HPPercentage,
@@ -174,6 +176,7 @@ pub fn get_value_array(family: WeaponSubStatFamily) -> [f64; 8] {
         WeaponSubStatFamily::EM41 => [41.0, 72.0, 105.0, 122.0, 138.0, 154.0, 171.0, 187.0],
         WeaponSubStatFamily::EM43 => [43.0, 76.0, 111.0, 129.0, 146.0, 164.0, 181.0, 198.0],
         WeaponSubStatFamily::EM48 => [48.0, 85.0, 124.0, 143.0, 162.0, 182.0, 201.0, 221.0],
+        WeaponSubStatFamily::EM58 => [57.6, 101.78, 148.32, 171.59, 194.86, 218.07, 241.34, 264.61],
 
         WeaponSubStatFamily::HP77 => [0.077, 0.135, 0.197, 0.228, 0.259, 0.29, 0.321, 0.413],
         WeaponSubStatFamily::HP90 => [0.09, 0.159, 0.232, 0.268, 0.304, 0.341, 0.377, 0.413],

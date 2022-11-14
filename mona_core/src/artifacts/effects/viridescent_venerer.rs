@@ -39,6 +39,7 @@ impl ArtifactTrait for ViridescentVenerer {
         effect2: Some("获得15%风元素伤害加成。"),
         effect3: None,
         effect4: Some("扩散反应造成的伤害提升60%，根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15002,
     };
 }

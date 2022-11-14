@@ -230,6 +230,8 @@
 // 
 // import WanderingEvenstar_tn from "@image/weapons/WanderingEvenstar_tn"
 // 
+// import AThousandFloatingDreams_tn from "@image/weapons/AThousandFloatingDreams_tn"
+// 
 // import PolarStar_tn from "@image/weapons/PolarStar_tn"
 // 
 // import ThunderingPulse_tn from "@image/weapons/ThunderingPulse_tn"
@@ -2640,6 +2642,30 @@ export default {
         configs: [
             
             {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
+            
+        ],
+        
+    },
+
+    AThousandFloatingDreams: {
+        name: "AThousandFloatingDreams",
+        internalName: "Catalyst_Ayus",
+        // chs: "",
+        star: 5,
+        // url: AThousandFloatingDreams_tn,
+        url: imageUrl("Catalyst_Ayus"),
+        type: "Catalyst",
+
+        
+        // effect: null,
+        
+
+        
+        configs: [
+            
+            {"default":1,"max":3,"min":0,"name":"same_count","title":"w29","type":"int"},
+            
+            {"default":2,"max":3,"min":0,"name":"diff_count","title":"w30","type":"int"},
             
         ],
         

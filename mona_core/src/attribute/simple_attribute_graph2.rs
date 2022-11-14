@@ -8,6 +8,7 @@ use super::typing::EdgeFunctionFwd;
 use super::attribute_name::AttributeName;
 
 const MAX_EDGE_COUNT: usize = 30;
+const MAX_NODE_COUNT: usize = 200;
 
 #[derive(Copy, Clone, Debug)]
 struct SimpleEntry {
@@ -26,7 +27,7 @@ struct SimpleEdge {
 }
 
 pub struct SimpleAttributeGraph2 {
-    attributes: RefCell<[SimpleEntry; 150]>,
+    attributes: RefCell<[SimpleEntry; MAX_NODE_COUNT]>,
     // edges: Vec<Rc<SimpleEdge>>,
     // edges: Vec<SimpleEdge>,
     edges: SmallVec<[SimpleEdge; MAX_EDGE_COUNT]>,
@@ -45,7 +46,7 @@ impl Default for SimpleAttributeGraph2 {
                 value_self: 0.0,
                 cached_value: 0.0,
                 dirty: true
-            }; 150]),
+            }; MAX_NODE_COUNT]),
             // edges: Vec::new(),
             edges: SmallVec::new(),
             set_dirty_on_set_value: false,

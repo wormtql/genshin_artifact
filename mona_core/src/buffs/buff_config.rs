@@ -49,6 +49,7 @@ pub enum BuffConfig {
     DoriC4 { hp_below50: bool, energy_below50: bool },
     NilouTalent2 { hp: f64 },
     CandaceTalent2 { hp: f64 },
+    NahidaTalent1 { max_em: f64 },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },

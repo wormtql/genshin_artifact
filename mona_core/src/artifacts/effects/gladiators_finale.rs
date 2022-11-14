@@ -56,6 +56,7 @@ impl ArtifactTrait for GladiatorsFinale {
         effect2: Some("攻击力提高18%。"),
         effect3: None,
         effect4: Some("装备该圣遗物套装的角色为单手剑、双手剑、长柄武器角色时，角色普通攻击造成的伤害提高35%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15001,
     };
 }

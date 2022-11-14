@@ -3,7 +3,7 @@ use crate::artifacts::effect_config::{ArtifactEffectConfig, ArtifactEffectConfig
 use crate::attribute::SimpleAttributeGraph2;
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
-use crate::character::characters::aloy::Aloy;
+use crate::character::characters::cryo::aloy::Aloy;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
 use crate::common::{Element, StatName};

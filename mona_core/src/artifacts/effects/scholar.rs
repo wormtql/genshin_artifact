@@ -35,6 +35,7 @@ impl ArtifactTrait for Scholar {
         effect2: Some("元素充能效率提高20%"),
         effect3: None,
         effect4: Some("获得元素微粒或元素晶球时，队伍中所有弓箭和法器角色额外恢复3点元素能量。该效果每3秒只能触发一次。"),
-        effect5: None
+        effect5: None,
+        internal_id: 10012,
     };
 }

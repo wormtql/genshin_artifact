@@ -28,5 +28,6 @@ impl ArtifactTrait for PrayersForWisdom {
         effect3: None,
         effect4: None,
         effect5: None,
+        internal_id: 15011,
     };
 }

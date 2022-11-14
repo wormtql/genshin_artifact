@@ -39,6 +39,7 @@ impl ArtifactTrait for MaidenBeloved {
         effect2: Some("角色造成的治疗效果提升15%"),
         effect3: None,
         effect4: Some("施放元素战技或元素爆发后的10秒内，队伍中所有角色受治疗效果加成提高20%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 14004,
     };
 }

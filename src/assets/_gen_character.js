@@ -116,6 +116,10 @@ import KujouSara_splash from "@image/characters/KujouSara_splash"
 // import KukiShinobu_avatar from "@image/characters/KukiShinobu_avatar"
 import KukiShinobu_splash from "@image/characters/KukiShinobu_splash"
 
+// import Layla_card from "@image/characters/Layla_card"
+// import Layla_avatar from "@image/characters/Layla_avatar"
+import Layla_splash from "@image/characters/Layla_splash"
+
 // import Lisa_card from "@image/characters/Lisa_card"
 // import Lisa_avatar from "@image/characters/Lisa_avatar"
 import Lisa_splash from "@image/characters/Lisa_splash"
@@ -123,6 +127,10 @@ import Lisa_splash from "@image/characters/Lisa_splash"
 // import Mona_card from "@image/characters/Mona_card"
 // import Mona_avatar from "@image/characters/Mona_avatar"
 import Mona_splash from "@image/characters/Mona_splash"
+
+// import Nahida_card from "@image/characters/Nahida_card"
+// import Nahida_avatar from "@image/characters/Nahida_avatar"
+import Nahida_splash from "@image/characters/Nahida_splash"
 
 // import Nilou_card from "@image/characters/Nilou_card"
 // import Nilou_avatar from "@image/characters/Nilou_avatar"
@@ -1998,6 +2006,58 @@ export default {
         ],
     },
     
+    Layla: {
+        name: "Layla",
+        // chs: "",
+        element: "Cryo",
+        weapon: "Sword",
+        star: 4,
+        // card: Layla_card,
+        // avatar: Layla_avatar,
+        avatar: getName("Layla"),
+        splash: Layla_splash,
+        skillName1: "",
+        skillName2: "",
+        skillName3: "",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 2 },
+            
+            { index: 3, text: 5 },
+            
+            { index: 4, text: 6 },
+            
+            { index: 5, text: 7 },
+            
+            { index: 6, text: 8 },
+            
+            { index: 7, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 8, text: 19 },
+            
+            { index: 9, text: 234 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 10, text: 235 },
+            
+        ],
+        config: [
+            
+        ],
+        configSkill: [
+            
+        ],
+    },
+    
     Lisa: {
         name: "Lisa",
         // chs: "丽莎",
@@ -2104,6 +2164,64 @@ export default {
             
         ],
         configSkill: [
+            
+        ],
+    },
+    
+    Nahida: {
+        name: "Nahida",
+        // chs: "",
+        element: "Dendro",
+        weapon: "Catalyst",
+        star: 5,
+        // card: Nahida_card,
+        // avatar: Nahida_avatar,
+        avatar: getName("Nahida"),
+        splash: Nahida_splash,
+        skillName1: "",
+        skillName2: "",
+        skillName3: "",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 2 },
+            
+            { index: 3, text: 3 },
+            
+            { index: 4, text: 38 },
+            
+            { index: 5, text: 7 },
+            
+            { index: 6, text: 8 },
+            
+            { index: 7, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 8, text: 49 },
+            
+            { index: 9, text: 63 },
+            
+            { index: 10, text: 233 },
+            
+        ],
+        skillMap3: [
+            
+        ],
+        config: [
+            
+            {"default":4,"max":4,"min":0,"name":"c4_e_count","title":"c49","type":"int"},
+            
+        ],
+        configSkill: [
+            
+            {"default":true,"name":"q_bonus","title":"c47","type":"bool"},
+            
+            {"default":2,"max":2,"min":1,"name":"q_bonus_count","title":"c48","type":"int"},
             
         ],
     },

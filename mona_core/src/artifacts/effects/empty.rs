@@ -28,5 +28,6 @@ impl ArtifactTrait for Empty {
         effect3: None,
         effect4: None,
         effect5: None,
+        internal_id: usize::MAX,
     };
 }

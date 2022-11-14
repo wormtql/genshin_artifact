@@ -43,6 +43,7 @@ impl ArtifactTrait for ThunderingFury {
         effect2: Some("获得15%雷元素伤害加成。"),
         effect3: None,
         effect4: Some("超载、感电、超导反应造成的伤害提升40%。触发这些元素反应时，元素战技冷却时间减少1秒。该效果每0.8秒最多触发一次。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15005,
     };
 }

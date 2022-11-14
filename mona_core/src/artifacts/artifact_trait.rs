@@ -20,6 +20,8 @@ pub struct ArtifactMetaData {
     pub effect3: Option<&'static str>,
     pub effect4: Option<&'static str>,
     pub effect5: Option<&'static str>,
+    // pub icon_names: [Option<&'static str>; 5],
+    pub internal_id: usize,
 }
 
 pub trait ArtifactTrait {

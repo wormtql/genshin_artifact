@@ -130,6 +130,8 @@ impl MonaObjectTrait for MonaObjectTransformativeDamage {
             "bloom" => self.damage.bloom,
             "burgeon" => self.damage.burgeon,
             "hyperbloom" => self.damage.hyperbloom,
+            "crystallize" => self.damage.crystallize,
+            "burning" => self.damage.burning,
             x => {
                 return Err(RuntimeError::new(RuntimeErrorEnum::NotSupported, &format!("`TransformativeDamage` doesn't have prop name `{}`", x)));
             }

@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use crate::attribute::{Attribute, AttributeName, ComplicatedAttributeGraph};
+use crate::attribute::{Attribute, AttributeName, ComplicatedAttributeGraph, AttributeCommon};
 use crate::common::{DamageResult, Element, SkillType};
 use crate::damage::damage_analysis::DamageAnalysis;
 use crate::enemies::Enemy;
@@ -22,7 +22,7 @@ pub struct ComplicatedDamageBuilder {
 
     pub extra_enhance_melt: EntryType,
     pub extra_enhance_vaporize: EntryType,
-    pub extra_em: f64,
+    pub extra_em: EntryType,
 
     pub extra_def_minus: EntryType,
     pub extra_def_penetration: EntryType,
@@ -30,7 +30,8 @@ pub struct ComplicatedDamageBuilder {
 
     pub ratio_atk: EntryType,
     pub ratio_def: EntryType,
-    pub ratio_hp: EntryType
+    pub ratio_hp: EntryType,
+    pub ratio_em: EntryType,
 }
 
 impl DamageBuilder for ComplicatedDamageBuilder {
@@ -41,6 +42,10 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         ComplicatedDamageBuilder::default()
     }
 
+    fn add_em_ratio(&mut self, key: &str, value: f64) {
+        *self.ratio_em.0.entry(String::from(key)).or_insert(0.0) += value;
+    }
+    
     fn add_atk_ratio(&mut self, key: &str, value: f64) {
         *self.ratio_atk.0.entry(String::from(key)).or_insert(0.0) += value;
     }
@@ -53,8 +58,8 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         *self.ratio_hp.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
-    fn add_extra_em(&mut self, _key: &str, value: f64) {
-        self.extra_em += value;
+    fn add_extra_em(&mut self, key: &str, value: f64) {
+        *self.extra_em.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
     fn add_extra_atk(&mut self, key: &str, value: f64) {
@@ -140,10 +145,15 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         let hp_ratio_comp = self.get_hp_ratio_composition(attribute, element, skill);
         let hp_ratio = hp_ratio_comp.sum();
 
+        let em_comp = self.get_em_composition(attribute);
+        let em = em_comp.sum();
+        let em_ratio_comp = self.get_em_ratio_composition(attribute, element, skill);
+        let em_ratio = em_ratio_comp.sum();
+
         let extra_damage_comp = self.get_extra_damage_composition(attribute, element, skill);
         let extra_damage = extra_damage_comp.sum();
 
-        let base_damage = atk * atk_ratio + def * def_ratio + hp * hp_ratio + extra_damage;
+        let base_damage = atk * atk_ratio + def * def_ratio + hp * hp_ratio + em * em_ratio + extra_damage;
 
         let bonus_comp = self.get_bonus_composition(attribute, element, skill);
         let bonus = bonus_comp.sum();
@@ -429,7 +439,7 @@ impl ComplicatedDamageBuilder {
     fn get_enhance_melt_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceMelt);
         comp.merge(&self.extra_enhance_melt);
-        let em = self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
+        let em = self.extra_em.sum() + attribute.get_em_all();
         if em > 0.0 {
             comp.add_value("精通", Reaction::amp(em));
         }
@@ -439,7 +449,7 @@ impl ComplicatedDamageBuilder {
     fn get_enhance_vaporize_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceVaporize);
         comp.merge(&self.extra_enhance_vaporize);
-        let em = self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
+        let em = self.extra_em.sum() + attribute.get_em_all();
         if em > 0.0 {
             comp.add_value("精通", Reaction::amp(em));
         }
@@ -448,7 +458,7 @@ impl ComplicatedDamageBuilder {
 
     fn get_enhance_spread_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceSpread);
-        let em = &self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
+        let em = &self.extra_em.sum() + attribute.get_em_all();
         if em > 0.0 {
             comp.add_value("精通", Reaction::catalyze(em));
         }
@@ -457,7 +467,7 @@ impl ComplicatedDamageBuilder {
 
     fn get_enhance_aggravate_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceAggravate);
-        let em = &self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
+        let em = &self.extra_em.sum() + attribute.get_em_all();
         if em > 0.0 {
             comp.add_value("精通", Reaction::catalyze(em));
         }
@@ -546,6 +556,15 @@ impl ComplicatedDamageBuilder {
         hp_comp
     }
 
+    fn get_em_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
+        let mut em_comp = attribute.get_composition_merge(&vec![
+            AttributeName::ElementalMastery,
+            AttributeName::ElementalMasteryExtra,
+        ]);
+        em_comp.merge(&self.extra_em);
+        em_comp
+    }
+
     fn get_hp_ratio_composition(&self, attribute: &ComplicatedAttributeGraph, element: Element, skill: SkillType) -> EntryType {
         let mut hp_ratio_comp = attribute.get_composition_merge(&vec![
             AttributeName::HPRatioBase,
@@ -555,5 +574,13 @@ impl ComplicatedDamageBuilder {
         hp_ratio_comp.merge(&self.ratio_hp);
 
         hp_ratio_comp
+    }
+
+    fn get_em_ratio_composition(&self, attribute: &ComplicatedAttributeGraph, element: Element, skill: SkillType) -> EntryType {
+        let mut em_ratio_comp = attribute.get_composition_merge(&vec![
+            // todo
+        ]);
+        em_ratio_comp.merge(&self.ratio_em);
+        em_ratio_comp
     }
 }

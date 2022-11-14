@@ -7,6 +7,7 @@ import CharacterInfo from "@page/CharacterDBPage/CharacterInfo"
 import MonaPlaygroundPage from "@page/MonaPlaygroundPage"
 import ArtifactsPage from "@page/ArtifactsPage"
 import AccountPage from "@page/AccountPage"
+import CalcBestArtifactSetPage from "@/pages/CalcBestArtifactSetPage"
 // import ExternalLinkPage from "@/pages/about/ExternalLinkPage"
 import SetupPage from "@page/SetupPage"
 
@@ -27,6 +28,14 @@ const ExternalLinkPage = () => import(/* webpackChunkName: "about-page" */ "@pag
 const webName = process.env.MONA_TITLE;
 
 const routes = [
+    {
+        path: "/best-set",
+        component: CalcBestArtifactSetPage,
+        name: "calcBest",
+        meta: {
+            title: "套装优化",
+        }
+    },
     {
         path: "/setup",
         component: SetupPage,

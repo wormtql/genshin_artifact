@@ -181,6 +181,8 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
+
+
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
@@ -1688,6 +1690,34 @@ export default {
             {"default":1000.0,"max":3000.0,"min":0.0,"name":"other_em","title":"t21","type":"float"},
             
             {"default":7.0,"max":10.0,"min":0.0,"name":"other_bloom_ratio","title":"t22","type":"float"},
+            
+        ],
+    },
+    
+    "NahidaDefault": {
+        name: "NahidaDefault",
+        // chs: "纳西妲-白草净华",
+        // description: "",
+        tags: [
+            
+            "输出",
+            
+        ],
+        "for": "Nahida",
+        
+        badge: getImage("UI_AvatarIcon_Nahida"),
+        
+        config: [
+            
+            {"default":0,"max":1500,"min":0,"name":"em_requirement","title":"t28","type":"int"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"spread_rate","title":"t16","type":"float"},
+            
+            {"default":0.0,"max":4.0,"min":0.0,"name":"bloom_count","title":"t20","type":"float"},
+            
+            {"default":0.0,"max":3.0,"min":0.0,"name":"burn_duration","title":"t29","type":"float"},
+            
+            {"default":0,"max":2,"min":0,"name":"pryo_teammate_count","title":"t30","type":"int"},
             
         ],
     },

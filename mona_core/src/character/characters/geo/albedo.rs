@@ -4,7 +4,7 @@ use crate::character::character_common_data::CharacterCommonData;
 use crate::common::{Element, WeaponType, StatName, SkillType, ChangeAttribute};
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::characters::albedo::AlbedoDamageEnum::ETransientBlossom;
+use crate::character::characters::geo::albedo::AlbedoDamageEnum::ETransientBlossom;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::damage::{DamageContext};

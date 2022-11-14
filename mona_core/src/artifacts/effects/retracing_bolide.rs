@@ -51,7 +51,8 @@ impl ArtifactTrait for RetracingBolide {
         effect2: Some("护盾强效提高35%"),
         effect3: None,
         effect4: Some("处于护盾庇护下时，额外获得40%普通攻击和重击伤害加成。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15015,
     };
 
     #[cfg(not(target_family = "wasm"))]

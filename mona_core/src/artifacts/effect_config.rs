@@ -310,4 +310,9 @@ impl ArtifactEffectConfigBuilder {
         self.config.config_gilded_dreams.rate = rate;
         self
     }
+
+    pub fn deepwood_memories(&mut self, rate:f64) -> &mut Self {
+        self.config.config_deepwood_memories.rate = rate;
+        self
+    }
 }

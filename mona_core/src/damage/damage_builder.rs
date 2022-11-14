@@ -16,6 +16,8 @@ pub trait DamageBuilder {
 
     fn add_hp_ratio(&mut self, key: &str, value: f64);
 
+    fn add_em_ratio(&mut self, key: &str, value: f64);
+
     fn add_extra_em(&mut self, key: &str, value: f64);
 
     fn add_extra_atk(&mut self, key: &str, value: f64);
