@@ -36,5 +36,6 @@ impl ArtifactTrait for Gambler {
         effect3: None,
         effect4: Some("击败敌人时，有100%概率清除元素战技的冷却时间。该效果每15秒至多触发一次。"),
         effect5: None,
+        internal_id: 10008,
     };
 }

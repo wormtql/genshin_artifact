@@ -28,5 +28,6 @@ impl ArtifactTrait for TravelingDoctor {
         effect3: None,
         effect4: Some("施放元素爆发时，恢复20%生命值。"),
         effect5: None,
+        internal_id: 10013,
     };
 }

@@ -36,5 +36,6 @@ impl ArtifactTrait for Adventurer {
         effect3: None,
         effect4: Some("生命值上限提升1000点。"),
         effect5: None,
+        internal_id: 10010,
     };
 }

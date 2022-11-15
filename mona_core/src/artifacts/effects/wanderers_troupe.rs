@@ -55,6 +55,7 @@ impl ArtifactTrait for WanderersTroupe {
         effect2: Some("元素精通提高80点。"),
         effect3: None,
         effect4: Some("装备该圣遗物套装的角色为法器、弓箭角色时，角色重击造成的伤害提高35%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15003,
     };
 }

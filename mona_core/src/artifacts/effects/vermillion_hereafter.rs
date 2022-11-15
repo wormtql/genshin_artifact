@@ -49,7 +49,8 @@ impl ArtifactTrait for VermillionHereafter {
         effect2: Some("攻击力提高18%。"),
         effect3: None,
         effect4: Some("施放元素爆发后，将产生持续16秒的「潜光」效果：攻击力提升8%；并在角色的生命值降低时，攻击力进一步提升10%，至多通过这种方式提升4次，每0.8秒至多触发一次。「潜光」效果将在角色退场时消失；持续期间再次施放元素爆发，将移除原有的「潜光」。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15023,
     };
 
     #[cfg(not(target_family = "wasm"))]

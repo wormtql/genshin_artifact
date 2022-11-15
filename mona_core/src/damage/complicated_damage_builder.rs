@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use crate::attribute::{Attribute, AttributeName, ComplicatedAttributeGraph};
+use crate::attribute::{Attribute, AttributeName, ComplicatedAttributeGraph, AttributeCommon};
 use crate::common::{DamageResult, Element, SkillType};
 use crate::damage::damage_analysis::DamageAnalysis;
 use crate::enemies::Enemy;
@@ -439,7 +439,7 @@ impl ComplicatedDamageBuilder {
     fn get_enhance_melt_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceMelt);
         comp.merge(&self.extra_enhance_melt);
-        let em = self.extra_em.sum() + attribute.get_value(AttributeName::ElementalMastery);
+        let em = self.extra_em.sum() + attribute.get_em_all();
         if em > 0.0 {
             comp.add_value("精通", Reaction::amp(em));
         }
@@ -449,7 +449,7 @@ impl ComplicatedDamageBuilder {
     fn get_enhance_vaporize_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceVaporize);
         comp.merge(&self.extra_enhance_vaporize);
-        let em = self.extra_em.sum() + attribute.get_value(AttributeName::ElementalMastery);
+        let em = self.extra_em.sum() + attribute.get_em_all();
         if em > 0.0 {
             comp.add_value("精通", Reaction::amp(em));
         }
@@ -458,7 +458,7 @@ impl ComplicatedDamageBuilder {
 
     fn get_enhance_spread_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceSpread);
-        let em = &self.extra_em.sum() + attribute.get_value(AttributeName::ElementalMastery);
+        let em = &self.extra_em.sum() + attribute.get_em_all();
         if em > 0.0 {
             comp.add_value("精通", Reaction::catalyze(em));
         }
@@ -467,7 +467,7 @@ impl ComplicatedDamageBuilder {
 
     fn get_enhance_aggravate_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceAggravate);
-        let em = &self.extra_em.sum() + attribute.get_value(AttributeName::ElementalMastery);
+        let em = &self.extra_em.sum() + attribute.get_em_all();
         if em > 0.0 {
             comp.add_value("精通", Reaction::catalyze(em));
         }
@@ -558,7 +558,8 @@ impl ComplicatedDamageBuilder {
 
     fn get_em_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut em_comp = attribute.get_composition_merge(&vec![
-            AttributeName::ElementalMastery
+            AttributeName::ElementalMastery,
+            AttributeName::ElementalMasteryExtra,
         ]);
         em_comp.merge(&self.extra_em);
         em_comp

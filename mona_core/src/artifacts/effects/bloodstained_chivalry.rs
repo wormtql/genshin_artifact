@@ -51,6 +51,7 @@ impl ArtifactTrait for BloodstainedChivalry {
         effect3: None,
         effect4: Some("击败敌人后的10秒内，施放重击时不消耗体力，且造成的伤害提升50%。"),
         effect5: None,
+        internal_id: 15008,
     };
 
     #[cfg(not(target_family = "wasm"))]

@@ -123,7 +123,7 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &
     let base_burgeon = base_hyperbloom;
     let base_burning = get_transformative_base(level, TransformativeType::Burning);
 
-    let em = attribute.get_value(AttributeName::ElementalMastery);
+    let em = attribute.get_em_all();
     let em_bonus = get_em_bonus(em);
 
     // skill type is not used, thus passing normal attack
@@ -175,7 +175,7 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &
 // because there is no element, so we don't know which res to use, so use res_ratio explicitly
 pub fn swirl_without_element<A: Attribute>(level: usize, attribute: &A, res_ratio: f64) -> f64 {
     let enhance_swirl_base = attribute.get_value(AttributeName::EnhanceSwirlBase);
-    let em = attribute.get_value(AttributeName::ElementalMastery);
+    let em = attribute.get_em_all();
     let em_bonus = get_em_bonus(em);
 
     let base = get_transformative_base(level, TransformativeType::SwirlPyro) as f64;

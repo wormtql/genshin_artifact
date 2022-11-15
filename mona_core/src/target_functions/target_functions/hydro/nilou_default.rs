@@ -10,7 +10,7 @@ use crate::common::Element;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::reaction_type::TransformativeType;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
-use crate::damage::transformative_damage::{get_em_bonus, get_transformative_base, transformative_damage, transformative_damage_simple};
+use crate::damage::transformative_damage::{get_em_bonus, get_transformative_base, transformative_damage};
 use crate::enemies::Enemy;
 use crate::target_functions::target_function::TargetFunctionMetaTrait;
 use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};

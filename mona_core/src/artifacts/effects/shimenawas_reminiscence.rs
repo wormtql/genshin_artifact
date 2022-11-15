@@ -52,7 +52,8 @@ impl ArtifactTrait for ShimenawasReminiscence {
         effect2: Some("攻击力提高18%。"),
         effect3: None,
         effect4: Some("施放元素战技时，如果角色的元素能量高于或等于15点，则会流失15点元素能量，使接下来的10秒内，普通攻击、重击、下落攻击造成的伤害提高50%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15019,
     };
 
     #[cfg(not(target_family = "wasm"))]

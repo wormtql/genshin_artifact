@@ -51,7 +51,8 @@ impl ArtifactTrait for HeartOfDepth {
         effect2: Some("获得15%水元素伤害加成。"),
         effect3: None,
         effect4: Some("施放元素战技后的15秒内，普通攻击与重击造成的伤害提高30%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15016,
     };
 
     #[cfg(not(target_family = "wasm"))]

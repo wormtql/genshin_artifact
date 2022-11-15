@@ -4,8 +4,6 @@ use askama::Template;
 use mona::artifacts::artifact_trait::ArtifactMetaData;
 use mona::character::CharacterStaticData;
 use mona::weapon::weapon_static_data::WeaponStaticData;
-use crate::utils::character::get_character_data_by_name;
-use crate::utils::get_internal_character_name;
 
 struct BuffMeta {
     name: String,
@@ -83,13 +81,7 @@ pub fn gen_buff_meta_as_js_file() -> String {
             chs: String::from(meta.chs),
             image: convert_image(&meta.image),
             image_type,
-            // character_icon_name: if let BuffImage::Avatar(c) = meta.image {
-            //     let avatar_excel_config_data = get_character_data_by_name(c);
-            //     avatar_excel_config_data.iconName.clone()
-            // } else { String::new() },
             character_internal_name: if let BuffImage::Avatar(c) = meta.image {
-                // let avatar_excel_config_data = get_character_data_by_name(c);
-                // avatar_excel_config_data.iconName.clone()
                 let c_meta: CharacterStaticData = c.get_static_data();
                 String::from(c_meta.internal_name)
             } else { String::new() },

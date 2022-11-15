@@ -2,7 +2,6 @@ use askama::Template;
 use mona::artifacts::artifact_trait::ArtifactMetaData;
 use mona::artifacts::ArtifactSetName;
 use mona::common::item_config_type::ItemConfig;
-use crate::utils::get_artifact_icon_names;
 
 struct ArtifactMeta {
     chs: String,
@@ -43,8 +42,6 @@ pub fn gen_artifact_meta_as_js_file() -> String {
         let e: ArtifactSetName = num::FromPrimitive::from_usize(i).unwrap();
         let meta: ArtifactMetaData = e.get_meta();
         let config4: Option<&'static [ItemConfig]> = e.get_config4();
-        
-        let icons = get_artifact_icon_names(e);
 
         data.push(ArtifactMeta {
             chs: String::from(meta.chs),
@@ -63,11 +60,11 @@ pub fn gen_artifact_meta_as_js_file() -> String {
             sand: String::from(meta.sand.unwrap_or("")),
             goblet: String::from(meta.goblet.unwrap_or("")),
             head: String::from(meta.head.unwrap_or("")),
-            flower_icon: icons[0].clone().unwrap_or(String::new()),
-            feather_icon: icons[1].clone().unwrap_or(String::new()),
-            sand_icon: icons[2].clone().unwrap_or(String::new()),
-            goblet_icon: icons[3].clone().unwrap_or(String::new()),
-            head_icon: icons[4].clone().unwrap_or(String::new())
+            flower_icon: if let Some(_) = meta.flower { format!("UI_RelicIcon_{}_4", meta.internal_id) } else { String::new() },
+            feather_icon: if let Some(_) = meta.feather { format!("UI_RelicIcon_{}_2", meta.internal_id) } else { String::new() },
+            sand_icon: if let Some(_) = meta.sand { format!("UI_RelicIcon_{}_5", meta.internal_id) } else { String::new() },
+            goblet_icon: if let Some(_) = meta.goblet { format!("UI_RelicIcon_{}_1", meta.internal_id) } else { String::new() },
+            head_icon: if let Some(_) = meta.head { format!("UI_RelicIcon_{}_3", meta.internal_id) } else { String::new() }
         })
     }
 

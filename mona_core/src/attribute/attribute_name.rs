@@ -5,6 +5,8 @@ pub enum AttributeName {
     HealingBonus,
     IncomingHealingBonus,
     ElementalMastery,
+    // 不参与精通转换的计算，例如草神天赋不被船桨计算
+    ElementalMasteryExtra,
     Recharge,
     ShieldStrength,
 
