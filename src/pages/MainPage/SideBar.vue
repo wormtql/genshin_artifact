@@ -3,7 +3,7 @@
         <el-menu
             :default-active="doRoute ? $route.fullPath : '/intro'"
             style="border: none"
-            @select="doRoute ? undefined : handleSelect"
+            @select="doRoute ? undefined : handleSelect($event)"
             :mode="mode"
             :router="doRoute"
         >
