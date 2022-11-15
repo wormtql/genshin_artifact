@@ -4,7 +4,6 @@ import backend from "../backend"
 import { useArtifactStore, watchContent as artifactWatchContent } from "./artifact"
 import { useKumiStore, watchContent as kumiWatchContent } from "./kumi"
 import { usePresetStore, watchContent as presetWatchContent } from "./preset"
-import { useSequenceStore, watchContent as sequenceWatchContent } from "./sequence"
 
 interface Account {
     id: number;
@@ -17,7 +16,7 @@ function createAccountStore() {
     const currentAccountId = ref<number>(1)
     const allAccounts = reactive<Account[]>([{
         id: 1,
-        name: '默认'
+        name: 'default'
     }])
     let nextId = 2;
 
@@ -38,7 +37,7 @@ function createAccountStore() {
             currentAccountId.value = 1
             allAccounts.splice(0, allAccounts.length, {
                 id: 1,
-                name: '默认'
+                name: 'default'
             })
         }
     }
@@ -94,7 +93,6 @@ export const useAccountStore = () => accountStore
 const artifactStore = useArtifactStore()
 const presetStore = usePresetStore()
 const kumiStore = useKumiStore()
-const sequenceStore = useSequenceStore()
 
 let loadingAccountData = false
 
@@ -114,8 +112,6 @@ async function loadAccountData() {
     presetStore.init(await backend.getItem(presetKey))
     const kumiKey = `mona_account_kumi_${id}`
     kumiStore.init(await backend.getItem(kumiKey))
-    const seqKey = `mona_account_sequence_${id}`
-    sequenceStore.init(await backend.getItem(seqKey))
     await nextTick()
     loadingAccountData = false
     // console.log('loaded')
@@ -139,13 +135,21 @@ export async function deleteAccount(id: number) {
     await backend.removeItem(presetKey)
     const kumiKey = `mona_account_kumi_${id}`
     await backend.removeItem(kumiKey)
-    const seqKey = `mona_account_sequence_${id}`
-    await backend.removeItem(seqKey)
 }
 
 export async function reload() {
     accountStore.init(await backend.getItem('mona_accounts') as any)
     await loadAccountData()
+}
+
+async function initBackendFromLocalStorage() {
+    backend.setItem('mona_accounts', deepCopy(accountWatchContent()))
+    const artString = localStorage.getItem('artifacts')
+    await backend.setItem('mona_account_artifacts_1', artString && JSON.parse(artString))
+    const kumiString = localStorage.getItem('kumi2')
+    await backend.setItem('mona_account_kumi_1', kumiString && JSON.parse(kumiString))
+    const presetString = localStorage.getItem('presets5')
+    await backend.setItem('mona_account_presets_1', presetString && JSON.parse(presetString))
 }
 
 /**
@@ -163,7 +167,6 @@ interface MonaMeta {
 }
 
 async function init_store() {
-    // init from localStorage
     let metaData = await backend.getItem('mona_meta') as MonaMeta
     if (!metaData) {
         // load old data
@@ -175,6 +178,10 @@ async function init_store() {
             version: VERSION_STORAGE,
         }
         await backend.setItem('mona_meta', metaData)
+
+        // copy data from localStorage to backend
+        await initBackendFromLocalStorage()
+        await reload()
     } else {
         if (metaData.version !== VERSION_STORAGE) {
             // update local storage here
@@ -206,11 +213,14 @@ function updateCurrentAccount(type: string, value: any) {
 watch(artifactWatchContent, value => updateCurrentAccount('artifacts', value), { deep: true })
 watch(kumiWatchContent, value => updateCurrentAccount('kumi', value), { deep: true })
 watch(presetWatchContent, value => updateCurrentAccount('presets', value), { deep: true })
-watch(sequenceWatchContent, value => updateCurrentAccount('sequence', value), { deep: true })
 
-watch(() => ({
-    currentAccountId: accountStore.currentAccountId.value,
-    allAccounts: accountStore.allAccounts,
-}), value => {
+function accountWatchContent() {
+    return {
+        currentAccountId: accountStore.currentAccountId.value,
+        allAccounts: accountStore.allAccounts,
+    }
+}
+
+watch(accountWatchContent, value => {
     backend.setItem('mona_accounts', deepCopy(value))
 }, { deep: true })
