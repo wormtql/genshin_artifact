@@ -25,7 +25,7 @@ impl<A: Attribute> Buff<A> for BuffFaruzanQ {
 
         attribute.set_value_by(AttributeName::ResMinusAnemo, "BUFF：法露珊-「诡风之祸」", 0.4 * self.rate_q1);
         attribute.set_value_by(AttributeName::BonusAnemo, "BUFF：法露珊-「祈风之赐」", bonus_anemo * self.rate_q2);
-        attribute.set_value_by(AttributeName::ExtraDmgAnemo, "BUFF：法露珊-「七窟遗智」", 0.574 * (self.base_atk as f64) * self.rate_talent2);
+        attribute.set_value_by(AttributeName::ExtraDmgAnemo, "BUFF：法露珊-「七窟遗智」", 0.32 * (self.base_atk as f64) * self.rate_talent2);
     }
 }
 
@@ -36,7 +36,7 @@ impl BuffMeta for BuffFaruzanQ {
         chs: "法露珊 -「抟风秘道」",
         image: BuffImage::Avatar(CharacterName::Nahida), //TODO
         genre: BuffGenre::Character,
-        description: Some("法露珊Q技能：「诡风之祸」效果：降低敌人的风元素抗性；<br>「祈风之赐」效果：获得风元素伤害加成；<br>处于抟风秘道的「祈风之赐」效果下的角色，对敌人造成风元素伤害时，基于珐露珊基础攻击力的57.4%，提高造成的伤害。此效果将在对敌人造成风元素伤害的0.1秒后清除，每1秒最多触发一次。"),
+        description: Some("法露珊Q技能：「诡风之祸」效果：降低敌人的风元素抗性；<br>「祈风之赐」效果：获得风元素伤害加成；<br>处于抟风秘道的「祈风之赐」效果下的角色，对敌人造成风元素伤害时，基于珐露珊基础攻击力的32%，提高造成的伤害。此效果将在对敌人造成风元素伤害的0.1秒后清除，每1秒最多触发一次。"),
         from: BuffFrom::Character(CharacterName::Nahida), //TODO
     };
 

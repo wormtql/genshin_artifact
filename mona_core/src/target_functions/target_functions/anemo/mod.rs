@@ -6,6 +6,7 @@ pub mod sucrose_default;
 pub mod venti_default;
 pub mod xiao_default;
 pub mod shikanoin_heizou_default;
+pub mod wanderer_default;
 
 pub use jean_default::JeanDefaultTargetFunction;
 pub use kaedehara_kazuha_damage::KaedeharaKazuhaDamageTargetFunction;
@@ -15,3 +16,4 @@ pub use sucrose_default::SucroseDefaultTargetFunction;
 pub use venti_default::VentiDefaultTargetFunction;
 pub use xiao_default::XiaoDefaultTargetFunction;
 pub use shikanoin_heizou_default::ShikanoinHeizouDefaultTargetFunction;
+pub use wanderer_default::WandererDefaultTargetFunction;

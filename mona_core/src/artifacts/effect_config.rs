@@ -334,7 +334,7 @@ impl ArtifactEffectConfigBuilder {
         self
     }
     
-    pub fn desert_pavilion(&mut self, rate:f64) -> &mut Self {
+    pub fn desert_pavilion_chronicle(&mut self, rate:f64) -> &mut Self {
         self.config.config_desert_pavilion_chronicle.rate = rate;
         self
     }

@@ -177,6 +177,22 @@
 // 
 // 
 // 
+// import FlowerOfParadiseLost_flower from "@image/artifacts/FlowerOfParadiseLost_flower"
+// 
+// 
+// import FlowerOfParadiseLost_feather from "@image/artifacts/FlowerOfParadiseLost_feather"
+// 
+// 
+// import FlowerOfParadiseLost_sand from "@image/artifacts/FlowerOfParadiseLost_sand"
+// 
+// 
+// import FlowerOfParadiseLost_goblet from "@image/artifacts/FlowerOfParadiseLost_goblet"
+// 
+// 
+// import FlowerOfParadiseLost_head from "@image/artifacts/FlowerOfParadiseLost_head"
+// 
+// 
+// 
 // import Gambler_flower from "@image/artifacts/Gambler_flower"
 // 
 // 
@@ -190,6 +206,22 @@
 // 
 // 
 // import Gambler_head from "@image/artifacts/Gambler_head"
+// 
+// 
+// 
+// import DesertPavilionChronicle_flower from "@image/artifacts/DesertPavilionChronicle_flower"
+// 
+// 
+// import DesertPavilionChronicle_feather from "@image/artifacts/DesertPavilionChronicle_feather"
+// 
+// 
+// import DesertPavilionChronicle_sand from "@image/artifacts/DesertPavilionChronicle_sand"
+// 
+// 
+// import DesertPavilionChronicle_goblet from "@image/artifacts/DesertPavilionChronicle_goblet"
+// 
+// 
+// import DesertPavilionChronicle_head from "@image/artifacts/DesertPavilionChronicle_head"
 // 
 // 
 // 
@@ -1177,6 +1209,56 @@ export default {
         ],
     },
     
+    "FlowerOfParadiseLost": {
+        eng: "FlowerOfParadiseLost",
+        // chs: "乐园遗落之花",
+        name2: "FlowerOfParadiseLost",
+        minStar: 4,
+        maxStar: 5,
+        // effect2: "",
+        // effect4: "",
+        
+        flower: {
+            // chs: "月女的华彩",
+            // url: FlowerOfParadiseLost_flower,
+            url: getIcon("UI_RelicIcon_15028_4")
+        },
+        
+        
+        feather: {
+            // chs: "谢落的筵席",
+            // url: FlowerOfParadiseLost_feather,
+            url: getIcon("UI_RelicIcon_15028_2")
+        },
+        
+        
+        sand: {
+            // chs: "凝结的时刻",
+            // url: FlowerOfParadiseLost_sand,
+            url: getIcon("UI_RelicIcon_15028_5")
+        },
+        
+        
+        cup: {
+            // chs: "守秘的魔瓶",
+            // url: FlowerOfParadiseLost_goblet,
+            url: getIcon("UI_RelicIcon_15028_1")
+        },
+        
+        
+        head: {
+            // chs: "紫晶的花冠",
+            // url: FlowerOfParadiseLost_head,
+            url: getIcon("UI_RelicIcon_15028_3")
+        },
+        
+        config4: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"stack","title":"a4","type":"float"},
+            
+        ],
+    },
+    
     "gambler": {
         eng: "gambler",
         // chs: "赌徒",
@@ -1221,6 +1303,56 @@ export default {
         },
         
         config4: [
+            
+        ],
+    },
+    
+    "DesertPavilionChronicle": {
+        eng: "DesertPavilionChronicle",
+        // chs: "沙上楼阁史话",
+        name2: "DesertPavilionChronicle",
+        minStar: 4,
+        maxStar: 5,
+        // effect2: "",
+        // effect4: "",
+        
+        flower: {
+            // chs: "众王之都的开端",
+            // url: DesertPavilionChronicle_flower,
+            url: getIcon("UI_RelicIcon_15027_4")
+        },
+        
+        
+        feather: {
+            // chs: "黄金邦国的结末",
+            // url: DesertPavilionChronicle_feather,
+            url: getIcon("UI_RelicIcon_15027_2")
+        },
+        
+        
+        sand: {
+            // chs: "失落迷途的机芯",
+            // url: DesertPavilionChronicle_sand,
+            url: getIcon("UI_RelicIcon_15027_5")
+        },
+        
+        
+        cup: {
+            // chs: "迷醉长梦的守护",
+            // url: DesertPavilionChronicle_goblet,
+            url: getIcon("UI_RelicIcon_15027_1")
+        },
+        
+        
+        head: {
+            // chs: "流沙贵嗣的遗宝",
+            // url: DesertPavilionChronicle_head,
+            url: getIcon("UI_RelicIcon_15027_3")
+        },
+        
+        config4: [
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":"a2","type":"float"},
             
         ],
     },

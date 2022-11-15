@@ -16,9 +16,9 @@ impl<A: Attribute> ArtifactEffect<A> for DesertPavilionChronicleEffect {
     }
 
     fn effect4(&self, attribute: &mut A) {
-        attribute.set_value_by(AttributeName::BonusNormalAttack, "沙上楼阁史话4", 0.3 * self.rate);
-        attribute.set_value_by(AttributeName::BonusChargedAttack, "沙上楼阁史话4", 0.3 * self.rate);
-        attribute.set_value_by(AttributeName::BonusPlungingAttack, "沙上楼阁史话4", 0.3 * self.rate);
+        attribute.set_value_by(AttributeName::BonusNormalAttack, "沙上楼阁史话4", 0.4 * self.rate);
+        attribute.set_value_by(AttributeName::BonusChargedAttack, "沙上楼阁史话4", 0.4 * self.rate);
+        attribute.set_value_by(AttributeName::BonusPlungingAttack, "沙上楼阁史话4", 0.4 * self.rate);
     }
 }
 
@@ -46,7 +46,8 @@ impl ArtifactTrait for DesertPavilionChronicle {
         effect2: Some(""),
         effect3: None,
         effect4: Some(""),
-        effect5: None
+        effect5: None,
+        internal_id: 15027,
     };
 
     #[cfg(not(target_family = "wasm"))]

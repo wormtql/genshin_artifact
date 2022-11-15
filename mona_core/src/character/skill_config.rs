@@ -34,6 +34,6 @@ pub enum CharacterSkillConfig {
     Candace { crown: bool },
     Cyno { under_judication: bool },
     Nahida { q_bonus: bool, q_bonus_count: usize },
-    Wanderer { e_enabled:bool, e_hydro:bool, e_pyro:f64, e_cryo:f64, sdpoints:f64 },
+    Wanderer { e_enabled:bool, e_hydro:bool, sdpoints:f64 },
     NoConfig,
 }

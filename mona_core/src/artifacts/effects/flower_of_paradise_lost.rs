@@ -45,7 +45,8 @@ impl ArtifactTrait for FlowerOfParadiseLost {
         effect2: Some(""),
         effect3: None,
         effect4: Some(""),
-        effect5: None
+        effect5: None,
+        internal_id: 15028,
     };
 
     #[cfg(not(target_family = "wasm"))]

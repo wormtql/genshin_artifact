@@ -29,16 +29,16 @@ pub struct WandererSkillType {
 }
 
 pub const WANDERER_SKILL: WandererSkillType=  WandererSkillType {
-    normal_dmg1: [0.7979,0.8628,0.9278,1.0205,1.0855,1.1597,1.2618,1.3638,1.4659,1.5772,1.6885,1.7999,1.9112,2.0225,2.1338],
-    normal_dmg2: [0.6958,0.7525,0.8091,0.89,0.9466,1.0114,1.1004,1.1894,1.2784,1.3755,1.4726,1.5697,1.6667,1.7638,1.8609],
-    normal_dmg3: [0.5612,0.6034,0.6638,0.706,0.7543,0.8207,0.887,0.9534,1.0258,1.0982,1.1707,1.2431,1.3155,1.3879,1.388],
+    normal_dmg1: [0.6618,0.7157,0.7696,0.8465,0.9004,0.9619,1.0466,1.1312,1.2159,1.3082,1.4006,1.4929,1.5853,1.6776,1.77],
+    normal_dmg2: [0.6254,0.6763,0.7272,0.7999,0.8508,0.909,0.989,1.069,1.149,1.2362,1.3235,1.4108,1.498,1.5853,1.6726],
+    normal_dmg3: [0.4575,0.4948,0.532,0.5852,0.6225,0.665,0.7235,0.7821,0.8406,0.9044,0.9683,1.0321,1.0959,1.1598,1.2236],
     charged_dmg1: [1.3208,1.4199,1.5189,1.651,1.7501,1.8491,1.9812,2.1133,2.2454,2.3774,2.5095,2.6416,2.8067,2.9718,3.1369],
     plunging_dmg1: [0.5683,0.6145,0.6608,0.7269,0.7731,0.826,0.8987,0.9714,1.0441,1.1234,1.2027,1.282,1.3612,1.4405,1.5198],
     plunging_dmg2: [1.1363,1.2288,1.3213,1.4535,1.5459,1.6516,1.797,1.9423,2.0877,2.2462,2.4048,2.5634,2.7219,2.8805,3.039],
     plunging_dmg3: [1.4193,1.5349,1.6504,1.8154,1.931,2.063,2.2445,2.4261,2.6076,2.8057,3.0037,3.2018,3.3998,3.5979,3.7959],
     e_dmg: [0.952,1.0234,1.0948,1.19,1.2614,1.3328,1.428,1.5232,1.6184,1.7136,1.8088,1.904,2.023,2.142,2.261],
-    e_bonus_normal: [0.4175,0.4425,0.4675,0.5,0.525,0.55,0.5825,0.615,0.6475,0.68,0.7125,0.745,0.7775,0.81,0.8425],
-    e_bonus_charged: [0.334,0.354,0.374,0.4,0.42,0.44,0.466,0.492,0.518,0.544,0.57,0.596,0.622,0.648,0.674],
+    e_bonus_normal: [1.3298,1.3496,1.3693,1.395,1.4147,1.4345,1.4602,1.4858,1.5115,1.5372,1.5629,1.5885,1.6142,1.6399,1.6656],
+    e_bonus_charged: [1.2639,1.2797,1.2955,1.316,1.3318,1.3476,1.3681,1.3887,1.4092,1.4298,1.4503,1.4708,1.4914,1.5119,1.5325],
     q_dmg: [1.472,1.5824,1.6928,1.84,1.9504,2.0608,2.208,2.3552,2.5024,2.6496,2.7968,2.944,3.128,3.312,3.496],
 };
 
@@ -47,7 +47,9 @@ damage_enum!(
     Normal1
     Normal2
     Normal3
-    NormalC6
+    Normal1C6
+    Normal2C6
+    Normal3C6
     Charged1
     Dash1
     Plunging1
@@ -64,27 +66,30 @@ impl WandererDamageEnum {
             E1 | Dash1 => SkillType::ElementalSkill, //TODO: dash1 => e not confirmed
             Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
             Charged1 => SkillType::ChargedAttack,
-            Normal1 | Normal2 | Normal3 | NormalC6 => SkillType::NormalAttack,
+            Normal1 | Normal2 | Normal3 | Normal1C6 | Normal2C6 | Normal3C6 => SkillType::NormalAttack,
             Q1 => SkillType::ElementalBurst,
         }
     }
 }
 
-// pub struct WandererEffect {
-//     pub talent1: bool,
-//     pub e_enabled
-//     pub e_pyro: f64,
-//     pub e_cryo: f64,
-// }
+pub struct WandererEffect {
+    pub talent1: bool,
+    pub e_pyro: bool,
+    pub e_cryo: bool,
+}
 
-// impl<A: Attribute> ChangeAttribute<A> for WandererEffect {
-//     fn change_attribute(&self, attribute: &mut A) {
-//         if self.talent1 {
-//             attribute.set_value_by(AttributeName::ATKPercentage, "天赋「拾玉得花」染火加成", 0.3*self.e_pyro);
-//             attribute.set_value_by(AttributeName::CriticalBase, "天赋「拾玉得花」染冰加成", 0.2*self.e_cryo);
-//         }
-//     }
-// }
+impl<A: Attribute> ChangeAttribute<A> for WandererEffect {
+    fn change_attribute(&self, attribute: &mut A) {
+        if self.talent1 {
+            if self.e_pyro {
+                attribute.set_value_by(AttributeName::ATKPercentage, "天赋「拾玉得花」染火加成", 0.3);
+            }
+            if self.e_cryo {
+                attribute.set_value_by(AttributeName::CriticalBase, "天赋「拾玉得花」染冰加成", 0.2);
+            }
+        }
+    }
+}
 
 pub struct Wanderer;
 
@@ -116,7 +121,9 @@ impl CharacterTrait for Wanderer {
             Normal1 "一段伤害"
             Normal2 "二段伤害"
             Normal3 "三段伤害/2"
-            NormalC6 "六命额外伤害"
+            Normal1C6 "一段六命额外"
+            Normal2C6 "二段六命额外"
+            Normal3C6 "三段六命额外"
             Charged1 "重击伤害"
             Dash1 "「梦迹一风」风矢伤害"
             Plunging1 "下坠期间伤害"
@@ -133,10 +140,19 @@ impl CharacterTrait for Wanderer {
         )
     };
 
-    // #[cfg(not(target_family = "wasm"))]
-    // const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
-        
-    // ]);
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "e_pyro",
+            title: "c52",
+            config: ItemConfigType::Bool { default: false },
+        },
+        ItemConfig {
+            name: "e_cryo",
+            title: "c53",
+            config: ItemConfigType::Bool { default: false },
+        },
+    ]);
 
     #[cfg(not(target_family = "wasm"))]
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
@@ -149,16 +165,6 @@ impl CharacterTrait for Wanderer {
             name: "e_hydro",
             title: "c51",
             config: ItemConfigType::Bool { default: false }
-        },
-        ItemConfig {
-            name: "e_pyro",
-            title: "c52",
-            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
-        },
-        ItemConfig {
-            name: "e_cryo",
-            title: "c53",
-            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },
         ItemConfig {
             name: "sdpoints",
@@ -175,36 +181,29 @@ impl CharacterTrait for Wanderer {
 
         let mut builder = D::new();
 
+        let (e_enabled, e_hydro, sdpoints)  = match *config {
+            CharacterSkillConfig::Wanderer { e_enabled, e_hydro, sdpoints } => (e_enabled, e_hydro, sdpoints),
+            _ => (false, false, 0.0),
+        };
+        
         let ratio = match s {
-            Normal1 => WANDERER_SKILL.normal_dmg1[s1],
-            Normal2 => WANDERER_SKILL.normal_dmg2[s1],
-            Normal3 => WANDERER_SKILL.normal_dmg3[s1],
-            NormalC6 => 0.4,
-            Charged1 => WANDERER_SKILL.charged_dmg1[s1],
+            Normal1 => WANDERER_SKILL.normal_dmg1[s1] * (if e_enabled {WANDERER_SKILL.e_bonus_normal[s2]} else { 1.0 }),
+            Normal2 => WANDERER_SKILL.normal_dmg2[s1] * (if e_enabled {WANDERER_SKILL.e_bonus_normal[s2]} else { 1.0 }),
+            Normal3 => WANDERER_SKILL.normal_dmg3[s1] * (if e_enabled {WANDERER_SKILL.e_bonus_normal[s2]} else { 1.0 }),
+            Normal1C6 => WANDERER_SKILL.normal_dmg1[s1] * (if e_enabled {WANDERER_SKILL.e_bonus_normal[s2]*0.4} else { 1.0 }),
+            Normal2C6 => WANDERER_SKILL.normal_dmg2[s1] * (if e_enabled {WANDERER_SKILL.e_bonus_normal[s2]*0.4} else { 1.0 }),
+            Normal3C6 => WANDERER_SKILL.normal_dmg3[s1] * (if e_enabled {WANDERER_SKILL.e_bonus_normal[s2]*0.4} else { 1.0 }),
+            Charged1 => WANDERER_SKILL.charged_dmg1[s1]  * (if e_enabled {WANDERER_SKILL.e_bonus_charged[s2]} else { 1.0 }),
             Plunging1 => WANDERER_SKILL.plunging_dmg1[s1],
             Plunging2 => WANDERER_SKILL.plunging_dmg2[s1],
             Plunging3 => WANDERER_SKILL.plunging_dmg3[s1],
-            Dash1 => 0.35,
+            Dash1 => if context.character_common_data.constellation >= 1 {0.5} else {0.35},
             E1 => WANDERER_SKILL.e_dmg[s2],
             Q1 => WANDERER_SKILL.q_dmg[s3],
-            _ => 0.0
         };
         builder.add_atk_ratio("技能倍率", ratio);
 
-        let (e_enabled, e_hydro, e_pyro, e_cryo, sdpoints)  = match *config {
-            CharacterSkillConfig::Wanderer { e_enabled, e_hydro, e_pyro, e_cryo, sdpoints } => (e_enabled, e_hydro, e_pyro, e_cryo, sdpoints),
-            _ => (false, false, 0.0, 0.0, 0.0),
-        };
-
         if e_enabled {
-            let bonus = match s {
-                Normal1 | Normal2 | Normal3 => WANDERER_SKILL.e_bonus_normal[s2],
-                Charged1 => WANDERER_SKILL.e_bonus_charged[s2],
-                _ => 0.0,
-            };
-            if bonus > 0.0 {
-                builder.add_extra_bonus("「优风倾姿」伤害加成", bonus);
-            }
 
             let max_sdpoints = if e_hydro {120.0} else {100.0};
             let q_bonus = ((max_sdpoints-sdpoints).max(0.0)*0.03).min(1.5);
@@ -224,16 +223,16 @@ impl CharacterTrait for Wanderer {
     }
 
     fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
-        // let (e_pyro, e_cryo) = match *config {
-        //     CharacterConfig::Wanderer { e_pyro, e_cryo } => (e_pyro, e_cryo),
-        //     _ => (0.0, 0.0),
-        // };
-        // Some(Box::new(WandererEffect {
-        //     common_data.has_talent1,
-        //     e_pyro,
-        //     e_cryo,
-        // }))
-        None
+        let (e_pyro, e_cryo) = match *config {
+            CharacterConfig::Wanderer { e_pyro, e_cryo } => (e_pyro, e_cryo),
+            _ => (false, false),
+        };
+        Some(Box::new(WandererEffect {
+            talent1: common_data.has_talent1,
+            e_pyro,
+            e_cryo,
+        }))
+        
     }
 
     fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {

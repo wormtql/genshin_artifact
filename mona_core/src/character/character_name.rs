@@ -42,6 +42,7 @@ pub enum CharacterName {
     Diona,
     Dori,
     Eula,
+    Faruzan,
     Fischl,
     Ganyu,
     Gorou,
