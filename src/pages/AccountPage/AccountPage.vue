@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-dialog
-            title="选择同步基准"
+            :title="t('accountPage.chooseSyncBase')"
             width="30%"
             v-model="showSyncDialog"
             @closed="handleSyncDialogClosed"
@@ -10,14 +10,14 @@
                 <el-button
                     @click="selectSyncType('local')"
                 >
-                    浏览器存储（最后修改于{{ new Date(localLastModified).toLocaleString() }}）
+                    {{ t('accountPage.browserBase') }} ( {{ t('accountPage.lastModifiedAt') + new Date(localLastModified).toLocaleString()}} )
                 </el-button>
             </div>
-            <div>
+            <div style="margin-top: 10px;">
                 <el-button
-                    @click="selectSyncType('file')"
+                @click="selectSyncType('file')"
                 >
-                    本地目录存储（最后修改于{{ new Date(fileLastModified).toLocaleString() }}）
+                    {{ t('accountPage.fileBase') }} ( {{ t('accountPage.lastModifiedAt') + new Date(fileLastModified).toLocaleString()}} )
                 </el-button>
             </div>
         </el-dialog>
@@ -25,7 +25,7 @@
         <div class="top-things">
             <el-row>
                 <el-col :span="6">
-                    <span>账号</span>
+                    <span>{{ t('accountPage.title') }}</span>
                 </el-col>
                 <el-col :span="18">
                     <div style="float: right">
@@ -36,7 +36,7 @@
                             :disabled="accountStore.syncStatus.value !== 'no sync'"
                             @click="handleSync"
                         >
-                            {{ accountStore.syncStatus.value !== 'no sync' ? '已' : '' }}同步本地目录
+                            {{ t('accountPage', accountStore.syncStatus.value === 'no sync' ? 'syncButton' : 'syncedButton') }}
                         </el-button>
                     </div>
                 </el-col>
@@ -51,7 +51,7 @@
                 size="small"
                 @click="addAccount"
             >
-                添加账号
+                {{ t('accountPage.addAccount') }}
             </el-button>
         </div>
 
@@ -72,7 +72,7 @@
                 ></click-edit-label>
                 <div class="buttons flex-row">
                     <el-popconfirm
-                        title="确定删除？"
+                        :title="t('accountPage.confirmDelete')"
                         @confirm="handleDeleteAccount(id)"
                     >
                         <template #reference>
@@ -84,7 +84,7 @@
                                 size="default"
                                 circle
                                 class="button"
-                                title="删除"
+                                :title="t('accountPage.delete')"
                                 @click.stop=""
                             ></el-button>
                         </template>
@@ -110,20 +110,24 @@ import ClickEditLabel from "@c/misc/ClickEditLabel"
 import IconEpPlus from "~icons/ep/plus"
 import IconEpSort from "~icons/ep/sort"
 import IconEpDelete from "~icons/ep/delete"
+import {useI18n} from "@/i18n/i18n"
 
 import { useAccountStore, deleteAccount, changeAccount, reload } from "@/store/pinia/account"
 import storeBackend, { BackendMeta } from "@/store/backend"
 
+// i18n
+const { t } = useI18n()
+
 const accountStore = useAccountStore()
 
 function addAccount() {
-    accountStore.addAccount('新账户')
+    accountStore.addAccount(t('accountPage.newAccountName'))
 }
 
 async function handleDeleteAccount(id: number) {
     const loading = ElLoading.service({
         lock: true,
-        text: "删除账号中"
+        text: t('accountPage.deletingAccount')
     })
     await deleteAccount(id)
     loading.close()
@@ -135,7 +139,7 @@ async function handleChangeAccount(id: number) {
     }
     const loading = ElLoading.service({
         lock: true,
-        text: "切换账号中"
+        text: t('accountPage.switchingAccount')
     })
     await changeAccount(id)
     loading.close()
@@ -179,7 +183,7 @@ function querySyncType(localMeta: BackendMeta | null, fileMeta: BackendMeta | nu
         handleSyncDialogClosed.value = () => {
             if (!resolved) {
                 storeBackend.disconnectFileBackend()
-                reject(Error('取消同步'))
+                reject(Error(t('accountPage.cancelSyncing')))
             }
         }
         showSyncDialog.value = true
@@ -189,8 +193,8 @@ function querySyncType(localMeta: BackendMeta | null, fileMeta: BackendMeta | nu
 async function handleSync() {
     const metas = await storeBackend.prompt()
     if (!metas) {
-        alert('取消同步')
-        ElMessage.error('取消同步')  // TODO: not work
+        alert(t('accountPage.cancelSyncing'))
+        ElMessage.error(t('accountPage.cancelSyncing'))  // TODO: not work
         return
     }
     let type: string
@@ -198,8 +202,8 @@ async function handleSync() {
         type = await querySyncType(metas[0], metas[1])
     } catch (err) {
         storeBackend.disconnectFileBackend()
-        alert('取消同步')
-        ElMessage.error({ message: '取消同步' })
+        alert(t('accountPage.cancelSyncing'))
+        ElMessage.error({ message: t('accountPage.cancelSyncing') })
         return
     }
     await storeBackend.sync(type)
