@@ -177,7 +177,7 @@ function handleClickPreset(name: string) {
     console.log('handle', name)
     router.push({
         name: "calculate",
-        params: {
+        query: {
             presetName: name
         }
     })

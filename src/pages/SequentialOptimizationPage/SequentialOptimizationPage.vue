@@ -340,16 +340,15 @@ function handleRedirectToCalculator(index: number) {
     if (oldDirectory.value.has(item.name)) {
         router.push({
             name: "calculate",
-            params: {
+            query: {
                 presetName: item.name,
                 artifactGroups: JSON.stringify([item.arts, oldDirectory.value.get(item.name)])
             }
         })
     } else {
-        console.log(item.arts)
         router.push({
             name: "calculate",
-            params: {
+            query: {
                 presetName: item.name,
                 artifacts: JSON.stringify(item.arts),
             }

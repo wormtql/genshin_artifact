@@ -779,7 +779,7 @@ const bigContainer = ref()
 //////////////////////////////////////////////////////////
 // set preset from other place
 function setPresetFromRoute() {
-    const { presetName, artifacts, artifactGroups } = route.params
+    const { presetName, artifacts, artifactGroups } = route.query
     if (presetName && typeof presetName === "string") {
         usePreset(presetName)
     }
