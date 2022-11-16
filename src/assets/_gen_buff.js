@@ -1448,7 +1448,7 @@ export default {
         name: "FaruzanQ",
         // chs: "法露珊 -「抟风秘道」",
         
-        badge: getImage("Nahida"),
+        badge: getImage("Faruzan"),
         
         genre: "Character",
         // description: "法露珊Q技能：「诡风之祸」效果：降低敌人的风元素抗性；<br>「祈风之赐」效果：获得风元素伤害加成；<br>处于抟风秘道的「祈风之赐」效果下的角色，对敌人造成风元素伤害时，基于珐露珊基础攻击力的32%，提高造成的伤害。此效果将在对敌人造成风元素伤害的0.1秒后清除，每1秒最多触发一次。",

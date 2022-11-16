@@ -181,6 +181,10 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
+
+
+
+
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
@@ -983,6 +987,8 @@ export default {
         
         config: [
             
+            {"default":0.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":"t17","type":"float"},
+            
         ],
     },
     
@@ -1630,10 +1636,10 @@ export default {
         ],
     },
     
-    "CynoAggravate": {
-        name: "CynoAggravate",
-        // chs: "赛诺-激化",
-        // description: "激化输出赛诺,手法7ae循环，打qte并释放渡荒之雷，共5次激化，比例留1表示所有循环都按标准激化次数计算，激化覆盖率不足比例应小于1，攻速变高时比例应大于1",
+    "CynoDefault": {
+        name: "CynoDefault",
+        // chs: "赛诺-缄默的裁遣",
+        // description: "打QTE并释放渡荒之雷,普攻命中次数、反应触发次数和6命参考数据：零命 7.0 5.0 0.0，，一命 9.0 5.0 0.0，六命 9.0 5.0 4.0 ",
         tags: [
             
             "输出",
@@ -1647,27 +1653,111 @@ export default {
             
             {"default":1.3,"max":3.0,"min":1.0,"name":"recharge_requirement","title":"w3","type":"float"},
             
-            {"default":1.0,"max":2.0,"min":0.0,"name":"aggravate_rate","title":"t17","type":"float"},
+            {"default":0,"name":"combo","options":["乱a不取消","取消第五段"],"title":"t23","type":"option"},
+            
+            {"default":false,"name":"until_expire","title":"t24","type":"bool"},
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":"t17","type":"float"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"elecharged_rate","title":"t25","type":"float"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_rate","title":"t26","type":"float"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"hyperbloom_rate","title":"t27","type":"float"},
             
         ],
     },
     
-    "CynoMono": {
-        name: "CynoMono",
-        // chs: "赛诺-纯雷伤",
-        // description: "纯雷伤赛诺",
+    "NilouDefault": {
+        name: "NilouDefault",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "Nilou",
+        
+        badge: getImage("UI_AvatarIcon_Nilou"),
+        
+        config: [
+            
+            {"default":5.0,"max":10.0,"min":0.0,"name":"e_ratio","title":"t18","type":"float"},
+            
+            {"default":1.0,"max":10.0,"min":0.0,"name":"q_ratio","title":"t19","type":"float"},
+            
+            {"default":3.0,"max":10.0,"min":0.0,"name":"bloom_ratio","title":"t20","type":"float"},
+            
+            {"default":1000.0,"max":3000.0,"min":0.0,"name":"other_em","title":"t21","type":"float"},
+            
+            {"default":7.0,"max":10.0,"min":0.0,"name":"other_bloom_ratio","title":"t22","type":"float"},
+            
+        ],
+    },
+    
+    "NahidaDefault": {
+        name: "NahidaDefault",
+        // chs: "纳西妲-白草净华",
+        // description: "",
         tags: [
             
             "输出",
             
         ],
-        "for": "Cyno",
+        "for": "Nahida",
         
-        badge: getImage("UI_AvatarIcon_Cyno"),
+        badge: getImage("UI_AvatarIcon_Nahida"),
         
         config: [
             
-            {"default":1.3,"max":3.0,"min":1.0,"name":"recharge_requirement","title":"w3","type":"float"},
+            {"default":0,"max":1500,"min":0,"name":"em_requirement","title":"t28","type":"int"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"spread_rate","title":"t16","type":"float"},
+            
+            {"default":0.0,"max":4.0,"min":0.0,"name":"bloom_count","title":"t20","type":"float"},
+            
+            {"default":0.0,"max":3.0,"min":0.0,"name":"burn_duration","title":"t29","type":"float"},
+            
+            {"default":0,"max":2,"min":0,"name":"pryo_teammate_count","title":"t30","type":"int"},
+            
+        ],
+    },
+    
+    "WandererDefault": {
+        name: "WandererDefault",
+        // chs: "流浪者-久世浮倾",
+        // description: "计算一轮e时间内的总伤害",
+        tags: [
+            
+            "输出",
+            
+        ],
+        "for": "Wanderer",
+        
+        badge: getImage("UI_AvatarIcon_Wanderer"),
+        
+        config: [
+            
+            {"default":false,"name":"e_hydro","title":"c51","type":"bool"},
+            
+            {"default":false,"name":"e_pyro","title":"c52","type":"bool"},
+            
+            {"default":false,"name":"e_cryo","title":"c53","type":"bool"},
+            
+            {"default":4,"max":12,"min":0,"name":"n1_count","title":"t31","type":"int"},
+            
+            {"default":4,"max":12,"min":0,"name":"n2_count","title":"t32","type":"int"},
+            
+            {"default":4,"max":12,"min":0,"name":"n3_count","title":"t33","type":"int"},
+            
+            {"default":3,"max":12,"min":0,"name":"charged_count","title":"t34","type":"int"},
+            
+            {"default":3,"max":12,"min":0,"name":"dash_count","title":"t35","type":"int"},
+            
+            {"default":5,"max":5,"min":0,"name":"q_count","title":"t36","type":"int"},
+            
+            {"default":12,"max":24,"min":0,"name":"swirl_count","title":"t37","type":"int"},
             
         ],
     },
