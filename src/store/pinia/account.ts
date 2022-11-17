@@ -4,6 +4,7 @@ import backend from "../backend"
 import { useArtifactStore, watchContent as artifactWatchContent } from "./artifact"
 import { useKumiStore, watchContent as kumiWatchContent } from "./kumi"
 import { usePresetStore, watchContent as presetWatchContent } from "./preset"
+import { useSequenceStore, watchContent as sequenceWatchContent } from "./sequence"
 
 interface Account {
     id: number;
@@ -93,6 +94,7 @@ export const useAccountStore = () => accountStore
 const artifactStore = useArtifactStore()
 const presetStore = usePresetStore()
 const kumiStore = useKumiStore()
+const sequenceStore = useSequenceStore()
 
 let loadingAccountData = false
 
@@ -112,6 +114,8 @@ async function loadAccountData() {
     presetStore.init(await backend.getItem(presetKey))
     const kumiKey = `mona_account_kumi_${id}`
     kumiStore.init(await backend.getItem(kumiKey))
+    const seqKey = `mona_account_sequence_${id}`
+    sequenceStore.init(await backend.getItem(seqKey))
     await nextTick()
     loadingAccountData = false
     // console.log('loaded')
@@ -135,6 +139,8 @@ export async function deleteAccount(id: number) {
     await backend.removeItem(presetKey)
     const kumiKey = `mona_account_kumi_${id}`
     await backend.removeItem(kumiKey)
+    const seqKey = `mona_account_sequence_${id}`
+    await backend.removeItem(seqKey)
 }
 
 export async function reload() {
@@ -214,6 +220,7 @@ function updateCurrentAccount(type: string, value: any) {
 watch(artifactWatchContent, value => updateCurrentAccount('artifacts', value), { deep: true })
 watch(kumiWatchContent, value => updateCurrentAccount('kumi', value), { deep: true })
 watch(presetWatchContent, value => updateCurrentAccount('presets', value), { deep: true })
+watch(sequenceWatchContent, value => updateCurrentAccount('sequence', value), { deep: true })
 
 function accountWatchContent() {
     return {
