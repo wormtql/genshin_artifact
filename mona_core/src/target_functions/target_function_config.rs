@@ -55,7 +55,7 @@ pub enum TargetFunctionConfig {
     KeqingDefault { aggravate_rate: f64 },
     NilouDefault { e_ratio: f64, q_ratio: f64, bloom_ratio: f64, other_em: f64, other_bloom_ratio: f64 },
     NahidaDefault { em_requirement: usize, spread_rate: f64, bloom_count: f64, burn_duration: f64, pryo_teammate_count: usize },
-    WandererDefault { e_hydro: bool, e_pyro: bool, e_cryo: bool, n1_count: usize, n2_count: usize, n3_count: usize, charged_count: usize, dash_count: usize, q_count:usize, swirl_count: usize,  },
+    WandererDefault { e_hydro: bool, e_pyro: bool, e_cryo: bool, spd_extra: f64, spd_comp: f64, dash_count: usize, q_count:usize, swirl_count: usize,  },
 
     BennettDamage { recharge_demand: f64, other_dmg_ratio: f64 },
 

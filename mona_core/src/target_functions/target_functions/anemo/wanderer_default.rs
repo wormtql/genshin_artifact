@@ -20,6 +20,7 @@ use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
+use crate::weapon::weapon_name::WeaponName;
 
 
 // A target function for Wanderer by Cor
@@ -29,10 +30,8 @@ pub struct WandererDefaultTargetFunction {
     pub e_hydro: bool,
     pub e_pyro: bool,
     pub e_cryo: bool,
-    pub n1_count: usize,
-    pub n2_count: usize,
-    pub n3_count: usize,
-    pub charged_count: usize,
+    pub spd_extra: f64,
+    pub spd_comp: f64,
     pub dash_count: usize,
     pub q_count: usize,
     pub swirl_count: usize,
@@ -44,10 +43,8 @@ impl WandererDefaultTargetFunction {
             e_hydro,
             e_pyro,
             e_cryo,
-            n1_count,
-            n2_count,
-            n3_count,
-            charged_count,
+            spd_extra,
+            spd_comp,
             dash_count,
             q_count,
             swirl_count,
@@ -56,10 +53,8 @@ impl WandererDefaultTargetFunction {
                 e_hydro,
                 e_pyro, 
                 e_cryo,
-                n1_count,
-                n2_count,
-                n3_count,
-                charged_count,
+                spd_extra,
+                spd_comp,
                 dash_count,
                 q_count,
                 swirl_count
@@ -68,25 +63,21 @@ impl WandererDefaultTargetFunction {
                     e_hydro,
                     e_pyro, 
                     e_cryo,
-                    n1_count,
-                    n2_count,
-                    n3_count,
-                    charged_count,
+                    spd_extra,
+                    spd_comp,
                     dash_count,
                     q_count,
                     swirl_count,    
                 ),
-            _ => (false, false, false, 0, 0, 0, 0, 0, 0, 0)
+            _ => (false, false, false, 0.0, 0.0, 0, 0, 0)
         };
 
         Self {
             e_hydro,
             e_pyro, 
             e_cryo,
-            n1_count,
-            n2_count,
-            n3_count,
-            charged_count,
+            spd_extra,
+            spd_comp,
             dash_count,
             q_count,
             swirl_count,
@@ -123,38 +114,28 @@ impl TargetFunctionMetaTrait for WandererDefaultTargetFunction {
             config: ItemConfigType::Bool { default: false },
         },
         ItemConfig {
-            name: "n1_count",
+            name: "spd_extra",
             title: "t31",
-            config: ItemConfigType::Int { min: 0, max: 12, default: 4 },
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },
         ItemConfig {
-            name: "n2_count",
+            name: "spd_comp",
             title: "t32",
-            config: ItemConfigType::Int { min: 0, max: 12, default: 4 },
-        },
-        ItemConfig {
-            name: "n3_count",
-            title: "t33",
-            config: ItemConfigType::Int { min: 0, max: 12, default: 4 },
-        },
-        ItemConfig {
-            name: "charged_count",
-            title: "t34",
-            config: ItemConfigType::Int { min: 0, max: 12, default: 3 },
+            config: ItemConfigType::Float { min: 0.5, max: 1.5, default: 1.0 },
         },
         ItemConfig {
             name: "dash_count",
-            title: "t35",
+            title: "t33",
             config: ItemConfigType::Int { min: 0, max: 12, default: 3 },
         },
         ItemConfig {
             name: "q_count",
-            title: "t36",
+            title: "t34",
             config: ItemConfigType::Int { min: 0, max: 5, default: 5 },
         },
         ItemConfig {
             name: "swirl_count",
-            title: "t37",
+            title: "t35",
             config: ItemConfigType::Int { min: 0, max: 24, default: 12 },
         },
         
@@ -218,50 +199,63 @@ impl TargetFunction for WandererDefaultTargetFunction {
             .build()
     }
 
-    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
+    fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
             attribute,
             enemy,
         };
+        
         type S = <Wanderer as CharacterTrait>::DamageEnumType;
 
         let config = CharacterSkillConfig::Wanderer {
             e_enabled: true,
             e_hydro: self.e_hydro,
             sdpoints: 0.0,
-            };
+        };
+        
+        // calc attack spd
+        let mut spd_na = 1.0;
+        let mut dc_count = 0;
+        for a in artifacts
+        {
+            if a.set_name ==  ArtifactSetName::DesertPavilionChronicle {
+                dc_count += 1;
+            }
+        }
+        spd_na += if weapon.common_data.name == WeaponName::TullaytullahsRemembrance {(0.02 * weapon.common_data.refine as f64) + 0.08} else { 0.0 }
+                + if character.common_data.constellation >= 1 { 0.1 } else { 0.0 }
+                + if dc_count >= 4 { 0.1 } else { 0.0 }
+                + self.spd_extra;
+
 
         let dmg_normal1 = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Normal1, &config, None);
         let dmg_normal2 = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Normal2, &config, None);
         let dmg_normal3 = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Normal3, &config, None);
-        let dmg_n1_c6 = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Normal1C6, &config, None);
-        let dmg_n2_c6 = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Normal2C6, &config, None);
-        let dmg_n3_c6 = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Normal3C6, &config, None);
         let dmg_charged = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Charged1, &config, None);
         let dmg_e = Wanderer::damage::<SimpleDamageBuilder>(&context, S::E1, &config, None);
         let dmg_q = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Q1, &config, None);
         let dmg_d = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Dash1, &config, None);
         let dmg_swirl = context.transformative().swirl_pyro;
-
+        
         let mut dmg_c6 = 0.0;
         if context.character_common_data.constellation == 6 {
-            dmg_c6 =  dmg_n1_c6.normal.expectation * (self.n1_count as f64 + self.n2_count as f64 + self.n3_count as f64)
-                    + dmg_n2_c6.normal.expectation * (self.n1_count as f64 + self.n2_count as f64 + self.n3_count as f64)
-                    + dmg_n3_c6.normal.expectation * (self.n1_count as f64 + self.n2_count as f64 + self.n3_count as f64) * 2.0;
+            let dmg_n1_c6 = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Normal1C6, &config, None);
+            let dmg_n2_c6 = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Normal2C6, &config, None);
+            let dmg_n3_c6 = Wanderer::damage::<SimpleDamageBuilder>(&context, S::Normal3C6, &config, None);
+            dmg_c6 =  dmg_n1_c6.normal.expectation
+                    + dmg_n2_c6.normal.expectation
+                    + dmg_n3_c6.normal.expectation * 2.0;
         };
 
-          dmg_normal1.normal.expectation * self.n1_count as f64
-        + dmg_normal2.normal.expectation * self.n2_count as f64
-        + dmg_normal3.normal.expectation * 2.0 * self.n3_count as f64
-        + dmg_c6
-        + dmg_charged.normal.expectation * self.charged_count as f64
+          ( dmg_normal1.normal.expectation 
+        + dmg_normal2.normal.expectation 
+        + dmg_normal3.normal.expectation * 2.0 
+        + dmg_c6 ) * spd_na * self.spd_comp * (if dc_count >= 4 { 5.0 } else { 5.5 })
+        + (if dc_count >= 4 {dmg_charged.normal.expectation} else { 0.0 })
         + dmg_e.normal.expectation * 1.0
         + dmg_q.normal.expectation * self.q_count as f64
         + dmg_d.normal.expectation * self.dash_count as f64
         + dmg_swirl * self.swirl_count as f64
-
-
-
     }
 }

@@ -1745,19 +1745,15 @@ export default {
             
             {"default":false,"name":"e_cryo","title":"c53","type":"bool"},
             
-            {"default":4,"max":12,"min":0,"name":"n1_count","title":"t31","type":"int"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"spd_extra","title":"t31","type":"float"},
             
-            {"default":4,"max":12,"min":0,"name":"n2_count","title":"t32","type":"int"},
+            {"default":1.0,"max":1.5,"min":0.5,"name":"spd_comp","title":"t32","type":"float"},
             
-            {"default":4,"max":12,"min":0,"name":"n3_count","title":"t33","type":"int"},
+            {"default":3,"max":12,"min":0,"name":"dash_count","title":"t33","type":"int"},
             
-            {"default":3,"max":12,"min":0,"name":"charged_count","title":"t34","type":"int"},
+            {"default":5,"max":5,"min":0,"name":"q_count","title":"t34","type":"int"},
             
-            {"default":3,"max":12,"min":0,"name":"dash_count","title":"t35","type":"int"},
-            
-            {"default":5,"max":5,"min":0,"name":"q_count","title":"t36","type":"int"},
-            
-            {"default":12,"max":24,"min":0,"name":"swirl_count","title":"t37","type":"int"},
+            {"default":12,"max":24,"min":0,"name":"swirl_count","title":"t35","type":"int"},
             
         ],
     },

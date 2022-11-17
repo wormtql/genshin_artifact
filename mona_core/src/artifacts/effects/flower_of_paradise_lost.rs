@@ -16,8 +16,9 @@ impl<A: Attribute> ArtifactEffect<A> for FlowerOfParadiseLostEffect {
     }
 
     fn effect4(&self, attribute: &mut A) {
-        attribute.set_value_by(AttributeName::EnhanceBurgeon, "乐园遗落之花4", 0.5 + 0.125*self.stack);
-        attribute.set_value_by(AttributeName::EnhanceHyperbloom, "乐园遗落之花4", 0.5 + 0.125*self.stack);
+        attribute.set_value_by(AttributeName::EnhanceBloom, "乐园遗落之花4", 0.4*(1.0+0.25*self.stack));
+        attribute.set_value_by(AttributeName::EnhanceBurgeon, "乐园遗落之花4", 0.4*(1.0+0.25*self.stack));
+        attribute.set_value_by(AttributeName::EnhanceHyperbloom, "乐园遗落之花4", 0.4*(1.0+0.25*self.stack));
     }
 }
 
