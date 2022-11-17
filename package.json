@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build:gh": "cross-env ENV_FILE=.env.github_page.yaml PublicPath=/genshin_artifact/ vue-cli-service build",
-    "deploy:gh": "npm run build:gh && node ./script/deploy_gh.js",
+    "deploy:gh": "yarn && npm run build:gh && node ./script/deploy_gh.js",
     "serve": "cross-env ENV_FILE=.env.development.yaml vue-cli-service serve",
     "build": "cross-env ENV_FILE=.env.production.yaml vue-cli-service build --report",
     "lint": "vue-cli-service lint",
