@@ -4,24 +4,12 @@ import {type IPreset} from "@/types/preset"
 
 const VERSION = 3
 
-function loadLocalOrDefault() {
-    const local = localStorage.getItem("presets5")
-    if (!local) {
-        return {}
-    }
-
-    let localObj = null
-    try {
-        localObj = JSON.parse(local)
-    } catch (e) {
-        localObj = null
-    }
-
-    if (!localObj) {
+function loadPresetOrDefault(payload: any) {
+    if (!payload) {
         return {}
     } else {
-        for (let name in localObj) {
-            let entry = localObj[name]
+        for (let name in payload) {
+            let entry = payload[name]
             let item = entry.item
 
             try {
@@ -32,7 +20,7 @@ function loadLocalOrDefault() {
             }
         }
 
-        return localObj
+        return payload
     }
 }
 
@@ -43,7 +31,11 @@ export interface PresetEntry {
 }
 
 function f() {
-    const presets: Ref<Record<string, PresetEntry>> = ref(loadLocalOrDefault())
+    const presets: Ref<Record<string, PresetEntry>> = ref(loadPresetOrDefault(null))
+
+    function init(payload: any) {
+        presets.value = loadPresetOrDefault(payload)
+    }
 
     function addOrOverwrite(name: string, item: IPreset) {
         presets.value[name] = {
@@ -72,6 +64,7 @@ function f() {
     return {
         presets,
 
+        init,
         addOrOverwrite,
         deletePreset,
         getPreset,
@@ -83,13 +76,17 @@ function f() {
 
 const s = f()
 
-watch(() => {
+export function watchContent() {
     return s.presets.value
-}, newValue => {
-    localStorage.setItem("presets5", JSON.stringify(newValue))
-}, {
-    deep: true
-})
+}
+
+// watch(() => {
+//     return s.presets.value
+// }, newValue => {
+//     localStorage.setItem("presets5", JSON.stringify(newValue))
+// }, {
+//     deep: true
+// })
 
 export const usePresetStore = () => {
     return s

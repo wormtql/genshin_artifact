@@ -1,10 +1,11 @@
 <template>
     <div class="root">
         <el-menu
-            default-active="intro"
+            :default-active="doRoute ? $route.fullPath : '/intro'"
             style="border: none"
-            @select="handleSelect"
+            @select="doRoute ? undefined : handleSelect($event)"
             :mode="mode"
+            :router="doRoute"
         >
             <el-menu-item index="/intro">
                 <el-icon><i-ep-home-filled></i-ep-home-filled></el-icon>
@@ -13,6 +14,17 @@
             <el-menu-item index="/setup">
                 <el-icon><i-ep-setting></i-ep-setting></el-icon>
                 <span>{{ t("nav.setup") }}</span>
+            </el-menu-item>
+            <el-menu-item index="/account">
+                <el-icon><i-ep-user /></el-icon>
+                {{ t("nav.account") }} ( {{ currentAccountName }} )
+                <div class="sync-icon">
+                    <el-icon>
+                        <i-ep-folder-checked v-if="syncStatus === 'synced'" />
+                        <i-ep-sort v-else-if="syncStatus === 'syncing'" />
+                        <i-ep-folder-remove v-else/>
+                    </el-icon>
+                </div>
             </el-menu-item>
 
             <el-menu-item-group>
@@ -95,6 +107,7 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import {useI18n} from "@/i18n/i18n"
+import { useAccountStore } from "@/store/pinia/account"
 
 export default defineComponent({
     name: "SideBar",
@@ -123,18 +136,17 @@ export default defineComponent({
     },
     methods: {
         handleSelect(index: string) {
-            if (this.doRoute) {
-                this.$router.push(index)
-            } else {
-                this.$emit("select", index)
-            }
+            this.$emit("select", index)
         }
     },
     setup() {
         const { t } = useI18n()
+        const accountStore = useAccountStore()
 
         return {
-            t
+            t,
+            syncStatus: accountStore.syncStatus,
+            currentAccountName: accountStore.currentAccountName,
         }
     }
 })
@@ -142,4 +154,12 @@ export default defineComponent({
 
 <style scoped>
 
+.item {
+    padding: 0 32px;
+}
+
+.sync-icon {
+    width: 100%;
+    text-align: right;
+}
 </style>

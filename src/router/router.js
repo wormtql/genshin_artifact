@@ -6,6 +6,7 @@ import CharacterInfo from "@page/CharacterDBPage/CharacterInfo"
 import MonaPlaygroundPage from "@page/MonaPlaygroundPage"
 import ArtifactsPage from "@page/ArtifactsPage"
 import CalcBestArtifactSetPage from "@/pages/CalcBestArtifactSetPage"
+import AccountPage from "@page/AccountPage"
 // import ExternalLinkPage from "@/pages/about/ExternalLinkPage"
 import SetupPage from "@page/SetupPage"
 
@@ -97,6 +98,15 @@ const routes = [
         name: "home",
         meta: {
             title: "首页",
+        }
+    },
+    {
+        path: "/account",
+        component: AccountPage,
+        name: "account",
+        meta: {
+            keepAlive: true,
+            title: "账号",
         }
     },
     {
