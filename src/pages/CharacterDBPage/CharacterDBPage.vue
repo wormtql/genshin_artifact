@@ -25,7 +25,6 @@
 
 <script>
 import { characterByElement } from "@character"
-import { element2Chs } from "@/utils/common"
 import {useI18n} from "../../i18n/i18n";
 
 export default {
@@ -38,8 +37,6 @@ export default {
         }
     },
     methods: {
-        element2Chs,
-
         handleClickCharacter(e) {
             const element = e.target
             if (element.hasAttribute("x-character-name")) {
