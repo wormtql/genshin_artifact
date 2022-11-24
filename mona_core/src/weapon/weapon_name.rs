@@ -46,6 +46,7 @@ pub enum WeaponName {
     SapwoodBlade,
     XiphosMoonlight,
     KeyOfKhajNisut,
+    ToukabouShigure,
 
     // claymore
     WolfsGravestone,
