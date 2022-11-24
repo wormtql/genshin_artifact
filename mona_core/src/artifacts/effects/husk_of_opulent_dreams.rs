@@ -51,7 +51,8 @@ impl ArtifactTrait for HuskOfOpulentDreams {
         effect2: Some("防御力提高30%。"),
         effect3: None,
         effect4: Some("装备此圣遗物套装的角色在以下情况下，将获得「问答」效果：在场上用岩元素攻击命中敌人后获得一层，每0.3秒至多触发一次；在队伍后台中，每3秒获得一层。问答至多叠加4层，每层能提供6%防御力与6%岩元素伤害加成。每6秒，若未获得问答效果，将损失一层。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15021,
     };
 
     #[cfg(not(target_family = "wasm"))]

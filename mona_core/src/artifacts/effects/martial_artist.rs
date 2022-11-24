@@ -52,7 +52,8 @@ impl ArtifactTrait for MartialArtist {
         effect2: Some("普通攻击与重击造成的伤害提高15%。"),
         effect3: None,
         effect4: Some("施放元素战技后的8秒内，普通攻击和重击造成的伤害提升25%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 10006,
     };
 
     #[cfg(not(target_family = "wasm"))]

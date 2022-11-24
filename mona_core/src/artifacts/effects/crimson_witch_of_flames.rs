@@ -56,7 +56,8 @@ impl ArtifactTrait for CrimsonWitchOfFlames {
         effect2: Some("获得15%火元素伤害加成。"),
         effect3: None,
         effect4: Some("超载、燃烧反应造成的伤害提升40%，蒸发、融化反应的加成系数提高15%。施放元素战技后的10秒内，二件套的效果提高50%，该效果最多叠加3次。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15006,
     };
 
     #[cfg(not(target_family = "wasm"))]

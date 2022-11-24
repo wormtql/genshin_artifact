@@ -217,6 +217,8 @@ import BaseDmg_image from "@image/misc/sword"
 
 
 
+
+
 import ResonancePyro2_image from "@image/misc/pyro"
 
 
@@ -1306,7 +1308,7 @@ export default {
         // description: "夜兰4命：依照「络命丝」标记敌人的数量，每次标记将在爆发时使队伍中所有角色的生命值上限提升10%，持续25秒。通过这种方式，生命值上限至多获得40%提升。",
         config: [
             
-            {"default":4,"max":4,"min":1,"name":"count","title":"标记数量","type":"int"},
+            {"default":4,"max":4,"min":1,"name":"count","title":"b45","type":"int"},
             
         ],
     },
@@ -1438,6 +1440,29 @@ export default {
         config: [
             
             {"default":1000.0,"max":3000.0,"min":0.0,"name":"max_em","title":"b44","type":"float"},
+            
+        ],
+    },
+    
+    "FaruzanQ": {
+        name: "FaruzanQ",
+        // chs: "法露珊 -「抟风秘道」",
+        
+        badge: getImage("Faruzan"),
+        
+        genre: "Character",
+        // description: "法露珊Q技能：「诡风之祸」效果：降低敌人的风元素抗性；<br>「祈风之赐」效果：获得风元素伤害加成；<br>处于抟风秘道的「祈风之赐」效果下的角色，对敌人造成风元素伤害时，基于珐露珊基础攻击力的32%，提高造成的伤害。此效果将在对敌人造成风元素伤害的0.1秒后清除，每1秒最多触发一次。",
+        config: [
+            
+            {"default":650,"max":1000,"min":0,"name":"base_atk","title":"b46","type":"int"},
+            
+            {"default":10,"max":15,"min":1,"name":"q_level","title":"b12","type":"int"},
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q1","title":"b47","type":"float"},
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q2","title":"b48","type":"float"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate_talent2","title":"b49","type":"float"},
             
         ],
     },

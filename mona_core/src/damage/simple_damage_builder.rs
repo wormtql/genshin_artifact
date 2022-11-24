@@ -111,7 +111,7 @@ impl DamageBuilder for SimpleDamageBuilder {
         let atk = attribute.get_atk() + self.extra_atk;
         let def = attribute.get_def() + self.extra_def;
         let hp = attribute.get_hp() + self.extra_hp;
-        let em = self.extra_em + attribute.get_value(AttributeName::ElementalMastery);
+        let em = self.extra_em + attribute.get_em_all();
 
         let element = if skill == SkillType::NormalAttack || skill == SkillType::ChargedAttack || skill == SkillType::PlungingAttack {
             if let Some(x) = fumo {

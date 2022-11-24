@@ -1,4 +1,4 @@
-use crate::attribute::{Attribute, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
@@ -96,7 +96,7 @@ pub struct Nahida;
 impl CharacterTrait for Nahida {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Nahida,
-        internal_name: "Nahida", // todo
+        internal_name: "Nahida",
         chs: "",
         element: Element::Dendro,
         hp: [807, 2092, 2784, 4165, 4656, 5357, 6012, 6721, 7212, 7926, 8418, 9140, 9632, 10360],
@@ -190,10 +190,10 @@ impl CharacterTrait for Nahida {
             builder.add_em_ratio("技能倍率", ratio_em);
 
             if context.character_common_data.has_talent2 {
-                let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                let em = context.attribute.get_em_all();
                 if em > 200.0 {
-                    let bonus = (em - 200.0) * 0.001;
-                    let bonus_crit = (em - 200.0) * 0.0003;
+                    let bonus = 0.8_f64.min((em - 200.0) * 0.001);
+                    let bonus_crit = 0.24_f64.min((em - 200.0) * 0.0003);
 
                     builder.add_extra_critical("慧明缘觉智论", bonus_crit);
                     builder.add_extra_bonus("慧明缘觉智论", bonus);

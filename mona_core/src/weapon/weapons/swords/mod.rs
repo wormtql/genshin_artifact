@@ -31,6 +31,7 @@ pub use cursed_blade::CursedBlade;
 pub use sapwood_blade::SapwoodBlade;
 pub use xiphos_moonlight::XiphosMoonlight;
 pub use key_of_khaj_nisut::KeyOfKhajNisut;
+pub use toukabou_shigure::ToukabouShigure;
 
 pub mod mistsplitter_reforged;
 pub mod aquila_favonia;
@@ -65,3 +66,4 @@ pub mod cursed_blade;
 pub mod sapwood_blade;
 pub mod xiphos_moonlight;
 pub mod key_of_khaj_nisut;
+pub mod toukabou_shigure;

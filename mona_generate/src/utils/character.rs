@@ -1,84 +1,9 @@
-use lazy_static::lazy_static;
-use super::CONFIG;
+use std::collections::{HashMap, HashSet};
 use std::fs;
 use std::path::Path;
-use mona::character::{CharacterName, CharacterStaticData};
-use edit_distance::edit_distance;
-use serde::{Deserialize};
-use std::collections::{HashMap, HashSet};
+
+use mona::character::CharacterName;
 use mona::character::traits::CharacterSkillMap;
-use crate::utils::skill::{get_avatar_skill_data_item, get_avatar_skill_depot_data_item};
-use crate::utils::text_map::get_text_map;
-
-#[derive(Deserialize, Debug)]
-pub struct AvatarExcelDataItem {
-    pub nameTextMapHash: u64,
-    pub iconName: String,
-    pub skillDepotId: u64,
-}
-
-impl AvatarExcelDataItem {
-    pub fn get_skill_names(&self) -> Vec<u64> {
-        let mut result = Vec::new();
-
-        let skill_depot = get_avatar_skill_depot_data_item(self.skillDepotId);
-        for i in 0..2 {
-            let skill_item = get_avatar_skill_data_item(skill_depot.skills[i]);
-            result.push(skill_item.nameTextMapHash);
-        }
-        if let Some(x) = skill_depot.energySkill {
-            let skill_item = get_avatar_skill_data_item(x);
-            result.push(skill_item.nameTextMapHash);
-        }
-
-        result
-    }
-}
-
-lazy_static! {
-    pub static ref CHARACTER_DATA: Vec<AvatarExcelDataItem> = {
-        let path = Path::new(&CONFIG.genshin_data_path).join("ExcelBinOutput/AvatarExcelConfigData.json");
-        let s = fs::read_to_string(path).unwrap();
-        serde_json::from_str(&s).unwrap()
-    };
-
-    pub static ref INTERNAL_CHARACTER_ITEM_MAP: HashMap<CharacterName, &'static AvatarExcelDataItem> = {
-        let mut result = HashMap::new();
-        let eng_text_map = get_text_map("eng");
-        for i in 0..CharacterName::LEN {
-            let name_enum: CharacterName = num::FromPrimitive::from_usize(i).unwrap();
-            let meta: CharacterStaticData = name_enum.get_static_data();
-
-            // get internal name
-            let mut min_dis = 1000;
-            let mut min_item = &CHARACTER_DATA[0];
-            for item in CHARACTER_DATA.iter() {
-                let name_eng = match eng_text_map.get(&item.nameTextMapHash.to_string()) {
-                    Some(x) => x.clone(),
-                    None => continue,
-                };
-
-                let dis = edit_distance(&name_eng, &name_enum.to_string());
-                if dis < min_dis {
-                    min_dis = dis;
-                    min_item = item;
-                }
-            }
-
-            result.insert(name_enum, min_item);
-        }
-
-        result
-    };
-}
-
-pub fn get_character_data() -> &'static [AvatarExcelDataItem] {
-    &CHARACTER_DATA[..]
-}
-
-pub fn get_character_data_by_name(name: CharacterName) -> &'static AvatarExcelDataItem {
-    *INTERNAL_CHARACTER_ITEM_MAP.get(&name).unwrap()
-}
 
 pub fn get_character_dmg_names_chs() -> Vec<String> {
     let mut set = HashSet::new();
@@ -146,6 +71,8 @@ pub fn get_character_dmg_names_chs() -> Vec<String> {
         Cyno,
         Nahida,
         Layla,
+        Wanderer,
+        Faruzan,
     ];
 
     for &name in names_order.iter() {

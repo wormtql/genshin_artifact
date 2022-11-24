@@ -83,4 +83,5 @@ pub enum TargetFunctionName {
     CynoDefault,
     NilouDefault,
     NahidaDefault,
+    WandererDefault,
 }

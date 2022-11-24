@@ -15,7 +15,7 @@ pub struct BuffNahidaTalent1 {
 impl<A: Attribute> Buff<A> for BuffNahidaTalent1 {
     fn change_attribute(&self, attribute: &mut A) {
         let value = (self.max_em * 0.25).min(250.0);
-        attribute.set_value_by(AttributeName::ElementalMastery, "BUFF: 纳西妲天赋1", value);
+        attribute.set_value_by(AttributeName::ElementalMasteryExtra, "BUFF: 纳西妲天赋1", value);
     }
 }
 

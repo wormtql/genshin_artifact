@@ -94,7 +94,7 @@ impl TargetFunctionMetaTrait for NahidaDefaultTargetFunction {
         },
         ItemConfig {
             name: "pryo_teammate_count",
-            title: "t30", //TODO
+            title: "t30", // 火系队友数量
             config: ItemConfigType::Int { min: 0, max: 2, default: 0 },
         },
     ]);

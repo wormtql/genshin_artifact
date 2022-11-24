@@ -51,7 +51,8 @@ impl ArtifactTrait for NoblesseOblige {
         effect2: Some("元素爆发造成的伤害提升20％。"),
         effect3: None,
         effect4: Some("施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15007,
     };
 
     #[cfg(not(target_family = "wasm"))]

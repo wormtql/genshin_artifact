@@ -188,9 +188,39 @@ export default {
         Candace: "Candace",
         Cyno: "Cyno",
         Nahida: "Nahida",
-        Layla: "Layla"
+        Layla: "Layla",
+        Wanderer: "Wanderer",
+        Faruzan: "Faruzan",
     },
     artifact: {
+        "DesertPavilionChronicle": {
+            "setName": "Desert Pavilion Chronicle",
+            "items": [
+                "The First Days of the City of Kings",
+                "End of the Golden Realm",
+                "Timepiece of the Lost Path",
+                "Defender of the Enchanting Dream",
+                "Legacy of the Desert High-Born",
+            ],
+            "effects": {
+                "2": "Anemo DMG Bonus +15%",
+                "4": "After Charged Attacks hit opponents, this character's Normal Attack SPD will increase by 10% while Normal, Charged, and Plunging Attack DMG will increase by 30% for 10s.",
+            }
+        },
+        "FlowerOfParadiseLost": {
+            "setName": "Flower of Paradise Lost",
+            "items": [
+                "Moon Maiden's Myriad",
+                "Wilting Feast",
+                "A Moment Congealed",
+                "Secret-Keeper's Magic Bottle",
+                "Amethyst Crown",
+            ],
+            "effects": {
+                "2": "Elemental Mastery +80",
+                "4": "The equipping character's Bloom, Hyperbloom, and Burgeon reaction DMG are increased by 50%. Additionally, when the equipping character triggers Bloom, Hyperbloom, or Burgeon they will gain another 25% bonus to the effect mentioned prior. Each stack of this lasts 10s. Max 4 stacks simultaneously. This effect can only be triggered once per second. The character who equips this can still trigger its effects when not on the field.",
+            }
+        },
         "DeepwoodMemories": {
             "setName": "Deepwood Memories",
             "items": [
@@ -1141,6 +1171,11 @@ export default {
         c47: "Q Pyro Bonus",
         c48: "Q Pyro Count",
         c49: "(C4) Schemes to Know‘s Seeds of Skandha Enemy Count",
+        c50: "Under Windfavored State",
+        c51: "Jade-Claimed Flower Hydro",
+        c52: "Jade-Claimed Flower Pyro",
+        c53: "Jade-Claimed Flower Cryo",
+        c54: "Kuugoryoku Points",
 
         t1: "Type",
         t2: "Trigger Element",
@@ -1172,6 +1207,11 @@ export default {
         t28: "Elemental Mastery Requirement",
         t29: "Buring Duration",
         t30: "Pryo Team Member Count",
+        t31: "Addtional Normal SPD (exclude self and weapon)",
+        t32: "攻速伤害修正",
+        t33: "Gales of Reverie Wind Arrow Hits",
+        t34: "Q Hits",
+        t35: "Swirl Hits",
 
         a1: "Element",
         a2: "Effect Apply Ratio",
@@ -1253,6 +1293,12 @@ export default {
         b41: "Apply Ratio",
         b42: "Nilou's HP",
         b43: "Candace's HP",
+        b44: "Max EM in Team",
+        b45: "Opponents Marked",
+        b46: "Faruzan Base ATK",
+        b47: "Perfidious Wind's Ruin Rate",
+        b48: "Prayerful Wind's GiftRate",
+        b49: "「Lost Wisdom of the Seven Caverns Rate（buffed hits count/total hit counts within a cycle）",
     },
     ele: {
         Pyro: "Pyro",
@@ -1596,6 +1642,8 @@ export default {
         Cyno: ["Normal Attack: Invoker's Spear","Secret Rite: Chasmic Soulfarer","Sacred Rite: Wolf’s Swiftness"],
         Nahida: ["Normal Attack: Akara", "All Schemes to Know", "Illusory Heart"],
         Layla: ["Normal Attack: Sword of the Radiant Path", "Nights of Formal Focus", "Dream of the Star-Stream Shaker"],
+        Wanderer: ["Normal Attack: Yuuban Meigen","Hanega: Fushi Kakka","Kyougen: Shikiraku Gobandate"],
+        Faruzan: ["Normal Attack: Turnaround Shooter","Wind Realm of Nasamjnin","The Wind’s Secret Ways"],
     },
     dmgName: [
         "1-Hit DMG",
@@ -1834,6 +1882,12 @@ export default {
         "Tri-Karma Purification DMG",
         "Shooting Star DMG",
         "Starlight Slug DMG",
+        "C6 Additional 1",
+        "C6 Additional 2",
+        "C6 Additional 3",
+        "Gales of Reverie Wind Arrow DMG",
+        "Skill DMG/5",
+        "Pressurized Collapse Vortex DMG",
     ],
     res: {
         Pyro: "Pyro Res",
@@ -1985,6 +2039,7 @@ export default {
         CandaceQ: "Candace-「Prayer of the Crimson Crown」",
         CandaceTalent2: "Candace-「Celestial Dome of Sand」",
         NahidaTalent1: "Nahida-「Compassion Illuminated」",
+        FaruzanQ: "Faruzan Elemental Burst: <br>·When the Whirlwind Pulse hits opponents, it will apply Perfidious Wind's Ruin to them, decreasing their Anemo RES.<br>·The Whirlwind Pulse will also apply Prayerful Wind's Gift to all nearby characters when it is unleashed, granting them Anemo DMG Bonus.<br>When characters affected by The Wind's Secret Ways' Prayerful Wind's Gift deal Anemo DMG to opponents, this DMG will be increased based on 57.4% of Faruzan's own ATK. This DMG Bonus will be cleared 0.1s after dealing Anemo DMG to opponents, and can be triggered once every 0.8s.",
     },
     buffDesc: {
         ATKFixed: "",

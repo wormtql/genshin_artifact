@@ -183,6 +183,8 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
+
+
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
@@ -1705,7 +1707,7 @@ export default {
         ],
         "for": "Nahida",
         
-        badge: getImage("UI_AvatarIcon_Lisa"),
+        badge: getImage("UI_AvatarIcon_Nahida"),
         
         config: [
             
@@ -1718,6 +1720,40 @@ export default {
             {"default":0.0,"max":3.0,"min":0.0,"name":"burn_duration","title":"t29","type":"float"},
             
             {"default":0,"max":2,"min":0,"name":"pryo_teammate_count","title":"t30","type":"int"},
+            
+        ],
+    },
+    
+    "WandererDefault": {
+        name: "WandererDefault",
+        // chs: "流浪者-久世浮倾",
+        // description: "计算一轮e时间内的总伤害",
+        tags: [
+            
+            "输出",
+            
+        ],
+        "for": "Wanderer",
+        
+        badge: getImage("UI_AvatarIcon_Wanderer"),
+        
+        config: [
+            
+            {"default":false,"name":"e_hydro","title":"c51","type":"bool"},
+            
+            {"default":false,"name":"e_pyro","title":"c52","type":"bool"},
+            
+            {"default":false,"name":"e_cryo","title":"c53","type":"bool"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"spd_extra","title":"t31","type":"float"},
+            
+            {"default":1.0,"max":1.5,"min":0.5,"name":"spd_comp","title":"t32","type":"float"},
+            
+            {"default":3,"max":12,"min":0,"name":"dash_count","title":"t33","type":"int"},
+            
+            {"default":5,"max":5,"min":0,"name":"q_count","title":"t34","type":"int"},
+            
+            {"default":12,"max":24,"min":0,"name":"swirl_count","title":"t35","type":"int"},
             
         ],
     },

@@ -39,6 +39,7 @@ impl ArtifactTrait for DefendersWill {
         effect2: Some("防御力提高30%。"),
         effect3: None,
         effect4: Some("队伍里每有不同一种元素类型的自己的角色，自身获得30%相应的元素抗性。"),
-        effect5: None
+        effect5: None,
+        internal_id: 10003,
     };
 }

@@ -35,6 +35,7 @@ impl ArtifactTrait for LuckyDog {
         effect2: Some("防御力提高100点。"),
         effect3: None,
         effect4: Some("拾取摩拉时，恢复300点生命值。"),
-        effect5: None
+        effect5: None,
+        internal_id: 10011,
     };
 }

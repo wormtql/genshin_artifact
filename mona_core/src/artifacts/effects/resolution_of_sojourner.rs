@@ -39,6 +39,7 @@ impl ArtifactTrait for ResolutionOfSojourner {
         effect2: Some("攻击力提高18%。"),
         effect3: None,
         effect4: Some("重击的暴击率提高30%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 10001,
     };
 }

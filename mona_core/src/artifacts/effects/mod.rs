@@ -46,6 +46,8 @@ pub use viridescent_venerer::ViridescentVenerer;
 pub use wanderers_troupe::WanderersTroupe;
 pub use deepwood_memories::DeepwoodMemories;
 pub use gilded_dreams::GildedDreams;
+pub use desert_pavilion_chronicle::DesertPavilionChronicle;
+pub use flower_of_paradise_lost::FlowerOfParadiseLost;
 
 pub mod empty;
 pub mod adventurer;
@@ -89,6 +91,8 @@ pub mod vermillion_hereafter;
 pub mod echoes_of_an_offering;
 pub mod deepwood_memories;
 pub mod gilded_dreams;
+pub mod desert_pavilion_chronicle;
+pub mod flower_of_paradise_lost;
 
 pub fn get_effect<T: Attribute>(name: ArtifactSetName, config: &ArtifactEffectConfig, character: &Character<T>) -> Box<dyn ArtifactEffect<T>> {
     name.create_effect(config, &character.common_data)

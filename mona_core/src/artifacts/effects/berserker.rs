@@ -50,7 +50,8 @@ impl ArtifactTrait for Berserker {
         effect2: Some("暴击率提高12%。"),
         effect3: None,
         effect4: Some("生命值低于70%时，暴击率额外提高24%。"),
-        effect5: None
+        effect5: None,
+        internal_id: 10005,
     };
 
     #[cfg(not(target_family = "wasm"))]

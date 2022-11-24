@@ -45,6 +45,7 @@ impl ArtifactTrait for EmblemOfSeveredFate {
         effect2: Some("元素充能效率提高20%。"),
         effect3: None,
         effect4: Some("基于元素充能效率的25%，提高元素爆发造成的伤害。至多通过这种方式获得75%提升。"),
-        effect5: None
+        effect5: None,
+        internal_id: 15020,
     };
 }

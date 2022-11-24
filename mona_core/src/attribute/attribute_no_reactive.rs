@@ -68,7 +68,10 @@ impl From<&ComplicatedAttributeGraph> for AttributeNoReactive {
         ]).0;
 
         attribute.healing_bonus = graph.get_attribute_composition(AttributeName::HealingBonus).0;
-        attribute.elemental_mastery = graph.get_attribute_composition(AttributeName::ElementalMastery).0;
+        attribute.elemental_mastery = graph.get_composition_merge(&vec![
+            AttributeName::ElementalMastery,
+            AttributeName::ElementalMasteryExtra
+        ]).0;
         attribute.recharge = graph.get_attribute_composition(AttributeName::Recharge).0;
         attribute.shield_strength = graph.get_attribute_composition(AttributeName::ShieldStrength).0;
         attribute.critical = graph.get_attribute_composition(AttributeName::CriticalBase).0;
