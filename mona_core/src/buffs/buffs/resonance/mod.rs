@@ -37,7 +37,7 @@ pub struct BuffResonanceCryo2 {
 
 impl<A: Attribute> Buff<A> for BuffResonanceCryo2 {
     fn change_attribute(&self, attribute: &mut A) {
-        attribute.set_value_by(AttributeName::CriticalBase, "元素共鸣-粉碎之冰", self.rate * 0.15);
+        attribute.set_value_by(AttributeName::CriticalAttacking, "元素共鸣-粉碎之冰", self.rate * 0.15);
     }
 }
 
