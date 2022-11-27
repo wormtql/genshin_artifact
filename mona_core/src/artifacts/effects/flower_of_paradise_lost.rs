@@ -2,7 +2,7 @@ use crate::artifacts::artifact_trait::{ArtifactMetaData, ArtifactTrait};
 use crate::artifacts::ArtifactSetName;
 use crate::artifacts::effect::ArtifactEffect;
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{Attribute, AttributeName, AttributeCommon};
+use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 
@@ -16,9 +16,9 @@ impl<A: Attribute> ArtifactEffect<A> for FlowerOfParadiseLostEffect {
     }
 
     fn effect4(&self, attribute: &mut A) {
-        attribute.set_value_by(AttributeName::EnhanceBloom, "乐园遗落之花4", 0.4*(1.0+0.25*self.stack));
-        attribute.set_value_by(AttributeName::EnhanceBurgeon, "乐园遗落之花4", 0.4*(1.0+0.25*self.stack));
-        attribute.set_value_by(AttributeName::EnhanceHyperbloom, "乐园遗落之花4", 0.4*(1.0+0.25*self.stack));
+        attribute.set_value_by(AttributeName::EnhanceBloom, "乐园遗落之花4", 0.4 * (1.0 + 0.25 * self.stack));
+        attribute.set_value_by(AttributeName::EnhanceBurgeon, "乐园遗落之花4", 0.4 * (1.0 + 0.25 * self.stack));
+        attribute.set_value_by(AttributeName::EnhanceHyperbloom, "乐园遗落之花4", 0.4 * (1.0 + 0.25 * self.stack));
     }
 }
 
@@ -55,7 +55,7 @@ impl ArtifactTrait for FlowerOfParadiseLost {
         ItemConfig {
             name: "stack",
             title: "a4",
-            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
+            config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 4.0 },
         }
     ]);
 }

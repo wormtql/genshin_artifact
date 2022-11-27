@@ -1218,7 +1218,7 @@ export default {
     
     Faruzan: {
         name: "Faruzan",
-        // chs: "法露珊",
+        // chs: "珐露珊",
         element: "Anemo",
         weapon: "Bow",
         star: 4,

@@ -11,10 +11,10 @@ use crate::enemies::Enemy;
 
 pub struct BuffFaruzanQ {
     pub base_atk: usize,
-    pub q_level:usize,
-    pub rate_q1:f64,
-    pub rate_q2:f64,
-    pub rate_talent2:f64,
+    pub q_level: usize,
+    pub rate_q1: f64,
+    pub rate_q2: f64,
+    pub rate_talent2: f64,
 }
 
 impl<A: Attribute> Buff<A> for BuffFaruzanQ {
@@ -23,9 +23,9 @@ impl<A: Attribute> Buff<A> for BuffFaruzanQ {
         let bonus_anemo = bonus_talent3[self.q_level - 1];
         // let bonus_anemo = Faruzan::SKILL.elemental_burst_atk_bonus[self.skill3 - 1];
 
-        attribute.set_value_by(AttributeName::ResMinusAnemo, "BUFF：法露珊-「诡风之祸」", 0.3 * self.rate_q1);
-        attribute.set_value_by(AttributeName::BonusAnemo, "BUFF：法露珊-「祈风之赐」", bonus_anemo * self.rate_q2);
-        attribute.set_value_by(AttributeName::ExtraDmgAnemo, "BUFF：法露珊-「七窟遗智」", 0.32 * (self.base_atk as f64) * self.rate_talent2);
+        attribute.set_value_by(AttributeName::ResMinusAnemo, "BUFF：珐露珊-「诡风之祸」", 0.3 * self.rate_q1);
+        attribute.set_value_by(AttributeName::BonusAnemo, "BUFF：珐露珊-「祈风之赐」", bonus_anemo * self.rate_q2);
+        attribute.set_value_by(AttributeName::ExtraDmgAnemo, "BUFF：珐露珊-「七窟遗智」", 0.32 * (self.base_atk as f64) * self.rate_talent2);
     }
 }
 
@@ -34,10 +34,10 @@ impl BuffMeta for BuffFaruzanQ {
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::FaruzanQ,
         chs: "法露珊 -「抟风秘道」",
-        image: BuffImage::Avatar(CharacterName::Faruzan), 
+        image: BuffImage::Avatar(CharacterName::Faruzan),
         genre: BuffGenre::Character,
         description: Some("法露珊Q技能：「诡风之祸」效果：降低敌人的风元素抗性；<br>「祈风之赐」效果：获得风元素伤害加成；<br>处于抟风秘道的「祈风之赐」效果下的角色，对敌人造成风元素伤害时，基于珐露珊基础攻击力的32%，提高造成的伤害。此效果将在对敌人造成风元素伤害的0.1秒后清除，每1秒最多触发一次。"),
-        from: BuffFrom::Character(CharacterName::Faruzan), 
+        from: BuffFrom::Character(CharacterName::Faruzan),
     };
 
     #[cfg(not(target_family = "wasm"))]
@@ -45,27 +45,27 @@ impl BuffMeta for BuffFaruzanQ {
         ItemConfig {
             name: "base_atk",
             title: "b46",
-            config: ItemConfigType::Int { min:0, max: 1000, default: 196+454 },
+            config: ItemConfigType::Int { min: 0, max: 1000, default: 196 + 454 },
         },
         ItemConfig {
             name: "q_level",
             title: "b12",
-            config: ItemConfigType::Int { min:1, max: 15, default: 10 },
+            config: ItemConfigType::Int { min: 1, max: 15, default: 10 },
         },
         ItemConfig {
             name: "rate_q1",
             title: "b47",
-            config: ItemConfigType::Float { min:0.0, max: 1.0, default: 1.0 },
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
         },
         ItemConfig {
             name: "rate_q2",
             title: "b48",
-            config: ItemConfigType::Float { min:0.0, max: 1.0, default: 1.0 },
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
         },
         ItemConfig {
             name: "rate_talent2",
             title: "b49",
-            config: ItemConfigType::Float { min:0.0, max: 1.0, default: 0.0 },
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },
     ]);
 
@@ -76,7 +76,11 @@ impl BuffMeta for BuffFaruzanQ {
         };
 
         Box::new(BuffFaruzanQ {
-            base_atk, q_level, rate_q1, rate_q2, rate_talent2
+            base_atk,
+            q_level,
+            rate_q1,
+            rate_q2,
+            rate_talent2,
         })
     }
 }

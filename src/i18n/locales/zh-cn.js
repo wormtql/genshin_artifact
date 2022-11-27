@@ -166,7 +166,7 @@ export default {
         Nahida: "纳西妲",
         Layla: "莱依拉",
         Wanderer: "流浪者",
-        Faruzan: "法露珊",
+        Faruzan: "珐露珊",
     },
     artifact: {
         "DesertPavilionChronicle": {
@@ -915,7 +915,7 @@ export default {
         KeyOfKhajNisut: "圣显之钥",
         StaffOfTheScarletSands: "赤沙之杖",
         AThousandFloatingDreams: "千夜浮梦",
-        TullaytullahsRemembrance: "图莱杜拉的回忆",
+        TulaytullahsRemembrance: "图莱杜拉的回忆",
         ToukabouShigure: "东花坊时雨",
     },
     weaponEffect: {
@@ -1067,7 +1067,7 @@ export default {
         KeyOfKhajNisut: "生命值提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>。元素战技命中敌人时，将产生持续20秒的「宏大诗篇」效果：基于装备者生命值上限的<span style=\"color: #409EFF;\">0.12%-0.15%-0.18%-0.21%-0.24%</span>，获得元素精通提升，该效果每0.3秒至多触发一次，至多叠加3层。该效果叠加至3层或3层的持续时间刷新时，将基于装备者生命值上限的<span style=\"color: #409EFF;\">0.2%-0.25%-0.3%-0.35%-0.4%</span>，为队伍中附近所有角色提供元素精通提升，持续20秒。",
         StaffOfTheScarletSands: "基于装备者元素精通的<span style=\"color: #409EFF;\">52%-65%-78%-91%-104%</span>，获得攻击力加成。元素战技命中敌人时，将产生持续10秒的「赤沙之梦」效果：基于装备者元素精通的<span style=\"color: #409EFF;\">28%-35%-42%-49%-56%</span>，获得攻击力加成，该效果至多叠加3层。",
         AThousandFloatingDreams: "队伍中每个其他角色，都会依据元素类型与装备者相同与否，为装备者提供提升效果。相同：元素精通提升<span style=\"color: #409EFF;\">32-40-48-56-64</span>span>点；不同：装备者元素类型的元素伤害加成提升<span style=\"color: #409EFF;\">10%-14%-18%-22%-26%</span>。上述提升效果每种至多叠加3层。此外，队伍中装备者以外的附近角色的元素精通提升<span style=\"color: #409EFF;\">40-42-44-46-48</span>点，多件同名武器产生的此效果可以叠加。",
-        TullaytullahsRemembrance: "普通攻击速度提升<span style=\"color: #409EFF;\">10%-12.5%-15%-17.5%-20%</span>；施放元素战技后的12秒内：普通攻击造成的伤害每1秒提升4.8%-6.0%-7.2%-8.4%-9.6%</span>；普通攻击命中敌人后，普通攻击造成的伤害提升<span style=\"color: #409EFF;\">9.6%-12%-14.4%-16.8%-19.2%，该效果每0.3秒至多触发1次。持续期间内，普通攻击造成的伤害至多通过上述效果提升至<span style=\"color: #409EFF;\">48%-60%-72%-84%-96%</span>。角色退场时将移除效果，再次施放元素战技时会先移除原有的效果。",
+        TulaytullahsRemembrance: "普通攻击速度提升<span style=\"color: #409EFF;\">10%-12.5%-15%-17.5%-20%</span>；施放元素战技后的12秒内：普通攻击造成的伤害每1秒提升4.8%-6.0%-7.2%-8.4%-9.6%</span>；普通攻击命中敌人后，普通攻击造成的伤害提升<span style=\"color: #409EFF;\">9.6%-12%-14.4%-16.8%-19.2%</span>，该效果每0.3秒至多触发1次。持续期间内，普通攻击造成的伤害至多通过上述效果提升至<span style=\"color: #409EFF;\">48%-60%-72%-84%-96%</span>。角色退场时将移除效果，再次施放元素战技时会先移除原有的效果。",
         ToukabouShigure: "攻击命中敌人后，会为命中的一名敌人施加「纸伞作祟」状态，持续10秒。该效果每15秒至多触发一次；持续期间该敌人被击败时，将清除该效果的冷却时间。装备者对处于「纸伞作祟」状态下的敌人造成的伤害提升<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>。",
     },
     config: {
@@ -1188,7 +1188,7 @@ export default {
         t29: "燃烧持续时间（秒）",
         t30: "火系队友数量",
         t31: "额外攻速（不算自身和专武）",
-        t32: "SPD-DMG compensation",
+        t32: "攻速伤害修正",
         t33: "「梦迹一风」风矢命中数",
         t34: "Q命中数",
         t35: "扩散命中数",

@@ -940,6 +940,8 @@ export default {
         KeyOfKhajNisut: "Key of Khaj-Nisut",
         StaffOfTheScarletSands: "Staff of the Scarlet Sands",
         AThousandFloatingDreams: "A Thousand Floating Dreams",
+        TulaytullahsRemembrance: "Tulaytullah's Remembrance",
+        ToukabouShigure: "Toukabou Shigure",
     },
     weaponEffect: {
         MistsplitterReforged: "Gain a <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> Elemental DMG Bonus for all elements and receive the might of the Mistsplitter\'s Emblem. At stack levels 1/2/3, the Mistsplitter\'s Emblem provides a <span style=\"color: #409EFF;\">8/16/28%-10/20/35%-12/24/42%-14/28/49%-16/32/56%</span> Elemental DMG Bonus for the character\'s Elemental Type. The character will obtain 1 stack of Mistsplitter\'s Emblem in each of the following scenarios: Normal Attack deals Elemental DMG (stack lasts 5s), casting Elemental Burst (stack lasts 10s); Energy is less than 100% (stack disappears when Energy is full). Each stack\'s duration is calculated independently.",
@@ -1090,6 +1092,8 @@ export default {
         KeyOfKhajNisut: "HP increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. When an Elemental Skill hits opponents, you gain the Grand Hymn effect for 20s. This effect increases the equipping character's Elemental Mastery by <span style=\"color: #409EFF;\">0.12%-0.15%-0.18%-0.21%-0.24%</span> of their Max HP. This effect can trigger once every 0.3s. Max 3 stacks. When this effect gains 3 stacks, or when the third stack's duration is refreshed, the Elemental Mastery of all nearby party members will be increased by <span style=\"color: #409EFF;\">0.2%-0.25%-0.3%-0.35%-0.4%</span> of the equipping character's max HP for 20s.",
         StaffOfTheScarletSands: "The equipping character gains <span style=\"color: #409EFF;\">52%-65%-78%-91%-104%</span> of their Elemental Mastery as bonus ATK. When an Elemental Skill hits opponents, the Dream of the Scarlet Sands effect will be gained for 10s: The equipping character will gain <span style=\"color: #409EFF;\">28%-35%-42%-49%-56%</span> of their Elemental Mastery as bonus ATK. Max 3 stacks.",
         AThousandFloatingDreams: "Party members other than the equipping character will provide the equipping character with buffs based on whether their Elemental Type is the same as the latter or not. If their Elemental Types are the same, increase Elemental Mastery by <span style=\"color: #409EFF;\">32-40-48-56-64</span>. If not, increase the equipping character’s DMG Bonus from their Elemental Type by <span style=\"color: #409EFF;\">10%-14%-18%-22%-26%</span>. Each of the aforementioned effects can have up to 3 stacks. Additionally, all nearby party members other than the equipping character will have their Elemental Mastery increased by <span style=\"color: #409EFF;\">40-42-44-46-48</span>. Multiple such effects from multiple such weapons can stack.",
+        TulaytullahsRemembrance: "Normal Attack SPD is increased by <span style=\"color: #409EFF;\">10%-12.5%-15%-17.5%-20%</span>. After the wielder unleashes an Elemental Skill, Normal Attack DMG will increase by <span style=\"color: #409EFF;\">4.8%-6%-7.2%-8.4%-9.6%</span> every second for 14s. After hitting an opponent with a Normal Attack during this duration, Normal Attack DMG will be increased by <span style=\"color: #409EFF;\">9.6%-12%-14.4%-16.8%-19.2%</span>. This increase can be triggered once every 0.3s. The maximum Normal Attack DMG increase per single duration of the overall effect is <span style=\"color: #409EFF;\">48%-60%-72%-84%-96%</span>. The effect will be removed when the wielder leaves the field, and using the Elemental Skill again will reset all DMG buffs.",
+        ToukabouShigure: "After an attack hits opponents, it will inflict an instance of Cursed Parasol upon one of them for 10s. This effect can be triggered once every 15s. If this opponent is taken out during Cursed Parasol’s duration, Cursed Parasol’s CD will be refreshed immediately. The character wielding this weapon will deal <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> more DMG to the opponent affected by Cursed Parasol.",
     },
     config: {
         w1: "Avg Effect Stack",
@@ -1209,7 +1213,7 @@ export default {
         t29: "Buring Duration",
         t30: "Pryo Team Member Count",
         t31: "Addtional Normal SPD (exclude self and weapon)",
-        t32: "攻速伤害修正",
+        t32: "SPD-DMG compensation",
         t33: "Gales of Reverie Wind Arrow Hits",
         t34: "Q Hits",
         t35: "Swirl Hits",
@@ -1489,7 +1493,8 @@ export default {
         TighnariDefault: "Tighnari-Verdant Strider",
         NilouDefault: "Nilou-Dance of Lotuslight",
         CynoDefault: "Cyno-Judicator of Secrets",
-        NahidaDefault: "Nahida-Physic of Purity"
+        NahidaDefault: "Nahida-Physic of Purity",
+        WandererDefault: "Wanderer-Eons Adrift",
     },
     tfDesc: {
         MaxATK: "Maximize ATK",
@@ -1568,6 +1573,7 @@ export default {
         NilouDefault: "Nilou DPS",
         CynoDefault: "Perform QTE and unleash Duststalker Bolts, best combo would be applied automatically basing on artifact set",
         NahidaDefault: "Maximize Nahida's Tri-Karma Purification DMG",
+        WandererDefault: "Maximize Wanderer's total damage in one cycle"
     },
     dmg: {
         electroCharged: "Electro-Charged",
@@ -2056,7 +2062,7 @@ export default {
         CandaceQ: "Candace-「Prayer of the Crimson Crown」",
         CandaceTalent2: "Candace-「Celestial Dome of Sand」",
         NahidaTalent1: "Nahida-「Compassion Illuminated」",
-        FaruzanQ: "Faruzan Elemental Burst: <br>·When the Whirlwind Pulse hits opponents, it will apply Perfidious Wind's Ruin to them, decreasing their Anemo RES.<br>·The Whirlwind Pulse will also apply Prayerful Wind's Gift to all nearby characters when it is unleashed, granting them Anemo DMG Bonus.<br>When characters affected by The Wind's Secret Ways' Prayerful Wind's Gift deal Anemo DMG to opponents, this DMG will be increased based on 57.4% of Faruzan's own ATK. This DMG Bonus will be cleared 0.1s after dealing Anemo DMG to opponents, and can be triggered once every 0.8s.",
+        FaruzanQ: "Faruzan-「The Wind’s Secret Ways」",
     },
     buffDesc: {
         ATKFixed: "",
@@ -2162,6 +2168,7 @@ export default {
         CandaceQ: "Characters deal increased Elemental DMG with their Normal Attacks(20%)",
         CandaceTalent2: "Characters affected by the Prayer of the Crimson Crown caused by Sacred Rite: Wagtail’s Tide will deal 0.5% increased DMG to opponents for every 1,000 points of Candace’s Max HP when they deal Elemental DMG with their Normal Attacks.",
         NahidaTalent1: "When unleashing Illusory Heart, the Shrine of Maya will gain the following effects:<br>The Elemental Mastery of the active character within the field will be increased by 25% of the Elemental Mastery of the party member with the highest Elemental Mastery. You can gain a maximum of 250 Elemental Mastery in this manner.",
+        FaruzanQ: "Faruzan Elemental Burst: <br>·When the Whirlwind Pulse hits opponents, it will apply Perfidious Wind's Ruin to them, decreasing their Anemo RES.<br>·The Whirlwind Pulse will also apply Prayerful Wind's Gift to all nearby characters when it is unleashed, granting them Anemo DMG Bonus.<br>When characters affected by The Wind's Secret Ways' Prayerful Wind's Gift deal Anemo DMG to opponents, this DMG will be increased based on 32% of Faruzan's own ATK. This DMG Bonus will be cleared 0.1s after dealing Anemo DMG to opponents, and can be triggered once every 0.8s.",
     },
     buffGenre: {
         Character: "Character BUFF",

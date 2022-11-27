@@ -234,7 +234,7 @@
 // 
 // import AThousandFloatingDreams_tn from "@image/weapons/AThousandFloatingDreams_tn"
 // 
-// import TullaytullahsRemembrance_tn from "@image/weapons/TullaytullahsRemembrance_tn"
+// import TulaytullahsRemembrance_tn from "@image/weapons/TulaytullahsRemembrance_tn"
 // 
 // import PolarStar_tn from "@image/weapons/PolarStar_tn"
 // 
@@ -977,11 +977,11 @@ export default {
 
     ToukabouShigure: {
         name: "ToukabouShigure",
-        internalName: "",
+        internalName: "Kasabouzu",
         // chs: "东花坊时雨",
         star: 4,
         // url: ToukabouShigure_tn,
-        url: imageUrl(""),
+        url: imageUrl("Kasabouzu"),
         type: "Sword",
 
         
@@ -2697,12 +2697,12 @@ export default {
         
     },
 
-    TullaytullahsRemembrance: {
-        name: "TullaytullahsRemembrance",
+    TulaytullahsRemembrance: {
+        name: "TulaytullahsRemembrance",
         internalName: "Alaya",
         // chs: "",
         star: 5,
-        // url: TullaytullahsRemembrance_tn,
+        // url: TulaytullahsRemembrance_tn,
         url: imageUrl("Alaya"),
         type: "Catalyst",
 

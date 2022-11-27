@@ -1,34 +1,35 @@
-use crate::attribute::{Attribute, AttributeName, AttributeCommon};
+use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
+use crate::weapon::{WeaponConfig, WeaponName};
+use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::weapon::weapon_effect::WeaponEffect;
 use crate::weapon::weapon_static_data::WeaponStaticData;
-use crate::weapon::weapon_trait::WeaponTrait;
-use crate::weapon::{WeaponConfig, WeaponName};
-use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
+use crate::weapon::weapon_trait::WeaponTrait;
 
-pub struct TullaytullahsRemembranceEffect {
-    pub stack:f64,
+pub struct TulaytullahsRemembranceEffect {
+    pub stack: f64,
 }
 
-impl<A: Attribute> WeaponEffect<A> for TullaytullahsRemembranceEffect {
+impl<A: Attribute> WeaponEffect<A> for TulaytullahsRemembranceEffect {
     fn apply(&self, data: &WeaponCommonData, attribute: &mut A) {
         let refine = data.refine as f64;
 
-        let interval = 0.036 + 0.012*refine;
+        let interval = 0.036 + 0.012 * refine;
+        let value = interval * 10.0_f64.min(self.stack);
 
-        attribute.set_value_by(AttributeName::BonusNormalAttack, "图莱杜拉的回忆被动", interval*self.stack);
+        attribute.set_value_by(AttributeName::BonusNormalAttack, "图莱杜拉的回忆被动", value);
     }
 }
 
-pub struct TullaytullahsRemembrance;
+pub struct TulaytullahsRemembrance;
 
-impl WeaponTrait for TullaytullahsRemembrance {
+impl WeaponTrait for TulaytullahsRemembrance {
     const META_DATA: WeaponStaticData = WeaponStaticData {
-        name: WeaponName::TullaytullahsRemembrance,
+        name: WeaponName::TulaytullahsRemembrance,
         internal_name: "Alaya", // todo
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage96),
@@ -37,7 +38,7 @@ impl WeaponTrait for TullaytullahsRemembrance {
         #[cfg(not(target_family = "wasm"))]
         effect: Some(""),
         #[cfg(not(target_family = "wasm"))]
-        chs: ""
+        chs: "",
     };
 
     #[cfg(not(target_family = "wasm"))]
@@ -51,11 +52,11 @@ impl WeaponTrait for TullaytullahsRemembrance {
 
     fn get_effect<A: Attribute>(character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
         let stack = match *config {
-            WeaponConfig::TullaytullahsRemembrance { stack } => stack,
+            WeaponConfig::TulaytullahsRemembrance { stack } => stack,
             _ => 0.0
         };
 
-        Some(Box::new(TullaytullahsRemembranceEffect {
+        Some(Box::new(TulaytullahsRemembranceEffect {
             stack
         }))
     }
