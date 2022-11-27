@@ -120,6 +120,7 @@ const f = () => {
 
     function deleteAll() {
         artifacts.value.clear()
+        hashes.clear()
     }
 
     function toggleArtifact(id: number) {

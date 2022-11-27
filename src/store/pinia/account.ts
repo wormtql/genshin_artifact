@@ -10,6 +10,33 @@ interface Account {
     name: string;
 }
 
+/**
+ * localStorage scheme (version 1):
+ * mona_meta: { version: 1 }
+ * mona_accounts: { currentAccountId: Number, allAccounts: [{ id: Number, name: String }, ...] }
+ * mona_account_artifacts_<id>: { flower: {...}, ... }
+ * mona_account_presets_<id>: { ... }
+ * mona_account_kumi_<id>: { ... }
+ */
+const VERSION_STORAGE = 1
+
+interface MonaMeta {
+    version: number
+}
+
+// async function loadAccountFromLocal(): Promise<{ currentAccountId: number, allAccounts: Account[] } | null> {
+//     let metaData = await backend.getItem('mona_meta') as MonaMeta
+//     if (!metaData) {
+//         return null
+//     } else {
+//         if (metaData.version !== VERSION_STORAGE) {
+//             return null
+//         } else {
+//             return await backend.getItem("mona_accounts") as any
+//         }
+//     }
+// }
+
 function createAccountStore() {
     const syncStatus = ref<'no sync' | 'syncing' | 'synced'>('no sync')
 
@@ -85,10 +112,9 @@ function createAccountStore() {
     }
 }
 
-const accountStore = createAccountStore()
+let accountStore = createAccountStore()
 
 export const useAccountStore = () => accountStore
-
 
 const artifactStore = useArtifactStore()
 const presetStore = usePresetStore()
@@ -104,6 +130,9 @@ function nextTick() {
 
 async function loadAccountData() {
     // console.log('start to load')
+    // if (accountStore === null) {
+    //     return
+    // }
     loadingAccountData = true
     const id = accountStore.currentAccountId.value
     const artKey = `mona_account_artifacts_${id}`
@@ -151,20 +180,6 @@ async function initBackendFromLocalStorage() {
     await backend.setItem('mona_account_kumi_1', kumiString && JSON.parse(kumiString))
     const presetString = localStorage.getItem('presets5')
     await backend.setItem('mona_account_presets_1', presetString && JSON.parse(presetString))
-}
-
-/**
- * localStorage scheme (version 1):
- * mona_meta: { version: 1 }
- * mona_accounts: { currentAccountId: Number, allAccounts: [{ id: Number, name: String }, ...] }
- * mona_account_artifacts_<id>: { flower: {...}, ... }
- * mona_account_presets_<id>: { ... }
- * mona_account_kumi_<id>: { ... }
- */
-const VERSION_STORAGE = 1
-
-interface MonaMeta {
-    version: number
 }
 
 async function init_store() {
@@ -223,8 +238,8 @@ function accountWatchContent() {
 }
 
 watch(accountWatchContent, value => {
-    if (loadingAccountData) {
-        return
-    }
+    // if (loadingAccountData) {
+    //     return
+    // }
     backend.setItem('mona_accounts', deepCopy(value))
 }, { deep: true })

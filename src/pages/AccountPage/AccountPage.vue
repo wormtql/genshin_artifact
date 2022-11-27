@@ -144,10 +144,11 @@ async function handleChangeAccount(id: number) {
 
     // ElLoading存在bug，导致滚动条会被拿掉，如果changeAccount太快会导致滚动条突然消失又突然出现，因此这里设置至少切换1s
     let change = changeAccount(id)
-    let timer = new Promise((resolve, reject) => {
-        setTimeout(() => { resolve(null) }, 1000)
-    })
-    await Promise.all([change, timer])
+    // let timer = new Promise((resolve, reject) => {
+    //     setTimeout(() => { resolve(null) }, 1000)
+    // })
+    // await Promise.all([change, timer])
+    await change
 
     loading.close()
 }
