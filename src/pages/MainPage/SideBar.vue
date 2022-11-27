@@ -17,14 +17,14 @@
             </el-menu-item>
             <el-menu-item index="/account">
                 <el-icon><i-ep-user /></el-icon>
-                {{ t("nav.account") }} ( {{ currentAccountName }} )
-                <div class="sync-icon">
-                    <el-icon>
-                        <i-ep-folder-checked v-if="syncStatus === 'synced'" />
-                        <i-ep-sort v-else-if="syncStatus === 'syncing'" />
-                        <i-ep-folder-remove v-else/>
-                    </el-icon>
-                </div>
+                <span>{{ t("nav.account") }} / {{ currentAccountName }}</span>
+<!--                <div class="sync-icon">-->
+<!--                    <el-icon>-->
+<!--                        <i-ep-folder-checked v-if="syncStatus === 'synced'" />-->
+<!--                        <i-ep-sort v-else-if="syncStatus === 'syncing'" />-->
+<!--                        <i-ep-folder-remove v-else/>-->
+<!--                    </el-icon>-->
+<!--                </div>-->
             </el-menu-item>
 
             <el-menu-item-group>
