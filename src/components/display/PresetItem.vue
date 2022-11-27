@@ -1,5 +1,5 @@
 <template>
-    <div class="item br-3" @click="$emit('click')">
+    <div class="item br-3">
         <div class="header">
             <span class="fs-12">{{ props.name }}</span>
             <div v-if="toolbar" class="buttons flex-row">
@@ -156,7 +156,7 @@ const tfData = computed(() => {
             }
         }
     }
-    
+
 }
 
 .c-avatar, .w-avatar, .tf-avatar {

@@ -63,7 +63,7 @@ function store() {
         return result
     })
 
-    function createDir(name: string) {
+    function createDir(name: string): number {
         let item: KumiItem = {
             id: idGenerator.generateId(),
             title: name,
@@ -73,6 +73,7 @@ function store() {
 
         kumi.value.push(item)
         kumiById.value.set(item.id, item)
+        return item.id
     }
 
     function deleteDir(id: number) {
