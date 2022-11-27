@@ -7,45 +7,37 @@ import {hash as hashArtifact} from "@/utils/artifactHash"
 import {deepCopy} from "@/utils/common"
 import {type ArtifactPosition, type IArtifact, type IArtifactContentOnly} from "@/types/artifact"
 
-const idProvider = new RandomIDProvider()
+// let localStoredArtifacts = localStorage.getItem("artifacts");
+// if (localStoredArtifacts) {
+//     let obj: any = JSON.parse(localStoredArtifacts);
 
+//     flower = obj.flower || [];
+//     feather = obj.feather || [];
+//     sand = obj.sand || [];
+//     cup = obj.cup || [];
+//     head = obj.head || [];
 
-let flower: IArtifact[] = [];
-let feather: IArtifact[] = [];
-let sand: IArtifact[] = [];
-let cup: IArtifact[] = [];
-let head: IArtifact[] = [];
+//     let temp = flower.concat(feather).concat(sand).concat(cup).concat(head);
 
-
-let localStoredArtifacts = localStorage.getItem("artifacts");
-if (localStoredArtifacts) {
-    let obj: any = JSON.parse(localStoredArtifacts);
-
-    flower = obj.flower || [];
-    feather = obj.feather || [];
-    sand = obj.sand || [];
-    cup = obj.cup || [];
-    head = obj.head || [];
-
-    let temp = flower.concat(feather).concat(sand).concat(cup).concat(head);
-
-    for (let item of temp) {
-        if (!Object.prototype.hasOwnProperty.call(item, "id")) {
-            item.id = idProvider.generateId()
-        }
-        if (!Object.prototype.hasOwnProperty.call(item, "contentHash")) {
-            item.contentHash = hashArtifact(item)
-        }
-    }
-}
+//     for (let item of temp) {
+//         if (!Object.prototype.hasOwnProperty.call(item, "id")) {
+//             item.id = idProvider.generateId()
+//         }
+//         if (!Object.prototype.hasOwnProperty.call(item, "contentHash")) {
+//             item.contentHash = hashArtifact(item)
+//         }
+//     }
+// }
 
 const f = () => {
     const artifacts: Ref<Map<number, IArtifact>> = ref(new Map())
     const hashes: Map<string, number> = reactive(new Map())
 
+    const idProvider = new RandomIDProvider()
+
     const incHash = (key: string, value: number): void => {
         if (hashes.has(key)) {
-            let newValue: number = hashes.get(key) as number + value
+            let newValue = hashes.get(key)! + value
             if (newValue > 0) {
                 hashes.set(key, newValue)
             } else {
@@ -58,13 +50,42 @@ const f = () => {
         }
     }
 
-    let temp = flower.concat(feather).concat(sand).concat(cup).concat(head)
-    for (let item of temp) {
-        artifacts.value.set(item.id, item)
-        const hash = item.contentHash
+    function init(payload: any) {
+        let flower: IArtifact[] = [];
+        let feather: IArtifact[] = [];
+        let sand: IArtifact[] = [];
+        let cup: IArtifact[] = [];
+        let head: IArtifact[] = [];
 
-        incHash(hash, 1)
+        if (payload) {
+            flower = payload.flower || [];
+            feather = payload.feather || [];
+            sand = payload.sand || [];
+            cup = payload.cup || [];
+            head = payload.head || [];
+
+            let temp = flower.concat(feather).concat(sand).concat(cup).concat(head);
+
+            for (let item of temp) {
+                if (!Object.prototype.hasOwnProperty.call(item, "id")) {
+                    item.id = idProvider.generateId()
+                }
+                if (!Object.prototype.hasOwnProperty.call(item, "contentHash")) {
+                    item.contentHash = hashArtifact(item)
+                }
+            }
+        }
+
+        artifacts.value.clear()
+        hashes.clear()
+        const temp = flower.concat(feather).concat(sand).concat(cup).concat(head)
+        for (const item of temp) {
+            artifacts.value.set(item.id, item)
+            const hash = item.contentHash
+            incHash(hash, 1)
+        }
     }
+
 
     function getArtifact(id: number): IArtifact | undefined {
         return artifacts.value.get(id)
@@ -175,6 +196,7 @@ const f = () => {
         artifactsCount,
         artifacts20Count,
 
+        init,
         removeArtifact,
         addArtifact,
         unlockAll,
@@ -191,7 +213,21 @@ const f = () => {
 
 const s = f()
 
-watch(() => {
+// watch(() => {
+//     return {
+//         flower: s.artifactsByPosition.value["flower"],
+//         feather: s.artifactsByPosition.value["feather"],
+//         sand: s.artifactsByPosition.value["sand"],
+//         cup: s.artifactsByPosition.value["cup"],
+//         head: s.artifactsByPosition.value["head"]
+//     }
+// }, newValue => {
+//     localStorage.setItem("artifacts", JSON.stringify(newValue))
+// }, {
+//     deep: true
+// })
+
+export function watchContent() {
     return {
         flower: s.artifactsByPosition.value["flower"],
         feather: s.artifactsByPosition.value["feather"],
@@ -199,11 +235,7 @@ watch(() => {
         cup: s.artifactsByPosition.value["cup"],
         head: s.artifactsByPosition.value["head"]
     }
-}, newValue => {
-    localStorage.setItem("artifacts", JSON.stringify(newValue))
-}, {
-    deep: true
-})
+}
 
 export const useArtifactStore = () => {
     return s

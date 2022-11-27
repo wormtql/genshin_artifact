@@ -8,7 +8,7 @@ import { type Ref } from "vue"
 
 const artifactStore = useArtifactStore()
 
-function loadLocalKumiOrDefault(): KumiItem[] {
+function loadKumiOrDefault(payload: any): KumiItem[] {
     let kumi = {
         0: {
             id: 0,
@@ -17,21 +17,17 @@ function loadLocalKumiOrDefault(): KumiItem[] {
             children: []
         }
     }
-    const local_str = localStorage.getItem("kumi2")
-    if (local_str) {
+    if (payload) {
         try {
-            const local = JSON.parse(local_str)
-
-            if (typeof local === "object") {
-                if (local.kumi) {
-                    kumi = local.kumi
+            if (typeof payload === "object") {
+                if (payload.kumi) {
+                    kumi = payload.kumi
                 } else {
-                    kumi = local
+                    kumi = payload
                 }
             } else {
-                return local
+                return payload
             }
-
         } catch (e) {
             console.error(e)
         }
@@ -44,13 +40,17 @@ function loadLocalKumiOrDefault(): KumiItem[] {
 }
 
 function store() {
-    const kumi = ref(loadLocalKumiOrDefault())
+    const kumi = ref(loadKumiOrDefault(null))
     const kumiById: Ref<Map<number, KumiItem>> = ref(new Map())
 
     const idGenerator = new RandomIDProvider()
 
-    for (let item of kumi.value) {
-        kumiById.value.set(item.id, item)
+    function init(payload: any) {
+        kumi.value = loadKumiOrDefault(payload)
+        kumiById.value.clear()
+        for (let item of kumi.value) {
+            kumiById.value.set(item.id, item)
+        }
     }
 
     const dirs = computed((): KumiItem[] => {
@@ -63,7 +63,7 @@ function store() {
         return result
     })
 
-    function createDir(name: string) {
+    function createDir(name: string): number {
         let item: KumiItem = {
             id: idGenerator.generateId(),
             title: name,
@@ -73,6 +73,7 @@ function store() {
 
         kumi.value.push(item)
         kumiById.value.set(item.id, item)
+        return item.id
     }
 
     function deleteDir(id: number) {
@@ -228,6 +229,8 @@ function store() {
 
         itemById,
 
+        init,
+
         createDir,
         deleteDir,
         rename,
@@ -243,11 +246,15 @@ function store() {
 
 const s = store()
 
-watch(() => s.kumi.value, newValue => {
-    localStorage.setItem("kumi2", JSON.stringify(newValue))
-}, {
-    deep: true
-})
+export function watchContent() {
+    return s.kumi.value
+}
+
+// watch(() => s.kumi.value, newValue => {
+//     localStorage.setItem("kumi2", JSON.stringify(newValue))
+// }, {
+//     deep: true
+// })
 
 export function useKumiStore(): ReturnType<typeof store> {
     return s

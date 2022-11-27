@@ -1,10 +1,12 @@
 import NewArtifactPlanPage from "@page/NewArtifactPlanPage"
+import SequentialOptimizationPage from "@page/SequentialOptimizationPage"
 import TeamOptimizationPage from "@page/TeamOptimizationPage"
 import NewArtifactPotentialPage from "@page/NewArtifactPotentialPage"
 import CharacterDBPage from "@page/CharacterDBPage"
 import CharacterInfo from "@page/CharacterDBPage/CharacterInfo"
 import MonaPlaygroundPage from "@page/MonaPlaygroundPage"
 import ArtifactsPage from "@page/ArtifactsPage"
+import AccountPage from "@page/AccountPage"
 import CalcBestArtifactSetPage from "@/pages/CalcBestArtifactSetPage"
 // import ExternalLinkPage from "@/pages/about/ExternalLinkPage"
 import SetupPage from "@page/SetupPage"
@@ -76,6 +78,14 @@ const routes = [
         }
     },
     {
+        path: "/sequential-optimization",
+        component: SequentialOptimizationPage,
+        meta: {
+            title: "队列优化",
+            keepAlive: true,
+        }
+    },
+    {
         path: "/artifacts-kumi",
         component: KumiPage,
         meta: {
@@ -97,6 +107,15 @@ const routes = [
         name: "home",
         meta: {
             title: "首页",
+        }
+    },
+    {
+        path: "/account",
+        component: AccountPage,
+        name: "account",
+        meta: {
+            keepAlive: true,
+            title: "账号",
         }
     },
     {

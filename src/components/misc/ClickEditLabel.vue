@@ -1,7 +1,8 @@
 <template>
     <div class="root">
         <input
-            :value="value"
+            :value="content"
+            @input.stop="onInput"
             @click="edit = true"
             @blur="onBlur"
             :style="inputStyle"
@@ -15,20 +16,28 @@
 export default {
     name: "ClickEditLabel",
     props: {
-        "value": {},
-        "fontsize": {},
+        value: {},
+        fontsize: {},
         editable: { default: true }
     },
     data() {
         return {
             edit: false,
+            content: this.value,
+        }
+    },
+    watch: {
+        value(newValue) {
+            this.content = newValue
         }
     },
     methods: {
+        onInput(e) {
+            this.content = e.target.value
+        },
         onBlur(e) {
-            let text = e.target.value;
-            this.edit = false;
-            this.$emit("input", text);
+            this.edit = false
+            this.$emit("input", this.content)
         }
     },
     computed: {
