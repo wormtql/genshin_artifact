@@ -139,6 +139,7 @@ import AttributePanel from "@/components/display/AttributePanel"
 import {useArtifactStore} from "@/store/pinia/artifact"
 import type {IArtifact} from "@/types/artifact"
 import {usePresetStore} from "@/store/pinia/preset"
+import {useAccountStore} from "@/store/pinia/account"
 import {useMona} from "@/wasm/mona"
 import {deepCopy} from "@/utils/common"
 
@@ -153,6 +154,7 @@ const { t } = useI18n()
 
 const artifactStore = useArtifactStore()
 const presetStore = usePresetStore()
+const accountStore = useAccountStore()
 
 const mona = await useMona()
 
@@ -322,6 +324,13 @@ function handleClickStart() {
         loading.close()
     })
 }
+
+watch(() => accountStore.currentAccountId.value, () => {
+    presetNames.value = [null]
+    weights.value = [0]
+    results.value = []
+    resultIndex.value = 0
+})
 </script>
 
 <style scoped lang="scss">
