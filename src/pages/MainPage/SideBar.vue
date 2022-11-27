@@ -55,7 +55,7 @@
                 </el-menu-item>
                 <el-menu-item index="/sequential-optimization">
                     <el-icon><i-ep-cpu /></el-icon>
-                    {{ t("nav.sequentialOptimize") }}
+                    {{ t("nav.sequenceOptimize") }}
                 </el-menu-item>
                 <el-menu-item index="/team-optimization">
                     <el-icon><i-ep-cpu /></el-icon>

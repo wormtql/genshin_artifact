@@ -2,30 +2,30 @@
     <div>
         <apply-preset-dialog ref="applyPresetDialog" @selected="addPreset"></apply-preset-dialog>
 
-        <el-dialog title="选择圣遗物" :width="deviceIsPC ? '80%' : '90%'" v-model="showSelectArtifactDialog">
+        <el-dialog :title="t('sequencePage.selectArtifact')" :width="deviceIsPC ? '80%' : '90%'" v-model="showSelectArtifactDialog">
             <select-artifact :position="selectArtifactSlot" @select="handleSelectArtifact"></select-artifact>
         </el-dialog>
 
         <el-row style="margin-bottom: 12px">
             <el-col :span="12">
-                <el-button size="default" :icon="IconEpFolderOpened" @click="handleClickImportSequence">导入序列</el-button>
+                <el-button size="default" :icon="IconEpFolderOpened" @click="handleClickImportSequence">{{ t('sequencePage.importSequence') }}</el-button>
                 <el-button type="primary" size="default" :icon="IconEpFolderChecked" :disabled="!sequenceDirty"
-                    @click="handleClickSaveSequence">保存序列</el-button>
+                    @click="handleClickSaveSequence">{{ t('sequencePage.saveSequence') }}</el-button>
                 <el-divider direction="vertical"></el-divider>
                 <el-button v-if="!cancelOptimizeArtifact" type="primary" size="default" :icon="IconEpCpu"
-                    @click="handleClickStart">开始计算</el-button>
+                    @click="handleClickStart">{{ t('sequencePage.startCalculation') }}</el-button>
                 <el-button v-if="cancelOptimizeArtifact" type="danger" size="default" :icon="IconEpWarningOutline"
-                    @click="cancelOptimizeArtifact">中止计算</el-button>
+                    @click="cancelOptimizeArtifact">{{ t('sequencePage.stopCalculation') }}</el-button>
             </el-col>
             <el-col :span="12">
                 <div style="float: right">
                     <el-button-group>
                         <el-button type="primary" size="default" :icon="IconEpStarOn"
                             @click="handleClickSaveToDirectory">
-                            存至收藏夹
+                            {{ t('sequencePage.saveToDirectory') }}
                         </el-button>
                         <el-dropdown trigger="click" @command="handleClickImportFromDirectory">
-                            <el-button size="default" :icon="IconEpDownload">导入</el-button>
+                            <el-button size="default" :icon="IconEpDownload">{{ t('sequencePage.import') }}</el-button>
                             <template #dropdown>
                                 <el-dropdown-menu>
                                     <el-dropdown-item v-for="item in directories" :key="item.id" :command="item.id">
@@ -36,7 +36,7 @@
                         </el-dropdown>
                         <el-dropdown trigger="click" @command="handleClickCompareWithDirectory">
                             <el-button size="default" :icon="IconEpDocumentCopy">
-                                对比{{ oldDirectoryId !== null ? '中' : ''}}
+                                {{ t(`sequencePage.${oldDirectoryId !== null ? 'comparing' : 'compare'}`) }}
                             </el-button>
                             <template #dropdown>
                                 <el-dropdown-menu>
@@ -45,7 +45,7 @@
                                         {{ item.title }}
                                     </el-dropdown-item>
                                     <el-dropdown-item v-if="oldDirectoryId !== null" divided command="cancel">
-                                        取消
+                                        {{ t('sequencePage.cancel') }}
                                     </el-dropdown-item>
                                 </el-dropdown-menu>
                             </template>
@@ -67,7 +67,7 @@
                     <el-col :md="6" :sm="24" class="mona-scroll-hidden left member-item">
                         <div style="display: flex; justify-content: space-between; align-items: center"
                             class="member-header">
-                            <p class="team-title">成员{{ index + 1 }}</p>
+                            <p class="team-title">{{ t('sequencePage.member') }} {{ index + 1 }}</p>
                             <div>
                                 <el-button circle size="small" link :icon="IconEpArrowUp" :disabled="index === 0"
                                     @click="handleUpMember(index)" style="color: white"></el-button>
@@ -89,11 +89,11 @@
                         <div class="result-item-top">
                             <div>
                                 <el-button size="small" :icon="IconEpView" @click="handleRedirectToCalculator(index)">
-                                    角色详情</el-button>
+                                    {{ t('sequencePage.details') }}</el-button>
                                 <el-button size="small" :icon="IconEpSmoking"
-                                    @click="handleStartCompute(index, index + 1)">计算这个</el-button>
+                                    @click="handleStartCompute(index, index + 1)">{{ t('sequencePage.calculateThis') }}</el-button>
                                 <el-button size="small" :icon="IconEpCaretBottom" @click="handleStartCompute(index)">
-                                    计算这个及以下</el-button>
+                                    {{ t('sequencePage.calculateThisAndBelow') }}</el-button>
                             </div>
                             <div class="result-item-buttons">
                             </div>
@@ -117,7 +117,7 @@
         </draggable>
         <el-row :key="'this-is-a-unique-key-for-add-button!!!!'" :gutter="16">
             <el-col :md="6" :sm="24" class="mona-scroll-hidden left member-item">
-                <add-button msg="添加成员" @click="applyPresetDialog!.open()" style="height: 7vw; width: 100%">
+                <add-button :msg="t('sequencePage.addMember')" @click="applyPresetDialog!.open()" style="height: 7vw; width: 100%">
                 </add-button>
             </el-col>
         </el-row>
@@ -160,7 +160,9 @@ import { useKumiStore } from "@/store/pinia/kumi"
 import { useSequenceStore } from "@/store/pinia/sequence"
 import { useAccountStore } from "@/store/pinia/account"
 import { useRouter } from "vue-router"
+import {useI18n} from "@/i18n/i18n"
 
+const { t } = useI18n()
 const artifactStore = useArtifactStore()
 const artifactsById = artifactStore.artifacts
 const presetStore = usePresetStore()

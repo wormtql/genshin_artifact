@@ -1,6 +1,6 @@
 <template>
     <el-dialog
-        title="导入预设"
+        :title="t('sequencePage.applyPresetDialogTitle')"
         v-model="visible"
         width="80%"
     >
@@ -54,6 +54,9 @@ export default {
 <script setup lang="ts">
 import PresetItem from "@/components/display/PresetItem.vue"
 import {usePresetStore} from "@/store/pinia/preset"
+import {useI18n} from "@/i18n/i18n"
+
+const { t } = useI18n()
 
 const presetStore = usePresetStore()
 const presetsAllFlat = presetStore.allFlat
