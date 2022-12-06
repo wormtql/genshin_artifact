@@ -136,7 +136,7 @@ pub enum WeaponName {
     FruitOfFulfillment,
     WanderingEvenstar,
     AThousandFloatingDreams,
-    TullaytullahsRemembrance,
+    TulaytullahsRemembrance,
 
     // bows
     PolarStar,

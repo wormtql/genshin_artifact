@@ -22,7 +22,7 @@
                         {{ t("setupPage.storage") }}
                     </div>
                 </template>
-                <el-popconfirm @confirm="handleClearLocaleStorage" :title="t('setupPage.confirmClear')">
+                <el-popconfirm @confirm="handleClearLocalStorage" :title="t('setupPage.confirmClear')">
                     <template #reference>
                         <el-button type="danger" :icon="IconEpDelete">{{ t("setupPage.clear") }}</el-button>
                     </template>
@@ -33,15 +33,16 @@
 </template>
 
 <script setup lang="ts">
+import localforage from "localforage"
 import {useI18n} from "@/i18n/i18n"
-
 import IconEpDelete from "~icons/ep/delete"
 
 const { t, setLocale, locale } = useI18n()
 
 
-function handleClearLocaleStorage() {
+function handleClearLocalStorage() {
     localStorage.clear()
+    localforage.clear()
 }
 
 async function handleSetLocale(lang: string) {

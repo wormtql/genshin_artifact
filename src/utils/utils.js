@@ -1,22 +1,6 @@
 import { artifactTags } from "@const/artifact";
 import { artifactsData } from "@asset/artifacts";
 
-/**
- * attackPercentage, 0.1 -> "10"
- * attackStatic, 10 -> "10"
- */
-export function convertDisplayTagValue(name, value) {
-    let tagData = artifactTags[name];
-    if (!tagData) {
-        throw "tag name not exist";
-    }
-
-    if (tagData.percentage) {
-        return (value * 100).toFixed(1);
-    }
-    return value;
-}
-
 export function getArtifactThumbnailURL(setName) {
     let artData = artifactsData[setName];
 

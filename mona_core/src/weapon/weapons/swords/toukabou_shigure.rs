@@ -2,13 +2,13 @@ use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
+use crate::weapon::{WeaponConfig, WeaponName};
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::weapon::weapon_effect::WeaponEffect;
 use crate::weapon::weapon_static_data::WeaponStaticData;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
 use crate::weapon::weapon_trait::WeaponTrait;
-use crate::weapon::{WeaponConfig, WeaponName};
 
 pub struct ToukabouShigureEffect {
     pub rate: f64,
@@ -47,7 +47,7 @@ impl WeaponTrait for ToukabouShigure {
         #[cfg(not(target_family = "wasm"))]
         effect: Some("攻击命中敌人后，会为命中的一名敌人施加「纸伞作祟」状态，持续10秒。该效果每15秒至多触发一次；持续期间该敌人被击败时，将清除该效果的冷却时间。装备者对处于「纸伞作祟」状态下的敌人造成的伤害提升16%-20%-24%-28%-32%。"),
         #[cfg(not(target_family = "wasm"))]
-        chs: "东花坊时雨"
+        chs: "东花坊时雨",
     };
 
     #[cfg(not(target_family = "wasm"))]
@@ -58,8 +58,8 @@ impl WeaponTrait for ToukabouShigure {
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 1.0,
-                default: 0.0
-            }
+                default: 0.0,
+            },
         }
     ]);
 

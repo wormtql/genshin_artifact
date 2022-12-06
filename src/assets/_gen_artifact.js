@@ -1254,7 +1254,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"stack","title":"a4","type":"float"},
+            {"default":4.0,"max":4.0,"min":0.0,"name":"stack","title":"a4","type":"float"},
             
         ],
     },

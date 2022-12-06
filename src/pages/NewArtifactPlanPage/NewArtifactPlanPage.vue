@@ -697,6 +697,7 @@ import SimpleLoading from "@/components/loading/SimpleLoading.vue"
 import SimpleError from "@/components/loading/SimpleError.vue"
 import {useRoute} from "vue-router"
 import {useI18n} from "@/i18n/i18n"
+import {useAccountStore} from "@/store/pinia/account"
 
 import {ElMessage} from "element-plus"
 import "element-plus/es/components/message/style/css"
@@ -706,6 +707,7 @@ import SelectElementType from "@/components/select/SelectElementType.vue";
 const presetStore = usePresetStore()
 const artifactStore = useArtifactStore()
 const kumiStore = useKumiStore()
+const accountStore = useAccountStore()
 
 // mona
 const mona = await useMona()
@@ -1534,6 +1536,13 @@ function handleOptimizeArtifact() {
         loading.close()
     })
 }
+
+watch(() => accountStore.currentAccountId.value, () => {
+    optimizationResults.value = []
+    optimizationResultIndex.value = 0
+    miscCurrentPresetName.value = null
+    artifactIds.value = [-1, -1, -1, -1, -1]
+})
 </script>
 
 <style lang="scss" scoped>
@@ -1652,7 +1661,7 @@ function handleOptimizeArtifact() {
         .detail-left {
             width: 64px;
             margin-right: 16px;
-            
+
             img {
                 height: 64px;
                 width: 64px;

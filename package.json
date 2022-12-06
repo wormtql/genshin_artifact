@@ -1,6 +1,6 @@
 {
   "name": "genshin_artifacts",
-  "version": "5.12.1",
+  "version": "5.13.0",
   "private": true,
   "scripts": {
     "serve": "cross-env ENV_FILE=.env.development.yaml vue-cli-service serve",
@@ -30,11 +30,13 @@
     "element-plus": "^2.2.6",
     "fuse.js": "^6.5.3",
     "is-electron": "^2.2.0",
+    "localforage": "^1.10.0",
+    "lodash": "^4.17.21",
     "monaco-editor": "^0.33.0",
     "object-hash": "^2.2.0",
     "pinia": "^2.0.14",
     "ua-parser-js": "^1.0.2",
-    "vue": "^3.2.36",
+    "vue": "^3.2.41",
     "vue-echarts": "^6.1.0",
     "vue-i18n": "9",
     "vue-router": "4"

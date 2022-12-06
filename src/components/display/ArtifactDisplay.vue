@@ -164,12 +164,14 @@ const imageSrc = computed(() => {
 })
 
 const mainDisplayTag = computed(() => {
+    // console.log("123", props.item.mainTag.name)
     return displayedTag(props.item.mainTag.name, props.item.mainTag.value)
 })
 
 const secTags = computed(() => {
     let temp = [];
     for (let tag of props.item.normalTags) {
+        // console.log("456", tag.name)
         temp.push(displayedTag(tag.name, tag.value))
     }
     return temp;
