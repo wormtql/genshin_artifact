@@ -351,7 +351,7 @@ class MixedBackend {
         }
         console.log('localMeta', localMeta)
         console.log('fileMeta', fileMeta)
-        alert('由于不知道的原因，本地目录与浏览器存储状态不一致，已停止与本地目录同步。\n' +
+        alert('由于未知原因，本地目录与浏览器存储状态不一致，已停止与本地目录同步。\n' +
             '你可以手动重新同步。\n' +
             'Due to an unknown reason, local directory is inconsistent with the browser storage, synchronization has been stopped.\n' +
             'You can restart synchronization manually.')

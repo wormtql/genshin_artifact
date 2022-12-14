@@ -23,6 +23,7 @@ pub enum WeaponConfig {
     SapwoodBlade { rate: f64 },
     XiphosMoonlight { rate: f64 },
     KeyOfKhajNisut { stack: f64 },
+    ToukabouShigure { rate: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },
@@ -75,6 +76,7 @@ pub enum WeaponConfig {
     FruitOfFulfillment { stack: f64 },
     WanderingEvenstar { rate: f64 },
     AThousandFloatingDreams { same_count: usize, diff_count: usize },
+    TulaytullahsRemembrance { stack: f64 },
 
     // Bow
     PolarStar { stack: usize },

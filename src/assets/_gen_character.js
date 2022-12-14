@@ -64,6 +64,10 @@ import Dori_splash from "@image/characters/Dori_splash"
 // import Eula_avatar from "@image/characters/Eula_avatar"
 import Eula_splash from "@image/characters/Eula_splash"
 
+// import Faruzan_card from "@image/characters/Faruzan_card"
+// import Faruzan_avatar from "@image/characters/Faruzan_avatar"
+import Faruzan_splash from "@image/characters/Faruzan_splash"
+
 // import Fischl_card from "@image/characters/Fischl_card"
 // import Fischl_avatar from "@image/characters/Fischl_avatar"
 import Fischl_splash from "@image/characters/Fischl_splash"
@@ -195,6 +199,10 @@ import Tighnari_splash from "@image/characters/Tighnari_splash"
 // import Venti_card from "@image/characters/Venti_card"
 // import Venti_avatar from "@image/characters/Venti_avatar"
 import Venti_splash from "@image/characters/Venti_splash"
+
+// import Wanderer_card from "@image/characters/Wanderer_card"
+// import Wanderer_avatar from "@image/characters/Wanderer_avatar"
+import Wanderer_splash from "@image/characters/Wanderer_splash"
 
 // import Xiangling_card from "@image/characters/Xiangling_card"
 // import Xiangling_avatar from "@image/characters/Xiangling_avatar"
@@ -1204,6 +1212,60 @@ export default {
         configSkill: [
             
             {"default":0,"max":30,"min":0,"name":"lightfall_stack","title":"c23","type":"int"},
+            
+        ],
+    },
+    
+    Faruzan: {
+        name: "Faruzan",
+        // chs: "珐露珊",
+        element: "Anemo",
+        weapon: "Bow",
+        star: 4,
+        // card: Faruzan_card,
+        // avatar: Faruzan_avatar,
+        avatar: getName("Faruzan"),
+        splash: Faruzan_splash,
+        skillName1: "普通攻击·迴身箭术",
+        skillName2: "非想风天",
+        skillName3: "抟风秘道",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 2 },
+            
+            { index: 3, text: 3 },
+            
+            { index: 4, text: 38 },
+            
+            { index: 4, text: 241 },
+            
+            { index: 6, text: 7 },
+            
+            { index: 7, text: 8 },
+            
+            { index: 8, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 9, text: 19 },
+            
+            { index: 10, text: 242 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 11, text: 19 },
+            
+        ],
+        config: [
+            
+        ],
+        configSkill: [
             
         ],
     },
@@ -3262,6 +3324,72 @@ export default {
             
         ],
         configSkill: [
+            
+        ],
+    },
+    
+    Wanderer: {
+        name: "Wanderer",
+        // chs: "流浪者",
+        element: "Anemo",
+        weapon: "Catalyst",
+        star: 5,
+        // card: Wanderer_card,
+        // avatar: Wanderer_avatar,
+        avatar: getName("Wanderer"),
+        splash: Wanderer_splash,
+        skillName1: "普通攻击·行幡鸣弦",
+        skillName2: "羽画·风姿华歌",
+        skillName3: "狂言·式乐五番",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 132 },
+            
+            { index: 3, text: 236 },
+            
+            { index: 4, text: 237 },
+            
+            { index: 5, text: 238 },
+            
+            { index: 6, text: 38 },
+            
+            { index: 7, text: 239 },
+            
+            { index: 8, text: 7 },
+            
+            { index: 9, text: 8 },
+            
+            { index: 10, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 11, text: 19 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 12, text: 240 },
+            
+        ],
+        config: [
+            
+            {"default":false,"name":"e_pyro","title":"c52","type":"bool"},
+            
+            {"default":false,"name":"e_cryo","title":"c53","type":"bool"},
+            
+        ],
+        configSkill: [
+            
+            {"default":true,"name":"e_enabled","title":"c50","type":"bool"},
+            
+            {"default":false,"name":"e_hydro","title":"c51","type":"bool"},
+            
+            {"default":50.0,"max":120.0,"min":0.0,"name":"sdpoints","title":"c54","type":"float"},
             
         ],
     },

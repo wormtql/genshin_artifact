@@ -48,7 +48,6 @@
             <el-button
                 type="primary"
                 :icon="IconEpPlus"
-                size="small"
                 @click="addAccount"
             >
                 {{ t('accountPage.addAccount') }}
@@ -70,7 +69,7 @@
                     :editable="true"
                     style="display: inline-block;"
                 ></click-edit-label>
-                <div class="buttons flex-row">
+                <div class="buttons">
                     <el-popconfirm
                         :title="t('accountPage.confirmDelete')"
                         @confirm="handleDeleteAccount(id)"
@@ -141,7 +140,15 @@ async function handleChangeAccount(id: number) {
         lock: true,
         text: t('accountPage.switchingAccount')
     })
-    await changeAccount(id)
+
+    // ElLoading存在bug，导致滚动条会被拿掉，如果changeAccount太快会导致滚动条突然消失又突然出现，因此这里设置至少切换1s
+    let change = changeAccount(id)
+    // let timer = new Promise((resolve, reject) => {
+    //     setTimeout(() => { resolve(null) }, 1000)
+    // })
+    // await Promise.all([change, timer])
+    await change
+
     loading.close()
 }
 
@@ -183,7 +190,7 @@ function querySyncType(localMeta: BackendMeta | null, fileMeta: BackendMeta | nu
         handleSyncDialogClosed.value = () => {
             if (!resolved) {
                 storeBackend.disconnectFileBackend()
-                reject(Error(t('accountPage.cancelSyncing')))
+                reject(new Error(t('accountPage.cancelSyncing')))
             }
         }
         showSyncDialog.value = true
@@ -229,6 +236,7 @@ $height: 60px;
     height: $height;
     width: 100%;
     padding-left: 20px;
+    padding-right: 20px;
     cursor: pointer;
     line-height: $height;
     color: #303133;

@@ -265,6 +265,7 @@ export function displayedTag(name: ArtifactStatName, value: number) {
 
     let tagData = artifactTags[name];
     if (!tagData) {
+        console.log(name)
         throw "tag name not exist";
     }
 
