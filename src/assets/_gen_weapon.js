@@ -977,11 +977,11 @@ export default {
 
     ToukabouShigure: {
         name: "ToukabouShigure",
-        internalName: "Kasabouzu",
+        internalName: "Sword_Kasabouzu",
         // chs: "东花坊时雨",
         star: 4,
         // url: ToukabouShigure_tn,
-        url: imageUrl("Kasabouzu"),
+        url: imageUrl("Sword_Kasabouzu"),
         type: "Sword",
 
         
@@ -2699,11 +2699,11 @@ export default {
 
     TulaytullahsRemembrance: {
         name: "TulaytullahsRemembrance",
-        internalName: "Alaya",
+        internalName: "Catalyst_Alaya",
         // chs: "",
         star: 5,
         // url: TulaytullahsRemembrance_tn,
-        url: imageUrl("Alaya"),
+        url: imageUrl("Catalyst_Alaya"),
         type: "Catalyst",
 
         
