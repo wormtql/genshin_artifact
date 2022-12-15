@@ -30,7 +30,7 @@ pub struct TulaytullahsRemembrance;
 impl WeaponTrait for TulaytullahsRemembrance {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::TulaytullahsRemembrance,
-        internal_name: "Alaya", // todo
+        internal_name: "Catalyst_Alaya",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage96),
         weapon_base: WeaponBaseATKFamily::ATK674,

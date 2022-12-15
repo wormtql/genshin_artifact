@@ -39,7 +39,7 @@ pub struct ToukabouShigure;
 impl WeaponTrait for ToukabouShigure {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::ToukabouShigure,
-        internal_name: "Kasabouzu", //TODO
+        internal_name: "Sword_Kasabouzu",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM36),
         weapon_base: WeaponBaseATKFamily::ATK510,
