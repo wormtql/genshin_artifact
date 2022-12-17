@@ -1181,6 +1181,8 @@ export default {
         c52: "Jade-Claimed Flower Pyro",
         c53: "Jade-Claimed Flower Cryo",
         c54: "Kuugoryoku Points",
+        c55: "Prayerful Wind’s Benefit Ratio",
+        c56: "Hurricane Guard effect Ratio",
 
         t1: "Type",
         t2: "Trigger Element",
@@ -1495,6 +1497,7 @@ export default {
         CynoDefault: "Cyno-Judicator of Secrets",
         NahidaDefault: "Nahida-Physic of Purity",
         WandererDefault: "Wanderer-Eons Adrift",
+        FaruzanDamage: "Faruzan-Enigmatic Machinist",
     },
     tfDesc: {
         MaxATK: "Maximize ATK",
@@ -1573,7 +1576,8 @@ export default {
         NilouDefault: "Nilou DPS",
         CynoDefault: "Perform QTE and unleash Duststalker Bolts, best combo would be applied automatically basing on artifact set",
         NahidaDefault: "Maximize Nahida's Tri-Karma Purification DMG",
-        WandererDefault: "Maximize Wanderer's total damage in one cycle"
+        WandererDefault: "Maximize Wanderer's total damage in one cycle",
+        FaruzanDamage: "Maximize Faruzan's Q damage",
     },
     dmg: {
         electroCharged: "Electro-Charged",

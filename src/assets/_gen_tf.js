@@ -185,6 +185,8 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
+
+
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
@@ -1754,6 +1756,26 @@ export default {
             {"default":5,"max":5,"min":0,"name":"q_count","title":"t34","type":"int"},
             
             {"default":12,"max":24,"min":0,"name":"swirl_count","title":"t35","type":"int"},
+            
+        ],
+    },
+    
+    "FaruzanDamage": {
+        name: "FaruzanDamage",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "Faruzan",
+        
+        badge: getImage("UI_AvatarIcon_Faruzan"),
+        
+        config: [
+            
+            {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
             
         ],
     },

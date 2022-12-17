@@ -84,31 +84,24 @@ impl FaruzanDamageEnum {
     }
 }
 
-// pub struct FaruzanEffect {
-//     pub talent1: bool,
-//     pub e_pyro: bool,
-//     pub e_cryo: bool,
-// }
+pub struct FaruzanEffect {
+    pub q_ratio: f64,
+    pub q_level: usize,
+}
 
-// impl<A: Attribute> ChangeAttribute<A> for FaruzanEffect {
-//     fn change_attribute(&self, attribute: &mut A) {
-//         if self.talent1 {
-//             if self.e_pyro {
-//                 attribute.set_value_by(AttributeName::ATKPercentage, "天赋「拾玉得花」染火加成", 0.3);
-//             }
-//             if self.e_cryo {
-//                 attribute.set_value_by(AttributeName::CriticalBase, "天赋「拾玉得花」染冰加成", 0.2);
-//             }
-//         }
-//     }
-// }
+impl<A: Attribute> ChangeAttribute<A> for FaruzanEffect {
+    fn change_attribute(&self, attribute: &mut A) {
+        let bonus = FARUZAN_SKILL.q_bonus[self.q_level];
+        attribute.set_value_by(AttributeName::BonusAnemo, "珐露珊Q技能加成", bonus * self.q_ratio);
+    }
+}
 
 pub struct Faruzan;
 
 impl CharacterTrait for Faruzan {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Faruzan,
-        internal_name: "Faruzan", // todo
+        internal_name: "Faruzan",
         chs: "珐露珊",
         element: Element::Anemo,
         hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7819, 8481, 8907, 9570],
@@ -135,7 +128,7 @@ impl CharacterTrait for Faruzan {
             Normal3 "三段伤害"
             Normal4 "四段伤害"
             Charged1 "重击伤害"
-            Charged1 "满蓄力瞄准伤害"
+            Charged1 "满蓄力瞄准射击"
             Plunging1 "下坠期间伤害"
             Plunging2 "低空坠地冲击伤害"
             Plunging3 "高空坠地冲击伤害"
@@ -151,38 +144,23 @@ impl CharacterTrait for Faruzan {
         ),
     };
 
-    // #[cfg(not(target_family = "wasm"))]
-    // const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
-    //     ItemConfig {
-    //         name: "e_pyro",
-    //         title: "c52",
-    //         config: ItemConfigType::Bool { default: false },
-    //     },
-    //     ItemConfig {
-    //         name: "e_cryo",
-    //         title: "c53",
-    //         config: ItemConfigType::Bool { default: false },
-    //     },
-    // ]);
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "q_ratio",
+            title: "c55",
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
+        },
+    ]);
 
-    // #[cfg(not(target_family = "wasm"))]
-    // const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
-    //     ItemConfig {
-    //         name: "e_enabled",
-    //         title: "c50", 
-    //         config: ItemConfigType::Bool { default: true }
-    //     },
-    //     ItemConfig {
-    //         name: "e_hydro",
-    //         title: "c51",
-    //         config: ItemConfigType::Bool { default: false }
-    //     },
-    //     ItemConfig {
-    //         name: "sdpoints",
-    //         title: "c54",
-    //         config: ItemConfigType::Float { min: 0.0, max: 120.0, default: 50.0 },
-    //     },
-    // ]);
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "talent2_ratio",
+            title: "c56",
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
+        },
+    ]);
 
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: FaruzanDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
@@ -208,10 +186,24 @@ impl CharacterTrait for Faruzan {
         };
         builder.add_atk_ratio("技能倍率", ratio);
 
+        let element = s.get_skill_element();
+        let talent2_ratio = match *config {
+            CharacterSkillConfig::Faruzan { talent2_ratio } => talent2_ratio,
+            _ => 0.0
+        };
+        if context.character_common_data.has_talent2 {
+            if element == Element::Anemo || (fumo.is_some() && fumo.unwrap() == Element::Anemo) {
+                if talent2_ratio > 0.0 {
+                    let base_atk = context.attribute.get_value(AttributeName::ATKBase);
+                    builder.add_extra_damage("珐露珊天赋2：烈风护持", base_atk * 0.32 * talent2_ratio);
+                }
+            }
+        }
+
         builder.damage(
             &context.attribute,
             &context.enemy,
-            s.get_skill_element(),
+            element,
             s.get_skill_type(),
             context.character_common_data.level,
             fumo,
@@ -219,7 +211,14 @@ impl CharacterTrait for Faruzan {
     }
 
     fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
-        None
+        let q_ratio = match *config {
+            CharacterConfig::Faruzan { q_ratio } => q_ratio,
+            _ => 0.0
+        };
+        Some(Box::new(FaruzanEffect {
+            q_ratio,
+            q_level: common_data.skill3
+        }))
     }
 
     fn get_target_function_by_role(role_index: usize, team: &TeamQuantization, c: &CharacterCommonData, w: &WeaponCommonData) -> Box<dyn TargetFunction> {

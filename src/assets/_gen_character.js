@@ -1241,7 +1241,7 @@ export default {
             
             { index: 4, text: 38 },
             
-            { index: 4, text: 241 },
+            { index: 4, text: 29 },
             
             { index: 6, text: 7 },
             
@@ -1254,7 +1254,7 @@ export default {
             
             { index: 9, text: 19 },
             
-            { index: 10, text: 242 },
+            { index: 10, text: 241 },
             
         ],
         skillMap3: [
@@ -1264,8 +1264,12 @@ export default {
         ],
         config: [
             
+            {"default":1.0,"max":1.0,"min":0.0,"name":"q_ratio","title":"c55","type":"float"},
+            
         ],
         configSkill: [
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"talent2_ratio","title":"c56","type":"float"},
             
         ],
     },

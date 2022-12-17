@@ -35,5 +35,6 @@ pub enum CharacterSkillConfig {
     Cyno { under_judication: bool },
     Nahida { q_bonus: bool, q_bonus_count: usize },
     Wanderer { e_enabled: bool, e_hydro: bool, sdpoints: f64 },
+    Faruzan { talent2_ratio: f64 },
     NoConfig,
 }

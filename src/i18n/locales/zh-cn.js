@@ -1156,6 +1156,8 @@ export default {
         c52: "「拾玉得花」染火",
         c53: "「拾玉得花」染冰",
         c54: "等效「空居力」",
+        c55: "「祈风之赐」比例",
+        c56: "「烈风护持」比例",
 
         t1: "类型",
         t2: "触发元素",
@@ -1497,7 +1499,7 @@ export default {
         CynoDefault: "赛诺-缄秘的裁谴",
         NahidaDefault: "纳西妲-白草净华",
         WandererDefault: "流浪者-久世浮倾",
-
+        FaruzanDamage: "珐露珊-机逐封秘",
     },
     tfDesc: {
         MaxATK: "最大化攻击力",
@@ -1577,6 +1579,7 @@ export default {
         CynoDefault:"打QTE并释放渡荒之雷，会根据套装自动选择手法，如激化草全覆盖则激化比例留1.0即可",
         NahidaDefault: "使纳西妲灭净三业及反应伤害最大",
         WandererDefault: "计算一轮内流浪者造成伤害的总和",
+        FaruzanDamage: "使得珐露珊大招伤害最大",
     },
     dmg: {
         electroCharged: "感电",

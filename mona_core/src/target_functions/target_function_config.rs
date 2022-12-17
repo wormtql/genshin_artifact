@@ -58,6 +58,7 @@ pub enum TargetFunctionConfig {
     WandererDefault { e_hydro: bool, e_pyro: bool, e_cryo: bool, spd_extra: f64, spd_comp: f64, dash_count: usize, q_count:usize, swirl_count: usize,  },
 
     BennettDamage { recharge_demand: f64, other_dmg_ratio: f64 },
+    FaruzanDamage { recharge_demand: f64 },
 
     NoConfig,
 }
