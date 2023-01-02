@@ -1,6 +1,6 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
+use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2, AttributeCommon};
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
@@ -107,7 +107,8 @@ impl TargetFunction for KaedeharaKazuhaDefaultTargetFunction {
 
         let vv_ratio = if vv_count >= 4 { 1.167 } else { 1.0 };
 
-        let em = attribute.get_value(AttributeName::ElementalMastery);
+        // let em = attribute.get_value(AttributeName::ElementalMastery);
+        let em = attribute.get_em_all();
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);
         r * (1.0 + (em * 0.0004) / 1.5) * vv_ratio
     }

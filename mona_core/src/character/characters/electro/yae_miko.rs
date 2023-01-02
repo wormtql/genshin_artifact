@@ -1,5 +1,5 @@
 use num_derive::FromPrimitive;
-use crate::attribute::{Attribute, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_sub_stat::CharacterSubStatFamily;
@@ -162,7 +162,8 @@ impl CharacterTrait for YaeMiko {
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
         if context.character_common_data.has_talent2 && skill_type == SkillType::ElementalSkill {
-            let em = context.attribute.get_value(AttributeName::ElementalMastery);
+            // let em = context.attribute.get_value(AttributeName::ElementalMastery);
+            let em = context.attribute.get_em_all();
             builder.add_extra_bonus("八重神子天赋「启蜇之祝词」", em * 0.0015);
         }
 

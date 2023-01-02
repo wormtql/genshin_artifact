@@ -1,5 +1,5 @@
 use num_derive::FromPrimitive;
-use crate::attribute::{Attribute, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
@@ -228,7 +228,8 @@ impl CharacterTrait for Sayu {
             builder.add_atk_ratio("技能倍率", ratio);
             builder.add_extra_damage("技能倍率", fixed);
             if s == QHeal2 && context.character_common_data.constellation >= 6 {
-                let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                // let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                let em = context.attribute.get_em_all();
                 let extra = (em * 3.0).min(6000.0);
                 builder.add_extra_damage("6命：呼呼大睡时间", extra);
             }
@@ -257,7 +258,8 @@ impl CharacterTrait for Sayu {
             let mut builder = D::new();
             builder.add_atk_ratio("技能倍率", ratio);
             if s == Q2 && context.character_common_data.constellation >= 6 {
-                let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                // let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                let em = context.attribute.get_em_all();
                 let bonus = (0.002 * em).min(4.0);
                 builder.add_atk_ratio("6命：呼呼大睡时间", bonus);
             }

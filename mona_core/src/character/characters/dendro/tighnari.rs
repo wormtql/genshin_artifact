@@ -1,4 +1,4 @@
-use crate::attribute::{Attribute, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
 // use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 // use num_derive::FromPrimitive;
@@ -232,7 +232,8 @@ impl CharacterTrait for Tighnari {
 
         let skill_type = s.get_skill_type();
         if context.character_common_data.has_talent2 && (skill_type == SkillType::ChargedAttack || skill_type == SkillType::ElementalBurst) {
-            let em = context.attribute.get_value(AttributeName::ElementalMastery);
+            // let em = context.attribute.get_value(AttributeName::ElementalMastery);
+            let em = context.attribute.get_em_all();
             let bonus = 0.6_f64.min(0.0006 * em);
             builder.add_extra_bonus("提纳里天赋「诸叶辨通」", bonus);
         }

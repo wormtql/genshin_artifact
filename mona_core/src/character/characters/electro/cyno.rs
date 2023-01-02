@@ -1,4 +1,4 @@
-use crate::attribute::{Attribute, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 // use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 // use num_derive::FromPrimitive;
@@ -248,7 +248,8 @@ impl CharacterTrait for Cyno {
 
         //normal attacks under q talent3
         if has_talent2 {
-            let em = context.attribute.get_value(AttributeName::ElementalMastery);
+            // let em = context.attribute.get_value(AttributeName::ElementalMastery);
+            let em = context.attribute.get_em_all();
             if skill_group == CynoSkillgroupEnum::Q && skill_type == SkillType::NormalAttack {
                 builder.add_extra_damage("天赋3：「九弓的执命」加成", em * 1.5);
             }

@@ -1,6 +1,6 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
+use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::{Character, CharacterName};
 use crate::character::characters::KaedeharaKazuha;
@@ -125,7 +125,8 @@ impl TargetFunction for KaedeharaKazuhaDamageTargetFunction {
 
     fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand) / self.recharge_demand;
-        let em = attribute.get_value(AttributeName::ElementalMastery);
+        // let em = attribute.get_value(AttributeName::ElementalMastery);
+        let em = attribute.get_em_all();
 
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
