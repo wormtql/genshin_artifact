@@ -21,13 +21,15 @@ impl<A: Attribute> WeaponEffect<A> for HuntersPathEffect {
 
         let rate = self.rate;
 
-        attribute.add_edge1(
-            AttributeName::ElementalMastery,
-            AttributeName::ExtraDmgChargedAttack,
-            Box::new(move |em: f64, _| (0.4 * refine + 1.2) * em * rate),
-            Box::new(move |grad, x1, _x2| (grad * (0.4 * refine + 1.2) * rate, 0.0)),
-            "猎人之径被动等效"
-        );
+        for a in [AttributeName::ElementalMastery, AttributeName::ElementalMasteryExtra] {
+            attribute.add_edge1(
+                a,
+                AttributeName::ExtraDmgChargedAttack,
+                Box::new(move |em: f64, _| (0.4 * refine + 1.2) * em * rate),
+                Box::new(move |grad, x1, _x2| (grad * (0.4 * refine + 1.2) * rate, 0.0)),
+                "猎人之径被动等效"
+            );
+        }
     }
 }
 

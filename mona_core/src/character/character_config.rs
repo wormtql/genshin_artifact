@@ -18,6 +18,7 @@ pub enum CharacterConfig {
     Nilou { golden_rate: f64 },
     Candace { c2_rate: f64 },
     Nahida { c4_e_count: usize },
-    Wanderer { e_pyro:bool, e_cryo:bool, },
+    Wanderer { e_pyro: bool, e_cryo: bool, },
+    Faruzan { q_ratio: f64 },
     NoConfig,
 }

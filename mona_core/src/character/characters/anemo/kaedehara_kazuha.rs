@@ -1,5 +1,5 @@
 use num_derive::FromPrimitive;
-use crate::attribute::{Attribute, AttributeName};
+use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
@@ -228,7 +228,8 @@ impl CharacterTrait for KaedeharaKazuha {
 
         let skill_type = s.get_skill_type();
         if after_e_or_q && (skill_type == SkillType::NormalAttack || skill_type == SkillType::ChargedAttack || skill_type == SkillType::PlungingAttack) {
-            let em = context.attribute.get_value(AttributeName::ElementalMastery);
+            // let em = context.attribute.get_value(AttributeName::ElementalMastery);
+            let em = context.attribute.get_em_all();
             let bonus = em * 0.002;
             builder.add_extra_bonus("枫原万叶六命：血赤叶红", bonus);
         }

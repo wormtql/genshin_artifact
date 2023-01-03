@@ -1,6 +1,6 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
+use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2, AttributeCommon};
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
@@ -118,7 +118,8 @@ impl TargetFunction for SucroseDefaultTargetFunction {
         };
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);
 
-        let em = attribute.get_value(AttributeName::ElementalMastery);
+        // let em = attribute.get_value(AttributeName::ElementalMastery);
+        let em = attribute.get_em_all();
 
         vv * r * em
     }

@@ -1,6 +1,6 @@
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::ArtifactEffectConfig;
-use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
+use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2, AttributeCommon};
 use crate::character::Character;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::StatName;
@@ -78,6 +78,7 @@ impl TargetFunction for MaxEMTargetFunction {
     }
 
     fn target(&self, attribute: &SimpleAttributeGraph2, _character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], _enemy: &Enemy) -> f64 {
-        attribute.get_value(AttributeName::ElementalMastery)
+        // attribute.get_value(AttributeName::ElementalMastery)
+        attribute.get_em_all()
     }
 }

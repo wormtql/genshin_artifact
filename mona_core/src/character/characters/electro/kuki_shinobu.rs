@@ -2,7 +2,7 @@ use num_derive::FromPrimitive;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 
-use crate::attribute::{Attribute, AttributeName};
+use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
@@ -232,7 +232,8 @@ impl CharacterTrait for KukiShinobu {
             }
 
             if s == E2 {
-                let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                // let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                let em = context.attribute.get_em_all();
                 builder.add_extra_damage("天赋：安心之所", em * 0.25);
             }
 
@@ -251,7 +252,8 @@ impl CharacterTrait for KukiShinobu {
             builder.add_hp_ratio("技能倍率", ratio);
             builder.add_extra_damage("技能倍率", fixed);
             if s == EHeal1 {
-                let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                // let em = context.attribute.get_value(AttributeName::ElementalMastery);
+                let em = context.attribute.get_em_all();
                 builder.add_extra_damage("天赋：安心之所", em * 0.75);
             }
 
