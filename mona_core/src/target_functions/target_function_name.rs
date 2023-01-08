@@ -11,6 +11,7 @@ pub enum TargetFunctionName {
     MaxDEF,
     MaxHP,
     MaxEM,
+    MaxRecharge,
     PyroDamage,
     CryoDamage,
     HydroDamage,

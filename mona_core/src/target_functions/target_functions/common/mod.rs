@@ -14,6 +14,7 @@ pub mod max_melt;
 pub mod expect_vaporize;
 pub mod expect_melt;
 pub mod dendro_damage;
+pub mod max_recharge;
 
 pub use max_atk::MaxATKTargetFunction;
 pub use max_def::MaxDEFTargetFunction;
@@ -31,3 +32,4 @@ pub use max_melt::MaxMeltTargetFunction;
 pub use expect_vaporize::ExpectVaporizeTargetFunction;
 pub use expect_melt::ExpectMeltTargetFunction;
 pub use dendro_damage::DendroDamageTargetFunction;
+pub use max_recharge::MaxRechargeTargetFunction;
