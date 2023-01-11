@@ -208,7 +208,7 @@ impl CharacterTrait for Wanderer {
             let max_sdpoints = if e_hydro { 120.0 } else { 100.0 };
             let q_bonus = ((max_sdpoints - sdpoints).max(0.0) * 0.04).min(2.0);
             if context.character_common_data.constellation >= 2 && s == Q1 {
-                builder.add_extra_bonus("二命「二番·箙岛月白浪」伤害加成", q_bonus)
+                builder.add_extra_bonus("二命「二番·箙岛廓白浪」伤害加成", q_bonus)
             }
         }
 

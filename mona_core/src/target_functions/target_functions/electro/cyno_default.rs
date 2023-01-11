@@ -192,7 +192,7 @@ impl TargetFunction for CynoDefaultTargetFunction {
             .shimenawas_reminiscence(0.35)
             .thundersoother(1.0)
             .echoes_of_an_offering_avg()
-            .gilded_dreams(1, 3, 1.0)
+            .gilded_dreams(1, 2, 1.0)
             .build()
     }
 
@@ -251,16 +251,16 @@ impl TargetFunction for CynoDefaultTargetFunction {
         let agg_bonus_e3 = e3_agg - e3_normal;
         let agg_bonus_e2_noqte = e2_noqte_agg - e2_noqte_normal;
 
-        let rounds_count = if self.until_expire { 4.0 } else { 3.0 };
+        let rounds_count:f64 = if self.until_expire { 4.0 } else { 3.0 };
 
         //let s = format!("{}",agg_bonus);
         //web_sys::console::log_1(&s.into());
         let mut dmg_electro_charged = 0.0;
         let mut dmg_overload = 0.0;
         let mut dmg_hyperbloom = 0.0;
-        let ec_count = 2.5 * rounds_count + 1.0;
-        let ol_count = 2.0 * (rounds_count - 2.0);
-        let hb_count = 3.0 * 3.0;
+        let ec_count = 2.5 * (rounds_count + 1.0); // triggers one more time electro-charged after q expires
+        let ol_count = 4.0 * rounds_count.max(3.0); // can't trigger more than 3 rounds of overload cuz even xiangling's q couldnt last that long
+        let hb_count = 5.0 * rounds_count; // seeds produced 5 at maximum every round
 
         //if transformative > 0: calc transformative dmg
         if self.elecharged_rate > 0.0 && self.overload_rate > 0.0 && self.hyperbloom_rate > 0.0 {
@@ -329,7 +329,10 @@ impl TargetFunction for CynoDefaultTargetFunction {
         }
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_requirement);
         r * (
-            dmgsum_normal + dmgsum_agg * self.aggravate_rate + dmg_electro_charged * ec_count * self.elecharged_rate + dmg_overload * ol_count * self.overload_rate + dmg_hyperbloom * hb_count * dmg_hyperbloom
+              dmgsum_normal + dmgsum_agg * self.aggravate_rate 
+            + dmg_electro_charged * ec_count * self.elecharged_rate 
+            + dmg_overload * ol_count * self.overload_rate 
+            + dmg_hyperbloom * hb_count
         )
     }
 }

@@ -1579,7 +1579,7 @@ export default {
         TighnariDefault: "使得提纳里的重击伤害最大",
         NilouDefault: "普通输出妮露",
         CynoDefault:"打QTE并释放渡荒之雷，会根据套装自动选择手法，如激化草全覆盖则激化比例留1.0即可",
-        NahidaDefault: "使纳西妲灭净三业及反应伤害最大",
+        NahidaDefault: "使纳西妲灭净三业及反应伤害最大，默认给了饰金套1层攻击2层精通和80%覆盖率，如果你的配队不同，强烈圣遗物设置改成手动，把草套拉满，然后根据实际情况调整饰金套参数",
         WandererDefault: "计算一轮内流浪者造成伤害的总和",
         FaruzanDamage: "使得珐露珊大招伤害最大",
     },

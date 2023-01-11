@@ -30,7 +30,7 @@ impl WindAndSongEffect {
 impl<T: Attribute> WeaponEffect<T> for WindAndSongEffect {
     fn apply(&self, data: &WeaponCommonData, attribute: &mut T) {
         let value = data.refine as f64 * 0.05 + 0.15;
-        attribute.add_atk_percentage("暗巷的酒与诗被动等效", value);
+        attribute.add_atk_percentage("暗巷的酒与诗被动等效", value*self.rate);
     }
 }
 
