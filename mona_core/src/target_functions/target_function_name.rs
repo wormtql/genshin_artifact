@@ -86,4 +86,5 @@ pub enum TargetFunctionName {
     NahidaDefault,
     WandererDefault,
     FaruzanDamage,
+    AlhaithamDefault,
 }

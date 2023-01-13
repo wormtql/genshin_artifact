@@ -68,6 +68,8 @@
 // 
 // import ToukabouShigure_tn from "@image/weapons/ToukabouShigure_tn"
 // 
+// import LightOfFoliarIncision_tn from "@image/weapons/LightOfFoliarIncision_tn"
+// 
 // import WolfsGravestone_tn from "@image/weapons/WolfsGravestone_tn"
 // 
 // import SkywardPride_tn from "@image/weapons/SkywardPride_tn"
@@ -986,6 +988,28 @@ export default {
 
         
         // effect: "攻击命中敌人后，会为命中的一名敌人施加「纸伞作祟」状态，持续10秒。该效果每15秒至多触发一次；持续期间该敌人被击败时，将清除该效果的冷却时间。装备者对处于「纸伞作祟」状态下的敌人造成的伤害提升16%-20%-24%-28%-32%。",
+        
+
+        
+        configs: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":"w2","type":"float"},
+            
+        ],
+        
+    },
+
+    LightOfFoliarIncision: {
+        name: "LightOfFoliarIncision",
+        internalName: "todo",
+        // chs: "",
+        star: 5,
+        // url: LightOfFoliarIncision_tn,
+        url: imageUrl("todo"),
+        type: "Sword",
+
+        
+        // effect: null,
         
 
         

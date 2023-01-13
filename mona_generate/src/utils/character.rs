@@ -73,6 +73,8 @@ pub fn get_character_dmg_names_chs() -> Vec<String> {
         Layla,
         Wanderer,
         Faruzan,
+        Yaoyao,
+        Alhaitham,
     ];
 
     for &name in names_order.iter() {

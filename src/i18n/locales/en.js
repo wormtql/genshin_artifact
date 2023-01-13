@@ -192,6 +192,8 @@ export default {
         Layla: "Layla",
         Wanderer: "Wanderer",
         Faruzan: "Faruzan",
+        Yaoyao: "Yaoyao",
+        Alhaitham: "Alhaitham",
     },
     artifact: {
         "DesertPavilionChronicle": {
@@ -942,6 +944,7 @@ export default {
         AThousandFloatingDreams: "A Thousand Floating Dreams",
         TulaytullahsRemembrance: "Tulaytullah's Remembrance",
         ToukabouShigure: "Toukabou Shigure",
+        LightOfFoliarIncision: "Light of Foliar Incision",
     },
     weaponEffect: {
         MistsplitterReforged: "Gain a <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> Elemental DMG Bonus for all elements and receive the might of the Mistsplitter\'s Emblem. At stack levels 1/2/3, the Mistsplitter\'s Emblem provides a <span style=\"color: #409EFF;\">8/16/28%-10/20/35%-12/24/42%-14/28/49%-16/32/56%</span> Elemental DMG Bonus for the character\'s Elemental Type. The character will obtain 1 stack of Mistsplitter\'s Emblem in each of the following scenarios: Normal Attack deals Elemental DMG (stack lasts 5s), casting Elemental Burst (stack lasts 10s); Energy is less than 100% (stack disappears when Energy is full). Each stack\'s duration is calculated independently.",
@@ -1094,6 +1097,7 @@ export default {
         AThousandFloatingDreams: "Party members other than the equipping character will provide the equipping character with buffs based on whether their Elemental Type is the same as the latter or not. If their Elemental Types are the same, increase Elemental Mastery by <span style=\"color: #409EFF;\">32-40-48-56-64</span>. If not, increase the equipping character’s DMG Bonus from their Elemental Type by <span style=\"color: #409EFF;\">10%-14%-18%-22%-26%</span>. Each of the aforementioned effects can have up to 3 stacks. Additionally, all nearby party members other than the equipping character will have their Elemental Mastery increased by <span style=\"color: #409EFF;\">40-42-44-46-48</span>. Multiple such effects from multiple such weapons can stack.",
         TulaytullahsRemembrance: "Normal Attack SPD is increased by <span style=\"color: #409EFF;\">10%-12.5%-15%-17.5%-20%</span>. After the wielder unleashes an Elemental Skill, Normal Attack DMG will increase by <span style=\"color: #409EFF;\">4.8%-6%-7.2%-8.4%-9.6%</span> every second for 14s. After hitting an opponent with a Normal Attack during this duration, Normal Attack DMG will be increased by <span style=\"color: #409EFF;\">9.6%-12%-14.4%-16.8%-19.2%</span>. This increase can be triggered once every 0.3s. The maximum Normal Attack DMG increase per single duration of the overall effect is <span style=\"color: #409EFF;\">48%-60%-72%-84%-96%</span>. The effect will be removed when the wielder leaves the field, and using the Elemental Skill again will reset all DMG buffs.",
         ToukabouShigure: "After an attack hits opponents, it will inflict an instance of Cursed Parasol upon one of them for 10s. This effect can be triggered once every 15s. If this opponent is taken out during Cursed Parasol’s duration, Cursed Parasol’s CD will be refreshed immediately. The character wielding this weapon will deal <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> more DMG to the opponent affected by Cursed Parasol.",
+        LightOfFoliarIncision: "CRIT Rate is increased by <span style=\"color: #409EFF;\">4%-5%-6%-7%-8%</span>. When Normal Attacks deal Elemental DMG, the Foliar Incision effect will be obtained, increasing DMG dealt by Normal Attacks and Elemental Skills by <span style=\"color: #409EFF;\">120%-150%-180%-210%-240%</span> of Elemental Mastery. This effect will disappear after 28 DMG instances or 12s. You can obtain Foliar Incision once every 12s.",
     },
     config: {
         w1: "Avg Effect Stack",
@@ -1183,6 +1187,11 @@ export default {
         c54: "Kuugoryoku Points",
         c55: "Prayerful Wind’s Benefit Ratio",
         c56: "Hurricane Guard effect Ratio",
+        c57: "C4「Winsome」Ratio",
+        c58: "C2「Debate」Stack",
+        c59: "C4「Elucidation」Stack",
+        c60: "C6「Structuration」Ratio",
+        c61: "Chisel-Light Mirror",
 
         t1: "Type",
         t2: "Trigger Element",
@@ -1219,6 +1228,10 @@ export default {
         t33: "Gales of Reverie Wind Arrow Hits",
         t34: "Q Hits",
         t35: "Swirl Hits",
+        t36: "Charged Hit",
+        t37: "E Hit",
+        t38: "Q Hit",
+        t39: "Spread Ratio",
 
         a1: "Element",
         a2: "Effect Apply Ratio",
@@ -1499,6 +1512,7 @@ export default {
         NahidaDefault: "Nahida-Physic of Purity",
         WandererDefault: "Wanderer-Eons Adrift",
         FaruzanDamage: "Faruzan-Enigmatic Machinist",
+        AlhaithamDefault: "Alhaitham-Admonishing Instruction",
     },
     tfDesc: {
         MaxATK: "Maximize ATK",
@@ -1580,6 +1594,7 @@ export default {
         NahidaDefault: "Maximize Nahida's Tri-Karma Purification DMG",
         WandererDefault: "Maximize Wanderer's total damage in one cycle",
         FaruzanDamage: "Maximize Faruzan's Q damage",
+        AlhaithamDefault: "Charged DMG, 1-Mirror Projection Attack DMG, Single-Instance DMG, multiplied by their counts respectively",
     },
     dmg: {
         electroCharged: "Electro-Charged",
@@ -1673,6 +1688,8 @@ export default {
         Layla: ["Normal Attack: Sword of the Radiant Path", "Nights of Formal Focus", "Dream of the Star-Stream Shaker"],
         Wanderer: ["Normal Attack: Yuuban Meigen","Hanega: Fushi Kakka","Kyougen: Shikiraku Gobandate"],
         Faruzan: ["Normal Attack: Turnaround Shooter","Wind Realm of Nasamjnin","The Wind’s Secret Ways"],
+        Yaoyao: ["Normal Attack: Toss ‘N’ Turn Spear", "Raphanus Sky Cluster", "Moonjade Descent"],
+        Alhaitham: ["Normal Attack: Abductive Reasoning", "Universality: An Elaboration on Form", "Particular Field: Fetters of Phenomena"],
     },
     dmgName: [
         "1-Hit DMG",
@@ -1917,6 +1934,14 @@ export default {
         "Gales of Reverie Wind Arrow DMG",
         "Skill DMG/5",
         "Pressurized Collapse Vortex DMG",
+        "White Jade Radish DMG",
+        "White Jade Radish Healing",
+        "Adeptal Legacy White Jade Radish DMG",
+        "Adeptal Legacy White Jade Radish Healing",
+        "Rush Attack DMG",
+        "1-Mirror Projection Attack DMG",
+        "2-Mirror Projection Attack DMG",
+        "3-Mirror Projection Attack DMG",
     ],
     res: {
         Pyro: "Pyro Res",
