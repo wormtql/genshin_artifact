@@ -20,7 +20,7 @@ impl<A: Attribute> WeaponEffect<A> for HaranGeppakuFutsuEffect {
         let bonus1 = refine * 0.03 + 0.09;
         attribute.add_elemental_bonus("波乱月白经津被动", bonus1);
 
-        let bonus2 = refine * 0.05 + 0.15;
+        let bonus2 = (refine * 0.05 + 0.15) * self.stack;
         attribute.set_value_by(AttributeName::BonusNormalAttack, "波乱月白经津被动等效", bonus2);
     }
 }

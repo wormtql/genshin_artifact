@@ -247,6 +247,8 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             hp_ratio: hp_ratio_comp.0,
             def: def_comp.0,
             def_ratio: def_ratio_comp.0,
+            em: em_comp.0,
+            em_ratio: em_ratio_comp.0,
             extra_damage: extra_damage_comp.0,
             bonus: bonus_comp.0,
             critical: critical_comp.0,
@@ -282,11 +284,13 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         let def = def_comp.sum();
         let hp_comp = self.get_hp_composition(attribute);
         let hp = hp_comp.sum();
+        let em_comp = self.get_em_composition(attribute);
+        let em = em_comp.sum();
 
         let healing_bonus_comp = self.get_healing_bonus_composition(attribute);
         let healing_bonus = healing_bonus_comp.sum();
 
-        let base = atk * self.ratio_atk.sum() + hp * self.ratio_hp.sum() + def * self.ratio_def.sum() + self.extra_damage.sum();
+        let base = atk * self.ratio_atk.sum() + hp * self.ratio_hp.sum() + def * self.ratio_def.sum() + em * self.ratio_em.sum() + self.extra_damage.sum();
 
         let heal_value = base * (1.0 + healing_bonus);
         let damage_normal = DamageResult {
@@ -304,6 +308,8 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             hp_ratio: self.ratio_hp.0.clone(),
             def: def_comp.0,
             def_ratio: self.ratio_def.0.clone(),
+            em: em_comp.0,
+            em_ratio: self.ratio_em.0.clone(),
             extra_damage: self.extra_damage.0.clone(),
             spread_compose: HashMap::new(),
             aggravate_compose: HashMap::new(),
@@ -340,11 +346,13 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         let def = def_comp.sum();
         let hp_comp = self.get_hp_composition(attribute);
         let hp = hp_comp.sum();
+        let em_comp = self.get_em_composition(attribute);
+        let em = em_comp.sum();
 
         let shield_strength_comp = self.get_shield_strength_composition(attribute);
         let shield_strength = shield_strength_comp.sum();
 
-        let base = atk * self.ratio_atk.sum() + hp * self.ratio_hp.sum() + def * self.ratio_def.sum() + self.extra_damage.sum();
+        let base = atk * self.ratio_atk.sum() + hp * self.ratio_hp.sum() + def * self.ratio_def.sum() + em * self.ratio_em.sum() + self.extra_damage.sum();
 
         let shield_value = base * (1.0 + shield_strength);
         let damage_normal = DamageResult {
@@ -362,6 +370,8 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             hp_ratio: self.ratio_hp.0.clone(),
             def: def_comp.0,
             def_ratio: self.ratio_def.0.clone(),
+            em: em_comp.0,
+            em_ratio: self.ratio_em.0.clone(),
             extra_damage: self.extra_damage.0.clone(),
             spread_compose: HashMap::new(),
             aggravate_compose: HashMap::new(),

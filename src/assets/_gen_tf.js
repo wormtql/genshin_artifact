@@ -17,6 +17,10 @@ import MaxEM_image from "@image/misc/sword"
 
 
 
+import MaxRecharge_image from "@image/misc/sword"
+
+
+
 import PyroDamage_image from "@image/misc/fire_slime"
 
 
@@ -258,6 +262,24 @@ export default {
         "for": "common",
         
         badge: MaxEM_image,
+        
+        config: [
+            
+        ],
+    },
+    
+    "MaxRecharge": {
+        name: "MaxRecharge",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "common",
+        
+        badge: MaxRecharge_image,
         
         config: [
             

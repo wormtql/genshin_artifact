@@ -52,6 +52,16 @@
                     title="生命值倍率"
                 ></damage-analysis-util>
                 <damage-analysis-util
+                    v-if="emRatioState.length > 0"
+                    :arr="emState"
+                    title="元素精通"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="emRatioState.length > 0"
+                    :arr="emRatioState"
+                    title="元素精通倍率"
+                ></damage-analysis-util>
+                <damage-analysis-util
                     v-if="extraDamageState.length > 0"
                     :arr="extraDamageState"
                     title="其他"
@@ -189,6 +199,8 @@ export default {
             defRatioState: [],
             hpState: [],
             hpRatioState: [],
+            emState: [],
+            emRatioState: [],
             extraDamageState: [],
             spreadState: [],
             aggravateState: [],
@@ -213,6 +225,8 @@ export default {
                 "defRatioState": "def_ratio",
                 "hpState": "hp",
                 "hpRatioState": "hp_ratio",
+                "emState": "em",
+                "emRatioState": "em_ratio",
                 "extraDamageState": "extra_damage",
                 "criticalState": "critical",
                 "criticalDamageState": "critical_damage",
@@ -341,6 +355,14 @@ export default {
             return sum(this.hpRatioState)
         },
 
+        em() {
+            return sum(this.emState)
+        },
+
+        emRatio() {
+            return sum(this.emRatioState)
+        },
+
         extraDamage() {
             return sum(this.extraDamageState)
         },
@@ -382,7 +404,7 @@ export default {
         },
 
         baseDamage() {
-            return this.atk * this.atkRatio + this.def * this.defRatio + this.hp * this.hpRatio + this.extraDamage;
+            return this.atk * this.atkRatio + this.def * this.defRatio + this.hp * this.hpRatio + this.em * this.emRatio + this.extraDamage;
         },
 
         spreadEnhance() {

@@ -11,6 +11,8 @@ pub struct DamageAnalysis {
     pub hp_ratio: HashMap<String, f64>,
     pub def: HashMap<String, f64>,
     pub def_ratio: HashMap<String, f64>,
+    pub em: HashMap<String, f64>,
+    pub em_ratio: HashMap<String, f64>,
     pub extra_damage: HashMap<String, f64>,
     pub bonus: HashMap<String, f64>,
     pub critical: HashMap<String, f64>,

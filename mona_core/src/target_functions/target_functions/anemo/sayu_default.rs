@@ -64,88 +64,89 @@ impl TargetFunctionMetaTrait for SayuDefaultTargetFunction {
 
 impl TargetFunction for SayuDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
-        if self.c6 {
-            TargetFunctionOptConfig {
-                atk_fixed: 0.0,
-                atk_percentage: 0.9,
-                hp_fixed: 0.0,
-                hp_percentage: 0.0,
-                def_fixed: 0.0,
-                def_percentage: 0.0,
-                recharge: 1.0,
-                elemental_mastery: 1.5,
-                critical: 1.0,
-                critical_damage: 1.0,
-                healing_bonus: 0.0,
-                bonus_electro: 0.0,
-                bonus_pyro: 0.0,
-                bonus_hydro: 0.0,
-                bonus_anemo: 1.0,
-                bonus_cryo: 0.0,
-                bonus_geo: 0.0,
-                bonus_dendro: 0.0,
-                bonus_physical: 0.0,
-                sand_main_stats: vec![
-                    StatName::ElementalMastery,
-                    StatName::Recharge
-                ],
-                goblet_main_stats: vec![
-                    StatName::ElementalMastery,
-                    StatName::AnemoBonus
-                ],
-                head_main_stats: vec![
-                    StatName::ElementalMastery,
-                    StatName::ATKPercentage,
-                ],
-                set_names: Some(vec![
-                    ArtifactSetName::ViridescentVenerer,
-                    ArtifactSetName::GladiatorsFinale,
-                ]),
-                very_critical_set_names: None,
-                normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
-                critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
-                very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
-            }
-        } else {
-            TargetFunctionOptConfig {
-                atk_fixed: 0.0,
-                atk_percentage: 1.0,
-                hp_fixed: 0.0,
-                hp_percentage: 0.0,
-                def_fixed: 0.0,
-                def_percentage: 0.0,
-                recharge: 1.0,
-                elemental_mastery: if self.c6 { 1.0 } else { 0.0 },
-                critical: 0.0,
-                critical_damage: 0.0,
-                healing_bonus: 0.0,
-                bonus_electro: 0.0,
-                bonus_pyro: 0.0,
-                bonus_hydro: 0.0,
-                bonus_anemo: 0.0,
-                bonus_cryo: 0.0,
-                bonus_geo: 0.0,
-                bonus_dendro: 0.0,
-                bonus_physical: 0.0,
-                sand_main_stats: vec![
-                    StatName::Recharge
-                ],
-                goblet_main_stats: vec![
-                    StatName::ATKPercentage
-                ],
-                head_main_stats: vec![
-                    StatName::HealingBonus
-                ],
-                set_names: Some(vec![
-                    ArtifactSetName::ViridescentVenerer,
-                    ArtifactSetName::GladiatorsFinale,
-                ]),
-                very_critical_set_names: None,
-                normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
-                critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
-                very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
-            }
-        }
+        // if self.c6 {
+        //     TargetFunctionOptConfig {
+        //         atk_fixed: 0.0,
+        //         atk_percentage: 0.9,
+        //         hp_fixed: 0.0,
+        //         hp_percentage: 0.0,
+        //         def_fixed: 0.0,
+        //         def_percentage: 0.0,
+        //         recharge: 1.0,
+        //         elemental_mastery: 1.5,
+        //         critical: 1.0,
+        //         critical_damage: 1.0,
+        //         healing_bonus: 0.0,
+        //         bonus_electro: 0.0,
+        //         bonus_pyro: 0.0,
+        //         bonus_hydro: 0.0,
+        //         bonus_anemo: 1.0,
+        //         bonus_cryo: 0.0,
+        //         bonus_geo: 0.0,
+        //         bonus_dendro: 0.0,
+        //         bonus_physical: 0.0,
+        //         sand_main_stats: vec![
+        //             StatName::ElementalMastery,
+        //             StatName::Recharge
+        //         ],
+        //         goblet_main_stats: vec![
+        //             StatName::ElementalMastery,
+        //             StatName::AnemoBonus
+        //         ],
+        //         head_main_stats: vec![
+        //             StatName::ElementalMastery,
+        //             StatName::ATKPercentage,
+        //         ],
+        //         set_names: Some(vec![
+        //             ArtifactSetName::ViridescentVenerer,
+        //             ArtifactSetName::GladiatorsFinale,
+        //         ]),
+        //         very_critical_set_names: None,
+        //         normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
+        //         critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
+        //         very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
+        //     }
+        // } else {
+        //     TargetFunctionOptConfig {
+        //         atk_fixed: 0.0,
+        //         atk_percentage: 1.0,
+        //         hp_fixed: 0.0,
+        //         hp_percentage: 0.0,
+        //         def_fixed: 0.0,
+        //         def_percentage: 0.0,
+        //         recharge: 1.0,
+        //         elemental_mastery: if self.c6 { 1.0 } else { 0.0 },
+        //         critical: 0.0,
+        //         critical_damage: 0.0,
+        //         healing_bonus: 0.0,
+        //         bonus_electro: 0.0,
+        //         bonus_pyro: 0.0,
+        //         bonus_hydro: 0.0,
+        //         bonus_anemo: 0.0,
+        //         bonus_cryo: 0.0,
+        //         bonus_geo: 0.0,
+        //         bonus_dendro: 0.0,
+        //         bonus_physical: 0.0,
+        //         sand_main_stats: vec![
+        //             StatName::Recharge
+        //         ],
+        //         goblet_main_stats: vec![
+        //             StatName::ATKPercentage
+        //         ],
+        //         head_main_stats: vec![
+        //             StatName::HealingBonus
+        //         ],
+        //         set_names: Some(vec![
+        //             ArtifactSetName::ViridescentVenerer,
+        //             ArtifactSetName::GladiatorsFinale,
+        //         ]),
+        //         very_critical_set_names: None,
+        //         normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
+        //         critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
+        //         very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
+        //     }
+        // }
+        unimplemented!()
     }
 
     fn get_default_artifact_config(&self, _team_config: &TeamQuantization) -> ArtifactEffectConfig {
