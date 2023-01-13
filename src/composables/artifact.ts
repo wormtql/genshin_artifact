@@ -202,21 +202,26 @@ export function use5Artifacts() {
         }
     }
 
-    watch(() => artifactNeedConfig4.value, newName => {
+    watch(() => ({
+        groupId: currentGroupId.value,
+        newName: artifactNeedConfig4.value,
+    }), ({ groupId, newName }) => {
         if (!newName) {
-            artifactSingleConfig.value = null
+            currentGroup.value.artConfig = null
         } else {
             const data = artifactsData[newName]
 
-            let defaultConfig: any = {}
-            for (let c of data.config4) {
+            const defaultConfig: any = {}
+            for (const c of data.config4) {
                 defaultConfig[c.name] = c.default
             }
 
             const nameWasm = convertArtifactName(newName)
             const configItemName = `config_${toSnakeCase(nameWasm)}`
-            artifactSingleConfig.value = {
-                [configItemName]: defaultConfig
+            if (!currentGroup.value.artConfig || !currentGroup.value.artConfig[configItemName]) {
+                currentGroup.value.artConfig = {
+                    [configItemName]: defaultConfig
+                }
             }
         }
     }, {
