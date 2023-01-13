@@ -151,6 +151,7 @@ async function loadAccountData() {
 export async function changeAccount(id: number) {
     await backend.allReady()
     accountStore.currentAccountId.value = id
+    await nextTick()
     await loadAccountData()
 }
 
