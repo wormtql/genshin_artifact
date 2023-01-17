@@ -1001,11 +1001,11 @@ export default {
 
     LightOfFoliarIncision: {
         name: "LightOfFoliarIncision",
-        internalName: "todo",
+        internalName: "Sword_Ayus",
         // chs: "",
         star: 5,
         // url: LightOfFoliarIncision_tn,
-        url: imageUrl("todo"),
+        url: imageUrl("Sword_Ayus"),
         type: "Sword",
 
         

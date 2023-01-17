@@ -35,7 +35,7 @@ pub struct LightOfFoliarIncision;
 impl WeaponTrait for LightOfFoliarIncision {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::LightOfFoliarIncision,
-        internal_name: "todo", // todo
+        internal_name: "Sword_Ayus",
         weapon_type: WeaponType::Sword,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalDamage192),
         weapon_base: WeaponBaseATKFamily::ATK542,

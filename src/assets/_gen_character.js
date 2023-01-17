@@ -394,7 +394,7 @@ export default {
         star: 5,
         // card: Alhaitham_card,
         // avatar: Alhaitham_avatar,
-        avatar: getName("Alhaitham"),
+        avatar: getName("Alhatham"),
         splash: Alhaitham_splash,
         skillName1: "",
         skillName2: "",

@@ -1815,7 +1815,7 @@ export default {
         ],
         "for": "Alhaitham",
         
-        badge: getImage("UI_AvatarIcon_Alhaitham"),
+        badge: getImage("UI_AvatarIcon_Alhatham"),
         
         config: [
             

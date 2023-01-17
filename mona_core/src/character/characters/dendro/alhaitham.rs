@@ -125,7 +125,7 @@ pub struct Alhaitham;
 impl CharacterTrait for Alhaitham {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Alhaitham,
-        internal_name: "Alhaitham", // todo
+        internal_name: "Alhatham",
         chs: "",
         element: Element::Dendro,
         hp: [1039, 2695, 3586, 5366, 5999, 6902, 7747, 8659, 9292, 10213, 10846, 11777, 12410, 13348],

@@ -156,7 +156,7 @@ pub struct Nilou;
 impl CharacterTrait for Nilou {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Nilou,
-        internal_name: "Nilou", // todo
+        internal_name: "Nilou",
         chs: "妮露",
         element: Element::Hydro,
         hp: [1182, 3066, 4080, 6105, 6825, 7852, 8813, 9850, 10571, 11618, 12338, 13397, 14117, 15185],

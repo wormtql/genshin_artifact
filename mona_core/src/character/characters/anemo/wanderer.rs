@@ -97,7 +97,7 @@ pub struct Wanderer;
 impl CharacterTrait for Wanderer {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Wanderer,
-        internal_name: "Wanderer", // todo
+        internal_name: "Wanderer",
         chs: "流浪者",
         element: Element::Anemo,
         hp: [791, 2053, 2731, 4086, 4568, 5256, 5899, 6593, 7076, 7777, 8259, 8968, 9450, 10164],

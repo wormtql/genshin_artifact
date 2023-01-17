@@ -120,7 +120,7 @@ pub struct Yaoyao;
 impl CharacterTrait for Yaoyao {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Yaoyao,
-        internal_name: "Yaoyao", // todo
+        internal_name: "Yaoyao",
         chs: "",
         element: Element::Dendro,
         hp: [1030, 2647, 3417, 5118, 5665, 6515, 7245, 8096, 8643, 9493, 10040, 10891, 11438, 12289],
