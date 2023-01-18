@@ -56,9 +56,9 @@ pub enum TargetFunctionConfig {
     NilouDefault { e_ratio: f64, q_ratio: f64, bloom_ratio: f64, other_em: f64, other_bloom_ratio: f64 },
     NahidaDefault { em_requirement: usize, spread_rate: f64, bloom_count: f64, burn_duration: f64, pryo_teammate_count: usize },
     WandererDefault { e_hydro: bool, e_pyro: bool, e_cryo: bool, spd_extra: f64, spd_comp: f64, dash_count: usize, q_count:usize, swirl_count: usize,  },
-
     BennettDamage { recharge_demand: f64, other_dmg_ratio: f64 },
     FaruzanDamage { recharge_demand: f64 },
+    AlhaithamDefault { charged_ratio: f64, e_ratio: f64, q_ratio: f64, spread_ratio: f64 },
 
     NoConfig,
 }

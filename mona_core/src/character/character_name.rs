@@ -28,6 +28,7 @@ use crate::weapon::weapon_common_data::WeaponCommonData;
 pub enum CharacterName {
     AetherAnemo,
     Albedo,
+    Alhaitham,
     Aloy,
     Amber,
     AratakiItto,
@@ -84,6 +85,7 @@ pub enum CharacterName {
     Xinyan,
     YaeMiko,
     Yanfei,
+    Yaoyao,
     Yelan,
     Yoimiya,
     Yunjin,

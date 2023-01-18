@@ -24,6 +24,7 @@ pub enum WeaponConfig {
     XiphosMoonlight { rate: f64 },
     KeyOfKhajNisut { stack: f64 },
     ToukabouShigure { rate: f64 },
+    LightOfFoliarIncision { rate: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },

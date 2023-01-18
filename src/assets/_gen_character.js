@@ -8,6 +8,10 @@ import AetherAnemo_splash from "@image/characters/AetherAnemo_splash"
 // import Albedo_avatar from "@image/characters/Albedo_avatar"
 import Albedo_splash from "@image/characters/Albedo_splash"
 
+// import Alhaitham_card from "@image/characters/Alhaitham_card"
+// import Alhaitham_avatar from "@image/characters/Alhaitham_avatar"
+import Alhaitham_splash from "@image/characters/Alhaitham_splash"
+
 // import Aloy_card from "@image/characters/Aloy_card"
 // import Aloy_avatar from "@image/characters/Aloy_avatar"
 import Aloy_splash from "@image/characters/Aloy_splash"
@@ -228,6 +232,10 @@ import YaeMiko_splash from "@image/characters/YaeMiko_splash"
 // import Yanfei_avatar from "@image/characters/Yanfei_avatar"
 import Yanfei_splash from "@image/characters/Yanfei_splash"
 
+// import Yaoyao_card from "@image/characters/Yaoyao_card"
+// import Yaoyao_avatar from "@image/characters/Yaoyao_avatar"
+import Yaoyao_splash from "@image/characters/Yaoyao_splash"
+
 // import Yelan_card from "@image/characters/Yelan_card"
 // import Yelan_avatar from "@image/characters/Yelan_avatar"
 import Yelan_splash from "@image/characters/Yelan_splash"
@@ -374,6 +382,76 @@ export default {
             
         ],
         configSkill: [
+            
+        ],
+    },
+    
+    Alhaitham: {
+        name: "Alhaitham",
+        // chs: "",
+        element: "Dendro",
+        weapon: "Sword",
+        star: 5,
+        // card: Alhaitham_card,
+        // avatar: Alhaitham_avatar,
+        avatar: getName("Alhatham"),
+        splash: Alhaitham_splash,
+        skillName1: "",
+        skillName2: "",
+        skillName3: "",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 26 },
+            
+            { index: 3, text: 60 },
+            
+            { index: 4, text: 3 },
+            
+            { index: 5, text: 4 },
+            
+            { index: 6, text: 5 },
+            
+            { index: 7, text: 6 },
+            
+            { index: 8, text: 7 },
+            
+            { index: 9, text: 8 },
+            
+            { index: 10, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 11, text: 246 },
+            
+            { index: 12, text: 247 },
+            
+            { index: 13, text: 248 },
+            
+            { index: 14, text: 249 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 15, text: 113 },
+            
+        ],
+        config: [
+            
+            {"default":0.0,"max":4.0,"min":0.0,"name":"c2_stack","title":"c58","type":"float"},
+            
+            {"default":0.0,"max":3.0,"min":0.0,"name":"c4_stack","title":"c59","type":"float"},
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"c6_rate","title":"c60","type":"float"},
+            
+        ],
+        configSkill: [
+            
+            {"default":true,"name":"under_e","title":"c61","type":"bool"},
             
         ],
     },
@@ -3752,6 +3830,66 @@ export default {
         configSkill: [
             
             {"default":true,"name":"after_q","title":"c36","type":"bool"},
+            
+        ],
+    },
+    
+    Yaoyao: {
+        name: "Yaoyao",
+        // chs: "",
+        element: "Dendro",
+        weapon: "Polearm",
+        star: 4,
+        // card: Yaoyao_card,
+        // avatar: Yaoyao_avatar,
+        avatar: getName("Yaoyao"),
+        splash: Yaoyao_splash,
+        skillName1: "",
+        skillName2: "",
+        skillName3: "",
+        skillMap1: [
+            
+            { index: 0, text: 0 },
+            
+            { index: 1, text: 1 },
+            
+            { index: 2, text: 26 },
+            
+            { index: 3, text: 60 },
+            
+            { index: 4, text: 3 },
+            
+            { index: 5, text: 38 },
+            
+            { index: 6, text: 7 },
+            
+            { index: 7, text: 8 },
+            
+            { index: 8, text: 9 },
+            
+        ],
+        skillMap2: [
+            
+            { index: 9, text: 242 },
+            
+            { index: 10, text: 243 },
+            
+        ],
+        skillMap3: [
+            
+            { index: 11, text: 19 },
+            
+            { index: 12, text: 244 },
+            
+            { index: 13, text: 245 },
+            
+        ],
+        config: [
+            
+            {"default":0.0,"max":1.0,"min":0.0,"name":"c4_rate","title":"c57","type":"float"},
+            
+        ],
+        configSkill: [
             
         ],
     },

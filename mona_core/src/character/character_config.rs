@@ -20,5 +20,7 @@ pub enum CharacterConfig {
     Nahida { c4_e_count: usize },
     Wanderer { e_pyro: bool, e_cryo: bool, },
     Faruzan { q_ratio: f64 },
+    Yaoyao { c4_rate: f64 },
+    Alhaitham { c2_stack: f64, c4_stack: f64, c6_rate: f64 },
     NoConfig,
 }

@@ -191,6 +191,8 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 
+
+
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
 const getImage = name => template.replace("#", name)
 
@@ -1798,6 +1800,32 @@ export default {
         config: [
             
             {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"w3","type":"float"},
+            
+        ],
+    },
+    
+    "AlhaithamDefault": {
+        name: "AlhaithamDefault",
+        // chs: "",
+        // description: "",
+        tags: [
+            
+            "",
+            
+        ],
+        "for": "Alhaitham",
+        
+        badge: getImage("UI_AvatarIcon_Alhatham"),
+        
+        config: [
+            
+            {"default":5.0,"max":10.0,"min":0.0,"name":"charged_ratio","title":"t36","type":"float"},
+            
+            {"default":5.0,"max":10.0,"min":0.0,"name":"e_ratio","title":"t37","type":"float"},
+            
+            {"default":1.0,"max":10.0,"min":0.0,"name":"q_ratio","title":"t38","type":"float"},
+            
+            {"default":0.3,"max":1.0,"min":0.0,"name":"spread_ratio","title":"t39","type":"float"},
             
         ],
     },
