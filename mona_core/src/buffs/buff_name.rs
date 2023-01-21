@@ -114,9 +114,11 @@ pub enum BuffName {
     ResonanceHydro2,
     ResonanceDendro2,
 
+    // artifact
     Instructor4,
     NoblesseOblige4,
     ArchaicPetra4,
     ViridescentVenerer4,
     TenacityOfTheMillelith4,
+    DeepwoodMemories4,
 }
