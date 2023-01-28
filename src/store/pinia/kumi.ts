@@ -63,6 +63,26 @@ function store() {
         return result
     })
 
+    const dirsByTime = computed((): KumiItem[] => {
+        const result = dirs.value.slice()
+        result.sort((a, b) => {
+            const timeA = new Date(a.title)
+            const timeB = new Date(b.title)
+            const validA = !isNaN(timeA.getTime())
+            const validB = !isNaN(timeB.getTime())
+            if (validA && validB) {
+                return timeA > timeB ? -1 : 1
+            } else if (!validA && !validB) {
+                return a.id - b.id
+            } else if (!validA) {
+                return 1
+            } else {
+                return -1
+            }
+        })
+        return result
+    })
+
     function createDir(name: string): number {
         let item: KumiItem = {
             id: idGenerator.generateId(),
@@ -224,7 +244,8 @@ function store() {
     return {
         kumi,
         kumiById,
-        dirs,
+        // dirs,
+        dirs: dirsByTime,
         kumisByDirId,
 
         itemById,
