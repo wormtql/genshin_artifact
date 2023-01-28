@@ -43,7 +43,7 @@ pub enum TargetFunctionConfig {
     XianglingDefault { recharge_demand: f64, melt_rate: f64, vaporize_rate: f64, overload_rate: f64 },
     XingqiuDefault { recharge_demand: f64 },
     XinyanDefault { recharge_demand: f64, damage_demand: f64 },
-    YaeMikoDefault { recharge_demand: f64, electro_charged_times: f64, overload_times: f64 },
+    YaeMikoDefault { recharge_requirement: f64, combo: usize, aggravate_rate: f64, hyperbloom_rate: f64, },
     YelanDefault { recharge_demand: f64, vaporize_rate: f64 },
     YoimiyaDefault { vaporize_rate: f64, melt_rate: f64 },
     YunjinDefault { recharge_demand: f64 },

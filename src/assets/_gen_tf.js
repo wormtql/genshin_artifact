@@ -1481,7 +1481,7 @@ export default {
     "YaeMikoDefault": {
         name: "YaeMikoDefault",
         // chs: "八重神子-浮世笑百姿",
-        // description: "普通输出八重神子",
+        // description: "按照一轮12s：三阶杀生樱12下、普通攻击6×3下计算。由于杀生樱的激化率为1/3、普通攻击的激化率为1/2，在激元素充足的情况下（超激化比例=1），所以一轮杀生樱最大激化4下、普通攻击期望最大9下。超激化比例是根据激元素的充足与否决定实际激化数占最大激化数的比例。超绽放比例是根据草种子的重组与否决定实际绽放的种子数占最大绽放的种子数（0.5s/2个）的比例。",
         tags: [
             
             "输出",
@@ -1493,11 +1493,13 @@ export default {
         
         config: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"electro_charged_times","title":"t13","type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_requirement","title":"w3","type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_times","title":"t14","type":"float"},
+            {"default":0,"name":"combo","options":["不站场平A","站场平A"],"title":"t23","type":"option"},
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":"t4","type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":"t17","type":"float"},
+            
+            {"default":0.0,"max":4.0,"min":0.0,"name":"hyperbloom_rate","title":"t27","type":"float"},
             
         ],
     },

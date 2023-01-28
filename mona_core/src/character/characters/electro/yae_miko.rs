@@ -186,13 +186,6 @@ impl CharacterTrait for YaeMiko {
     }
 
     fn get_target_function_by_role(role_index: usize, _team: &TeamQuantization, _c: &CharacterCommonData, _w: &WeaponCommonData) -> Box<dyn TargetFunction> {
-        let e: YaeMikoRoleEnum = num::FromPrimitive::from_usize(role_index).unwrap();
-        match e {
-            YaeMikoRoleEnum::Default => Box::new(YaeMikoDefaultTargetFunction {
-                recharge_demand: 1.0,
-                electro_charged_times: 0.0,
-                overload_times: 0.0
-            })
-        }
+        unimplemented!()
     }
 }
