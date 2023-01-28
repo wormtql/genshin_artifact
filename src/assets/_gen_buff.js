@@ -239,23 +239,15 @@ import ResonanceDendro2_image from "@image/misc/dendro"
 
 
 
-import Instructor4_image from "@image/artifacts/Instructor_flower"
 
 
 
-import NoblesseOblige4_image from "@image/artifacts/NoblesseOblige_flower"
 
 
 
-import ArchaicPetra4_image from "@image/artifacts/ArchaicPetra_flower"
 
 
 
-import ViridescentVenerer4_image from "@image/artifacts/ViridescentVenerer_flower"
-
-
-
-import TenacityOfTheMillelith4_image from "@image/artifacts/TenacityOfTheMillelith_flower"
 
 
 
@@ -263,6 +255,8 @@ const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_ic
 const getImage = name => template.replace("#", name)
 const templateWeapon = "https://upload-bbs.mihoyo.com/game_record/genshin/equip/UI_EquipIcon_#.png"
 const getImageW = name => templateWeapon.replace("#", name)
+const templateArtifact = "https://upload-bbs.mihoyo.com/game_record/genshin/equip/#.png"
+const getImageA = name => templateArtifact.replace("#", name)
 
 export default {
     
@@ -1721,7 +1715,7 @@ export default {
         name: "Instructor4",
         // chs: "教官4",
         
-        badge: Instructor4_image,
+        badge: getImageA("UI_RelicIcon_10007_4"),
         
         genre: "Artifact",
         // description: "触发元素反应后。队伍中所有角色元素精通提高120点，持续8秒。",
@@ -1734,7 +1728,7 @@ export default {
         name: "NoblesseOblige4",
         // chs: "昔日宗室之仪4",
         
-        badge: NoblesseOblige4_image,
+        badge: getImageA("UI_RelicIcon_15007_4"),
         
         genre: "Artifact",
         // description: "施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。",
@@ -1747,7 +1741,7 @@ export default {
         name: "ArchaicPetra4",
         // chs: "悠古的磐岩4",
         
-        badge: ArchaicPetra4_image,
+        badge: getImageA("UI_RelicIcon_15014_4"),
         
         genre: "Artifact",
         // description: "获得结晶反应形成的晶片时，队伍中所有角色获得35%对应元素伤害加成，持续10秒。",
@@ -1762,7 +1756,7 @@ export default {
         name: "ViridescentVenerer4",
         // chs: "翠绿之影4",
         
-        badge: ViridescentVenerer4_image,
+        badge: getImageA("UI_RelicIcon_15002_4"),
         
         genre: "Artifact",
         // description: "根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。",
@@ -1777,11 +1771,26 @@ export default {
         name: "TenacityOfTheMillelith4",
         // chs: "千岩牢固4",
         
-        badge: TenacityOfTheMillelith4_image,
+        badge: getImageA("UI_RelicIcon_15017_4"),
         
         genre: "Artifact",
         // description: "元素战技命中敌人后，使队伍中附近的所有角色攻击力提升20%，护盾强效提升30%，持续3秒。",
         config: [
+            
+        ],
+    },
+    
+    "DeepwoodMemories4": {
+        name: "DeepwoodMemories4",
+        // chs: "",
+        
+        badge: getImageA("UI_RelicIcon_15025_4"),
+        
+        genre: "Artifact",
+        // description: "",
+        config: [
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":"b41","type":"float"},
             
         ],
     },

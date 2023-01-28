@@ -174,7 +174,7 @@ impl CharacterTrait for Dori {
 
         if s == DoriDamageEnum::QHeal1 {
             let mut builder = D::new();
-            builder.add_atk_ratio("技能倍率", ratio);
+            builder.add_hp_ratio("技能倍率", ratio);
             builder.add_extra_damage("技能倍率", DORI_SKILL.q_heal1_fixed[s3]);
             builder.heal(&context.attribute)
         } else {

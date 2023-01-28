@@ -9,12 +9,12 @@ struct BuffMeta {
     name: String,
     chs: String,
     image: String,
-    // character | misc | weapon
+    // character | misc | weapon | artifact
     image_type: String,
     // if image_type is character, use internal name to get mihoyo image url, not using mine
-    // character_icon_name: String,
     character_internal_name: String,
     weapon_internal_name: String,
+    artifact_internal_name: String,
     genre: String,
     config: Vec<String>,
     description: String,
@@ -72,6 +72,8 @@ pub fn gen_buff_meta_as_js_file() -> String {
             String::from("character")
         } else if let BuffImage::Weapon(_) = meta.image {
             String::from("weapon")
+        } else if let BuffImage::Artifact(_) = meta.image {
+            String::from("artifact")
         } else {
             String::from("misc")
         };
@@ -88,6 +90,16 @@ pub fn gen_buff_meta_as_js_file() -> String {
             weapon_internal_name: if let BuffImage::Weapon(w) = meta.image {
                 let w_meta: WeaponStaticData = w.get_static_data();
                 String::from(w_meta.internal_name)
+            } else {
+                String::new()
+            },
+            artifact_internal_name: if let BuffImage::Artifact(a) = meta.image {
+                let a_meta: ArtifactMetaData = a.get_meta();
+                if let Some(_) = a_meta.flower {
+                    format!("UI_RelicIcon_{}_4", a_meta.internal_id)
+                } else {
+                    String::new()
+                }
             } else {
                 String::new()
             },

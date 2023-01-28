@@ -70,6 +70,7 @@ pub enum BuffConfig {
 
     ArchaicPetra4 { element: Element },
     ViridescentVenerer4 { element: Element },
+    DeepwoodMemories4 { rate: f64 },
 
     NoConfig,
 }

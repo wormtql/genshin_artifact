@@ -20,13 +20,16 @@ impl<A: Attribute> WeaponEffect<A> for LightOfFoliarIncisionEffect {
         attribute.set_value_by(AttributeName::CriticalBase, "裁叶萃光被动", 0.01 * refine + 0.03);
 
         let rate = self.rate;
-        attribute.add_edge1(
-            AttributeName::ElementalMastery,
-            AttributeName::ExtraDmgNormalAttack,
-            Box::new(move |em, _| em * (0.3 * refine + 0.9) * rate),
-            Box::new(|grad, em, _| (0.0, 0.0)),
-            "裁叶萃光被动等效"
-        );
+
+        for e in [AttributeName::ExtraDmgNormalAttack, AttributeName::ExtraDmgElementalSkill] {
+            attribute.add_edge1(
+                AttributeName::ElementalMastery,
+                e,
+                Box::new(move |em, _| em * (0.3 * refine + 0.9) * rate),
+                Box::new(|grad, em, _| (0.0, 0.0)),
+                "裁叶萃光被动等效"
+            );
+        }
     }
 }
 
