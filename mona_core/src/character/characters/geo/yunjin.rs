@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct YunjinSkillType {
     pub normal_dmg1: [f64; 15],
@@ -73,7 +74,11 @@ const YUNJIN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·拂云出手",
     skill_name2: "旋云开相",
-    skill_name3: "破嶂见旌仪"
+    skill_name3: "破嶂见旌仪",
+    name_locale: locale!(
+        zh_cn: "云堇",
+        en: "Yunjin",
+    )
 };
 
 pub struct Yunjin;

@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct XingqiuSkillType {
     pub normal_dmg1: [f64; 15],
@@ -69,7 +70,11 @@ pub const XINGQIU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·古华剑法",
     skill_name2: "古华剑·画雨笼山",
-    skill_name3: "古华剑·裁雨留虹"
+    skill_name3: "古华剑·裁雨留虹",
+    name_locale: locale!(
+        zh_cn: "行秋",
+        en: "Xingqiu",
+    )
 };
 
 pub struct XingqiuEffect {

@@ -14,6 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct YaeMikoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -106,7 +107,11 @@ impl CharacterTrait for YaeMiko {
         star: 5,
         skill_name1: "普通攻击·狐灵食罪式",
         skill_name2: "野干役咒·杀生樱",
-        skill_name3: "大密法·天狐显真"
+        skill_name3: "大密法·天狐显真",
+        name_locale: locale!(
+            zh_cn: "八重神子",
+            en: "Yae Miko",
+        )
     };
     type SkillType = YaeMikoSkillType;
     const SKILL: Self::SkillType = YAE_MIKO_SKILL;

@@ -8,6 +8,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -121,7 +122,11 @@ impl CharacterTrait for Collei {
         star: 4,
         skill_name1: "普通攻击·祈颂射艺",
         skill_name2: "拂花偈叶",
-        skill_name3: "猫猫秘宝"
+        skill_name3: "猫猫秘宝",
+        name_locale: locale!(
+            zh_cn: "柯莱",
+            en: "Collei",
+        )
     };
     type SkillType = ColleiSkillType;
     const SKILL: Self::SkillType = COLLEI_SKILL;

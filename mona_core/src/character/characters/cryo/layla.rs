@@ -12,6 +12,7 @@ use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::character::macros::{skill_type, damage_enum, skill_map, damage_ratio};
+use crate::common::i18n::locale;
 
 pub struct LaylaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -99,7 +100,11 @@ impl CharacterTrait for Layla {
         star: 4,
         skill_name1: "",
         skill_name2: "",
-        skill_name3: ""
+        skill_name3: "",
+        name_locale: locale!(
+            zh_cn: "莱依拉",
+            en: "Layla",
+        )
     };
     type SkillType = LaylaSkillType;
     const SKILL: Self::SkillType = LAYLA_SKILL;

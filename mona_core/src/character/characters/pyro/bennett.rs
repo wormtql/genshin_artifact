@@ -14,6 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct BennettSkillType {
     pub normal_dmg1: [f64; 15],
@@ -76,7 +77,11 @@ pub const BENNETT_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·好运剑",
     skill_name2: "热情过载",
-    skill_name3: "美妙旅程"
+    skill_name3: "美妙旅程",
+    name_locale: locale!(
+        zh_cn: "班尼特",
+        en: "Bennett",
+    )
 };
 
 pub struct Bennett;

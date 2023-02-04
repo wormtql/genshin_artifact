@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct SayuSkillType {
     pub normal_dmg1: [f64; 15],
@@ -69,7 +70,6 @@ pub const SAYU_SKILL: SayuSkillType = SayuSkillType {
 pub const SAYU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Sayu,
     internal_name: "Sayu",
-    chs: "早柚",
     element: Element::Anemo,
     hp: [994, 2553, 3296, 4937, 5464, 6285, 6988, 7809, 8337, 9157, 9684, 10505, 11033, 11854],
     atk: [20, 53, 68, 102, 113, 130, 144, 161, 172, 189, 200, 216, 227, 244],
@@ -77,9 +77,22 @@ pub const SAYU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ElementalMastery96,
     weapon_type: WeaponType::Claymore,
     star: 4,
-    skill_name1: "普通攻击·忍刀·终末番",
-    skill_name2: "呜呼流·风隐急进",
-    skill_name3: "呜呼流·影貉缭乱"
+    skill_name1: locale!(
+        zh_cn: "普通攻击·忍刀·终末番",
+        en: "Normal Attack: Shuumatsuban Ninja Blade",
+    ),
+    skill_name2: locale!(
+        zh_cn: "呜呼流·风隐急进",
+        en: "Yoohoo Art: Fuuin Dash",
+    ),
+    skill_name3: locale!(
+        zh_cn: "呜呼流·影貉缭乱",
+        en: "Yoohoo Art: Mujina Flurry",
+    ),
+    name_locale: locale!(
+        zh_cn: "早柚",
+        en: "Sayu",
+    )
 };
 
 pub struct Sayu;

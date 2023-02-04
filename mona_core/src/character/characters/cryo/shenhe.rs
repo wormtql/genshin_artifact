@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct ShenheSkillType {
     pub normal_dmg1: [f64; 15],
@@ -69,7 +70,11 @@ const SHENHE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击•踏辰摄斗",
     skill_name2: "仰灵威召将役咒",
-    skill_name3: "神女遣灵真诀"
+    skill_name3: "神女遣灵真诀",
+    name_locale: locale!(
+        zh_cn: "申鹤",
+        en: "Shenhe",
+    )
 };
 
 pub struct Shenhe;

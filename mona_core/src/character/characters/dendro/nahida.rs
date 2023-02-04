@@ -12,6 +12,7 @@ use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::character::macros::{skill_type, damage_enum, skill_map, damage_ratio};
+use crate::common::i18n::locale;
 
 
 pub struct NahidaSkillType {
@@ -107,7 +108,11 @@ impl CharacterTrait for Nahida {
         star: 5,
         skill_name1: "",
         skill_name2: "",
-        skill_name3: ""
+        skill_name3: "",
+        name_locale: locale!(
+            zh_cn: "纳西妲",
+            en: "Nahida",
+        )
     };
     type SkillType = NahidaSkillType;
     const SKILL: Self::SkillType = NAHIDA_SKILL;

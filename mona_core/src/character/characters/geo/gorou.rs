@@ -14,6 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct GorouSkillType {
     pub normal_dmg1: [f64; 15],
@@ -62,7 +63,11 @@ pub const GOROU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击•呲牙裂扇箭",
     skill_name2: "犬坂吠吠方圆阵",
-    skill_name3: "兽牙逐突形胜战法"
+    skill_name3: "兽牙逐突形胜战法",
+    name_locale: locale!(
+        zh_cn: "五郎",
+        en: "Gorou",
+    )
 };
 
 pub struct Gorou;

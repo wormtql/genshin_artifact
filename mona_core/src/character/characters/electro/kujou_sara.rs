@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct KujouSaraSkillType {
     pub normal_dmg1: [f64; 15],
@@ -65,7 +66,11 @@ pub const KUJOU_SARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击•天狗传弓术",
     skill_name2: "鸦羽天狗霆雷召咒",
-    skill_name3: "煌煌千道镇式"
+    skill_name3: "煌煌千道镇式",
+    name_locale: locale!(
+        zh_cn: "九条裟罗",
+        en: "Kujou Sara",
+    )
 };
 
 pub struct KujouSara;

@@ -10,7 +10,7 @@
     "build:2": "cross-env MONA_TITLE=莫娜占卜铺 MONA_NEED_BEIAN=true MONA_BEIAN_NUMBER=2 MONA_NEED_MIGRATE=false MONA_ROUTE_MODE=history vue-cli-service build",
     "build:wasm": "wasm-pack build mona_wasm",
     "download-artifact": "node ./script/download_artifact.js",
-    "gen_meta": "cargo run --release --bin gen_meta --manifest-path mona_generate/Cargo.toml -- --dir src/assets",
+    "gen_meta": "cargo run --release --bin gen_meta --manifest-path mona_generate/Cargo.toml -- --dir src/assets --i18n-dir src/i18n/generated",
     "inspect": "vue inspect > inspect.js",
     "myserve": "serve ./dist",
     "pack": "tar -czvf dist.tar.gz ./dist",

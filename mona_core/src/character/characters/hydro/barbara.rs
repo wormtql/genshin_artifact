@@ -14,6 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct BarbaraSkillType {
     pub normal_dmg1: [f64; 15],
@@ -66,7 +67,11 @@ pub const BARBARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·水之浅唱",
     skill_name2: "演唱，开始♪",
-    skill_name3: "闪耀奇迹♪"
+    skill_name3: "闪耀奇迹♪",
+    name_locale: locale!(
+        zh_cn: "芭芭拉",
+        en: "Barbara",
+    )
 };
 
 pub struct Barbara;

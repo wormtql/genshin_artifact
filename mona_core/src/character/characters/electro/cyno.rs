@@ -9,6 +9,7 @@ use crate::character::macros::{damage_enum, skill_type};
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -144,6 +145,10 @@ impl CharacterTrait for Cyno {
         skill_name1: "普通攻击·七圣枪术",
         skill_name2: "秘仪·律渊渡魂",
         skill_name3: "圣仪·煟煌随狼行",
+        name_locale: locale!(
+            zh_cn: "赛诺",
+            en: "Cyno",
+        )
     };
     type SkillType = CynoSkillType;
     const SKILL: Self::SkillType = CYNO_SKILL;

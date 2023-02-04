@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct SangonomiyaKokomiSkillType {
     pub normal_dmg1: [f64; 15],
@@ -69,7 +70,11 @@ pub const SANGONOMIYA_KOKOMI_STATIC_DATA: CharacterStaticData = CharacterStaticD
     star: 5,
     skill_name1: "普通攻击•水有常形",
     skill_name2: "海月之誓",
-    skill_name3: "海人化羽"
+    skill_name3: "海人化羽",
+    name_locale: locale!(
+        zh_cn: "珊瑚宫心海",
+        en: "Sangonomiya Kokomi",
+    )
 };
 
 pub struct SangonomiyaKokomiEffect;

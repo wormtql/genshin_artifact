@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct KeqingSkillType {
     pub normal_dmg1: [f64; 15],
@@ -69,7 +70,11 @@ pub const KEQING_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击·云来剑法",
     skill_name2: "星斗归位",
-    skill_name3: "天街巡游"
+    skill_name3: "天街巡游",
+    name_locale: locale!(
+        zh_cn: "刻晴",
+        en: "Keqing",
+    )
 };
 
 pub struct KeqingEffect {

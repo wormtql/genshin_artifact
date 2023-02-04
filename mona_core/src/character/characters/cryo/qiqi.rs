@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct QiqiSkillType {
     pub normal_dmg1: [f64; 15],
@@ -79,7 +80,11 @@ pub const QIQI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击·云来古剑法",
     skill_name2: "仙法·寒病鬼差",
-    skill_name3: "仙法·救苦度厄"
+    skill_name3: "仙法·救苦度厄",
+    name_locale: locale!(
+        zh_cn: "七七",
+        en: "Qiqi",
+    )
 };
 
 pub struct Qiqi;

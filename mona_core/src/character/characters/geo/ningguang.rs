@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct NingguangSkillType {
     pub normal_dmg1: [f64; 15],
@@ -55,7 +56,11 @@ pub const NINGGUANG_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·千金掷",
     skill_name2: "璇玑屏",
-    skill_name3: "天权崩玉"
+    skill_name3: "天权崩玉",
+    name_locale: locale!(
+        zh_cn: "凝光",
+        en: "Ningguang",
+    )
 };
 
 pub struct NingguangEffect {

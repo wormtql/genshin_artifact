@@ -15,6 +15,7 @@ use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::character::macros::{skill_type, damage_enum};
+use crate::common::i18n::locale;
 
 // pub struct TighnariSkillType {
 //     pub normal_dmg1: [f64; 15],
@@ -160,7 +161,11 @@ impl CharacterTrait for Tighnari {
         star: 5,
         skill_name1: "普通攻击·藏蕴破障",
         skill_name2: "识果种雷",
-        skill_name3: "造生缠藤箭"
+        skill_name3: "造生缠藤箭",
+        name_locale: locale!(
+            zh_cn: "提纳里",
+            en: "Tighnari",
+        )
     };
     type SkillType = TighnariSkillType;
     const SKILL: Self::SkillType = TIGHNARI_SKILL;

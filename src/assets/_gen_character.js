@@ -262,7 +262,7 @@ export default {
     
     AetherAnemo: {
         name: "AetherAnemo",
-        // chs: "空-风",
+        name_locale: 0,
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -330,7 +330,7 @@ export default {
     
     Albedo: {
         name: "Albedo",
-        // chs: "阿贝多",
+        name_locale: 1,
         element: "Geo",
         weapon: "Sword",
         star: 5,
@@ -388,7 +388,7 @@ export default {
     
     Alhaitham: {
         name: "Alhaitham",
-        // chs: "",
+        name_locale: 2,
         element: "Dendro",
         weapon: "Sword",
         star: 5,
@@ -458,7 +458,7 @@ export default {
     
     Aloy: {
         name: "Aloy",
-        // chs: "埃洛伊",
+        name_locale: 3,
         element: "Cryo",
         weapon: "Bow",
         star: 5,
@@ -516,7 +516,7 @@ export default {
     
     Amber: {
         name: "Amber",
-        // chs: "安柏",
+        name_locale: 4,
         element: "Pyro",
         weapon: "Bow",
         star: 4,
@@ -572,7 +572,7 @@ export default {
     
     AratakiItto: {
         name: "AratakiItto",
-        // chs: "荒泷一斗",
+        name_locale: 5,
         element: "Geo",
         weapon: "Claymore",
         star: 5,
@@ -626,7 +626,7 @@ export default {
     
     Barbara: {
         name: "Barbara",
-        // chs: "芭芭拉",
+        name_locale: 6,
         element: "Hydro",
         weapon: "Catalyst",
         star: 4,
@@ -680,7 +680,7 @@ export default {
     
     Beidou: {
         name: "Beidou",
-        // chs: "北斗",
+        name_locale: 7,
         element: "Electro",
         weapon: "Claymore",
         star: 4,
@@ -740,7 +740,7 @@ export default {
     
     Bennett: {
         name: "Bennett",
-        // chs: "班尼特",
+        name_locale: 8,
         element: "Pyro",
         weapon: "Sword",
         star: 4,
@@ -806,7 +806,7 @@ export default {
     
     Candace: {
         name: "Candace",
-        // chs: "",
+        name_locale: 9,
         element: "Hydro",
         weapon: "Polearm",
         star: 4,
@@ -866,7 +866,7 @@ export default {
     
     Chongyun: {
         name: "Chongyun",
-        // chs: "重云",
+        name_locale: 10,
         element: "Cryo",
         weapon: "Claymore",
         star: 4,
@@ -918,7 +918,7 @@ export default {
     
     Collei: {
         name: "Collei",
-        // chs: "科莱",
+        name_locale: 11,
         element: "Dendro",
         weapon: "Bow",
         star: 4,
@@ -974,7 +974,7 @@ export default {
     
     Cyno: {
         name: "Cyno",
-        // chs: "赛诺",
+        name_locale: 12,
         element: "Electro",
         weapon: "Polearm",
         star: 5,
@@ -1050,7 +1050,7 @@ export default {
     
     Diluc: {
         name: "Diluc",
-        // chs: "迪卢克",
+        name_locale: 13,
         element: "Pyro",
         weapon: "Claymore",
         star: 5,
@@ -1112,7 +1112,7 @@ export default {
     
     Diona: {
         name: "Diona",
-        // chs: "迪奥娜",
+        name_locale: 14,
         element: "Cryo",
         weapon: "Bow",
         star: 4,
@@ -1170,7 +1170,7 @@ export default {
     
     Dori: {
         name: "Dori",
-        // chs: "多莉",
+        name_locale: 15,
         element: "Electro",
         weapon: "Claymore",
         star: 4,
@@ -1228,7 +1228,7 @@ export default {
     
     Eula: {
         name: "Eula",
-        // chs: "优菈",
+        name_locale: 16,
         element: "Cryo",
         weapon: "Claymore",
         star: 5,
@@ -1296,7 +1296,7 @@ export default {
     
     Faruzan: {
         name: "Faruzan",
-        // chs: "珐露珊",
+        name_locale: 17,
         element: "Anemo",
         weapon: "Bow",
         star: 4,
@@ -1354,7 +1354,7 @@ export default {
     
     Fischl: {
         name: "Fischl",
-        // chs: "菲谢尔",
+        name_locale: 18,
         element: "Electro",
         weapon: "Bow",
         star: 4,
@@ -1410,7 +1410,7 @@ export default {
     
     Ganyu: {
         name: "Ganyu",
-        // chs: "甘雨",
+        name_locale: 19,
         element: "Cryo",
         weapon: "Bow",
         star: 5,
@@ -1474,7 +1474,7 @@ export default {
     
     Gorou: {
         name: "Gorou",
-        // chs: "五郎",
+        name_locale: 20,
         element: "Geo",
         weapon: "Bow",
         star: 4,
@@ -1528,7 +1528,7 @@ export default {
     
     HuTao: {
         name: "HuTao",
-        // chs: "胡桃",
+        name_locale: 21,
         element: "Pyro",
         weapon: "Polearm",
         star: 5,
@@ -1590,7 +1590,7 @@ export default {
     
     Jean: {
         name: "Jean",
-        // chs: "琴",
+        name_locale: 22,
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -1648,7 +1648,7 @@ export default {
     
     KaedeharaKazuha: {
         name: "KaedeharaKazuha",
-        // chs: "枫原万叶",
+        name_locale: 23,
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -1732,7 +1732,7 @@ export default {
     
     Kaeya: {
         name: "Kaeya",
-        // chs: "凯亚",
+        name_locale: 24,
         element: "Cryo",
         weapon: "Sword",
         star: 4,
@@ -1786,7 +1786,7 @@ export default {
     
     KamisatoAyaka: {
         name: "KamisatoAyaka",
-        // chs: "神里绫华",
+        name_locale: 25,
         element: "Cryo",
         weapon: "Sword",
         star: 5,
@@ -1848,7 +1848,7 @@ export default {
     
     KamisatoAyato: {
         name: "KamisatoAyato",
-        // chs: "神里绫人",
+        name_locale: 26,
         element: "Hydro",
         weapon: "Sword",
         star: 5,
@@ -1910,7 +1910,7 @@ export default {
     
     Keqing: {
         name: "Keqing",
-        // chs: "刻晴",
+        name_locale: 27,
         element: "Electro",
         weapon: "Sword",
         star: 5,
@@ -1978,7 +1978,7 @@ export default {
     
     Klee: {
         name: "Klee",
-        // chs: "可莉",
+        name_locale: 28,
         element: "Pyro",
         weapon: "Catalyst",
         star: 5,
@@ -2030,7 +2030,7 @@ export default {
     
     KujouSara: {
         name: "KujouSara",
-        // chs: "九条裟罗",
+        name_locale: 29,
         element: "Electro",
         weapon: "Bow",
         star: 4,
@@ -2086,7 +2086,7 @@ export default {
     
     KukiShinobu: {
         name: "KukiShinobu",
-        // chs: "久岐忍",
+        name_locale: 30,
         element: "Electro",
         weapon: "Sword",
         star: 4,
@@ -2152,7 +2152,7 @@ export default {
     
     Layla: {
         name: "Layla",
-        // chs: "",
+        name_locale: 31,
         element: "Cryo",
         weapon: "Sword",
         star: 4,
@@ -2204,7 +2204,7 @@ export default {
     
     Lisa: {
         name: "Lisa",
-        // chs: "丽莎",
+        name_locale: 32,
         element: "Electro",
         weapon: "Catalyst",
         star: 4,
@@ -2262,7 +2262,7 @@ export default {
     
     Mona: {
         name: "Mona",
-        // chs: "莫娜",
+        name_locale: 33,
         element: "Hydro",
         weapon: "Catalyst",
         star: 5,
@@ -2314,7 +2314,7 @@ export default {
     
     Nahida: {
         name: "Nahida",
-        // chs: "",
+        name_locale: 34,
         element: "Dendro",
         weapon: "Catalyst",
         star: 5,
@@ -2372,7 +2372,7 @@ export default {
     
     Nilou: {
         name: "Nilou",
-        // chs: "妮露",
+        name_locale: 35,
         element: "Hydro",
         weapon: "Sword",
         star: 5,
@@ -2438,7 +2438,7 @@ export default {
     
     Ningguang: {
         name: "Ningguang",
-        // chs: "凝光",
+        name_locale: 36,
         element: "Geo",
         weapon: "Catalyst",
         star: 4,
@@ -2486,7 +2486,7 @@ export default {
     
     Noelle: {
         name: "Noelle",
-        // chs: "诺艾尔",
+        name_locale: 37,
         element: "Geo",
         weapon: "Claymore",
         star: 4,
@@ -2544,7 +2544,7 @@ export default {
     
     Qiqi: {
         name: "Qiqi",
-        // chs: "七七",
+        name_locale: 38,
         element: "Cryo",
         weapon: "Sword",
         star: 5,
@@ -2610,7 +2610,7 @@ export default {
     
     RaidenShogun: {
         name: "RaidenShogun",
-        // chs: "雷电将军",
+        name_locale: 39,
         element: "Electro",
         weapon: "Polearm",
         star: 5,
@@ -2692,7 +2692,7 @@ export default {
     
     Razor: {
         name: "Razor",
-        // chs: "雷泽",
+        name_locale: 40,
         element: "Electro",
         weapon: "Claymore",
         star: 4,
@@ -2758,7 +2758,7 @@ export default {
     
     Rosaria: {
         name: "Rosaria",
-        // chs: "罗莎莉亚",
+        name_locale: 41,
         element: "Cryo",
         weapon: "Polearm",
         star: 4,
@@ -2820,7 +2820,7 @@ export default {
     
     SangonomiyaKokomi: {
         name: "SangonomiyaKokomi",
-        // chs: "珊瑚宫心海",
+        name_locale: 42,
         element: "Hydro",
         weapon: "Catalyst",
         star: 5,
@@ -2874,7 +2874,7 @@ export default {
     
     Sayu: {
         name: "Sayu",
-        // chs: "早柚",
+        name_locale: 43,
         element: "Anemo",
         weapon: "Claymore",
         star: 4,
@@ -2954,7 +2954,7 @@ export default {
     
     Shenhe: {
         name: "Shenhe",
-        // chs: "申鹤",
+        name_locale: 44,
         element: "Cryo",
         weapon: "Polearm",
         star: 5,
@@ -3012,7 +3012,7 @@ export default {
     
     ShikanoinHeizou: {
         name: "ShikanoinHeizou",
-        // chs: "鹿野院平藏",
+        name_locale: 45,
         element: "Anemo",
         weapon: "Catalyst",
         star: 4,
@@ -3086,7 +3086,7 @@ export default {
     
     Sucrose: {
         name: "Sucrose",
-        // chs: "砂糖",
+        name_locale: 46,
         element: "Anemo",
         weapon: "Catalyst",
         star: 4,
@@ -3144,7 +3144,7 @@ export default {
     
     Tartaglia: {
         name: "Tartaglia",
-        // chs: "达达利亚",
+        name_locale: 47,
         element: "Hydro",
         weapon: "Bow",
         star: 5,
@@ -3228,7 +3228,7 @@ export default {
     
     Thoma: {
         name: "Thoma",
-        // chs: "托马",
+        name_locale: 48,
         element: "Pyro",
         weapon: "Polearm",
         star: 4,
@@ -3280,7 +3280,7 @@ export default {
     
     Tighnari: {
         name: "Tighnari",
-        // chs: "提纳里",
+        name_locale: 49,
         element: "Dendro",
         weapon: "Bow",
         star: 5,
@@ -3342,7 +3342,7 @@ export default {
     
     Venti: {
         name: "Venti",
-        // chs: "温迪",
+        name_locale: 50,
         element: "Anemo",
         weapon: "Bow",
         star: 5,
@@ -3412,7 +3412,7 @@ export default {
     
     Wanderer: {
         name: "Wanderer",
-        // chs: "流浪者",
+        name_locale: 51,
         element: "Anemo",
         weapon: "Catalyst",
         star: 5,
@@ -3478,7 +3478,7 @@ export default {
     
     Xiangling: {
         name: "Xiangling",
-        // chs: "香菱",
+        name_locale: 52,
         element: "Pyro",
         weapon: "Polearm",
         star: 4,
@@ -3538,7 +3538,7 @@ export default {
     
     Xiao: {
         name: "Xiao",
-        // chs: "魈",
+        name_locale: 53,
         element: "Anemo",
         weapon: "Polearm",
         star: 5,
@@ -3600,7 +3600,7 @@ export default {
     
     Xingqiu: {
         name: "Xingqiu",
-        // chs: "行秋",
+        name_locale: 54,
         element: "Hydro",
         weapon: "Sword",
         star: 4,
@@ -3662,7 +3662,7 @@ export default {
     
     Xinyan: {
         name: "Xinyan",
-        // chs: "辛焱",
+        name_locale: 55,
         element: "Pyro",
         weapon: "Claymore",
         star: 4,
@@ -3720,7 +3720,7 @@ export default {
     
     YaeMiko: {
         name: "YaeMiko",
-        // chs: "八重神子",
+        name_locale: 56,
         element: "Electro",
         weapon: "Catalyst",
         star: 5,
@@ -3776,7 +3776,7 @@ export default {
     
     Yanfei: {
         name: "Yanfei",
-        // chs: "烟绯",
+        name_locale: 57,
         element: "Pyro",
         weapon: "Catalyst",
         star: 4,
@@ -3836,7 +3836,7 @@ export default {
     
     Yaoyao: {
         name: "Yaoyao",
-        // chs: "",
+        name_locale: 58,
         element: "Dendro",
         weapon: "Polearm",
         star: 4,
@@ -3896,7 +3896,7 @@ export default {
     
     Yelan: {
         name: "Yelan",
-        // chs: "夜兰",
+        name_locale: 59,
         element: "Hydro",
         weapon: "Bow",
         star: 5,
@@ -3954,7 +3954,7 @@ export default {
     
     Yoimiya: {
         name: "Yoimiya",
-        // chs: "宵宫",
+        name_locale: 60,
         element: "Pyro",
         weapon: "Bow",
         star: 5,
@@ -4014,7 +4014,7 @@ export default {
     
     Yunjin: {
         name: "Yunjin",
-        // chs: "云堇",
+        name_locale: 61,
         element: "Geo",
         weapon: "Polearm",
         star: 4,
@@ -4074,7 +4074,7 @@ export default {
     
     Zhongli: {
         name: "Zhongli",
-        // chs: "钟离",
+        name_locale: 62,
         element: "Geo",
         weapon: "Polearm",
         star: 5,

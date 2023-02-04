@@ -13,6 +13,7 @@ use crate::weapon::weapon_common_data::WeaponCommonData;
 use num_derive::FromPrimitive;
 use strum::{EnumCount};
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct ShikanoinHeizouSkillType {
     pub normal_dmg1: [f64; 15],
@@ -118,7 +119,6 @@ impl CharacterTrait for ShikanoinHeizou {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::ShikanoinHeizou,
         internal_name: "Heizo",
-        chs: "鹿野院平藏",
         element: Element::Anemo,
         hp: [894, 2296, 2963, 4438, 4913, 5651, 6283, 7021, 7495, 8233, 8707, 9445, 9919, 10657],
         atk: [19, 48, 63, 94, 104, 119, 133, 148, 158, 174, 184, 200, 210, 225],
@@ -126,9 +126,22 @@ impl CharacterTrait for ShikanoinHeizou {
         sub_stat: CharacterSubStatFamily::Bonus240(StatName::AnemoBonus),
         weapon_type: WeaponType::Catalyst,
         star: 4,
-        skill_name1: "普通攻击·不动流格斗术",
-        skill_name2: "勠心拳",
-        skill_name3: "聚风蹴"
+        skill_name1: locale!(
+            zh_cn: "普通攻击·不动流格斗术",
+            en: "Normal Attack: Fudou Style Martial Arts",
+        ),
+        skill_name2: locale!(
+            zh_cn: "勠心拳",
+            en: "Heartstopper Strike",
+        ),
+        skill_name3: locale!(
+            zh_cn: "聚风蹴",
+            en: "Windmuster Kick",
+        ),
+        name_locale: locale!(
+            zh_cn: "鹿野院平藏",
+            en: "Shikanoin Heizou",
+        )
     };
     type SkillType = ShikanoinHeizouSkillType;
     const SKILL: Self::SkillType = SHIKANOIN_HEIZOU_SKILL;

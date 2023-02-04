@@ -14,6 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct FischlSkillType {
     pub normal_dmg1: [f64; 15],
@@ -62,7 +63,11 @@ pub const FISCHL_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·罪灭之矢",
     skill_name2: "夜巡影翼",
-    skill_name3: "至夜幻现"
+    skill_name3: "至夜幻现",
+    name_locale: locale!(
+        zh_cn: "菲谢尔",
+        en: "Fischl",
+    )
 };
 
 pub struct Fischl;

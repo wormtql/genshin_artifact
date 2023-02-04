@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct XianglingSkillType {
     pub normal_dmg1: [f64; 15],
@@ -67,7 +68,11 @@ pub const XIANGLING_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·白案功夫",
     skill_name2: "锅巴出击",
-    skill_name3: "旋火轮"
+    skill_name3: "旋火轮",
+    name_locale: locale!(
+        zh_cn: "香菱",
+        en: "Xiangling",
+    )
 };
 
 pub struct Xiangling;

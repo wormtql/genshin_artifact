@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct ThomaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -71,7 +72,11 @@ pub const THOMA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·迅破枪势",
     skill_name2: "烈烧佑命之侍护",
-    skill_name3: "真红炽火之大铠"
+    skill_name3: "真红炽火之大铠",
+    name_locale: locale!(
+        zh_cn: "托马",
+        en: "Thoma",
+    )
 };
 
 pub struct Thoma;

@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct XiaoSkillType {
     pub normal_dmg11: [f64; 15],
@@ -57,7 +58,6 @@ pub const XIAO_SKILL: XiaoSkillType = XiaoSkillType {
 pub const XIAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Xiao,
     internal_name: "Xiao",
-    chs: "魈",
     element: Element::Anemo,
     hp: [991, 2572, 3422, 5120, 5724, 6586, 7391, 8262, 8866, 9744, 10348, 11236, 11840, 12736],
     atk: [27, 71, 94, 140, 157, 181, 203, 227, 243, 267, 284, 308, 325, 349],
@@ -65,9 +65,22 @@ pub const XIAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::CriticalRate192,
     weapon_type: WeaponType::Polearm,
     star: 5,
-    skill_name1: "普通攻击·卷积微尘",
-    skill_name2: "风轮两立",
-    skill_name3: "靖妖傩舞"
+    skill_name1: locale!(
+        zh_cn: "普通攻击·卷积微尘",
+        en: "Normal Attack: Whirlwind Thrust",
+    ),
+    skill_name2: locale!(
+        zh_cn: "风轮两立",
+        en: "Lemniscatic Wind Cycling",
+    ),
+    skill_name3: locale!(
+        zh_cn: "靖妖傩舞",
+        en: "Bane of All Evil",
+    ),
+    name_locale: locale!(
+        zh_cn: "魈",
+        en: "Xiao",
+    )
 };
 
 pub struct Xiao;

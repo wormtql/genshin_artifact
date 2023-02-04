@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct EulaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -79,7 +80,11 @@ pub const EULA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击·西风剑术·宗室",
     skill_name2: "冰潮的涡旋",
-    skill_name3: "凝浪之光剑"
+    skill_name3: "凝浪之光剑",
+    name_locale: locale!(
+        zh_cn: "优菈",
+        en: "Eula",
+    )
 };
 
 pub struct Eula;

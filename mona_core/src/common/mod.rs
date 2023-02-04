@@ -16,6 +16,7 @@ pub mod max_trait;
 pub mod reaction_type;
 pub mod item_config_type;
 pub mod code_escape;
+pub mod i18n;
 
 pub struct Span {
     pub start_row: usize,

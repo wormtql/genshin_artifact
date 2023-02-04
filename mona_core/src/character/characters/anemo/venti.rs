@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct VentiSkillType {
     pub normal_dmg11: [f64; 15],
@@ -61,7 +62,6 @@ pub const VENTI_SKILL: VentiSkillType = VentiSkillType {
 pub const VENTI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Venti,
     internal_name: "Venti",
-    chs: "温迪",
     element: Element::Anemo,
     hp: [820, 2127, 2830, 4234, 4734, 5446, 6112, 6832, 7331, 8058, 8557, 9292, 9791, 10531],
     atk: [20, 53, 71, 106, 118, 136, 153, 171, 183, 201, 214, 232, 245, 263],
@@ -69,9 +69,22 @@ pub const VENTI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Recharge320,
     weapon_type: WeaponType::Bow,
     star: 5,
-    skill_name1: "普通攻击·神代射术",
-    skill_name2: "高天之歌",
-    skill_name3: "风神之诗"
+    skill_name1: locale!(
+        zh_cn: "普通攻击·神代射术",
+        en: "Normal Attack: Divine Marksmanship",
+    ),
+    skill_name2: locale!(
+        zh_cn: "高天之歌",
+        en: "Skyward Sonnet",
+    ),
+    skill_name3: locale!(
+        zh_cn: "风神之诗",
+        en: "Wind's Grand Ode",
+    ),
+    name_locale: locale!(
+        zh_cn: "温迪",
+        en: "Venti",
+    )
 };
 
 pub struct Venti;

@@ -15,6 +15,7 @@ use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 use strum::EnumCount;
 use std::str::FromStr;
+use crate::common::i18n::locale;
 
 pub struct AetherAnemoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -145,7 +146,11 @@ impl CharacterTrait for AetherAnemo {
         star: 5,
         skill_name1: "普通攻击·异邦铁风",
         skill_name2: "风涡剑",
-        skill_name3: "风息激荡"
+        skill_name3: "风息激荡",
+        name_locale: locale!(
+            zh_cn: "空-风",
+            en: "Aether(Anemo)",
+        )
     };
     type SkillType = AetherAnemoSkillType;
     const SKILL: Self::SkillType = AETHER_ANEMO_SKILL;

@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct ZhongliSkillType {
     pub normal_dmg1: [f64; 15],
@@ -69,7 +70,11 @@ pub const ZHONGLI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击·岩雨",
     skill_name2: "地心",
-    skill_name3: "天星"
+    skill_name3: "天星",
+    name_locale: locale!(
+        zh_cn: "钟离",
+        en: "Zhongli",
+    )
 };
 
 pub struct ZhongliEffect {

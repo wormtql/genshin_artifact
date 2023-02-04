@@ -9,6 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::ItemConfig;
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -70,7 +71,11 @@ pub const GANYU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击·流天射术",
     skill_name2: "山泽麟迹",
-    skill_name3: "降众天华"
+    skill_name3: "降众天华",
+    name_locale: locale!(
+        zh_cn: "甘雨",
+        en: "Ganyu",
+    )
 };
 
 pub struct GanyuEffect {

@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct DilucSkillType {
     pub normal_dmg1: [f64; 15],
@@ -67,7 +68,11 @@ const DILUC_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击·淬炼之剑",
     skill_name2: "逆焰之刃",
-    skill_name3: "黎明"
+    skill_name3: "黎明",
+    name_locale: locale!(
+        zh_cn: "迪卢克",
+        en: "Diluc",
+    )
 };
 
 pub struct Diluc;

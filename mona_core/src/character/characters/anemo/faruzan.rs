@@ -6,6 +6,7 @@ use crate::character::macros::{damage_enum, damage_ratio, skill_map, skill_type}
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -102,7 +103,6 @@ impl CharacterTrait for Faruzan {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Faruzan,
         internal_name: "Faruzan",
-        chs: "珐露珊",
         element: Element::Anemo,
         hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7819, 8481, 8907, 9570],
         atk: [16, 42, 55, 82, 91, 104, 116, 129, 138, 152, 161, 174, 183, 196],
@@ -110,9 +110,22 @@ impl CharacterTrait for Faruzan {
         sub_stat: CharacterSubStatFamily::ATK240,
         weapon_type: WeaponType::Bow,
         star: 4,
-        skill_name1: "普通攻击·迴身箭术",
-        skill_name2: "非想风天",
-        skill_name3: "抟风秘道",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·迴身箭术",
+            en: "Normal Attack: Turnaround Shooter",
+        ),
+        skill_name2: locale!(
+            zh_cn: "非想风天",
+            en: "Wind Realm of Nasamjnin",
+        ),
+        skill_name3: locale!(
+            zh_cn: "抟风秘道",
+            en: "The Wind’s Secret Ways",
+        ),
+        name_locale: locale!(
+            zh_cn: "珐露珊",
+            en: "Faruzan",
+        )
     };
     type SkillType = FaruzanSkillType;
     const SKILL: Self::SkillType = FARUZAN_SKILL;

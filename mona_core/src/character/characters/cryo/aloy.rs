@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct AloySkillType {
     pub normal_dmg11: [f64; 15],
@@ -73,7 +74,11 @@ pub const ALOY_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击·快速射击",
     skill_name2: "冰尘雪野",
-    skill_name3: "曙光预言"
+    skill_name3: "曙光预言",
+    name_locale: locale!(
+        zh_cn: "埃洛伊",
+        en: "Aloy",
+    )
 };
 
 pub struct Aloy;

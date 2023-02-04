@@ -9,6 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::DamageContext;
 use crate::damage::damage_builder::DamageBuilder;
@@ -75,6 +76,10 @@ pub const HU_TAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     skill_name1: "普通攻击·往生秘传枪法",
     skill_name2: "蝶引来生",
     skill_name3: "安神秘法",
+    name_locale: locale!(
+        zh_cn: "胡桃",
+        en: "Hu Tao",
+    )
 };
 
 pub struct HuTaoEffect {

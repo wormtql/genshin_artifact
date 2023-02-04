@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct KleeSkillType {
     pub normal_dmg1: [f64; 15],
@@ -57,7 +58,11 @@ pub const KLEE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击·砰砰",
     skill_name2: "蹦蹦炸弹",
-    skill_name3: "轰轰火花"
+    skill_name3: "轰轰火花",
+    name_locale: locale!(
+        zh_cn: "可莉",
+        en: "Klee",
+    )
 };
 
 pub struct Klee;

@@ -14,6 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct DionaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -70,7 +71,11 @@ pub const DIONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·猎人射术",
     skill_name2: "猫爪冻冻",
-    skill_name3: "最烈特调"
+    skill_name3: "最烈特调",
+    name_locale: locale!(
+        zh_cn: "迪奥娜",
+        en: "Diona",
+    )
 };
 
 pub struct Diona;

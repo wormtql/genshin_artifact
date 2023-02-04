@@ -14,6 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct JeanSkillType {
     pub normal_dmg1: [f64; 15],
@@ -58,7 +59,6 @@ pub const JEAN_SKILL: JeanSkillType = JeanSkillType {
 pub const JEAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Jean,
     internal_name: "Qin",
-    chs: "琴",
     element: Element::Anemo,
     hp: [1144, 2967, 3948, 5908, 6605, 7599, 8528, 9533, 10230, 11243, 11940, 12965, 13662, 14695],
     atk: [19, 48, 64, 96, 108, 124, 139, 155, 166, 183, 194, 211, 222, 239],
@@ -66,9 +66,22 @@ pub const JEAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::HealingBonus222,
     weapon_type: WeaponType::Sword,
     star: 5,
-    skill_name1: "普通攻击·西风剑术",
-    skill_name2: "风压剑",
-    skill_name3: "蒲公英之风"
+    skill_name1: locale!(
+        zh_cn: "普通攻击·西风剑术",
+        en: "Normal Attack: Favonius Bladework",
+    ),
+    skill_name2: locale!(
+        zh_cn: "风压剑",
+        en: "Gale Blade",
+    ),
+    skill_name3: locale!(
+        zh_cn: "蒲公英之风",
+        en: "Dandelion Breeze",
+    ),
+    name_locale: locale!(
+        zh_cn: "琴",
+        en: "Jean",
+    )
 };
 
 pub struct Jean;

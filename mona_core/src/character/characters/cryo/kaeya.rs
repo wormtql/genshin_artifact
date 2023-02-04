@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct KaeyaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -59,7 +60,11 @@ pub const KAEYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·仪典剑术",
     skill_name2: "霜袭",
-    skill_name3: "凛冽轮舞"
+    skill_name3: "凛冽轮舞",
+    name_locale: locale!(
+        zh_cn: "凯亚",
+        en: "Kaeya",
+    )
 };
 
 pub struct Kaeya;

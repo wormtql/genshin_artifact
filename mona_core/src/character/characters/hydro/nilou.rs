@@ -16,6 +16,7 @@ use crate::weapon::weapon_common_data::WeaponCommonData;
 // use strum::EnumCount;
 // use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 use crate::character::macros::{skill_type, damage_enum, skill_map, damage_ratio};
+use crate::common::i18n::locale;
 
 pub struct NilouSkillType {
     pub normal_dmg1: [f64; 15],
@@ -167,7 +168,11 @@ impl CharacterTrait for Nilou {
         star: 5,
         skill_name1: "",
         skill_name2: "",
-        skill_name3: ""
+        skill_name3: "",
+        name_locale: locale!(
+            zh_cn: "妮露",
+            en: "Nilou",
+        )
     };
     type SkillType = NilouSkillType;
     const SKILL: Self::SkillType = NILOU_SKILL;

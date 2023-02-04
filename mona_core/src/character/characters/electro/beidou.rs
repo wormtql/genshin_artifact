@@ -14,6 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct BeidouSkillType {
     pub normal_dmg1: [f64; 15],
@@ -70,7 +71,11 @@ const BEIDOU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·征涛",
     skill_name2: "捉浪",
-    skill_name3: "斫雷"
+    skill_name3: "斫雷",
+    name_locale: locale!(
+        zh_cn: "北斗",
+        en: "Beidou",
+    )
 };
 
 pub struct Beidou;

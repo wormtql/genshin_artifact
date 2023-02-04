@@ -4,12 +4,14 @@ use mona::character::{CharacterName, CharacterStaticData};
 use mona::character::traits::{CharacterSkillMap, CharacterSkillMapItem};
 use mona::common::item_config_type::ItemConfig;
 use lazy_static::lazy_static;
+use crate::gen_meta::gen_locale::get_index_mapping;
 use crate::utils::character::{get_character_dmg_names_chs};
 
 struct CharacterMeta {
     name: String,
     // name_for_image: String,
     internal_name: String,
+    name_locale: usize,
     // icon_name: String,
     chs: String,
     star: usize,
@@ -43,6 +45,7 @@ fn get_dmg_name_map() -> HashMap<String, usize> {
 
 pub fn gen_character_meta_as_js_file() -> String {
     let mut data: Vec<CharacterMeta> = Vec::new();
+    let index_mapping = get_index_mapping();
 
     for i in 0_usize..CharacterName::LEN {
         let name_enum: CharacterName = num::FromPrimitive::from_usize(i).unwrap();
@@ -79,9 +82,12 @@ pub fn gen_character_meta_as_js_file() -> String {
             Vec::new()
         };
 
+        let name_locale = *index_mapping.get(&meta.name_locale).unwrap();
+
         data.push(CharacterMeta {
             name: meta.name.to_string(),
             internal_name: String::from(meta.internal_name),
+            name_locale,
             chs: String::from(meta.chs),
             star: meta.star as usize,
             skill1_name: String::from(meta.skill_name1),

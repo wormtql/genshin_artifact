@@ -10,6 +10,7 @@ use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::attribute::{AttributeCommon};
 use crate::character::traits::{CharacterSkillMapItem, CharacterSkillMap};
 use crate::character::macros::{skill_type, skill_map, damage_ratio};
+use crate::common::i18n::locale;
 
 pub struct AlhaithamSkillType {
     pub normal_dmg1: [f64; 15],
@@ -136,7 +137,11 @@ impl CharacterTrait for Alhaitham {
         star: 5,
         skill_name1: "",
         skill_name2: "",
-        skill_name3: ""
+        skill_name3: "",
+        name_locale: locale!(
+            zh_cn: "艾尔海森",
+            en: "Alhaitham",
+        )
     };
     type SkillType = AlhaithamSkillType;
     const SKILL: Self::SkillType = ALHAITHAM_SKILL;

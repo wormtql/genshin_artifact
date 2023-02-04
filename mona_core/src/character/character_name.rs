@@ -5,7 +5,7 @@ use mona_derive::{CharacterData, EnumLen};
 use num_derive::FromPrimitive;
 use serde::{Deserialize, Serialize};
 use strum::*;
-use strum_macros::{Display, EnumString};
+use strum_macros::{Display, EnumString, EnumIter};
 
 use crate::attribute::Attribute;
 use crate::character::character_common_data::CharacterCommonData;
@@ -24,7 +24,7 @@ use crate::weapon::weapon_common_data::WeaponCommonData;
 
 #[derive(Serialize, Deserialize)]
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
-#[derive(Display, FromPrimitive, EnumString, CharacterData, EnumLen)]
+#[derive(Display, FromPrimitive, EnumString, CharacterData, EnumLen, EnumIter)]
 pub enum CharacterName {
     AetherAnemo,
     Albedo,

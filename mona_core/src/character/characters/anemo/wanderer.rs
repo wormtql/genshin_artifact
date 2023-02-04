@@ -6,6 +6,7 @@ use crate::character::macros::{damage_enum, damage_ratio, skill_map, skill_type}
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -98,7 +99,6 @@ impl CharacterTrait for Wanderer {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Wanderer,
         internal_name: "Wanderer",
-        chs: "流浪者",
         element: Element::Anemo,
         hp: [791, 2053, 2731, 4086, 4568, 5256, 5899, 6593, 7076, 7777, 8259, 8968, 9450, 10164],
         atk: [26, 66, 88, 132, 147, 169, 190, 213, 228, 251, 266, 289, 305, 328],
@@ -106,9 +106,22 @@ impl CharacterTrait for Wanderer {
         sub_stat: CharacterSubStatFamily::CriticalRate192,
         weapon_type: WeaponType::Catalyst,
         star: 5,
-        skill_name1: "普通攻击·行幡鸣弦",
-        skill_name2: "羽画·风姿华歌",
-        skill_name3: "狂言·式乐五番",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·行幡鸣弦",
+            en: "Normal Attack: Yuuban Meigen",
+        ),
+        skill_name2: locale!(
+            zh_cn: "羽画·风姿华歌",
+            en: "Hanega: Fushi Kakka",
+        ),
+        skill_name3: locale!(
+            zh_cn: "狂言·式乐五番",
+            en: "Kyougen: Shikiraku Gobandate",
+        ),
+        name_locale: locale!(
+            zh_cn: "流浪者",
+            en: "Wanderer",
+        )
     };
     type SkillType = WandererSkillType;
     const SKILL: Self::SkillType = WANDERER_SKILL;

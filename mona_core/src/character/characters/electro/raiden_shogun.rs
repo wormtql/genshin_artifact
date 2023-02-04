@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct RaidenShogunSkill {
     pub normal_dmg1: [f64; 15],
@@ -91,7 +92,11 @@ pub const RAIDEN_SHOGUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击•源流",
     skill_name2: "神变•恶曜开眼",
-    skill_name3: "奥义•梦想真说"
+    skill_name3: "奥义•梦想真说",
+    name_locale: locale!(
+        zh_cn: "雷电将军",
+        en: "Raiden Shogun",
+    )
 };
 
 pub struct RaidenShogunEffect {

@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct RazorSkillType {
     pub normal_dmg1: [f64; 15],
@@ -65,7 +66,11 @@ pub const RAZOR_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·钢脊",
     skill_name2: "利爪与苍雷",
-    skill_name3: "雷牙"
+    skill_name3: "雷牙",
+    name_locale: locale!(
+        zh_cn: "雷泽",
+        en: "Razor",
+    )
 };
 
 pub struct RazorEffect {

@@ -14,6 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct ChongyunSkillType {
     pub normal_dmg1: [f64; 15],
@@ -58,7 +59,11 @@ pub const CHONGYUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·灭邪四式",
     skill_name2: "灵刃·重华叠霜",
-    skill_name3: "灵刃·云开星落"
+    skill_name3: "灵刃·云开星落",
+    name_locale: locale!(
+        zh_cn: "重云",
+        en: "Chongyun",
+    )
 };
 
 pub struct Chongyun;

@@ -6,6 +6,7 @@ use crate::character::macros::{skill_type, damage_enum, skill_map, damage_ratio}
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterTrait, CharacterSkillMapItem};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -107,7 +108,11 @@ impl CharacterTrait for Dori {
         star: 4,
         skill_name1: "",
         skill_name2: "",
-        skill_name3: ""
+        skill_name3: "",
+        name_locale: locale!(
+            zh_cn: "多莉",
+            en: "Dori",
+        )
     };
     type SkillType = DoriSkillType;
     const SKILL: Self::SkillType = DORI_SKILL;

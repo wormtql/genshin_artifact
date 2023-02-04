@@ -9,6 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -143,7 +144,11 @@ impl CharacterTrait for Yelan {
         star: 5,
         skill_name1: "普通攻击·潜形隐曜弓",
         skill_name2: "萦络纵命索",
-        skill_name3: "渊图玲珑骰"
+        skill_name3: "渊图玲珑骰",
+        name_locale: locale!(
+            zh_cn: "夜兰",
+            en: "Yelan",
+        )
     };
     type SkillType = YelanSkillType;
     const SKILL: Self::SkillType = YELAN_SKILL;

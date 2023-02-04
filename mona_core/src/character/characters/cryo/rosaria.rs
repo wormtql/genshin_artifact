@@ -9,6 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -69,6 +70,10 @@ pub const ROSARIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     skill_name1: "普通攻击·教会枪术",
     skill_name2: "噬罪的告解",
     skill_name3: "终命的圣礼",
+    name_locale: locale!(
+        zh_cn: "罗莎莉亚",
+        en: "Rosaria",
+    )
 };
 
 pub struct RosariaEffect {

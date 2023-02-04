@@ -14,7 +14,7 @@ export default {
     {% for c in characters %}
     {{ c.name }}: {
         name: "{{ c.name }}",
-        // chs: "{{ c.chs }}",
+        name_locale: {{ c.name_locale }},
         element: "{{ c.element }}",
         weapon: "{{ c.weapon }}",
         star: {{ c.star }},

@@ -14,6 +14,7 @@ use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::character::traits::{CharacterSkillMapItem};
+use crate::common::i18n::locale;
 
 
 pub struct YaoyaoSkillType {
@@ -131,7 +132,11 @@ impl CharacterTrait for Yaoyao {
         star: 4,
         skill_name1: "",
         skill_name2: "",
-        skill_name3: ""
+        skill_name3: "",
+        name_locale: locale!(
+            zh_cn: "瑶瑶",
+            en: "Yaoyao",
+        )
     };
     type SkillType = YaoyaoSkillType;
     const SKILL: Self::SkillType = YAOYAO_SKILL;

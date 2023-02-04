@@ -9,6 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -163,7 +164,11 @@ impl CharacterTrait for KamisatoAyato {
         star: 5,
         skill_name1: "普通攻击·神里流·转",
         skill_name2: "神里流·镜花",
-        skill_name3: "神里流·水囿"
+        skill_name3: "神里流·水囿",
+        name_locale: locale!(
+            zh_cn: "神里绫人",
+            en: "Kamisato Ayato",
+        )
     };
 
     type SkillType = KamisatoAyatoSkillType;

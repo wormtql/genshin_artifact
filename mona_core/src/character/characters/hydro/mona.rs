@@ -14,6 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct MonaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -60,7 +61,11 @@ pub const MONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击·因果点破",
     skill_name2: "水中幻愿",
-    skill_name3: "星命定轨"
+    skill_name3: "星命定轨",
+    name_locale: locale!(
+        zh_cn: "莫娜",
+        en: "Mona",
+    )
 };
 
 pub struct MonaEffect {

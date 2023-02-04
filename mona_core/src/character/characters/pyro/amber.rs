@@ -14,6 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct AmberSkillType {
     pub normal_dmg1: [f64; 15],
@@ -64,7 +65,11 @@ pub const AMBER_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·神射手",
     skill_name2: "爆弹玩偶",
-    skill_name3: "箭雨"
+    skill_name3: "箭雨",
+    name_locale: locale!(
+        zh_cn: "安柏",
+        en: "Amber",
+    )
 };
 
 pub struct AmberEffect {

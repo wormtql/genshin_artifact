@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct LisaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -65,7 +66,11 @@ pub const LISA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 4,
     skill_name1: "普通攻击·指尖雷暴",
     skill_name2: "苍雷",
-    skill_name3: "蔷薇的雷光"
+    skill_name3: "蔷薇的雷光",
+    name_locale: locale!(
+        zh_cn: "丽莎",
+        en: "Lisa",
+    )
 };
 
 pub struct Lisa;

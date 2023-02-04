@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct AratakiIttoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -61,7 +62,11 @@ const ARATAKI_ITTO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击•喧哗屋传说",
     skill_name2: "魔杀绝技•赤牛发破！",
-    skill_name3: "最恶鬼王•一斗轰临！！"
+    skill_name3: "最恶鬼王•一斗轰临！！",
+    name_locale: locale!(
+        zh_cn: "荒泷一斗",
+        en: "Arataki Itto",
+    )
 };
 
 pub struct AratakiIttoEffect {

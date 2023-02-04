@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct KaedeharaKazuhaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -59,7 +60,6 @@ pub const KAEDEHARA_KAZUHA_SKILL: KaedeharaKazuhaSkillType = KaedeharaKazuhaSkil
 pub const KAEDEHARA_KAZUHA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::KaedeharaKazuha,
     internal_name: "Kazuha",
-    chs: "枫原万叶",
     element: Element::Anemo,
     hp: [1039, 2695, 3586, 5366, 5999, 6902, 7747, 8659, 9292, 10213, 10849, 11777, 12410, 13348],
     atk: [23, 60, 80, 119, 133, 153, 172, 192, 206, 227, 241, 262, 276, 297],
@@ -67,9 +67,22 @@ pub const KAEDEHARA_KAZUHA_STATIC_DATA: CharacterStaticData = CharacterStaticDat
     sub_stat: CharacterSubStatFamily::ElementalMastery115,
     weapon_type: WeaponType::Sword,
     star: 5,
-    skill_name1: "普通攻击·我流剑术",
-    skill_name2: "千早振",
-    skill_name3: "万叶之一刀"
+    skill_name1: locale!(
+        zh_cn: "普通攻击·我流剑术",
+        en: "Normal Attack: Garyuu Bladework",
+    ),
+    skill_name2: locale!(
+        zh_cn: "千早振",
+        en: "Chihayaburu",
+    ),
+    skill_name3: locale!(
+        zh_cn: "万叶之一刀",
+        en: "Kazuha Slash",
+    ),
+    name_locale: locale!(
+        zh_cn: "枫原万叶",
+        en: "Kaedehara Kazuha",
+    )
 };
 
 pub struct KaedeharaKazuha;

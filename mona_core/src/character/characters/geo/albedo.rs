@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct AlbedoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -65,7 +66,11 @@ const ALBEDO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     star: 5,
     skill_name1: "普通攻击·西风剑术·白",
     skill_name2: "创生法·拟造阳华",
-    skill_name3: "诞生式·大地之潮"
+    skill_name3: "诞生式·大地之潮",
+    name_locale: locale!(
+        zh_cn: "阿贝多",
+        en: "Albedo",
+    )
 };
 
 #[derive(Copy, Clone, Eq, PartialEq)]

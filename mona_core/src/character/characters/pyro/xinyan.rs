@@ -9,6 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::ItemConfig;
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -77,6 +78,10 @@ pub const XINYAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     skill_name1: "普通攻击·炎舞",
     skill_name2: "热情拂扫",
     skill_name3: "叛逆刮弦",
+    name_locale: locale!(
+        zh_cn: "辛焱",
+        en: "Xinyan",
+    )
 };
 
 pub struct Xinyan;

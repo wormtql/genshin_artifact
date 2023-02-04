@@ -15,6 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+use crate::common::i18n::locale;
 
 pub struct SucroseSkillType {
     pub normal_dmg1: [f64; 15],
@@ -49,7 +50,6 @@ pub const SUCROSE_SKILL: SucroseSkillType = SucroseSkillType {
 pub const SUCROSE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Sucrose,
     internal_name: "Sucrose",
-    chs: "砂糖",
     element: Element::Anemo,
     hp: [775, 1991, 2570, 3850, 4261, 4901, 5450, 6090, 6501, 7141, 7552, 8192, 8604, 9244],
     atk: [14, 37, 47, 71, 78, 90, 100, 112, 120, 131, 139, 151, 158, 170],
@@ -57,9 +57,22 @@ pub const SUCROSE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus240(StatName::AnemoBonus),
     weapon_type: WeaponType::Catalyst,
     star: 4,
-    skill_name1: "普通攻击·简式风灵作成",
-    skill_name2: "风灵作成·陆叁零捌",
-    skill_name3: "禁·风灵作成·柒伍同构贰型"
+    skill_name1: locale!(
+        zh_cn: "普通攻击·简式风灵作成",
+        en: "Normal Attack: Wind Spirit Creation",
+    ),
+    skill_name2: locale!(
+        zh_cn: "风灵作成·陆叁零捌",
+        en: "Astable Anemohypostasis Creation - 6308",
+    ),
+    skill_name3: locale!(
+        zh_cn: "禁·风灵作成·柒伍同构贰型",
+        en: "Forbidden Creation - Isomer 75 / Type II",
+    ),
+    name_locale: locale!(
+        zh_cn: "砂糖",
+        en: "Sucrose",
+    )
 };
 
 pub struct Sucrose;
