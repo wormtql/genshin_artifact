@@ -3,6 +3,7 @@ import type {WeaponType} from "@/types/weapon"
 import { characterData } from "@character"
 import {type Ref} from "vue"
 import type {CharacterName} from "@/types/character"
+import {useI18n} from "@/i18n/i18n"
 
 export function useCharacter() {
     const characterName = ref("Amber")
@@ -12,6 +13,8 @@ export function useCharacter() {
     const characterSkill2 = ref(8)
     const characterSkill3 = ref(8)
     const characterConstellation = ref(0)
+
+    const { ta } = useI18n()
     // const characterWeaponType = ref<WeaponType>("Bow")
 
     const characterWeaponType = computed(() => {
@@ -39,6 +42,10 @@ export function useCharacter() {
 
     const characterConfigConfig = computed(() => {
         return characterData[characterName.value].config
+    })
+
+    const characterLocale = computed(() => {
+        return ta(characterData[characterName.value].nameLocale)
     })
 
     const characterInterface = computed(() => {
@@ -93,6 +100,7 @@ export function useCharacter() {
         characterNeedConfig,
         characterConfigConfig,
         characterInterface,
+        characterLocale,
     }
 }
 

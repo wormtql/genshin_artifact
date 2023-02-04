@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{hit_n_dmg, locale, plunging_dmg};
 
 pub struct KaedeharaKazuhaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -173,36 +173,36 @@ impl CharacterTrait for KaedeharaKazuha {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal31 as usize, chs: "三段伤害-1" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal32 as usize, chs: "三段伤害-2" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal5 as usize, chs: "五段伤害/3" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Charged11 as usize, chs: "重击伤害-1" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Charged11 as usize, chs: "重击伤害-2" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal31 as usize, text: hit_n_dmg!(3, 1) },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal32 as usize, text: hit_n_dmg!(3, 2) },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Normal5 as usize, text: locale!(zh_ch: "五段伤害/3", en: "5-Hit DMG/3") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Charged11 as usize, text: locale!(zh_ch: "重击伤害-1", en: "Charged DMG-1") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Charged11 as usize, text: locale!(zh_ch: "重击伤害-2", en: "Charged DMG-2") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingE1 as usize, chs: "乱岚拨止：下坠期间伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingE2 as usize, chs: "乱岚拨止：低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingE3 as usize, chs: "乱岚拨止：高空坠地冲击伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingPyro as usize, chs: "乱岚拨止：火元素转化伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingHydro as usize, chs: "乱岚拨止：水元素转化伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingCryo as usize, chs: "乱岚拨止：冰元素转化伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingElectro as usize, chs: "乱岚拨止：雷元素转化伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::E1 as usize, chs: "点按技能伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::E2 as usize, chs: "长按技能伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingE1 as usize, text: locale!(zh_ch: "乱岚拨止：下坠期间伤害", en: "Midare Ranzan: Plunge DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingE2 as usize, text: locale!(zh_ch: "乱岚拨止：低空坠地冲击伤害", en: "Midare Ranzan: Low Plunge DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingE3 as usize, text: locale!(zh_ch: "乱岚拨止：高空坠地冲击伤害", en: "Midare Ranzan: High Plunge DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingPyro as usize, text: locale!(zh_ch: "乱岚拨止：火元素转化伤害", en: "Midare Ranzan: Pyro DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingHydro as usize, text: locale!(zh_ch: "乱岚拨止：水元素转化伤害", en: "Midare Ranzan: Hydro DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingCryo as usize, text: locale!(zh_ch: "乱岚拨止：冰元素转化伤害", en: "Midare Ranzan: Cryo DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::PlungingElectro as usize, text: locale!(zh_ch: "乱岚拨止：雷元素转化伤害", en: "Midare Ranzan: Electro DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::E1 as usize, text: locale!(zh_ch: "点按技能伤害", en: "Press Skill DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::E2 as usize, text: locale!(zh_ch: "长按技能伤害", en: "Hold Skill DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q1 as usize, chs: "斩击伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q2 as usize, chs: "持续伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Pyro as usize, chs: "附加火元素伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Hydro as usize, chs: "附加水元素伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Cryo as usize, chs: "附加冰元素伤害" },
-            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Electro as usize, chs: "附加雷元素伤害" },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q1 as usize, text: locale!(zh_ch: "斩击伤害", en: "Slashing DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q2 as usize, text: locale!(zh_ch: "持续伤害", en: "DoT") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Pyro as usize, text: locale!(zh_ch: "附加火元素伤害", en: "Additional Pyro DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Hydro as usize, text: locale!(zh_ch: "附加水元素伤害", en: "Additional Hydro DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Cryo as usize, text: locale!(zh_ch: "附加冰元素伤害", en: "Additional Cryo DMG") },
+            CharacterSkillMapItem { index: KaedeharaKazuhaDamageEnum::Q3Electro as usize, text: locale!(zh_ch: "附加雷元素伤害", en: "Additional Electro DMG") },
         ])
     };
 

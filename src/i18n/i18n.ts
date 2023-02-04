@@ -27,6 +27,10 @@ export function createI18n() {
         }
     }
 
+    function ta(index: number) {
+        return t("a", index)
+    }
+
     async function setLocale(name: string) {
         await setLocaleMessage(name)
         locale.value = name
@@ -46,6 +50,7 @@ export function createI18n() {
         locale,
 
         t,
+        ta,
         setLocale,
     }
 }

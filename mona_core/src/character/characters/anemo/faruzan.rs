@@ -136,24 +136,24 @@ impl CharacterTrait for Faruzan {
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: skill_map!(
             FaruzanDamageEnum
-            Normal1 "一段伤害"
-            Normal2 "二段伤害"
-            Normal3 "三段伤害"
-            Normal4 "四段伤害"
-            Charged1 "重击伤害"
-            Charged1 "满蓄力瞄准射击"
-            Plunging1 "下坠期间伤害"
-            Plunging2 "低空坠地冲击伤害"
-            Plunging3 "高空坠地冲击伤害"
+            Normal1 locale!(zh_cn: "一段伤害", en: "1-Hit DMG")
+            Normal2 locale!(zh_cn: "二段伤害", en: "2-Hit DMG")
+            Normal3 locale!(zh_cn: "三段伤害", en: "3-Hit DMG")
+            Normal4 locale!(zh_cn: "四段伤害", en: "4-Hit DMG")
+            Charged1 locale!(zh_cn: "重击伤害", en: "Charged Attack DMG")
+            Charged1 locale!(zh_cn: "满蓄力瞄准射击", en: "Fully-Charged Aimed Shot")
+            Plunging1 locale!(zh_cn: "下坠期间伤害", en: "Plunge DMG")
+            Plunging2 locale!(zh_cn: "低空坠地冲击伤害", en: "Low Plunge DMG")
+            Plunging3 locale!(zh_cn: "高空坠地冲击伤害", en: "High Plunge DMG")
         ),
         skill2: skill_map!(
             FaruzanDamageEnum
-            E1 "技能伤害"
-            E2 "风压塌陷伤害"
+            E1 locale!(zh_cn: "技能伤害", en: "Skill DMG")
+            E2 locale!(zh_cn: "风压塌陷伤害", en: "Pressurized Collapse Vortex DMG")
         ),
         skill3: skill_map!(
             FaruzanDamageEnum
-            Q1 "技能伤害"
+            Q1 locale!(zh_cn: "技能伤害", en: "Skill DMG")
         ),
     };
 

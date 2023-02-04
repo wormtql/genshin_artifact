@@ -8,7 +8,7 @@
             <el-empty :description="t('dbPage.tooSmall')"></el-empty>
         </div>
         <div v-if="loaded && !error && hasCharacter" class="tab-full-height mona-scroll-hidden content-div">
-            <p class="analysis-item-title">{{ t("character", characterName) }}</p>
+            <p class="analysis-item-title">{{ t("a", characterNameLocaleIndex) }}</p>
             <div class="character-splash-div">
                 <img :src="characterSplash">
             </div>
@@ -126,6 +126,10 @@ export default {
         },
     },
     computed: {
+        characterNameLocaleIndex() {
+            return characterData[this.characterName].nameLocale
+        },
+
         hasCharacter() {
             return this.characterResult && this.characterResult[this.characterName]
         },

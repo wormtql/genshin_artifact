@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 
 pub struct VentiSkillType {
     pub normal_dmg11: [f64; 15],
@@ -161,30 +161,30 @@ impl CharacterTrait for Venti {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: VentiDamageEnum::Normal11 as usize, chs: "一段伤害-1" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Normal12 as usize, chs: "一段伤害-2" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Normal41 as usize, chs: "四段伤害-1" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Normal42 as usize, chs: "四段伤害-2" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Normal5 as usize, chs: "五段伤害" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Normal6 as usize, chs: "六段伤害" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Charged1 as usize, chs: "瞄准射击" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Charged2 as usize, chs: "满蓄力瞄准射击" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal11 as usize, text: hit_n_dmg!(1, 1) },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal12 as usize, text: hit_n_dmg!(1, 2) },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal41 as usize, text: hit_n_dmg!(4, 1) },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal42 as usize, text: hit_n_dmg!(4, 2) },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal5 as usize, text: hit_n_dmg!(5) },
+            CharacterSkillMapItem { index: VentiDamageEnum::Normal6 as usize, text: hit_n_dmg!(6) },
+            CharacterSkillMapItem { index: VentiDamageEnum::Charged1 as usize, text: charged_dmg!("shoot1") },
+            CharacterSkillMapItem { index: VentiDamageEnum::Charged2 as usize, text: charged_dmg!("shoot2") },
+            CharacterSkillMapItem { index: VentiDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: VentiDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: VentiDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: VentiDamageEnum::E1 as usize, chs: "点按伤害" },
-            CharacterSkillMapItem { index: VentiDamageEnum::E2 as usize, chs: "长按伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::E1 as usize, text: locale!(zh_ch: "点按伤害", en: "Tapping DMG") },
+            CharacterSkillMapItem { index: VentiDamageEnum::E2 as usize, text: locale!(zh_ch: "长按伤害", en: "Hold DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: VentiDamageEnum::Q1 as usize, chs: "持续伤害" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Q2Pyro as usize, chs: "附加火元素伤害" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Q2Hydro as usize, chs: "附加水元素伤害" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Q2Cryo as usize, chs: "附加冰元素伤害" },
-            CharacterSkillMapItem { index: VentiDamageEnum::Q2Electro as usize, chs: "附加雷元素伤害" },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q1 as usize, text: locale!(zh_ch: "持续伤害", en: "DoT") },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Pyro as usize, text: locale!(zh_ch: "附加火元素伤害", en: "Additional Pyro DMG") },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Hydro as usize, text: locale!(zh_ch: "附加水元素伤害", en: "Additional Hydro DMG") },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Cryo as usize, text: locale!(zh_ch: "附加冰元素伤害", en: "Additional Cryo DMG") },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Electro as usize, text: locale!(zh_ch: "附加雷元素伤害", en: "Additional Electro DMG") },
         ])
     };
 

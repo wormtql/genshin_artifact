@@ -6,7 +6,7 @@ use crate::character::macros::{damage_enum, damage_ratio, skill_map, skill_type}
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
-use crate::common::i18n::locale;
+use crate::common::i18n::{locale, hit_n_dmg, plunging_dmg, charged_dmg};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -132,25 +132,25 @@ impl CharacterTrait for Wanderer {
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: skill_map!(
             WandererDamageEnum
-            Normal1 "一段伤害"
-            Normal2 "二段伤害"
-            Normal3 "三段伤害/2"
-            Normal1C6 "一段六命额外"
-            Normal2C6 "二段六命额外"
-            Normal3C6 "三段六命额外"
-            Charged1 "重击伤害"
-            Dash1 "「梦迹一风」风矢伤害"
-            Plunging1 "下坠期间伤害"
-            Plunging2 "低空坠地冲击伤害"
-            Plunging3 "高空坠地冲击伤害"
+            Normal1 hit_n_dmg!(1)
+            Normal2 hit_n_dmg!(2)
+            Normal3 locale!(zh_cn: "三段伤害/2", en: "2-Hit DMG/2")
+            Normal1C6 locale!(zh_cn: "一段六命额外", en: "C6 Additional 1")
+            Normal2C6 locale!(zh_cn: "二段六命额外", en: "C6 Additional 2")
+            Normal3C6 locale!(zh_cn: "三段六命额外", en: "C6 Additional 3")
+            Charged1 charged_dmg!()
+            Dash1 locale!(zh_cn: "「梦迹一风」风矢伤害", en: "Gales of Reverie Wind Arrow DMG")
+            Plunging1 plunging_dmg!(1)
+            Plunging2 plunging_dmg!(2)
+            Plunging3 plunging_dmg!(3)
         ),
         skill2: skill_map!(
             WandererDamageEnum
-            E1 "技能伤害"
+            E1 locale!(zh_cn: "技能伤害", en: "Skill DMG")
         ),
         skill3: skill_map!(
             WandererDamageEnum
-            Q1 "技能伤害/5"
+            Q1 locale!(zh_cn: "技能伤害/5", en: "Skill DMG/5")
         ),
     };
 

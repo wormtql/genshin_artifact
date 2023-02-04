@@ -10,46 +10,19 @@
                 <template v-if="node.isLeaf">
                     <div class="option-item flex-row">
                         <img :src="data.avatar">
-                        <span :style="{ color: getColor(data.star) }">{{ t("character." + data.value) }}</span>
+                        <span :style="{ color: getColor(data.star) }">{{ data.label }}</span>
                     </div>
-<!--                    {{ data.value }}-->
                 </template>
                 <template v-else>
                     <span>{{ data.label }}</span>
                 </template>
-<!--                {{ data }}-->
-<!--                <img :src="">-->
-<!--                <span :style="{ color: getColor() }"></span>-->
             </div>
         </template>
     </el-cascader>
-<!--    <el-select-->
-<!--        :model-value="modelValue"-->
-<!--        @update:modelValue="$emit('update:modelValue', $event)"-->
-<!--        :placeholder="t('misc.character')"-->
-<!--    >-->
-<!--        <el-option-group-->
-<!--            v-for="(elementName) in elements"-->
-<!--            :key="elementName"-->
-<!--            :label="t('ele', elementName)"-->
-<!--        >-->
-<!--            <el-option-->
-<!--                v-for="(character, index) in characterByElement[elementName]"-->
-<!--                :key="index"-->
-<!--                :label="t('character', character.name)"-->
-<!--                :value="character.name"-->
-<!--            >-->
-<!--                <div class="option-item flex-row">-->
-<!--                    <img :src="character.avatar">-->
-<!--                    <span :style="{ color: getColor(character.star) }">{{ t("character." + character.name) }}</span>-->
-<!--                </div>-->
-<!--            </el-option>-->
-<!--        </el-option-group>-->
-<!--    </el-select>-->
 </template>
 
 <script>
-import { characterByElement } from "@character";
+import { characterByElement, characterData } from "@character";
 import qualityColors from "@const/quality_colors";
 import {useI18n} from "@/i18n/i18n";
 
@@ -73,7 +46,7 @@ export default {
         }
     },
     setup() {
-        const { t } = useI18n()
+        const { t, ta } = useI18n()
 
         const elements = ["Pyro", "Cryo", "Anemo", "Electro", "Hydro", "Geo", "Dendro"]
 
@@ -85,7 +58,7 @@ export default {
                 const characters = []
                 for (const character of characterByElement[element]) {
                     const characterName = character.name
-                    const characterNameLocale = t("character", characterName)
+                    const characterNameLocale = ta(characterData[characterName].nameLocale)
                     characters.push({
                         value: characterName,
                         label: characterNameLocale,
@@ -105,6 +78,7 @@ export default {
 
         return {
             t,
+            ta,
             options,
         }
     }

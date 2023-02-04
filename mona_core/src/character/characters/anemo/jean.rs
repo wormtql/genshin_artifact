@@ -14,7 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{hit_n_dmg, locale, plunging_dmg};
 
 pub struct JeanSkillType {
     pub normal_dmg1: [f64; 15],
@@ -155,24 +155,24 @@ impl CharacterTrait for Jean {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: JeanDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: JeanDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: JeanDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: JeanDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: JeanDamageEnum::Normal5 as usize, chs: "五段伤害" },
-            CharacterSkillMapItem { index: JeanDamageEnum::Charged as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: JeanDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: JeanDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: JeanDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: JeanDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: JeanDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: JeanDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: JeanDamageEnum::Normal5 as usize, text: hit_n_dmg!(5) },
+            CharacterSkillMapItem { index: JeanDamageEnum::Charged as usize, text: locale!(zh_ch: "重击伤害", en: "Charged Attack DMG") },
+            CharacterSkillMapItem { index: JeanDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: JeanDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: JeanDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: JeanDamageEnum::E1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: JeanDamageEnum::E1 as usize, text: locale!(zh_ch: "技能伤害", en: "Skill DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: JeanDamageEnum::Q1 as usize, chs: "爆发伤害" },
-            CharacterSkillMapItem { index: JeanDamageEnum::Q2 as usize, chs: "出入领域伤害" },
-            CharacterSkillMapItem { index: JeanDamageEnum::QHeal1 as usize, chs: "领域发动治疗量" },
-            CharacterSkillMapItem { index: JeanDamageEnum::QHeal2 as usize, chs: "持续治疗" },
+            CharacterSkillMapItem { index: JeanDamageEnum::Q1 as usize, text: locale!(zh_ch: "爆发伤害", en: "Burst DMG") },
+            CharacterSkillMapItem { index: JeanDamageEnum::Q2 as usize, text: locale!(zh_ch: "出入领域伤害", en: "Field Entering/Exiting DMG") },
+            CharacterSkillMapItem { index: JeanDamageEnum::QHeal1 as usize, text: locale!(zh_ch: "领域发动治疗量", en: "Field Activation Healing") },
+            CharacterSkillMapItem { index: JeanDamageEnum::QHeal2 as usize, text: locale!(zh_ch: "持续治疗", en: "Continuous Regeneration") },
         ])
     };
 

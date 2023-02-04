@@ -10,11 +10,12 @@ use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::common::element::Element;
+use crate::common::i18n::I18nLocale;
 
 #[derive(Clone)]
 pub struct CharacterSkillMapItem {
     pub index: usize,
-    pub chs: &'static str,
+    pub text: I18nLocale,
 }
 
 pub struct CharacterSkillMap {

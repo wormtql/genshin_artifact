@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 
 pub struct SucroseSkillType {
     pub normal_dmg1: [f64; 15],
@@ -140,24 +140,24 @@ impl CharacterTrait for Sucrose {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: SucroseDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Charged as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Charged as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: SucroseDamageEnum::E1 as usize, chs: "技能伤害" }
+            CharacterSkillMapItem { index: SucroseDamageEnum::E1 as usize, text: locale!(zh_ch: "技能伤害", en: "Skill DMG") }
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: SucroseDamageEnum::Q1 as usize, chs: "持续伤害" },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Pyro as usize, chs: "附加火元素伤害" },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Hydro as usize, chs: "附加水元素伤害" },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Cryo as usize, chs: "附加冰元素伤害" },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Electro as usize, chs: "附加雷元素伤害" },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q1 as usize, text: locale!(zh_ch: "持续伤害", en: "DoT") },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Pyro as usize, text: locale!(zh_ch: "附加火元素伤害", en: "Additional Pyro DMG") },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Hydro as usize, text: locale!(zh_ch: "附加水元素伤害", en: "Additional Hydro DMG") },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Cryo as usize, text: locale!(zh_ch: "附加冰元素伤害", en: "Additional Cryo DMG") },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Electro as usize, text: locale!(zh_ch: "附加雷元素伤害", en: "Additional Electro DMG") },
         ])
     };
 

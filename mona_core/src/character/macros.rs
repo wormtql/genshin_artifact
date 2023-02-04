@@ -26,9 +26,9 @@ macro_rules! damage_enum {
 }
 
 macro_rules! skill_map {
-    ($damage_enum:tt $($name:tt $chs:tt)*) => {
+    ($damage_enum:tt $($name:tt $text:expr)*) => {
         Some(&[
-            $(CharacterSkillMapItem { index: $damage_enum::$name as usize, chs: $chs },)*
+            $(CharacterSkillMapItem { index: $damage_enum::$name as usize, text: $text },)*
             // $(CharacterSkillMapItem { index: concat_idents!($damage_name, ::, $name) as usize, chs: $chs },)*
         ])
     }

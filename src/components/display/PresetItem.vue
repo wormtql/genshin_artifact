@@ -37,7 +37,7 @@
             <div class="detail-div fs-12">
                 <img :src="characterAvatar" class="c-avatar br-50p">
 <!--                <span>{{ characterChs }}</span>-->
-                <span>{{ t("character", characterName) }}</span>
+                <span>{{ t("a", characterLocaleIndex) }}</span>
             </div>
             <div class="detail-div fs-12">
                 <img :src="wData.url" class="w-avatar br-50p">
@@ -82,6 +82,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 const characterName = computed(() => {
     return props.item.character.name
+})
+
+const characterLocaleIndex = computed(() => {
+    return characterData[characterName.value].nameLocale
 })
 
 const characterAvatar = computed(() => {
