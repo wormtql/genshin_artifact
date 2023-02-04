@@ -60,7 +60,6 @@ pub const SANGONOMIYA_KOKOMI_SKILL: SangonomiyaKokomiSkillType = SangonomiyaKoko
 pub const SANGONOMIYA_KOKOMI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::SangonomiyaKokomi,
     internal_name: "Kokomi",
-    chs: "珊瑚宫心海",
     element: Element::Hydro,
     hp: [1049, 2720, 3619, 5416, 6055, 6966, 7818, 8738, 9377, 10306, 10945, 11885, 12524, 13471],
     atk: [18, 47, 63, 94, 105, 121, 136, 152, 163, 179, 190, 207, 218, 234],
@@ -68,9 +67,18 @@ pub const SANGONOMIYA_KOKOMI_STATIC_DATA: CharacterStaticData = CharacterStaticD
     sub_stat: CharacterSubStatFamily::Bonus288(StatName::HydroBonus),
     weapon_type: WeaponType::Catalyst,
     star: 5,
-    skill_name1: "普通攻击•水有常形",
-    skill_name2: "海月之誓",
-    skill_name3: "海人化羽",
+    skill_name1: locale!(
+        zh_cn: "普通攻击•水有常形",
+        en: "Normal Attack: The Shape of Water",
+    ),
+    skill_name2: locale!(
+        zh_cn: "海月之誓",
+        en: "Kurage's Oath",
+    ),
+    skill_name3: locale!(
+        zh_cn: "海人化羽",
+        en: "Nereid's Ascension",
+    ),
     name_locale: locale!(
         zh_cn: "珊瑚宫心海",
         en: "Sangonomiya Kokomi",

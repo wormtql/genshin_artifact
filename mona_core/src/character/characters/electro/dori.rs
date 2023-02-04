@@ -98,7 +98,6 @@ impl CharacterTrait for Dori {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Dori,
         internal_name: "Dori",
-        chs: "多莉",
         element: Element::Electro,
         hp: [1039, 2670, 3447, 5163, 5715, 6573, 7309, 8168, 8719, 9577, 10129, 10987, 11539, 12397],
         atk: [19, 48, 62, 93, 103, 118, 131, 147, 157, 172, 182, 198, 208, 223],
@@ -106,9 +105,18 @@ impl CharacterTrait for Dori {
         sub_stat: CharacterSubStatFamily::HP240,
         weapon_type: WeaponType::Claymore,
         star: 4,
-        skill_name1: "",
-        skill_name2: "",
-        skill_name3: "",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·妙显剑舞·改",
+            en: "Normal Attack: Marvelous Sword-Dance (Modified)",
+        ),
+        skill_name2: locale!(
+            zh_cn: "镇灵之灯·烦恼解决炮",
+            en: "Spirit-Warding Lamp: Troubleshooter Cannon",
+        ),
+        skill_name3: locale!(
+            zh_cn: "卡萨扎莱宫的无微不至",
+            en: "Alcazarzaray’s Exactitude",
+        ),
         name_locale: locale!(
             zh_cn: "多莉",
             en: "Dori",

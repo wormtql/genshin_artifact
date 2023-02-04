@@ -154,7 +154,6 @@ impl CharacterTrait for KamisatoAyato {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::KamisatoAyato,
         internal_name: "Ayato",
-        chs: "神里绫人",
         element: Element::Hydro,
         hp: [1068, 2770, 3685, 5514, 6165, 7092, 7960, 8897, 9548, 10494, 11144, 12101, 12751, 13715],
         atk: [23, 60, 80, 120, 134, 155, 174, 194, 208, 229, 243, 264, 278, 299],
@@ -162,9 +161,18 @@ impl CharacterTrait for KamisatoAyato {
         sub_stat: CharacterSubStatFamily::CriticalDamage384,
         weapon_type: WeaponType::Sword,
         star: 5,
-        skill_name1: "普通攻击·神里流·转",
-        skill_name2: "神里流·镜花",
-        skill_name3: "神里流·水囿",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·神里流·转",
+            en: "Normal Attack: Kamisato Art - Marobashi",
+        ),
+        skill_name2: locale!(
+            zh_cn: "神里流·镜花",
+            en: "Kamisato Art: Kyouka",
+        ),
+        skill_name3: locale!(
+            zh_cn: "神里流·水囿",
+            en: "Kamisato Art: Suiyuu",
+        ),
         name_locale: locale!(
             zh_cn: "神里绫人",
             en: "Kamisato Ayato",

@@ -56,7 +56,6 @@ pub const YANFEI_SKILL: YanfeiSkillType = YanfeiSkillType {
 pub const YANFEI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Yanfei,
     internal_name: "Feiyan",
-    chs: "烟绯",
     element: Element::Pyro,
     hp: [784, 2014, 2160, 3895, 4311, 4959, 5514, 6161, 6578, 7225, 7641, 8289, 8705, 9352],
     atk: [20, 52, 67, 100, 111, 127, 141, 158, 169, 185, 196, 213, 223, 240],
@@ -64,9 +63,18 @@ pub const YANFEI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus240(StatName::PyroBonus),
     weapon_type: WeaponType::Catalyst,
     star: 4,
-    skill_name1: "普通攻击·火漆制印",
-    skill_name2: "丹书立约",
-    skill_name3: "凭此结契",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·火漆制印",
+        en: "Normal Attack: Seal of Approval",
+    ),
+    skill_name2: locale!(
+        zh_cn: "丹书立约",
+        en: "Signed Edict",
+    ),
+    skill_name3: locale!(
+        zh_cn: "凭此结契",
+        en: "Done Deal",
+    ),
     name_locale: locale!(
         zh_cn: "烟绯",
         en: "Yanfei",

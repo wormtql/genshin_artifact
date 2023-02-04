@@ -60,7 +60,6 @@ pub const ZHONGLI_SKILL: ZhongliSkillType = ZhongliSkillType {
 pub const ZHONGLI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Zhongli,
     internal_name: "Zhongli",
-    chs: "钟离",
     element:Element::Geo,
     hp: [1144, 2967, 3948, 5908, 6605, 7599, 8528, 9533, 10230, 11243, 11940, 12965, 13662, 14695],
     atk: [20, 51, 67, 101, 113, 130, 146, 163, 175, 192, 204, 222, 233, 251],
@@ -68,9 +67,18 @@ pub const ZHONGLI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus288(StatName::GeoBonus),
     weapon_type: WeaponType::Polearm,
     star: 5,
-    skill_name1: "普通攻击·岩雨",
-    skill_name2: "地心",
-    skill_name3: "天星",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·岩雨",
+        en: "Normal Attack: Rain of Stone",
+    ),
+    skill_name2: locale!(
+        zh_cn: "地心",
+        en: "Dominus Lapidis",
+    ),
+    skill_name3: locale!(
+        zh_cn: "天星",
+        en: "Planet Befall",
+    ),
     name_locale: locale!(
         zh_cn: "钟离",
         en: "Zhongli",

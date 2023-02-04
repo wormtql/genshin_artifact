@@ -158,7 +158,6 @@ impl CharacterTrait for Nilou {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Nilou,
         internal_name: "Nilou",
-        chs: "妮露",
         element: Element::Hydro,
         hp: [1182, 3066, 4080, 6105, 6825, 7852, 8813, 9850, 10571, 11618, 12338, 13397, 14117, 15185],
         atk: [18, 46, 62, 92, 103, 119, 133, 149, 160, 176, 187, 203, 213, 230],
@@ -166,9 +165,18 @@ impl CharacterTrait for Nilou {
         sub_stat: CharacterSubStatFamily::HP288,
         weapon_type: WeaponType::Sword,
         star: 5,
-        skill_name1: "",
-        skill_name2: "",
-        skill_name3: "",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·弦月舞步",
+            en: "Normal Attack: Dance of Samser",
+        ),
+        skill_name2: locale!(
+            zh_cn: "七域舞步",
+            en: "Dance of Haftkarsvar",
+        ),
+        skill_name3: locale!(
+            zh_cn: "浮莲舞步·远梦聆泉",
+            en: "Dance of Abzendegi: Distant Dreams, Listening Spring",
+        ),
         name_locale: locale!(
             zh_cn: "妮露",
             en: "Nilou",

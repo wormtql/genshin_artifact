@@ -142,7 +142,6 @@ impl CharacterTrait for KukiShinobu {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::KukiShinobu,
         internal_name: "Shinobu",
-        chs: "久岐忍",
         element: Element::Electro,
         hp: [1030, 2647, 3417, 5118, 5665, 6516, 7245, 8096, 8643, 9493, 10040, 10891, 11438, 12289],
         atk: [18, 46, 59, 88, 98, 113, 125, 140, 149, 164, 174, 188, 198, 212],
@@ -150,9 +149,18 @@ impl CharacterTrait for KukiShinobu {
         sub_stat: CharacterSubStatFamily::HP240,
         weapon_type: WeaponType::Sword,
         star: 4,
-        skill_name1: "普通攻击·忍流飞刃斩",
-        skill_name2: "越祓雷草之轮",
-        skill_name3: "御咏鸣神刈山祭",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·忍流飞刃斩",
+            en: "Normal Attack: Shinobu's Shadowsword",
+        ),
+        skill_name2: locale!(
+            zh_cn: "越祓雷草之轮",
+            en: "Sanctifying Ring",
+        ),
+        skill_name3: locale!(
+            zh_cn: "御咏鸣神刈山祭",
+            en: "Gyoei Narukami Kariyama Rite",
+        ),
         name_locale: locale!(
             zh_cn: "久岐忍",
             en: "Kuki Shinobu",

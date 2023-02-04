@@ -60,7 +60,6 @@ pub const KEQING_SKILL: KeqingSkillType = KeqingSkillType {
 pub const KEQING_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Keqing,
     internal_name: "Keqing",
-    chs: "刻晴",
     element: Element::Electro,
     hp: [1020, 2646, 3521, 5268, 5889, 6776, 7604, 8500, 9121, 10025, 10647, 11561, 12182, 13103],
     atk: [25, 65, 87, 130, 145, 167, 187, 209, 225, 247, 262, 285, 300, 323],
@@ -68,9 +67,18 @@ pub const KEQING_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::CriticalDamage384,
     weapon_type: WeaponType::Sword,
     star: 5,
-    skill_name1: "普通攻击·云来剑法",
-    skill_name2: "星斗归位",
-    skill_name3: "天街巡游",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·云来剑法",
+        en: "Normal Attack: Yunlai Swordsmanship",
+    ),
+    skill_name2: locale!(
+        zh_cn: "星斗归位",
+        en: "Stellar Restoration",
+    ),
+    skill_name3: locale!(
+        zh_cn: "天街巡游",
+        en: "Starward Sword",
+    ),
     name_locale: locale!(
         zh_cn: "刻晴",
         en: "Keqing",

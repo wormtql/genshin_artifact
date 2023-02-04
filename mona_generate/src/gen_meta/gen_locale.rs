@@ -13,11 +13,25 @@ pub fn collect_character_names() -> Vec<I18nLocale> {
     set.into_iter().collect()
 }
 
+pub fn collect_character_skills() -> Vec<I18nLocale> {
+    // it's impossible to duplicate
+    let mut result = Vec::new();
+
+    for c in CharacterName::iter() {
+        let meta: CharacterStaticData = c.get_static_data();
+        result.push(meta.skill_name1.clone());
+        result.push(meta.skill_name2.clone());
+        result.push(meta.skill_name3.clone());
+    }
+    result
+}
+
 pub fn collect_locale() -> Vec<I18nLocale> {
     let mut set = HashSet::new();
 
     // collect character names
     set.extend(collect_character_names());
+    set.extend(collect_character_skills());
 
     set.into_iter().collect()
 }

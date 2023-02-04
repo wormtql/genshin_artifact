@@ -56,7 +56,6 @@ pub const RAZOR_SKILL: RazorSkillType = RazorSkillType {
 pub const RAZOR_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Razor,
     internal_name: "Razor",
-    chs: "雷泽",
     element: Element::Electro,
     hp: [1003, 2577, 3326, 4982, 5514, 6343, 7052, 7881, 8413, 9241, 9773, 10602, 11134, 11962],
     atk: [20, 50, 65, 97, 108, 124, 138, 154, 164, 180, 191, 207, 217, 234],
@@ -64,9 +63,18 @@ pub const RAZOR_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus300(StatName::PhysicalBonus),
     weapon_type: WeaponType::Claymore,
     star: 4,
-    skill_name1: "普通攻击·钢脊",
-    skill_name2: "利爪与苍雷",
-    skill_name3: "雷牙",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·钢脊",
+        en: "Normal Attack: Steel Fang",
+    ),
+    skill_name2: locale!(
+        zh_cn: "利爪与苍雷",
+        en: "Claw and Thunder",
+    ),
+    skill_name3: locale!(
+        zh_cn: "雷牙",
+        en: "Lightning Fang",
+    ),
     name_locale: locale!(
         zh_cn: "雷泽",
         en: "Razor",

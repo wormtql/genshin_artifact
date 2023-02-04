@@ -61,7 +61,6 @@ pub const GANYU_SKILL: GanyuSkillType = GanyuSkillType {
 pub const GANYU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Ganyu,
     internal_name: "Ganyu",
-    chs: "甘雨",
     element: Element::Cryo,
     hp: [763, 1978, 2632, 3939, 4403, 5066, 5686, 6355, 6820, 7495, 7960, 8643, 9108, 9797],
     atk: [26, 68, 90, 135, 151, 173, 194, 217, 233, 256, 272, 295, 311, 335],
@@ -69,9 +68,18 @@ pub const GANYU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::CriticalDamage384,
     weapon_type: WeaponType::Bow,
     star: 5,
-    skill_name1: "普通攻击·流天射术",
-    skill_name2: "山泽麟迹",
-    skill_name3: "降众天华",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·流天射术",
+        en: "Normal Attack: Liutian Archery",
+    ),
+    skill_name2: locale!(
+        zh_cn: "山泽麟迹",
+        en: "Trail of the Qilin",
+    ),
+    skill_name3: locale!(
+        zh_cn: "降众天华",
+        en: "Celestial Shower",
+    ),
     name_locale: locale!(
         zh_cn: "甘雨",
         en: "Ganyu",

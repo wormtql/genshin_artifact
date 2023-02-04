@@ -121,7 +121,6 @@ impl CharacterTrait for Candace {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Candace,
         internal_name: "Candace",
-        chs: "",
         element: Element::Hydro,
         hp: [912, 2342, 3024, 4529, 5013, 5766, 6411, 7164, 7648, 8401, 8885, 9638, 10122, 10875],
         atk: [18, 46, 59, 88, 98, 113, 125, 140, 149, 164, 174, 188, 198, 212],
@@ -129,9 +128,18 @@ impl CharacterTrait for Candace {
         sub_stat: CharacterSubStatFamily::HP240,
         weapon_type: WeaponType::Polearm,
         star: 4,
-        skill_name1: "",
-        skill_name2: "",
-        skill_name3: "",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·流耀枪术·守势",
+            en: "Normal Attack: Gleaming Spear – Guardian Stance",
+        ),
+        skill_name2: locale!(
+            zh_cn: "圣仪·苍鹭庇卫",
+            en: "Sacred Rite: Heron’s Sanctum",
+        ),
+        skill_name3: locale!(
+            zh_cn: "圣仪·灰鸰衒潮",
+            en: "Sacred Rite: Wagtail’s Tide",
+        ),
         name_locale: locale!(
             zh_cn: "坎蒂丝",
             en: "Candace",

@@ -58,7 +58,6 @@ pub const DILUC_SKILL: DilucSkillType = DilucSkillType {
 const DILUC_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Diluc,
     internal_name: "Diluc",
-    chs: "迪卢克",
     element: Element::Pyro,
     hp: [1011, 2621, 3488, 5219, 5834, 6712, 7533, 8421, 9036, 9932, 10547, 11453, 12068, 12981],
     atk: [26, 68, 90, 135, 151, 173, 194, 217, 233, 256, 272, 295, 311, 335],
@@ -66,9 +65,18 @@ const DILUC_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::CriticalRate192,
     weapon_type: WeaponType::Claymore,
     star: 5,
-    skill_name1: "普通攻击·淬炼之剑",
-    skill_name2: "逆焰之刃",
-    skill_name3: "黎明",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·淬炼之剑",
+        en: "Normal Attack: Tempered Sword",
+    ),
+    skill_name2: locale!(
+        zh_cn: "逆焰之刃",
+        en: "Searing Onslaught",
+    ),
+    skill_name3: locale!(
+        zh_cn: "黎明",
+        en: "Dawn",
+    ),
     name_locale: locale!(
         zh_cn: "迪卢克",
         en: "Diluc",

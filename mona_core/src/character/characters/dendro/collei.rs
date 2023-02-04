@@ -112,7 +112,6 @@ impl CharacterTrait for Collei {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Collei,
         internal_name: "Collei",
-        chs: "科莱",
         element: Element::Dendro,
         hp: [821, 2108, 2721, 4076, 4512, 5189, 5770, 6448, 6884, 7561, 7996, 8674, 9110, 9787],
         atk: [17, 43, 56, 83, 92, 106, 118, 132, 140, 154, 163, 177, 186, 200],
@@ -120,9 +119,18 @@ impl CharacterTrait for Collei {
         sub_stat: CharacterSubStatFamily::ATK240,
         weapon_type: WeaponType::Bow,
         star: 4,
-        skill_name1: "普通攻击·祈颂射艺",
-        skill_name2: "拂花偈叶",
-        skill_name3: "猫猫秘宝",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·祈颂射艺",
+            en: "Normal Attack: Supplicant’s Bowmanship",
+        ),
+        skill_name2: locale!(
+            zh_cn: "拂花偈叶",
+            en: "Floral Brush",
+        ),
+        skill_name3: locale!(
+            zh_cn: "猫猫秘宝",
+            en: "Trump-Card Kitty",
+        ),
         name_locale: locale!(
             zh_cn: "柯莱",
             en: "Collei",

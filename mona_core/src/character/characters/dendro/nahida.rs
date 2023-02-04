@@ -98,7 +98,6 @@ impl CharacterTrait for Nahida {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Nahida,
         internal_name: "Nahida",
-        chs: "",
         element: Element::Dendro,
         hp: [807, 2092, 2784, 4165, 4656, 5357, 6012, 6721, 7212, 7926, 8418, 9140, 9632, 10360],
         atk: [23, 60, 80, 120, 134, 155, 174, 194, 208, 229, 243, 264, 278, 299],
@@ -106,9 +105,18 @@ impl CharacterTrait for Nahida {
         sub_stat: CharacterSubStatFamily::ElementalMastery115,
         weapon_type: WeaponType::Catalyst,
         star: 5,
-        skill_name1: "",
-        skill_name2: "",
-        skill_name3: "",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·行相",
+            en: "Normal Attack: Akara",
+        ),
+        skill_name2: locale!(
+            zh_cn: "所闻遍计",
+            en: "All Schemes to Know",
+        ),
+        skill_name3: locale!(
+            zh_cn: "心景幻成",
+            en: "Illusory Heart",
+        ),
         name_locale: locale!(
             zh_cn: "纳西妲",
             en: "Nahida",

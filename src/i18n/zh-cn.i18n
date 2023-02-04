@@ -1,0 +1,10 @@
+[
+    {
+        "path": "./locales/zh-cn.js",
+        "prefix": ""
+    },
+    {
+        "path": "./generated/zh-cn.json",
+        "prefix": "a"
+    }
+]

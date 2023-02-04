@@ -60,7 +60,6 @@ const SHENHE_SKILL: ShenheSkillType = ShenheSkillType {
 const SHENHE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Shenhe,
     internal_name: "Shenhe",
-    chs: "申鹤",
     element: Element::Cryo,
     hp: [1011, 2624, 3491, 5224, 5840, 6719, 7540, 8429, 9045, 9941, 10557, 11463, 12080, 12993],
     atk: [24, 61, 82, 122, 137, 157, 176, 197, 211, 232, 247, 268, 282, 304],
@@ -68,9 +67,18 @@ const SHENHE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ATK288,
     weapon_type: WeaponType::Polearm,
     star: 5,
-    skill_name1: "普通攻击•踏辰摄斗",
-    skill_name2: "仰灵威召将役咒",
-    skill_name3: "神女遣灵真诀",
+    skill_name1: locale!(
+        zh_cn: "普通攻击•踏辰摄斗",
+        en: "Normal Attack: Dawnstar Piercer",
+    ),
+    skill_name2: locale!(
+        zh_cn: "仰灵威召将役咒",
+        en: "Spring Spirit Summoning",
+    ),
+    skill_name3: locale!(
+        zh_cn: "神女遣灵真诀",
+        en: "Divine Maiden's Deliverance",
+    ),
     name_locale: locale!(
         zh_cn: "申鹤",
         en: "Shenhe",

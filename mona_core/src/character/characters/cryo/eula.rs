@@ -70,7 +70,6 @@ pub const EULA_SKILL: EulaSkillType = EulaSkillType {
 pub const EULA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Eula,
     internal_name: "Eula",
-    chs: "优菈",
     element: Element::Cryo,
     hp: [1030, 2671, 3554, 5317, 5944, 6839, 7675, 8579, 9207, 10119, 10746, 11699, 12296, 13226],
     atk: [27, 69, 92, 138, 154, 177, 198, 222, 238, 262, 278, 302, 318, 342],
@@ -78,9 +77,18 @@ pub const EULA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::CriticalDamage384,
     weapon_type: WeaponType::Claymore,
     star: 5,
-    skill_name1: "普通攻击·西风剑术·宗室",
-    skill_name2: "冰潮的涡旋",
-    skill_name3: "凝浪之光剑",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·西风剑术·宗室",
+        en: "Normal Attack: Favonius Bladework - Edel",
+    ),
+    skill_name2: locale!(
+        zh_cn: "冰潮的涡旋",
+        en: "Icetide Vortex",
+    ),
+    skill_name3: locale!(
+        zh_cn: "凝浪之光剑",
+        en: "Glacial Illumination",
+    ),
     name_locale: locale!(
         zh_cn: "优菈",
         en: "Eula",

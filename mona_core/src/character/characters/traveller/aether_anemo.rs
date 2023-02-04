@@ -136,7 +136,6 @@ impl CharacterTrait for AetherAnemo {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::AetherAnemo,
         internal_name: "PlayerBoy",
-        chs: "空-风",
         element: Element::Anemo,
         hp: [912, 2342, 3024, 4529, 5031, 5766, 6411, 7164, 7648, 8401, 8885, 9638, 10122, 10875],
         atk: [18, 46, 59, 88, 98, 113, 125, 140, 149, 164, 174, 188, 198, 212],
@@ -144,9 +143,18 @@ impl CharacterTrait for AetherAnemo {
         sub_stat: CharacterSubStatFamily::ATK240,
         weapon_type: WeaponType::Sword,
         star: 5,
-        skill_name1: "普通攻击·异邦铁风",
-        skill_name2: "风涡剑",
-        skill_name3: "风息激荡",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·异邦铁风",
+            en: "Normal Attack: Foreign Ironwind",
+        ),
+        skill_name2: locale!(
+            zh_cn: "风涡剑",
+            en: "Palm Vortex",
+        ),
+        skill_name3: locale!(
+            zh_cn: "风息激荡",
+            en: "Gust Surge",
+        ),
         name_locale: locale!(
             zh_cn: "空-风",
             en: "Aether(Anemo)",

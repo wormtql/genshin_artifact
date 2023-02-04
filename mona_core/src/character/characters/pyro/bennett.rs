@@ -67,7 +67,6 @@ pub const BENNETT_SKILL: BennettSkillType = BennettSkillType {
 pub const BENNETT_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Bennett,
     internal_name: "Bennett",
-    chs: "班尼特",
     element: Element::Pyro,
     hp: [1039, 2670, 3447, 5163, 5715, 6573, 7309, 8186, 8719, 9577, 10129, 10987, 11539, 12397],
     atk: [16, 41, 53, 80, 88, 101, 113, 126, 134, 148, 156, 169, 178, 191],
@@ -75,9 +74,18 @@ pub const BENNETT_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Recharge267,
     weapon_type: WeaponType::Sword,
     star: 4,
-    skill_name1: "普通攻击·好运剑",
-    skill_name2: "热情过载",
-    skill_name3: "美妙旅程",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·好运剑",
+        en: "Normal Attack: Strike of Fortune",
+    ),
+    skill_name2: locale!(
+        zh_cn: "热情过载",
+        en: "Passion Overload",
+    ),
+    skill_name3: locale!(
+        zh_cn: "美妙旅程",
+        en: "Fantastic Voyage",
+    ),
     name_locale: locale!(
         zh_cn: "班尼特",
         en: "Bennett",

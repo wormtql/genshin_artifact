@@ -53,7 +53,6 @@ pub const GOROU_SKILL: GorouSkillType = GorouSkillType {
 pub const GOROU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Gorou,
     internal_name: "Gorou",
-    chs: "五郎",
     element: Element::Geo,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],
     atk: [15, 39, 51, 76, 84, 97, 108, 120, 128, 141, 149, 162, 170, 183],
@@ -61,9 +60,18 @@ pub const GOROU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus240(StatName::GeoBonus),
     weapon_type: WeaponType::Bow,
     star: 4,
-    skill_name1: "普通攻击•呲牙裂扇箭",
-    skill_name2: "犬坂吠吠方圆阵",
-    skill_name3: "兽牙逐突形胜战法",
+    skill_name1: locale!(
+        zh_cn: "普通攻击•呲牙裂扇箭",
+        en: "Normal Attack: Ripping Fang Fletching",
+    ),
+    skill_name2: locale!(
+        zh_cn: "犬坂吠吠方圆阵",
+        en: "Inuzaka All-Round Defense",
+    ),
+    skill_name3: locale!(
+        zh_cn: "兽牙逐突形胜战法",
+        en: "Juuga: Forward Unto Victory",
+    ),
     name_locale: locale!(
         zh_cn: "五郎",
         en: "Gorou",

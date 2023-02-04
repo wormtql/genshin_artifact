@@ -151,7 +151,6 @@ impl CharacterTrait for Tighnari {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Tighnari,
         internal_name: "Tighnari",
-        chs: "提纳里",
         element: Element::Dendro,
         hp: [845, 2191, 2915, 4362, 4877, 5611, 6297, 7038, 7553, 8301, 8816, 9573, 10087, 10850],
         atk: [21, 54, 72, 108, 120, 139, 155, 174, 186, 205, 218, 236, 249, 268],
@@ -159,9 +158,18 @@ impl CharacterTrait for Tighnari {
         sub_stat: CharacterSubStatFamily::Bonus288(StatName::DendroBonus),
         weapon_type: WeaponType::Bow,
         star: 5,
-        skill_name1: "普通攻击·藏蕴破障",
-        skill_name2: "识果种雷",
-        skill_name3: "造生缠藤箭",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·藏蕴破障",
+            en: "Normal Attack: Khanda Barrier-Buster",
+        ),
+        skill_name2: locale!(
+            zh_cn: "识果种雷",
+            en: "Vijnana-Phala Mine",
+        ),
+        skill_name3: locale!(
+            zh_cn: "造生缠藤箭",
+            en: "Fashioner’s Tanglevine Shaft",
+        ),
         name_locale: locale!(
             zh_cn: "提纳里",
             en: "Tighnari",

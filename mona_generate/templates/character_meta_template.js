@@ -22,9 +22,9 @@ export default {
         // avatar: {{ c.name }}_avatar,
         avatar: getName("{{ c.internal_name }}"),
         splash: {{ c.name }}_splash,
-        skillName1: "{{ c.skill1_name }}",
-        skillName2: "{{ c.skill2_name }}",
-        skillName3: "{{ c.skill3_name }}",
+        skillName1: {{ c.skill1_name_index }},
+        skillName2: {{ c.skill2_name_index }},
+        skillName3: {{ c.skill3_name_index }},
         skillMap1: [
             {% for s in c.skill_map1 %}
             { index: {{ s.index }}, text: {{ dmg_name_map[s.chs] }} },

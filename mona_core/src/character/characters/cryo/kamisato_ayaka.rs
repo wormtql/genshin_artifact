@@ -52,7 +52,6 @@ pub const KAMISATO_AYAKA_SKILL: KamisatoAyakaSkillType = KamisatoAyakaSkillType 
 pub const KAMISATO_AYAKA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::KamisatoAyaka,
     internal_name: "Ayaka",
-    chs: "神里绫华",
     element: Element::Cryo,
     hp: [1011, 2597, 3455, 5170, 5779, 6649, 7462, 8341, 8951, 9838, 10448, 11345, 11954, 12858],
     atk: [27, 69, 92, 138, 154, 177, 198, 222, 238, 262, 278, 302, 318, 342],
@@ -60,9 +59,18 @@ pub const KAMISATO_AYAKA_STATIC_DATA: CharacterStaticData = CharacterStaticData 
     sub_stat: CharacterSubStatFamily::CriticalDamage384,
     weapon_type: WeaponType::Sword,
     star: 5,
-    skill_name1: "普通攻击·神里流·倾",
-    skill_name2: "神里流·冰华",
-    skill_name3: "神里流·霜灭",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·神里流·倾",
+        en: "Normal Attack: Kamisato Art - Kabuki",
+    ),
+    skill_name2: locale!(
+        zh_cn: "神里流·冰华",
+        en: "Kamisato Art: Hyouka",
+    ),
+    skill_name3: locale!(
+        zh_cn: "神里流·霜灭",
+        en: "Kamisato Art: Soumetsu",
+    ),
     name_locale: locale!(
         zh_cn: "神里绫华",
         en: "Kamisato Ayaka",

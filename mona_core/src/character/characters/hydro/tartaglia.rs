@@ -82,7 +82,6 @@ pub const TARTAGLIA_SKILL: TartagliaSkillType = TartagliaSkillType {
 pub const TARTAGLIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Tartaglia,
     internal_name: "Tartaglia",
-    chs: "达达利亚",
     element: Element::Hydro,
     hp: [1020, 2646, 3521, 5268, 5889, 6776, 7604, 8500, 9121, 10025, 10647, 11561, 12182, 13103],
     atk: [23, 61, 81, 121, 135, 156, 175, 195, 210, 231, 245, 266, 280, 301],
@@ -90,9 +89,18 @@ pub const TARTAGLIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus288(StatName::HydroBonus),
     weapon_type: WeaponType::Bow,
     star: 5,
-    skill_name1: "普通攻击·断雨",
-    skill_name2: "魔王武装·狂澜",
-    skill_name3: "极恶技·尽灭闪",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·断雨",
+        en: "Normal Attack: Cutting Torrent",
+    ),
+    skill_name2: locale!(
+        zh_cn: "魔王武装·狂澜",
+        en: "Foul Legacy: Raging Tide",
+    ),
+    skill_name3: locale!(
+        zh_cn: "极恶技·尽灭闪",
+        en: "Havoc: Obliteration",
+    ),
     name_locale: locale!(
         zh_cn: "达达利亚",
         en: "Tartaglia",

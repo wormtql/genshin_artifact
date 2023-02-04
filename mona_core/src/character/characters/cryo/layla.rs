@@ -90,7 +90,6 @@ impl CharacterTrait for Layla {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Layla,
         internal_name: "Layla",
-        chs: "",
         element: Element::Cryo,
         hp: [930, 2389, 3084, 4619, 5113, 5881, 6540, 7308, 7801, 8569, 9062, 9831, 10324, 11092],
         atk: [18, 47, 60, 90, 100, 115, 128, 143, 152, 167, 177, 192, 202, 217],
@@ -98,9 +97,18 @@ impl CharacterTrait for Layla {
         sub_stat: CharacterSubStatFamily::HP240,
         weapon_type: WeaponType::Sword,
         star: 4,
-        skill_name1: "",
-        skill_name2: "",
-        skill_name3: "",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·熠辉轨度剑",
+            en: "Normal Attack: Sword of the Radiant Path",
+        ),
+        skill_name2: locale!(
+            zh_cn: "垂裳端凝之夜",
+            en: "Nights of Formal Focus",
+        ),
+        skill_name3: locale!(
+            zh_cn: "星流摇床之梦",
+            en: "Dream of the Star-Stream Shaker",
+        ),
         name_locale: locale!(
             zh_cn: "莱依拉",
             en: "Layla",

@@ -134,7 +134,6 @@ impl CharacterTrait for Cyno {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Cyno,
         internal_name: "Cyno",
-        chs: "赛诺",
         element: Element::Electro,
         hp: [972, 2522, 3356, 5022, 5614, 6459, 7249, 8103, 8695, 9557, 10149, 11020, 11613, 12491],
         atk: [25, 64, 85, 128, 143, 165, 185, 206, 221, 243, 258, 281, 296, 318],
@@ -142,9 +141,18 @@ impl CharacterTrait for Cyno {
         sub_stat: CharacterSubStatFamily::CriticalDamage384,
         weapon_type: WeaponType::Polearm,
         star: 5,
-        skill_name1: "普通攻击·七圣枪术",
-        skill_name2: "秘仪·律渊渡魂",
-        skill_name3: "圣仪·煟煌随狼行",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·七圣枪术",
+            en: "Normal Attack: Invoker's Spear",
+        ),
+        skill_name2: locale!(
+            zh_cn: "秘仪·律渊渡魂",
+            en: "Secret Rite: Chasmic Soulfarer",
+        ),
+        skill_name3: locale!(
+            zh_cn: "圣仪·煟煌随狼行",
+            en: "Sacred Rite: Wolf’s Swiftness",
+        ),
         name_locale: locale!(
             zh_cn: "赛诺",
             en: "Cyno",

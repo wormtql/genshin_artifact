@@ -56,7 +56,6 @@ pub const KUJOU_SARA_SKILL: KujouSaraSkillType = KujouSaraSkillType {
 pub const KUJOU_SARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::KujouSara,
     internal_name: "Sara",
-    chs: "九条裟罗",
     element: Element::Electro,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],
     atk: [16, 42, 54, 81, 90, 104, 115, 129, 137, 151, 160, 173, 182, 195],
@@ -64,9 +63,18 @@ pub const KUJOU_SARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Bow,
     star: 4,
-    skill_name1: "普通攻击•天狗传弓术",
-    skill_name2: "鸦羽天狗霆雷召咒",
-    skill_name3: "煌煌千道镇式",
+    skill_name1: locale!(
+        zh_cn: "普通攻击•天狗传弓术",
+        en: "Normal Attack: Tengu Bowmanship",
+    ),
+    skill_name2: locale!(
+        zh_cn: "鸦羽天狗霆雷召咒",
+        en: "Tengu Stormcall",
+    ),
+    skill_name3: locale!(
+        zh_cn: "煌煌千道镇式",
+        en: "Subjugation: Koukou Sendou",
+    ),
     name_locale: locale!(
         zh_cn: "九条裟罗",
         en: "Kujou Sara",

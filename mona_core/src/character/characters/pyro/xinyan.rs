@@ -67,7 +67,6 @@ pub const XINYAN_SKILL: XinyanSkillType = XinyanSkillType {
 pub const XINYAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Xinyan,
     internal_name: "Xinyan",
-    chs: "辛焱",
     element: Element::Pyro,
     hp: [939, 2413, 3114, 4665, 5163, 5939, 6604, 7379, 7878, 8653, 9151, 9927, 10425, 11201],
     atk: [21, 54, 69, 103, 115, 132, 147, 164, 175, 192, 203, 220, 231, 249],
@@ -75,9 +74,18 @@ pub const XINYAN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Claymore,
     star: 4,
-    skill_name1: "普通攻击·炎舞",
-    skill_name2: "热情拂扫",
-    skill_name3: "叛逆刮弦",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·炎舞",
+        en: "Normal Attack: Dance on Fire",
+    ),
+    skill_name2: locale!(
+        zh_cn: "热情拂扫",
+        en: "Sweeping Fervor",
+    ),
+    skill_name3: locale!(
+        zh_cn: "叛逆刮弦",
+        en: "Riff Revolution",
+    ),
     name_locale: locale!(
         zh_cn: "辛焱",
         en: "Xinyan",

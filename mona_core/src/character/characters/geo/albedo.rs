@@ -56,7 +56,6 @@ const ALBEDO_SKILL: AlbedoSkillType = AlbedoSkillType {
 const ALBEDO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Albedo,
     internal_name: "Albedo",
-    chs: "阿贝多",
     element: Element::Geo,
     hp: [1030, 2671, 3554, 5317, 5944, 6839, 7675, 8579, 9207, 10119, 10746, 11669, 12296, 13226],
     atk: [20, 51, 68, 101, 113, 130, 146, 163, 175, 192, 204, 222, 233, 251],
@@ -64,9 +63,18 @@ const ALBEDO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus288(StatName::GeoBonus),
     weapon_type: WeaponType::Sword,
     star: 5,
-    skill_name1: "普通攻击·西风剑术·白",
-    skill_name2: "创生法·拟造阳华",
-    skill_name3: "诞生式·大地之潮",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·西风剑术·白",
+        en: "Normal Attack: Favonius Bladework - Weiss",
+    ),
+    skill_name2: locale!(
+        zh_cn: "创生法·拟造阳华",
+        en: "Abiogenesis: Solar Isotoma",
+    ),
+    skill_name3: locale!(
+        zh_cn: "诞生式·大地之潮",
+        en: "Rite of Progeniture: Tectonic Tide",
+    ),
     name_locale: locale!(
         zh_cn: "阿贝多",
         en: "Albedo",

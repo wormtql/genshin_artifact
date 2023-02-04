@@ -64,7 +64,6 @@ pub const NOELLE_SKILL: NoelleSkillType = NoelleSkillType {
 pub const NOELLE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Noelle,
     internal_name: "Noel",
-    chs: "诺艾尔",
     element: Element::Geo,
     hp: [1012, 2600, 3356, 5027, 5564, 6400, 7117, 7953, 8490, 9325, 9862, 10698, 11235, 12071],
     atk: [16, 41, 53, 80, 88, 101, 113, 126, 134, 148, 156, 169, 178, 191],
@@ -72,9 +71,18 @@ pub const NOELLE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::DEF300,
     weapon_type: WeaponType::Claymore,
     star: 4,
-    skill_name1: "普通攻击·西风剑术·女仆",
-    skill_name2: "护心铠",
-    skill_name3: "大扫除",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·西风剑术·女仆",
+        en: "Normal Attack: Favonius Bladework - Maid",
+    ),
+    skill_name2: locale!(
+        zh_cn: "护心铠",
+        en: "Breastplate",
+    ),
+    skill_name3: locale!(
+        zh_cn: "大扫除",
+        en: "Sweeping Time",
+    ),
     name_locale: locale!(
         zh_cn: "诺艾尔",
         en: "Noelle",

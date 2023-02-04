@@ -56,7 +56,6 @@ pub const YOIMIYA_SKILL: YoimiyaSkill = YoimiyaSkill {
 pub const YOIMIYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Yoimiya,
     internal_name: "Yoimiya",
-    chs: "宵宫",
     element: Element::Pyro,
     hp: [791, 2053, 2731, 4086, 4568, 5256, 5899, 6593, 7075, 7777, 8259, 8968, 9450, 10164],
     atk: [25, 65, 87, 130, 145, 167, 187, 209, 225, 247, 262, 285, 300, 323],
@@ -64,9 +63,18 @@ pub const YOIMIYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::CriticalRate192,
     weapon_type: WeaponType::Bow,
     star: 5,
-    skill_name1: "普通攻击·烟火打扬",
-    skill_name2: "焰硝庭火舞",
-    skill_name3: "琉金云间草",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·烟火打扬",
+        en: "Normal Attack: Firework Flare-Up",
+    ),
+    skill_name2: locale!(
+        zh_cn: "焰硝庭火舞",
+        en: "Niwabi Fire-Dance",
+    ),
+    skill_name3: locale!(
+        zh_cn: "琉金云间草",
+        en: "Ryuukin Saxifrage",
+    ),
     name_locale: locale!(
         zh_cn: "宵宫",
         en: "Yoimiya",

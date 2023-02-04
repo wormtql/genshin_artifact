@@ -48,7 +48,6 @@ pub const KLEE_SKILL: KleeSkillType = KleeSkillType {
 pub const KLEE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Klee,
     internal_name: "Klee",
-    chs: "可莉",
     element: Element::Pyro,
     hp: [801, 2077, 2764, 4136, 4623, 5319, 5970, 6673, 7161, 7870, 8358, 9076, 9563, 10287],
     atk: [24, 63, 84, 125, 140, 161, 180, 202, 216, 238, 253, 274, 289, 311],
@@ -56,9 +55,18 @@ pub const KLEE_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus288(StatName::PyroBonus),
     weapon_type: WeaponType::Catalyst,
     star: 5,
-    skill_name1: "普通攻击·砰砰",
-    skill_name2: "蹦蹦炸弹",
-    skill_name3: "轰轰火花",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·砰砰",
+        en: "Normal Attack: Kaboom!",
+    ),
+    skill_name2: locale!(
+        zh_cn: "蹦蹦炸弹",
+        en: "Jumpy Dumpty",
+    ),
+    skill_name3: locale!(
+        zh_cn: "轰轰火花",
+        en: "Sparks 'n' Splash",
+    ),
     name_locale: locale!(
         zh_cn: "可莉",
         en: "Klee",

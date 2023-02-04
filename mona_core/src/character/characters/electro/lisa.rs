@@ -56,7 +56,6 @@ pub const LISA_SKILL: LisaSkillType = LisaSkillType {
 pub const LISA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Lisa,
     internal_name: "Lisa",
-    chs: "丽莎",
     element: Element::Electro,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],
     atk: [19, 50, 64, 96, 107, 123, 136, 153, 163, 179, 189, 205, 215, 232],
@@ -64,9 +63,18 @@ pub const LISA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ElementalMastery96,
     weapon_type: WeaponType::Catalyst,
     star: 4,
-    skill_name1: "普通攻击·指尖雷暴",
-    skill_name2: "苍雷",
-    skill_name3: "蔷薇的雷光",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·指尖雷暴",
+        en: "Normal Attack: Lightning Touch",
+    ),
+    skill_name2: locale!(
+        zh_cn: "苍雷",
+        en: "Violet Arc",
+    ),
+    skill_name3: locale!(
+        zh_cn: "蔷薇的雷光",
+        en: "Lightning Rose",
+    ),
     name_locale: locale!(
         zh_cn: "丽莎",
         en: "Lisa",

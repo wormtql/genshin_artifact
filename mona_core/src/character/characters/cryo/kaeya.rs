@@ -50,7 +50,6 @@ pub const KAEYA_SKILL: KaeyaSkillType = KaeyaSkillType {
 pub const KAEYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Kaeya,
     internal_name: "Kaeya",
-    chs: "凯亚",
     element: Element::Cryo,
     hp: [976, 2506, 3235, 4846, 5364, 6170, 6860, 7666, 8184, 8989, 9507, 10312, 10830, 11636],
     atk: [19, 48, 62, 93, 103, 118, 131, 147, 157, 172, 182, 198, 208, 223],
@@ -58,9 +57,18 @@ pub const KAEYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Recharge267,
     weapon_type: WeaponType::Sword,
     star: 4,
-    skill_name1: "普通攻击·仪典剑术",
-    skill_name2: "霜袭",
-    skill_name3: "凛冽轮舞",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·仪典剑术",
+        en: "Normal Attack: Ceremonial Bladework",
+    ),
+    skill_name2: locale!(
+        zh_cn: "霜袭",
+        en: "Frostgnaw",
+    ),
+    skill_name3: locale!(
+        zh_cn: "凛冽轮舞",
+        en: "Glacial Waltz",
+    ),
     name_locale: locale!(
         zh_cn: "凯亚",
         en: "Kaeya",

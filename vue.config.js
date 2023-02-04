@@ -149,6 +149,12 @@ module.exports = {
         },
     },
     chainWebpack: config => {
+        // use custom i18n loader
+        config.module.rule("i18n-js")
+            .test(/\.i18n$/)
+            .use("i18n-loader")
+                .loader("./loaders/i18n_loader.js")
+
         // merge custom env
         config.plugin("define").tap(definitions => {
             const definePluginConverted = convertKVToDefinePlugin(customEnv)

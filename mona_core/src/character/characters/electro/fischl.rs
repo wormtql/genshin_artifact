@@ -53,7 +53,6 @@ pub const FISCHL_SKILL: FischlSkillType = FischlSkillType {
 pub const FISCHL_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Fischl,
     internal_name: "Fischl",
-    chs: "菲谢尔",
     element: Element::Electro,
     hp: [770, 1979, 2555, 3827, 4236, 4872, 5418, 6054, 6463, 7099, 7508, 8144, 8553, 9189],
     atk: [20, 53, 68, 102, 113, 130, 144, 161, 172, 189, 200, 216, 227, 244],
@@ -61,9 +60,18 @@ pub const FISCHL_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Bow,
     star: 4,
-    skill_name1: "普通攻击·罪灭之矢",
-    skill_name2: "夜巡影翼",
-    skill_name3: "至夜幻现",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·罪灭之矢",
+        en: "Normal Attack: Bolts of Downfall",
+    ),
+    skill_name2: locale!(
+        zh_cn: "夜巡影翼",
+        en: "Nightrider",
+    ),
+    skill_name3: locale!(
+        zh_cn: "至夜幻现",
+        en: "Midnight Phantasmagoria",
+    ),
     name_locale: locale!(
         zh_cn: "菲谢尔",
         en: "Fischl",

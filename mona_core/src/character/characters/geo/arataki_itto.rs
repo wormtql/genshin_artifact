@@ -52,7 +52,6 @@ pub const ARATAKI_ITTO_SKILL: AratakiIttoSkillType = AratakiIttoSkillType {
 const ARATAKI_ITTO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::AratakiItto,
     internal_name: "Itto",
-    chs: "荒泷一斗",
     element: Element::Geo,
     hp: [1001, 2579, 3455, 5170, 5779, 6649, 7462, 8341, 8951, 9838, 10448, 11345, 11954, 12858],
     atk: [18, 46, 61, 91, 102, 117, 132, 147, 158, 174, 185, 200, 211, 227],
@@ -60,9 +59,18 @@ const ARATAKI_ITTO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::CriticalRate192,
     weapon_type: WeaponType::Claymore,
     star: 5,
-    skill_name1: "普通攻击•喧哗屋传说",
-    skill_name2: "魔杀绝技•赤牛发破！",
-    skill_name3: "最恶鬼王•一斗轰临！！",
+    skill_name1: locale!(
+        zh_cn: "普通攻击•喧哗屋传说",
+        en: "Normal Attack: Fight Club Legend",
+    ),
+    skill_name2: locale!(
+        zh_cn: "魔杀绝技•赤牛发破！",
+        en: "Masatsu Zetsugi: Akaushi Burst!",
+    ),
+    skill_name3: locale!(
+        zh_cn: "最恶鬼王•一斗轰临！！",
+        en: "Royal Descent: Behold, Itto the Evil!",
+    ),
     name_locale: locale!(
         zh_cn: "荒泷一斗",
         en: "Arataki Itto",

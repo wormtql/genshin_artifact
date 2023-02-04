@@ -51,7 +51,6 @@ pub const MONA_SKILL: MonaSkillType = MonaSkillType {
 pub const MONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Mona,
     internal_name: "Mona",
-    chs: "莫娜",
     element: Element::Hydro,
     hp: [810, 2102, 2797, 4185, 4678, 5383, 6041, 6752, 7246, 7964, 8458, 9184, 9677, 10409],
     atk: [22, 58, 77, 115, 129, 148, 167, 186, 200, 220, 233, 253, 267, 287],
@@ -59,9 +58,18 @@ pub const MONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Recharge320,
     weapon_type: WeaponType::Catalyst,
     star: 5,
-    skill_name1: "普通攻击·因果点破",
-    skill_name2: "水中幻愿",
-    skill_name3: "星命定轨",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·因果点破",
+        en: "Normal Attack: Ripple of Fate",
+    ),
+    skill_name2: locale!(
+        zh_cn: "水中幻愿",
+        en: "Mirror Reflection of Doom",
+    ),
+    skill_name3: locale!(
+        zh_cn: "星命定轨",
+        en: "Stellaris Phantasm",
+    ),
     name_locale: locale!(
         zh_cn: "莫娜",
         en: "Mona",

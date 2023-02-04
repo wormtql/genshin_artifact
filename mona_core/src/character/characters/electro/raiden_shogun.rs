@@ -82,7 +82,6 @@ pub const RAIDEN_SHOGUN_SKILL: RaidenShogunSkill = RaidenShogunSkill {
 pub const RAIDEN_SHOGUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::RaidenShogun,
     internal_name: "Shougun",
-    chs: "雷电将军",
     element: Element::Electro,
     hp: [1005, 2606, 3468, 5189, 5801, 6675, 7491, 8373, 8985, 9875, 10487, 11388, 12000, 12907],
     atk: [26, 68, 91, 136, 152, 174, 196, 219, 235, 258, 274, 298, 314, 337],
@@ -90,9 +89,18 @@ pub const RAIDEN_SHOGUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Recharge320,
     weapon_type: WeaponType::Polearm,
     star: 5,
-    skill_name1: "普通攻击•源流",
-    skill_name2: "神变•恶曜开眼",
-    skill_name3: "奥义•梦想真说",
+    skill_name1: locale!(
+        zh_cn: "普通攻击•源流",
+        en: "Normal Attack: Origin",
+    ),
+    skill_name2: locale!(
+        zh_cn: "神变•恶曜开眼",
+        en: "Transcendence: Baleful Omen",
+    ),
+    skill_name3: locale!(
+        zh_cn: "奥义•梦想真说",
+        en: "Secret Art: Musou Shinsetsu",
+    ),
     name_locale: locale!(
         zh_cn: "雷电将军",
         en: "Raiden Shogun",

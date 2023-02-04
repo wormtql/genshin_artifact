@@ -61,7 +61,6 @@ pub const BEIDOU_SKILL: BeidouSkillType = BeidouSkillType {
 const BEIDOU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Beidou,
     internal_name: "Beidou",
-    chs: "北斗",
     element: Element::Electro,
     hp: [1094, 2811, 3628, 5435, 6015, 6919, 7694, 8597, 9178, 10081, 10662, 11565, 12146, 13050],
     atk: [19, 48, 63, 94, 104, 119, 133, 148, 158, 174, 184, 200, 210, 225],
@@ -69,9 +68,18 @@ const BEIDOU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus240(StatName::ElectroBonus),
     weapon_type: WeaponType::Claymore,
     star: 4,
-    skill_name1: "普通攻击·征涛",
-    skill_name2: "捉浪",
-    skill_name3: "斫雷",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·征涛",
+        en: "Normal Attack: Oceanborne",
+    ),
+    skill_name2: locale!(
+        zh_cn: "捉浪",
+        en: "Tidecaller",
+    ),
+    skill_name3: locale!(
+        zh_cn: "斫雷",
+        en: "Stormbreaker",
+    ),
     name_locale: locale!(
         zh_cn: "北斗",
         en: "Beidou",

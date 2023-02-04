@@ -64,7 +64,6 @@ const YUNJIN_SKILL: YunjinSkillType = YunjinSkillType {
 const YUNJIN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Yunjin,
     internal_name: "Yunjin",
-    chs: "云堇",
     element: Element::Geo,
     hp: [894, 2296, 2963, 4438, 4913, 5651, 6283, 7021, 7495, 8233, 8707, 9445, 9919, 10657],
     atk: [16, 41, 53, 80, 88, 101, 113, 126, 134, 148, 156, 169, 178, 191],
@@ -72,9 +71,18 @@ const YUNJIN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Recharge267,
     weapon_type: WeaponType::Polearm,
     star: 4,
-    skill_name1: "普通攻击·拂云出手",
-    skill_name2: "旋云开相",
-    skill_name3: "破嶂见旌仪",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·拂云出手",
+        en: "Normal Attack: Cloud-Grazing Strike",
+    ),
+    skill_name2: locale!(
+        zh_cn: "旋云开相",
+        en: "Opening Flourish",
+    ),
+    skill_name3: locale!(
+        zh_cn: "破嶂见旌仪",
+        en: "Cliffbreaker's Banner",
+    ),
     name_locale: locale!(
         zh_cn: "云堇",
         en: "Yunjin",

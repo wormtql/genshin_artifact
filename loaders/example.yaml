@@ -1,9 +1,0 @@
-type: weapon
-weaponName: MistsplitterReforged
-configs:
-  - type: float
-    min: 0
-    max: 10
-    name: level
-    title: "Title"
-    default: 0

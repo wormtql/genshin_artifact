@@ -49,7 +49,6 @@ pub const CHONGYUN_SKILL: ChongyunSkillType = ChongyunSkillType {
 pub const CHONGYUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Chongyun,
     internal_name: "Chongyun",
-    chs: "重云",
     element: Element::Cryo,
     hp: [921, 2366, 3054, 4574, 5063, 5824, 6475, 7236, 7725, 8485, 8974, 9734, 10223, 10984],
     atk: [19, 48, 62, 93, 103, 118, 131, 147, 157, 172, 182, 197, 208, 223],
@@ -57,9 +56,18 @@ pub const CHONGYUN_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Claymore,
     star: 4,
-    skill_name1: "普通攻击·灭邪四式",
-    skill_name2: "灵刃·重华叠霜",
-    skill_name3: "灵刃·云开星落",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·灭邪四式",
+        en: "Normal Attack: Demonbane",
+    ),
+    skill_name2: locale!(
+        zh_cn: "灵刃·重华叠霜",
+        en: "Spirit Blade: Chonghua's Layered Frost",
+    ),
+    skill_name3: locale!(
+        zh_cn: "灵刃·云开星落",
+        en: "Spirit Blade: Cloud-Parting Star",
+    ),
     name_locale: locale!(
         zh_cn: "重云",
         en: "Chongyun",

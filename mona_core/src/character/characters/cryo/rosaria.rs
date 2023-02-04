@@ -59,7 +59,6 @@ pub const ROSARIA_SKILL: RosariaSkillType = RosariaSkillType {
 pub const ROSARIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Rosaria,
     internal_name: "Rosaria",
-    chs: "罗莎莉亚",
     element: Element::Cryo,
     hp: [1030, 2647, 3417, 5118, 5665, 6516, 7245, 8096, 8643, 9493, 10040, 10891, 11438, 12289],
     atk: [20, 52, 67, 100, 111, 127, 141, 158, 169, 185, 196, 213, 223, 240],
@@ -67,9 +66,18 @@ pub const ROSARIA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Polearm,
     star: 4,
-    skill_name1: "普通攻击·教会枪术",
-    skill_name2: "噬罪的告解",
-    skill_name3: "终命的圣礼",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·教会枪术",
+        en: "Normal Attack: Spear of the Church",
+    ),
+    skill_name2: locale!(
+        zh_cn: "噬罪的告解",
+        en: "Ravaging Confession",
+    ),
+    skill_name3: locale!(
+        zh_cn: "终命的圣礼",
+        en: "Rites of Termination",
+    ),
     name_locale: locale!(
         zh_cn: "罗莎莉亚",
         en: "Rosaria",

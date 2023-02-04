@@ -1,0 +1,41 @@
+{{#items}}
+import {{name}} from "{{{path}}}"
+{{/items}}
+
+function create_object(prefix, obj) {
+    if (prefix === "") {
+        return obj
+    } else {
+        let temp = obj
+        const paths = prefix.split(".")
+        const reversed = paths.reverse()
+        for (const s of reversed) {
+            temp = {
+            [s]: temp
+            }
+        }
+        return temp
+    }
+}
+
+function merge_objects(li) {
+    const result = {}
+    for (const item of li) {
+        for (const k of Object.keys(item)) {
+            if (result[k]) {
+                console.log("duplicate key: " + k)
+            } else {
+                result[k] = item[k]
+            }
+        }
+    }
+    return result
+}
+
+const objects = []
+
+{{#items}}
+objects.push(create_object("{{prefix}}", {{name}}))
+{{/items}}
+
+export default merge_objects(objects)

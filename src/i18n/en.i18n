@@ -1,0 +1,10 @@
+[
+    {
+        "path": "./locales/en.js",
+        "prefix": ""
+    },
+    {
+        "path": "./generated/en.json",
+        "prefix": "a"
+    }
+]

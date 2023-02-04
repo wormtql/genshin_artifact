@@ -262,7 +262,7 @@ export default {
     
     AetherAnemo: {
         name: "AetherAnemo",
-        name_locale: 0,
+        name_locale: 189,
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -270,9 +270,9 @@ export default {
         // avatar: AetherAnemo_avatar,
         avatar: getName("PlayerBoy"),
         splash: AetherAnemo_splash,
-        skillName1: "普通攻击·异邦铁风",
-        skillName2: "风涡剑",
-        skillName3: "风息激荡",
+        skillName1: 87,
+        skillName2: 240,
+        skillName3: 239,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -330,7 +330,7 @@ export default {
     
     Albedo: {
         name: "Albedo",
-        name_locale: 1,
+        name_locale: 230,
         element: "Geo",
         weapon: "Sword",
         star: 5,
@@ -338,9 +338,9 @@ export default {
         // avatar: Albedo_avatar,
         avatar: getName("Albedo"),
         splash: Albedo_splash,
-        skillName1: "普通攻击·西风剑术·白",
-        skillName2: "创生法·拟造阳华",
-        skillName3: "诞生式·大地之潮",
+        skillName1: 127,
+        skillName2: 24,
+        skillName3: 212,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -388,7 +388,7 @@ export default {
     
     Alhaitham: {
         name: "Alhaitham",
-        name_locale: 2,
+        name_locale: 199,
         element: "Dendro",
         weapon: "Sword",
         star: 5,
@@ -396,9 +396,9 @@ export default {
         // avatar: Alhaitham_avatar,
         avatar: getName("Alhatham"),
         splash: Alhaitham_splash,
-        skillName1: "",
-        skillName2: "",
-        skillName3: "",
+        skillName1: 103,
+        skillName2: 15,
+        skillName3: 144,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -458,7 +458,7 @@ export default {
     
     Aloy: {
         name: "Aloy",
-        name_locale: 3,
+        name_locale: 44,
         element: "Cryo",
         weapon: "Bow",
         star: 5,
@@ -466,9 +466,9 @@ export default {
         // avatar: Aloy_avatar,
         avatar: getName("Aloy"),
         splash: Aloy_splash,
-        skillName1: "普通攻击·快速射击",
-        skillName2: "冰尘雪野",
-        skillName3: "曙光预言",
+        skillName1: 93,
+        skillName2: 17,
+        skillName3: 138,
         skillMap1: [
             
             { index: 0, text: 23 },
@@ -516,7 +516,7 @@ export default {
     
     Amber: {
         name: "Amber",
-        name_locale: 4,
+        name_locale: 55,
         element: "Pyro",
         weapon: "Bow",
         star: 4,
@@ -524,9 +524,9 @@ export default {
         // avatar: Amber_avatar,
         avatar: getName("Ambor"),
         splash: Amber_splash,
-        skillName1: "普通攻击·神射手",
-        skillName2: "爆弹玩偶",
-        skillName3: "箭雨",
+        skillName1: 116,
+        skillName2: 161,
+        skillName3: 190,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -572,7 +572,7 @@ export default {
     
     AratakiItto: {
         name: "AratakiItto",
-        name_locale: 5,
+        name_locale: 202,
         element: "Geo",
         weapon: "Claymore",
         star: 5,
@@ -580,9 +580,9 @@ export default {
         // avatar: AratakiItto_avatar,
         avatar: getName("Itto"),
         splash: AratakiItto_splash,
-        skillName1: "普通攻击•喧哗屋传说",
-        skillName2: "魔杀绝技•赤牛发破！",
-        skillName3: "最恶鬼王•一斗轰临！！",
+        skillName1: 133,
+        skillName2: 247,
+        skillName3: 139,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -626,7 +626,7 @@ export default {
     
     Barbara: {
         name: "Barbara",
-        name_locale: 6,
+        name_locale: 200,
         element: "Hydro",
         weapon: "Catalyst",
         star: 4,
@@ -634,9 +634,9 @@ export default {
         // avatar: Barbara_avatar,
         avatar: getName("Barbara"),
         splash: Barbara_splash,
-        skillName1: "普通攻击·水之浅唱",
-        skillName2: "演唱，开始♪",
-        skillName3: "闪耀奇迹♪",
+        skillName1: 99,
+        skillName2: 152,
+        skillName3: 229,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -680,7 +680,7 @@ export default {
     
     Beidou: {
         name: "Beidou",
-        name_locale: 7,
+        name_locale: 28,
         element: "Electro",
         weapon: "Claymore",
         star: 4,
@@ -688,9 +688,9 @@ export default {
         // avatar: Beidou_avatar,
         avatar: getName("Beidou"),
         splash: Beidou_splash,
-        skillName1: "普通攻击·征涛",
-        skillName2: "捉浪",
-        skillName3: "斫雷",
+        skillName1: 90,
+        skillName2: 66,
+        skillName3: 68,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -740,7 +740,7 @@ export default {
     
     Bennett: {
         name: "Bennett",
-        name_locale: 8,
+        name_locale: 169,
         element: "Pyro",
         weapon: "Sword",
         star: 4,
@@ -748,9 +748,9 @@ export default {
         // avatar: Bennett_avatar,
         avatar: getName("Bennett"),
         splash: Bennett_splash,
-        skillName1: "普通攻击·好运剑",
-        skillName2: "热情过载",
-        skillName3: "美妙旅程",
+        skillName1: 84,
+        skillName2: 158,
+        skillName3: 194,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -806,7 +806,7 @@ export default {
     
     Candace: {
         name: "Candace",
-        name_locale: 9,
+        name_locale: 42,
         element: "Hydro",
         weapon: "Polearm",
         star: 4,
@@ -814,9 +814,9 @@ export default {
         // avatar: Candace_avatar,
         avatar: getName("Candace"),
         splash: Candace_splash,
-        skillName1: "",
-        skillName2: "",
-        skillName3: "",
+        skillName1: 101,
+        skillName2: 40,
+        skillName3: 38,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -866,7 +866,7 @@ export default {
     
     Chongyun: {
         name: "Chongyun",
-        name_locale: 10,
+        name_locale: 224,
         element: "Cryo",
         weapon: "Claymore",
         star: 4,
@@ -874,9 +874,9 @@ export default {
         // avatar: Chongyun_avatar,
         avatar: getName("Chongyun"),
         splash: Chongyun_splash,
-        skillName1: "普通攻击·灭邪四式",
-        skillName2: "灵刃·重华叠霜",
-        skillName3: "灵刃·云开星落",
+        skillName1: 106,
+        skillName2: 154,
+        skillName3: 153,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -918,7 +918,7 @@ export default {
     
     Collei: {
         name: "Collei",
-        name_locale: 11,
+        name_locale: 143,
         element: "Dendro",
         weapon: "Bow",
         star: 4,
@@ -926,9 +926,9 @@ export default {
         // avatar: Collei_avatar,
         avatar: getName("Collei"),
         splash: Collei_splash,
-        skillName1: "普通攻击·祈颂射艺",
-        skillName2: "拂花偈叶",
-        skillName3: "猫猫秘宝",
+        skillName1: 114,
+        skillName2: 65,
+        skillName3: 165,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -974,7 +974,7 @@ export default {
     
     Cyno: {
         name: "Cyno",
-        name_locale: 12,
+        name_locale: 214,
         element: "Electro",
         weapon: "Polearm",
         star: 5,
@@ -982,9 +982,9 @@ export default {
         // avatar: Cyno_avatar,
         avatar: getName("Cyno"),
         splash: Cyno_splash,
-        skillName1: "普通攻击·七圣枪术",
-        skillName2: "秘仪·律渊渡魂",
-        skillName3: "圣仪·煟煌随狼行",
+        skillName1: 75,
+        skillName2: 188,
+        skillName3: 39,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1050,7 +1050,7 @@ export default {
     
     Diluc: {
         name: "Diluc",
-        name_locale: 13,
+        name_locale: 220,
         element: "Pyro",
         weapon: "Claymore",
         star: 5,
@@ -1058,9 +1058,9 @@ export default {
         // avatar: Diluc_avatar,
         avatar: getName("Diluc"),
         splash: Diluc_splash,
-        skillName1: "普通攻击·淬炼之剑",
-        skillName2: "逆焰之刃",
-        skillName3: "黎明",
+        skillName1: 102,
+        skillName2: 222,
+        skillName3: 251,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1112,7 +1112,7 @@ export default {
     
     Diona: {
         name: "Diona",
-        name_locale: 14,
+        name_locale: 221,
         element: "Cryo",
         weapon: "Bow",
         star: 4,
@@ -1120,9 +1120,9 @@ export default {
         // avatar: Diona_avatar,
         avatar: getName("Diona"),
         splash: Diona_splash,
-        skillName1: "普通攻击·猎人射术",
-        skillName2: "猫爪冻冻",
-        skillName3: "最烈特调",
+        skillName1: 111,
+        skillName2: 164,
+        skillName3: 140,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1170,7 +1170,7 @@ export default {
     
     Dori: {
         name: "Dori",
-        name_locale: 15,
+        name_locale: 45,
         element: "Electro",
         weapon: "Claymore",
         star: 4,
@@ -1178,9 +1178,9 @@ export default {
         // avatar: Dori_avatar,
         avatar: getName("Dori"),
         splash: Dori_splash,
-        skillName1: "",
-        skillName2: "",
-        skillName3: "",
+        skillName1: 85,
+        skillName2: 228,
+        skillName3: 30,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1228,7 +1228,7 @@ export default {
     
     Eula: {
         name: "Eula",
-        name_locale: 16,
+        name_locale: 13,
         element: "Cryo",
         weapon: "Claymore",
         star: 5,
@@ -1236,9 +1236,9 @@ export default {
         // avatar: Eula_avatar,
         avatar: getName("Eula"),
         splash: Eula_splash,
-        skillName1: "普通攻击·西风剑术·宗室",
-        skillName2: "冰潮的涡旋",
-        skillName3: "凝浪之光剑",
+        skillName1: 126,
+        skillName2: 18,
+        skillName3: 21,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1296,7 +1296,7 @@ export default {
     
     Faruzan: {
         name: "Faruzan",
-        name_locale: 17,
+        name_locale: 168,
         element: "Anemo",
         weapon: "Bow",
         star: 4,
@@ -1304,9 +1304,9 @@ export default {
         // avatar: Faruzan_avatar,
         avatar: getName("Faruzan"),
         splash: Faruzan_splash,
-        skillName1: "普通攻击·迴身箭术",
-        skillName2: "非想风天",
-        skillName3: "抟风秘道",
+        skillName1: 129,
+        skillName2: 237,
+        skillName3: 63,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1354,7 +1354,7 @@ export default {
     
     Fischl: {
         name: "Fischl",
-        name_locale: 18,
+        name_locale: 205,
         element: "Electro",
         weapon: "Bow",
         star: 4,
@@ -1362,9 +1362,9 @@ export default {
         // avatar: Fischl_avatar,
         avatar: getName("Fischl"),
         splash: Fischl_splash,
-        skillName1: "普通攻击·罪灭之矢",
-        skillName2: "夜巡影翼",
-        skillName3: "至夜幻现",
+        skillName1: 120,
+        skillName2: 47,
+        skillName3: 198,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1410,7 +1410,7 @@ export default {
     
     Ganyu: {
         name: "Ganyu",
-        name_locale: 19,
+        name_locale: 174,
         element: "Cryo",
         weapon: "Bow",
         star: 5,
@@ -1418,9 +1418,9 @@ export default {
         // avatar: Ganyu_avatar,
         avatar: getName("Ganyu"),
         splash: Ganyu_splash,
-        skillName1: "普通攻击·流天射术",
-        skillName2: "山泽麟迹",
-        skillName3: "降众天华",
+        skillName1: 100,
+        skillName2: 58,
+        skillName3: 231,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1474,7 +1474,7 @@ export default {
     
     Gorou: {
         name: "Gorou",
-        name_locale: 20,
+        name_locale: 9,
         element: "Geo",
         weapon: "Bow",
         star: 4,
@@ -1482,9 +1482,9 @@ export default {
         // avatar: Gorou_avatar,
         avatar: getName("Gorou"),
         splash: Gorou_splash,
-        skillName1: "普通攻击•呲牙裂扇箭",
-        skillName2: "犬坂吠吠方圆阵",
-        skillName3: "兽牙逐突形胜战法",
+        skillName1: 132,
+        skillName2: 162,
+        skillName3: 16,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1528,7 +1528,7 @@ export default {
     
     HuTao: {
         name: "HuTao",
-        name_locale: 21,
+        name_locale: 197,
         element: "Pyro",
         weapon: "Polearm",
         star: 5,
@@ -1536,9 +1536,9 @@ export default {
         // avatar: HuTao_avatar,
         avatar: getName("Hutao"),
         splash: HuTao_splash,
-        skillName1: "普通攻击·往生秘传枪法",
-        skillName2: "蝶引来生",
-        skillName3: "安神秘法",
+        skillName1: 89,
+        skillName2: 209,
+        skillName3: 56,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1590,7 +1590,7 @@ export default {
     
     Jean: {
         name: "Jean",
-        name_locale: 22,
+        name_locale: 171,
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -1598,9 +1598,9 @@ export default {
         // avatar: Jean_avatar,
         avatar: getName("Qin"),
         splash: Jean_splash,
-        skillName1: "普通攻击·西风剑术",
-        skillName2: "风压剑",
-        skillName3: "蒲公英之风",
+        skillName1: 124,
+        skillName2: 238,
+        skillName3: 207,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1648,7 +1648,7 @@ export default {
     
     KaedeharaKazuha: {
         name: "KaedeharaKazuha",
-        name_locale: 23,
+        name_locale: 142,
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -1656,9 +1656,9 @@ export default {
         // avatar: KaedeharaKazuha_avatar,
         avatar: getName("Kazuha"),
         splash: KaedeharaKazuha_splash,
-        skillName1: "普通攻击·我流剑术",
-        skillName2: "千早振",
-        skillName3: "万叶之一刀",
+        skillName1: 94,
+        skillName2: 29,
+        skillName3: 2,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1732,7 +1732,7 @@ export default {
     
     Kaeya: {
         name: "Kaeya",
-        name_locale: 24,
+        name_locale: 23,
         element: "Cryo",
         weapon: "Sword",
         star: 4,
@@ -1740,9 +1740,9 @@ export default {
         // avatar: Kaeya_avatar,
         avatar: getName("Kaeya"),
         splash: Kaeya_splash,
-        skillName1: "普通攻击·仪典剑术",
-        skillName2: "霜袭",
-        skillName3: "凛冽轮舞",
+        skillName1: 79,
+        skillName2: 235,
+        skillName3: 19,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1786,7 +1786,7 @@ export default {
     
     KamisatoAyaka: {
         name: "KamisatoAyaka",
-        name_locale: 25,
+        name_locale: 186,
         element: "Cryo",
         weapon: "Sword",
         star: 5,
@@ -1794,9 +1794,9 @@ export default {
         // avatar: KamisatoAyaka_avatar,
         avatar: getName("Ayaka"),
         splash: KamisatoAyaka_splash,
-        skillName1: "普通攻击·神里流·倾",
-        skillName2: "神里流·冰华",
-        skillName3: "神里流·霜灭",
+        skillName1: 117,
+        skillName2: 181,
+        skillName3: 184,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1848,7 +1848,7 @@ export default {
     
     KamisatoAyato: {
         name: "KamisatoAyato",
-        name_locale: 26,
+        name_locale: 185,
         element: "Hydro",
         weapon: "Sword",
         star: 5,
@@ -1856,9 +1856,9 @@ export default {
         // avatar: KamisatoAyato_avatar,
         avatar: getName("Ayato"),
         splash: KamisatoAyato_splash,
-        skillName1: "普通攻击·神里流·转",
-        skillName2: "神里流·镜花",
-        skillName3: "神里流·水囿",
+        skillName1: 118,
+        skillName2: 183,
+        skillName3: 182,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1910,7 +1910,7 @@ export default {
     
     Keqing: {
         name: "Keqing",
-        name_locale: 27,
+        name_locale: 26,
         element: "Electro",
         weapon: "Sword",
         star: 5,
@@ -1918,9 +1918,9 @@ export default {
         // avatar: Keqing_avatar,
         avatar: getName("Keqing"),
         splash: Keqing_splash,
-        skillName1: "普通攻击·云来剑法",
-        skillName2: "星斗归位",
-        skillName3: "天街巡游",
+        skillName1: 77,
+        skillName2: 73,
+        skillName3: 52,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -1978,7 +1978,7 @@ export default {
     
     Klee: {
         name: "Klee",
-        name_locale: 28,
+        name_locale: 34,
         element: "Pyro",
         weapon: "Catalyst",
         star: 5,
@@ -1986,9 +1986,9 @@ export default {
         // avatar: Klee_avatar,
         avatar: getName("Klee"),
         splash: Klee_splash,
-        skillName1: "普通攻击·砰砰",
-        skillName2: "蹦蹦炸弹",
-        skillName3: "轰轰火花",
+        skillName1: 113,
+        skillName2: 216,
+        skillName3: 217,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2030,7 +2030,7 @@ export default {
     
     KujouSara: {
         name: "KujouSara",
-        name_locale: 29,
+        name_locale: 6,
         element: "Electro",
         weapon: "Bow",
         star: 4,
@@ -2038,9 +2038,9 @@ export default {
         // avatar: KujouSara_avatar,
         avatar: getName("Sara"),
         splash: KujouSara_splash,
-        skillName1: "普通攻击•天狗传弓术",
-        skillName2: "鸦羽天狗霆雷召咒",
-        skillName3: "煌煌千道镇式",
+        skillName1: 134,
+        skillName2: 249,
+        skillName3: 160,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2086,7 +2086,7 @@ export default {
     
     KukiShinobu: {
         name: "KukiShinobu",
-        name_locale: 30,
+        name_locale: 5,
         element: "Electro",
         weapon: "Sword",
         star: 4,
@@ -2094,9 +2094,9 @@ export default {
         // avatar: KukiShinobu_avatar,
         avatar: getName("Shinobu"),
         splash: KukiShinobu_splash,
-        skillName1: "普通攻击·忍流飞刃斩",
-        skillName2: "越祓雷草之轮",
-        skillName3: "御咏鸣神刈山祭",
+        skillName1: 92,
+        skillName2: 215,
+        skillName3: 59,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2152,7 +2152,7 @@ export default {
     
     Layla: {
         name: "Layla",
-        name_locale: 31,
+        name_locale: 204,
         element: "Cryo",
         weapon: "Sword",
         star: 4,
@@ -2160,9 +2160,9 @@ export default {
         // avatar: Layla_avatar,
         avatar: getName("Layla"),
         splash: Layla_splash,
-        skillName1: "",
-        skillName2: "",
-        skillName3: "",
+        skillName1: 109,
+        skillName2: 43,
+        skillName3: 74,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2204,7 +2204,7 @@ export default {
     
     Lisa: {
         name: "Lisa",
-        name_locale: 32,
+        name_locale: 4,
         element: "Electro",
         weapon: "Catalyst",
         star: 4,
@@ -2212,9 +2212,9 @@ export default {
         // avatar: Lisa_avatar,
         avatar: getName("Lisa"),
         splash: Lisa_splash,
-        skillName1: "普通攻击·指尖雷暴",
-        skillName2: "苍雷",
-        skillName3: "蔷薇的雷光",
+        skillName1: 96,
+        skillName2: 201,
+        skillName3: 208,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2262,7 +2262,7 @@ export default {
     
     Mona: {
         name: "Mona",
-        name_locale: 33,
+        name_locale: 203,
         element: "Hydro",
         weapon: "Catalyst",
         star: 5,
@@ -2270,9 +2270,9 @@ export default {
         // avatar: Mona_avatar,
         avatar: getName("Mona"),
         splash: Mona_splash,
-        skillName1: "普通攻击·因果点破",
-        skillName2: "水中幻愿",
-        skillName3: "星命定轨",
+        skillName1: 83,
+        skillName2: 145,
+        skillName3: 72,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2314,7 +2314,7 @@ export default {
     
     Nahida: {
         name: "Nahida",
-        name_locale: 34,
+        name_locale: 191,
         element: "Dendro",
         weapon: "Catalyst",
         star: 5,
@@ -2322,9 +2322,9 @@ export default {
         // avatar: Nahida_avatar,
         avatar: getName("Nahida"),
         splash: Nahida_splash,
-        skillName1: "",
-        skillName2: "",
-        skillName3: "",
+        skillName1: 123,
+        skillName2: 61,
+        skillName3: 60,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2372,7 +2372,7 @@ export default {
     
     Nilou: {
         name: "Nilou",
-        name_locale: 35,
+        name_locale: 54,
         element: "Hydro",
         weapon: "Sword",
         star: 5,
@@ -2380,9 +2380,9 @@ export default {
         // avatar: Nilou_avatar,
         avatar: getName("Nilou"),
         splash: Nilou_splash,
-        skillName1: "",
-        skillName2: "",
-        skillName3: "",
+        skillName1: 88,
+        skillName2: 1,
+        skillName3: 147,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2438,7 +2438,7 @@ export default {
     
     Ningguang: {
         name: "Ningguang",
-        name_locale: 36,
+        name_locale: 20,
         element: "Geo",
         weapon: "Catalyst",
         star: 4,
@@ -2446,9 +2446,9 @@ export default {
         // avatar: Ningguang_avatar,
         avatar: getName("Ningguang"),
         splash: Ningguang_splash,
-        skillName1: "普通攻击·千金掷",
-        skillName2: "璇玑屏",
-        skillName3: "天权崩玉",
+        skillName1: 80,
+        skillName2: 173,
+        skillName3: 51,
         skillMap1: [
             
             { index: 0, text: 122 },
@@ -2486,7 +2486,7 @@ export default {
     
     Noelle: {
         name: "Noelle",
-        name_locale: 37,
+        name_locale: 213,
         element: "Geo",
         weapon: "Claymore",
         star: 4,
@@ -2494,9 +2494,9 @@ export default {
         // avatar: Noelle_avatar,
         avatar: getName("Noel"),
         splash: Noelle_splash,
-        skillName1: "普通攻击·西风剑术·女仆",
-        skillName2: "护心铠",
-        skillName3: "大扫除",
+        skillName1: 125,
+        skillName2: 64,
+        skillName3: 49,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2544,7 +2544,7 @@ export default {
     
     Qiqi: {
         name: "Qiqi",
-        name_locale: 38,
+        name_locale: 0,
         element: "Cryo",
         weapon: "Sword",
         star: 5,
@@ -2552,9 +2552,9 @@ export default {
         // avatar: Qiqi_avatar,
         avatar: getName("Qiqi"),
         splash: Qiqi_splash,
-        skillName1: "普通攻击·云来古剑法",
-        skillName2: "仙法·寒病鬼差",
-        skillName3: "仙法·救苦度厄",
+        skillName1: 78,
+        skillName2: 10,
+        skillName3: 11,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2610,7 +2610,7 @@ export default {
     
     RaidenShogun: {
         name: "RaidenShogun",
-        name_locale: 39,
+        name_locale: 234,
         element: "Electro",
         weapon: "Polearm",
         star: 5,
@@ -2618,9 +2618,9 @@ export default {
         // avatar: RaidenShogun_avatar,
         avatar: getName("Shougun"),
         splash: RaidenShogun_splash,
-        skillName1: "普通攻击•源流",
-        skillName2: "神变•恶曜开眼",
-        skillName3: "奥义•梦想真说",
+        skillName1: 136,
+        skillName2: 179,
+        skillName3: 53,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2692,7 +2692,7 @@ export default {
     
     Razor: {
         name: "Razor",
-        name_locale: 40,
+        name_locale: 232,
         element: "Electro",
         weapon: "Claymore",
         star: 4,
@@ -2700,9 +2700,9 @@ export default {
         // avatar: Razor_avatar,
         avatar: getName("Razor"),
         splash: Razor_splash,
-        skillName1: "普通攻击·钢脊",
-        skillName2: "利爪与苍雷",
-        skillName3: "雷牙",
+        skillName1: 130,
+        skillName2: 25,
+        skillName3: 233,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2758,7 +2758,7 @@ export default {
     
     Rosaria: {
         name: "Rosaria",
-        name_locale: 41,
+        name_locale: 193,
         element: "Cryo",
         weapon: "Polearm",
         star: 4,
@@ -2766,9 +2766,9 @@ export default {
         // avatar: Rosaria_avatar,
         avatar: getName("Rosaria"),
         splash: Rosaria_splash,
-        skillName1: "普通攻击·教会枪术",
-        skillName2: "噬罪的告解",
-        skillName3: "终命的圣礼",
+        skillName1: 97,
+        skillName2: 37,
+        skillName3: 192,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2820,7 +2820,7 @@ export default {
     
     SangonomiyaKokomi: {
         name: "SangonomiyaKokomi",
-        name_locale: 42,
+        name_locale: 167,
         element: "Hydro",
         weapon: "Catalyst",
         star: 5,
@@ -2828,9 +2828,9 @@ export default {
         // avatar: SangonomiyaKokomi_avatar,
         avatar: getName("Kokomi"),
         splash: SangonomiyaKokomi_splash,
-        skillName1: "普通攻击•水有常形",
-        skillName2: "海月之誓",
-        skillName3: "海人化羽",
+        skillName1: 135,
+        skillName2: 149,
+        skillName3: 148,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2874,7 +2874,7 @@ export default {
     
     Sayu: {
         name: "Sayu",
-        name_locale: 43,
+        name_locale: 71,
         element: "Anemo",
         weapon: "Claymore",
         star: 4,
@@ -2882,9 +2882,9 @@ export default {
         // avatar: Sayu_avatar,
         avatar: getName("Sayu"),
         splash: Sayu_splash,
-        skillName1: "普通攻击·忍刀·终末番",
-        skillName2: "呜呼流·风隐急进",
-        skillName3: "呜呼流·影貉缭乱",
+        skillName1: 91,
+        skillName2: 36,
+        skillName3: 35,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -2954,7 +2954,7 @@ export default {
     
     Shenhe: {
         name: "Shenhe",
-        name_locale: 44,
+        name_locale: 175,
         element: "Cryo",
         weapon: "Polearm",
         star: 5,
@@ -2962,9 +2962,9 @@ export default {
         // avatar: Shenhe_avatar,
         avatar: getName("Shenhe"),
         splash: Shenhe_splash,
-        skillName1: "普通攻击•踏辰摄斗",
-        skillName2: "仰灵威召将役咒",
-        skillName3: "神女遣灵真诀",
+        skillName1: 137,
+        skillName2: 12,
+        skillName3: 180,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3012,7 +3012,7 @@ export default {
     
     ShikanoinHeizou: {
         name: "ShikanoinHeizou",
-        name_locale: 45,
+        name_locale: 250,
         element: "Anemo",
         weapon: "Catalyst",
         star: 4,
@@ -3020,9 +3020,9 @@ export default {
         // avatar: ShikanoinHeizou_avatar,
         avatar: getName("Heizo"),
         splash: ShikanoinHeizou_splash,
-        skillName1: "普通攻击·不动流格斗术",
-        skillName2: "勠心拳",
-        skillName3: "聚风蹴",
+        skillName1: 76,
+        skillName2: 27,
+        skillName3: 196,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3086,7 +3086,7 @@ export default {
     
     Sucrose: {
         name: "Sucrose",
-        name_locale: 46,
+        name_locale: 177,
         element: "Anemo",
         weapon: "Catalyst",
         star: 4,
@@ -3094,9 +3094,9 @@ export default {
         // avatar: Sucrose_avatar,
         avatar: getName("Sucrose"),
         splash: Sucrose_splash,
-        skillName1: "普通攻击·简式风灵作成",
-        skillName2: "风灵作成·陆叁零捌",
-        skillName3: "禁·风灵作成·柒伍同构贰型",
+        skillName1: 119,
+        skillName2: 241,
+        skillName3: 187,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3144,7 +3144,7 @@ export default {
     
     Tartaglia: {
         name: "Tartaglia",
-        name_locale: 47,
+        name_locale: 219,
         element: "Hydro",
         weapon: "Bow",
         star: 5,
@@ -3152,9 +3152,9 @@ export default {
         // avatar: Tartaglia_avatar,
         avatar: getName("Tartaglia"),
         splash: Tartaglia_splash,
-        skillName1: "普通攻击·断雨",
-        skillName2: "魔王武装·狂澜",
-        skillName3: "极恶技·尽灭闪",
+        skillName1: 98,
+        skillName2: 248,
+        skillName3: 141,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3228,7 +3228,7 @@ export default {
     
     Thoma: {
         name: "Thoma",
-        name_locale: 48,
+        name_locale: 62,
         element: "Pyro",
         weapon: "Polearm",
         star: 4,
@@ -3236,9 +3236,9 @@ export default {
         // avatar: Thoma_avatar,
         avatar: getName("Tohma"),
         splash: Thoma_splash,
-        skillName1: "普通攻击·迅破枪势",
-        skillName2: "烈烧佑命之侍护",
-        skillName3: "真红炽火之大铠",
+        skillName1: 128,
+        skillName2: 155,
+        skillName3: 176,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3280,7 +3280,7 @@ export default {
     
     Tighnari: {
         name: "Tighnari",
-        name_locale: 49,
+        name_locale: 67,
         element: "Dendro",
         weapon: "Bow",
         star: 5,
@@ -3288,9 +3288,9 @@ export default {
         // avatar: Tighnari_avatar,
         avatar: getName("Tighnari"),
         splash: Tighnari_splash,
-        skillName1: "普通攻击·藏蕴破障",
-        skillName2: "识果种雷",
-        skillName3: "造生缠藤箭",
+        skillName1: 121,
+        skillName2: 211,
+        skillName3: 223,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3342,7 +3342,7 @@ export default {
     
     Venti: {
         name: "Venti",
-        name_locale: 50,
+        name_locale: 151,
         element: "Anemo",
         weapon: "Bow",
         star: 5,
@@ -3350,9 +3350,9 @@ export default {
         // avatar: Venti_avatar,
         avatar: getName("Venti"),
         splash: Venti_splash,
-        skillName1: "普通攻击·神代射术",
-        skillName2: "高天之歌",
-        skillName3: "风神之诗",
+        skillName1: 115,
+        skillName2: 245,
+        skillName3: 242,
         skillMap1: [
             
             { index: 0, text: 23 },
@@ -3412,7 +3412,7 @@ export default {
     
     Wanderer: {
         name: "Wanderer",
-        name_locale: 51,
+        name_locale: 146,
         element: "Anemo",
         weapon: "Catalyst",
         star: 5,
@@ -3420,9 +3420,9 @@ export default {
         // avatar: Wanderer_avatar,
         avatar: getName("Wanderer"),
         splash: Wanderer_splash,
-        skillName1: "普通攻击·行幡鸣弦",
-        skillName2: "羽画·风姿华歌",
-        skillName3: "狂言·式乐五番",
+        skillName1: 122,
+        skillName2: 195,
+        skillName3: 163,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3478,7 +3478,7 @@ export default {
     
     Xiangling: {
         name: "Xiangling",
-        name_locale: 52,
+        name_locale: 244,
         element: "Pyro",
         weapon: "Polearm",
         star: 4,
@@ -3486,9 +3486,9 @@ export default {
         // avatar: Xiangling_avatar,
         avatar: getName("Xiangling"),
         splash: Xiangling_splash,
-        skillName1: "普通攻击·白案功夫",
-        skillName2: "锅巴出击",
-        skillName3: "旋火轮",
+        skillName1: 112,
+        skillName2: 227,
+        skillName3: 70,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3538,7 +3538,7 @@ export default {
     
     Xiao: {
         name: "Xiao",
-        name_locale: 53,
+        name_locale: 246,
         element: "Anemo",
         weapon: "Polearm",
         star: 5,
@@ -3546,9 +3546,9 @@ export default {
         // avatar: Xiao_avatar,
         avatar: getName("Xiao"),
         splash: Xiao_splash,
-        skillName1: "普通攻击·卷积微尘",
-        skillName2: "风轮两立",
-        skillName3: "靖妖傩舞",
+        skillName1: 81,
+        skillName2: 243,
+        skillName3: 236,
         skillMap1: [
             
             { index: 0, text: 23 },
@@ -3600,7 +3600,7 @@ export default {
     
     Xingqiu: {
         name: "Xingqiu",
-        name_locale: 54,
+        name_locale: 210,
         element: "Hydro",
         weapon: "Sword",
         star: 4,
@@ -3608,9 +3608,9 @@ export default {
         // avatar: Xingqiu_avatar,
         avatar: getName("Xingqiu"),
         splash: Xingqiu_splash,
-        skillName1: "普通攻击·古华剑法",
-        skillName2: "古华剑·画雨笼山",
-        skillName3: "古华剑·裁雨留虹",
+        skillName1: 82,
+        skillName2: 32,
+        skillName3: 33,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3662,7 +3662,7 @@ export default {
     
     Xinyan: {
         name: "Xinyan",
-        name_locale: 55,
+        name_locale: 218,
         element: "Pyro",
         weapon: "Claymore",
         star: 4,
@@ -3670,9 +3670,9 @@ export default {
         // avatar: Xinyan_avatar,
         avatar: getName("Xinyan"),
         splash: Xinyan_splash,
-        skillName1: "普通攻击·炎舞",
-        skillName2: "热情拂扫",
-        skillName3: "叛逆刮弦",
+        skillName1: 107,
+        skillName2: 157,
+        skillName3: 31,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3720,7 +3720,7 @@ export default {
     
     YaeMiko: {
         name: "YaeMiko",
-        name_locale: 56,
+        name_locale: 14,
         element: "Electro",
         weapon: "Catalyst",
         star: 5,
@@ -3728,9 +3728,9 @@ export default {
         // avatar: YaeMiko_avatar,
         avatar: getName("Yae"),
         splash: YaeMiko_splash,
-        skillName1: "普通攻击·狐灵食罪式",
-        skillName2: "野干役咒·杀生樱",
-        skillName3: "大密法·天狐显真",
+        skillName1: 110,
+        skillName2: 225,
+        skillName3: 48,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3776,7 +3776,7 @@ export default {
     
     Yanfei: {
         name: "Yanfei",
-        name_locale: 57,
+        name_locale: 156,
         element: "Pyro",
         weapon: "Catalyst",
         star: 4,
@@ -3784,9 +3784,9 @@ export default {
         // avatar: Yanfei_avatar,
         avatar: getName("Feiyan"),
         splash: Yanfei_splash,
-        skillName1: "普通攻击·火漆制印",
-        skillName2: "丹书立约",
-        skillName3: "凭此结契",
+        skillName1: 105,
+        skillName2: 3,
+        skillName3: 22,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3836,7 +3836,7 @@ export default {
     
     Yaoyao: {
         name: "Yaoyao",
-        name_locale: 58,
+        name_locale: 172,
         element: "Dendro",
         weapon: "Polearm",
         star: 4,
@@ -3844,9 +3844,9 @@ export default {
         // avatar: Yaoyao_avatar,
         avatar: getName("Yaoyao"),
         splash: Yaoyao_splash,
-        skillName1: "",
-        skillName2: "",
-        skillName3: "",
+        skillName1: 131,
+        skillName2: 7,
+        skillName3: 166,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3896,7 +3896,7 @@ export default {
     
     Yelan: {
         name: "Yelan",
-        name_locale: 59,
+        name_locale: 46,
         element: "Hydro",
         weapon: "Bow",
         star: 5,
@@ -3904,9 +3904,9 @@ export default {
         // avatar: Yelan_avatar,
         avatar: getName("Yelan"),
         splash: Yelan_splash,
-        skillName1: "普通攻击·潜形隐曜弓",
-        skillName2: "萦络纵命索",
-        skillName3: "渊图玲珑骰",
+        skillName1: 104,
+        skillName2: 206,
+        skillName3: 150,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -3954,7 +3954,7 @@ export default {
     
     Yoimiya: {
         name: "Yoimiya",
-        name_locale: 60,
+        name_locale: 57,
         element: "Pyro",
         weapon: "Bow",
         star: 5,
@@ -3962,9 +3962,9 @@ export default {
         // avatar: Yoimiya_avatar,
         avatar: getName("Yoimiya"),
         splash: Yoimiya_splash,
-        skillName1: "普通攻击·烟火打扬",
-        skillName2: "焰硝庭火舞",
-        skillName3: "琉金云间草",
+        skillName1: 108,
+        skillName2: 159,
+        skillName3: 170,
         skillMap1: [
             
             { index: 0, text: 196 },
@@ -4014,7 +4014,7 @@ export default {
     
     Yunjin: {
         name: "Yunjin",
-        name_locale: 61,
+        name_locale: 8,
         element: "Geo",
         weapon: "Polearm",
         star: 4,
@@ -4022,9 +4022,9 @@ export default {
         // avatar: Yunjin_avatar,
         avatar: getName("Yunjin"),
         splash: Yunjin_splash,
-        skillName1: "普通攻击·拂云出手",
-        skillName2: "旋云开相",
-        skillName3: "破嶂见旌仪",
+        skillName1: 95,
+        skillName2: 69,
+        skillName3: 178,
         skillMap1: [
             
             { index: 0, text: 0 },
@@ -4074,7 +4074,7 @@ export default {
     
     Zhongli: {
         name: "Zhongli",
-        name_locale: 62,
+        name_locale: 226,
         element: "Geo",
         weapon: "Polearm",
         star: 5,
@@ -4082,9 +4082,9 @@ export default {
         // avatar: Zhongli_avatar,
         avatar: getName("Zhongli"),
         splash: Zhongli_splash,
-        skillName1: "普通攻击·岩雨",
-        skillName2: "地心",
-        skillName3: "天星",
+        skillName1: 86,
+        skillName2: 41,
+        skillName3: 50,
         skillMap1: [
             
             { index: 0, text: 0 },

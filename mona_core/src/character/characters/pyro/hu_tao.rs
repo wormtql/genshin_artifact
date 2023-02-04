@@ -65,7 +65,6 @@ pub const HU_TAO_SKILL: HuTaoSkillType = HuTaoSkillType {
 pub const HU_TAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::HuTao,
     internal_name: "Hutao",
-    chs: "胡桃",
     element: Element::Pyro,
     hp: [1211, 3141, 4179, 6253, 6990, 8042, 9026, 10089, 10826, 11899, 12637, 13721, 14459, 15552],
     atk: [8, 21, 29, 43, 48, 55, 62, 69, 74, 81, 86, 94, 99, 106],
@@ -73,9 +72,18 @@ pub const HU_TAO_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::CriticalDamage384,
     weapon_type: WeaponType::Polearm,
     star: 5,
-    skill_name1: "普通攻击·往生秘传枪法",
-    skill_name2: "蝶引来生",
-    skill_name3: "安神秘法",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·往生秘传枪法",
+        en: "Normal Attack: Secret Spear of Wangsheng",
+    ),
+    skill_name2: locale!(
+        zh_cn: "蝶引来生",
+        en: "Guide to Afterlife",
+    ),
+    skill_name3: locale!(
+        zh_cn: "安神秘法",
+        en: "Spirit Soother",
+    ),
     name_locale: locale!(
         zh_cn: "胡桃",
         en: "Hu Tao",

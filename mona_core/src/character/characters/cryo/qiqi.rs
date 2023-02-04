@@ -70,7 +70,6 @@ pub const QIQI_SKILL: QiqiSkillType = QiqiSkillType {
 pub const QIQI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Qiqi,
     internal_name: "Qiqi",
-    chs: "七七",
     element: Element::Cryo,
     hp: [963, 2498, 3323, 4973, 5559, 6396, 7178, 8023, 8610, 9463, 10050, 10912, 11499, 12368],
     atk: [22, 58, 77, 115, 129, 148, 167, 186, 200, 220, 233, 253, 267, 287],
@@ -78,9 +77,18 @@ pub const QIQI_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::HealingBonus222,
     weapon_type: WeaponType::Sword,
     star: 5,
-    skill_name1: "普通攻击·云来古剑法",
-    skill_name2: "仙法·寒病鬼差",
-    skill_name3: "仙法·救苦度厄",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·云来古剑法",
+        en: "Normal Attack: Ancient Sword Art",
+    ),
+    skill_name2: locale!(
+        zh_cn: "仙法·寒病鬼差",
+        en: "Adeptus Art: Herald of Frost",
+    ),
+    skill_name3: locale!(
+        zh_cn: "仙法·救苦度厄",
+        en: "Adeptus Art: Preserver of Fortune",
+    ),
     name_locale: locale!(
         zh_cn: "七七",
         en: "Qiqi",

@@ -55,7 +55,6 @@ pub const AMBER_SKILL: AmberSkillType = AmberSkillType {
 pub const AMBER_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Amber,
     internal_name: "Ambor",
-    chs: "安柏",
     element: Element::Pyro,
     hp: [793, 2038, 2630, 3940, 4361, 5016, 5578, 6233, 6654, 7309, 7730, 8358, 8806, 9461],
     atk: [19, 48, 62, 93, 103, 118, 131, 147, 157, 172, 182, 198, 208, 223],
@@ -63,9 +62,18 @@ pub const AMBER_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Bow,
     star: 4,
-    skill_name1: "普通攻击·神射手",
-    skill_name2: "爆弹玩偶",
-    skill_name3: "箭雨",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·神射手",
+        en: "Normal Attack: Sharpshooter",
+    ),
+    skill_name2: locale!(
+        zh_cn: "爆弹玩偶",
+        en: "Explosive Puppet",
+    ),
+    skill_name3: locale!(
+        zh_cn: "箭雨",
+        en: "Fiery Rain",
+    ),
     name_locale: locale!(
         zh_cn: "安柏",
         en: "Amber",

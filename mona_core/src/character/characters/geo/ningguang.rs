@@ -46,7 +46,6 @@ pub const NINGGUANG_SKILL: NingguangSkillType = NingguangSkillType {
 pub const NINGGUANG_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Ningguang,
     internal_name: "Ningguang",
-    chs: "凝光",
     element: Element::Geo,
     hp: [821, 2108, 2721, 4076, 4512, 5189, 5770, 6448, 6884, 7561, 7996, 8674, 9110, 9787],
     atk: [18, 46, 59, 88, 98, 113, 125, 140, 149, 164, 174, 188, 198, 212],
@@ -54,9 +53,18 @@ pub const NINGGUANG_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus240(StatName::GeoBonus),
     weapon_type: WeaponType::Catalyst,
     star: 4,
-    skill_name1: "普通攻击·千金掷",
-    skill_name2: "璇玑屏",
-    skill_name3: "天权崩玉",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·千金掷",
+        en: "Normal Attack: Sparkling Scatter",
+    ),
+    skill_name2: locale!(
+        zh_cn: "璇玑屏",
+        en: "Jade Screen",
+    ),
+    skill_name3: locale!(
+        zh_cn: "天权崩玉",
+        en: "Starshatter",
+    ),
     name_locale: locale!(
         zh_cn: "凝光",
         en: "Ningguang",

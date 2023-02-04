@@ -62,7 +62,6 @@ pub const THOMA_SKILL: ThomaSkillType = ThomaSkillType {
 pub const THOMA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Thoma,
     internal_name: "Tohma",
-    chs: "托马",
     element: Element::Pyro,
     hp: [866, 2225, 2872, 4302, 4762, 5478, 6091, 6806, 7266, 7981, 8440, 9156, 9616, 10331],
     atk: [17, 43, 56, 84, 93, 107, 119, 133, 142, 156, 165, 179, 188, 202],
@@ -70,9 +69,18 @@ pub const THOMA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Polearm,
     star: 4,
-    skill_name1: "普通攻击·迅破枪势",
-    skill_name2: "烈烧佑命之侍护",
-    skill_name3: "真红炽火之大铠",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·迅破枪势",
+        en: "Normal Attack: Swiftshatter Spear",
+    ),
+    skill_name2: locale!(
+        zh_cn: "烈烧佑命之侍护",
+        en: "Blazing Blessing",
+    ),
+    skill_name3: locale!(
+        zh_cn: "真红炽火之大铠",
+        en: "Crimson Ooyoroi",
+    ),
     name_locale: locale!(
         zh_cn: "托马",
         en: "Thoma",

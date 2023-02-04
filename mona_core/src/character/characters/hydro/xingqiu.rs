@@ -60,7 +60,6 @@ pub const XINGQIU_SKILL: XingqiuSkillType = XingqiuSkillType {
 pub const XINGQIU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Xingqiu,
     internal_name: "Xingqiu",
-    chs: "行秋",
     element: Element::Hydro,
     hp: [857, 2202, 2842, 4257, 4712, 5420, 6027, 6735, 7190, 7897, 8352, 9060, 9514, 10222],
     atk: [17, 43, 56, 84, 93, 107, 119, 133, 142, 156, 165, 179, 188, 202],
@@ -68,9 +67,18 @@ pub const XINGQIU_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ATK240,
     weapon_type: WeaponType::Sword,
     star: 4,
-    skill_name1: "普通攻击·古华剑法",
-    skill_name2: "古华剑·画雨笼山",
-    skill_name3: "古华剑·裁雨留虹",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·古华剑法",
+        en: "Normal Attack: Guhua Style",
+    ),
+    skill_name2: locale!(
+        zh_cn: "古华剑·画雨笼山",
+        en: "Guhua Sword: Fatal Rainscreen",
+    ),
+    skill_name3: locale!(
+        zh_cn: "古华剑·裁雨留虹",
+        en: "Guhua Sword: Raincutter",
+    ),
     name_locale: locale!(
         zh_cn: "行秋",
         en: "Xingqiu",

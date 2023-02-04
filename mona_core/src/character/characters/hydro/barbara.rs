@@ -57,7 +57,6 @@ pub const BARBARA_SKILL: BarbaraSkillType = BarbaraSkillType {
 pub const BARBARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Barbara,
     internal_name: "Barbara",
-    chs: "芭芭拉",
     element: Element::Hydro,
     hp: [821, 2108, 2721, 4076, 4512, 5189, 5770, 6448, 6884, 7561, 7996, 8674, 9110, 9787],
     atk: [13, 34, 44, 66, 73, 84, 94, 105, 112, 123, 130, 141, 148, 159],
@@ -65,9 +64,18 @@ pub const BARBARA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::HP240,
     weapon_type: WeaponType::Catalyst,
     star: 4,
-    skill_name1: "普通攻击·水之浅唱",
-    skill_name2: "演唱，开始♪",
-    skill_name3: "闪耀奇迹♪",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·水之浅唱",
+        en: "Normal Attack: Whisper of Water",
+    ),
+    skill_name2: locale!(
+        zh_cn: "演唱，开始♪",
+        en: "Let the Show Begin♪",
+    ),
+    skill_name3: locale!(
+        zh_cn: "闪耀奇迹♪",
+        en: "Shining Miracle♪",
+    ),
     name_locale: locale!(
         zh_cn: "芭芭拉",
         en: "Barbara",

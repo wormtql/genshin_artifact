@@ -122,7 +122,6 @@ impl CharacterTrait for Yaoyao {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Yaoyao,
         internal_name: "Yaoyao",
-        chs: "",
         element: Element::Dendro,
         hp: [1030, 2647, 3417, 5118, 5665, 6515, 7245, 8096, 8643, 9493, 10040, 10891, 11438, 12289],
         atk: [18, 46, 59, 88, 98, 113, 125, 140, 149, 164, 174, 188, 198, 212],
@@ -130,9 +129,18 @@ impl CharacterTrait for Yaoyao {
         sub_stat: CharacterSubStatFamily::Bonus240(StatName::HPPercentage),
         weapon_type: WeaponType::Polearm,
         star: 4,
-        skill_name1: "",
-        skill_name2: "",
-        skill_name3: "",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·颠扑连环枪",
+            en: "Normal Attack: Toss ‘N’ Turn Spear",
+        ),
+        skill_name2: locale!(
+            zh_cn: "云台团团降芦菔",
+            en: "Raphanus Sky Cluster",
+        ),
+        skill_name3: locale!(
+            zh_cn: "玉颗珊珊月中落",
+            en: "Moonjade Descent",
+        ),
         name_locale: locale!(
             zh_cn: "瑶瑶",
             en: "Yaoyao",

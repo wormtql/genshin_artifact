@@ -58,7 +58,6 @@ pub const XIANGLING_SKILL: XianglingSkillType = XianglingSkillType {
 pub const XIANGLING_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Xiangling,
     internal_name: "Xiangling",
-    chs: "香菱",
     element: Element::Pyro,
     hp: [912, 2342, 3024, 4529, 5013, 5766, 6411, 7164, 7648, 8401, 8885, 9638, 10122, 10875],
     atk: [19, 48, 63, 94, 104, 119, 133, 148, 158, 174, 184, 200, 210, 225],
@@ -66,9 +65,18 @@ pub const XIANGLING_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::ElementalMastery96,
     weapon_type: WeaponType::Polearm,
     star: 4,
-    skill_name1: "普通攻击·白案功夫",
-    skill_name2: "锅巴出击",
-    skill_name3: "旋火轮",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·白案功夫",
+        en: "Normal Attack: Dough-Fu",
+    ),
+    skill_name2: locale!(
+        zh_cn: "锅巴出击",
+        en: "Guoba Attack",
+    ),
+    skill_name3: locale!(
+        zh_cn: "旋火轮",
+        en: "Pyronado",
+    ),
     name_locale: locale!(
         zh_cn: "香菱",
         en: "Xiangling",

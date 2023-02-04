@@ -134,7 +134,6 @@ impl CharacterTrait for Yelan {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Yelan,
         internal_name: "Yelan",
-        chs: "夜兰",
         element: Element::Hydro,
         hp: [1125, 2918, 3883, 5810, 6495, 7472, 8386, 9374, 10059, 11056, 11741, 12749, 13434, 14450],
         atk: [19, 49, 66, 98, 110, 126, 142, 158, 170, 187, 198, 215, 227, 244],
@@ -142,9 +141,18 @@ impl CharacterTrait for Yelan {
         sub_stat: CharacterSubStatFamily::CriticalRate192,
         weapon_type: WeaponType::Bow,
         star: 5,
-        skill_name1: "普通攻击·潜形隐曜弓",
-        skill_name2: "萦络纵命索",
-        skill_name3: "渊图玲珑骰",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·潜形隐曜弓",
+            en: "Normal Attack: Stealthy Bowshot",
+        ),
+        skill_name2: locale!(
+            zh_cn: "萦络纵命索",
+            en: "Lingering Lifeline",
+        ),
+        skill_name3: locale!(
+            zh_cn: "渊图玲珑骰",
+            en: "Depth-Clarion Dice",
+        ),
         name_locale: locale!(
             zh_cn: "夜兰",
             en: "Yelan",

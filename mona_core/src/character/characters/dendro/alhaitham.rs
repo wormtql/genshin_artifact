@@ -127,7 +127,6 @@ impl CharacterTrait for Alhaitham {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Alhaitham,
         internal_name: "Alhatham",
-        chs: "",
         element: Element::Dendro,
         hp: [1039, 2695, 3586, 5366, 5999, 6902, 7747, 8659, 9292, 10213, 10846, 11777, 12410, 13348],
         atk: [24, 63, 84, 126, 141, 162, 182, 203, 218, 240, 255, 276, 291, 313],
@@ -135,9 +134,18 @@ impl CharacterTrait for Alhaitham {
         sub_stat: CharacterSubStatFamily::Bonus288(StatName::DendroBonus),
         weapon_type: WeaponType::Sword,
         star: 5,
-        skill_name1: "",
-        skill_name2: "",
-        skill_name3: "",
+        skill_name1: locale!(
+            zh_cn: "普通攻击·溯因反绎法",
+            en: "Normal Attack: Abductive Reasoning",
+        ),
+        skill_name2: locale!(
+            zh_cn: "共相·理式摹写",
+            en: "Universality: An Elaboration on Form",
+        ),
+        skill_name3: locale!(
+            zh_cn: "殊境·显象缚结",
+            en: "Particular Field: Fetters of Phenomena",
+        ),
         name_locale: locale!(
             zh_cn: "艾尔海森",
             en: "Alhaitham",

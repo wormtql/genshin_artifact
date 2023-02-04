@@ -61,7 +61,6 @@ pub const DIONA_SKILL: DionaSkillType = DionaSkillType {
 pub const DIONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Diona,
     internal_name: "Diona",
-    chs: "迪奥娜",
     element: Element::Cryo,
     hp: [802, 2061, 2661, 3985, 4411, 5074, 5642, 6305, 6731, 7393, 7818, 8481, 8907, 9570],
     atk: [18, 46, 59, 88, 98, 113, 125, 140, 149, 164, 174, 188, 198, 212],
@@ -69,9 +68,18 @@ pub const DIONA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     sub_stat: CharacterSubStatFamily::Bonus240(StatName::CryoBonus),
     weapon_type: WeaponType::Bow,
     star: 4,
-    skill_name1: "普通攻击·猎人射术",
-    skill_name2: "猫爪冻冻",
-    skill_name3: "最烈特调",
+    skill_name1: locale!(
+        zh_cn: "普通攻击·猎人射术",
+        en: "Normal Attack: Kätzlein Style",
+    ),
+    skill_name2: locale!(
+        zh_cn: "猫爪冻冻",
+        en: "Icy Paws",
+    ),
+    skill_name3: locale!(
+        zh_cn: "最烈特调",
+        en: "Signature Mix",
+    ),
     name_locale: locale!(
         zh_cn: "迪奥娜",
         en: "Diona",
