@@ -22,11 +22,11 @@ jobs:
       with:
         - toolchain: stable
     - name: Setup mdbook
-      run: cargo install mdbook
+      run: wget https://github.com/rust-lang/mdBook/releases/download/v0.4.25/mdbook-v0.4.25-x86_64-unknown-linux-musl.tar.gz && tar -xvzf mdbook-v0.4.25-x86_64-unknown-linux-musl.tar.gz && mv mdbook /usr/bin && rm ./mdbook-v0.4.25-x86_64-unknown-linux-musl.tar.gz
     - name: Build MONA_DSL docs
-      run: mdbook build mona_dsl_book
+      run: ./mdbook build mona_dsl_book
     - name: Build main site docs
-      run: mdbook build mona_book
+      run: ./mdbook build mona_book
     - name: Build core docs
       run: cargo doc --manifest-path mona_core/Cargo.toml --no-deps --document-private-items --lib
     - name: Create a big dir
