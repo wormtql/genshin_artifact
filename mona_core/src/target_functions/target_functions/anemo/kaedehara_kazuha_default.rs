@@ -22,8 +22,14 @@ impl TargetFunctionMetaTrait for KaedeharaKazuhaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::KaedeharaKazuhaDefault,
-        chs: "枫原万叶-红叶逐荒波",
-        description: "普通辅助万叶",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "枫原万叶-红叶逐荒波",
+            en: "Kazuha-Scarlet Leaves Pursue Wild Waves"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通辅助万叶",
+            en: "Support Kazuha"
+        ),
         tags: "辅助",
         four: TargetFunctionFor::SomeWho(CharacterName::KaedeharaKazuha),
         image: TargetFunctionMetaImage::Avatar

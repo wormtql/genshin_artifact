@@ -3,11 +3,12 @@ use mona::character::CharacterStaticData;
 use mona::common::item_config_type::ItemConfig;
 use mona::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use mona::target_functions::TargetFunctionName;
+use crate::gen_meta::gen_locale::get_index_mapping;
 
 struct TFMeta {
     name: String,
-    chs: String,
-    description: String,
+    name_locale: usize,
+    description: usize,
     tags: Vec<String>,
     four: String,
     badge_path: String,
@@ -47,6 +48,7 @@ fn convert_badge_path(p: &TargetFunctionMetaImage, f: &TargetFunctionFor) -> Str
 
 pub fn gen_tf_meta_as_js_file() -> String {
     let mut data: Vec<TFMeta> = Vec::new();
+    let index_map = get_index_mapping();
 
     for i in 0_usize..TargetFunctionName::LEN {
         let e: TargetFunctionName = num::FromPrimitive::from_usize(i).unwrap();
@@ -60,8 +62,8 @@ pub fn gen_tf_meta_as_js_file() -> String {
 
         data.push(TFMeta {
             name: meta.name.to_string(),
-            chs: String::from(meta.chs),
-            description: String::from(meta.description),
+            name_locale: *index_map.get(&meta.name_locale).unwrap(),
+            description: *index_map.get(&meta.description).unwrap(),
             tags: meta.tags.split(",").map(|x| String::from(x)).collect(),
             four: convert_for(&meta.four),
             badge_path: convert_badge_path(&meta.image, &meta.four),

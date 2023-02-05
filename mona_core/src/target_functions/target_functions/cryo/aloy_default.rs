@@ -23,8 +23,14 @@ impl TargetFunctionMetaTrait for AloyDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::AloyDefault,
-        chs: "埃洛伊-「异界的救世主」",
-        description: "普通输出埃洛伊",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "埃洛伊-「异界的救世主」",
+            en: "Aloy-Savior From Another World"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出埃洛伊",
+            en: "DPS Aloy"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Aloy),
         image: TargetFunctionMetaImage::Avatar

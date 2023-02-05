@@ -34,8 +34,14 @@ impl TargetFunctionMetaTrait for YunjinDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::YunjinDefault,
-        chs: "云堇-红毹婵娟",
-        description: "普通增伤辅助云堇",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "云堇-红毹婵娟",
+            en: "Yunjin-Stage Lucida"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通增伤辅助云堇",
+            en: "Support Yunjin"
+        ),
         tags: "辅助",
         four: TargetFunctionFor::SomeWho(CharacterName::Yunjin),
         image: TargetFunctionMetaImage::Avatar

@@ -38,8 +38,14 @@ impl TargetFunctionMetaTrait for ZhongliDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::ZhongliDefault,
-        chs: "钟离-尘世闲游",
-        description: "普通爆发钟离",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "钟离-尘世闲游",
+            en: "Zhongli-Vago Mundo"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通爆发钟离",
+            en: "DPS Zhongli"
+        ),
         tags: "爆发",
         four: TargetFunctionFor::SomeWho(CharacterName::Zhongli),
         image: TargetFunctionMetaImage::Avatar

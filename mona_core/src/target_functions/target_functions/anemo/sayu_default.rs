@@ -41,8 +41,14 @@ impl TargetFunctionMetaTrait for SayuDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::SayuDefault,
-        chs: "早柚-忍里之貉",
-        description: "普通输出型早柚",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "早柚-忍里之貉",
+            en: "Sayu-Mujina Ninja"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出型早柚",
+            en: "DPS Sayu"
+        ),
         tags: "输出,治疗",
         four: TargetFunctionFor::SomeWho(CharacterName::Sayu),
         image: TargetFunctionMetaImage::Avatar

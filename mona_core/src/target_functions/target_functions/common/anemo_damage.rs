@@ -22,8 +22,14 @@ impl TargetFunctionMetaTrait for AnemoDamageTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::AnemoDamage,
-        chs: "风伤",
-        description: "风元素伤害最大化或最大化期望",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "风伤",
+            en: "Anemo DMG"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "风元素伤害最大化或最大化期望",
+            en: "Maximize Crit or Avg Anemo Damage"
+        ),
         tags: "输出",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/wind_slime")

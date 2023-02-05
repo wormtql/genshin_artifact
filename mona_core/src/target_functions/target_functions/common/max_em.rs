@@ -19,8 +19,14 @@ impl TargetFunctionMetaTrait for MaxEMTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::MaxEM,
-        chs: "最大元素精通",
-        description: "最大化元素精通",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "最大元素精通",
+            en: "Max EM"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "最大化元素精通",
+            en: "Maximize Elemental Mastery"
+        ),
         tags: "元素精通",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/sword")

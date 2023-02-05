@@ -56,8 +56,14 @@ impl TargetFunctionMetaTrait for XianglingDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::XianglingDefault,
-        chs: "香菱-万民百味",
-        description: "普通输出火伤香菱",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "香菱-万民百味",
+            en: "Xiangling-Exquisite Delicacy"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出火伤香菱",
+            en: "Cryo DPS Xiangling"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Xiangling),
         image: TargetFunctionMetaImage::Avatar

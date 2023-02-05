@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for TartagliaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::TartagliaDefault,
-        chs: "达达利亚-「公子」",
-        description: "普通输出达达利鸭",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "达达利亚-「公子」",
+            en: "Tartaglia-「Childe」"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出达达利鸭",
+            en: "DPS Tartaglia"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Tartaglia),
         image: TargetFunctionMetaImage::Avatar

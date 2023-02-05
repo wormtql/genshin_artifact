@@ -38,8 +38,14 @@ impl TargetFunctionMetaTrait for QiqiDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::QiqiDefault,
-        chs: "七七-冻冻回魂夜",
-        description: "普通治疗辅助七七",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "七七-冻冻回魂夜",
+            en: "Qiqi-Icy Resurrection"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通治疗辅助七七",
+            en: "Support Qiqi"
+        ),
         tags: "治疗",
         four: TargetFunctionFor::SomeWho(CharacterName::Qiqi),
         image: TargetFunctionMetaImage::Avatar

@@ -34,8 +34,14 @@ impl TargetFunctionMetaTrait for EulaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::EulaDefault,
-        chs: "优菈-浪花骑士",
-        description: "普通优菈输出",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "优菈-浪花骑士",
+            en: "Eula-Spindrift Knight"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通优菈输出",
+            en: "DPS Eula"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Eula),
         image: TargetFunctionMetaImage::Avatar

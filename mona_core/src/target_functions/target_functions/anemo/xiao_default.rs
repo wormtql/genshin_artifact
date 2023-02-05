@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for XiaoDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::XiaoDefault,
-        chs: "魈-护法夜叉",
-        description: "普通输出魈",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "魈-护法夜叉",
+            en: "Xiao-Vigilant Yaksha"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出魈",
+            en: "DPS Xiao"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Xiao),
         image: TargetFunctionMetaImage::Avatar

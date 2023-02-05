@@ -74,8 +74,14 @@ impl TargetFunctionMetaTrait for NilouDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::NilouDefault,
-        chs: "",
-        description: "",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "妮露-莲光落舞筵",
+            en: "Nilou-Dance of Lotuslight"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出妮露",
+            en: "Nilou DPS"
+        ),
         tags: "",
         four: TargetFunctionFor::SomeWho(CharacterName::Nilou),
         image: TargetFunctionMetaImage::Avatar

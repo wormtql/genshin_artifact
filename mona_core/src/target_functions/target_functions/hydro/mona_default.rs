@@ -39,8 +39,14 @@ impl TargetFunctionMetaTrait for MonaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::MonaDefault,
-        chs: "莫娜-星天水镜",
-        description: "普通输出莫娜",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "莫娜-星天水镜",
+            en: "Mona-Astral Reflection"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出莫娜",
+            en: "DPS Mona"
+        ),
         tags: "输出,辅助",
         four: TargetFunctionFor::SomeWho(CharacterName::Mona),
         image: TargetFunctionMetaImage::Avatar

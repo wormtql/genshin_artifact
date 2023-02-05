@@ -18,8 +18,14 @@ impl TargetFunctionMetaTrait for MaxRechargeTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::MaxRecharge,
-        chs: "",
-        description: "",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "最大充能效率",
+            en: "Max Recharge"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "最大化元素充能效率",
+            en: "Maximize Energy Recharge"
+        ),
         tags: "",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/sword")

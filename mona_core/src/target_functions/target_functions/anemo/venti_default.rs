@@ -38,8 +38,14 @@ impl TargetFunctionMetaTrait for VentiDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::VentiDefault,
-        chs: "温迪-风色诗人",
-        description: "普通输出温迪",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "温迪-风色诗人",
+            en: "Venti-Windborne Bard"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出温迪",
+            en: "DPS Venti"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Venti),
         image: TargetFunctionMetaImage::Avatar

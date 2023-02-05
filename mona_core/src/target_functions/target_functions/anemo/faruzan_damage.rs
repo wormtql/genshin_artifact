@@ -6,6 +6,7 @@ use crate::character::{Character, CharacterName};
 use crate::character::characters::Faruzan;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
@@ -25,8 +26,8 @@ impl TargetFunctionMetaTrait for FaruzanDamageTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::FaruzanDamage,
-        chs: "",
-        description: "",
+        name_locale: locale!(zh_cn: "珐露珊-机逐封秘", en: "Faruzan-Enigmatic Machinist"),
+        description: locale!(zh_cn: "使得珐露珊大招伤害最大", en: "Maximize Faruzan's Q damage"),
         tags: "",
         four: TargetFunctionFor::SomeWho(CharacterName::Faruzan),
         image: TargetFunctionMetaImage::Avatar,

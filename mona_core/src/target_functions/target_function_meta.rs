@@ -1,4 +1,5 @@
 use crate::character::CharacterName;
+use crate::common::i18n::I18nLocale;
 use crate::target_functions::TargetFunctionName;
 
 pub enum TargetFunctionFor {
@@ -13,8 +14,8 @@ pub enum TargetFunctionMetaImage {
 
 pub struct TargetFunctionMeta {
     pub name: TargetFunctionName,
-    pub chs: &'static str,
-    pub description: &'static str,
+    pub name_locale: I18nLocale,
+    pub description: I18nLocale,
     pub tags: &'static str, // comma split
     pub four: TargetFunctionFor,
     pub image: TargetFunctionMetaImage,

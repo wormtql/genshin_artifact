@@ -39,8 +39,14 @@ impl TargetFunctionMetaTrait for HuTaoDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::HuTaoDefault,
-        chs: "胡桃-雪霁梅香",
-        description: "普通输出主C胡桃",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "胡桃-雪霁梅香",
+            en: "Hutao-Fragrance in Thaw"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出主C胡桃",
+            en: "Main DPS Hutao"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::HuTao),
         image: TargetFunctionMetaImage::Avatar

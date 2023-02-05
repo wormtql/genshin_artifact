@@ -22,8 +22,14 @@ impl TargetFunctionMetaTrait for HydroDamageTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::HydroDamage,
-        chs: "水伤",
-        description: "水元素伤害最大化或最大化期望",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "水伤",
+            en: "Hydro DMG"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "水元素伤害最大化或最大化期望",
+            en: "Maximize Crit or Avg Hydro Damage"
+        ),
         tags: "输出",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/water_slime")

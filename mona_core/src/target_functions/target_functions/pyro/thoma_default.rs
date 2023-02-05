@@ -34,8 +34,14 @@ impl TargetFunctionMetaTrait for ThomaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::ThomaDefault,
-        chs: "托马-渡来介者",
-        description: "普通盾辅托马",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "托马-渡来介者",
+            en: "Thoma-Protector From Afar"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通盾辅托马",
+            en: "Shield Support Thoma"
+        ),
         tags: "辅助",
         four: TargetFunctionFor::SomeWho(CharacterName::Thoma),
         image: TargetFunctionMetaImage::Avatar

@@ -27,8 +27,14 @@ impl TargetFunctionMetaTrait for YelanDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::YelanDefault,
-        chs: "夜兰-兰生幽谷",
-        description: "普通输出夜兰。使得Q伤害最大",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "夜兰-兰生幽谷",
+            en: "Yelan-Valley Orchid"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出夜兰。使得Q伤害最大",
+            en: "DPS Yelan, maximizing Q damage"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Yelan),
         image: TargetFunctionMetaImage::Avatar

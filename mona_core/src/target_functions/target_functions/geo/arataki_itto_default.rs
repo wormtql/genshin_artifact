@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for AratakiIttoDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::AratakiIttoDefault,
-        chs: "荒泷一斗-最恶鬼王！",
-        description: "荒泷一斗输出",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "荒泷一斗-最恶鬼王！",
+            en: "Itto-The Evil"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "荒泷一斗输出",
+            en: "DPS Itto"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::AratakiItto),
         image: TargetFunctionMetaImage::Avatar

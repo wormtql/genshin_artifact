@@ -20,8 +20,14 @@ impl TargetFunctionMetaTrait for MaxATKTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::MaxATK,
-        chs: "最大攻击力",
-        description: "最大化攻击力",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "最大攻击力",
+            en: "Max ATK"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "最大化攻击力",
+            en: "Maximize ATK"
+        ),
         tags: "攻击",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/sword")

@@ -23,8 +23,14 @@ impl TargetFunctionMetaTrait for KamisatoAyatoDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::KamisatoAyatoDefault,
-        chs: "神里绫人-磐祭叶守",
-        description: "普通水系输出绫人",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "神里绫人-磐祭叶守",
+            en: "Ayato-Pillar of Fortitude"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通水系输出绫人",
+            en: "DPS Ayato"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::KamisatoAyato),
         image: TargetFunctionMetaImage::Avatar

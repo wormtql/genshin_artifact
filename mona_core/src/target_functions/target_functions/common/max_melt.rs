@@ -25,8 +25,14 @@ impl TargetFunctionMetaTrait for MaxMeltTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::MaxMelt,
-        chs: "最大融化伤害",
-        description: "使得融化反应的伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "最大融化伤害",
+            en: "Max Melt DMG"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "使得融化反应的伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+            en: "Maximize vaporize DMG<br><b>Attention:</b>This function only calculates the simplest case, some attribute conversions are not considered, you may not use this unless you know what you're doing"
+        ),
         tags: "输出",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/sword")

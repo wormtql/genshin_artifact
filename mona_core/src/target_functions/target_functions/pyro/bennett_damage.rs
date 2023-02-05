@@ -27,8 +27,14 @@ impl TargetFunctionMetaTrait for BennettDamageTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::BennettDamage,
-        chs: "班尼特-副C",
-        description: "普通副C班尼特",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "班尼特-副C",
+            en: "Bennett-Sub DPS"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通副C班尼特",
+            en: "Sub DPS Bennett"
+        ),
         tags: "辅助,输出,副C",
         four: TargetFunctionFor::SomeWho(CharacterName::Bennett),
         image: TargetFunctionMetaImage::Avatar

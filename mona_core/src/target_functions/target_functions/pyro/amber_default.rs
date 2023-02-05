@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for AmberDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::AmberDefault,
-        chs: "安柏-侦察骑士",
-        description: "普通输出安柏",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "安柏-侦察骑士",
+            en: "Amber-Outrider"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出安柏",
+            en: "DPS Amber"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Amber),
         image: TargetFunctionMetaImage::Avatar

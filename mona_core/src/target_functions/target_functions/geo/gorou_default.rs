@@ -39,8 +39,14 @@ impl TargetFunctionMetaTrait for GorouDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::GorouDefault,
-        chs: "五郎-戎犬锵锵",
-        description: "普通岩辅五郎",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "五郎-戎犬锵锵",
+            en: "Gorou-Canine Warrior"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通岩辅五郎",
+            en: "Support Gorou"
+        ),
         tags: "辅助",
         four: TargetFunctionFor::SomeWho(CharacterName::Gorou),
         image: TargetFunctionMetaImage::Avatar

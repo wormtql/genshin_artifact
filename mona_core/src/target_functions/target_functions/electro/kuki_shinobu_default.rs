@@ -26,8 +26,14 @@ impl TargetFunctionMetaTrait for KukiShinobuDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::KukiShinobuDefault,
-        chs: "久岐忍-烦恼刈除",
-        description: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "久岐忍-烦恼刈除",
+            en: "Shinobu-Mender of Tribulations"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
+            en: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大"
+        ),
         tags: "辅助",
         four: TargetFunctionFor::SomeWho(CharacterName::KukiShinobu),
         image: TargetFunctionMetaImage::Avatar

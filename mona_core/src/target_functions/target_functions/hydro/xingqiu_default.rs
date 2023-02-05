@@ -39,8 +39,14 @@ impl TargetFunctionMetaTrait for XingqiuDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::XingqiuDefault,
-        chs: "行秋-少年春衫薄",
-        description: "普通副C行秋",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "行秋-少年春衫薄",
+            en: "Xingqiu-Juvenile Galant"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通副C行秋",
+            en: "Sub DPS Xingqiu"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Xingqiu),
         image: TargetFunctionMetaImage::Avatar

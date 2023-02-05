@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for RazorDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::RazorDefault,
-        chs: "雷泽-奔狼领的传说",
-        description: "普通输出物理雷泽",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "雷泽-奔狼领的传说",
+            en: "Razor-Default"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出物理雷泽",
+            en: "Physical DPS Razor"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Razor),
         image: TargetFunctionMetaImage::Avatar

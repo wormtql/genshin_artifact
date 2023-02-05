@@ -27,8 +27,14 @@ impl TargetFunctionMetaTrait for DilucDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::DilucDefault,
-        chs: "迪卢克-晨曦酒庄的贵公子",
-        description: "普通输出迪卢克",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "迪卢克-晨曦酒庄的贵公子",
+            en: "Diluc-Default"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出迪卢克",
+            en: "DPS Diluc"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Diluc),
         image: TargetFunctionMetaImage::Avatar

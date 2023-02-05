@@ -37,8 +37,14 @@ impl TargetFunctionMetaTrait for GanyuDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::GanyuDefault,
-        chs: "甘雨-循循守月",
-        description: "普通输出甘雨",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "甘雨-循循守月",
+            en: "Ganyu-Plenilune Gaze"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出甘雨",
+            en: "DPS Ganyu"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Ganyu),
         image: TargetFunctionMetaImage::Avatar

@@ -38,8 +38,14 @@ impl TargetFunctionMetaTrait for LisaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::LisaDefault,
-        chs: "丽莎-蔷薇魔女",
-        description: "普通输出丽莎",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "丽莎-蔷薇魔女",
+            en: "Lisa-Witch of Purple Rose"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出丽莎",
+            en: "DPS Lisa"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Lisa),
         image: TargetFunctionMetaImage::Avatar

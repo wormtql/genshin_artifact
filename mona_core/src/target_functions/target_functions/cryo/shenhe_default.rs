@@ -38,8 +38,14 @@ impl TargetFunctionMetaTrait for ShenheDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::ShenheDefault,
-        chs: "申鹤-孤辰茕怀",
-        description: "普通辅助申鹤",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "申鹤-孤辰茕怀",
+            en: "Shenhe-Lonesome Transcendence"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通辅助申鹤",
+            en: "Support Shenhe"
+        ),
         tags: "辅助",
         four: TargetFunctionFor::SomeWho(CharacterName::Shenhe),
         image: TargetFunctionMetaImage::Avatar

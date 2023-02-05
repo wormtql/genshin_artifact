@@ -26,8 +26,14 @@ impl TargetFunctionMetaTrait for KamisatoAyakaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::KamisatoAyakaDefault,
-        chs: "神里绫华-白鹭霜华",
-        description: "普通主C绫华",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "神里绫华-白鹭霜华",
+            en: "Ayaka-Frostflake Heron"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通主C绫华",
+            en: "Main DPS Ayaka"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::KamisatoAyaka),
         image: TargetFunctionMetaImage::Avatar

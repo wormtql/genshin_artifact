@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for BeidouDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::BeidouDefault,
-        chs: "北斗-无冕的龙王",
-        description: "普通北斗弹反流",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "北斗-无冕的龙王",
+            en: "Beidou-Uncrowned Lord of the Ocean"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通北斗弹反流",
+            en: "普通北斗弹反流"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Beidou),
         image: TargetFunctionMetaImage::Avatar

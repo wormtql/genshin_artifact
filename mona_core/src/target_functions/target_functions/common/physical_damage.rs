@@ -22,8 +22,14 @@ impl TargetFunctionMetaTrait for PhysicalDamageTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::PhysicalDamage,
-        chs: "物伤",
-        description: "物理伤害最大化或最大化期望",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "物伤",
+            en: "Physical DMG"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "物理伤害最大化或最大化期望",
+            en: "Maximize Crit or Avg Physical Damage"
+        ),
         tags: "输出",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/sword")

@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for BarbaraDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::BarbaraDefault,
-        chs: "芭芭拉-闪耀偶像",
-        description: "使得芭芭拉Q技能治疗效果最好",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "芭芭拉-闪耀偶像",
+            en: "Barbara-Shining Idol"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "使得芭芭拉Q技能治疗效果最好",
+            en: "Miximize Barbara's Q regeneration"
+        ),
         tags: "治疗,辅助",
         four: TargetFunctionFor::SomeWho(CharacterName::Barbara),
         image: TargetFunctionMetaImage::Avatar

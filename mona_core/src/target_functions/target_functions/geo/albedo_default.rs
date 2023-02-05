@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for AlbedoDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::AlbedoDefault,
-        chs: "阿贝多-白垩之子",
-        description: "普通副C阿贝多",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "阿贝多-白垩之子",
+            en: "Albedo-Kreideprinz"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通副C阿贝多",
+            en: "Sub DPS Albedo"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Albedo),
         image: TargetFunctionMetaImage::Avatar,

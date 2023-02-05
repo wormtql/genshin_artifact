@@ -200,8 +200,8 @@ export default {
     
     "MaxATK": {
         name: "MaxATK",
-        // chs: "最大攻击力",
-        // description: "最大化攻击力",
+        nameLocale: 515,
+        description: 512,
         tags: [
             
             "攻击",
@@ -218,8 +218,8 @@ export default {
     
     "MaxDEF": {
         name: "MaxDEF",
-        // chs: "最大防御力",
-        // description: "最大化防御力",
+        nameLocale: 520,
+        description: 514,
         tags: [
             
             "防御",
@@ -236,8 +236,8 @@ export default {
     
     "MaxHP": {
         name: "MaxHP",
-        // chs: "最大生命值",
-        // description: "最大化生命值",
+        nameLocale: 517,
+        description: 513,
         tags: [
             
             "生命",
@@ -254,8 +254,8 @@ export default {
     
     "MaxEM": {
         name: "MaxEM",
-        // chs: "最大元素精通",
-        // description: "最大化元素精通",
+        nameLocale: 507,
+        description: 511,
         tags: [
             
             "元素精通",
@@ -272,8 +272,8 @@ export default {
     
     "MaxRecharge": {
         name: "MaxRecharge",
-        // chs: "",
-        // description: "",
+        nameLocale: 508,
+        description: 510,
         tags: [
             
             "",
@@ -290,8 +290,8 @@ export default {
     
     "PyroDamage": {
         name: "PyroDamage",
-        // chs: "火伤",
-        // description: "火元素伤害最大化或最大化期望",
+        nameLocale: 577,
+        description: 578,
         tags: [
             
             "输出",
@@ -310,8 +310,8 @@ export default {
     
     "CryoDamage": {
         name: "CryoDamage",
-        // chs: "冰伤",
-        // description: "冰元素伤害最大化或最大化期望",
+        nameLocale: 117,
+        description: 118,
         tags: [
             
             "输出",
@@ -330,8 +330,8 @@ export default {
     
     "HydroDamage": {
         name: "HydroDamage",
-        // chs: "水伤",
-        // description: "水元素伤害最大化或最大化期望",
+        nameLocale: 548,
+        description: 549,
         tags: [
             
             "输出",
@@ -350,8 +350,8 @@ export default {
     
     "ElectroDamage": {
         name: "ElectroDamage",
-        // chs: "雷伤",
-        // description: "雷元素伤害最大化或最大化期望",
+        nameLocale: 869,
+        description: 870,
         tags: [
             
             "输出",
@@ -370,8 +370,8 @@ export default {
     
     "AnemoDamage": {
         name: "AnemoDamage",
-        // chs: "风伤",
-        // description: "风元素伤害最大化或最大化期望",
+        nameLocale: 887,
+        description: 889,
         tags: [
             
             "输出",
@@ -390,8 +390,8 @@ export default {
     
     "DendroDamage": {
         name: "DendroDamage",
-        // chs: "",
-        // description: "",
+        nameLocale: 720,
+        description: 721,
         tags: [
             
             "",
@@ -410,8 +410,8 @@ export default {
     
     "GeoDamage": {
         name: "GeoDamage",
-        // chs: "岩伤",
-        // description: "岩元素伤害最大化或最大化期望",
+        nameLocale: 270,
+        description: 271,
         tags: [
             
             "输出",
@@ -430,8 +430,8 @@ export default {
     
     "PhysicalDamage": {
         name: "PhysicalDamage",
-        // chs: "物伤",
-        // description: "物理伤害最大化或最大化期望",
+        nameLocale: 603,
+        description: 604,
         tags: [
             
             "输出",
@@ -450,8 +450,8 @@ export default {
     
     "MaxVaporize": {
         name: "MaxVaporize",
-        // chs: "最大蒸发伤害",
-        // description: "使得蒸发反应的伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+        nameLocale: 518,
+        description: 91,
         tags: [
             
             "输出",
@@ -472,8 +472,8 @@ export default {
     
     "MaxMelt": {
         name: "MaxMelt",
-        // chs: "最大融化伤害",
-        // description: "使得融化反应的伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+        nameLocale: 519,
+        description: 93,
         tags: [
             
             "输出",
@@ -494,8 +494,8 @@ export default {
     
     "ExpectVaporize": {
         name: "ExpectVaporize",
-        // chs: "期望蒸发伤害",
-        // description: "使得蒸发反应的期望伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+        nameLocale: 524,
+        description: 92,
         tags: [
             
             "输出",
@@ -516,8 +516,8 @@ export default {
     
     "ExpectMelt": {
         name: "ExpectMelt",
-        // chs: "期望融化伤害",
-        // description: "使得融化反应的期望伤害最高。<br><b>注意：</b>仅考虑最简单的情况，特殊机制不考虑（例如某些技能的属性转化等）",
+        nameLocale: 525,
+        description: 94,
         tags: [
             
             "输出",
@@ -538,8 +538,8 @@ export default {
     
     "AlbedoDefault": {
         name: "AlbedoDefault",
-        // chs: "阿贝多-白垩之子",
-        // description: "普通副C阿贝多",
+        nameLocale: 860,
+        description: 372,
         tags: [
             
             "输出",
@@ -556,8 +556,8 @@ export default {
     
     "AloyDefault": {
         name: "AloyDefault",
-        // chs: "埃洛伊-「异界的救世主」",
-        // description: "普通输出埃洛伊",
+        nameLocale: 219,
+        description: 477,
         tags: [
             
             "输出",
@@ -574,8 +574,8 @@ export default {
     
     "AmberDefault": {
         name: "AmberDefault",
-        // chs: "安柏-侦察骑士",
-        // description: "普通输出安柏",
+        nameLocale: 249,
+        description: 480,
         tags: [
             
             "输出",
@@ -592,8 +592,8 @@ export default {
     
     "AratakiIttoDefault": {
         name: "AratakiIttoDefault",
-        // chs: "荒泷一斗-最恶鬼王！",
-        // description: "荒泷一斗输出",
+        nameLocale: 723,
+        description: 724,
         tags: [
             
             "输出",
@@ -610,8 +610,8 @@ export default {
     
     "BarbaraDefault": {
         name: "BarbaraDefault",
-        // chs: "芭芭拉-闪耀偶像",
-        // description: "使得芭芭拉Q技能治疗效果最好",
+        nameLocale: 714,
+        description: 90,
         tags: [
             
             "治疗",
@@ -630,8 +630,8 @@ export default {
     
     "BeidouDefault": {
         name: "BeidouDefault",
-        // chs: "北斗-无冕的龙王",
-        // description: "普通北斗弹反流",
+        nameLocale: 154,
+        description: 373,
         tags: [
             
             "输出",
@@ -648,8 +648,8 @@ export default {
     
     "BennettDamage": {
         name: "BennettDamage",
-        // chs: "班尼特-副C",
-        // description: "普通副C班尼特",
+        nameLocale: 627,
+        description: 369,
         tags: [
             
             "辅助",
@@ -674,8 +674,8 @@ export default {
     
     "BennettDefault": {
         name: "BennettDefault",
-        // chs: "班尼特-命运试金石",
-        // description: "普通辅助班尼特",
+        nameLocale: 628,
+        description: 468,
         tags: [
             
             "辅助",
@@ -694,8 +694,8 @@ export default {
     
     "ChongyunDefault": {
         name: "ChongyunDefault",
-        // chs: "重云-雪融有踪",
-        // description: "普通副C重云",
+        nameLocale: 817,
+        description: 371,
         tags: [
             
             "副C",
@@ -714,8 +714,8 @@ export default {
     
     "DilucDefault": {
         name: "DilucDefault",
-        // chs: "迪卢克-晨曦酒庄的贵公子",
-        // description: "普通输出迪卢克",
+        nameLocale: 809,
+        description: 492,
         tags: [
             
             "输出",
@@ -736,8 +736,8 @@ export default {
     
     "DionaDefault": {
         name: "DionaDefault",
-        // chs: "迪奥娜-猫尾特调",
-        // description: "普通治疗、护盾辅助",
+        nameLocale: 811,
+        description: 462,
         tags: [
             
             "治疗",
@@ -758,8 +758,8 @@ export default {
     
     "EulaDefault": {
         name: "EulaDefault",
-        // chs: "优菈-浪花骑士",
-        // description: "普通优菈输出",
+        nameLocale: 84,
+        description: 365,
         tags: [
             
             "输出",
@@ -776,8 +776,8 @@ export default {
     
     "FischlDefault": {
         name: "FischlDefault",
-        // chs: "菲谢尔-断罪皇女！！",
-        // description: "普通元素输出菲谢尔",
+        nameLocale: 738,
+        description: 366,
         tags: [
             
             "输出",
@@ -794,8 +794,8 @@ export default {
     
     "GanyuDefault": {
         name: "GanyuDefault",
-        // chs: "甘雨-循循守月",
-        // description: "普通输出甘雨",
+        nameLocale: 636,
+        description: 488,
         tags: [
             
             "输出",
@@ -814,8 +814,8 @@ export default {
     
     "GorouDefault": {
         name: "GorouDefault",
-        // chs: "五郎-戎犬锵锵",
-        // description: "普通岩辅五郎",
+        nameLocale: 77,
+        description: 375,
         tags: [
             
             "辅助",
@@ -834,8 +834,8 @@ export default {
     
     "HuTaoDefault": {
         name: "HuTaoDefault",
-        // chs: "胡桃-雪霁梅香",
-        // description: "普通输出主C胡桃",
+        nameLocale: 708,
+        description: 473,
         tags: [
             
             "输出",
@@ -856,8 +856,8 @@ export default {
     
     "JeanDefault": {
         name: "JeanDefault",
-        // chs: "琴-蒲公英骑士",
-        // description: "普通六边形琴",
+        nameLocale: 632,
+        description: 367,
         tags: [
             
             "副C",
@@ -880,8 +880,8 @@ export default {
     
     "KaedeharaKazuhaDamage": {
         name: "KaedeharaKazuhaDamage",
-        // chs: "枫原万叶-输出",
-        // description: "普通输出枫原万叶（兼辅助）",
+        nameLocale: 534,
+        description: 483,
         tags: [
             
             "输出",
@@ -906,8 +906,8 @@ export default {
     
     "KaedeharaKazuhaDefault": {
         name: "KaedeharaKazuhaDefault",
-        // chs: "枫原万叶-红叶逐荒波",
-        // description: "普通辅助万叶",
+        nameLocale: 533,
+        description: 467,
         tags: [
             
             "辅助",
@@ -926,8 +926,8 @@ export default {
     
     "KaeyaDefault": {
         name: "KaeyaDefault",
-        // chs: "凯亚-寒风剑士",
-        // description: "普通冰伤凯亚",
+        nameLocale: 134,
+        description: 368,
         tags: [
             
             "输出",
@@ -944,8 +944,8 @@ export default {
     
     "KamisatoAyakaDefault": {
         name: "KamisatoAyakaDefault",
-        // chs: "神里绫华-白鹭霜华",
-        // description: "普通主C绫华",
+        nameLocale: 674,
+        description: 364,
         tags: [
             
             "输出",
@@ -964,8 +964,8 @@ export default {
     
     "KamisatoAyakaDps": {
         name: "KamisatoAyakaDps",
-        // chs: "神里绫华-DPS",
-        // description: "期望DPS输出，输出手法模拟如下循环：4s 左右辅助铺场，平a4段接重击，有e放e，有大开大",
+        nameLocale: 673,
+        description: 523,
         tags: [
             
             "输出",
@@ -982,8 +982,8 @@ export default {
     
     "KamisatoAyatoDefault": {
         name: "KamisatoAyatoDefault",
-        // chs: "神里绫人-磐祭叶守",
-        // description: "普通水系输出绫人",
+        nameLocale: 671,
+        description: 461,
         tags: [
             
             "输出",
@@ -1000,8 +1000,8 @@ export default {
     
     "KeqingDefault": {
         name: "KeqingDefault",
-        // chs: "刻晴-霆霓快雨",
-        // description: "普通雷伤刻晴",
+        nameLocale: 147,
+        description: 495,
         tags: [
             
             "输出",
@@ -1020,8 +1020,8 @@ export default {
     
     "KleeDefault": {
         name: "KleeDefault",
-        // chs: "可莉-逃跑的太阳",
-        // description: "可莉火伤输出",
+        nameLocale: 176,
+        description: 177,
         tags: [
             
             "输出",
@@ -1040,8 +1040,8 @@ export default {
     
     "KujouSaraDamage": {
         name: "KujouSaraDamage",
-        // chs: "九条裟罗-副C",
-        // description: "副C九条裟罗",
+        nameLocale: 48,
+        description: 151,
         tags: [
             
             "输出",
@@ -1062,8 +1062,8 @@ export default {
     
     "KujouSaraDefault": {
         name: "KujouSaraDefault",
-        // chs: "九条裟罗-黑羽鸣镝",
-        // description: "普通雷系辅助九条",
+        nameLocale: 49,
+        description: 496,
         tags: [
             
             "辅助",
@@ -1080,8 +1080,8 @@ export default {
     
     "LisaDefault": {
         name: "LisaDefault",
-        // chs: "丽莎-蔷薇魔女",
-        // description: "普通输出丽莎",
+        nameLocale: 44,
+        description: 474,
         tags: [
             
             "输出",
@@ -1100,8 +1100,8 @@ export default {
     
     "MonaDefault": {
         name: "MonaDefault",
-        // chs: "莫娜-星天水镜",
-        // description: "普通输出莫娜",
+        nameLocale: 728,
+        description: 489,
         tags: [
             
             "输出",
@@ -1122,8 +1122,8 @@ export default {
     
     "NingguangDefault": {
         name: "NingguangDefault",
-        // chs: "凝光-掩月天权",
-        // description: "普通输出凝光",
+        nameLocale: 130,
+        description: 475,
         tags: [
             
             "输出",
@@ -1140,8 +1140,8 @@ export default {
     
     "NoelleDefault": {
         name: "NoelleDefault",
-        // chs: "诺艾尔-未授勋之花",
-        // description: "普通输出诺艾尔",
+        nameLocale: 782,
+        description: 490,
         tags: [
             
             "输出",
@@ -1158,8 +1158,8 @@ export default {
     
     "QiqiDefault": {
         name: "QiqiDefault",
-        // chs: "七七-冻冻回魂夜",
-        // description: "普通治疗辅助七七",
+        nameLocale: 22,
+        description: 463,
         tags: [
             
             "治疗",
@@ -1178,8 +1178,8 @@ export default {
     
     "RaidenShogunDefault": {
         name: "RaidenShogunDefault",
-        // chs: "雷电将军-一心净土",
-        // description: "普通输出雷军",
+        nameLocale: 878,
+        description: 493,
         tags: [
             
             "输出",
@@ -1198,8 +1198,8 @@ export default {
     
     "RazorDefault": {
         name: "RazorDefault",
-        // chs: "雷泽-奔狼领的传说",
-        // description: "普通输出物理雷泽",
+        nameLocale: 875,
+        description: 487,
         tags: [
             
             "输出",
@@ -1216,8 +1216,8 @@ export default {
     
     "RosariaDefault": {
         name: "RosariaDefault",
-        // chs: "罗莎莉亚-棘冠恩典",
-        // description: "普通辅助罗莎莉亚兼一定的输出",
+        nameLocale: 698,
+        description: 471,
         tags: [
             
             "辅助",
@@ -1236,8 +1236,8 @@ export default {
     
     "SangonomiyaKokomiDefault": {
         name: "SangonomiyaKokomiDefault",
-        // chs: "珊瑚宫心海-真珠之智",
-        // description: "普通输出心海",
+        nameLocale: 623,
+        description: 482,
         tags: [
             
             "输出",
@@ -1256,8 +1256,8 @@ export default {
     
     "SayuDefault": {
         name: "SayuDefault",
-        // chs: "早柚-忍里之貉",
-        // description: "普通输出型早柚",
+        nameLocale: 357,
+        description: 476,
         tags: [
             
             "输出",
@@ -1278,8 +1278,8 @@ export default {
     
     "ShenheDefault": {
         name: "ShenheDefault",
-        // chs: "申鹤-孤辰茕怀",
-        // description: "普通辅助申鹤",
+        nameLocale: 646,
+        description: 469,
         tags: [
             
             "辅助",
@@ -1298,8 +1298,8 @@ export default {
     
     "SucroseDefault": {
         name: "SucroseDefault",
-        // chs: "砂糖-无害甜度",
-        // description: "普通辅助砂糖",
+        nameLocale: 657,
+        description: 470,
         tags: [
             
             "辅助",
@@ -1318,8 +1318,8 @@ export default {
     
     "TartagliaDefault": {
         name: "TartagliaDefault",
-        // chs: "达达利亚-「公子」",
-        // description: "普通输出达达利鸭",
+        nameLocale: 805,
+        description: 491,
         tags: [
             
             "输出",
@@ -1336,8 +1336,8 @@ export default {
     
     "ThomaDefault": {
         name: "ThomaDefault",
-        // chs: "托马-渡来介者",
-        // description: "普通盾辅托马",
+        nameLocale: 289,
+        description: 466,
         tags: [
             
             "辅助",
@@ -1356,8 +1356,8 @@ export default {
     
     "VentiDefault": {
         name: "VentiDefault",
-        // chs: "温迪-风色诗人",
-        // description: "普通输出温迪",
+        nameLocale: 574,
+        description: 484,
         tags: [
             
             "输出",
@@ -1376,8 +1376,8 @@ export default {
     
     "XianglingDefault": {
         name: "XianglingDefault",
-        // chs: "香菱-万民百味",
-        // description: "普通输出火伤香菱",
+        nameLocale: 918,
+        description: 485,
         tags: [
             
             "输出",
@@ -1402,8 +1402,8 @@ export default {
     
     "XiaoDefault": {
         name: "XiaoDefault",
-        // chs: "魈-护法夜叉",
-        // description: "普通输出魈",
+        nameLocale: 922,
+        description: 494,
         tags: [
             
             "输出",
@@ -1420,8 +1420,8 @@ export default {
     
     "XingqiuDefault": {
         name: "XingqiuDefault",
-        // chs: "行秋-少年春衫薄",
-        // description: "普通副C行秋",
+        nameLocale: 751,
+        description: 370,
         tags: [
             
             "输出",
@@ -1440,8 +1440,8 @@ export default {
     
     "XinyanDamage": {
         name: "XinyanDamage",
-        // chs: "辛焱-输出",
-        // description: "普通物伤输出辛焱",
+        nameLocale: 802,
+        description: 465,
         tags: [
             
             "输出",
@@ -1458,8 +1458,8 @@ export default {
     
     "XinyanDefault": {
         name: "XinyanDefault",
-        // chs: "辛焱-燥热旋律",
-        // description: "普通辅助辛焱",
+        nameLocale: 801,
+        description: 472,
         tags: [
             
             "辅助",
@@ -1480,8 +1480,8 @@ export default {
     
     "YaeMikoDefault": {
         name: "YaeMikoDefault",
-        // chs: "八重神子-浮世笑百姿",
-        // description: "按照一轮12s：三阶杀生樱12下、普通攻击6×3下计算。由于杀生樱的激化率为1/3、普通攻击的激化率为1/2，在激元素充足的情况下（超激化比例=1），所以一轮杀生樱最大激化4下、普通攻击期望最大9下。超激化比例是根据激元素的充足与否决定实际激化数占最大激化数的比例。超绽放比例是根据草种子的重组与否决定实际绽放的种子数占最大绽放的种子数（0.5s/2个）的比例。",
+        nameLocale: 108,
+        description: 314,
         tags: [
             
             "输出",
@@ -1506,8 +1506,8 @@ export default {
     
     "YanfeiDefault": {
         name: "YanfeiDefault",
-        // chs: "烟绯-智明无邪",
-        // description: "普通输出烟绯",
+        nameLocale: 591,
+        description: 486,
         tags: [
             
             "输出",
@@ -1524,8 +1524,8 @@ export default {
     
     "YelanDefault": {
         name: "YelanDefault",
-        // chs: "夜兰-兰生幽谷",
-        // description: "普通输出夜兰。使得Q伤害最大",
+        nameLocale: 225,
+        description: 478,
         tags: [
             
             "输出",
@@ -1546,8 +1546,8 @@ export default {
     
     "YoimiyaDefault": {
         name: "YoimiyaDefault",
-        // chs: "宵宫-琉焰华舞",
-        // description: "普通输出宵宫",
+        nameLocale: 257,
+        description: 481,
         tags: [
             
             "输出",
@@ -1568,8 +1568,8 @@ export default {
     
     "YunjinDefault": {
         name: "YunjinDefault",
-        // chs: "云堇-红毹婵娟",
-        // description: "普通增伤辅助云堇",
+        nameLocale: 70,
+        description: 374,
         tags: [
             
             "辅助",
@@ -1588,8 +1588,8 @@ export default {
     
     "ZhongliDefault": {
         name: "ZhongliDefault",
-        // chs: "钟离-尘世闲游",
-        // description: "普通爆发钟离",
+        nameLocale: 840,
+        description: 464,
         tags: [
             
             "爆发",
@@ -1608,8 +1608,8 @@ export default {
     
     "KukiShinobuDefault": {
         name: "KukiShinobuDefault",
-        // chs: "久岐忍-烦恼刈除",
-        // description: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
+        nameLocale: 46,
+        description: 798,
         tags: [
             
             "辅助",
@@ -1628,8 +1628,8 @@ export default {
     
     "ShikanoinHeizouDefault": {
         name: "ShikanoinHeizouDefault",
-        // chs: "鹿野院平藏-心朝乂安",
-        // description: "输出平藏",
+        nameLocale: 929,
+        description: 799,
         tags: [
             
             "输出",
@@ -1646,8 +1646,8 @@ export default {
     
     "TighnariDefault": {
         name: "TighnariDefault",
-        // chs: "",
-        // description: "",
+        nameLocale: 319,
+        description: 88,
         tags: [
             
             "",
@@ -1666,8 +1666,8 @@ export default {
     
     "CynoDefault": {
         name: "CynoDefault",
-        // chs: "赛诺-缄默的裁遣",
-        // description: "打QTE并释放渡荒之雷,普攻命中次数、反应触发次数和6命参考数据：零命 7.0 5.0 0.0，，一命 9.0 5.0 0.0，六命 9.0 5.0 4.0 ",
+        nameLocale: 786,
+        description: 287,
         tags: [
             
             "输出",
@@ -1698,8 +1698,8 @@ export default {
     
     "NilouDefault": {
         name: "NilouDefault",
-        // chs: "",
-        // description: "",
+        nameLocale: 246,
+        description: 479,
         tags: [
             
             "",
@@ -1726,8 +1726,8 @@ export default {
     
     "NahidaDefault": {
         name: "NahidaDefault",
-        // chs: "纳西妲-白草净华",
-        // description: "",
+        nameLocale: 691,
+        description: 95,
         tags: [
             
             "输出",
@@ -1754,8 +1754,8 @@ export default {
     
     "WandererDefault": {
         name: "WandererDefault",
-        // chs: "流浪者-久世浮倾",
-        // description: "计算一轮e时间内的总伤害",
+        nameLocale: 568,
+        description: 769,
         tags: [
             
             "输出",
@@ -1788,8 +1788,8 @@ export default {
     
     "FaruzanDamage": {
         name: "FaruzanDamage",
-        // chs: "",
-        // description: "",
+        nameLocale: 625,
+        description: 89,
         tags: [
             
             "",
@@ -1808,8 +1808,8 @@ export default {
     
     "AlhaithamDefault": {
         name: "AlhaithamDefault",
-        // chs: "",
-        // description: "",
+        nameLocale: 712,
+        description: 81,
         tags: [
             
             "",

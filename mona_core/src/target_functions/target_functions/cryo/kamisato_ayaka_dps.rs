@@ -26,8 +26,14 @@ impl TargetFunctionMetaTrait for KamisatoAyakaDpsTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::KamisatoAyakaDps,
-        chs: "神里绫华-DPS",
-        description: "期望DPS输出，输出手法模拟如下循环：4s 左右辅助铺场，平a4段接重击，有e放e，有大开大",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "神里绫华-DPS",
+            en: "Ayaka-DPS with Recharge"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "期望DPS输出，输出手法模拟如下循环：4s 左右辅助铺场，平a4段接重击，有e放e，有大开大",
+            en: "DPS Ayaka, with recharge into consideration, Simulation: 4s 左右辅助铺场，平a4段接重击，有e放e，有大开大"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::KamisatoAyaka),
         image: TargetFunctionMetaImage::Avatar

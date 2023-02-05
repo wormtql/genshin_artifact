@@ -83,8 +83,14 @@ impl TargetFunctionMetaTrait for CynoDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::CynoDefault,
-        chs: "赛诺-缄默的裁遣",
-        description: "打QTE并释放渡荒之雷,普攻命中次数、反应触发次数和6命参考数据：零命 7.0 5.0 0.0，，一命 9.0 5.0 0.0，六命 9.0 5.0 4.0 ",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "赛诺-缄秘的裁谴",
+            en: "Cyno-Judicator of Secrets"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "打QTE并释放渡荒之雷，会根据套装自动选择手法，如激化草全覆盖则激化比例留1.0即可",
+            en: "Perform QTE and unleash Duststalker Bolts, best combo would be applied automatically basing on artifact set"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Cyno),
         image: TargetFunctionMetaImage::Avatar,

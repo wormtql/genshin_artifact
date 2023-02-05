@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for NoelleDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::NoelleDefault,
-        chs: "诺艾尔-未授勋之花",
-        description: "普通输出诺艾尔",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "诺艾尔-未授勋之花",
+            en: "Noelle-Chivalric Blossom"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出诺艾尔",
+            en: "DPS Noelle"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Noelle),
         image: TargetFunctionMetaImage::Avatar

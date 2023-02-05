@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for NingguangDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::NingguangDefault,
-        chs: "凝光-掩月天权",
-        description: "普通输出凝光",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "凝光-掩月天权",
+            en: "Ningguang-Eclipsing Star"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出凝光",
+            en: "DPS Ningguang"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Ningguang),
         image: TargetFunctionMetaImage::Avatar

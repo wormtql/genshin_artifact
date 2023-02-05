@@ -26,8 +26,14 @@ impl TargetFunctionMetaTrait for DionaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::DionaDefault,
-        chs: "迪奥娜-猫尾特调",
-        description: "普通治疗、护盾辅助",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "迪奥娜-猫尾特调",
+            en: "Diona-Kätzlein Cocktail"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通治疗、护盾辅助",
+            en: "Healing, Shield Support"
+        ),
         tags: "治疗,护盾",
         four: TargetFunctionFor::SomeWho(CharacterName::Diona),
         image: TargetFunctionMetaImage::Avatar

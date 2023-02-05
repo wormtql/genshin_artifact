@@ -22,8 +22,14 @@ impl TargetFunctionMetaTrait for GeoDamageTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::GeoDamage,
-        chs: "岩伤",
-        description: "岩元素伤害最大化或最大化期望",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "岩伤",
+            en: "Geo DMG"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "岩元素伤害最大化或最大化期望",
+            en: "Maximize Crit or Avg Geo Damage"
+        ),
         tags: "输出",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/sword")

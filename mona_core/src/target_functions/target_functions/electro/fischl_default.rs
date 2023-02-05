@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for FischlDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::FischlDefault,
-        chs: "菲谢尔-断罪皇女！！",
-        description: "普通元素输出菲谢尔",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "菲谢尔-断罪皇女！！",
+            en: "Fischl-Prinzessin der Verurteilung"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通元素输出菲谢尔",
+            en: "Elemental DPS Fischl"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Fischl),
         image: TargetFunctionMetaImage::Avatar

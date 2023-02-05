@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for KaeyaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::KaeyaDefault,
-        chs: "凯亚-寒风剑士",
-        description: "普通冰伤凯亚",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "凯亚-寒风剑士",
+            en: "Kaeya-Frostwind Swordsman"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通冰伤凯亚",
+            en: "Cryo DPS Kaeya"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Kaeya),
         image: TargetFunctionMetaImage::Avatar

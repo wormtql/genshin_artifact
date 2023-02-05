@@ -96,8 +96,14 @@ impl TargetFunctionMetaTrait for KujouSaraDamageTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::KujouSaraDamage,
-        chs: "九条裟罗-副C",
-        description: "副C九条裟罗",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "九条裟罗-副C",
+            en: "Kujou Sara-Sub DPS"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "副C九条裟罗",
+            en: "Sub DPS Sara"
+        ),
         tags: "输出,辅助",
         four: TargetFunctionFor::SomeWho(CharacterName::KujouSara),
         image: TargetFunctionMetaImage::Avatar

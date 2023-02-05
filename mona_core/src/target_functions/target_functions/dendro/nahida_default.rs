@@ -63,8 +63,14 @@ impl TargetFunctionMetaTrait for NahidaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::NahidaDefault,
-        chs: "纳西妲-白草净华",
-        description: "",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "纳西妲-白草净华",
+            en: "Nahida-Physic of Purity"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "使纳西妲灭净三业及反应伤害最大，默认给了饰金套1层攻击2层精通和80%覆盖率，如果你的配队不同，强烈圣遗物设置改成手动，把草套拉满，然后根据实际情况调整饰金套参数",
+            en: "Maximize Nahida's Tri-Karma Purification DMG"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Nahida),
         image: TargetFunctionMetaImage::Avatar,

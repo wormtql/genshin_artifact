@@ -41,8 +41,14 @@ impl TargetFunctionMetaTrait for JeanDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::JeanDefault,
-        chs: "琴-蒲公英骑士",
-        description: "普通六边形琴",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "琴-蒲公英骑士",
+            en: "Jean-Dandelion Knight"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通六边形琴",
+            en: "Jean Default"
+        ),
         tags: "副C,治疗",
         four: TargetFunctionFor::SomeWho(CharacterName::Jean),
         image: TargetFunctionMetaImage::Avatar
@@ -70,48 +76,6 @@ impl TargetFunctionMetaTrait for JeanDefaultTargetFunction {
 impl TargetFunction for JeanDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
         unimplemented!()
-        // TargetFunctionOptConfig {
-        //     atk_fixed: 0.1,
-        //     atk_percentage: 1.0,
-        //     hp_fixed: 0.0,
-        //     hp_percentage: 0.0,
-        //     def_fixed: 0.0,
-        //     def_percentage: 0.0,
-        //     recharge: 0.2,
-        //     elemental_mastery: 0.3,
-        //     critical: 1.0,
-        //     critical_damage: 1.0,
-        //     healing_bonus: 0.0,
-        //     bonus_electro: 0.0,
-        //     bonus_pyro: 0.0,
-        //     bonus_hydro: 0.0,
-        //     bonus_anemo: 1.0,
-        //     bonus_cryo: 0.0,
-        //     bonus_geo: 0.0,
-        //     bonus_dendro: 0.0,
-        //     bonus_physical: 0.0,
-        //     sand_main_stats: vec![
-        //         StatName::ATKPercentage,
-        //         StatName::Recharge,
-        //     ],
-        //     goblet_main_stats: vec![
-        //         StatName::AnemoBonus,
-        //         StatName::ATKPercentage,
-        //     ],
-        //     head_main_stats: vec![
-        //         StatName::CriticalRate,
-        //         StatName::CriticalDamage,
-        //     ],
-        //     set_names: Some(vec![
-        //         ArtifactSetName::ViridescentVenerer,
-        //         ArtifactSetName::GladiatorsFinale,
-        //         ArtifactSetName::ShimenawasReminiscence
-        //     ]),
-        //     very_critical_set_names: None,
-        //     normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
-        //     critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
-        //     very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
-        // }
     }
 
     fn get_default_artifact_config(&self, _team_config: &TeamQuantization) -> ArtifactEffectConfig {

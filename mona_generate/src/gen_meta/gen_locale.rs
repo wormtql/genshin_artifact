@@ -4,6 +4,8 @@ use mona::common::i18n::I18nLocale;
 use strum::*;
 use lazy_static::lazy_static;
 use mona::character::traits::CharacterSkillMap;
+use mona::target_functions::target_function_meta::TargetFunctionMeta;
+use mona::target_functions::TargetFunctionName;
 use mona::weapon::weapon_static_data::WeaponStaticData;
 use mona::weapon::WeaponName;
 
@@ -72,6 +74,16 @@ pub fn collect_weapon_effect() -> Vec<I18nLocale> {
     set.into_iter().collect()
 }
 
+pub fn collect_tf_locale() -> Vec<I18nLocale> {
+    let mut set = HashSet::new();
+    for tf in TargetFunctionName::iter() {
+        let meta: TargetFunctionMeta = tf.get_meta_data();
+        set.insert(meta.name_locale.clone());
+        set.insert(meta.description.clone());
+    }
+    set.into_iter().collect()
+}
+
 pub fn collect_locale() -> Vec<I18nLocale> {
     let mut set = HashSet::new();
 
@@ -82,6 +94,8 @@ pub fn collect_locale() -> Vec<I18nLocale> {
 
     set.extend(collect_weapon_names());
     set.extend(collect_weapon_effect());
+
+    set.extend(collect_tf_locale());
 
     set.into_iter().collect()
 }

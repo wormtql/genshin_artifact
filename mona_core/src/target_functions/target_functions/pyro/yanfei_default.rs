@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for YanfeiDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::YanfeiDefault,
-        chs: "烟绯-智明无邪",
-        description: "普通输出烟绯",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "烟绯-智明无邪",
+            en: "Yanfei-Wise Innocence"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出烟绯",
+            en: "DPS Yanfei"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Yanfei),
         image: TargetFunctionMetaImage::Avatar

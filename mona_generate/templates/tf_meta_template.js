@@ -12,8 +12,8 @@ export default {
     {% for t in tfs %}
     "{{ t.name }}": {
         name: "{{ t.name }}",
-        // chs: "{{ t.chs }}",
-        // description: "{{ t.description }}",
+        nameLocale: {{t.name_locale}},
+        description: {{t.description}},
         tags: [
             {% for tag in t.tags %}
             "{{ tag }}",

@@ -19,8 +19,14 @@ impl TargetFunctionMetaTrait for MaxDEFTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::MaxDEF,
-        chs: "最大防御力",
-        description: "最大化防御力",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "最大防御力",
+            en: "Max DEF"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "最大化防御力",
+            en: "Maximize DEF"
+        ),
         tags: "防御",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/sword")

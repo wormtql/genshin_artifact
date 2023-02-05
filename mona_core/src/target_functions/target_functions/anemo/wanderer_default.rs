@@ -88,8 +88,14 @@ impl TargetFunctionMetaTrait for WandererDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::WandererDefault,
-        chs: "流浪者-久世浮倾",
-        description: "计算一轮e时间内的总伤害",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "流浪者-久世浮倾",
+            en: "Wanderer-Eons Adrift"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "计算一轮内流浪者造成伤害的总和",
+            en: "Maximize Wanderer's total damage in one cycle"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Wanderer),
         image: TargetFunctionMetaImage::Avatar,

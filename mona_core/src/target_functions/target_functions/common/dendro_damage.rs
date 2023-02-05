@@ -21,8 +21,14 @@ impl TargetFunctionMetaTrait for DendroDamageTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::DendroDamage,
-        chs: "",
-        description: "",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "草伤",
+            en: "Dendro DMG"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "草元素伤害最大化或最大化期望",
+            en: "Maximize Crit or Avg Dendro Damage"
+        ),
         tags: "",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/dendro")

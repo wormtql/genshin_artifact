@@ -1,11 +1,11 @@
 use num_derive::FromPrimitive;
 use serde::{Serialize, Deserialize};
 use mona_derive::{TargetFunctionData, EnumLen};
-use strum_macros::Display;
+use strum_macros::{Display, EnumIter};
 
 #[derive(Serialize, Deserialize)]
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
-#[derive(TargetFunctionData, EnumLen, FromPrimitive, Display)]
+#[derive(TargetFunctionData, EnumLen, FromPrimitive, Display, EnumIter)]
 pub enum TargetFunctionName {
     MaxATK,
     MaxDEF,

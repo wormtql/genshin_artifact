@@ -23,8 +23,14 @@ impl TargetFunctionMetaTrait for ShikanoinHeizouDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::ShikanoinHeizouDefault,
-        chs: "鹿野院平藏-心朝乂安",
-        description: "输出平藏",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "鹿野院平藏-心朝乂安",
+            en: "Shikanoin Heizou-Analytical Harmony"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "输出平藏，使得E技能4层伤害最大",
+            en: "DPS Heizou, maximizing E Stack-4 DMG"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::ShikanoinHeizou),
         image: TargetFunctionMetaImage::Avatar

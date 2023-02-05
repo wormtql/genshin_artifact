@@ -35,8 +35,14 @@ impl TargetFunctionMetaTrait for SucroseDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::SucroseDefault,
-        chs: "砂糖-无害甜度",
-        description: "普通辅助砂糖",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "砂糖-无害甜度",
+            en: "Sucrose-Harmless Sweetie"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通辅助砂糖",
+            en: "Support Sucrose"
+        ),
         tags: "辅助",
         four: TargetFunctionFor::SomeWho(CharacterName::Sucrose),
         image: TargetFunctionMetaImage::Avatar

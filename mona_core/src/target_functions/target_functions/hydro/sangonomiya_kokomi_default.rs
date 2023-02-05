@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for SangonomiyaKokomiDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::SangonomiyaKokomiDefault,
-        chs: "珊瑚宫心海-真珠之智",
-        description: "普通输出心海",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "珊瑚宫心海-真珠之智",
+            en: "Kokomi-Pearl of Wisdom"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出心海",
+            en: "DPS Kokomi"
+        ),
         tags: "输出,治疗",
         four: TargetFunctionFor::SomeWho(CharacterName::SangonomiyaKokomi),
         image: TargetFunctionMetaImage::Avatar

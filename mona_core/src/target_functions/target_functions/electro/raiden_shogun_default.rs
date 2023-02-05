@@ -26,8 +26,14 @@ impl TargetFunctionMetaTrait for RaidenShogunDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::RaidenShogunDefault,
-        chs: "雷电将军-一心净土",
-        description: "普通输出雷军",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "雷电将军-一心净土",
+            en: "Raiden Shogun-Plane of Euthymia"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通输出雷军",
+            en: "DPS Shogun"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::RaidenShogun),
         image: TargetFunctionMetaImage::Avatar

@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for XinyanDamageTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::XinyanDamage,
-        chs: "辛焱-输出",
-        description: "普通物伤输出辛焱",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "辛焱-输出",
+            en: "Xinyan-DPS"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通物伤输出辛焱",
+            en: "Physical DPS Xinyan"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Xinyan),
         image: TargetFunctionMetaImage::Avatar,

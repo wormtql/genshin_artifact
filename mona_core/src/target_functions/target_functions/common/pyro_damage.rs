@@ -22,8 +22,14 @@ impl TargetFunctionMetaTrait for PyroDamageTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::PyroDamage,
-        chs: "火伤",
-        description: "火元素伤害最大化或最大化期望",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "火伤",
+            en: "Pyro DMG"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "火元素伤害最大化或最大化期望",
+            en: "Maximize Crit or Avg Pyro Damage"
+        ),
         tags: "输出",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/fire_slime")

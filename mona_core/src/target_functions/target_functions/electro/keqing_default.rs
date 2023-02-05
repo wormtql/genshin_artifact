@@ -26,8 +26,14 @@ impl TargetFunctionMetaTrait for KeqingDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::KeqingDefault,
-        chs: "刻晴-霆霓快雨",
-        description: "普通雷伤刻晴",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "刻晴-霆霓快雨",
+            en: "Keqing-Driving Thunder"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通雷伤刻晴",
+            en: "Electro DPS Keqing"
+        ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Keqing),
         image: TargetFunctionMetaImage::Avatar

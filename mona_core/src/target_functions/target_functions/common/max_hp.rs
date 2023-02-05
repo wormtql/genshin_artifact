@@ -19,8 +19,14 @@ impl TargetFunctionMetaTrait for MaxHPTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::MaxHP,
-        chs: "最大生命值",
-        description: "最大化生命值",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "最大生命值",
+            en: "Max HP"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "最大化生命值",
+            en: "Maximize HP"
+        ),
         tags: "生命",
         four: TargetFunctionFor::Common,
         image: TargetFunctionMetaImage::Custom("misc/sword")

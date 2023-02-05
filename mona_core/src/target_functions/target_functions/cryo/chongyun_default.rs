@@ -24,8 +24,14 @@ impl TargetFunctionMetaTrait for ChongyunDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::ChongyunDefault,
-        chs: "重云-雪融有踪",
-        description: "普通副C重云",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "重云-雪融有踪",
+            en: "Chongyun-Frozen Ardor"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通副C重云",
+            en: "Sub DPS Chongyun"
+        ),
         tags: "副C,输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Chongyun),
         image: TargetFunctionMetaImage::Avatar

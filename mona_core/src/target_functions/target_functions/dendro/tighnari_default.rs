@@ -50,8 +50,14 @@ impl TargetFunctionMetaTrait for TighnariDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::TighnariDefault,
-        chs: "",
-        description: "",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "提纳里-浅蔚轻行",
+            en: "Tighnari-Verdant Strider"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "使得提纳里的重击伤害最大",
+            en: "Maximize Tighnari Charged Attack"
+        ),
         tags: "",
         four: TargetFunctionFor::SomeWho(CharacterName::Tighnari),
         image: TargetFunctionMetaImage::Avatar

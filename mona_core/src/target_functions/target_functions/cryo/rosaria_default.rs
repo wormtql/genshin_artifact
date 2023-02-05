@@ -63,8 +63,14 @@ impl TargetFunctionMetaTrait for RosariaDefaultTargetFunction {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::RosariaDefault,
-        chs: "罗莎莉亚-棘冠恩典",
-        description: "普通辅助罗莎莉亚兼一定的输出",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "罗莎莉亚-棘冠恩典",
+            en: "Rosaria-Thorny Benevolence"
+        ),
+        description: crate::common::i18n::locale!(
+            zh_cn: "普通辅助罗莎莉亚兼一定的输出",
+            en: "Support Rosaria with a certain amount of DPS"
+        ),
         tags: "辅助,输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Rosaria),
         image: TargetFunctionMetaImage::Avatar
