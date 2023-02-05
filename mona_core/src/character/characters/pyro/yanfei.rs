@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{hit_n_dmg, locale, plunging_dmg};
 
 pub struct YanfeiSkillType {
     pub normal1: [f64; 15],
@@ -135,24 +135,24 @@ impl CharacterTrait for Yanfei {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Charged1 as usize, chs: "重击-无印伤害" },
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Charged2 as usize, chs: "重击-1层伤害" },
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Charged3 as usize, chs: "重击-2层伤害" },
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Charged4 as usize, chs: "重击-3层伤害" },
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Charged5 as usize, chs: "重击-4层伤害" },
-            CharacterSkillMapItem { index: YanfeiDamageEnum::DmgTalent2 as usize, chs: "天赋2额外伤害" },
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Charged1 as usize, text: locale!(zh_cn: "重击-无印伤害", en: "Charged Attack-No Scarlet Seals") },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Charged2 as usize, text: locale!(zh_cn: "重击-1层伤害", en: "Charged Attack-1 Scarlet Seals") },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Charged3 as usize, text: locale!(zh_cn: "重击-2层伤害", en: "Charged Attack-2 Scarlet Seals") },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Charged4 as usize, text: locale!(zh_cn: "重击-3层伤害", en: "Charged Attack-3 Scarlet Seals") },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Charged5 as usize, text: locale!(zh_cn: "重击-4层伤害", en: "Charged Attack-4 Scarlet Seals") },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::DmgTalent2 as usize, text: locale!(zh_cn: "天赋2额外伤害", en: "Talent2 Additional DMG") },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: YanfeiDamageEnum::E1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: YanfeiDamageEnum::E1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: YanfeiDamageEnum::Q1 as usize, chs: "技能伤害" }
+            CharacterSkillMapItem { index: YanfeiDamageEnum::Q1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") }
         ])
     };
 

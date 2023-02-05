@@ -9,7 +9,7 @@ use crate::character::macros::{damage_enum, skill_type};
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -166,28 +166,28 @@ impl CharacterTrait for Cyno {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: CynoDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::Normal3 as usize, chs: "三段伤害/2" },
-            CharacterSkillMapItem { index: CynoDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::Charged1 as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::QNormal1 as usize, chs: "启途誓使：一段伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::QNormal2 as usize, chs: "启途誓使：二段伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::QNormal3 as usize, chs: "启途誓使：三段伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::QNormal4 as usize, chs: "启途誓使：四段伤害/2" },
-            CharacterSkillMapItem { index: CynoDamageEnum::QNormal5 as usize, chs: "启途誓使：五段伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::QCharged1 as usize, chs: "启途誓使：重击伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::QPlunging1 as usize, chs: "启途誓使：下坠期间伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::QPlunging2 as usize, chs: "启途誓使：低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::QPlunging3 as usize, chs: "启途誓使：高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: CynoDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: CynoDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: CynoDamageEnum::Normal3 as usize, text: locale!(zh_cn: "三段伤害/2", en: "3-Hit DMG/2") },
+            CharacterSkillMapItem { index: CynoDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: CynoDamageEnum::Charged1 as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: CynoDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: CynoDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: CynoDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
+            CharacterSkillMapItem { index: CynoDamageEnum::QNormal1 as usize, text: locale!(zh_cn: "启途誓使：一段伤害", en: "Pactsworn Pathclearer: 1-Hit DMG") },
+            CharacterSkillMapItem { index: CynoDamageEnum::QNormal2 as usize, text: locale!(zh_cn: "启途誓使：二段伤害", en: "Pactsworn Pathclearer: 2-Hit DMG") },
+            CharacterSkillMapItem { index: CynoDamageEnum::QNormal3 as usize, text: locale!(zh_cn: "启途誓使：三段伤害", en: "Pactsworn Pathclearer: 3-Hit DMG") },
+            CharacterSkillMapItem { index: CynoDamageEnum::QNormal4 as usize, text: locale!(zh_cn: "启途誓使：四段伤害/2", en: "Pactsworn Pathclearer: 4-Hit DMG/2") },
+            CharacterSkillMapItem { index: CynoDamageEnum::QNormal5 as usize, text: locale!(zh_cn: "启途誓使：五段伤害", en: "Pactsworn Pathclearer: 5-Hit DMG") },
+            CharacterSkillMapItem { index: CynoDamageEnum::QCharged1 as usize, text: locale!(zh_cn: "启途誓使：重击伤害", en: "Pactsworn Pathclearer: Charged Attack DMG") },
+            CharacterSkillMapItem { index: CynoDamageEnum::QPlunging1 as usize, text: locale!(zh_cn: "启途誓使：下坠期间伤害", en: "Pactsworn Pathclearer: Plunge DMG") },
+            CharacterSkillMapItem { index: CynoDamageEnum::QPlunging2 as usize, text: locale!(zh_cn: "启途誓使：低空坠地冲击伤害", en: "Pactsworn Pathclearer: Low Plunging DMG") },
+            CharacterSkillMapItem { index: CynoDamageEnum::QPlunging3 as usize, text: locale!(zh_cn: "启途誓使：高空坠地冲击伤害", en: "Pactsworn Pathclearer: High Plunging DMG") },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: CynoDamageEnum::E1 as usize, chs: "技能伤害" },
-            CharacterSkillMapItem { index: CynoDamageEnum::E2 as usize, chs: "启途誓使：冥祭" },
-            CharacterSkillMapItem { index: CynoDamageEnum::E3 as usize, chs: "启途誓使：渡荒之雷" }
+            CharacterSkillMapItem { index: CynoDamageEnum::E1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") },
+            CharacterSkillMapItem { index: CynoDamageEnum::E2 as usize, text: locale!(zh_cn: "启途誓使：冥祭", en: "Pactsworn Pathclearer: Mortuary Rite DMG") },
+            CharacterSkillMapItem { index: CynoDamageEnum::E3 as usize, text: locale!(zh_cn: "启途誓使：渡荒之雷", en: "Pactsworn Pathclearer: Duststalker Bolt DMG") }
         ]),
         skill3: None,
     };

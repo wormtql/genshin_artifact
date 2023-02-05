@@ -9,7 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 use crate::common::item_config_type::ItemConfig;
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -164,25 +164,25 @@ impl CharacterTrait for Ganyu {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: GanyuDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Normal5 as usize, chs: "五段伤害" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Normal6 as usize, chs: "六段伤害" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Charged1 as usize, chs: "瞄准射击" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Charged2 as usize, chs: "一段蓄力瞄准射击" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Charged3 as usize, chs: "霜华矢命中伤害" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Charged4 as usize, chs: "霜华矢·霜华绽发伤害" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: GanyuDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal5 as usize, text: hit_n_dmg!(5) },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Normal6 as usize, text: hit_n_dmg!(6) },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Charged1 as usize, text: charged_dmg!("shoot1") },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Charged2 as usize, text: locale!(zh_cn: "一段蓄力瞄准射击", en: "Aimed Shot Charge Level 1") },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Charged3 as usize, text: locale!(zh_cn: "霜华矢命中伤害", en: "Frostflake Arrow DMG") },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Charged4 as usize, text: locale!(zh_cn: "霜华矢·霜华绽发伤害", en: "Frostflake Arrow Bloom DMG") },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: GanyuDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: GanyuDamageEnum::E1 as usize, chs: "技能伤害" }
+            CharacterSkillMapItem { index: GanyuDamageEnum::E1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") }
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: GanyuDamageEnum::Q1 as usize, chs: "冰棱伤害" }
+            CharacterSkillMapItem { index: GanyuDamageEnum::Q1 as usize, text: locale!(zh_cn: "冰棱伤害", en: "Ice Shard DMG") }
         ])
     };
 

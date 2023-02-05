@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 
 pub struct ShenheSkillType {
     pub normal_dmg1: [f64; 15],
@@ -147,24 +147,24 @@ impl CharacterTrait for Shenhe {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: ShenheDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: ShenheDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: ShenheDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: ShenheDamageEnum::Normal41 as usize, chs: "四段伤害-1" },
-            CharacterSkillMapItem { index: ShenheDamageEnum::Normal42 as usize, chs: "四段伤害-2" },
-            CharacterSkillMapItem { index: ShenheDamageEnum::Normal5 as usize, chs: "五段伤害" },
-            CharacterSkillMapItem { index: ShenheDamageEnum::Charged as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: ShenheDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: ShenheDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: ShenheDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Normal41 as usize, text: hit_n_dmg!(4, 1) },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Normal42 as usize, text: hit_n_dmg!(4, 2) },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Normal5 as usize, text: hit_n_dmg!(5) },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Charged as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: ShenheDamageEnum::E1 as usize, chs: "点按技能伤害" },
-            CharacterSkillMapItem { index: ShenheDamageEnum::E2 as usize, chs: "长按技能伤害" },
+            CharacterSkillMapItem { index: ShenheDamageEnum::E1 as usize, text: locale!(zh_cn: "点按技能伤害", en: "Tap Skill DMG") },
+            CharacterSkillMapItem { index: ShenheDamageEnum::E2 as usize, text: locale!(zh_cn: "长按技能伤害", en: "Hold Skill DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: ShenheDamageEnum::Q1 as usize, chs: "技能伤害" },
-            CharacterSkillMapItem { index: ShenheDamageEnum::Q2 as usize, chs: "持续伤害" },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Q1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") },
+            CharacterSkillMapItem { index: ShenheDamageEnum::Q2 as usize, text: locale!(zh_cn: "持续伤害", en: "DoT") },
         ])
     };
 

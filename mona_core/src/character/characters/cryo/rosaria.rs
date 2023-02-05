@@ -9,7 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -174,25 +174,25 @@ impl CharacterTrait for Rosaria {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: RosariaDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::Normal3 as usize, chs: "三段伤害/2" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::Normal51 as usize, chs: "五段伤害-1" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::Normal52 as usize, chs: "五段伤害-2" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::Charged as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal3 as usize, text: locale!(zh_cn: "三段伤害/2", en: "3-Hit DMG/2") },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal51 as usize, text: hit_n_dmg!(5, 1) },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Normal52 as usize, text: hit_n_dmg!(5, 2) },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Charged as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: RosariaDamageEnum::E11 as usize, chs: "技能伤害-1" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::E12 as usize, chs: "技能伤害-2" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::E11 as usize, text: locale!(zh_cn: "技能伤害-1", en: "Skill DMG-1") },
+            CharacterSkillMapItem { index: RosariaDamageEnum::E12 as usize, text: locale!(zh_cn: "技能伤害-2", en: "Skill DMG-2") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: RosariaDamageEnum::Q11 as usize, chs: "技能伤害-1" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::Q12 as usize, chs: "技能伤害-2" },
-            CharacterSkillMapItem { index: RosariaDamageEnum::Q2 as usize, chs: "冰枪持续伤害" },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Q11 as usize, text: locale!(zh_cn: "技能伤害-1", en: "Skill DMG-1") },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Q12 as usize, text: locale!(zh_cn: "技能伤害-2", en: "Skill DMG-2") },
+            CharacterSkillMapItem { index: RosariaDamageEnum::Q2 as usize, text: locale!(zh_cn: "冰枪持续伤害", en: "Ice Lance DoT") },
         ]),
     };
 

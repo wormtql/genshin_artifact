@@ -10,7 +10,7 @@ use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::attribute::{AttributeCommon};
 use crate::character::traits::{CharacterSkillMapItem, CharacterSkillMap};
 use crate::character::macros::{skill_type, skill_map, damage_ratio};
-use crate::common::i18n::locale;
+use crate::common::i18n::{locale, hit_n_dmg, charged_dmg, plunging_dmg};
 
 pub struct AlhaithamSkillType {
     pub normal_dmg1: [f64; 15],
@@ -160,28 +160,28 @@ impl CharacterTrait for Alhaitham {
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: skill_map!(
             AlhaithamDamageEnum
-            Normal1 "一段伤害"
-            Normal2 "二段伤害"
-            Normal31 "三段伤害-1"
-            Normal32 "三段伤害-2"
-            Normal4 "四段伤害"
-            Normal5 "五段伤害"
-            Charged11 "重击伤害-1"
-            Charged12 "重击伤害-2"
-            Plunging1 "下坠期间伤害"
-            Plunging2 "低空坠地冲击伤害"
-            Plunging3 "高空坠地冲击伤害"
+            Normal1 hit_n_dmg!(1)
+            Normal2 hit_n_dmg!(2)
+            Normal31 hit_n_dmg!(3, 1)
+            Normal32 hit_n_dmg!(3, 2)
+            Normal4 hit_n_dmg!(4)
+            Normal5 hit_n_dmg!(5)
+            Charged11 charged_dmg!(1)
+            Charged12 charged_dmg!(2)
+            Plunging1 plunging_dmg!(1)
+            Plunging2 plunging_dmg!(2)
+            Plunging3 plunging_dmg!(3)
         ),
         skill2: skill_map!(
             AlhaithamDamageEnum
-            E1 "突进攻击伤害"
-            E2 "1枚光幕攻击伤害"
-            E3 "2枚光幕攻击伤害"
-            E4 "3枚光幕攻击伤害"
+            E1 locale!(zh_cn: "突进攻击伤害", en: "Rush Attack DMG")
+            E2 locale!(zh_cn: "1枚光幕攻击伤害", en: "1-Mirror Projection Attack DMG")
+            E3 locale!(zh_cn: "2枚光幕攻击伤害", en: "2-Mirror Projection Attack DMG")
+            E4 locale!(zh_cn: "3枚光幕攻击伤害", en: "3-Mirror Projection Attack DMG")
         ),
         skill3: skill_map!(
             AlhaithamDamageEnum
-            Q1 "单次伤害"
+            Q1 locale!(zh_cn: "单次伤害", en: "Single-Instance DMG")
         )
     };
 

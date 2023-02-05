@@ -165,18 +165,18 @@ impl CharacterTrait for ShikanoinHeizou {
             CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::E0 as usize, text: locale!(zh_ch: "技能伤害-0层", en: "Skill DMG-0") },
-            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::E1 as usize, text: locale!(zh_ch: "技能伤害-1层", en: "Skill DMG-1") },
-            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::E2 as usize, text: locale!(zh_ch: "技能伤害-2层", en: "Skill DMG-2") },
-            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::E3 as usize, text: locale!(zh_ch: "技能伤害-3层", en: "Skill DMG-3") },
-            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::E4 as usize, text: locale!(zh_ch: "技能伤害-4层", en: "Skill DMG-4") },
+            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::E0 as usize, text: locale!(zh_cn: "技能伤害-0层", en: "Skill DMG-0") },
+            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::E1 as usize, text: locale!(zh_cn: "技能伤害-1层", en: "Skill DMG-1") },
+            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::E2 as usize, text: locale!(zh_cn: "技能伤害-2层", en: "Skill DMG-2") },
+            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::E3 as usize, text: locale!(zh_cn: "技能伤害-3层", en: "Skill DMG-3") },
+            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::E4 as usize, text: locale!(zh_cn: "技能伤害-4层", en: "Skill DMG-4") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::Q1 as usize, text: locale!(zh_ch: "不动流·真空弹伤害", en: "Fudou Style Vacuum Slugger DMG") },
-            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::Q2Pyro as usize, text: locale!(zh_ch: "聚风真眼伤害-火", en: "Windmuster Iris DMG-Pyro") },
-            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::Q2Cryo as usize, text: locale!(zh_ch: "聚风真眼伤害-冰", en: "Windmuster Iris DMG-Cryo") },
-            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::Q2Electro as usize, text: locale!(zh_ch: "聚风真眼伤害-雷", en: "Windmuster Iris DMG-Electro") },
-            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::Q2Hydro as usize, text: locale!(zh_ch: "聚风真眼伤害-水", en: "Windmuster Iris DMG-Hydro") },
+            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::Q1 as usize, text: locale!(zh_cn: "不动流·真空弹伤害", en: "Fudou Style Vacuum Slugger DMG") },
+            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::Q2Pyro as usize, text: locale!(zh_cn: "聚风真眼伤害-火", en: "Windmuster Iris DMG-Pyro") },
+            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::Q2Cryo as usize, text: locale!(zh_cn: "聚风真眼伤害-冰", en: "Windmuster Iris DMG-Cryo") },
+            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::Q2Electro as usize, text: locale!(zh_cn: "聚风真眼伤害-雷", en: "Windmuster Iris DMG-Electro") },
+            CharacterSkillMapItem { index: ShikanoinHeizouDamageEnum::Q2Hydro as usize, text: locale!(zh_cn: "聚风真眼伤害-水", en: "Windmuster Iris DMG-Hydro") },
         ])
     };
 

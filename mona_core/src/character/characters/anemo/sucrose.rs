@@ -150,14 +150,14 @@ impl CharacterTrait for Sucrose {
             CharacterSkillMapItem { index: SucroseDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: SucroseDamageEnum::E1 as usize, text: locale!(zh_ch: "技能伤害", en: "Skill DMG") }
+            CharacterSkillMapItem { index: SucroseDamageEnum::E1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") }
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: SucroseDamageEnum::Q1 as usize, text: locale!(zh_ch: "持续伤害", en: "DoT") },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Pyro as usize, text: locale!(zh_ch: "附加火元素伤害", en: "Additional Pyro DMG") },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Hydro as usize, text: locale!(zh_ch: "附加水元素伤害", en: "Additional Hydro DMG") },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Cryo as usize, text: locale!(zh_ch: "附加冰元素伤害", en: "Additional Cryo DMG") },
-            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Electro as usize, text: locale!(zh_ch: "附加雷元素伤害", en: "Additional Electro DMG") },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q1 as usize, text: locale!(zh_cn: "持续伤害", en: "DoT") },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Pyro as usize, text: locale!(zh_cn: "附加火元素伤害", en: "Additional Pyro DMG") },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Hydro as usize, text: locale!(zh_cn: "附加水元素伤害", en: "Additional Hydro DMG") },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Cryo as usize, text: locale!(zh_cn: "附加冰元素伤害", en: "Additional Cryo DMG") },
+            CharacterSkillMapItem { index: SucroseDamageEnum::Q2Electro as usize, text: locale!(zh_cn: "附加雷元素伤害", en: "Additional Electro DMG") },
         ])
     };
 

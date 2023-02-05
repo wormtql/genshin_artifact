@@ -5,7 +5,6 @@ use mona::character::traits::{CharacterSkillMap, CharacterSkillMapItem};
 use mona::common::item_config_type::ItemConfig;
 use lazy_static::lazy_static;
 use crate::gen_meta::gen_locale::get_index_mapping;
-use crate::utils::character::{get_character_dmg_names_chs};
 
 struct CharacterMeta {
     name: String,
@@ -19,27 +18,22 @@ struct CharacterMeta {
     skill3_name_index: usize,
     element: String,
     weapon: String,
-    skill_map1: Vec<CharacterSkillMapItem>,
-    skill_map2: Vec<CharacterSkillMapItem>,
-    skill_map3: Vec<CharacterSkillMapItem>,
+    skill_map1: Vec<SkillMapItem>,
+    skill_map2: Vec<SkillMapItem>,
+    skill_map3: Vec<SkillMapItem>,
     config: Vec<String>,
     config_skill: Vec<String>,
+}
+
+struct SkillMapItem {
+    index: usize,
+    locale_index: usize,
 }
 
 #[derive(Template)]
 #[template(path = "character_meta_template.js")]
 struct CharacterMetaTemplate {
     characters: Vec<CharacterMeta>,
-    dmg_name_map: HashMap<String, usize>,
-}
-
-fn get_dmg_name_map() -> HashMap<String, usize> {
-    let v = get_character_dmg_names_chs();
-    let mut result = HashMap::new();
-    for (index, item) in v.into_iter().enumerate() {
-        result.insert(item, index);
-    }
-    result
 }
 
 pub fn gen_character_meta_as_js_file() -> String {
@@ -51,20 +45,35 @@ pub fn gen_character_meta_as_js_file() -> String {
         let meta: CharacterStaticData = name_enum.get_static_data();
 
         let skill_map: CharacterSkillMap = name_enum.get_skill_map();
-        let s1: Vec<CharacterSkillMapItem> = if let Some(x) = skill_map.skill1 {
-            x.iter().cloned().collect()
+        let s1: Vec<SkillMapItem> = if let Some(x) = skill_map.skill1 {
+            x.iter().cloned().map(|a| {
+                SkillMapItem {
+                    index: a.index,
+                    locale_index: *index_mapping.get(&a.text).unwrap()
+                }
+            }).collect()
         } else {
             Vec::new()
         };
 
-        let s2: Vec<CharacterSkillMapItem> = if let Some(x) = skill_map.skill2 {
-            x.iter().cloned().collect()
+        let s2: Vec<SkillMapItem> = if let Some(x) = skill_map.skill2 {
+            x.iter().cloned().map(|a| {
+                SkillMapItem {
+                    index: a.index,
+                    locale_index: *index_mapping.get(&a.text).unwrap()
+                }
+            }).collect()
         } else {
             Vec::new()
         };
 
-        let s3: Vec<CharacterSkillMapItem> = if let Some(x) = skill_map.skill3 {
-            x.iter().cloned().collect()
+        let s3: Vec<SkillMapItem> = if let Some(x) = skill_map.skill3 {
+            x.iter().cloned().map(|a| {
+                SkillMapItem {
+                    index: a.index,
+                    locale_index: *index_mapping.get(&a.text).unwrap()
+                }
+            }).collect()
         } else {
             Vec::new()
         };
@@ -103,7 +112,6 @@ pub fn gen_character_meta_as_js_file() -> String {
 
     let t = CharacterMetaTemplate {
         characters: data,
-        dmg_name_map: get_dmg_name_map(),
     };
 
     t.render().unwrap()

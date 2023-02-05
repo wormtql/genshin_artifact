@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, locale, plunging_dmg};
 
 pub struct NingguangSkillType {
     pub normal_dmg1: [f64; 15],
@@ -145,18 +145,18 @@ impl CharacterTrait for Ningguang {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: NingguangDamageEnum::Normal as usize, chs: "普通攻击伤害" },
-            CharacterSkillMapItem { index: NingguangDamageEnum::Charged1 as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: NingguangDamageEnum::Charged2 as usize, chs: "星璇伤害" },
-            CharacterSkillMapItem { index: NingguangDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: NingguangDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: NingguangDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: NingguangDamageEnum::Normal as usize, text: locale!(zh_cn: "普通攻击伤害", en: "Normal Attack DMG") },
+            CharacterSkillMapItem { index: NingguangDamageEnum::Charged1 as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: NingguangDamageEnum::Charged2 as usize, text: locale!(zh_cn: "星璇伤害", en: "DMG per Star Jade") },
+            CharacterSkillMapItem { index: NingguangDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: NingguangDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: NingguangDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: NingguangDamageEnum::E1 as usize, chs: "技能伤害" }
+            CharacterSkillMapItem { index: NingguangDamageEnum::E1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") }
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: NingguangDamageEnum::Q1 as usize, chs: "每颗宝石伤害" }
+            CharacterSkillMapItem { index: NingguangDamageEnum::Q1 as usize, text: locale!(zh_cn: "每颗宝石伤害", en: "DMG Per Gem") }
         ])
     };
 

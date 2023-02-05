@@ -14,7 +14,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 
 pub struct BennettSkillType {
     pub normal_dmg1: [f64; 15],
@@ -173,28 +173,28 @@ impl CharacterTrait for Bennett {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: BennettDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: BennettDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: BennettDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: BennettDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: BennettDamageEnum::Normal5 as usize, chs: "五段伤害" },
-            CharacterSkillMapItem { index: BennettDamageEnum::Charged11 as usize, chs: "重击伤害-1" },
-            CharacterSkillMapItem { index: BennettDamageEnum::Charged12 as usize, chs: "重击伤害-2" },
-            CharacterSkillMapItem { index: BennettDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: BennettDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: BennettDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: BennettDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: BennettDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: BennettDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: BennettDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: BennettDamageEnum::Normal5 as usize, text: hit_n_dmg!(5) },
+            CharacterSkillMapItem { index: BennettDamageEnum::Charged11 as usize, text: charged_dmg!(1) },
+            CharacterSkillMapItem { index: BennettDamageEnum::Charged12 as usize, text: charged_dmg!(2) },
+            CharacterSkillMapItem { index: BennettDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: BennettDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: BennettDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: BennettDamageEnum::E1 as usize, chs: "点按伤害" },
-            CharacterSkillMapItem { index: BennettDamageEnum::E21 as usize, chs: "一段蓄力伤害-1" },
-            CharacterSkillMapItem { index: BennettDamageEnum::E22 as usize, chs: "一段蓄力伤害-2" },
-            CharacterSkillMapItem { index: BennettDamageEnum::E31 as usize, chs: "二段蓄力伤害-1" },
-            CharacterSkillMapItem { index: BennettDamageEnum::E32 as usize, chs: "二段蓄力伤害-2" },
-            CharacterSkillMapItem { index: BennettDamageEnum::E4 as usize, chs: "爆炸伤害" },
+            CharacterSkillMapItem { index: BennettDamageEnum::E1 as usize, text: locale!(zh_cn: "点按伤害", en: "Tapping DMG") },
+            CharacterSkillMapItem { index: BennettDamageEnum::E21 as usize, text: locale!(zh_cn: "一段蓄力伤害-1", en: "Charge Level 1 DMG-1") },
+            CharacterSkillMapItem { index: BennettDamageEnum::E22 as usize, text: locale!(zh_cn: "一段蓄力伤害-2", en: "Charge Level 1 DMG-2") },
+            CharacterSkillMapItem { index: BennettDamageEnum::E31 as usize, text: locale!(zh_cn: "二段蓄力伤害-1", en: "Charge Level 2 DMG-1") },
+            CharacterSkillMapItem { index: BennettDamageEnum::E32 as usize, text: locale!(zh_cn: "二段蓄力伤害-2", en: "Charge Level 2 DMG-2") },
+            CharacterSkillMapItem { index: BennettDamageEnum::E4 as usize, text: locale!(zh_cn: "爆炸伤害", en: "Explosion DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: BennettDamageEnum::Q1 as usize, chs: "技能伤害" },
-            CharacterSkillMapItem { index: BennettDamageEnum::QHeal as usize, chs: "持续治疗" },
+            CharacterSkillMapItem { index: BennettDamageEnum::Q1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") },
+            CharacterSkillMapItem { index: BennettDamageEnum::QHeal as usize, text: locale!(zh_cn: "持续治疗", en: "Continuous Regeneration Per Sec") },
         ])
     };
 

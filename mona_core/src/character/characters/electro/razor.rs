@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 
 pub struct RazorSkillType {
     pub normal_dmg1: [f64; 15],
@@ -175,26 +175,26 @@ impl CharacterTrait for Razor {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: RazorDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::Charged1 as usize, chs: "重击循环伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::Charged2 as usize, chs: "重击终结伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: RazorDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: RazorDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: RazorDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: RazorDamageEnum::Charged1 as usize, text: charged_dmg!("loop1") },
+            CharacterSkillMapItem { index: RazorDamageEnum::Charged2 as usize, text: charged_dmg!("loop2") },
+            CharacterSkillMapItem { index: RazorDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: RazorDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: RazorDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: RazorDamageEnum::E1 as usize, chs: "点按技能伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::E2 as usize, chs: "长按技能伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::E1 as usize, text: locale!(zh_cn: "点按技能伤害", en: "Tapping Skill DMG") },
+            CharacterSkillMapItem { index: RazorDamageEnum::E2 as usize, text: locale!(zh_cn: "长按技能伤害", en: "Hold Skill DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: RazorDamageEnum::Q1 as usize, chs: "爆发伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::QNormal1 as usize, chs: "狼魂-一段伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::QNormal2 as usize, chs: "狼魂-二段伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::QNormal3 as usize, chs: "狼魂-三段伤害" },
-            CharacterSkillMapItem { index: RazorDamageEnum::QNormal4 as usize, chs: "狼魂-四段伤害" },
+            CharacterSkillMapItem { index: RazorDamageEnum::Q1 as usize, text: locale!(zh_cn: "爆发伤害", en: "Burst DMG") },
+            CharacterSkillMapItem { index: RazorDamageEnum::QNormal1 as usize, text: locale!(zh_cn: "狼魂-一段伤害", en: "Soul Companion 1-Hit DMG") },
+            CharacterSkillMapItem { index: RazorDamageEnum::QNormal2 as usize, text: locale!(zh_cn: "狼魂-二段伤害", en: "Soul Companion 2-Hit DMG") },
+            CharacterSkillMapItem { index: RazorDamageEnum::QNormal3 as usize, text: locale!(zh_cn: "狼魂-三段伤害", en: "Soul Companion 3-Hit DMG") },
+            CharacterSkillMapItem { index: RazorDamageEnum::QNormal4 as usize, text: locale!(zh_cn: "狼魂-四段伤害", en: "Soul Companion 4-Hit DMG") },
         ])
     };
 

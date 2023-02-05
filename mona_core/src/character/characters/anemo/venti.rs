@@ -176,15 +176,15 @@ impl CharacterTrait for Venti {
             CharacterSkillMapItem { index: VentiDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: VentiDamageEnum::E1 as usize, text: locale!(zh_ch: "点按伤害", en: "Tapping DMG") },
-            CharacterSkillMapItem { index: VentiDamageEnum::E2 as usize, text: locale!(zh_ch: "长按伤害", en: "Hold DMG") },
+            CharacterSkillMapItem { index: VentiDamageEnum::E1 as usize, text: locale!(zh_cn: "点按伤害", en: "Tapping DMG") },
+            CharacterSkillMapItem { index: VentiDamageEnum::E2 as usize, text: locale!(zh_cn: "长按伤害", en: "Hold DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: VentiDamageEnum::Q1 as usize, text: locale!(zh_ch: "持续伤害", en: "DoT") },
-            CharacterSkillMapItem { index: VentiDamageEnum::Q2Pyro as usize, text: locale!(zh_ch: "附加火元素伤害", en: "Additional Pyro DMG") },
-            CharacterSkillMapItem { index: VentiDamageEnum::Q2Hydro as usize, text: locale!(zh_ch: "附加水元素伤害", en: "Additional Hydro DMG") },
-            CharacterSkillMapItem { index: VentiDamageEnum::Q2Cryo as usize, text: locale!(zh_ch: "附加冰元素伤害", en: "Additional Cryo DMG") },
-            CharacterSkillMapItem { index: VentiDamageEnum::Q2Electro as usize, text: locale!(zh_ch: "附加雷元素伤害", en: "Additional Electro DMG") },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q1 as usize, text: locale!(zh_cn: "持续伤害", en: "DoT") },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Pyro as usize, text: locale!(zh_cn: "附加火元素伤害", en: "Additional Pyro DMG") },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Hydro as usize, text: locale!(zh_cn: "附加水元素伤害", en: "Additional Hydro DMG") },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Cryo as usize, text: locale!(zh_cn: "附加冰元素伤害", en: "Additional Cryo DMG") },
+            CharacterSkillMapItem { index: VentiDamageEnum::Q2Electro as usize, text: locale!(zh_cn: "附加雷元素伤害", en: "Additional Electro DMG") },
         ])
     };
 

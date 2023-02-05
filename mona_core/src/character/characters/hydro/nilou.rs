@@ -16,7 +16,7 @@ use crate::weapon::weapon_common_data::WeaponCommonData;
 // use strum::EnumCount;
 // use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 use crate::character::macros::{skill_type, damage_enum, skill_map, damage_ratio};
-use crate::common::i18n::locale;
+use crate::common::i18n::{locale, hit_n_dmg, charged_dmg, plunging_dmg};
 
 pub struct NilouSkillType {
     pub normal_dmg1: [f64; 15],
@@ -200,29 +200,29 @@ impl CharacterTrait for Nilou {
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: skill_map!(
             NilouDamageEnum
-            Normal1 "一段伤害"
-            Normal2 "二段伤害"
-            Normal3 "三段伤害"
-            Charged11 "重击伤害-1"
-            Charged12 "重击伤害-2"
-            Plunging1 "下坠期间伤害"
-            Plunging2 "低空坠地冲击伤害"
-            Plunging3 "高空坠地冲击伤害"
+            Normal1 hit_n_dmg!(1)
+            Normal2 hit_n_dmg!(2)
+            Normal3 hit_n_dmg!(3)
+            Charged11 charged_dmg!(1)
+            Charged12 charged_dmg!(2)
+            Plunging1 plunging_dmg!(1)
+            Plunging2 plunging_dmg!(2)
+            Plunging3 plunging_dmg!(3)
         ),
         skill2: skill_map!(
             NilouDamageEnum
-            E1 "技能伤害"
-            E21 "剑舞步一段伤害"
-            E22 "旋舞步一段伤害"
-            E31 "剑舞步二段伤害"
-            E32 "旋舞步二段伤害"
-            E41 "水月伤害"
-            E42 "水轮伤害"
+            E1 locale!(zh_cn: "技能伤害", en: "Skill DMG")
+            E21 locale!(zh_cn: "剑舞步一段伤害", en: "Sword Dance 1-Hit DMG")
+            E22 locale!(zh_cn: "旋舞步一段伤害", en: "Whirling Steps 1-Hit DMG")
+            E31 locale!(zh_cn: "剑舞步二段伤害", en: "Sword Dance 2-Hit DMG")
+            E32 locale!(zh_cn: "旋舞步二段伤害", en: "Whirling Steps 2-Hit DMG")
+            E41 locale!(zh_cn: "水月伤害", en: "Luminous Illusion DMG")
+            E42 locale!(zh_cn: "水轮伤害", en: "Water Wheel DMG")
         ),
         skill3: skill_map!(
             NilouDamageEnum
-            Q1 "技能伤害"
-            Q2 "永世流沔伤害"
+            Q1 locale!(zh_cn: "技能伤害", en: "Skill DMG")
+            Q2 locale!(zh_cn: "永世流沔伤害", en: "Lingering Aeon DMG")
         )
     };
 

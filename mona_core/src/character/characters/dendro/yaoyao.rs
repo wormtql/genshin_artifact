@@ -14,7 +14,7 @@ use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::character::traits::{CharacterSkillMapItem};
-use crate::common::i18n::locale;
+use crate::common::i18n::{locale, hit_n_dmg, charged_dmg, plunging_dmg};
 
 
 pub struct YaoyaoSkillType {
@@ -155,26 +155,26 @@ impl CharacterTrait for Yaoyao {
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: skill_map!(
             YaoyaoDamageEnum
-            Normal1 "一段伤害"
-            Normal2 "二段伤害"
-            Normal31 "三段伤害-1"
-            Normal32 "三段伤害-2"
-            Normal4 "四段伤害"
-            Charged "重击伤害"
-            Plunging1 "下坠期间伤害"
-            Plunging2 "低空坠地冲击伤害"
-            Plunging3 "高空坠地冲击伤害"
+            Normal1 hit_n_dmg!(1)
+            Normal2 hit_n_dmg!(2)
+            Normal31 hit_n_dmg!(3, 1)
+            Normal32 hit_n_dmg!(3, 2)
+            Normal4 hit_n_dmg!(4)
+            Charged charged_dmg!()
+            Plunging1 plunging_dmg!(1)
+            Plunging2 plunging_dmg!(2)
+            Plunging3 plunging_dmg!(3)
         ),
         skill2: skill_map!(
             YaoyaoDamageEnum
-            E1 "白玉萝卜伤害"
-            EHeal1 "白玉萝卜治疗量"
+            E1 locale!(zh_cn: "白玉萝卜伤害", en: "White Jade Radish DMG")
+            EHeal1 locale!(zh_cn: "白玉萝卜治疗量", en: "White Jade Radish Healing")
         ),
         skill3: skill_map!(
             YaoyaoDamageEnum
-            Q1 "技能伤害"
-            Q2 "桂子仙机白玉萝卜伤害"
-            QHeal1 "桂子仙机白玉萝卜治疗量"
+            Q1 locale!(zh_cn: "技能伤害", en: "Skill DMG")
+            Q2 locale!(zh_cn: "桂子仙机白玉萝卜伤害", en: "Adeptal Legacy White Jade Radish DMG")
+            QHeal1 locale!(zh_cn: "桂子仙机白玉萝卜治疗量", en: "Adeptal Legacy White Jade Radish Healing")
         )
     };
 

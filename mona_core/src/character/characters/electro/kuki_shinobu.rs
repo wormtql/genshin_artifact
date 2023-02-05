@@ -9,7 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -174,26 +174,26 @@ impl CharacterTrait for KukiShinobu {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Charged11 as usize, chs: "重击伤害-1" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Charged12 as usize, chs: "重击伤害-2" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Charged1 as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Charged11 as usize, text: charged_dmg!(1) },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Charged12 as usize, text: charged_dmg!(2) },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Charged1 as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::E1 as usize, chs: "技能伤害" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::EHeal1 as usize, chs: "越祓草轮治疗量" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::E2 as usize, chs: "越祓草轮伤害" },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::E1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::EHeal1 as usize, text: locale!(zh_cn: "越祓草轮治疗量", en: "Grass Ring of Sanctification Healing") },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::E2 as usize, text: locale!(zh_cn: "越祓草轮伤害", en: "Grass Ring of Sanctification DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Q1 as usize, chs: "单次伤害" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Q2 as usize, chs: "总伤害" },
-            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Q3 as usize, chs: "总伤害-低血量" },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Q1 as usize, text: locale!(zh_cn: "单次伤害", en: "Single Instance DMG") },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Q2 as usize, text: locale!(zh_cn: "总伤害", en: "Total DMG") },
+            CharacterSkillMapItem { index: KukiShinobuDamageEnum::Q3 as usize, text: locale!(zh_cn: "总伤害-低血量", en: "Total DMG-Low HP") },
         ]),
     };
 

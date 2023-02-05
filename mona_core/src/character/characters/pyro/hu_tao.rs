@@ -9,7 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::DamageContext;
 use crate::damage::damage_builder::DamageBuilder;
@@ -186,24 +186,24 @@ impl CharacterTrait for HuTao {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal51 as usize, chs: "五段伤害-1" },
-            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal52 as usize, chs: "五段伤害-2" },
-            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal6 as usize, chs: "六段伤害" },
-            CharacterSkillMapItem { index: HuTaoDamageEnum::Charged as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: HuTaoDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: HuTaoDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: HuTaoDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal51 as usize, text: hit_n_dmg!(5, 1) },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal52 as usize, text: hit_n_dmg!(5, 2) },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Normal6 as usize, text: hit_n_dmg!(6) },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Charged as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: HuTaoDamageEnum::ElementalSkillBloodBlossom as usize, chs: "血梅香伤害" }
+            CharacterSkillMapItem { index: HuTaoDamageEnum::ElementalSkillBloodBlossom as usize, text: locale!(zh_cn: "血梅香伤害", en: "Blood Blossom DMG") }
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: HuTaoDamageEnum::ElementalBurst1 as usize, chs: "技能伤害" },
-            CharacterSkillMapItem { index: HuTaoDamageEnum::ElementalBurstLow1 as usize, chs: "低血量时技能伤害" },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::ElementalBurst1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") },
+            CharacterSkillMapItem { index: HuTaoDamageEnum::ElementalBurstLow1 as usize, text: locale!(zh_cn: "低血量时技能伤害", en: "Low HP Skill DMG") },
         ]),
     };
 

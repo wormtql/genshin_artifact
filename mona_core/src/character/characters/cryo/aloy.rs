@@ -170,11 +170,11 @@ impl CharacterTrait for Aloy {
             CharacterSkillMapItem { index: AloyDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: AloyDamageEnum::E1 as usize, text: locale!(zh_ch: "冰尘弹伤害", en: "Freeze Bomb DMG") },
-            CharacterSkillMapItem { index: AloyDamageEnum::E2 as usize, text: locale!(zh_ch: "冷冻炸弹伤害", en: "Chillwater Bomblet DMG") },
+            CharacterSkillMapItem { index: AloyDamageEnum::E1 as usize, text: locale!(zh_cn: "冰尘弹伤害", en: "Freeze Bomb DMG") },
+            CharacterSkillMapItem { index: AloyDamageEnum::E2 as usize, text: locale!(zh_cn: "冷冻炸弹伤害", en: "Chillwater Bomblet DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: AloyDamageEnum::Q1 as usize, text: locale!(zh_ch: "技能伤害", en: "Skill DMG") }
+            CharacterSkillMapItem { index: AloyDamageEnum::Q1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") }
         ])
     };
 

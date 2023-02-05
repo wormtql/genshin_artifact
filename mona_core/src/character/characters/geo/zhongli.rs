@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 
 pub struct ZhongliSkillType {
     pub normal_dmg1: [f64; 15],
@@ -171,24 +171,24 @@ impl CharacterTrait for Zhongli {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal5 as usize, chs: "五段伤害/4" },
-            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal6 as usize, chs: "六段伤害" },
-            CharacterSkillMapItem { index: ZhongliDamageEnum::Charged as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: ZhongliDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: ZhongliDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: ZhongliDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal5 as usize, text: locale!(zh_cn: "五段伤害/4", en: "5-Hit DMG/4") },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::Normal6 as usize, text: hit_n_dmg!(6) },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::Charged as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: ZhongliDamageEnum::E1 as usize, chs: "岩脊伤害" },
-            CharacterSkillMapItem { index: ZhongliDamageEnum::E2 as usize, chs: "共鸣伤害" },
-            CharacterSkillMapItem { index: ZhongliDamageEnum::E3 as usize, chs: "长按伤害" },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::E1 as usize, text: locale!(zh_cn: "岩脊伤害", en: "Stone Stele DMG") },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::E2 as usize, text: locale!(zh_cn: "共鸣伤害", en: "Resonance DMG") },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::E3 as usize, text: locale!(zh_cn: "长按伤害", en: "Hold DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: ZhongliDamageEnum::Q1 as usize, chs: "技能伤害" },
+            CharacterSkillMapItem { index: ZhongliDamageEnum::Q1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") },
         ])
     };
 

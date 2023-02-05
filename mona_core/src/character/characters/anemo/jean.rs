@@ -160,19 +160,19 @@ impl CharacterTrait for Jean {
             CharacterSkillMapItem { index: JeanDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
             CharacterSkillMapItem { index: JeanDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
             CharacterSkillMapItem { index: JeanDamageEnum::Normal5 as usize, text: hit_n_dmg!(5) },
-            CharacterSkillMapItem { index: JeanDamageEnum::Charged as usize, text: locale!(zh_ch: "重击伤害", en: "Charged Attack DMG") },
+            CharacterSkillMapItem { index: JeanDamageEnum::Charged as usize, text: locale!(zh_cn: "重击伤害", en: "Charged Attack DMG") },
             CharacterSkillMapItem { index: JeanDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
             CharacterSkillMapItem { index: JeanDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
             CharacterSkillMapItem { index: JeanDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: JeanDamageEnum::E1 as usize, text: locale!(zh_ch: "技能伤害", en: "Skill DMG") },
+            CharacterSkillMapItem { index: JeanDamageEnum::E1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: JeanDamageEnum::Q1 as usize, text: locale!(zh_ch: "爆发伤害", en: "Burst DMG") },
-            CharacterSkillMapItem { index: JeanDamageEnum::Q2 as usize, text: locale!(zh_ch: "出入领域伤害", en: "Field Entering/Exiting DMG") },
-            CharacterSkillMapItem { index: JeanDamageEnum::QHeal1 as usize, text: locale!(zh_ch: "领域发动治疗量", en: "Field Activation Healing") },
-            CharacterSkillMapItem { index: JeanDamageEnum::QHeal2 as usize, text: locale!(zh_ch: "持续治疗", en: "Continuous Regeneration") },
+            CharacterSkillMapItem { index: JeanDamageEnum::Q1 as usize, text: locale!(zh_cn: "爆发伤害", en: "Burst DMG") },
+            CharacterSkillMapItem { index: JeanDamageEnum::Q2 as usize, text: locale!(zh_cn: "出入领域伤害", en: "Field Entering/Exiting DMG") },
+            CharacterSkillMapItem { index: JeanDamageEnum::QHeal1 as usize, text: locale!(zh_cn: "领域发动治疗量", en: "Field Activation Healing") },
+            CharacterSkillMapItem { index: JeanDamageEnum::QHeal2 as usize, text: locale!(zh_cn: "持续治疗", en: "Continuous Regeneration") },
         ])
     };
 

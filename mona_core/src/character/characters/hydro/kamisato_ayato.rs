@@ -9,7 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -187,24 +187,24 @@ impl CharacterTrait for KamisatoAyato {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Normal2 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Normal3 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Normal4Div2 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Normal5 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Charged1 as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Normal4Div2 as usize, text: locale!(zh_cn: "四段伤害", en: "4-Hit DMG/2") },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Normal5 as usize, text: hit_n_dmg!(5) },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Charged1 as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::ENormal1 as usize, chs: "一段瞬水剑伤害" },
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::ENormal2 as usize, chs: "二段瞬水剑伤害" },
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::ENormal3 as usize, chs: "三段瞬水剑伤害" },
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::E4 as usize, chs: "水影伤害" },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::ENormal1 as usize, text: locale!(zh_cn: "一段瞬水剑伤害", en: "Shunsuiken 1-Hit DMG") },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::ENormal2 as usize, text: locale!(zh_cn: "二段瞬水剑伤害", en: "Shunsuiken 2-Hit DMG") },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::ENormal3 as usize, text: locale!(zh_cn: "三段瞬水剑伤害", en: "Shunsuiken 3-Hit DMG") },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::E4 as usize, text: locale!(zh_cn: "水影伤害", en: "Water Illusion DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Q1 as usize, chs: "水花剑伤害" },
+            CharacterSkillMapItem { index: KamisatoAyatoDamageEnum::Q1 as usize, text: locale!(zh_cn: "水花剑伤害", en: "Bloomwater Blade DMG") },
         ])
     };
 

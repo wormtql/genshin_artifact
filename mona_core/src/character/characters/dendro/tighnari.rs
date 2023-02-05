@@ -15,7 +15,7 @@ use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::character::macros::{skill_type, damage_enum};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 
 // pub struct TighnariSkillType {
 //     pub normal_dmg1: [f64; 15],
@@ -183,24 +183,24 @@ impl CharacterTrait for Tighnari {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: TighnariDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: TighnariDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: TighnariDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: TighnariDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: TighnariDamageEnum::Charged1 as usize, chs: "瞄准射击" },
-            CharacterSkillMapItem { index: TighnariDamageEnum::Charged2 as usize, chs: "一段蓄力瞄准射击" },
-            CharacterSkillMapItem { index: TighnariDamageEnum::Charged3 as usize, chs: "花筥箭伤害" },
-            CharacterSkillMapItem { index: TighnariDamageEnum::Charged4 as usize, chs: "藏蕴花矢伤害" },
-            CharacterSkillMapItem { index: TighnariDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: TighnariDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: TighnariDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Charged1 as usize, text: charged_dmg!("shoot1") },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Charged2 as usize, text: locale!(zh_cn: "一段蓄力瞄准射击", en: "Level 1 Aimed Shot") },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Charged3 as usize, text: locale!(zh_cn: "花筥箭伤害", en: "Wreath Arrow DMG") },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Charged4 as usize, text: locale!(zh_cn: "藏蕴花矢伤害", en: "Clusterbloom Arrow DMG") },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: TighnariDamageEnum::E1 as usize, chs: "技能伤害" }
+            CharacterSkillMapItem { index: TighnariDamageEnum::E1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") }
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: TighnariDamageEnum::Q1 as usize, chs: "缠藤箭伤害" },
-            CharacterSkillMapItem { index: TighnariDamageEnum::Q2 as usize, chs: "次级缠藤箭伤害" },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Q1 as usize, text: locale!(zh_cn: "缠藤箭伤害", en: "Tanglevine Shaft DMG") },
+            CharacterSkillMapItem { index: TighnariDamageEnum::Q2 as usize, text: locale!(zh_cn: "次级缠藤箭伤害", en: "Secondary Tanglevine Shaft DMG") },
         ])
     };
 

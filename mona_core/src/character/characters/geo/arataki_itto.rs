@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{hit_n_dmg, locale, plunging_dmg};
 
 pub struct AratakiIttoSkillType {
     pub normal_dmg1: [f64; 15],
@@ -160,19 +160,19 @@ impl CharacterTrait for AratakiItto {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: AratakiIttoDamageEnum::KesagiriCombo as usize, chs: "荒泷逆袈裟连斩伤害" },
-            CharacterSkillMapItem { index: AratakiIttoDamageEnum::KesagiriFinal as usize, chs: "荒泷逆袈裟终结伤害" },
-            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Saichimonji as usize, chs: "左一文字斩伤害" },
-            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::KesagiriCombo as usize, text: locale!(zh_cn: "荒泷逆袈裟连斩伤害", en: "Arataki Kesagiri Combo Slash DMG") },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::KesagiriFinal as usize, text: locale!(zh_cn: "荒泷逆袈裟终结伤害", en: "Arataki Kesagiri Final Slash DMG") },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Saichimonji as usize, text: locale!(zh_cn: "左一文字斩伤害", en: "Saichimonji Slash DMG") },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: AratakiIttoDamageEnum::E1 as usize, chs: "技能伤害" }
+            CharacterSkillMapItem { index: AratakiIttoDamageEnum::E1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") }
         ]),
         skill3: None
     };

@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 
 pub struct SangonomiyaKokomiSkillType {
     pub normal_dmg1: [f64; 15],
@@ -159,21 +159,21 @@ impl CharacterTrait for SangonomiyaKokomi {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Charged as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Charged as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::E1 as usize, chs: "波纹伤害" },
-            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::EHeal1 as usize, chs: "治疗量" },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::E1 as usize, text: locale!(zh_cn: "波纹伤害", en: "Ripple DMG") },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::EHeal1 as usize, text: locale!(zh_cn: "治疗量", en: "Regeneration") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Q1 as usize, chs: "技能伤害" },
-            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::QHeal1 as usize, chs: "命中治疗量" },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::Q1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") },
+            CharacterSkillMapItem { index: SangonomiyaKokomiDamageEnum::QHeal1 as usize, text: locale!(zh_cn: "命中治疗量", en: "HP Regeneration Per Hit") },
         ])
     };
 

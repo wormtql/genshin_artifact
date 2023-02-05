@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 
 pub struct XianglingSkillType {
     pub normal_dmg1: [f64; 15],
@@ -148,25 +148,25 @@ impl CharacterTrait for Xiangling {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: XianglingDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Normal31 as usize, chs: "三段伤害-1" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Normal32 as usize, chs: "三段伤害-2" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Normal4 as usize, chs: "四段伤害/4" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Normal5 as usize, chs: "五段伤害" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Charged as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal31 as usize, text: hit_n_dmg!(3, 1) },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal32 as usize, text: hit_n_dmg!(3, 2) },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal4 as usize, text: locale!(zh_cn: "四段伤害/4", en: "4-Hit DMG/4") },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Normal5 as usize, text: hit_n_dmg!(5) },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Charged as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: XianglingDamageEnum::E1 as usize, chs: "喷火伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::E1 as usize, text: locale!(zh_cn: "喷火伤害", en: "Flame DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: XianglingDamageEnum::Q1 as usize, chs: "一段挥舞伤害" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Q2 as usize, chs: "二段挥舞伤害" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Q3 as usize, chs: "三段挥舞伤害" },
-            CharacterSkillMapItem { index: XianglingDamageEnum::Q4 as usize, chs: "旋火轮伤害" },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Q1 as usize, text: locale!(zh_cn: "一段挥舞伤害", en: "1-Hit Swing DMG") },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Q2 as usize, text: locale!(zh_cn: "二段挥舞伤害", en: "2-Hit Swing DMG") },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Q3 as usize, text: locale!(zh_cn: "三段挥舞伤害", en: "3-Hit Swing DMG") },
+            CharacterSkillMapItem { index: XianglingDamageEnum::Q4 as usize, text: locale!(zh_cn: "旋火轮伤害", en: "Pyronado DMG") },
         ])
     };
 

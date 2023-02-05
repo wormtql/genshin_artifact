@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 
 pub struct TartagliaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -184,37 +184,37 @@ impl CharacterTrait for Tartaglia {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal5 as usize, chs: "五段伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal6 as usize, chs: "六段伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Charged1 as usize, chs: "瞄准射击" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Charged2 as usize, chs: "满蓄力瞄准射击" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::NormalRiptideFlash as usize, chs: "断流·闪伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::NormalRiptideBurst as usize, chs: "断流·破伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal5 as usize, text: hit_n_dmg!(5) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Normal6 as usize, text: hit_n_dmg!(6) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Charged1 as usize, text: charged_dmg!("shoot1") },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Charged2 as usize, text: charged_dmg!("shoot2") },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::NormalRiptideFlash as usize, text: locale!(zh_cn: "断流·闪伤害", en: "Riptide Flash DMG") },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::NormalRiptideBurst as usize, text: locale!(zh_cn: "断流·破伤害", en: "Riptide Burst DMG") },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: TartagliaDamageEnum::E1 as usize, chs: "状态爆发伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal5 as usize, chs: "五段伤害" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal61 as usize, chs: "六段伤害-1" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal62 as usize, chs: "六段伤害-2" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::ECharged11 as usize, chs: "重击伤害-1" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::ECharged12 as usize, chs: "重击伤害-2" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::ERiptideSlash as usize, chs: "断流·斩伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::E1 as usize, text: locale!(zh_cn: "状态爆发伤害", en: "Stance Change DMG") },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal5 as usize, text: hit_n_dmg!(5) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal61 as usize, text: hit_n_dmg!(6, 1) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ENormal62 as usize, text: hit_n_dmg!(6, 2) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ECharged11 as usize, text: charged_dmg!(1) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ECharged12 as usize, text: charged_dmg!(2) },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::ERiptideSlash as usize, text: locale!(zh_cn: "断流·斩伤害", en: "Riptide Slash") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Q1 as usize, chs: "技能伤害·近战" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::Q2 as usize, chs: "技能伤害·远程" },
-            CharacterSkillMapItem { index: TartagliaDamageEnum::QRiptideBlast as usize, chs: "断流·爆伤害" },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Q1 as usize, text: locale!(zh_cn: "技能伤害·近战", en: "Skill DMG: Melee") },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::Q2 as usize, text: locale!(zh_cn: "技能伤害·远程", en: "Skill DMG: Ranged") },
+            CharacterSkillMapItem { index: TartagliaDamageEnum::QRiptideBlast as usize, text: locale!(zh_cn: "断流·爆伤害", en: "Riptide Blast DMG") },
         ])
     };
 

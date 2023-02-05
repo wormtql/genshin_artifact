@@ -17,7 +17,7 @@
             <el-option
                 v-for="item in group[1]"
                 :key="item.index.toString()"
-                :label="t('dmgName', item.text)"
+                :label="ta(item.text)"
                 :value="item.index"
             >
             </el-option>

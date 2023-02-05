@@ -6,7 +6,7 @@ use crate::character::macros::{skill_type, damage_enum, skill_map, damage_ratio}
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterTrait, CharacterSkillMapItem};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
-use crate::common::i18n::locale;
+use crate::common::i18n::{locale, hit_n_dmg, charged_dmg, plunging_dmg};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -131,25 +131,25 @@ impl CharacterTrait for Dori {
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: skill_map!(
             DoriDamageEnum
-            Normal1 "一段伤害"
-            Normal21 "二段伤害-1"
-            Normal22 "二段伤害-2"
-            Normal3 "三段伤害"
-            Charged1 "重击循环伤害"
-            Charged2 "重击终结伤害"
-            Plunging1 "下坠期间伤害"
-            Plunging2 "低空坠地冲击伤害"
-            Plunging3 "高空坠地冲击伤害"
+            Normal1 hit_n_dmg!(1)
+            Normal21 hit_n_dmg!(2, 1)
+            Normal22 hit_n_dmg!(2, 2)
+            Normal3 hit_n_dmg!(3)
+            Charged1 charged_dmg!("loop1")
+            Charged2 charged_dmg!("loop2")
+            Plunging1 plunging_dmg!(1)
+            Plunging2 plunging_dmg!(2)
+            Plunging3 plunging_dmg!(3)
         ),
         skill2: skill_map!(
             DoriDamageEnum
-            E1 "断除烦恼炮伤害"
-            E2 "售后服务弹伤害"
+            E1 locale!(zh_cn: "断除烦恼炮伤害", en: "Troubleshooter Shot DMG")
+            E2 locale!(zh_cn: "售后服务弹伤害", en: "After-Sales Service Round DMG")
         ),
         skill3: skill_map!(
             DoriDamageEnum
-            Q1 "连接伤害"
-            QHeal1 "持续治疗量"
+            Q1 locale!(zh_cn: "连接伤害", en: "Connector DMG")
+            QHeal1 locale!(zh_cn: "持续治疗量", en: "Continuous Healing")
         )
     };
 

@@ -12,7 +12,7 @@ use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::character::macros::{skill_type, damage_enum, skill_map, damage_ratio};
-use crate::common::i18n::locale;
+use crate::common::i18n::{locale, hit_n_dmg, charged_dmg, plunging_dmg};
 
 pub struct LaylaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -123,23 +123,23 @@ impl CharacterTrait for Layla {
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: skill_map!(
             LaylaDamageEnum
-            Normal1 "一段伤害"
-            Normal2 "二段伤害"
-            Normal3 "三段伤害"
-            Charged11 "重击伤害-1"
-            Charged12 "重击伤害-2"
-            Plunging1 "下坠期间伤害"
-            Plunging2 "低空坠地冲击伤害"
-            Plunging3 "高空坠地冲击伤害"
+            Normal1 hit_n_dmg!(1)
+            Normal2 hit_n_dmg!(2)
+            Normal3 hit_n_dmg!(3)
+            Charged11 charged_dmg!(1)
+            Charged12 charged_dmg!(2)
+            Plunging1 plunging_dmg!(1)
+            Plunging2 plunging_dmg!(2)
+            Plunging3 plunging_dmg!(3)
         ),
         skill2: skill_map!(
             LaylaDamageEnum
-            E1 "技能伤害"
-            E2 "飞星伤害"
+            E1 locale!(zh_cn: "技能伤害", en: "Skill DMG")
+            E2 locale!(zh_cn: "飞星伤害", en: "Shooting Star DMG")
         ),
         skill3: skill_map!(
             LaylaDamageEnum
-            Q1 "星光弹伤害"
+            Q1 locale!(zh_cn: "星光弹伤害", en: "Starlight Slug DMG")
         )
     };
 

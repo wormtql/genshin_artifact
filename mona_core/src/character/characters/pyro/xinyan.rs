@@ -9,7 +9,7 @@ use crate::character::character_sub_stat::CharacterSubStatFamily;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 use crate::common::item_config_type::ItemConfig;
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -153,23 +153,23 @@ impl CharacterTrait for Xinyan {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: XinyanDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: XinyanDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: XinyanDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: XinyanDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: XinyanDamageEnum::Charged1 as usize, chs: "重击循环伤害" },
-            CharacterSkillMapItem { index: XinyanDamageEnum::Charged2 as usize, chs: "重击终结伤害" },
-            CharacterSkillMapItem { index: XinyanDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: XinyanDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: XinyanDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Charged1 as usize, text: charged_dmg!("loop1") },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Charged2 as usize, text: charged_dmg!("loop2") },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: XinyanDamageEnum::E1 as usize, chs: "挥舞伤害" },
-            CharacterSkillMapItem { index: XinyanDamageEnum::E2 as usize, chs: "持续伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::E1 as usize, text: locale!(zh_cn: "挥舞伤害", en: "Swing DMG") },
+            CharacterSkillMapItem { index: XinyanDamageEnum::E2 as usize, text: locale!(zh_cn: "持续伤害", en: "DoT") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: XinyanDamageEnum::Q1 as usize, chs: "技能伤害" },
-            CharacterSkillMapItem { index: XinyanDamageEnum::Q2 as usize, chs: "火元素持续伤害" },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Q1 as usize, text: locale!(zh_cn: "技能伤害", en: "Skill DMG") },
+            CharacterSkillMapItem { index: XinyanDamageEnum::Q2 as usize, text: locale!(zh_cn: "火元素持续伤害", en: "Pyro DoT") },
         ]),
     };
 

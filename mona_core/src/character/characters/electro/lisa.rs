@@ -15,7 +15,7 @@ use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::locale;
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 
 pub struct LisaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -135,24 +135,24 @@ impl CharacterTrait for Lisa {
     #[cfg(not(target_family = "wasm"))]
     const SKILL_MAP: CharacterSkillMap = CharacterSkillMap {
         skill1: Some(&[
-            CharacterSkillMapItem { index: LisaDamageEnum::Normal1 as usize, chs: "一段伤害" },
-            CharacterSkillMapItem { index: LisaDamageEnum::Normal2 as usize, chs: "二段伤害" },
-            CharacterSkillMapItem { index: LisaDamageEnum::Normal3 as usize, chs: "三段伤害" },
-            CharacterSkillMapItem { index: LisaDamageEnum::Normal4 as usize, chs: "四段伤害" },
-            CharacterSkillMapItem { index: LisaDamageEnum::Charged as usize, chs: "重击伤害" },
-            CharacterSkillMapItem { index: LisaDamageEnum::Plunging1 as usize, chs: "下坠期间伤害" },
-            CharacterSkillMapItem { index: LisaDamageEnum::Plunging2 as usize, chs: "低空坠地冲击伤害" },
-            CharacterSkillMapItem { index: LisaDamageEnum::Plunging3 as usize, chs: "高空坠地冲击伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::Normal1 as usize, text: hit_n_dmg!(1) },
+            CharacterSkillMapItem { index: LisaDamageEnum::Normal2 as usize, text: hit_n_dmg!(2) },
+            CharacterSkillMapItem { index: LisaDamageEnum::Normal3 as usize, text: hit_n_dmg!(3) },
+            CharacterSkillMapItem { index: LisaDamageEnum::Normal4 as usize, text: hit_n_dmg!(4) },
+            CharacterSkillMapItem { index: LisaDamageEnum::Charged as usize, text: charged_dmg!() },
+            CharacterSkillMapItem { index: LisaDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
+            CharacterSkillMapItem { index: LisaDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
+            CharacterSkillMapItem { index: LisaDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: LisaDamageEnum::E1 as usize, chs: "点按伤害" },
-            CharacterSkillMapItem { index: LisaDamageEnum::E2 as usize, chs: "无引雷长按伤害" },
-            CharacterSkillMapItem { index: LisaDamageEnum::E3 as usize, chs: "一层引雷长按伤害" },
-            CharacterSkillMapItem { index: LisaDamageEnum::E4 as usize, chs: "二层引雷长按伤害" },
-            CharacterSkillMapItem { index: LisaDamageEnum::E5 as usize, chs: "三层引雷长按伤害" },
+            CharacterSkillMapItem { index: LisaDamageEnum::E1 as usize, text: locale!(zh_cn: "点按伤害", en: "Tapping DMG") },
+            CharacterSkillMapItem { index: LisaDamageEnum::E2 as usize, text: locale!(zh_cn: "无引雷长按伤害", en: "Non-Conductive Hold DMG") },
+            CharacterSkillMapItem { index: LisaDamageEnum::E3 as usize, text: locale!(zh_cn: "一层引雷长按伤害", en: "Stack 1 Conductive Hold DMG") },
+            CharacterSkillMapItem { index: LisaDamageEnum::E4 as usize, text: locale!(zh_cn: "二层引雷长按伤害", en: "Stack 2 Conductive Hold DMG") },
+            CharacterSkillMapItem { index: LisaDamageEnum::E5 as usize, text: locale!(zh_cn: "三层引雷长按伤害", en: "Stack 3 Conductive Hold DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: LisaDamageEnum::Q1 as usize, chs: "雷光放电伤害" }
+            CharacterSkillMapItem { index: LisaDamageEnum::Q1 as usize, text: locale!(zh_cn: "雷光放电伤害", en: "Discharge DMG") }
         ])
     };
 

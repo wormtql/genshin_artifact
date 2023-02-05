@@ -3,6 +3,7 @@ use mona::character::{CharacterName, CharacterStaticData};
 use mona::common::i18n::I18nLocale;
 use strum::*;
 use lazy_static::lazy_static;
+use mona::character::traits::CharacterSkillMap;
 
 pub fn collect_character_names() -> Vec<I18nLocale> {
     let mut set = HashSet::new();
@@ -26,12 +27,36 @@ pub fn collect_character_skills() -> Vec<I18nLocale> {
     result
 }
 
+pub fn collect_character_skill_names() -> Vec<I18nLocale> {
+    let mut set = HashSet::new();
+    for c in CharacterName::iter() {
+        let skill_map: CharacterSkillMap = c.get_skill_map();
+        if let Some(x) = skill_map.skill1 {
+            for item in x.iter() {
+                set.insert(item.text.clone());
+            }
+        }
+        if let Some(x) = skill_map.skill2 {
+            for item in x.iter() {
+                set.insert(item.text.clone());
+            }
+        }
+        if let Some(x) = skill_map.skill3 {
+            for item in x.iter() {
+                set.insert(item.text.clone());
+            }
+        }
+    }
+    set.into_iter().collect()
+}
+
 pub fn collect_locale() -> Vec<I18nLocale> {
     let mut set = HashSet::new();
 
     // collect character names
     set.extend(collect_character_names());
     set.extend(collect_character_skills());
+    set.extend(collect_character_skill_names());
 
     set.into_iter().collect()
 }
