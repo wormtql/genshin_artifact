@@ -45,9 +45,15 @@ impl WeaponTrait for PrototypeCrescent {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("离簇不归：瞄准射击时，若命中要害，则提升10%移动速度与36%/45%/54%/63%/72%攻击力，持续10秒。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "重击若命中要害，则提升10%移动速度与<span style=\"color: #409EFF;\">36%-45%-54%-63%-72%</span>攻击力，持续10秒。",
+            en: "Charged Attack hits on weak points increase Movement SPD by 10% and ATK by <span style=\"color: #409EFF;\">36%-45%-54%-63%-72%</span> for 10s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "试作澹月"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "试作澹月",
+            en: "Prototype Crescent"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

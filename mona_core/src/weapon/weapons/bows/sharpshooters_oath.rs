@@ -39,9 +39,15 @@ impl WeaponTrait for SharpshootersOath {
         weapon_base: WeaponBaseATKFamily::ATK401,
         star: 3,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("精准：针对要害造成的伤害提升24%/30%/36%/42%/48%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "针对要害造成的伤害提升<span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span>。",
+            en: "Increases DMG against weak spots by <span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span>."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "神射手之誓"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "神射手之誓",
+            en: "Sharpshooter's Oath"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

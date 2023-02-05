@@ -34,7 +34,10 @@ impl WeaponTrait for SapwoodBlade {
         #[cfg(not(target_family = "wasm"))]
         effect: None,
         #[cfg(not(target_family = "wasm"))]
-        chs: ""
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "原木刀",
+            en: "Sapwood Blade"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

@@ -35,9 +35,15 @@ impl WeaponTrait for SkywardAtlas {
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("浮游四方的灵云：元素伤害加成提升12%/15%/18%/21%/24%；普通攻击命中时，有50%的概率获得高天流云的青睐，在15秒内主动攻击附近的敌人，造成等同于160%/200%/240%/280%/320%攻击力的伤害。该效果每30秒只能触发一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "元素伤害加成提升<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>；普通攻击命中时，有50%的概率获得高天流云的青睐，在15秒内主动攻击附近的敌人，造成等同于<span style=\"color: #409EFF;\">160%-200%-240%-280%-320%</span>攻击力的伤害。该效果每30秒只能触发一次。",
+            en: "Increases Elemental DMG Bonus by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>. Normal Attack hits have a 50% chance to earn the favor of the clouds, which actively seek out nearby opponents to attack for 15s, dealing <span style=\"color: #409EFF;\">160%-200%-240%-280%-320%</span> ATK DMG. Can only occur once every 30s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "天空之卷"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "天空之卷",
+            en: "Skyward Atlas"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

@@ -20,7 +20,10 @@ impl WeaponTrait for OldMercsPal {
         #[cfg(not(target_family = "wasm"))]
         effect: None,
         #[cfg(not(target_family = "wasm"))]
-        chs: "佣兵重剑"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "佣兵重剑",
+            en: "Old Merc's Pal"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

@@ -36,9 +36,15 @@ impl WeaponTrait for KagurasVerity {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("神樱神游神乐舞：施放元素战技时，将获得「神乐舞」的效果，使装备该武器的角色的元素战技造成的伤害提高12%/15%/18%/21%/24%，该效果持续16秒，至多叠加3层。持有3层时，该角色获得12%/15%/18%/21%/24%所有元素伤害加成。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "施放元素战技时，将获得「神乐舞」的效果，使装备该武器的角色的元素战技造成的伤害提高<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>，该效果持续16秒，至多叠加3层。持有3层时，该角色获得<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>所有元素伤害加成。",
+            en: "Gains the Kagura Dance effect when using an Elemental Skill, causing the Elemental Skill DMG of the character wielding this weapon to increase by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> for 16s. Max 3 stacks. This character will gain <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> All Elemental DMG Bonus when they possess 3 stacks."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "神乐之真意"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "神乐之真意",
+            en: "Kagura's Verity"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

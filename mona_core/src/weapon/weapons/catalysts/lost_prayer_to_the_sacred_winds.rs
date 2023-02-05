@@ -45,9 +45,15 @@ impl WeaponTrait for LostPrayerToTheSacredWinds {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("无边际的眷顾：移动速度提高10%；在场上每4秒获得8%/10%/12%/14%/16%元素伤害加成。该效果最多叠加4层，角色倒下或离场后清空。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "移动速度提高10%；在场上每4秒获得<span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span>元素伤害加成。该效果最多叠加4层，持续直到角色倒下或离场。",
+            en: "Increases Movement SPD by 10%. When in battle, gain an <span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span> Elemental DMG Bonus every 4s. Max 4 stacks. Lasts until the character falls or leaves combat."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "四风原典"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "四风原典",
+            en: "Lost Prayer to the Sacred Winds"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

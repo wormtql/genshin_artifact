@@ -34,9 +34,15 @@ impl WeaponTrait for SkywardHarp {
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("回响长天的诗歌：暴击伤害提高20%/25%/30%/35%/40%；攻击命中时有60%/70%/80%/90%/100%概率造成125%攻击力的小范围物理伤害，该效果每4秒/3.5秒/3秒/2.5秒/2秒只能触发一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "暴击伤害提高<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>；攻击命中时有<span style=\"color: #409EFF;\">60%-70%-80%-90%-100%</span>概率造成125%攻击力的小范围物理伤害，该效果每<span style=\"color: #409EFF;\">4-3.5-3-2.5-2</span>秒只能触发一次。",
+            en: "Increases CRIT DMG by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. Hits have a <span style=\"color: #409EFF;\">60%-70%-80%-90%-100%</span> chance to inflict a small AoE attack, dealing 125% Physical ATK DMG. Can only occur once every <span style=\"color: #409EFF;\">4-3.5-3-2.5-2</span>s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "天空之翼"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "天空之翼",
+            en: "Skyward Harp"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

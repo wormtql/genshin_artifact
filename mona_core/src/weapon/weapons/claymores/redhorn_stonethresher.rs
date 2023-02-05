@@ -39,9 +39,15 @@ impl WeaponTrait for RedhornStonethresher {
         weapon_base: WeaponBaseATKFamily::ATK542,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("防御力提高28/35/42/49/56%；普通攻击与重击造成的伤害值提高，提高数值相当于防御力的40/50/60/70/80%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "防御力提高<span style=\"color: #409EFF;\">28%-35%-42%-49%-56%</span>；普通攻击与重击造成的伤害值提高，提高数值相当于防御力的<span style=\"color: #409EFF;\">40%-50%-60%-70%-80%</span>。",
+            en: "DEF is increased by <span style=\"color: #409EFF;\">28%-35%-42%-49%-56%</span>. Normal and Charged Attack DMG is increased by <span style=\"color: #409EFF;\">40%-50%-60%-70%-80%</span> of DEF."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "赤角石溃杵"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "赤角石溃杵",
+            en: "Redhorn Stonethresher"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

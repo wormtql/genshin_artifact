@@ -21,7 +21,10 @@ impl WeaponTrait for SeasonedHuntersBow {
         #[cfg(not(target_family = "wasm"))]
         effect: None,
         #[cfg(not(target_family = "wasm"))]
-        chs: "历练的猎弓"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "历练的猎弓",
+            en: "Seasoned Hunter's Bow"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

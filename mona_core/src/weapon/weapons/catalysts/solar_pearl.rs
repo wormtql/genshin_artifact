@@ -50,9 +50,15 @@ impl WeaponTrait for SolarPearl {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("日月辉：①普通攻击命中后的6秒内，元素战技与元素爆发的伤害提高20%/25%/30%/35%/40%；②元素战技与元素爆发命中后的6秒内，普通攻击的伤害提高20%/25%/30%/35%/40%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "普通攻击命中后的6秒内，元素战技与元素爆发的伤害提高<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>；元素战技与元素爆发命中后的6秒内，普通攻击的伤害提高<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>。",
+            en: "Normal Attack hits increase Elemental Skill and Elemental Burst DMG by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> for 6s. Likewise, Elemental Skill or Elemental Burst hits increase Normal Attack DMG by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> for 6s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "匣里日月"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "匣里日月",
+            en: "Solar Pearl"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

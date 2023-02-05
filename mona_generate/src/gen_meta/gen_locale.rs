@@ -4,6 +4,8 @@ use mona::common::i18n::I18nLocale;
 use strum::*;
 use lazy_static::lazy_static;
 use mona::character::traits::CharacterSkillMap;
+use mona::weapon::weapon_static_data::WeaponStaticData;
+use mona::weapon::WeaponName;
 
 pub fn collect_character_names() -> Vec<I18nLocale> {
     let mut set = HashSet::new();
@@ -50,6 +52,26 @@ pub fn collect_character_skill_names() -> Vec<I18nLocale> {
     set.into_iter().collect()
 }
 
+pub fn collect_weapon_names() -> Vec<I18nLocale> {
+    let mut set = HashSet::new();
+    for w in WeaponName::iter() {
+        let meta: WeaponStaticData = w.get_static_data();
+        set.insert(meta.name_locale.clone());
+    }
+    set.into_iter().collect()
+}
+
+pub fn collect_weapon_effect() -> Vec<I18nLocale> {
+    let mut set = HashSet::new();
+    for w in WeaponName::iter() {
+        let meta: WeaponStaticData = w.get_static_data();
+        if let Some(ref x) = meta.effect {
+            set.insert(x.clone());
+        }
+    }
+    set.into_iter().collect()
+}
+
 pub fn collect_locale() -> Vec<I18nLocale> {
     let mut set = HashSet::new();
 
@@ -57,6 +79,9 @@ pub fn collect_locale() -> Vec<I18nLocale> {
     set.extend(collect_character_names());
     set.extend(collect_character_skills());
     set.extend(collect_character_skill_names());
+
+    set.extend(collect_weapon_names());
+    set.extend(collect_weapon_effect());
 
     set.into_iter().collect()
 }

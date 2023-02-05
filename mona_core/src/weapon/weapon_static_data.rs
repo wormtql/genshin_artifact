@@ -1,4 +1,5 @@
 use smallvec::SmallVec;
+use crate::common::i18n::I18nLocale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::WeaponName;
@@ -13,7 +14,7 @@ pub struct WeaponStaticData {
     pub weapon_base: WeaponBaseATKFamily,
     pub star: usize,
     #[cfg(not(target_family = "wasm"))]
-    pub effect: Option<&'static str>,
+    pub effect: Option<I18nLocale>,
     #[cfg(not(target_family = "wasm"))]
-    pub chs: &'static str,
+    pub name_locale: I18nLocale,
 }

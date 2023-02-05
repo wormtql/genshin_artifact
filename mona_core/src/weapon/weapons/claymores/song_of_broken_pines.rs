@@ -46,9 +46,15 @@ impl WeaponTrait for SongOfBrokenPines {
         weapon_base: WeaponBaseATKFamily::ATK741,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("揭旗的叛逆之歌：飘游风中的「千年的大乐章」的一部分。攻击力提升16%/20%/24%/28%/32%（精炼数据为推测，以正式上线数据为准）；普通攻击或重击命中敌人时，角色获得一枚低语之符，每0.3秒内至多触发一次。拥有4枚低语之符时，将消耗所有低语之符，使附近队伍中所有角色获得持续12秒的「千年的大乐章·揭旗之歌」效果：普通攻击速度提升12%/15%/18%/21%/24%，攻击力提升20%/25%/30%/35%/40%（精炼数据为推测，以正式上线数据为准）。触发后20秒内，无法再次获得低语之符。「千年的大乐章」触发的多种数值效果中，同类数值效果不可叠加。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "飘游风中的「千年的大乐章」的一部分。攻击力提高<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>；普通攻击或重击命中敌人时，角色获得一枚低语之符，每0.3秒内至多触发一次。拥有4枚低语之符时，将消耗所有低语之符，使附近的队伍中所有角色获得持续12秒的「千年的大乐章·揭旗之歌」效果：普通攻击速度提高<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>，攻击力提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>。触发后20秒内，无法再次获得低语之符。「千年的大乐章」触发的多种数值效果中，同类数值效果不可叠加。",
+            en: "A part of the \"Millennial Movement\" that wanders amidst the winds. Increases ATK by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>, and when Normal or Charged Attacks hit opponents, the character gains a Sigil of Whispers. This effect can be triggered once every 0.3s. When you possess 4 Sigils of Whispers, all of them will be consumed and all nearby party members will obtain the \"Millennial Movement: Banner-Hymn\" effect for 12s. \"Millennial Movement: Banner-Hymn\" increases Normal ATK SPD by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> and increases ATK by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. Once this effect is triggered, you will not gain Sigils of Whispers for 20s. Of the many effects of the \"Millennial Movement,\" buffs of the same type will not stack."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "松籁响起之时"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "松籁响起之时",
+            en: "Song of Broken Pines"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

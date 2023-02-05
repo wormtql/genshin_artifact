@@ -36,9 +36,15 @@ impl WeaponTrait for HaranGeppakuFutsu {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("白刃流转：获得12/15/18/21/24%所有元素伤害加成；队伍中附近的其他角色在施放元素战技时，会为装备该武器的角色产生1层「波穗」效果，至多叠加2层，每0.3秒最多触发1次。装备该武器的角色施放元素战技时，如果有积累的「波穗」效果，则将消耗已有的「波穗」，获得「波乱」：根据消耗的层数，每层提升20/25/30/35/40%普通攻击伤害，持续8秒。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "获得<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>所有元素伤害加成；队伍中附近的其他角色在施放元素战技时，会为装备该武器的角色产生1层「波穗」效果，至多叠加2层，每0.3秒最多触发1次。装备该武器的角色施放元素战技时，如果有积累的「波穗」效果，则将消耗已有的「波穗」，获得「波乱」：根据消耗的层数，每层提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>普通攻击伤害，持续8秒。",
+            en: "Obtain <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> All Elemental DMG Bonus. When other nearby party members use Elemental Skills, the character equipping this weapon will gain 1 Wavespike stack. Max 2 stacks. This effect can be triggered once every 0.3s. When the character equipping this weapon uses an Elemental Skill, all stacks of Wavespike will be consumed to gain Rippling Upheaval: each stack of Wavespike consumed will increase Normal Attack DMG by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> for 8s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "波乱月白经津"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "波乱月白经津",
+            en: "Haran Geppaku Futsu"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

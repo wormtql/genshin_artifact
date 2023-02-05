@@ -46,9 +46,15 @@ impl WeaponTrait for PrimordialJadeCutter {
         weapon_base: WeaponBaseATKFamily::ATK542,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("护国的无垢之心：生命值提升20%/25%/30%/35%/40%。此外，基于装备该武器的角色生命值上限的1.2%/1.5%/1.8%/2.1%/2.4%,获得攻击力加成。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "生命值提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>。此外，基于装备该武器的角色生命值上限的<span style=\"color: #409EFF;\">1.2%-1.5%-1.8%-2.1%-2.4%</span>，获得攻击力加成。",
+            en: "HP increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. Additionally, provides an ATK Bonus based on <span style=\"color: #409EFF;\">1.2%-1.5%-1.8%-2.1%-2.4%</span> of the wielder's Max HP."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "磐岩结绿"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "磐岩结绿",
+            en: "Primordial Jade Cutter"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

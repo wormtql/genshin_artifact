@@ -9,8 +9,8 @@
             <div class="detail">
                 <img class="image" :src="data.url" >
                 <div class="detail-body">
-                    <p class="name">{{ t("weapon", data.name) }}</p>
-                    <p class="description" v-if="effect" v-html="effect"></p>
+                    <p class="name">{{ ta(nameLocaleIndex) }}</p>
+                    <p class="description" v-if="data.effect" v-html="ta(effectLocaleIndex)"></p>
                 </div>
 
             </div>
@@ -32,15 +32,20 @@ export default {
             return weaponData[this.weaponName]
         },
 
-        effect() {
-            return this.t("weaponEffect", this.data.name)
-        }
+        nameLocaleIndex() {
+            return this.data.nameLocale
+        },
+
+        effectLocaleIndex() {
+            return this.data.effect
+        },
     },
     setup() {
-        const { t } = useI18n()
+        const { t, ta } = useI18n()
 
         return {
-            t
+            t,
+            ta
         }
     }
 }

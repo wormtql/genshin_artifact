@@ -31,9 +31,15 @@ impl WeaponTrait for CursedBlade {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("普通攻击、重击或下落攻击命中敌人时，将卷起切落风，造成180%攻击力的范围伤害，并且使攻击力提升15%，持续8秒。该效果每8秒至多触发一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "普通攻击、重击或下落攻击命中敌人时，将卷起切落风，造成<span style=\"color: #409EFF;\">180%</span>攻击力的范围伤害，并且使攻击力提升<span style=\"color: #409EFF;\">15%</span>，持续8秒。该效果每8秒至多触发一次。",
+            en: "When a Normal, Charged, or Plunging Attack hits an opponent, it will whip up a Hewing Gale, dealing AoE DMG equal to <span style=\"color: #409EFF;\">180%</span> of ATK and increasing ATK by <span style=\"color: #409EFF;\">15%</span> for 8s. This effect can be triggered once every 8s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "笼钓瓶一心"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "笼钓瓶一心",
+            en: "Kagotsurube Isshin"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

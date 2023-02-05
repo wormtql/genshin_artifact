@@ -790,6 +790,7 @@ const {
     weaponNeedConfig,
     weaponConfigConfig,
     weaponInterface,
+    weaponLocale
 } = useWeapon(characterWeaponType)
 
 
@@ -913,10 +914,8 @@ function handleClickArtifactConfig() {
 // save and use presets
 const miscCurrentPresetName = ref<null | string>(null)
 const presetDefaultName = computed((): string => {
-    // const cName = characterData[characterName.value].chs
-    // const wName = weaponData[weaponName.value].chs
     const cName = characterLocale.value
-    const wName = t("weapon", weaponName.value)
+    const wName = weaponLocale.value
     return `${cName}-${wName}`
 })
 

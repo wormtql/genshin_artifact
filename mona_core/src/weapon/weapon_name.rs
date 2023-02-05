@@ -1,5 +1,5 @@
 use std::string::ToString;
-use strum_macros::Display;
+use strum_macros::{Display, EnumIter};
 use num_derive::FromPrimitive;
 use serde::{Serialize, Deserialize};
 use mona_derive::{WeaponData, EnumLen};
@@ -10,7 +10,7 @@ use crate::common::item_config_type::ItemConfig;
 #[derive(Serialize, Deserialize)]
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
 #[derive(FromPrimitive, Display)]
-#[derive(WeaponData, EnumLen)]
+#[derive(WeaponData, EnumLen, EnumIter)]
 pub enum WeaponName {
     // sword
     MistsplitterReforged,

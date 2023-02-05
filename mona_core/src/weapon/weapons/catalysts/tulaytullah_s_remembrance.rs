@@ -36,9 +36,15 @@ impl WeaponTrait for TulaytullahsRemembrance {
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some(""),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "普通攻击速度提升<span style=\"color: #409EFF;\">10%-12.5%-15%-17.5%-20%</span>；施放元素战技后的12秒内：普通攻击造成的伤害每1秒提升<span style=\"color: #409EFF;\">4.8%-6.0%-7.2%-8.4%-9.6%</span>；普通攻击命中敌人后，普通攻击造成的伤害提升<span style=\"color: #409EFF;\">9.6%-12%-14.4%-16.8%-19.2%</span>，该效果每0.3秒至多触发1次。持续期间内，普通攻击造成的伤害至多通过上述效果提升至<span style=\"color: #409EFF;\">48%-60%-72%-84%-96%</span>。角色退场时将移除效果，再次施放元素战技时会先移除原有的效果。",
+            en: "Normal Attack SPD is increased by <span style=\"color: #409EFF;\">10%-12.5%-15%-17.5%-20%</span>. After the wielder unleashes an Elemental Skill, Normal Attack DMG will increase by <span style=\"color: #409EFF;\">4.8%-6%-7.2%-8.4%-9.6%</span> every second for 14s. After hitting an opponent with a Normal Attack during this duration, Normal Attack DMG will be increased by <span style=\"color: #409EFF;\">9.6%-12%-14.4%-16.8%-19.2%</span>. This increase can be triggered once every 0.3s. The maximum Normal Attack DMG increase per single duration of the overall effect is <span style=\"color: #409EFF;\">48%-60%-72%-84%-96%</span>. The effect will be removed when the wielder leaves the field, and using the Elemental Skill again will reset all DMG buffs."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "图莱杜拉的回忆",
+            en: "Tulaytullah's Remembrance"
+        ),
     };
 
     #[cfg(not(target_family = "wasm"))]

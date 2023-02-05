@@ -35,9 +35,15 @@ impl WeaponTrait for SkywardPride {
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("斩裂晴空的龙脊：造成的伤害提高8%/10%/12%/14%/16%;施放元素爆发后:普通攻击和重击命中时会发出真空刃，对路径上的敌人造成80%/100%/120%/140%/160%攻击力的伤害，持续20秒或直至发出8次真空刃。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "造成的伤害提高<span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span>；施放元素爆发后：普通攻击和重击命中时会发出真空刃，对路径上的敌人造成<span style=\"color: #409EFF;\">80%-100%-120%-140%-160%</span>攻击力的伤害，持续20秒或直至发出8次真空刃。",
+            en: "Increases all DMG by <span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span>. After using an Elemental Burst, Normal or Charged Attack, on hit, creates a vacuum blade that does <span style=\"color: #409EFF;\">80%-100%-120%-140%-160%</span> of ATK as DMG to opponents along its path. Lasts for 20s or 8 vacuum blades."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "天空之傲"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "天空之傲",
+            en: "Skyward Pride"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

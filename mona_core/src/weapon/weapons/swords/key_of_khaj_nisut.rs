@@ -40,9 +40,15 @@ impl WeaponTrait for KeyOfKhajNisut {
         weapon_base: WeaponBaseATKFamily::ATK542,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some(""),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "生命值提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>。元素战技命中敌人时，将产生持续20秒的「宏大诗篇」效果：基于装备者生命值上限的<span style=\"color: #409EFF;\">0.12%-0.15%-0.18%-0.21%-0.24%</span>，获得元素精通提升，该效果每0.3秒至多触发一次，至多叠加3层。该效果叠加至3层或3层的持续时间刷新时，将基于装备者生命值上限的<span style=\"color: #409EFF;\">0.2%-0.25%-0.3%-0.35%-0.4%</span>，为队伍中附近所有角色提供元素精通提升，持续20秒。",
+            en: "HP increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. When an Elemental Skill hits opponents, you gain the Grand Hymn effect for 20s. This effect increases the equipping character's Elemental Mastery by <span style=\"color: #409EFF;\">0.12%-0.15%-0.18%-0.21%-0.24%</span> of their Max HP. This effect can trigger once every 0.3s. Max 3 stacks. When this effect gains 3 stacks, or when the third stack's duration is refreshed, the Elemental Mastery of all nearby party members will be increased by <span style=\"color: #409EFF;\">0.2%-0.25%-0.3%-0.35%-0.4%</span> of the equipping character's max HP for 20s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: ""
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "圣显之钥",
+            en: "Key of Khaj-Nisut"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

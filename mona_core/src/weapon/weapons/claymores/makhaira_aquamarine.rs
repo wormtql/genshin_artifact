@@ -39,9 +39,15 @@ impl WeaponTrait for MakhairaAquamarine {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some(""),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "每10秒，产生如下效果：基于装备者的元素精通的<span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span>，提升该角色的攻击力，并基于该提升的30%为队伍中附近的其他角色提升攻击力，持续12秒，多件同名武器产生的此效果可以叠加。角色处于队伍后台时也能触发效果。",
+            en: "The following effect will trigger every 10s: The equipping character will gain <span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span> of their Elemental Mastery as bonus ATK for 12s, with nearby party members gaining 30% of this buff for the same duration. Multiple instances of this weapon can allow this buff to stack. This effect will still trigger even if the character is not on the field."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: ""
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "玛海菈的水色",
+            en: "Makhaira Aquamarine"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

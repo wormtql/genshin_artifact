@@ -36,9 +36,15 @@ impl WeaponTrait for RoyalGreatsword {
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("专注：攻击造成伤害时，暴击率提升8%/10%/12%/14%/16%，最多堆叠5次。攻击造成暴击后，移除已有的专注效果。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "攻击造成伤害时，暴击率提升<span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span>，最多堆叠5次。攻击造成暴击后，移除已有的专注效果。",
+            en: "Upon damaging an opponent, increases CRIT Rate by <span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span>. Max 5 stacks. A CRIT Hit removes all stacks."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "宗室大剑"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "宗室大剑",
+            en: "Royal Greatsword"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

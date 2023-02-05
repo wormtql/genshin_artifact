@@ -45,9 +45,15 @@ impl WeaponTrait for CinnabarSpindle {
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("元素战技造成的伤害值提高，提高数值相当于防御力的40/50/60/70/80%。该效果每1.5秒最多触发一次，并将在元素战技造成伤害后的0.1秒后清除效果。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "元素战技造成的伤害值提高，提高数值相当于防御力的<span style=\"color: #409EFF;\">40%-50%-60%-70%-80%</span>。该效果每1.5秒最多触发一次，并将在元素战技造成伤害后的0.1秒后清除效果。",
+            en: "Elemental Skill DMG is increased by <span style=\"color: #409EFF;\">40%-50%-60%-70%-80%</span> of DEF. The effect will be triggered no more than once every 1.5s and will be cleared 0.1s after the Elemental Skill deals DMG."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "辰砂之纺锤"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "辰砂之纺锤",
+            en: "Cinnabar Spindle"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

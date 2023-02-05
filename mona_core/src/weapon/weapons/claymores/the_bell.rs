@@ -45,9 +45,15 @@ impl WeaponTrait for TheBell {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("叛逆的守护者：受到伤害时，生成一个伤害吸收等同于生命上限20%/23%/26%/29%/32%的护盾，持续10秒或者直到护盾失效，每45秒只能触发一次。角色处于护盾庇护下时，造成的伤害提升12%/15%/18%/21%/24%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "受到伤害时，生成一个伤害吸收量等同于生命值上限<span style=\"color: #409EFF;\">20%-23%-26%-29%-32%</span>的护盾，持续10秒或直到护盾失效,每<span style=\"color: #409EFF;\">45-45-45-45-45</span>秒只能触发一次。角色处于护盾庇护下时，造成的伤害提升<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>。",
+            en: "Taking DMG generates a shield which absorbs DMG up to <span style=\"color: #409EFF;\">20%-23%-26%-29%-32%</span> of Max HP. This shield lasts for 10s or until broken, and can only be triggered once every <span style=\"color: #409EFF;\">45-45-45-45-45</span>s. While protected by a shield, the character gains <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> increased DMG."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "钟剑"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "钟剑",
+            en: "The Bell"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

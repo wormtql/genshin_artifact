@@ -55,9 +55,15 @@ impl WeaponTrait for ThunderingPulse {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("攻击力提高20/25/30/35/40%，并能获得「飞雷之巴印」的威势。飞雷之巴印：持有1/2/3层飞雷之巴印时，普通攻击造成的伤害提高(12/24/40%)/(15/30/50%)/(18/36/60%)/(21/42/70%)/(24/48/80%)。在下列情况下，角色将各获得1层飞雷之巴印：普通攻击造成伤害时，持续5秒；施放元素战技时，持续10秒；此外，角色元素能量低于100%时，将获得1层飞雷之巴印，此飞雷之巴印会在角色的元素能量充满时消失。每层飞雷之巴印的持续时间独立计算。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "攻击力提高<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>，并能获得「飞雷之巴印」的威势。飞雷之巴印：持有1/2/3层飞雷之巴印时，普通攻击造成的伤害提高<span style=\"color: #409EFF;\">12/24/40%-15/30/50%-18/36/60%-21/42/70%-24/48/80%</span>。在下列情况下，角色将各获得1层飞雷之巴印：普通攻击造成伤害时，持续5秒；施放元素战技时，持续10秒；此外，角色元素能量低于100%时，将获得1层飞雷之巴印，此飞雷之巴印会在角色的元素能量充满时消失。每层飞雷之巴印的持续时间独立计算。",
+            en: "Increases ATK by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> and grants the might of the Thunder Emblem. At stack levels 1/2/3, the Thunder Emblem increases Normal Attack DMG by <span style=\"color: #409EFF;\">12/24/40%-15/30/50%-18/36/60%-21/42/70%-24/48/80%</span>. The character will obtain 1 stack of Thunder Emblem in each of the following scenarios: Normal Attack deals DMG (stack lasts 5s), casting Elemental Skill (stack lasts 10s); Energy is less than 100% (stack disappears when Energy is full). Each stack's duration is calculated independently."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "飞雷之弦振"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "飞雷之弦振",
+            en: "Thundering Pulse"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

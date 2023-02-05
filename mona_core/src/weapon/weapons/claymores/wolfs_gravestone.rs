@@ -47,9 +47,15 @@ impl WeaponTrait for WolfsGravestone {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("如狼般狩猎者：攻击力提高20%/25%/30%/35%/40%；攻击命中生命值低于30%的敌人时，队伍中所有成员的攻击力提高40%/50%/60%/70%/80%，持续12秒。该效果30秒只能触发一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "攻击力提高<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>；攻击命中生命值低于30%的敌人时，队伍中所有成员的攻击力提高<span style=\"color: #409EFF;\">40%-50%-60%-70%-80%</span>，持续12秒。该效果30秒只能触发一次。",
+            en: "Increases ATK by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. On hit, attacks against opponents with less than 30% HP increase all party members' ATK by <span style=\"color: #409EFF;\">40%-50%-60%-70%-80%</span> for 12s. Can only occur once every 30s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "狼的末路"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "狼的末路",
+            en: "Wolf's Gravestone"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

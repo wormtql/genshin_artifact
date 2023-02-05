@@ -21,7 +21,10 @@ impl WeaponTrait for IronPoint {
         #[cfg(not(target_family = "wasm"))]
         effect: None,
         #[cfg(not(target_family = "wasm"))]
-        chs: "铁尖枪",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "铁尖枪",
+            en: "Iron Point"
+        ),
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

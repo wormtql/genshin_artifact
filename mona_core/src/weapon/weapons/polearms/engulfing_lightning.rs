@@ -66,9 +66,15 @@ impl WeaponTrait for EngulfingLightning {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("攻击力获得提升，提升程度相当于元素充能效率超出100%部分的28/35/42/49/56%，至多通过这种方式提升80/90/100/110/120%。施放元素爆发后的12秒内，元素充能效率提升30/35/40/45/50%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "攻击力获得提升，提升程度相当于元素充能效率超出100%部分的<span style=\"color: #409EFF;\">28%-35%-42%-49%-56%</span>，至多通过这种方式提升<span style=\"color: #409EFF;\">80%-90%-100%-110%-120%</span>。施放元素爆发后的12秒内，元素充能效率提升<span style=\"color: #409EFF;\">30%-35%-40%-45%-50%</span>。",
+            en: "ATK increased by <span style=\"color: #409EFF;\">28%-35%-42%-49%-56%</span> of Energy Recharge over the base 100%. You can gain a maximum bonus of <span style=\"color: #409EFF;\">80%-90%-100%-110%-120%</span> ATK. Gain <span style=\"color: #409EFF;\">30%-35%-40%-45%-50%</span> Energy Recharge for 12s after using an Elemental Burst."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "薙草之稻光"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "薙草之稻光",
+            en: "Engulfing Lightning"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

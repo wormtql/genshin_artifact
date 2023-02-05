@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::ItemConfig;
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -48,9 +49,15 @@ impl WeaponTrait for CompoundBow {
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("注能之矢：普通攻击和瞄准攻击命中时，提升4%/5%/6%/7%/8%攻击力与1.2%/1.5%/1.8%/2.1%/2.4%普通攻击速度。该效果持续6秒，最多可以叠加4层，每0.3秒只能触发一次。"),
+        effect: Some(locale!(
+            zh_cn: "普通攻击与重击命中时，提升<span style=\"color: #409EFF;\">4%-5%-6%-7%-8%</span>攻击力与<span style=\"color: #409EFF;\">1.2%-1.5%-1.8%-2.1%-2.4%</span>普通攻击速度。该效果持续6秒，最多可以叠加4层，每0.3秒只能触发一次。",
+            en: "Normal Attack and Charged Attack hits increase ATK by <span style=\"color: #409EFF;\">4%-5%-6%-7%-8%</span> and Normal ATK SPD by <span style=\"color: #409EFF;\">1.2%-1.5%-1.8%-2.1%-2.4%</span> for 6s. Max 4 stacks. Can only occur once every 0.3s.",
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "钢轮弓"
+        name_locale: locale!(
+            zh_cn: "钢轮弓",
+            en: "Compound Bow",
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

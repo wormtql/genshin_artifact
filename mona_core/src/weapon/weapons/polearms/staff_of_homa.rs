@@ -54,9 +54,15 @@ impl WeaponTrait for StaffOfHoma {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("无羁的朱赤之蝶：生命值提升20%/25%/30%/35%/40%。此外，提供基于装备该武器的角色生命值上限的0.8%/1%/1.2%/1.4%/1.6%，获得攻击力加成。当装备该武器的角色生命值低于50%时，进一步获得1%/1.2%/1.4%/1.6%/1.8%最大生命值上限的攻击力提升。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "生命值提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>。此外，基于装备该武器的角色生命值上限的<span style=\"color: #409EFF;\">0.8%-1%-1.2%-1.4%-1.6%</span>，获得攻击力加成。当装备该武器的角色生命值低于50%时，进一步获得<span style=\"color: #409EFF;\">1%-1.2%-1.4%-1.6%-1.8%</span>基于生命值上限的攻击力提升。",
+            en: "HP increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. Additionally, provides an ATK Bonus based on <span style=\"color: #409EFF;\">0.8%-1%-1.2%-1.4%-1.6%</span> of the wielder's Max HP. When the wielder's HP is less than 50%, this ATK Bonus is increased by an additional <span style=\"color: #409EFF;\">1%-1.2%-1.4%-1.6%-1.8%</span> of Max HP."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "护摩之杖"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "护摩之杖",
+            en: "Staff of Homa"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

@@ -52,9 +52,15 @@ impl WeaponTrait for FreedomSworn {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("飘游风中的「千年的大乐章」的一部分。伤害提升10%/12.5%/15%/17.5%/20%；触发元素反应时，角色获得一枚奋起之符，每0.5秒内至多触发一次，角色处于队伍后台也能触发。拥有2枚奋起之符时，将消耗所有奋起之符，使附近队伍中所有角色获得持续12秒的「千年的大乐章·抗争之歌」效果：普通攻击、重击、下落攻击造成的伤害提升16%/20%/24%/28%/32%，攻击力提升20%/25%/30%/35%/40%。触发后20秒内，无法再次获得奋起之符。「千年的大乐章」触发的多种数值效果中，同类数值效果不可叠加。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "飘游风中的「千年的大乐章」的一部分。造成的伤害提高<span style=\"color: #409EFF;\">10%-12.5%-15%-17.5%-20%</span>；触发元素反应时，角色获得一枚奋起之符，每0.5秒内至多触发一次，角色处于队伍后台也能触发。拥有2枚奋起之符时，将消耗所有奋起之符，使附近的队伍中所有角色获得持续12秒的「千年的大乐章·抗争之歌」效果：普通攻击、重击、下落攻击造成的伤害提高<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>，攻击力提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>。触发后20秒内，无法再次获得奋起之符。「千年的大乐章」触发的多种数值效果中，同类数值效果不可叠加。",
+            en: "A part of the \"Millennial Movement\" that wanders amidst the winds. Increases DMG by <span style=\"color: #409EFF;\">10%-12.5%-15%-17.5%-20%</span>. When the character wielding this weapon triggers Elemental Reactions, they gain a Sigil of Rebellion. This effect can be triggered once every 0.5s and can be triggered even if said character is not on the field. When you possess 2 Sigils of Rebellion, all of them will be consumed and all nearby party members will obtain \"Millennial Movement: Song of Resistance\" for 12s. \"Millennial Movement: Song of Resistance\" increases Normal, Charged and Plunging Attack DMG by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> and increases ATK by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. Once this effect is triggered, you will not gain Sigils of Rebellion for 20s. Of the many effects of the \"Millennial Movement,\" buffs of the same type will not stack."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "苍古自由之誓"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "苍古自由之誓",
+            en: "Freedom-Sworn"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

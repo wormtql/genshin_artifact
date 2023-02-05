@@ -46,9 +46,15 @@ impl WeaponTrait for Whiteblind {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("注能之锋：普通攻击和重击命中后，攻击力和防御力提高6%/7.5%/9%/10.5%/12%。该效果持续6秒，最多叠加4层，每0.5秒只能触发一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "普通攻击和重击命中后，攻击力和防御力提高<span style=\"color: #409EFF;\">6%-7.5%-9%-10.5%-12%</span>。该效果持续6秒，最多叠加4层，每0.5秒只能触发一次。",
+            en: "On hit, Normal or Charged Attacks increase ATK and DEF by <span style=\"color: #409EFF;\">6%-7.5%-9%-10.5%-12%</span> for 6s. Max 4 stacks. This effect can only occur once every 0.5s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "白影剑"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "白影剑",
+            en: "Whiteblind"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

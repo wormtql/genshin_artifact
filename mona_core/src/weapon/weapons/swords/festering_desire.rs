@@ -38,9 +38,15 @@ impl WeaponTrait for FesteringDesire {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("无尽的渴慕：元素战技造成的伤害增加16/20/24/28/32%，元素战技的暴击率提升6/7.5/9/10.5/12%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "元素战技造成的伤害增加<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>，元素战技的暴击率提升<span style=\"color: #409EFF;\">6%-7.5%-9%-10.5%-12%</span>。",
+            en: "Increases Elemental Skill DMG by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> and Elemental Skill CRIT Rate by <span style=\"color: #409EFF;\">6%-7.5%-9%-10.5%-12%</span>."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "腐殖之剑"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "腐殖之剑",
+            en: "Festering Desire"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

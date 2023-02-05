@@ -45,9 +45,15 @@ impl WeaponTrait for WindblumeOde {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("风花之愿：施放元素战技时，获得风之花的悠古愿望加持，攻击力提升16%/20%/24%/28%/32%，持续6秒"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "施放元素战技时，获得风之花的悠古愿望加持，攻击力提升<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>，持续6秒。",
+            en: "After using an Elemental Skill, receive a boon from the ancient wish of the Windblume, increasing ATK by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> for 6s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "风花之颂"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "风花之颂",
+            en: "Windblume Ode"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

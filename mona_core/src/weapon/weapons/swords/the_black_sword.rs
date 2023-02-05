@@ -36,9 +36,15 @@ impl WeaponTrait for TheBlackSword {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("「正义」：普通攻击与重击造成的伤害提升20%/25%/30%/35%/40%；此外普通攻击和重击暴击时，恢复等同于攻击力60/70/80/90/100%的生命值。该效果每5秒至多发动一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "普通攻击与重击的造成的伤害提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>；此外，普通攻击与重击暴击时，回复等同于攻击力<span style=\"color: #409EFF;\">60%-70%-80%-90%-100%</span>的生命值。该效果每5秒至多发动一次。",
+            en: "Increases DMG dealt by Normal and Charged Attacks by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. Additionally, regenerates <span style=\"color: #409EFF;\">60%-70%-80%-90%-100%</span> of ATK as HP when Normal and Charged Attacks score a CRIT Hit. This effect can occur once every 5s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "黑剑"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "黑剑",
+            en: "The Black Sword"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

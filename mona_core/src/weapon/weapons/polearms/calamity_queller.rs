@@ -52,9 +52,15 @@ impl WeaponTrait for CalamityQueller {
         weapon_base: WeaponBaseATKFamily::ATK741,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("获得12/15/18/21/24%所有元素伤害加成；施放元素战技后，获得持续20秒的「圆顿」，攻击力每1秒提升3.2/4/4.8/5.6/6.4%，该攻击力提升效果至多叠加6次。当装备此武器的角色处于队伍后台时，「圆顿」的攻击力提升效果翻倍。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "获得<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>所有元素伤害加成；施放元素战技后，获得持续20秒的「圆顿」，攻击力每1秒提升<span style=\"color: #409EFF;\">3.2%-4%-4.8%-5.6%-6.4%</span>，该攻击力提升效果至多叠加6次。当装备此武器的角色处于队伍后台时，「圆顿」的攻击力提升效果翻倍。",
+            en: "Gain <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> All Elemental DMG Bonus. Obtain Consummation for 20s after using an Elemental Skill, causing ATK to increase by <span style=\"color: #409EFF;\">3.2%-4%-4.8%-5.6%-6.4%</span> per second. This ATK increase has a maximum of 6 stacks. When the character equipped with this weapon is not on the field, Consummation's ATK increase is doubled."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "息灾"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "息灾",
+            en: "Calamity Queller"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

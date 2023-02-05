@@ -35,9 +35,15 @@ impl WeaponTrait for Rust {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("速射弓斗：普通攻击伤害提升40%/50%/60%/70%/80%，重击伤害下降10%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "普通攻击造成的伤害提升<span style=\"color: #409EFF;\">40%-50%-60%-70%-80%</span>，重击造成的伤害下降10%。",
+            en: "Increases Normal Attack DMG by <span style=\"color: #409EFF;\">40%-50%-60%-70%-80%</span> but decreases Charged Attack DMG by 10%."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "弓藏"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "弓藏",
+            en: "Rust"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

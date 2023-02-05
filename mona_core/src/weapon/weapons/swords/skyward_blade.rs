@@ -35,9 +35,15 @@ impl WeaponTrait for SkywardBlade {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("穿刺高天的利齿：暴击率提升4%/5%/6%/7%/8%；施放元素爆发时，获得破空之势：移动速度提升10%，攻击速度提升10%，普通攻击与重击命中时，额外造成20%/25%/30%/35%/40%攻击力的伤害，持续12秒。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "暴击率提升<span style=\"color: #409EFF;\">4%-5%-6%-7%-8%</span>；施放元素爆发时，获得破空之势：移动速度提升<span style=\"color: #409EFF;\">10%-10%-10%-10%-10%</span>，攻击速度提升<span style=\"color: #409EFF;\">10%-10%-10%-10%-10%</span>，普通攻击与重击命中时，额外造成<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>攻击力的伤害，持续12秒。",
+            en: "CRIT Rate increased by <span style=\"color: #409EFF;\">4%-5%-6%-7%-8%</span>. Gains Skypiercing Might upon using an Elemental Burst: Increases Movement SPD by <span style=\"color: #409EFF;\">10%-10%-10%-10%-10%</span>, increases ATK SPD by <span style=\"color: #409EFF;\">10%-10%-10%-10%-10%</span>, and Normal and Charged hits deal additional DMG equal to <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> of ATK. Skypiercing Might lasts for 12s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "天空之刃"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "天空之刃",
+            en: "Skyward Blade"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

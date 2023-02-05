@@ -19,9 +19,15 @@ impl WeaponTrait for CrescentPike {
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("注能之针：获得元素微粒或元素晶球后的5秒内，普通攻击和重击额外造成20%/25%/30%/35%/40%攻击力伤害。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "获得元素微粒或元素晶球后的5秒内，普通攻击和重击额外造成<span style=\"color: #409EFF;\">20-25-30-35-40</span>%攻击力伤害。",
+            en: "After picking up an Elemental Orb/Particle, Normal and Charged Attacks deal additional DMG equal to <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> of ATK for 5s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "流月针"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "流月针",
+            en: "Crescent Pike"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

@@ -61,9 +61,15 @@ impl WeaponTrait for PolarStar {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("元素战技和元素爆发造成的伤害提高12%/15%/18%/21%/24%；普通攻击、重击、元素战技或元素爆发命中敌人后，将产生1层持续12秒的「白夜极星」效果。处于1/2/3/4层「白夜极星」效果下时，攻击力将提高(10/20/30/48%)/(12.5/25/37.5/60%)/(15/30/45/72%)/(17.5/35/52.5/84%)/(20/40/60/96%)。由普通攻击、重击、元素战技或元素爆发产生的「白夜极星」将分别独立存在。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "元素战技和元素爆发造成的伤害提高<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>；普通攻击、重击、元素战技或元素爆发命中敌人后，将产生1层持续12秒的「白夜极星」效果。处于1/2/3/4层「白夜极星」效果下时，攻击力将提高<span style=\"color: #409EFF;\">10/20/30/48%-12.5/25/37.5/60%-15/30/45/72%-17.5/35/52.5/84%-20/40/60/96%</span>。由普通攻击、重击、元素战技或元素爆发产生的「白夜极星」将分别独立存在。",
+            en: "Elemental Skill and Elemental Burst DMG increased by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>. After a Normal Attack, Charged Attack, Elemental Skill or Elemental Burst hits an opponent, 1 stack of Ashen Nightstar will be gained for 12s. When 1/2/3/4 stacks of Ashen Nightstar are present, ATK is increased by <span style=\"color: #409EFF;\">10/20/30/48%-12.5/25/37.5/60%-15/30/45/72%-17.5/35/52.5/84%-20/40/60/96%</span>. The stack of Ashen Nightstar created by the Normal Attack, Charged Attack, Elemental Skill or Elemental Burst will be counted independently of the others."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "冬极白星"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "冬极白星",
+            en: "Polar Star"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

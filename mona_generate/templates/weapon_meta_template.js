@@ -12,18 +12,14 @@ export default {
     {{ weapon.name }}: {
         name: "{{ weapon.name }}",
         internalName: "{{ weapon.internal_name }}",
-        // chs: "{{ weapon.chs }}",
+        nameLocale: {{weapon.name_index}},
         star: {{ weapon.star }},
-        // url: {{ weapon.name }}_tn,
         url: imageUrl("{{ weapon.internal_name }}"),
         type: "{{ weapon.t }}",
 
-        {% if weapon.effect.len() > 0 %}
-        // effect: "{{ weapon.effect }}",
-        {% else %}
-        // effect: null,
+        {% if weapon.effect.is_some() %}
+        effect: {{weapon.effect.unwrap()}},
         {% endif %}
-
         {% if weapon.configs.len() > 0 %}
         configs: [
             {% for config in weapon.configs %}

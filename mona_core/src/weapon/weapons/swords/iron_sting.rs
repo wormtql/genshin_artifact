@@ -45,9 +45,15 @@ impl WeaponTrait for IronSting {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("注能之刺：造成元素伤害后的6秒内，角色造成的伤害提高6%/7.5%/9%/10.5%/12%，该效果最多叠加2层。该效果每1秒可以触发一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "造成元素伤害后的6秒内，角色造成的伤害提高<span style=\"color: #409EFF;\">6%-7.5%-9%-10.5%-12%</span>，该效果最多叠加2层。该效果每1秒可以触发一次。",
+            en: "Dealing Elemental DMG increases all DMG by <span style=\"color: #409EFF;\">6%-7.5%-9%-10.5%-12%</span> for 6s. Max 2 stacks. Can occur once every 1s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "铁蜂刺"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "铁蜂刺",
+            en: "Iron Sting"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

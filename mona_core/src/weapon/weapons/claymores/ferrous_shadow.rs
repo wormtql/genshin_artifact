@@ -39,9 +39,15 @@ impl WeaponTrait for FerrousShadow {
         weapon_base: WeaponBaseATKFamily::ATK401,
         star: 3,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("不屈：生命值低于70%/75%/80%/85%/90%时，重击不会轻易被打断，并提高30%/35%/40%/45%/50%重击伤害。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "生命值低于<span style=\"color: #409EFF;\">70%-75%-80%-85%-90%</span>时，重击不会轻易被打断，并提高<span style=\"color: #409EFF;\">30%-35%-40%-45%-50%</span>重击伤害。",
+            en: "When HP falls below <span style=\"color: #409EFF;\">70%-75%-80%-85%-90%</span>, increases Charged Attack DMG by <span style=\"color: #409EFF;\">30%-35%-40%-45%-50%</span> and Charged Attacks become harder to interrupt."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "铁影阔剑"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "铁影阔剑",
+            en: "Ferrous Shadow"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

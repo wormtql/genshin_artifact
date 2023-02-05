@@ -35,9 +35,15 @@ impl WeaponTrait for LuxuriousSeaLord {
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("元素爆发造成的伤害提升12/15/18/21/24%。元素爆发命中敌人时，有100%概率召唤大鲔冲击，造成100/125/150/175/200%攻击力的范围伤害。该效果每15秒至多触发一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "元素爆发造成的伤害提升<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>。元素爆发命中敌人时，有100%概率召唤大鲔冲击，造成<span style=\"color: #409EFF;\">100%-125%-150%-175%-200%</span>攻击力的范围伤害。该效果每15秒至多触发一次。",
+            en: "Increases Elemental Burst DMG by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>. When Elemental Burst hits opponents, there is a 100% chance of summoning a huge onrush of tuna that deals <span style=\"color: #409EFF;\">100%-125%-150%-175%-200%</span> ATK as AoE DMG. This effect can occur once every 15s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "衔珠海皇"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "衔珠海皇",
+            en: "Luxurious Sea-Lord"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

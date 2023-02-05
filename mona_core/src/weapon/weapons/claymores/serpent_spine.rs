@@ -45,9 +45,15 @@ impl WeaponTrait for SerpentSpine {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("破浪：角色在场上时，每4秒提升6%/7%/8%/9%/10%造成的伤害，3%/2.7%/2.4%/2.2%/2%受到的伤害。该效果最多叠加5层，不随角色退场重置，受到伤害后会减少1层效果"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "角色在场上时，每4秒提升<span style=\"color: #409EFF;\">6%-7%-8%-9%-10%</span>造成的伤害，<span style=\"color: #409EFF;\">3%-2.7%-2.4%-2.2%-2%</span>受到的伤害。该效果最多叠加5层，不随角色退场重置，受到伤害后会减少1层效果。",
+            en: "Every 4s a character is on the field, they will deal <span style=\"color: #409EFF;\">6%-7%-8%-9%-10%</span> more DMG and take <span style=\"color: #409EFF;\">3%-2.7%-2.4%-2.2%-2%</span> more DMG. This effect has a maximum of 5 stacks and will not be reset if the character leaves the field, but will be reduced by 1 stack when the character takes DMG."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "螭骨剑"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "螭骨剑",
+            en: "Serpent Spine"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

@@ -36,9 +36,15 @@ impl WeaponTrait for TheStringless {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("无矢之歌：元素战技与元素爆发的伤害提高24％/30%/36%/42%/48%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "元素战技与元素爆发的伤害提高<span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span>。",
+            en: "Increases Elemental Skill and Elemental Burst DMG by <span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span>."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "绝弦"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "绝弦",
+            en: "The Stringless"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

@@ -20,7 +20,10 @@ impl WeaponTrait for PocketGrimoire {
         #[cfg(not(target_family = "wasm"))]
         effect: None,
         #[cfg(not(target_family = "wasm"))]
-        chs: "口袋魔导书"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "口袋魔导书",
+            en: "Pocket Grimoire"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

@@ -39,9 +39,15 @@ impl WeaponTrait for MagicGuide {
         weapon_base: WeaponBaseATKFamily::ATK354,
         star: 3,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("止水息雷：对处于水元素或雷元素影响下的敌人，造成的伤害提高12%/15%/18%/21%/24%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "对处于水元素或雷元素影响下的敌人，造成的伤害提高<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>。",
+            en: "Increases DMG against opponents affected by Hydro or Electro by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "魔导绪论"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "魔导绪论",
+            en: "Magic Guide"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

@@ -51,9 +51,15 @@ impl WeaponTrait for PrimordialJadeWingedSpear {
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("昭理的鸢之枪：命中敌人时自身攻击力提高3.2%/3.9%/4.6%/5.3%/6%，持续6秒，最高可以叠加7层。该效果每0.3秒最多触发一次。满层状态时伤害提升12%/15%/18%/21%/24%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "命中敌人时自身攻击力提高<span style=\"color: #409EFF;\">3.2%-3.9%-4.6%-5.3%-6%</span>，持续6秒，最高可以叠加7层。该效果每0.3秒最多触发一次。满层状态时伤害提升<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>。",
+            en: "On hit, increases ATK by <span style=\"color: #409EFF;\">3.2%-3.9%-4.6%-5.3%-6%</span> for 6s. Max 7 stacks. This effect can only occur once every 0.3s. While in possession of the maximum possible stacks, DMG dealt is increased by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "和璞鸢"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "和璞鸢",
+            en: "Primordial Jade Winged-Spear"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

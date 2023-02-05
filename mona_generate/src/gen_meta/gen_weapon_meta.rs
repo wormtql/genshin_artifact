@@ -4,14 +4,15 @@ use mona::common::item_config_type::ItemConfig;
 use mona::weapon::weapons::get_static_data;
 use mona::weapon::weapon_name::WeaponName;
 use mona::weapon::weapon_static_data::WeaponStaticData;
+use crate::gen_meta::gen_locale::get_index_mapping;
 
 struct WeaponMetaDataForJS {
     name: String,
     internal_name: String,
-    chs: String,
+    name_index: usize,
     star: usize,
     t: String,
-    effect: String,
+    effect: Option<usize>,
     configs: Vec<String>,
 }
 
@@ -23,6 +24,7 @@ struct WeaponMetaAllForJS {
 
 pub fn gen_weapon_meta_as_js_file() -> String {
     let mut data: Vec<WeaponMetaDataForJS> = Vec::new();
+    let index_map = get_index_mapping();
 
     for i in 0_usize..WeaponName::LEN {
         let weapon_name: WeaponName = num::FromPrimitive::from_usize(i).unwrap();
@@ -41,13 +43,13 @@ pub fn gen_weapon_meta_as_js_file() -> String {
             name: weapon_name.to_string(),
             // internal_name: get_internal_weapon_name(weapon_name),
             internal_name: String::from(meta_data.internal_name),
-            chs: String::from(meta_data.chs),
+            name_index: *index_map.get(&meta_data.name_locale).unwrap(),
             star: meta_data.star,
             t: meta_data.weapon_type.to_string(),
-            effect: if let Some(s) = meta_data.effect {
-                String::from(s)
+            effect: if let Some(ref s) = meta_data.effect {
+                Some(*index_map.get(s).unwrap())
             } else {
-                String::new()
+                None
             },
             configs,
         };

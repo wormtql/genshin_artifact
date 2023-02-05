@@ -36,7 +36,10 @@ impl WeaponTrait for KingsSquire {
         #[cfg(not(target_family = "wasm"))]
         effect: None,
         #[cfg(not(target_family = "wasm"))]
-        chs: ""
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "王下近侍",
+            en: "King's Squire"
+        )
     };
 
     config_rate01!();

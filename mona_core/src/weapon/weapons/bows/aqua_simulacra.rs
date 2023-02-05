@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_common_data::WeaponCommonData;
@@ -38,9 +39,15 @@ impl WeaponTrait for AquaSimulacra {
         weapon_base: WeaponBaseATKFamily::ATK542,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("生命值提升16/20/24/28/32%。周围存在敌人时，装备该武器的角色造成的伤害都会提升20/25/30/35/40%，不论该角色处于场上或是处于队伍后台。"),
+        effect: Some(locale!(
+            zh_cn: "生命值提升<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>。周围存在敌人时，装备该武器的角色造成的伤害都会提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>，不论该角色处于场上或是处于队伍后台。",
+            en: "HP is increased by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>. When there are opponents nearby, the DMG dealt by the wielder of this weapon is increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. This will take effect whether the character is on-field or not."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "若水"
+        name_locale: locale!(
+            zh_cn: "若水",
+            en: "Aqua Simulacra",
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

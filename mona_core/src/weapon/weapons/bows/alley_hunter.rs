@@ -2,6 +2,7 @@ use smallvec::{smallvec, SmallVec};
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::{WeaponType};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_common_data::WeaponCommonData;
@@ -46,9 +47,15 @@ impl WeaponTrait for AlleyHunter {
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("街巷伏击：装备该武器的角色处于队伍后台时，每1秒角色造成的伤害提升2%/2.5%/3%/3.5%/4%,最多通过这种方式获得20%/25%/30%/35%/40%的伤害提升；在场上超过4秒后，上述伤害提升效果每1秒会流失4%/5%/6%/7%/8%，直到降低至0%。"),
+        effect: Some(locale!(
+            zh_cn: "街巷伏击：装备该武器的角色处于队伍后台时，每1秒角色造成的伤害提升<span style=\"color: #409EFF;\">2%/2.5%/3%/3.5%/4%</span>,最多通过这种方式获得<span style=\"color: #409EFF;\">20%/25%/30%/35%/40%</span>的伤害提升；在场上超过4秒后，上述伤害提升效果每1秒会流失<span style=\"color: #409EFF;\">4%/5%/6%/7%/8%</span>，直到降低至0%。",
+            en: "While the character equipped with this weapon is in the party but not on the field, their DMG increases by <span style=\"color: #409EFF;\">2%-2.5%-3%-3.5%-4%</span> every second up to a max of <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>. When the character is on the field for more than 4s, the aforementioned DMG buff decreases by <span style=\"color: #409EFF;\">4%-5%-6%-7%-8%</span> per second until it reaches 0%.",
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "暗巷猎手",
+        name_locale: locale!(
+            zh_cn: "暗巷猎手",
+            en: "Alley Hunter",
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

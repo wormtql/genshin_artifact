@@ -39,9 +39,15 @@ impl WeaponTrait for HarbingerOfDawn {
         weapon_base: WeaponBaseATKFamily::ATK401,
         star: 3,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("激励：生命值高于90%时，暴击率提升14%/17.5%/21%/24.5%/28%"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "生命值高于90%时，暴击率提升<span style=\"color: #409EFF;\">14%-17.5%-21%-24.5%-28%</span>。",
+            en: "When HP is above 90%, increases CRIT Rate by <span style=\"color: #409EFF;\">14%-17.5%-21%-24.5%-28%</span>."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "黎明神剑"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "黎明神剑",
+            en: "Harbinger of Dawn"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

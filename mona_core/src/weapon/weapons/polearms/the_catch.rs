@@ -36,9 +36,15 @@ impl WeaponTrait for TheCatch {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("元素爆发造成的伤害提升16/20/24/28/32/%，元素爆发的暴击率提升6/7.5/9/10.5/12%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "元素爆发造成的伤害提升<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>，元素爆发的暴击率提升<span style=\"color: #409EFF;\">6%-7.5%-9%-10.5%-12%</span>。",
+            en: "Increases Elemental Burst DMG by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> and Elemental Burst CRIT Rate by <span style=\"color: #409EFF;\">6%-7.5%-9%-10.5%-12%</span>."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "「渔获」"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "「渔获」",
+            en: "\"The Catch\""
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

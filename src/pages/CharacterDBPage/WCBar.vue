@@ -25,10 +25,10 @@ export default {
         },
 
         tooltip() {
-            const { t } = useI18n()
+            const { ta } = useI18n()
             if (this.type === "weapon") {
-                // return weaponData[this.item[0]].chs
-                return t("weapon", this.item[0])
+                const nameLocaleIndex = weaponData[this.item[0]].nameLocale
+                return ta(nameLocaleIndex)
             }
         },
 

@@ -19,9 +19,15 @@ impl WeaponTrait for FavoniusLance {
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("顺风而行：攻击造成暴击时，有60%/70%/80%/90%/100%的几率产生少量元素微粒，能为角色恢复6点元素能量。该效果每12/10.5/9/7.5/6秒只能触发一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "攻击造成暴击时，有<span style=\"color: #409EFF;\">60%-70%-80%-90%-100%</span>的几率产生少量元素微粒，能为角色恢复6点元素能量。该效果每<span style=\"color: #409EFF;\">12-10.5-9-7.5-6</span>秒只能触发一次。",
+            en: "CRIT Hits have a <span style=\"color: #409EFF;\">60%-70%-80%-90%-100%</span> chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every <span style=\"color: #409EFF;\">12-10.5-9-7.5-6</span>s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "西风长枪"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "西风长枪",
+            en: "Favonius Lance"
+        )
     };
 
     fn get_effect<A: Attribute>(character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

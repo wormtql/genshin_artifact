@@ -2,6 +2,7 @@ import type {WeaponName, WeaponType} from "@/types/weapon"
 // @ts-ignore
 import {weaponByType, weaponData} from "@weapon"
 import {type Ref} from "vue"
+import {useI18n} from "@/i18n/i18n";
 
 export function useWeapon(weaponType: null | Ref<WeaponType>) {
     const weaponName = ref<WeaponName>("PolarStar")
@@ -80,6 +81,12 @@ export function useWeapon(weaponType: null | Ref<WeaponType>) {
         flush: "sync"
     })
 
+    const { ta } = useI18n()
+
+    const weaponLocale = computed(() => {
+        return ta(weaponData[weaponName.value].nameLocale)
+    })
+
     return {
         weaponName,
         weaponLevel,
@@ -91,6 +98,7 @@ export function useWeapon(weaponType: null | Ref<WeaponType>) {
         weaponNeedConfig,
         weaponConfigConfig,
         weaponInterface,
+        weaponLocale
 
         // changeWeapon
     }

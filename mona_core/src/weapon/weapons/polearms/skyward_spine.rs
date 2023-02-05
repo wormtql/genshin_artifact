@@ -35,9 +35,15 @@ impl WeaponTrait for SkywardSpine {
         weapon_base: WeaponBaseATKFamily::ATK674,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("斫断黑翼的利齿：暴击率提升8%/10%/12%/14%/16%， 普通攻击速度提升12%, 此外，普通攻击与重击命中敌人时，有50%概率触发真空刃，在小范围内造成额外40%/55%/70%/85%/100%攻击力的伤害。该效果每2秒至多触发一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "暴击率提升<span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span>，普通攻击速度提升<span style=\"color: #409EFF;\">12%-12%-12%-12%-12%</span>。此外，普通攻击与重击命中敌人时，有<span style=\"color: #409EFF;\">50%-50%-50%-50%-50%</span>概率触发真空刃，在小范围内造成额外<span style=\"color: #409EFF;\">40%-55%-70%-85%-100%</span>攻击力的伤害。该效果每2秒至多触发一次。",
+            en: "Increases CRIT Rate by <span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span> and increases Normal ATK SPD by <span style=\"color: #409EFF;\">12%-12%-12%-12%-12%</span>. Additionally, Normal and Charged Attacks hits on opponents have a <span style=\"color: #409EFF;\">50%-50%-50%-50%-50%</span> chance to trigger a vacuum blade that deals <span style=\"color: #409EFF;\">40%-55%-70%-85%-100%</span> of ATK as DMG in a small AoE. This effect can occur no more than once every 2s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "天空之脊"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "天空之脊",
+            en: "Skyward Spine"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

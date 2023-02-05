@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::ItemConfig;
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -47,9 +48,15 @@ impl WeaponTrait for AmosBow {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("矢志不忘：普通攻击和重击造成的伤害提升12%/15%/18%/21%/24%；箭矢发射后每经过0.1秒，伤害还会提升8%/10%/12%/14%/16%。至多提升5次。"),
+        effect: Some(locale!(
+            zh_cn: "普通攻击与重击造成的伤害提升<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>；普通攻击与重击的箭矢发射后每经过0.1秒，伤害还会提升<span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span>，至多提升5次。",
+            en: "Increases Normal and Charged Attack DMG by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>. After a Normal or Charged Attack is fired, DMG dealt increases by a further <span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span> every 0.1s the arrow is in the air for up to 5 times."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "阿莫斯之弓"
+        name_locale: locale!(
+            zh_cn: "阿莫斯之弓",
+            en: "Amos' Bow",
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

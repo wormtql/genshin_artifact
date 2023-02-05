@@ -25,7 +25,10 @@ impl WeaponTrait for ForestRegalia {
         #[cfg(not(target_family = "wasm"))]
         effect: None,
         #[cfg(not(target_family = "wasm"))]
-        chs: ""
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "森林王器",
+            en: "Forest Regalia"
+        )
     };
 
     config_rate01!();

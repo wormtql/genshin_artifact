@@ -8,11 +8,11 @@
             v-for="weapon in weaponList"
             :key="weapon.name"
             :value="weapon.name"
-            :label="t('weapon', weapon.name)"
+            :label="ta(weapon.nameLocale)"
         >
             <div class="option-item">
                 <img :src="weapon.url">
-                <span :style="{ color: getColor(weapon.star) }">{{ t("weapon", weapon.name) }}</span>
+                <span :style="{ color: getColor(weapon.star) }">{{ ta(weapon.nameLocale) }}</span>
             </div>
         </el-option>
         
@@ -44,10 +44,10 @@ export default {
         }
     },
     setup() {
-        const { t } = useI18n()
+        const { t, ta } = useI18n()
 
         return {
-            t
+            t, ta
         }
     }
 }

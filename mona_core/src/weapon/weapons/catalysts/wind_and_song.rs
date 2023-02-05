@@ -45,9 +45,15 @@ impl WeaponTrait for WindAndSong {
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("变化万端：普通攻击命中敌人后，冲刺或替代冲刺的能力消耗的体力降低14%/16%/18%/20%/22%，持续5秒。此外，使用冲刺或替代冲刺的能力后，攻击力提升20%/25%/30%/35%/40%，持续5秒。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "普通攻击命中敌人后，冲刺或替代冲刺的能力消耗的体力降低<span style=\"color: #409EFF;\">14%-16%-18%-20%-22%</span>，持续5秒。此外，使用冲刺或替代冲刺的能力后，攻击力提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>，持续5秒。",
+            en: "Hitting an opponent with a Normal Attack decreases the Stamina consumption of Sprint or Alternate Sprint by <span style=\"color: #409EFF;\">14%-16%-18%-20%-22%</span> for 5s. Additionally, using a Sprint or Alternate Sprint ability increases ATK by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> for 5s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "暗巷的酒与诗"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "暗巷的酒与诗",
+            en: "Wine and Song"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

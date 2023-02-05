@@ -39,9 +39,15 @@ impl WeaponTrait for SkyriderGreatsword {
         weapon_base: WeaponBaseATKFamily::ATK401,
         star: 3,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("勇气：普通攻击和重击命中时，攻击力提高6%/7%/8%/9%/10%，持续6秒，最多叠加4层，该效果每0.5秒只能触发一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "普通攻击和重击命中时，攻击力提高<span style=\"color: #409EFF;\">6%-7%-8%-9%-10%</span>，持续6秒，最多叠加4层。该效果每0.5秒只能触发一次。",
+            en: "On hit, Normal or Charged Attacks increase ATK by <span style=\"color: #409EFF;\">6%-7%-8%-9%-10%</span> for 6s. Max 4 stacks. Can occur once every 0.5s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "飞天大御剑"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "飞天大御剑",
+            en: "Skyrider Greatsword"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

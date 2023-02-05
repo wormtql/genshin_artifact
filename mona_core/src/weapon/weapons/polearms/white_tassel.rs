@@ -30,9 +30,15 @@ impl WeaponTrait for WhiteTassel {
         weapon_base: WeaponBaseATKFamily::ATK401,
         star: 3,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("锐利：普通攻击造成的伤害提升24%/30%/36%/42%/48%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "普通攻击造成的伤害提升<span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span>。",
+            en: "Increases Normal Attack DMG by <span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span>."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "白缨枪"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "白缨枪",
+            en: "White Tassel"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

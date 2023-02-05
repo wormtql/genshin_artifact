@@ -46,7 +46,10 @@ impl WeaponTrait for LightOfFoliarIncision {
         #[cfg(not(target_family = "wasm"))]
         effect: None,
         #[cfg(not(target_family = "wasm"))]
-        chs: ""
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "裁叶萃光",
+            en: "Light of Foliar Incision"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

@@ -2,8 +2,6 @@
 import inlineLocale from "./zh-cn.i18n"
 import {pathAccess} from "@/utils/common"
 
-console.log(inlineLocale)
-
 export function createI18n() {
     const locale = ref("zh-cn")
     const fallbackLocale = ref("zh-cn")
@@ -27,7 +25,7 @@ export function createI18n() {
         }
     }
 
-    function ta(index: number) {
+    function ta(index: number): string {
         return t("a", index)
     }
 

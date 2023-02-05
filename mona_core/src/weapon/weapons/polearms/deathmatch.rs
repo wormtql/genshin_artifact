@@ -52,9 +52,15 @@ impl WeaponTrait for Deathmatch {
         weapon_base: WeaponBaseATKFamily::ATK454,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("角斗士：身边至少有2个敌人时，获得16%/20%/24%/28%/32%攻击力提升与16%/20%/24%/28%/32%防御力提升；身边的敌人少于2个时，获得24%/30%/36%/42%/48%攻击力提升。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "身边至少有2个敌人时，获得<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>攻击力提升与<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>防御力提升；身边的敌人少于2个时，获得<span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span>攻击力提升。",
+            en: "If there are at least 2 opponents nearby, ATK is increased by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> and DEF is increased by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>. If there are fewer than 2 opponents nearby, ATK is increased by <span style=\"color: #409EFF;\">24%-30%-36%-42%-48%</span>."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "决斗之枪"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "决斗之枪",
+            en: "Deathmatch"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

@@ -44,9 +44,15 @@ impl WeaponTrait for HuntersPath {
         weapon_base: WeaponBaseATKFamily::ATK542,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some(""),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "获得<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>所有元素伤害加成。重击命中敌人后，将获得「无休止的狩猎」：重击造成的伤害值提高，提高值相当于元素精通数值的<span style=\"color: #409EFF;\">160%-200%-240%-280%-320%</span>。该效果将在生效12次或10秒后消失，每12秒至多获得一次无休止的狩猎。",
+            en: "Gain <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> All Elemental DMG Bonus. Obtain the Tireless Hunt effect after hitting an opponent with a Charged Attack. This effect increases Charged Attack DMG by <span style=\"color: #409EFF;\">160%-200%-240%-280%-320%</span> of Elemental Mastery. This effect will be removed after 12 Charged Attacks or 10s. Only 1 instance of Tireless Hunt can be gained every 12s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: ""
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "猎人之径",
+            en: "Hunter's Path"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

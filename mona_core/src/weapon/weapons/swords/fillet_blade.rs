@@ -19,9 +19,15 @@ impl WeaponTrait for FilletBlade {
         weapon_base: WeaponBaseATKFamily::ATK401,
         star: 3,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("决：攻击命中时，有50%的概率对单个敌人造成240%/280%/320%/360%/400%攻击力的伤害。该效果每15/14/13/12/11秒只能触发一次。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "攻击命中时，有50%的概率对单个敌人造成<span style=\"color: #409EFF;\">240%-280%-320%-360%-400%</span>攻击力的伤害。该效果每<span style=\"color: #409EFF;\">15-14-13-12-11</span>秒只能触发一次。",
+            en: "On hit, has a 50% chance to deal <span style=\"color: #409EFF;\">240%-280%-320%-360%-400%</span> ATK DMG to a single opponent. Can only occur once every <span style=\"color: #409EFF;\">15-14-13-12-11</span>s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "吃虎鱼刀"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "吃虎鱼刀",
+            en: "Fillet Blade"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

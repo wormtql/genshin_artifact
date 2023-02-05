@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_common_data::WeaponCommonData;
@@ -40,9 +41,15 @@ impl WeaponTrait for FadingTwilight {
         weapon_base: WeaponBaseATKFamily::ATK565,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("具有夕暮、流霞、朝晖三种状态，分别能使造成的伤害提升(6/7.5/9/10.5/12)%:(10/12.5/15/17.5/20)%:(14/17.5/21/24.5/28)%。攻击命中敌人后，将转换为下一种状态，每7秒至多转换一次状态。装备该武器的角色处于队伍后台时该效果依旧能触发转换。"),
+        effect: Some(locale!(
+            zh_cn: "具有夕暮、流霞、朝晖三种状态，分别能使造成的伤害提升<span style=\"color: #409EFF;\">6%/10%/14%-7.5%/12.5%/17.5%-9%/15%/21%-10.5%/17.5%/24.5%-12%/20%/28%</span>。攻击命中敌人后，将转换为下一种状态，每7秒至多转换一次状态。装备该武器的角色处于队伍后台时该效果依旧能触发转换。",
+            en: "Has three states, Evengleam, Afterglow, and Dawnblaze, which increase DMG dealt by <span style=\"color: #409EFF;\">6%/10%/14%-7.5%/12.5%/17.5%-9%/15%/21%-10.5%/17.5%/24.5%-12%/20%/28%</span> respectively. When attacks hit opponents, this weapon will switch to the next state. This weapon can change states once every 7s. The character equipping this weapon can still trigger the state switch while not on the field."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "落霞"
+        name_locale: locale!(
+            zh_cn: "落霞",
+            en: "Fading Twilight",
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

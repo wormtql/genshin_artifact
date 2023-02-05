@@ -45,9 +45,15 @@ impl WeaponTrait for LionsRoar {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("踏火息雷：对处于火元素或雷元素影响下的敌人，造成的伤害提高20%/24%/28%/32%/36%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "对处于火元素或雷元素影响下的敌人，造成的伤害提高<span style=\"color: #409EFF;\">20%-24%-28%-32%-36%</span>。",
+            en: "Increases DMG against opponents affected by Pyro or Electro by <span style=\"color: #409EFF;\">20%-24%-28%-32%-36%</span>."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "匣里龙吟"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "匣里龙吟",
+            en: "Lion's Roar"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

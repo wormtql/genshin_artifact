@@ -36,9 +36,15 @@ impl WeaponTrait for EverlastingMoonglow {
         weapon_base: WeaponBaseATKFamily::ATK608,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("治疗加成提升10/12.5/15/17.5/20%；普通攻击造成的伤害增加，增加值为装备该武器的角色生命值上限的1/1.5/2/2.5/3%。在施放元素爆发后的12秒内，普通攻击命中敌人时恢复0.6点元素能量，每0.1秒至多通过这种方式恢复一次元素能量。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "治疗加成提升<span style=\"color: #409EFF;\">10%-12.5%-15%-17.5%-20%</span>；普通攻击造成的伤害增加，增加值为装备该武器的角色生命值上限的<span style=\"color: #409EFF;\">1%-1.5%-2%-2.5%-3%</span>。在施放元素爆发后的12秒内，普通攻击命中敌人时恢复0.6点元素能量，每0.1秒至多通过这种方式恢复一次元素能量。",
+            en: "Healing Bonus increased by <span style=\"color: #409EFF;\">10%-12.5%-15%-17.5%-20%</span>, Normal Attack DMG is increased by <span style=\"color: #409EFF;\">1%-1.5%-2%-2.5%-3%</span> of the Max HP of the character equipping this weapon. For 12s after using an Elemental Burst, Normal Attacks that hit opponents will restore 0.6 Energy. Energy can be restored this way once every 0.1s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "不灭月华"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "不灭月华",
+            en: "Everlasting Moonglow"
+        )
     };
 
     fn get_effect<A: Attribute>(_character: &CharacterCommonData, _config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

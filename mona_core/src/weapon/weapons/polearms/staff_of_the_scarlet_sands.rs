@@ -40,9 +40,15 @@ impl WeaponTrait for StaffOfTheScarletSands {
         weapon_base: WeaponBaseATKFamily::ATK542,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some(""),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "基于装备者元素精通的<span style=\"color: #409EFF;\">52%-65%-78%-91%-104%</span>，获得攻击力加成。元素战技命中敌人时，将产生持续10秒的「赤沙之梦」效果：基于装备者元素精通的<span style=\"color: #409EFF;\">28%-35%-42%-49%-56%</span>，获得攻击力加成，该效果至多叠加3层。",
+            en: "The equipping character gains <span style=\"color: #409EFF;\">52%-65%-78%-91%-104%</span> of their Elemental Mastery as bonus ATK. When an Elemental Skill hits opponents, the Dream of the Scarlet Sands effect will be gained for 10s: The equipping character will gain <span style=\"color: #409EFF;\">28%-35%-42%-49%-56%</span> of their Elemental Mastery as bonus ATK. Max 3 stacks."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: ""
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "赤沙之杖",
+            en: "Staff of the Scarlet Sands"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

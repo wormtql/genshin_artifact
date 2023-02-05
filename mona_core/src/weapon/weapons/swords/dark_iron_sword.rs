@@ -39,9 +39,15 @@ impl WeaponTrait for DarkIronSword {
         weapon_base: WeaponBaseATKFamily::ATK401,
         star: 3,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some("过载：触发超载、超导、感电或雷元素扩散反应后的12秒内，攻击力提高20%/25%/30%/35%/40%。"),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "触发超载、超导、感电或雷元素扩散反应后的12秒内，攻击力提高<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>。",
+            en: "Upon causing an Overloaded, Superconduct, Electro-Charged, or an Electro-infused Swirl reaction, ATK is increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> for 12s."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: "暗铁剑"
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "暗铁剑",
+            en: "Dark Iron Sword"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]

@@ -33,9 +33,15 @@ impl WeaponTrait for MissiveWindspear {
         weapon_base: WeaponBaseATKFamily::ATK510,
         star: 4,
         #[cfg(not(target_family = "wasm"))]
-        effect: Some(""),
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "触发元素反应后的10秒内，攻击力提升<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>，元素精通提升<span style=\"color: #409EFF;\">48-60-72-84-96</span>点。",
+            en: "Within 10s after an Elemental Reaction is triggered, ATK is increased by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> and Elemental Mastery is increased by <span style=\"color: #409EFF;\">48-60-72-84-96</span>."
+        )),
         #[cfg(not(target_family = "wasm"))]
-        chs: ""
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "风信之锋",
+            en: "Missive Windspear"
+        )
     };
 
     #[cfg(not(target_family = "wasm"))]
