@@ -68,7 +68,7 @@ interface Emits {
 
 const emits = defineEmits<Emits>()
 
-const { t } = useI18n()
+const { t, ta } = useI18n()
 
 
 // tab
@@ -88,8 +88,8 @@ const buffsFlatWithLocale = computed((): BuffInterface[] => {
     for (const item of buffFlat) {
         result.push({
             name: item.name,
-            title: t("buffName", item.name),
-            description: t("buffDesc", item.name),
+            title: ta(item.nameLocale),
+            description: item.description ? ta(item.description) : "",
             genre: item.genre,
             badge: item.badge
         })

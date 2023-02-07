@@ -5,6 +5,7 @@ use crate::buffs::buff::BuffMeta;
 use crate::buffs::buff_meta::{BuffFrom, BuffGenre, BuffImage, BuffMetaData};
 use crate::buffs::buff_name::BuffName;
 use crate::character::CharacterName;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::enemies::Enemy;
 
@@ -29,7 +30,10 @@ impl BuffMeta for BuffNahidaTalent1 {
         ),
         image: BuffImage::Avatar(CharacterName::Nahida),
         genre: BuffGenre::Character,
-        description: None,
+        description: Some(locale!(
+            zh_cn: "施放心景幻成时，摩耶之殿将获得以下效果：<br>依据队伍中元素精通最高的角色的元素精通数值的25%，提高领域内当前场上角色的元素精通。通过这种方式，至多提升250点元素精通。",
+            en: "When unleashing Illusory Heart, the Shrine of Maya will gain the following effects:<br>The Elemental Mastery of the active character within the field will be increased by 25% of the Elemental Mastery of the party member with the highest Elemental Mastery. You can gain a maximum of 250 Elemental Mastery in this manner."
+        )),
         from: BuffFrom::Character(CharacterName::Nahida)
     };
 

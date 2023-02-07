@@ -1,7 +1,7 @@
 <template>
     <div class="buff-root">
         <div class="top" :class="{ lock }">
-            <p class="buff-title">{{ t("buffName", data.name) }}</p>
+            <p class="buff-title">{{ ta(data.nameLocale) }}</p>
             <div class="buttons">
                 <el-button
                     text
@@ -50,7 +50,7 @@ import IconEpLock from "~icons/ep/lock"
 import IconEpUnlock from "~icons/ep/unlock"
 import {useI18n} from "@/i18n/i18n";
 
-const { t } = useI18n()
+const { t, ta } = useI18n()
 
 interface Props {
     buff: BuffEntry,
@@ -80,7 +80,7 @@ const lock = computed(() => {
 })
 
 const description = computed(() => {
-    return t('buffDesc', data.value.name)
+    return data.value.description ? ta(data.value.description) : null
 })
 </script>
 

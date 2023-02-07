@@ -200,8 +200,8 @@ export default {
     
     "MaxATK": {
         name: "MaxATK",
-        nameLocale: 515,
-        description: 512,
+        nameLocale: 604,
+        description: 601,
         tags: [
             
             "攻击",
@@ -218,8 +218,8 @@ export default {
     
     "MaxDEF": {
         name: "MaxDEF",
-        nameLocale: 520,
-        description: 514,
+        nameLocale: 609,
+        description: 603,
         tags: [
             
             "防御",
@@ -236,8 +236,8 @@ export default {
     
     "MaxHP": {
         name: "MaxHP",
-        nameLocale: 517,
-        description: 513,
+        nameLocale: 606,
+        description: 602,
         tags: [
             
             "生命",
@@ -254,8 +254,8 @@ export default {
     
     "MaxEM": {
         name: "MaxEM",
-        nameLocale: 507,
-        description: 511,
+        nameLocale: 596,
+        description: 600,
         tags: [
             
             "元素精通",
@@ -272,8 +272,8 @@ export default {
     
     "MaxRecharge": {
         name: "MaxRecharge",
-        nameLocale: 508,
-        description: 510,
+        nameLocale: 597,
+        description: 599,
         tags: [
             
             "",
@@ -290,8 +290,8 @@ export default {
     
     "PyroDamage": {
         name: "PyroDamage",
-        nameLocale: 577,
-        description: 578,
+        nameLocale: 680,
+        description: 681,
         tags: [
             
             "输出",
@@ -310,8 +310,8 @@ export default {
     
     "CryoDamage": {
         name: "CryoDamage",
-        nameLocale: 117,
-        description: 118,
+        nameLocale: 153,
+        description: 154,
         tags: [
             
             "输出",
@@ -330,8 +330,8 @@ export default {
     
     "HydroDamage": {
         name: "HydroDamage",
-        nameLocale: 548,
-        description: 549,
+        nameLocale: 644,
+        description: 645,
         tags: [
             
             "输出",
@@ -350,8 +350,8 @@ export default {
     
     "ElectroDamage": {
         name: "ElectroDamage",
-        nameLocale: 869,
-        description: 870,
+        nameLocale: 1051,
+        description: 1052,
         tags: [
             
             "输出",
@@ -370,8 +370,8 @@ export default {
     
     "AnemoDamage": {
         name: "AnemoDamage",
-        nameLocale: 887,
-        description: 889,
+        nameLocale: 1075,
+        description: 1077,
         tags: [
             
             "输出",
@@ -390,8 +390,8 @@ export default {
     
     "DendroDamage": {
         name: "DendroDamage",
-        nameLocale: 720,
-        description: 721,
+        nameLocale: 868,
+        description: 869,
         tags: [
             
             "",
@@ -410,8 +410,8 @@ export default {
     
     "GeoDamage": {
         name: "GeoDamage",
-        nameLocale: 270,
-        description: 271,
+        nameLocale: 338,
+        description: 339,
         tags: [
             
             "输出",
@@ -430,8 +430,8 @@ export default {
     
     "PhysicalDamage": {
         name: "PhysicalDamage",
-        nameLocale: 603,
-        description: 604,
+        nameLocale: 707,
+        description: 708,
         tags: [
             
             "输出",
@@ -450,8 +450,8 @@ export default {
     
     "MaxVaporize": {
         name: "MaxVaporize",
-        nameLocale: 518,
-        description: 91,
+        nameLocale: 607,
+        description: 115,
         tags: [
             
             "输出",
@@ -472,8 +472,8 @@ export default {
     
     "MaxMelt": {
         name: "MaxMelt",
-        nameLocale: 519,
-        description: 93,
+        nameLocale: 608,
+        description: 117,
         tags: [
             
             "输出",
@@ -494,8 +494,8 @@ export default {
     
     "ExpectVaporize": {
         name: "ExpectVaporize",
-        nameLocale: 524,
-        description: 92,
+        nameLocale: 613,
+        description: 116,
         tags: [
             
             "输出",
@@ -516,8 +516,8 @@ export default {
     
     "ExpectMelt": {
         name: "ExpectMelt",
-        nameLocale: 525,
-        description: 94,
+        nameLocale: 614,
+        description: 118,
         tags: [
             
             "输出",
@@ -538,8 +538,8 @@ export default {
     
     "AlbedoDefault": {
         name: "AlbedoDefault",
-        nameLocale: 860,
-        description: 372,
+        nameLocale: 1039,
+        description: 459,
         tags: [
             
             "输出",
@@ -556,8 +556,8 @@ export default {
     
     "AloyDefault": {
         name: "AloyDefault",
-        nameLocale: 219,
-        description: 477,
+        nameLocale: 271,
+        description: 564,
         tags: [
             
             "输出",
@@ -574,8 +574,8 @@ export default {
     
     "AmberDefault": {
         name: "AmberDefault",
-        nameLocale: 249,
-        description: 480,
+        nameLocale: 314,
+        description: 567,
         tags: [
             
             "输出",
@@ -592,8 +592,8 @@ export default {
     
     "AratakiIttoDefault": {
         name: "AratakiIttoDefault",
-        nameLocale: 723,
-        description: 724,
+        nameLocale: 872,
+        description: 874,
         tags: [
             
             "输出",
@@ -610,8 +610,8 @@ export default {
     
     "BarbaraDefault": {
         name: "BarbaraDefault",
-        nameLocale: 714,
-        description: 90,
+        nameLocale: 861,
+        description: 114,
         tags: [
             
             "治疗",
@@ -630,8 +630,8 @@ export default {
     
     "BeidouDefault": {
         name: "BeidouDefault",
-        nameLocale: 154,
-        description: 373,
+        nameLocale: 195,
+        description: 460,
         tags: [
             
             "输出",
@@ -648,8 +648,8 @@ export default {
     
     "BennettDamage": {
         name: "BennettDamage",
-        nameLocale: 627,
-        description: 369,
+        nameLocale: 736,
+        description: 456,
         tags: [
             
             "辅助",
@@ -674,8 +674,8 @@ export default {
     
     "BennettDefault": {
         name: "BennettDefault",
-        nameLocale: 628,
-        description: 468,
+        nameLocale: 737,
+        description: 555,
         tags: [
             
             "辅助",
@@ -694,8 +694,8 @@ export default {
     
     "ChongyunDefault": {
         name: "ChongyunDefault",
-        nameLocale: 817,
-        description: 371,
+        nameLocale: 988,
+        description: 458,
         tags: [
             
             "副C",
@@ -714,8 +714,8 @@ export default {
     
     "DilucDefault": {
         name: "DilucDefault",
-        nameLocale: 809,
-        description: 492,
+        nameLocale: 977,
+        description: 579,
         tags: [
             
             "输出",
@@ -736,8 +736,8 @@ export default {
     
     "DionaDefault": {
         name: "DionaDefault",
-        nameLocale: 811,
-        description: 462,
+        nameLocale: 980,
+        description: 549,
         tags: [
             
             "治疗",
@@ -758,8 +758,8 @@ export default {
     
     "EulaDefault": {
         name: "EulaDefault",
-        nameLocale: 84,
-        description: 365,
+        nameLocale: 105,
+        description: 452,
         tags: [
             
             "输出",
@@ -776,8 +776,8 @@ export default {
     
     "FischlDefault": {
         name: "FischlDefault",
-        nameLocale: 738,
-        description: 366,
+        nameLocale: 893,
+        description: 453,
         tags: [
             
             "输出",
@@ -794,8 +794,8 @@ export default {
     
     "GanyuDefault": {
         name: "GanyuDefault",
-        nameLocale: 636,
-        description: 488,
+        nameLocale: 751,
+        description: 575,
         tags: [
             
             "输出",
@@ -814,8 +814,8 @@ export default {
     
     "GorouDefault": {
         name: "GorouDefault",
-        nameLocale: 77,
-        description: 375,
+        nameLocale: 93,
+        description: 462,
         tags: [
             
             "辅助",
@@ -834,8 +834,8 @@ export default {
     
     "HuTaoDefault": {
         name: "HuTaoDefault",
-        nameLocale: 708,
-        description: 473,
+        nameLocale: 854,
+        description: 560,
         tags: [
             
             "输出",
@@ -856,8 +856,8 @@ export default {
     
     "JeanDefault": {
         name: "JeanDefault",
-        nameLocale: 632,
-        description: 367,
+        nameLocale: 744,
+        description: 454,
         tags: [
             
             "副C",
@@ -880,8 +880,8 @@ export default {
     
     "KaedeharaKazuhaDamage": {
         name: "KaedeharaKazuhaDamage",
-        nameLocale: 534,
-        description: 483,
+        nameLocale: 626,
+        description: 570,
         tags: [
             
             "输出",
@@ -906,8 +906,8 @@ export default {
     
     "KaedeharaKazuhaDefault": {
         name: "KaedeharaKazuhaDefault",
-        nameLocale: 533,
-        description: 467,
+        nameLocale: 625,
+        description: 554,
         tags: [
             
             "辅助",
@@ -926,8 +926,8 @@ export default {
     
     "KaeyaDefault": {
         name: "KaeyaDefault",
-        nameLocale: 134,
-        description: 368,
+        nameLocale: 174,
+        description: 455,
         tags: [
             
             "输出",
@@ -944,8 +944,8 @@ export default {
     
     "KamisatoAyakaDefault": {
         name: "KamisatoAyakaDefault",
-        nameLocale: 674,
-        description: 364,
+        nameLocale: 811,
+        description: 451,
         tags: [
             
             "输出",
@@ -964,8 +964,8 @@ export default {
     
     "KamisatoAyakaDps": {
         name: "KamisatoAyakaDps",
-        nameLocale: 673,
-        description: 523,
+        nameLocale: 809,
+        description: 612,
         tags: [
             
             "输出",
@@ -982,8 +982,8 @@ export default {
     
     "KamisatoAyatoDefault": {
         name: "KamisatoAyatoDefault",
-        nameLocale: 671,
-        description: 461,
+        nameLocale: 806,
+        description: 548,
         tags: [
             
             "输出",
@@ -1000,8 +1000,8 @@ export default {
     
     "KeqingDefault": {
         name: "KeqingDefault",
-        nameLocale: 147,
-        description: 495,
+        nameLocale: 187,
+        description: 582,
         tags: [
             
             "输出",
@@ -1020,8 +1020,8 @@ export default {
     
     "KleeDefault": {
         name: "KleeDefault",
-        nameLocale: 176,
-        description: 177,
+        nameLocale: 223,
+        description: 226,
         tags: [
             
             "输出",
@@ -1040,8 +1040,8 @@ export default {
     
     "KujouSaraDamage": {
         name: "KujouSaraDamage",
-        nameLocale: 48,
-        description: 151,
+        nameLocale: 55,
+        description: 191,
         tags: [
             
             "输出",
@@ -1062,8 +1062,8 @@ export default {
     
     "KujouSaraDefault": {
         name: "KujouSaraDefault",
-        nameLocale: 49,
-        description: 496,
+        nameLocale: 56,
+        description: 583,
         tags: [
             
             "辅助",
@@ -1080,8 +1080,8 @@ export default {
     
     "LisaDefault": {
         name: "LisaDefault",
-        nameLocale: 44,
-        description: 474,
+        nameLocale: 49,
+        description: 561,
         tags: [
             
             "输出",
@@ -1100,8 +1100,8 @@ export default {
     
     "MonaDefault": {
         name: "MonaDefault",
-        nameLocale: 728,
-        description: 489,
+        nameLocale: 880,
+        description: 576,
         tags: [
             
             "输出",
@@ -1122,8 +1122,8 @@ export default {
     
     "NingguangDefault": {
         name: "NingguangDefault",
-        nameLocale: 130,
-        description: 475,
+        nameLocale: 169,
+        description: 562,
         tags: [
             
             "输出",
@@ -1140,8 +1140,8 @@ export default {
     
     "NoelleDefault": {
         name: "NoelleDefault",
-        nameLocale: 782,
-        description: 490,
+        nameLocale: 944,
+        description: 577,
         tags: [
             
             "输出",
@@ -1158,8 +1158,8 @@ export default {
     
     "QiqiDefault": {
         name: "QiqiDefault",
-        nameLocale: 22,
-        description: 463,
+        nameLocale: 26,
+        description: 550,
         tags: [
             
             "治疗",
@@ -1178,8 +1178,8 @@ export default {
     
     "RaidenShogunDefault": {
         name: "RaidenShogunDefault",
-        nameLocale: 878,
-        description: 493,
+        nameLocale: 1064,
+        description: 580,
         tags: [
             
             "输出",
@@ -1198,8 +1198,8 @@ export default {
     
     "RazorDefault": {
         name: "RazorDefault",
-        nameLocale: 875,
-        description: 487,
+        nameLocale: 1058,
+        description: 574,
         tags: [
             
             "输出",
@@ -1216,8 +1216,8 @@ export default {
     
     "RosariaDefault": {
         name: "RosariaDefault",
-        nameLocale: 698,
-        description: 471,
+        nameLocale: 840,
+        description: 558,
         tags: [
             
             "辅助",
@@ -1236,8 +1236,8 @@ export default {
     
     "SangonomiyaKokomiDefault": {
         name: "SangonomiyaKokomiDefault",
-        nameLocale: 623,
-        description: 482,
+        nameLocale: 729,
+        description: 569,
         tags: [
             
             "输出",
@@ -1256,8 +1256,8 @@ export default {
     
     "SayuDefault": {
         name: "SayuDefault",
-        nameLocale: 357,
-        description: 476,
+        nameLocale: 443,
+        description: 563,
         tags: [
             
             "输出",
@@ -1278,8 +1278,8 @@ export default {
     
     "ShenheDefault": {
         name: "ShenheDefault",
-        nameLocale: 646,
-        description: 469,
+        nameLocale: 769,
+        description: 556,
         tags: [
             
             "辅助",
@@ -1298,8 +1298,8 @@ export default {
     
     "SucroseDefault": {
         name: "SucroseDefault",
-        nameLocale: 657,
-        description: 470,
+        nameLocale: 788,
+        description: 557,
         tags: [
             
             "辅助",
@@ -1318,8 +1318,8 @@ export default {
     
     "TartagliaDefault": {
         name: "TartagliaDefault",
-        nameLocale: 805,
-        description: 491,
+        nameLocale: 973,
+        description: 578,
         tags: [
             
             "输出",
@@ -1336,8 +1336,8 @@ export default {
     
     "ThomaDefault": {
         name: "ThomaDefault",
-        nameLocale: 289,
-        description: 466,
+        nameLocale: 360,
+        description: 553,
         tags: [
             
             "辅助",
@@ -1356,8 +1356,8 @@ export default {
     
     "VentiDefault": {
         name: "VentiDefault",
-        nameLocale: 574,
-        description: 484,
+        nameLocale: 675,
+        description: 571,
         tags: [
             
             "输出",
@@ -1376,8 +1376,8 @@ export default {
     
     "XianglingDefault": {
         name: "XianglingDefault",
-        nameLocale: 918,
-        description: 485,
+        nameLocale: 1109,
+        description: 572,
         tags: [
             
             "输出",
@@ -1402,8 +1402,8 @@ export default {
     
     "XiaoDefault": {
         name: "XiaoDefault",
-        nameLocale: 922,
-        description: 494,
+        nameLocale: 1116,
+        description: 581,
         tags: [
             
             "输出",
@@ -1420,8 +1420,8 @@ export default {
     
     "XingqiuDefault": {
         name: "XingqiuDefault",
-        nameLocale: 751,
-        description: 370,
+        nameLocale: 907,
+        description: 457,
         tags: [
             
             "输出",
@@ -1440,8 +1440,8 @@ export default {
     
     "XinyanDamage": {
         name: "XinyanDamage",
-        nameLocale: 802,
-        description: 465,
+        nameLocale: 968,
+        description: 552,
         tags: [
             
             "输出",
@@ -1458,8 +1458,8 @@ export default {
     
     "XinyanDefault": {
         name: "XinyanDefault",
-        nameLocale: 801,
-        description: 472,
+        nameLocale: 967,
+        description: 559,
         tags: [
             
             "辅助",
@@ -1480,8 +1480,8 @@ export default {
     
     "YaeMikoDefault": {
         name: "YaeMikoDefault",
-        nameLocale: 108,
-        description: 314,
+        nameLocale: 143,
+        description: 390,
         tags: [
             
             "输出",
@@ -1506,8 +1506,8 @@ export default {
     
     "YanfeiDefault": {
         name: "YanfeiDefault",
-        nameLocale: 591,
-        description: 486,
+        nameLocale: 695,
+        description: 573,
         tags: [
             
             "输出",
@@ -1524,8 +1524,8 @@ export default {
     
     "YelanDefault": {
         name: "YelanDefault",
-        nameLocale: 225,
-        description: 478,
+        nameLocale: 286,
+        description: 565,
         tags: [
             
             "输出",
@@ -1546,8 +1546,8 @@ export default {
     
     "YoimiyaDefault": {
         name: "YoimiyaDefault",
-        nameLocale: 257,
-        description: 481,
+        nameLocale: 323,
+        description: 568,
         tags: [
             
             "输出",
@@ -1568,8 +1568,8 @@ export default {
     
     "YunjinDefault": {
         name: "YunjinDefault",
-        nameLocale: 70,
-        description: 374,
+        nameLocale: 80,
+        description: 461,
         tags: [
             
             "辅助",
@@ -1588,8 +1588,8 @@ export default {
     
     "ZhongliDefault": {
         name: "ZhongliDefault",
-        nameLocale: 840,
-        description: 464,
+        nameLocale: 1013,
+        description: 551,
         tags: [
             
             "爆发",
@@ -1608,8 +1608,8 @@ export default {
     
     "KukiShinobuDefault": {
         name: "KukiShinobuDefault",
-        nameLocale: 46,
-        description: 798,
+        nameLocale: 52,
+        description: 962,
         tags: [
             
             "辅助",
@@ -1628,8 +1628,8 @@ export default {
     
     "ShikanoinHeizouDefault": {
         name: "ShikanoinHeizouDefault",
-        nameLocale: 929,
-        description: 799,
+        nameLocale: 1124,
+        description: 963,
         tags: [
             
             "输出",
@@ -1646,8 +1646,8 @@ export default {
     
     "TighnariDefault": {
         name: "TighnariDefault",
-        nameLocale: 319,
-        description: 88,
+        nameLocale: 396,
+        description: 112,
         tags: [
             
             "",
@@ -1666,8 +1666,8 @@ export default {
     
     "CynoDefault": {
         name: "CynoDefault",
-        nameLocale: 786,
-        description: 287,
+        nameLocale: 949,
+        description: 356,
         tags: [
             
             "输出",
@@ -1698,8 +1698,8 @@ export default {
     
     "NilouDefault": {
         name: "NilouDefault",
-        nameLocale: 246,
-        description: 479,
+        nameLocale: 311,
+        description: 566,
         tags: [
             
             "",
@@ -1726,8 +1726,8 @@ export default {
     
     "NahidaDefault": {
         name: "NahidaDefault",
-        nameLocale: 691,
-        description: 95,
+        nameLocale: 829,
+        description: 119,
         tags: [
             
             "输出",
@@ -1754,8 +1754,8 @@ export default {
     
     "WandererDefault": {
         name: "WandererDefault",
-        nameLocale: 568,
-        description: 769,
+        nameLocale: 666,
+        description: 930,
         tags: [
             
             "输出",
@@ -1788,8 +1788,8 @@ export default {
     
     "FaruzanDamage": {
         name: "FaruzanDamage",
-        nameLocale: 625,
-        description: 89,
+        nameLocale: 731,
+        description: 113,
         tags: [
             
             "",
@@ -1808,8 +1808,8 @@ export default {
     
     "AlhaithamDefault": {
         name: "AlhaithamDefault",
-        nameLocale: 712,
-        description: 81,
+        nameLocale: 859,
+        description: 101,
         tags: [
             
             "",
