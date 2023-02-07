@@ -22,10 +22,16 @@ impl BuffMeta for BuffWolfsGravestone {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::WolfsGravestone,
-        chs: "狼的末路-「如狼般狩猎者」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "狼的末路-「如狼般狩猎者」",
+            en: "Wolf's Gravestone-「Wolfish Tracker」",
+        ),
         image: BuffImage::Weapon(WeaponName::WolfsGravestone),
         genre: BuffGenre::Weapon,
-        description: Some("攻击命中生命值低于30%的敌人时，队伍中所有成员的攻击力提高40%/50%/60%/70%/80%，持续12秒。该效果30秒只能触发一次。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "攻击命中生命值低于30%的敌人时，队伍中所有成员的攻击力提高40%/50%/60%/70%/80%，持续12秒。该效果30秒只能触发一次。",
+            en: "攻击命中生命值低于30%的敌人时，队伍中所有成员的攻击力提高40%/50%/60%/70%/80%，持续12秒。该效果30秒只能触发一次。",
+        )),
         from: BuffFrom::Weapon(WeaponName::WolfsGravestone),
     };
 

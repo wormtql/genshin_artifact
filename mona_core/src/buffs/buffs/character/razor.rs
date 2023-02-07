@@ -19,10 +19,16 @@ impl BuffMeta for BuffRazorC4 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::RazorC4,
-        chs: "雷泽-「撕咬」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "雷泽-「撕咬」",
+            en: "Razor-「Bite」",
+        ),
         image: BuffImage::Avatar(CharacterName::Razor),
         genre: BuffGenre::Character,
-        description: Some("雷泽命座4：利爪与苍雷点按时，会使命中的敌人防御力降低15％，持续7秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "雷泽命座4：利爪与苍雷点按时，会使命中的敌人防御力降低15％，持续7秒。",
+            en: "雷泽命座4：利爪与苍雷点按时，会使命中的敌人防御力降低15％，持续7秒。",
+        )),
         from: BuffFrom::Character(CharacterName::Razor),
     };
 

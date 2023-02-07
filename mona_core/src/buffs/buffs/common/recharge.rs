@@ -20,7 +20,10 @@ impl BuffMeta for BuffRecharge {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::Recharge,
-        chs: "元素充能效率",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "元素充能效率",
+            en: "Energy Recharge",
+        ),
         image: BuffImage::Misc("sword"),
         genre: BuffGenre::Common,
         description: None,

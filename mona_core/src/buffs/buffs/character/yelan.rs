@@ -22,10 +22,16 @@ impl BuffMeta for BuffYelanTalent2 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::YelanTalent2,
-        chs: "夜兰-「妙转随心」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "夜兰-「妙转随心」",
+            en: "Yelan-「Adapt With Ease」",
+        ),
         image: BuffImage::Avatar(CharacterName::Yelan),
         genre: BuffGenre::Character,
-        description: Some("夜兰天赋2：「玄掷玲珑」存在期间，能使队伍中自己的当前场上角色造成的伤害提高1%，并且每1秒进一步提高3.5%，至多使角色造成的伤害提高50%。效果存在期间重新施放渊图玲珑骰，将移除原有的上述效果。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "夜兰天赋2：「玄掷玲珑」存在期间，能使队伍中自己的当前场上角色造成的伤害提高1%，并且每1秒进一步提高3.5%，至多使角色造成的伤害提高50%。效果存在期间重新施放渊图玲珑骰，将移除原有的上述效果。",
+            en: "夜兰天赋2：「玄掷玲珑」存在期间，能使队伍中自己的当前场上角色造成的伤害提高1%，并且每1秒进一步提高3.5%，至多使角色造成的伤害提高50%。效果存在期间重新施放渊图玲珑骰，将移除原有的上述效果。",
+        )),
         from: BuffFrom::Character(CharacterName::Yelan)
     };
 
@@ -65,10 +71,16 @@ impl BuffMeta for BuffYelanC4 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::YelanC4,
-        chs: "夜兰-「诓惑者，接树移花」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "夜兰-「诓惑者，接树移花」",
+            en: "Yelan-「Bait-and-Switch」",
+        ),
         image: BuffImage::Avatar(CharacterName::Yelan),
         genre: BuffGenre::Character,
-        description: Some("夜兰4命：依照「络命丝」标记敌人的数量，每次标记将在爆发时使队伍中所有角色的生命值上限提升10%，持续25秒。通过这种方式，生命值上限至多获得40%提升。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "夜兰4命：依照「络命丝」标记敌人的数量，每次标记将在爆发时使队伍中所有角色的生命值上限提升10%，持续25秒。通过这种方式，生命值上限至多获得40%提升。",
+            en: "夜兰4命：依照「络命丝」标记敌人的数量，每次标记将在爆发时使队伍中所有角色的生命值上限提升10%，持续25秒。通过这种方式，生命值上限至多获得40%提升。",
+        )),
         from: BuffFrom::Character(CharacterName::Yelan)
     };
 

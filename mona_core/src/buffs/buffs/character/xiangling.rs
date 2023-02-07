@@ -19,10 +19,16 @@ impl BuffMeta for BuffXianglingTalent2 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::XianglingTalent2,
-        chs: "香菱-「绝云朝天椒」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "香菱-「绝云朝天椒」",
+            en: "Xiangling-「Beware, It's Super Hot!」",
+        ),
         image: BuffImage::Avatar(CharacterName::Xiangling),
         genre: BuffGenre::Character,
-        description: Some("香菱天赋2：锅巴出击效果结束时，锅巴会在消失的位置留下辣椒。拾取辣椒会提高10%攻击力，持续10秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "香菱天赋2：锅巴出击效果结束时，锅巴会在消失的位置留下辣椒。拾取辣椒会提高10%攻击力，持续10秒。",
+            en: "香菱天赋2：锅巴出击效果结束时，锅巴会在消失的位置留下辣椒。拾取辣椒会提高10%攻击力，持续10秒。",
+        )),
         from: BuffFrom::Character(CharacterName::Xiangling),
     };
 
@@ -44,10 +50,16 @@ impl BuffMeta for BuffXianglingC1 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::XianglingC1,
-        chs: "香菱-「外酥里嫩」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "香菱-「外酥里嫩」",
+            en: "Xiangling-「Crispy Outside, Tender Inside」",
+        ),
         image: BuffImage::Avatar(CharacterName::Xiangling),
         genre: BuffGenre::Character,
-        description: Some("香菱命座1：受到锅巴攻击的敌人，火元素抗性降低15％，持续6秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "香菱命座1：受到锅巴攻击的敌人，火元素抗性降低15％，持续6秒。",
+            en: "香菱命座1：受到锅巴攻击的敌人，火元素抗性降低15％，持续6秒。",
+        )),
         from: BuffFrom::Character(CharacterName::Xiangling),
     };
 
@@ -69,10 +81,16 @@ impl BuffMeta for BuffXianglingC6 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::XianglingC6,
-        chs: "香菱-「大龙卷旋火轮」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "香菱-「大龙卷旋火轮」",
+            en: "Xiangling-「Condensed Pyronado」",
+        ),
         image: BuffImage::Avatar(CharacterName::Xiangling),
         genre: BuffGenre::Character,
-        description: Some("香菱命座6；旋火轮持续期间，队伍中所有角色获得15％火元素伤害加成。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "香菱命座6；旋火轮持续期间，队伍中所有角色获得15％火元素伤害加成。",
+            en: "香菱命座6；旋火轮持续期间，队伍中所有角色获得15％火元素伤害加成。",
+        )),
         from: BuffFrom::Character(CharacterName::Xiangling),
     };
 

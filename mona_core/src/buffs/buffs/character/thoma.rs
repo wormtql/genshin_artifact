@@ -22,10 +22,16 @@ impl BuffMeta for BuffThomaTalent1 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::ThomaTalent1,
-        chs: "托马-「甲衣交叠」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "托马-「甲衣交叠」",
+            en: "Thoma-「Imbricated Armor」",
+        ),
         image: BuffImage::Avatar(CharacterName::Thoma),
         genre: BuffGenre::Character,
-        description: Some("托马天赋1：当前场上自己的角色获取或刷新烈烧佑命护盾时，护盾强效提升5%，持续时间6秒。此效果每0.3秒至多触发一次，至多叠加5次。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "托马天赋1：当前场上自己的角色获取或刷新烈烧佑命护盾时，护盾强效提升5%，持续时间6秒。此效果每0.3秒至多触发一次，至多叠加5次。",
+            en: "托马天赋1：当前场上自己的角色获取或刷新烈烧佑命护盾时，护盾强效提升5%，持续时间6秒。此效果每0.3秒至多触发一次，至多叠加5次。",
+        )),
         from: BuffFrom::Character(CharacterName::Thoma),
     };
 
@@ -65,10 +71,16 @@ impl BuffMeta for BuffThomaC6 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::ThomaC6,
-        chs: "托马-「炽烧的至心」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "托马-「炽烧的至心」",
+            en: "Thoma-「Burning Heart」",
+        ),
         image: BuffImage::Avatar(CharacterName::Thoma),
         genre: BuffGenre::Character,
-        description: Some("托马命座6：获取或刷新烈烧佑命护盾时，队伍中所有角色的普通攻击，重击与下落攻击造成的伤害提升15%，持续6秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "托马命座6：获取或刷新烈烧佑命护盾时，队伍中所有角色的普通攻击，重击与下落攻击造成的伤害提升15%，持续6秒。",
+            en: "托马命座6：获取或刷新烈烧佑命护盾时，队伍中所有角色的普通攻击，重击与下落攻击造成的伤害提升15%，持续6秒。",
+        )),
         from: BuffFrom::Character(CharacterName::Thoma),
     };
 

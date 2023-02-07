@@ -28,10 +28,16 @@ impl BuffMeta for BuffMonaQ {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::MonaQ,
-        chs: "莫娜-「星异」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "莫娜-「星异」",
+            en: "Mona-「Omen」",
+        ),
         image: BuffImage::Avatar(CharacterName::Mona),
         genre: BuffGenre::Character,
-        description: Some("莫娜Q技能：对敌人施加星异的伤害加成效果，并以此提高这一次造成的伤害。四命：队伍中所有角色攻击处于星异状态下的敌人时，暴击率提升15%"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "莫娜Q技能：对敌人施加星异的伤害加成效果，并以此提高这一次造成的伤害。四命：队伍中所有角色攻击处于星异状态下的敌人时，暴击率提升15%",
+            en: "莫娜Q技能：对敌人施加星异的伤害加成效果，并以此提高这一次造成的伤害。四命：队伍中所有角色攻击处于星异状态下的敌人时，暴击率提升15%",
+        )),
         from: BuffFrom::Character(CharacterName::Mona),
     };
 
@@ -75,10 +81,16 @@ impl BuffMeta for BuffMonaC1 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::MonaC1,
-        chs: "莫娜-「沉没的预言」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "莫娜-「沉没的预言」",
+            en: "Mona-「Prophecy of Submersion」",
+        ),
         image: BuffImage::Avatar(CharacterName::Mona),
         genre: BuffGenre::Character,
-        description: Some("莫娜命座1：队伍中自己的角色攻击命中处于星异状态下的敌人后的8秒内，水元素相关反应的效果提升：<br>•感电反应造成的伤害提升15%，蒸发反应造成的伤害提升15%，水元素扩散反应造成的伤害提升15%"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "莫娜命座1：队伍中自己的角色攻击命中处于星异状态下的敌人后的8秒内，水元素相关反应的效果提升：<br>•感电反应造成的伤害提升15%，蒸发反应造成的伤害提升15%，水元素扩散反应造成的伤害提升15%",
+            en: "莫娜命座1：队伍中自己的角色攻击命中处于星异状态下的敌人后的8秒内，水元素相关反应的效果提升：<br>•感电反应造成的伤害提升15%，蒸发反应造成的伤害提升15%，水元素扩散反应造成的伤害提升15%",
+        )),
         from: BuffFrom::Character(CharacterName::Mona),
     };
 

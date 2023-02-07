@@ -22,10 +22,16 @@ impl BuffMeta for BuffThrillingTalesOfDragonSlayers {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::ThrillingTalesOfDragonSlayers,
-        chs: "讨龙英杰谭-「传承」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "讨龙英杰谭-「传承」",
+            en: "Thrilling Tales of Dragon Slayers-「Heritage」",
+        ),
         image: BuffImage::Weapon(WeaponName::ThrillingTalesOfDragonSlayers),
         genre: BuffGenre::Weapon,
-        description: Some("传承：主动切换角色时，新登场的角色攻击力提升24%/30%/36%/42%/48%，持续10秒。该效果每20秒只能触发一次。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "传承：主动切换角色时，新登场的角色攻击力提升24%/30%/36%/42%/48%，持续10秒。该效果每20秒只能触发一次。",
+            en: "传承：主动切换角色时，新登场的角色攻击力提升24%/30%/36%/42%/48%，持续10秒。该效果每20秒只能触发一次。",
+        )),
         from: BuffFrom::Weapon(WeaponName::ThrillingTalesOfDragonSlayers),
     };
 

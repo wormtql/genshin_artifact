@@ -23,10 +23,16 @@ impl BuffMeta for BuffViridescentVenerer4 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::ViridescentVenerer4,
-        chs: "翠绿之影4",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "翠绿之影4",
+            en: "Viridescent Venerer 4",
+        ),
         image: BuffImage::Artifact(ArtifactSetName::ViridescentVenerer),
         genre: BuffGenre::Artifact,
-        description: Some("根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。",
+            en: "根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。",
+        )),
         from: BuffFrom::Artifact(ArtifactSetName::ViridescentVenerer),
     };
 

@@ -6,7 +6,6 @@ use crate::buffs::buff_name::BuffName;
 use crate::character::CharacterName;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::enemies::Enemy;
-use crate::buffs::macros::buff_meta_c;
 
 pub struct BuffDoriC4 {
     pub hp_below50: bool,
@@ -25,7 +24,21 @@ impl<A: Attribute> Buff<A> for BuffDoriC4 {
 }
 
 impl BuffMeta for BuffDoriC4 {
-    buff_meta_c!(DoriC4 Dori);
+    #[cfg(not(target_family = "wasm"))]
+    const META_DATA: BuffMetaData = BuffMetaData {
+        name: BuffName::DoriC4,
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "多莉-「酌盈剂虚」",
+            en: "Dori-「Discretionary Supplement」",
+        ),
+        image: BuffImage::Avatar(CharacterName::Dori),
+        genre: BuffGenre::Character,
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "多莉命座4：与灯中幽精相连的角色，依据当前的生命值与元素能量，获得以下提升：<br>·生命值低于50%时，提升50%受治疗加成；<br>·元素能量低于50%时，提升30%元素充能效率。",
+            en: "Dori C4: The character connected to the Jinni will obtain the following buffs based on their current HP and Energy:<br>·When their HP is lower than 50%, they gain 50% Incoming Healing Bonus.<br>·When their Energy is less than 50%, they gain 30% Energy Recharge.",
+        )),
+        from: BuffFrom::Character(CharacterName::Dori)
+    };
 
     #[cfg(not(target_family = "wasm"))]
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[

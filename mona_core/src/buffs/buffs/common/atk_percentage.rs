@@ -31,7 +31,10 @@ impl BuffMeta for BuffATKPercentage {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::ATKPercentage,
-        chs: "攻击力%",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "攻击力%",
+            en: "ATK%",
+        ),
         image: BuffImage::Misc("sword"),
         genre: BuffGenre::Common,
         description: None,

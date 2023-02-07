@@ -24,10 +24,16 @@ impl BuffMeta for BuffKamisatoAyatoQ {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::KamisatoAyatoQ,
-        chs: "神里绫人-「水囿」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "神里绫人-「水囿」",
+            en: "Ayato-「Suiyuu」",
+        ),
         image: BuffImage::Avatar(CharacterName::KamisatoAyato),
         genre: BuffGenre::Character,
-        description: Some("神里绫人Q技能：展开清净之园囿，熄灭其中一切嚣闹。存在期间，其中会持续降下水花剑，攻击范围内的敌人，造成水元素伤害，并提高其中的角色的普通攻击伤害。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "神里绫人Q技能：展开清净之园囿，熄灭其中一切嚣闹。存在期间，其中会持续降下水花剑，攻击范围内的敌人，造成水元素伤害，并提高其中的角色的普通攻击伤害。",
+            en: "神里绫人Q技能：展开清净之园囿，熄灭其中一切嚣闹。存在期间，其中会持续降下水花剑，攻击范围内的敌人，造成水元素伤害，并提高其中的角色的普通攻击伤害。",
+        )),
         from: BuffFrom::Character(CharacterName::KamisatoAyato)
     };
 

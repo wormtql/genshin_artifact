@@ -30,10 +30,16 @@ impl BuffMeta for BuffKujouSaraEOrQ {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::KujouSaraEOrQ,
-        chs: "九条裟罗-「天狗咒雷」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "九条裟罗-「天狗咒雷」",
+            en: "KujouSara-「Tengu Juurai」",
+        ),
         image: BuffImage::Avatar(CharacterName::KujouSara),
         genre: BuffGenre::Character,
-        description: Some("九条裟罗E/Q技能：基于九条裟罗的基础攻击力，以一定比例获得攻击力加成<br>六命：处于天狗咒雷带来的攻击力提升效果状态下的角色，其雷元素伤害的暴击伤害提高60%。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "九条裟罗E/Q技能：基于九条裟罗的基础攻击力，以一定比例获得攻击力加成<br>六命：处于天狗咒雷带来的攻击力提升效果状态下的角色，其雷元素伤害的暴击伤害提高60%。",
+            en: "九条裟罗E/Q技能：基于九条裟罗的基础攻击力，以一定比例获得攻击力加成<br>六命：处于天狗咒雷带来的攻击力提升效果状态下的角色，其雷元素伤害的暴击伤害提高60%。",
+        )),
         from: BuffFrom::Character(CharacterName::KujouSara),
     };
 

@@ -20,10 +20,16 @@ impl BuffMeta for BuffBaseDmg {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::BaseDmg,
-        chs: "基础伤害",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "基础伤害",
+            en: "Base DMG",
+        ),
         image: BuffImage::Misc("sword"),
         genre: BuffGenre::Common,
-        description: Some(""),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "跟攻击力*倍率同一个乘区",
+            en: "Flat DMG",
+        )),
         from: BuffFrom::Common
     };
 

@@ -2,6 +2,7 @@ use strum_macros::Display;
 use crate::artifacts::ArtifactSetName;
 use crate::buffs::buff_name::BuffName;
 use crate::character::CharacterName;
+use crate::common::i18n::I18nLocale;
 use crate::weapon::WeaponName;
 
 pub enum BuffImage {
@@ -32,9 +33,9 @@ pub enum BuffFrom {
 
 pub struct BuffMetaData {
     pub name: BuffName,
-    pub chs: &'static str,
+    pub name_locale: I18nLocale,
     pub image: BuffImage,
     pub genre: BuffGenre,
-    pub description: Option<&'static str>,
+    pub description: Option<I18nLocale>,
     pub from: BuffFrom,
 }

@@ -19,10 +19,16 @@ impl BuffMeta for BuffZhongliShield {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::ZhongliShield,
-        chs: "钟离-「玉璋护盾」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "钟离-「玉璋护盾」",
+            en: "Zhongli-「Jade Shield」",
+        ),
         image: BuffImage::Avatar(CharacterName::Zhongli),
         genre: BuffGenre::Character,
-        description: Some("钟离盾：使附近小范围内敌人的所有元素抗性与物理抗性降低20%"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "钟离盾：使附近小范围内敌人的所有元素抗性与物理抗性降低20%",
+            en: "钟离盾：使附近小范围内敌人的所有元素抗性与物理抗性降低20%",
+        )),
         from: BuffFrom::Character(CharacterName::Zhongli),
     };
 

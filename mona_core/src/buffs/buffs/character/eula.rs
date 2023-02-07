@@ -24,10 +24,16 @@ impl BuffMeta for BuffEulaE {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::EulaE,
-        chs: "优菈-「冰潮的涡旋」减抗",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "优菈-「冰潮的涡旋」减抗",
+            en: "Eula-「Icetide Vortex」减抗",
+        ),
         image: BuffImage::Avatar(CharacterName::Eula),
         genre: BuffGenre::Character,
-        description: Some("优菈E技能：长按若消耗了冷酷之心效果，会使身边的敌人的物理抗性与冰元素抗性降低。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "优菈E技能：长按若消耗了冷酷之心效果，会使身边的敌人的物理抗性与冰元素抗性降低。",
+            en: "Eula E: 长按若消耗了冷酷之心效果，会使身边的敌人的物理抗性与冰元素抗性降低。",
+        )),
         from: BuffFrom::Character(CharacterName::Eula),
     };
 

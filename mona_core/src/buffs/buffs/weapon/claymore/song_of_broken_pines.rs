@@ -25,10 +25,16 @@ impl BuffMeta for BuffSongOfBrokenPines {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::SongOfBrokenPines,
-        chs: "松籁响起之时-「千年的大乐章·揭旗之歌」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "松籁响起之时-「千年的大乐章·揭旗之歌」",
+            en: "Song of Broken Pines-「Millennial Movement: Banner-Hymn」",
+        ),
         image: BuffImage::Weapon(WeaponName::SongOfBrokenPines),
         genre: BuffGenre::Weapon,
-        description: Some("「千年的大乐章·揭旗之歌」效果：普通攻击速度提升12%/15%/18%/21%/24%，攻击力提升20%/25%/30%/35%/40%。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "「千年的大乐章·揭旗之歌」效果：普通攻击速度提升12%/15%/18%/21%/24%，攻击力提升20%/25%/30%/35%/40%。",
+            en: "「千年的大乐章·揭旗之歌」效果：普通攻击速度提升12%/15%/18%/21%/24%，攻击力提升20%/25%/30%/35%/40%。",
+        )),
         from: BuffFrom::Weapon(WeaponName::SongOfBrokenPines),
     };
 

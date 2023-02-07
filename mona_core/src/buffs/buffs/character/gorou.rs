@@ -24,10 +24,16 @@ impl BuffMeta for BuffGorouE1 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::GorouE1,
-        chs: "五郎-「大将旗指物」-1",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "五郎-「大将旗指物」-1",
+            en: "Gorou-「General's War Banner」-1",
+        ),
         image: BuffImage::Avatar(CharacterName::Gorou),
         genre: BuffGenre::Character,
-        description: Some("五郎E技能：一名角色时：「坚牢」：防御力提升。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "五郎E技能：一名角色时：「坚牢」：防御力提升。",
+            en: "五郎E技能：一名角色时：「坚牢」：防御力提升。",
+        )),
         from: BuffFrom::Character(CharacterName::Gorou),
     };
 
@@ -64,10 +70,16 @@ impl BuffMeta for BuffGorouE3 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::GorouE3,
-        chs: "五郎-「大将旗指物」-3",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "五郎-「大将旗指物」-3",
+            en: "Gorou-「General's War Banner」-3",
+        ),
         image: BuffImage::Avatar(CharacterName::Gorou),
         genre: BuffGenre::Character,
-        description: Some("五郎E技能：三名角色时：「摧碎」：除上述效果外，获得岩元素伤害加成。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "五郎E技能：三名角色时：「摧碎」：除上述效果外，获得岩元素伤害加成。",
+            en: "五郎E技能：三名角色时：「摧碎」：除上述效果外，获得岩元素伤害加成。",
+        )),
         from: BuffFrom::Character(CharacterName::Gorou),
     };
 
@@ -88,10 +100,16 @@ impl BuffMeta for BuffGorouTalent1 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::GorouTalent1,
-        chs: "五郎-「不畏风雨」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "五郎-「不畏风雨」",
+            en: "Gorou-「Heedless of the Wind and Weather」",
+        ),
         image: BuffImage::Avatar(CharacterName::Gorou),
         genre: BuffGenre::Character,
-        description: Some("五郎天赋1：施放兽牙逐突形胜战法后的12秒内，附近的队伍中所有角色的防御力提升25%。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "五郎天赋1：施放兽牙逐突形胜战法后的12秒内，附近的队伍中所有角色的防御力提升25%。",
+            en: "五郎天赋1：施放兽牙逐突形胜战法后的12秒内，附近的队伍中所有角色的防御力提升25%。",
+        )),
         from: BuffFrom::Character(CharacterName::Gorou),
     };
 
@@ -120,10 +138,16 @@ impl BuffMeta for BuffGorouC6 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::GorouC6,
-        chs: "五郎-「犬勇•忠如山」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "五郎-「犬勇•忠如山」",
+            en: "Gorou-「Valiant Hound: Mountainous Fealty」",
+        ),
         image: BuffImage::Avatar(CharacterName::Gorou),
         genre: BuffGenre::Character,
-        description: Some("五郎命座6：施放犬坂吠吠方圆阵或兽牙逐突形胜战法后的12秒内，依据施放时的领域等级，提高附近的队伍中所有角色岩元素伤害的暴击伤害。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "五郎命座6：施放犬坂吠吠方圆阵或兽牙逐突形胜战法后的12秒内，依据施放时的领域等级，提高附近的队伍中所有角色岩元素伤害的暴击伤害。",
+            en: "五郎命座6：施放犬坂吠吠方圆阵或兽牙逐突形胜战法后的12秒内，依据施放时的领域等级，提高附近的队伍中所有角色岩元素伤害的暴击伤害。",
+        )),
         from: BuffFrom::Character(CharacterName::Gorou),
     };
 

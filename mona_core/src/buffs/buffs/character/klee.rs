@@ -19,10 +19,16 @@ impl BuffMeta for BuffKleeC2 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::KleeC2,
-        chs: "可莉-「破破弹片」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "可莉-「破破弹片」",
+            en: "Klee-「Explosive Frags」",
+        ),
         image: BuffImage::Avatar(CharacterName::Klee),
         genre: BuffGenre::Character,
-        description: Some("可莉命座2：蹦蹦炸弹的诡雷会使敌人防御力降低23％，持续10秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "可莉命座2：蹦蹦炸弹的诡雷会使敌人防御力降低23％，持续10秒。",
+            en: "可莉命座2：蹦蹦炸弹的诡雷会使敌人防御力降低23％，持续10秒。",
+        )),
         from: BuffFrom::Character(CharacterName::Klee),
     };
 
@@ -43,10 +49,16 @@ impl BuffMeta for BuffKleeC6 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::KleeC6,
-        chs: "可莉-「火力全开」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "可莉-「火力全开」",
+            en: "Klee-「Blazing Delight」",
+        ),
         image: BuffImage::Avatar(CharacterName::Klee),
         genre: BuffGenre::Character,
-        description: Some("可莉命座6：施放轰轰火花后的25秒内，队伍中所有角色获得10％火元素伤害加成。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "可莉命座6：施放轰轰火花后的25秒内，队伍中所有角色获得10％火元素伤害加成。",
+            en: "可莉命座6：施放轰轰火花后的25秒内，队伍中所有角色获得10％火元素伤害加成。",
+        )),
         from: BuffFrom::Character(CharacterName::Klee),
     };
 

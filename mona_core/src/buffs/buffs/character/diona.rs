@@ -18,10 +18,16 @@ impl BuffMeta for BuffDionaC6G50 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::DionaC6G50,
-        chs: "迪奥娜-「猫尾打烊之时」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "迪奥娜-「猫尾打烊之时」",
+            en: "Diona-「Cat's Tail Closing Time」",
+        ),
         image: BuffImage::Avatar(CharacterName::Diona),
         genre: BuffGenre::Character,
-        description: Some("迪奥娜命座6：生命值高于50%时，元素精通提升200。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "迪奥娜命座6：生命值高于50%时，元素精通提升200。",
+            en: "Diona C6: Elemental Mastery increased by 200 when HP is above 50%.",
+        )),
         from: BuffFrom::Character(CharacterName::Diona)
     };
 

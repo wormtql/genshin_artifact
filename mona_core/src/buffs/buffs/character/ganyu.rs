@@ -19,10 +19,16 @@ impl BuffMeta for BuffGanyuTalent2 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::GanyuTalent2,
-        chs: "甘雨-「天地交泰」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "甘雨-「天地交泰」",
+            en: "Ganyu-「Harmony Between Heaven and Earth」",
+        ),
         image: BuffImage::Avatar(CharacterName::Ganyu),
         genre: BuffGenre::Character,
-        description: Some("甘雨天赋2：降众天华领域内的队伍中当前场上角色获得20%冰元素伤害加成。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "甘雨天赋2：降众天华领域内的队伍中当前场上角色获得20%冰元素伤害加成。",
+            en: "甘雨天赋2：降众天华领域内的队伍中当前场上角色获得20%冰元素伤害加成。",
+        )),
         from: BuffFrom::Character(CharacterName::Ganyu)
     };
 
@@ -43,10 +49,16 @@ impl BuffMeta for BuffGanyuC1 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::GanyuC1,
-        chs: "甘雨-「饮露」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "甘雨-「饮露」",
+            en: "Ganyu-「Dew-Drinker」",
+        ),
         image: BuffImage::Avatar(CharacterName::Ganyu),
         genre: BuffGenre::Character,
-        description: Some("甘雨命座1：二段蓄力重击的霜华矢或霜华绽发命中敌人时，会使敌人的冰元素抗性降低15%，持续6秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "甘雨命座1：二段蓄力重击的霜华矢或霜华绽发命中敌人时，会使敌人的冰元素抗性降低15%，持续6秒。",
+            en: "甘雨命座1：二段蓄力重击的霜华矢或霜华绽发命中敌人时，会使敌人的冰元素抗性降低15%，持续6秒。",
+        )),
         from: BuffFrom::Character(CharacterName::Ganyu),
     };
 

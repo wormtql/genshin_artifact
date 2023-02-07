@@ -39,10 +39,16 @@ impl BuffMeta for BuffYunjinQ {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::YunjinQ,
-        chs: "云堇-「飞云旗阵」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "云堇-「飞云旗阵」",
+            en: "Yunjin-「Flying Cloud Flag Formation」",
+        ),
         image: BuffImage::Avatar(CharacterName::Yunjin),
         genre: BuffGenre::Character,
-        description: Some("云堇Q技能：对敌人造成普通攻击伤害时，基于云堇自己当前的防御力，提高造成的伤害。<br>天赋「莫从恒蹊」：「飞云旗阵」提供的普通攻击伤害提高，当队伍中存在1/2/3/4种元素类型的角色时，数值上进一步追加云堇防御力的2.5%/5.0%/7.5%/11.5%。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "云堇Q技能：对敌人造成普通攻击伤害时，基于云堇自己当前的防御力，提高造成的伤害。<br>天赋「莫从恒蹊」：「飞云旗阵」提供的普通攻击伤害提高，当队伍中存在1/2/3/4种元素类型的角色时，数值上进一步追加云堇防御力的2.5%/5.0%/7.5%/11.5%。",
+            en: "云堇Q技能：对敌人造成普通攻击伤害时，基于云堇自己当前的防御力，提高造成的伤害。<br>天赋「莫从恒蹊」：「飞云旗阵」提供的普通攻击伤害提高，当队伍中存在1/2/3/4种元素类型的角色时，数值上进一步追加云堇防御力的2.5%/5.0%/7.5%/11.5%。",
+        )),
         from: BuffFrom::Character(CharacterName::Yunjin),
     };
 
@@ -95,10 +101,16 @@ impl BuffMeta for BuffYunjinC2 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::YunjinC2,
-        chs: "云堇-「诸般切末」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "云堇-「诸般切末」",
+            en: "Yunjin-「Myriad Mise-En-Scène」",
+        ),
         image: BuffImage::Avatar(CharacterName::Yunjin),
         genre: BuffGenre::Character,
-        description: Some("云堇命座2：施放破嶂见旌仪后，附近队伍中所有角色普通攻击造成的伤害提高15%，持续12秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "云堇命座2：施放破嶂见旌仪后，附近队伍中所有角色普通攻击造成的伤害提高15%，持续12秒。",
+            en: "云堇命座2：施放破嶂见旌仪后，附近队伍中所有角色普通攻击造成的伤害提高15%，持续12秒。",
+        )),
         from: BuffFrom::Character(CharacterName::Yunjin),
     };
 

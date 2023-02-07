@@ -23,10 +23,16 @@ impl BuffMeta for BuffArchaicPetra4 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::ArchaicPetra4,
-        chs: "悠古的磐岩4",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "悠古的磐岩4",
+            en: "Archaic Petra 4",
+        ),
         image: BuffImage::Artifact(ArtifactSetName::ArchaicPetra),
         genre: BuffGenre::Artifact,
-        description: Some("获得结晶反应形成的晶片时，队伍中所有角色获得35%对应元素伤害加成，持续10秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "获得结晶反应形成的晶片时，队伍中所有角色获得35%对应元素伤害加成，持续10秒。",
+            en: "获得结晶反应形成的晶片时，队伍中所有角色获得35%对应元素伤害加成，持续10秒。",
+        )),
         from: BuffFrom::Artifact(ArtifactSetName::ArchaicPetra),
     };
 

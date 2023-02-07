@@ -20,7 +20,10 @@ impl BuffMeta for BuffCustomBonus {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::CustomBonus,
-        chs: "伤害加成",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "伤害加成",
+            en: "DMG Bonus",
+        ),
         image: BuffImage::Misc("sword"),
         genre: BuffGenre::Common,
         description: None,

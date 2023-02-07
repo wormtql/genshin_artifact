@@ -17,10 +17,16 @@ impl BuffMeta for BuffBeidouC6 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::BeidouC6,
-        chs: "北斗-「北斗祓幽孽」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "北斗-「北斗祓幽孽」",
+            en: "Beidou-「Bane of Evil」",
+        ),
         image: BuffImage::Avatar(CharacterName::Beidou),
         genre: BuffGenre::Character,
-        description: Some("北斗命座6：斫雷持续期间，周围敌人的雷元素抗性降低15%。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "北斗命座6：斫雷持续期间，周围敌人的雷元素抗性降低15%。",
+            en: "Beidou C6: 斫雷持续期间，周围敌人的雷元素抗性降低15%。",
+        )),
         from: BuffFrom::Character(CharacterName::Beidou),
     };
 

@@ -19,10 +19,16 @@ impl BuffMeta for BuffXinyanC4 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::XinyanC4,
-        chs: "辛焱-「节奏的传染」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "辛焱-「节奏的传染」",
+            en: "Xinyan-「Wildfire Rhythm」",
+        ),
         image: BuffImage::Avatar(CharacterName::Xinyan),
         genre: BuffGenre::Character,
-        description: Some("辛焱命座4：热情拂扫的伤害，会使敌人的物理抗性降低15%，持续12秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "辛焱命座4：热情拂扫的伤害，会使敌人的物理抗性降低15%，持续12秒。",
+            en: "辛焱命座4：热情拂扫的伤害，会使敌人的物理抗性降低15%，持续12秒。",
+        )),
         from: BuffFrom::Character(CharacterName::Xinyan),
     };
 
@@ -44,10 +50,16 @@ impl BuffMeta for BuffXinyanTalent2 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::XinyanTalent2,
-        chs: "辛焱-「这才是摇滚!」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "辛焱-「这才是摇滚!」",
+            en: "Xinyan-「Now That's Rock 'N' Roll!」",
+        ),
         image: BuffImage::Avatar(CharacterName::Xinyan),
         genre: BuffGenre::Character,
-        description: Some("辛焱天赋2：处于热情拂扫的护盾保护下的角色造成的物理伤害提高15%。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "辛焱天赋2：处于热情拂扫的护盾保护下的角色造成的物理伤害提高15%。",
+            en: "辛焱天赋2：处于热情拂扫的护盾保护下的角色造成的物理伤害提高15%。",
+        )),
         from: BuffFrom::Character(CharacterName::Xinyan),
     };
 

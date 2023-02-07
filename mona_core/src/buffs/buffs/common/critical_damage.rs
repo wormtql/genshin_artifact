@@ -20,7 +20,10 @@ impl BuffMeta for BuffCriticalDamage {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::CriticalDamage,
-        chs: "暴击伤害",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "暴击伤害",
+            en: "Crit DMG",
+        ),
         image: BuffImage::Misc("sword"),
         genre: BuffGenre::Common,
         description: None,

@@ -20,7 +20,10 @@ impl BuffMeta for BuffResMinus {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::ResMinus,
-        chs: "减抗",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "减抗",
+            en: "减抗",
+        ),
         image: BuffImage::Misc("sword"),
         genre: BuffGenre::Common,
         description: None,

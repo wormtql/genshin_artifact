@@ -22,10 +22,16 @@ impl BuffMeta for BuffRosariaTalent2 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::RosariaTalent2,
-        chs: "罗莎莉亚-「暗中支援的黯色」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "罗莎莉亚-「暗中支援的黯色」",
+            en: "Rosaria-「Shadow Samaritan」",
+        ),
         image: BuffImage::Avatar(CharacterName::Rosaria),
         genre: BuffGenre::Character,
-        description: Some("罗莎莉亚天赋2：施放终命的圣礼时，基于自身暴击率的15%，提高附近的队伍中所有角色(不包括罗莎莉亚自己)的暴击率，持续10秒。通过这种方式获得的暴击率提升，无法超过15%。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "罗莎莉亚天赋2：施放终命的圣礼时，基于自身暴击率的15%，提高附近的队伍中所有角色(不包括罗莎莉亚自己)的暴击率，持续10秒。通过这种方式获得的暴击率提升，无法超过15%。",
+            en: "罗莎莉亚天赋2：施放终命的圣礼时，基于自身暴击率的15%，提高附近的队伍中所有角色(不包括罗莎莉亚自己)的暴击率，持续10秒。通过这种方式获得的暴击率提升，无法超过15%。",
+        )),
         from: BuffFrom::Character(CharacterName::Rosaria),
     };
 
@@ -63,10 +69,16 @@ impl BuffMeta for BuffRosariaC6 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::RosariaC6,
-        chs: "罗莎莉亚-「代行裁判」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "罗莎莉亚-「代行裁判」",
+            en: "Rosaria-「Divine Retribution」",
+        ),
         image: BuffImage::Avatar(CharacterName::Rosaria),
         genre: BuffGenre::Character,
-        description: Some("罗莎莉亚命座6：终命的圣礼的攻击会使敌人的物理抗性降低20%，持续10秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "罗莎莉亚命座6：终命的圣礼的攻击会使敌人的物理抗性降低20%，持续10秒。",
+            en: "罗莎莉亚命座6：终命的圣礼的攻击会使敌人的物理抗性降低20%，持续10秒。",
+        )),
         from: BuffFrom::Character(CharacterName::Rosaria),
     };
 

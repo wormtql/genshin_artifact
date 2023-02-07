@@ -19,10 +19,16 @@ impl BuffMeta for BuffChongyunTalent2 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::ChongyunTalent2,
-        chs: "重云-「追冰剑诀」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "重云-「追冰剑诀」",
+            en: "Chongyun-「Rimechaser Blade」",
+        ),
         image: BuffImage::Avatar(CharacterName::Chongyun),
         genre: BuffGenre::Character,
-        description: Some("重云天赋2：灵刃·重华叠霜领域消失时，会唤出一柄灵刃自动攻击附近的敌人，造成相当于灵刃·重华叠霜技能伤害100%的冰元素范围伤害。被击中的敌人冰元素抗性降低10%，持续8秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "重云天赋2：灵刃·重华叠霜领域消失时，会唤出一柄灵刃自动攻击附近的敌人，造成相当于灵刃·重华叠霜技能伤害100%的冰元素范围伤害。被击中的敌人冰元素抗性降低10%，持续8秒。",
+            en: "Chongyu Talent2: When the field created by Spirit Blade: Chonghua's Layered Frost disappears, another spirit blade will be summoned to strike nearby opponents, dealing 100% of Chonghua's Layered Frost's Skill DMG as AoE Cryo DMG. Opponents hit by this blade will have their Cryo RES decreased by 10% for 8s.",
+        )),
         from: BuffFrom::Character(CharacterName::Chongyun),
     };
 

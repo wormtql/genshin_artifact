@@ -19,10 +19,16 @@ impl BuffMeta for BuffXingqiuC2 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::XingqiuC2,
-        chs: "行秋-「天青现虹」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "行秋-「天青现虹」",
+            en: "Xingqiu-「Rainbow Upon the Azure Sky」",
+        ),
         image: BuffImage::Avatar(CharacterName::Xingqiu),
         genre: BuffGenre::Character,
-        description: Some("行秋命座2：受到剑雨攻击的敌人，水元素抗性降低15％，持续4秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "行秋命座2：受到剑雨攻击的敌人，水元素抗性降低15％，持续4秒。",
+            en: "行秋命座2：受到剑雨攻击的敌人，水元素抗性降低15％，持续4秒。",
+        )),
         from: BuffFrom::Character(CharacterName::Xingqiu),
     };
 

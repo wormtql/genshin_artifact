@@ -20,7 +20,10 @@ impl BuffMeta for BuffDEFFixed {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::DEFFixed,
-        chs: "防御力",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "防御力",
+            en: "DEF",
+        ),
         image: BuffImage::Misc("sword"),
         genre: BuffGenre::Common,
         description: None,

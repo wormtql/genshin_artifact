@@ -27,10 +27,16 @@ impl BuffMeta for BuffFreedomSworn {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::FreedomSworn,
-        chs: "苍古自由之誓-「千年的大乐章·抗争之歌」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "苍古自由之誓-「千年的大乐章·抗争之歌」",
+            en: "Freedom-Sworn-「Millennial Movement: Song of Resistance」",
+        ),
         image: BuffImage::Weapon(WeaponName::FreedomSworn),
         genre: BuffGenre::Weapon,
-        description: Some("「千年的大乐章·抗争之歌」效果：普通攻击、重击、下落攻击造成的伤害提升16%/20%/24%/28%/32%，攻击力提升20%/25%/30%/35%/40%。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "「千年的大乐章·抗争之歌」效果：普通攻击、重击、下落攻击造成的伤害提升16%/20%/24%/28%/32%，攻击力提升20%/25%/30%/35%/40%。",
+            en: "「千年的大乐章·抗争之歌」效果：普通攻击、重击、下落攻击造成的伤害提升16%/20%/24%/28%/32%，攻击力提升20%/25%/30%/35%/40%。",
+        )),
         from: BuffFrom::Weapon(WeaponName::FreedomSworn),
     };
 

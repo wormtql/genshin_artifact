@@ -23,7 +23,10 @@ impl BuffMeta for BuffNahidaTalent1 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::NahidaTalent1,
-        chs: "",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "纳西妲-「净善摄受明论」",
+            en: "Nahida-「Compassion Illuminated」",
+        ),
         image: BuffImage::Avatar(CharacterName::Nahida),
         genre: BuffGenre::Character,
         description: None,

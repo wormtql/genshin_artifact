@@ -19,10 +19,16 @@ impl BuffMeta for BuffNingguangTalent2 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::NingguangTalent2,
-        chs: "凝光-「储之千日，用之一刻」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "凝光-「储之千日，用之一刻」",
+            en: "Ningguang-「Strategic Reserve」",
+        ),
         image: BuffImage::Avatar(CharacterName::Ningguang),
         genre: BuffGenre::Character,
-        description: Some("凝光天赋2：穿过璇玑屏的角色会获得12%岩元素伤害加成，持续10秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "凝光天赋2：穿过璇玑屏的角色会获得12%岩元素伤害加成，持续10秒。",
+            en: "凝光天赋2：穿过璇玑屏的角色会获得12%岩元素伤害加成，持续10秒。",
+        )),
         from: BuffFrom::Character(CharacterName::Ningguang),
     };
 

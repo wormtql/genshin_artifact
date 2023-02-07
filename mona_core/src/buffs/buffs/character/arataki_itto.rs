@@ -20,10 +20,16 @@ impl BuffMeta for BuffAratakiIttoC4 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::AratakiIttoC4,
-        chs: "荒泷一斗-「奉行牢狱，茶饭之所」",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "荒泷一斗-「奉行牢狱，茶饭之所」",
+            en: "Itto-「Jailhouse Bread and Butter」",
+        ),
         image: BuffImage::Avatar(CharacterName::AratakiItto),
         genre: BuffGenre::Character,
-        description: Some("荒泷一斗命座4：最恶鬼王•一斗轰临！！施加的「怒目鬼王」状态结束后，附近的队伍中所有角色的防御力提升20%，攻击力提升20%，持续10秒。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "荒泷一斗命座4：最恶鬼王•一斗轰临！！施加的「怒目鬼王」状态结束后，附近的队伍中所有角色的防御力提升20%，攻击力提升20%，持续10秒。",
+            en: "Itto C4: When the Raging Oni King state caused by Royal Descent: Behold, Itto the Evil! ends, all nearby party members gain 20% DEF and 20% ATK for 10s.",
+        )),
         from: BuffFrom::Character(CharacterName::AratakiItto),
     };
 

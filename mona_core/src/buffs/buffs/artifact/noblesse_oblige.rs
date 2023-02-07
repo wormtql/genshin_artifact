@@ -19,10 +19,16 @@ impl BuffMeta for BuffNoblesseOblige4 {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::NoblesseOblige4,
-        chs: "昔日宗室之仪4",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "昔日宗室之仪4",
+            en: "Noblesse Oblige 4",
+        ),
         image: BuffImage::Artifact(ArtifactSetName::NoblesseOblige),
         genre: BuffGenre::Artifact,
-        description: Some("施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。"),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。",
+            en: "施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。",
+        )),
         from: BuffFrom::Artifact(ArtifactSetName::NoblesseOblige),
     };
 

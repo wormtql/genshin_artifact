@@ -23,10 +23,16 @@ impl BuffMeta for BuffSapwoodBlade {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::SapwoodBlade,
-        chs: "",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "原木刀/森林王器-「种识之叶」",
+            en: "Sapwood Blade/Forest Regalia-「Leaf of Consciousness」",
+        ),
         image: BuffImage::Weapon(WeaponName::SapwoodBlade),
         genre: BuffGenre::Weapon,
-        description: Some(""),
+        description: Some(crate::common::i18n::locale!(
+            zh_cn: "拾取种识之叶的角色元素精通提升60/75/90/105/120点",
+            en: "When picked up, the Leaf will grant the character 60 Elemental Mastery for 12s",
+        )),
         from: BuffFrom::Weapon(WeaponName::SapwoodBlade)
     };
 

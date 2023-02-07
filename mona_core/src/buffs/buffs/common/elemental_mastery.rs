@@ -20,7 +20,10 @@ impl BuffMeta for BuffElementalMastery {
     #[cfg(not(target_family = "wasm"))]
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::ElementalMastery,
-        chs: "元素精通",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "元素精通",
+            en: "Elemental Mastery",
+        ),
         image: BuffImage::Misc("sword"),
         genre: BuffGenre::Common,
         description: None,
