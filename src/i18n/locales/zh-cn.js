@@ -1583,7 +1583,7 @@ export default {
         XingqiuDefault: "普通副C行秋",
         XinyanDamage: "普通物伤输出辛焱",
         XinyanDefault: "普通辅助辛焱",
-        YaeMikoDefault: "普通输出八重神子",
+        YaeMikoDefault: "按照一轮12s：三阶杀生樱12下、普通攻击6×3下计算。由于杀生樱的激化率为1/3、普通攻击的激化率为1/2，在激元素充足的情况下（超激化比例=1），所以一轮杀生樱最大激化4下、普通攻击期望最大9下。超激化比例是根据激元素的充足与否决定实际激化数占最大激化数的比例。超绽放比例是根据草种子的重组与否决定实际绽放的种子数占最大绽放的种子数（0.5s/2个）的比例。",
         YanfeiDefault: "普通输出烟绯",
         YelanDefault: "普通输出夜兰。使得Q伤害最大",
         YoimiyaDefault: "普通输出宵宫",

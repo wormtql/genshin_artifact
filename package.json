@@ -1,6 +1,6 @@
 {
   "name": "genshin_artifacts",
-  "version": "5.14.2",
+  "version": "5.14.3",
   "private": true,
   "scripts": {
     "build:gh": "cross-env ENV_FILE=.env.github_page.yaml PublicPath=/genshin_artifact/ vue-cli-service build",

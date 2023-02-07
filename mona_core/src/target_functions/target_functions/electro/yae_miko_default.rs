@@ -1,3 +1,4 @@
+use std::f64::NAN;
 use crate::artifacts::{Artifact, ArtifactSetName};
 use crate::artifacts::effect_config::{ArtifactEffectConfig, ArtifactEffectConfigBuilder, ConfigRate};
 use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2};
@@ -19,85 +20,113 @@ use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
 pub struct YaeMikoDefaultTargetFunction {
-    pub recharge_demand: f64,
-    pub electro_charged_times: f64,
-    pub overload_times: f64,
-    // pub electro_rate: f64,
+    // 充能需求
+    pub recharge_requirement: f64,
+    // 连招：0 => 仅依靠E和Q；1 => 在0的基础上一直A。
+    pub combo: usize,
+    // 超激化比例
+    pub aggravate_rate: f64,
+    // 超绽放比例
+    pub hyperbloom_rate: f64,
+}
+
+impl YaeMikoDefaultTargetFunction {
+    pub fn new(config: &TargetFunctionConfig) -> Self {
+        let (
+            recharge_requirement,
+            combo,
+            aggravate_rate,
+            hyperbloom_rate,
+        ) = match *config {
+            TargetFunctionConfig::YaeMikoDefault {
+                recharge_requirement,
+                combo,
+                aggravate_rate,
+                hyperbloom_rate,
+            } =>
+                (
+                    recharge_requirement,
+                    combo,
+                    aggravate_rate,
+                    hyperbloom_rate,
+                ),
+            _ => (0.0, 0, 0.0, 0.0)
+        };
+        Self {
+            recharge_requirement,
+            combo,
+            aggravate_rate,
+            hyperbloom_rate,
+        }
+    }
 }
 
 impl TargetFunction for YaeMikoDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
-        // TargetFunctionOptConfig {
-        //     atk_fixed: 0.1,
-        //     atk_percentage: 1.0,
-        //     hp_fixed: 0.0,
-        //     hp_percentage: 0.0,
-        //     def_fixed: 0.0,
-        //     def_percentage: 0.0,
-        //     recharge: 0.5,
-        //     elemental_mastery: 1.0,
-        //     critical: 1.0,
-        //     critical_damage: 1.0,
-        //     healing_bonus: 0.0,
-        //     bonus_electro: 2.0,
-        //     bonus_pyro: 0.0,
-        //     bonus_hydro: 0.0,
-        //     bonus_anemo: 0.0,
-        //     bonus_cryo: 0.0,
-        //     bonus_geo: 0.0,
-        //     bonus_dendro: 0.0,
-        //     bonus_physical: 0.0,
-        //     sand_main_stats: vec![
-        //         StatName::ATKPercentage,
-        //         StatName::ElementalMastery,
-        //     ],
-        //     goblet_main_stats: vec![
-        //         StatName::ElectroBonus,
-        //         StatName::ATKPercentage,
-        //         StatName::ElementalMastery,
-        //     ],
-        //     head_main_stats: vec![
-        //         StatName::CriticalRate,
-        //         StatName::CriticalDamage,
-        //         StatName::ElementalMastery,
-        //         StatName::ATKPercentage,
-        //     ],
-        //     set_names: Some(vec![
-        //         ArtifactSetName::GladiatorsFinale,
-        //         ArtifactSetName::ShimenawasReminiscence,
-        //         ArtifactSetName::ThunderingFury,
-        //         ArtifactSetName::Thundersoother,
-        //     ]),
-        //     very_critical_set_names: None,
-        //     normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
-        //     critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
-        //     very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
-        // }
         unimplemented!()
     }
 
     fn get_default_artifact_config(&self, _team_config: &TeamQuantization) -> ArtifactEffectConfig {
         ArtifactEffectConfigBuilder::new()
             .thundersoother(1.0)
+            .gilded_dreams(1, 2, 1.0)
             .build()
     }
 
     fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
-            attribute, enemy
+            attribute,
+            enemy,
         };
 
         type S = <YaeMiko as CharacterTrait>::DamageEnumType;
-        let dmg_e = YaeMiko::damage::<SimpleDamageBuilder>(&context, S::E3, &CharacterSkillConfig::NoConfig, None).normal.expectation;
+        let dmg_e = YaeMiko::damage::<SimpleDamageBuilder>(&context, S::E3, &CharacterSkillConfig::NoConfig, None);
+        let dmg_a1 = YaeMiko::damage::<SimpleDamageBuilder>(&context, S::Normal1, &CharacterSkillConfig::NoConfig, None);
+        let dmg_a2 = YaeMiko::damage::<SimpleDamageBuilder>(&context, S::Normal2, &CharacterSkillConfig::NoConfig, None);
+        let dmg_a3 = YaeMiko::damage::<SimpleDamageBuilder>(&context, S::Normal3, &CharacterSkillConfig::NoConfig, None);
 
-        let transformative = context.transformative();
-        let dmg_electro_charged = transformative.electro_charged;
-        let dmg_overload = transformative.overload;
+        let dmg_e_norm = dmg_e.normal.expectation;
+        let dmg_a1_norm = dmg_a1.normal.expectation;
+        let dmg_a2_norm = dmg_a2.normal.expectation;
+        let dmg_a3_norm = dmg_a3.normal.expectation;
 
-        let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);
+        let dmg_e_aggravate = dmg_e.aggravate.unwrap().expectation;
+        let dmg_a1_aggravate = dmg_a1.aggravate.unwrap().expectation;
+        let dmg_a2_aggravate = dmg_a2.aggravate.unwrap().expectation;
+        let dmg_a3_aggravate = dmg_a3.aggravate.unwrap().expectation;
 
-        r * (dmg_electro_charged * self.electro_charged_times + dmg_overload * self.overload_times + dmg_e)
+        let dmg_e_aggravate_bonus = dmg_e_norm - dmg_e_aggravate;
+        let dmg_a1_aggravate_bonus = dmg_a1_norm - dmg_a1_aggravate;
+        let dmg_a2_aggravate_bonus = dmg_a2_norm - dmg_a2_aggravate;
+        let dmg_a3_aggravate_bonus = dmg_a3_norm - dmg_a3_aggravate;
+
+        let mut dmg_hyperbloom = 0.0;
+        if self.hyperbloom_rate > 0.0 {
+            let transformative = context.transformative();
+            dmg_hyperbloom = transformative.hyperbloom;
+        }
+
+        // 一轮12s，12下E伤害、6轮A伤害
+        let dmg_sum_normal = match self.combo {
+            0 => (dmg_e_norm) * 12.0 + (dmg_a1_norm + dmg_a2_norm + dmg_a3_norm) * 0.0,
+            1 => (dmg_e_norm) * 12.0 + (dmg_a1_norm + dmg_a2_norm + dmg_a3_norm) * 6.0,
+            _ => NAN
+        };
+        // E的激化率约为1/3（对单）、A的激化率约为1/2
+        let dmg_sum_aggravate_bonus = match self.combo {
+            0 => (dmg_e_aggravate_bonus) * 12.0 / 3.0 + (dmg_a1_aggravate_bonus + dmg_a2_aggravate_bonus + dmg_a3_aggravate_bonus) * 0.0 / 2.0,
+            1 => (dmg_e_aggravate_bonus) * 12.0 / 3.0 + (dmg_a1_aggravate_bonus + dmg_a2_aggravate_bonus + dmg_a3_aggravate_bonus) * 6.0 / 2.0,
+            _ => NAN
+        };
+
+        // 超绽放伤害冷却为0.5s/2次
+        let dmg_sum_hyperbloom = 12.0 / (0.5 / 2.0);
+
+        let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_requirement);
+        r * (dmg_sum_normal +
+            dmg_sum_aggravate_bonus * self.aggravate_rate +
+            dmg_sum_hyperbloom * self.hyperbloom_rate)
     }
 }
 
@@ -106,41 +135,37 @@ impl TargetFunctionMetaTrait for YaeMikoDefaultTargetFunction {
     const META_DATA: TargetFunctionMeta = TargetFunctionMeta {
         name: TargetFunctionName::YaeMikoDefault,
         chs: "八重神子-浮世笑百姿",
-        description: "普通输出八重神子",
+        description: "按照一轮12s：三阶杀生樱12下、普通攻击6×3下计算。由于杀生樱的激化率为1/3、普通攻击的激化率为1/2，在激元素充足的情况下（超激化比例=1），所以一轮杀生樱最大激化4下、普通攻击期望最大9下。超激化比例是根据激元素的充足与否决定实际激化数占最大激化数的比例。超绽放比例是根据草种子的重组与否决定实际绽放的种子数占最大绽放的种子数（0.5s/2个）的比例。",
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::YaeMiko),
-        image: TargetFunctionMetaImage::Avatar
+        image: TargetFunctionMetaImage::Avatar,
     };
 
     #[cfg(not(target_family = "wasm"))]
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
-            name: "electro_charged_times",
-            title: "t13",
-            config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 0.0 }
+            name: "recharge_requirement",
+            title: ItemConfig::DEFAULT_RECHARGE_TITLE,
+            config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.0 },
         },
         ItemConfig {
-            name: "overload_times",
-            title: "t14",
-            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
+            name: "combo",
+            title: "t23", //连招选择
+            config: ItemConfigType::Option { options: "不站场平A,站场平A", default: 0 },
         },
         ItemConfig {
-            name: "recharge_demand",
-            title: "t4",
-            config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.0 }
-        }
+            name: "aggravate_rate",
+            title: "t17", //超激化比例
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
+        },
+        ItemConfig {
+            name: "hyperbloom_rate",
+            title: "t27", //超绽放比例
+            config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 0.0 },
+        },
     ]);
 
     fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        let (a, b, c) = match *config {
-            TargetFunctionConfig::YaeMikoDefault { recharge_demand, electro_charged_times, overload_times } => (recharge_demand, electro_charged_times, overload_times),
-            _ => (1.0, 0.0, 0.0)
-        };
-
-        Box::new(YaeMikoDefaultTargetFunction {
-            recharge_demand: a,
-            electro_charged_times: b,
-            overload_times: c
-        })
+        Box::new(YaeMikoDefaultTargetFunction::new(config))
     }
 }
