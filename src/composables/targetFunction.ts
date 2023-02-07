@@ -11,7 +11,7 @@ export function useTargetFunction(characterName: Ref<CharacterName>) {
     const targetFunctionUseDSL = ref(false)
     const targetFunctionDSLSource = ref("")
 
-    const { t } = useI18n()
+    const { t, ta } = useI18n()
 
     const targetFunctionBadge = computed(() => {
         return targetFunctionData[targetFunctionName.value].badge
@@ -19,7 +19,7 @@ export function useTargetFunction(characterName: Ref<CharacterName>) {
 
     const targetFunctionDescription = computed(() => {
         // return targetFunctionData[targetFunctionName.value].description
-        return t("tfDesc", targetFunctionName.value)
+        return ta(targetFunctionData[targetFunctionName.value].nameLocale)
     })
 
     const targetFunctionNeedConfig = computed(() => {

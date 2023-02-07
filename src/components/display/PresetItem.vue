@@ -47,7 +47,7 @@
             <div class="detail-div fs-12">
                 <img :src="tfData.badge" class="tf-avatar br-50p">
 <!--                <span>{{ tfData.chs }}</span>-->
-                <span>{{ t("tfName", tfData.name) }}</span>
+                <span>{{ ta(tfNameIndex) }}</span>
             </div>
         </div>
     </div>
@@ -112,6 +112,10 @@ const weaponNameIndex = computed(() => {
 
 const tfData = computed(() => {
     return targetFunctionData[props.item.targetFunction.name]
+})
+
+const tfNameIndex = computed(() => {
+    return tfData.value.nameLocale
 })
 </script>
 

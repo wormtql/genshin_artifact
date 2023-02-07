@@ -8,13 +8,13 @@
             <el-option
                 v-for="item in characterTargetFunctionList"
                 :key="item.name"
-                :label="t('tfName', item.name)"
+                :label="ta(item.nameLocale)"
                 :value="item.name"
             >
                 <div class="option-root">
                     <img class="option-badge" :src="item.badge" />
                     <div class="option-body">
-                        <p class="option-title">{{ t("tfName", item.name) }}</p>
+                        <p class="option-title">{{ ta(item.nameLocale) }}</p>
                     </div>
                 </div>
             </el-option>
@@ -24,13 +24,13 @@
             <el-option
                 v-for="item in commonTargetFunctionList"
                 :key="item.name"
-                :label="t('tfName', item.name)"
+                :label="ta(item.nameLocale)"
                 :value="item.name"
             >
                 <div class="option-root">
                     <img class="option-badge" :src="item.badge" />
                     <div class="option-body">
-                        <p class="option-title">{{ t("tfName", item.name) }}</p>
+                        <p class="option-title">{{ ta(item.nameLocale) }}</p>
                     </div>
                 </div>
             </el-option>
@@ -65,10 +65,11 @@ export default {
         }
     },
     setup() {
-        const { t } = useI18n()
+        const { t, ta } = useI18n()
 
         return {
-            t
+            t,
+            ta
         }
     }
 }
