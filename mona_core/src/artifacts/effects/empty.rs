@@ -16,8 +16,14 @@ impl ArtifactTrait for Empty {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::Empty,
         name_mona: "Empty",
-        chs: "虚拟之物",
-        flower: Some("虚拟之花"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "Empty",
+            en: "Empty",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "Empty",
+            en: "Empty",
+        )),
         feather: None,
         sand: None,
         goblet: None,

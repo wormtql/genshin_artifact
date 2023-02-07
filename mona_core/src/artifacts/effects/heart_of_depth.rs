@@ -40,17 +40,41 @@ impl ArtifactTrait for HeartOfDepth {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::HeartOfDepth,
         name_mona: "heartOfDepth",
-        chs: "沉沦之心",
-        flower: Some("饰金胸花"),
-        feather: Some("追忆之风"),
-        sand: Some("坚铜罗盘"),
-        goblet: Some("沉波之盏"),
-        head: Some("酒渍船帽"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "沉沦之心",
+            en: "Heart of Depth",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "饰金胸花",
+            en: "Gilded Corsage",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "追忆之风",
+            en: "Gust of Nostalgia",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "坚铜罗盘",
+            en: "Copper Compass",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "沉波之盏",
+            en: "Goblet of Thundering Deep",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "酒渍船帽",
+            en: "Wine-Stained Tricorne",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("获得15%水元素伤害加成。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "获得15%水元素伤害加成。",
+            en: "Hydro DMG Bonus +15%",
+        )),
         effect3: None,
-        effect4: Some("施放元素战技后的15秒内，普通攻击与重击造成的伤害提高30%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "施放元素战技后的15秒内，普通攻击与重击造成的伤害提高30%。",
+            en: "After using Elemental Skill, increases Normal Attack and Charged Attack DMG by 30% for 15s.",
+        )),
         effect5: None,
         internal_id: 15016,
     };

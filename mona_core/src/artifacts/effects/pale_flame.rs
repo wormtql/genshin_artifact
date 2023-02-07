@@ -42,17 +42,41 @@ impl ArtifactTrait for PaleFlame {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::PaleFlame,
         name_mona: "paleFlame",
-        chs: "苍白之火",
-        flower: Some("无垢之花"),
-        feather: Some("贤医之羽"),
-        sand: Some("停摆之刻"),
-        goblet: Some("超越之盏"),
-        head: Some("嗤笑之面"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "苍白之火",
+            en: "Pale Flame",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "无垢之花",
+            en: "Stainless Bloom",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "贤医之羽",
+            en: "Wise Doctor's Pinion",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "停摆之刻",
+            en: "Moment of Cessation",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "超越之盏",
+            en: "Surpassing Cup",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "嗤笑之面",
+            en: "Mocking Mask",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("造成的物理伤害提高25%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "造成的物理伤害提高25%。",
+            en: "Physical DMG is increased by 25%.",
+        )),
         effect3: None,
-        effect4: Some("元素战技命中敌人后，①攻击力提升9%。该效果持续7秒，至多叠加2层，每0.3秒至多触发一次。叠满2层时，②2件套的效果提升100%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "元素战技命中敌人后，攻击力提升9%。该效果持续7秒，至多叠加2层，每0.3秒至多触发一次。叠满2层时，2件套的效果提升100%。",
+            en: "When an Elemental Skill hits an opponent, ATK is increased by 9% for 7s. This effect stacks up to 2 times and can be triggered once every 0.3s. Once 2 stacks are reached, the 2-set effect is increased by 100%.",
+        )),
         effect5: None,
         internal_id: 15018,
     };

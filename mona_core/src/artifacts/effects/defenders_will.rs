@@ -28,17 +28,41 @@ impl ArtifactTrait for DefendersWill {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::DefendersWill,
         name_mona: "defenderWill",
-        chs: "守护之心",
-        flower: Some("守护之花"),
-        feather: Some("守护徽印"),
-        sand: Some("守护座钟"),
-        goblet: Some("守护之皿"),
-        head: Some("守护束带"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "守护之心",
+            en: "Defender's Will",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "守护之花",
+            en: "Guardian's Flower",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "守护徽印",
+            en: "Guardian's Sigil",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "守护座钟",
+            en: "Guardian's Clock",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "守护之皿",
+            en: "Guardian's Vessel",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "守护束带",
+            en: "Guardian's Band",
+        )),
         star: (0, 0),
         effect1: None,
-        effect2: Some("防御力提高30%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "防御力提高30%。",
+            en: "DEF +30%",
+        )),
         effect3: None,
-        effect4: Some("队伍里每有不同一种元素类型的自己的角色，自身获得30%相应的元素抗性。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "队伍里每有不同一种元素类型的自己的角色，自身获得30%相应的元素抗性。",
+            en: "For each different element present in your own party, the wearer's Elemental RES to that corresponding element is increased by 30%.",
+        )),
         effect5: None,
         internal_id: 10003,
     };

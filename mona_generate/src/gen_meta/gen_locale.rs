@@ -3,6 +3,8 @@ use mona::character::{CharacterName, CharacterStaticData};
 use mona::common::i18n::I18nLocale;
 use strum::*;
 use lazy_static::lazy_static;
+use mona::artifacts::artifact_trait::ArtifactMetaData;
+use mona::artifacts::ArtifactSetName;
 use mona::buffs::buff_meta::BuffMetaData;
 use mona::buffs::buff_name::BuffName;
 use mona::character::traits::CharacterSkillMap;
@@ -98,6 +100,45 @@ pub fn collect_buff_locale() -> Vec<I18nLocale> {
     set.into_iter().collect()
 }
 
+pub fn collect_artifact_locale() -> Vec<I18nLocale> {
+    let mut set = HashSet::new();
+    for artifact in ArtifactSetName::iter() {
+        let meta: ArtifactMetaData = artifact.get_meta();
+        set.insert(meta.name_locale.clone());
+        if let Some(ref x) = meta.flower {
+            set.insert(x.clone());
+        }
+        if let Some(ref x) = meta.feather {
+            set.insert(x.clone());
+        }
+        if let Some(ref x) = meta.sand {
+            set.insert(x.clone());
+        }
+        if let Some(ref x) = meta.goblet {
+            set.insert(x.clone());
+        }
+        if let Some(ref x) = meta.head {
+            set.insert(x.clone());
+        }
+        if let Some(ref x) = meta.effect1 {
+            set.insert(x.clone());
+        }
+        if let Some(ref x) = meta.effect2 {
+            set.insert(x.clone());
+        }
+        if let Some(ref x) = meta.effect3 {
+            set.insert(x.clone());
+        }
+        if let Some(ref x) = meta.effect4 {
+            set.insert(x.clone());
+        }
+        if let Some(ref x) = meta.effect5 {
+            set.insert(x.clone());
+        }
+    }
+    set.into_iter().collect()
+}
+
 pub fn collect_locale() -> Vec<I18nLocale> {
     let mut set = HashSet::new();
 
@@ -112,6 +153,8 @@ pub fn collect_locale() -> Vec<I18nLocale> {
     set.extend(collect_tf_locale());
 
     set.extend(collect_buff_locale());
+
+    set.extend(collect_artifact_locale());
 
     set.into_iter().collect()
 }

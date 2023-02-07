@@ -89,7 +89,7 @@ import {displayedTag, positionToIndex} from "@/utils/artifacts"
 import {useI18n} from "@/i18n/i18n"
 
 // i18n
-const { t } = useI18n()
+const { t, ta } = useI18n()
 
 interface Props {
     item: Omit<IArtifact, "id" | "contentHash">,
@@ -133,9 +133,7 @@ const displayedTitle = computed(() => {
 
     let title = "not exist"
     if (item[props.item.position]) {
-        const positionIndex = positionToIndex(props.item.position)
-        title = t("artifact", item.eng, "items", positionIndex)
-        // title = item[props.item.position].chs;
+        title = ta(item[props.item.position].text)
         if (Object.prototype.hasOwnProperty.call(props.item, "level")) {
             title += "+" + (props.item.level);
         } else {

@@ -13,7 +13,7 @@
             >
             </el-image>
             <p class="text">
-                {{ t("artifact", artData.eng, "setName") }}
+                {{ ta(artData.nameLocale) }}
             </p>
         </div>
         
@@ -27,7 +27,7 @@ import { getArtifactThumbnailURL } from "@/utils/utils"
 import type {ArtifactSetName} from "@/types/artifact"
 import {useI18n} from "@/i18n/i18n"
 
-const { t } = useI18n()
+const { t, ta } = useI18n()
 
 interface Props {
     modelValue: ArtifactSetName

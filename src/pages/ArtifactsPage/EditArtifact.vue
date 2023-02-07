@@ -119,7 +119,7 @@ import IconEpDelete from "~icons/ep/delete"
 import {useI18n} from "@/i18n/i18n";
 
 
-const { t } = useI18n()
+const { t, ta } = useI18n()
 
 interface Emits {
     (e: "update:modelValue", v: any): void,
@@ -201,9 +201,8 @@ const image = computed(() => {
 })
 
 const title = computed(() => {
-    // const data = artifactsData[setName.value]
-    // return data[position.value].chs
-    return t("artifact", setName.value, "items", positionToIndex(position.value))
+    const data = artifactsData[setName.value]
+    return ta(data[position.value]?.text)
 })
 
 watch(() => setName.value, (newValue, oldValue) => {

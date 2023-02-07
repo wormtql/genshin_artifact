@@ -44,17 +44,41 @@ impl ArtifactTrait for WanderersTroupe {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::WanderersTroupe,
         name_mona: "wandererTroupe",
-        chs: "流浪大地的乐团",
-        flower: Some("乐团的晨光"),
-        feather: Some("琴师的箭羽"),
-        sand: Some("终幕的时计"),
-        goblet: Some("吟游者之壶"),
-        head: Some("指挥的礼帽"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "流浪大地的乐团",
+            en: "Wanderer's Troupe",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "乐团的晨光",
+            en: "Troupe's Dawnlight",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "琴师的箭羽",
+            en: "Bard's Arrow Feather",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "终幕的时计",
+            en: "Concert's Final Hour",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "吟游者之壶",
+            en: "Wanderer's String-Kettle",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "指挥的礼帽",
+            en: "Conductor's Top Hat",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("元素精通提高80点。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "元素精通提高80点。",
+            en: "Increases Elemental Mastery by 80.",
+        )),
         effect3: None,
-        effect4: Some("装备该圣遗物套装的角色为法器、弓箭角色时，角色重击造成的伤害提高35%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "装备该圣遗物套装的角色为法器、弓箭角色时，角色重击造成的伤害提高35%。",
+            en: "Increases Charged Attack DMG by 35% if the character uses a Catalyst or a Bow.",
+        )),
         effect5: None,
         internal_id: 15003,
     };

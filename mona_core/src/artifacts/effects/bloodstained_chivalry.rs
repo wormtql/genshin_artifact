@@ -39,17 +39,41 @@ impl ArtifactTrait for BloodstainedChivalry {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::BloodstainedChivalry,
         name_mona: "bloodstainedChivalry",
-        chs: "染血的骑士道",
-        flower: Some("染血的铁之心"),
-        feather: Some("染血的黑之羽"),
-        sand: Some("骑士染血之时"),
-        goblet: Some("染血骑士之杯"),
-        head: Some("染血的铁假面"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "染血的骑士道",
+            en: "Bloodstained Chivalry",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "染血的铁之心",
+            en: "Bloodstained Flower of Iron",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "染血的黑之羽",
+            en: "Bloodstained Black Plume",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "骑士染血之时",
+            en: "Bloodstained Final Hour",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "染血骑士之杯",
+            en: "Bloodstained Chevalier's Goblet",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "染血的铁假面",
+            en: "Bloodstained Iron Mask",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("造成的物理伤害提高25%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "造成的物理伤害提高25%。",
+            en: "Physical DMG +25%",
+        )),
         effect3: None,
-        effect4: Some("击败敌人后的10秒内，施放重击时不消耗体力，且造成的伤害提升50%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "击败敌人后的10秒内，施放重击时不消耗体力，且重击造成的伤害提升50%。",
+            en: "After defeating an opponent, increases Charged Attack DMG by 50%, and reduces its Stamina cost to 0 for 10s.",
+        )),
         effect5: None,
         internal_id: 15008,
     };

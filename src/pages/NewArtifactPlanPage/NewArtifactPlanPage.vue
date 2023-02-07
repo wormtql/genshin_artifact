@@ -698,6 +698,7 @@ import SimpleError from "@/components/loading/SimpleError.vue"
 import {useRoute} from "vue-router"
 import {useI18n} from "@/i18n/i18n"
 import {useAccountStore} from "@/store/pinia/account"
+import {artifactsData} from "@/assets/artifacts"
 
 import {ElMessage} from "element-plus"
 import "element-plus/es/components/message/style/css"
@@ -716,7 +717,7 @@ const mona = await useMona()
 const route = useRoute()
 
 // i18n
-const { t } = useI18n()
+const { t, ta } = useI18n()
 
 
 //////////////////////////////////////////////////////////
@@ -1256,12 +1257,10 @@ interface Node {
 }
 
 const kumiDefaultName = computed((): string => {
-    // let name = characterData[characterName.value].chs
     let name = characterLocale.value
     for (const setName in artifactSetCount.value) {
         if (artifactSetCount.value[setName] >= 2) {
-            // name += '-' + artifactsData[setName].chs
-            name += '-' + t("artifact", setName, "setName")
+            name += '-' + ta(artifactsData[setName].nameLocale)
         }
     }
     return name

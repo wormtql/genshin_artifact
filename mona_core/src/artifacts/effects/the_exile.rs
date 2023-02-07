@@ -24,17 +24,41 @@ impl ArtifactTrait for TheExile {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::TheExile,
         name_mona: "exile",
-        chs: "流放者",
-        flower: Some("流放者之花"),
-        feather: Some("流放者之羽"),
-        sand: Some("流放者怀表"),
-        goblet: Some("流放者之杯"),
-        head: Some("流放者头冠"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "流放者",
+            en: "The Exile",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "流放者之花",
+            en: "Exile's Flower",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "流放者之羽",
+            en: "Exile's Feather",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "流放者怀表",
+            en: "Exile's Pocket Watch",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "流放者之杯",
+            en: "Exile's Goblet",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "流放者头冠",
+            en: "Exile's Circlet",
+        )),
         star: (3, 4),
         effect1: None,
-        effect2: Some("元素充能效率提高20%"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "元素充能效率提高20%。",
+            en: "Energy Recharge +20%",
+        )),
         effect3: None,
-        effect4: Some("施放元素爆发后，每2秒为队伍中所有角色（不包括自己）恢复2点元素能量。该效果持续6秒，无法叠加。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "施放元素爆发后，每2秒为队伍中所有角色（不包括自己）恢复2点元素能量。该效果持续6秒，无法叠加。",
+            en: "Using an Elemental Burst regenerates 2 Energy for all party members (excluding the wearer) every 2s for 6s. This effect cannot stack.",
+        )),
         effect5: None,
         internal_id: 10009,
     };

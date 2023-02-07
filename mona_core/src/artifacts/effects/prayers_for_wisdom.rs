@@ -16,14 +16,23 @@ impl ArtifactTrait for PrayersForWisdom {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::PrayersForWisdom,
         name_mona: "prayersForWisdom",
-        chs: "祭雷之人",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "祭雷之人",
+            en: "Prayers for Wisdom",
+        ),
         flower: None,
         feather: None,
         sand: None,
         goblet: None,
-        head: Some("祭雷礼冠"),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "祭雷礼冠",
+            en: "Tiara of Thunder",
+        )),
         star: (3, 4),
-        effect1: Some("受到的雷元素附着效果的持续时间减少40%"),
+        effect1: Some(crate::common::i18n::locale!(
+            zh_cn: "受到的雷元素附着效果的持续时间减少40%。",
+            en: "Affected by Electro for 40% less time.",
+        )),
         effect2: None,
         effect3: None,
         effect4: None,

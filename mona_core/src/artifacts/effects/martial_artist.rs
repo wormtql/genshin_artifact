@@ -41,17 +41,41 @@ impl ArtifactTrait for MartialArtist {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::MartialArtist,
         name_mona: "martialArtist",
-        chs: "武人",
-        flower: Some("武人的红花"),
-        feather: Some("武人的羽饰"),
-        sand: Some("武人的水漏"),
-        goblet: Some("武人的酒杯"),
-        head: Some("武人的头巾"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "武人",
+            en: "Martial Artist",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "武人的红花",
+            en: "Martial Artist's Red Flower",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "武人的羽饰",
+            en: "Martial Artist's Feather Accessory",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "武人的水漏",
+            en: "Martial Artist's Water Hourglass",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "武人的酒杯",
+            en: "Martial Artist's Wine Cup",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "武人的头巾",
+            en: "Martial Artist's Bandana",
+        )),
         star: (3, 4),
         effect1: None,
-        effect2: Some("普通攻击与重击造成的伤害提高15%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "普通攻击与重击造成的伤害提高15%；",
+            en: "Increases Normal Attack and Charged Attack DMG by 15%.",
+        )),
         effect3: None,
-        effect4: Some("施放元素战技后的8秒内，普通攻击和重击造成的伤害提升25%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "施放元素战技后的8秒内，普通攻击和重击造成的伤害提升25%。",
+            en: "After using Elemental Skill, increases Normal Attack and Charged Attack DMG by 25% for 8s.",
+        )),
         effect5: None,
         internal_id: 10006,
     };

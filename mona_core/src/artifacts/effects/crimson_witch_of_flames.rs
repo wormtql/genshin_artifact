@@ -45,17 +45,41 @@ impl ArtifactTrait for CrimsonWitchOfFlames {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::CrimsonWitchOfFlames,
         name_mona: "crimsonWitch",
-        chs: "炽烈的炎之魔女",
-        flower: Some("魔女的炎之花"),
-        feather: Some("魔女常燃之羽"),
-        sand: Some("魔女破灭之时"),
-        goblet: Some("魔女的心之火"),
-        head: Some("焦灼的魔女帽"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "炽烈的炎之魔女",
+            en: "Crimson Witch of Flames",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "魔女的炎之花",
+            en: "Witch's Flower of Blaze",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "魔女常燃之羽",
+            en: "Witch's Ever-Burning Plume",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "魔女破灭之时",
+            en: "Witch's End Time",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "魔女的心之火",
+            en: "Witch's Heart Flames",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "焦灼的魔女帽",
+            en: "Witch's Scorching Hat",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("获得15%火元素伤害加成。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "获得15%火元素伤害加成。",
+            en: "Pyro DMG Bonus +15%",
+        )),
         effect3: None,
-        effect4: Some("超载、燃烧反应造成的伤害提升40%，蒸发、融化反应的加成系数提高15%。施放元素战技后的10秒内，二件套的效果提高50%，该效果最多叠加3次。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "超载、燃烧反应造成的伤害提升40%，蒸发、融化反应的加成系数提高15%。施放元素战技后的10秒内，2件套的效果提高50%，该效果最多叠加3次。",
+            en: "Increases Overloaded and Burning DMG by 40%. Increases Vaporize and Melt DMG by 15%. Using Elemental Skill increases the 2-Piece Set Bonus by 50% of its starting value for 10s. Max 3 stacks.",
+        )),
         effect5: None,
         internal_id: 15006,
     };

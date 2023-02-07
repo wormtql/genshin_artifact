@@ -39,17 +39,41 @@ impl ArtifactTrait for Lavawalker {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::Lavawalker,
         name_mona: "lavaWalker",
-        chs: "渡过烈火的贤人",
-        flower: Some("渡火者的决绝"),
-        feather: Some("渡火者的解脱"),
-        sand: Some("渡火者的煎熬"),
-        goblet: Some("渡火者的醒悟"),
-        head: Some("渡火者的智慧"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "渡过烈火的贤人",
+            en: "Lavawalker",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "渡火者的决绝",
+            en: "Lavawalker's Resolution",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "渡火者的解脱",
+            en: "Lavawalker's Salvation",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "渡火者的煎熬",
+            en: "Lavawalker's Torment",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "渡火者的醒悟",
+            en: "Lavawalker's Epiphany",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "渡火者的智慧",
+            en: "Lavawalker's Wisdom",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("火元素抗性提高40%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "火元素抗性提高40%。",
+            en: "Pyro RES increased by 40%.",
+        )),
         effect3: None,
-        effect4: Some("对处于火元素影响下的敌人造成的伤害提升35%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "对处于火元素影响下的敌人造成的伤害提升35%。",
+            en: "Increases DMG against opponents affected by Pyro by 35%.",
+        )),
         effect5: None,
         internal_id: 14003,
     };

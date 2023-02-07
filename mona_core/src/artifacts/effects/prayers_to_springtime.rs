@@ -16,14 +16,23 @@ impl ArtifactTrait for PrayersToSpringtime {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::PrayersToSpringtime,
         name_mona: "prayersToSpringtime",
-        chs: "祭冰之人",
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "祭冰之人",
+            en: "Prayers to Springtime",
+        ),
         flower: None,
         feather: None,
         sand: None,
         goblet: None,
-        head: Some("祭冰礼冠"),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "祭冰礼冠",
+            en: "Tiara of Frost",
+        )),
         star: (3, 4),
-        effect1: Some("受到的冰元素附着效果的持续时间减少40%"),
+        effect1: Some(crate::common::i18n::locale!(
+            zh_cn: "受到的冰元素附着效果的持续时间减少40%。",
+            en: "Affected by Cryo for 40% less time.",
+        )),
         effect2: None,
         effect3: None,
         effect4: None,

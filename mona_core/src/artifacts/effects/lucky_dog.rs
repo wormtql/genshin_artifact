@@ -24,17 +24,41 @@ impl ArtifactTrait for LuckyDog {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::LuckyDog,
         name_mona: "luckyDog",
-        chs: "幸运儿",
-        flower: Some("幸运儿绿花"),
-        feather: Some("幸运儿鹰羽"),
-        sand: Some("幸运儿沙漏"),
-        goblet: Some("幸运儿之杯"),
-        head: Some("幸运儿银冠"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "幸运儿",
+            en: "Lucky Dog",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "幸运儿绿花",
+            en: "Lucky Dog's Clover",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "幸运儿鹰羽",
+            en: "Lucky Dog's Eagle Feather",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "幸运儿沙漏",
+            en: "Lucky Dog's Hourglass",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "幸运儿之杯",
+            en: "Lucky Dog's Goblet",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "幸运儿银冠",
+            en: "Lucky Dog's Silver Circlet",
+        )),
         star: (1, 3),
         effect1: None,
-        effect2: Some("防御力提高100点。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "防御力提高100点。",
+            en: "DEF increased by 100.",
+        )),
         effect3: None,
-        effect4: Some("拾取摩拉时，恢复300点生命值。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "拾取摩拉时，恢复300点生命值。",
+            en: "Picking up Mora restores 300 HP.",
+        )),
         effect5: None,
         internal_id: 10011,
     };

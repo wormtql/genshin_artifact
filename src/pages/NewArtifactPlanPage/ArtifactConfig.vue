@@ -70,12 +70,11 @@ export default {
                 if (config.length > 0) {
                     results.push({
                         name: name2,
-                        title: this.t("artifact", d.eng, "setName"),
+                        title: this.ta(d.nameLocale),
                         eng: d.eng,
                         snake: "config_" + toSnakeCase(name2),
                         config4: config,
-                        // effect4: d.effect4,
-                        effect4: this.t("artifact", d.eng, "effects.4"),
+                        effect4: this.ta(d.effect4),
                         thumbnail: getArtifactThumbnail(name),
                         // chs: d.chs,
                     })
@@ -104,10 +103,10 @@ export default {
         }
     },
     setup() {
-        const { t } = useI18n()
+        const { t, ta } = useI18n()
 
         return {
-            t
+            t, ta
         }
     }
 }

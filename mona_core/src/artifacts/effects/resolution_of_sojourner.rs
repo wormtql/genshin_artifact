@@ -28,17 +28,41 @@ impl ArtifactTrait for ResolutionOfSojourner {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::ResolutionOfSojourner,
         name_mona: "resolutionOfSojourner",
-        chs: "行者之心",
-        flower: Some("故人之心"),
-        feather: Some("归乡之羽"),
-        sand: Some("逐光之石"),
-        goblet: Some("异国之盏"),
-        head: Some("感别之冠"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "行者之心",
+            en: "Resolution of Sojourner",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "故人之心",
+            en: "Heart of Comradeship",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "归乡之羽",
+            en: "Feather of Homecoming",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "逐光之石",
+            en: "Sundial of the Sojourner",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "异国之盏",
+            en: "Goblet of the Sojourner",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "感别之冠",
+            en: "Crown of Parting",
+        )),
         star: (3, 4),
         effect1: None,
-        effect2: Some("攻击力提高18%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "攻击力提高18%。",
+            en: "ATK +18%.",
+        )),
         effect3: None,
-        effect4: Some("重击的暴击率提高30%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "重击的暴击率提升30%。",
+            en: "Increases Charged Attack CRIT Rate by 30%.",
+        )),
         effect5: None,
         internal_id: 10001,
     };

@@ -40,17 +40,41 @@ impl ArtifactTrait for BraveHeart {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::BraveHeart,
         name_mona: "braveHeart",
-        chs: "勇士之心",
-        flower: Some("勇士的勋章"),
-        feather: Some("勇士的期许"),
-        sand: Some("勇士的坚毅"),
-        goblet: Some("勇士的壮行"),
-        head: Some("勇士的冠冕"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "勇士之心",
+            en: "Brave Heart",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "勇士的勋章",
+            en: "Medal of the Brave",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "勇士的期许",
+            en: "Prospect of the Brave",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "勇士的坚毅",
+            en: "Fortitude of the Brave",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "勇士的壮行",
+            en: "Outset of the Brave",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "勇士的冠冕",
+            en: "Crown of the Brave",
+        )),
         star: (3, 4),
         effect1: None,
-        effect2: Some("攻击力提高18%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "攻击力提高18%。",
+            en: "ATK +18%.",
+        )),
         effect3: None,
-        effect4: Some("对生命值高于50%的敌人，造成的伤害增加30%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "对生命值高于50%的敌人，造成的伤害增加30%。",
+            en: "Increases DMG by 30% against opponents with more than 50% HP.",
+        )),
         effect5: None,
         internal_id: 10002,
     };

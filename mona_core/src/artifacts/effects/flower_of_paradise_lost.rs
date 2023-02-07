@@ -35,17 +35,41 @@ impl ArtifactTrait for FlowerOfParadiseLost {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::FlowerOfParadiseLost,
         name_mona: "FlowerOfParadiseLost",
-        chs: "乐园遗落之花",
-        flower: Some("月女的华彩"),
-        feather: Some("谢落的筵席"),
-        sand: Some("凝结的时刻"),
-        goblet: Some("守秘的魔瓶"),
-        head: Some("紫晶的花冠"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "乐园遗落之花",
+            en: "Flower of Paradise Lost",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "月女的华彩",
+            en: "Moon Maiden's Myriad",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "谢落的筵席",
+            en: "Wilting Feast",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "凝结的时刻",
+            en: "A Moment Congealed",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "守秘的魔瓶",
+            en: "Secret-Keeper's Magic Bottle",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "紫晶的花冠",
+            en: "Amethyst Crown",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some(""),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "元素精通提高80点。",
+            en: "Elemental Mastery +80",
+        )),
         effect3: None,
-        effect4: Some(""),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "装备者绽放、超绽放、烈绽放反应造成的伤害提升50%。此外，装备者触发绽放、超绽放、烈绽放时，上述效果带来的加成提升25%，该效果持续10秒，至多叠加4次，每1秒至多触发一次。装备者处于队伍后台时依然能触发该效果。",
+            en: "The equipping character's Bloom, Hyperbloom, and Burgeon reaction DMG are increased by 50%. Additionally, when the equipping character triggers Bloom, Hyperbloom, or Burgeon they will gain another 25% bonus to the effect mentioned prior. Each stack of this lasts 10s. Max 4 stacks simultaneously. This effect can only be triggered once per second. The character who equips this can still trigger its effects when not on the field.",
+        )),
         effect5: None,
         internal_id: 15028,
     };

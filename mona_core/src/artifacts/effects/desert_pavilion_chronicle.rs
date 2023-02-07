@@ -35,17 +35,41 @@ impl ArtifactTrait for DesertPavilionChronicle {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::DesertPavilionChronicle,
         name_mona: "DesertPavilionChronicle",
-        chs: "沙上楼阁史话",
-        flower: Some("众王之都的开端"),
-        feather: Some("黄金邦国的结末"),
-        sand: Some("失落迷途的机芯"),
-        goblet: Some("迷醉长梦的守护"),
-        head: Some("流沙贵嗣的遗宝"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "沙上楼阁史话",
+            en: "Desert Pavilion Chronicle",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "众王之都的开端",
+            en: "The First Days of the City of Kings",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "黄金邦国的结末",
+            en: "End of the Golden Realm",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "失落迷途的机芯",
+            en: "Timepiece of the Lost Path",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "迷醉长梦的守护",
+            en: "Defender of the Enchanting Dream",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "流沙贵嗣的遗宝",
+            en: "Legacy of the Desert High-Born",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some(""),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "获得15%风元素伤害加成。",
+            en: "Anemo DMG Bonus +15%",
+        )),
         effect3: None,
-        effect4: Some(""),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "重击命中敌人后，该角色的普通攻击速度提升10%，普通攻击、重击与下落攻击造成的伤害提升40%，持续15秒。",
+            en: "After Charged Attacks hit opponents, this character's Normal Attack SPD will increase by 10% while Normal, Charged, and Plunging Attack DMG will increase by 30% for 10s.",
+        )),
         effect5: None,
         internal_id: 15027,
     };

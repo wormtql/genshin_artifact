@@ -12,8 +12,7 @@
                 class="image"
             >
             <p class="text">
-<!--                {{ selectedArtData[position].chs }}-->
-                {{ t("artifact", selectedArtData.eng, "items", positionToIndex(position)) }}
+                {{ ta(selectedArtData[position].text) }}
             </p>
         </div>
     </div>
@@ -29,7 +28,7 @@ import {useI18n} from "@/i18n/i18n"
 import {positionToIndex} from "@/utils/artifacts"
 
 
-const { t } = useI18n()
+const { t, ta } = useI18n()
 
 
 interface Props {

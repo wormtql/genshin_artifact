@@ -28,17 +28,41 @@ impl ArtifactTrait for MaidenBeloved {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::MaidenBeloved,
         name_mona: "maidenBeloved",
-        chs: "被怜爱的少女",
-        flower: Some("远方的少女的心"),
-        feather: Some("少女飘摇的思念"),
-        sand: Some("少女苦短的良辰"),
-        goblet: Some("少女片刻的闲暇"),
-        head: Some("少女易逝的芳颜"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "被怜爱的少女",
+            en: "Maiden Beloved",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "远方的少女之心",
+            en: "Maiden's Distant Love",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "少女飘摇的思念",
+            en: "Maiden's Heart-stricken Infatuation",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "少女苦短的良辰",
+            en: "Maiden's Passing Youth",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "少女片刻的闲暇",
+            en: "Maiden's Fleeting Leisure",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "少女易逝的芳颜",
+            en: "Maiden's Fading Beauty",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("角色造成的治疗效果提升15%"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "角色造成的治疗效果提升15%。",
+            en: "Character Healing Effectiveness +15%",
+        )),
         effect3: None,
-        effect4: Some("施放元素战技或元素爆发后的10秒内，队伍中所有角色受治疗效果加成提高20%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "施放元素战技或元素爆发后的10秒内，队伍中所有角色受治疗效果加成提高20%。",
+            en: "Using an Elemental Skill or Burst increases healing received by all party members by 20% for 10s.",
+        )),
         effect5: None,
         internal_id: 14004,
     };

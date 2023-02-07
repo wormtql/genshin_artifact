@@ -39,17 +39,41 @@ impl ArtifactTrait for Thundersoother {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::Thundersoother,
         name_mona: "thunderSmoother",
-        chs: "平息鸣雷的尊者",
-        flower: Some("平雷之心"),
-        feather: Some("平雷之羽"),
-        sand: Some("平雷之刻"),
-        goblet: Some("平雷之器"),
-        head: Some("平雷之冠"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "平息鸣雷的尊者",
+            en: "Thundersoother",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "平雷之心",
+            en: "Thundersoother's Heart",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "平雷之羽",
+            en: "Thundersoother's Plume",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "平雷之刻",
+            en: "Hour of Soothing Thunder",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "平雷之器",
+            en: "Thundersoother's Goblet",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "平雷之冠",
+            en: "Thundersoother's Diadem",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("雷元素抗性提高40%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "雷元素抗性提高40%。",
+            en: "Electro RES increased by 40%.",
+        )),
         effect3: None,
-        effect4: Some("对处于雷元素影响下的敌人造成的伤害提升35%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "对处于雷元素影响下的敌人造成的伤害提升35%。",
+            en: "Increases DMG against opponents affected by Electro by 35%.",
+        )),
         effect5: None,
         internal_id: 14002,
     };

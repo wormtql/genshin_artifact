@@ -24,17 +24,41 @@ impl ArtifactTrait for Adventurer {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::Adventurer,
         name_mona: "adventurer",
-        chs: "冒险家",
-        flower: Some("冒险家之花"),
-        feather: Some("冒险家尾羽"),
-        sand: Some("冒险家怀表"),
-        goblet: Some("冒险家金杯"),
-        head: Some("冒险家头带"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "冒险家",
+            en: "Adventurer",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "冒险家之花",
+            en: "Adventurer's Flower",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "冒险家尾羽",
+            en: "Adventurer's Tail Feather",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "冒险家怀表",
+            en: "Adventurer's Pocket Watch",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "冒险家金杯",
+            en: "Adventurer's Golden Goblet",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "冒险家头带",
+            en: "Adventurer's Bandana",
+        )),
         star: (1, 3),
         effect1: None,
-        effect2: Some("生命值上限提升1000点。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "生命值上限提高1000点。",
+            en: "Max HP increased by 1000.",
+        )),
         effect3: None,
-        effect4: Some("生命值上限提升1000点。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "开启各类宝箱后的5秒内，持续恢复30%生命值。",
+            en: "Opening a chest regenerates 30% Max HP over 5s.",
+        )),
         effect5: None,
         internal_id: 10010,
     };

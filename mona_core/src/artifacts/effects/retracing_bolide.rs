@@ -40,17 +40,41 @@ impl ArtifactTrait for RetracingBolide {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::RetracingBolide,
         name_mona: "retracingBolide",
-        chs: "逆飞的流星",
-        flower: Some("夏祭之花"),
-        feather: Some("夏祭终末"),
-        sand: Some("夏祭之刻"),
-        goblet: Some("夏祭水玉"),
-        head: Some("夏祭之面"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "逆飞的流星",
+            en: "Retracing Bolide",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "夏祭之花",
+            en: "Summer Night's Bloom",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "夏祭终末",
+            en: "Summer Night's Finale",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "夏祭之刻",
+            en: "Summer Night's Moment",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "夏祭水玉",
+            en: "Summer Night's Waterballoon",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "夏祭之面",
+            en: "Summer Night's Mask",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("护盾强效提高35%"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "护盾强效提高35%。",
+            en: "Increases Shield Strength by 35%.",
+        )),
         effect3: None,
-        effect4: Some("处于护盾庇护下时，额外获得40%普通攻击和重击伤害加成。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "处于护盾庇护下时，额外获得40%普通攻击和重击伤害加成。",
+            en: "While protected by a shield, gain an additional 40% Normal and Charged Attack DMG.",
+        )),
         effect5: None,
         internal_id: 15015,
     };

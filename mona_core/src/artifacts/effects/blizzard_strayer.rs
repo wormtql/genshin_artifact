@@ -39,17 +39,41 @@ impl ArtifactTrait for BlizzardStrayer {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::BlizzardStrayer,
         name_mona: "blizzardStrayer",
-        chs: "冰风迷途的勇士",
-        flower: Some("历经风雪的思念"),
-        feather: Some("摧冰而行的执望"),
-        sand: Some("冰雪故园的终期"),
-        goblet: Some("遍结寒霜的傲骨"),
-        head: Some("破冰踏雪的回音"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "冰风迷途的勇士",
+            en: "Blizzard Strayer",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "历经风雪的思念",
+            en: "Snowswept Memory",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "摧冰而行的执望",
+            en: "Icebreaker's Resolve",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "冰雪故园的终期",
+            en: "Frozen Homeland's Demise",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "遍结寒霜的傲骨",
+            en: "Frost-Weaved Dignity",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "破冰踏雪的回音",
+            en: "Broken Rime's Echo",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("获得15%冰元素伤害加成"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "获得15%冰元素伤害加成。",
+            en: "Cryo DMG Bonus +15%",
+        )),
         effect3: None,
-        effect4: Some("攻击处于冰元素影响状态下的敌人时，暴击率提高20%；若敌人处于冰冻状态下，暴击率额外提高20%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "攻击处于冰元素影响下的敌人时，暴击率提高20%；若敌人处于冻结状态下，则暴击率额外提高20%。",
+            en: "When a character attacks an opponent affected by Cryo, their CRIT Rate is increased by 20%. If the opponent is Frozen, CRIT Rate is increased by an additional 20%.",
+        )),
         effect5: None,
         internal_id: 14001,
     };

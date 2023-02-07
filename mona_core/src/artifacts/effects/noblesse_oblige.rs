@@ -40,17 +40,41 @@ impl ArtifactTrait for NoblesseOblige {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::NoblesseOblige,
         name_mona: "noblesseOblige",
-        chs: "昔日宗室之仪",
-        flower: Some("宗室之花"),
-        feather: Some("宗室之翎"),
-        sand: Some("宗室时计"),
-        goblet: Some("宗室银瓮"),
-        head: Some("宗室面具"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "昔日宗室之仪",
+            en: "Noblesse Oblige",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "宗室之花",
+            en: "Royal Flora",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "宗室之翎",
+            en: "Royal Plume",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "宗室时计",
+            en: "Royal Pocket Watch",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "宗室银瓮",
+            en: "Royal Silver Urn",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "宗室面具",
+            en: "Royal Masque",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("元素爆发造成的伤害提升20％。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "元素爆发造成的伤害提升20%。",
+            en: "Elemental Burst DMG +20%",
+        )),
         effect3: None,
-        effect4: Some("施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "施放元素爆发后，队伍中所有角色攻击力提升20%，持续12秒。该效果不可叠加。",
+            en: "Using an Elemental Burst increases all party members' ATK by 20% for 12s. This effect cannot stack.",
+        )),
         effect5: None,
         internal_id: 15007,
     };

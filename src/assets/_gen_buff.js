@@ -262,7 +262,7 @@ export default {
     
     "ATKPercentage": {
         name: "ATKPercentage",
-        nameLocale: 400,
+        nameLocale: 525,
         
         description: null,
         
@@ -279,7 +279,7 @@ export default {
     
     "DEFPercentage": {
         name: "DEFPercentage",
-        nameLocale: 1032,
+        nameLocale: 1329,
         
         description: null,
         
@@ -296,7 +296,7 @@ export default {
     
     "HPPercentage": {
         name: "HPPercentage",
-        nameLocale: 755,
+        nameLocale: 962,
         
         description: null,
         
@@ -313,7 +313,7 @@ export default {
     
     "ATKFixed": {
         name: "ATKFixed",
-        nameLocale: 399,
+        nameLocale: 524,
         
         description: null,
         
@@ -330,7 +330,7 @@ export default {
     
     "DEFFixed": {
         name: "DEFFixed",
-        nameLocale: 1031,
+        nameLocale: 1328,
         
         description: null,
         
@@ -347,7 +347,7 @@ export default {
     
     "HPFixed": {
         name: "HPFixed",
-        nameLocale: 754,
+        nameLocale: 961,
         
         description: null,
         
@@ -364,7 +364,7 @@ export default {
     
     "Critical": {
         name: "Critical",
-        nameLocale: 590,
+        nameLocale: 740,
         
         description: null,
         
@@ -381,7 +381,7 @@ export default {
     
     "CriticalDamage": {
         name: "CriticalDamage",
-        nameLocale: 588,
+        nameLocale: 738,
         
         description: null,
         
@@ -398,7 +398,7 @@ export default {
     
     "CustomBonus": {
         name: "CustomBonus",
-        nameLocale: 108,
+        nameLocale: 114,
         
         description: null,
         
@@ -415,7 +415,7 @@ export default {
     
     "ElementalMastery": {
         name: "ElementalMastery",
-        nameLocale: 138,
+        nameLocale: 151,
         
         description: null,
         
@@ -432,7 +432,7 @@ export default {
     
     "Recharge": {
         name: "Recharge",
-        nameLocale: 122,
+        nameLocale: 129,
         
         description: null,
         
@@ -449,7 +449,7 @@ export default {
     
     "DEFMinus": {
         name: "DEFMinus",
-        nameLocale: 165,
+        nameLocale: 189,
         
         description: 0,
         
@@ -466,7 +466,7 @@ export default {
     
     "ResMinus": {
         name: "ResMinus",
-        nameLocale: 164,
+        nameLocale: 188,
         
         description: null,
         
@@ -483,7 +483,7 @@ export default {
     
     "HealingBonus": {
         name: "HealingBonus",
-        nameLocale: 654,
+        nameLocale: 827,
         
         description: null,
         
@@ -500,9 +500,9 @@ export default {
     
     "BaseDmg": {
         name: "BaseDmg",
-        nameLocale: 277,
+        nameLocale: 327,
         
-        description: 956,
+        description: 1235,
         
         
         badge: BaseDmg_image,
@@ -517,9 +517,9 @@ export default {
     
     "AlbedoTalent2": {
         name: "AlbedoTalent2",
-        nameLocale: 1037,
+        nameLocale: 1337,
         
-        description: 1042,
+        description: 1342,
         
         
         badge: getImage("Albedo"),
@@ -532,9 +532,9 @@ export default {
     
     "AlbedoC4": {
         name: "AlbedoC4",
-        nameLocale: 1038,
+        nameLocale: 1338,
         
-        description: 1040,
+        description: 1340,
         
         
         badge: getImage("Albedo"),
@@ -547,9 +547,9 @@ export default {
     
     "AlbedoC6": {
         name: "AlbedoC6",
-        nameLocale: 1036,
+        nameLocale: 1336,
         
-        description: 1041,
+        description: 1341,
         
         
         badge: getImage("Albedo"),
@@ -562,9 +562,9 @@ export default {
     
     "AloyTalent1": {
         name: "AloyTalent1",
-        nameLocale: 272,
+        nameLocale: 322,
         
-        description: 273,
+        description: 323,
         
         
         badge: getImage("Aloy"),
@@ -577,9 +577,9 @@ export default {
     
     "AratakiIttoC4": {
         name: "AratakiIttoC4",
-        nameLocale: 871,
+        nameLocale: 1109,
         
-        description: 873,
+        description: 1111,
         
         
         badge: getImage("Itto"),
@@ -592,9 +592,9 @@ export default {
     
     "BeidouC6": {
         name: "BeidouC6",
-        nameLocale: 194,
+        nameLocale: 229,
         
-        description: 196,
+        description: 231,
         
         
         badge: getImage("Beidou"),
@@ -607,9 +607,9 @@ export default {
     
     "BennettQ": {
         name: "BennettQ",
-        nameLocale: 735,
+        nameLocale: 941,
         
-        description: 738,
+        description: 944,
         
         
         badge: getImage("Bennett"),
@@ -628,9 +628,9 @@ export default {
     
     "BennettC6": {
         name: "BennettC6",
-        nameLocale: 734,
+        nameLocale: 940,
         
-        description: 739,
+        description: 945,
         
         
         badge: getImage("Bennett"),
@@ -643,9 +643,9 @@ export default {
     
     "ChongyunTalent2": {
         name: "ChongyunTalent2",
-        nameLocale: 987,
+        nameLocale: 1279,
         
-        description: 989,
+        description: 1281,
         
         
         badge: getImage("Chongyun"),
@@ -658,9 +658,9 @@ export default {
     
     "DionaC6G50": {
         name: "DionaC6G50",
-        nameLocale: 979,
+        nameLocale: 1260,
         
-        description: 981,
+        description: 1262,
         
         
         badge: getImage("Diona"),
@@ -673,9 +673,9 @@ export default {
     
     "EulaE": {
         name: "EulaE",
-        nameLocale: 104,
+        nameLocale: 110,
         
-        description: 106,
+        description: 112,
         
         
         badge: getImage("Eula"),
@@ -690,9 +690,9 @@ export default {
     
     "GanyuTalent2": {
         name: "GanyuTalent2",
-        nameLocale: 749,
+        nameLocale: 956,
         
-        description: 753,
+        description: 960,
         
         
         badge: getImage("Ganyu"),
@@ -705,9 +705,9 @@ export default {
     
     "GanyuC1": {
         name: "GanyuC1",
-        nameLocale: 750,
+        nameLocale: 957,
         
-        description: 752,
+        description: 959,
         
         
         badge: getImage("Ganyu"),
@@ -720,9 +720,9 @@ export default {
     
     "GorouE1": {
         name: "GorouE1",
-        nameLocale: 90,
+        nameLocale: 94,
         
-        description: 94,
+        description: 98,
         
         
         badge: getImage("Gorou"),
@@ -737,9 +737,9 @@ export default {
     
     "GorouE3": {
         name: "GorouE3",
-        nameLocale: 91,
+        nameLocale: 95,
         
-        description: 95,
+        description: 99,
         
         
         badge: getImage("Gorou"),
@@ -752,9 +752,9 @@ export default {
     
     "GorouTalent1": {
         name: "GorouTalent1",
-        nameLocale: 89,
+        nameLocale: 93,
         
-        description: 97,
+        description: 101,
         
         
         badge: getImage("Gorou"),
@@ -767,9 +767,9 @@ export default {
     
     "GorouC6": {
         name: "GorouC6",
-        nameLocale: 92,
+        nameLocale: 96,
         
-        description: 96,
+        description: 100,
         
         
         badge: getImage("Gorou"),
@@ -784,9 +784,9 @@ export default {
     
     "HuTaoTalent1": {
         name: "HuTaoTalent1",
-        nameLocale: 853,
+        nameLocale: 1090,
         
-        description: 855,
+        description: 1092,
         
         
         badge: getImage("Hutao"),
@@ -799,9 +799,9 @@ export default {
     
     "JeanC4": {
         name: "JeanC4",
-        nameLocale: 743,
+        nameLocale: 949,
         
-        description: 745,
+        description: 951,
         
         
         badge: getImage("Qin"),
@@ -814,9 +814,9 @@ export default {
     
     "KaedeharaKazuhaTalent2": {
         name: "KaedeharaKazuhaTalent2",
-        nameLocale: 624,
+        nameLocale: 779,
         
-        description: 628,
+        description: 783,
         
         
         badge: getImage("Kazuha"),
@@ -833,9 +833,9 @@ export default {
     
     "KaedeharaKazuhaC2": {
         name: "KaedeharaKazuhaC2",
-        nameLocale: 623,
+        nameLocale: 778,
         
-        description: 627,
+        description: 782,
         
         
         badge: getImage("Kazuha"),
@@ -848,9 +848,9 @@ export default {
     
     "KamisatoAyakaC4": {
         name: "KamisatoAyakaC4",
-        nameLocale: 810,
+        nameLocale: 1027,
         
-        description: 834,
+        description: 1064,
         
         
         badge: getImage("Ayaka"),
@@ -863,9 +863,9 @@ export default {
     
     "KleeC2": {
         name: "KleeC2",
-        nameLocale: 222,
+        nameLocale: 267,
         
-        description: 224,
+        description: 269,
         
         
         badge: getImage("Klee"),
@@ -878,9 +878,9 @@ export default {
     
     "KleeC6": {
         name: "KleeC6",
-        nameLocale: 221,
+        nameLocale: 266,
         
-        description: 225,
+        description: 270,
         
         
         badge: getImage("Klee"),
@@ -893,9 +893,9 @@ export default {
     
     "KujouSaraEOrQ": {
         name: "KujouSaraEOrQ",
-        nameLocale: 54,
+        nameLocale: 58,
         
-        description: 57,
+        description: 61,
         
         
         badge: getImage("Sara"),
@@ -914,9 +914,9 @@ export default {
     
     "LisaTalent2": {
         name: "LisaTalent2",
-        nameLocale: 48,
+        nameLocale: 50,
         
-        description: 50,
+        description: 52,
         
         
         badge: getImage("Lisa"),
@@ -929,9 +929,9 @@ export default {
     
     "MonaQ": {
         name: "MonaQ",
-        nameLocale: 878,
+        nameLocale: 1117,
         
-        description: 881,
+        description: 1120,
         
         
         badge: getImage("Mona"),
@@ -948,9 +948,9 @@ export default {
     
     "MonaC1": {
         name: "MonaC1",
-        nameLocale: 879,
+        nameLocale: 1118,
         
-        description: 882,
+        description: 1121,
         
         
         badge: getImage("Mona"),
@@ -963,9 +963,9 @@ export default {
     
     "NingguangTalent2": {
         name: "NingguangTalent2",
-        nameLocale: 168,
+        nameLocale: 192,
         
-        description: 170,
+        description: 194,
         
         
         badge: getImage("Ningguang"),
@@ -978,9 +978,9 @@ export default {
     
     "RaidenShogunE": {
         name: "RaidenShogunE",
-        nameLocale: 1063,
+        nameLocale: 1367,
         
-        description: 1065,
+        description: 1369,
         
         
         badge: getImage("Shougun"),
@@ -997,9 +997,9 @@ export default {
     
     "RaidenShogunC4": {
         name: "RaidenShogunC4",
-        nameLocale: 1062,
+        nameLocale: 1366,
         
-        description: 1066,
+        description: 1370,
         
         
         badge: getImage("Shougun"),
@@ -1012,9 +1012,9 @@ export default {
     
     "RazorC4": {
         name: "RazorC4",
-        nameLocale: 1057,
+        nameLocale: 1360,
         
-        description: 1059,
+        description: 1362,
         
         
         badge: getImage("Razor"),
@@ -1027,9 +1027,9 @@ export default {
     
     "RosariaTalent2": {
         name: "RosariaTalent2",
-        nameLocale: 839,
+        nameLocale: 1070,
         
-        description: 842,
+        description: 1073,
         
         
         badge: getImage("Rosaria"),
@@ -1044,9 +1044,9 @@ export default {
     
     "RosariaC6": {
         name: "RosariaC6",
-        nameLocale: 838,
+        nameLocale: 1069,
         
-        description: 841,
+        description: 1072,
         
         
         badge: getImage("Rosaria"),
@@ -1059,9 +1059,9 @@ export default {
     
     "ShenheE": {
         name: "ShenheE",
-        nameLocale: 765,
+        nameLocale: 976,
         
-        description: 770,
+        description: 981,
         
         
         badge: getImage("Shenhe"),
@@ -1078,9 +1078,9 @@ export default {
     
     "ShenheQ": {
         name: "ShenheQ",
-        nameLocale: 767,
+        nameLocale: 978,
         
-        description: 771,
+        description: 982,
         
         
         badge: getImage("Shenhe"),
@@ -1095,9 +1095,9 @@ export default {
     
     "ShenheTalent1": {
         name: "ShenheTalent1",
-        nameLocale: 766,
+        nameLocale: 977,
         
-        description: 772,
+        description: 983,
         
         
         badge: getImage("Shenhe"),
@@ -1112,9 +1112,9 @@ export default {
     
     "ShenheTalent2": {
         name: "ShenheTalent2",
-        nameLocale: 768,
+        nameLocale: 979,
         
-        description: 773,
+        description: 984,
         
         
         badge: getImage("Shenhe"),
@@ -1129,9 +1129,9 @@ export default {
     
     "SucroseTalent1": {
         name: "SucroseTalent1",
-        nameLocale: 787,
+        nameLocale: 1000,
         
-        description: 790,
+        description: 1003,
         
         
         badge: getImage("Sucrose"),
@@ -1144,9 +1144,9 @@ export default {
     
     "SucroseTalent2": {
         name: "SucroseTalent2",
-        nameLocale: 785,
+        nameLocale: 998,
         
-        description: 791,
+        description: 1004,
         
         
         badge: getImage("Sucrose"),
@@ -1161,9 +1161,9 @@ export default {
     
     "SucroseC6": {
         name: "SucroseC6",
-        nameLocale: 786,
+        nameLocale: 999,
         
-        description: 789,
+        description: 1002,
         
         
         badge: getImage("Sucrose"),
@@ -1178,9 +1178,9 @@ export default {
     
     "ThomaTalent1": {
         name: "ThomaTalent1",
-        nameLocale: 359,
+        nameLocale: 479,
         
-        description: 362,
+        description: 482,
         
         
         badge: getImage("Tohma"),
@@ -1195,9 +1195,9 @@ export default {
     
     "ThomaC6": {
         name: "ThomaC6",
-        nameLocale: 358,
+        nameLocale: 478,
         
-        description: 361,
+        description: 481,
         
         
         badge: getImage("Tohma"),
@@ -1210,9 +1210,9 @@ export default {
     
     "VentiC2": {
         name: "VentiC2",
-        nameLocale: 674,
+        nameLocale: 869,
         
-        description: 676,
+        description: 871,
         
         
         badge: getImage("Venti"),
@@ -1227,9 +1227,9 @@ export default {
     
     "VentiC6": {
         name: "VentiC6",
-        nameLocale: 673,
+        nameLocale: 868,
         
-        description: 677,
+        description: 872,
         
         
         badge: getImage("Venti"),
@@ -1246,9 +1246,9 @@ export default {
     
     "XianglingTalent2": {
         name: "XianglingTalent2",
-        nameLocale: 1108,
+        nameLocale: 1416,
         
-        description: 1112,
+        description: 1420,
         
         
         badge: getImage("Xiangling"),
@@ -1261,9 +1261,9 @@ export default {
     
     "XianglingC1": {
         name: "XianglingC1",
-        nameLocale: 1106,
+        nameLocale: 1414,
         
-        description: 1110,
+        description: 1418,
         
         
         badge: getImage("Xiangling"),
@@ -1276,9 +1276,9 @@ export default {
     
     "XianglingC6": {
         name: "XianglingC6",
-        nameLocale: 1107,
+        nameLocale: 1415,
         
-        description: 1111,
+        description: 1419,
         
         
         badge: getImage("Xiangling"),
@@ -1291,9 +1291,9 @@ export default {
     
     "XingqiuC2": {
         name: "XingqiuC2",
-        nameLocale: 906,
+        nameLocale: 1155,
         
-        description: 908,
+        description: 1157,
         
         
         badge: getImage("Xingqiu"),
@@ -1306,9 +1306,9 @@ export default {
     
     "XinyanC4": {
         name: "XinyanC4",
-        nameLocale: 965,
+        nameLocale: 1244,
         
-        description: 969,
+        description: 1248,
         
         
         badge: getImage("Xinyan"),
@@ -1321,9 +1321,9 @@ export default {
     
     "XinyanTalent2": {
         name: "XinyanTalent2",
-        nameLocale: 966,
+        nameLocale: 1245,
         
-        description: 970,
+        description: 1249,
         
         
         badge: getImage("Xinyan"),
@@ -1336,9 +1336,9 @@ export default {
     
     "YaeMikoC4": {
         name: "YaeMikoC4",
-        nameLocale: 142,
+        nameLocale: 158,
         
-        description: 144,
+        description: 160,
         
         
         badge: getImage("Yae"),
@@ -1351,9 +1351,9 @@ export default {
     
     "YoimiyaTalent2": {
         name: "YoimiyaTalent2",
-        nameLocale: 322,
+        nameLocale: 406,
         
-        description: 324,
+        description: 408,
         
         
         badge: getImage("Yoimiya"),
@@ -1368,9 +1368,9 @@ export default {
     
     "YunjinQ": {
         name: "YunjinQ",
-        nameLocale: 79,
+        nameLocale: 83,
         
-        description: 81,
+        description: 85,
         
         
         badge: getImage("Yunjin"),
@@ -1391,9 +1391,9 @@ export default {
     
     "YunjinC2": {
         name: "YunjinC2",
-        nameLocale: 78,
+        nameLocale: 82,
         
-        description: 82,
+        description: 86,
         
         
         badge: getImage("Yunjin"),
@@ -1406,9 +1406,9 @@ export default {
     
     "ZhongliShield": {
         name: "ZhongliShield",
-        nameLocale: 1012,
+        nameLocale: 1308,
         
-        description: 1014,
+        description: 1310,
         
         
         badge: getImage("Zhongli"),
@@ -1421,9 +1421,9 @@ export default {
     
     "YelanTalent2": {
         name: "YelanTalent2",
-        nameLocale: 284,
+        nameLocale: 341,
         
-        description: 288,
+        description: 345,
         
         
         badge: getImage("Yelan"),
@@ -1438,9 +1438,9 @@ export default {
     
     "YelanC4": {
         name: "YelanC4",
-        nameLocale: 285,
+        nameLocale: 342,
         
-        description: 287,
+        description: 344,
         
         
         badge: getImage("Yelan"),
@@ -1455,9 +1455,9 @@ export default {
     
     "KamisatoAyatoQ": {
         name: "KamisatoAyatoQ",
-        nameLocale: 805,
+        nameLocale: 1022,
         
-        description: 807,
+        description: 1024,
         
         
         badge: getImage("Ayato"),
@@ -1472,9 +1472,9 @@ export default {
     
     "ShikanoinHeizouTalent2": {
         name: "ShikanoinHeizouTalent2",
-        nameLocale: 1123,
+        nameLocale: 1437,
         
-        description: 1125,
+        description: 1439,
         
         
         badge: getImage("Heizo"),
@@ -1487,9 +1487,9 @@ export default {
     
     "TighnariC4": {
         name: "TighnariC4",
-        nameLocale: 395,
+        nameLocale: 519,
         
-        description: 397,
+        description: 521,
         
         
         badge: getImage("Tighnari"),
@@ -1504,9 +1504,9 @@ export default {
     
     "DoriC4": {
         name: "DoriC4",
-        nameLocale: 281,
+        nameLocale: 338,
         
-        description: 282,
+        description: 339,
         
         
         badge: getImage("Dori"),
@@ -1523,9 +1523,9 @@ export default {
     
     "NilouTalent1": {
         name: "NilouTalent1",
-        nameLocale: 309,
+        nameLocale: 375,
         
-        description: 279,
+        description: 331,
         
         
         badge: getImage("Nilou"),
@@ -1538,9 +1538,9 @@ export default {
     
     "NilouTalent2": {
         name: "NilouTalent2",
-        nameLocale: 310,
+        nameLocale: 376,
         
-        description: 274,
+        description: 325,
         
         
         badge: getImage("Nilou"),
@@ -1555,9 +1555,9 @@ export default {
     
     "CandaceQ": {
         name: "CandaceQ",
-        nameLocale: 268,
+        nameLocale: 316,
         
-        description: 923,
+        description: 1187,
         
         
         badge: getImage("Candace"),
@@ -1570,9 +1570,9 @@ export default {
     
     "CandaceTalent2": {
         name: "CandaceTalent2",
-        nameLocale: 267,
+        nameLocale: 315,
         
-        description: 278,
+        description: 329,
         
         
         badge: getImage("Candace"),
@@ -1587,9 +1587,9 @@ export default {
     
     "NahidaTalent1": {
         name: "NahidaTalent1",
-        nameLocale: 828,
+        nameLocale: 1055,
         
-        description: 432,
+        description: 574,
         
         
         badge: getImage("Nahida"),
@@ -1604,9 +1604,9 @@ export default {
     
     "FaruzanQ": {
         name: "FaruzanQ",
-        nameLocale: 658,
+        nameLocale: 832,
         
-        description: 732,
+        description: 938,
         
         
         badge: getImage("Faruzan"),
@@ -1629,9 +1629,9 @@ export default {
     
     "FreedomSworn": {
         name: "FreedomSworn",
-        nameLocale: 864,
+        nameLocale: 1101,
         
-        description: 6,
+        description: 7,
         
         
         badge: getImageW("Sword_Widsith"),
@@ -1646,9 +1646,9 @@ export default {
     
     "SongOfBrokenPines": {
         name: "SongOfBrokenPines",
-        nameLocale: 620,
+        nameLocale: 775,
         
-        description: 7,
+        description: 8,
         
         
         badge: getImageW("Claymore_Widsith"),
@@ -1663,9 +1663,9 @@ export default {
     
     "WolfsGravestone": {
         name: "WolfsGravestone",
-        nameLocale: 713,
+        nameLocale: 918,
         
-        description: 408,
+        description: 534,
         
         
         badge: getImageW("Claymore_Wolfmound"),
@@ -1680,9 +1680,9 @@ export default {
     
     "ThrillingTalesOfDragonSlayers": {
         name: "ThrillingTalesOfDragonSlayers",
-        nameLocale: 932,
+        nameLocale: 1199,
         
-        description: 107,
+        description: 113,
         
         
         badge: getImageW("Catalyst_Pulpfic"),
@@ -1697,9 +1697,9 @@ export default {
     
     "ElegyOfTheEnd": {
         name: "ElegyOfTheEnd",
-        nameLocale: 832,
+        nameLocale: 1060,
         
-        description: 204,
+        description: 240,
         
         
         badge: getImageW("Bow_Widsith"),
@@ -1714,9 +1714,9 @@ export default {
     
     "HakushinRing": {
         name: "HakushinRing",
-        nameLocale: 779,
+        nameLocale: 990,
         
-        description: 636,
+        description: 798,
         
         
         badge: getImageW("Catalyst_Bakufu"),
@@ -1733,9 +1733,9 @@ export default {
     
     "SapwoodBlade": {
         name: "SapwoodBlade",
-        nameLocale: 212,
+        nameLocale: 252,
         
-        description: 382,
+        description: 505,
         
         
         badge: getImageW("Sword_Arakalari"),
@@ -1752,9 +1752,9 @@ export default {
     
     "Moonpiercer": {
         name: "Moonpiercer",
-        nameLocale: 946,
+        nameLocale: 1216,
         
-        description: 383,
+        description: 506,
         
         
         badge: getImageW("Pole_Arakalari"),
@@ -1769,9 +1769,9 @@ export default {
     
     "XiphosMoonlight": {
         name: "XiphosMoonlight",
-        nameLocale: 915,
+        nameLocale: 1172,
         
-        description: 912,
+        description: 1166,
         
         
         badge: getImageW("Sword_Pleroma"),
@@ -1788,9 +1788,9 @@ export default {
     
     "MakhairaAquamarine": {
         name: "MakhairaAquamarine",
-        nameLocale: 727,
+        nameLocale: 933,
         
-        description: 9,
+        description: 10,
         
         
         badge: getImageW("Claymore_Pleroma"),
@@ -1807,9 +1807,9 @@ export default {
     
     "KeyOfKhajNisut": {
         name: "KeyOfKhajNisut",
-        nameLocale: 264,
+        nameLocale: 312,
         
-        description: 335,
+        description: 422,
         
         
         badge: getImageW("Sword_Deshret"),
@@ -1826,9 +1826,9 @@ export default {
     
     "ResonancePyro2": {
         name: "ResonancePyro2",
-        nameLocale: 125,
+        nameLocale: 133,
         
-        description: 401,
+        description: 526,
         
         
         badge: ResonancePyro2_image,
@@ -1841,9 +1841,9 @@ export default {
     
     "ResonanceCryo2": {
         name: "ResonanceCryo2",
-        nameLocale: 126,
+        nameLocale: 134,
         
-        description: 398,
+        description: 523,
         
         
         badge: ResonanceCryo2_image,
@@ -1858,9 +1858,9 @@ export default {
     
     "ResonanceGeo2": {
         name: "ResonanceGeo2",
-        nameLocale: 123,
+        nameLocale: 131,
         
-        description: 379,
+        description: 500,
         
         
         badge: ResonanceGeo2_image,
@@ -1877,9 +1877,9 @@ export default {
     
     "ResonanceHydro2": {
         name: "ResonanceHydro2",
-        nameLocale: 124,
+        nameLocale: 132,
         
-        description: 683,
+        description: 886,
         
         
         badge: ResonanceHydro2_image,
@@ -1892,9 +1892,9 @@ export default {
     
     "ResonanceDendro2": {
         name: "ResonanceDendro2",
-        nameLocale: 127,
+        nameLocale: 135,
         
-        description: 139,
+        description: 152,
         
         
         badge: ResonanceDendro2_image,
@@ -1911,9 +1911,9 @@ export default {
     
     "Instructor4": {
         name: "Instructor4",
-        nameLocale: 411,
+        nameLocale: 540,
         
-        description: 925,
+        description: 1190,
         
         
         badge: getImageA("UI_RelicIcon_10007_4"),
@@ -1926,9 +1926,9 @@ export default {
     
     "NoblesseOblige4": {
         name: "NoblesseOblige4",
-        nameLocale: 444,
+        nameLocale: 590,
         
-        description: 431,
+        description: 572,
         
         
         badge: getImageA("UI_RelicIcon_15007_4"),
@@ -1941,9 +1941,9 @@ export default {
     
     "ArchaicPetra4": {
         name: "ArchaicPetra4",
-        nameLocale: 354,
+        nameLocale: 466,
         
-        description: 891,
+        description: 1138,
         
         
         badge: getImageA("UI_RelicIcon_15014_4"),
@@ -1958,9 +1958,9 @@ export default {
     
     "ViridescentVenerer4": {
         name: "ViridescentVenerer4",
-        nameLocale: 845,
+        nameLocale: 1078,
         
-        description: 630,
+        description: 790,
         
         
         badge: getImageA("UI_RelicIcon_15002_4"),
@@ -1975,9 +1975,9 @@ export default {
     
     "TenacityOfTheMillelith4": {
         name: "TenacityOfTheMillelith4",
-        nameLocale: 202,
+        nameLocale: 238,
         
-        description: 129,
+        description: 137,
         
         
         badge: getImageA("UI_RelicIcon_15017_4"),
@@ -1990,9 +1990,9 @@ export default {
     
     "DeepwoodMemories4": {
         name: "DeepwoodMemories4",
-        nameLocale: 670,
+        nameLocale: 858,
         
-        description: 131,
+        description: 141,
         
         
         badge: getImageA("UI_RelicIcon_15025_4"),

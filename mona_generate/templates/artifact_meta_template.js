@@ -1,22 +1,3 @@
-// generated file, do not edit
-// {% for a in artifacts %}
-// {% if a.flower.len() > 0 %}
-// import {{ a.name }}_flower from "@image/artifacts/{{ a.name }}_flower"
-// {% endif %}
-// {% if a.feather.len() > 0 %}
-// import {{ a.name }}_feather from "@image/artifacts/{{ a.name }}_feather"
-// {% endif %}
-// {% if a.sand.len() > 0 %}
-// import {{ a.name }}_sand from "@image/artifacts/{{ a.name }}_sand"
-// {% endif %}
-// {% if a.goblet.len() > 0 %}
-// import {{ a.name }}_goblet from "@image/artifacts/{{ a.name }}_goblet"
-// {% endif %}
-// {% if a.head.len() > 0 %}
-// import {{ a.name }}_head from "@image/artifacts/{{ a.name }}_head"
-// {% endif %}
-// {% endfor %}
-
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/equip/#.png"
 
 const getIcon = name => template.replace("#", name)
@@ -25,44 +6,53 @@ export default {
     {% for a in artifacts %}
     "{{ a.name_mona }}": {
         eng: "{{ a.name_mona }}",
-        // chs: "{{ a.chs }}",
         name2: "{{ a.name }}",
+        nameLocale: {{a.name_locale}},
         minStar: {{ a.min_star }},
         maxStar: {{ a.max_star }},
-        // effect2: "{{ a.effect2 }}",
-        // effect4: "{{ a.effect4 }}",
-        {% if a.flower.len() > 0 %}
+    {% if a.effect1.is_some() %}
+        effect1: {{a.effect1.unwrap()}},
+    {% endif %}
+    {% if a.effect2.is_some() %}
+        effect2: {{a.effect2.unwrap()}},
+    {% endif %}
+    {% if a.effect3.is_some() %}
+        effect3: {{a.effect3.unwrap()}},
+    {% endif %}
+    {% if a.effect4.is_some() %}
+        effect4: {{a.effect4.unwrap()}},
+    {% endif %}
+    {% if a.effect5.is_some() %}
+        effect5: {{a.effect5.unwrap()}},
+    {% endif %}
+
+        {% if a.flower.is_some() %}
         flower: {
-            // chs: "{{ a.flower }}",
-            // url: {{ a.name }}_flower,
+            text: {{a.flower.unwrap()}},
             url: getIcon("{{ a.flower_icon }}")
         },
         {% endif %}
-        {% if a.feather.len() > 0 %}
+        {% if a.feather.is_some() %}
         feather: {
-            // chs: "{{ a.feather }}",
-            // url: {{ a.name }}_feather,
+            text: {{a.feather.unwrap()}},
             url: getIcon("{{ a.feather_icon }}")
         },
         {% endif %}
-        {% if a.sand.len() > 0 %}
+        {% if a.sand.is_some() %}
         sand: {
-            // chs: "{{ a.sand }}",
-            // url: {{ a.name }}_sand,
+            text: {{a.sand.unwrap()}},
             url: getIcon("{{ a.sand_icon }}")
         },
         {% endif %}
-        {% if a.goblet.len() > 0 %}
+        {% if a.goblet.is_some() %}
         cup: {
-            // chs: "{{ a.goblet }}",
-            // url: {{ a.name }}_goblet,
+            text: {{a.goblet.unwrap()}},
             url: getIcon("{{ a.goblet_icon }}")
         },
         {% endif %}
-        {% if a.head.len() > 0 %}
+        {% if a.head.is_some() %}
         head: {
-            // chs: "{{ a.head }}",
-            // url: {{ a.name }}_head,
+            text: {{a.head.unwrap()}},
             url: getIcon("{{ a.head_icon }}")
         },
         {% endif %}

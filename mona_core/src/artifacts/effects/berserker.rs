@@ -39,17 +39,41 @@ impl ArtifactTrait for Berserker {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::Berserker,
         name_mona: "berserker",
-        chs: "战狂",
-        flower: Some("战狂的蔷薇"),
-        feather: Some("战狂的翎羽"),
-        sand: Some("战狂的时计"),
-        goblet: Some("战狂的骨杯"),
-        head: Some("战狂的鬼面"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "战狂",
+            en: "Berserker",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "战狂的蔷薇",
+            en: "Berserker's Rose",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "战狂的翎羽",
+            en: "Berserker's Indigo Feather",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "战狂的时计",
+            en: "Berserker's Timepiece",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "战狂的骨杯",
+            en: "Berserker's Bone Goblet",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "战狂的鬼面",
+            en: "Berserker's Battle Mask",
+        )),
         star: (3, 4),
         effect1: None,
-        effect2: Some("暴击率提高12%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "暴击率提高12%。",
+            en: "CRIT Rate +12%",
+        )),
         effect3: None,
-        effect4: Some("生命值低于70%时，暴击率额外提高24%。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "生命值低于70%时，暴击率额外提升24%。",
+            en: "When HP is below 70%, CRIT Rate increases by an additional 24%.",
+        )),
         effect5: None,
         internal_id: 10005,
     };

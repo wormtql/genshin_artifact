@@ -28,17 +28,41 @@ impl ArtifactTrait for ViridescentVenerer {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::ViridescentVenerer,
         name_mona: "viridescentVenerer",
-        chs: "翠绿之影",
-        flower: Some("野花记忆的绿野"),
-        feather: Some("猎人青翠的箭羽"),
-        sand: Some("翠绿猎人的笃定"),
-        goblet: Some("翠绿猎人的容器"),
-        head: Some("翠绿的猎人之冠"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "翠绿之影",
+            en: "Viridescent Venerer",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "野花记忆的绿野",
+            en: "In Remembrance of Viridescent Fields",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "猎人青翠的箭羽",
+            en: "Viridescent Arrow Feather",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "翠绿猎人的笃定",
+            en: "Viridescent Venerer's Determination",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "翠绿猎人的容器",
+            en: "Viridescent Venerer's Vessel",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "翠绿的猎人之冠",
+            en: "Viridescent Venerer's Diadem",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("获得15%风元素伤害加成。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "获得15%风元素伤害加成。",
+            en: "Anemo DMG Bonus +15%",
+        )),
         effect3: None,
-        effect4: Some("扩散反应造成的伤害提升60%，根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "扩散反应造成的伤害提升60%。根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。",
+            en: "Increases Swirl DMG by 60%. Decreases opponent's Elemental RES to the element infused in the Swirl by 40% for 10s.",
+        )),
         effect5: None,
         internal_id: 15002,
     };

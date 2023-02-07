@@ -34,17 +34,41 @@ impl ArtifactTrait for EmblemOfSeveredFate {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::EmblemOfSeveredFate,
         name_mona: "emblemOfSeveredFate",
-        chs: "绝缘之旗印",
-        flower: Some("明威之镡"),
-        feather: Some("切落之羽"),
-        sand: Some("雷云之笼"),
-        goblet: Some("绯花之壶"),
-        head: Some("华饰之兜"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "绝缘之旗印",
+            en: "Emblem of Severed Fate",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "明威之镡",
+            en: "Magnificent Tsuba",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "切落之羽",
+            en: "Sundered Feather",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "雷云之笼",
+            en: "Storm Cage",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "绯花之壶",
+            en: "Scarlet Vessel",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "华饰之兜",
+            en: "Ornate Kabuto",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("元素充能效率提高20%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "元素充能效率提高20%。",
+            en: "Energy Recharge +20%",
+        )),
         effect3: None,
-        effect4: Some("基于元素充能效率的25%，提高元素爆发造成的伤害。至多通过这种方式获得75%提升。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "基于元素充能效率的25%，提高元素爆发造成的伤害。至多通过这种方式获得75%提升。",
+            en: "Increases Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way.",
+        )),
         effect5: None,
         internal_id: 15020,
     };

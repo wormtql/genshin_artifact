@@ -25,7 +25,10 @@ export function createI18n() {
         }
     }
 
-    function ta(index: number): string {
+    function ta(index: number | undefined | null): string {
+        if (index === undefined || index === null) {
+            return ""
+        }
         return t("a", index)
     }
 

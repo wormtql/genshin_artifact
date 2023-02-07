@@ -40,17 +40,41 @@ impl ArtifactTrait for HuskOfOpulentDreams {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::HuskOfOpulentDreams,
         name_mona: "huskOfOpulentDreams",
-        chs: "华馆梦醒形骸记",
-        flower: Some("荣花之期"),
-        feather: Some("华馆之羽"),
-        sand: Some("众生之谣"),
-        goblet: Some("梦醒之瓢"),
-        head: Some("形骸之笠"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "华馆梦醒形骸记",
+            en: "Husk of Opulent Dreams",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "荣花之期",
+            en: "Bloom Times",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "华馆之羽",
+            en: "Plume of Luxury",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "众生之谣",
+            en: "Song of Life",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "梦醒之瓢",
+            en: "Calabash of Awakening",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "形骸之笠",
+            en: "Skeletal Hat",
+        )),
         star: (4, 5),
         effect1: None,
-        effect2: Some("防御力提高30%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "防御力提高30%。",
+            en: "DEF +30%",
+        )),
         effect3: None,
-        effect4: Some("装备此圣遗物套装的角色在以下情况下，将获得「问答」效果：在场上用岩元素攻击命中敌人后获得一层，每0.3秒至多触发一次；在队伍后台中，每3秒获得一层。问答至多叠加4层，每层能提供6%防御力与6%岩元素伤害加成。每6秒，若未获得问答效果，将损失一层。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "装备此圣遗物套装的角色在以下情况下，将获得「问答」效果：在场上用岩元素攻击命中敌人后获得一层，每0.3秒至多触发一次；在队伍后台中，每3秒获得一层。问答至多叠加4层，每层能提供6%防御力与6%岩元素伤害加成。每6秒，若未获得问答效果，将损失一层。",
+            en: "A character equipped with this Artifact set will obtain the Curiosity effect in the following conditions: When on the field, the character gains 1 stack after hitting an opponent with a Geo attack, triggering a maximum of once every 0.3s. When off the field, the character gains 1 stack every 3s. Curiosity can stack up to 4 times, each providing 6% DEF and a 6% Geo DMG Bonus. When 6 seconds pass without gaining a Curiosity stack, 1 stack is lost.",
+        )),
         effect5: None,
         internal_id: 15021,
     };

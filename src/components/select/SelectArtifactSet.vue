@@ -16,12 +16,12 @@
         <el-option
             v-for="item in allArtifactsName"
             :key="item.name"
-            :label="t('artifact', item.name, 'setName')"
+            :label="ta(item.nameLocale)"
             :value="item.name"
         >
             <div class="item">
                 <img :src="item.url" class="tn">
-                <span>{{ t("artifact", item.name, "setName") }}</span>
+                <span>{{ ta(item.nameLocale) }}</span>
             </div>
         </el-option>
     </el-select>
@@ -41,6 +41,7 @@ let allArtifactsName = allArtifacts.map((item: any) => {
         name: item.eng,
         // chs: item.chs,
         url: getArtifactThumbnailURL(item.eng),
+        nameLocale: item.nameLocale,
     };
 });
 Object.freeze(allArtifactsName)
@@ -70,7 +71,7 @@ const props = withDefaults(defineProps<Props>(), {
     placeholder: "Select"
 })
 
-const { t } = useI18n()
+const { t, ta } = useI18n()
 </script>
 
 <style scoped>

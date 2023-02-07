@@ -16,17 +16,41 @@ impl ArtifactTrait for TravelingDoctor {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::TravelingDoctor,
         name_mona: "travelingDoctor",
-        chs: "游医",
-        flower: Some("游医的银莲"),
-        feather: Some("游医的枭羽"),
-        sand: Some("游医的怀钟"),
-        goblet: Some("游医的药壶"),
-        head: Some("游医的方巾"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "游医",
+            en: "Traveling Doctor",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "游医的银莲",
+            en: "Traveling Doctor's Silver Lotus",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "游医的枭羽",
+            en: "Traveling Doctor's Owl Feather",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "游医的怀钟",
+            en: "Traveling Doctor's Pocket Watch",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "游医的药壶",
+            en: "Traveling Doctor's Medicine Pot",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "游医的方巾",
+            en: "Traveling Doctor's Handkerchief",
+        )),
         star: (1, 3),
         effect1: None,
-        effect2: Some("角色受到的治疗效果提高20%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "角色受到的治疗效果提高20%。",
+            en: "Increases incoming healing by 20%.",
+        )),
         effect3: None,
-        effect4: Some("施放元素爆发时，恢复20%生命值。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "施放元素爆发时，恢复20%生命值。",
+            en: "Using Elemental Burst restores 20% HP.",
+        )),
         effect5: None,
         internal_id: 10013,
     };

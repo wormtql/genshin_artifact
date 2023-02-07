@@ -39,17 +39,41 @@ impl ArtifactTrait for Instructor {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::Instructor,
         name_mona: "instructor",
-        chs: "教官",
-        flower: Some("教官的胸花"),
-        feather: Some("教官的羽饰"),
-        sand: Some("教官的怀表"),
-        goblet: Some("教官的茶杯"),
-        head: Some("教官的帽子"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "教官",
+            en: "Instructor",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "教官的胸花",
+            en: "Instructor's Brooch",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "教官的羽饰",
+            en: "Instructor's Feather Accessory",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "教官的怀表",
+            en: "Instructor's Pocket Watch",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "教官的茶杯",
+            en: "Instructor's Tea Cup",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "教官的帽子",
+            en: "Instructor's Cap",
+        )),
         star: (3, 4),
         effect1: None,
-        effect2: Some("元素精通提高80点。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "元素精通提高80点。",
+            en: "Increases Elemental Mastery by 80.",
+        )),
         effect3: None,
-        effect4: Some("触发元素反应后。队伍中所有角色元素精通提高120点，持续8秒。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "触发元素反应后，队伍中所有角色的元素精通提高120点，持续8秒。",
+            en: "Upon triggering an Elemental Reaction, increases all party members' Elemental Mastery by 120 for 8s.",
+        )),
         effect5: None,
         internal_id: 10007,
     };

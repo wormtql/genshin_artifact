@@ -16,17 +16,41 @@ impl ArtifactTrait for TinyMiracle {
     const META_DATA: ArtifactMetaData = ArtifactMetaData {
         name: ArtifactSetName::TinyMiracle,
         name_mona: "tinyMiracle",
-        chs: "奇迹",
-        flower: Some("奇迹之花"),
-        feather: Some("奇迹之羽"),
-        sand: Some("奇迹之沙"),
-        goblet: Some("奇迹之杯"),
-        head: Some("奇迹耳坠"),
+        name_locale: crate::common::i18n::locale!(
+            zh_cn: "奇迹",
+            en: "Tiny Miracle",
+        ),
+        flower: Some(crate::common::i18n::locale!(
+            zh_cn: "奇迹之花",
+            en: "Tiny Miracle's Flower",
+        )),
+        feather: Some(crate::common::i18n::locale!(
+            zh_cn: "奇迹之羽",
+            en: "Tiny Miracle's Feather",
+        )),
+        sand: Some(crate::common::i18n::locale!(
+            zh_cn: "奇迹之沙",
+            en: "Tiny Miracle's Hourglass",
+        )),
+        goblet: Some(crate::common::i18n::locale!(
+            zh_cn: "奇迹之杯",
+            en: "Tiny Miracle's Goblet",
+        )),
+        head: Some(crate::common::i18n::locale!(
+            zh_cn: "奇迹耳坠",
+            en: "Tiny Miracle's Earrings",
+        )),
         star: (3, 4),
         effect1: None,
-        effect2: Some("所有元素抗性提高20%。"),
+        effect2: Some(crate::common::i18n::locale!(
+            zh_cn: "所有元素抗性提高20%。",
+            en: "All Elemental RES increased by 20%.",
+        )),
         effect3: None,
-        effect4: Some("受到某个元素类型的伤害后，相应的抗性提升30%，持续10秒。该效果每10秒只能触发一次。"),
+        effect4: Some(crate::common::i18n::locale!(
+            zh_cn: "受到某个元素类型的伤害后，相应的抗性提升30%，持续10秒。该效果每10秒只能触发一次。",
+            en: "Incoming elemental DMG increases corresponding Elemental RES by 30% for 10s. Can only occur once every 10s.",
+        )),
         effect5: None,
         internal_id: 10004,
     };
