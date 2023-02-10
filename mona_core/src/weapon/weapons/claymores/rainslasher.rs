@@ -60,7 +60,7 @@ impl WeaponTrait for Rainslasher {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "w2",
+            title: ItemConfig::DEFAULT_RATE_TITLE,
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);

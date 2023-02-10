@@ -42,12 +42,18 @@ impl BuffMeta for BuffKaedeharaKazuhaTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "element",
-            title: "b6",
+            title: crate::common::i18n::locale!(
+                zh_cn: "扩散元素",
+                en: "Swirl Element",
+            ),
             config: ItemConfigType::Element4 { default: Element::Electro }
         },
         ItemConfig {
             name: "em",
-            title: "b7",
+            title: crate::common::i18n::locale!(
+                zh_cn: "万叶的元素精通",
+                en: "Kazuha's EM",
+            ),
             config: ItemConfigType::FloatInput { default: 800.0 },
         }
     ]);

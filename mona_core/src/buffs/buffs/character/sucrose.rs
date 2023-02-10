@@ -71,7 +71,10 @@ impl BuffMeta for BuffSucroseTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "em",
-            title: "b22",
+            title: crate::common::i18n::locale!(
+                zh_cn: "砂糖的元素精通",
+                en: "Sucrose's EM",
+            ),
             config: ItemConfigType::FloatInput { default: 200.0 }
         }
     ]);
@@ -121,7 +124,10 @@ impl BuffMeta for BuffSucroseC6 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "element",
-            title: "b23",
+            title: crate::common::i18n::locale!(
+                zh_cn: "扩散类型",
+                en: "Swirl Type",
+            ),
             config: ItemConfigType::Element4 { default: Element::Electro }
         }
     ]);

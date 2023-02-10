@@ -44,12 +44,18 @@ impl BuffMeta for BuffDoriC4 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "hp_below50",
-            title: "b39",
+            title: crate::common::i18n::locale!(
+                zh_cn: "生命值低于50%",
+                en: "HP Below 50%",
+            ),
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "energy_below50",
-            title: "b40",
+            title: crate::common::i18n::locale!(
+                zh_cn: "元素能量低于50%",
+                en: "Energy Below 50%",
+            ),
             config: ItemConfigType::Bool { default: true }
         }
     ]);

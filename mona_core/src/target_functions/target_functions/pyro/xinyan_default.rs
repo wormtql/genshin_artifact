@@ -62,7 +62,10 @@ impl TargetFunctionMetaTrait for XinyanDefaultTargetFunction {
         },
         ItemConfig {
             name: "damage_demand",
-            title: "t12",
+            title: crate::common::i18n::locale!(
+                zh_cn: "伤害需求",
+                en: "Damage Requirement",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.5 }
         }
     ]);

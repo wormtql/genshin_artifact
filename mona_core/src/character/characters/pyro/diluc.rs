@@ -178,7 +178,10 @@ impl CharacterTrait for Diluc {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "pyro",
-            title: "c22",
+            title: locale!(
+                zh_cn: "是否被大招附魔",
+                en: "是否被大招附魔",
+            ),
             config: ItemConfigType::Bool { default: true }
         }
     ]);

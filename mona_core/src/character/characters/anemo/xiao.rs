@@ -176,17 +176,26 @@ impl CharacterTrait for Xiao {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_q",
-            title: "c31",
+            title: locale!(
+                zh_cn: "靖妖傩舞",
+                en: "Bane of All Evil",
+            ),
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "talent1_stack",
-            title: "c32",
+            title: locale!(
+                zh_cn: "天赋「降魔·平妖大圣」应用层数",
+                en: "Talent「Conqueror of Evil: Tamer of Demons」Apply Stack",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 4.0 },
         },
         ItemConfig {
             name: "talent2_stack",
-            title: "c33",
+            title: locale!(
+                zh_cn: "天赋「坏劫·国土碾尘」应用层数",
+                en: "Talent「Dissolution Eon: Heaven Fall」Apply Stack",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 0.0 },
         }
     ]);

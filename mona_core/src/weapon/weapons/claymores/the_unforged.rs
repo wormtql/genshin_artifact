@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -65,7 +66,7 @@ impl WeaponTrait for TheUnforged {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "w1",
+            title: ItemConfig::DEFAULT_STACK_TITLE,
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 5.0,
@@ -74,7 +75,10 @@ impl WeaponTrait for TheUnforged {
         },
         ItemConfig {
             name: "shield_rate",
-            title: "w15",
+            title: locale!(
+                zh_cn: "护盾覆盖率",
+                en: "Shield Rate",
+            ),
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 1.0,

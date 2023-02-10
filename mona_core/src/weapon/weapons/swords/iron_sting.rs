@@ -60,7 +60,7 @@ impl WeaponTrait for IronSting {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "w1",
+            title: ItemConfig::DEFAULT_STACK_TITLE,
             config: ItemConfigType::Float {
                 min: 0.0,
                 max: 2.0,

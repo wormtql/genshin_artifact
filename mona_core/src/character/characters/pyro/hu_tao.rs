@@ -211,7 +211,10 @@ impl CharacterTrait for HuTao {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "le_50",
-            title: "c3",
+            title: locale!(
+                zh_cn: "生命值低于50%",
+                en: "HP Below 50%",
+            ),
             config: ItemConfigType::Bool { default: true },
         }
     ]);
@@ -220,7 +223,10 @@ impl CharacterTrait for HuTao {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_e",
-            title: "c4",
+            title: locale!(
+                zh_cn: "彼岸蝶舞",
+                en: "Guide to Afterlife",
+            ),
             config: ItemConfigType::Bool { default: true },
         }
     ]);

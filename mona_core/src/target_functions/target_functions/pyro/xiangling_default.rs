@@ -78,17 +78,26 @@ impl TargetFunctionMetaTrait for XianglingDefaultTargetFunction {
         },
         ItemConfig {
             name: "melt_rate",
-            title: "t5",
+            title: crate::common::i18n::locale!(
+                zh_cn: "融化占比",
+                en: "Melt Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         },
         ItemConfig {
             name: "vaporize_rate",
-            title: "t6",
+            title: crate::common::i18n::locale!(
+                zh_cn: "蒸发占比",
+                en: "Vaporize Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         },
         ItemConfig {
             name: "overload_rate",
-            title: "t11",
+            title: crate::common::i18n::locale!(
+                zh_cn: "超载频率",
+                en: "Overload Frequency",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);

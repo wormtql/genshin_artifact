@@ -40,7 +40,10 @@ impl BuffMeta for BuffViridescentVenerer4 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "element",
-            title: "b6",
+            title: crate::common::i18n::locale!(
+                zh_cn: "扩散元素",
+                en: "Swirl Element",
+            ),
             config: ItemConfigType::Element4 { default: Element::Electro }
         }
     ]);

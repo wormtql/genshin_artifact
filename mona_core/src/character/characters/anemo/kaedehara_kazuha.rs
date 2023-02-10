@@ -165,7 +165,10 @@ impl CharacterTrait for KaedeharaKazuha {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_e_or_q",
-            title: "c24",
+            title: locale!(
+                zh_cn: "六命：血赤叶红",
+                en: "C6: Crimson Momiji"
+            ),
             config: ItemConfigType::Bool { default: false }
         }
     ]);

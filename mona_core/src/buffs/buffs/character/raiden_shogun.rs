@@ -43,12 +43,18 @@ impl BuffMeta for BuffRaidenShogunE {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill2",
-            title: "b14",
+            title: crate::common::i18n::locale!(
+                zh_cn: "雷电将军E技能等级",
+                en: "RaidenShogun E Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 15, default: 8 }
         },
         ItemConfig {
             name: "energy",
-            title: "b15",
+            title: crate::common::i18n::locale!(
+                zh_cn: "受BUFF角色最大元素能量",
+                en: "Buffed Character's Max Energy",
+            ),
             config: ItemConfigType::Int { min: 20, max: 100, default: 80 }
         }
     ]);

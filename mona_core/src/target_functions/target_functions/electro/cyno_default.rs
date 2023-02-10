@@ -8,6 +8,7 @@ use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::electro::cyno::Cyno;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
@@ -105,32 +106,50 @@ impl TargetFunctionMetaTrait for CynoDefaultTargetFunction {
         },
         ItemConfig {
             name: "combo",
-            title: "t23", //连招选择
+            title: locale!(
+                zh_cn: "连招选择",
+                en: "Combo",
+            ), //连招选择
             config: ItemConfigType::Option { options: "乱a不取消,取消第五段", default: 0 },
         },
         ItemConfig {
             name: "until_expire",
-            title: "t24", //a到大招完全结束
+            title: locale!(
+                zh_cn: "a到大招完全结束",
+                en: "Attack Till Burst Expires",
+            ), //a到大招完全结束
             config: ItemConfigType::Bool { default: false },
         },
         ItemConfig {
             name: "aggravate_rate",
-            title: "t17", //超激化比例
+            title: locale!(
+                zh_cn: "超激化比例",
+                en: "Aggravate Ratio",
+            ), //超激化比例
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
         },
         ItemConfig {
             name: "elecharged_rate",
-            title: "t25", //感电比例
+            title: locale!(
+                zh_cn: "感电比例",
+                en: "Electro-charge Ratio"
+            ), //感电比例
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },
         ItemConfig {
             name: "overload_rate",
-            title: "t26", //超载比例
+            title: locale!(
+                zh_cn: "超载比例",
+                en: "Overload Ratio",
+            ), //超载比例
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },
         ItemConfig {
             name: "hyperbloom_rate",
-            title: "t27", //超绽放比例
+            title: locale!(
+                zh_cn: "超绽放比例",
+                en: "Hyperbloom Ratio",
+            ), //超绽放比例
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },
     ]);

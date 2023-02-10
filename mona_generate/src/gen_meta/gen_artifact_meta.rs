@@ -3,6 +3,7 @@ use mona::artifacts::artifact_trait::ArtifactMetaData;
 use mona::artifacts::ArtifactSetName;
 use mona::common::item_config_type::ItemConfig;
 use crate::gen_meta::gen_locale::get_index_mapping;
+use crate::utils::config_to_json;
 
 struct ArtifactMeta {
     name_locale: usize,
@@ -56,7 +57,7 @@ pub fn gen_artifact_meta_as_js_file() -> String {
             effect3: if let Some(ref x) = meta.effect3 { Some(*index_map.get(x).unwrap()) } else { None },
             effect4: if let Some(ref x) = meta.effect4 { Some(*index_map.get(x).unwrap()) } else { None },
             effect5: if let Some(ref x) = meta.effect5 { Some(*index_map.get(x).unwrap()) } else { None },
-            config4: config4.unwrap_or(&[]).iter().map(|x| x.to_json()).collect(),
+            config4: config4.unwrap_or(&[]).iter().map(|x| config_to_json(x)).collect(),
             flower: if let Some(ref x) = meta.flower { Some(*index_map.get(x).unwrap()) } else { None },
             feather: if let Some(ref x) = meta.feather { Some(*index_map.get(x).unwrap()) } else { None },
             sand: if let Some(ref x) = meta.sand { Some(*index_map.get(x).unwrap()) } else { None },

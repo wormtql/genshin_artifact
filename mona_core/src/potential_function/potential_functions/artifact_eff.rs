@@ -133,102 +133,162 @@ impl PotentialFunctionMeta for PotentialFunctionArtifactEff {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "atk_use",
-            title: "p1",
+            title: crate::common::i18n::locale!(
+                zh_cn: "攻击力有效",
+                en: "ATK Valid",
+            ),
             config: ItemConfigType::Bool { default: false },
         },
         ItemConfig {
             name: "atk_weight",
-            title: "p2",
+            title: crate::common::i18n::locale!(
+                zh_cn: "攻击力权重",
+                en: "ATK Weight",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },
         ItemConfig {
             name: "atk_p_use",
-            title: "p3",
+            title: crate::common::i18n::locale!(
+                zh_cn: "攻击力%有效",
+                en: "ATK% Valid",
+            ),
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "atk_p_weight",
-            title: "p4",
+            title: crate::common::i18n::locale!(
+                zh_cn: "攻击力%权重",
+                en: "ATK% Weight",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
         },
         ItemConfig {
             name: "hp_use",
-            title: "p5",
+            title: crate::common::i18n::locale!(
+                zh_cn: "生命值有效",
+                en: "HP Valid",
+            ),
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "hp_weight",
-            title: "p6",
+            title: crate::common::i18n::locale!(
+                zh_cn: "生命值权重",
+                en: "HP Weight",
+            ),
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "hp_p_use",
-            title: "p7",
+            title: crate::common::i18n::locale!(
+                zh_cn: "生命值%有效",
+                en: "HP% Valid",
+            ),
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "hp_p_weight",
-            title: "p8",
+            title: crate::common::i18n::locale!(
+                zh_cn: "生命值%权重",
+                en: "HP% Weight",
+            ),
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "def_use",
-            title: "p9",
+            title: crate::common::i18n::locale!(
+                zh_cn: "防御力有效",
+                en: "DEF Valid",
+            ),
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "def_weight",
-            title: "p10",
+            title: crate::common::i18n::locale!(
+                zh_cn: "防御力权重",
+                en: "DEF Weight",
+            ),
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "def_p_use",
-            title: "p11",
+            title: crate::common::i18n::locale!(
+                zh_cn: "防御力%有效",
+                en: "DEF% Valid",
+            ),
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "def_p_weight",
-            title: "p12",
+            title: crate::common::i18n::locale!(
+                zh_cn: "防御力%权重",
+                en: "DEF% Weight",
+            ),
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "critical_use",
-            title: "p13",
+            title: crate::common::i18n::locale!(
+                zh_cn: "暴击率有效",
+                en: "Crit Rate Valid",
+            ),
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "critical_weight",
-            title: "p14",
+            title: crate::common::i18n::locale!(
+                zh_cn: "暴击率权重",
+                en: "Crit Rate Weight",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
         },
         ItemConfig {
             name: "critical_damage_use",
-            title: "p15",
+            title: crate::common::i18n::locale!(
+                zh_cn: "暴击伤害有效",
+                en: "Crit DMG Valid",
+            ),
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "critical_damage_weight",
-            title: "p16",
+            title: crate::common::i18n::locale!(
+                zh_cn: "暴击伤害权重",
+                en: "Crit DMG Weight",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         },
         ItemConfig {
             name: "elemental_mastery_use",
-            title: "p17",
+            title: crate::common::i18n::locale!(
+                zh_cn: "元素精通有效",
+                en: "EM Valid",
+            ),
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "elemental_mastery_weight",
-            title: "p18",
+            title: crate::common::i18n::locale!(
+                zh_cn: "元素精通权重",
+                en: "EM Weight",
+            ),
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "recharge_use",
-            title: "p19",
+            title: crate::common::i18n::locale!(
+                zh_cn: "元素充能效率有效",
+                en: "Energy Recharge Valid",
+            ),
             config: ItemConfigType::Bool { default: false }
         },
         ItemConfig {
             name: "recharge_weight",
-            title: "p20",
+            title: crate::common::i18n::locale!(
+                zh_cn: "元素充能效率权重",
+                en: "Energy Recharge Weight",
+            ),
             config: ItemConfig::RATE01_TYPE
         }
     ]);

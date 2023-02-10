@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -67,7 +68,10 @@ impl WeaponTrait for Deathmatch {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "ge2",
-            title: "w22",
+            title: locale!(
+                zh_cn: "身边至少有2个敌人",
+                en: "At Least 2 Enemies Around"
+            ),
             config: ItemConfigType::Bool { default: true }
         }
     ]);

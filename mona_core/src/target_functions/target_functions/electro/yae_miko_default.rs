@@ -156,17 +156,26 @@ impl TargetFunctionMetaTrait for YaeMikoDefaultTargetFunction {
         },
         ItemConfig {
             name: "combo",
-            title: "t23", //连招选择
+            title: crate::common::i18n::locale!(
+                zh_cn: "连招选择",
+                en: "Combo",
+            ), //连招选择
             config: ItemConfigType::Option { options: "不站场平A,站场平A", default: 0 },
         },
         ItemConfig {
             name: "aggravate_rate",
-            title: "t17", //超激化比例
+            title: crate::common::i18n::locale!(
+                zh_cn: "超激化比例",
+                en: "Aggravate Ratio",
+            ), //超激化比例
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
         },
         ItemConfig {
             name: "hyperbloom_rate",
-            title: "t27", //超绽放比例
+            title: crate::common::i18n::locale!(
+                zh_cn: "超绽放比例",
+                en: "Hyperbloom Ratio",
+            ), //超绽放比例
             config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 0.0 },
         },
     ]);

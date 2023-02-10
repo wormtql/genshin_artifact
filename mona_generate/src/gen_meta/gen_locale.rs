@@ -8,6 +8,7 @@ use mona::artifacts::ArtifactSetName;
 use mona::buffs::buff_meta::BuffMetaData;
 use mona::buffs::buff_name::BuffName;
 use mona::character::traits::CharacterSkillMap;
+use mona::potential_function::potential_function_name::PotentialFunctionName;
 use mona::target_functions::target_function_meta::TargetFunctionMeta;
 use mona::target_functions::TargetFunctionName;
 use mona::weapon::weapon_static_data::WeaponStaticData;
@@ -139,6 +140,65 @@ pub fn collect_artifact_locale() -> Vec<I18nLocale> {
     set.into_iter().collect()
 }
 
+pub fn collect_config_locale() -> Vec<I18nLocale> {
+    let mut set = HashSet::new();
+
+    for c in CharacterName::iter() {
+        if let Some(x) = c.get_config_data() {
+            for item in x.iter() {
+                set.insert(item.title.clone());
+            }
+        }
+        if let Some(x) = c.get_config_skill() {
+            for item in x.iter() {
+                set.insert(item.title.clone());
+            }
+        }
+    }
+
+    for w in WeaponName::iter() {
+        if let Some(x) = w.get_config_data() {
+            for item in x.iter() {
+                set.insert(item.title.clone());
+            }
+        }
+    }
+
+    for tf in TargetFunctionName::iter() {
+        if let Some(x) = tf.get_config() {
+            for item in x.iter() {
+                set.insert(item.title.clone());
+            }
+        }
+    }
+
+    for a in ArtifactSetName::iter() {
+        if let Some(x) = a.get_config4() {
+            for item in x.iter() {
+                set.insert(item.title.clone());
+            }
+        }
+    }
+
+    for pf in PotentialFunctionName::iter() {
+        if let Some(x) = pf.get_config() {
+            for item in x.iter() {
+                set.insert(item.title.clone());
+            }
+        }
+    }
+
+    for b in BuffName::iter() {
+        if let Some(x) = b.get_config() {
+            for item in x.iter() {
+                set.insert(item.title.clone());
+            }
+        }
+    }
+
+    set.into_iter().collect()
+}
+
 pub fn collect_locale() -> Vec<I18nLocale> {
     let mut set = HashSet::new();
 
@@ -155,6 +215,8 @@ pub fn collect_locale() -> Vec<I18nLocale> {
     set.extend(collect_buff_locale());
 
     set.extend(collect_artifact_locale());
+
+    set.extend(collect_config_locale());
 
     set.into_iter().collect()
 }

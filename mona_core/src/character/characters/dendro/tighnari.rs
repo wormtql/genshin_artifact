@@ -208,12 +208,18 @@ impl CharacterTrait for Tighnari {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent1_ratio",
-            title: "c38",
+            title: locale!(
+                zh_cn: "天赋「眼识殊明」应用比例",
+                en: "Talent「Keen Sight」Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         },
         ItemConfig {
             name: "c2_ratio",
-            title: "c39",
+            title: locale!(
+                zh_cn: "命座2「由茎干剖析来缘」应用比例",
+                en: "C2「Origins Known From the Stem」Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);

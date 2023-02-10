@@ -41,7 +41,10 @@ impl BuffMeta for BuffGorouE1 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill2",
-            title: "b4",
+            title: crate::common::i18n::locale!(
+                zh_cn: "五郎E技能等级",
+                en: "Gorou E Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 15, default: 10 }
         }
     ]);
@@ -155,7 +158,10 @@ impl BuffMeta for BuffGorouC6 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "level",
-            title: "b5",
+            title: crate::common::i18n::locale!(
+                zh_cn: "领域等级",
+                en: "Domain Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 3, default: 1 },
         }
     ]);

@@ -56,22 +56,34 @@ impl BuffMeta for BuffYunjinQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill3",
-            title: "b12",
+            title: crate::common::i18n::locale!(
+                zh_cn: "Q技能等级",
+                en: "Q Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 15, default: 10 }
         },
         ItemConfig {
             name: "def",
-            title: "b30",
+            title: crate::common::i18n::locale!(
+                zh_cn: "云堇的防御力",
+                en: "Yunjin DEF",
+            ),
             config: ItemConfigType::FloatInput { default: 2000.0 }
         },
         ItemConfig {
             name: "talent2",
-            title: "b31",
+            title: crate::common::i18n::locale!(
+                zh_cn: "60级突破",
+                en: "60 Ascend",
+            ),
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "ele_count",
-            title: "b32",
+            title: crate::common::i18n::locale!(
+                zh_cn: "队伍不同属性数量",
+                en: "Different Element Count",
+            ),
             config: ItemConfigType::Int { min: 1, max: 4, default: 4 }
         }
     ]);

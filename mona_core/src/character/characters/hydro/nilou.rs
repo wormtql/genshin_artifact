@@ -191,7 +191,10 @@ impl CharacterTrait for Nilou {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "golden_rate",
-            title: "c41",
+            title: locale!(
+                zh_cn: "「金杯的丰馈」比例",
+                en: "「Golden Chalice's Bounty」Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);

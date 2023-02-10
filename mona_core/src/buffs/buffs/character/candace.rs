@@ -68,7 +68,10 @@ impl BuffMeta for BuffCandaceTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "hp",
-            title: "b43",
+            title: crate::common::i18n::locale!(
+                zh_cn: "坎蒂丝的生命值",
+                en: "Candace's HP",
+            ),
             config: ItemConfigType::FloatInput { default: 30000.0 }
         }
     ]);

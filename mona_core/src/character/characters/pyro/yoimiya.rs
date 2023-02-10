@@ -197,7 +197,10 @@ impl CharacterTrait for Yoimiya {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent1_level",
-            title: "c18",
+            title: locale!(
+                zh_cn: "天赋「袖火百景图」应用层数",
+                en: "Talent「Tricks of the Trouble-Maker」Apply Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 8.0 }
         }
     ]);
@@ -206,7 +209,10 @@ impl CharacterTrait for Yoimiya {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_e",
-            title: "c19",
+            title: locale!(
+                zh_cn: "庭火焰硝",
+                en: "Niwabi Enshou"
+            ),
             config: ItemConfigType::Bool { default: true }
         }
     ]);

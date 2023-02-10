@@ -82,7 +82,10 @@ impl ArtifactTrait for Thundersoother {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "a11",
+            title: crate::common::i18n::locale!(
+                zh_cn: "敌方雷元素覆盖率",
+                en: "Enemy Electro Coverage",
+            ),
             config: ItemConfig::RATE01_TYPE
         }
     ]);

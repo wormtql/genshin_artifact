@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -67,12 +68,18 @@ impl WeaponTrait for CalamityQueller {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "w20",
+            title: locale!(
+                zh_cn: "「圆顿」等效层数",
+                en: "「Consummation」Avg Stack"
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 6.0, default: 6.0 }
         },
         ItemConfig {
             name: "backend_rate",
-            title: "w21",
+            title: locale!(
+                zh_cn: "后台比例",
+                en: "Backend Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE
         }
     ]);

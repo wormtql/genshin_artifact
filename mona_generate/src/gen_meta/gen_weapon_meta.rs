@@ -5,6 +5,7 @@ use mona::weapon::weapons::get_static_data;
 use mona::weapon::weapon_name::WeaponName;
 use mona::weapon::weapon_static_data::WeaponStaticData;
 use crate::gen_meta::gen_locale::get_index_mapping;
+use crate::utils::config_to_json;
 
 struct WeaponMetaDataForJS {
     name: String,
@@ -35,7 +36,7 @@ pub fn gen_weapon_meta_as_js_file() -> String {
 
         if let Some(x) = config_data {
             for config in x.iter() {
-                configs.push(config.to_json());
+                configs.push(config_to_json(&config));
             }
         }
 

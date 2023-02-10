@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -61,7 +62,10 @@ impl WeaponTrait for LithicSpear {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "liyue_count",
-            title: "w19",
+            title: locale!(
+                zh_cn: "队伍璃月角色数量",
+                en: "Team Liyue Character Count",
+            ),
             config: ItemConfigType::Int { min: 0, max: 4, default: 0 }
         }
     ]);

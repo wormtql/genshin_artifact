@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -73,7 +74,10 @@ impl WeaponTrait for PrimordialJadeWingedSpear {
         },
         ItemConfig {
             name: "full_rate",
-            title: "w23",
+            title: locale!(
+                zh_cn: "满层状态比例",
+                en: "Full Stack Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE,
         }
     ]);

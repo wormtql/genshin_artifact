@@ -240,12 +240,18 @@ impl CharacterTrait for RaidenShogun {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "under_e",
-            title: "c28",
+            title: locale!(
+                zh_cn: "处于雷罚恶曜之眼",
+                en: "Under Eye of Stormy Judgment",
+            ),
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "resolve_stack",
-            title: "c29",
+            title: locale!(
+                zh_cn: "诸愿百眼之愿力层数",
+                en: "Chakra Desiderata Resolve",
+            ),
             config: ItemConfigType::Int { min: 0, max: 60, default: 60 }
         }
     ]);

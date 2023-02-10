@@ -196,12 +196,18 @@ impl CharacterTrait for Cyno {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "c2_stack",
-            title: "c46",
+            title: locale!(
+                zh_cn: "命座2「令仪·引谒归灵」等效层数",
+                en: "C2「Ceremony: Homecoming of Spirits」Stacks",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 5.0, default: 4.0 },
         },
         ItemConfig {
             name: "after_q",
-            title: "c44",
+            title: locale!(
+                zh_cn: "启途誓使",
+                en: "Pactsworn Pathclearer",
+            ),
             config: ItemConfigType::Bool { default: true },
         },
     ]);
@@ -210,7 +216,10 @@ impl CharacterTrait for Cyno {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "under_judication",
-            title: "c45",
+            title: locale!(
+                zh_cn: "触发「裁定」效果",
+                en: "Enable 「Judication」",
+            ),
             config: ItemConfigType::Bool { default: true },
         },
     ]);

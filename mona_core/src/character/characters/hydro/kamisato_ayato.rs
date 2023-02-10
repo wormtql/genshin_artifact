@@ -221,12 +221,18 @@ impl CharacterTrait for KamisatoAyato {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_stack",
-            title: "c25",
+            title: locale!(
+                zh_cn: "「浪闪」层数",
+                en: "「Namisen」Stack",
+            ),
             config: ItemConfigType::Int { min: 0, max: 5, default: 4 }
         },
         ItemConfig {
             name: "in_q",
-            title: "c26",
+            title: locale!(
+                zh_cn: "处于「水囿」",
+                en: "Under「Suiyuu」"
+            ),
             config: ItemConfigType::Bool { default: true }
         }
     ]);

@@ -71,7 +71,10 @@ impl BuffMeta for BuffNilouTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "hp",
-            title: "b42",
+            title: crate::common::i18n::locale!(
+                zh_cn: "妮露的生命值",
+                en: "Nilou's HP",
+            ),
             config: ItemConfigType::FloatInput { default: 60000.0 }
         }
     ]);

@@ -186,7 +186,10 @@ impl CharacterTrait for Noelle {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_q",
-            title: "c27",
+            title: locale!(
+                zh_cn: "Q技能之后",
+                en: "After Q"
+            ),
             config: ItemConfigType::Bool { default: true }
         }
     ]);

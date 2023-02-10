@@ -68,7 +68,10 @@ impl BuffMeta for BuffResonanceCryo2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "b34",
+            title: crate::common::i18n::locale!(
+                zh_cn: "应用比例",
+                en: "Apply Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);
@@ -120,12 +123,18 @@ impl BuffMeta for BuffResonanceGeo2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate1",
-            title: "b35",
+            title: crate::common::i18n::locale!(
+                zh_cn: "效果①比例",
+                en: "Effect① Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         },
         ItemConfig {
             name: "rate2",
-            title: "b36",
+            title: crate::common::i18n::locale!(
+                zh_cn: "效果②比例",
+                en: "Effect② Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);
@@ -206,12 +215,18 @@ impl BuffMeta for BuffResonanceDendro2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate1",
-            title: "b35",
+            title: crate::common::i18n::locale!(
+                zh_cn: "效果①比例",
+                en: "Effect① Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         },
         ItemConfig {
             name: "rate2",
-            title: "b36",
+            title: crate::common::i18n::locale!(
+                zh_cn: "效果②比例",
+                en: "Effect② Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);

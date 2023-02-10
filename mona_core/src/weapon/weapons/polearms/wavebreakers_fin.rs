@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -61,7 +62,10 @@ impl WeaponTrait for WavebreakersFin {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "energy",
-            title: "w10",
+            title: locale!(
+                zh_cn: "队伍元素能量上限总和",
+                en: "Team Energy Number Sum",
+            ),
             config: ItemConfigType::Int { min: 40, max: 400, default: 40 }
         }
     ]);

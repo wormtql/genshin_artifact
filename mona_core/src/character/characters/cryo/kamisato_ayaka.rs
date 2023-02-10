@@ -200,12 +200,18 @@ impl CharacterTrait for KamisatoAyaka {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent1_rate",
-            title: "c5",
+            title: locale!(
+                zh_cn: "天赋「天罪国罪镇词」应用比例",
+                en: "Talent「Amatsumi Kunitsumi Sanctification」Apply Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "talent2_rate",
-            title: "c6",
+            title: locale!(
+                zh_cn: "天赋「寒天宣命祝词」应用比例",
+                en: "Talent「Kanten Senmyou Blessing」Apply Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE
         }
     ]);
@@ -214,12 +220,18 @@ impl CharacterTrait for KamisatoAyaka {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_dash",
-            title: "c7",
+            title: locale!(
+                zh_cn: "神里流·霰步",
+                en: "Kamisato Art: Senho",
+            ),
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "use_c6",
-            title: "c8",
+            title: locale!(
+                zh_cn: "六命效果",
+                en: "C6 Effect",
+            ),
             config: ItemConfigType::Bool { default: false }
         }
     ]);

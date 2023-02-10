@@ -181,7 +181,10 @@ impl CharacterTrait for SangonomiyaKokomi {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_q",
-            title: "c30",
+            title: locale!(
+                zh_cn: "「仪来羽衣」状态",
+                en: "Under 「Ceremonial Garment」",
+            ),
             config: ItemConfigType::Bool { default: true }
         }
     ]);

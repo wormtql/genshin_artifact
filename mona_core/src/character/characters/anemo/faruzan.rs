@@ -161,7 +161,10 @@ impl CharacterTrait for Faruzan {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "q_ratio",
-            title: "c55",
+            title: locale!(
+                zh_cn: "「祈风之赐」比例",
+                en: "Prayerful Wind’s Benefit Ratio"
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         },
     ]);
@@ -170,7 +173,10 @@ impl CharacterTrait for Faruzan {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent2_ratio",
-            title: "c56",
+            title: locale!(
+                zh_cn: "「烈风护持」比例",
+                en: "Hurricane Guard effect Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         },
     ]);

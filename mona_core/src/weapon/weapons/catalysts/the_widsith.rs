@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -65,17 +66,26 @@ impl WeaponTrait for TheWidsith {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "t1_rate",
-            title: "w16",
+            title: locale!(
+                zh_cn: "宣叙调比例",
+                en: "「Recitative」Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "t2_rate",
-            title: "w17",
+            title: locale!(
+                zh_cn: "咏叹调比例",
+                en: "「Aria」Ratio"
+            ),
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "t3_rate",
-            title: "w18",
+            title: locale!(
+                zh_cn: "间奏曲比例",
+                en: "「Interlude」Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE
         },
     ]);

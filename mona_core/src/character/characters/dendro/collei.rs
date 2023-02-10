@@ -166,7 +166,10 @@ impl CharacterTrait for Collei {
     #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
-            title: "c37",
+            title: locale!(
+                zh_cn: "处于后台",
+                en: "Off the Field",
+            ),
             name: "background",
             config: ItemConfigType::Bool { default: false }
         }

@@ -39,7 +39,10 @@ impl BuffMeta for BuffYelanTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "secs",
-            title: "b28",
+            title: crate::common::i18n::locale!(
+                zh_cn: "经过的秒数",
+                en: "Seconds Passed",
+            ),
             config: ItemConfigType::Int { min: 0, max: 14, default: 14 }
         }
     ]);
@@ -88,7 +91,10 @@ impl BuffMeta for BuffYelanC4 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "count",
-            title: "b45",
+            title: crate::common::i18n::locale!(
+                zh_cn: "标记数量",
+                en: "Opponents Marked",
+            ),
             config: ItemConfigType::Int { min: 1, max: 4, default: 4 }
         }
     ]);

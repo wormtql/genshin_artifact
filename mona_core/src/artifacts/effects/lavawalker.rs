@@ -82,7 +82,10 @@ impl ArtifactTrait for Lavawalker {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "a7",
+            title: crate::common::i18n::locale!(
+                zh_cn: "敌人火元素覆盖率",
+                en: "Enemy Pyro Coverage",
+            ),
             config: ItemConfig::RATE01_TYPE
         }
     ]);

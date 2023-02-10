@@ -200,7 +200,10 @@ impl CharacterTrait for Rosaria {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_from_behind",
-            title: "c14",
+            title: locale!(
+                zh_cn: "应用天赋「聆听忏悔的幽影」效果",
+                en: "Use Talent「Regina Probationum」"
+            ),
             config: ItemConfigType::Bool { default: true },
         }
     ]);

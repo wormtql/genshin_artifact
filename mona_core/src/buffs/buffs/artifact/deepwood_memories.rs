@@ -38,7 +38,10 @@ impl BuffMeta for BuffDeepwoodMemories4 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "b41",
+            title: crate::common::i18n::locale!(
+                zh_cn: "应用比例",
+                en: "Apply Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);

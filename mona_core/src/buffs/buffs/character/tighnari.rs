@@ -39,7 +39,10 @@ impl BuffMeta for BuffTighnariC4 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_reaction",
-            title: "b38",
+            title: crate::common::i18n::locale!(
+                zh_cn: "造生缠藤箭触发了燃烧、绽放、原激化或蔓激化反应",
+                en: "Triggered Burning, Bloom, Catalyze or Spread",
+            ),
             config: ItemConfigType::Bool { default: false }
         }
     ]);

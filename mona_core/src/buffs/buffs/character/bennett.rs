@@ -45,17 +45,26 @@ impl BuffMeta for BuffBennettQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "base_atk",
-            title: "b1",
+            title: crate::common::i18n::locale!(
+                zh_cn: "班尼特的基础攻击力",
+                en: "Bannett Base ATK",
+            ),
             config: ItemConfigType::FloatInput { default: 800.0 },
         },
         ItemConfig {
             name: "c1",
-            title: "b2",
+            title: crate::common::i18n::locale!(
+                zh_cn: "是否1命",
+                en: "C1",
+            ),
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "skill3",
-            title: "b3",
+            title: crate::common::i18n::locale!(
+                zh_cn: "技能等级",
+                en: "Skill Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 15, default: 10 }
         }
     ]);

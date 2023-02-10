@@ -45,12 +45,18 @@ impl BuffMeta for BuffMonaQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill3",
-            title: "b12",
+            title: crate::common::i18n::locale!(
+                zh_cn: "Q技能等级",
+                en: "Q Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 15, default: 9 }
         },
         ItemConfig {
             name: "c4",
-            title: "b13",
+            title: crate::common::i18n::locale!(
+                zh_cn: "是否4命",
+                en: "C4",
+            ),
             config: ItemConfigType::Bool { default: false }
         }
     ]);

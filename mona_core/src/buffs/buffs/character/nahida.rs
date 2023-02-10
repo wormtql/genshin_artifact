@@ -41,7 +41,10 @@ impl BuffMeta for BuffNahidaTalent1 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "max_em",
-            title: "b44",
+            title: crate::common::i18n::locale!(
+                zh_cn: "队伍最大元素精通",
+                en: "Max EM in Team",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 3000.0, default: 1000.0 }
         }
     ]);

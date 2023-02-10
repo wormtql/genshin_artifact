@@ -4,6 +4,7 @@ use crate::attribute::{Attribute, SimpleAttributeGraph2, AttributeCommon, Attrib
 use crate::character::Character;
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::{Element, SkillType, StatName};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::SimpleDamageBuilder;
@@ -42,7 +43,10 @@ impl TargetFunctionMetaTrait for ExpectVaporizeTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "t",
-            title: "t2",
+            title: locale!(
+                zh_cn: "触发元素",
+                en: "Trigger Element",
+            ),
             config: ItemConfigType::Option {
                 options: "火,水",
                 default: 0
@@ -50,7 +54,10 @@ impl TargetFunctionMetaTrait for ExpectVaporizeTargetFunction {
         },
         ItemConfig {
             name: "skill",
-            title: "t3",
+            title: locale!(
+                zh_cn: "技能",
+                en: "Skill"
+            ),
             config: ItemConfigType::Skill4 { default: SkillType::NormalAttack }
         }
     ]);

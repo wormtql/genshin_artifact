@@ -39,7 +39,10 @@ impl BuffMeta for BuffYoimiyaTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent1_stack",
-            title: "b29",
+            title: crate::common::i18n::locale!(
+                zh_cn: "「袖火百景图」叠加层数",
+                en: "「Tricks of the Trouble-Maker」Stack",
+            ),
             config: ItemConfigType::Int { min: 0, max: 10, default: 0 }
         }
     ]);

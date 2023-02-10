@@ -88,7 +88,10 @@ impl ArtifactTrait for CrimsonWitchOfFlames {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "level",
-            title: "a4",
+            title: crate::common::i18n::locale!(
+                zh_cn: "效果等效层数",
+                en: "Equivalent Stack",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 0.0 }
         }
     ]);

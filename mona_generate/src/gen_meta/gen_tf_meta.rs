@@ -4,6 +4,7 @@ use mona::common::item_config_type::ItemConfig;
 use mona::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use mona::target_functions::TargetFunctionName;
 use crate::gen_meta::gen_locale::get_index_mapping;
+use crate::utils::config_to_json;
 
 struct TFMeta {
     name: String,
@@ -55,7 +56,7 @@ pub fn gen_tf_meta_as_js_file() -> String {
 
         let meta: TargetFunctionMeta = e.get_meta_data();
         let config = if let Some(x) = e.get_config() {
-            x.iter().map(|c| c.to_json()).collect()
+            x.iter().map(|c| config_to_json(&c)).collect()
         } else {
             Vec::new()
         };

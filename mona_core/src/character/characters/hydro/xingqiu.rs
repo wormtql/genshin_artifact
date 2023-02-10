@@ -197,7 +197,10 @@ impl CharacterTrait for Xingqiu {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "c4",
-            title: "c34",
+            title: locale!(
+                zh_cn: "应用4命效果",
+                en: "Use C4",
+            ),
             config: ItemConfigType::Bool { default: false }
         }
     ]);

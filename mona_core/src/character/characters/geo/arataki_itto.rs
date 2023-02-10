@@ -181,7 +181,10 @@ impl CharacterTrait for AratakiItto {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_q",
-            title: "c21",
+            title: locale!(
+                zh_cn: "处于「怒目鬼王」",
+                en: "Under「Raging Oni King」",
+            ),
             config: ItemConfigType::Bool { default: true }
         }
     ]);

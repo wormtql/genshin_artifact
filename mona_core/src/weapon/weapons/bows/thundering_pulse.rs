@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -70,7 +71,10 @@ impl WeaponTrait for ThunderingPulse {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "w13",
+            title: locale!(
+                zh_cn: "「飞雷之巴印」层数",
+                en: "「Thunder Emblem」Stack"
+            ),
             config: ItemConfigType::Int { min: 0, max: 3, default: 0 }
         }
     ]);

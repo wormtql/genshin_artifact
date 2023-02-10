@@ -85,17 +85,26 @@ impl ArtifactTrait for GildedDreams {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "same_count",
-            title: "a14",
+            title: crate::common::i18n::locale!(
+                zh_cn: "同元素角色数",
+                en: "Same Element Count",
+            ),
             config: ItemConfigType::Int { min: 0, max: 3, default: 0 }
         },
         ItemConfig {
             name: "diff_count",
-            title: "a15",
+            title: crate::common::i18n::locale!(
+                zh_cn: "不同元素角色数",
+                en: "Different Element Count",
+            ),
             config: ItemConfigType::Int { min: 0, max: 3, default: 0 }
         },
         ItemConfig {
             name: "rate",
-            title: "a2",
+            title: crate::common::i18n::locale!(
+                zh_cn: "效果应用比例",
+                en: "Effect Apply Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);

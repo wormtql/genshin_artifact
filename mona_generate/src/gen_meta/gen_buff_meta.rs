@@ -5,6 +5,7 @@ use mona::artifacts::artifact_trait::ArtifactMetaData;
 use mona::character::CharacterStaticData;
 use mona::weapon::weapon_static_data::WeaponStaticData;
 use crate::gen_meta::gen_locale::get_index_mapping;
+use crate::utils::config_to_json;
 
 struct BuffMeta {
     name: String,
@@ -59,7 +60,7 @@ pub fn gen_buff_meta_as_js_file() -> String {
 
         let meta: BuffMetaData = e.get_meta();
         let config = if let Some(x) = e.get_config() {
-            x.iter().map(|c| c.to_json()).collect()
+            x.iter().map(|c| config_to_json(&c)).collect()
         } else {
             Vec::new()
         };

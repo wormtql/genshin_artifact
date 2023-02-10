@@ -8,6 +8,7 @@ use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::anemo::wanderer::Wanderer;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
@@ -105,42 +106,66 @@ impl TargetFunctionMetaTrait for WandererDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_hydro",
-            title: "c51",
+            title: locale!(
+                zh_cn: "「拾玉得花」染水",
+                en: "Jade-Claimed Flower Hydro"
+            ),
             config: ItemConfigType::Bool { default: false },
         },
         ItemConfig {
             name: "e_pyro",
-            title: "c52",
+            title: locale!(
+                zh_cn: "「拾玉得花」染火",
+                en: "Jade-Claimed Flower Pyro",
+            ),
             config: ItemConfigType::Bool { default: false },
         },
         ItemConfig {
             name: "e_cryo",
-            title: "c53",
+            title: locale!(
+                zh_cn: "「拾玉得花」染冰",
+                en: "Jade-Claimed Flower Cryo"
+            ),
             config: ItemConfigType::Bool { default: false },
         },
         ItemConfig {
             name: "spd_extra",
-            title: "t31",
+            title: locale!(
+                zh_cn: "额外攻速（不算自身和专武）",
+                en: "Addtional Normal SPD (exclude self and weapon)",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },
         ItemConfig {
             name: "spd_comp",
-            title: "t32",
+            title: locale!(
+                zh_cn: "攻速伤害修正",
+                en: "SPD-DMG compensation"
+            ),
             config: ItemConfigType::Float { min: 0.5, max: 1.5, default: 1.0 },
         },
         ItemConfig {
             name: "dash_count",
-            title: "t33",
+            title: locale!(
+                zh_cn: "「梦迹一风」风矢命中数",
+                en: "Gales of Reverie Wind Arrow Hits",
+            ),
             config: ItemConfigType::Int { min: 0, max: 12, default: 3 },
         },
         ItemConfig {
             name: "q_count",
-            title: "t34",
+            title: locale!(
+                zh_cn: "Q命中数",
+                en: "Q Hits",
+            ),
             config: ItemConfigType::Int { min: 0, max: 5, default: 5 },
         },
         ItemConfig {
             name: "swirl_count",
-            title: "t35",
+            title: locale!(
+                zh_cn: "扩散命中数",
+                en: "Swirl Hits",
+            ),
             config: ItemConfigType::Int { min: 0, max: 24, default: 12 },
         },
     ]);

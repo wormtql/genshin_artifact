@@ -44,12 +44,18 @@ impl TargetFunctionMetaTrait for BennettDamageTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "recharge_demand",
-            title: "t4",
+            title: crate::common::i18n::locale!(
+                zh_cn: "充能需求",
+                en: "Recharge Requirement",
+            ),
             config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.8 },
         },
         ItemConfig {
             name: "other_dmg_ratio",
-            title: "t9",
+            title: crate::common::i18n::locale!(
+                zh_cn: "他人伤害比例",
+                en: "Other's DMG Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.9 },
         }
     ]);

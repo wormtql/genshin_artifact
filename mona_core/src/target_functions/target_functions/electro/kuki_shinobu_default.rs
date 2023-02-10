@@ -43,7 +43,10 @@ impl TargetFunctionMetaTrait for KukiShinobuDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_ratio",
-            title: "t15",
+            title: crate::common::i18n::locale!(
+                zh_cn: "E技能伤害占比",
+                en: "E-skill DMG Rate",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.6 }
         }
     ]);

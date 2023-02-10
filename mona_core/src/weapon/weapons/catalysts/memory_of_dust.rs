@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::ItemConfig;
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -66,7 +67,10 @@ impl WeaponTrait for MemoryOfDust {
         ItemConfig::STACK05,
         ItemConfig {
             name: "shield_rate",
-            title: "w15",
+            title: locale!(
+                zh_cn: "护盾覆盖率",
+                en: "Shield Rate"
+            ),
             config: ItemConfig::RATE01_TYPE
         }
     ]);

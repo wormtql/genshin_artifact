@@ -3,6 +3,7 @@ use crate::buffs::{Buff, BuffConfig};
 use crate::buffs::buff::BuffMeta;
 use crate::buffs::buff_meta::{BuffFrom, BuffGenre, BuffImage, BuffMetaData};
 use crate::buffs::buff_name::BuffName;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::enemies::Enemy;
 use crate::weapon::WeaponName;
@@ -41,7 +42,10 @@ impl BuffMeta for BuffMakhairaAquamarine {
         ItemConfig::REFINE,
         ItemConfig {
             name: "em",
-            title: "w27",
+            title: locale!(
+                zh_cn: "元素精通",
+                en: "EM"
+            ),
             config: ItemConfigType::FloatInput { default: 900.0 }
         }
     ]);

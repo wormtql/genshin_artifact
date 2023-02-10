@@ -189,17 +189,26 @@ impl CharacterTrait for Alhaitham {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "c2_stack",
-            title: "c58",
+            title: locale!(
+                zh_cn: "命座2「辩章」层数",
+                en: "C2「Debate」Stack",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 0.0 },
         },
         ItemConfig {
             name: "c4_stack",
-            title: "c59",
+            title: locale!(
+                zh_cn: "命座4「义贯」层数",
+                en: "C4「Elucidation」Stack",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 0.0 },
         },
         ItemConfig {
             name: "c6_rate",
-            title: "c60",
+            title: locale!(
+                zh_cn: "命座6「正理」比例",
+                en: "C6「Structuration」Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         }
     ]);
@@ -208,7 +217,10 @@ impl CharacterTrait for Alhaitham {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "under_e",
-            title: "c61",
+            title: locale!(
+                zh_cn: "琢光镜",
+                en: "Chisel-Light Mirror",
+            ),
             config: ItemConfigType::Bool { default: true }
         }
     ]);

@@ -190,7 +190,10 @@ impl CharacterTrait for Yelan {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "team_element_count",
-            title: "c17",
+            title: locale!(
+                zh_cn: "队伍不同元素数量",
+                en: "Different Element Count",
+            ),
             config: ItemConfigType::Int { min: 1, max: 4, default: 4 }
         }
     ]);

@@ -182,7 +182,10 @@ impl CharacterTrait for Yaoyao {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "c4_rate",
-            title: "c57",
+            title: locale!(
+                zh_cn: "命座4「爰爰可亲」比例",
+                en: "C4「Winsome」Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         }
     ]);

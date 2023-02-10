@@ -40,7 +40,10 @@ impl BuffMeta for BuffArchaicPetra4 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "element",
-            title: "b37",
+            title: crate::common::i18n::locale!(
+                zh_cn: "结晶元素",
+                en: "Crystallize Element",
+            ),
             config: ItemConfigType::Element4 { default: Element::Electro }
         }
     ]);

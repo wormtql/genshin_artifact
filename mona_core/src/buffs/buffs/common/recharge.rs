@@ -3,6 +3,7 @@ use crate::buffs::{Buff, BuffConfig};
 use crate::buffs::buff::BuffMeta;
 use crate::buffs::buff_meta::{BuffFrom, BuffGenre, BuffImage, BuffMetaData};
 use crate::buffs::buff_name::BuffName;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::enemies::Enemy;
 
@@ -34,7 +35,10 @@ impl BuffMeta for BuffRecharge {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "p",
-            title: "w4",
+            title: locale!(
+                zh_cn: "数值",
+                en: "Number",
+            ),
             config: ItemConfigType::FloatPercentageInput { default: 20.0 },
         }
     ]);

@@ -78,7 +78,10 @@ impl ArtifactTrait for DesertPavilionChronicle {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate",
-            title: "a2",
+            title: crate::common::i18n::locale!(
+                zh_cn: "效果应用比例",
+                en: "Effect Apply Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);

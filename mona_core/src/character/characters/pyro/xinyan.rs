@@ -177,7 +177,10 @@ impl CharacterTrait for Xinyan {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "shield_rate",
-            title: "c35",
+            title: locale!(
+                zh_cn: "「热情拂扫」护盾覆盖比例",
+                en: "「Sweeping Fervor」Shield Coverage",
+            ),
             config: ItemConfig::RATE01_TYPE,
         }
     ]);

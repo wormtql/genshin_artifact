@@ -58,12 +58,18 @@ impl TargetFunctionMetaTrait for YoimiyaDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "vaporize_rate",
-            title: "t6",
+            title: crate::common::i18n::locale!(
+                zh_cn: "蒸发占比",
+                en: "Vaporize Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "melt_rate",
-            title: "t5",
+            title: crate::common::i18n::locale!(
+                zh_cn: "融化占比",
+                en: "Melt Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE
         }
     ]);

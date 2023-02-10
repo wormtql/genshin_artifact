@@ -50,27 +50,42 @@ impl BuffMeta for BuffFaruzanQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "base_atk",
-            title: "b46",
+            title: crate::common::i18n::locale!(
+                zh_cn: "法露珊基础攻击力",
+                en: "Faruzan Base ATK",
+            ),
             config: ItemConfigType::Int { min: 0, max: 1000, default: 196 + 454 },
         },
         ItemConfig {
             name: "q_level",
-            title: "b12",
+            title: crate::common::i18n::locale!(
+                zh_cn: "Q技能等级",
+                en: "Q Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 15, default: 10 },
         },
         ItemConfig {
             name: "rate_q1",
-            title: "b47",
+            title: crate::common::i18n::locale!(
+                zh_cn: "「诡风之祸」比例",
+                en: "Perfidious Wind's Ruin Rate",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
         },
         ItemConfig {
             name: "rate_q2",
-            title: "b48",
+            title: crate::common::i18n::locale!(
+                zh_cn: "「祈风之赐」比例",
+                en: "Prayerful Wind's GiftRate",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
         },
         ItemConfig {
             name: "rate_talent2",
-            title: "b49",
+            title: crate::common::i18n::locale!(
+                zh_cn: "「七窟遗智」比例（加成hit数/一轮hit总数）",
+                en: "「Lost Wisdom of the Seven Caverns Rate（buffed hits count/total hit counts within a cycle）",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },
     ]);

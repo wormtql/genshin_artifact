@@ -160,7 +160,10 @@ impl CharacterTrait for Yanfei {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_q",
-            title: "c36",
+            title: locale!(
+                zh_cn: "灼灼",
+                en: "Brilliance"
+            ),
             config: ItemConfigType::Bool { default: true }
         }
     ]);

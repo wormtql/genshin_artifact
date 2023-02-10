@@ -158,12 +158,18 @@ impl CharacterTrait for Wanderer {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_pyro",
-            title: "c52",
+            title: locale!(
+                zh_cn: "「拾玉得花」染火",
+                en: "Jade-Claimed Flower Pyro",
+            ),
             config: ItemConfigType::Bool { default: false },
         },
         ItemConfig {
             name: "e_cryo",
-            title: "c53",
+            title: locale!(
+                zh_cn: "「拾玉得花」染冰",
+                en: "Jade-Claimed Flower Cryo"
+            ),
             config: ItemConfigType::Bool { default: false },
         },
     ]);
@@ -172,17 +178,26 @@ impl CharacterTrait for Wanderer {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_enabled",
-            title: "c50",
+            title: locale!(
+                zh_cn: "处于「优风倾姿」状态",
+                en: "Under Windfavored State"
+            ),
             config: ItemConfigType::Bool { default: true },
         },
         ItemConfig {
             name: "e_hydro",
-            title: "c51",
+            title: locale!(
+                zh_cn: "「拾玉得花」染水",
+                en: "Jade-Claimed Flower Hydro",
+            ),
             config: ItemConfigType::Bool { default: false },
         },
         ItemConfig {
             name: "sdpoints",
-            title: "c54",
+            title: locale!(
+                zh_cn: "等效「空居力」",
+                en: "Kuugoryoku Points"
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 120.0, default: 50.0 },
         },
     ]);

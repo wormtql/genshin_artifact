@@ -39,7 +39,10 @@ impl BuffMeta for BuffThomaTalent1 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "b24",
+            title: crate::common::i18n::locale!(
+                zh_cn: "叠加层数",
+                en: "Stack Level",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 5.0, default: 2.0 }
         }
     ]);

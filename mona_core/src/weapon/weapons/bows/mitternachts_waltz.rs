@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::ItemConfig;
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -64,12 +65,18 @@ impl WeaponTrait for MitternachtsWaltz {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate1",
-            title: "w8",
+            title: locale!(
+                zh_cn: "效果1比例",
+                en: "Effect1 Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "rate2",
-            title: "w9",
+            title: locale!(
+                zh_cn: "效果2比例",
+                en: "Effect2 Ratio"
+            ),
             config: ItemConfig::RATE01_TYPE
         },
     ]);

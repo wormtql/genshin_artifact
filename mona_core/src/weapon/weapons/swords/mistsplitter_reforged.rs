@@ -4,6 +4,7 @@ use super::super::super::weapon_effect::WeaponEffect;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::character::Character;
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_static_data::WeaponStaticData;
@@ -84,7 +85,10 @@ impl WeaponTrait for MistsplitterReforged {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "emblem_level",
-            title: "w26",
+            title: locale!(
+                zh_cn: "「雾切之巴印」层数",
+                en: "「Mistsplitter's Emblem」Stack"
+            ),
             config: ItemConfigType::Int {
                 min: 0,
                 max: 3,

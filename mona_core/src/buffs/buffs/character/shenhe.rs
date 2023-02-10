@@ -43,12 +43,18 @@ impl BuffMeta for BuffShenheE {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "atk",
-            title: "b17",
+            title: crate::common::i18n::locale!(
+                zh_cn: "申鹤的攻击力",
+                en: "Shenhe ATK",
+            ),
             config: ItemConfigType::FloatInput { default: 3000.0 }
         },
         ItemConfig {
             name: "skill2",
-            title: "b18",
+            title: crate::common::i18n::locale!(
+                zh_cn: "申鹤E技能等级",
+                en: "Shenhe E Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 15, default: 8 },
         }
     ]);
@@ -99,7 +105,10 @@ impl BuffMeta for BuffShenheQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill3",
-            title: "b19",
+            title: crate::common::i18n::locale!(
+                zh_cn: "申鹤Q技能等级",
+                en: "Shenhe Q Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 15, default: 8 },
         }
     ]);
@@ -151,7 +160,10 @@ impl BuffMeta for BuffShenheTalent1 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "c2",
-            title: "b20",
+            title: crate::common::i18n::locale!(
+                zh_cn: "是否2命",
+                en: "C2",
+            ),
             config: ItemConfigType::Bool { default: false }
         }
     ]);
@@ -207,7 +219,10 @@ impl BuffMeta for BuffShenheTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "t",
-            title: "b21",
+            title: crate::common::i18n::locale!(
+                zh_cn: "技能释放方式",
+                en: "Hold or Press",
+            ),
             config: ItemConfigType::Option {
                 options: "点按,长按",
                 default: 0

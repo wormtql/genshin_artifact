@@ -39,7 +39,10 @@ impl BuffMeta for BuffRosariaTalent2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "crit",
-            title: "b16",
+            title: crate::common::i18n::locale!(
+                zh_cn: "罗莎莉亚的暴击率",
+                en: "Rosaria's Crit Rate",
+            ),
             config: ItemConfigType::FloatPercentageInput { default: 70.0 }
         }
     ]);

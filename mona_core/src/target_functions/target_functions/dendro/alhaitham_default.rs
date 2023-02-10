@@ -1,4 +1,5 @@
 use crate::{target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName, target_function::TargetFunctionMetaTrait, target_function_meta::{TargetFunctionMeta, TargetFunctionFor, TargetFunctionMetaImage}}, damage::{DamageContext, SimpleDamageBuilder}, attribute::SimpleAttributeGraph2, character::{characters::Alhaitham, traits::CharacterTrait, skill_config::CharacterSkillConfig, CharacterName}, common::item_config_type::{ItemConfig, ItemConfigType}};
+use crate::common::i18n::locale;
 
 pub struct AlhaithamDefaultTargetFunction {
     pub charged_ratio: f64,
@@ -69,22 +70,34 @@ impl TargetFunctionMetaTrait for AlhaithamDefaultTargetFunction {
     const CONFIG: Option<&'static [crate::common::item_config_type::ItemConfig]> = Some(&[
         ItemConfig {
             name: "charged_ratio",
-            title: "t36",
+            title: locale!(
+                zh_cn: "重击次数",
+                en: "Charged Hit",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 5.0 },
         },
         ItemConfig {
             name: "e_ratio",
-            title: "t37",
+            title: locale!(
+                zh_cn: "元素战技次数",
+                en: "E Hit"
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 5.0 },
         },
         ItemConfig {
             name: "q_ratio",
-            title: "t38",
+            title: locale!(
+                zh_cn: "元素爆发次数",
+                en: "Q Hit",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 1.0 },
         },
         ItemConfig {
             name: "spread_ratio",
-            title: "t39",
+            title: locale!(
+                zh_cn: "蔓激化比例",
+                en: "Spread Ratio"
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.3 },
         }
     ]);

@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_common_data::WeaponCommonData;
@@ -61,7 +62,10 @@ impl WeaponTrait for Slingshot {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "is_effect",
-            title: "w12",
+            title: locale!(
+                zh_cn: "0.3秒内命中",
+                en: "Hit in 0.3s",
+            ),
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig::RATE01

@@ -41,7 +41,10 @@ impl BuffMeta for BuffVentiC2 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "levitating",
-            title: "b25",
+            title: crate::common::i18n::locale!(
+                zh_cn: "落地前",
+                en: "Levitating",
+            ),
             config: ItemConfigType::Bool { default: false }
         }
     ]);
@@ -95,12 +98,18 @@ impl BuffMeta for BuffVentiC6 {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "is_convert",
-            title: "b26",
+            title: crate::common::i18n::locale!(
+                zh_cn: "发生了元素转化",
+                en: "Element Transform Occurred",
+            ),
             config: ItemConfigType::Bool { default: true },
         },
         ItemConfig {
             name: "element",
-            title: "b27",
+            title: crate::common::i18n::locale!(
+                zh_cn: "转化类型",
+                en: "Transform Type",
+            ),
             config: ItemConfigType::Element4 { default: Element::Electro }
         }
     ]);

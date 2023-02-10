@@ -7,6 +7,7 @@ use crate::character::characters::cryo::kamisato_ayaka::KamisatoAyaka;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
 use crate::common::{Element, StatName};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
@@ -43,7 +44,10 @@ impl TargetFunctionMetaTrait for KamisatoAyakaDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "recharge_demand",
-            title: "t4",
+            title: locale!(
+                zh_cn: "充能需求",
+                en: "Recharge Requirement"
+            ),
             config: ItemConfigType::Float { default: 1.0, min: 1.0, max: 3.0 }
         }
     ]);

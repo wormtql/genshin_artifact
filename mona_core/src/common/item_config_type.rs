@@ -1,5 +1,6 @@
 use serde_json::json;
 use crate::common::{Element, SkillType};
+use crate::common::i18n::{I18nLocale, locale};
 
 pub enum ItemConfigType {
     Float {
@@ -47,7 +48,7 @@ pub enum ItemConfigType {
 }
 
 pub struct ItemConfig {
-    pub title: &'static str,
+    pub title: I18nLocale,
     pub name: &'static str,
     pub config: ItemConfigType,
 }
@@ -55,16 +56,6 @@ pub struct ItemConfig {
 impl ItemConfigType {
     pub fn to_json(&self, title: &str, name: &str) -> String {
         let j = match *self {
-            // ItemConfigType::NullOrValueInput { min, max, default } => {
-            //     json!({
-            //         "type": "nullOrValueInput",
-            //         "title": title,
-            //         "name": name,
-            //         "min": min,
-            //         "max": max,
-            //         "default": default
-            //     })
-            // },
             ItemConfigType::Skill4 { default } => {
                 json!({
                     "type": "skill4",
@@ -160,10 +151,10 @@ impl ItemConfigType {
 }
 
 impl ItemConfig {
-    pub const DEFAULT_RATE_TITLE: &'static str = "w2";
-    pub const DEFAULT_STACK_TITLE: &'static str = "w1";
-    pub const DEFAULT_RECHARGE_TITLE: &'static str = "w3";
-    pub const DEFAULT_BUFF_TITLE: &'static str = "w4";
+    pub const DEFAULT_RATE_TITLE: I18nLocale = locale!(zh_cn: "被动应用比例", en: "Avg Effect Ratio");
+    pub const DEFAULT_STACK_TITLE: I18nLocale = locale!(zh_cn: "被动等效层数", en: "Avg Effect Stack");
+    pub const DEFAULT_RECHARGE_TITLE: I18nLocale = locale!(zh_cn: "充能需求", en: "Recharge demand");
+    pub const DEFAULT_BUFF_TITLE: I18nLocale = locale!(zh_cn: "数值", en: "Number");
 
     pub const RATE01_TYPE: ItemConfigType = ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 };
     pub const RATE01: ItemConfig = ItemConfig { name: "rate", title: Self::DEFAULT_RATE_TITLE, config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 } };
@@ -173,9 +164,5 @@ impl ItemConfig {
     pub const STACK05: ItemConfig = ItemConfig { name: "stack", title: Self::DEFAULT_STACK_TITLE, config: ItemConfigType::Float { min: 0.0, max: 5.0, default: 0.0 } };
     pub const BUFFV1P: ItemConfig = ItemConfig { name: "p", title: Self::DEFAULT_BUFF_TITLE, config: ItemConfigType::FloatPercentageInput { default: 0.0 } };
     pub const BUFFV1: ItemConfig = ItemConfig { name: "value", title: Self::DEFAULT_BUFF_TITLE, config: ItemConfigType::FloatInput { default: 0.0 } };
-    pub const REFINE: ItemConfig = ItemConfig { name: "refine", title: "w5", config: ItemConfigType::IntInput { min: 1, max: 5, default: 1 } };
-
-    pub fn to_json(&self) -> String {
-        self.config.to_json(self.title, self.name)
-    }
+    pub const REFINE: ItemConfig = ItemConfig { name: "refine", title: locale!(zh_cn: "精炼", en: "Refine"), config: ItemConfigType::IntInput { min: 1, max: 5, default: 1 } };
 }

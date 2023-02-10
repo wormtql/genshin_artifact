@@ -87,12 +87,18 @@ impl ArtifactTrait for ArchaicPetra {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "element",
-            title: "a1",
+            title: crate::common::i18n::locale!(
+                zh_cn: "元素",
+                en: "Element",
+            ),
             config: ItemConfigType::Element4 { default: Element::Electro }
         },
         ItemConfig {
             name: "rate",
-            title: "a2",
+            title: crate::common::i18n::locale!(
+                zh_cn: "效果应用比例",
+                en: "Effect Apply Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);

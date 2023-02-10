@@ -78,7 +78,10 @@ impl ArtifactTrait for FlowerOfParadiseLost {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "a4",
+            title: crate::common::i18n::locale!(
+                zh_cn: "效果等效层数",
+                en: "Equivalent Stack",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 4.0 },
         }
     ]);

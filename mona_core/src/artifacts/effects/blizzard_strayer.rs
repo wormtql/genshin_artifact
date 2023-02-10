@@ -82,7 +82,10 @@ impl ArtifactTrait for BlizzardStrayer {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "critical_bonus",
-            title: "a3",
+            title: crate::common::i18n::locale!(
+                zh_cn: "等效暴击率",
+                en: "Equivalent Crit Rate",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 0.4, default: 0.0 }
         }
     ]);

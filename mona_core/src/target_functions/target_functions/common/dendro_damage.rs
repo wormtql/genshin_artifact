@@ -3,6 +3,7 @@ use crate::artifacts::effect_config::ArtifactEffectConfig;
 use crate::attribute::{SimpleAttributeGraph2, AttributeCommon, AttributeName, Attribute};
 use crate::character::Character;
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::enemies::Enemy;
 use crate::target_functions::target_function::TargetFunctionMetaTrait;
@@ -38,7 +39,10 @@ impl TargetFunctionMetaTrait for DendroDamageTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "t",
-            title: "t1",
+            title: locale!(
+                zh_cn: "类型",
+                en: "Type"
+            ),
             config: ItemConfigType::Option {
                 options: "期望,最大值",
                 default: 0

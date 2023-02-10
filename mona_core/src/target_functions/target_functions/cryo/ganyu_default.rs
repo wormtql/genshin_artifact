@@ -7,6 +7,7 @@ use crate::character::characters::Ganyu;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
 use crate::common::{Element, StatName};
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig};
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
@@ -54,7 +55,10 @@ impl TargetFunctionMetaTrait for GanyuDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "melt_rate",
-            title: "t5",
+            title: locale!(
+                zh_cn: "融化占比",
+                en: "Melt Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE
         }
     ]);

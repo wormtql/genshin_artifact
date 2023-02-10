@@ -180,7 +180,10 @@ impl CharacterTrait for Candace {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "c2_rate",
-            title: "c42",
+            title: locale!(
+                zh_cn: "命座2「贯月的耀锋」比例",
+                en: "C2 Ratio",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);
@@ -189,7 +192,10 @@ impl CharacterTrait for Candace {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "crown",
-            title: "c43",
+            title: locale!(
+                zh_cn: "赤冕祝祷",
+                en: "Prayer of the Crimson Crown"
+            ),
             config: ItemConfigType::Bool { default: true },
         }
     ]);

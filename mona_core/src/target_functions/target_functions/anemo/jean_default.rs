@@ -6,6 +6,7 @@ use crate::character::character_common_data::CharacterCommonData;
 use crate::character::traits::CharacterTrait;
 use crate::character::characters::anemo::jean::Jean;
 use crate::character::skill_config::CharacterSkillConfig;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
@@ -58,7 +59,10 @@ impl TargetFunctionMetaTrait for JeanDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "damage_weight",
-            title: "t7",
+            title: locale!(
+                zh_cn: "治疗-伤害比重（0：纯治疗，1：纯伤害）",
+                en: "Heal-DMG Weight(0: Pure Heal, 1: Pure DMG）",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.5 },
         },
         ItemConfig {

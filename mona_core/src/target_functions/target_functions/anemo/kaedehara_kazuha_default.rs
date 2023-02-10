@@ -3,6 +3,7 @@ use crate::artifacts::effect_config::ArtifactEffectConfig;
 use crate::attribute::{Attribute, AttributeName, SimpleAttributeGraph2, AttributeCommon};
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::enemies::Enemy;
@@ -39,7 +40,10 @@ impl TargetFunctionMetaTrait for KaedeharaKazuhaDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "recharge_demand",
-            title: "t4",
+            title: locale!(
+                zh_cn: "充能需求",
+                en: "Recharge Requirement",
+            ),
             config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 1.8 },
         }
     ]);

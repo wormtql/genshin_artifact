@@ -153,7 +153,10 @@ impl CharacterTrait for Nahida {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "c4_e_count",
-            title: "c49",
+            title: locale!(
+                zh_cn: "（4命）蕴种印状态敌人数量",
+                en: "(C4) Schemes to Know‘s Seeds of Skandha Enemy Count",
+            ),
             config: ItemConfigType::Int { min: 0, max: 4, default: 4 },
         }
     ]);
@@ -162,12 +165,18 @@ impl CharacterTrait for Nahida {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "q_bonus",
-            title: "c47",
+            title: locale!(
+                zh_cn: "Q技能火元素加伤",
+                en: "Q Pyro Bonus",
+            ),
             config: ItemConfigType::Bool { default: true }
         },
         ItemConfig {
             name: "q_bonus_count",
-            title: "c48",
+            title: locale!(
+                zh_cn: "Q技能火元素个数",
+                en: "Q Pyro Count",
+            ),
             config: ItemConfigType::Int { min: 1, max: 2, default: 2 }
         }
     ]);

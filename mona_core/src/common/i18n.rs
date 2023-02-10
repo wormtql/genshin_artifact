@@ -78,22 +78,22 @@ pub macro hit_n_dmg {
         locale!(zh_cn: "六段伤害", en: "6-Hit DMG")
     },
     (1, $n:expr) => {
-        locale!(zh_cn: concat!("一段伤害-{}", $n), en: concat!("1-Hit DMG-{}", $n))
+        locale!(zh_cn: concat!("一段伤害-", $n), en: concat!("1-Hit DMG-", $n))
     },
     (2, $n:expr) => {
-        locale!(zh_cn: concat!("二段伤害-{}", $n), en: concat!("2-Hit DMG-{}", $n))
+        locale!(zh_cn: concat!("二段伤害-", $n), en: concat!("2-Hit DMG-", $n))
     },
     (3, $n:expr) => {
-        locale!(zh_cn: concat!("三段伤害-{}", $n), en: concat!("3-Hit DMG-{}", $n))
+        locale!(zh_cn: concat!("三段伤害-", $n), en: concat!("3-Hit DMG-", $n))
     },
     (4, $n:expr) => {
-        locale!(zh_cn: concat!("四段伤害-{}", $n), en: concat!("4-Hit DMG-{}", $n))
+        locale!(zh_cn: concat!("四段伤害-", $n), en: concat!("4-Hit DMG-", $n))
     },
     (5, $n:expr) => {
-        locale!(zh_cn: concat!("五段伤害-{}", $n), en: concat!("5-Hit DMG-{}", $n))
+        locale!(zh_cn: concat!("五段伤害-", $n), en: concat!("5-Hit DMG-", $n))
     },
     (6, $n:expr) => {
-        locale!(zh_cn: concat!("六段伤害-{}", $n), en: concat!("6-Hit DMG-{}", $n))
+        locale!(zh_cn: concat!("六段伤害-", $n), en: concat!("6-Hit DMG-", $n))
     }
 }
 

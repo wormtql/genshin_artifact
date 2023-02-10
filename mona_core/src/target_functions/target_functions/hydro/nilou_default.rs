@@ -91,27 +91,42 @@ impl TargetFunctionMetaTrait for NilouDefaultTargetFunction {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "e_ratio",
-            title: "t18",
+            title: crate::common::i18n::locale!(
+                zh_cn: "元素战技倍数",
+                en: "Elemental Skill Times",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 5.0 },
         },
         ItemConfig {
             name: "q_ratio",
-            title: "t19",
+            title: crate::common::i18n::locale!(
+                zh_cn: "元素爆发倍数",
+                en: "Elemental Burst Times",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 1.0 },
         },
         ItemConfig {
             name: "bloom_ratio",
-            title: "t20",
+            title: crate::common::i18n::locale!(
+                zh_cn: "绽放倍数",
+                en: "Bloom Times",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 3.0 },
         },
         ItemConfig {
             name: "other_em",
-            title: "t21",
+            title: crate::common::i18n::locale!(
+                zh_cn: "队友的等效精通",
+                en: "Teammates' equivalent EM",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 3000.0, default: 1000.0 }
         },
         ItemConfig {
             name: "other_bloom_ratio",
-            title: "t22",
+            title: crate::common::i18n::locale!(
+                zh_cn: "队友的绽放倍数",
+                en: "Teammates' Bloom Times",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 10.0, default: 7.0 },
         }
     ]);

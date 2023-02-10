@@ -43,7 +43,10 @@ impl BuffMeta for BuffHakushinRing {
         ItemConfig::REFINE,
         ItemConfig {
             name: "element",
-            title: "b33",
+            title: crate::common::i18n::locale!(
+                zh_cn: "元素",
+                en: "Element",
+            ),
             config: ItemConfigType::Element8 { default: Element::Electro }
         }
     ]);

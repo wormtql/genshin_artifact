@@ -41,7 +41,10 @@ impl BuffMeta for BuffEulaE {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill2",
-            title: "b3",
+            title: crate::common::i18n::locale!(
+                zh_cn: "技能等级",
+                en: "Skill Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 15, default: 9 },
         }
     ]);

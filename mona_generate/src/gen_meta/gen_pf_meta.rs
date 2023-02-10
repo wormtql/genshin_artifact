@@ -1,6 +1,7 @@
 use askama::Template;
 use mona::potential_function::potential_function::PotentialFunctionMetaData;
 use mona::potential_function::potential_function_name::PotentialFunctionName;
+use crate::utils::config_to_json;
 
 struct PFMeta {
     name: String,
@@ -23,7 +24,7 @@ pub fn gen_pf_meta_as_js_file() -> String {
 
         let meta: PotentialFunctionMetaData = e.get_meta();
         let config = if let Some(x) = e.get_config() {
-            x.iter().map(|c| c.to_json()).collect()
+            x.iter().map(|c| config_to_json(&c)).collect()
         } else {
             Vec::new()
         };

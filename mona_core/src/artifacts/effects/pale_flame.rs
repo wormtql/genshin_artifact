@@ -85,12 +85,18 @@ impl ArtifactTrait for PaleFlame {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "avg_level",
-            title: "a8",
+            title: crate::common::i18n::locale!(
+                zh_cn: "效果1等效层数",
+                en: "Effect1 Equivalent Stack",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 2.0, default: 0.0 }
         },
         ItemConfig {
             name: "full_rate",
-            title: "a9",
+            title: crate::common::i18n::locale!(
+                zh_cn: "满层效果比例",
+                en: "Full Stack Rate",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
         }
     ]);

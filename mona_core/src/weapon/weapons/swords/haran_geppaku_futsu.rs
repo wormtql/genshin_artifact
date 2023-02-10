@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_common_data::WeaponCommonData;
@@ -51,7 +52,10 @@ impl WeaponTrait for HaranGeppakuFutsu {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "w25",
+            title: locale!(
+                zh_cn: "「波穗」层数",
+                en: "「Wavespike」Stack",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 2.0, default: 2.0 }
         }
     ]);

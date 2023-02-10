@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::ItemConfig;
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -69,7 +70,10 @@ impl WeaponTrait for StaffOfHoma {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "be50_rate",
-            title: "w24",
+            title: locale!(
+                zh_cn: "生命值低于50%时间比例",
+                en: "HP Below 50% Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE
         }
     ]);

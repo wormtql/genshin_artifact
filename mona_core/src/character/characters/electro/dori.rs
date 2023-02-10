@@ -157,7 +157,10 @@ impl CharacterTrait for Dori {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "c6",
-            title: "c40",
+            title: locale!(
+                zh_cn: "「漫掷万镒」",
+                en: "C6「Sprinkling Weight」",
+            ),
             config: ItemConfigType::Bool { default: false }
         }
     ]);

@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_common_data::WeaponCommonData;
@@ -53,12 +54,18 @@ impl WeaponTrait for AThousandFloatingDreams {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "same_count",
-            title: "w29",
+            title: locale!(
+                zh_cn: "同元素角色数",
+                en: "Same Element Count",
+            ),
             config: ItemConfigType::Int { min: 0, max: 3, default: 1 },
         },
         ItemConfig {
             name: "diff_count",
-            title: "w30",
+            title: locale!(
+                zh_cn: "不同元素角色数",
+                en: "Diff Element Count"
+            ),
             config: ItemConfigType::Int { min: 0, max: 3, default: 2 },
         }
     ]);

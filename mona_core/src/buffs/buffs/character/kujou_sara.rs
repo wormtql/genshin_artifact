@@ -47,17 +47,26 @@ impl BuffMeta for BuffKujouSaraEOrQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "base_atk",
-            title: "b9",
+            title: crate::common::i18n::locale!(
+                zh_cn: "九条裟罗的基础攻击力",
+                en: "Sara Base ATK",
+            ),
             config: ItemConfigType::FloatInput { default: 700.0 },
         },
         ItemConfig {
             name: "c6",
-            title: "b10",
+            title: crate::common::i18n::locale!(
+                zh_cn: "是否6命",
+                en: "C6",
+            ),
             config: ItemConfigType::Bool { default: false },
         },
         ItemConfig {
             name: "skill2",
-            title: "b11",
+            title: crate::common::i18n::locale!(
+                zh_cn: "E技能等级",
+                en: "E Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 15, default: 10 },
         }
     ]);

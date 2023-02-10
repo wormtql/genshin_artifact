@@ -5,6 +5,7 @@ use mona::character::traits::{CharacterSkillMap, CharacterSkillMapItem};
 use mona::common::item_config_type::ItemConfig;
 use lazy_static::lazy_static;
 use crate::gen_meta::gen_locale::get_index_mapping;
+use crate::utils::config_to_json;
 
 struct CharacterMeta {
     name: String,
@@ -79,13 +80,13 @@ pub fn gen_character_meta_as_js_file() -> String {
         };
 
         let config_data: Vec<String> = if let Some(x) = name_enum.get_config_data() {
-            x.iter().map(|c| c.to_json()).collect()
+            x.iter().map(|c| config_to_json(&c)).collect()
         } else {
             Vec::new()
         };
 
         let config_skill: Vec<String> = if let Some(x) = name_enum.get_config_skill() {
-            x.iter().map(|c| c.to_json()).collect()
+            x.iter().map(|c| config_to_json(&c)).collect()
         } else {
             Vec::new()
         };

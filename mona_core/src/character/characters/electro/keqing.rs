@@ -213,7 +213,10 @@ impl CharacterTrait for Keqing {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "talent2_rate",
-            title: "c9",
+            title: locale!(
+                zh_cn: "天赋「玉衡之贵」应用比例",
+                en: "Talent「Aristocratic Dignity」Apply Ratio",
+            ),
             config: ItemConfig::RATE01_TYPE
         }
     ]);
@@ -222,7 +225,10 @@ impl CharacterTrait for Keqing {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "after_e",
-            title: "c10",
+            title: locale!(
+                zh_cn: "E附魔",
+                en: "E附魔",
+            ),
             config: ItemConfigType::Bool { default: true }
         }
     ]);

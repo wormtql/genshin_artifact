@@ -83,7 +83,10 @@ impl ArtifactTrait for HuskOfOpulentDreams {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "level",
-            title: "a6",
+            title: crate::common::i18n::locale!(
+                zh_cn: "「问答」效果等效层数",
+                en: "「Curiosity」Equivalent Stack",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 0.0 }
         }
     ]);

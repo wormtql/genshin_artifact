@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_common_data::WeaponCommonData;
@@ -51,12 +52,15 @@ impl WeaponTrait for KagurasVerity {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "w1",
+            title: ItemConfig::DEFAULT_STACK_TITLE,
             config: ItemConfigType::Float { min: 0.0, max: 3.0, default: 3.0 }
         },
         ItemConfig {
             name: "full_rate",
-            title: "w14",
+            title: locale!(
+                zh_cn: "满层比例",
+                en: "Full Stack Ratio"
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         }
     ]);

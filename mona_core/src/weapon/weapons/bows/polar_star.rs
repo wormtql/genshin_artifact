@@ -1,5 +1,6 @@
 use crate::attribute::{Attribute, AttributeName, AttributeCommon};
 use crate::character::character_common_data::CharacterCommonData;
+use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
@@ -76,7 +77,10 @@ impl WeaponTrait for PolarStar {
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "stack",
-            title: "w11",
+            title: locale!(
+                zh_cn: "「白夜极星」层数",
+                en: "「Nightstar」Stack"
+            ),
             config: ItemConfigType::Int { min: 0, max: 4, default: 0 }
         }
     ]);

@@ -81,12 +81,18 @@ impl ArtifactTrait for VermillionHereafter {
     const CONFIG4: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "rate_q",
-            title: "a12",
+            title: crate::common::i18n::locale!(
+                zh_cn: "元素爆发频率",
+                en: "Elemental Burst Rate",
+            ),
             config: ItemConfig::RATE01_TYPE
         },
         ItemConfig {
             name: "stack",
-            title: "a13",
+            title: crate::common::i18n::locale!(
+                zh_cn: "平均层数",
+                en: "Avg Stack",
+            ),
             config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 0.0 }
         }
     ]);

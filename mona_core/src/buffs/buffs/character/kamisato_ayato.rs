@@ -41,7 +41,10 @@ impl BuffMeta for BuffKamisatoAyatoQ {
     const CONFIG: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "skill_level",
-            title: "b8",
+            title: crate::common::i18n::locale!(
+                zh_cn: "神里绫人Q技能等级",
+                en: "Ayato's Q Level",
+            ),
             config: ItemConfigType::Int { min: 1, max: 15, default: 8 }
         }
     ]);

@@ -6,7 +6,7 @@
             v-for="config in configs"
             :key="config.name"
             :params="config"
-            :title="t('config', config.title)"
+            :title="ta(config.title)"
             :type="config.type"
             :modelValue="value2[config.name]"
             @update:modelValue="handleInput(config.name, $event)"
@@ -70,9 +70,9 @@ export default {
         }
     },
     setup() {
-        const { t } = useI18n()
+        const { t, ta } = useI18n()
         return {
-            t
+            t, ta
         }
     }
 }

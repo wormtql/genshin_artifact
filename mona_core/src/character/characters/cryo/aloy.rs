@@ -182,7 +182,10 @@ impl CharacterTrait for Aloy {
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
             name: "coil_count",
-            title: "c20",
+            title: locale!(
+                zh_cn: "线圈层数",
+                en: "Coil Stack"
+            ),
             config: ItemConfigType::Int { min: 0, max: 4, default: 4 }
         }
     ]);
