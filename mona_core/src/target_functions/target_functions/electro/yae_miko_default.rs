@@ -96,10 +96,10 @@ impl TargetFunction for YaeMikoDefaultTargetFunction {
         let dmg_a2_aggravate = dmg_a2.aggravate.unwrap().expectation;
         let dmg_a3_aggravate = dmg_a3.aggravate.unwrap().expectation;
 
-        let dmg_e_aggravate_bonus = dmg_e_norm - dmg_e_aggravate;
-        let dmg_a1_aggravate_bonus = dmg_a1_norm - dmg_a1_aggravate;
-        let dmg_a2_aggravate_bonus = dmg_a2_norm - dmg_a2_aggravate;
-        let dmg_a3_aggravate_bonus = dmg_a3_norm - dmg_a3_aggravate;
+        let dmg_e_aggravate_bonus = dmg_e_aggravate - dmg_e_norm;
+        let dmg_a1_aggravate_bonus = dmg_a1_aggravate - dmg_a1_norm;
+        let dmg_a2_aggravate_bonus = dmg_a2_aggravate - dmg_a2_norm;
+        let dmg_a3_aggravate_bonus = dmg_a3_aggravate - dmg_a3_norm;
 
         let mut dmg_hyperbloom = 0.0;
         if self.hyperbloom_rate > 0.0 {
