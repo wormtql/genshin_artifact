@@ -219,6 +219,8 @@ import BaseDmg_image from "@image/misc/sword"
 
 
 
+
+
 import ResonancePyro2_image from "@image/misc/pyro"
 
 
@@ -262,7 +264,7 @@ export default {
     
     "ATKPercentage": {
         name: "ATKPercentage",
-        nameLocale: 641,
+        nameLocale: 648,
         
         description: null,
         
@@ -272,14 +274,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"p","title":677,"type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":684,"type":"floatPercentageInput"},
             
         ],
     },
     
     "DEFPercentage": {
         name: "DEFPercentage",
-        nameLocale: 1542,
+        nameLocale: 1559,
         
         description: null,
         
@@ -289,14 +291,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"p","title":677,"type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":684,"type":"floatPercentageInput"},
             
         ],
     },
     
     "HPPercentage": {
         name: "HPPercentage",
-        nameLocale: 1121,
+        nameLocale: 1134,
         
         description: null,
         
@@ -306,14 +308,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"p","title":677,"type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":684,"type":"floatPercentageInput"},
             
         ],
     },
     
     "ATKFixed": {
         name: "ATKFixed",
-        nameLocale: 640,
+        nameLocale: 647,
         
         description: null,
         
@@ -323,14 +325,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"value","title":677,"type":"floatInput"},
+            {"default":0.0,"name":"value","title":684,"type":"floatInput"},
             
         ],
     },
     
     "DEFFixed": {
         name: "DEFFixed",
-        nameLocale: 1541,
+        nameLocale: 1558,
         
         description: null,
         
@@ -340,14 +342,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"value","title":677,"type":"floatInput"},
+            {"default":0.0,"name":"value","title":684,"type":"floatInput"},
             
         ],
     },
     
     "HPFixed": {
         name: "HPFixed",
-        nameLocale: 1120,
+        nameLocale: 1133,
         
         description: null,
         
@@ -357,14 +359,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"value","title":677,"type":"floatInput"},
+            {"default":0.0,"name":"value","title":684,"type":"floatInput"},
             
         ],
     },
     
     "Critical": {
         name: "Critical",
-        nameLocale: 881,
+        nameLocale: 893,
         
         description: null,
         
@@ -374,14 +376,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"p","title":677,"type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":684,"type":"floatPercentageInput"},
             
         ],
     },
     
     "CriticalDamage": {
         name: "CriticalDamage",
-        nameLocale: 877,
+        nameLocale: 889,
         
         description: null,
         
@@ -391,7 +393,7 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"p","title":677,"type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":684,"type":"floatPercentageInput"},
             
         ],
     },
@@ -408,14 +410,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"p","title":677,"type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":684,"type":"floatPercentageInput"},
             
         ],
     },
     
     "ElementalMastery": {
         name: "ElementalMastery",
-        nameLocale: 202,
+        nameLocale: 204,
         
         description: null,
         
@@ -425,14 +427,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"value","title":677,"type":"floatInput"},
+            {"default":0.0,"name":"value","title":684,"type":"floatInput"},
             
         ],
     },
     
     "Recharge": {
         name: "Recharge",
-        nameLocale: 172,
+        nameLocale: 173,
         
         description: null,
         
@@ -442,14 +444,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":20.0,"name":"p","title":677,"type":"floatPercentageInput"},
+            {"default":20.0,"name":"p","title":684,"type":"floatPercentageInput"},
             
         ],
     },
     
     "DEFMinus": {
         name: "DEFMinus",
-        nameLocale: 251,
+        nameLocale: 257,
         
         description: 0,
         
@@ -459,14 +461,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"p","title":677,"type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":684,"type":"floatPercentageInput"},
             
         ],
     },
     
     "ResMinus": {
         name: "ResMinus",
-        nameLocale: 250,
+        nameLocale: 256,
         
         description: null,
         
@@ -476,14 +478,14 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"p","title":677,"type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":684,"type":"floatPercentageInput"},
             
         ],
     },
     
     "HealingBonus": {
         name: "HealingBonus",
-        nameLocale: 972,
+        nameLocale: 985,
         
         description: null,
         
@@ -493,16 +495,16 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"p","title":677,"type":"floatPercentageInput"},
+            {"default":0.0,"name":"p","title":684,"type":"floatPercentageInput"},
             
         ],
     },
     
     "BaseDmg": {
         name: "BaseDmg",
-        nameLocale: 407,
+        nameLocale: 413,
         
-        description: 1433,
+        description: 1450,
         
         
         badge: BaseDmg_image,
@@ -510,16 +512,16 @@ export default {
         genre: "Common",
         config: [
             
-            {"default":0.0,"name":"value","title":677,"type":"floatInput"},
+            {"default":0.0,"name":"value","title":684,"type":"floatInput"},
             
         ],
     },
     
     "AlbedoTalent2": {
         name: "AlbedoTalent2",
-        nameLocale: 1554,
+        nameLocale: 1571,
         
-        description: 1559,
+        description: 1576,
         
         
         badge: getImage("Albedo"),
@@ -532,9 +534,9 @@ export default {
     
     "AlbedoC4": {
         name: "AlbedoC4",
-        nameLocale: 1555,
+        nameLocale: 1572,
         
-        description: 1557,
+        description: 1574,
         
         
         badge: getImage("Albedo"),
@@ -547,9 +549,9 @@ export default {
     
     "AlbedoC6": {
         name: "AlbedoC6",
-        nameLocale: 1553,
+        nameLocale: 1570,
         
-        description: 1558,
+        description: 1575,
         
         
         badge: getImage("Albedo"),
@@ -562,9 +564,9 @@ export default {
     
     "AloyTalent1": {
         name: "AloyTalent1",
-        nameLocale: 402,
+        nameLocale: 408,
         
-        description: 403,
+        description: 409,
         
         
         badge: getImage("Aloy"),
@@ -577,9 +579,9 @@ export default {
     
     "AratakiIttoC4": {
         name: "AratakiIttoC4",
-        nameLocale: 1293,
+        nameLocale: 1310,
         
-        description: 1295,
+        description: 1312,
         
         
         badge: getImage("Itto"),
@@ -592,9 +594,9 @@ export default {
     
     "BeidouC6": {
         name: "BeidouC6",
-        nameLocale: 292,
+        nameLocale: 298,
         
-        description: 294,
+        description: 300,
         
         
         badge: getImage("Beidou"),
@@ -607,9 +609,9 @@ export default {
     
     "BennettQ": {
         name: "BennettQ",
-        nameLocale: 1098,
+        nameLocale: 1111,
         
-        description: 1101,
+        description: 1114,
         
         
         badge: getImage("Bennett"),
@@ -617,20 +619,20 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":800.0,"name":"base_atk","title":1103,"type":"floatInput"},
+            {"default":800.0,"name":"base_atk","title":1116,"type":"floatInput"},
             
-            {"default":true,"name":"c1","title":731,"type":"bool"},
+            {"default":true,"name":"c1","title":741,"type":"bool"},
             
-            {"default":10,"max":15,"min":1,"name":"skill3","title":609,"type":"int"},
+            {"default":10,"max":15,"min":1,"name":"skill3","title":616,"type":"int"},
             
         ],
     },
     
     "BennettC6": {
         name: "BennettC6",
-        nameLocale: 1097,
+        nameLocale: 1110,
         
-        description: 1102,
+        description: 1115,
         
         
         badge: getImage("Bennett"),
@@ -643,9 +645,9 @@ export default {
     
     "ChongyunTalent2": {
         name: "ChongyunTalent2",
-        nameLocale: 1483,
+        nameLocale: 1500,
         
-        description: 1485,
+        description: 1502,
         
         
         badge: getImage("Chongyun"),
@@ -658,9 +660,9 @@ export default {
     
     "DionaC6G50": {
         name: "DionaC6G50",
-        nameLocale: 1461,
+        nameLocale: 1478,
         
-        description: 1463,
+        description: 1480,
         
         
         badge: getImage("Diona"),
@@ -683,16 +685,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":9,"max":15,"min":1,"name":"skill2","title":609,"type":"int"},
+            {"default":9,"max":15,"min":1,"name":"skill2","title":616,"type":"int"},
             
         ],
     },
     
     "GanyuTalent2": {
         name: "GanyuTalent2",
-        nameLocale: 1115,
+        nameLocale: 1128,
         
-        description: 1119,
+        description: 1132,
         
         
         badge: getImage("Ganyu"),
@@ -705,9 +707,9 @@ export default {
     
     "GanyuC1": {
         name: "GanyuC1",
-        nameLocale: 1116,
+        nameLocale: 1129,
         
-        description: 1118,
+        description: 1131,
         
         
         badge: getImage("Ganyu"),
@@ -777,16 +779,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":1,"max":3,"min":1,"name":"level","title":1601,"type":"int"},
+            {"default":1,"max":3,"min":1,"name":"level","title":1619,"type":"int"},
             
         ],
     },
     
     "HuTaoTalent1": {
         name: "HuTaoTalent1",
-        nameLocale: 1273,
+        nameLocale: 1289,
         
-        description: 1275,
+        description: 1291,
         
         
         badge: getImage("Hutao"),
@@ -799,9 +801,9 @@ export default {
     
     "JeanC4": {
         name: "JeanC4",
-        nameLocale: 1108,
+        nameLocale: 1121,
         
-        description: 1110,
+        description: 1123,
         
         
         badge: getImage("Qin"),
@@ -814,9 +816,9 @@ export default {
     
     "KaedeharaKazuhaTalent2": {
         name: "KaedeharaKazuhaTalent2",
-        nameLocale: 922,
+        nameLocale: 935,
         
-        description: 926,
+        description: 939,
         
         
         badge: getImage("Kazuha"),
@@ -824,18 +826,18 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":"Electro","name":"element","title":589,"type":"element4"},
+            {"default":"Electro","name":"element","title":596,"type":"element4"},
             
-            {"default":800.0,"name":"em","title":63,"type":"floatInput"},
+            {"default":800.0,"name":"em","title":62,"type":"floatInput"},
             
         ],
     },
     
     "KaedeharaKazuhaC2": {
         name: "KaedeharaKazuhaC2",
-        nameLocale: 921,
+        nameLocale: 934,
         
-        description: 925,
+        description: 938,
         
         
         badge: getImage("Kazuha"),
@@ -848,9 +850,9 @@ export default {
     
     "KamisatoAyakaC4": {
         name: "KamisatoAyakaC4",
-        nameLocale: 1200,
+        nameLocale: 1213,
         
-        description: 1245,
+        description: 1261,
         
         
         badge: getImage("Ayaka"),
@@ -863,9 +865,9 @@ export default {
     
     "KleeC2": {
         name: "KleeC2",
-        nameLocale: 333,
+        nameLocale: 339,
         
-        description: 335,
+        description: 341,
         
         
         badge: getImage("Klee"),
@@ -878,9 +880,9 @@ export default {
     
     "KleeC6": {
         name: "KleeC6",
-        nameLocale: 332,
+        nameLocale: 338,
         
-        description: 336,
+        description: 342,
         
         
         badge: getImage("Klee"),
@@ -905,7 +907,7 @@ export default {
             
             {"default":700.0,"name":"base_atk","title":98,"type":"floatInput"},
             
-            {"default":false,"name":"c6","title":734,"type":"bool"},
+            {"default":false,"name":"c6","title":744,"type":"bool"},
             
             {"default":10,"max":15,"min":1,"name":"skill2","title":10,"type":"int"},
             
@@ -929,9 +931,9 @@ export default {
     
     "MonaQ": {
         name: "MonaQ",
-        nameLocale: 1301,
+        nameLocale: 1318,
         
-        description: 1304,
+        description: 1321,
         
         
         badge: getImage("Mona"),
@@ -941,16 +943,16 @@ export default {
             
             {"default":9,"max":15,"min":1,"name":"skill3","title":16,"type":"int"},
             
-            {"default":false,"name":"c4","title":733,"type":"bool"},
+            {"default":false,"name":"c4","title":743,"type":"bool"},
             
         ],
     },
     
     "MonaC1": {
         name: "MonaC1",
-        nameLocale: 1302,
+        nameLocale: 1319,
         
-        description: 1305,
+        description: 1322,
         
         
         badge: getImage("Mona"),
@@ -963,9 +965,9 @@ export default {
     
     "NingguangTalent2": {
         name: "NingguangTalent2",
-        nameLocale: 254,
+        nameLocale: 260,
         
-        description: 256,
+        description: 262,
         
         
         badge: getImage("Ningguang"),
@@ -978,9 +980,9 @@ export default {
     
     "RaidenShogunE": {
         name: "RaidenShogunE",
-        nameLocale: 1585,
+        nameLocale: 1602,
         
-        description: 1588,
+        description: 1605,
         
         
         badge: getImage("Shougun"),
@@ -988,18 +990,18 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":8,"max":15,"min":1,"name":"skill2","title":1587,"type":"int"},
+            {"default":8,"max":15,"min":1,"name":"skill2","title":1604,"type":"int"},
             
-            {"default":80,"max":100,"min":20,"name":"energy","title":318,"type":"int"},
+            {"default":80,"max":100,"min":20,"name":"energy","title":324,"type":"int"},
             
         ],
     },
     
     "RaidenShogunC4": {
         name: "RaidenShogunC4",
-        nameLocale: 1584,
+        nameLocale: 1601,
         
-        description: 1589,
+        description: 1606,
         
         
         badge: getImage("Shougun"),
@@ -1012,9 +1014,9 @@ export default {
     
     "RazorC4": {
         name: "RazorC4",
-        nameLocale: 1578,
+        nameLocale: 1595,
         
-        description: 1580,
+        description: 1597,
         
         
         badge: getImage("Razor"),
@@ -1027,9 +1029,9 @@ export default {
     
     "RosariaTalent2": {
         name: "RosariaTalent2",
-        nameLocale: 1252,
+        nameLocale: 1268,
         
-        description: 1255,
+        description: 1271,
         
         
         badge: getImage("Rosaria"),
@@ -1037,16 +1039,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":70.0,"name":"crit","title":1256,"type":"floatPercentageInput"},
+            {"default":70.0,"name":"crit","title":1272,"type":"floatPercentageInput"},
             
         ],
     },
     
     "RosariaC6": {
         name: "RosariaC6",
-        nameLocale: 1251,
+        nameLocale: 1267,
         
-        description: 1254,
+        description: 1270,
         
         
         badge: getImage("Rosaria"),
@@ -1059,9 +1061,9 @@ export default {
     
     "ShenheE": {
         name: "ShenheE",
-        nameLocale: 1143,
+        nameLocale: 1156,
         
-        description: 1149,
+        description: 1162,
         
         
         badge: getImage("Shenhe"),
@@ -1069,18 +1071,18 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":3000.0,"name":"atk","title":1154,"type":"floatInput"},
+            {"default":3000.0,"name":"atk","title":1167,"type":"floatInput"},
             
-            {"default":8,"max":15,"min":1,"name":"skill2","title":1148,"type":"int"},
+            {"default":8,"max":15,"min":1,"name":"skill2","title":1161,"type":"int"},
             
         ],
     },
     
     "ShenheQ": {
         name: "ShenheQ",
-        nameLocale: 1145,
+        nameLocale: 1158,
         
-        description: 1151,
+        description: 1164,
         
         
         badge: getImage("Shenhe"),
@@ -1088,16 +1090,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":8,"max":15,"min":1,"name":"skill3","title":1150,"type":"int"},
+            {"default":8,"max":15,"min":1,"name":"skill3","title":1163,"type":"int"},
             
         ],
     },
     
     "ShenheTalent1": {
         name: "ShenheTalent1",
-        nameLocale: 1144,
+        nameLocale: 1157,
         
-        description: 1152,
+        description: 1165,
         
         
         badge: getImage("Shenhe"),
@@ -1105,16 +1107,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":false,"name":"c2","title":732,"type":"bool"},
+            {"default":false,"name":"c2","title":742,"type":"bool"},
             
         ],
     },
     
     "ShenheTalent2": {
         name: "ShenheTalent2",
-        nameLocale: 1146,
+        nameLocale: 1159,
         
-        description: 1153,
+        description: 1166,
         
         
         badge: getImage("Shenhe"),
@@ -1122,16 +1124,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":0,"name":"t","options":["点按","长按"],"title":610,"type":"option"},
+            {"default":0,"name":"t","options":["点按","长按"],"title":617,"type":"option"},
             
         ],
     },
     
     "SucroseTalent1": {
         name: "SucroseTalent1",
-        nameLocale: 1170,
+        nameLocale: 1183,
         
-        description: 1173,
+        description: 1186,
         
         
         badge: getImage("Sucrose"),
@@ -1144,9 +1146,9 @@ export default {
     
     "SucroseTalent2": {
         name: "SucroseTalent2",
-        nameLocale: 1168,
+        nameLocale: 1181,
         
-        description: 1174,
+        description: 1187,
         
         
         badge: getImage("Sucrose"),
@@ -1154,16 +1156,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":200.0,"name":"em","title":1175,"type":"floatInput"},
+            {"default":200.0,"name":"em","title":1188,"type":"floatInput"},
             
         ],
     },
     
     "SucroseC6": {
         name: "SucroseC6",
-        nameLocale: 1169,
+        nameLocale: 1182,
         
-        description: 1172,
+        description: 1185,
         
         
         badge: getImage("Sucrose"),
@@ -1171,16 +1173,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":"Electro","name":"element","title":594,"type":"element4"},
+            {"default":"Electro","name":"element","title":601,"type":"element4"},
             
         ],
     },
     
     "ThomaTalent1": {
         name: "ThomaTalent1",
-        nameLocale: 585,
+        nameLocale: 592,
         
-        description: 588,
+        description: 595,
         
         
         badge: getImage("Tohma"),
@@ -1188,16 +1190,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":2.0,"max":5.0,"min":0.0,"name":"stack","title":326,"type":"float"},
+            {"default":2.0,"max":5.0,"min":0.0,"name":"stack","title":332,"type":"float"},
             
         ],
     },
     
     "ThomaC6": {
         name: "ThomaC6",
-        nameLocale: 584,
+        nameLocale: 591,
         
-        description: 587,
+        description: 594,
         
         
         badge: getImage("Tohma"),
@@ -1210,9 +1212,9 @@ export default {
     
     "VentiC2": {
         name: "VentiC2",
-        nameLocale: 1015,
+        nameLocale: 1028,
         
-        description: 1017,
+        description: 1030,
         
         
         badge: getImage("Venti"),
@@ -1220,16 +1222,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":false,"name":"levitating","title":1327,"type":"bool"},
+            {"default":false,"name":"levitating","title":1344,"type":"bool"},
             
         ],
     },
     
     "VentiC6": {
         name: "VentiC6",
-        nameLocale: 1014,
+        nameLocale: 1027,
         
-        description: 1018,
+        description: 1031,
         
         
         badge: getImage("Venti"),
@@ -1237,18 +1239,18 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":true,"name":"is_convert","title":317,"type":"bool"},
+            {"default":true,"name":"is_convert","title":323,"type":"bool"},
             
-            {"default":"Electro","name":"element","title":1438,"type":"element4"},
+            {"default":"Electro","name":"element","title":1455,"type":"element4"},
             
         ],
     },
     
     "XianglingTalent2": {
         name: "XianglingTalent2",
-        nameLocale: 1638,
+        nameLocale: 1657,
         
-        description: 1642,
+        description: 1661,
         
         
         badge: getImage("Xiangling"),
@@ -1261,9 +1263,9 @@ export default {
     
     "XianglingC1": {
         name: "XianglingC1",
-        nameLocale: 1636,
+        nameLocale: 1655,
         
-        description: 1640,
+        description: 1659,
         
         
         badge: getImage("Xiangling"),
@@ -1276,9 +1278,9 @@ export default {
     
     "XianglingC6": {
         name: "XianglingC6",
-        nameLocale: 1637,
+        nameLocale: 1656,
         
-        description: 1641,
+        description: 1660,
         
         
         badge: getImage("Xiangling"),
@@ -1291,9 +1293,9 @@ export default {
     
     "XingqiuC2": {
         name: "XingqiuC2",
-        nameLocale: 1343,
+        nameLocale: 1360,
         
-        description: 1345,
+        description: 1362,
         
         
         badge: getImage("Xingqiu"),
@@ -1306,9 +1308,9 @@ export default {
     
     "XinyanC4": {
         name: "XinyanC4",
-        nameLocale: 1444,
+        nameLocale: 1461,
         
-        description: 1448,
+        description: 1465,
         
         
         badge: getImage("Xinyan"),
@@ -1321,9 +1323,9 @@ export default {
     
     "XinyanTalent2": {
         name: "XinyanTalent2",
-        nameLocale: 1445,
+        nameLocale: 1462,
         
-        description: 1449,
+        description: 1466,
         
         
         badge: getImage("Xinyan"),
@@ -1336,9 +1338,9 @@ export default {
     
     "YaeMikoC4": {
         name: "YaeMikoC4",
-        nameLocale: 216,
+        nameLocale: 218,
         
-        description: 218,
+        description: 220,
         
         
         badge: getImage("Yae"),
@@ -1351,9 +1353,9 @@ export default {
     
     "YoimiyaTalent2": {
         name: "YoimiyaTalent2",
-        nameLocale: 504,
+        nameLocale: 510,
         
-        description: 506,
+        description: 512,
         
         
         badge: getImage("Yoimiya"),
@@ -1384,7 +1386,7 @@ export default {
             
             {"default":true,"name":"talent2","title":5,"type":"bool"},
             
-            {"default":4,"max":4,"min":1,"name":"ele_count","title":1530,"type":"int"},
+            {"default":4,"max":4,"min":1,"name":"ele_count","title":1547,"type":"int"},
             
         ],
     },
@@ -1406,9 +1408,9 @@ export default {
     
     "ZhongliShield": {
         name: "ZhongliShield",
-        nameLocale: 1513,
+        nameLocale: 1530,
         
-        description: 1515,
+        description: 1532,
         
         
         badge: getImage("Zhongli"),
@@ -1421,9 +1423,9 @@ export default {
     
     "YelanTalent2": {
         name: "YelanTalent2",
-        nameLocale: 426,
+        nameLocale: 432,
         
-        description: 430,
+        description: 436,
         
         
         badge: getImage("Yelan"),
@@ -1431,16 +1433,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":14,"max":14,"min":0,"name":"secs","title":1240,"type":"int"},
+            {"default":14,"max":14,"min":0,"name":"secs","title":1256,"type":"int"},
             
         ],
     },
     
     "YelanC4": {
         name: "YelanC4",
-        nameLocale: 427,
+        nameLocale: 433,
         
-        description: 429,
+        description: 435,
         
         
         badge: getImage("Yelan"),
@@ -1448,16 +1450,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":4,"max":4,"min":1,"name":"count","title":933,"type":"int"},
+            {"default":4,"max":4,"min":1,"name":"count","title":946,"type":"int"},
             
         ],
     },
     
     "KamisatoAyatoQ": {
         name: "KamisatoAyatoQ",
-        nameLocale: 1194,
+        nameLocale: 1207,
         
-        description: 1197,
+        description: 1210,
         
         
         badge: getImage("Ayato"),
@@ -1465,16 +1467,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":8,"max":15,"min":1,"name":"skill_level","title":1196,"type":"int"},
+            {"default":8,"max":15,"min":1,"name":"skill_level","title":1209,"type":"int"},
             
         ],
     },
     
     "ShikanoinHeizouTalent2": {
         name: "ShikanoinHeizouTalent2",
-        nameLocale: 1659,
+        nameLocale: 1679,
         
-        description: 1661,
+        description: 1681,
         
         
         badge: getImage("Heizo"),
@@ -1487,9 +1489,9 @@ export default {
     
     "TighnariC4": {
         name: "TighnariC4",
-        nameLocale: 635,
+        nameLocale: 642,
         
-        description: 637,
+        description: 644,
         
         
         badge: getImage("Tighnari"),
@@ -1497,16 +1499,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":false,"name":"after_reaction","title":1479,"type":"bool"},
+            {"default":false,"name":"after_reaction","title":1496,"type":"bool"},
             
         ],
     },
     
     "DoriC4": {
         name: "DoriC4",
-        nameLocale: 423,
+        nameLocale: 429,
         
-        description: 424,
+        description: 430,
         
         
         badge: getImage("Dori"),
@@ -1514,18 +1516,18 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":false,"name":"hp_below50","title":1126,"type":"bool"},
+            {"default":false,"name":"hp_below50","title":1139,"type":"bool"},
             
-            {"default":true,"name":"energy_below50","title":210,"type":"bool"},
+            {"default":true,"name":"energy_below50","title":212,"type":"bool"},
             
         ],
     },
     
     "NilouTalent1": {
         name: "NilouTalent1",
-        nameLocale: 471,
+        nameLocale: 477,
         
-        description: 415,
+        description: 421,
         
         
         badge: getImage("Nilou"),
@@ -1538,9 +1540,9 @@ export default {
     
     "NilouTalent2": {
         name: "NilouTalent2",
-        nameLocale: 472,
+        nameLocale: 478,
         
-        description: 405,
+        description: 411,
         
         
         badge: getImage("Nilou"),
@@ -1548,16 +1550,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":60000.0,"name":"hp","title":474,"type":"floatInput"},
+            {"default":60000.0,"name":"hp","title":480,"type":"floatInput"},
             
         ],
     },
     
     "CandaceQ": {
         name: "CandaceQ",
-        nameLocale: 395,
+        nameLocale: 401,
         
-        description: 1377,
+        description: 1394,
         
         
         badge: getImage("Candace"),
@@ -1570,9 +1572,9 @@ export default {
     
     "CandaceTalent2": {
         name: "CandaceTalent2",
-        nameLocale: 394,
+        nameLocale: 400,
         
-        description: 413,
+        description: 419,
         
         
         badge: getImage("Candace"),
@@ -1580,16 +1582,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":30000.0,"name":"hp","title":396,"type":"floatInput"},
+            {"default":30000.0,"name":"hp","title":402,"type":"floatInput"},
             
         ],
     },
     
     "NahidaTalent1": {
         name: "NahidaTalent1",
-        nameLocale: 1233,
+        nameLocale: 1249,
         
-        description: 706,
+        description: 714,
         
         
         badge: getImage("Nahida"),
@@ -1597,16 +1599,16 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":1000.0,"max":3000.0,"min":0.0,"name":"max_em","title":1536,"type":"float"},
+            {"default":1000.0,"max":3000.0,"min":0.0,"name":"max_em","title":1553,"type":"float"},
             
         ],
     },
     
     "FaruzanQ": {
         name: "FaruzanQ",
-        nameLocale: 977,
+        nameLocale: 990,
         
-        description: 1095,
+        description: 1108,
         
         
         badge: getImage("Faruzan"),
@@ -1614,22 +1616,43 @@ export default {
         genre: "Character",
         config: [
             
-            {"default":650,"max":1000,"min":0,"name":"base_atk","title":978,"type":"int"},
+            {"default":650,"max":1000,"min":0,"name":"base_atk","title":991,"type":"int"},
             
             {"default":10,"max":15,"min":1,"name":"q_level","title":16,"type":"int"},
             
             {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q1","title":39,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q2","title":36,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q2","title":37,"type":"float"},
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"rate_talent2","title":18,"type":"float"},
+            
+            {"default":false,"name":"enable_c6","title":221,"type":"bool"},
+            
+        ],
+    },
+    
+    "Mika": {
+        name: "Mika",
+        nameLocale: 1242,
+        
+        description: 738,
+        
+        
+        badge: getImage("Mika"),
+        
+        genre: "Character",
+        config: [
+            
+            {"default":3.0,"max":5.0,"min":0.0,"name":"stack_talent2","title":168,"type":"float"},
+            
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate_c6","title":223,"type":"float"},
             
         ],
     },
     
     "FreedomSworn": {
         name: "FreedomSworn",
-        nameLocale: 1285,
+        nameLocale: 1301,
         
         description: 20,
         
@@ -1639,14 +1662,14 @@ export default {
         genre: "Weapon",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":1229,"type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
         ],
     },
     
     "SongOfBrokenPines": {
         name: "SongOfBrokenPines",
-        nameLocale: 918,
+        nameLocale: 931,
         
         description: 21,
         
@@ -1656,16 +1679,16 @@ export default {
         genre: "Weapon",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":1229,"type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
         ],
     },
     
     "WolfsGravestone": {
         name: "WolfsGravestone",
-        nameLocale: 1075,
+        nameLocale: 1088,
         
-        description: 654,
+        description: 661,
         
         
         badge: getImageW("Claymore_Wolfmound"),
@@ -1673,14 +1696,14 @@ export default {
         genre: "Weapon",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":1229,"type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
         ],
     },
     
     "ThrillingTalesOfDragonSlayers": {
         name: "ThrillingTalesOfDragonSlayers",
-        nameLocale: 1391,
+        nameLocale: 1408,
         
         description: 154,
         
@@ -1690,16 +1713,16 @@ export default {
         genre: "Weapon",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":1229,"type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
         ],
     },
     
     "ElegyOfTheEnd": {
         name: "ElegyOfTheEnd",
-        nameLocale: 1239,
+        nameLocale: 1255,
         
-        description: 303,
+        description: 309,
         
         
         badge: getImageW("Bow_Widsith"),
@@ -1707,16 +1730,16 @@ export default {
         genre: "Weapon",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":1229,"type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
         ],
     },
     
     "HakushinRing": {
         name: "HakushinRing",
-        nameLocale: 1160,
+        nameLocale: 1173,
         
-        description: 942,
+        description: 955,
         
         
         badge: getImageW("Catalyst_Bakufu"),
@@ -1724,18 +1747,18 @@ export default {
         genre: "Weapon",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":1229,"type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
-            {"default":"Electro","name":"element","title":170,"type":"element8"},
+            {"default":"Electro","name":"element","title":171,"type":"element8"},
             
         ],
     },
     
     "SapwoodBlade": {
         name: "SapwoodBlade",
-        nameLocale: 315,
+        nameLocale: 321,
         
-        description: 621,
+        description: 628,
         
         
         badge: getImageW("Sword_Arakalari"),
@@ -1743,18 +1766,18 @@ export default {
         genre: "Weapon",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":1229,"type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":552,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":559,"type":"float"},
             
         ],
     },
     
     "Moonpiercer": {
         name: "Moonpiercer",
-        nameLocale: 1409,
+        nameLocale: 1426,
         
-        description: 622,
+        description: 629,
         
         
         badge: getImageW("Pole_Arakalari"),
@@ -1762,16 +1785,16 @@ export default {
         genre: "Weapon",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":1229,"type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
         ],
     },
     
     "XiphosMoonlight": {
         name: "XiphosMoonlight",
-        nameLocale: 1362,
+        nameLocale: 1379,
         
-        description: 1356,
+        description: 1373,
         
         
         badge: getImageW("Sword_Pleroma"),
@@ -1779,16 +1802,16 @@ export default {
         genre: "Weapon",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":1229,"type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
-            {"default":900.0,"name":"em","title":203,"type":"floatInput"},
+            {"default":900.0,"name":"em","title":205,"type":"floatInput"},
             
         ],
     },
     
     "MakhairaAquamarine": {
         name: "MakhairaAquamarine",
-        nameLocale: 1090,
+        nameLocale: 1103,
         
         description: 29,
         
@@ -1798,18 +1821,18 @@ export default {
         genre: "Weapon",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":1229,"type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
-            {"default":900.0,"name":"em","title":203,"type":"floatInput"},
+            {"default":900.0,"name":"em","title":205,"type":"floatInput"},
             
         ],
     },
     
     "KeyOfKhajNisut": {
         name: "KeyOfKhajNisut",
-        nameLocale: 391,
+        nameLocale: 397,
         
-        description: 520,
+        description: 526,
         
         
         badge: getImageW("Sword_Deshret"),
@@ -1817,18 +1840,18 @@ export default {
         genre: "Weapon",
         config: [
             
-            {"default":1,"max":5,"min":1,"name":"refine","title":1229,"type":"intInput"},
+            {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
-            {"default":20000.0,"name":"hp","title":1120,"type":"floatInput"},
+            {"default":20000.0,"name":"hp","title":1133,"type":"floatInput"},
             
         ],
     },
     
     "ResonancePyro2": {
         name: "ResonancePyro2",
-        nameLocale: 178,
+        nameLocale: 179,
         
-        description: 644,
+        description: 651,
         
         
         badge: ResonancePyro2_image,
@@ -1841,9 +1864,9 @@ export default {
     
     "ResonanceCryo2": {
         name: "ResonanceCryo2",
-        nameLocale: 179,
+        nameLocale: 180,
         
-        description: 639,
+        description: 646,
         
         
         badge: ResonanceCryo2_image,
@@ -1851,16 +1874,16 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":552,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":559,"type":"float"},
             
         ],
     },
     
     "ResonanceGeo2": {
         name: "ResonanceGeo2",
-        nameLocale: 176,
+        nameLocale: 177,
         
-        description: 614,
+        description: 621,
         
         
         badge: ResonanceGeo2_image,
@@ -1868,18 +1891,18 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":664,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":671,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":665,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":672,"type":"float"},
             
         ],
     },
     
     "ResonanceHydro2": {
         name: "ResonanceHydro2",
-        nameLocale: 177,
+        nameLocale: 178,
         
-        description: 1035,
+        description: 1048,
         
         
         badge: ResonanceHydro2_image,
@@ -1892,9 +1915,9 @@ export default {
     
     "ResonanceDendro2": {
         name: "ResonanceDendro2",
-        nameLocale: 180,
+        nameLocale: 181,
         
-        description: 204,
+        description: 206,
         
         
         badge: ResonanceDendro2_image,
@@ -1902,18 +1925,18 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":664,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":671,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":665,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":672,"type":"float"},
             
         ],
     },
     
     "Instructor4": {
         name: "Instructor4",
-        nameLocale: 671,
+        nameLocale: 678,
         
-        description: 1382,
+        description: 1399,
         
         
         badge: getImageA("UI_RelicIcon_10007_4"),
@@ -1926,9 +1949,9 @@ export default {
     
     "NoblesseOblige4": {
         name: "NoblesseOblige4",
-        nameLocale: 722,
+        nameLocale: 730,
         
-        description: 704,
+        description: 711,
         
         
         badge: getImageA("UI_RelicIcon_15007_4"),
@@ -1941,9 +1964,9 @@ export default {
     
     "ArchaicPetra4": {
         name: "ArchaicPetra4",
-        nameLocale: 571,
+        nameLocale: 578,
         
-        description: 1322,
+        description: 1339,
         
         
         badge: getImageA("UI_RelicIcon_15014_4"),
@@ -1951,16 +1974,16 @@ export default {
         genre: "Artifact",
         config: [
             
-            {"default":"Electro","name":"element","title":1242,"type":"element4"},
+            {"default":"Electro","name":"element","title":1258,"type":"element4"},
             
         ],
     },
     
     "ViridescentVenerer4": {
         name: "ViridescentVenerer4",
-        nameLocale: 1261,
+        nameLocale: 1277,
         
-        description: 934,
+        description: 947,
         
         
         badge: getImageA("UI_RelicIcon_15002_4"),
@@ -1968,16 +1991,16 @@ export default {
         genre: "Artifact",
         config: [
             
-            {"default":"Electro","name":"element","title":589,"type":"element4"},
+            {"default":"Electro","name":"element","title":596,"type":"element4"},
             
         ],
     },
     
     "TenacityOfTheMillelith4": {
         name: "TenacityOfTheMillelith4",
-        nameLocale: 301,
+        nameLocale: 307,
         
-        description: 183,
+        description: 184,
         
         
         badge: getImageA("UI_RelicIcon_15017_4"),
@@ -1990,9 +2013,9 @@ export default {
     
     "DeepwoodMemories4": {
         name: "DeepwoodMemories4",
-        nameLocale: 1004,
+        nameLocale: 1017,
         
-        description: 189,
+        description: 190,
         
         
         badge: getImageA("UI_RelicIcon_15025_4"),
@@ -2000,7 +2023,7 @@ export default {
         genre: "Artifact",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":552,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":559,"type":"float"},
             
         ],
     },

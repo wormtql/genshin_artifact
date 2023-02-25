@@ -158,23 +158,23 @@ impl TargetFunction for DehyaDefaultTargetFunction {
             stack += (crit * i as f64).max(4.0)
         }
         let avg_stack = 17.0 * 4.0 / stack;
-        let CONFIG: CharacterSkillConfig = CharacterSkillConfig::Dehya { c2_rate:1.0, c6_stack: avg_stack };
+        let config: CharacterSkillConfig = CharacterSkillConfig::Dehya { c2_rate:1.0, c6_stack: avg_stack };
         type S = <Dehya as CharacterTrait>::DamageEnumType;
         let dmgs = [
             (Dehya::damage::<SimpleDamageBuilder>(
-                &context, S::E1, &CONFIG, None
+                &context, S::E1, &config, None
             ),1.0),
             (Dehya::damage::<SimpleDamageBuilder>(
-                &context, S::E2, &CONFIG, None
+                &context, S::E2, &config, None
             ),1.0),
             (Dehya::damage::<SimpleDamageBuilder>(
-                &context, S::E3, &CONFIG, None
+                &context, S::E3, &config, None
             ),self.e_count as f64),
             (Dehya::damage::<SimpleDamageBuilder>(
-                &context, S::Q1, &CONFIG, None
+                &context, S::Q1, &config, None
             ),if context.character_common_data.constellation == 6 { 15.0 } else { 11.0 }),
             (Dehya::damage::<SimpleDamageBuilder>(
-                &context, S::Q2, &CONFIG, None
+                &context, S::Q2, &config, None
             ),1.0),
         ];
 

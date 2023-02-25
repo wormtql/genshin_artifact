@@ -9,6 +9,7 @@ pub mod qiqi;
 pub mod rosaria;
 pub mod shenhe;
 pub mod layla;
+pub mod mika;
 
 pub use aloy::Aloy;
 pub use chongyun::Chongyun;
@@ -21,3 +22,4 @@ pub use qiqi::Qiqi;
 pub use rosaria::Rosaria;
 pub use shenhe::Shenhe;
 pub use layla::Layla;
+pub use mika::Mika;

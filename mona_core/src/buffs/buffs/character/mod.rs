@@ -40,6 +40,7 @@ pub use nilou::{BuffNilouTalent2, BuffNilouTalent1};
 pub use candace::{BuffCandaceQ, BuffCandaceTalent2};
 pub use nahida::BuffNahidaTalent1;
 pub use faruzan::BuffFaruzanQ;
+pub use mika::BuffMika;
 
 pub mod albedo;
 pub mod aloy;
@@ -83,3 +84,4 @@ pub mod nilou;
 pub mod candace;
 pub mod nahida;
 pub mod faruzan;
+pub mod mika;

@@ -24,9 +24,9 @@ impl<A: Attribute> Buff<A> for BuffFaruzanQ {
         let bonus_anemo = bonus_talent3[self.q_level - 1];
         // let bonus_anemo = Faruzan::SKILL.elemental_burst_atk_bonus[self.skill3 - 1];
 
-        attribute.set_value_by(AttributeName::ResMinusAnemo, "BUFF：珐露珊-「诡风之祸」", 0.3 * self.rate_q1);
-        attribute.set_value_by(AttributeName::BonusAnemo, "BUFF：珐露珊-「祈风之赐」", bonus_anemo * self.rate_q2);
-        attribute.set_value_by(AttributeName::ExtraDmgAnemo, "BUFF：珐露珊-「七窟遗智」", 0.32 * (self.base_atk as f64) * self.rate_talent2);
+        attribute.set_value_by(AttributeName::ResMinusAnemo, "BUFF：珐露珊 -「诡风之祸」", 0.3 * self.rate_q1);
+        attribute.set_value_by(AttributeName::BonusAnemo, "BUFF：珐露珊 -「祈风之赐」", bonus_anemo * self.rate_q2);
+        attribute.set_value_by(AttributeName::ExtraDmgAnemo, "BUFF：珐露珊 -「七窟遗智」", 0.32 * (self.base_atk as f64) * self.rate_talent2);
         if self.enable_c6 {
             attribute.set_value_by( AttributeName::CriticalDamageAnemo,"BUFF：珐露珊-「祈风之赐」", 0.4 * self.rate_q2);
         }
@@ -38,7 +38,7 @@ impl BuffMeta for BuffFaruzanQ {
     const META_DATA: BuffMetaData = BuffMetaData {
         name: BuffName::FaruzanQ,
         name_locale: crate::common::i18n::locale!(
-            zh_cn: "法露珊- 「抟风秘道」",
+            zh_cn: "法露珊 - 「抟风秘道」",
             en: "Faruzan-「The Wind’s Secret Ways」",
         ),
         image: BuffImage::Avatar(CharacterName::Faruzan),

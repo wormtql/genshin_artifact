@@ -65,6 +65,7 @@ pub enum CharacterName {
     Nilou,
     Ningguang,
     Noelle,
+    Mika,
     Qiqi,
     RaidenShogun,
     Razor,
