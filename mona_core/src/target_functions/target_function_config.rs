@@ -13,11 +13,7 @@ pub enum TargetFunctionConfig {
     GeoDamage { t: usize },
     DendroDamage { t: usize },
     PhysicalDamage { t: usize },
-    MaxVaporize { t: usize, skill: SkillType },
-    MaxMelt { t: usize, skill: SkillType },
-    ExpectVaporize { t: usize, skill: SkillType },
-    ExpectMelt { t: usize, skill: SkillType },
-
+    AmpingDamage {t: usize, t1:usize, skill: SkillType, exp_or_max: usize, weight_atk:f64, weight_def:f64, weight_hp:f64, },
     BennettDefault { recharge_demand: f64 },
     GanyuDefault { melt_rate: f64 },
     GorouDefault { recharge_demand: f64 },

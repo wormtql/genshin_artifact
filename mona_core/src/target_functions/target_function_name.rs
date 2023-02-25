@@ -20,10 +20,7 @@ pub enum TargetFunctionName {
     DendroDamage,
     GeoDamage,
     PhysicalDamage,
-    MaxVaporize,
-    MaxMelt,
-    ExpectVaporize,
-    ExpectMelt,
+    AmpingDamage,
 
     AlbedoDefault,
     AloyDefault,
