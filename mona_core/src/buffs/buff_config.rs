@@ -50,7 +50,7 @@ pub enum BuffConfig {
     NilouTalent2 { hp: f64 },
     CandaceTalent2 { hp: f64 },
     NahidaTalent1 { max_em: f64 },
-    FaruzanQ { base_atk: usize, q_level: usize, rate_q1: f64, rate_q2: f64, rate_talent2: f64 },
+    FaruzanQ { base_atk: usize, q_level: usize, rate_q1: f64, rate_q2: f64, rate_talent2: f64, enable_c6: bool },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },
