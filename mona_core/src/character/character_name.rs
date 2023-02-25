@@ -39,6 +39,7 @@ pub enum CharacterName {
     Chongyun,
     Collei,
     Cyno,
+    Dehya,
     Diluc,
     Diona,
     Dori,

@@ -12,45 +12,45 @@ export default {
         badge: ArtifactEff_image,
         config: [
             
-            {"default":false,"name":"atk_use","title":643,"type":"bool"},
+            {"default":false,"name":"atk_use","title":649,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"atk_weight","title":644,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"atk_weight","title":650,"type":"float"},
             
-            {"default":true,"name":"atk_p_use","title":636,"type":"bool"},
+            {"default":true,"name":"atk_p_use","title":642,"type":"bool"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"atk_p_weight","title":637,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"atk_p_weight","title":643,"type":"float"},
             
-            {"default":false,"name":"hp_use","title":1122,"type":"bool"},
+            {"default":false,"name":"hp_use","title":1135,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_weight","title":1123,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_weight","title":1136,"type":"float"},
             
-            {"default":false,"name":"hp_p_use","title":1109,"type":"bool"},
+            {"default":false,"name":"hp_p_use","title":1122,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_p_weight","title":1110,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_p_weight","title":1123,"type":"float"},
             
-            {"default":false,"name":"def_use","title":1531,"type":"bool"},
+            {"default":false,"name":"def_use","title":1548,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"def_weight","title":1532,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"def_weight","title":1549,"type":"float"},
             
-            {"default":false,"name":"def_p_use","title":1526,"type":"bool"},
+            {"default":false,"name":"def_p_use","title":1543,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"def_p_weight","title":1527,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"def_p_weight","title":1544,"type":"float"},
             
-            {"default":true,"name":"critical_use","title":876,"type":"bool"},
+            {"default":true,"name":"critical_use","title":885,"type":"bool"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"critical_weight","title":877,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"critical_weight","title":886,"type":"float"},
             
-            {"default":true,"name":"critical_damage_use","title":870,"type":"bool"},
+            {"default":true,"name":"critical_damage_use","title":879,"type":"bool"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"critical_damage_weight","title":871,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"critical_damage_weight","title":880,"type":"float"},
             
-            {"default":false,"name":"elemental_mastery_use","title":205,"type":"bool"},
+            {"default":false,"name":"elemental_mastery_use","title":208,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"elemental_mastery_weight","title":206,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"elemental_mastery_weight","title":209,"type":"float"},
             
-            {"default":false,"name":"recharge_use","title":172,"type":"bool"},
+            {"default":false,"name":"recharge_use","title":174,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"recharge_weight","title":173,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"recharge_weight","title":175,"type":"float"},
             
         ],
     },

@@ -26,6 +26,7 @@ pub use old_mercs_pal::OldMercsPal;
 pub use waster_greatsword::WasterGreatsword;
 pub use forest_regalia::ForestRegalia;
 pub use makhaira_aquamarine::MakhairaAquamarine;
+pub use beacon_of_the_reed_sea::BeaconOfTheReedSea;
 
 pub mod wolfs_gravestone;
 pub mod skyward_pride;
@@ -55,3 +56,4 @@ pub mod old_mercs_pal;
 pub mod waster_greatsword;
 pub mod forest_regalia;
 pub mod makhaira_aquamarine;
+pub mod beacon_of_the_reed_sea;

@@ -107,6 +107,7 @@ pub enum BuffName {
     XiphosMoonlight,
     MakhairaAquamarine,
     KeyOfKhajNisut,
+    
 
     ResonancePyro2,
     ResonanceCryo2,
