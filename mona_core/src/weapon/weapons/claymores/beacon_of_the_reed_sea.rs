@@ -1,13 +1,13 @@
-use crate::attribute::{Attribute, AttributeName, AttributeCommon};
+use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
+use crate::weapon::{WeaponConfig, WeaponName};
 use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::weapon::weapon_effect::WeaponEffect;
 use crate::weapon::weapon_static_data::WeaponStaticData;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
-use crate::weapon::{WeaponConfig, WeaponName};
 use crate::weapon::weapon_trait::WeaponTrait;
 
 pub struct BeaconOfTheReedSeaEffect {
@@ -33,7 +33,7 @@ impl BeaconOfTheReedSeaEffect {
 impl<T: Attribute> WeaponEffect<T> for BeaconOfTheReedSeaEffect {
     fn apply(&self, data: &WeaponCommonData, attribute: &mut T) {
         let refine = data.refine as f64;
-        let value1 = (refine * 0.10 + 0.30)*self.rate_atk;
+        let value1 = (refine * 0.10 + 0.30) * self.rate_atk;
         let value2 = (refine * 0.08 + 0.24) * self.rate_hp;
         attribute.add_atk_percentage("苇海信标被动等效", value1);
         attribute.add_hp_percentage("苇海信标被动等效", value2);
@@ -59,7 +59,7 @@ impl WeaponTrait for BeaconOfTheReedSea {
         name_locale: crate::common::i18n::locale!(
             zh_cn: "苇海信标",
             en: "Beacon of the Reed Sea"
-        )
+        ),
     };
 
     #[cfg(not(target_family = "wasm"))]
@@ -70,15 +70,15 @@ impl WeaponTrait for BeaconOfTheReedSea {
                 zh_cn: "攻击特效应用比例",
                 en: "Equivalent Rate of Effect 1"
             ),
-            config: ItemConfig::RATE01_TYPE
+            config: ItemConfig::RATE01_TYPE,
         },
         ItemConfig {
             name: "rate_hp",
-            title: crate::common::i18n::locale!{
+            title: crate::common::i18n::locale! {
                 zh_cn: "生命特效应用比例",
                 en: "Equivalent Rate of Effect 2"
             },
-            config: ItemConfig::RATE01_TYPE
+            config: ItemConfig::RATE01_TYPE,
         },
     ]);
 

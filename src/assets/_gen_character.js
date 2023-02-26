@@ -293,9 +293,9 @@ export default {
             
             { index: 4, text: 126 },
             
-            { index: 5, text: 1510 },
+            { index: 5, text: 1511 },
             
-            { index: 6, text: 1512 },
+            { index: 6, text: 1513 },
             
             { index: 7, text: 73 },
             
@@ -445,7 +445,7 @@ export default {
         ],
         skillMap3: [
             
-            { index: 15, text: 315 },
+            { index: 15, text: 316 },
             
         ],
         config: [
@@ -668,7 +668,7 @@ export default {
             
             { index: 8, text: 366 },
             
-            { index: 10, text: 635 },
+            { index: 10, text: 633 },
             
             { index: 9, text: 974 },
             
@@ -724,7 +724,7 @@ export default {
         ],
         skillMap2: [
             
-            { index: 10, text: 413 },
+            { index: 10, text: 414 },
             
             { index: 11, text: 44 },
             
@@ -848,7 +848,7 @@ export default {
         ],
         skillMap2: [
             
-            { index: 9, text: 414 },
+            { index: 9, text: 413 },
             
             { index: 10, text: 1349 },
             
@@ -999,7 +999,7 @@ export default {
             
             { index: 1, text: 109 },
             
-            { index: 2, text: 68 },
+            { index: 2, text: 69 },
             
             { index: 3, text: 384 },
             
@@ -1227,7 +1227,7 @@ export default {
             
             { index: 12, text: 1618 },
             
-            { index: 13, text: 633 },
+            { index: 13, text: 635 },
             
         ],
         config: [
@@ -1743,9 +1743,9 @@ export default {
             
             { index: 5, text: 129 },
             
-            { index: 6, text: 1511 },
+            { index: 6, text: 1510 },
             
-            { index: 6, text: 1513 },
+            { index: 6, text: 1512 },
             
             { index: 8, text: 73 },
             
@@ -1770,7 +1770,7 @@ export default {
             
             { index: 17, text: 104 },
             
-            { index: 18, text: 1059 },
+            { index: 18, text: 1057 },
             
             { index: 19, text: 1542 },
             
@@ -2201,7 +2201,7 @@ export default {
         ],
         skillMap3: [
             
-            { index: 13, text: 316 },
+            { index: 13, text: 315 },
             
             { index: 14, text: 573 },
             
@@ -2718,7 +2718,7 @@ export default {
             
             { index: 13, text: 365 },
             
-            { index: 14, text: 635 },
+            { index: 14, text: 633 },
             
         ],
         skillMap3: [
@@ -2854,7 +2854,7 @@ export default {
         ],
         skillMap2: [
             
-            { index: 9, text: 1057 },
+            { index: 9, text: 1059 },
             
             { index: 10, text: 1542 },
             
@@ -2903,7 +2903,7 @@ export default {
             
             { index: 1, text: 109 },
             
-            { index: 2, text: 68 },
+            { index: 2, text: 69 },
             
             { index: 3, text: 384 },
             
@@ -3373,7 +3373,7 @@ export default {
             
             { index: 1, text: 109 },
             
-            { index: 2, text: 68 },
+            { index: 2, text: 69 },
             
             { index: 4, text: 384 },
             
@@ -3557,7 +3557,7 @@ export default {
             
             { index: 1, text: 109 },
             
-            { index: 2, text: 69 },
+            { index: 2, text: 68 },
             
             { index: 3, text: 50 },
             

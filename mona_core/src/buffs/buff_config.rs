@@ -1,4 +1,5 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
+
 use crate::attribute::Attribute;
 use crate::buffs::Buff;
 use crate::buffs::buffs::get_buff;
@@ -51,7 +52,7 @@ pub enum BuffConfig {
     CandaceTalent2 { hp: f64 },
     NahidaTalent1 { max_em: f64 },
     FaruzanQ { base_atk: usize, q_level: usize, rate_q1: f64, rate_q2: f64, rate_talent2: f64, enable_c6: bool },
-    Mika { stack_talent2:f64, rate_c6: f64 },
+    Mika { stack_talent2: f64, rate_c6: f64 },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },
@@ -61,7 +62,7 @@ pub enum BuffConfig {
     HakushinRing { refine: usize, element: Element },
     SapwoodBlade { refine: usize, rate: f64 },
     Moonpiercer { refine: usize },
-    XiphosMoonlight { refine: usize, em: f64, },
+    XiphosMoonlight { refine: usize, em: f64 },
     MakhairaAquamarine { refine: usize, em: f64 },
     KeyOfKhajNisut { refine: usize, hp: f64 },
 

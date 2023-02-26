@@ -11,10 +11,10 @@ use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::StatName;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
-use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
-use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
 use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
 use crate::target_functions::target_function::TargetFunctionMetaTrait;
+use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
+use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
@@ -38,7 +38,7 @@ impl TargetFunctionMetaTrait for MikaDefaultTargetFunction {
         ),
         tags: "治疗,护盾",
         four: TargetFunctionFor::SomeWho(CharacterName::Mika),
-        image: TargetFunctionMetaImage::Avatar
+        image: TargetFunctionMetaImage::Avatar,
     };
 
     #[cfg(not(target_family = "wasm"))]
@@ -49,7 +49,7 @@ impl TargetFunctionMetaTrait for MikaDefaultTargetFunction {
                 zh_cn: "充能需求",
                 en: "Recharge Requirement",
             ),
-            config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 2.0 }
+            config: ItemConfigType::Float { min: 1.0, max: 3.0, default: 2.0 },
         },
         ItemConfig {
             name: "crit_demand",
@@ -57,13 +57,13 @@ impl TargetFunctionMetaTrait for MikaDefaultTargetFunction {
                 zh_cn: "暴击需求",
                 en: "CRIT Rate Requirement",
             ),
-            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.6 }
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.6 },
         },
     ]);
 
     fn create(_character: &CharacterCommonData, _weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
         let (recharge_demand, crit_demand) = match *config {
-            TargetFunctionConfig::MikaDefault { recharge_demand, crit_demand } => (recharge_demand,crit_demand),
+            TargetFunctionConfig::MikaDefault { recharge_demand, crit_demand } => (recharge_demand, crit_demand),
             _ => (1.0, 1.0)
         };
         Box::new(MikaDefaultTargetFunction {
@@ -75,45 +75,6 @@ impl TargetFunctionMetaTrait for MikaDefaultTargetFunction {
 
 impl TargetFunction for MikaDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
-        // TargetFunctionOptConfig {
-        //     atk_fixed: 0.1,
-        //     atk_percentage: 1.0,
-        //     hp_fixed: 0.0,
-        //     hp_percentage: 0.0,
-        //     def_fixed: 0.0,
-        //     def_percentage: 0.0,
-        //     recharge: if self.recharge_demand > 1.6 { 0.8 } else { 0.3 },
-        //     elemental_mastery: 0.3,
-        //     critical: 1.0,
-        //     critical_damage: 1.0,
-        //     healing_bonus: 0.0,
-        //     bonus_electro: 0.0,
-        //     bonus_pyro: 0.0,
-        //     bonus_hydro: 0.0,
-        //     bonus_anemo: 0.0,
-        //     bonus_cryo: 0.0,
-        //     bonus_geo: 2.0,
-        //     bonus_dendro: 0.0,
-        //     bonus_physical: 0.0,
-        //     sand_main_stats: vec![
-        //         StatName::HPPercentage,
-        //         StatName::Recharge,
-        //     ],
-        //     goblet_main_stats: vec![
-        //         StatName::HPPercentage,
-        //     ],
-        //     head_main_stats: vec![
-        //         StatName::HPPercentage,
-        //     ],
-        //     set_names: Some(vec![
-        //         ArtifactSetName::TenacityOfTheMillelith,
-        //         ArtifactSetName::MaidenBeloved,
-        //     ]),
-        //     very_critical_set_names: None,
-        //     normal_threshold: TargetFunctionOptConfig::DEFAULT_NORMAL_THRESHOLD,
-        //     critical_threshold: TargetFunctionOptConfig::DEFAULT_CRITICAL_THRESHOLD,
-        //     very_critical_threshold: TargetFunctionOptConfig::DEFAULT_VERY_CRITICAL_THRESHOLD
-        // }
         unimplemented!()
     }
 
@@ -124,12 +85,13 @@ impl TargetFunction for MikaDefaultTargetFunction {
     fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, _weapon: &Weapon<SimpleAttributeGraph2>, _artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
-            attribute, enemy
+            attribute,
+            enemy,
         };
 
         type S = <Mika as CharacterTrait>::DamageEnumType;
         let q_heal = Mika::damage::<SimpleDamageBuilder>(
-            &context, S::QHeal1, &CharacterSkillConfig::NoConfig, None
+            &context, S::QHeal1, &CharacterSkillConfig::NoConfig, None,
         ).normal.expectation;
 
         let r = attribute.get_value(AttributeName::Recharge).min(self.recharge_demand);

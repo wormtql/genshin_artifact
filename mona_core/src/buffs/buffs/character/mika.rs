@@ -9,8 +9,8 @@ use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::enemies::Enemy;
 
 pub struct BuffMika {
-    pub stack_talent2:f64,
-    pub rate_c6:f64,
+    pub stack_talent2: f64,
+    pub rate_c6: f64,
 }
 
 impl<A: Attribute> Buff<A> for BuffMika {
@@ -64,7 +64,7 @@ impl BuffMeta for BuffMika {
         };
 
         Box::new(BuffMika {
-            stack_talent2, 
+            stack_talent2,
             rate_c6,
         })
     }

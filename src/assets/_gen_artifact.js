@@ -387,7 +387,7 @@ export default {
     
     
     
-        effect4: 191,
+        effect4: 190,
     
     
 
@@ -591,7 +591,7 @@ export default {
         maxStar: 5,
     
     
-        effect2: 208,
+        effect2: 209,
     
     
     
@@ -748,7 +748,7 @@ export default {
         maxStar: 5,
     
     
-        effect2: 209,
+        effect2: 208,
     
     
     
@@ -1589,7 +1589,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":625,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":624,"type":"float"},
             
         ],
     },

@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub enum WeaponConfig {
@@ -43,7 +43,7 @@ pub enum WeaponConfig {
     ForestRegalia { rate: f64 },
     MakhairaAquamarine { rate: f64 },
     BeaconOfTheReedSea { rate_atk: f64, rate_hp: f64 },
-    MailedFlower { rate:f64 },
+    MailedFlower { rate: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },

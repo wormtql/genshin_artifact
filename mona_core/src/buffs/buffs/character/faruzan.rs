@@ -15,7 +15,7 @@ pub struct BuffFaruzanQ {
     pub rate_q1: f64,
     pub rate_q2: f64,
     pub rate_talent2: f64,
-    pub enable_c6:bool,
+    pub enable_c6: bool,
 }
 
 impl<A: Attribute> Buff<A> for BuffFaruzanQ {
@@ -28,7 +28,7 @@ impl<A: Attribute> Buff<A> for BuffFaruzanQ {
         attribute.set_value_by(AttributeName::BonusAnemo, "BUFF：珐露珊 -「祈风之赐」", bonus_anemo * self.rate_q2);
         attribute.set_value_by(AttributeName::ExtraDmgAnemo, "BUFF：珐露珊 -「七窟遗智」", 0.32 * (self.base_atk as f64) * self.rate_talent2);
         if self.enable_c6 {
-            attribute.set_value_by( AttributeName::CriticalDamageAnemo,"BUFF：珐露珊-「祈风之赐」", 0.4 * self.rate_q2);
+            attribute.set_value_by(AttributeName::CriticalDamageAnemo, "BUFF：珐露珊-「祈风之赐」", 0.4 * self.rate_q2);
         }
     }
 }
@@ -44,7 +44,7 @@ impl BuffMeta for BuffFaruzanQ {
         image: BuffImage::Avatar(CharacterName::Faruzan),
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
-            zh_cn: "珐露珊Q技能：「诡风之祸」效果：降低敌人的风元素抗性；<br>「祈风之赐」效果：获得风元素伤害加成,六命：造成风元素伤害时的暴击伤害提升40%；<br>处于抟风秘道的「祈风之赐」效果下的角色，对敌人造成风元素伤害时，基于珐露珊基础攻击力的32%，提高造成的伤害。此效果将在对敌人造成风元素伤害的0.1秒后清除，每0.8秒最多触发一次。",
+            zh_cn: "珐露珊Q技能：「诡风之祸」效果：降低敌人的风元素抗性；<br>「祈风之赐」效果：获得风元素伤害加成，六命：造成风元素伤害时的暴击伤害提升40%；<br>处于抟风秘道的「祈风之赐」效果下的角色，对敌人造成风元素伤害时，基于珐露珊基础攻击力的32%，提高造成的伤害。此效果将在对敌人造成风元素伤害的0.1秒后清除，每0.8秒最多触发一次。",
             en: "Faruzan Elemental Burst: <br>·When the Whirlwind Pulse hits opponents, it will apply Perfidious Wind's Ruin to them, decreasing their Anemo RES.<br>·The Whirlwind Pulse will also apply Prayerful Wind's Gift to all nearby characters when it is unleashed, granting them Anemo DMG Bonus.<br>When characters affected by The Wind's Secret Ways' Prayerful Wind's Gift deal Anemo DMG to opponents, this DMG will be increased based on 32% of Faruzan's own ATK. This DMG Bonus will be cleared 0.1s after dealing Anemo DMG to opponents, and can be triggered once every 0.8s.",
         )),
         from: BuffFrom::Character(CharacterName::Faruzan),
@@ -104,7 +104,7 @@ impl BuffMeta for BuffFaruzanQ {
 
     fn create<A: Attribute>(b: &BuffConfig) -> Box<dyn Buff<A>> {
         let (base_atk, q_level, rate_q1, rate_q2, rate_talent2, enable_c6) = match *b {
-            BuffConfig::FaruzanQ { base_atk, q_level, rate_q1, rate_q2, rate_talent2,enable_c6 } => (base_atk, q_level, rate_q1, rate_q2, rate_talent2, enable_c6),
+            BuffConfig::FaruzanQ { base_atk, q_level, rate_q1, rate_q2, rate_talent2, enable_c6 } => (base_atk, q_level, rate_q1, rate_q2, rate_talent2, enable_c6),
             _ => (0, 10, 0.0, 0.0, 0.0, false)
         };
 

@@ -417,7 +417,7 @@ export default {
     
     "ElementalMastery": {
         name: "ElementalMastery",
-        nameLocale: 204,
+        nameLocale: 205,
         
         description: null,
         
@@ -502,7 +502,7 @@ export default {
     
     "BaseDmg": {
         name: "BaseDmg",
-        nameLocale: 413,
+        nameLocale: 414,
         
         description: 1450,
         
@@ -1768,7 +1768,7 @@ export default {
             
             {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":559,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":558,"type":"float"},
             
         ],
     },
@@ -1804,7 +1804,7 @@ export default {
             
             {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
-            {"default":900.0,"name":"em","title":205,"type":"floatInput"},
+            {"default":900.0,"name":"em","title":204,"type":"floatInput"},
             
         ],
     },
@@ -1823,7 +1823,7 @@ export default {
             
             {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
-            {"default":900.0,"name":"em","title":205,"type":"floatInput"},
+            {"default":900.0,"name":"em","title":204,"type":"floatInput"},
             
         ],
     },
@@ -1874,7 +1874,7 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":559,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":558,"type":"float"},
             
         ],
     },
@@ -2015,7 +2015,7 @@ export default {
         name: "DeepwoodMemories4",
         nameLocale: 1017,
         
-        description: 190,
+        description: 191,
         
         
         badge: getImageA("UI_RelicIcon_15025_4"),
@@ -2023,7 +2023,7 @@ export default {
         genre: "Artifact",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":559,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":558,"type":"float"},
             
         ],
     },

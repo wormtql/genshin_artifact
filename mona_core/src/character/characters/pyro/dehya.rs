@@ -1,11 +1,16 @@
 use num_derive::FromPrimitive;
+use strum::EnumCount;
+use strum_macros::{EnumCount as EnumCountMacro, EnumString};
+
 use crate::attribute::Attribute;
+use crate::attribute::attribute_name::AttributeName;
+use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::character_sub_stat::CharacterSubStatFamily;
-use crate::character::{CharacterConfig, CharacterName, CharacterStaticData};
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, CharacterTrait};
 use crate::common::{ChangeAttribute, Element, SkillType, WeaponType};
+use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
@@ -13,11 +18,6 @@ use crate::target_functions::target_functions::DehyaDefaultTargetFunction;
 use crate::target_functions::TargetFunction;
 use crate::team::TeamQuantization;
 use crate::weapon::weapon_common_data::WeaponCommonData;
-use strum::EnumCount;
-use strum_macros::{EnumCount as EnumCountMacro, EnumString};
-use crate::common::i18n::{charged_dmg, hit_n_dmg, locale, plunging_dmg};
-use crate::attribute::attribute_name::AttributeName;
-
 
 pub struct DehyaSkillType {
     pub normal_dmg1: [f64; 15],
@@ -86,7 +86,7 @@ const DEHYA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name_locale: locale!(
         zh_cn: "迪希雅",
         en: "Dehya",
-    )
+    ),
 };
 
 pub struct DehyaEffect {
@@ -126,7 +126,7 @@ impl DehyaDamageEnum {
     pub fn get_element(&self) -> Element {
         use DehyaDamageEnum::*;
         match *self {
-            E1 | E2 | E3 | Q1 | Q2  => Element::Pyro,
+            E1 | E2 | E3 | Q1 | Q2 => Element::Pyro,
             _ => Element::Physical
         }
     }
@@ -182,7 +182,7 @@ impl CharacterTrait for Dehya {
         skill3: Some(&[
             CharacterSkillMapItem { index: DehyaDamageEnum::Q1 as usize, text: locale!(zh_cn: "炽鬃拳伤害", en: "Flame-Mane’s Fist DMG") },
             CharacterSkillMapItem { index: DehyaDamageEnum::Q2 as usize, text: locale!(zh_cn: "焚落踢伤害", en: "Incineration Drive DMG") },
-        ])
+        ]),
     };
 
     #[cfg(not(target_family = "wasm"))]
@@ -193,7 +193,7 @@ impl CharacterTrait for Dehya {
                 zh_cn: "二命等效增伤覆盖率",
                 en: "C2 Equivalent DMG Bonus",
             ),
-            config: ItemConfigType::Float {min: 0.0, max: 1.0, default: 0.0 }
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },
         ItemConfig {
             name: "c6_stack",
@@ -201,7 +201,7 @@ impl CharacterTrait for Dehya {
                 zh_cn: "六命爆伤等效层数",
                 en: "C6 Equivalent CritDMG Bonus",
             ),
-            config: ItemConfigType::Float {min: 0.0, max: 4.0, default: 3.5 }
+            config: ItemConfigType::Float { min: 0.0, max: 4.0, default: 3.5 },
         },
     ]);
 
@@ -227,17 +227,13 @@ impl CharacterTrait for Dehya {
             Q2 => DEHYA_SKILL.elemental_burst_dmg2_atk[s3],
         };
         let c1 = context.character_common_data.constellation >= 1;
-        // C1 effect
+        let c2 = context.character_common_data.constellation >= 2;
+        let c6 = context.character_common_data.constellation >= 6;
+
         let ratio_hp_base = match s {
             E3 => DEHYA_SKILL.elemental_skill_dmg3_hp[s2],
             Q1 => DEHYA_SKILL.elemental_burst_dmg1_hp[s3],
             Q2 => DEHYA_SKILL.elemental_burst_dmg2_hp[s3],
-            _ => 0.0,
-        };
-
-        let ratio_hp_c1 =  match s {
-            E1 | E2 | E3 => 0.036,
-            Q1 | Q2 => 0.06,
             _ => 0.0,
         };
 
@@ -246,44 +242,55 @@ impl CharacterTrait for Dehya {
         if ratio_hp_base != 0.0 {
             builder.add_hp_ratio("生命倍率", ratio_hp_base);
         }
-        if ratio_hp_c1 != 0.0 {
-            builder.add_hp_ratio("一命：皎洁之火铓辉灿漫", ratio_hp_c1);
+
+        if c1 {
+            let ratio_hp_c1 = match s {
+                E1 | E2 | E3 => 0.036,
+                Q1 | Q2 => 0.06,
+                _ => 0.0,
+            };
+            if ratio_hp_c1 != 0.0 {
+                builder.add_hp_ratio("一命：皎洁之火铓辉灿漫", ratio_hp_c1);
+            }
         }
 
         let (c2_rate, c6_stack) = match *config {
-            CharacterSkillConfig::Dehya {c2_rate,c6_stack } => (c2_rate, c6_stack),
+            CharacterSkillConfig::Dehya { c2_rate, c6_stack } => (c2_rate, c6_stack),
             _ => (0.0, 0.0),
         };
 
         // C2 effect
-        if context.character_common_data.constellation >= 2 {
+        if c2 {
             let c2_dmgb = match s {
                 E3 => 0.5,
                 _ => 0.0,
             };
-            builder.add_extra_bonus("二命：净沙利刃明映万乘",c2_dmgb * c2_rate);
+            builder.add_extra_bonus("二命：净沙利刃明映万乘", c2_dmgb * c2_rate);
         }
 
-        if context.character_common_data.constellation == 6 {
+        let skill_type = s.get_skill_type();
+        if c6 {
             let c6_cdmg = match s {
                 Q1 | Q2 => 0.15 * c6_stack,
                 _ => 0.0,
             };
-            builder.add_extra_critical_damage("六命：燎燃利爪裂帛斫金",c6_cdmg);
+            builder.add_extra_critical_damage("六命：燎燃利爪裂帛斫金", c6_cdmg);
+            if skill_type == SkillType::ElementalBurst {
+                builder.add_extra_critical("六命：燎燃利爪裂帛斫金", 0.1);
+            }
         }
-        
+
         builder.damage(
             &context.attribute,
             &context.enemy,
             s.get_element(),
-            s.get_skill_type(),
+            skill_type,
             context.character_common_data.level,
             fumo,
         )
     }
 
     fn new_effect<A: Attribute>(common_data: &CharacterCommonData, _config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
-        
         Some(Box::new(DehyaEffect {
             c1: common_data.constellation >= 1,
         }))

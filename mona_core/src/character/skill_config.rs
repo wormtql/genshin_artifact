@@ -37,6 +37,6 @@ pub enum CharacterSkillConfig {
     Wanderer { e_enabled: bool, e_hydro: bool, sdpoints: f64 },
     Faruzan { talent2_ratio: f64 },
     Alhaitham { under_e: bool },
-    Dehya { c2_rate:f64,c6_stack:f64 },
+    Dehya { c2_rate: f64, c6_stack: f64 },
     NoConfig,
 }
