@@ -78,6 +78,8 @@ pub enum WeaponName {
     WasterGreatsword,
     ForestRegalia,
     MakhairaAquamarine,
+    BeaconOfTheReedSea,
+    MailedFlower,
 
     // polearm
     EngulfingLightning,

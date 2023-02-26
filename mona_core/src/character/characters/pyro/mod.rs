@@ -8,6 +8,7 @@ pub mod xiangling;
 pub mod xinyan;
 pub mod yanfei;
 pub mod yoimiya;
+pub mod dehya;
 
 pub use amber::Amber;
 pub use bennett::Bennett;
@@ -19,3 +20,4 @@ pub use xiangling::Xiangling;
 pub use xinyan::Xinyan;
 pub use yanfei::Yanfei;
 pub use yoimiya::Yoimiya;
+pub use dehya::Dehya;

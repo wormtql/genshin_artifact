@@ -94,6 +94,7 @@ pub enum BuffName {
     CandaceTalent2,
     NahidaTalent1,
     FaruzanQ,
+    Mika,
 
     // weapon
     FreedomSworn,
@@ -107,6 +108,7 @@ pub enum BuffName {
     XiphosMoonlight,
     MakhairaAquamarine,
     KeyOfKhajNisut,
+    
 
     ResonancePyro2,
     ResonanceCryo2,

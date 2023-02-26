@@ -10,6 +10,7 @@ pub mod xinyan_damage;
 pub mod xinyan_default;
 pub mod yanfei_default;
 pub mod yoimiya_default;
+pub mod dehya_default;
 
 pub use amber_default::AmberDefaultTargetFunction;
 pub use bennett_damage::BennettDamageTargetFunction;
@@ -23,3 +24,4 @@ pub use xinyan_damage::XinyanDamageTargetFunction;
 pub use xinyan_default::XinyanDefaultTargetFunction;
 pub use yanfei_default::YanfeiDefaultTargetFunction;
 pub use yoimiya_default::YoimiyaDefaultTargetFunction;
+pub use dehya_default::DehyaDefaultTargetFunction;
