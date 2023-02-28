@@ -502,7 +502,7 @@ export default {
     
     "BaseDmg": {
         name: "BaseDmg",
-        nameLocale: 414,
+        nameLocale: 413,
         
         description: 1450,
         
@@ -1622,7 +1622,7 @@ export default {
             
             {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q1","title":39,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q2","title":37,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q2","title":36,"type":"float"},
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"rate_talent2","title":18,"type":"float"},
             
@@ -1768,7 +1768,7 @@ export default {
             
             {"default":1,"max":5,"min":1,"name":"refine","title":1245,"type":"intInput"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":558,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":559,"type":"float"},
             
         ],
     },
@@ -1874,7 +1874,7 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":558,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":559,"type":"float"},
             
         ],
     },
@@ -2015,7 +2015,7 @@ export default {
         name: "DeepwoodMemories4",
         nameLocale: 1017,
         
-        description: 191,
+        description: 190,
         
         
         badge: getImageA("UI_RelicIcon_15025_4"),
@@ -2023,7 +2023,7 @@ export default {
         genre: "Artifact",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":558,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":559,"type":"float"},
             
         ],
     },

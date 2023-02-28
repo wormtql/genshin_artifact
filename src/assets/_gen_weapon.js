@@ -365,7 +365,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1367,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":625,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":624,"type":"float"},
             
         ],
         
@@ -660,7 +660,7 @@ export default {
         type: "Sword",
 
         
-        effect: 272,
+        effect: 271,
         
         
         configs: [
@@ -999,7 +999,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1367,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":625,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":624,"type":"float"},
             
         ],
         
@@ -1210,7 +1210,7 @@ export default {
         type: "Claymore",
 
         
-        effect: 272,
+        effect: 271,
         
         
         configs: [
@@ -1453,10 +1453,10 @@ export default {
 
     BeaconOfTheReedSea: {
         name: "BeaconOfTheReedSea",
-        internalName: "",
+        internalName: "Claymore_Deshret",
         nameLocale: 1299,
         star: 5,
-        url: imageUrl(""),
+        url: imageUrl("Claymore_Deshret"),
         type: "Claymore",
 
         
@@ -1475,10 +1475,10 @@ export default {
 
     MailedFlower: {
         name: "MailedFlower",
-        internalName: "",
+        internalName: "Claymore_Fleurfair",
         nameLocale: 1653,
         star: 4,
-        url: imageUrl(""),
+        url: imageUrl("Claymore_Fleurfair"),
         type: "Claymore",
 
         
@@ -1487,7 +1487,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":559,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":558,"type":"float"},
             
         ],
         
@@ -1609,7 +1609,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1367,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":625,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":624,"type":"float"},
             
         ],
         
@@ -1784,7 +1784,7 @@ export default {
         type: "Polearm",
 
         
-        effect: 271,
+        effect: 272,
         
         
         configs: [
@@ -2037,7 +2037,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1367,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":625,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":624,"type":"float"},
             
         ],
         
@@ -2272,7 +2272,7 @@ export default {
         type: "Catalyst",
 
         
-        effect: 271,
+        effect: 272,
         
         
         configs: [
@@ -2868,7 +2868,7 @@ export default {
         type: "Bow",
 
         
-        effect: 271,
+        effect: 272,
         
         
         configs: [
