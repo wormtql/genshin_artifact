@@ -45,7 +45,7 @@ pub struct BeaconOfTheReedSea;
 impl WeaponTrait for BeaconOfTheReedSea {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::BeaconOfTheReedSea,
-        internal_name: "",
+        internal_name: "Claymore_Deshret",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate72),
         weapon_base: WeaponBaseATKFamily::ATK608,

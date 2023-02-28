@@ -42,7 +42,7 @@ pub struct MailedFlower;
 impl WeaponTrait for MailedFlower {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::MailedFlower,
-        internal_name: "", // todo
+        internal_name: "Claymore_Fleurfair",
         weapon_type: WeaponType::Claymore,
         weapon_sub_stat: Some(WeaponSubStatFamily::EM24),
         weapon_base: WeaponBaseATKFamily::ATK565,
