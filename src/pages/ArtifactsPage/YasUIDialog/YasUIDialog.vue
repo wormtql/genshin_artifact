@@ -37,6 +37,8 @@
                             <el-checkbox v-model="importDeleteUnseen" style="margin-top: 12px"
                                 >删除不存在的圣遗物</el-checkbox
                             >
+                            <el-checkbox v-model="importBackupKumiDir" style="margin-top: 12px"
+                                >备份“游戏中导入”收藏夹</el-checkbox>
                         </div>
                         <el-button class="start-btn start-gray" @click="startScan">
                             <div class="l">
@@ -89,6 +91,7 @@ export default {
             },
             output: [],
             importDeleteUnseen: false,
+            importBackupKumiDir: false,
             hwnd: -1,
             win7: navigator.userAgent.includes('NT 6'),
         };
@@ -134,7 +137,7 @@ export default {
                     } else {
                         const yasJson = res.data;
                         try {
-                            importMonaJson(yasJson, this.importDeleteUnseen);
+                            importMonaJson(yasJson, this.importDeleteUnseen, this.importBackupKumiDir);
                             this.output.push(`[YAS DONE] 圣遗物扫描完成，您可以关闭本窗口和辅助插件。`);
                         } catch (e) {
                             this.output.push(`[YAS ERR!] 导入圣遗物数据失败，错误详情如下：\n${res.message}`);

@@ -160,6 +160,7 @@ export default {
     artPage: {
         shareDesc: "通过分享链接可以快速导入圣遗物，有效期为一天",
         deleteUnseen: "删除不存在的圣遗物",
+        backupKumiDir: "备份“游戏中导入”收藏夹",
         edit: "编辑圣遗物",
         recommend: "推荐圣遗物",
         unlockAll: "启用全部",
@@ -184,10 +185,13 @@ export default {
         newFolder: "新建收藏夹",
         newKumi: "新建圣遗物组",
         deleteFolder: "删除收藏夹",
+        clearFolder: "清空收藏夹",
         enterFolder: "请输入新收藏夹名",
         renameFolder: "重命名收藏夹",
         enterKumi: "请输入新圣遗物组名",
-        renameKumi: "重命名圣遗物组"
+        renameKumi: "重命名圣遗物组",
+        confirmClear: "确定清空吗？",
+        confirmDelete: "确定删除吗？"
     },
     presetPage: {
         exportAll: "导出全部",

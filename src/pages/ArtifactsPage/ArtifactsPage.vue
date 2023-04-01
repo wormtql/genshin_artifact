@@ -24,6 +24,7 @@
         <el-dialog v-model="showImportDialog" :title="t('misc.import')" :width="deviceIsPC ? '60%' : '90%'">
             <import-block ref="fileUploader"></import-block>
             <el-checkbox v-model="importDeleteUnseen" style="margin-top: 12px">{{ t("artPage.deleteUnseen") }}</el-checkbox>
+            <el-checkbox v-model="importBackupKumiDir" style="margin-top: 12px">{{ t("artPage.backupKumiDir") }}</el-checkbox>
 
             <template #footer>
                 <el-button @click="showImportDialog = false">{{ t("misc.cancel") }}</el-button>
@@ -385,15 +386,16 @@ function shareArtifact() {
 const showImportDialog = ref(false)
 const fileUploader: Ref<InstanceType<typeof ImportBlock> | null> = ref(null)
 const importDeleteUnseen = ref(false)
+const importBackupKumiDir = ref(false)
 
 function handleImportJsonClicked() {
     showImportDialog.value = true;
 }
 
-async function importJson(text: string, deleteUnseen: boolean) {
+async function importJson(text: string, deleteUnseen: boolean, backupKumiDir: boolean) {
     try {
         const rawObj = JSON.parse(text)
-        await importMonaJson(rawObj, deleteUnseen)
+        await importMonaJson(rawObj, deleteUnseen, backupKumiDir)
     } catch (e) {
         ElMessage({
             message: t("artPage.wrongFormat"),
@@ -417,7 +419,7 @@ function handleImportJson() {
         fileUploader.value
             .getReadPromise()
             .then((text: string) => {
-                importJson(text, importDeleteUnseen.value)
+                importJson(text, importDeleteUnseen.value, importBackupKumiDir.value)
             })
             .catch((e: any) => {
                 ElMessage({

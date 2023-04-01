@@ -85,14 +85,18 @@
                     <div class="button-right">
                         <el-button-group>
                             <el-button
-                                v-if="currentDirId !== 0"
+                                v-if="currentDirId !== 0 && currentDirId !== 1"
                                 :icon="IconEpEdit"
                                 @click="handleRenameDir(currentDirId)"
                             >{{ t("misc.rename") }}</el-button>
                             <el-button
+                                :icon="IconEpBrush"
+                                @click="handleClearDir(currentDirId)"
+                            >{{ t("misc.clear") }}</el-button>
+                            <el-button
                                 type="danger"
                                 @click="handleDeleteDir(currentDirId)"
-                                v-if="currentDirId !== 0"
+                                v-if="currentDirId !== 0 && currentDirId !== 1"
                                 :title="t('kumiPage.deleteFolder')"
                                 :icon="IconEpDelete"
                             ></el-button>
@@ -140,6 +144,7 @@ import IconEpEdit from "~icons/ep/edit"
 import IconEpMore from "~icons/ep/more"
 import IconEpFolder from "~icons/ep/folder"
 import IconEpFolderAdd from "~icons/ep/folder-add"
+import IconEpBrush from "~icons/ep/brush"
 import type {ArtifactPosition} from "@/types/artifact"
 import {useI18n} from "@/i18n/i18n";
 
@@ -192,11 +197,16 @@ function handleNewDir() {
 }
 
 function handleDeleteDir(id: number) {
-    if (id === 0) {
+    if (id === 0 || id === 1) {
         return
     }
-    kumiStore.deleteDir(id)
-    currentDirId.value = 0
+    ElMessageBox.confirm(t("kumiPage.confirmDelete"), t("kumiPage.deleteFolder"), {
+        confirmButtonText: t("misc.confirm"),
+        cancelButtonText: t("misc.cancel")
+    }).then(() => {
+        kumiStore.deleteDir(id)
+        currentDirId.value = 0
+    })
 }
 
 function handleRenameDir(id: number) {
@@ -210,6 +220,14 @@ function handleRenameDir(id: number) {
     }).catch(() => {})
 }
 
+function handleClearDir(id: number) {
+    ElMessageBox.confirm(t("kumiPage.confirmClear"), t("kumiPage.clearFolder"), {
+        confirmButtonText: t("misc.confirm"),
+        cancelButtonText: t("misc.cancel")
+    }).then(() => {
+        kumiStore.clearDir(id)
+    })
+}
 
 // kumis
 const currentKumiList = computed((): TypeKumiItem[] => {

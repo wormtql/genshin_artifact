@@ -160,6 +160,7 @@ export default {
     artPage: {
         shareDesc: "Use share link to import artifacts, expires in 1 day",
         deleteUnseen: "delete unseen artifacts",
+        backupKumiDir: "backup the \"Import from game\" folder",
         edit: "edit",
         recommend: "recommend",
         unlockAll: "unlock all",
@@ -182,10 +183,13 @@ export default {
         newFolder: "New Folder",
         newKumi: "New Artifact Group",
         deleteFolder: "Delete Folder",
+        clearFolder: "Clear Folder",
         enterFolder: "Please enter new folder name",
         renameFolder: "Rename Folder",
         enterKumi: "Please enter new group name",
-        renameKumi: "Rename Artifact Group"
+        renameKumi: "Rename Artifact Group",
+        confirmClear: "Sure to clear?",
+        confirmDelete: "Sure to delete?"
     },
     presetPage: {
         exportAll: "Export All",

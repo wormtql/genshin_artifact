@@ -98,7 +98,7 @@ interface ImportJsonResult {
     add: number,
 }
 
-export function importMonaJson(rawObj: any, removeNonExisting: boolean): ImportJsonResult {
+export function importMonaJson(rawObj: any, removeNonExisting: boolean, backupImportDir: boolean): ImportJsonResult {
     // hash of level, main stat, sub stats, rarity, set name, slot
     let hashAll: Record<string, IArtifact> = {}
     // hash of level, main stat without value, sub stats without value, rarity, set name, slot
@@ -175,11 +175,16 @@ export function importMonaJson(rawObj: any, removeNonExisting: boolean): ImportJ
 
     // add new artifacts groups to store
     const kumiStore = useKumiStore()
-    for (const equipName of equips.keys()) {
-        const artifacts = equips.get(equipName)
-        if (artifacts !== undefined) {
-            kumiStore.addKumi(0, equipName, artifacts)
-        }
+    if(kumiStore.itemById(1)?.dir)
+    {
+        if(backupImportDir) kumiStore.backupImportDir()
+        else kumiStore.clearDir(1)
+        for (const equipName of equips.keys()) {
+           const artifacts = equips.get(equipName)
+           if (artifacts !== undefined) {
+               kumiStore.addKumi(1, equipName, artifacts)
+           }
+        }   
     }
 
     return {

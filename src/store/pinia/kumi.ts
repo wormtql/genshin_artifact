@@ -15,6 +15,12 @@ function loadKumiOrDefault(payload: any): KumiItem[] {
             title: "默认收藏夹",
             dir: true,
             children: []
+        },
+        1: {
+            id: 1,
+            title: "游戏中导入",
+            dir: true,
+            children: []
         }
     }
     if (payload) {
@@ -46,10 +52,27 @@ function store() {
     const idGenerator = new RandomIDProvider()
 
     function init(payload: any) {
+        const initDir = (id: number) => {
+            const names = ["默认收藏夹", "游戏中导入"]
+            let item: KumiItem = {
+                id,
+                title: names[id],
+                dir: true,
+                children: [],
+            }
+
+            kumi.value.push(item)
+            kumiById.value.set(item.id, item)
+        }
+        const initDirIds = [0, 1]
         kumi.value = loadKumiOrDefault(payload)
         kumiById.value.clear()
         for (let item of kumi.value) {
             kumiById.value.set(item.id, item)
+        }
+        for (let id of initDirIds) {
+            if(kumiById.value.get(id)?.dir) continue
+            initDir(id)
         }
     }
 
@@ -95,6 +118,44 @@ function store() {
                 }
             }
         }
+    }
+
+    function clearDir(id: number) {
+        const item = kumiById.value.get(id)
+
+        if (item && item.dir) {
+            let children = item.children
+            if(!children?.length) return
+            item.children = []
+            let deleteSet = new Set(children)
+            
+            let i = 0
+            while (i < kumi.value.length) {
+                const temp: KumiItem = kumi.value[i]
+                if (deleteSet.has(temp.id)) {
+                    kumi.value.splice(i, 1)
+                    kumiById.value.delete(temp.id)
+                } else {
+                    i += 1
+                }
+            }
+        }
+    }
+
+    function backupImportDir() {
+        const item = kumiById.value.get(1)
+        const newItem: KumiItem = {
+            id: 1,
+            title: "游戏中导入",
+            dir: true,
+            children: []
+        }
+        if(!item?.dir || !item?.children?.length) return
+        item.id = idGenerator.generateId()
+        item.title = `游戏中导入-${Date.now()}`
+        kumiById.value.set(item.id, item)
+        kumiById.value.set(1, newItem)
+        kumi.value.push(newItem)
     }
 
     function rename(id: number, name: string) {
@@ -232,7 +293,9 @@ function store() {
 
         createDir,
         deleteDir,
+        clearDir,
         rename,
+        backupImportDir,
 
         createKumi,
         deleteKumi,

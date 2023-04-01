@@ -35,6 +35,7 @@ li {
     font-size: 14px;
     list-style: none;
     transition: 200ms;
+    white-space: nowrap;
 
     &.active {
         color: #409EFF;
