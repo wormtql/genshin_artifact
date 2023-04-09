@@ -175,9 +175,7 @@ impl CharacterTrait for Alhaitham {
         skill2: skill_map!(
             AlhaithamDamageEnum
             E1 locale!(zh_cn: "突进攻击伤害", en: "Rush Attack DMG")
-            E2 locale!(zh_cn: "1枚光幕攻击伤害", en: "1-Mirror Projection Attack DMG")
-            E3 locale!(zh_cn: "2枚光幕攻击伤害", en: "2-Mirror Projection Attack DMG")
-            E4 locale!(zh_cn: "3枚光幕攻击伤害", en: "3-Mirror Projection Attack DMG")
+            E2 locale!(zh_cn: "单枚光幕攻击伤害", en: "Single Mirror Projection Attack DMG")
         ),
         skill3: skill_map!(
             AlhaithamDamageEnum
