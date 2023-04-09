@@ -27,7 +27,7 @@ impl BuffMeta for BuffXianglingTalent2 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "香菱天赋2：锅巴出击效果结束时，锅巴会在消失的位置留下辣椒。拾取辣椒会提高10%攻击力，持续10秒。",
-            en: "香菱天赋2：锅巴出击效果结束时，锅巴会在消失的位置留下辣椒。拾取辣椒会提高10%攻击力，持续10秒。",
+            en: "Xiangling Talent2: When Guoba Attack's effect ends, Guoba leaves a chili pepper on the spot where it disappeared. Picking up a chili pepper increases ATK by 10% for 10s.",
         )),
         from: BuffFrom::Character(CharacterName::Xiangling),
     };
@@ -58,7 +58,7 @@ impl BuffMeta for BuffXianglingC1 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "香菱命座1：受到锅巴攻击的敌人，火元素抗性降低15％，持续6秒。",
-            en: "香菱命座1：受到锅巴攻击的敌人，火元素抗性降低15％，持续6秒。",
+            en: "Xiangling C1: Opponents hit by Guoba's attacks have their Pyro RES reduced by 15% for 6s.",
         )),
         from: BuffFrom::Character(CharacterName::Xiangling),
     };
@@ -89,7 +89,7 @@ impl BuffMeta for BuffXianglingC6 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "香菱命座6；旋火轮持续期间，队伍中所有角色获得15％火元素伤害加成。",
-            en: "香菱命座6；旋火轮持续期间，队伍中所有角色获得15％火元素伤害加成。",
+            en: "Xiangling C6: For the duration of Pyronado, all party members receive a 15% Pyro DMG Bonus.",
         )),
         from: BuffFrom::Character(CharacterName::Xiangling),
     };

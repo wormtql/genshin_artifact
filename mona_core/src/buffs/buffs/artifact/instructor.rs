@@ -27,7 +27,7 @@ impl BuffMeta for BuffInstructor4 {
         genre: BuffGenre::Artifact,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "触发元素反应后。队伍中所有角色元素精通提高120点，持续8秒。",
-            en: "触发元素反应后。队伍中所有角色元素精通提高120点，持续8秒。",
+            en: "Upon triggering an Elemental Reaction, increases all party members' Elemental Mastery by 120 for 8s.",
         )),
         from: BuffFrom::Artifact(ArtifactSetName::Instructor),
     };

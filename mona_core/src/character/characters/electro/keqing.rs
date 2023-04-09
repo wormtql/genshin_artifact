@@ -227,7 +227,7 @@ impl CharacterTrait for Keqing {
             name: "after_e",
             title: locale!(
                 zh_cn: "E附魔",
-                en: "E附魔",
+                en: "Infused by skill",
             ),
             config: ItemConfigType::Bool { default: true }
         }

@@ -130,15 +130,15 @@ impl CharacterTrait for Candace {
         star: 4,
         skill_name1: locale!(
             zh_cn: "普通攻击·流耀枪术·守势",
-            en: "Normal Attack: Gleaming Spear – Guardian Stance",
+            en: "Normal Attack: Gleaming Spear - Guardian Stance",
         ),
         skill_name2: locale!(
             zh_cn: "圣仪·苍鹭庇卫",
-            en: "Sacred Rite: Heron’s Sanctum",
+            en: "Sacred Rite: Heron's Sanctum",
         ),
         skill_name3: locale!(
             zh_cn: "圣仪·灰鸰衒潮",
-            en: "Sacred Rite: Wagtail’s Tide",
+            en: "Sacred Rite: Wagtail's Tide",
         ),
         name_locale: locale!(
             zh_cn: "坎蒂丝",

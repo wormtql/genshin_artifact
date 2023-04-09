@@ -32,7 +32,7 @@ impl BuffMeta for BuffEulaE {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "优菈E技能：长按若消耗了冷酷之心效果，会使身边的敌人的物理抗性与冰元素抗性降低。",
-            en: "Eula E: 长按若消耗了冷酷之心效果，会使身边的敌人的物理抗性与冰元素抗性降低。",
+            en: "Eula Skill: If Grimheart stacks are consumed, surrounding opponents will have their Physical RES and Cryo RES decreased.",
         )),
         from: BuffFrom::Character(CharacterName::Eula),
     };

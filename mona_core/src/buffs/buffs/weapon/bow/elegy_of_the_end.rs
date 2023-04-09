@@ -32,8 +32,8 @@ impl BuffMeta for BuffElegyOfTheEnd {
         image: BuffImage::Weapon(WeaponName::ElegyOfTheEnd),
         genre: BuffGenre::Weapon,
         description: Some(crate::common::i18n::locale!(
-            zh_cn: "千年的大乐章·别离之歌」效果：元素精通提高100/125/150/175/200点，攻击力提升20%/25%/30%/35%/40%。",
-            en: "千年的大乐章·别离之歌」效果：元素精通提高100/125/150/175/200点，攻击力提升20%/25%/30%/35%/40%。",
+            zh_cn: "「千年的大乐章·别离之歌」效果：元素精通提高100/125/150/175/200点，攻击力提升20%/25%/30%/35%/40%。",
+            en: "\"Millennial Movement: Farewell Song\" increases Elemental Mastery by 100/125/150/175/200 and increases ATK by 20%/25%/30%/35%/40%.",
         )),
         from: BuffFrom::Weapon(WeaponName::ElegyOfTheEnd),
     };

@@ -27,7 +27,7 @@ impl BuffMeta for BuffKleeC2 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "可莉命座2：蹦蹦炸弹的诡雷会使敌人防御力降低23％，持续10秒。",
-            en: "可莉命座2：蹦蹦炸弹的诡雷会使敌人防御力降低23％，持续10秒。",
+            en: "Klee C2: Being hit by Jumpy Dumpty's mines decreases opponents' DEF by 23% for 10s.",
         )),
         from: BuffFrom::Character(CharacterName::Klee),
     };
@@ -57,7 +57,7 @@ impl BuffMeta for BuffKleeC6 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "可莉命座6：施放轰轰火花后的25秒内，队伍中所有角色获得10％火元素伤害加成。",
-            en: "可莉命座6：施放轰轰火花后的25秒内，队伍中所有角色获得10％火元素伤害加成。",
+            en: "Klee C6: When Sparks 'n' Splash is used, all party members will gain a 10% Pyro DMG Bonus for 25s.",
         )),
         from: BuffFrom::Character(CharacterName::Klee),
     };
