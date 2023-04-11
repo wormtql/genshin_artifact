@@ -140,6 +140,7 @@ pub enum WeaponName {
     WanderingEvenstar,
     AThousandFloatingDreams,
     TulaytullahsRemembrance,
+    JadeFallsSplendor,
 
     // bows
     PolarStar,

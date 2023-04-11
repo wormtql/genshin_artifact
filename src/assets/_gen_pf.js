@@ -20,29 +20,29 @@ export default {
             
             {"default":1.0,"max":1.0,"min":0.0,"name":"atk_p_weight","title":660,"type":"float"},
             
-            {"default":false,"name":"hp_use","title":1164,"type":"bool"},
+            {"default":false,"name":"hp_use","title":1165,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_weight","title":1165,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_weight","title":1166,"type":"float"},
             
-            {"default":false,"name":"hp_p_use","title":1151,"type":"bool"},
+            {"default":false,"name":"hp_p_use","title":1152,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_p_weight","title":1152,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_p_weight","title":1153,"type":"float"},
             
-            {"default":false,"name":"def_use","title":1588,"type":"bool"},
+            {"default":false,"name":"def_use","title":1590,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"def_weight","title":1589,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"def_weight","title":1591,"type":"float"},
             
-            {"default":false,"name":"def_p_use","title":1583,"type":"bool"},
+            {"default":false,"name":"def_p_use","title":1585,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"def_p_weight","title":1584,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"def_p_weight","title":1586,"type":"float"},
             
-            {"default":true,"name":"critical_use","title":911,"type":"bool"},
+            {"default":true,"name":"critical_use","title":912,"type":"bool"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"critical_weight","title":912,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"critical_weight","title":913,"type":"float"},
             
-            {"default":true,"name":"critical_damage_use","title":905,"type":"bool"},
+            {"default":true,"name":"critical_damage_use","title":906,"type":"bool"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"critical_damage_weight","title":906,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"critical_damage_weight","title":907,"type":"float"},
             
             {"default":false,"name":"elemental_mastery_use","title":211,"type":"bool"},
             

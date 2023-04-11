@@ -80,6 +80,7 @@ pub enum WeaponConfig {
     WanderingEvenstar { rate: f64 },
     AThousandFloatingDreams { same_count: usize, diff_count: usize },
     TulaytullahsRemembrance { stack: f64 },
+    JadeFallsSplendor { rate: f64 },
 
     // Bow
     PolarStar { stack: usize },

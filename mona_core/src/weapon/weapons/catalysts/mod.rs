@@ -28,6 +28,7 @@ pub use fruit_of_fulfillment::FruitOfFulfillment;
 pub use wandering_evenstar::WanderingEvenstar;
 pub use a_thousand_floating_dreams::AThousandFloatingDreams;
 pub use tulaytullah_s_remembrance::TulaytullahsRemembrance;
+pub use jadefalls_splendor::JadeFallsSplendor;
 
 pub mod lost_prayer_to_the_sacred_winds;
 pub mod skyward_atlas;
@@ -59,3 +60,4 @@ pub mod fruit_of_fulfillment;
 pub mod wandering_evenstar;
 pub mod a_thousand_floating_dreams;
 pub mod tulaytullah_s_remembrance;
+pub mod jadefalls_splendor;
