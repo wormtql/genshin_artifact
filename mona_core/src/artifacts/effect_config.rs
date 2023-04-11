@@ -143,6 +143,21 @@ pub struct ConfigFlowerOfParadiseLost {
     pub stack: f64,
 }
 
+#[derive(Serialize, Deserialize)]
+#[derive(Debug, Clone, Default)]
+pub struct ConfigNymphsDream {
+    pub w1: f64,
+    pub w2: f64,
+    pub w3: f64,
+    pub rate: f64,
+}
+
+#[derive(Serialize, Deserialize)]
+#[derive(Debug, Clone, Default)]
+pub struct ConfigVourukashasGlow {
+    pub stack: f64,
+}
+
 #[derive(Default, Debug, Clone)]
 #[derive(Serialize, Deserialize)]
 pub struct ArtifactEffectConfig {
@@ -169,6 +184,8 @@ pub struct ArtifactEffectConfig {
     pub config_gilded_dreams: ConfigGildedDreams,
     pub config_desert_pavilion_chronicle: ConfigRate,
     pub config_flower_of_paradise_lost: ConfigFlowerOfParadiseLost,
+    pub config_nymphs_dream: ConfigNymphsDream,
+    pub config_vourukashas_glow: ConfigVourukashasGlow,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -197,6 +214,8 @@ pub struct ArtifactConfigInterface {
     pub config_gilded_dreams: Option<ConfigGildedDreams>,
     pub config_desert_pavilion_chronicle: Option<ConfigRate>,
     pub config_flower_of_paradise_lost: Option<ConfigFlowerOfParadiseLost>,
+    pub config_nymphs_dream: Option<ConfigNymphsDream>,
+    pub config_vourukashas_glow: Option<ConfigVourukashasGlow>,
 }
 
 impl ArtifactConfigInterface {
@@ -225,6 +244,8 @@ impl ArtifactConfigInterface {
             config_gilded_dreams: self.config_gilded_dreams.unwrap_or(Default::default()),
             config_desert_pavilion_chronicle: self.config_desert_pavilion_chronicle.unwrap_or(Default::default()),
             config_flower_of_paradise_lost: self.config_flower_of_paradise_lost.unwrap_or(Default::default()),
+            config_nymphs_dream: self.config_nymphs_dream.unwrap_or(Default::default()),
+            config_vourukashas_glow: self.config_vourukashas_glow.unwrap_or(Default::default()),
         }
     }
 }

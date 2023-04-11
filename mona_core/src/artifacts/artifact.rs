@@ -47,6 +47,7 @@ pub enum ArtifactSetName {
     MaidenBeloved,
     MartialArtist,
     NoblesseOblige,
+    NymphsDream,
     OceanHuedClam,
     PaleFlame,
     PrayersForDestiny,
@@ -65,6 +66,7 @@ pub enum ArtifactSetName {
     TravelingDoctor,
     VermillionHereafter,
     ViridescentVenerer,
+    VourukashasGlow,
     WanderersTroupe,
 }
 
