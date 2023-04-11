@@ -53,6 +53,7 @@ pub enum BuffConfig {
     NahidaTalent1 { max_em: f64 },
     FaruzanQ { base_atk: usize, q_level: usize, rate_q1: f64, rate_q2: f64, rate_talent2: f64, enable_c6: bool },
     Mika { stack_talent2: f64, rate_c6: f64 },
+    KavehQ { q_level: usize, rate: f64 },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },
