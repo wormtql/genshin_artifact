@@ -6,7 +6,7 @@
             :width="deviceIsPC ? '60%' : '90%'"
         >
 
-            <import-block ref="fileImportBlock"></import-block>
+            <import-block ref="fileImportBlock" accept="application/json,text/plain"></import-block>
 
             <template #footer>
                 <el-button @click="showImportDialog = false">{{ t("misc.cancel") }}</el-button>
@@ -150,13 +150,13 @@ function handleDownload(name: string) {
     const temp = [entry]
     const str = JSON.stringify(temp)
 
-    downloadString(str, "text/plain", name)
+    downloadString(str, "application/json", name)
 }
 
 function handleExportAll() {
     const str = JSON.stringify(presetStore.allFlat.value)
 
-    downloadString(str, "text/plain", t("misc.preset"))
+    downloadString(str, "application/json", t("misc.preset"))
 }
 
 

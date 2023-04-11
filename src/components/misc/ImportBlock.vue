@@ -22,6 +22,7 @@
 
         <input type="file" ref="fileInput" class="file-input"
             @change="handleSelectFile"
+            :accept="props.accept"
         />
     </div>
 
@@ -30,6 +31,10 @@
 <script setup lang="ts">
 // drag drop
 import {Ref} from "vue";
+
+const props = defineProps<{
+    accept?: string
+}>()
 
 const isDragover = ref(false)
 
