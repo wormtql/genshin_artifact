@@ -96,6 +96,8 @@ pub enum BuffName {
     FaruzanQ,
     Mika,
     KavehQ,
+    BaizhuTalent2,
+    BaizhuC4,
 
     // weapon
     FreedomSworn,

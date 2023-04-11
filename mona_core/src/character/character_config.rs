@@ -23,5 +23,6 @@ pub enum CharacterConfig {
     Yaoyao { c4_rate: f64 },
     Alhaitham { c2_stack: f64, c4_stack: f64, c6_rate: f64 },
     Kaveh { talent2_stack: f64, c2_rate: f64 },
+    Baizhu { hp_below_50: bool },
     NoConfig,
 }

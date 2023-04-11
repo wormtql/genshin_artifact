@@ -32,6 +32,7 @@ pub enum CharacterName {
     Aloy,
     Amber,
     AratakiItto,
+    Baizhu,
     Barbara,
     Beidou,
     Bennett,
