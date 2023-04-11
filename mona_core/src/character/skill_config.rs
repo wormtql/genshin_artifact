@@ -38,5 +38,6 @@ pub enum CharacterSkillConfig {
     Faruzan { talent2_ratio: f64 },
     Alhaitham { under_e: bool },
     Dehya { c2_rate: f64, c6_stack: f64 },
+    Kaveh { after_q: bool },
     NoConfig,
 }

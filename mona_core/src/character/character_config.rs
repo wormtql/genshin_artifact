@@ -22,5 +22,6 @@ pub enum CharacterConfig {
     Faruzan { q_ratio: f64 },
     Yaoyao { c4_rate: f64 },
     Alhaitham { c2_stack: f64, c4_stack: f64, c6_rate: f64 },
+    Kaveh { talent2_stack: f64, c2_rate: f64 },
     NoConfig,
 }

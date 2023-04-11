@@ -54,6 +54,7 @@ pub enum CharacterName {
     Kaeya,
     KamisatoAyaka,
     KamisatoAyato,
+    Kaveh,
     Keqing,
     Klee,
     KujouSara,
