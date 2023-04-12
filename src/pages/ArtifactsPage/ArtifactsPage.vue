@@ -22,7 +22,7 @@
         </el-dialog>
 
         <el-dialog v-model="showImportDialog" :title="t('misc.import')" :width="deviceIsPC ? '60%' : '90%'">
-            <import-block ref="fileUploader"></import-block>
+            <import-block ref="fileUploader" accept="application/json"></import-block>
             <el-checkbox v-model="importDeleteUnseen" style="margin-top: 12px">{{ t("artPage.deleteUnseen") }}</el-checkbox>
             <el-checkbox v-model="importBackupKumiDir" style="margin-top: 12px">{{ t("artPage.backupKumiDir") }}</el-checkbox>
 
