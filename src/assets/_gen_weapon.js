@@ -367,7 +367,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1411,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":644,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":645,"type":"float"},
             
         ],
         
@@ -662,7 +662,7 @@ export default {
         type: "Sword",
 
         
-        effect: 277,
+        effect: 278,
         
         
         configs: [
@@ -1001,7 +1001,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1411,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":644,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":645,"type":"float"},
             
         ],
         
@@ -1212,7 +1212,7 @@ export default {
         type: "Claymore",
 
         
-        effect: 277,
+        effect: 278,
         
         
         configs: [
@@ -1611,7 +1611,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1411,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":644,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":645,"type":"float"},
             
         ],
         
@@ -1786,7 +1786,7 @@ export default {
         type: "Polearm",
 
         
-        effect: 278,
+        effect: 277,
         
         
         configs: [
@@ -2039,7 +2039,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1411,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":644,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":645,"type":"float"},
             
         ],
         
@@ -2274,7 +2274,7 @@ export default {
         type: "Catalyst",
 
         
-        effect: 278,
+        effect: 277,
         
         
         configs: [
@@ -2529,10 +2529,10 @@ export default {
 
     JadeFallsSplendor: {
         name: "JadeFallsSplendor",
-        internalName: "jade",
+        internalName: "Catalyst_Morax",
         nameLocale: 1234,
         star: 5,
-        url: imageUrl("jade"),
+        url: imageUrl("Catalyst_Morax"),
         type: "Catalyst",
 
         
@@ -2890,7 +2890,7 @@ export default {
         type: "Bow",
 
         
-        effect: 278,
+        effect: 277,
         
         
         configs: [

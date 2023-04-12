@@ -1682,7 +1682,7 @@ export default {
         description: 336,
         
         
-        badge: getImage("Baizhu"),
+        badge: getImage("Baizhuer"),
         
         genre: "Character",
         config: [
@@ -1701,7 +1701,7 @@ export default {
         description: 736,
         
         
-        badge: getImage("Baizhu"),
+        badge: getImage("Baizhuer"),
         
         genre: "Character",
         config: [

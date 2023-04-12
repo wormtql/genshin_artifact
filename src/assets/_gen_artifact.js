@@ -591,7 +591,7 @@ export default {
         maxStar: 5,
     
     
-        effect2: 214,
+        effect2: 215,
     
     
     
@@ -748,7 +748,7 @@ export default {
         maxStar: 5,
     
     
-        effect2: 213,
+        effect2: 214,
     
     
     
@@ -962,7 +962,7 @@ export default {
         maxStar: 4,
     
     
-        effect2: 215,
+        effect2: 213,
     
     
     
@@ -1287,31 +1287,31 @@ export default {
         
         flower: {
             text: 738,
-            url: getIcon("UI_RelicIcon_0_4")
+            url: getIcon("UI_RelicIcon_15029_4")
         },
         
         
         feather: {
             text: 416,
-            url: getIcon("UI_RelicIcon_0_2")
+            url: getIcon("UI_RelicIcon_15029_2")
         },
         
         
         sand: {
             text: 999,
-            url: getIcon("UI_RelicIcon_0_5")
+            url: getIcon("UI_RelicIcon_15029_5")
         },
         
         
         cup: {
             text: 301,
-            url: getIcon("UI_RelicIcon_0_1")
+            url: getIcon("UI_RelicIcon_15029_1")
         },
         
         
         head: {
             text: 595,
-            url: getIcon("UI_RelicIcon_0_3")
+            url: getIcon("UI_RelicIcon_15029_3")
         },
         
         config4: [
@@ -1648,7 +1648,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":645,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":644,"type":"float"},
             
         ],
     },
@@ -2117,7 +2117,7 @@ export default {
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"rate_q","title":209,"type":"float"},
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":557,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":558,"type":"float"},
             
         ],
     },
@@ -2192,36 +2192,36 @@ export default {
         
         flower: {
             text: 1083,
-            url: getIcon("UI_RelicIcon_0_4")
+            url: getIcon("UI_RelicIcon_15030_4")
         },
         
         
         feather: {
             text: 1154,
-            url: getIcon("UI_RelicIcon_0_2")
+            url: getIcon("UI_RelicIcon_15030_2")
         },
         
         
         sand: {
             text: 94,
-            url: getIcon("UI_RelicIcon_0_5")
+            url: getIcon("UI_RelicIcon_15030_5")
         },
         
         
         cup: {
             text: 748,
-            url: getIcon("UI_RelicIcon_0_1")
+            url: getIcon("UI_RelicIcon_15030_1")
         },
         
         
         head: {
             text: 1082,
-            url: getIcon("UI_RelicIcon_0_3")
+            url: getIcon("UI_RelicIcon_15030_3")
         },
         
         config4: [
             
-            {"default":4.0,"max":5.0,"min":0.0,"name":"stack","title":558,"type":"float"},
+            {"default":4.0,"max":5.0,"min":0.0,"name":"stack","title":557,"type":"float"},
             
         ],
     },
@@ -2234,7 +2234,7 @@ export default {
         maxStar: 5,
     
     
-        effect2: 215,
+        effect2: 213,
     
     
     
