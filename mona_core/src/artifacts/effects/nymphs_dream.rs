@@ -71,7 +71,7 @@ impl ArtifactTrait for NymphsDream {
             en: "After Normal, Charged, and Plunging Attacks, Elemental Skills, and Elemental Bursts hit opponents, 1 stack of Mirrored Nymph will be triggered, lasting 8s. When under the effect of 1, 2, or 3 or more Mirrored Nymph stacks, ATK will be increased by 7%/16%/25%, and Hydro DMG Bonus will be increased by 4%/9%/15%. Mirrored Nymph stacks created by Normal, Charged, and Plunging Attacks, Elemental Skills, and Elemental Bursts exist independently."
         )),
         effect5: None,
-        internal_id: 0 // todo
+        internal_id: 15029
     };
 
     #[cfg(not(target_family = "wasm"))]

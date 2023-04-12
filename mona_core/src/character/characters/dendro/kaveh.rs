@@ -114,7 +114,7 @@ pub struct Kaveh;
 impl CharacterTrait for Kaveh {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Kaveh,
-        internal_name: "Kaveh", // todo
+        internal_name: "Kaveh",
         name_locale: locale!(zh_cn: "卡维", en: "Kaveh"),
         element: Element::Dendro,
         hp: [1003, 2577, 3326, 4982, 5514, 6343, 7052, 7881, 8413, 9241, 9773, 10602, 11134, 11962],

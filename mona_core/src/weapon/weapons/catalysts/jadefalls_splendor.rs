@@ -43,7 +43,7 @@ pub struct JadeFallsSplendor;
 impl WeaponTrait for JadeFallsSplendor {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::JadeFallsSplendor,
-        internal_name: "jade", // todo
+        internal_name: "Catalyst_Morax",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::HP108),
         weapon_base: WeaponBaseATKFamily::ATK608,

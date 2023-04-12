@@ -110,7 +110,7 @@ pub struct Baizhu;
 impl CharacterTrait for Baizhu {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Baizhu,
-        internal_name: "Baizhu", // todo
+        internal_name: "Baizhuer",
         name_locale: locale!(zh_cn: "白术", en: "Baizhu"),
         element: Element::Dendro,
         hp: [1039, 2695, 3586, 5366, 5999, 6902, 7747, 8659, 9292, 10213, 10846, 11777, 12410, 13348],
