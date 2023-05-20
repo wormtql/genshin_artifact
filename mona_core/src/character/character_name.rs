@@ -94,4 +94,5 @@ pub enum CharacterName {
     Yoimiya,
     Yunjin,
     Zhongli,
+    Kirara,
 }
