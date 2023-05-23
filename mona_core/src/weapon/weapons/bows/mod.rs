@@ -30,6 +30,7 @@ pub use fading_twilight::FadingTwilight;
 pub use hunters_path::HuntersPath;
 pub use trawler::Trawler;
 pub use kings_squire::KingsSquire;
+pub use ibis_piercer::IbisPiercer;
 
 pub mod polar_star;
 pub mod thundering_pulse;
@@ -63,3 +64,4 @@ pub mod fading_twilight;
 pub mod hunters_path;
 pub mod trawler;
 pub mod kings_squire;
+pub mod ibis_piercer;

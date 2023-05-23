@@ -175,4 +175,5 @@ pub enum WeaponName {
     HuntersPath,
     Trawler,
     KingsSquire,
+    IbisPiercer,
 }

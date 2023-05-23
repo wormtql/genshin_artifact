@@ -103,6 +103,7 @@ pub enum WeaponConfig {
     FadingTwilight { state: usize },
     HuntersPath { rate: f64 },
     KingsSquire { rate: f64 },
+    IbisPiercer { stack: f64 },
 }
 
 impl Default for WeaponConfig {
