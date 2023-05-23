@@ -111,7 +111,7 @@ pub struct Kirara;
 impl CharacterTrait for Kirara {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Kirara,
-        internal_name: "Kirara", // todo
+        internal_name: "Momoka",
         name_locale: locale!(zh_cn: "绮良良", en: "Kirara"),
         element: Element::Dendro,
         hp: [1021, 2623, 3386, 5072, 5614, 6485, 7181, 8024, 8566, 9409, 9951, 10794, 11336, 12180],

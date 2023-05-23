@@ -27,7 +27,7 @@ pub struct IbisPiercer;
 impl WeaponTrait for IbisPiercer {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::IbisPiercer,
-        internal_name: "", // todo
+        internal_name: "Bow_Ibis",
         weapon_type: WeaponType::Bow,
         weapon_sub_stat: Some(WeaponSubStatFamily::ATK60),
         weapon_base: WeaponBaseATKFamily::ATK565,
