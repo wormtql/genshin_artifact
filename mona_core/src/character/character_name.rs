@@ -62,6 +62,7 @@ pub enum CharacterName {
     KukiShinobu,
     Layla,
     Lisa,
+    Lynette,
     Mona,
     Nahida,
     Nilou,
