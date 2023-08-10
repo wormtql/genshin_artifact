@@ -10,6 +10,7 @@ pub mod qiqi_default;
 pub mod rosaria_default;
 pub mod shenhe_default;
 pub mod mika_default;
+pub mod freminet_default;
 
 pub use aloy_default::AloyDefaultTargetFunction;
 pub use chongyun_default::ChongyunDefaultTargetFunction;
@@ -23,3 +24,4 @@ pub use qiqi_default::QiqiDefaultTargetFunction;
 pub use rosaria_default::RosariaDefaultTargetFunction;
 pub use shenhe_default::ShenheDefaultTargetFunction;
 pub use mika_default::MikaDefaultTargetFunction;
+pub use freminet_default::FreminetDefaultTargetFunction;

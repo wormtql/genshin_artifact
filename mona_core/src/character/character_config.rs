@@ -25,5 +25,6 @@ pub enum CharacterConfig {
     Kaveh { talent2_stack: f64, c2_rate: f64 },
     Baizhu { hp_below_50: bool },
     Lynette { talent1_rate: f64, talent1_count: usize, talent2_rate: f64 },
+    Freminet { c4_stack: f64, c6_stack: f64 },
     NoConfig,
 }

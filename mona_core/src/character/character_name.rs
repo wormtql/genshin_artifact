@@ -47,6 +47,7 @@ pub enum CharacterName {
     Eula,
     Faruzan,
     Fischl,
+    Freminet,
     Ganyu,
     Gorou,
     HuTao,
