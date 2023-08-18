@@ -64,6 +64,7 @@ pub enum CharacterName {
     Layla,
     Lisa,
     Lynette,
+    Lyney,
     Mona,
     Nahida,
     Nilou,
