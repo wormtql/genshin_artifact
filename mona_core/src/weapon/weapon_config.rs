@@ -48,6 +48,7 @@ pub enum WeaponConfig {
     BeaconOfTheReedSea { rate_atk: f64, rate_hp: f64 },
     MailedFlower { rate: f64 },
     TalkingStick { rate1: f64, rate2: f64 },
+    TidalShadow { rate: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },
@@ -65,6 +66,7 @@ pub enum WeaponConfig {
     Moonpiercer { rate: f64 },
     MissiveWindspear { rate: f64 },
     StaffOfTheScarletSands { stack: f64 },
+    BalladOfTheFjords { use_effect: bool },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },
@@ -85,6 +87,7 @@ pub enum WeaponConfig {
     AThousandFloatingDreams { same_count: usize, diff_count: usize },
     TulaytullahsRemembrance { stack: f64 },
     JadeFallsSplendor { rate: f64 },
+    SacrificialJade { rate: f64 },
 
     // Bow
     PolarStar { stack: usize },

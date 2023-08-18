@@ -24,6 +24,8 @@ pub use beginners_protector::BeginnersProtector;
 pub use moonpiercer::Moonpiercer;
 pub use missive_windspear::MissiveWindspear;
 pub use staff_of_the_scarlet_sands::StaffOfTheScarletSands;
+pub use ballad_of_the_fjords::BalladOfTheFjords;
+pub use rightful_reward::RightfulReward;
 
 pub mod engulfing_lightning;
 pub mod skyward_spine;
@@ -51,3 +53,5 @@ pub mod beginners_protector;
 pub mod moonpiercer;
 pub mod missive_windspear;
 pub mod staff_of_the_scarlet_sands;
+pub mod ballad_of_the_fjords;
+pub mod rightful_reward;

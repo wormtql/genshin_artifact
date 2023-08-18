@@ -84,6 +84,7 @@ pub enum WeaponName {
     BeaconOfTheReedSea,
     MailedFlower,
     TalkingStick,
+    TidalShadow,
 
     // polearm
     EngulfingLightning,
@@ -112,6 +113,8 @@ pub enum WeaponName {
     Moonpiercer,
     MissiveWindspear,
     StaffOfTheScarletSands,
+    BalladOfTheFjords,
+    RightfulReward,
 
     // catalyst
     LostPrayerToTheSacredWinds,
@@ -145,6 +148,7 @@ pub enum WeaponName {
     AThousandFloatingDreams,
     TulaytullahsRemembrance,
     JadeFallsSplendor,
+    SacrificialJade,
 
     // bows
     PolarStar,
