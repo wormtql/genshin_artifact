@@ -25,6 +25,9 @@ pub enum WeaponConfig {
     KeyOfKhajNisut { stack: f64 },
     ToukabouShigure { rate: f64 },
     LightOfFoliarIncision { rate: f64 },
+    WolfFang { e_stack: f64, q_stack: f64 },
+    FinaleOfTheDeep { rate1: f64, rate2: f64 },
+    FleuveCendreFerryman { rate: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },
@@ -44,6 +47,7 @@ pub enum WeaponConfig {
     MakhairaAquamarine { rate: f64 },
     BeaconOfTheReedSea { rate_atk: f64, rate_hp: f64 },
     MailedFlower { rate: f64 },
+    TalkingStick { rate1: f64, rate2: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },
@@ -104,6 +108,7 @@ pub enum WeaponConfig {
     HuntersPath { rate: f64 },
     KingsSquire { rate: f64 },
     IbisPiercer { stack: f64 },
+    TheFirstGreatMagic { same_count: f64, diff_count: f64 },
 }
 
 impl Default for WeaponConfig {

@@ -48,6 +48,9 @@ pub enum WeaponName {
     KeyOfKhajNisut,
     ToukabouShigure,
     LightOfFoliarIncision,
+    WolfFang,
+    FinaleOfTheDeep,
+    FleuveCendreFerryman,
 
     // claymore
     WolfsGravestone,
@@ -80,6 +83,7 @@ pub enum WeaponName {
     MakhairaAquamarine,
     BeaconOfTheReedSea,
     MailedFlower,
+    TalkingStick,
 
     // polearm
     EngulfingLightning,
@@ -176,4 +180,5 @@ pub enum WeaponName {
     Trawler,
     KingsSquire,
     IbisPiercer,
+    TheFirstGreatMagic,
 }

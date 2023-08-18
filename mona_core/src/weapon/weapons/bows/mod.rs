@@ -31,6 +31,7 @@ pub use hunters_path::HuntersPath;
 pub use trawler::Trawler;
 pub use kings_squire::KingsSquire;
 pub use ibis_piercer::IbisPiercer;
+pub use the_first_great_magic::TheFirstGreatMagic;
 
 pub mod polar_star;
 pub mod thundering_pulse;
@@ -65,3 +66,4 @@ pub mod hunters_path;
 pub mod trawler;
 pub mod kings_squire;
 pub mod ibis_piercer;
+pub mod the_first_great_magic;
