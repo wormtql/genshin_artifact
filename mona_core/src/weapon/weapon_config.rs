@@ -88,6 +88,7 @@ pub enum WeaponConfig {
     TulaytullahsRemembrance { stack: f64 },
     JadeFallsSplendor { rate: f64 },
     SacrificialJade { rate: f64 },
+    FlowingPurity { rate1: f64, rate2: f64 },
 
     // Bow
     PolarStar { stack: usize },
@@ -112,6 +113,8 @@ pub enum WeaponConfig {
     KingsSquire { rate: f64 },
     IbisPiercer { stack: f64 },
     TheFirstGreatMagic { same_count: f64, diff_count: f64 },
+    ScionOfTheBlazingSun { rate: f64 },
+    SongOfStillness { rate: f64 },
 }
 
 impl Default for WeaponConfig {

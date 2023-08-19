@@ -149,6 +149,7 @@ pub enum WeaponName {
     TulaytullahsRemembrance,
     JadeFallsSplendor,
     SacrificialJade,
+    FlowingPurity,
 
     // bows
     PolarStar,
@@ -185,4 +186,6 @@ pub enum WeaponName {
     KingsSquire,
     IbisPiercer,
     TheFirstGreatMagic,
+    ScionOfTheBlazingSun,
+    SongOfStillness,
 }
