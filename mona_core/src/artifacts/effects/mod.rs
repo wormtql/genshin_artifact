@@ -50,6 +50,8 @@ pub use desert_pavilion_chronicle::DesertPavilionChronicle;
 pub use flower_of_paradise_lost::FlowerOfParadiseLost;
 pub use nymphs_dream::NymphsDream;
 pub use vourukashas_glow::VourukashasGlow;
+pub use marechaussee_hunter::MarechausseeHunter;
+pub use golden_troupe::GoldenTroupe;
 
 pub mod empty;
 pub mod adventurer;
@@ -97,6 +99,8 @@ pub mod desert_pavilion_chronicle;
 pub mod flower_of_paradise_lost;
 pub mod nymphs_dream;
 pub mod vourukashas_glow;
+pub mod marechaussee_hunter;
+pub mod golden_troupe;
 
 pub fn get_effect<T: Attribute>(name: ArtifactSetName, config: &ArtifactEffectConfig, character: &Character<T>) -> Box<dyn ArtifactEffect<T>> {
     name.create_effect(config, &character.common_data)

@@ -48,6 +48,9 @@ pub enum WeaponName {
     KeyOfKhajNisut,
     ToukabouShigure,
     LightOfFoliarIncision,
+    WolfFang,
+    FinaleOfTheDeep,
+    FleuveCendreFerryman,
 
     // claymore
     WolfsGravestone,
@@ -80,6 +83,8 @@ pub enum WeaponName {
     MakhairaAquamarine,
     BeaconOfTheReedSea,
     MailedFlower,
+    TalkingStick,
+    TidalShadow,
 
     // polearm
     EngulfingLightning,
@@ -108,6 +113,8 @@ pub enum WeaponName {
     Moonpiercer,
     MissiveWindspear,
     StaffOfTheScarletSands,
+    BalladOfTheFjords,
+    RightfulReward,
 
     // catalyst
     LostPrayerToTheSacredWinds,
@@ -141,6 +148,8 @@ pub enum WeaponName {
     AThousandFloatingDreams,
     TulaytullahsRemembrance,
     JadeFallsSplendor,
+    SacrificialJade,
+    FlowingPurity,
 
     // bows
     PolarStar,
@@ -176,4 +185,7 @@ pub enum WeaponName {
     Trawler,
     KingsSquire,
     IbisPiercer,
+    TheFirstGreatMagic,
+    ScionOfTheBlazingSun,
+    SongOfStillness,
 }

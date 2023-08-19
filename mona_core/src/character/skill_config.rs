@@ -39,5 +39,7 @@ pub enum CharacterSkillConfig {
     Alhaitham { under_e: bool },
     Dehya { c2_rate: f64, c6_stack: f64 },
     Kaveh { after_q: bool },
+    Freminet { talent2_rate: f64 },
+    Lyney { prop_stack: f64, under_pyro: bool, pyro_count: usize, },
     NoConfig,
 }

@@ -10,6 +10,7 @@ pub mod rosaria;
 pub mod shenhe;
 pub mod layla;
 pub mod mika;
+pub mod freminet;
 
 pub use aloy::Aloy;
 pub use chongyun::Chongyun;
@@ -23,3 +24,4 @@ pub use rosaria::Rosaria;
 pub use shenhe::Shenhe;
 pub use layla::Layla;
 pub use mika::Mika;
+pub use freminet::Freminet;

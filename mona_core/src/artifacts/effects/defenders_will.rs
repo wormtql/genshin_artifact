@@ -52,7 +52,7 @@ impl ArtifactTrait for DefendersWill {
             zh_cn: "守护束带",
             en: "Guardian's Band",
         )),
-        star: (0, 0),
+        star: (3, 4),
         effect1: None,
         effect2: Some(crate::common::i18n::locale!(
             zh_cn: "防御力提高30%。",

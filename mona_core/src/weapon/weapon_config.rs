@@ -25,6 +25,9 @@ pub enum WeaponConfig {
     KeyOfKhajNisut { stack: f64 },
     ToukabouShigure { rate: f64 },
     LightOfFoliarIncision { rate: f64 },
+    WolfFang { e_stack: f64, q_stack: f64 },
+    FinaleOfTheDeep { rate1: f64, rate2: f64 },
+    FleuveCendreFerryman { rate: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },
@@ -44,6 +47,8 @@ pub enum WeaponConfig {
     MakhairaAquamarine { rate: f64 },
     BeaconOfTheReedSea { rate_atk: f64, rate_hp: f64 },
     MailedFlower { rate: f64 },
+    TalkingStick { rate1: f64, rate2: f64 },
+    TidalShadow { rate: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },
@@ -61,6 +66,7 @@ pub enum WeaponConfig {
     Moonpiercer { rate: f64 },
     MissiveWindspear { rate: f64 },
     StaffOfTheScarletSands { stack: f64 },
+    BalladOfTheFjords { use_effect: bool },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },
@@ -81,6 +87,8 @@ pub enum WeaponConfig {
     AThousandFloatingDreams { same_count: usize, diff_count: usize },
     TulaytullahsRemembrance { stack: f64 },
     JadeFallsSplendor { rate: f64 },
+    SacrificialJade { rate: f64 },
+    FlowingPurity { rate1: f64, rate2: f64 },
 
     // Bow
     PolarStar { stack: usize },
@@ -104,6 +112,9 @@ pub enum WeaponConfig {
     HuntersPath { rate: f64 },
     KingsSquire { rate: f64 },
     IbisPiercer { stack: f64 },
+    TheFirstGreatMagic { same_count: f64, diff_count: f64 },
+    ScionOfTheBlazingSun { rate: f64 },
+    SongOfStillness { rate: f64 },
 }
 
 impl Default for WeaponConfig {

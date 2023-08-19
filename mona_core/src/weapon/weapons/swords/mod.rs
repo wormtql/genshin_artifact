@@ -33,6 +33,9 @@ pub use xiphos_moonlight::XiphosMoonlight;
 pub use key_of_khaj_nisut::KeyOfKhajNisut;
 pub use toukabou_shigure::ToukabouShigure;
 pub use light_of_foliar_incision::LightOfFoliarIncision;
+pub use wolf_fang::WolfFang;
+pub use finale_of_the_deep::FinaleOfTheDeep;
+pub use fleuve_cendre_ferryman::FleuveCendreFerryman;
 
 pub mod mistsplitter_reforged;
 pub mod aquila_favonia;
@@ -69,3 +72,6 @@ pub mod xiphos_moonlight;
 pub mod key_of_khaj_nisut;
 pub mod toukabou_shigure;
 pub mod light_of_foliar_incision;
+pub mod wolf_fang;
+pub mod finale_of_the_deep;
+pub mod fleuve_cendre_ferryman;
