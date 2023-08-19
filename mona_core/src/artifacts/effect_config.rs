@@ -158,6 +158,12 @@ pub struct ConfigVourukashasGlow {
     pub stack: f64,
 }
 
+#[derive(Serialize, Deserialize)]
+#[derive(Debug, Clone, Default)]
+pub struct ConfigMarechausseeHunter {
+    pub stack: f64,
+}
+
 #[derive(Default, Debug, Clone)]
 #[derive(Serialize, Deserialize)]
 pub struct ArtifactEffectConfig {
@@ -186,6 +192,8 @@ pub struct ArtifactEffectConfig {
     pub config_flower_of_paradise_lost: ConfigFlowerOfParadiseLost,
     pub config_nymphs_dream: ConfigNymphsDream,
     pub config_vourukashas_glow: ConfigVourukashasGlow,
+    pub config_marechaussee_hunter: ConfigMarechausseeHunter,
+    pub config_golden_troupe: ConfigRate,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -216,6 +224,8 @@ pub struct ArtifactConfigInterface {
     pub config_flower_of_paradise_lost: Option<ConfigFlowerOfParadiseLost>,
     pub config_nymphs_dream: Option<ConfigNymphsDream>,
     pub config_vourukashas_glow: Option<ConfigVourukashasGlow>,
+    pub config_marechaussee_hunter: Option<ConfigMarechausseeHunter>,
+    pub config_golden_troupe: Option<ConfigRate>,
 }
 
 impl ArtifactConfigInterface {
@@ -246,6 +256,8 @@ impl ArtifactConfigInterface {
             config_flower_of_paradise_lost: self.config_flower_of_paradise_lost.unwrap_or(Default::default()),
             config_nymphs_dream: self.config_nymphs_dream.unwrap_or(Default::default()),
             config_vourukashas_glow: self.config_vourukashas_glow.unwrap_or(Default::default()),
+            config_marechaussee_hunter: self.config_marechaussee_hunter.unwrap_or(Default::default()),
+            config_golden_troupe: self.config_golden_troupe.unwrap_or(Default::default()),
         }
     }
 }
