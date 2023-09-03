@@ -1,4 +1,4 @@
-export function wasmSingleOptimize(optimizeConfig, artifacts, timeout = 300000) {
+export function wasmSingleOptimize(optimizeConfig, artifacts, timeout = 600000) {
     const worker = new Worker(new URL("@worker/optimize_artifact.js", import.meta.url))
 
     return new Promise((resolve, reject) => {
