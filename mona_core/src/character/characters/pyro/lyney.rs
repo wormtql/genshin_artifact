@@ -264,8 +264,8 @@ impl CharacterTrait for Lyney {
         }
 
         builder.add_atk_ratio("技能倍率", ratio);
-        if context.character_common_data.has_talent1 && s == Charged3 {
-            builder.add_atk_ratio("天赋1「」惊险演出", 0.8);
+        if context.character_common_data.has_talent1 && s == A1 {
+            builder.add_atk_ratio("天赋1「惊险演出」", 0.8);
         }
 
         if context.character_common_data.has_talent2 && under_pyro {
