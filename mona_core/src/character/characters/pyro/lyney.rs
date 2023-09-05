@@ -272,7 +272,8 @@ impl CharacterTrait for Lyney {
             let mut bonus = 0.6;
             bonus += pyro_count as f64 * 0.2;
             bonus = bonus.min(1.0);
-            builder.add_atk_ratio("天赋2「完场喝彩」", bonus);
+            builder.add_extra_bonus("天赋2「完场喝彩」", bonus);
+            // builder.add_atk_ratio("天赋2「完场喝彩」", bonus);
         }
 
         builder.damage(
