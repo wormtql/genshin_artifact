@@ -6,6 +6,7 @@ pub mod xingqiu_default;
 pub mod kamisato_ayato_default;
 pub mod yelan_default;
 pub mod nilou_default;
+pub mod neuvillette_default;
 
 pub use barbara_default::BarbaraDefaultTargetFunction;
 pub use mona_default::MonaDefaultTargetFunction;
@@ -15,3 +16,4 @@ pub use xingqiu_default::XingqiuDefaultTargetFunction;
 pub use kamisato_ayato_default::KamisatoAyatoDefaultTargetFunction;
 pub use yelan_default::YelanDefaultTargetFunction;
 pub use nilou_default::NilouDefaultTargetFunction;
+pub use neuvillette_default::NeuvilletteDefaultTargetFunction;

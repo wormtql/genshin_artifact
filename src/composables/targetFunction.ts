@@ -19,7 +19,7 @@ export function useTargetFunction(characterName: Ref<CharacterName>) {
 
     const targetFunctionDescription = computed(() => {
         // return targetFunctionData[targetFunctionName.value].description
-        return ta(targetFunctionData[targetFunctionName.value].nameLocale)
+        return ta(targetFunctionData[targetFunctionName.value].description)
     })
 
     const targetFunctionNeedConfig = computed(() => {

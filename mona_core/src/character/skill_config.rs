@@ -41,5 +41,6 @@ pub enum CharacterSkillConfig {
     Kaveh { after_q: bool },
     Freminet { talent2_rate: f64 },
     Lyney { prop_stack: f64, under_pyro: bool, pyro_count: usize, },
+    Neuvillette { talent1_stack: usize },
     NoConfig,
 }
