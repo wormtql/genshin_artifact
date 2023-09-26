@@ -34,6 +34,7 @@ pub use ibis_piercer::IbisPiercer;
 pub use the_first_great_magic::TheFirstGreatMagic;
 pub use scion_of_the_blazing_sun::ScionOfTheBlazingSun;
 pub use song_of_stillness::SongOfStillness;
+pub use range_gauge::RangeGauge;
 
 pub mod polar_star;
 pub mod thundering_pulse;
@@ -71,3 +72,4 @@ pub mod ibis_piercer;
 pub mod the_first_great_magic;
 pub mod scion_of_the_blazing_sun;
 pub mod song_of_stillness;
+pub mod range_gauge;

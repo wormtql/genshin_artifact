@@ -30,6 +30,7 @@ pub use beacon_of_the_reed_sea::BeaconOfTheReedSea;
 pub use mailed_flower::MailedFlower;
 pub use talking_stick::TalkingStick;
 pub use tidal_shadow::TidalShadow;
+pub use portable_power_saw::PortablePowerSaw;
 
 pub mod wolfs_gravestone;
 pub mod skyward_pride;
@@ -63,3 +64,4 @@ pub mod beacon_of_the_reed_sea;
 pub mod mailed_flower;
 pub mod talking_stick;
 pub mod tidal_shadow;
+pub mod portable_power_saw;

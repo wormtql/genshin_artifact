@@ -36,6 +36,7 @@ pub use light_of_foliar_incision::LightOfFoliarIncision;
 pub use wolf_fang::WolfFang;
 pub use finale_of_the_deep::FinaleOfTheDeep;
 pub use fleuve_cendre_ferryman::FleuveCendreFerryman;
+pub use the_dockhands_assistant::TheDockhandsAssistant;
 
 pub mod mistsplitter_reforged;
 pub mod aquila_favonia;
@@ -75,3 +76,4 @@ pub mod light_of_foliar_incision;
 pub mod wolf_fang;
 pub mod finale_of_the_deep;
 pub mod fleuve_cendre_ferryman;
+pub mod the_dockhands_assistant;
