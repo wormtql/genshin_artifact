@@ -91,4 +91,6 @@ pub enum TargetFunctionName {
     MikaDefault,
     FreminetDefault,
     LyneyDefault,
+    NeuvilletteDefault,
+    WriothesleyDefault,
 }

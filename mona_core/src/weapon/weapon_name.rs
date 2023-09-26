@@ -51,6 +51,7 @@ pub enum WeaponName {
     WolfFang,
     FinaleOfTheDeep,
     FleuveCendreFerryman,
+    TheDockhandsAssistant,
 
     // claymore
     WolfsGravestone,
@@ -85,6 +86,7 @@ pub enum WeaponName {
     MailedFlower,
     TalkingStick,
     TidalShadow,
+    PortablePowerSaw,
 
     // polearm
     EngulfingLightning,
@@ -115,6 +117,7 @@ pub enum WeaponName {
     StaffOfTheScarletSands,
     BalladOfTheFjords,
     RightfulReward,
+    ProspectorsDrill,
 
     // catalyst
     LostPrayerToTheSacredWinds,
@@ -150,6 +153,9 @@ pub enum WeaponName {
     JadeFallsSplendor,
     SacrificialJade,
     FlowingPurity,
+    BalladOfTheBoundlessBlue,
+    CashflowSupervision,
+    TomeOfTheEternalFlow,
 
     // bows
     PolarStar,
@@ -188,4 +194,5 @@ pub enum WeaponName {
     TheFirstGreatMagic,
     ScionOfTheBlazingSun,
     SongOfStillness,
+    RangeGauge,
 }

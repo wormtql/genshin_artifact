@@ -27,5 +27,7 @@ pub enum CharacterConfig {
     Lynette { talent1_rate: f64, talent1_count: usize, talent2_rate: f64 },
     Freminet { c4_stack: f64, c6_stack: f64 },
     Lyney { c2_stack: f64, c4_rate: f64 },
+    Neuvillette { current_hp: usize },
+    Wriothesley { talent2_stack: f64 },
     NoConfig,
 }

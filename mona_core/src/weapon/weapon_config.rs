@@ -28,6 +28,7 @@ pub enum WeaponConfig {
     WolfFang { e_stack: f64, q_stack: f64 },
     FinaleOfTheDeep { rate1: f64, rate2: f64 },
     FleuveCendreFerryman { rate: f64 },
+    TheDockhandsAssistant { stack: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },
@@ -49,6 +50,7 @@ pub enum WeaponConfig {
     MailedFlower { rate: f64 },
     TalkingStick { rate1: f64, rate2: f64 },
     TidalShadow { rate: f64 },
+    PortablePowerSaw { stack: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },
@@ -67,6 +69,7 @@ pub enum WeaponConfig {
     MissiveWindspear { rate: f64 },
     StaffOfTheScarletSands { stack: f64 },
     BalladOfTheFjords { use_effect: bool },
+    ProspectorsDrill { stack: f64 },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },
@@ -89,6 +92,9 @@ pub enum WeaponConfig {
     JadeFallsSplendor { rate: f64 },
     SacrificialJade { rate: f64 },
     FlowingPurity { rate1: f64, rate2: f64 },
+    BalladOfTheBoundlessBlue { stack: f64 },
+    CashflowSupervision { stack: f64 },
+    TomeOfTheEternalFlow { stack: f64 },
 
     // Bow
     PolarStar { stack: usize },
@@ -115,6 +121,7 @@ pub enum WeaponConfig {
     TheFirstGreatMagic { same_count: f64, diff_count: f64 },
     ScionOfTheBlazingSun { rate: f64 },
     SongOfStillness { rate: f64 },
+    RangeGauge { stack: f64 },
 }
 
 impl Default for WeaponConfig {

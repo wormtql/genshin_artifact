@@ -31,6 +31,9 @@ pub use tulaytullah_s_remembrance::TulaytullahsRemembrance;
 pub use jadefalls_splendor::JadeFallsSplendor;
 pub use sacrificial_jade::SacrificialJade;
 pub use flowing_purity::FlowingPurity;
+pub use ballad_of_the_boundless_blue::BalladOfTheBoundlessBlue;
+pub use cashflow_supervision::CashflowSupervision;
+pub use tome_of_the_eternal_flow::TomeOfTheEternalFlow;
 
 pub mod lost_prayer_to_the_sacred_winds;
 pub mod skyward_atlas;
@@ -65,3 +68,6 @@ pub mod tulaytullah_s_remembrance;
 pub mod jadefalls_splendor;
 pub mod sacrificial_jade;
 pub mod flowing_purity;
+pub mod ballad_of_the_boundless_blue;
+pub mod cashflow_supervision;
+pub mod tome_of_the_eternal_flow;
