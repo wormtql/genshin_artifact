@@ -2,6 +2,10 @@ use crate::common::{SkillType, Element};
 
 #[derive(Hash, Eq, PartialEq, Clone, Copy, Debug)]
 pub enum AttributeName {
+    // 自定义数据
+    USER1,
+    USER2,
+
     HealingBonus,
     IncomingHealingBonus,
     ElementalMastery,

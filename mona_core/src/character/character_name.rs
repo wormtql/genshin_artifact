@@ -87,6 +87,7 @@ pub enum CharacterName {
     // Traveler,
     Venti,
     Wanderer,
+    Wriothesley,
     Xiangling,
     Xiao,
     Xingqiu,

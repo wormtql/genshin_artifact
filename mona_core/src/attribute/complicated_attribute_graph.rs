@@ -49,15 +49,17 @@ impl MyNode {
     }
 }
 
+const MAX_ATTRIBUTE_ENTRY: usize = 200;
+
 pub struct ComplicatedAttributeGraph {
-    pub attributes: RefCell<[MyNode; 150]>,
+    pub attributes: RefCell<[MyNode; MAX_ATTRIBUTE_ENTRY]>,
     pub edges: Vec<MyEdge>,
 }
 
 impl Default for ComplicatedAttributeGraph {
     fn default() -> Self {
         let ret = ComplicatedAttributeGraph {
-            attributes: RefCell::new([(); 150].map(|_| MyNode {
+            attributes: RefCell::new([(); MAX_ATTRIBUTE_ENTRY].map(|_| MyNode {
                 value_self: HashMap::new(),
                 value_from_edge: HashMap::new(),
                 dirty: true,

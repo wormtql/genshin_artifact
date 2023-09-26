@@ -11,6 +11,7 @@ pub mod shenhe;
 pub mod layla;
 pub mod mika;
 pub mod freminet;
+pub mod wriothesley;
 
 pub use aloy::Aloy;
 pub use chongyun::Chongyun;
@@ -25,3 +26,4 @@ pub use shenhe::Shenhe;
 pub use layla::Layla;
 pub use mika::Mika;
 pub use freminet::Freminet;
+pub use wriothesley::Wriothesley;

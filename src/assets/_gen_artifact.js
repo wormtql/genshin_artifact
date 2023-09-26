@@ -7,46 +7,46 @@ export default {
     "adventurer": {
         eng: "adventurer",
         name2: "Adventurer",
-        nameLocale: 255,
+        nameLocale: 256,
         minStar: 1,
         maxStar: 3,
     
     
-        effect2: 1248,
+        effect2: 1253,
     
     
     
-        effect4: 611,
+        effect4: 613,
     
     
 
         
         flower: {
-            text: 256,
+            text: 257,
             url: getIcon("UI_RelicIcon_10010_4")
         },
         
         
         feather: {
-            text: 258,
+            text: 259,
             url: getIcon("UI_RelicIcon_10010_2")
         },
         
         
         sand: {
-            text: 259,
+            text: 260,
             url: getIcon("UI_RelicIcon_10010_5")
         },
         
         
         cup: {
-            text: 260,
+            text: 261,
             url: getIcon("UI_RelicIcon_10010_1")
         },
         
         
         head: {
-            text: 257,
+            text: 258,
             url: getIcon("UI_RelicIcon_10010_3")
         },
         
@@ -58,54 +58,54 @@ export default {
     "archaicPetra": {
         eng: "archaicPetra",
         name2: "ArchaicPetra",
-        nameLocale: 637,
+        nameLocale: 639,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1454,
+        effect2: 1461,
     
     
     
-        effect4: 1469,
+        effect4: 1476,
     
     
 
         
         flower: {
-            text: 1314,
+            text: 1319,
             url: getIcon("UI_RelicIcon_15014_4")
         },
         
         
         feather: {
-            text: 586,
+            text: 588,
             url: getIcon("UI_RelicIcon_15014_2")
         },
         
         
         sand: {
-            text: 809,
+            text: 812,
             url: getIcon("UI_RelicIcon_15014_5")
         },
         
         
         cup: {
-            text: 587,
+            text: 589,
             url: getIcon("UI_RelicIcon_15014_1")
         },
         
         
         head: {
-            text: 88,
+            text: 89,
             url: getIcon("UI_RelicIcon_15014_3")
         },
         
         config4: [
             
-            {"default":"Electro","name":"element","title":186,"type":"element4"},
+            {"default":"Electro","name":"element","title":187,"type":"element4"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -113,52 +113,52 @@ export default {
     "berserker": {
         eng: "berserker",
         name2: "Berserker",
-        nameLocale: 643,
+        nameLocale: 646,
         minStar: 3,
         maxStar: 4,
     
     
-        effect2: 980,
+        effect2: 984,
     
     
     
-        effect4: 1252,
+        effect4: 1257,
     
     
 
         
         flower: {
-            text: 646,
+            text: 649,
             url: getIcon("UI_RelicIcon_10005_4")
         },
         
         
         feather: {
-            text: 645,
+            text: 648,
             url: getIcon("UI_RelicIcon_10005_2")
         },
         
         
         sand: {
-            text: 644,
+            text: 647,
             url: getIcon("UI_RelicIcon_10005_5")
         },
         
         
         cup: {
-            text: 647,
+            text: 650,
             url: getIcon("UI_RelicIcon_10005_1")
         },
         
         
         head: {
-            text: 648,
+            text: 651,
             url: getIcon("UI_RelicIcon_10005_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -166,52 +166,52 @@ export default {
     "blizzardStrayer": {
         eng: "blizzardStrayer",
         name2: "BlizzardStrayer",
-        nameLocale: 273,
+        nameLocale: 275,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1453,
+        effect2: 1460,
     
     
     
-        effect4: 725,
+        effect4: 728,
     
     
 
         
         flower: {
-            text: 345,
+            text: 347,
             url: getIcon("UI_RelicIcon_14001_4")
         },
         
         
         feather: {
-            text: 708,
+            text: 711,
             url: getIcon("UI_RelicIcon_14001_2")
         },
         
         
         sand: {
-            text: 272,
+            text: 274,
             url: getIcon("UI_RelicIcon_14001_5")
         },
         
         
         cup: {
-            text: 1635,
+            text: 1642,
             url: getIcon("UI_RelicIcon_14001_1")
         },
         
         
         head: {
-            text: 1308,
+            text: 1313,
             url: getIcon("UI_RelicIcon_14001_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":0.4,"min":0.0,"name":"critical_bonus","title":1359,"type":"float"},
+            {"default":0.0,"max":0.4,"min":0.0,"name":"critical_bonus","title":1364,"type":"float"},
             
         ],
     },
@@ -219,52 +219,52 @@ export default {
     "bloodstainedChivalry": {
         eng: "bloodstainedChivalry",
         name2: "BloodstainedChivalry",
-        nameLocale: 1030,
+        nameLocale: 1035,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1632,
+        effect2: 1638,
     
     
     
-        effect4: 291,
+        effect4: 293,
     
     
 
         
         flower: {
-            text: 1028,
+            text: 1033,
             url: getIcon("UI_RelicIcon_15008_4")
         },
         
         
         feather: {
-            text: 1031,
+            text: 1036,
             url: getIcon("UI_RelicIcon_15008_2")
         },
         
         
         sand: {
-            text: 1823,
+            text: 1830,
             url: getIcon("UI_RelicIcon_15008_5")
         },
         
         
         cup: {
-            text: 1032,
+            text: 1037,
             url: getIcon("UI_RelicIcon_15008_1")
         },
         
         
         head: {
-            text: 1029,
+            text: 1034,
             url: getIcon("UI_RelicIcon_15008_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -272,52 +272,52 @@ export default {
     "braveHeart": {
         eng: "braveHeart",
         name2: "BraveHeart",
-        nameLocale: 311,
+        nameLocale: 313,
         minStar: 3,
         maxStar: 4,
     
     
-        effect2: 715,
+        effect2: 718,
     
     
     
-        effect4: 571,
+        effect4: 573,
     
     
 
         
         flower: {
-            text: 313,
+            text: 315,
             url: getIcon("UI_RelicIcon_10002_4")
         },
         
         
         feather: {
-            text: 316,
+            text: 318,
             url: getIcon("UI_RelicIcon_10002_2")
         },
         
         
         sand: {
-            text: 314,
+            text: 316,
             url: getIcon("UI_RelicIcon_10002_5")
         },
         
         
         cup: {
-            text: 315,
+            text: 317,
             url: getIcon("UI_RelicIcon_10002_1")
         },
         
         
         head: {
-            text: 312,
+            text: 314,
             url: getIcon("UI_RelicIcon_10002_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -325,52 +325,52 @@ export default {
     "crimsonWitch": {
         eng: "crimsonWitch",
         name2: "CrimsonWitchOfFlames",
-        nameLocale: 1164,
+        nameLocale: 1169,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1456,
+        effect2: 1463,
     
     
     
-        effect4: 1580,
+        effect4: 1587,
     
     
 
         
         flower: {
-            text: 1831,
+            text: 1838,
             url: getIcon("UI_RelicIcon_15006_4")
         },
         
         
         feather: {
-            text: 1829,
+            text: 1836,
             url: getIcon("UI_RelicIcon_15006_2")
         },
         
         
         sand: {
-            text: 1832,
+            text: 1839,
             url: getIcon("UI_RelicIcon_15006_5")
         },
         
         
         cup: {
-            text: 1830,
+            text: 1837,
             url: getIcon("UI_RelicIcon_15006_1")
         },
         
         
         head: {
-            text: 1173,
+            text: 1178,
             url: getIcon("UI_RelicIcon_15006_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"level","title":739,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"level","title":742,"type":"float"},
             
         ],
     },
@@ -378,52 +378,52 @@ export default {
     "DeepwoodMemories": {
         eng: "DeepwoodMemories",
         name2: "DeepwoodMemories",
-        nameLocale: 1113,
+        nameLocale: 1118,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1457,
+        effect2: 1464,
     
     
     
-        effect4: 209,
+        effect4: 210,
     
     
 
         
         flower: {
-            text: 1620,
+            text: 1627,
             url: getIcon("UI_RelicIcon_15025_4")
         },
         
         
         feather: {
-            text: 1406,
+            text: 1411,
             url: getIcon("UI_RelicIcon_15025_2")
         },
         
         
         sand: {
-            text: 1561,
+            text: 1568,
             url: getIcon("UI_RelicIcon_15025_5")
         },
         
         
         cup: {
-            text: 1621,
+            text: 1628,
             url: getIcon("UI_RelicIcon_15025_1")
         },
         
         
         head: {
-            text: 1005,
+            text: 1010,
             url: getIcon("UI_RelicIcon_15025_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -431,46 +431,46 @@ export default {
     "defenderWill": {
         eng: "defenderWill",
         name2: "DefendersWill",
-        nameLocale: 534,
+        nameLocale: 536,
         minStar: 3,
         maxStar: 4,
     
     
-        effect2: 1718,
+        effect2: 1725,
     
     
     
-        effect4: 1710,
+        effect4: 1717,
     
     
 
         
         flower: {
-            text: 536,
+            text: 538,
             url: getIcon("UI_RelicIcon_10003_4")
         },
         
         
         feather: {
-            text: 538,
+            text: 540,
             url: getIcon("UI_RelicIcon_10003_2")
         },
         
         
         sand: {
-            text: 537,
+            text: 539,
             url: getIcon("UI_RelicIcon_10003_5")
         },
         
         
         cup: {
-            text: 535,
+            text: 537,
             url: getIcon("UI_RelicIcon_10003_1")
         },
         
         
         head: {
-            text: 539,
+            text: 541,
             url: getIcon("UI_RelicIcon_10003_3")
         },
         
@@ -482,52 +482,52 @@ export default {
     "EchoesOfAnOffering": {
         eng: "EchoesOfAnOffering",
         name2: "EchoesOfAnOffering",
-        nameLocale: 1014,
+        nameLocale: 1019,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 715,
+        effect2: 718,
     
     
     
-        effect4: 919,
+        effect4: 923,
     
     
 
         
         flower: {
-            text: 1826,
+            text: 1833,
             url: getIcon("UI_RelicIcon_15024_4")
         },
         
         
         feather: {
-            text: 442,
+            text: 444,
             url: getIcon("UI_RelicIcon_15024_2")
         },
         
         
         sand: {
-            text: 1317,
+            text: 1322,
             url: getIcon("UI_RelicIcon_15024_5")
         },
         
         
         cup: {
-            text: 1112,
+            text: 1117,
             url: getIcon("UI_RelicIcon_15024_1")
         },
         
         
         head: {
-            text: 1104,
+            text: 1109,
             url: getIcon("UI_RelicIcon_15024_3")
         },
         
         config4: [
             
-            {"default":0.5053283764473575,"max":1.0,"min":0.0,"name":"rate","title":591,"type":"float"},
+            {"default":0.5053283764473575,"max":1.0,"min":0.0,"name":"rate","title":593,"type":"float"},
             
         ],
     },
@@ -535,46 +535,46 @@ export default {
     "emblemOfSeveredFate": {
         eng: "emblemOfSeveredFate",
         name2: "EmblemOfSeveredFate",
-        nameLocale: 1384,
+        nameLocale: 1389,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 189,
+        effect2: 190,
     
     
     
-        effect4: 448,
+        effect4: 450,
     
     
 
         
         flower: {
-            text: 801,
+            text: 804,
             url: getIcon("UI_RelicIcon_15020_4")
         },
         
         
         feather: {
-            text: 298,
+            text: 300,
             url: getIcon("UI_RelicIcon_15020_2")
         },
         
         
         sand: {
-            text: 1745,
+            text: 1752,
             url: getIcon("UI_RelicIcon_15020_5")
         },
         
         
         cup: {
-            text: 1387,
+            text: 1392,
             url: getIcon("UI_RelicIcon_15020_1")
         },
         
         
         head: {
-            text: 334,
+            text: 336,
             url: getIcon("UI_RelicIcon_15020_3")
         },
         
@@ -586,52 +586,52 @@ export default {
     "FlowerOfParadiseLost": {
         eng: "FlowerOfParadiseLost",
         name2: "FlowerOfParadiseLost",
-        nameLocale: 104,
+        nameLocale: 105,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 229,
+        effect2: 230,
     
     
     
-        effect4: 1509,
+        effect4: 1516,
     
     
 
         
         flower: {
-            text: 1004,
+            text: 1009,
             url: getIcon("UI_RelicIcon_15028_4")
         },
         
         
         feather: {
-            text: 1559,
+            text: 1566,
             url: getIcon("UI_RelicIcon_15028_2")
         },
         
         
         sand: {
-            text: 286,
+            text: 288,
             url: getIcon("UI_RelicIcon_15028_5")
         },
         
         
         cup: {
-            text: 540,
+            text: 542,
             url: getIcon("UI_RelicIcon_15028_1")
         },
         
         
         head: {
-            text: 1369,
+            text: 1374,
             url: getIcon("UI_RelicIcon_15028_3")
         },
         
         config4: [
             
-            {"default":4.0,"max":4.0,"min":0.0,"name":"stack","title":739,"type":"float"},
+            {"default":4.0,"max":4.0,"min":0.0,"name":"stack","title":742,"type":"float"},
             
         ],
     },
@@ -639,46 +639,46 @@ export default {
     "gambler": {
         eng: "gambler",
         name2: "Gambler",
-        nameLocale: 1565,
+        nameLocale: 1572,
         minStar: 3,
         maxStar: 4,
     
     
-        effect2: 215,
+        effect2: 216,
     
     
     
-        effect4: 296,
+        effect4: 298,
     
     
 
         
         flower: {
-            text: 1569,
+            text: 1576,
             url: getIcon("UI_RelicIcon_10008_4")
         },
         
         
         feather: {
-            text: 1567,
+            text: 1574,
             url: getIcon("UI_RelicIcon_10008_2")
         },
         
         
         sand: {
-            text: 1566,
+            text: 1573,
             url: getIcon("UI_RelicIcon_10008_5")
         },
         
         
         cup: {
-            text: 1570,
+            text: 1577,
             url: getIcon("UI_RelicIcon_10008_1")
         },
         
         
         head: {
-            text: 1568,
+            text: 1575,
             url: getIcon("UI_RelicIcon_10008_3")
         },
         
@@ -690,52 +690,52 @@ export default {
     "DesertPavilionChronicle": {
         eng: "DesertPavilionChronicle",
         name2: "DesertPavilionChronicle",
-        nameLocale: 1074,
+        nameLocale: 1079,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1459,
+        effect2: 1466,
     
     
     
-        effect4: 1666,
+        effect4: 1673,
     
     
 
         
         flower: {
-            text: 163,
+            text: 164,
             url: getIcon("UI_RelicIcon_15027_4")
         },
         
         
         feather: {
-            text: 1850,
+            text: 1857,
             url: getIcon("UI_RelicIcon_15027_2")
         },
         
         
         sand: {
-            text: 511,
+            text: 513,
             url: getIcon("UI_RelicIcon_15027_5")
         },
         
         
         cup: {
-            text: 1622,
+            text: 1629,
             url: getIcon("UI_RelicIcon_15027_1")
         },
         
         
         head: {
-            text: 1095,
+            text: 1100,
             url: getIcon("UI_RelicIcon_15027_3")
         },
         
         config4: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -743,56 +743,56 @@ export default {
     "GildedDreams": {
         eng: "GildedDreams",
         name2: "GildedDreams",
-        nameLocale: 1812,
+        nameLocale: 1819,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 228,
+        effect2: 231,
     
     
     
-        effect4: 1537,
+        effect4: 1544,
     
     
 
         
         flower: {
-            text: 1039,
+            text: 1044,
             url: getIcon("UI_RelicIcon_15026_4")
         },
         
         
         feather: {
-            text: 1505,
+            text: 1512,
             url: getIcon("UI_RelicIcon_15026_2")
         },
         
         
         sand: {
-            text: 1072,
+            text: 1077,
             url: getIcon("UI_RelicIcon_15026_5")
         },
         
         
         cup: {
-            text: 520,
+            text: 522,
             url: getIcon("UI_RelicIcon_15026_1")
         },
         
         
         head: {
-            text: 1075,
+            text: 1080,
             url: getIcon("UI_RelicIcon_15026_3")
         },
         
         config4: [
             
-            {"default":0,"max":3,"min":0,"name":"same_count","title":375,"type":"int"},
+            {"default":0,"max":3,"min":0,"name":"same_count","title":377,"type":"int"},
             
             {"default":0,"max":3,"min":0,"name":"diff_count","title":90,"type":"int"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -800,46 +800,46 @@ export default {
     "gladiatorFinale": {
         eng: "gladiatorFinale",
         name2: "GladiatorsFinale",
-        nameLocale: 1524,
+        nameLocale: 1531,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 715,
+        effect2: 718,
     
     
     
-        effect4: 1510,
+        effect4: 1517,
     
     
 
         
         flower: {
-            text: 1523,
+            text: 1530,
             url: getIcon("UI_RelicIcon_15001_4")
         },
         
         
         feather: {
-            text: 1522,
+            text: 1529,
             url: getIcon("UI_RelicIcon_15001_2")
         },
         
         
         sand: {
-            text: 1521,
+            text: 1528,
             url: getIcon("UI_RelicIcon_15001_5")
         },
         
         
         cup: {
-            text: 1525,
+            text: 1532,
             url: getIcon("UI_RelicIcon_15001_1")
         },
         
         
         head: {
-            text: 1520,
+            text: 1527,
             url: getIcon("UI_RelicIcon_15001_3")
         },
         
@@ -851,52 +851,52 @@ export default {
     "GoldenTroupe": {
         eng: "GoldenTroupe",
         name2: "GoldenTroupe",
-        nameLocale: 1847,
+        nameLocale: 1854,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 215,
+        effect2: 216,
     
     
     
-        effect4: 216,
+        effect4: 217,
     
     
 
         
         flower: {
-            text: 1846,
+            text: 1853,
             url: getIcon("UI_RelicIcon_15032_4")
         },
         
         
         feather: {
-            text: 1851,
+            text: 1858,
             url: getIcon("UI_RelicIcon_15032_2")
         },
         
         
         sand: {
-            text: 1849,
+            text: 1856,
             url: getIcon("UI_RelicIcon_15032_5")
         },
         
         
         cup: {
-            text: 1845,
+            text: 1852,
             url: getIcon("UI_RelicIcon_15032_1")
         },
         
         
         head: {
-            text: 1848,
+            text: 1855,
             url: getIcon("UI_RelicIcon_15032_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1499,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1506,"type":"float"},
             
         ],
     },
@@ -904,52 +904,52 @@ export default {
     "heartOfDepth": {
         eng: "heartOfDepth",
         name2: "HeartOfDepth",
-        nameLocale: 1070,
+        nameLocale: 1075,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1455,
+        effect2: 1462,
     
     
     
-        effect4: 761,
+        effect4: 764,
     
     
 
         
         flower: {
-            text: 1813,
+            text: 1820,
             url: getIcon("UI_RelicIcon_15016_4")
         },
         
         
         feather: {
-            text: 1624,
+            text: 1631,
             url: getIcon("UI_RelicIcon_15016_2")
         },
         
         
         sand: {
-            text: 441,
+            text: 443,
             url: getIcon("UI_RelicIcon_15016_5")
         },
         
         
         cup: {
-            text: 1071,
+            text: 1076,
             url: getIcon("UI_RelicIcon_15016_1")
         },
         
         
         head: {
-            text: 1641,
+            text: 1648,
             url: getIcon("UI_RelicIcon_15016_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -957,52 +957,52 @@ export default {
     "huskOfOpulentDreams": {
         eng: "huskOfOpulentDreams",
         name2: "HuskOfOpulentDreams",
-        nameLocale: 336,
+        nameLocale: 338,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1718,
+        effect2: 1725,
     
     
     
-        effect4: 1506,
+        effect4: 1513,
     
     
 
         
         flower: {
-            text: 1445,
+            text: 1450,
             url: getIcon("UI_RelicIcon_15021_4")
         },
         
         
         feather: {
-            text: 335,
+            text: 337,
             url: getIcon("UI_RelicIcon_15021_2")
         },
         
         
         sand: {
-            text: 164,
+            text: 165,
             url: getIcon("UI_RelicIcon_15021_5")
         },
         
         
         cup: {
-            text: 1041,
+            text: 1046,
             url: getIcon("UI_RelicIcon_15021_1")
         },
         
         
         head: {
-            text: 621,
+            text: 623,
             url: getIcon("UI_RelicIcon_15021_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"level","title":45,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"level","title":46,"type":"float"},
             
         ],
     },
@@ -1010,52 +1010,52 @@ export default {
     "instructor": {
         eng: "instructor",
         name2: "Instructor",
-        nameLocale: 743,
+        nameLocale: 746,
         minStar: 3,
         maxStar: 4,
     
     
-        effect2: 230,
+        effect2: 229,
     
     
     
-        effect4: 1538,
+        effect4: 1545,
     
     
 
         
         flower: {
-            text: 748,
+            text: 751,
             url: getIcon("UI_RelicIcon_10007_4")
         },
         
         
         feather: {
-            text: 747,
+            text: 750,
             url: getIcon("UI_RelicIcon_10007_2")
         },
         
         
         sand: {
-            text: 746,
+            text: 749,
             url: getIcon("UI_RelicIcon_10007_5")
         },
         
         
         cup: {
-            text: 749,
+            text: 752,
             url: getIcon("UI_RelicIcon_10007_1")
         },
         
         
         head: {
-            text: 745,
+            text: 748,
             url: getIcon("UI_RelicIcon_10007_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -1063,52 +1063,52 @@ export default {
     "lavaWalker": {
         eng: "lavaWalker",
         name2: "Lavawalker",
-        nameLocale: 1122,
+        nameLocale: 1127,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1144,
+        effect2: 1149,
     
     
     
-        effect4: 566,
+        effect4: 568,
     
     
 
         
         flower: {
-            text: 1117,
+            text: 1122,
             url: getIcon("UI_RelicIcon_14003_4")
         },
         
         
         feather: {
-            text: 1120,
+            text: 1125,
             url: getIcon("UI_RelicIcon_14003_2")
         },
         
         
         sand: {
-            text: 1119,
+            text: 1124,
             url: getIcon("UI_RelicIcon_14003_5")
         },
         
         
         cup: {
-            text: 1121,
+            text: 1126,
             url: getIcon("UI_RelicIcon_14003_1")
         },
         
         
         head: {
-            text: 1118,
+            text: 1123,
             url: getIcon("UI_RelicIcon_14003_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":740,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":743,"type":"float"},
             
         ],
     },
@@ -1116,46 +1116,46 @@ export default {
     "luckyDog": {
         eng: "luckyDog",
         name2: "LuckyDog",
-        nameLocale: 598,
+        nameLocale: 600,
         minStar: 1,
         maxStar: 3,
     
     
-        effect2: 1717,
+        effect2: 1724,
     
     
     
-        effect4: 690,
+        effect4: 693,
     
     
 
         
         flower: {
-            text: 601,
+            text: 603,
             url: getIcon("UI_RelicIcon_10011_4")
         },
         
         
         feather: {
-            text: 603,
+            text: 605,
             url: getIcon("UI_RelicIcon_10011_2")
         },
         
         
         sand: {
-            text: 600,
+            text: 602,
             url: getIcon("UI_RelicIcon_10011_5")
         },
         
         
         cup: {
-            text: 599,
+            text: 601,
             url: getIcon("UI_RelicIcon_10011_1")
         },
         
         
         head: {
-            text: 602,
+            text: 604,
             url: getIcon("UI_RelicIcon_10011_3")
         },
         
@@ -1167,46 +1167,46 @@ export default {
     "maidenBeloved": {
         eng: "maidenBeloved",
         name2: "MaidenBeloved",
-        nameLocale: 1502,
+        nameLocale: 1509,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1531,
+        effect2: 1538,
     
     
     
-        effect4: 768,
+        effect4: 771,
     
     
 
         
         flower: {
-            text: 1608,
+            text: 1615,
             url: getIcon("UI_RelicIcon_14004_4")
         },
         
         
         feather: {
-            text: 577,
+            text: 579,
             url: getIcon("UI_RelicIcon_14004_2")
         },
         
         
         sand: {
-            text: 576,
+            text: 578,
             url: getIcon("UI_RelicIcon_14004_5")
         },
         
         
         cup: {
-            text: 575,
+            text: 577,
             url: getIcon("UI_RelicIcon_14004_1")
         },
         
         
         head: {
-            text: 574,
+            text: 576,
             url: getIcon("UI_RelicIcon_14004_3")
         },
         
@@ -1218,52 +1218,52 @@ export default {
     "MarechausseeHunter": {
         eng: "MarechausseeHunter",
         name2: "MarechausseeHunter",
-        nameLocale: 1628,
+        nameLocale: 1635,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 912,
+        effect2: 916,
     
     
     
-        effect4: 619,
+        effect4: 621,
     
     
 
         
         flower: {
-            text: 1199,
+            text: 1204,
             url: getIcon("UI_RelicIcon_15031_4")
         },
         
         
         feather: {
-            text: 1015,
+            text: 1020,
             url: getIcon("UI_RelicIcon_15031_2")
         },
         
         
         sand: {
-            text: 1503,
+            text: 1510,
             url: getIcon("UI_RelicIcon_15031_5")
         },
         
         
         cup: {
-            text: 1636,
+            text: 1643,
             url: getIcon("UI_RelicIcon_15031_1")
         },
         
         
         head: {
-            text: 1409,
+            text: 1414,
             url: getIcon("UI_RelicIcon_15031_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":590,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":592,"type":"float"},
             
         ],
     },
@@ -1271,52 +1271,52 @@ export default {
     "martialArtist": {
         eng: "martialArtist",
         name2: "MartialArtist",
-        nameLocale: 1045,
+        nameLocale: 1050,
         minStar: 3,
         maxStar: 4,
     
     
-        effect2: 913,
+        effect2: 917,
     
     
     
-        effect4: 762,
+        effect4: 765,
     
     
 
         
         flower: {
-            text: 1048,
+            text: 1053,
             url: getIcon("UI_RelicIcon_10006_4")
         },
         
         
         feather: {
-            text: 1049,
+            text: 1054,
             url: getIcon("UI_RelicIcon_10006_2")
         },
         
         
         sand: {
-            text: 1047,
+            text: 1052,
             url: getIcon("UI_RelicIcon_10006_5")
         },
         
         
         cup: {
-            text: 1050,
+            text: 1055,
             url: getIcon("UI_RelicIcon_10006_1")
         },
         
         
         head: {
-            text: 1046,
+            text: 1051,
             url: getIcon("UI_RelicIcon_10006_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -1324,52 +1324,52 @@ export default {
     "noblesseOblige": {
         eng: "noblesseOblige",
         name2: "NoblesseOblige",
-        nameLocale: 802,
+        nameLocale: 805,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 221,
+        effect2: 222,
     
     
     
-        effect4: 778,
+        effect4: 781,
     
     
 
         
         flower: {
-            text: 545,
+            text: 547,
             url: getIcon("UI_RelicIcon_15007_4")
         },
         
         
         feather: {
-            text: 544,
+            text: 546,
             url: getIcon("UI_RelicIcon_15007_2")
         },
         
         
         sand: {
-            text: 547,
+            text: 549,
             url: getIcon("UI_RelicIcon_15007_5")
         },
         
         
         cup: {
-            text: 550,
+            text: 552,
             url: getIcon("UI_RelicIcon_15007_1")
         },
         
         
         head: {
-            text: 553,
+            text: 555,
             url: getIcon("UI_RelicIcon_15007_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -1377,58 +1377,58 @@ export default {
     "NymphsDream": {
         eng: "NymphsDream",
         name2: "NymphsDream",
-        nameLocale: 1058,
+        nameLocale: 1063,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1455,
+        effect2: 1462,
     
     
     
-        effect4: 903,
+        effect4: 907,
     
     
 
         
         flower: {
-            text: 786,
+            text: 789,
             url: getIcon("UI_RelicIcon_15029_4")
         },
         
         
         feather: {
-            text: 440,
+            text: 442,
             url: getIcon("UI_RelicIcon_15029_2")
         },
         
         
         sand: {
-            text: 1059,
+            text: 1064,
             url: getIcon("UI_RelicIcon_15029_5")
         },
         
         
         cup: {
-            text: 317,
+            text: 319,
             url: getIcon("UI_RelicIcon_15029_1")
         },
         
         
         head: {
-            text: 636,
+            text: 638,
             url: getIcon("UI_RelicIcon_15029_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"w1","title":50,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"w1","title":51,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"w2","title":121,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"w2","title":122,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"w3","title":72,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"w3","title":73,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":607,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":609,"type":"float"},
             
         ],
     },
@@ -1436,46 +1436,46 @@ export default {
     "oceanHuedClam": {
         eng: "oceanHuedClam",
         name2: "OceanHuedClam",
-        nameLocale: 1109,
+        nameLocale: 1114,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1079,
+        effect2: 1084,
     
     
     
-        effect4: 1507,
+        effect4: 1514,
     
     
 
         
         flower: {
-            text: 1108,
+            text: 1113,
             url: getIcon("UI_RelicIcon_15022_4")
         },
         
         
         feather: {
-            text: 1116,
+            text: 1121,
             url: getIcon("UI_RelicIcon_15022_2")
         },
         
         
         sand: {
-            text: 1349,
+            text: 1354,
             url: getIcon("UI_RelicIcon_15022_5")
         },
         
         
         cup: {
-            text: 1295,
+            text: 1300,
             url: getIcon("UI_RelicIcon_15022_1")
         },
         
         
         head: {
-            text: 1111,
+            text: 1116,
             url: getIcon("UI_RelicIcon_15022_3")
         },
         
@@ -1487,54 +1487,54 @@ export default {
     "paleFlame": {
         eng: "paleFlame",
         name2: "PaleFlame",
-        nameLocale: 1431,
+        nameLocale: 1436,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1631,
+        effect2: 1639,
     
     
     
-        effect4: 204,
+        effect4: 205,
     
     
 
         
         flower: {
-            text: 792,
+            text: 795,
             url: getIcon("UI_RelicIcon_15018_4")
         },
         
         
         feather: {
-            text: 1560,
+            text: 1567,
             url: getIcon("UI_RelicIcon_15018_2")
         },
         
         
         sand: {
-            text: 185,
+            text: 186,
             url: getIcon("UI_RelicIcon_15018_5")
         },
         
         
         cup: {
-            text: 1578,
+            text: 1585,
             url: getIcon("UI_RelicIcon_15018_1")
         },
         
         
         head: {
-            text: 415,
+            text: 417,
             url: getIcon("UI_RelicIcon_15018_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":2.0,"min":0.0,"name":"avg_level","title":732,"type":"float"},
+            {"default":0.0,"max":2.0,"min":0.0,"name":"avg_level","title":735,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"full_rate","title":1135,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"full_rate","title":1140,"type":"float"},
             
         ],
     },
@@ -1542,65 +1542,7 @@ export default {
     "prayersForDestiny": {
         eng: "prayersForDestiny",
         name2: "PrayersForDestiny",
-        nameLocale: 1338,
-        minStar: 3,
-        maxStar: 4,
-    
-        effect1: 358,
-    
-    
-    
-    
-    
-
-        
-        
-        
-        
-        
-        head: {
-            text: 1339,
-            url: getIcon("UI_RelicIcon_15010_3")
-        },
-        
-        config4: [
-            
-        ],
-    },
-    
-    "prayersForIllumination": {
-        eng: "prayersForIllumination",
-        name2: "PrayersForIllumination",
-        nameLocale: 1340,
-        minStar: 3,
-        maxStar: 4,
-    
-        effect1: 359,
-    
-    
-    
-    
-    
-
-        
-        
-        
-        
-        
-        head: {
-            text: 1341,
-            url: getIcon("UI_RelicIcon_15009_3")
-        },
-        
-        config4: [
-            
-        ],
-    },
-    
-    "prayersForWisdom": {
-        eng: "prayersForWisdom",
-        name2: "PrayersForWisdom",
-        nameLocale: 1346,
+        nameLocale: 1343,
         minStar: 3,
         maxStar: 4,
     
@@ -1617,7 +1559,65 @@ export default {
         
         
         head: {
-            text: 1347,
+            text: 1344,
+            url: getIcon("UI_RelicIcon_15010_3")
+        },
+        
+        config4: [
+            
+        ],
+    },
+    
+    "prayersForIllumination": {
+        eng: "prayersForIllumination",
+        name2: "PrayersForIllumination",
+        nameLocale: 1345,
+        minStar: 3,
+        maxStar: 4,
+    
+        effect1: 361,
+    
+    
+    
+    
+    
+
+        
+        
+        
+        
+        
+        head: {
+            text: 1346,
+            url: getIcon("UI_RelicIcon_15009_3")
+        },
+        
+        config4: [
+            
+        ],
+    },
+    
+    "prayersForWisdom": {
+        eng: "prayersForWisdom",
+        name2: "PrayersForWisdom",
+        nameLocale: 1351,
+        minStar: 3,
+        maxStar: 4,
+    
+        effect1: 362,
+    
+    
+    
+    
+    
+
+        
+        
+        
+        
+        
+        head: {
+            text: 1352,
             url: getIcon("UI_RelicIcon_15011_3")
         },
         
@@ -1629,11 +1629,11 @@ export default {
     "prayersToSpringtime": {
         eng: "prayersToSpringtime",
         name2: "PrayersToSpringtime",
-        nameLocale: 1336,
+        nameLocale: 1341,
         minStar: 3,
         maxStar: 4,
     
-        effect1: 357,
+        effect1: 359,
     
     
     
@@ -1646,7 +1646,7 @@ export default {
         
         
         head: {
-            text: 1337,
+            text: 1342,
             url: getIcon("UI_RelicIcon_15013_3")
         },
         
@@ -1658,46 +1658,46 @@ export default {
     "resolutionOfSojourner": {
         eng: "resolutionOfSojourner",
         name2: "ResolutionOfSojourner",
-        nameLocale: 1494,
+        nameLocale: 1501,
         minStar: 3,
         maxStar: 4,
     
     
-        effect2: 715,
+        effect2: 718,
     
     
     
-        effect4: 1669,
+        effect4: 1676,
     
     
 
         
         flower: {
-            text: 730,
+            text: 733,
             url: getIcon("UI_RelicIcon_10001_4")
         },
         
         
         feather: {
-            text: 618,
+            text: 620,
             url: getIcon("UI_RelicIcon_10001_2")
         },
         
         
         sand: {
-            text: 1627,
+            text: 1634,
             url: getIcon("UI_RelicIcon_10001_5")
         },
         
         
         cup: {
-            text: 614,
+            text: 616,
             url: getIcon("UI_RelicIcon_10001_1")
         },
         
         
         head: {
-            text: 641,
+            text: 644,
             url: getIcon("UI_RelicIcon_10001_3")
         },
         
@@ -1709,52 +1709,52 @@ export default {
     "retracingBolide": {
         eng: "retracingBolide",
         name2: "RetracingBolide",
-        nameLocale: 1626,
+        nameLocale: 1633,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 686,
+        effect2: 689,
     
     
     
-        effect4: 458,
+        effect4: 460,
     
     
 
         
         flower: {
-            text: 463,
+            text: 465,
             url: getIcon("UI_RelicIcon_15015_4")
         },
         
         
         feather: {
-            text: 466,
+            text: 468,
             url: getIcon("UI_RelicIcon_15015_2")
         },
         
         
         sand: {
-            text: 462,
+            text: 464,
             url: getIcon("UI_RelicIcon_15015_5")
         },
         
         
         cup: {
-            text: 465,
+            text: 467,
             url: getIcon("UI_RelicIcon_15015_1")
         },
         
         
         head: {
-            text: 464,
+            text: 466,
             url: getIcon("UI_RelicIcon_15015_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":687,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":691,"type":"float"},
             
         ],
     },
@@ -1762,46 +1762,46 @@ export default {
     "scholar": {
         eng: "scholar",
         name2: "Scholar",
-        nameLocale: 527,
+        nameLocale: 529,
         minStar: 3,
         maxStar: 4,
     
     
-        effect2: 189,
+        effect2: 190,
     
     
     
-        effect4: 1466,
+        effect4: 1473,
     
     
 
         
         flower: {
-            text: 528,
+            text: 530,
             url: getIcon("UI_RelicIcon_10012_4")
         },
         
         
         feather: {
-            text: 531,
+            text: 533,
             url: getIcon("UI_RelicIcon_10012_2")
         },
         
         
         sand: {
-            text: 530,
+            text: 532,
             url: getIcon("UI_RelicIcon_10012_5")
         },
         
         
         cup: {
-            text: 529,
+            text: 531,
             url: getIcon("UI_RelicIcon_10012_1")
         },
         
         
         head: {
-            text: 532,
+            text: 534,
             url: getIcon("UI_RelicIcon_10012_3")
         },
         
@@ -1813,52 +1813,52 @@ export default {
     "shimenawaReminiscence": {
         eng: "shimenawaReminiscence",
         name2: "ShimenawasReminiscence",
-        nameLocale: 1623,
+        nameLocale: 1630,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 715,
+        effect2: 718,
     
     
     
-        effect4: 769,
+        effect4: 772,
     
     
 
         
         flower: {
-            text: 1398,
+            text: 1403,
             url: getIcon("UI_RelicIcon_15019_4")
         },
         
         
         feather: {
-            text: 631,
+            text: 633,
             url: getIcon("UI_RelicIcon_15019_2")
         },
         
         
         sand: {
-            text: 1006,
+            text: 1011,
             url: getIcon("UI_RelicIcon_15019_5")
         },
         
         
         cup: {
-            text: 1316,
+            text: 1321,
             url: getIcon("UI_RelicIcon_15019_1")
         },
         
         
         head: {
-            text: 794,
+            text: 797,
             url: getIcon("UI_RelicIcon_15019_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -1866,52 +1866,52 @@ export default {
     "tenacityOfTheMillelith": {
         eng: "tenacityOfTheMillelith",
         name2: "TenacityOfTheMillelith",
-        nameLocale: 329,
+        nameLocale: 331,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1254,
+        effect2: 1259,
     
     
     
-        effect4: 203,
+        effect4: 204,
     
     
 
         
         flower: {
-            text: 318,
+            text: 320,
             url: getIcon("UI_RelicIcon_15017_4")
         },
         
         
         feather: {
-            text: 813,
+            text: 816,
             url: getIcon("UI_RelicIcon_15017_2")
         },
         
         
         sand: {
-            text: 1676,
+            text: 1683,
             url: getIcon("UI_RelicIcon_15017_5")
         },
         
         
         cup: {
-            text: 1294,
+            text: 1299,
             url: getIcon("UI_RelicIcon_15017_1")
         },
         
         
         head: {
-            text: 573,
+            text: 575,
             url: getIcon("UI_RelicIcon_15017_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":738,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":741,"type":"float"},
             
         ],
     },
@@ -1919,46 +1919,46 @@ export default {
     "exile": {
         eng: "exile",
         name2: "TheExile",
-        nameLocale: 1088,
+        nameLocale: 1093,
         minStar: 3,
         maxStar: 4,
     
     
-        effect2: 189,
+        effect2: 190,
     
     
     
-        effect4: 777,
+        effect4: 780,
     
     
 
         
         flower: {
-            text: 1091,
+            text: 1096,
             url: getIcon("UI_RelicIcon_10009_4")
         },
         
         
         feather: {
-            text: 1090,
+            text: 1095,
             url: getIcon("UI_RelicIcon_10009_2")
         },
         
         
         sand: {
-            text: 1093,
+            text: 1098,
             url: getIcon("UI_RelicIcon_10009_5")
         },
         
         
         cup: {
-            text: 1089,
+            text: 1094,
             url: getIcon("UI_RelicIcon_10009_1")
         },
         
         
         head: {
-            text: 1092,
+            text: 1097,
             url: getIcon("UI_RelicIcon_10009_3")
         },
         
@@ -1970,46 +1970,46 @@ export default {
     "thunderingFury": {
         eng: "thunderingFury",
         name2: "ThunderingFury",
-        nameLocale: 521,
+        nameLocale: 523,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1458,
+        effect2: 1465,
     
     
     
-        effect4: 1579,
+        effect4: 1586,
     
     
 
         
         flower: {
-            text: 1766,
+            text: 1773,
             url: getIcon("UI_RelicIcon_15005_4")
         },
         
         
         feather: {
-            text: 1756,
+            text: 1763,
             url: getIcon("UI_RelicIcon_15005_2")
         },
         
         
         sand: {
-            text: 1765,
+            text: 1772,
             url: getIcon("UI_RelicIcon_15005_5")
         },
         
         
         cup: {
-            text: 1738,
+            text: 1745,
             url: getIcon("UI_RelicIcon_15005_1")
         },
         
         
         head: {
-            text: 411,
+            text: 413,
             url: getIcon("UI_RelicIcon_15005_3")
         },
         
@@ -2021,52 +2021,52 @@ export default {
     "thunderSmoother": {
         eng: "thunderSmoother",
         name2: "Thundersoother",
-        nameLocale: 592,
+        nameLocale: 594,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1748,
+        effect2: 1755,
     
     
     
-        effect4: 569,
+        effect4: 571,
     
     
 
         
         flower: {
-            text: 596,
+            text: 598,
             url: getIcon("UI_RelicIcon_14002_4")
         },
         
         
         feather: {
-            text: 597,
+            text: 599,
             url: getIcon("UI_RelicIcon_14002_2")
         },
         
         
         sand: {
-            text: 594,
+            text: 596,
             url: getIcon("UI_RelicIcon_14002_5")
         },
         
         
         cup: {
-            text: 595,
+            text: 597,
             url: getIcon("UI_RelicIcon_14002_1")
         },
         
         
         head: {
-            text: 593,
+            text: 595,
             url: getIcon("UI_RelicIcon_14002_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":742,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":745,"type":"float"},
             
         ],
     },
@@ -2074,46 +2074,46 @@ export default {
     "tinyMiracle": {
         eng: "tinyMiracle",
         name2: "TinyMiracle",
-        nameLocale: 512,
+        nameLocale: 514,
         minStar: 3,
         maxStar: 4,
     
     
-        effect2: 649,
+        effect2: 652,
     
     
     
-        effect4: 353,
+        effect4: 355,
     
     
 
         
         flower: {
-            text: 516,
+            text: 518,
             url: getIcon("UI_RelicIcon_10004_4")
         },
         
         
         feather: {
-            text: 515,
+            text: 517,
             url: getIcon("UI_RelicIcon_10004_2")
         },
         
         
         sand: {
-            text: 514,
+            text: 516,
             url: getIcon("UI_RelicIcon_10004_5")
         },
         
         
         cup: {
-            text: 513,
+            text: 515,
             url: getIcon("UI_RelicIcon_10004_1")
         },
         
         
         head: {
-            text: 517,
+            text: 519,
             url: getIcon("UI_RelicIcon_10004_3")
         },
         
@@ -2125,46 +2125,46 @@ export default {
     "travelingDoctor": {
         eng: "travelingDoctor",
         name2: "TravelingDoctor",
-        nameLocale: 1129,
+        nameLocale: 1134,
         minStar: 1,
         maxStar: 3,
     
     
-        effect2: 1526,
+        effect2: 1533,
     
     
     
-        effect4: 781,
+        effect4: 784,
     
     
 
         
         flower: {
-            text: 1134,
+            text: 1139,
             url: getIcon("UI_RelicIcon_10013_4")
         },
         
         
         feather: {
-            text: 1132,
+            text: 1137,
             url: getIcon("UI_RelicIcon_10013_2")
         },
         
         
         sand: {
-            text: 1130,
+            text: 1135,
             url: getIcon("UI_RelicIcon_10013_5")
         },
         
         
         cup: {
-            text: 1133,
+            text: 1138,
             url: getIcon("UI_RelicIcon_10013_1")
         },
         
         
         head: {
-            text: 1131,
+            text: 1136,
             url: getIcon("UI_RelicIcon_10013_3")
         },
         
@@ -2176,54 +2176,54 @@ export default {
     "VermillionHereafter": {
         eng: "VermillionHereafter",
         name2: "VermillionHereafter",
-        nameLocale: 1605,
+        nameLocale: 1612,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 715,
+        effect2: 718,
     
     
     
-        effect4: 775,
+        effect4: 778,
     
     
 
         
         flower: {
-            text: 1265,
+            text: 1270,
             url: getIcon("UI_RelicIcon_15023_4")
         },
         
         
         feather: {
-            text: 1140,
+            text: 1145,
             url: getIcon("UI_RelicIcon_15023_2")
         },
         
         
         sand: {
-            text: 1722,
+            text: 1729,
             url: getIcon("UI_RelicIcon_15023_5")
         },
         
         
         cup: {
-            text: 1381,
+            text: 1386,
             url: getIcon("UI_RelicIcon_15023_1")
         },
         
         
         head: {
-            text: 1485,
+            text: 1492,
             url: getIcon("UI_RelicIcon_15023_3")
         },
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate_q","title":224,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate_q","title":225,"type":"float"},
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":590,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":592,"type":"float"},
             
         ],
     },
@@ -2231,46 +2231,46 @@ export default {
     "viridescentVenerer": {
         eng: "viridescentVenerer",
         name2: "ViridescentVenerer",
-        nameLocale: 1401,
+        nameLocale: 1406,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1459,
+        effect2: 1466,
     
     
     
-        effect4: 660,
+        effect4: 663,
     
     
 
         
         flower: {
-            text: 1675,
+            text: 1682,
             url: getIcon("UI_RelicIcon_15002_4")
         },
         
         
         feather: {
-            text: 1200,
+            text: 1205,
             url: getIcon("UI_RelicIcon_15002_2")
         },
         
         
         sand: {
-            text: 1404,
+            text: 1409,
             url: getIcon("UI_RelicIcon_15002_5")
         },
         
         
         cup: {
-            text: 1403,
+            text: 1408,
             url: getIcon("UI_RelicIcon_15002_1")
         },
         
         
         head: {
-            text: 1405,
+            text: 1410,
             url: getIcon("UI_RelicIcon_15002_3")
         },
         
@@ -2282,52 +2282,52 @@ export default {
     "VourukashasGlow": {
         eng: "VourukashasGlow",
         name2: "VourukashasGlow",
-        nameLocale: 1426,
+        nameLocale: 1431,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 1255,
+        effect2: 1260,
     
     
     
-        effect4: 198,
+        effect4: 199,
     
     
 
         
         flower: {
-            text: 1151,
+            text: 1156,
             url: getIcon("UI_RelicIcon_15030_4")
         },
         
         
         feather: {
-            text: 1229,
+            text: 1234,
             url: getIcon("UI_RelicIcon_15030_2")
         },
         
         
         sand: {
-            text: 102,
+            text: 103,
             url: getIcon("UI_RelicIcon_15030_5")
         },
         
         
         cup: {
-            text: 796,
+            text: 799,
             url: getIcon("UI_RelicIcon_15030_1")
         },
         
         
         head: {
-            text: 1150,
+            text: 1155,
             url: getIcon("UI_RelicIcon_15030_3")
         },
         
         config4: [
             
-            {"default":4.0,"max":5.0,"min":0.0,"name":"stack","title":589,"type":"float"},
+            {"default":4.0,"max":5.0,"min":0.0,"name":"stack","title":591,"type":"float"},
             
         ],
     },
@@ -2335,46 +2335,46 @@ export default {
     "wandererTroupe": {
         eng: "wandererTroupe",
         name2: "WanderersTroupe",
-        nameLocale: 1097,
+        nameLocale: 1102,
         minStar: 4,
         maxStar: 5,
     
     
-        effect2: 230,
+        effect2: 229,
     
     
     
-        effect4: 1511,
+        effect4: 1518,
     
     
 
         
         flower: {
-            text: 103,
+            text: 104,
             url: getIcon("UI_RelicIcon_15003_4")
         },
         
         
         feather: {
-            text: 1235,
+            text: 1240,
             url: getIcon("UI_RelicIcon_15003_2")
         },
         
         
         sand: {
-            text: 1377,
+            text: 1382,
             url: getIcon("UI_RelicIcon_15003_5")
         },
         
         
         cup: {
-            text: 377,
+            text: 379,
             url: getIcon("UI_RelicIcon_15003_1")
         },
         
         
         head: {
-            text: 699,
+            text: 702,
             url: getIcon("UI_RelicIcon_15003_3")
         },
         
