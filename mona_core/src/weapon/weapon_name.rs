@@ -155,6 +155,7 @@ pub enum WeaponName {
     FlowingPurity,
     BalladOfTheBoundlessBlue,
     CashflowSupervision,
+    TomeOfTheEternalFlow,
 
     // bows
     PolarStar,

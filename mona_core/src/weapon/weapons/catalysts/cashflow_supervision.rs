@@ -37,8 +37,8 @@ impl WeaponTrait for CashflowSupervision {
         star: 5,
         #[cfg(not(target_family = "wasm"))]
         effect: Some(locale!(
-            zh_cn: "攻击力提升<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>。当前生命值提升或降低时，普通攻击造成的伤害提升<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>，重击造成的伤害提升<span style=\"color: #409EFF;\">14%-17.5%-21%-24.5%-28%</span>。该效果持续4秒，至多叠加3层，每0.3秒至多触发一次；处于叠加3层的状态下时，攻击速度提升8%。",
-            en: "ATK is increased by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>. When current HP increases or decreases, Normal Attack DMG will be increased by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> and Charged Attack DMG will be increased by <span style=\"color: #409EFF;\">14%-17.5%-21%-24.5%-28%</span> for 4s. Max 3 stacks. This effect can be triggered once every 0.3s. When the wielder has 3 stacks, ATK SPD will be increased by 8%."
+            zh_cn: "攻击力提升<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>。当前生命值提升或降低时，普通攻击造成的伤害提升<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>，重击造成的伤害提升<span style=\"color: #409EFF;\">14%-17.5%-21%-24.5%-28%</span>。该效果持续4秒，至多叠加3层，每0.3秒至多触发一次；处于叠加3层的状态下时，攻击速度提升<span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span>。",
+            en: "ATK is increased by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>. When current HP increases or decreases, Normal Attack DMG will be increased by <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> and Charged Attack DMG will be increased by <span style=\"color: #409EFF;\">14%-17.5%-21%-24.5%-28%</span> for 4s. Max 3 stacks. This effect can be triggered once every 0.3s. When the wielder has 3 stacks, ATK SPD will be increased by <span style=\"color: #409EFF;\">8%-10%-12%-14%-16%</span>."
         )),
         #[cfg(not(target_family = "wasm"))]
         name_locale: locale!(

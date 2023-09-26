@@ -94,6 +94,7 @@ pub enum WeaponConfig {
     FlowingPurity { rate1: f64, rate2: f64 },
     BalladOfTheBoundlessBlue { stack: f64 },
     CashflowSupervision { stack: f64 },
+    TomeOfTheEternalFlow { stack: f64 },
 
     // Bow
     PolarStar { stack: usize },
