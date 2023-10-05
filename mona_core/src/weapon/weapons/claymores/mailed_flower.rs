@@ -30,7 +30,7 @@ impl MailedFlowerEffect {
 impl<T: Attribute> WeaponEffect<T> for MailedFlowerEffect {
     fn apply(&self, data: &WeaponCommonData, attribute: &mut T) {
         let refine = data.refine as f64;
-        let value1 = (refine * 0.3 + 0.09)*self.rate;
+        let value1 = (refine * 0.03 + 0.09)*self.rate;
         let value2 = (refine * 12.0 + 36.0)*self.rate;
         attribute.add_atk_percentage("饰铁之花被动等效", value1);
         attribute.set_value_by(AttributeName::ElementalMastery, "饰铁之花被动等效", value2);

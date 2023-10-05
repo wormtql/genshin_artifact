@@ -81,30 +81,7 @@ impl<A: Attribute> ChangeAttribute<A> for TighnariEffect {
     }
 }
 
-// #[derive(Copy, Clone, Eq, PartialEq, EnumString)]
-// #[derive(FromPrimitive, EnumCountMacro)]
-// pub enum TighnariDamageEnum {
-//     Normal1,
-//     Normal2,
-//     Normal3,
-//     Normal4,
-//     Charged1,
-//     Charged2,
-//     Charged3,
-//     Charged4,
-//     Plunging1,
-//     Plunging2,
-//     Plunging3,
-//     E1,
-//     Q1,
-//     Q2
-// }
-//
-// impl Into<usize> for TighnariDamageEnum {
-//     fn into(self) -> usize {
-//         self as usize
-//     }
-// }
+
 
 damage_enum!(
     TighnariDamageEnum
@@ -116,6 +93,7 @@ damage_enum!(
     Charged2
     Charged3
     Charged4
+    ChargedC6
     Plunging1
     Plunging2
     Plunging3
@@ -128,7 +106,7 @@ impl TighnariDamageEnum {
     pub fn get_element(&self) -> Element {
         use TighnariDamageEnum::*;
         match *self {
-            Charged2 | Charged3 | Charged4 | E1 | Q1 | Q2 => Element::Dendro,
+            Charged2 | Charged3 | Charged4 | ChargedC6 | E1 | Q1 | Q2 => Element::Dendro,
             _ => Element::Physical
         }
     }
@@ -137,7 +115,7 @@ impl TighnariDamageEnum {
         use TighnariDamageEnum::*;
         match *self {
             Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
-            Charged1 | Charged2 | Charged3 | Charged4 => SkillType::ChargedAttack,
+            Charged1 | Charged2 | Charged3 | Charged4 | ChargedC6 => SkillType::ChargedAttack,
             E1 => SkillType::ElementalSkill,
             Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
             Q1 | Q2 => SkillType::ElementalBurst
@@ -191,6 +169,7 @@ impl CharacterTrait for Tighnari {
             CharacterSkillMapItem { index: TighnariDamageEnum::Charged2 as usize, text: locale!(zh_cn: "一段蓄力瞄准射击", en: "Level 1 Aimed Shot") },
             CharacterSkillMapItem { index: TighnariDamageEnum::Charged3 as usize, text: locale!(zh_cn: "花筥箭伤害", en: "Wreath Arrow DMG") },
             CharacterSkillMapItem { index: TighnariDamageEnum::Charged4 as usize, text: locale!(zh_cn: "藏蕴花矢伤害", en: "Clusterbloom Arrow DMG") },
+            CharacterSkillMapItem { index: TighnariDamageEnum::ChargedC6 as usize, text: locale!(zh_cn: "六命藏蕴花矢伤害", en: "C6 Clusterbloom Arrow DMG") },
             CharacterSkillMapItem { index: TighnariDamageEnum::Plunging1 as usize, text: plunging_dmg!(1) },
             CharacterSkillMapItem { index: TighnariDamageEnum::Plunging2 as usize, text: plunging_dmg!(2) },
             CharacterSkillMapItem { index: TighnariDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
@@ -238,6 +217,7 @@ impl CharacterTrait for Tighnari {
             Charged2 => TIGHNARI_SKILL.charged_dmg2[s1],
             Charged3 => TIGHNARI_SKILL.charged_dmg3[s1],
             Charged4 => TIGHNARI_SKILL.charged_dmg4[s1],
+            ChargedC6 => 1.5,
             Plunging1 => TIGHNARI_SKILL.plunging_dmg1[s1],
             Plunging2 => TIGHNARI_SKILL.plunging_dmg2[s1],
             Plunging3 => TIGHNARI_SKILL.plunging_dmg3[s1],
