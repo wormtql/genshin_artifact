@@ -358,13 +358,13 @@ export default {
     MistsplitterReforged: {
         name: "MistsplitterReforged",
         internalName: "Sword_Narukami",
-        nameLocale: 1790,
+        nameLocale: 1791,
         star: 5,
         url: imageUrl("Sword_Narukami"),
         type: "Sword",
 
         
-        effect: 1483,
+        effect: 1484,
         
         
         configs: [
@@ -378,7 +378,7 @@ export default {
     AquilaFavonia: {
         name: "AquilaFavonia",
         internalName: "Sword_Falcon",
-        nameLocale: 1827,
+        nameLocale: 1828,
         star: 5,
         url: imageUrl("Sword_Falcon"),
         type: "Sword",
@@ -405,9 +405,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":700,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":699,"type":"float"},
             
         ],
         
@@ -432,18 +432,18 @@ export default {
     FreedomSworn: {
         name: "FreedomSworn",
         internalName: "Sword_Widsith",
-        nameLocale: 1449,
+        nameLocale: 1450,
         star: 5,
         url: imageUrl("Sword_Widsith"),
         type: "Sword",
 
         
-        effect: 1830,
+        effect: 1831,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -452,13 +452,13 @@ export default {
     PrimordialJadeCutter: {
         name: "PrimordialJadeCutter",
         internalName: "Sword_Morax",
-        nameLocale: 1332,
+        nameLocale: 1333,
         star: 5,
         url: imageUrl("Sword_Morax"),
         type: "Sword",
 
         
-        effect: 1278,
+        effect: 1279,
         
         
         configs: null,
@@ -468,7 +468,7 @@ export default {
     TheFlute: {
         name: "TheFlute",
         internalName: "Sword_Troupe",
-        nameLocale: 1375,
+        nameLocale: 1376,
         star: 4,
         url: imageUrl("Sword_Troupe"),
         type: "Sword",
@@ -484,7 +484,7 @@ export default {
     TheBlackSword: {
         name: "TheBlackSword",
         internalName: "Sword_Bloodstained",
-        nameLocale: 1877,
+        nameLocale: 1878,
         star: 4,
         url: imageUrl("Sword_Bloodstained"),
         type: "Sword",
@@ -506,12 +506,12 @@ export default {
         type: "Sword",
 
         
-        effect: 1552,
+        effect: 1553,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -520,7 +520,7 @@ export default {
     SwordOfDescension: {
         name: "SwordOfDescension",
         internalName: "Sword_Psalmus",
-        nameLocale: 1759,
+        nameLocale: 1760,
         star: 4,
         url: imageUrl("Sword_Psalmus"),
         type: "Sword",
@@ -536,13 +536,13 @@ export default {
     SacrificialSword: {
         name: "SacrificialSword",
         internalName: "Sword_Fossil",
-        nameLocale: 1361,
+        nameLocale: 1362,
         star: 4,
         url: imageUrl("Sword_Fossil"),
         type: "Sword",
 
         
-        effect: 217,
+        effect: 216,
         
         
         configs: null,
@@ -568,7 +568,7 @@ export default {
     PrototypeRancour: {
         name: "PrototypeRancour",
         internalName: "Sword_Proto",
-        nameLocale: 1570,
+        nameLocale: 1571,
         star: 4,
         url: imageUrl("Sword_Proto"),
         type: "Sword",
@@ -579,7 +579,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -615,7 +615,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -624,18 +624,18 @@ export default {
     IronSting: {
         name: "IronSting",
         internalName: "Sword_Exotic",
-        nameLocale: 1710,
+        nameLocale: 1711,
         star: 4,
         url: imageUrl("Sword_Exotic"),
         type: "Sword",
 
         
-        effect: 1651,
+        effect: 1652,
         
         
         configs: [
             
-            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -644,13 +644,13 @@ export default {
     FesteringDesire: {
         name: "FesteringDesire",
         internalName: "Sword_Magnum",
-        nameLocale: 1439,
+        nameLocale: 1440,
         star: 4,
         url: imageUrl("Sword_Magnum"),
         type: "Sword",
 
         
-        effect: 219,
+        effect: 218,
         
         
         configs: null,
@@ -660,7 +660,7 @@ export default {
     FavoniusSword: {
         name: "FavoniusSword",
         internalName: "Sword_Zephyrus",
-        nameLocale: 1537,
+        nameLocale: 1538,
         star: 4,
         url: imageUrl("Sword_Zephyrus"),
         type: "Sword",
@@ -676,18 +676,18 @@ export default {
     CinnabarSpindle: {
         name: "CinnabarSpindle",
         internalName: "Sword_Opus",
-        nameLocale: 1626,
+        nameLocale: 1627,
         star: 4,
         url: imageUrl("Sword_Opus"),
         type: "Sword",
 
         
-        effect: 218,
+        effect: 217,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -696,7 +696,7 @@ export default {
     BlackcliffLongsword: {
         name: "BlackcliffLongsword",
         internalName: "Sword_Blackrock",
-        nameLocale: 1882,
+        nameLocale: 1883,
         star: 4,
         url: imageUrl("Sword_Blackrock"),
         type: "Sword",
@@ -707,7 +707,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -716,18 +716,18 @@ export default {
     HarbingerOfDawn: {
         name: "HarbingerOfDawn",
         internalName: "Sword_Dawn",
-        nameLocale: 1876,
+        nameLocale: 1877,
         star: 3,
         url: imageUrl("Sword_Dawn"),
         type: "Sword",
 
         
-        effect: 1281,
+        effect: 1282,
         
         
         configs: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -752,7 +752,7 @@ export default {
     SkyriderSword: {
         name: "SkyriderSword",
         internalName: "Sword_Mitsurugi",
-        nameLocale: 1832,
+        nameLocale: 1833,
         star: 3,
         url: imageUrl("Sword_Mitsurugi"),
         type: "Sword",
@@ -763,7 +763,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -778,12 +778,12 @@ export default {
         type: "Sword",
 
         
-        effect: 1562,
+        effect: 1563,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -803,7 +803,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -818,7 +818,7 @@ export default {
         type: "Sword",
 
         
-        effect: 1489,
+        effect: 1490,
         
         
         configs: null,
@@ -828,7 +828,7 @@ export default {
     SilverSword: {
         name: "SilverSword",
         internalName: "Sword_Silver",
-        nameLocale: 1711,
+        nameLocale: 1712,
         star: 2,
         url: imageUrl("Sword_Silver"),
         type: "Sword",
@@ -856,13 +856,13 @@ export default {
     HaranGeppakuFutsu: {
         name: "HaranGeppakuFutsu",
         internalName: "Sword_Amenoma",
-        nameLocale: 1102,
+        nameLocale: 1103,
         star: 5,
         url: imageUrl("Sword_Amenoma"),
         type: "Sword",
 
         
-        effect: 1485,
+        effect: 1486,
         
         
         configs: [
@@ -876,7 +876,7 @@ export default {
     CursedBlade: {
         name: "CursedBlade",
         internalName: "Sword_Youtou",
-        nameLocale: 1376,
+        nameLocale: 1377,
         star: 4,
         url: imageUrl("Sword_Youtou"),
         type: "Sword",
@@ -887,7 +887,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -905,7 +905,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -914,18 +914,18 @@ export default {
     XiphosMoonlight: {
         name: "XiphosMoonlight",
         internalName: "Sword_Pleroma",
-        nameLocale: 1535,
+        nameLocale: 1536,
         star: 4,
         url: imageUrl("Sword_Pleroma"),
         type: "Sword",
 
         
-        effect: 1071,
+        effect: 1072,
         
         
         configs: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -940,12 +940,12 @@ export default {
         type: "Sword",
 
         
-        effect: 1276,
+        effect: 1277,
         
         
         configs: [
             
-            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -965,7 +965,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -974,7 +974,7 @@ export default {
     LightOfFoliarIncision: {
         name: "LightOfFoliarIncision",
         internalName: "Sword_Ayus",
-        nameLocale: 1526,
+        nameLocale: 1527,
         star: 5,
         url: imageUrl("Sword_Ayus"),
         type: "Sword",
@@ -983,7 +983,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -992,20 +992,20 @@ export default {
     WolfFang: {
         name: "WolfFang",
         internalName: "Sword_Boreas",
-        nameLocale: 1209,
+        nameLocale: 1210,
         star: 4,
         url: imageUrl("Sword_Boreas"),
         type: "Sword",
 
         
-        effect: 204,
+        effect: 203,
         
         
         configs: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"e_stack","title":206,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"e_stack","title":205,"type":"float"},
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"q_stack","title":224,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"q_stack","title":223,"type":"float"},
             
         ],
         
@@ -1014,7 +1014,7 @@ export default {
     FinaleOfTheDeep: {
         name: "FinaleOfTheDeep",
         internalName: "Sword_Vorpal",
-        nameLocale: 1128,
+        nameLocale: 1129,
         star: 4,
         url: imageUrl("Sword_Vorpal"),
         type: "Sword",
@@ -1036,18 +1036,18 @@ export default {
     FleuveCendreFerryman: {
         name: "FleuveCendreFerryman",
         internalName: "Sword_Machination",
-        nameLocale: 1167,
+        nameLocale: 1168,
         star: 4,
         url: imageUrl("Sword_Machination"),
         type: "Sword",
 
         
-        effect: 215,
+        effect: 214,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1056,7 +1056,7 @@ export default {
     TheDockhandsAssistant: {
         name: "TheDockhandsAssistant",
         internalName: "Sword_Mechanic",
-        nameLocale: 1441,
+        nameLocale: 1442,
         star: 4,
         url: imageUrl("Sword_Mechanic"),
         type: "Sword",
@@ -1076,7 +1076,7 @@ export default {
     WolfsGravestone: {
         name: "WolfsGravestone",
         internalName: "Claymore_Wolfmound",
-        nameLocale: 1210,
+        nameLocale: 1211,
         star: 5,
         url: imageUrl("Claymore_Wolfmound"),
         type: "Claymore",
@@ -1087,7 +1087,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1102,7 +1102,7 @@ export default {
         type: "Claymore",
 
         
-        effect: 1652,
+        effect: 1653,
         
         
         configs: null,
@@ -1123,9 +1123,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":700,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":699,"type":"float"},
             
         ],
         
@@ -1134,18 +1134,18 @@ export default {
     SongOfBrokenPines: {
         name: "SongOfBrokenPines",
         internalName: "Claymore_Widsith",
-        nameLocale: 1033,
+        nameLocale: 1034,
         star: 5,
         url: imageUrl("Claymore_Widsith"),
         type: "Claymore",
 
         
-        effect: 1829,
+        effect: 1830,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1154,13 +1154,13 @@ export default {
     RedhornStonethresher: {
         name: "RedhornStonethresher",
         internalName: "Claymore_Itadorimaru",
-        nameLocale: 1597,
+        nameLocale: 1598,
         star: 5,
         url: imageUrl("Claymore_Itadorimaru"),
         type: "Claymore",
 
         
-        effect: 1742,
+        effect: 1743,
         
         
         configs: null,
@@ -1176,12 +1176,12 @@ export default {
         type: "Claymore",
 
         
-        effect: 1723,
+        effect: 1724,
         
         
         configs: [
             
-            {"default":40,"max":400,"min":40,"name":"energy","title":1728,"type":"int"},
+            {"default":40,"max":400,"min":40,"name":"energy","title":1729,"type":"int"},
             
         ],
         
@@ -1206,7 +1206,7 @@ export default {
     Whiteblind: {
         name: "Whiteblind",
         internalName: "Claymore_Exotic",
-        nameLocale: 1301,
+        nameLocale: 1302,
         star: 4,
         url: imageUrl("Claymore_Exotic"),
         type: "Claymore",
@@ -1217,7 +1217,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -1226,7 +1226,7 @@ export default {
     TheBell: {
         name: "TheBell",
         internalName: "Claymore_Troupe",
-        nameLocale: 1701,
+        nameLocale: 1702,
         star: 4,
         url: imageUrl("Claymore_Troupe"),
         type: "Claymore",
@@ -1237,7 +1237,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1246,7 +1246,7 @@ export default {
     SnowTombedStarsilver: {
         name: "SnowTombedStarsilver",
         internalName: "Claymore_Dragonfell",
-        nameLocale: 1765,
+        nameLocale: 1766,
         star: 4,
         url: imageUrl("Claymore_Dragonfell"),
         type: "Claymore",
@@ -1262,7 +1262,7 @@ export default {
     FavoniusGreatsword: {
         name: "FavoniusGreatsword",
         internalName: "Claymore_Zephyrus",
-        nameLocale: 1538,
+        nameLocale: 1539,
         star: 4,
         url: imageUrl("Claymore_Zephyrus"),
         type: "Claymore",
@@ -1278,13 +1278,13 @@ export default {
     KatsuragikiriNagamasa: {
         name: "KatsuragikiriNagamasa",
         internalName: "Claymore_Bakufu",
-        nameLocale: 1055,
+        nameLocale: 1056,
         star: 4,
         url: imageUrl("Claymore_Bakufu"),
         type: "Claymore",
 
         
-        effect: 222,
+        effect: 221,
         
         
         configs: null,
@@ -1294,13 +1294,13 @@ export default {
     SacrificialGreatsword: {
         name: "SacrificialGreatsword",
         internalName: "Claymore_Fossil",
-        nameLocale: 1362,
+        nameLocale: 1363,
         star: 4,
         url: imageUrl("Claymore_Fossil"),
         type: "Claymore",
 
         
-        effect: 217,
+        effect: 216,
         
         
         configs: null,
@@ -1310,18 +1310,18 @@ export default {
     SerpentSpine: {
         name: "SerpentSpine",
         internalName: "Claymore_Kione",
-        nameLocale: 1510,
+        nameLocale: 1511,
         star: 4,
         url: imageUrl("Claymore_Kione"),
         type: "Claymore",
 
         
-        effect: 1549,
+        effect: 1550,
         
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -1330,7 +1330,7 @@ export default {
     BlackcliffSlasher: {
         name: "BlackcliffSlasher",
         internalName: "Claymore_Blackrock",
-        nameLocale: 1880,
+        nameLocale: 1881,
         star: 4,
         url: imageUrl("Claymore_Blackrock"),
         type: "Claymore",
@@ -1341,7 +1341,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -1350,7 +1350,7 @@ export default {
     Rainslasher: {
         name: "Rainslasher",
         internalName: "Claymore_Perdue",
-        nameLocale: 1764,
+        nameLocale: 1765,
         star: 4,
         url: imageUrl("Claymore_Perdue"),
         type: "Claymore",
@@ -1361,7 +1361,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1370,7 +1370,7 @@ export default {
     PrototypeArchaic: {
         name: "PrototypeArchaic",
         internalName: "Claymore_Proto",
-        nameLocale: 1569,
+        nameLocale: 1570,
         star: 4,
         url: imageUrl("Claymore_Proto"),
         type: "Claymore",
@@ -1386,13 +1386,13 @@ export default {
     LuxuriousSeaLord: {
         name: "LuxuriousSeaLord",
         internalName: "Claymore_MillenniaTuna",
-        nameLocale: 1517,
+        nameLocale: 1518,
         star: 4,
         url: imageUrl("Claymore_MillenniaTuna"),
         type: "Claymore",
 
         
-        effect: 227,
+        effect: 226,
         
         
         configs: null,
@@ -1408,12 +1408,12 @@ export default {
         type: "Claymore",
 
         
-        effect: 1726,
+        effect: 1727,
         
         
         configs: [
             
-            {"default":0,"max":4,"min":0,"name":"liyue_count","title":1732,"type":"int"},
+            {"default":0,"max":4,"min":0,"name":"liyue_count","title":1733,"type":"int"},
             
         ],
         
@@ -1422,7 +1422,7 @@ export default {
     SkyriderGreatsword: {
         name: "SkyriderGreatsword",
         internalName: "Claymore_Mitsurugi",
-        nameLocale: 1831,
+        nameLocale: 1832,
         star: 3,
         url: imageUrl("Claymore_Mitsurugi"),
         type: "Claymore",
@@ -1433,7 +1433,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -1458,7 +1458,7 @@ export default {
     BloodstainedGreatsword: {
         name: "BloodstainedGreatsword",
         internalName: "Claymore_Siegfry",
-        nameLocale: 1090,
+        nameLocale: 1091,
         star: 3,
         url: imageUrl("Claymore_Siegfry"),
         type: "Claymore",
@@ -1469,7 +1469,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1478,7 +1478,7 @@ export default {
     WhiteIronGreatsword: {
         name: "WhiteIronGreatsword",
         internalName: "Claymore_Tin",
-        nameLocale: 1311,
+        nameLocale: 1312,
         star: 3,
         url: imageUrl("Claymore_Tin"),
         type: "Claymore",
@@ -1494,18 +1494,18 @@ export default {
     FerrousShadow: {
         name: "FerrousShadow",
         internalName: "Claymore_Glaive",
-        nameLocale: 1709,
+        nameLocale: 1710,
         star: 3,
         url: imageUrl("Claymore_Glaive"),
         type: "Claymore",
 
         
-        effect: 1271,
+        effect: 1272,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1528,7 +1528,7 @@ export default {
     WasterGreatsword: {
         name: "WasterGreatsword",
         internalName: "Claymore_Aniki",
-        nameLocale: 1566,
+        nameLocale: 1567,
         star: 1,
         url: imageUrl("Claymore_Aniki"),
         type: "Claymore",
@@ -1542,7 +1542,7 @@ export default {
     ForestRegalia: {
         name: "ForestRegalia",
         internalName: "Claymore_Arakalari",
-        nameLocale: 1059,
+        nameLocale: 1060,
         star: 4,
         url: imageUrl("Claymore_Arakalari"),
         type: "Claymore",
@@ -1551,7 +1551,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1560,18 +1560,18 @@ export default {
     MakhairaAquamarine: {
         name: "MakhairaAquamarine",
         internalName: "Claymore_Pleroma",
-        nameLocale: 1229,
+        nameLocale: 1230,
         star: 4,
         url: imageUrl("Claymore_Pleroma"),
         type: "Claymore",
 
         
-        effect: 1070,
+        effect: 1071,
         
         
         configs: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1580,20 +1580,20 @@ export default {
     BeaconOfTheReedSea: {
         name: "BeaconOfTheReedSea",
         internalName: "Claymore_Deshret",
-        nameLocale: 1448,
+        nameLocale: 1449,
         star: 5,
         url: imageUrl("Claymore_Deshret"),
         type: "Claymore",
 
         
-        effect: 210,
+        effect: 209,
         
         
         configs: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"rate_atk","title":739,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate_hp","title":1282,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate_hp","title":1283,"type":"float"},
             
         ],
         
@@ -1602,18 +1602,18 @@ export default {
     MailedFlower: {
         name: "MailedFlower",
         internalName: "Claymore_Fleurfair",
-        nameLocale: 1837,
+        nameLocale: 1838,
         star: 4,
         url: imageUrl("Claymore_Fleurfair"),
         type: "Claymore",
 
         
-        effect: 211,
+        effect: 210,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":619,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":620,"type":"float"},
             
         ],
         
@@ -1622,7 +1622,7 @@ export default {
     TalkingStick: {
         name: "TalkingStick",
         internalName: "Claymore_BeastTamer",
-        nameLocale: 1429,
+        nameLocale: 1430,
         star: 4,
         url: imageUrl("Claymore_BeastTamer"),
         type: "Claymore",
@@ -1633,9 +1633,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate1","title":1519,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate1","title":1520,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate2","title":1520,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate2","title":1521,"type":"float"},
             
         ],
         
@@ -1644,7 +1644,7 @@ export default {
     TidalShadow: {
         name: "TidalShadow",
         internalName: "Claymore_Vorpal",
-        nameLocale: 1120,
+        nameLocale: 1121,
         star: 4,
         url: imageUrl("Claymore_Vorpal"),
         type: "Claymore",
@@ -1655,7 +1655,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1664,7 +1664,7 @@ export default {
     PortablePowerSaw: {
         name: "PortablePowerSaw",
         internalName: "Claymore_Mechanic",
-        nameLocale: 188,
+        nameLocale: 187,
         star: 4,
         url: imageUrl("Claymore_Mechanic"),
         type: "Claymore",
@@ -1684,7 +1684,7 @@ export default {
     EngulfingLightning: {
         name: "EngulfingLightning",
         internalName: "Pole_Narukami",
-        nameLocale: 1505,
+        nameLocale: 1506,
         star: 5,
         url: imageUrl("Pole_Narukami"),
         type: "Polearm",
@@ -1695,7 +1695,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1731,9 +1731,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":7.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":7.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"full_rate","title":1155,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"full_rate","title":1156,"type":"float"},
             
         ],
         
@@ -1748,7 +1748,7 @@ export default {
         type: "Polearm",
 
         
-        effect: 1484,
+        effect: 1485,
         
         
         configs: [
@@ -1770,12 +1770,12 @@ export default {
         type: "Polearm",
 
         
-        effect: 1277,
+        effect: 1278,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"be50_rate","title":1269,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"be50_rate","title":1270,"type":"float"},
             
         ],
         
@@ -1784,7 +1784,7 @@ export default {
     VortexVanquisher: {
         name: "VortexVanquisher",
         internalName: "Pole_Kunwu",
-        nameLocale: 1586,
+        nameLocale: 1587,
         star: 5,
         url: imageUrl("Pole_Kunwu"),
         type: "Polearm",
@@ -1795,9 +1795,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":700,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":699,"type":"float"},
             
         ],
         
@@ -1806,7 +1806,7 @@ export default {
     PrototypeStarglitter: {
         name: "PrototypeStarglitter",
         internalName: "Pole_Proto",
-        nameLocale: 1571,
+        nameLocale: 1572,
         star: 4,
         url: imageUrl("Pole_Proto"),
         type: "Polearm",
@@ -1817,7 +1817,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -1832,12 +1832,12 @@ export default {
         type: "Polearm",
 
         
-        effect: 1725,
+        effect: 1726,
         
         
         configs: [
             
-            {"default":0,"max":4,"min":0,"name":"liyue_count","title":1732,"type":"int"},
+            {"default":0,"max":4,"min":0,"name":"liyue_count","title":1733,"type":"int"},
             
         ],
         
@@ -1852,7 +1852,7 @@ export default {
         type: "Polearm",
 
         
-        effect: 222,
+        effect: 221,
         
         
         configs: null,
@@ -1868,7 +1868,7 @@ export default {
         type: "Polearm",
 
         
-        effect: 228,
+        effect: 227,
         
         
         configs: null,
@@ -1878,7 +1878,7 @@ export default {
     FavoniusLance: {
         name: "FavoniusLance",
         internalName: "Pole_Zephyrus",
-        nameLocale: 1541,
+        nameLocale: 1542,
         star: 4,
         url: imageUrl("Pole_Zephyrus"),
         type: "Polearm",
@@ -1894,7 +1894,7 @@ export default {
     DragonspineSpear: {
         name: "DragonspineSpear",
         internalName: "Pole_Everfrost",
-        nameLocale: 1886,
+        nameLocale: 1887,
         star: 4,
         url: imageUrl("Pole_Everfrost"),
         type: "Polearm",
@@ -1921,7 +1921,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -1936,12 +1936,12 @@ export default {
         type: "Polearm",
 
         
-        effect: 1613,
+        effect: 1614,
         
         
         configs: [
             
-            {"default":true,"name":"ge2","title":1612,"type":"bool"},
+            {"default":true,"name":"ge2","title":1613,"type":"bool"},
             
         ],
         
@@ -1950,13 +1950,13 @@ export default {
     CrescentPike: {
         name: "CrescentPike",
         internalName: "Pole_Exotic",
-        nameLocale: 1111,
+        nameLocale: 1112,
         star: 4,
         url: imageUrl("Pole_Exotic"),
         type: "Polearm",
 
         
-        effect: 1486,
+        effect: 1487,
         
         
         configs: null,
@@ -1966,7 +1966,7 @@ export default {
     BlackcliffPole: {
         name: "BlackcliffPole",
         internalName: "Pole_Blackrock",
-        nameLocale: 1878,
+        nameLocale: 1879,
         star: 4,
         url: imageUrl("Pole_Blackrock"),
         type: "Polearm",
@@ -1977,7 +1977,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -1992,12 +1992,12 @@ export default {
         type: "Polearm",
 
         
-        effect: 1723,
+        effect: 1724,
         
         
         configs: [
             
-            {"default":40,"max":400,"min":40,"name":"energy","title":1728,"type":"int"},
+            {"default":40,"max":400,"min":40,"name":"energy","title":1729,"type":"int"},
             
         ],
         
@@ -2022,7 +2022,7 @@ export default {
     Halberd: {
         name: "Halberd",
         internalName: "Pole_Halberd",
-        nameLocale: 1707,
+        nameLocale: 1708,
         star: 3,
         url: imageUrl("Pole_Halberd"),
         type: "Polearm",
@@ -2038,7 +2038,7 @@ export default {
     BlackTassel: {
         name: "BlackTassel",
         internalName: "Pole_Noire",
-        nameLocale: 1883,
+        nameLocale: 1884,
         star: 3,
         url: imageUrl("Pole_Noire"),
         type: "Polearm",
@@ -2049,7 +2049,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2058,7 +2058,7 @@ export default {
     WhiteTassel: {
         name: "WhiteTassel",
         internalName: "Pole_Ruby",
-        nameLocale: 1308,
+        nameLocale: 1309,
         star: 3,
         url: imageUrl("Pole_Ruby"),
         type: "Polearm",
@@ -2074,7 +2074,7 @@ export default {
     IronPoint: {
         name: "IronPoint",
         internalName: "Pole_Rod",
-        nameLocale: 1708,
+        nameLocale: 1709,
         star: 2,
         url: imageUrl("Pole_Rod"),
         type: "Polearm",
@@ -2102,7 +2102,7 @@ export default {
     Moonpiercer: {
         name: "Moonpiercer",
         internalName: "Pole_Arakalari",
-        nameLocale: 1584,
+        nameLocale: 1585,
         star: 4,
         url: imageUrl("Pole_Arakalari"),
         type: "Polearm",
@@ -2111,7 +2111,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2120,18 +2120,18 @@ export default {
     MissiveWindspear: {
         name: "MissiveWindspear",
         internalName: "Pole_Windvane",
-        nameLocale: 1806,
+        nameLocale: 1807,
         star: 4,
         url: imageUrl("Pole_Windvane"),
         type: "Polearm",
 
         
-        effect: 1557,
+        effect: 1558,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2140,7 +2140,7 @@ export default {
     StaffOfTheScarletSands: {
         name: "StaffOfTheScarletSands",
         internalName: "Pole_Deshret",
-        nameLocale: 1596,
+        nameLocale: 1597,
         star: 5,
         url: imageUrl("Pole_Deshret"),
         type: "Polearm",
@@ -2151,7 +2151,7 @@ export default {
         
         configs: [
             
-            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -2166,7 +2166,7 @@ export default {
         type: "Polearm",
 
         
-        effect: 1722,
+        effect: 1723,
         
         
         configs: [
@@ -2180,7 +2180,7 @@ export default {
     RightfulReward: {
         name: "RightfulReward",
         internalName: "Pole_Vorpal",
-        nameLocale: 247,
+        nameLocale: 246,
         star: 4,
         url: imageUrl("Pole_Vorpal"),
         type: "Polearm",
@@ -2222,12 +2222,12 @@ export default {
         type: "Catalyst",
 
         
-        effect: 1371,
+        effect: 1372,
         
         
         configs: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -2242,7 +2242,7 @@ export default {
         type: "Catalyst",
 
         
-        effect: 192,
+        effect: 191,
         
         
         configs: null,
@@ -2258,7 +2258,7 @@ export default {
         type: "Catalyst",
 
         
-        effect: 1095,
+        effect: 1096,
         
         
         configs: null,
@@ -2279,9 +2279,9 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":700,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":699,"type":"float"},
             
         ],
         
@@ -2301,7 +2301,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2310,13 +2310,13 @@ export default {
     TheWidsith: {
         name: "TheWidsith",
         internalName: "Catalyst_Troupe",
-        nameLocale: 1113,
+        nameLocale: 1114,
         star: 4,
         url: imageUrl("Catalyst_Troupe"),
         type: "Catalyst",
 
         
-        effect: 1550,
+        effect: 1551,
         
         
         configs: [
@@ -2325,7 +2325,7 @@ export default {
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"t2_rate","title":419,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"t3_rate","title":1718,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"t3_rate","title":1719,"type":"float"},
             
         ],
         
@@ -2356,13 +2356,13 @@ export default {
     SacrificialFragments: {
         name: "SacrificialFragments",
         internalName: "Catalyst_Fossil",
-        nameLocale: 1364,
+        nameLocale: 1365,
         star: 4,
         url: imageUrl("Catalyst_Fossil"),
         type: "Catalyst",
 
         
-        effect: 217,
+        effect: 216,
         
         
         configs: null,
@@ -2388,7 +2388,7 @@ export default {
     PrototypeAmber: {
         name: "PrototypeAmber",
         internalName: "Catalyst_Proto",
-        nameLocale: 1573,
+        nameLocale: 1574,
         star: 4,
         url: imageUrl("Catalyst_Proto"),
         type: "Catalyst",
@@ -2410,12 +2410,12 @@ export default {
         type: "Catalyst",
 
         
-        effect: 1558,
+        effect: 1559,
         
         
         configs: [
             
-            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -2424,13 +2424,13 @@ export default {
     HakushinRing: {
         name: "HakushinRing",
         internalName: "Catalyst_Bakufu",
-        nameLocale: 1309,
+        nameLocale: 1310,
         star: 4,
         url: imageUrl("Catalyst_Bakufu"),
         type: "Catalyst",
 
         
-        effect: 1534,
+        effect: 1535,
         
         
         configs: null,
@@ -2456,7 +2456,7 @@ export default {
     FavoniusCodex: {
         name: "FavoniusCodex",
         internalName: "Catalyst_Zephyrus",
-        nameLocale: 1540,
+        nameLocale: 1541,
         star: 4,
         url: imageUrl("Catalyst_Zephyrus"),
         type: "Catalyst",
@@ -2510,7 +2510,7 @@ export default {
     BlackcliffAgate: {
         name: "BlackcliffAgate",
         internalName: "Catalyst_Blackrock",
-        nameLocale: 1881,
+        nameLocale: 1882,
         star: 4,
         url: imageUrl("Catalyst_Blackrock"),
         type: "Catalyst",
@@ -2521,7 +2521,7 @@ export default {
         
         configs: [
             
-            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -2530,7 +2530,7 @@ export default {
     KagurasVerity: {
         name: "KagurasVerity",
         internalName: "Catalyst_Narukami",
-        nameLocale: 1337,
+        nameLocale: 1338,
         star: 5,
         url: imageUrl("Catalyst_Narukami"),
         type: "Catalyst",
@@ -2541,9 +2541,9 @@ export default {
         
         configs: [
             
-            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"full_rate","title":1154,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"full_rate","title":1155,"type":"float"},
             
         ],
         
@@ -2552,7 +2552,7 @@ export default {
     OathswornEye: {
         name: "OathswornEye",
         internalName: "Catalyst_Jyanome",
-        nameLocale: 1567,
+        nameLocale: 1568,
         star: 4,
         url: imageUrl("Catalyst_Jyanome"),
         type: "Catalyst",
@@ -2563,7 +2563,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2572,7 +2572,7 @@ export default {
     MagicGuide: {
         name: "MagicGuide",
         internalName: "Catalyst_Intro",
-        nameLocale: 1856,
+        nameLocale: 1857,
         star: 3,
         url: imageUrl("Catalyst_Intro"),
         type: "Catalyst",
@@ -2583,7 +2583,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2598,7 +2598,7 @@ export default {
         type: "Catalyst",
 
         
-        effect: 1487,
+        effect: 1488,
         
         
         configs: null,
@@ -2608,18 +2608,18 @@ export default {
     EmeraldOrb: {
         name: "EmeraldOrb",
         internalName: "Catalyst_Jade",
-        nameLocale: 1426,
+        nameLocale: 1427,
         star: 3,
         url: imageUrl("Catalyst_Jade"),
         type: "Catalyst",
 
         
-        effect: 1561,
+        effect: 1562,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2628,7 +2628,7 @@ export default {
     ThrillingTalesOfDragonSlayers: {
         name: "ThrillingTalesOfDragonSlayers",
         internalName: "Catalyst_Pulpfic",
-        nameLocale: 1564,
+        nameLocale: 1565,
         star: 3,
         url: imageUrl("Catalyst_Pulpfic"),
         type: "Catalyst",
@@ -2644,7 +2644,7 @@ export default {
     TwinNephrite: {
         name: "TwinNephrite",
         internalName: "Catalyst_Phoney",
-        nameLocale: 1286,
+        nameLocale: 1287,
         star: 3,
         url: imageUrl("Catalyst_Phoney"),
         type: "Catalyst",
@@ -2655,7 +2655,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2692,7 +2692,7 @@ export default {
     FruitOfFulfillment: {
         name: "FruitOfFulfillment",
         internalName: "Catalyst_Arakalari",
-        nameLocale: 1312,
+        nameLocale: 1313,
         star: 4,
         url: imageUrl("Catalyst_Arakalari"),
         type: "Catalyst",
@@ -2701,7 +2701,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -2710,18 +2710,18 @@ export default {
     WanderingEvenstar: {
         name: "WanderingEvenstar",
         internalName: "Catalyst_Pleroma",
-        nameLocale: 1115,
+        nameLocale: 1116,
         star: 4,
         url: imageUrl("Catalyst_Pleroma"),
         type: "Catalyst",
 
         
-        effect: 1070,
+        effect: 1071,
         
         
         configs: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2736,14 +2736,14 @@ export default {
         type: "Catalyst",
 
         
-        effect: 1724,
+        effect: 1725,
         
         
         configs: [
             
             {"default":1,"max":3,"min":0,"name":"same_count","title":384,"type":"int"},
             
-            {"default":2,"max":3,"min":0,"name":"diff_count","title":94,"type":"int"},
+            {"default":2,"max":3,"min":0,"name":"diff_count","title":93,"type":"int"},
             
         ],
         
@@ -2763,7 +2763,7 @@ export default {
         
         configs: [
             
-            {"default":7.0,"max":10.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":7.0,"max":10.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -2772,7 +2772,7 @@ export default {
     JadeFallsSplendor: {
         name: "JadeFallsSplendor",
         internalName: "Catalyst_Morax",
-        nameLocale: 1331,
+        nameLocale: 1332,
         star: 5,
         url: imageUrl("Catalyst_Morax"),
         type: "Catalyst",
@@ -2783,7 +2783,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2792,7 +2792,7 @@ export default {
     SacrificialJade: {
         name: "SacrificialJade",
         internalName: "",
-        nameLocale: 1659,
+        nameLocale: 1660,
         star: 4,
         url: imageUrl(""),
         type: "Catalyst",
@@ -2803,7 +2803,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2812,7 +2812,7 @@ export default {
     FlowingPurity: {
         name: "FlowingPurity",
         internalName: "Catalyst_Vorpal",
-        nameLocale: 1390,
+        nameLocale: 1391,
         star: 4,
         url: imageUrl("Catalyst_Vorpal"),
         type: "Catalyst",
@@ -2845,7 +2845,7 @@ export default {
         
         configs: [
             
-            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -2854,7 +2854,7 @@ export default {
     CashflowSupervision: {
         name: "CashflowSupervision",
         internalName: "Catalyst_Wheatley",
-        nameLocale: 1698,
+        nameLocale: 1699,
         star: 5,
         url: imageUrl("Catalyst_Wheatley"),
         type: "Catalyst",
@@ -2865,7 +2865,7 @@ export default {
         
         configs: [
             
-            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -2880,12 +2880,12 @@ export default {
         type: "Catalyst",
 
         
-        effect: 1275,
+        effect: 1276,
         
         
         configs: [
             
-            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -2900,7 +2900,7 @@ export default {
         type: "Bow",
 
         
-        effect: 212,
+        effect: 211,
         
         
         configs: [
@@ -2914,7 +2914,7 @@ export default {
     ThunderingPulse: {
         name: "ThunderingPulse",
         internalName: "Bow_Narukami",
-        nameLocale: 1834,
+        nameLocale: 1835,
         star: 5,
         url: imageUrl("Bow_Narukami"),
         type: "Bow",
@@ -2934,18 +2934,18 @@ export default {
     ElegyOfTheEnd: {
         name: "ElegyOfTheEnd",
         internalName: "Bow_Widsith",
-        nameLocale: 1397,
+        nameLocale: 1398,
         star: 5,
         url: imageUrl("Bow_Widsith"),
         type: "Bow",
 
         
-        effect: 1828,
+        effect: 1829,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -2970,7 +2970,7 @@ export default {
     AmosBow: {
         name: "AmosBow",
         internalName: "Bow_Amos",
-        nameLocale: 1746,
+        nameLocale: 1747,
         star: 5,
         url: imageUrl("Bow_Amos"),
         type: "Bow",
@@ -2981,7 +2981,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -2996,12 +2996,12 @@ export default {
         type: "Bow",
 
         
-        effect: 1518,
+        effect: 1519,
         
         
         configs: [
             
-            {"default":0.0,"max":10.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":10.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -3010,7 +3010,7 @@ export default {
     TheViridescentHunt: {
         name: "TheViridescentHunt",
         internalName: "Bow_Viridescent",
-        nameLocale: 1453,
+        nameLocale: 1454,
         star: 4,
         url: imageUrl("Bow_Viridescent"),
         type: "Bow",
@@ -3026,13 +3026,13 @@ export default {
     TheStringless: {
         name: "TheStringless",
         internalName: "Bow_Troupe",
-        nameLocale: 1402,
+        nameLocale: 1403,
         star: 4,
         url: imageUrl("Bow_Troupe"),
         type: "Bow",
 
         
-        effect: 202,
+        effect: 201,
         
         
         configs: null,
@@ -3042,13 +3042,13 @@ export default {
     SacrificialBow: {
         name: "SacrificialBow",
         internalName: "Bow_Fossil",
-        nameLocale: 1363,
+        nameLocale: 1364,
         star: 4,
         url: imageUrl("Bow_Fossil"),
         type: "Bow",
 
         
-        effect: 217,
+        effect: 216,
         
         
         configs: null,
@@ -3101,7 +3101,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":2.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -3110,18 +3110,18 @@ export default {
     PrototypeCrescent: {
         name: "PrototypeCrescent",
         internalName: "Bow_Proto",
-        nameLocale: 1572,
+        nameLocale: 1573,
         star: 4,
         url: imageUrl("Bow_Proto"),
         type: "Bow",
 
         
-        effect: 1693,
+        effect: 1694,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -3136,12 +3136,12 @@ export default {
         type: "Bow",
 
         
-        effect: 1723,
+        effect: 1724,
         
         
         configs: [
             
-            {"default":40,"max":400,"min":40,"name":"energy","title":1728,"type":"int"},
+            {"default":40,"max":400,"min":40,"name":"energy","title":1729,"type":"int"},
             
         ],
         
@@ -3172,7 +3172,7 @@ export default {
     Hamayumi: {
         name: "Hamayumi",
         internalName: "Bow_Bakufu",
-        nameLocale: 1330,
+        nameLocale: 1331,
         star: 4,
         url: imageUrl("Bow_Bakufu"),
         type: "Bow",
@@ -3183,7 +3183,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -3192,7 +3192,7 @@ export default {
     FavoniusWarbow: {
         name: "FavoniusWarbow",
         internalName: "Bow_Zephyrus",
-        nameLocale: 1539,
+        nameLocale: 1540,
         star: 4,
         url: imageUrl("Bow_Zephyrus"),
         type: "Bow",
@@ -3208,7 +3208,7 @@ export default {
     CompoundBow: {
         name: "CompoundBow",
         internalName: "Bow_Exotic",
-        nameLocale: 1706,
+        nameLocale: 1707,
         star: 4,
         url: imageUrl("Bow_Exotic"),
         type: "Bow",
@@ -3219,7 +3219,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -3228,7 +3228,7 @@ export default {
     BlackcliffWarbow: {
         name: "BlackcliffWarbow",
         internalName: "Bow_Blackrock",
-        nameLocale: 1879,
+        nameLocale: 1880,
         star: 4,
         url: imageUrl("Bow_Blackrock"),
         type: "Bow",
@@ -3239,7 +3239,7 @@ export default {
         
         configs: [
             
-            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1523,"type":"float"},
+            {"default":3.0,"max":3.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
         ],
         
@@ -3248,7 +3248,7 @@ export default {
     WindblumeOde: {
         name: "WindblumeOde",
         internalName: "Bow_Fleurfair",
-        nameLocale: 1814,
+        nameLocale: 1815,
         star: 4,
         url: imageUrl("Bow_Fleurfair"),
         type: "Bow",
@@ -3259,7 +3259,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -3268,7 +3268,7 @@ export default {
     RavenBow: {
         name: "RavenBow",
         internalName: "Bow_Crowfeather",
-        nameLocale: 1861,
+        nameLocale: 1862,
         star: 3,
         url: imageUrl("Bow_Crowfeather"),
         type: "Bow",
@@ -3279,7 +3279,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -3304,13 +3304,13 @@ export default {
     Messenger: {
         name: "Messenger",
         internalName: "Bow_Msg",
-        nameLocale: 189,
+        nameLocale: 188,
         star: 3,
         url: imageUrl("Bow_Msg"),
         type: "Bow",
 
         
-        effect: 1694,
+        effect: 1695,
         
         
         configs: null,
@@ -3320,18 +3320,18 @@ export default {
     SharpshootersOath: {
         name: "SharpshootersOath",
         internalName: "Bow_Arjuna",
-        nameLocale: 1340,
+        nameLocale: 1341,
         star: 3,
         url: imageUrl("Bow_Arjuna"),
         type: "Bow",
 
         
-        effect: 1700,
+        effect: 1701,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -3353,7 +3353,7 @@ export default {
             
             {"default":true,"name":"is_effect","title":1,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -3376,7 +3376,7 @@ export default {
     HuntersBow: {
         name: "HuntersBow",
         internalName: "Bow_Hunters",
-        nameLocale: 1219,
+        nameLocale: 1220,
         star: 1,
         url: imageUrl("Bow_Hunters"),
         type: "Bow",
@@ -3390,13 +3390,13 @@ export default {
     AquaSimulacra: {
         name: "AquaSimulacra",
         internalName: "Bow_Kirin",
-        nameLocale: 1455,
+        nameLocale: 1456,
         star: 5,
         url: imageUrl("Bow_Kirin"),
         type: "Bow",
 
         
-        effect: 1274,
+        effect: 1275,
         
         
         configs: [
@@ -3410,7 +3410,7 @@ export default {
     FadingTwilight: {
         name: "FadingTwilight",
         internalName: "Bow_Fallensun",
-        nameLocale: 1499,
+        nameLocale: 1500,
         star: 4,
         url: imageUrl("Bow_Fallensun"),
         type: "Bow",
@@ -3421,7 +3421,7 @@ export default {
         
         configs: [
             
-            {"default":2,"name":"state","options":["夕暮","流霞","朝晖"],"title":1206,"type":"option"},
+            {"default":2,"name":"state","options":["夕暮","流霞","朝晖"],"title":1207,"type":"option"},
             
         ],
         
@@ -3430,18 +3430,18 @@ export default {
     HuntersPath: {
         name: "HuntersPath",
         internalName: "Bow_Ayus",
-        nameLocale: 1216,
+        nameLocale: 1217,
         star: 5,
         url: imageUrl("Bow_Ayus"),
         type: "Bow",
 
         
-        effect: 1482,
+        effect: 1483,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -3450,7 +3450,7 @@ export default {
     Trawler: {
         name: "Trawler",
         internalName: "Bow_Fin",
-        nameLocale: 1374,
+        nameLocale: 1375,
         star: 4,
         url: imageUrl("Bow_Fin"),
         type: "Bow",
@@ -3466,7 +3466,7 @@ export default {
     KingsSquire: {
         name: "KingsSquire",
         internalName: "Bow_Arakalari",
-        nameLocale: 1228,
+        nameLocale: 1229,
         star: 4,
         url: imageUrl("Bow_Arakalari"),
         type: "Bow",
@@ -3475,7 +3475,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -3484,13 +3484,13 @@ export default {
     IbisPiercer: {
         name: "IbisPiercer",
         internalName: "Bow_Ibis",
-        nameLocale: 1862,
+        nameLocale: 1863,
         star: 4,
         url: imageUrl("Bow_Ibis"),
         type: "Bow",
 
         
-        effect: 1686,
+        effect: 1687,
         
         
         configs: [
@@ -3510,14 +3510,14 @@ export default {
         type: "Bow",
 
         
-        effect: 1695,
+        effect: 1696,
         
         
         configs: [
             
-            {"default":1.0,"max":3.0,"min":0.0,"name":"same_count","title":1729,"type":"float"},
+            {"default":1.0,"max":3.0,"min":0.0,"name":"same_count","title":1730,"type":"float"},
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"diff_count","title":1719,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"diff_count","title":1720,"type":"float"},
             
         ],
         
@@ -3526,18 +3526,18 @@ export default {
     ScionOfTheBlazingSun: {
         name: "ScionOfTheBlazingSun",
         internalName: "Bow_Gurabad",
-        nameLocale: 1185,
+        nameLocale: 1186,
         star: 4,
         url: imageUrl("Bow_Gurabad"),
         type: "Bow",
 
         
-        effect: 1687,
+        effect: 1688,
         
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -3546,7 +3546,7 @@ export default {
     SongOfStillness: {
         name: "SongOfStillness",
         internalName: "Bow_Vorpal",
-        nameLocale: 1798,
+        nameLocale: 1799,
         star: 4,
         url: imageUrl("Bow_Vorpal"),
         type: "Bow",
@@ -3557,7 +3557,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":1522,"type":"float"},
             
         ],
         
@@ -3566,7 +3566,7 @@ export default {
     RangeGauge: {
         name: "RangeGauge",
         internalName: "Bow_Mechanic",
-        nameLocale: 1119,
+        nameLocale: 1120,
         star: 4,
         url: imageUrl("Bow_Mechanic"),
         type: "Bow",

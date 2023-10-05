@@ -20,21 +20,21 @@ export default {
             
             {"default":1.0,"max":1.0,"min":0.0,"name":"atk_p_weight","title":725,"type":"float"},
             
-            {"default":false,"name":"hp_use","title":1279,"type":"bool"},
+            {"default":false,"name":"hp_use","title":1280,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_weight","title":1280,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_weight","title":1281,"type":"float"},
             
-            {"default":false,"name":"hp_p_use","title":1264,"type":"bool"},
+            {"default":false,"name":"hp_p_use","title":1265,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_p_weight","title":1265,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"hp_p_weight","title":1266,"type":"float"},
             
-            {"default":false,"name":"def_use","title":1743,"type":"bool"},
+            {"default":false,"name":"def_use","title":1744,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"def_weight","title":1744,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"def_weight","title":1745,"type":"float"},
             
-            {"default":false,"name":"def_p_use","title":1738,"type":"bool"},
+            {"default":false,"name":"def_p_use","title":1739,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"def_p_weight","title":1739,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"def_p_weight","title":1740,"type":"float"},
             
             {"default":true,"name":"critical_use","title":997,"type":"bool"},
             
@@ -44,13 +44,13 @@ export default {
             
             {"default":1.0,"max":1.0,"min":0.0,"name":"critical_damage_weight","title":992,"type":"float"},
             
-            {"default":false,"name":"elemental_mastery_use","title":236,"type":"bool"},
+            {"default":false,"name":"elemental_mastery_use","title":235,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"elemental_mastery_weight","title":237,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"elemental_mastery_weight","title":236,"type":"float"},
             
-            {"default":false,"name":"recharge_use","title":195,"type":"bool"},
+            {"default":false,"name":"recharge_use","title":194,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"recharge_weight","title":196,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"recharge_weight","title":195,"type":"float"},
             
         ],
     },
