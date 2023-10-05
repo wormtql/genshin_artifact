@@ -212,7 +212,7 @@ export default {
     
     "MaxATK": {
         name: "MaxATK",
-        nameLocale: 1011,
+        nameLocale: 1012,
         description: 1008,
         tags: [
             
@@ -230,8 +230,8 @@ export default {
     
     "MaxDEF": {
         name: "MaxDEF",
-        nameLocale: 1016,
-        description: 1010,
+        nameLocale: 1017,
+        description: 1011,
         tags: [
             
             "防御",
@@ -248,8 +248,8 @@ export default {
     
     "MaxHP": {
         name: "MaxHP",
-        nameLocale: 1013,
-        description: 1009,
+        nameLocale: 1014,
+        description: 1010,
         tags: [
             
             "生命",
@@ -302,8 +302,8 @@ export default {
     
     "PyroDamage": {
         name: "PyroDamage",
-        nameLocale: 1158,
-        description: 1159,
+        nameLocale: 1159,
+        description: 1160,
         tags: [
             
             "输出",
@@ -315,7 +315,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":1383,"type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":1384,"type":"option"},
             
         ],
     },
@@ -335,15 +335,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":1383,"type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":1384,"type":"option"},
             
         ],
     },
     
     "HydroDamage": {
         name: "HydroDamage",
-        nameLocale: 1075,
-        description: 1076,
+        nameLocale: 1076,
+        description: 1077,
         tags: [
             
             "输出",
@@ -355,15 +355,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":1383,"type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":1384,"type":"option"},
             
         ],
     },
     
     "ElectroDamage": {
         name: "ElectroDamage",
-        nameLocale: 1767,
-        description: 1768,
+        nameLocale: 1768,
+        description: 1769,
         tags: [
             
             "输出",
@@ -375,15 +375,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":1383,"type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":1384,"type":"option"},
             
         ],
     },
     
     "AnemoDamage": {
         name: "AnemoDamage",
-        nameLocale: 1803,
-        description: 1805,
+        nameLocale: 1804,
+        description: 1806,
         tags: [
             
             "输出",
@@ -395,15 +395,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":1383,"type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":1384,"type":"option"},
             
         ],
     },
     
     "DendroDamage": {
         name: "DendroDamage",
-        nameLocale: 1454,
-        description: 1455,
+        nameLocale: 1455,
+        description: 1456,
         tags: [
             
             "",
@@ -415,7 +415,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":1383,"type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":1384,"type":"option"},
             
         ],
     },
@@ -435,15 +435,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":1383,"type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":1384,"type":"option"},
             
         ],
     },
     
     "PhysicalDamage": {
         name: "PhysicalDamage",
-        nameLocale: 1201,
-        description: 1202,
+        nameLocale: 1202,
+        description: 1203,
         tags: [
             
             "输出",
@@ -455,15 +455,15 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["期望","最大值"],"title":1383,"type":"option"},
+            {"default":0,"name":"t","options":["期望","最大值"],"title":1384,"type":"option"},
             
         ],
     },
     
     "MaxVaporize": {
         name: "MaxVaporize",
-        nameLocale: 1014,
-        description: 180,
+        nameLocale: 1015,
+        description: 179,
         tags: [
             
             "输出",
@@ -475,7 +475,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","水"],"title":1553,"type":"option"},
+            {"default":0,"name":"t","options":["火","水"],"title":1554,"type":"option"},
             
             {"default":"NormalAttack","name":"skill","title":675,"type":"skill4"},
             
@@ -484,8 +484,8 @@ export default {
     
     "MaxMelt": {
         name: "MaxMelt",
-        nameLocale: 1015,
-        description: 182,
+        nameLocale: 1016,
+        description: 181,
         tags: [
             
             "输出",
@@ -497,7 +497,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","冰"],"title":1553,"type":"option"},
+            {"default":0,"name":"t","options":["火","冰"],"title":1554,"type":"option"},
             
             {"default":"NormalAttack","name":"skill","title":675,"type":"skill4"},
             
@@ -506,8 +506,8 @@ export default {
     
     "ExpectVaporize": {
         name: "ExpectVaporize",
-        nameLocale: 1023,
-        description: 181,
+        nameLocale: 1024,
+        description: 180,
         tags: [
             
             "输出",
@@ -519,7 +519,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","水"],"title":1553,"type":"option"},
+            {"default":0,"name":"t","options":["火","水"],"title":1554,"type":"option"},
             
             {"default":"NormalAttack","name":"skill","title":675,"type":"skill4"},
             
@@ -528,8 +528,8 @@ export default {
     
     "ExpectMelt": {
         name: "ExpectMelt",
-        nameLocale: 1024,
-        description: 183,
+        nameLocale: 1025,
+        description: 182,
         tags: [
             
             "输出",
@@ -541,7 +541,7 @@ export default {
         
         config: [
             
-            {"default":0,"name":"t","options":["火","冰"],"title":1553,"type":"option"},
+            {"default":0,"name":"t","options":["火","冰"],"title":1554,"type":"option"},
             
             {"default":"NormalAttack","name":"skill","title":675,"type":"skill4"},
             
@@ -550,7 +550,7 @@ export default {
     
     "AlbedoDefault": {
         name: "AlbedoDefault",
-        nameLocale: 1749,
+        nameLocale: 1750,
         description: 839,
         tags: [
             
@@ -604,8 +604,8 @@ export default {
     
     "AratakiIttoDefault": {
         name: "AratakiIttoDefault",
-        nameLocale: 1458,
-        description: 1460,
+        nameLocale: 1459,
+        description: 1461,
         tags: [
             
             "输出",
@@ -622,8 +622,8 @@ export default {
     
     "BarbaraDefault": {
         name: "BarbaraDefault",
-        nameLocale: 1443,
-        description: 179,
+        nameLocale: 1444,
+        description: 178,
         tags: [
             
             "治疗",
@@ -660,7 +660,7 @@ export default {
     
     "BennettDamage": {
         name: "BennettDamage",
-        nameLocale: 1237,
+        nameLocale: 1238,
         description: 836,
         tags: [
             
@@ -677,7 +677,7 @@ export default {
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":238,"type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
             
             {"default":0.9,"max":1.0,"min":0.0,"name":"other_dmg_ratio","title":159,"type":"float"},
             
@@ -686,7 +686,7 @@ export default {
     
     "BennettDefault": {
         name: "BennettDefault",
-        nameLocale: 1238,
+        nameLocale: 1239,
         description: 951,
         tags: [
             
@@ -699,14 +699,14 @@ export default {
         
         config: [
             
-            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":238,"type":"float"},
+            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
             
         ],
     },
     
     "ChongyunDefault": {
         name: "ChongyunDefault",
-        nameLocale: 1664,
+        nameLocale: 1665,
         description: 838,
         tags: [
             
@@ -726,7 +726,7 @@ export default {
     
     "DilucDefault": {
         name: "DilucDefault",
-        nameLocale: 1633,
+        nameLocale: 1634,
         description: 977,
         tags: [
             
@@ -739,16 +739,16 @@ export default {
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1507,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1508,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1499,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1500,"type":"float"},
             
         ],
     },
     
     "DionaDefault": {
         name: "DionaDefault",
-        nameLocale: 1636,
+        nameLocale: 1637,
         description: 944,
         tags: [
             
@@ -763,7 +763,7 @@ export default {
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":238,"type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
             
         ],
     },
@@ -788,7 +788,7 @@ export default {
     
     "FischlDefault": {
         name: "FischlDefault",
-        nameLocale: 1493,
+        nameLocale: 1494,
         description: 833,
         tags: [
             
@@ -806,7 +806,7 @@ export default {
     
     "GanyuDefault": {
         name: "GanyuDefault",
-        nameLocale: 1257,
+        nameLocale: 1258,
         description: 972,
         tags: [
             
@@ -819,7 +819,7 @@ export default {
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1507,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1508,"type":"float"},
             
         ],
     },
@@ -839,14 +839,14 @@ export default {
         
         config: [
             
-            {"default":1.7,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.7,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
     
     "HuTaoDefault": {
         name: "HuTaoDefault",
-        nameLocale: 1435,
+        nameLocale: 1436,
         description: 956,
         tags: [
             
@@ -859,16 +859,16 @@ export default {
         
         config: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1499,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1500,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1507,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1508,"type":"float"},
             
         ],
     },
     
     "JeanDefault": {
         name: "JeanDefault",
-        nameLocale: 1249,
+        nameLocale: 1250,
         description: 834,
         tags: [
             
@@ -883,16 +883,16 @@ export default {
         
         config: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"damage_weight","title":1091,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"damage_weight","title":1092,"type":"float"},
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
     
     "KaedeharaKazuhaDamage": {
         name: "KaedeharaKazuhaDamage",
-        nameLocale: 1040,
+        nameLocale: 1041,
         description: 967,
         tags: [
             
@@ -907,7 +907,7 @@ export default {
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":238,"type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
             
             {"default":0.5,"max":1.0,"min":0.0,"name":"swirl_rate","title":672,"type":"float"},
             
@@ -918,7 +918,7 @@ export default {
     
     "KaedeharaKazuhaDefault": {
         name: "KaedeharaKazuhaDefault",
-        nameLocale: 1039,
+        nameLocale: 1040,
         description: 950,
         tags: [
             
@@ -931,7 +931,7 @@ export default {
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":238,"type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
             
         ],
     },
@@ -956,7 +956,7 @@ export default {
     
     "KamisatoAyakaDefault": {
         name: "KamisatoAyakaDefault",
-        nameLocale: 1352,
+        nameLocale: 1353,
         description: 831,
         tags: [
             
@@ -969,15 +969,15 @@ export default {
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":238,"type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
             
         ],
     },
     
     "KamisatoAyakaDps": {
         name: "KamisatoAyakaDps",
-        nameLocale: 1350,
-        description: 1022,
+        nameLocale: 1351,
+        description: 1023,
         tags: [
             
             "输出",
@@ -994,7 +994,7 @@ export default {
     
     "KamisatoAyatoDefault": {
         name: "KamisatoAyatoDefault",
-        nameLocale: 1346,
+        nameLocale: 1347,
         description: 943,
         tags: [
             
@@ -1025,7 +1025,7 @@ export default {
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":1596,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":1597,"type":"float"},
             
         ],
     },
@@ -1045,7 +1045,7 @@ export default {
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":238,"type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
             
         ],
     },
@@ -1067,7 +1067,7 @@ export default {
         
         config: [
             
-            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":238,"type":"float"},
+            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
             
         ],
     },
@@ -1105,14 +1105,14 @@ export default {
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
     
     "MonaDefault": {
         name: "MonaDefault",
-        nameLocale: 1467,
+        nameLocale: 1468,
         description: 973,
         tags: [
             
@@ -1127,7 +1127,7 @@ export default {
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
@@ -1152,7 +1152,7 @@ export default {
     
     "NoelleDefault": {
         name: "NoelleDefault",
-        nameLocale: 1576,
+        nameLocale: 1577,
         description: 975,
         tags: [
             
@@ -1183,14 +1183,14 @@ export default {
         
         config: [
             
-            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
     
     "RaidenShogunDefault": {
         name: "RaidenShogunDefault",
-        nameLocale: 1782,
+        nameLocale: 1783,
         description: 979,
         tags: [
             
@@ -1203,14 +1203,14 @@ export default {
         
         config: [
             
-            {"default":2.6,"max":4.0,"min":1.0,"name":"recharge_demand","title":238,"type":"float"},
+            {"default":2.6,"max":4.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
             
         ],
     },
     
     "RazorDefault": {
         name: "RazorDefault",
-        nameLocale: 1775,
+        nameLocale: 1776,
         description: 971,
         tags: [
             
@@ -1228,7 +1228,7 @@ export default {
     
     "RosariaDefault": {
         name: "RosariaDefault",
-        nameLocale: 1411,
+        nameLocale: 1412,
         description: 954,
         tags: [
             
@@ -1248,7 +1248,7 @@ export default {
     
     "SangonomiyaKokomiDefault": {
         name: "SangonomiyaKokomiDefault",
-        nameLocale: 1230,
+        nameLocale: 1231,
         description: 965,
         tags: [
             
@@ -1283,14 +1283,14 @@ export default {
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
     
     "ShenheDefault": {
         name: "ShenheDefault",
-        nameLocale: 1290,
+        nameLocale: 1291,
         description: 952,
         tags: [
             
@@ -1303,14 +1303,14 @@ export default {
         
         config: [
             
-            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
     
     "SucroseDefault": {
         name: "SucroseDefault",
-        nameLocale: 1320,
+        nameLocale: 1321,
         description: 953,
         tags: [
             
@@ -1323,14 +1323,14 @@ export default {
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
     
     "TartagliaDefault": {
         name: "TartagliaDefault",
-        nameLocale: 1627,
+        nameLocale: 1628,
         description: 976,
         tags: [
             
@@ -1361,14 +1361,14 @@ export default {
         
         config: [
             
-            {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
     
     "VentiDefault": {
         name: "VentiDefault",
-        nameLocale: 1142,
+        nameLocale: 1143,
         description: 968,
         tags: [
             
@@ -1388,7 +1388,7 @@ export default {
     
     "XianglingDefault": {
         name: "XianglingDefault",
-        nameLocale: 1840,
+        nameLocale: 1841,
         description: 969,
         tags: [
             
@@ -1401,20 +1401,20 @@ export default {
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1507,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1508,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1499,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1500,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_rate","title":1602,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_rate","title":1603,"type":"float"},
             
         ],
     },
     
     "XiaoDefault": {
         name: "XiaoDefault",
-        nameLocale: 1849,
+        nameLocale: 1850,
         description: 980,
         tags: [
             
@@ -1432,7 +1432,7 @@ export default {
     
     "XingqiuDefault": {
         name: "XingqiuDefault",
-        nameLocale: 1512,
+        nameLocale: 1513,
         description: 837,
         tags: [
             
@@ -1445,14 +1445,14 @@ export default {
         
         config: [
             
-            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
     
     "XinyanDamage": {
         name: "XinyanDamage",
-        nameLocale: 1621,
+        nameLocale: 1622,
         description: 948,
         tags: [
             
@@ -1470,7 +1470,7 @@ export default {
     
     "XinyanDefault": {
         name: "XinyanDefault",
-        nameLocale: 1620,
+        nameLocale: 1621,
         description: 955,
         tags: [
             
@@ -1483,7 +1483,7 @@ export default {
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
             {"default":0.5,"max":1.0,"min":0.0,"name":"damage_demand","title":173,"type":"float"},
             
@@ -1492,7 +1492,7 @@ export default {
     
     "YaeMikoDefault": {
         name: "YaeMikoDefault",
-        nameLocale: 243,
+        nameLocale: 242,
         description: 710,
         tags: [
             
@@ -1505,20 +1505,20 @@ export default {
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_requirement","title":237,"type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_requirement","title":236,"type":"float"},
             
-            {"default":0,"name":"combo","options":["不站场平A","站场平A"],"title":1629,"type":"option"},
+            {"default":0,"name":"combo","options":["不站场平A","站场平A"],"title":1630,"type":"option"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":1596,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":1597,"type":"float"},
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"hyperbloom_rate","title":1597,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"hyperbloom_rate","title":1598,"type":"float"},
             
         ],
     },
     
     "YanfeiDefault": {
         name: "YanfeiDefault",
-        nameLocale: 1185,
+        nameLocale: 1186,
         description: 970,
         tags: [
             
@@ -1549,9 +1549,9 @@ export default {
         
         config: [
             
-            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":238,"type":"float"},
+            {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1499,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1500,"type":"float"},
             
         ],
     },
@@ -1571,9 +1571,9 @@ export default {
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1499,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1500,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1507,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1508,"type":"float"},
             
         ],
     },
@@ -1593,14 +1593,14 @@ export default {
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
     
     "ZhongliDefault": {
         name: "ZhongliDefault",
-        nameLocale: 1702,
+        nameLocale: 1703,
         description: 947,
         tags: [
             
@@ -1613,7 +1613,7 @@ export default {
         
         config: [
             
-            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
@@ -1621,7 +1621,7 @@ export default {
     "KukiShinobuDefault": {
         name: "KukiShinobuDefault",
         nameLocale: 103,
-        description: 1615,
+        description: 1616,
         tags: [
             
             "辅助",
@@ -1640,8 +1640,8 @@ export default {
     
     "ShikanoinHeizouDefault": {
         name: "ShikanoinHeizouDefault",
-        nameLocale: 1864,
-        description: 1616,
+        nameLocale: 1865,
+        description: 1617,
         tags: [
             
             "输出",
@@ -1659,7 +1659,7 @@ export default {
     "TighnariDefault": {
         name: "TighnariDefault",
         nameLocale: 716,
-        description: 177,
+        description: 1009,
         tags: [
             
             "",
@@ -1671,14 +1671,12 @@ export default {
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"spread_rate","title":1501,"type":"float"},
-            
         ],
     },
     
     "CynoDefault": {
         name: "CynoDefault",
-        nameLocale: 1592,
+        nameLocale: 1593,
         description: 661,
         tags: [
             
@@ -1691,19 +1689,19 @@ export default {
         
         config: [
             
-            {"default":1.3,"max":3.0,"min":1.0,"name":"recharge_requirement","title":237,"type":"float"},
+            {"default":1.3,"max":3.0,"min":1.0,"name":"recharge_requirement","title":236,"type":"float"},
             
-            {"default":0,"name":"combo","options":["乱a不取消","取消第五段"],"title":1629,"type":"option"},
+            {"default":0,"name":"combo","options":["乱a不取消","取消第五段"],"title":1630,"type":"option"},
             
             {"default":false,"name":"until_expire","title":19,"type":"bool"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":1596,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":1597,"type":"float"},
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"elecharged_rate","title":652,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_rate","title":1601,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"overload_rate","title":1602,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"hyperbloom_rate","title":1597,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"hyperbloom_rate","title":1598,"type":"float"},
             
         ],
     },
@@ -1723,23 +1721,23 @@ export default {
         
         config: [
             
-            {"default":5.0,"max":10.0,"min":0.0,"name":"e_ratio","title":203,"type":"float"},
+            {"default":5.0,"max":10.0,"min":0.0,"name":"e_ratio","title":202,"type":"float"},
             
-            {"default":1.0,"max":10.0,"min":0.0,"name":"q_ratio","title":221,"type":"float"},
+            {"default":1.0,"max":10.0,"min":0.0,"name":"q_ratio","title":220,"type":"float"},
             
-            {"default":3.0,"max":10.0,"min":0.0,"name":"bloom_ratio","title":1406,"type":"float"},
+            {"default":3.0,"max":10.0,"min":0.0,"name":"bloom_ratio","title":1407,"type":"float"},
             
-            {"default":1000.0,"max":3000.0,"min":0.0,"name":"other_em","title":1732,"type":"float"},
+            {"default":1000.0,"max":3000.0,"min":0.0,"name":"other_em","title":1733,"type":"float"},
             
-            {"default":7.0,"max":10.0,"min":0.0,"name":"other_bloom_ratio","title":1733,"type":"float"},
+            {"default":7.0,"max":10.0,"min":0.0,"name":"other_bloom_ratio","title":1734,"type":"float"},
             
         ],
     },
     
     "NahidaDefault": {
         name: "NahidaDefault",
-        nameLocale: 1391,
-        description: 184,
+        nameLocale: 1392,
+        description: 183,
         tags: [
             
             "输出",
@@ -1751,23 +1749,23 @@ export default {
         
         config: [
             
-            {"default":0,"max":1500,"min":0,"name":"em_requirement","title":1385,"type":"int"},
+            {"default":0,"max":1500,"min":0,"name":"em_requirement","title":1386,"type":"int"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"spread_rate","title":1501,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"spread_rate","title":1502,"type":"float"},
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"bloom_count","title":1406,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"bloom_count","title":1407,"type":"float"},
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"burn_duration","title":1194,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"burn_duration","title":1195,"type":"float"},
             
-            {"default":0,"max":2,"min":0,"name":"pryo_teammate_count","title":1163,"type":"int"},
+            {"default":0,"max":2,"min":0,"name":"pryo_teammate_count","title":1164,"type":"int"},
             
         ],
     },
     
     "WandererDefault": {
         name: "WandererDefault",
-        nameLocale: 1115,
-        description: 1561,
+        nameLocale: 1116,
+        description: 1562,
         tags: [
             
             "输出",
@@ -1785,7 +1783,7 @@ export default {
             
             {"default":false,"name":"e_cryo","title":25,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"spd_extra","title":1802,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"spd_extra","title":1803,"type":"float"},
             
             {"default":1.0,"max":1.5,"min":0.5,"name":"spd_comp","title":740,"type":"float"},
             
@@ -1800,8 +1798,8 @@ export default {
     
     "FaruzanDamage": {
         name: "FaruzanDamage",
-        nameLocale: 1232,
-        description: 178,
+        nameLocale: 1233,
+        description: 177,
         tags: [
             
             "",
@@ -1813,14 +1811,14 @@ export default {
         
         config: [
             
-            {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
+            {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":236,"type":"float"},
             
         ],
     },
     
     "AlhaithamDefault": {
         name: "AlhaithamDefault",
-        nameLocale: 1441,
+        nameLocale: 1442,
         description: 163,
         tags: [
             
@@ -1833,20 +1831,20 @@ export default {
         
         config: [
             
-            {"default":5.0,"max":10.0,"min":0.0,"name":"charged_ratio","title":1688,"type":"float"},
+            {"default":5.0,"max":10.0,"min":0.0,"name":"charged_ratio","title":1689,"type":"float"},
             
-            {"default":5.0,"max":10.0,"min":0.0,"name":"e_ratio","title":214,"type":"float"},
+            {"default":5.0,"max":10.0,"min":0.0,"name":"e_ratio","title":213,"type":"float"},
             
-            {"default":1.0,"max":10.0,"min":0.0,"name":"q_ratio","title":223,"type":"float"},
+            {"default":1.0,"max":10.0,"min":0.0,"name":"q_ratio","title":222,"type":"float"},
             
-            {"default":0.3,"max":1.0,"min":0.0,"name":"spread_ratio","title":1501,"type":"float"},
+            {"default":0.3,"max":1.0,"min":0.0,"name":"spread_ratio","title":1502,"type":"float"},
             
         ],
     },
     
     "DehyaDefault": {
         name: "DehyaDefault",
-        nameLocale: 1639,
+        nameLocale: 1640,
         description: 978,
         tags: [
             
@@ -1859,9 +1857,9 @@ export default {
         
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1507,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1508,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1499,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1500,"type":"float"},
             
             {"default":6,"max":20,"min":0,"name":"e_count","title":95,"type":"int"},
             
@@ -1870,7 +1868,7 @@ export default {
     
     "MikaDefault": {
         name: "MikaDefault",
-        nameLocale: 1382,
+        nameLocale: 1383,
         description: 945,
         tags: [
             
@@ -1885,7 +1883,7 @@ export default {
         
         config: [
             
-            {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":238,"type":"float"},
+            {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":237,"type":"float"},
             
             {"default":0.6,"max":1.0,"min":0.0,"name":"crit_demand","title":997,"type":"float"},
             
@@ -1894,7 +1892,7 @@ export default {
     
     "FreminetDefault": {
         name: "FreminetDefault",
-        nameLocale: 1491,
+        nameLocale: 1492,
         description: 974,
         tags: [
             
@@ -1912,7 +1910,7 @@ export default {
     
     "LyneyDefault": {
         name: "LyneyDefault",
-        nameLocale: 1035,
+        nameLocale: 1036,
         description: 966,
         tags: [
             
@@ -1930,8 +1928,8 @@ export default {
     
     "NeuvilletteDefault": {
         name: "NeuvilletteDefault",
-        nameLocale: 1659,
-        description: 1660,
+        nameLocale: 1660,
+        description: 1661,
         tags: [
             
             "",
@@ -1948,7 +1946,7 @@ export default {
     
     "WriothesleyDefault": {
         name: "WriothesleyDefault",
-        nameLocale: 1472,
+        nameLocale: 1473,
         description: 1007,
         tags: [
             

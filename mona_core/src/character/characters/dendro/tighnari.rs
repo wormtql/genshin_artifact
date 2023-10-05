@@ -81,30 +81,7 @@ impl<A: Attribute> ChangeAttribute<A> for TighnariEffect {
     }
 }
 
-// #[derive(Copy, Clone, Eq, PartialEq, EnumString)]
-// #[derive(FromPrimitive, EnumCountMacro)]
-// pub enum TighnariDamageEnum {
-//     Normal1,
-//     Normal2,
-//     Normal3,
-//     Normal4,
-//     Charged1,
-//     Charged2,
-//     Charged3,
-//     Charged4,
-//     Plunging1,
-//     Plunging2,
-//     Plunging3,
-//     E1,
-//     Q1,
-//     Q2
-// }
-//
-// impl Into<usize> for TighnariDamageEnum {
-//     fn into(self) -> usize {
-//         self as usize
-//     }
-// }
+
 
 damage_enum!(
     TighnariDamageEnum

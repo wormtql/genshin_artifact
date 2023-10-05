@@ -42,7 +42,6 @@ impl TargetFunction for TighnariDefaultTargetFunction {
         let dmg_q1 = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::Q1, &CharacterSkillConfig::NoConfig, None);
         let dmg_q2 = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::Q2, &CharacterSkillConfig::NoConfig, None);
         let dmg_e = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::E1, &CharacterSkillConfig::NoConfig, None);
-
         let dmg = 
         dmg_c3.spread.unwrap().expectation + 
         dmg_c4.spread.unwrap().expectation +
@@ -74,23 +73,8 @@ impl TargetFunctionMetaTrait for TighnariDefaultTargetFunction {
         image: TargetFunctionMetaImage::Avatar
     };
 
-    // #[cfg(not(target_family = "wasm"))]
-    // const CONFIG: Option<&'static [ItemConfig]> = Some(&[
-    //     ItemConfig {
-    //         name: "spread_rate",
-    //         title: locale!(
-    //             zh_cn: "蔓激化比例",
-    //             en: "Spread Ratio",
-    //         ),
-    //         config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 }
-    //     }
-    // ]);
 
     fn create(character: &CharacterCommonData, weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        // let spread_rate = match *config {
-        //     TargetFunctionConfig::TighnariDefault { spread_rate } => spread_rate,
-        //     _ => 0.0
-        // };
         Box::new(TighnariDefaultTargetFunction)
     }
 }
