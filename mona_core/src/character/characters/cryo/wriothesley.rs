@@ -215,15 +215,12 @@ impl CharacterTrait for Wriothesley {
 
         if s == ChargedTalent1 {
             if context.character_common_data.has_talent1 {
-                let mul_punch_bonus = if context.character_common_data.constellation >= 1 {
+                let punch_bonus = if context.character_common_data.constellation >= 1 {
                     2.0
                 } else {
                     0.5
                 };
-                let ratio_punch_bonus = mul_punch_bonus * ratio;
-                if mul_punch_bonus >= 0.0 {
-                    builder.add_atk_ratio("「惩戒·凌跃拳」倍率加成",ratio_punch_bonus);
-                }
+                builder.add_extra_bonus("1命「予行恶者以惩惧」伤害加成",punch_bonus);
 
                 if context.character_common_data.constellation >= 6 {
                     builder.add_extra_critical_damage("6命「予无罪者以念抚」", 0.8);
@@ -231,7 +228,6 @@ impl CharacterTrait for Wriothesley {
                 }
             }
         }
-
 
         builder.damage(
             &context.attribute,

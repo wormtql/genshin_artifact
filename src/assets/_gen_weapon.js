@@ -702,7 +702,7 @@ export default {
         type: "Sword",
 
         
-        effect: 299,
+        effect: 300,
         
         
         configs: [
@@ -1025,9 +1025,9 @@ export default {
         
         configs: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":748,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":747,"type":"float"},
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":750,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":749,"type":"float"},
             
         ],
         
@@ -1336,7 +1336,7 @@ export default {
         type: "Claymore",
 
         
-        effect: 299,
+        effect: 300,
         
         
         configs: [
@@ -1972,7 +1972,7 @@ export default {
         type: "Polearm",
 
         
-        effect: 300,
+        effect: 299,
         
         
         configs: [
@@ -2516,7 +2516,7 @@ export default {
         type: "Catalyst",
 
         
-        effect: 300,
+        effect: 299,
         
         
         configs: [
@@ -2823,9 +2823,9 @@ export default {
         
         configs: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":748,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":747,"type":"float"},
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":750,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":749,"type":"float"},
             
         ],
         
@@ -3234,7 +3234,7 @@ export default {
         type: "Bow",
 
         
-        effect: 300,
+        effect: 299,
         
         
         configs: [
@@ -3517,7 +3517,7 @@ export default {
             
             {"default":1.0,"max":3.0,"min":0.0,"name":"same_count","title":1729,"type":"float"},
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"diff_count","title":1720,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"diff_count","title":1719,"type":"float"},
             
         ],
         

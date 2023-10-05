@@ -1952,9 +1952,9 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":747,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":748,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":749,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":750,"type":"float"},
             
         ],
     },
@@ -1986,9 +1986,9 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":747,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":748,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":749,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":750,"type":"float"},
             
         ],
     },
@@ -2076,7 +2076,7 @@ export default {
         name: "DeepwoodMemories4",
         nameLocale: 1132,
         
-        description: 213,
+        description: 214,
         
         
         badge: getImageA("UI_RelicIcon_15025_4"),
