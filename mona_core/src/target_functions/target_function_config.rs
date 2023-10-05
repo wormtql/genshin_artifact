@@ -61,6 +61,6 @@ pub enum TargetFunctionConfig {
     AlhaithamDefault { charged_ratio: f64, e_ratio: f64, q_ratio: f64, spread_ratio: f64 },
     DehyaDefault { melt_rate: f64, vaporize_rate: f64, e_count: usize },
     MikaDefault { recharge_demand: f64, crit_demand: f64 },
-
+    WriothesleyDefault { punch_ratio: f64, melt_rate:f64 },
     NoConfig,
 }

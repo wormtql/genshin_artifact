@@ -162,17 +162,36 @@ impl CharacterTrait for Wriothesley {
         }
     ]);
 
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "under_chilling_penalty",
+            title: locale!(
+                zh_cn: "「寒烈的惩裁」状态",
+                en: "Enable 「Chilling Penalty」",
+            ),
+            config: ItemConfigType::Bool { default: true },
+        },
+    ]);
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         let s: WriothesleyDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
         let (s1, s2, s3) = context.character_common_data.get_3_skill();
 
         use WriothesleyDamageEnum::*;
+
+        let under_chilling_penalty = match *config {
+            CharacterSkillConfig::Wriothesley { under_chilling_penalty } 
+              => under_chilling_penalty,
+            _ => true,
+        };
+
         let mut ratio = match s {
-            Normal1 => WRIOTHESLEY_SKILL.normal_dmg1[s1],
-            Normal2 => WRIOTHESLEY_SKILL.normal_dmg2[s1],
-            Normal3 => WRIOTHESLEY_SKILL.normal_dmg3[s1],
-            Normal4Div2 => WRIOTHESLEY_SKILL.normal_dmg4[s1],
-            Normal5 => WRIOTHESLEY_SKILL.normal_dmg5[s1],
+            Normal1 => WRIOTHESLEY_SKILL.normal_dmg1[s1] * (if under_chilling_penalty {WRIOTHESLEY_SKILL.e_bonus[s2]} else { 1.0 }),
+            Normal2 => WRIOTHESLEY_SKILL.normal_dmg2[s1] * (if under_chilling_penalty {WRIOTHESLEY_SKILL.e_bonus[s2]} else { 1.0 }),
+            Normal3 => WRIOTHESLEY_SKILL.normal_dmg3[s1] * (if under_chilling_penalty {WRIOTHESLEY_SKILL.e_bonus[s2]} else { 1.0 }),
+            Normal4Div2 => WRIOTHESLEY_SKILL.normal_dmg4[s1] * (if under_chilling_penalty {WRIOTHESLEY_SKILL.e_bonus[s2]} else { 1.0 }),
+            Normal5 => WRIOTHESLEY_SKILL.normal_dmg5[s1] * (if under_chilling_penalty {WRIOTHESLEY_SKILL.e_bonus[s2]} else { 1.0 }),
             Charged => WRIOTHESLEY_SKILL.charged_dmg[s1],
             ChargedTalent1 => WRIOTHESLEY_SKILL.charged_dmg[s1],
             Plunging1 => WRIOTHESLEY_SKILL.plunging_dmg1[s1],
@@ -184,22 +203,6 @@ impl CharacterTrait for Wriothesley {
 
         let mut builder = D::new();
 
-        if s == ChargedTalent1 {
-            if context.character_common_data.has_talent1 {
-                let mul = if context.character_common_data.constellation >= 1 {
-                    2.0
-                } else {
-                    0.5
-                };
-                ratio = (1.0 + mul) * ratio;
-
-                if context.character_common_data.constellation >= 6 {
-                    builder.add_extra_critical_damage("6命「予无罪者以念抚」", 0.8);
-                    builder.add_extra_critical("6命「予无罪者以念抚」", 0.1);
-                }
-            }
-        }
-
         let skill_type = s.get_skill_type();
         if skill_type == SkillType::ElementalBurst {
             if context.character_common_data.constellation >= 2 {
@@ -208,8 +211,27 @@ impl CharacterTrait for Wriothesley {
                 ratio = ratio * (1.0 + value);
             }
         }
-
         builder.add_atk_ratio("技能倍率", ratio);
+
+        if s == ChargedTalent1 {
+            if context.character_common_data.has_talent1 {
+                let mul_punch_bonus = if context.character_common_data.constellation >= 1 {
+                    2.0
+                } else {
+                    0.5
+                };
+                let ratio_punch_bonus = mul_punch_bonus * ratio;
+                if mul_punch_bonus >= 0.0 {
+                    builder.add_atk_ratio("「惩戒·凌跃拳」倍率加成",ratio_punch_bonus);
+                }
+
+                if context.character_common_data.constellation >= 6 {
+                    builder.add_extra_critical_damage("6命「予无罪者以念抚」", 0.8);
+                    builder.add_extra_critical("6命「予无罪者以念抚」", 0.1);
+                }
+            }
+        }
+
 
         builder.damage(
             &context.attribute,

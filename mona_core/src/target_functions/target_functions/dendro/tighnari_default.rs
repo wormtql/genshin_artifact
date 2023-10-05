@@ -10,10 +10,10 @@ use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
+use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
 use crate::target_functions::target_function::TargetFunctionMetaTrait;
 use crate::target_functions::target_function_meta::{TargetFunctionFor, TargetFunctionMeta, TargetFunctionMetaImage};
 use crate::target_functions::target_function_opt_config::TargetFunctionOptConfig;
-use crate::target_functions::{TargetFunction, TargetFunctionConfig, TargetFunctionName};
 use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
@@ -32,25 +32,24 @@ impl TargetFunction for TighnariDefaultTargetFunction {
     fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
         let context: DamageContext<'_, SimpleAttributeGraph2> = DamageContext {
             character_common_data: &character.common_data,
-            attribute, enemy
+            attribute,
+            enemy,
         };
 
         type S = <Tighnari as CharacterTrait>::DamageEnumType;
         let dmg_c3 = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::Charged3, &CharacterSkillConfig::NoConfig, None);
         let dmg_c4 = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::Charged4, &CharacterSkillConfig::NoConfig, None);
-        let dmg_cc6: f64 = if character.common_data.constellation == 6 { Tighnari::damage::<SimpleDamageBuilder>(&&context, S::ChargedC6, &CharacterSkillConfig::NoConfig, None).spread.unwrap().expectation} else { 0.0 };
+        let dmg_cc6: f64 = if character.common_data.constellation == 6 { Tighnari::damage::<SimpleDamageBuilder>(&&context, S::ChargedC6, &CharacterSkillConfig::NoConfig, None).spread.unwrap().expectation } else { 0.0 };
         let dmg_q1 = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::Q1, &CharacterSkillConfig::NoConfig, None);
         let dmg_q2 = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::Q2, &CharacterSkillConfig::NoConfig, None);
         let dmg_e = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::E1, &CharacterSkillConfig::NoConfig, None);
-        let dmg = 
-        dmg_c3.spread.unwrap().expectation + 
-        dmg_c4.spread.unwrap().expectation +
-        dmg_c4.normal.expectation * 3.0 + dmg_cc6 +
-        dmg_q1.spread.unwrap().expectation + dmg_q2.spread.unwrap().expectation +
-        (dmg_q1.normal.expectation + dmg_q2.normal.expectation) * 5.0 +
-        dmg_e.spread.unwrap().expectation;
-
-        
+        let dmg =
+            dmg_c3.spread.unwrap().expectation +
+                dmg_c4.spread.unwrap().expectation +
+                dmg_c4.normal.expectation * 3.0 + dmg_cc6 +
+                dmg_q1.spread.unwrap().expectation + dmg_q2.spread.unwrap().expectation +
+                (dmg_q1.normal.expectation + dmg_q2.normal.expectation) * 5.0 +
+                dmg_e.spread.unwrap().expectation;
 
         dmg
     }
@@ -70,7 +69,7 @@ impl TargetFunctionMetaTrait for TighnariDefaultTargetFunction {
         ),
         tags: "",
         four: TargetFunctionFor::SomeWho(CharacterName::Tighnari),
-        image: TargetFunctionMetaImage::Avatar
+        image: TargetFunctionMetaImage::Avatar,
     };
 
 
