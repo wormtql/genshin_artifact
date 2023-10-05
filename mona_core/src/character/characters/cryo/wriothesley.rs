@@ -208,7 +208,7 @@ impl CharacterTrait for Wriothesley {
             if context.character_common_data.constellation >= 2 {
                 let talent2_stack = context.attribute.get_value(AttributeName::USER1);
                 let value = talent2_stack * 0.4;
-                ratio = ratio * (1.0 + value);
+                builder.add_extra_bonus("2命「予骄暴者以镣锁」伤害加成",value);
             }
         }
         builder.add_atk_ratio("技能倍率", ratio);
