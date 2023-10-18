@@ -407,7 +407,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":700,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":699,"type":"float"},
             
         ],
         
@@ -702,7 +702,7 @@ export default {
         type: "Sword",
 
         
-        effect: 299,
+        effect: 300,
         
         
         configs: [
@@ -1025,9 +1025,9 @@ export default {
         
         configs: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":748,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":747,"type":"float"},
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":750,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":749,"type":"float"},
             
         ],
         
@@ -1125,7 +1125,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":700,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":699,"type":"float"},
             
         ],
         
@@ -1336,7 +1336,7 @@ export default {
         type: "Claymore",
 
         
-        effect: 299,
+        effect: 300,
         
         
         configs: [
@@ -1613,7 +1613,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":619,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":620,"type":"float"},
             
         ],
         
@@ -1797,7 +1797,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":700,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":699,"type":"float"},
             
         ],
         
@@ -1972,7 +1972,7 @@ export default {
         type: "Polearm",
 
         
-        effect: 300,
+        effect: 299,
         
         
         configs: [
@@ -2281,7 +2281,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1524,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":700,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":699,"type":"float"},
             
         ],
         
@@ -2516,7 +2516,7 @@ export default {
         type: "Catalyst",
 
         
-        effect: 300,
+        effect: 299,
         
         
         configs: [
@@ -2743,7 +2743,7 @@ export default {
             
             {"default":1,"max":3,"min":0,"name":"same_count","title":384,"type":"int"},
             
-            {"default":2,"max":3,"min":0,"name":"diff_count","title":94,"type":"int"},
+            {"default":2,"max":3,"min":0,"name":"diff_count","title":93,"type":"int"},
             
         ],
         
@@ -2823,9 +2823,9 @@ export default {
         
         configs: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":748,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":747,"type":"float"},
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":750,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":749,"type":"float"},
             
         ],
         
@@ -3234,7 +3234,7 @@ export default {
         type: "Bow",
 
         
-        effect: 300,
+        effect: 299,
         
         
         configs: [

@@ -387,7 +387,7 @@ export default {
     
     
     
-        effect4: 213,
+        effect4: 212,
     
     
 
@@ -748,7 +748,7 @@ export default {
         maxStar: 5,
     
     
-        effect2: 232,
+        effect2: 234,
     
     
     
@@ -790,7 +790,7 @@ export default {
             
             {"default":0,"max":3,"min":0,"name":"same_count","title":384,"type":"int"},
             
-            {"default":0,"max":3,"min":0,"name":"diff_count","title":93,"type":"int"},
+            {"default":0,"max":3,"min":0,"name":"diff_count","title":94,"type":"int"},
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":751,"type":"float"},
             
@@ -1015,7 +1015,7 @@ export default {
         maxStar: 4,
     
     
-        effect2: 234,
+        effect2: 232,
     
     
     
@@ -1263,7 +1263,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":601,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"stack","title":600,"type":"float"},
             
         ],
     },
@@ -1754,7 +1754,7 @@ export default {
         
         config4: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":699,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":700,"type":"float"},
             
         ],
     },
@@ -2223,7 +2223,7 @@ export default {
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"rate_q","title":228,"type":"float"},
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":601,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"stack","title":600,"type":"float"},
             
         ],
     },
@@ -2327,7 +2327,7 @@ export default {
         
         config4: [
             
-            {"default":4.0,"max":5.0,"min":0.0,"name":"stack","title":600,"type":"float"},
+            {"default":4.0,"max":5.0,"min":0.0,"name":"stack","title":601,"type":"float"},
             
         ],
     },
@@ -2340,7 +2340,7 @@ export default {
         maxStar: 5,
     
     
-        effect2: 234,
+        effect2: 232,
     
     
     

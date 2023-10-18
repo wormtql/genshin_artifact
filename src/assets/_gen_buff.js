@@ -423,7 +423,7 @@ export default {
     
     "ElementalMastery": {
         name: "ElementalMastery",
-        nameLocale: 229,
+        nameLocale: 230,
         
         description: null,
         
@@ -508,7 +508,7 @@ export default {
     
     "BaseDmg": {
         name: "BaseDmg",
-        nameLocale: 463,
+        nameLocale: 462,
         
         description: 1610,
         
@@ -1628,7 +1628,7 @@ export default {
             
             {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q1","title":44,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q2","title":41,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q2","title":40,"type":"float"},
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"rate_talent2","title":20,"type":"float"},
             
@@ -1829,7 +1829,7 @@ export default {
             
             {"default":1,"max":5,"min":1,"name":"refine","title":1387,"type":"intInput"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":620,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":619,"type":"float"},
             
         ],
     },
@@ -1865,7 +1865,7 @@ export default {
             
             {"default":1,"max":5,"min":1,"name":"refine","title":1387,"type":"intInput"},
             
-            {"default":900.0,"name":"em","title":230,"type":"floatInput"},
+            {"default":900.0,"name":"em","title":229,"type":"floatInput"},
             
         ],
     },
@@ -1884,7 +1884,7 @@ export default {
             
             {"default":1,"max":5,"min":1,"name":"refine","title":1387,"type":"intInput"},
             
-            {"default":900.0,"name":"em","title":230,"type":"floatInput"},
+            {"default":900.0,"name":"em","title":229,"type":"floatInput"},
             
         ],
     },
@@ -1935,7 +1935,7 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":620,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":619,"type":"float"},
             
         ],
     },
@@ -1952,9 +1952,9 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":747,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":748,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":749,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":750,"type":"float"},
             
         ],
     },
@@ -1986,9 +1986,9 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":747,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":748,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":749,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":750,"type":"float"},
             
         ],
     },
@@ -2076,7 +2076,7 @@ export default {
         name: "DeepwoodMemories4",
         nameLocale: 1133,
         
-        description: 212,
+        description: 213,
         
         
         badge: getImageA("UI_RelicIcon_15025_4"),
@@ -2084,7 +2084,7 @@ export default {
         genre: "Artifact",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":620,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":619,"type":"float"},
             
         ],
     },
