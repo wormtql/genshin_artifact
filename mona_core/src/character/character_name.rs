@@ -37,6 +37,7 @@ pub enum CharacterName {
     Beidou,
     Bennett,
     Candace,
+    Charlotte,
     Chongyun,
     Collei,
     Cyno,

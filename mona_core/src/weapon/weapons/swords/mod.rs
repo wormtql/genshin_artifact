@@ -37,6 +37,8 @@ pub use wolf_fang::WolfFang;
 pub use finale_of_the_deep::FinaleOfTheDeep;
 pub use fleuve_cendre_ferryman::FleuveCendreFerryman;
 pub use the_dockhands_assistant::TheDockhandsAssistant;
+pub use sword_of_narzissenkreuz::SwordOfNarzissenkreuz;
+pub use splendor_of_tranquil_waters::SplendorOfTranquilWaters;
 
 pub mod mistsplitter_reforged;
 pub mod aquila_favonia;
@@ -77,3 +79,5 @@ pub mod wolf_fang;
 pub mod finale_of_the_deep;
 pub mod fleuve_cendre_ferryman;
 pub mod the_dockhands_assistant;
+pub mod sword_of_narzissenkreuz;
+pub mod splendor_of_tranquil_waters;

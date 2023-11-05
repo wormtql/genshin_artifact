@@ -29,6 +29,7 @@ pub enum WeaponConfig {
     FinaleOfTheDeep { rate1: f64, rate2: f64 },
     FleuveCendreFerryman { rate: f64 },
     TheDockhandsAssistant { stack: f64 },
+    SplendorOfTranquilWaters { stack1: f64, stack2: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },
