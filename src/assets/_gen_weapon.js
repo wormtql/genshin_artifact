@@ -411,7 +411,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1555,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":714,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":713,"type":"float"},
             
         ],
         
@@ -1029,9 +1029,9 @@ export default {
         
         configs: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":761,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":762,"type":"float"},
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":764,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":763,"type":"float"},
             
         ],
         
@@ -1167,7 +1167,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1555,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":714,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":713,"type":"float"},
             
         ],
         
@@ -1655,7 +1655,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":634,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":633,"type":"float"},
             
         ],
         
@@ -1839,7 +1839,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1555,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":714,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":713,"type":"float"},
             
         ],
         
@@ -2323,7 +2323,7 @@ export default {
             
             {"default":0.0,"max":5.0,"min":0.0,"name":"stack","title":1555,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":714,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"shield_rate","title":713,"type":"float"},
             
         ],
         
@@ -2785,7 +2785,7 @@ export default {
             
             {"default":1,"max":3,"min":0,"name":"same_count","title":395,"type":"int"},
             
-            {"default":2,"max":3,"min":0,"name":"diff_count","title":102,"type":"int"},
+            {"default":2,"max":3,"min":0,"name":"diff_count","title":101,"type":"int"},
             
         ],
         
@@ -2865,9 +2865,9 @@ export default {
         
         configs: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":761,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":762,"type":"float"},
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":764,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":763,"type":"float"},
             
         ],
         

@@ -508,7 +508,7 @@ export default {
     
     "BaseDmg": {
         name: "BaseDmg",
-        nameLocale: 474,
+        nameLocale: 473,
         
         description: 1644,
         
@@ -1829,7 +1829,7 @@ export default {
             
             {"default":1,"max":5,"min":1,"name":"refine","title":1413,"type":"intInput"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":632,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":634,"type":"float"},
             
         ],
     },
@@ -1935,7 +1935,7 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":632,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":634,"type":"float"},
             
         ],
     },
@@ -1952,9 +1952,9 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":762,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":761,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":763,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":764,"type":"float"},
             
         ],
     },
@@ -1986,9 +1986,9 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":762,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":761,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":763,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":764,"type":"float"},
             
         ],
     },
@@ -2076,7 +2076,7 @@ export default {
         name: "DeepwoodMemories4",
         nameLocale: 1154,
         
-        description: 223,
+        description: 222,
         
         
         badge: getImageA("UI_RelicIcon_15025_4"),
@@ -2084,7 +2084,7 @@ export default {
         genre: "Artifact",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":632,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate","title":634,"type":"float"},
             
         ],
     },
