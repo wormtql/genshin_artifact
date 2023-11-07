@@ -29,5 +29,7 @@ pub enum CharacterConfig {
     Lyney { c2_stack: f64, c4_rate: f64 },
     Neuvillette { current_hp: usize },
     Wriothesley { talent2_stack: f64 },
+    Charlotte { talent2_fontaine_count: usize, talent2_non_fontaine_count: usize, c2_count: usize, c2_rate: f64 },
+    Furina { c2_overflow: f64 },
     NoConfig,
 }

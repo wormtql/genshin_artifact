@@ -52,6 +52,8 @@ pub enum WeaponName {
     FinaleOfTheDeep,
     FleuveCendreFerryman,
     TheDockhandsAssistant,
+    SwordOfNarzissenkreuz,
+    SplendorOfTranquilWaters,
 
     // claymore
     WolfsGravestone,

@@ -377,4 +377,8 @@ impl ArtifactEffectConfigBuilder {
         self
     }
 
+    pub fn golden_troupe(&mut self, rate: f64) -> &mut Self {
+        self.config.config_golden_troupe.rate = rate;
+        self
+    }
 }
