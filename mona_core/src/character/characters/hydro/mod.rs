@@ -8,6 +8,7 @@ pub mod yelan;
 pub mod nilou;
 pub mod candace;
 pub mod neuvillette;
+pub mod furina;
 
 pub use barbara::Barbara;
 pub use mona::Mona;
@@ -19,3 +20,4 @@ pub use yelan::Yelan;
 pub use nilou::Nilou;
 pub use candace::Candace;
 pub use neuvillette::Neuvillette;
+pub use furina::Furina;

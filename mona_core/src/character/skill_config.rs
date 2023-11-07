@@ -42,5 +42,6 @@ pub enum CharacterSkillConfig {
     Freminet { talent2_rate: f64 },
     Lyney { prop_stack: f64, under_pyro: bool, pyro_count: usize, },
     Neuvillette { talent1_stack: usize },
+    Furina { hp_above50_count: usize, c6_after_e: bool, c6_pneuma: bool },
     NoConfig,
 }

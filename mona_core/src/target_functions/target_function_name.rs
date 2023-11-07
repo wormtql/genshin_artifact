@@ -93,4 +93,5 @@ pub enum TargetFunctionName {
     LyneyDefault,
     NeuvilletteDefault,
     WriothesleyDefault,
+    FurinaDefault,
 }

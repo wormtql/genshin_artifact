@@ -49,6 +49,7 @@ pub enum CharacterName {
     Faruzan,
     Fischl,
     Freminet,
+    Furina,
     Ganyu,
     Gorou,
     HuTao,
