@@ -65,7 +65,7 @@ impl TargetFunction for FurinaDefaultTargetFunction {
             &CharacterSkillConfig::Furina { hp_above50_count: 3, c6_after_e: true, c6_pneuma: true },
             None
         );
-        
+
         dmg_e2.normal.expectation
     }
 }
