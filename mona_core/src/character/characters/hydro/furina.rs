@@ -273,7 +273,7 @@ impl CharacterTrait for Furina {
 
             if s == E2 || s == E3 || s == E4 {
                 let bonus = 0.1 * hp_above50_count as f64;
-                builder.add_hp_ratio("「沙龙成员」加成", bonus);
+                builder.add_hp_ratio("「沙龙成员」加成", ratio * bonus);
                 if context.character_common_data.has_talent2 {
                     let hp = context.attribute.get_hp();
                     let factor = (hp / 1000.0).floor();
