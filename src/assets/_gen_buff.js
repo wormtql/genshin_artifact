@@ -423,7 +423,7 @@ export default {
     
     "ElementalMastery": {
         name: "ElementalMastery",
-        nameLocale: 239,
+        nameLocale: 240,
         
         description: null,
         
@@ -508,7 +508,7 @@ export default {
     
     "BaseDmg": {
         name: "BaseDmg",
-        nameLocale: 473,
+        nameLocale: 474,
         
         description: 1644,
         
@@ -1628,7 +1628,7 @@ export default {
             
             {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q1","title":51,"type":"float"},
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q2","title":47,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate_q2","title":46,"type":"float"},
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"rate_talent2","title":22,"type":"float"},
             
@@ -1865,7 +1865,7 @@ export default {
             
             {"default":1,"max":5,"min":1,"name":"refine","title":1413,"type":"intInput"},
             
-            {"default":900.0,"name":"em","title":240,"type":"floatInput"},
+            {"default":900.0,"name":"em","title":239,"type":"floatInput"},
             
         ],
     },
@@ -1884,7 +1884,7 @@ export default {
             
             {"default":1,"max":5,"min":1,"name":"refine","title":1413,"type":"intInput"},
             
-            {"default":900.0,"name":"em","title":240,"type":"floatInput"},
+            {"default":900.0,"name":"em","title":239,"type":"floatInput"},
             
         ],
     },
@@ -1952,7 +1952,7 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":761,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":762,"type":"float"},
             
             {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":764,"type":"float"},
             
@@ -1986,7 +1986,7 @@ export default {
         genre: "Resonance",
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":761,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"rate1","title":762,"type":"float"},
             
             {"default":1.0,"max":1.0,"min":0.0,"name":"rate2","title":764,"type":"float"},
             

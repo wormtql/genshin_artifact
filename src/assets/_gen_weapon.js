@@ -1029,7 +1029,7 @@ export default {
         
         configs: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":762,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":761,"type":"float"},
             
             {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":763,"type":"float"},
             
@@ -2865,7 +2865,7 @@ export default {
         
         configs: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":762,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":761,"type":"float"},
             
             {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":763,"type":"float"},
             
@@ -3559,7 +3559,7 @@ export default {
             
             {"default":1.0,"max":3.0,"min":0.0,"name":"same_count","title":1765,"type":"float"},
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"diff_count","title":1756,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"diff_count","title":1755,"type":"float"},
             
         ],
         
