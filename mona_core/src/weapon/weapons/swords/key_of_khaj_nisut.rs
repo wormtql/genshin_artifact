@@ -12,6 +12,7 @@ use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
 
 pub struct KeyOfKhajNisutEffect {
     pub stack: f64,
+    pub rate: f64,
 }
 
 impl<A: Attribute> WeaponEffect<A> for KeyOfKhajNisutEffect {
@@ -24,6 +25,15 @@ impl<A: Attribute> WeaponEffect<A> for KeyOfKhajNisutEffect {
             AttributeName::ElementalMastery,
             Box::new(move |hp, _| hp * em_bonus),
             Box::new(move |hp, _, grad| (em_bonus, 0.0)),
+            "圣显之钥被动等效"
+        );
+
+        let em_bonus2 = (0.0005 * refine + 0.0015) * self.rate;
+        attribute.add_edge1(
+            AttributeName::HP,
+            AttributeName::ElementalMasteryExtra,
+            Box::new(move |hp, _| hp * em_bonus2),
+            Box::new(move |hp, _, grad| (0.0, 0.0)),
             "圣显之钥被动等效"
         );
     }
@@ -57,11 +67,11 @@ impl WeaponTrait for KeyOfKhajNisut {
     ]);
 
     fn get_effect<A: Attribute>(character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
-        let stack = match *config {
-            WeaponConfig::KeyOfKhajNisut { stack } => stack,
-            _ => 0.0
+        let (stack, rate) = match *config {
+            WeaponConfig::KeyOfKhajNisut { stack, rate } => (stack, rate),
+            _ => (0.0, 0.0)
         };
 
-        Some(Box::new(KeyOfKhajNisutEffect { stack }))
+        Some(Box::new(KeyOfKhajNisutEffect { stack, rate }))
     }
 }

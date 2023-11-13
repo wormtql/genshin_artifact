@@ -22,7 +22,7 @@ pub enum WeaponConfig {
     CursedBlade { rate: f64 },
     SapwoodBlade { rate: f64 },
     XiphosMoonlight { rate: f64 },
-    KeyOfKhajNisut { stack: f64 },
+    KeyOfKhajNisut { stack: f64, rate: f64 },
     ToukabouShigure { rate: f64 },
     LightOfFoliarIncision { rate: f64 },
     WolfFang { e_stack: f64, q_stack: f64 },
