@@ -1,6 +1,7 @@
 use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
-use crate::common::item_config_type::ItemConfig;
+use crate::common::i18n::locale;
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
 use crate::common::WeaponType;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 use crate::weapon::weapon_effect::WeaponEffect;
@@ -63,7 +64,15 @@ impl WeaponTrait for KeyOfKhajNisut {
 
     #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
-        ItemConfig::STACK03
+        ItemConfig::STACK03,
+        ItemConfig {
+            name: "rate",
+            title: locale!(
+                zh_cn: "第二个效果比例",
+                en: "Second effect's Ratio"
+            ),
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.5 }
+        }
     ]);
 
     fn get_effect<A: Attribute>(character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {

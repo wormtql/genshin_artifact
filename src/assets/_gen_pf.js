@@ -28,13 +28,13 @@ export default {
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"hp_p_weight","title":1289,"type":"float"},
             
-            {"default":false,"name":"def_use","title":1779,"type":"bool"},
+            {"default":false,"name":"def_use","title":1780,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"def_weight","title":1780,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"def_weight","title":1781,"type":"float"},
             
-            {"default":false,"name":"def_p_use","title":1774,"type":"bool"},
+            {"default":false,"name":"def_p_use","title":1775,"type":"bool"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"def_p_weight","title":1775,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"def_p_weight","title":1776,"type":"float"},
             
             {"default":true,"name":"critical_use","title":1014,"type":"bool"},
             
