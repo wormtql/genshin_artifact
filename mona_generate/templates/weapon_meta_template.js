@@ -4,8 +4,9 @@
 // {% endfor %}
 
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/equip/UI_EquipIcon_#.png"
-
+const newTemplate = "https://act-webstatic.mihoyo.com/hk4e/e20200928calculate/item_icon_uceddf/#.png"
 const imageUrl = name => template.replace("#", name)
+const newImageUrl = md5 => newTemplate.replace("#", md5)
 
 export default {
 {% for weapon in weapons %}
@@ -14,7 +15,11 @@ export default {
         internalName: "{{ weapon.internal_name }}",
         nameLocale: {{weapon.name_index}},
         star: {{ weapon.star }},
+        {% if weapon.icon_hash == "" -%}
         url: imageUrl("{{ weapon.internal_name }}"),
+        {% else -%}
+        url: newImageUrl("{{ weapon.icon_hash }}"),
+        {%- endif %}
         type: "{{ weapon.t }}",
 
         {% if weapon.effect.is_some() %}

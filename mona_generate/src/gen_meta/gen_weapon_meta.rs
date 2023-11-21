@@ -6,10 +6,12 @@ use mona::weapon::weapon_name::WeaponName;
 use mona::weapon::weapon_static_data::WeaponStaticData;
 use crate::gen_meta::gen_locale::get_index_mapping;
 use crate::utils::config_to_json;
+use crate::utils::icon_hashmap::ICON_HASHMAP;
 
 struct WeaponMetaDataForJS {
     name: String,
     internal_name: String,
+    icon_hash: String,
     name_index: usize,
     star: usize,
     t: String,
@@ -26,6 +28,7 @@ struct WeaponMetaAllForJS {
 pub fn gen_weapon_meta_as_js_file() -> String {
     let mut data: Vec<WeaponMetaDataForJS> = Vec::new();
     let index_map = get_index_mapping();
+    let icon_hashmap = &ICON_HASHMAP;
 
     for i in 0_usize..WeaponName::LEN {
         let weapon_name: WeaponName = num::FromPrimitive::from_usize(i).unwrap();
@@ -40,10 +43,14 @@ pub fn gen_weapon_meta_as_js_file() -> String {
             }
         }
 
+        let icon_hash: String = icon_hashmap.get(meta_data.internal_name)
+            .map_or(String::new(), |&hash| hash.to_string());
+
         let my_data = WeaponMetaDataForJS {
             name: weapon_name.to_string(),
             // internal_name: get_internal_weapon_name(weapon_name),
             internal_name: String::from(meta_data.internal_name),
+            icon_hash,
             name_index: *index_map.get(&meta_data.name_locale).unwrap(),
             star: meta_data.star,
             t: meta_data.weapon_type.to_string(),

@@ -6,7 +6,9 @@ import {{ t.name }}_image from "@image/{{ t.badge_path }}"
 {% endfor %}
 
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
+const newTemplate = "https://act-webstatic.mihoyo.com/hk4e/e20200928calculate/item_icon_uceddf/#.png"
 const getImage = name => template.replace("#", name)
+const getIcon = md5 => newTemplate.replace("#", md5)
 
 export default {
     {% for t in tfs %}
@@ -20,11 +22,13 @@ export default {
             {% endfor %}
         ],
         "for": "{{ t.four }}",
-        {% if t.badge_type == "character" %}
+        {% if t.badge_type == "character" && t.icon_hash == "" -%}
         badge: getImage("{{ t.character_icon_name }}"),
-        {% else %}
+        {%- else if t.badge_type == "character" -%}
+        badge: getIcon("{{ t.icon_hash }}"),
+        {%- else -%}
         badge: {{ t.name }}_image,
-        {% endif %}
+        {%- endif %}
         config: [
             {% for config in t.config %}
             {{ config|e("none") }},

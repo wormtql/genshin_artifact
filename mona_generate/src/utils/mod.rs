@@ -4,6 +4,8 @@ use mona::common::item_config_type::{ItemConfig, ItemConfigType};
 use serde_json::json;
 use crate::gen_meta::gen_locale::get_index_mapping;
 
+pub mod icon_hashmap;
+
 pub fn config_to_json(config: &ItemConfig) -> String {
     let index_map = get_index_mapping();
     let name = config.name;

@@ -6,6 +6,7 @@ use mona::common::item_config_type::ItemConfig;
 use lazy_static::lazy_static;
 use crate::gen_meta::gen_locale::get_index_mapping;
 use crate::utils::config_to_json;
+use crate::utils::icon_hashmap::ICON_HASHMAP;
 
 struct CharacterMeta {
     name: String,
@@ -13,6 +14,7 @@ struct CharacterMeta {
     internal_name: String,
     name_locale: usize,
     // icon_name: String,
+    icon_hash: String,
     star: usize,
     skill1_name_index: usize,
     skill2_name_index: usize,
@@ -40,6 +42,7 @@ struct CharacterMetaTemplate {
 pub fn gen_character_meta_as_js_file() -> String {
     let mut data: Vec<CharacterMeta> = Vec::new();
     let index_mapping = get_index_mapping();
+    let icon_hashmap = &ICON_HASHMAP;
 
     for i in 0_usize..CharacterName::LEN {
         let name_enum: CharacterName = num::FromPrimitive::from_usize(i).unwrap();
@@ -93,9 +96,13 @@ pub fn gen_character_meta_as_js_file() -> String {
 
         let name_locale = *index_mapping.get(&meta.name_locale).unwrap();
 
+        let icon_hash: String = icon_hashmap.get(meta.internal_name)
+            .map_or(String::new(), |&hash| hash.to_string());
+
         data.push(CharacterMeta {
             name: meta.name.to_string(),
             internal_name: String::from(meta.internal_name),
+            icon_hash,
             name_locale,
             star: meta.star as usize,
             skill1_name_index: *index_mapping.get(&meta.skill_name1).unwrap(),
