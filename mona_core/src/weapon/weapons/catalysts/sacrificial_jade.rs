@@ -28,7 +28,7 @@ pub struct SacrificialJade;
 impl WeaponTrait for SacrificialJade {
     const META_DATA: WeaponStaticData = WeaponStaticData {
         name: WeaponName::SacrificialJade,
-        internal_name: "",
+        internal_name: "Catalyst_Yue",
         weapon_type: WeaponType::Catalyst,
         weapon_sub_stat: Some(WeaponSubStatFamily::CriticalRate80),
         weapon_base: WeaponBaseATKFamily::ATK454,
