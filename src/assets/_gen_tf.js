@@ -208,7 +208,9 @@ import ExpectMelt_image from "@image/misc/sword"
 
 
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/#.png"
+const newTemplate = "https://act-webstatic.mihoyo.com/hk4e/e20200928calculate/item_icon_uceddf/#.png"
 const getImage = name => template.replace("#", name)
+const getIcon = md5 => newTemplate.replace("#", md5)
 
 export default {
     
@@ -222,9 +224,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: MaxATK_image,
-        
         config: [
             
         ],
@@ -240,9 +240,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: MaxDEF_image,
-        
         config: [
             
         ],
@@ -258,9 +256,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: MaxHP_image,
-        
         config: [
             
         ],
@@ -276,9 +272,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: MaxEM_image,
-        
         config: [
             
         ],
@@ -294,9 +288,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: MaxRecharge_image,
-        
         config: [
             
         ],
@@ -312,9 +304,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: PyroDamage_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":1413,"type":"option"},
@@ -332,9 +322,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: CryoDamage_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":1413,"type":"option"},
@@ -352,9 +340,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: HydroDamage_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":1413,"type":"option"},
@@ -372,9 +358,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: ElectroDamage_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":1413,"type":"option"},
@@ -392,9 +376,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: AnemoDamage_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":1413,"type":"option"},
@@ -412,9 +394,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: DendroDamage_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":1413,"type":"option"},
@@ -432,9 +412,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: GeoDamage_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":1413,"type":"option"},
@@ -452,9 +430,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: PhysicalDamage_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["期望","最大值"],"title":1413,"type":"option"},
@@ -472,9 +448,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: MaxVaporize_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["火","水"],"title":1590,"type":"option"},
@@ -494,9 +468,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: MaxMelt_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["火","冰"],"title":1590,"type":"option"},
@@ -516,9 +488,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: ExpectVaporize_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["火","水"],"title":1590,"type":"option"},
@@ -538,9 +508,7 @@ export default {
             
         ],
         "for": "common",
-        
         badge: ExpectMelt_image,
-        
         config: [
             
             {"default":0,"name":"t","options":["火","冰"],"title":1590,"type":"option"},
@@ -560,9 +528,7 @@ export default {
             
         ],
         "for": "Albedo",
-        
         badge: getImage("UI_AvatarIcon_Albedo"),
-        
         config: [
             
         ],
@@ -578,9 +544,7 @@ export default {
             
         ],
         "for": "Aloy",
-        
         badge: getImage("UI_AvatarIcon_Aloy"),
-        
         config: [
             
         ],
@@ -596,9 +560,7 @@ export default {
             
         ],
         "for": "Amber",
-        
         badge: getImage("UI_AvatarIcon_Ambor"),
-        
         config: [
             
         ],
@@ -614,9 +576,7 @@ export default {
             
         ],
         "for": "AratakiItto",
-        
         badge: getImage("UI_AvatarIcon_Itto"),
-        
         config: [
             
         ],
@@ -634,9 +594,7 @@ export default {
             
         ],
         "for": "Barbara",
-        
         badge: getImage("UI_AvatarIcon_Barbara"),
-        
         config: [
             
         ],
@@ -652,9 +610,7 @@ export default {
             
         ],
         "for": "Beidou",
-        
         badge: getImage("UI_AvatarIcon_Beidou"),
-        
         config: [
             
         ],
@@ -674,9 +630,7 @@ export default {
             
         ],
         "for": "Bennett",
-        
         badge: getImage("UI_AvatarIcon_Bennett"),
-        
         config: [
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":248,"type":"float"},
@@ -696,9 +650,7 @@ export default {
             
         ],
         "for": "Bennett",
-        
         badge: getImage("UI_AvatarIcon_Bennett"),
-        
         config: [
             
             {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":248,"type":"float"},
@@ -718,9 +670,7 @@ export default {
             
         ],
         "for": "Chongyun",
-        
         badge: getImage("UI_AvatarIcon_Chongyun"),
-        
         config: [
             
         ],
@@ -736,9 +686,7 @@ export default {
             
         ],
         "for": "Diluc",
-        
         badge: getImage("UI_AvatarIcon_Diluc"),
-        
         config: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1540,"type":"float"},
@@ -760,9 +708,7 @@ export default {
             
         ],
         "for": "Diona",
-        
         badge: getImage("UI_AvatarIcon_Diona"),
-        
         config: [
             
             {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":248,"type":"float"},
@@ -780,9 +726,7 @@ export default {
             
         ],
         "for": "Eula",
-        
         badge: getImage("UI_AvatarIcon_Eula"),
-        
         config: [
             
         ],
@@ -798,9 +742,7 @@ export default {
             
         ],
         "for": "Fischl",
-        
         badge: getImage("UI_AvatarIcon_Fischl"),
-        
         config: [
             
         ],
@@ -816,9 +758,7 @@ export default {
             
         ],
         "for": "Ganyu",
-        
         badge: getImage("UI_AvatarIcon_Ganyu"),
-        
         config: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1540,"type":"float"},
@@ -836,9 +776,7 @@ export default {
             
         ],
         "for": "Gorou",
-        
         badge: getImage("UI_AvatarIcon_Gorou"),
-        
         config: [
             
             {"default":1.7,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -856,9 +794,7 @@ export default {
             
         ],
         "for": "HuTao",
-        
         badge: getImage("UI_AvatarIcon_Hutao"),
-        
         config: [
             
             {"default":0.5,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1532,"type":"float"},
@@ -880,9 +816,7 @@ export default {
             
         ],
         "for": "Jean",
-        
         badge: getImage("UI_AvatarIcon_Qin"),
-        
         config: [
             
             {"default":0.5,"max":1.0,"min":0.0,"name":"damage_weight","title":1114,"type":"float"},
@@ -904,9 +838,7 @@ export default {
             
         ],
         "for": "KaedeharaKazuha",
-        
         badge: getImage("UI_AvatarIcon_Kazuha"),
-        
         config: [
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":248,"type":"float"},
@@ -928,9 +860,7 @@ export default {
             
         ],
         "for": "KaedeharaKazuha",
-        
         badge: getImage("UI_AvatarIcon_Kazuha"),
-        
         config: [
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":248,"type":"float"},
@@ -948,9 +878,7 @@ export default {
             
         ],
         "for": "Kaeya",
-        
         badge: getImage("UI_AvatarIcon_Kaeya"),
-        
         config: [
             
         ],
@@ -966,9 +894,7 @@ export default {
             
         ],
         "for": "KamisatoAyaka",
-        
         badge: getImage("UI_AvatarIcon_Ayaka"),
-        
         config: [
             
             {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":248,"type":"float"},
@@ -986,9 +912,7 @@ export default {
             
         ],
         "for": "KamisatoAyaka",
-        
         badge: getImage("UI_AvatarIcon_Ayaka"),
-        
         config: [
             
         ],
@@ -1004,9 +928,7 @@ export default {
             
         ],
         "for": "KamisatoAyato",
-        
         badge: getImage("UI_AvatarIcon_Ayato"),
-        
         config: [
             
         ],
@@ -1022,9 +944,7 @@ export default {
             
         ],
         "for": "Keqing",
-        
         badge: getImage("UI_AvatarIcon_Keqing"),
-        
         config: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"aggravate_rate","title":1634,"type":"float"},
@@ -1042,9 +962,7 @@ export default {
             
         ],
         "for": "Klee",
-        
         badge: getImage("UI_AvatarIcon_Klee"),
-        
         config: [
             
             {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":248,"type":"float"},
@@ -1064,9 +982,7 @@ export default {
             
         ],
         "for": "KujouSara",
-        
         badge: getImage("UI_AvatarIcon_Sara"),
-        
         config: [
             
             {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":248,"type":"float"},
@@ -1084,9 +1000,7 @@ export default {
             
         ],
         "for": "KujouSara",
-        
         badge: getImage("UI_AvatarIcon_Sara"),
-        
         config: [
             
         ],
@@ -1102,9 +1016,7 @@ export default {
             
         ],
         "for": "Lisa",
-        
         badge: getImage("UI_AvatarIcon_Lisa"),
-        
         config: [
             
             {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1124,9 +1036,7 @@ export default {
             
         ],
         "for": "Mona",
-        
         badge: getImage("UI_AvatarIcon_Mona"),
-        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1144,9 +1054,7 @@ export default {
             
         ],
         "for": "Ningguang",
-        
         badge: getImage("UI_AvatarIcon_Ningguang"),
-        
         config: [
             
         ],
@@ -1162,9 +1070,7 @@ export default {
             
         ],
         "for": "Noelle",
-        
         badge: getImage("UI_AvatarIcon_Noel"),
-        
         config: [
             
         ],
@@ -1180,9 +1086,7 @@ export default {
             
         ],
         "for": "Qiqi",
-        
         badge: getImage("UI_AvatarIcon_Qiqi"),
-        
         config: [
             
             {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1200,9 +1104,7 @@ export default {
             
         ],
         "for": "RaidenShogun",
-        
         badge: getImage("UI_AvatarIcon_Shougun"),
-        
         config: [
             
             {"default":2.6,"max":4.0,"min":1.0,"name":"recharge_demand","title":248,"type":"float"},
@@ -1220,9 +1122,7 @@ export default {
             
         ],
         "for": "Razor",
-        
         badge: getImage("UI_AvatarIcon_Razor"),
-        
         config: [
             
         ],
@@ -1240,9 +1140,7 @@ export default {
             
         ],
         "for": "Rosaria",
-        
         badge: getImage("UI_AvatarIcon_Rosaria"),
-        
         config: [
             
         ],
@@ -1260,9 +1158,7 @@ export default {
             
         ],
         "for": "SangonomiyaKokomi",
-        
         badge: getImage("UI_AvatarIcon_Kokomi"),
-        
         config: [
             
         ],
@@ -1280,9 +1176,7 @@ export default {
             
         ],
         "for": "Sayu",
-        
         badge: getImage("UI_AvatarIcon_Sayu"),
-        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1300,9 +1194,7 @@ export default {
             
         ],
         "for": "Shenhe",
-        
         badge: getImage("UI_AvatarIcon_Shenhe"),
-        
         config: [
             
             {"default":1.6,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1320,9 +1212,7 @@ export default {
             
         ],
         "for": "Sucrose",
-        
         badge: getImage("UI_AvatarIcon_Sucrose"),
-        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1340,9 +1230,7 @@ export default {
             
         ],
         "for": "Tartaglia",
-        
         badge: getImage("UI_AvatarIcon_Tartaglia"),
-        
         config: [
             
         ],
@@ -1358,9 +1246,7 @@ export default {
             
         ],
         "for": "Thoma",
-        
         badge: getImage("UI_AvatarIcon_Tohma"),
-        
         config: [
             
             {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1378,9 +1264,7 @@ export default {
             
         ],
         "for": "Venti",
-        
         badge: getImage("UI_AvatarIcon_Venti"),
-        
         config: [
             
             {"default":0.7,"max":1.0,"min":0.0,"name":"swirl_rate","title":685,"type":"float"},
@@ -1398,9 +1282,7 @@ export default {
             
         ],
         "for": "Xiangling",
-        
         badge: getImage("UI_AvatarIcon_Xiangling"),
-        
         config: [
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1424,9 +1306,7 @@ export default {
             
         ],
         "for": "Xiao",
-        
         badge: getImage("UI_AvatarIcon_Xiao"),
-        
         config: [
             
         ],
@@ -1442,9 +1322,7 @@ export default {
             
         ],
         "for": "Xingqiu",
-        
         badge: getImage("UI_AvatarIcon_Xingqiu"),
-        
         config: [
             
             {"default":1.8,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1462,9 +1340,7 @@ export default {
             
         ],
         "for": "Xinyan",
-        
         badge: getImage("UI_AvatarIcon_Xinyan"),
-        
         config: [
             
         ],
@@ -1480,9 +1356,7 @@ export default {
             
         ],
         "for": "Xinyan",
-        
         badge: getImage("UI_AvatarIcon_Xinyan"),
-        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1502,9 +1376,7 @@ export default {
             
         ],
         "for": "YaeMiko",
-        
         badge: getImage("UI_AvatarIcon_Yae"),
-        
         config: [
             
             {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_requirement","title":249,"type":"float"},
@@ -1528,9 +1400,7 @@ export default {
             
         ],
         "for": "Yanfei",
-        
         badge: getImage("UI_AvatarIcon_Feiyan"),
-        
         config: [
             
         ],
@@ -1546,9 +1416,7 @@ export default {
             
         ],
         "for": "Yelan",
-        
         badge: getImage("UI_AvatarIcon_Yelan"),
-        
         config: [
             
             {"default":1.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":248,"type":"float"},
@@ -1568,9 +1436,7 @@ export default {
             
         ],
         "for": "Yoimiya",
-        
         badge: getImage("UI_AvatarIcon_Yoimiya"),
-        
         config: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"vaporize_rate","title":1532,"type":"float"},
@@ -1590,9 +1456,7 @@ export default {
             
         ],
         "for": "Yunjin",
-        
         badge: getImage("UI_AvatarIcon_Yunjin"),
-        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1610,9 +1474,7 @@ export default {
             
         ],
         "for": "Zhongli",
-        
         badge: getImage("UI_AvatarIcon_Zhongli"),
-        
         config: [
             
             {"default":1.4,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1630,9 +1492,7 @@ export default {
             
         ],
         "for": "KukiShinobu",
-        
         badge: getImage("UI_AvatarIcon_Shinobu"),
-        
         config: [
             
             {"default":0.6,"max":1.0,"min":0.0,"name":"e_ratio","title":13,"type":"float"},
@@ -1650,9 +1510,7 @@ export default {
             
         ],
         "for": "ShikanoinHeizou",
-        
         badge: getImage("UI_AvatarIcon_Heizo"),
-        
         config: [
             
         ],
@@ -1668,9 +1526,7 @@ export default {
             
         ],
         "for": "Tighnari",
-        
         badge: getImage("UI_AvatarIcon_Tighnari"),
-        
         config: [
             
         ],
@@ -1686,9 +1542,7 @@ export default {
             
         ],
         "for": "Cyno",
-        
         badge: getImage("UI_AvatarIcon_Cyno"),
-        
         config: [
             
             {"default":1.3,"max":3.0,"min":1.0,"name":"recharge_requirement","title":249,"type":"float"},
@@ -1718,9 +1572,7 @@ export default {
             
         ],
         "for": "Nilou",
-        
         badge: getImage("UI_AvatarIcon_Nilou"),
-        
         config: [
             
             {"default":5.0,"max":10.0,"min":0.0,"name":"e_ratio","title":214,"type":"float"},
@@ -1746,9 +1598,7 @@ export default {
             
         ],
         "for": "Nahida",
-        
         badge: getImage("UI_AvatarIcon_Nahida"),
-        
         config: [
             
             {"default":0,"max":1500,"min":0,"name":"em_requirement","title":1415,"type":"int"},
@@ -1774,9 +1624,7 @@ export default {
             
         ],
         "for": "Wanderer",
-        
         badge: getImage("UI_AvatarIcon_Wanderer"),
-        
         config: [
             
             {"default":false,"name":"e_hydro","title":30,"type":"bool"},
@@ -1808,9 +1656,7 @@ export default {
             
         ],
         "for": "Faruzan",
-        
         badge: getImage("UI_AvatarIcon_Faruzan"),
-        
         config: [
             
             {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":249,"type":"float"},
@@ -1828,9 +1674,7 @@ export default {
             
         ],
         "for": "Alhaitham",
-        
         badge: getImage("UI_AvatarIcon_Alhatham"),
-        
         config: [
             
             {"default":5.0,"max":10.0,"min":0.0,"name":"charged_ratio","title":1726,"type":"float"},
@@ -1854,9 +1698,7 @@ export default {
             
         ],
         "for": "Dehya",
-        
         badge: getImage("UI_AvatarIcon_Dehya"),
-        
         config: [
             
             {"default":0.0,"max":1.0,"min":0.0,"name":"melt_rate","title":1540,"type":"float"},
@@ -1880,9 +1722,7 @@ export default {
             
         ],
         "for": "Mika",
-        
         badge: getImage("UI_AvatarIcon_Mika"),
-        
         config: [
             
             {"default":2.0,"max":3.0,"min":1.0,"name":"recharge_demand","title":248,"type":"float"},
@@ -1902,9 +1742,7 @@ export default {
             
         ],
         "for": "Freminet",
-        
-        badge: getImage("UI_AvatarIcon_Freminet"),
-        
+        badge: getIcon("7ca0ad25c2cbb36cd55a8a19c1b2a39f"),
         config: [
             
         ],
@@ -1920,9 +1758,7 @@ export default {
             
         ],
         "for": "Lyney",
-        
-        badge: getImage("UI_AvatarIcon_Lyney"),
-        
+        badge: getIcon("15c0fae62ec91222148b753e5445c5fe"),
         config: [
             
         ],
@@ -1938,9 +1774,7 @@ export default {
             
         ],
         "for": "Neuvillette",
-        
-        badge: getImage("UI_AvatarIcon_Neuvillette"),
-        
+        badge: getIcon("965af2f32a5376affcb99afb9915a23d"),
         config: [
             
         ],
@@ -1956,9 +1790,7 @@ export default {
             
         ],
         "for": "Wriothesley",
-        
-        badge: getImage("UI_AvatarIcon_Wriothesley"),
-        
+        badge: getIcon("e2ea36ecfdb6f53717b1cadd394fbf49"),
         config: [
             
             {"default":0.5,"max":5.0,"min":0.0,"name":"punch_ratio","title":57,"type":"float"},
@@ -1978,9 +1810,7 @@ export default {
             
         ],
         "for": "Furina",
-        
-        badge: getImage("UI_AvatarIcon_Furina"),
-        
+        badge: getIcon("4da8d9d663e2e59f63c19815074074de"),
         config: [
             
         ],

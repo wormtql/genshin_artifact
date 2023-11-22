@@ -354,8 +354,9 @@
 // 
 
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/equip/UI_EquipIcon_#.png"
-
+const newTemplate = "https://act-webstatic.mihoyo.com/hk4e/e20200928calculate/item_icon_uceddf/#.png"
 const imageUrl = name => template.replace("#", name)
+const newImageUrl = md5 => newTemplate.replace("#", md5)
 
 export default {
 
@@ -365,6 +366,7 @@ export default {
         nameLocale: 1827,
         star: 5,
         url: imageUrl("Sword_Narukami"),
+        
         type: "Sword",
 
         
@@ -385,6 +387,7 @@ export default {
         nameLocale: 1866,
         star: 5,
         url: imageUrl("Sword_Falcon"),
+        
         type: "Sword",
 
         
@@ -401,6 +404,7 @@ export default {
         nameLocale: 779,
         star: 5,
         url: imageUrl("Sword_Kunwu"),
+        
         type: "Sword",
 
         
@@ -423,6 +427,7 @@ export default {
         nameLocale: 511,
         star: 5,
         url: imageUrl("Sword_Dvalin"),
+        
         type: "Sword",
 
         
@@ -439,6 +444,7 @@ export default {
         nameLocale: 1479,
         star: 5,
         url: imageUrl("Sword_Widsith"),
+        
         type: "Sword",
 
         
@@ -459,6 +465,7 @@ export default {
         nameLocale: 1359,
         star: 5,
         url: imageUrl("Sword_Morax"),
+        
         type: "Sword",
 
         
@@ -475,6 +482,7 @@ export default {
         nameLocale: 1402,
         star: 4,
         url: imageUrl("Sword_Troupe"),
+        
         type: "Sword",
 
         
@@ -491,6 +499,7 @@ export default {
         nameLocale: 1916,
         star: 4,
         url: imageUrl("Sword_Bloodstained"),
+        
         type: "Sword",
 
         
@@ -507,6 +516,7 @@ export default {
         nameLocale: 1004,
         star: 4,
         url: imageUrl("Sword_Outlaw"),
+        
         type: "Sword",
 
         
@@ -527,6 +537,7 @@ export default {
         nameLocale: 1796,
         star: 4,
         url: imageUrl("Sword_Psalmus"),
+        
         type: "Sword",
 
         
@@ -543,6 +554,7 @@ export default {
         nameLocale: 1388,
         star: 4,
         url: imageUrl("Sword_Fossil"),
+        
         type: "Sword",
 
         
@@ -559,6 +571,7 @@ export default {
         nameLocale: 575,
         star: 4,
         url: imageUrl("Sword_Theocrat"),
+        
         type: "Sword",
 
         
@@ -575,6 +588,7 @@ export default {
         nameLocale: 1605,
         star: 4,
         url: imageUrl("Sword_Proto"),
+        
         type: "Sword",
 
         
@@ -595,6 +609,7 @@ export default {
         nameLocale: 509,
         star: 4,
         url: imageUrl("Sword_Bakufu"),
+        
         type: "Sword",
 
         
@@ -611,6 +626,7 @@ export default {
         nameLocale: 343,
         star: 4,
         url: imageUrl("Sword_Rockkiller"),
+        
         type: "Sword",
 
         
@@ -631,6 +647,7 @@ export default {
         nameLocale: 1746,
         star: 4,
         url: imageUrl("Sword_Exotic"),
+        
         type: "Sword",
 
         
@@ -651,6 +668,7 @@ export default {
         nameLocale: 1467,
         star: 4,
         url: imageUrl("Sword_Magnum"),
+        
         type: "Sword",
 
         
@@ -667,6 +685,7 @@ export default {
         nameLocale: 1572,
         star: 4,
         url: imageUrl("Sword_Zephyrus"),
+        
         type: "Sword",
 
         
@@ -683,6 +702,7 @@ export default {
         nameLocale: 1662,
         star: 4,
         url: imageUrl("Sword_Opus"),
+        
         type: "Sword",
 
         
@@ -703,10 +723,11 @@ export default {
         nameLocale: 1921,
         star: 4,
         url: imageUrl("Sword_Blackrock"),
+        
         type: "Sword",
 
         
-        effect: 309,
+        effect: 310,
         
         
         configs: [
@@ -723,6 +744,7 @@ export default {
         nameLocale: 1915,
         star: 3,
         url: imageUrl("Sword_Dawn"),
+        
         type: "Sword",
 
         
@@ -743,6 +765,7 @@ export default {
         nameLocale: 394,
         star: 3,
         url: imageUrl("Sword_Sashimi"),
+        
         type: "Sword",
 
         
@@ -759,6 +782,7 @@ export default {
         nameLocale: 1871,
         star: 3,
         url: imageUrl("Sword_Mitsurugi"),
+        
         type: "Sword",
 
         
@@ -779,6 +803,7 @@ export default {
         nameLocale: 1005,
         star: 3,
         url: imageUrl("Sword_Darker"),
+        
         type: "Sword",
 
         
@@ -799,6 +824,7 @@ export default {
         nameLocale: 292,
         star: 3,
         url: imageUrl("Sword_Steel"),
+        
         type: "Sword",
 
         
@@ -819,6 +845,7 @@ export default {
         nameLocale: 813,
         star: 3,
         url: imageUrl("Sword_Traveler"),
+        
         type: "Sword",
 
         
@@ -835,6 +862,7 @@ export default {
         nameLocale: 1747,
         star: 2,
         url: imageUrl("Sword_Silver"),
+        
         type: "Sword",
 
         
@@ -849,6 +877,7 @@ export default {
         nameLocale: 827,
         star: 1,
         url: imageUrl("Sword_Blunt"),
+        
         type: "Sword",
 
         
@@ -863,6 +892,7 @@ export default {
         nameLocale: 1123,
         star: 5,
         url: imageUrl("Sword_Amenoma"),
+        
         type: "Sword",
 
         
@@ -883,6 +913,7 @@ export default {
         nameLocale: 1404,
         star: 4,
         url: imageUrl("Sword_Youtou"),
+        
         type: "Sword",
 
         
@@ -903,6 +934,7 @@ export default {
         nameLocale: 363,
         star: 4,
         url: imageUrl("Sword_Arakalari"),
+        
         type: "Sword",
 
         
@@ -921,6 +953,7 @@ export default {
         nameLocale: 1570,
         star: 4,
         url: imageUrl("Sword_Pleroma"),
+        
         type: "Sword",
 
         
@@ -941,6 +974,7 @@ export default {
         nameLocale: 453,
         star: 5,
         url: imageUrl("Sword_Deshret"),
+        
         type: "Sword",
 
         
@@ -963,6 +997,7 @@ export default {
         nameLocale: 104,
         star: 4,
         url: imageUrl("Sword_Kasabouzu"),
+        
         type: "Sword",
 
         
@@ -983,6 +1018,7 @@ export default {
         nameLocale: 1559,
         star: 5,
         url: imageUrl("Sword_Ayus"),
+        
         type: "Sword",
 
         
@@ -1001,6 +1037,7 @@ export default {
         nameLocale: 1233,
         star: 4,
         url: imageUrl("Sword_Boreas"),
+        
         type: "Sword",
 
         
@@ -1022,7 +1059,7 @@ export default {
         internalName: "Sword_Vorpal",
         nameLocale: 1149,
         star: 4,
-        url: imageUrl("Sword_Vorpal"),
+        url: newImageUrl("acde24e9fa3f3e8c14f40aa4cd1a9007"),
         type: "Sword",
 
         
@@ -1031,7 +1068,7 @@ export default {
         
         configs: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":761,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":762,"type":"float"},
             
             {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":764,"type":"float"},
             
@@ -1044,7 +1081,7 @@ export default {
         internalName: "Sword_Machination",
         nameLocale: 1189,
         star: 4,
-        url: imageUrl("Sword_Machination"),
+        url: newImageUrl("b6259f0f93f824b169b50b6bc593dd08"),
         type: "Sword",
 
         
@@ -1064,7 +1101,7 @@ export default {
         internalName: "Sword_Mechanic",
         nameLocale: 1469,
         star: 4,
-        url: imageUrl("Sword_Mechanic"),
+        url: newImageUrl("da80c69eada7e7fb6053b6301a6011ba"),
         type: "Sword",
 
         
@@ -1084,7 +1121,7 @@ export default {
         internalName: "Sword_Purewill",
         nameLocale: 1096,
         star: 4,
-        url: imageUrl("Sword_Purewill"),
+        url: newImageUrl("9c06477c167aadef25d03b4ceb1320ba"),
         type: "Sword",
 
         
@@ -1100,7 +1137,7 @@ export default {
         internalName: "Sword_Regalis",
         nameLocale: 1835,
         star: 5,
-        url: imageUrl("Sword_Regalis"),
+        url: newImageUrl("1d603d4764cf292a12e268b8d8012688"),
         type: "Sword",
 
         
@@ -1123,6 +1160,7 @@ export default {
         nameLocale: 1234,
         star: 5,
         url: imageUrl("Claymore_Wolfmound"),
+        
         type: "Claymore",
 
         
@@ -1143,6 +1181,7 @@ export default {
         nameLocale: 510,
         star: 5,
         url: imageUrl("Claymore_Dvalin"),
+        
         type: "Claymore",
 
         
@@ -1159,6 +1198,7 @@ export default {
         nameLocale: 822,
         star: 5,
         url: imageUrl("Claymore_Kunwu"),
+        
         type: "Claymore",
 
         
@@ -1181,6 +1221,7 @@ export default {
         nameLocale: 1052,
         star: 5,
         url: imageUrl("Claymore_Widsith"),
+        
         type: "Claymore",
 
         
@@ -1201,6 +1242,7 @@ export default {
         nameLocale: 1633,
         star: 5,
         url: imageUrl("Claymore_Itadorimaru"),
+        
         type: "Claymore",
 
         
@@ -1217,6 +1259,7 @@ export default {
         nameLocale: 660,
         star: 4,
         url: imageUrl("Claymore_Maria"),
+        
         type: "Claymore",
 
         
@@ -1237,6 +1280,7 @@ export default {
         nameLocale: 570,
         star: 4,
         url: imageUrl("Claymore_Theocrat"),
+        
         type: "Claymore",
 
         
@@ -1253,6 +1297,7 @@ export default {
         nameLocale: 1326,
         star: 4,
         url: imageUrl("Claymore_Exotic"),
+        
         type: "Claymore",
 
         
@@ -1273,6 +1318,7 @@ export default {
         nameLocale: 1737,
         star: 4,
         url: imageUrl("Claymore_Troupe"),
+        
         type: "Claymore",
 
         
@@ -1293,6 +1339,7 @@ export default {
         nameLocale: 1802,
         star: 4,
         url: imageUrl("Claymore_Dragonfell"),
+        
         type: "Claymore",
 
         
@@ -1309,6 +1356,7 @@ export default {
         nameLocale: 1573,
         star: 4,
         url: imageUrl("Claymore_Zephyrus"),
+        
         type: "Claymore",
 
         
@@ -1325,6 +1373,7 @@ export default {
         nameLocale: 1075,
         star: 4,
         url: imageUrl("Claymore_Bakufu"),
+        
         type: "Claymore",
 
         
@@ -1341,6 +1390,7 @@ export default {
         nameLocale: 1389,
         star: 4,
         url: imageUrl("Claymore_Fossil"),
+        
         type: "Claymore",
 
         
@@ -1357,6 +1407,7 @@ export default {
         nameLocale: 1541,
         star: 4,
         url: imageUrl("Claymore_Kione"),
+        
         type: "Claymore",
 
         
@@ -1377,10 +1428,11 @@ export default {
         nameLocale: 1919,
         star: 4,
         url: imageUrl("Claymore_Blackrock"),
+        
         type: "Claymore",
 
         
-        effect: 309,
+        effect: 310,
         
         
         configs: [
@@ -1397,6 +1449,7 @@ export default {
         nameLocale: 1801,
         star: 4,
         url: imageUrl("Claymore_Perdue"),
+        
         type: "Claymore",
 
         
@@ -1417,6 +1470,7 @@ export default {
         nameLocale: 1604,
         star: 4,
         url: imageUrl("Claymore_Proto"),
+        
         type: "Claymore",
 
         
@@ -1433,6 +1487,7 @@ export default {
         nameLocale: 1548,
         star: 4,
         url: imageUrl("Claymore_MillenniaTuna"),
+        
         type: "Claymore",
 
         
@@ -1449,6 +1504,7 @@ export default {
         nameLocale: 345,
         star: 4,
         url: imageUrl("Claymore_Lapis"),
+        
         type: "Claymore",
 
         
@@ -1469,6 +1525,7 @@ export default {
         nameLocale: 1870,
         star: 3,
         url: imageUrl("Claymore_Mitsurugi"),
+        
         type: "Claymore",
 
         
@@ -1489,6 +1546,7 @@ export default {
         nameLocale: 173,
         star: 3,
         url: imageUrl("Claymore_Reasoning"),
+        
         type: "Claymore",
 
         
@@ -1505,6 +1563,7 @@ export default {
         nameLocale: 1111,
         star: 3,
         url: imageUrl("Claymore_Siegfry"),
+        
         type: "Claymore",
 
         
@@ -1525,6 +1584,7 @@ export default {
         nameLocale: 1336,
         star: 3,
         url: imageUrl("Claymore_Tin"),
+        
         type: "Claymore",
 
         
@@ -1541,6 +1601,7 @@ export default {
         nameLocale: 1745,
         star: 3,
         url: imageUrl("Claymore_Glaive"),
+        
         type: "Claymore",
 
         
@@ -1561,6 +1622,7 @@ export default {
         nameLocale: 188,
         star: 2,
         url: imageUrl("Claymore_Oyaji"),
+        
         type: "Claymore",
 
         
@@ -1575,6 +1637,7 @@ export default {
         nameLocale: 1601,
         star: 1,
         url: imageUrl("Claymore_Aniki"),
+        
         type: "Claymore",
 
         
@@ -1589,6 +1652,7 @@ export default {
         nameLocale: 1079,
         star: 4,
         url: imageUrl("Claymore_Arakalari"),
+        
         type: "Claymore",
 
         
@@ -1607,6 +1671,7 @@ export default {
         nameLocale: 1253,
         star: 4,
         url: imageUrl("Claymore_Pleroma"),
+        
         type: "Claymore",
 
         
@@ -1627,6 +1692,7 @@ export default {
         nameLocale: 1478,
         star: 5,
         url: imageUrl("Claymore_Deshret"),
+        
         type: "Claymore",
 
         
@@ -1649,6 +1715,7 @@ export default {
         nameLocale: 1876,
         star: 4,
         url: imageUrl("Claymore_Fleurfair"),
+        
         type: "Claymore",
 
         
@@ -1657,7 +1724,7 @@ export default {
         
         configs: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":632,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"rate","title":634,"type":"float"},
             
         ],
         
@@ -1668,7 +1735,7 @@ export default {
         internalName: "Claymore_BeastTamer",
         nameLocale: 1457,
         star: 4,
-        url: imageUrl("Claymore_BeastTamer"),
+        url: newImageUrl("4add4bfe23684d374398998eb5eb247d"),
         type: "Claymore",
 
         
@@ -1690,7 +1757,7 @@ export default {
         internalName: "Claymore_Vorpal",
         nameLocale: 1141,
         star: 4,
-        url: imageUrl("Claymore_Vorpal"),
+        url: newImageUrl("a76dd2c45f3bcfaf3f547d5c90bd20e2"),
         type: "Claymore",
 
         
@@ -1710,7 +1777,7 @@ export default {
         internalName: "Claymore_Mechanic",
         nameLocale: 197,
         star: 4,
-        url: imageUrl("Claymore_Mechanic"),
+        url: newImageUrl("6dc1e808543a09ddc1daf1e76721cd3d"),
         type: "Claymore",
 
         
@@ -1731,6 +1798,7 @@ export default {
         nameLocale: 1536,
         star: 5,
         url: imageUrl("Pole_Narukami"),
+        
         type: "Polearm",
 
         
@@ -1751,6 +1819,7 @@ export default {
         nameLocale: 514,
         star: 5,
         url: imageUrl("Pole_Dvalin"),
+        
         type: "Polearm",
 
         
@@ -1767,6 +1836,7 @@ export default {
         nameLocale: 429,
         star: 5,
         url: imageUrl("Pole_Morax"),
+        
         type: "Polearm",
 
         
@@ -1789,6 +1859,7 @@ export default {
         nameLocale: 659,
         star: 5,
         url: imageUrl("Pole_Santika"),
+        
         type: "Polearm",
 
         
@@ -1811,6 +1882,7 @@ export default {
         nameLocale: 709,
         star: 5,
         url: imageUrl("Pole_Homa"),
+        
         type: "Polearm",
 
         
@@ -1831,6 +1903,7 @@ export default {
         nameLocale: 1622,
         star: 5,
         url: imageUrl("Pole_Kunwu"),
+        
         type: "Polearm",
 
         
@@ -1853,6 +1926,7 @@ export default {
         nameLocale: 1606,
         star: 4,
         url: imageUrl("Pole_Proto"),
+        
         type: "Polearm",
 
         
@@ -1873,6 +1947,7 @@ export default {
         nameLocale: 348,
         star: 4,
         url: imageUrl("Pole_Lapis"),
+        
         type: "Polearm",
 
         
@@ -1893,6 +1968,7 @@ export default {
         nameLocale: 433,
         star: 4,
         url: imageUrl("Pole_Bakufu"),
+        
         type: "Polearm",
 
         
@@ -1909,6 +1985,7 @@ export default {
         nameLocale: 39,
         star: 4,
         url: imageUrl("Pole_Mori"),
+        
         type: "Polearm",
 
         
@@ -1925,6 +2002,7 @@ export default {
         nameLocale: 1576,
         star: 4,
         url: imageUrl("Pole_Zephyrus"),
+        
         type: "Polearm",
 
         
@@ -1941,6 +2019,7 @@ export default {
         nameLocale: 1925,
         star: 4,
         url: imageUrl("Pole_Everfrost"),
+        
         type: "Polearm",
 
         
@@ -1957,6 +2036,7 @@ export default {
         nameLocale: 342,
         star: 4,
         url: imageUrl("Pole_Stardust"),
+        
         type: "Polearm",
 
         
@@ -1977,6 +2057,7 @@ export default {
         nameLocale: 290,
         star: 4,
         url: imageUrl("Pole_Gladiator"),
+        
         type: "Polearm",
 
         
@@ -1997,6 +2078,7 @@ export default {
         nameLocale: 1132,
         star: 4,
         url: imageUrl("Pole_Exotic"),
+        
         type: "Polearm",
 
         
@@ -2013,10 +2095,11 @@ export default {
         nameLocale: 1917,
         star: 4,
         url: imageUrl("Pole_Blackrock"),
+        
         type: "Polearm",
 
         
-        effect: 310,
+        effect: 309,
         
         
         configs: [
@@ -2033,6 +2116,7 @@ export default {
         nameLocale: 785,
         star: 4,
         url: imageUrl("Pole_Maria"),
+        
         type: "Polearm",
 
         
@@ -2053,6 +2137,7 @@ export default {
         nameLocale: 572,
         star: 4,
         url: imageUrl("Pole_Theocrat"),
+        
         type: "Polearm",
 
         
@@ -2069,6 +2154,7 @@ export default {
         nameLocale: 1743,
         star: 3,
         url: imageUrl("Pole_Halberd"),
+        
         type: "Polearm",
 
         
@@ -2085,6 +2171,7 @@ export default {
         nameLocale: 1922,
         star: 3,
         url: imageUrl("Pole_Noire"),
+        
         type: "Polearm",
 
         
@@ -2105,6 +2192,7 @@ export default {
         nameLocale: 1333,
         star: 3,
         url: imageUrl("Pole_Ruby"),
+        
         type: "Polearm",
 
         
@@ -2121,6 +2209,7 @@ export default {
         nameLocale: 1744,
         star: 2,
         url: imageUrl("Pole_Rod"),
+        
         type: "Polearm",
 
         
@@ -2135,6 +2224,7 @@ export default {
         nameLocale: 787,
         star: 1,
         url: imageUrl("Pole_Gewalt"),
+        
         type: "Polearm",
 
         
@@ -2149,6 +2239,7 @@ export default {
         nameLocale: 1620,
         star: 4,
         url: imageUrl("Pole_Arakalari"),
+        
         type: "Polearm",
 
         
@@ -2167,6 +2258,7 @@ export default {
         nameLocale: 1845,
         star: 4,
         url: imageUrl("Pole_Windvane"),
+        
         type: "Polearm",
 
         
@@ -2187,6 +2279,7 @@ export default {
         nameLocale: 1632,
         star: 5,
         url: imageUrl("Pole_Deshret"),
+        
         type: "Polearm",
 
         
@@ -2206,7 +2299,7 @@ export default {
         internalName: "Pole_Shanty",
         nameLocale: 610,
         star: 4,
-        url: imageUrl("Pole_Shanty"),
+        url: newImageUrl("2dc8e2cc9ab49c1d0ff9f67b3c98a94d"),
         type: "Polearm",
 
         
@@ -2226,7 +2319,7 @@ export default {
         internalName: "Pole_Vorpal",
         nameLocale: 256,
         star: 4,
-        url: imageUrl("Pole_Vorpal"),
+        url: newImageUrl("6514981aeab437590ebbfe15f5aef671"),
         type: "Polearm",
 
         
@@ -2242,7 +2335,7 @@ export default {
         internalName: "Pole_Mechanic",
         nameLocale: 335,
         star: 4,
-        url: imageUrl("Pole_Mechanic"),
+        url: newImageUrl("3333f73a195e3da1ed9a125658dfcf16"),
         type: "Polearm",
 
         
@@ -2263,6 +2356,7 @@ export default {
         nameLocale: 447,
         star: 5,
         url: imageUrl("Catalyst_Fourwinds"),
+        
         type: "Catalyst",
 
         
@@ -2283,6 +2377,7 @@ export default {
         nameLocale: 512,
         star: 5,
         url: imageUrl("Catalyst_Dvalin"),
+        
         type: "Catalyst",
 
         
@@ -2299,6 +2394,7 @@ export default {
         nameLocale: 103,
         star: 5,
         url: imageUrl("Catalyst_Kaleido"),
+        
         type: "Catalyst",
 
         
@@ -2315,6 +2411,7 @@ export default {
         nameLocale: 603,
         star: 5,
         url: imageUrl("Catalyst_Kunwu"),
+        
         type: "Catalyst",
 
         
@@ -2337,6 +2434,7 @@ export default {
         nameLocale: 1003,
         star: 4,
         url: imageUrl("Catalyst_Outlaw"),
+        
         type: "Catalyst",
 
         
@@ -2357,6 +2455,7 @@ export default {
         nameLocale: 1134,
         star: 4,
         url: imageUrl("Catalyst_Troupe"),
+        
         type: "Catalyst",
 
         
@@ -2381,6 +2480,7 @@ export default {
         nameLocale: 341,
         star: 4,
         url: imageUrl("Catalyst_Resurrection"),
+        
         type: "Catalyst",
 
         
@@ -2403,6 +2503,7 @@ export default {
         nameLocale: 1391,
         star: 4,
         url: imageUrl("Catalyst_Fossil"),
+        
         type: "Catalyst",
 
         
@@ -2419,6 +2520,7 @@ export default {
         nameLocale: 573,
         star: 4,
         url: imageUrl("Catalyst_Theocrat"),
+        
         type: "Catalyst",
 
         
@@ -2435,6 +2537,7 @@ export default {
         nameLocale: 1608,
         star: 4,
         url: imageUrl("Catalyst_Proto"),
+        
         type: "Catalyst",
 
         
@@ -2451,6 +2554,7 @@ export default {
         nameLocale: 82,
         star: 4,
         url: imageUrl("Catalyst_Exotic"),
+        
         type: "Catalyst",
 
         
@@ -2471,6 +2575,7 @@ export default {
         nameLocale: 1334,
         star: 4,
         url: imageUrl("Catalyst_Bakufu"),
+        
         type: "Catalyst",
 
         
@@ -2487,6 +2592,7 @@ export default {
         nameLocale: 655,
         star: 4,
         url: imageUrl("Catalyst_Everfrost"),
+        
         type: "Catalyst",
 
         
@@ -2503,6 +2609,7 @@ export default {
         nameLocale: 1575,
         star: 4,
         url: imageUrl("Catalyst_Zephyrus"),
+        
         type: "Catalyst",
 
         
@@ -2519,6 +2626,7 @@ export default {
         nameLocale: 841,
         star: 4,
         url: imageUrl("Catalyst_Truelens"),
+        
         type: "Catalyst",
 
         
@@ -2535,6 +2643,7 @@ export default {
         nameLocale: 436,
         star: 4,
         url: imageUrl("Catalyst_Ludiharpastum"),
+        
         type: "Catalyst",
 
         
@@ -2557,10 +2666,11 @@ export default {
         nameLocale: 1920,
         star: 4,
         url: imageUrl("Catalyst_Blackrock"),
+        
         type: "Catalyst",
 
         
-        effect: 310,
+        effect: 309,
         
         
         configs: [
@@ -2577,6 +2687,7 @@ export default {
         nameLocale: 1364,
         star: 5,
         url: imageUrl("Catalyst_Narukami"),
+        
         type: "Catalyst",
 
         
@@ -2599,6 +2710,7 @@ export default {
         nameLocale: 1602,
         star: 4,
         url: imageUrl("Catalyst_Jyanome"),
+        
         type: "Catalyst",
 
         
@@ -2619,6 +2731,7 @@ export default {
         nameLocale: 1895,
         star: 3,
         url: imageUrl("Catalyst_Intro"),
+        
         type: "Catalyst",
 
         
@@ -2639,6 +2752,7 @@ export default {
         nameLocale: 638,
         star: 3,
         url: imageUrl("Catalyst_Lightnov"),
+        
         type: "Catalyst",
 
         
@@ -2655,6 +2769,7 @@ export default {
         nameLocale: 1454,
         star: 3,
         url: imageUrl("Catalyst_Jade"),
+        
         type: "Catalyst",
 
         
@@ -2675,6 +2790,7 @@ export default {
         nameLocale: 1599,
         star: 3,
         url: imageUrl("Catalyst_Pulpfic"),
+        
         type: "Catalyst",
 
         
@@ -2691,6 +2807,7 @@ export default {
         nameLocale: 1311,
         star: 3,
         url: imageUrl("Catalyst_Phoney"),
+        
         type: "Catalyst",
 
         
@@ -2711,6 +2828,7 @@ export default {
         nameLocale: 383,
         star: 2,
         url: imageUrl("Catalyst_Pocket"),
+        
         type: "Catalyst",
 
         
@@ -2725,6 +2843,7 @@ export default {
         nameLocale: 557,
         star: 1,
         url: imageUrl("Catalyst_Apprentice"),
+        
         type: "Catalyst",
 
         
@@ -2739,6 +2858,7 @@ export default {
         nameLocale: 1337,
         star: 4,
         url: imageUrl("Catalyst_Arakalari"),
+        
         type: "Catalyst",
 
         
@@ -2757,6 +2877,7 @@ export default {
         nameLocale: 1136,
         star: 4,
         url: imageUrl("Catalyst_Pleroma"),
+        
         type: "Catalyst",
 
         
@@ -2777,6 +2898,7 @@ export default {
         nameLocale: 344,
         star: 5,
         url: imageUrl("Catalyst_Ayus"),
+        
         type: "Catalyst",
 
         
@@ -2787,7 +2909,7 @@ export default {
             
             {"default":1,"max":3,"min":0,"name":"same_count","title":395,"type":"int"},
             
-            {"default":2,"max":3,"min":0,"name":"diff_count","title":101,"type":"int"},
+            {"default":2,"max":3,"min":0,"name":"diff_count","title":102,"type":"int"},
             
         ],
         
@@ -2799,6 +2921,7 @@ export default {
         nameLocale: 449,
         star: 5,
         url: imageUrl("Catalyst_Alaya"),
+        
         type: "Catalyst",
 
         
@@ -2819,6 +2942,7 @@ export default {
         nameLocale: 1358,
         star: 5,
         url: imageUrl("Catalyst_Morax"),
+        
         type: "Catalyst",
 
         
@@ -2835,10 +2959,10 @@ export default {
 
     SacrificialJade: {
         name: "SacrificialJade",
-        internalName: "",
+        internalName: "Catalyst_Yue",
         nameLocale: 1695,
         star: 4,
-        url: imageUrl(""),
+        url: newImageUrl("93b6d05a8bc54d8eb69e4ed450c981c8"),
         type: "Catalyst",
 
         
@@ -2858,7 +2982,7 @@ export default {
         internalName: "Catalyst_Vorpal",
         nameLocale: 1418,
         star: 4,
-        url: imageUrl("Catalyst_Vorpal"),
+        url: newImageUrl("d4f997c8b399ef27d027653ba73645a5"),
         type: "Catalyst",
 
         
@@ -2867,7 +2991,7 @@ export default {
         
         configs: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":761,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"rate1","title":762,"type":"float"},
             
             {"default":0.5,"max":1.0,"min":0.0,"name":"rate2","title":764,"type":"float"},
             
@@ -2880,7 +3004,7 @@ export default {
         internalName: "Catalyst_DandelionPoem",
         nameLocale: 820,
         star: 4,
-        url: imageUrl("Catalyst_DandelionPoem"),
+        url: newImageUrl("b90f7edc1c4a6c0c132e00da99918d84"),
         type: "Catalyst",
 
         
@@ -2900,7 +3024,7 @@ export default {
         internalName: "Catalyst_Wheatley",
         nameLocale: 1734,
         star: 5,
-        url: imageUrl("Catalyst_Wheatley"),
+        url: newImageUrl("74712841e6a4cc25e0a2a36874ac71d7"),
         type: "Catalyst",
 
         
@@ -2920,7 +3044,7 @@ export default {
         internalName: "Catalyst_Iudex",
         nameLocale: 78,
         star: 5,
-        url: imageUrl("Catalyst_Iudex"),
+        url: newImageUrl("8f34b571d7e2d26e6c2ef2886defa86b"),
         type: "Catalyst",
 
         
@@ -2941,6 +3065,7 @@ export default {
         nameLocale: 276,
         star: 5,
         url: imageUrl("Bow_Worldbane"),
+        
         type: "Bow",
 
         
@@ -2961,6 +3086,7 @@ export default {
         nameLocale: 1873,
         star: 5,
         url: imageUrl("Bow_Narukami"),
+        
         type: "Bow",
 
         
@@ -2981,6 +3107,7 @@ export default {
         nameLocale: 1425,
         star: 5,
         url: imageUrl("Bow_Widsith"),
+        
         type: "Bow",
 
         
@@ -3001,6 +3128,7 @@ export default {
         nameLocale: 513,
         star: 5,
         url: imageUrl("Bow_Dvalin"),
+        
         type: "Bow",
 
         
@@ -3017,6 +3145,7 @@ export default {
         nameLocale: 1783,
         star: 5,
         url: imageUrl("Bow_Amos"),
+        
         type: "Bow",
 
         
@@ -3037,6 +3166,7 @@ export default {
         nameLocale: 1002,
         star: 4,
         url: imageUrl("Bow_Outlaw"),
+        
         type: "Bow",
 
         
@@ -3057,6 +3187,7 @@ export default {
         nameLocale: 1483,
         star: 4,
         url: imageUrl("Bow_Viridescent"),
+        
         type: "Bow",
 
         
@@ -3073,6 +3204,7 @@ export default {
         nameLocale: 1430,
         star: 4,
         url: imageUrl("Bow_Troupe"),
+        
         type: "Bow",
 
         
@@ -3089,6 +3221,7 @@ export default {
         nameLocale: 1390,
         star: 4,
         url: imageUrl("Bow_Fossil"),
+        
         type: "Bow",
 
         
@@ -3105,6 +3238,7 @@ export default {
         nameLocale: 640,
         star: 4,
         url: imageUrl("Bow_Recluse"),
+        
         type: "Bow",
 
         
@@ -3121,6 +3255,7 @@ export default {
         nameLocale: 576,
         star: 4,
         url: imageUrl("Bow_Theocrat"),
+        
         type: "Bow",
 
         
@@ -3137,6 +3272,7 @@ export default {
         nameLocale: 729,
         star: 4,
         url: imageUrl("Bow_Predator"),
+        
         type: "Bow",
 
         
@@ -3157,6 +3293,7 @@ export default {
         nameLocale: 1607,
         star: 4,
         url: imageUrl("Bow_Proto"),
+        
         type: "Bow",
 
         
@@ -3177,6 +3314,7 @@ export default {
         nameLocale: 1018,
         star: 4,
         url: imageUrl("Bow_Maria"),
+        
         type: "Bow",
 
         
@@ -3197,6 +3335,7 @@ export default {
         nameLocale: 629,
         star: 4,
         url: imageUrl("Bow_Nachtblind"),
+        
         type: "Bow",
 
         
@@ -3219,6 +3358,7 @@ export default {
         nameLocale: 1357,
         star: 4,
         url: imageUrl("Bow_Bakufu"),
+        
         type: "Bow",
 
         
@@ -3239,6 +3379,7 @@ export default {
         nameLocale: 1574,
         star: 4,
         url: imageUrl("Bow_Zephyrus"),
+        
         type: "Bow",
 
         
@@ -3255,6 +3396,7 @@ export default {
         nameLocale: 1742,
         star: 4,
         url: imageUrl("Bow_Exotic"),
+        
         type: "Bow",
 
         
@@ -3275,10 +3417,11 @@ export default {
         nameLocale: 1918,
         star: 4,
         url: imageUrl("Bow_Blackrock"),
+        
         type: "Bow",
 
         
-        effect: 310,
+        effect: 309,
         
         
         configs: [
@@ -3295,6 +3438,7 @@ export default {
         nameLocale: 1853,
         star: 4,
         url: imageUrl("Bow_Fleurfair"),
+        
         type: "Bow",
 
         
@@ -3315,6 +3459,7 @@ export default {
         nameLocale: 1900,
         star: 3,
         url: imageUrl("Bow_Crowfeather"),
+        
         type: "Bow",
 
         
@@ -3335,6 +3480,7 @@ export default {
         nameLocale: 365,
         star: 3,
         url: imageUrl("Bow_Curve"),
+        
         type: "Bow",
 
         
@@ -3351,6 +3497,7 @@ export default {
         nameLocale: 198,
         star: 3,
         url: imageUrl("Bow_Msg"),
+        
         type: "Bow",
 
         
@@ -3367,6 +3514,7 @@ export default {
         nameLocale: 1367,
         star: 3,
         url: imageUrl("Bow_Arjuna"),
+        
         type: "Bow",
 
         
@@ -3387,6 +3535,7 @@ export default {
         nameLocale: 642,
         star: 3,
         url: imageUrl("Bow_Sling"),
+        
         type: "Bow",
 
         
@@ -3409,6 +3558,7 @@ export default {
         nameLocale: 361,
         star: 2,
         url: imageUrl("Bow_Old"),
+        
         type: "Bow",
 
         
@@ -3423,6 +3573,7 @@ export default {
         nameLocale: 1243,
         star: 1,
         url: imageUrl("Bow_Hunters"),
+        
         type: "Bow",
 
         
@@ -3437,6 +3588,7 @@ export default {
         nameLocale: 1485,
         star: 5,
         url: imageUrl("Bow_Kirin"),
+        
         type: "Bow",
 
         
@@ -3457,6 +3609,7 @@ export default {
         nameLocale: 1530,
         star: 4,
         url: imageUrl("Bow_Fallensun"),
+        
         type: "Bow",
 
         
@@ -3477,6 +3630,7 @@ export default {
         nameLocale: 1240,
         star: 5,
         url: imageUrl("Bow_Ayus"),
+        
         type: "Bow",
 
         
@@ -3497,6 +3651,7 @@ export default {
         nameLocale: 1401,
         star: 4,
         url: imageUrl("Bow_Fin"),
+        
         type: "Bow",
 
         
@@ -3513,6 +3668,7 @@ export default {
         nameLocale: 1252,
         star: 4,
         url: imageUrl("Bow_Arakalari"),
+        
         type: "Bow",
 
         
@@ -3530,7 +3686,7 @@ export default {
         internalName: "Bow_Ibis",
         nameLocale: 1901,
         star: 4,
-        url: imageUrl("Bow_Ibis"),
+        url: newImageUrl("aef17fddf164e3ea98c4fd073a5f02a3"),
         type: "Bow",
 
         
@@ -3550,7 +3706,7 @@ export default {
         internalName: "Bow_Pledge",
         nameLocale: 1019,
         star: 5,
-        url: imageUrl("Bow_Pledge"),
+        url: newImageUrl("2b3f4a4eef528e1150893d58c68a5de3"),
         type: "Bow",
 
         
@@ -3572,7 +3728,7 @@ export default {
         internalName: "Bow_Gurabad",
         nameLocale: 1209,
         star: 4,
-        url: imageUrl("Bow_Gurabad"),
+        url: newImageUrl("1cd241d13f320f3a0fbdfe378f423364"),
         type: "Bow",
 
         
@@ -3592,7 +3748,7 @@ export default {
         internalName: "Bow_Vorpal",
         nameLocale: 1836,
         star: 4,
-        url: imageUrl("Bow_Vorpal"),
+        url: newImageUrl("d70cf7fcc37cfbce1a07f5f3e214f278"),
         type: "Bow",
 
         
@@ -3612,7 +3768,7 @@ export default {
         internalName: "Bow_Mechanic",
         nameLocale: 1140,
         star: 4,
-        url: imageUrl("Bow_Mechanic"),
+        url: newImageUrl("98e0ebb9a9857e2b21deda9d8c574b89"),
         type: "Bow",
 
         

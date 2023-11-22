@@ -303,8 +303,9 @@ import Kirara_splash from "@image/characters/Kirara_splash"
 
 // const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png?x-oss-process=image/crop,w_200,h_200,y_5,g_north"
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_#.png?x-oss-process=image/crop,w_200,h_200,y_5,g_north"
-
+const newTemplate = "https://act-webstatic.mihoyo.com/hk4e/e20200928calculate/item_icon_uceddf/#.png?x-oss-process=image/crop,w_200,h_200,y_5,g_north"
 const getName = name => template.replace("#", name)
+const getMd5 = md5 => newTemplate.replace("#", md5)
 
 export default {
     
@@ -317,6 +318,7 @@ export default {
         // card: AetherAnemo_card,
         // avatar: AetherAnemo_avatar,
         avatar: getName("PlayerBoy"),
+        
         splash: AetherAnemo_splash,
         skillName1: 874,
         skillName2: 1850,
@@ -329,11 +331,11 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
-            { index: 5, text: 1713 },
+            { index: 5, text: 1711 },
             
             { index: 6, text: 1718 },
             
@@ -385,6 +387,7 @@ export default {
         // card: Albedo_card,
         // avatar: Albedo_avatar,
         avatar: getName("Albedo"),
+        
         splash: Albedo_splash,
         skillName1: 919,
         skillName2: 315,
@@ -397,7 +400,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
@@ -443,6 +446,7 @@ export default {
         // card: Alhaitham_card,
         // avatar: Alhaitham_avatar,
         avatar: getName("Alhatham"),
+        
         splash: Alhaitham_splash,
         skillName1: 893,
         skillName2: 266,
@@ -457,7 +461,7 @@ export default {
             
             { index: 3, text: 87 },
             
-            { index: 4, text: 438 },
+            { index: 4, text: 439 },
             
             { index: 5, text: 154 },
             
@@ -513,6 +517,7 @@ export default {
         // card: Aloy_card,
         // avatar: Aloy_avatar,
         avatar: getName("Aloy"),
+        
         splash: Aloy_splash,
         skillName1: 880,
         skillName2: 280,
@@ -527,7 +532,7 @@ export default {
             
             { index: 3, text: 85 },
             
-            { index: 4, text: 438 },
+            { index: 4, text: 439 },
             
             { index: 5, text: 1344 },
             
@@ -571,6 +576,7 @@ export default {
         // card: Amber_card,
         // avatar: Amber_avatar,
         avatar: getName("Ambor"),
+        
         splash: Amber_splash,
         skillName1: 907,
         skillName2: 1223,
@@ -583,7 +589,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
@@ -600,7 +606,7 @@ export default {
         ],
         skillMap2: [
             
-            { index: 10, text: 1225 },
+            { index: 10, text: 1224 },
             
         ],
         skillMap3: [
@@ -627,6 +633,7 @@ export default {
         // card: AratakiItto_card,
         // avatar: AratakiItto_avatar,
         avatar: getName("Itto"),
+        
         splash: AratakiItto_splash,
         skillName1: 930,
         skillName2: 1897,
@@ -639,7 +646,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1495 },
             
@@ -681,6 +688,7 @@ export default {
         // card: Baizhu_card,
         // avatar: Baizhu_avatar,
         avatar: getName("Baizhuer"),
+        
         splash: Baizhu_splash,
         skillName1: 926,
         skillName2: 533,
@@ -695,7 +703,7 @@ export default {
             
             { index: 3, text: 87 },
             
-            { index: 4, text: 438 },
+            { index: 4, text: 439 },
             
             { index: 5, text: 1710 },
             
@@ -710,7 +718,7 @@ export default {
             
             { index: 9, text: 692 },
             
-            { index: 10, text: 1118 },
+            { index: 10, text: 1119 },
             
         ],
         skillMap3: [
@@ -739,6 +747,7 @@ export default {
         // card: Barbara_card,
         // avatar: Barbara_avatar,
         avatar: getName("Barbara"),
+        
         splash: Barbara_splash,
         skillName1: 888,
         skillName2: 1179,
@@ -751,7 +760,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1710 },
             
@@ -764,7 +773,7 @@ export default {
         ],
         skillMap2: [
             
-            { index: 8, text: 418 },
+            { index: 8, text: 416 },
             
             { index: 10, text: 722 },
             
@@ -773,7 +782,7 @@ export default {
         ],
         skillMap3: [
             
-            { index: 11, text: 1119 },
+            { index: 11, text: 1118 },
             
         ],
         config: [
@@ -793,6 +802,7 @@ export default {
         // card: Beidou_card,
         // avatar: Beidou_avatar,
         avatar: getName("Beidou"),
+        
         splash: Beidou_splash,
         skillName1: 877,
         skillName2: 728,
@@ -805,7 +815,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
@@ -822,7 +832,7 @@ export default {
         ],
         skillMap2: [
             
-            { index: 10, text: 473 },
+            { index: 10, text: 474 },
             
             { index: 11, text: 58 },
             
@@ -853,6 +863,7 @@ export default {
         // card: Bennett_card,
         // avatar: Bennett_avatar,
         avatar: getName("Bennett"),
+        
         splash: Bennett_splash,
         skillName1: 870,
         skillName2: 1213,
@@ -865,7 +876,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
@@ -892,7 +903,7 @@ export default {
             
             { index: 14, text: 143 },
             
-            { index: 15, text: 1224 },
+            { index: 15, text: 1225 },
             
         ],
         skillMap3: [
@@ -919,6 +930,7 @@ export default {
         // card: Candace_card,
         // avatar: Candace_avatar,
         avatar: getName("Candace"),
+        
         splash: Candace_splash,
         skillName1: 891,
         skillName2: 452,
@@ -933,7 +945,7 @@ export default {
             
             { index: 3, text: 87 },
             
-            { index: 4, text: 438 },
+            { index: 4, text: 439 },
             
             { index: 5, text: 1710 },
             
@@ -946,7 +958,7 @@ export default {
         ],
         skillMap2: [
             
-            { index: 9, text: 474 },
+            { index: 9, text: 473 },
             
             { index: 10, text: 1533 },
             
@@ -978,7 +990,7 @@ export default {
         star: 4,
         // card: Charlotte_card,
         // avatar: Charlotte_avatar,
-        avatar: getName("Charlotte"),
+        avatar: getMd5("99218c303fd1ca9cc53e052ebdd5cbf3"),
         splash: Charlotte_splash,
         skillName1: 865,
         skillName2: 367,
@@ -1047,6 +1059,7 @@ export default {
         // card: Chongyun_card,
         // avatar: Chongyun_avatar,
         avatar: getName("Chongyun"),
+        
         splash: Chongyun_splash,
         skillName1: 896,
         skillName2: 1193,
@@ -1059,7 +1072,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1725 },
             
@@ -1099,6 +1112,7 @@ export default {
         // card: Collei_card,
         // avatar: Collei_avatar,
         avatar: getName("Collei"),
+        
         splash: Collei_splash,
         skillName1: 905,
         skillName2: 715,
@@ -1111,7 +1125,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1344 },
             
@@ -1155,6 +1169,7 @@ export default {
         // card: Cyno_card,
         // avatar: Cyno_avatar,
         avatar: getName("Cyno"),
+        
         splash: Cyno_splash,
         skillName1: 860,
         skillName2: 1396,
@@ -1165,9 +1180,9 @@ export default {
             
             { index: 1, text: 135 },
             
-            { index: 2, text: 88 },
+            { index: 2, text: 89 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1710 },
             
@@ -1231,6 +1246,7 @@ export default {
         // card: Dehya_card,
         // avatar: Dehya_avatar,
         avatar: getName("Dehya"),
+        
         splash: Dehya_splash,
         skillName1: 883,
         skillName2: 1219,
@@ -1243,7 +1259,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1725 },
             
@@ -1293,6 +1309,7 @@ export default {
         // card: Diluc_card,
         // avatar: Diluc_avatar,
         avatar: getName("Diluc"),
+        
         splash: Diluc_splash,
         skillName1: 892,
         skillName2: 1683,
@@ -1305,7 +1322,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1725 },
             
@@ -1355,6 +1372,7 @@ export default {
         // card: Diona_card,
         // avatar: Diona_avatar,
         avatar: getName("Diona"),
+        
         splash: Diona_splash,
         skillName1: 902,
         skillName2: 1246,
@@ -1367,7 +1385,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
@@ -1413,6 +1431,7 @@ export default {
         // card: Dori_card,
         // avatar: Dori_avatar,
         avatar: getName("Dori"),
+        
         splash: Dori_splash,
         skillName1: 872,
         skillName2: 1749,
@@ -1471,6 +1490,7 @@ export default {
         // card: Eula_card,
         // avatar: Eula_avatar,
         avatar: getName("Eula"),
+        
         splash: Eula_splash,
         skillName1: 918,
         skillName2: 286,
@@ -1485,7 +1505,7 @@ export default {
             
             { index: 3, text: 87 },
             
-            { index: 4, text: 438 },
+            { index: 4, text: 439 },
             
             { index: 5, text: 155 },
             
@@ -1539,6 +1559,7 @@ export default {
         // card: Faruzan_card,
         // avatar: Faruzan_avatar,
         avatar: getName("Faruzan"),
+        
         splash: Faruzan_splash,
         skillName1: 925,
         skillName2: 1837,
@@ -1551,7 +1572,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1710 },
             
@@ -1597,6 +1618,7 @@ export default {
         // card: Fischl_card,
         // avatar: Fischl_avatar,
         avatar: getName("Fischl"),
+        
         splash: Fischl_splash,
         skillName1: 912,
         skillName2: 499,
@@ -1609,7 +1631,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
@@ -1652,7 +1674,7 @@ export default {
         star: 4,
         // card: Freminet_card,
         // avatar: Freminet_avatar,
-        avatar: getName("Freminet"),
+        avatar: getMd5("7ca0ad25c2cbb36cd55a8a19c1b2a39f"),
         splash: Freminet_splash,
         skillName1: 889,
         skillName2: 1142,
@@ -1665,7 +1687,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1725 },
             
@@ -1732,7 +1754,7 @@ export default {
         star: 5,
         // card: Furina_card,
         // avatar: Furina_avatar,
-        avatar: getName("Furina"),
+        avatar: getMd5("4da8d9d663e2e59f63c19815074074de"),
         splash: Furina_splash,
         skillName1: 901,
         skillName2: 550,
@@ -1745,7 +1767,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1710 },
             
@@ -1801,6 +1823,7 @@ export default {
         // card: Ganyu_card,
         // avatar: Ganyu_avatar,
         avatar: getName("Ganyu"),
+        
         splash: Ganyu_splash,
         skillName1: 890,
         skillName2: 605,
@@ -1813,7 +1836,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
@@ -1821,7 +1844,7 @@ export default {
             
             { index: 6, text: 1344 },
             
-            { index: 7, text: 71 },
+            { index: 7, text: 72 },
             
             { index: 8, text: 1829 },
             
@@ -1865,6 +1888,7 @@ export default {
         // card: Gorou_card,
         // avatar: Gorou_avatar,
         avatar: getName("Gorou"),
+        
         splash: Gorou_splash,
         skillName1: 929,
         skillName2: 1229,
@@ -1877,7 +1901,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1344 },
             
@@ -1919,6 +1943,7 @@ export default {
         // card: HuTao_card,
         // avatar: HuTao_avatar,
         avatar: getName("Hutao"),
+        
         splash: HuTao_splash,
         skillName1: 876,
         skillName2: 1539,
@@ -1931,7 +1956,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 155 },
             
@@ -1981,6 +2006,7 @@ export default {
         // card: Jean_card,
         // avatar: Jean_avatar,
         avatar: getName("Qin"),
+        
         splash: Jean_splash,
         skillName1: 916,
         skillName2: 1847,
@@ -1993,7 +2019,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
@@ -2039,6 +2065,7 @@ export default {
         // card: KaedeharaKazuha_card,
         // avatar: KaedeharaKazuha_avatar,
         avatar: getName("Kazuha"),
+        
         splash: KaedeharaKazuha_splash,
         skillName1: 881,
         skillName2: 350,
@@ -2053,13 +2080,13 @@ export default {
             
             { index: 3, text: 87 },
             
-            { index: 4, text: 438 },
+            { index: 4, text: 439 },
             
             { index: 5, text: 157 },
             
             { index: 6, text: 1714 },
             
-            { index: 6, text: 1717 },
+            { index: 6, text: 1716 },
             
             { index: 8, text: 96 },
             
@@ -2123,6 +2150,7 @@ export default {
         // card: Kaeya_card,
         // avatar: Kaeya_avatar,
         avatar: getName("Kaeya"),
+        
         splash: Kaeya_splash,
         skillName1: 864,
         skillName2: 1833,
@@ -2135,7 +2163,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
@@ -2177,6 +2205,7 @@ export default {
         // card: KamisatoAyaka_card,
         // avatar: KamisatoAyaka_avatar,
         avatar: getName("Ayaka"),
+        
         splash: KamisatoAyaka_splash,
         skillName1: 908,
         skillName2: 1368,
@@ -2239,6 +2268,7 @@ export default {
         // card: KamisatoAyato_card,
         // avatar: KamisatoAyato_avatar,
         avatar: getName("Ayato"),
+        
         splash: KamisatoAyato_splash,
         skillName1: 909,
         skillName2: 1370,
@@ -2251,7 +2281,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 439 },
+            { index: 3, text: 438 },
             
             { index: 4, text: 154 },
             
@@ -2301,6 +2331,7 @@ export default {
         // card: Kaveh_card,
         // avatar: Kaveh_avatar,
         avatar: getName("Kaveh"),
+        
         splash: Kaveh_splash,
         skillName1: 887,
         skillName2: 1325,
@@ -2313,7 +2344,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1725 },
             
@@ -2359,6 +2390,7 @@ export default {
         // card: Keqing_card,
         // avatar: Keqing_avatar,
         avatar: getName("Keqing"),
+        
         splash: Keqing_splash,
         skillName1: 862,
         skillName2: 835,
@@ -2427,6 +2459,7 @@ export default {
         // card: Klee_card,
         // avatar: Klee_avatar,
         avatar: getName("Klee"),
+        
         splash: Klee_splash,
         skillName1: 904,
         skillName2: 1646,
@@ -2479,6 +2512,7 @@ export default {
         // card: KujouSara_card,
         // avatar: KujouSara_avatar,
         avatar: getName("Sara"),
+        
         splash: KujouSara_splash,
         skillName1: 931,
         skillName2: 1899,
@@ -2491,7 +2525,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
@@ -2535,6 +2569,7 @@ export default {
         // card: KukiShinobu_card,
         // avatar: KukiShinobu_avatar,
         avatar: getName("Shinobu"),
+        
         splash: KukiShinobu_splash,
         skillName1: 879,
         skillName2: 1643,
@@ -2547,7 +2582,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1712 },
             
@@ -2601,6 +2636,7 @@ export default {
         // card: Layla_card,
         // avatar: Layla_avatar,
         avatar: getName("Layla"),
+        
         splash: Layla_splash,
         skillName1: 899,
         skillName2: 465,
@@ -2653,6 +2689,7 @@ export default {
         // card: Lisa_card,
         // avatar: Lisa_avatar,
         avatar: getName("Lisa"),
+        
         splash: Lisa_splash,
         skillName1: 884,
         skillName2: 1484,
@@ -2665,7 +2702,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1710 },
             
@@ -2710,7 +2747,7 @@ export default {
         star: 4,
         // card: Lynette_card,
         // avatar: Lynette_avatar,
-        avatar: getName("Lynette"),
+        avatar: getMd5("3163e147dc45dec9944d06355d778879"),
         splash: Lynette_splash,
         skillName1: 921,
         skillName2: 1615,
@@ -2725,7 +2762,7 @@ export default {
             
             { index: 3, text: 87 },
             
-            { index: 4, text: 438 },
+            { index: 4, text: 439 },
             
             { index: 5, text: 1712 },
             
@@ -2786,7 +2823,7 @@ export default {
         star: 5,
         // card: Lyney_card,
         // avatar: Lyney_avatar,
-        avatar: getName("Lyney"),
+        avatar: getMd5("15c0fae62ec91222148b753e5445c5fe"),
         splash: Lyney_splash,
         skillName1: 924,
         skillName2: 1343,
@@ -2797,13 +2834,13 @@ export default {
             
             { index: 1, text: 135 },
             
-            { index: 2, text: 88 },
+            { index: 2, text: 89 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1344 },
             
-            { index: 5, text: 71 },
+            { index: 5, text: 72 },
             
             { index: 6, text: 1800 },
             
@@ -2857,6 +2894,7 @@ export default {
         // card: Mona_card,
         // avatar: Mona_avatar,
         avatar: getName("Mona"),
+        
         splash: Mona_splash,
         skillName1: 869,
         skillName2: 1094,
@@ -2869,7 +2907,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1710 },
             
@@ -2909,6 +2947,7 @@ export default {
         // card: Nahida_card,
         // avatar: Nahida_avatar,
         avatar: getName("Nahida"),
+        
         splash: Nahida_splash,
         skillName1: 915,
         skillName2: 676,
@@ -2921,7 +2960,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1710 },
             
@@ -2966,7 +3005,7 @@ export default {
         star: 5,
         // card: Neuvillette_card,
         // avatar: Neuvillette_avatar,
-        avatar: getName("Neuvillette"),
+        avatar: getMd5("965af2f32a5376affcb99afb9915a23d"),
         splash: Neuvillette_splash,
         skillName1: 871,
         skillName2: 1125,
@@ -3025,6 +3064,7 @@ export default {
         // card: Nilou_card,
         // avatar: Nilou_avatar,
         avatar: getName("Nilou"),
+        
         splash: Nilou_splash,
         skillName1: 875,
         skillName2: 77,
@@ -3091,6 +3131,7 @@ export default {
         // card: Ningguang_card,
         // avatar: Ningguang_avatar,
         avatar: getName("Ningguang"),
+        
         splash: Ningguang_splash,
         skillName1: 866,
         skillName2: 1279,
@@ -3139,6 +3180,7 @@ export default {
         // card: Noelle_card,
         // avatar: Noelle_avatar,
         avatar: getName("Noel"),
+        
         splash: Noelle_splash,
         skillName1: 917,
         skillName2: 708,
@@ -3151,7 +3193,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1725 },
             
@@ -3168,7 +3210,7 @@ export default {
             
             { index: 9, text: 692 },
             
-            { index: 10, text: 1118 },
+            { index: 10, text: 1119 },
             
         ],
         skillMap3: [
@@ -3197,6 +3239,7 @@ export default {
         // card: Mika_card,
         // avatar: Mika_avatar,
         avatar: getName("Mika"),
+        
         splash: Mika_splash,
         skillName1: 920,
         skillName2: 839,
@@ -3255,6 +3298,7 @@ export default {
         // card: Qiqi_card,
         // avatar: Qiqi_avatar,
         avatar: getName("Qiqi"),
+        
         splash: Qiqi_splash,
         skillName1: 863,
         skillName2: 171,
@@ -3292,7 +3336,7 @@ export default {
             
             { index: 15, text: 584 },
             
-            { index: 13, text: 416 },
+            { index: 13, text: 418 },
             
             { index: 14, text: 722 },
             
@@ -3301,7 +3345,7 @@ export default {
             
             { index: 16, text: 692 },
             
-            { index: 17, text: 1118 },
+            { index: 17, text: 1119 },
             
         ],
         config: [
@@ -3321,6 +3365,7 @@ export default {
         // card: RaidenShogun_card,
         // avatar: RaidenShogun_avatar,
         avatar: getName("Shougun"),
+        
         splash: RaidenShogun_splash,
         skillName1: 933,
         skillName2: 1365,
@@ -3403,6 +3448,7 @@ export default {
         // card: Razor_card,
         // avatar: Razor_avatar,
         avatar: getName("Razor"),
+        
         splash: Razor_splash,
         skillName1: 927,
         skillName2: 318,
@@ -3415,7 +3461,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1725 },
             
@@ -3430,7 +3476,7 @@ export default {
         ],
         skillMap2: [
             
-            { index: 9, text: 1201 },
+            { index: 9, text: 1203 },
             
             { index: 10, text: 1751 },
             
@@ -3469,6 +3515,7 @@ export default {
         // card: Rosaria_card,
         // avatar: Rosaria_avatar,
         avatar: getName("Rosaria"),
+        
         splash: Rosaria_splash,
         skillName1: 885,
         skillName2: 437,
@@ -3479,9 +3526,9 @@ export default {
             
             { index: 1, text: 135 },
             
-            { index: 2, text: 88 },
+            { index: 2, text: 89 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 155 },
             
@@ -3531,6 +3578,7 @@ export default {
         // card: SangonomiyaKokomi_card,
         // avatar: SangonomiyaKokomi_avatar,
         avatar: getName("Kokomi"),
+        
         splash: SangonomiyaKokomi_splash,
         skillName1: 932,
         skillName2: 1146,
@@ -3556,14 +3604,14 @@ export default {
             
             { index: 8, text: 1124 },
             
-            { index: 7, text: 1119 },
+            { index: 7, text: 1118 },
             
         ],
         skillMap3: [
             
             { index: 9, text: 692 },
             
-            { index: 10, text: 418 },
+            { index: 10, text: 416 },
             
         ],
         config: [
@@ -3585,6 +3633,7 @@ export default {
         // card: Sayu_card,
         // avatar: Sayu_avatar,
         avatar: getName("Sayu"),
+        
         splash: Sayu_splash,
         skillName1: 878,
         skillName2: 412,
@@ -3599,7 +3648,7 @@ export default {
             
             { index: 3, text: 87 },
             
-            { index: 4, text: 438 },
+            { index: 4, text: 439 },
             
             { index: 5, text: 1725 },
             
@@ -3665,6 +3714,7 @@ export default {
         // card: Shenhe_card,
         // avatar: Shenhe_avatar,
         avatar: getName("Shenhe"),
+        
         splash: Shenhe_splash,
         skillName1: 934,
         skillName2: 175,
@@ -3694,7 +3744,7 @@ export default {
         ],
         skillMap2: [
             
-            { index: 10, text: 1203 },
+            { index: 10, text: 1201 },
             
             { index: 11, text: 1751 },
             
@@ -3723,6 +3773,7 @@ export default {
         // card: ShikanoinHeizou_card,
         // avatar: ShikanoinHeizou_avatar,
         avatar: getName("Heizo"),
+        
         splash: ShikanoinHeizou_splash,
         skillName1: 861,
         skillName2: 336,
@@ -3741,7 +3792,7 @@ export default {
             
             { index: 5, text: 442 },
             
-            { index: 6, text: 438 },
+            { index: 6, text: 439 },
             
             { index: 7, text: 154 },
             
@@ -3797,6 +3848,7 @@ export default {
         // card: Sucrose_card,
         // avatar: Sucrose_avatar,
         avatar: getName("Sucrose"),
+        
         splash: Sucrose_splash,
         skillName1: 910,
         skillName2: 1851,
@@ -3809,7 +3861,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1710 },
             
@@ -3855,6 +3907,7 @@ export default {
         // card: Tartaglia_card,
         // avatar: Tartaglia_avatar,
         avatar: getName("Tartaglia"),
+        
         splash: Tartaglia_splash,
         skillName1: 886,
         skillName2: 1898,
@@ -3867,7 +3920,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 154 },
             
@@ -3898,7 +3951,7 @@ export default {
             
             { index: 16, text: 85 },
             
-            { index: 17, text: 438 },
+            { index: 17, text: 439 },
             
             { index: 18, text: 154 },
             
@@ -3939,6 +3992,7 @@ export default {
         // card: Thoma_card,
         // avatar: Thoma_avatar,
         avatar: getName("Tohma"),
+        
         splash: Thoma_splash,
         skillName1: 923,
         skillName2: 1208,
@@ -3949,9 +4003,9 @@ export default {
             
             { index: 1, text: 135 },
             
-            { index: 2, text: 88 },
+            { index: 2, text: 89 },
             
-            { index: 4, text: 438 },
+            { index: 4, text: 439 },
             
             { index: 5, text: 1710 },
             
@@ -3991,6 +4045,7 @@ export default {
         // card: Tighnari_card,
         // avatar: Tighnari_avatar,
         avatar: getName("Tighnari"),
+        
         splash: Tighnari_splash,
         skillName1: 913,
         skillName2: 1603,
@@ -4003,11 +4058,11 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1344 },
             
-            { index: 5, text: 72 },
+            { index: 5, text: 71 },
             
             { index: 6, text: 1477 },
             
@@ -4055,6 +4110,7 @@ export default {
         // card: Venti_card,
         // avatar: Venti_avatar,
         avatar: getName("Venti"),
+        
         splash: Venti_splash,
         skillName1: 906,
         skillName2: 1886,
@@ -4125,6 +4181,7 @@ export default {
         // card: Wanderer_card,
         // avatar: Wanderer_avatar,
         avatar: getName("Wanderer"),
+        
         splash: Wanderer_splash,
         skillName1: 914,
         skillName2: 1447,
@@ -4135,7 +4192,7 @@ export default {
             
             { index: 1, text: 135 },
             
-            { index: 2, text: 89 },
+            { index: 2, text: 88 },
             
             { index: 3, text: 65 },
             
@@ -4190,7 +4247,7 @@ export default {
         star: 5,
         // card: Wriothesley_card,
         // avatar: Wriothesley_avatar,
-        avatar: getName("Wriothesley"),
+        avatar: getMd5("e2ea36ecfdb6f53717b1cadd394fbf49"),
         splash: Wriothesley_splash,
         skillName1: 922,
         skillName2: 287,
@@ -4249,6 +4306,7 @@ export default {
         // card: Xiangling_card,
         // avatar: Xiangling_avatar,
         avatar: getName("Xiangling"),
+        
         splash: Xiangling_splash,
         skillName1: 903,
         skillName2: 1748,
@@ -4309,6 +4367,7 @@ export default {
         // card: Xiao_card,
         // avatar: Xiao_avatar,
         avatar: getName("Xiao"),
+        
         splash: Xiao_splash,
         skillName1: 867,
         skillName2: 1854,
@@ -4371,6 +4430,7 @@ export default {
         // card: Xingqiu_card,
         // avatar: Xingqiu_avatar,
         avatar: getName("Xingqiu"),
+        
         splash: Xingqiu_splash,
         skillName1: 868,
         skillName2: 384,
@@ -4385,7 +4445,7 @@ export default {
             
             { index: 3, text: 87 },
             
-            { index: 5, text: 438 },
+            { index: 5, text: 439 },
             
             { index: 6, text: 155 },
             
@@ -4433,6 +4493,7 @@ export default {
         // card: Xinyan_card,
         // avatar: Xinyan_avatar,
         avatar: getName("Xinyan"),
+        
         splash: Xinyan_splash,
         skillName1: 897,
         skillName2: 1212,
@@ -4445,7 +4506,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 1725 },
             
@@ -4491,6 +4552,7 @@ export default {
         // card: YaeMiko_card,
         // avatar: YaeMiko_avatar,
         avatar: getName("Yae"),
+        
         splash: YaeMiko_splash,
         skillName1: 900,
         skillName2: 1732,
@@ -4547,6 +4609,7 @@ export default {
         // card: Yanfei_card,
         // avatar: Yanfei_avatar,
         avatar: getName("Feiyan"),
+        
         splash: Yanfei_splash,
         skillName1: 895,
         skillName2: 106,
@@ -4607,6 +4670,7 @@ export default {
         // card: Yaoyao_card,
         // avatar: Yaoyao_avatar,
         avatar: getName("Yaoyao"),
+        
         splash: Yaoyao_splash,
         skillName1: 928,
         skillName2: 146,
@@ -4621,7 +4685,7 @@ export default {
             
             { index: 3, text: 87 },
             
-            { index: 4, text: 438 },
+            { index: 4, text: 439 },
             
             { index: 5, text: 1710 },
             
@@ -4667,6 +4731,7 @@ export default {
         // card: Yelan_card,
         // avatar: Yelan_avatar,
         avatar: getName("Yelan"),
+        
         splash: Yelan_splash,
         skillName1: 894,
         skillName2: 1527,
@@ -4725,6 +4790,7 @@ export default {
         // card: Yoimiya_card,
         // avatar: Yoimiya_avatar,
         avatar: getName("Yoimiya"),
+        
         splash: Yoimiya_splash,
         skillName1: 898,
         skillName2: 1216,
@@ -4785,6 +4851,7 @@ export default {
         // card: Yunjin_card,
         // avatar: Yunjin_avatar,
         avatar: getName("Yunjin"),
+        
         splash: Yunjin_splash,
         skillName1: 882,
         skillName2: 815,
@@ -4845,6 +4912,7 @@ export default {
         // card: Zhongli_card,
         // avatar: Zhongli_avatar,
         avatar: getName("Zhongli"),
+        
         splash: Zhongli_splash,
         skillName1: 873,
         skillName2: 455,
@@ -4857,7 +4925,7 @@ export default {
             
             { index: 2, text: 85 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 439 },
             
             { index: 4, text: 158 },
             
@@ -4902,7 +4970,7 @@ export default {
         star: 4,
         // card: Kirara_card,
         // avatar: Kirara_avatar,
-        avatar: getName("Momoka"),
+        avatar: getMd5("8e8c8c18039f5441d4f2f43757781ae0"),
         splash: Kirara_splash,
         skillName1: 911,
         skillName2: 413,
@@ -4917,11 +4985,11 @@ export default {
             
             { index: 3, text: 87 },
             
-            { index: 4, text: 438 },
+            { index: 4, text: 439 },
             
-            { index: 5, text: 1711 },
+            { index: 5, text: 1713 },
             
-            { index: 6, text: 1716 },
+            { index: 6, text: 1717 },
             
             { index: 7, text: 1719 },
             
