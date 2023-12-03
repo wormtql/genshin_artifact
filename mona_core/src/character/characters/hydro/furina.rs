@@ -281,7 +281,9 @@ impl CharacterTrait for Furina {
                 }
             }
 
-            let is_c6_skill = skill_type == SkillType::NormalAttack && s != A1;
+            let is_c6_skill = (skill_type == SkillType::NormalAttack && s != A1)
+                || skill_type == SkillType::ChargedAttack
+                || skill_type == SkillType::PlungingAttack;
             let enable_c6 = is_c6_skill && context.character_common_data.constellation >= 6 && c6_after_e;
             if enable_c6 {
                 builder.add_hp_ratio("C6「诸君听我颂，共举爱之杯！」", 0.18);
