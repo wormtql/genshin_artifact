@@ -31,6 +31,8 @@ pub use mailed_flower::MailedFlower;
 pub use talking_stick::TalkingStick;
 pub use tidal_shadow::TidalShadow;
 pub use portable_power_saw::PortablePowerSaw;
+pub use ultimate_overlords_mega_magic_sword::UltimateOverlordsMegaMagicSword;
+pub use verdict::Verdict;
 
 pub mod wolfs_gravestone;
 pub mod skyward_pride;
@@ -65,3 +67,5 @@ pub mod mailed_flower;
 pub mod talking_stick;
 pub mod tidal_shadow;
 pub mod portable_power_saw;
+pub mod ultimate_overlords_mega_magic_sword;
+pub mod verdict;

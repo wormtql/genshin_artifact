@@ -89,6 +89,8 @@ pub enum WeaponName {
     TalkingStick,
     TidalShadow,
     PortablePowerSaw,
+    UltimateOverlordsMegaMagicSword,
+    Verdict,
 
     // polearm
     EngulfingLightning,

@@ -52,6 +52,8 @@ pub enum WeaponConfig {
     TalkingStick { rate1: f64, rate2: f64 },
     TidalShadow { rate: f64 },
     PortablePowerSaw { stack: f64 },
+    UltimateOverlordsMegaMagicSword { rate: f64 },
+    Verdict { stack: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },

@@ -311,7 +311,7 @@ export default {
     
     AetherAnemo: {
         name: "AetherAnemo",
-        nameLocale: 1399,
+        nameLocale: 1402,
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -320,54 +320,54 @@ export default {
         avatar: getName("PlayerBoy"),
         
         splash: AetherAnemo_splash,
-        skillName1: 874,
-        skillName2: 1850,
-        skillName3: 1849,
+        skillName1: 877,
+        skillName2: 1855,
+        skillName3: 1854,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1711 },
+            { index: 5, text: 1718 },
             
-            { index: 6, text: 1718 },
+            { index: 6, text: 1721 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 316 },
+            { index: 10, text: 317 },
             
-            { index: 11, text: 1023 },
+            { index: 11, text: 1026 },
             
-            { index: 12, text: 317 },
+            { index: 12, text: 318 },
             
-            { index: 13, text: 1033 },
+            { index: 13, text: 1036 },
             
         ],
         skillMap3: [
             
-            { index: 14, text: 1924 },
+            { index: 14, text: 1929 },
             
-            { index: 15, text: 1794 },
+            { index: 15, text: 1799 },
             
-            { index: 18, text: 1793 },
+            { index: 18, text: 1798 },
             
-            { index: 17, text: 1795 },
+            { index: 17, text: 1800 },
             
-            { index: 16, text: 1792 },
+            { index: 16, text: 1797 },
             
         ],
         config: [
@@ -380,7 +380,7 @@ export default {
     
     Albedo: {
         name: "Albedo",
-        nameLocale: 1784,
+        nameLocale: 1789,
         element: "Geo",
         weapon: "Sword",
         star: 5,
@@ -389,44 +389,44 @@ export default {
         avatar: getName("Albedo"),
         
         splash: Albedo_splash,
-        skillName1: 919,
-        skillName2: 315,
-        skillName3: 1609,
+        skillName1: 922,
+        skillName2: 316,
+        skillName3: 1614,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1712 },
+            { index: 5, text: 1719 },
             
-            { index: 6, text: 1715 },
+            { index: 6, text: 1722 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 692 },
+            { index: 10, text: 693 },
             
-            { index: 11, text: 319 },
+            { index: 11, text: 320 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 1221 },
+            { index: 12, text: 1224 },
             
-            { index: 13, text: 1308 },
+            { index: 13, text: 1311 },
             
         ],
         config: [
@@ -439,7 +439,7 @@ export default {
     
     Alhaitham: {
         name: "Alhaitham",
-        nameLocale: 1470,
+        nameLocale: 1473,
         element: "Dendro",
         weapon: "Sword",
         star: 5,
@@ -448,37 +448,37 @@ export default {
         avatar: getName("Alhatham"),
         
         splash: Alhaitham_splash,
-        skillName1: 893,
-        skillName2: 266,
-        skillName3: 1088,
+        skillName1: 896,
+        skillName2: 267,
+        skillName3: 1091,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
             { index: 4, text: 439 },
             
-            { index: 5, text: 154 },
+            { index: 5, text: 155 },
             
-            { index: 6, text: 1712 },
+            { index: 6, text: 1719 },
             
-            { index: 7, text: 1715 },
+            { index: 7, text: 1722 },
             
-            { index: 8, text: 96 },
+            { index: 8, text: 97 },
             
-            { index: 9, text: 186 },
+            { index: 9, text: 187 },
             
-            { index: 10, text: 1887 },
+            { index: 10, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 11, text: 1400 },
+            { index: 11, text: 1403 },
             
             { index: 12, text: 2 },
             
@@ -494,23 +494,23 @@ export default {
         ],
         config: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"c2_stack","title":422,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"c2_stack","title":423,"type":"float"},
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"c4_stack","title":424,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"c4_stack","title":425,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"c6_rate","title":428,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"c6_rate","title":429,"type":"float"},
             
         ],
         configSkill: [
             
-            {"default":true,"name":"under_e","title":1270,"type":"bool"},
+            {"default":true,"name":"under_e","title":1273,"type":"bool"},
             
         ],
     },
     
     Aloy: {
         name: "Aloy",
-        nameLocale: 466,
+        nameLocale: 467,
         element: "Cryo",
         weapon: "Bow",
         star: 5,
@@ -519,42 +519,42 @@ export default {
         avatar: getName("Aloy"),
         
         splash: Aloy_splash,
-        skillName1: 880,
-        skillName2: 280,
-        skillName3: 1017,
+        skillName1: 883,
+        skillName2: 281,
+        skillName3: 1020,
         skillMap1: [
             
-            { index: 0, text: 62 },
+            { index: 0, text: 63 },
             
-            { index: 1, text: 63 },
+            { index: 1, text: 64 },
             
-            { index: 2, text: 135 },
+            { index: 2, text: 136 },
             
-            { index: 3, text: 85 },
+            { index: 3, text: 86 },
             
             { index: 4, text: 439 },
             
-            { index: 5, text: 1344 },
+            { index: 5, text: 1347 },
             
-            { index: 6, text: 1178 },
+            { index: 6, text: 1181 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 279 },
+            { index: 10, text: 280 },
             
-            { index: 11, text: 291 },
+            { index: 11, text: 292 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 692 },
+            { index: 12, text: 693 },
             
         ],
         config: [
@@ -562,14 +562,14 @@ export default {
         ],
         configSkill: [
             
-            {"default":4,"max":4,"min":0,"name":"coil_count","title":1422,"type":"int"},
+            {"default":4,"max":4,"min":0,"name":"coil_count","title":1425,"type":"int"},
             
         ],
     },
     
     Amber: {
         name: "Amber",
-        nameLocale: 565,
+        nameLocale: 566,
         element: "Pyro",
         weapon: "Bow",
         star: 4,
@@ -578,42 +578,42 @@ export default {
         avatar: getName("Ambor"),
         
         splash: Amber_splash,
-        skillName1: 907,
-        skillName2: 1223,
-        skillName3: 1407,
+        skillName1: 910,
+        skillName2: 1226,
+        skillName3: 1410,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1344 },
+            { index: 5, text: 1347 },
             
-            { index: 6, text: 1178 },
+            { index: 6, text: 1181 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 1224 },
+            { index: 10, text: 1227 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 1408 },
+            { index: 11, text: 1411 },
             
-            { index: 12, text: 1409 },
+            { index: 12, text: 1412 },
             
         ],
         config: [
@@ -626,7 +626,7 @@ export default {
     
     AratakiItto: {
         name: "AratakiItto",
-        nameLocale: 1489,
+        nameLocale: 1492,
         element: "Geo",
         weapon: "Claymore",
         star: 5,
@@ -635,35 +635,35 @@ export default {
         avatar: getName("Itto"),
         
         splash: AratakiItto_splash,
-        skillName1: 930,
-        skillName2: 1897,
-        skillName3: 1038,
+        skillName1: 933,
+        skillName2: 1902,
+        skillName3: 1041,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1495 },
+            { index: 4, text: 1498 },
             
-            { index: 5, text: 1494 },
+            { index: 5, text: 1497 },
             
-            { index: 6, text: 613 },
+            { index: 6, text: 614 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 692 },
+            { index: 10, text: 693 },
             
         ],
         skillMap3: [
@@ -674,14 +674,14 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"after_q","title":476,"type":"bool"},
+            {"default":true,"name":"after_q","title":477,"type":"bool"},
             
         ],
     },
     
     Baizhu: {
         name: "Baizhu",
-        nameLocale: 1327,
+        nameLocale: 1330,
         element: "Dendro",
         weapon: "Catalyst",
         star: 5,
@@ -690,47 +690,47 @@ export default {
         avatar: getName("Baizhuer"),
         
         splash: Baizhu_splash,
-        skillName1: 926,
-        skillName2: 533,
-        skillName3: 666,
+        skillName1: 929,
+        skillName2: 534,
+        skillName3: 667,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
             { index: 4, text: 439 },
             
-            { index: 5, text: 1710 },
+            { index: 5, text: 1715 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 692 },
+            { index: 9, text: 693 },
             
-            { index: 10, text: 1119 },
+            { index: 10, text: 1122 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 1196 },
+            { index: 12, text: 1199 },
             
-            { index: 11, text: 826 },
+            { index: 11, text: 829 },
             
         ],
         config: [
             
-            {"default":false,"name":"hp_below_50","title":456,"type":"bool"},
+            {"default":false,"name":"hp_below_50","title":457,"type":"bool"},
             
         ],
         configSkill: [
@@ -740,7 +740,7 @@ export default {
     
     Barbara: {
         name: "Barbara",
-        nameLocale: 1474,
+        nameLocale: 1477,
         element: "Hydro",
         weapon: "Catalyst",
         star: 4,
@@ -749,40 +749,40 @@ export default {
         avatar: getName("Barbara"),
         
         splash: Barbara_splash,
-        skillName1: 888,
-        skillName2: 1179,
-        skillName3: 1754,
+        skillName1: 891,
+        skillName2: 1182,
+        skillName3: 1759,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1710 },
+            { index: 4, text: 1715 },
             
-            { index: 5, text: 96 },
+            { index: 5, text: 97 },
             
-            { index: 6, text: 186 },
+            { index: 6, text: 187 },
             
-            { index: 7, text: 1887 },
+            { index: 7, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 8, text: 416 },
+            { index: 8, text: 417 },
             
-            { index: 10, text: 722 },
+            { index: 10, text: 724 },
             
-            { index: 9, text: 1104 },
+            { index: 9, text: 1107 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 1118 },
+            { index: 11, text: 1121 },
             
         ],
         config: [
@@ -795,7 +795,7 @@ export default {
     
     Beidou: {
         name: "Beidou",
-        nameLocale: 337,
+        nameLocale: 338,
         element: "Electro",
         weapon: "Claymore",
         star: 4,
@@ -804,46 +804,46 @@ export default {
         avatar: getName("Beidou"),
         
         splash: Beidou_splash,
-        skillName1: 877,
-        skillName2: 728,
-        skillName3: 780,
+        skillName1: 880,
+        skillName2: 729,
+        skillName3: 783,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1725 },
+            { index: 5, text: 1730 },
             
-            { index: 6, text: 1728 },
+            { index: 6, text: 1733 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 474 },
+            { index: 10, text: 475 },
             
-            { index: 11, text: 58 },
+            { index: 11, text: 59 },
             
-            { index: 12, text: 132 },
+            { index: 12, text: 133 },
             
         ],
         skillMap3: [
             
-            { index: 13, text: 692 },
+            { index: 13, text: 693 },
             
-            { index: 14, text: 1753 },
+            { index: 14, text: 1758 },
             
         ],
         config: [
@@ -856,7 +856,7 @@ export default {
     
     Bennett: {
         name: "Bennett",
-        nameLocale: 1260,
+        nameLocale: 1263,
         element: "Pyro",
         weapon: "Sword",
         star: 4,
@@ -865,50 +865,50 @@ export default {
         avatar: getName("Bennett"),
         
         splash: Bennett_splash,
-        skillName1: 870,
-        skillName2: 1213,
-        skillName3: 1446,
+        skillName1: 873,
+        skillName2: 1216,
+        skillName3: 1449,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1712 },
+            { index: 5, text: 1719 },
             
-            { index: 6, text: 1715 },
+            { index: 6, text: 1722 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 1199 },
+            { index: 10, text: 1203 },
             
-            { index: 11, text: 69 },
+            { index: 11, text: 70 },
             
-            { index: 12, text: 70 },
+            { index: 12, text: 71 },
             
-            { index: 13, text: 142 },
+            { index: 13, text: 143 },
             
-            { index: 14, text: 143 },
+            { index: 14, text: 144 },
             
-            { index: 15, text: 1225 },
+            { index: 15, text: 1228 },
             
         ],
         skillMap3: [
             
-            { index: 16, text: 692 },
+            { index: 16, text: 693 },
             
             { index: 17, text: 721 },
             
@@ -923,7 +923,7 @@ export default {
     
     Candace: {
         name: "Candace",
-        nameLocale: 457,
+        nameLocale: 458,
         element: "Hydro",
         weapon: "Polearm",
         star: 4,
@@ -932,59 +932,59 @@ export default {
         avatar: getName("Candace"),
         
         splash: Candace_splash,
-        skillName1: 891,
-        skillName2: 452,
-        skillName3: 450,
+        skillName1: 894,
+        skillName2: 453,
+        skillName3: 451,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
             { index: 4, text: 439 },
             
-            { index: 5, text: 1710 },
+            { index: 5, text: 1715 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 473 },
+            { index: 9, text: 474 },
             
-            { index: 10, text: 1533 },
+            { index: 10, text: 1536 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
-            { index: 12, text: 1102 },
+            { index: 12, text: 1105 },
             
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"c2_rate","title":421,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"c2_rate","title":422,"type":"float"},
             
         ],
         configSkill: [
             
-            {"default":true,"name":"crown","title":1631,"type":"bool"},
+            {"default":true,"name":"crown","title":1636,"type":"bool"},
             
         ],
     },
     
     Charlotte: {
         name: "Charlotte",
-        nameLocale: 484,
+        nameLocale: 485,
         element: "Cryo",
         weapon: "Catalyst",
         star: 4,
@@ -992,53 +992,53 @@ export default {
         // avatar: Charlotte_avatar,
         avatar: getMd5("99218c303fd1ca9cc53e052ebdd5cbf3"),
         splash: Charlotte_splash,
-        skillName1: 865,
-        skillName2: 367,
-        skillName3: 578,
+        skillName1: 868,
+        skillName2: 368,
+        skillName3: 579,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 1710 },
+            { index: 3, text: 1715 },
             
-            { index: 4, text: 96 },
+            { index: 4, text: 97 },
             
-            { index: 5, text: 186 },
+            { index: 5, text: 187 },
             
-            { index: 6, text: 1887 },
+            { index: 6, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 7, text: 1204 },
+            { index: 7, text: 1207 },
             
-            { index: 8, text: 1752 },
+            { index: 8, text: 1757 },
             
             { index: 9, text: 45 },
             
-            { index: 10, text: 49 },
+            { index: 10, text: 50 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
-            { index: 13, text: 1339 },
+            { index: 13, text: 1342 },
             
-            { index: 12, text: 812 },
+            { index: 12, text: 815 },
             
-            { index: 14, text: 1340 },
+            { index: 14, text: 1343 },
             
         ],
         config: [
             
-            {"default":1,"max":3,"min":0,"name":"talent2_fontaine_count","title":1057,"type":"int"},
+            {"default":1,"max":3,"min":0,"name":"talent2_fontaine_count","title":1060,"type":"int"},
             
-            {"default":1,"max":3,"min":0,"name":"talent2_non_fontaine_count","title":1838,"type":"int"},
+            {"default":1,"max":3,"min":0,"name":"talent2_non_fontaine_count","title":1843,"type":"int"},
             
             {"default":0,"max":3,"min":0,"name":"c2_count","title":40,"type":"int"},
             
@@ -1052,7 +1052,7 @@ export default {
     
     Chongyun: {
         name: "Chongyun",
-        nameLocale: 1700,
+        nameLocale: 1705,
         element: "Cryo",
         weapon: "Claymore",
         star: 4,
@@ -1061,38 +1061,38 @@ export default {
         avatar: getName("Chongyun"),
         
         splash: Chongyun_splash,
-        skillName1: 896,
-        skillName2: 1193,
-        skillName3: 1192,
+        skillName1: 899,
+        skillName2: 1196,
+        skillName3: 1195,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1725 },
+            { index: 4, text: 1730 },
             
-            { index: 5, text: 1728 },
+            { index: 5, text: 1733 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 692 },
+            { index: 9, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 10, text: 692 },
+            { index: 10, text: 693 },
             
         ],
         config: [
@@ -1105,7 +1105,7 @@ export default {
     
     Collei: {
         name: "Collei",
-        nameLocale: 1070,
+        nameLocale: 1073,
         element: "Dendro",
         weapon: "Bow",
         star: 4,
@@ -1114,45 +1114,45 @@ export default {
         avatar: getName("Collei"),
         
         splash: Collei_splash,
-        skillName1: 905,
-        skillName2: 715,
-        skillName3: 1247,
+        skillName1: 908,
+        skillName2: 716,
+        skillName3: 1250,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1344 },
+            { index: 4, text: 1347 },
             
-            { index: 5, text: 1178 },
+            { index: 5, text: 1181 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 692 },
+            { index: 9, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 10, text: 1222 },
+            { index: 10, text: 1225 },
             
-            { index: 11, text: 1644 },
+            { index: 11, text: 1649 },
             
         ],
         config: [
             
-            {"default":false,"name":"background","title":478,"type":"bool"},
+            {"default":false,"name":"background","title":479,"type":"bool"},
             
         ],
         configSkill: [
@@ -1162,7 +1162,7 @@ export default {
     
     Cyno: {
         name: "Cyno",
-        nameLocale: 1629,
+        nameLocale: 1634,
         element: "Electro",
         weapon: "Polearm",
         star: 5,
@@ -1171,53 +1171,53 @@ export default {
         avatar: getName("Cyno"),
         
         splash: Cyno_splash,
-        skillName1: 860,
-        skillName2: 1396,
-        skillName3: 451,
+        skillName1: 863,
+        skillName2: 1399,
+        skillName3: 452,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
             { index: 2, text: 89 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1710 },
+            { index: 4, text: 1715 },
             
-            { index: 5, text: 96 },
+            { index: 5, text: 97 },
             
-            { index: 6, text: 186 },
+            { index: 6, text: 187 },
             
-            { index: 7, text: 1887 },
+            { index: 7, text: 1892 },
             
-            { index: 11, text: 400 },
+            { index: 11, text: 401 },
             
-            { index: 12, text: 403 },
+            { index: 12, text: 404 },
             
-            { index: 13, text: 401 },
+            { index: 13, text: 402 },
             
-            { index: 14, text: 407 },
+            { index: 14, text: 408 },
             
-            { index: 15, text: 404 },
+            { index: 15, text: 405 },
             
-            { index: 16, text: 409 },
+            { index: 16, text: 410 },
             
-            { index: 17, text: 402 },
+            { index: 17, text: 403 },
             
-            { index: 18, text: 405 },
+            { index: 18, text: 406 },
             
-            { index: 19, text: 410 },
+            { index: 19, text: 411 },
             
         ],
         skillMap2: [
             
-            { index: 8, text: 692 },
+            { index: 8, text: 693 },
             
-            { index: 9, text: 406 },
+            { index: 9, text: 407 },
             
-            { index: 10, text: 408 },
+            { index: 10, text: 409 },
             
         ],
         skillMap3: [
@@ -1225,21 +1225,21 @@ export default {
         ],
         config: [
             
-            {"default":4.0,"max":5.0,"min":0.0,"name":"c2_stack","title":419,"type":"float"},
+            {"default":4.0,"max":5.0,"min":0.0,"name":"c2_stack","title":420,"type":"float"},
             
-            {"default":true,"name":"after_q","title":399,"type":"bool"},
+            {"default":true,"name":"after_q","title":400,"type":"bool"},
             
         ],
         configSkill: [
             
-            {"default":true,"name":"under_judication","title":1589,"type":"bool"},
+            {"default":true,"name":"under_judication","title":1594,"type":"bool"},
             
         ],
     },
     
     Dehya: {
         name: "Dehya",
-        nameLocale: 1676,
+        nameLocale: 1681,
         element: "Pyro",
         weapon: "Claymore",
         star: 5,
@@ -1248,44 +1248,44 @@ export default {
         avatar: getName("Dehya"),
         
         splash: Dehya_splash,
-        skillName1: 883,
-        skillName2: 1219,
-        skillName3: 1198,
+        skillName1: 886,
+        skillName2: 1222,
+        skillName3: 1201,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1725 },
+            { index: 4, text: 1730 },
             
-            { index: 5, text: 1728 },
+            { index: 5, text: 1733 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 293 },
+            { index: 9, text: 294 },
             
-            { index: 10, text: 322 },
+            { index: 10, text: 323 },
             
-            { index: 11, text: 1839 },
+            { index: 11, text: 1844 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 1207 },
+            { index: 12, text: 1210 },
             
-            { index: 13, text: 1214 },
+            { index: 13, text: 1217 },
             
         ],
         config: [
@@ -1293,16 +1293,16 @@ export default {
         ],
         configSkill: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"c2_rate","title":131,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"c2_rate","title":132,"type":"float"},
             
-            {"default":3.5,"max":4.0,"min":0.0,"name":"c6_stack","title":260,"type":"float"},
+            {"default":3.5,"max":4.0,"min":0.0,"name":"c6_stack","title":261,"type":"float"},
             
         ],
     },
     
     Diluc: {
         name: "Diluc",
-        nameLocale: 1670,
+        nameLocale: 1675,
         element: "Pyro",
         weapon: "Claymore",
         star: 5,
@@ -1311,46 +1311,46 @@ export default {
         avatar: getName("Diluc"),
         
         splash: Diluc_splash,
-        skillName1: 892,
-        skillName2: 1683,
-        skillName3: 1914,
+        skillName1: 895,
+        skillName2: 1688,
+        skillName3: 1919,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1725 },
+            { index: 4, text: 1730 },
             
-            { index: 5, text: 1728 },
+            { index: 5, text: 1733 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 61 },
+            { index: 9, text: 62 },
             
-            { index: 10, text: 135 },
+            { index: 10, text: 136 },
             
-            { index: 11, text: 85 },
+            { index: 11, text: 86 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 778 },
+            { index: 12, text: 781 },
             
-            { index: 13, text: 719 },
+            { index: 13, text: 720 },
             
-            { index: 14, text: 1226 },
+            { index: 14, text: 1229 },
             
         ],
         config: [
@@ -1358,14 +1358,14 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"pyro","title":847,"type":"bool"},
+            {"default":true,"name":"pyro","title":850,"type":"bool"},
             
         ],
     },
     
     Diona: {
         name: "Diona",
-        nameLocale: 1672,
+        nameLocale: 1677,
         element: "Cryo",
         weapon: "Bow",
         star: 4,
@@ -1374,44 +1374,44 @@ export default {
         avatar: getName("Diona"),
         
         splash: Diona_splash,
-        skillName1: 902,
-        skillName2: 1246,
-        skillName3: 1039,
+        skillName1: 905,
+        skillName2: 1249,
+        skillName3: 1042,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1344 },
+            { index: 5, text: 1347 },
             
-            { index: 6, text: 1178 },
+            { index: 6, text: 1181 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 1245 },
+            { index: 10, text: 1248 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
-            { index: 12, text: 1841 },
+            { index: 12, text: 1846 },
             
-            { index: 13, text: 724 },
+            { index: 13, text: 725 },
             
         ],
         config: [
@@ -1424,7 +1424,7 @@ export default {
     
     Dori: {
         name: "Dori",
-        nameLocale: 490,
+        nameLocale: 491,
         element: "Electro",
         weapon: "Claymore",
         star: 4,
@@ -1433,40 +1433,40 @@ export default {
         avatar: getName("Dori"),
         
         splash: Dori_splash,
-        skillName1: 872,
-        skillName2: 1749,
-        skillName3: 360,
+        skillName1: 875,
+        skillName2: 1754,
+        skillName3: 361,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 136 },
+            { index: 1, text: 137 },
             
-            { index: 2, text: 137 },
+            { index: 2, text: 138 },
             
-            { index: 3, text: 85 },
+            { index: 3, text: 86 },
             
-            { index: 4, text: 1725 },
+            { index: 4, text: 1730 },
             
-            { index: 5, text: 1728 },
+            { index: 5, text: 1733 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 786 },
+            { index: 9, text: 789 },
             
-            { index: 10, text: 432 },
+            { index: 10, text: 433 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 1668 },
+            { index: 11, text: 1673 },
             
             { index: 12, text: 723 },
             
@@ -1483,7 +1483,7 @@ export default {
     
     Eula: {
         name: "Eula",
-        nameLocale: 179,
+        nameLocale: 180,
         element: "Cryo",
         weapon: "Claymore",
         star: 5,
@@ -1492,52 +1492,52 @@ export default {
         avatar: getName("Eula"),
         
         splash: Eula_splash,
-        skillName1: 918,
-        skillName2: 286,
-        skillName3: 301,
+        skillName1: 921,
+        skillName2: 287,
+        skillName3: 302,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
             { index: 4, text: 439 },
             
-            { index: 5, text: 155 },
+            { index: 5, text: 156 },
             
-            { index: 6, text: 156 },
+            { index: 6, text: 157 },
             
-            { index: 7, text: 1725 },
+            { index: 7, text: 1730 },
             
-            { index: 8, text: 1728 },
+            { index: 8, text: 1733 },
             
-            { index: 9, text: 96 },
+            { index: 9, text: 97 },
             
-            { index: 10, text: 186 },
+            { index: 10, text: 187 },
             
-            { index: 11, text: 1887 },
+            { index: 11, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 12, text: 1199 },
+            { index: 12, text: 1203 },
             
-            { index: 13, text: 1750 },
+            { index: 13, text: 1755 },
             
-            { index: 14, text: 285 },
+            { index: 14, text: 286 },
             
-            { index: 15, text: 1089 },
+            { index: 15, text: 1092 },
             
         ],
         skillMap3: [
             
-            { index: 16, text: 692 },
+            { index: 16, text: 693 },
             
-            { index: 17, text: 250 },
+            { index: 17, text: 251 },
             
         ],
         config: [
@@ -1545,14 +1545,14 @@ export default {
         ],
         configSkill: [
             
-            {"default":0,"max":30,"min":0,"name":"lightfall_stack","title":251,"type":"int"},
+            {"default":0,"max":30,"min":0,"name":"lightfall_stack","title":252,"type":"int"},
             
         ],
     },
     
     Faruzan: {
         name: "Faruzan",
-        nameLocale: 1257,
+        nameLocale: 1260,
         element: "Anemo",
         weapon: "Bow",
         star: 4,
@@ -1561,40 +1561,40 @@ export default {
         avatar: getName("Faruzan"),
         
         splash: Faruzan_splash,
-        skillName1: 925,
-        skillName2: 1837,
-        skillName3: 707,
+        skillName1: 928,
+        skillName2: 1842,
+        skillName3: 708,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1710 },
+            { index: 4, text: 1715 },
             
-            { index: 4, text: 1178 },
+            { index: 4, text: 1181 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 692 },
+            { index: 9, text: 693 },
             
-            { index: 10, text: 1848 },
+            { index: 10, text: 1853 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
         ],
         config: [
@@ -1611,7 +1611,7 @@ export default {
     
     Fischl: {
         name: "Fischl",
-        nameLocale: 1525,
+        nameLocale: 1528,
         element: "Electro",
         weapon: "Bow",
         star: 4,
@@ -1620,42 +1620,42 @@ export default {
         avatar: getName("Fischl"),
         
         splash: Fischl_splash,
-        skillName1: 912,
-        skillName2: 499,
-        skillName3: 1468,
+        skillName1: 915,
+        skillName2: 500,
+        skillName3: 1471,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1344 },
+            { index: 5, text: 1347 },
             
-            { index: 6, text: 1178 },
+            { index: 6, text: 1181 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 542 },
+            { index: 10, text: 543 },
             
-            { index: 11, text: 386 },
+            { index: 11, text: 387 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 1529 },
+            { index: 12, text: 1532 },
             
         ],
         config: [
@@ -1668,7 +1668,7 @@ export default {
     
     Freminet: {
         name: "Freminet",
-        nameLocale: 1523,
+        nameLocale: 1526,
         element: "Cryo",
         weapon: "Claymore",
         star: 4,
@@ -1676,79 +1676,79 @@ export default {
         // avatar: Freminet_avatar,
         avatar: getMd5("7ca0ad25c2cbb36cd55a8a19c1b2a39f"),
         splash: Freminet_splash,
-        skillName1: 889,
-        skillName2: 1142,
-        skillName3: 1244,
+        skillName1: 892,
+        skillName2: 1145,
+        skillName3: 1247,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1725 },
+            { index: 4, text: 1730 },
             
-            { index: 5, text: 1728 },
+            { index: 5, text: 1733 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 95 },
+            { index: 9, text: 96 },
             
-            { index: 10, text: 1830 },
+            { index: 10, text: 1835 },
             
-            { index: 11, text: 1803 },
+            { index: 11, text: 1808 },
             
-            { index: 12, text: 73 },
+            { index: 12, text: 74 },
             
-            { index: 13, text: 74 },
+            { index: 13, text: 75 },
             
-            { index: 14, text: 144 },
+            { index: 14, text: 145 },
             
-            { index: 15, text: 145 },
+            { index: 15, text: 146 },
             
-            { index: 16, text: 93 },
+            { index: 16, text: 94 },
             
-            { index: 17, text: 94 },
+            { index: 17, text: 95 },
             
-            { index: 18, text: 446 },
+            { index: 18, text: 447 },
             
-            { index: 19, text: 1195 },
+            { index: 19, text: 1198 },
             
-            { index: 21, text: 1831 },
+            { index: 21, text: 1836 },
             
         ],
         skillMap3: [
             
-            { index: 20, text: 692 },
+            { index: 20, text: 693 },
             
         ],
         config: [
             
-            {"default":0.0,"max":2.0,"min":0.0,"name":"c4_stack","title":426,"type":"float"},
+            {"default":0.0,"max":2.0,"min":0.0,"name":"c4_stack","title":427,"type":"float"},
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"c6_stack","title":427,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"c6_stack","title":428,"type":"float"},
             
         ],
         configSkill: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":526,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":527,"type":"float"},
             
         ],
     },
     
     Furina: {
         name: "Furina",
-        nameLocale: 1472,
+        nameLocale: 1475,
         element: "Hydro",
         weapon: "Sword",
         star: 5,
@@ -1756,46 +1756,46 @@ export default {
         // avatar: Furina_avatar,
         avatar: getMd5("4da8d9d663e2e59f63c19815074074de"),
         splash: Furina_splash,
-        skillName1: 901,
-        skillName2: 550,
-        skillName3: 79,
+        skillName1: 904,
+        skillName2: 551,
+        skillName3: 80,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1710 },
+            { index: 4, text: 1715 },
             
-            { index: 5, text: 96 },
+            { index: 5, text: 97 },
             
-            { index: 6, text: 186 },
+            { index: 6, text: 187 },
             
-            { index: 7, text: 1887 },
+            { index: 7, text: 1892 },
             
-            { index: 8, text: 1194 },
+            { index: 8, text: 1197 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 1488 },
+            { index: 9, text: 1491 },
             
-            { index: 10, text: 115 },
+            { index: 10, text: 116 },
             
-            { index: 11, text: 1151 },
+            { index: 11, text: 1154 },
             
-            { index: 12, text: 1617 },
+            { index: 12, text: 1622 },
             
-            { index: 13, text: 176 },
+            { index: 13, text: 177 },
             
         ],
         skillMap3: [
             
-            { index: 14, text: 692 },
+            { index: 14, text: 693 },
             
         ],
         config: [
@@ -1805,7 +1805,7 @@ export default {
         ],
         configSkill: [
             
-            {"default":3,"max":4,"min":0,"name":"hp_above50_count","title":1305,"type":"int"},
+            {"default":3,"max":4,"min":0,"name":"hp_above50_count","title":1308,"type":"int"},
             
             {"default":false,"name":"c6_after_e","title":23,"type":"bool"},
             
@@ -1816,7 +1816,7 @@ export default {
     
     Ganyu: {
         name: "Ganyu",
-        nameLocale: 1280,
+        nameLocale: 1283,
         element: "Cryo",
         weapon: "Bow",
         star: 5,
@@ -1825,63 +1825,63 @@ export default {
         avatar: getName("Ganyu"),
         
         splash: Ganyu_splash,
-        skillName1: 890,
-        skillName2: 605,
-        skillName3: 1797,
+        skillName1: 893,
+        skillName2: 606,
+        skillName3: 1802,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 263 },
+            { index: 5, text: 264 },
             
-            { index: 6, text: 1344 },
+            { index: 6, text: 1347 },
             
-            { index: 7, text: 72 },
+            { index: 7, text: 73 },
             
-            { index: 8, text: 1829 },
+            { index: 8, text: 1834 },
             
-            { index: 9, text: 1828 },
+            { index: 9, text: 1833 },
             
-            { index: 10, text: 96 },
+            { index: 10, text: 97 },
             
-            { index: 11, text: 186 },
+            { index: 11, text: 187 },
             
-            { index: 12, text: 1887 },
+            { index: 12, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 13, text: 692 },
+            { index: 13, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 14, text: 284 },
+            { index: 14, text: 285 },
             
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":520,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":521,"type":"float"},
             
         ],
         configSkill: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_rate","title":518,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_rate","title":519,"type":"float"},
             
         ],
     },
     
     Gorou: {
         name: "Gorou",
-        nameLocale: 159,
+        nameLocale: 160,
         element: "Geo",
         weapon: "Bow",
         star: 4,
@@ -1890,40 +1890,40 @@ export default {
         avatar: getName("Gorou"),
         
         splash: Gorou_splash,
-        skillName1: 929,
-        skillName2: 1229,
-        skillName3: 269,
+        skillName1: 932,
+        skillName2: 1232,
+        skillName3: 270,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1344 },
+            { index: 4, text: 1347 },
             
-            { index: 5, text: 1178 },
+            { index: 5, text: 1181 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 692 },
+            { index: 9, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 10, text: 692 },
+            { index: 10, text: 693 },
             
-            { index: 11, text: 608 },
+            { index: 11, text: 609 },
             
         ],
         config: [
@@ -1936,7 +1936,7 @@ export default {
     
     HuTao: {
         name: "HuTao",
-        nameLocale: 1463,
+        nameLocale: 1466,
         element: "Pyro",
         weapon: "Polearm",
         star: 5,
@@ -1945,61 +1945,61 @@ export default {
         avatar: getName("Hutao"),
         
         splash: HuTao_splash,
-        skillName1: 876,
-        skillName2: 1539,
-        skillName3: 567,
+        skillName1: 879,
+        skillName2: 1542,
+        skillName3: 568,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 155 },
+            { index: 4, text: 156 },
             
-            { index: 5, text: 156 },
+            { index: 5, text: 157 },
             
-            { index: 6, text: 263 },
+            { index: 6, text: 264 },
             
-            { index: 7, text: 1710 },
+            { index: 7, text: 1715 },
             
-            { index: 8, text: 96 },
+            { index: 8, text: 97 },
             
-            { index: 9, text: 186 },
+            { index: 9, text: 187 },
             
-            { index: 10, text: 1887 },
+            { index: 10, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 11, text: 1542 },
+            { index: 11, text: 1545 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 692 },
+            { index: 12, text: 693 },
             
-            { index: 13, text: 187 },
+            { index: 13, text: 188 },
             
         ],
         config: [
             
-            {"default":true,"name":"le_50","title":1292,"type":"bool"},
+            {"default":true,"name":"le_50","title":1295,"type":"bool"},
             
         ],
         configSkill: [
             
-            {"default":true,"name":"after_e","title":652,"type":"bool"},
+            {"default":true,"name":"after_e","title":653,"type":"bool"},
             
         ],
     },
     
     Jean: {
         name: "Jean",
-        nameLocale: 1273,
+        nameLocale: 1276,
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -2008,44 +2008,44 @@ export default {
         avatar: getName("Qin"),
         
         splash: Jean_splash,
-        skillName1: 916,
-        skillName2: 1847,
-        skillName3: 1531,
+        skillName1: 919,
+        skillName2: 1852,
+        skillName3: 1534,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1710 },
+            { index: 5, text: 1715 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 692 },
+            { index: 9, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 10, text: 1221 },
+            { index: 10, text: 1224 },
             
-            { index: 11, text: 306 },
+            { index: 11, text: 307 },
             
-            { index: 12, text: 1840 },
+            { index: 12, text: 1845 },
             
-            { index: 13, text: 720 },
+            { index: 13, text: 722 },
             
         ],
         config: [
@@ -2058,7 +2058,7 @@ export default {
     
     KaedeharaKazuha: {
         name: "KaedeharaKazuha",
-        nameLocale: 1058,
+        nameLocale: 1061,
         element: "Anemo",
         weapon: "Sword",
         star: 5,
@@ -2067,68 +2067,68 @@ export default {
         avatar: getName("Kazuha"),
         
         splash: KaedeharaKazuha_splash,
-        skillName1: 881,
-        skillName2: 350,
-        skillName3: 80,
+        skillName1: 884,
+        skillName2: 351,
+        skillName3: 81,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
             { index: 4, text: 439 },
             
-            { index: 5, text: 157 },
+            { index: 5, text: 158 },
             
-            { index: 6, text: 1714 },
+            { index: 6, text: 1717 },
             
-            { index: 6, text: 1716 },
+            { index: 6, text: 1720 },
             
-            { index: 8, text: 96 },
+            { index: 8, text: 97 },
             
-            { index: 9, text: 186 },
+            { index: 9, text: 187 },
             
-            { index: 10, text: 1887 },
+            { index: 10, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 11, text: 124 },
+            { index: 11, text: 125 },
             
-            { index: 12, text: 125 },
+            { index: 12, text: 126 },
             
-            { index: 13, text: 130 },
+            { index: 13, text: 131 },
             
-            { index: 14, text: 128 },
+            { index: 14, text: 129 },
             
-            { index: 15, text: 127 },
+            { index: 15, text: 128 },
             
-            { index: 16, text: 126 },
+            { index: 16, text: 127 },
             
-            { index: 17, text: 129 },
+            { index: 17, text: 130 },
             
-            { index: 18, text: 1202 },
+            { index: 18, text: 1205 },
             
-            { index: 19, text: 1751 },
+            { index: 19, text: 1756 },
             
         ],
         skillMap3: [
             
-            { index: 20, text: 778 },
+            { index: 20, text: 781 },
             
-            { index: 21, text: 719 },
+            { index: 21, text: 720 },
             
-            { index: 22, text: 1794 },
+            { index: 22, text: 1799 },
             
-            { index: 23, text: 1793 },
+            { index: 23, text: 1798 },
             
-            { index: 24, text: 1792 },
+            { index: 24, text: 1797 },
             
-            { index: 25, text: 1795 },
+            { index: 25, text: 1800 },
             
         ],
         config: [
@@ -2136,14 +2136,14 @@ export default {
         ],
         configSkill: [
             
-            {"default":false,"name":"after_e_or_q","title":262,"type":"bool"},
+            {"default":false,"name":"after_e_or_q","title":263,"type":"bool"},
             
         ],
     },
     
     Kaeya: {
         name: "Kaeya",
-        nameLocale: 304,
+        nameLocale: 305,
         element: "Cryo",
         weapon: "Sword",
         star: 4,
@@ -2152,40 +2152,40 @@ export default {
         avatar: getName("Kaeya"),
         
         splash: Kaeya_splash,
-        skillName1: 864,
-        skillName2: 1833,
-        skillName3: 296,
+        skillName1: 867,
+        skillName2: 1838,
+        skillName3: 297,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1712 },
+            { index: 5, text: 1719 },
             
-            { index: 6, text: 1715 },
+            { index: 6, text: 1722 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 692 },
+            { index: 10, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
         ],
         config: [
@@ -2198,7 +2198,7 @@ export default {
     
     KamisatoAyaka: {
         name: "KamisatoAyaka",
-        nameLocale: 1378,
+        nameLocale: 1381,
         element: "Cryo",
         weapon: "Sword",
         star: 5,
@@ -2207,61 +2207,61 @@ export default {
         avatar: getName("Ayaka"),
         
         splash: KamisatoAyaka_splash,
-        skillName1: 908,
-        skillName2: 1368,
-        skillName3: 1371,
+        skillName1: 911,
+        skillName2: 1371,
+        skillName3: 1374,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 444 },
+            { index: 3, text: 445 },
             
-            { index: 5, text: 154 },
+            { index: 5, text: 155 },
             
-            { index: 6, text: 1720 },
+            { index: 6, text: 1725 },
             
-            { index: 8, text: 96 },
+            { index: 8, text: 97 },
             
-            { index: 9, text: 186 },
+            { index: 9, text: 187 },
             
-            { index: 10, text: 1887 },
+            { index: 10, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 313 },
+            { index: 12, text: 314 },
             
-            { index: 13, text: 1435 },
+            { index: 13, text: 1438 },
             
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_rate","title":521,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_rate","title":522,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":522,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":523,"type":"float"},
             
         ],
         configSkill: [
             
-            {"default":true,"name":"after_dash","title":1372,"type":"bool"},
+            {"default":true,"name":"after_dash","title":1375,"type":"bool"},
             
-            {"default":false,"name":"use_c6","title":258,"type":"bool"},
+            {"default":false,"name":"use_c6","title":259,"type":"bool"},
             
         ],
     },
     
     KamisatoAyato: {
         name: "KamisatoAyato",
-        nameLocale: 1373,
+        nameLocale: 1376,
         element: "Hydro",
         weapon: "Sword",
         star: 5,
@@ -2270,44 +2270,44 @@ export default {
         avatar: getName("Ayato"),
         
         splash: KamisatoAyato_splash,
-        skillName1: 909,
-        skillName2: 1370,
-        skillName3: 1369,
+        skillName1: 912,
+        skillName2: 1373,
+        skillName3: 1372,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 438 },
+            { index: 3, text: 440 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1710 },
+            { index: 5, text: 1715 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 67 },
+            { index: 9, text: 68 },
             
-            { index: 10, text: 140 },
+            { index: 10, text: 141 },
             
-            { index: 11, text: 92 },
+            { index: 11, text: 93 },
             
-            { index: 12, text: 1100 },
+            { index: 12, text: 1103 },
             
         ],
         skillMap3: [
             
-            { index: 13, text: 1105 },
+            { index: 13, text: 1108 },
             
         ],
         config: [
@@ -2317,14 +2317,14 @@ export default {
             
             {"default":4,"max":5,"min":0,"name":"e_stack","title":38,"type":"int"},
             
-            {"default":true,"name":"in_q","title":477,"type":"bool"},
+            {"default":true,"name":"in_q","title":478,"type":"bool"},
             
         ],
     },
     
     Kaveh: {
         name: "Kaveh",
-        nameLocale: 357,
+        nameLocale: 358,
         element: "Dendro",
         weapon: "Claymore",
         star: 4,
@@ -2333,57 +2333,57 @@ export default {
         avatar: getName("Kaveh"),
         
         splash: Kaveh_splash,
-        skillName1: 887,
-        skillName2: 1325,
-        skillName3: 1417,
+        skillName1: 890,
+        skillName2: 1328,
+        skillName3: 1420,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1725 },
+            { index: 4, text: 1730 },
             
-            { index: 5, text: 1728 },
+            { index: 5, text: 1733 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 692 },
+            { index: 9, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 10, text: 692 },
+            { index: 10, text: 693 },
             
         ],
         config: [
             
-            {"default":0.0,"max":4.0,"min":0.0,"name":"talent2_stack","title":523,"type":"float"},
+            {"default":0.0,"max":4.0,"min":0.0,"name":"talent2_stack","title":524,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"c2_rate","title":423,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"c2_rate","title":424,"type":"float"},
             
         ],
         configSkill: [
             
-            {"default":false,"name":"after_q","title":48,"type":"bool"},
+            {"default":false,"name":"after_q","title":49,"type":"bool"},
             
         ],
     },
     
     Keqing: {
         name: "Keqing",
-        nameLocale: 320,
+        nameLocale: 321,
         element: "Electro",
         weapon: "Sword",
         star: 5,
@@ -2392,55 +2392,55 @@ export default {
         avatar: getName("Keqing"),
         
         splash: Keqing_splash,
-        skillName1: 862,
-        skillName2: 835,
-        skillName3: 515,
+        skillName1: 865,
+        skillName2: 838,
+        skillName3: 516,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 440 },
+            { index: 3, text: 441 },
             
-            { index: 4, text: 441 },
+            { index: 4, text: 442 },
             
-            { index: 5, text: 154 },
+            { index: 5, text: 155 },
             
-            { index: 6, text: 1712 },
+            { index: 6, text: 1719 },
             
-            { index: 7, text: 1715 },
+            { index: 7, text: 1722 },
             
-            { index: 8, text: 96 },
+            { index: 8, text: 97 },
             
-            { index: 9, text: 186 },
+            { index: 9, text: 187 },
             
-            { index: 10, text: 1887 },
+            { index: 10, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 11, text: 1811 },
+            { index: 11, text: 1816 },
             
-            { index: 12, text: 778 },
+            { index: 12, text: 781 },
             
-            { index: 13, text: 1810 },
+            { index: 13, text: 1815 },
             
         ],
         skillMap3: [
             
-            { index: 15, text: 692 },
+            { index: 15, text: 693 },
             
-            { index: 16, text: 1669 },
+            { index: 16, text: 1674 },
             
-            { index: 18, text: 1020 },
+            { index: 18, text: 1023 },
             
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":527,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":528,"type":"float"},
             
         ],
         configSkill: [
@@ -2452,7 +2452,7 @@ export default {
     
     Klee: {
         name: "Klee",
-        nameLocale: 387,
+        nameLocale: 388,
         element: "Pyro",
         weapon: "Catalyst",
         star: 5,
@@ -2461,38 +2461,38 @@ export default {
         avatar: getName("Klee"),
         
         splash: Klee_splash,
-        skillName1: 904,
-        skillName2: 1646,
-        skillName3: 1651,
+        skillName1: 907,
+        skillName2: 1651,
+        skillName3: 1656,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 1710 },
+            { index: 3, text: 1715 },
             
-            { index: 4, text: 1721 },
+            { index: 4, text: 1726 },
             
-            { index: 5, text: 96 },
+            { index: 5, text: 97 },
             
-            { index: 6, text: 186 },
+            { index: 6, text: 187 },
             
-            { index: 7, text: 1887 },
+            { index: 7, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 8, text: 1647 },
+            { index: 8, text: 1652 },
             
-            { index: 9, text: 1610 },
+            { index: 9, text: 1615 },
             
         ],
         skillMap3: [
             
-            { index: 10, text: 1652 },
+            { index: 10, text: 1657 },
             
         ],
         config: [
@@ -2505,7 +2505,7 @@ export default {
     
     KujouSara: {
         name: "KujouSara",
-        nameLocale: 118,
+        nameLocale: 119,
         element: "Electro",
         weapon: "Bow",
         star: 4,
@@ -2514,42 +2514,42 @@ export default {
         avatar: getName("Sara"),
         
         splash: KujouSara_splash,
-        skillName1: 931,
-        skillName2: 1899,
-        skillName3: 1218,
+        skillName1: 934,
+        skillName2: 1904,
+        skillName3: 1221,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1344 },
+            { index: 5, text: 1347 },
             
-            { index: 6, text: 1178 },
+            { index: 6, text: 1181 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 506 },
+            { index: 10, text: 507 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 507 },
+            { index: 11, text: 508 },
             
-            { index: 12, text: 508 },
+            { index: 12, text: 509 },
             
         ],
         config: [
@@ -2562,7 +2562,7 @@ export default {
     
     KukiShinobu: {
         name: "KukiShinobu",
-        nameLocale: 112,
+        nameLocale: 113,
         element: "Electro",
         weapon: "Sword",
         star: 4,
@@ -2571,55 +2571,55 @@ export default {
         avatar: getName("Shinobu"),
         
         splash: KukiShinobu_splash,
-        skillName1: 879,
-        skillName2: 1643,
-        skillName3: 653,
+        skillName1: 882,
+        skillName2: 1648,
+        skillName3: 654,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1712 },
+            { index: 4, text: 1719 },
             
-            { index: 5, text: 1715 },
+            { index: 5, text: 1722 },
             
-            { index: 6, text: 1710 },
+            { index: 6, text: 1715 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 692 },
+            { index: 10, text: 693 },
             
-            { index: 11, text: 1642 },
+            { index: 11, text: 1647 },
             
-            { index: 12, text: 1641 },
+            { index: 12, text: 1646 },
             
         ],
         skillMap3: [
             
-            { index: 13, text: 355 },
+            { index: 13, text: 357 },
             
-            { index: 14, text: 657 },
+            { index: 14, text: 658 },
             
-            { index: 15, text: 658 },
+            { index: 15, text: 659 },
             
         ],
         config: [
             
-            {"default":true,"name":"hp_le_50","title":1291,"type":"bool"},
+            {"default":true,"name":"hp_le_50","title":1294,"type":"bool"},
             
-            {"default":false,"name":"use_c6","title":398,"type":"bool"},
+            {"default":false,"name":"use_c6","title":399,"type":"bool"},
             
         ],
         configSkill: [
@@ -2629,7 +2629,7 @@ export default {
     
     Layla: {
         name: "Layla",
-        nameLocale: 1503,
+        nameLocale: 1506,
         element: "Cryo",
         weapon: "Sword",
         star: 4,
@@ -2638,38 +2638,38 @@ export default {
         avatar: getName("Layla"),
         
         splash: Layla_splash,
-        skillName1: 899,
-        skillName2: 465,
-        skillName3: 836,
+        skillName1: 902,
+        skillName2: 466,
+        skillName3: 839,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 1712 },
+            { index: 3, text: 1719 },
             
-            { index: 4, text: 1715 },
+            { index: 4, text: 1722 },
             
-            { index: 5, text: 96 },
+            { index: 5, text: 97 },
             
-            { index: 6, text: 186 },
+            { index: 6, text: 187 },
             
-            { index: 7, text: 1887 },
+            { index: 7, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 8, text: 692 },
+            { index: 8, text: 693 },
             
-            { index: 9, text: 1872 },
+            { index: 9, text: 1877 },
             
         ],
         skillMap3: [
             
-            { index: 10, text: 833 },
+            { index: 10, text: 836 },
             
         ],
         config: [
@@ -2682,7 +2682,7 @@ export default {
     
     Lisa: {
         name: "Lisa",
-        nameLocale: 108,
+        nameLocale: 109,
         element: "Electro",
         weapon: "Catalyst",
         star: 4,
@@ -2691,44 +2691,44 @@ export default {
         avatar: getName("Lisa"),
         
         splash: Lisa_splash,
-        skillName1: 884,
-        skillName2: 1484,
-        skillName3: 1535,
+        skillName1: 887,
+        skillName2: 1487,
+        skillName3: 1538,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1710 },
+            { index: 4, text: 1715 },
             
-            { index: 5, text: 96 },
+            { index: 5, text: 97 },
             
-            { index: 6, text: 186 },
+            { index: 6, text: 187 },
             
-            { index: 7, text: 1887 },
+            { index: 7, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 8, text: 1199 },
+            { index: 8, text: 1203 },
             
-            { index: 9, text: 824 },
+            { index: 9, text: 827 },
             
-            { index: 10, text: 59 },
+            { index: 10, text: 60 },
             
-            { index: 11, text: 133 },
+            { index: 11, text: 134 },
             
-            { index: 12, text: 83 },
+            { index: 12, text: 84 },
             
         ],
         skillMap3: [
             
-            { index: 13, text: 1809 },
+            { index: 13, text: 1814 },
             
         ],
         config: [
@@ -2741,7 +2741,7 @@ export default {
     
     Lynette: {
         name: "Lynette",
-        nameLocale: 1272,
+        nameLocale: 1275,
         element: "Anemo",
         weapon: "Sword",
         star: 4,
@@ -2749,65 +2749,65 @@ export default {
         // avatar: Lynette_avatar,
         avatar: getMd5("3163e147dc45dec9944d06355d778879"),
         splash: Lynette_splash,
-        skillName1: 921,
-        skillName2: 1615,
-        skillName3: 1896,
+        skillName1: 924,
+        skillName2: 1620,
+        skillName3: 1901,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
             { index: 4, text: 439 },
             
-            { index: 5, text: 1712 },
+            { index: 5, text: 1719 },
             
-            { index: 6, text: 1715 },
+            { index: 6, text: 1722 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 1614 },
+            { index: 10, text: 1619 },
             
-            { index: 11, text: 1139 },
+            { index: 11, text: 1142 },
             
-            { index: 12, text: 417 },
+            { index: 12, text: 419 },
             
         ],
         skillMap3: [
             
-            { index: 13, text: 692 },
+            { index: 13, text: 693 },
             
-            { index: 14, text: 664 },
+            { index: 14, text: 665 },
             
-            { index: 15, text: 647 },
+            { index: 15, text: 648 },
             
-            { index: 16, text: 649 },
+            { index: 16, text: 650 },
             
-            { index: 17, text: 650 },
+            { index: 17, text: 651 },
             
-            { index: 18, text: 651 },
+            { index: 18, text: 652 },
             
-            { index: 19, text: 648 },
+            { index: 19, text: 649 },
             
         ],
         config: [
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"talent1_rate","title":525,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"talent1_rate","title":526,"type":"float"},
             
-            {"default":4,"max":4,"min":1,"name":"talent1_count","title":524,"type":"int"},
+            {"default":4,"max":4,"min":1,"name":"talent1_count","title":525,"type":"int"},
             
-            {"default":0.5,"max":1.0,"min":0.0,"name":"talent2_rate","title":530,"type":"float"},
+            {"default":0.5,"max":1.0,"min":0.0,"name":"talent2_rate","title":531,"type":"float"},
             
         ],
         configSkill: [
@@ -2817,7 +2817,7 @@ export default {
     
     Lyney: {
         name: "Lyney",
-        nameLocale: 1055,
+        nameLocale: 1058,
         element: "Pyro",
         weapon: "Bow",
         star: 5,
@@ -2825,46 +2825,46 @@ export default {
         // avatar: Lyney_avatar,
         avatar: getMd5("15c0fae62ec91222148b753e5445c5fe"),
         splash: Lyney_splash,
-        skillName1: 924,
-        skillName2: 1343,
-        skillName3: 502,
+        skillName1: 927,
+        skillName2: 1346,
+        skillName3: 503,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
             { index: 2, text: 89 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1344 },
+            { index: 4, text: 1347 },
             
-            { index: 5, text: 72 },
+            { index: 5, text: 73 },
             
-            { index: 6, text: 1800 },
+            { index: 6, text: 1805 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
-            { index: 10, text: 1361 },
+            { index: 10, text: 1364 },
             
-            { index: 11, text: 1195 },
+            { index: 11, text: 1198 },
             
         ],
         skillMap2: [
             
-            { index: 12, text: 692 },
+            { index: 12, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 13, text: 692 },
+            { index: 13, text: 693 },
             
-            { index: 14, text: 641 },
+            { index: 14, text: 642 },
             
         ],
         config: [
@@ -2876,18 +2876,18 @@ export default {
         ],
         configSkill: [
             
-            {"default":0.0,"max":5.0,"min":0.0,"name":"prop_stack","title":1799,"type":"float"},
+            {"default":0.0,"max":5.0,"min":0.0,"name":"prop_stack","title":1804,"type":"float"},
             
-            {"default":false,"name":"under_pyro","title":768,"type":"bool"},
+            {"default":false,"name":"under_pyro","title":771,"type":"bool"},
             
-            {"default":1,"max":3,"min":0,"name":"pyro_count","title":1768,"type":"int"},
+            {"default":1,"max":3,"min":0,"name":"pyro_count","title":1773,"type":"int"},
             
         ],
     },
     
     Mona: {
         name: "Mona",
-        nameLocale: 1497,
+        nameLocale: 1500,
         element: "Hydro",
         weapon: "Catalyst",
         star: 5,
@@ -2896,38 +2896,38 @@ export default {
         avatar: getName("Mona"),
         
         splash: Mona_splash,
-        skillName1: 869,
-        skillName2: 1094,
-        skillName3: 834,
+        skillName1: 872,
+        skillName2: 1097,
+        skillName3: 837,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1710 },
+            { index: 4, text: 1715 },
             
-            { index: 5, text: 96 },
+            { index: 5, text: 97 },
             
-            { index: 6, text: 186 },
+            { index: 6, text: 187 },
             
-            { index: 7, text: 1887 },
+            { index: 7, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 8, text: 719 },
+            { index: 8, text: 720 },
             
-            { index: 9, text: 1226 },
+            { index: 9, text: 1229 },
             
         ],
         skillMap3: [
             
-            { index: 10, text: 1122 },
+            { index: 10, text: 1125 },
             
         ],
         config: [
@@ -2940,7 +2940,7 @@ export default {
     
     Nahida: {
         name: "Nahida",
-        nameLocale: 1419,
+        nameLocale: 1422,
         element: "Dendro",
         weapon: "Catalyst",
         star: 5,
@@ -2949,35 +2949,35 @@ export default {
         avatar: getName("Nahida"),
         
         splash: Nahida_splash,
-        skillName1: 915,
-        skillName2: 676,
-        skillName3: 654,
+        skillName1: 918,
+        skillName2: 677,
+        skillName3: 655,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1710 },
+            { index: 4, text: 1715 },
             
-            { index: 5, text: 96 },
+            { index: 5, text: 97 },
             
-            { index: 6, text: 186 },
+            { index: 6, text: 187 },
             
-            { index: 7, text: 1887 },
+            { index: 7, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 8, text: 1199 },
+            { index: 8, text: 1203 },
             
-            { index: 9, text: 1750 },
+            { index: 9, text: 1755 },
             
-            { index: 10, text: 1188 },
+            { index: 10, text: 1191 },
             
         ],
         skillMap3: [
@@ -2985,7 +2985,7 @@ export default {
         ],
         config: [
             
-            {"default":4,"max":4,"min":0,"name":"c4_e_count","title":1926,"type":"int"},
+            {"default":4,"max":4,"min":0,"name":"c4_e_count","title":1931,"type":"int"},
             
         ],
         configSkill: [
@@ -2999,7 +2999,7 @@ export default {
     
     Neuvillette: {
         name: "Neuvillette",
-        nameLocale: 1696,
+        nameLocale: 1701,
         element: "Hydro",
         weapon: "Catalyst",
         star: 5,
@@ -3007,57 +3007,57 @@ export default {
         // avatar: Neuvillette_avatar,
         avatar: getMd5("965af2f32a5376affcb99afb9915a23d"),
         splash: Neuvillette_splash,
-        skillName1: 871,
-        skillName2: 1125,
-        skillName3: 1181,
+        skillName1: 874,
+        skillName2: 1128,
+        skillName3: 1184,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 1710 },
+            { index: 3, text: 1715 },
             
-            { index: 4, text: 1709 },
+            { index: 4, text: 1714 },
             
-            { index: 5, text: 96 },
+            { index: 5, text: 97 },
             
-            { index: 6, text: 186 },
+            { index: 6, text: 187 },
             
-            { index: 7, text: 1887 },
+            { index: 7, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 8, text: 692 },
+            { index: 8, text: 693 },
             
-            { index: 9, text: 1195 },
+            { index: 9, text: 1198 },
             
         ],
         skillMap3: [
             
-            { index: 10, text: 692 },
+            { index: 10, text: 693 },
             
-            { index: 11, text: 1103 },
+            { index: 11, text: 1106 },
             
         ],
         config: [
             
-            {"default":100,"max":100,"min":1,"name":"current_hp","title":645,"type":"int"},
+            {"default":100,"max":100,"min":1,"name":"current_hp","title":646,"type":"int"},
             
         ],
         configSkill: [
             
-            {"default":3,"max":3,"min":0,"name":"talent1_stack","title":52,"type":"int"},
+            {"default":3,"max":3,"min":0,"name":"talent1_stack","title":53,"type":"int"},
             
         ],
     },
     
     Nilou: {
         name: "Nilou",
-        nameLocale: 545,
+        nameLocale: 546,
         element: "Hydro",
         weapon: "Sword",
         star: 5,
@@ -3066,55 +3066,55 @@ export default {
         avatar: getName("Nilou"),
         
         splash: Nilou_splash,
-        skillName1: 875,
-        skillName2: 77,
-        skillName3: 1144,
+        skillName1: 878,
+        skillName2: 78,
+        skillName3: 1147,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 1712 },
+            { index: 3, text: 1719 },
             
-            { index: 4, text: 1715 },
+            { index: 4, text: 1722 },
             
-            { index: 5, text: 96 },
+            { index: 5, text: 97 },
             
-            { index: 6, text: 186 },
+            { index: 6, text: 187 },
             
-            { index: 7, text: 1887 },
+            { index: 7, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 8, text: 692 },
+            { index: 8, text: 693 },
             
-            { index: 9, text: 323 },
+            { index: 9, text: 324 },
             
-            { index: 10, text: 818 },
+            { index: 10, text: 821 },
             
-            { index: 11, text: 324 },
+            { index: 11, text: 325 },
             
-            { index: 12, text: 819 },
+            { index: 12, text: 822 },
             
-            { index: 13, text: 1101 },
+            { index: 13, text: 1104 },
             
-            { index: 14, text: 1106 },
+            { index: 14, text: 1109 },
             
         ],
         skillMap3: [
             
-            { index: 15, text: 692 },
+            { index: 15, text: 693 },
             
-            { index: 16, text: 1107 },
+            { index: 16, text: 1110 },
             
         ],
         config: [
             
-            {"default":1.0,"max":1.0,"min":0.0,"name":"golden_rate","title":53,"type":"float"},
+            {"default":1.0,"max":1.0,"min":0.0,"name":"golden_rate","title":54,"type":"float"},
             
         ],
         configSkill: [
@@ -3124,7 +3124,7 @@ export default {
     
     Ningguang: {
         name: "Ningguang",
-        nameLocale: 297,
+        nameLocale: 298,
         element: "Geo",
         weapon: "Catalyst",
         star: 4,
@@ -3133,37 +3133,37 @@ export default {
         avatar: getName("Ningguang"),
         
         splash: Ningguang_splash,
-        skillName1: 866,
-        skillName2: 1279,
-        skillName3: 504,
+        skillName1: 869,
+        skillName2: 1282,
+        skillName3: 505,
         skillMap1: [
             
-            { index: 0, text: 946 },
+            { index: 0, text: 949 },
             
-            { index: 1, text: 1710 },
+            { index: 1, text: 1715 },
             
-            { index: 2, text: 837 },
+            { index: 2, text: 840 },
             
-            { index: 3, text: 96 },
+            { index: 3, text: 97 },
             
-            { index: 4, text: 186 },
+            { index: 4, text: 187 },
             
-            { index: 5, text: 1887 },
+            { index: 5, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 6, text: 692 },
+            { index: 6, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 7, text: 1092 },
+            { index: 7, text: 1095 },
             
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":517,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_rate","title":518,"type":"float"},
             
         ],
         configSkill: [
@@ -3173,7 +3173,7 @@ export default {
     
     Noelle: {
         name: "Noelle",
-        nameLocale: 1612,
+        nameLocale: 1617,
         element: "Geo",
         weapon: "Claymore",
         star: 4,
@@ -3182,42 +3182,42 @@ export default {
         avatar: getName("Noel"),
         
         splash: Noelle_splash,
-        skillName1: 917,
-        skillName2: 708,
-        skillName3: 501,
+        skillName1: 920,
+        skillName2: 709,
+        skillName3: 502,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1725 },
+            { index: 4, text: 1730 },
             
-            { index: 5, text: 1728 },
+            { index: 5, text: 1733 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 692 },
+            { index: 9, text: 693 },
             
-            { index: 10, text: 1119 },
+            { index: 10, text: 1122 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 1221 },
+            { index: 11, text: 1224 },
             
-            { index: 12, text: 692 },
+            { index: 12, text: 693 },
             
         ],
         config: [
@@ -3232,7 +3232,7 @@ export default {
     
     Mika: {
         name: "Mika",
-        nameLocale: 1410,
+        nameLocale: 1413,
         element: "Cryo",
         weapon: "Polearm",
         star: 4,
@@ -3241,44 +3241,44 @@ export default {
         avatar: getName("Mika"),
         
         splash: Mika_splash,
-        skillName1: 920,
-        skillName2: 839,
-        skillName3: 1482,
+        skillName1: 923,
+        skillName2: 842,
+        skillName3: 1485,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 443 },
+            { index: 3, text: 444 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1710 },
+            { index: 5, text: 1715 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 1832 },
+            { index: 9, text: 1837 },
             
-            { index: 10, text: 281 },
+            { index: 10, text: 282 },
             
-            { index: 11, text: 282 },
+            { index: 11, text: 283 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 809 },
+            { index: 12, text: 812 },
             
-            { index: 13, text: 1902 },
+            { index: 13, text: 1907 },
             
         ],
         config: [
@@ -3291,7 +3291,7 @@ export default {
     
     Qiqi: {
         name: "Qiqi",
-        nameLocale: 75,
+        nameLocale: 76,
         element: "Cryo",
         weapon: "Sword",
         star: 5,
@@ -3300,52 +3300,52 @@ export default {
         avatar: getName("Qiqi"),
         
         splash: Qiqi_splash,
-        skillName1: 863,
-        skillName2: 171,
-        skillName3: 172,
+        skillName1: 866,
+        skillName2: 172,
+        skillName3: 173,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
-            { index: 4, text: 440 },
+            { index: 4, text: 441 },
             
-            { index: 5, text: 441 },
+            { index: 5, text: 442 },
             
-            { index: 6, text: 154 },
+            { index: 6, text: 155 },
             
-            { index: 7, text: 1712 },
+            { index: 7, text: 1719 },
             
-            { index: 8, text: 1715 },
+            { index: 8, text: 1722 },
             
-            { index: 9, text: 96 },
+            { index: 9, text: 97 },
             
-            { index: 10, text: 186 },
+            { index: 10, text: 187 },
             
-            { index: 11, text: 1887 },
+            { index: 11, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 12, text: 692 },
+            { index: 12, text: 693 },
             
-            { index: 15, text: 584 },
+            { index: 15, text: 585 },
             
             { index: 13, text: 418 },
             
-            { index: 14, text: 722 },
+            { index: 14, text: 724 },
             
         ],
         skillMap3: [
             
-            { index: 16, text: 692 },
+            { index: 16, text: 693 },
             
-            { index: 17, text: 1119 },
+            { index: 17, text: 1122 },
             
         ],
         config: [
@@ -3358,7 +3358,7 @@ export default {
     
     RaidenShogun: {
         name: "RaidenShogun",
-        nameLocale: 1818,
+        nameLocale: 1823,
         element: "Electro",
         weapon: "Polearm",
         star: 5,
@@ -3367,64 +3367,64 @@ export default {
         avatar: getName("Shougun"),
         
         splash: RaidenShogun_splash,
-        skillName1: 933,
-        skillName2: 1365,
-        skillName3: 541,
+        skillName1: 936,
+        skillName2: 1368,
+        skillName3: 542,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 440 },
+            { index: 3, text: 441 },
             
-            { index: 4, text: 441 },
+            { index: 4, text: 442 },
             
-            { index: 5, text: 154 },
+            { index: 5, text: 155 },
             
-            { index: 6, text: 1710 },
+            { index: 6, text: 1715 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 692 },
+            { index: 10, text: 693 },
             
-            { index: 11, text: 354 },
+            { index: 11, text: 355 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 1077 },
+            { index: 12, text: 1080 },
             
-            { index: 13, text: 61 },
+            { index: 13, text: 62 },
             
-            { index: 14, text: 135 },
+            { index: 14, text: 136 },
             
-            { index: 15, text: 85 },
+            { index: 15, text: 86 },
             
-            { index: 16, text: 440 },
+            { index: 16, text: 441 },
             
-            { index: 17, text: 441 },
+            { index: 17, text: 442 },
             
-            { index: 18, text: 154 },
+            { index: 18, text: 155 },
             
-            { index: 19, text: 1712 },
+            { index: 19, text: 1719 },
             
-            { index: 20, text: 1715 },
+            { index: 20, text: 1722 },
             
-            { index: 21, text: 96 },
+            { index: 21, text: 97 },
             
-            { index: 22, text: 186 },
+            { index: 22, text: 187 },
             
-            { index: 23, text: 1887 },
+            { index: 23, text: 1892 },
             
         ],
         config: [
@@ -3432,16 +3432,16 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"under_e","title":483,"type":"bool"},
+            {"default":true,"name":"under_e","title":484,"type":"bool"},
             
-            {"default":60,"max":60,"min":0,"name":"resolve_stack","title":1611,"type":"int"},
+            {"default":60,"max":60,"min":0,"name":"resolve_stack","title":1616,"type":"int"},
             
         ],
     },
     
     Razor: {
         name: "Razor",
-        nameLocale: 1812,
+        nameLocale: 1817,
         element: "Electro",
         weapon: "Claymore",
         star: 4,
@@ -3450,55 +3450,55 @@ export default {
         avatar: getName("Razor"),
         
         splash: Razor_splash,
-        skillName1: 927,
-        skillName2: 318,
-        skillName3: 1817,
+        skillName1: 930,
+        skillName2: 319,
+        skillName3: 1822,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1725 },
+            { index: 4, text: 1730 },
             
-            { index: 5, text: 1728 },
+            { index: 5, text: 1733 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 1203 },
+            { index: 9, text: 1204 },
             
-            { index: 10, text: 1751 },
+            { index: 10, text: 1756 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 1221 },
+            { index: 11, text: 1224 },
             
-            { index: 12, text: 1236 },
+            { index: 12, text: 1239 },
             
-            { index: 13, text: 1238 },
+            { index: 13, text: 1241 },
             
-            { index: 14, text: 1237 },
+            { index: 14, text: 1240 },
             
-            { index: 15, text: 1239 },
+            { index: 15, text: 1242 },
             
         ],
         config: [
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"e_stack","title":1804,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"e_stack","title":1809,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_ratio","title":532,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent2_ratio","title":533,"type":"float"},
             
         ],
         configSkill: [
@@ -3508,7 +3508,7 @@ export default {
     
     Rosaria: {
         name: "Rosaria",
-        nameLocale: 1438,
+        nameLocale: 1441,
         element: "Cryo",
         weapon: "Polearm",
         star: 4,
@@ -3517,51 +3517,51 @@ export default {
         avatar: getName("Rosaria"),
         
         splash: Rosaria_splash,
-        skillName1: 885,
-        skillName2: 437,
-        skillName3: 1423,
+        skillName1: 888,
+        skillName2: 438,
+        skillName3: 1426,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
             { index: 2, text: 89 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 155 },
+            { index: 4, text: 156 },
             
-            { index: 5, text: 156 },
+            { index: 5, text: 157 },
             
-            { index: 6, text: 1710 },
+            { index: 6, text: 1715 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 694 },
+            { index: 10, text: 695 },
             
-            { index: 11, text: 696 },
+            { index: 11, text: 697 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 694 },
+            { index: 12, text: 695 },
             
-            { index: 13, text: 696 },
+            { index: 13, text: 697 },
             
-            { index: 14, text: 283 },
+            { index: 14, text: 284 },
             
         ],
         config: [
             
-            {"default":true,"name":"e_from_behind","title":631,"type":"bool"},
+            {"default":true,"name":"e_from_behind","title":632,"type":"bool"},
             
         ],
         configSkill: [
@@ -3571,7 +3571,7 @@ export default {
     
     SangonomiyaKokomi: {
         name: "SangonomiyaKokomi",
-        nameLocale: 1255,
+        nameLocale: 1258,
         element: "Hydro",
         weapon: "Catalyst",
         star: 5,
@@ -3580,38 +3580,38 @@ export default {
         avatar: getName("Kokomi"),
         
         splash: SangonomiyaKokomi_splash,
-        skillName1: 932,
-        skillName2: 1146,
-        skillName3: 1145,
+        skillName1: 935,
+        skillName2: 1149,
+        skillName3: 1148,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 1710 },
+            { index: 3, text: 1715 },
             
-            { index: 4, text: 96 },
+            { index: 4, text: 97 },
             
-            { index: 5, text: 186 },
+            { index: 5, text: 187 },
             
-            { index: 6, text: 1887 },
+            { index: 6, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 8, text: 1124 },
+            { index: 8, text: 1127 },
             
-            { index: 7, text: 1118 },
+            { index: 7, text: 1121 },
             
         ],
         skillMap3: [
             
-            { index: 9, text: 692 },
+            { index: 9, text: 693 },
             
-            { index: 10, text: 416 },
+            { index: 10, text: 417 },
             
         ],
         config: [
@@ -3626,7 +3626,7 @@ export default {
     
     Sayu: {
         name: "Sayu",
-        nameLocale: 828,
+        nameLocale: 831,
         element: "Anemo",
         weapon: "Claymore",
         star: 4,
@@ -3635,66 +3635,66 @@ export default {
         avatar: getName("Sayu"),
         
         splash: Sayu_splash,
-        skillName1: 878,
-        skillName2: 412,
-        skillName3: 411,
+        skillName1: 881,
+        skillName2: 413,
+        skillName3: 412,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
             { index: 4, text: 439 },
             
-            { index: 5, text: 1725 },
+            { index: 5, text: 1730 },
             
-            { index: 6, text: 1728 },
+            { index: 6, text: 1733 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 1855 },
+            { index: 10, text: 1860 },
             
-            { index: 11, text: 1856 },
+            { index: 11, text: 1861 },
             
-            { index: 12, text: 1857 },
+            { index: 12, text: 1862 },
             
-            { index: 13, text: 1864 },
+            { index: 13, text: 1869 },
             
-            { index: 16, text: 1863 },
+            { index: 16, text: 1868 },
             
-            { index: 15, text: 1862 },
+            { index: 15, text: 1867 },
             
-            { index: 14, text: 1865 },
+            { index: 14, text: 1870 },
             
-            { index: 17, text: 1860 },
+            { index: 17, text: 1865 },
             
-            { index: 20, text: 1859 },
+            { index: 20, text: 1864 },
             
-            { index: 19, text: 1858 },
+            { index: 19, text: 1863 },
             
-            { index: 18, text: 1861 },
+            { index: 18, text: 1866 },
             
         ],
         skillMap3: [
             
-            { index: 21, text: 703 },
+            { index: 21, text: 704 },
             
-            { index: 22, text: 704 },
+            { index: 22, text: 705 },
             
-            { index: 23, text: 97 },
+            { index: 23, text: 98 },
             
-            { index: 24, text: 98 },
+            { index: 24, text: 99 },
             
         ],
         config: [
@@ -3707,7 +3707,7 @@ export default {
     
     Shenhe: {
         name: "Shenhe",
-        nameLocale: 1312,
+        nameLocale: 1315,
         element: "Cryo",
         weapon: "Polearm",
         star: 5,
@@ -3716,44 +3716,44 @@ export default {
         avatar: getName("Shenhe"),
         
         splash: Shenhe_splash,
-        skillName1: 934,
-        skillName2: 175,
-        skillName3: 1366,
+        skillName1: 937,
+        skillName2: 176,
+        skillName3: 1369,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 440 },
+            { index: 3, text: 441 },
             
-            { index: 4, text: 441 },
+            { index: 4, text: 442 },
             
-            { index: 5, text: 154 },
+            { index: 5, text: 155 },
             
-            { index: 6, text: 1710 },
+            { index: 6, text: 1715 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 1201 },
+            { index: 10, text: 1206 },
             
-            { index: 11, text: 1751 },
+            { index: 11, text: 1756 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 692 },
+            { index: 12, text: 693 },
             
-            { index: 13, text: 719 },
+            { index: 13, text: 720 },
             
         ],
         config: [
@@ -3766,7 +3766,7 @@ export default {
     
     ShikanoinHeizou: {
         name: "ShikanoinHeizou",
-        nameLocale: 1903,
+        nameLocale: 1908,
         element: "Anemo",
         weapon: "Catalyst",
         star: 4,
@@ -3775,60 +3775,60 @@ export default {
         avatar: getName("Heizo"),
         
         splash: ShikanoinHeizou_splash,
-        skillName1: 861,
-        skillName2: 336,
-        skillName3: 1462,
+        skillName1: 864,
+        skillName2: 337,
+        skillName3: 1465,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 440 },
+            { index: 3, text: 441 },
             
-            { index: 4, text: 441 },
+            { index: 4, text: 442 },
             
-            { index: 5, text: 442 },
+            { index: 5, text: 443 },
             
             { index: 6, text: 439 },
             
-            { index: 7, text: 154 },
+            { index: 7, text: 155 },
             
-            { index: 8, text: 1710 },
+            { index: 8, text: 1715 },
             
-            { index: 9, text: 96 },
+            { index: 9, text: 97 },
             
-            { index: 10, text: 186 },
+            { index: 10, text: 187 },
             
-            { index: 11, text: 1887 },
+            { index: 11, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 12, text: 693 },
+            { index: 12, text: 694 },
             
-            { index: 13, text: 695 },
+            { index: 13, text: 696 },
             
-            { index: 14, text: 697 },
+            { index: 14, text: 698 },
             
-            { index: 15, text: 698 },
+            { index: 15, text: 699 },
             
-            { index: 16, text: 699 },
+            { index: 16, text: 700 },
             
         ],
         skillMap3: [
             
-            { index: 17, text: 99 },
+            { index: 17, text: 100 },
             
-            { index: 18, text: 1460 },
+            { index: 18, text: 1463 },
             
-            { index: 20, text: 1458 },
+            { index: 20, text: 1461 },
             
-            { index: 21, text: 1461 },
+            { index: 21, text: 1464 },
             
-            { index: 19, text: 1459 },
+            { index: 19, text: 1462 },
             
         ],
         config: [
@@ -3841,7 +3841,7 @@ export default {
     
     Sucrose: {
         name: "Sucrose",
-        nameLocale: 1345,
+        nameLocale: 1348,
         element: "Anemo",
         weapon: "Catalyst",
         star: 4,
@@ -3850,44 +3850,44 @@ export default {
         avatar: getName("Sucrose"),
         
         splash: Sucrose_splash,
-        skillName1: 910,
-        skillName2: 1851,
-        skillName3: 1394,
+        skillName1: 913,
+        skillName2: 1856,
+        skillName3: 1397,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1710 },
+            { index: 4, text: 1715 },
             
-            { index: 5, text: 96 },
+            { index: 5, text: 97 },
             
-            { index: 6, text: 186 },
+            { index: 6, text: 187 },
             
-            { index: 7, text: 1887 },
+            { index: 7, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 8, text: 692 },
+            { index: 8, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 9, text: 719 },
+            { index: 9, text: 720 },
             
-            { index: 10, text: 1794 },
+            { index: 10, text: 1799 },
             
-            { index: 11, text: 1793 },
+            { index: 11, text: 1798 },
             
-            { index: 13, text: 1792 },
+            { index: 13, text: 1797 },
             
-            { index: 12, text: 1795 },
+            { index: 12, text: 1800 },
             
         ],
         config: [
@@ -3900,7 +3900,7 @@ export default {
     
     Tartaglia: {
         name: "Tartaglia",
-        nameLocale: 1664,
+        nameLocale: 1669,
         element: "Hydro",
         weapon: "Bow",
         star: 5,
@@ -3909,70 +3909,70 @@ export default {
         avatar: getName("Tartaglia"),
         
         splash: Tartaglia_splash,
-        skillName1: 886,
-        skillName2: 1898,
-        skillName3: 1054,
+        skillName1: 889,
+        skillName2: 1903,
+        skillName3: 1057,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 263 },
+            { index: 5, text: 264 },
             
-            { index: 6, text: 1344 },
+            { index: 6, text: 1347 },
             
-            { index: 7, text: 1178 },
+            { index: 7, text: 1181 },
             
-            { index: 8, text: 784 },
+            { index: 8, text: 787 },
             
-            { index: 9, text: 783 },
+            { index: 9, text: 786 },
             
-            { index: 10, text: 96 },
+            { index: 10, text: 97 },
             
-            { index: 11, text: 186 },
+            { index: 11, text: 187 },
             
-            { index: 12, text: 1887 },
+            { index: 12, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 13, text: 1231 },
+            { index: 13, text: 1234 },
             
-            { index: 14, text: 61 },
+            { index: 14, text: 62 },
             
-            { index: 15, text: 135 },
+            { index: 15, text: 136 },
             
-            { index: 16, text: 85 },
+            { index: 16, text: 86 },
             
             { index: 17, text: 439 },
             
-            { index: 18, text: 154 },
+            { index: 18, text: 155 },
             
-            { index: 19, text: 264 },
+            { index: 19, text: 265 },
             
-            { index: 20, text: 265 },
+            { index: 20, text: 266 },
             
-            { index: 21, text: 1712 },
+            { index: 21, text: 1719 },
             
-            { index: 22, text: 1715 },
+            { index: 22, text: 1722 },
             
-            { index: 23, text: 781 },
+            { index: 23, text: 784 },
             
         ],
         skillMap3: [
             
-            { index: 24, text: 701 },
+            { index: 24, text: 702 },
             
-            { index: 25, text: 702 },
+            { index: 25, text: 703 },
             
-            { index: 26, text: 782 },
+            { index: 26, text: 785 },
             
         ],
         config: [
@@ -3985,7 +3985,7 @@ export default {
     
     Thoma: {
         name: "Thoma",
-        nameLocale: 678,
+        nameLocale: 679,
         element: "Pyro",
         weapon: "Polearm",
         star: 4,
@@ -3994,38 +3994,38 @@ export default {
         avatar: getName("Tohma"),
         
         splash: Thoma_splash,
-        skillName1: 923,
-        skillName2: 1208,
-        skillName3: 1342,
+        skillName1: 926,
+        skillName2: 1211,
+        skillName3: 1345,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
             { index: 2, text: 89 },
             
             { index: 4, text: 439 },
             
-            { index: 5, text: 1710 },
+            { index: 5, text: 1715 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 692 },
+            { index: 9, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 10, text: 692 },
+            { index: 10, text: 693 },
             
-            { index: 11, text: 1205 },
+            { index: 11, text: 1208 },
             
         ],
         config: [
@@ -4038,7 +4038,7 @@ export default {
     
     Tighnari: {
         name: "Tighnari",
-        nameLocale: 730,
+        nameLocale: 731,
         element: "Dendro",
         weapon: "Bow",
         star: 5,
@@ -4047,53 +4047,53 @@ export default {
         avatar: getName("Tighnari"),
         
         splash: Tighnari_splash,
-        skillName1: 913,
-        skillName2: 1603,
-        skillName3: 1691,
+        skillName1: 916,
+        skillName2: 1608,
+        skillName3: 1696,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1344 },
+            { index: 4, text: 1347 },
             
-            { index: 5, text: 71 },
+            { index: 5, text: 72 },
             
-            { index: 6, text: 1477 },
+            { index: 6, text: 1480 },
             
-            { index: 7, text: 1537 },
+            { index: 7, text: 1540 },
             
-            { index: 8, text: 261 },
+            { index: 8, text: 262 },
             
-            { index: 9, text: 96 },
+            { index: 9, text: 97 },
             
-            { index: 10, text: 186 },
+            { index: 10, text: 187 },
             
-            { index: 11, text: 1887 },
+            { index: 11, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 12, text: 692 },
+            { index: 12, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 13, text: 1437 },
+            { index: 13, text: 1440 },
             
-            { index: 14, text: 1081 },
+            { index: 14, text: 1084 },
             
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_ratio","title":528,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"talent1_ratio","title":529,"type":"float"},
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"c2_ratio","title":420,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"c2_ratio","title":421,"type":"float"},
             
         ],
         configSkill: [
@@ -4103,7 +4103,7 @@ export default {
     
     Venti: {
         name: "Venti",
-        nameLocale: 1163,
+        nameLocale: 1166,
         element: "Anemo",
         weapon: "Bow",
         star: 5,
@@ -4112,56 +4112,56 @@ export default {
         avatar: getName("Venti"),
         
         splash: Venti_splash,
-        skillName1: 906,
-        skillName2: 1886,
-        skillName3: 1852,
+        skillName1: 909,
+        skillName2: 1891,
+        skillName3: 1857,
         skillMap1: [
             
-            { index: 0, text: 62 },
+            { index: 0, text: 63 },
             
-            { index: 1, text: 63 },
+            { index: 1, text: 64 },
             
-            { index: 3, text: 135 },
+            { index: 3, text: 136 },
             
-            { index: 4, text: 85 },
+            { index: 4, text: 86 },
             
-            { index: 5, text: 440 },
+            { index: 5, text: 441 },
             
-            { index: 6, text: 441 },
+            { index: 6, text: 442 },
             
-            { index: 8, text: 154 },
+            { index: 8, text: 155 },
             
-            { index: 9, text: 263 },
+            { index: 9, text: 264 },
             
-            { index: 10, text: 1344 },
+            { index: 10, text: 1347 },
             
-            { index: 11, text: 1178 },
+            { index: 11, text: 1181 },
             
-            { index: 12, text: 96 },
+            { index: 12, text: 97 },
             
-            { index: 13, text: 186 },
+            { index: 13, text: 187 },
             
-            { index: 14, text: 1887 },
+            { index: 14, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 15, text: 1199 },
+            { index: 15, text: 1203 },
             
-            { index: 16, text: 1750 },
+            { index: 16, text: 1755 },
             
         ],
         skillMap3: [
             
-            { index: 17, text: 719 },
+            { index: 17, text: 720 },
             
-            { index: 18, text: 1794 },
+            { index: 18, text: 1799 },
             
-            { index: 20, text: 1793 },
+            { index: 20, text: 1798 },
             
-            { index: 21, text: 1792 },
+            { index: 21, text: 1797 },
             
-            { index: 19, text: 1795 },
+            { index: 19, text: 1800 },
             
         ],
         config: [
@@ -4174,7 +4174,7 @@ export default {
     
     Wanderer: {
         name: "Wanderer",
-        nameLocale: 1137,
+        nameLocale: 1140,
         element: "Anemo",
         weapon: "Catalyst",
         star: 5,
@@ -4183,42 +4183,42 @@ export default {
         avatar: getName("Wanderer"),
         
         splash: Wanderer_splash,
-        skillName1: 914,
-        skillName2: 1447,
-        skillName3: 1232,
+        skillName1: 917,
+        skillName2: 1450,
+        skillName3: 1235,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 88 },
+            { index: 2, text: 90 },
             
-            { index: 3, text: 65 },
+            { index: 3, text: 66 },
             
-            { index: 4, text: 138 },
+            { index: 4, text: 139 },
             
-            { index: 5, text: 90 },
+            { index: 5, text: 91 },
             
-            { index: 6, text: 1710 },
+            { index: 6, text: 1715 },
             
             { index: 7, text: 32 },
             
-            { index: 8, text: 96 },
+            { index: 8, text: 97 },
             
-            { index: 9, text: 186 },
+            { index: 9, text: 187 },
             
-            { index: 10, text: 1887 },
+            { index: 10, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 700 },
+            { index: 12, text: 701 },
             
         ],
         config: [
@@ -4230,18 +4230,18 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"e_enabled","title":475,"type":"bool"},
+            {"default":true,"name":"e_enabled","title":476,"type":"bool"},
             
             {"default":false,"name":"e_hydro","title":30,"type":"bool"},
             
-            {"default":50.0,"max":120.0,"min":0.0,"name":"sdpoints","title":1405,"type":"float"},
+            {"default":50.0,"max":120.0,"min":0.0,"name":"sdpoints","title":1408,"type":"float"},
             
         ],
     },
     
     Wriothesley: {
         name: "Wriothesley",
-        nameLocale: 1504,
+        nameLocale: 1507,
         element: "Cryo",
         weapon: "Catalyst",
         star: 5,
@@ -4249,30 +4249,30 @@ export default {
         // avatar: Wriothesley_avatar,
         avatar: getMd5("e2ea36ecfdb6f53717b1cadd394fbf49"),
         splash: Wriothesley_splash,
-        skillName1: 922,
-        skillName2: 287,
-        skillName3: 1923,
+        skillName1: 925,
+        skillName2: 288,
+        skillName3: 1928,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 443 },
+            { index: 3, text: 444 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1710 },
+            { index: 5, text: 1715 },
             
-            { index: 6, text: 665 },
+            { index: 6, text: 666 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
@@ -4280,9 +4280,9 @@ export default {
         ],
         skillMap3: [
             
-            { index: 10, text: 692 },
+            { index: 10, text: 693 },
             
-            { index: 11, text: 1139 },
+            { index: 11, text: 1142 },
             
         ],
         config: [
@@ -4299,7 +4299,7 @@ export default {
     
     Xiangling: {
         name: "Xiangling",
-        nameLocale: 1877,
+        nameLocale: 1882,
         element: "Pyro",
         weapon: "Polearm",
         star: 4,
@@ -4308,46 +4308,46 @@ export default {
         avatar: getName("Xiangling"),
         
         splash: Xiangling_splash,
-        skillName1: 903,
-        skillName2: 1748,
-        skillName3: 816,
+        skillName1: 906,
+        skillName2: 1753,
+        skillName3: 819,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
-            { index: 5, text: 445 },
+            { index: 5, text: 446 },
             
-            { index: 7, text: 154 },
+            { index: 7, text: 155 },
             
-            { index: 8, text: 1710 },
+            { index: 8, text: 1715 },
             
-            { index: 9, text: 96 },
+            { index: 9, text: 97 },
             
-            { index: 10, text: 186 },
+            { index: 10, text: 187 },
             
-            { index: 11, text: 1887 },
+            { index: 11, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 12, text: 434 },
+            { index: 12, text: 435 },
             
         ],
         skillMap3: [
             
-            { index: 13, text: 66 },
+            { index: 13, text: 67 },
             
-            { index: 14, text: 139 },
+            { index: 14, text: 140 },
             
-            { index: 15, text: 91 },
+            { index: 15, text: 92 },
             
-            { index: 16, text: 817 },
+            { index: 16, text: 820 },
             
         ],
         config: [
@@ -4360,7 +4360,7 @@ export default {
     
     Xiao: {
         name: "Xiao",
-        nameLocale: 1889,
+        nameLocale: 1894,
         element: "Anemo",
         weapon: "Polearm",
         star: 5,
@@ -4369,39 +4369,39 @@ export default {
         avatar: getName("Xiao"),
         
         splash: Xiao_splash,
-        skillName1: 867,
-        skillName2: 1854,
-        skillName3: 1834,
+        skillName1: 870,
+        skillName2: 1859,
+        skillName3: 1839,
         skillMap1: [
             
-            { index: 0, text: 62 },
+            { index: 0, text: 63 },
             
-            { index: 1, text: 63 },
+            { index: 1, text: 64 },
             
-            { index: 3, text: 135 },
+            { index: 3, text: 136 },
             
-            { index: 4, text: 85 },
+            { index: 4, text: 86 },
             
-            { index: 5, text: 440 },
+            { index: 5, text: 441 },
             
-            { index: 6, text: 441 },
+            { index: 6, text: 442 },
             
-            { index: 8, text: 154 },
+            { index: 8, text: 155 },
             
-            { index: 9, text: 263 },
+            { index: 9, text: 264 },
             
-            { index: 10, text: 1710 },
+            { index: 10, text: 1715 },
             
-            { index: 11, text: 96 },
+            { index: 11, text: 97 },
             
-            { index: 12, text: 186 },
+            { index: 12, text: 187 },
             
-            { index: 13, text: 1887 },
+            { index: 13, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 14, text: 692 },
+            { index: 14, text: 693 },
             
         ],
         skillMap3: [
@@ -4412,18 +4412,18 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"after_q","title":1834,"type":"bool"},
+            {"default":true,"name":"after_q","title":1839,"type":"bool"},
             
-            {"default":4.0,"max":4.0,"min":0.0,"name":"talent1_stack","title":531,"type":"float"},
+            {"default":4.0,"max":4.0,"min":0.0,"name":"talent1_stack","title":532,"type":"float"},
             
-            {"default":0.0,"max":3.0,"min":0.0,"name":"talent2_stack","title":519,"type":"float"},
+            {"default":0.0,"max":3.0,"min":0.0,"name":"talent2_stack","title":520,"type":"float"},
             
         ],
     },
     
     Xingqiu: {
         name: "Xingqiu",
-        nameLocale: 1543,
+        nameLocale: 1546,
         element: "Hydro",
         weapon: "Sword",
         star: 4,
@@ -4432,46 +4432,46 @@ export default {
         avatar: getName("Xingqiu"),
         
         splash: Xingqiu_splash,
-        skillName1: 868,
-        skillName2: 384,
-        skillName3: 385,
+        skillName1: 871,
+        skillName2: 385,
+        skillName3: 386,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
             { index: 5, text: 439 },
             
-            { index: 6, text: 155 },
+            { index: 6, text: 156 },
             
-            { index: 7, text: 156 },
+            { index: 7, text: 157 },
             
-            { index: 9, text: 1712 },
+            { index: 9, text: 1719 },
             
-            { index: 10, text: 1715 },
+            { index: 10, text: 1722 },
             
-            { index: 12, text: 96 },
+            { index: 12, text: 97 },
             
-            { index: 13, text: 186 },
+            { index: 13, text: 187 },
             
-            { index: 14, text: 1887 },
+            { index: 14, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 15, text: 694 },
+            { index: 15, text: 695 },
             
-            { index: 16, text: 696 },
+            { index: 16, text: 697 },
             
         ],
         skillMap3: [
             
-            { index: 17, text: 325 },
+            { index: 17, text: 326 },
             
         ],
         config: [
@@ -4479,14 +4479,14 @@ export default {
         ],
         configSkill: [
             
-            {"default":false,"name":"c4","title":630,"type":"bool"},
+            {"default":false,"name":"c4","title":631,"type":"bool"},
             
         ],
     },
     
     Xinyan: {
         name: "Xinyan",
-        nameLocale: 1655,
+        nameLocale: 1660,
         element: "Pyro",
         weapon: "Claymore",
         star: 4,
@@ -4495,42 +4495,42 @@ export default {
         avatar: getName("Xinyan"),
         
         splash: Xinyan_splash,
-        skillName1: 897,
-        skillName2: 1212,
-        skillName3: 381,
+        skillName1: 900,
+        skillName2: 1215,
+        skillName3: 382,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 1725 },
+            { index: 4, text: 1730 },
             
-            { index: 5, text: 1728 },
+            { index: 5, text: 1733 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 727 },
+            { index: 9, text: 728 },
             
-            { index: 10, text: 719 },
+            { index: 10, text: 720 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
-            { index: 12, text: 1185 },
+            { index: 12, text: 1188 },
             
         ],
         config: [
@@ -4545,7 +4545,7 @@ export default {
     
     YaeMiko: {
         name: "YaeMiko",
-        nameLocale: 252,
+        nameLocale: 253,
         element: "Electro",
         weapon: "Catalyst",
         star: 5,
@@ -4554,42 +4554,42 @@ export default {
         avatar: getName("Yae"),
         
         splash: YaeMiko_splash,
-        skillName1: 900,
-        skillName2: 1732,
-        skillName3: 500,
+        skillName1: 903,
+        skillName2: 1737,
+        skillName3: 501,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 1710 },
+            { index: 3, text: 1715 },
             
-            { index: 4, text: 96 },
+            { index: 4, text: 97 },
             
-            { index: 5, text: 186 },
+            { index: 5, text: 187 },
             
-            { index: 6, text: 1887 },
+            { index: 6, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 7, text: 1047 },
+            { index: 7, text: 1050 },
             
-            { index: 8, text: 1049 },
+            { index: 8, text: 1052 },
             
-            { index: 9, text: 1046 },
+            { index: 9, text: 1049 },
             
-            { index: 10, text: 1048 },
+            { index: 10, text: 1051 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
-            { index: 12, text: 505 },
+            { index: 12, text: 506 },
             
         ],
         config: [
@@ -4602,7 +4602,7 @@ export default {
     
     Yanfei: {
         name: "Yanfei",
-        nameLocale: 1210,
+        nameLocale: 1213,
         element: "Pyro",
         weapon: "Catalyst",
         star: 4,
@@ -4611,44 +4611,44 @@ export default {
         avatar: getName("Feiyan"),
         
         splash: Yanfei_splash,
-        skillName1: 895,
-        skillName2: 106,
-        skillName3: 303,
+        skillName1: 898,
+        skillName2: 107,
+        skillName3: 304,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 1708 },
+            { index: 3, text: 1713 },
             
-            { index: 4, text: 1704 },
+            { index: 4, text: 1709 },
             
-            { index: 5, text: 1705 },
+            { index: 5, text: 1710 },
             
-            { index: 6, text: 1706 },
+            { index: 6, text: 1711 },
             
-            { index: 7, text: 1707 },
+            { index: 7, text: 1712 },
             
-            { index: 8, text: 516 },
+            { index: 8, text: 517 },
             
-            { index: 9, text: 96 },
+            { index: 9, text: 97 },
             
-            { index: 10, text: 186 },
+            { index: 10, text: 187 },
             
-            { index: 11, text: 1887 },
+            { index: 11, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 12, text: 692 },
+            { index: 12, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 13, text: 692 },
+            { index: 13, text: 693 },
             
         ],
         config: [
@@ -4656,14 +4656,14 @@ export default {
         ],
         configSkill: [
             
-            {"default":true,"name":"after_q","title":1197,"type":"bool"},
+            {"default":true,"name":"after_q","title":1200,"type":"bool"},
             
         ],
     },
     
     Yaoyao: {
         name: "Yaoyao",
-        nameLocale: 1278,
+        nameLocale: 1281,
         element: "Dendro",
         weapon: "Polearm",
         star: 4,
@@ -4672,49 +4672,49 @@ export default {
         avatar: getName("Yaoyao"),
         
         splash: Yaoyao_splash,
-        skillName1: 928,
-        skillName2: 146,
-        skillName3: 1251,
+        skillName1: 931,
+        skillName2: 147,
+        skillName3: 1254,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
             { index: 4, text: 439 },
             
-            { index: 5, text: 1710 },
+            { index: 5, text: 1715 },
             
-            { index: 6, text: 96 },
+            { index: 6, text: 97 },
             
-            { index: 7, text: 186 },
+            { index: 7, text: 187 },
             
-            { index: 8, text: 1887 },
+            { index: 8, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 9, text: 1331 },
+            { index: 9, text: 1334 },
             
-            { index: 10, text: 1332 },
+            { index: 10, text: 1335 },
             
         ],
         skillMap3: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
-            { index: 12, text: 1073 },
+            { index: 12, text: 1076 },
             
-            { index: 13, text: 1074 },
+            { index: 13, text: 1077 },
             
         ],
         config: [
             
-            {"default":0.0,"max":1.0,"min":0.0,"name":"c4_rate","title":425,"type":"float"},
+            {"default":0.0,"max":1.0,"min":0.0,"name":"c4_rate","title":426,"type":"float"},
             
         ],
         configSkill: [
@@ -4724,7 +4724,7 @@ export default {
     
     Yelan: {
         name: "Yelan",
-        nameLocale: 493,
+        nameLocale: 494,
         element: "Hydro",
         weapon: "Bow",
         star: 5,
@@ -4733,47 +4733,47 @@ export default {
         avatar: getName("Yelan"),
         
         splash: Yelan_splash,
-        skillName1: 894,
-        skillName2: 1527,
-        skillName3: 1155,
+        skillName1: 897,
+        skillName2: 1530,
+        skillName3: 1158,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 443 },
+            { index: 3, text: 444 },
             
-            { index: 4, text: 1344 },
+            { index: 4, text: 1347 },
             
-            { index: 5, text: 1178 },
+            { index: 5, text: 1181 },
             
-            { index: 6, text: 1355 },
+            { index: 6, text: 1358 },
             
-            { index: 8, text: 96 },
+            { index: 8, text: 97 },
             
-            { index: 9, text: 186 },
+            { index: 9, text: 187 },
             
-            { index: 10, text: 1887 },
+            { index: 10, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
         ],
         skillMap3: [
             
-            { index: 12, text: 692 },
+            { index: 12, text: 693 },
             
-            { index: 13, text: 1250 },
+            { index: 13, text: 1253 },
             
         ],
         config: [
             
-            {"default":4,"max":4,"min":1,"name":"team_element_count","title":1757,"type":"int"},
+            {"default":4,"max":4,"min":1,"name":"team_element_count","title":1762,"type":"int"},
             
         ],
         configSkill: [
@@ -4783,7 +4783,7 @@ export default {
     
     Yoimiya: {
         name: "Yoimiya",
-        nameLocale: 580,
+        nameLocale: 581,
         element: "Pyro",
         weapon: "Bow",
         star: 5,
@@ -4792,32 +4792,32 @@ export default {
         avatar: getName("Yoimiya"),
         
         splash: Yoimiya_splash,
-        skillName1: 898,
-        skillName2: 1216,
-        skillName3: 1268,
+        skillName1: 901,
+        skillName2: 1219,
+        skillName3: 1271,
         skillMap1: [
             
-            { index: 0, text: 64 },
+            { index: 0, text: 65 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
-            { index: 3, text: 443 },
+            { index: 3, text: 444 },
             
-            { index: 4, text: 154 },
+            { index: 4, text: 155 },
             
-            { index: 5, text: 1344 },
+            { index: 5, text: 1347 },
             
-            { index: 6, text: 1178 },
+            { index: 6, text: 1181 },
             
-            { index: 7, text: 1217 },
+            { index: 7, text: 1220 },
             
-            { index: 8, text: 96 },
+            { index: 8, text: 97 },
             
-            { index: 9, text: 186 },
+            { index: 9, text: 187 },
             
-            { index: 10, text: 1887 },
+            { index: 10, text: 1892 },
             
         ],
         skillMap2: [
@@ -4825,26 +4825,26 @@ export default {
         ],
         skillMap3: [
             
-            { index: 11, text: 692 },
+            { index: 11, text: 693 },
             
-            { index: 12, text: 1269 },
+            { index: 12, text: 1272 },
             
         ],
         config: [
             
-            {"default":8.0,"max":10.0,"min":0.0,"name":"talent1_level","title":529,"type":"float"},
+            {"default":8.0,"max":10.0,"min":0.0,"name":"talent1_level","title":530,"type":"float"},
             
         ],
         configSkill: [
             
-            {"default":true,"name":"after_e","title":635,"type":"bool"},
+            {"default":true,"name":"after_e","title":636,"type":"bool"},
             
         ],
     },
     
     Yunjin: {
         name: "Yunjin",
-        nameLocale: 147,
+        nameLocale: 148,
         element: "Geo",
         weapon: "Polearm",
         star: 4,
@@ -4853,46 +4853,46 @@ export default {
         avatar: getName("Yunjin"),
         
         splash: Yunjin_splash,
-        skillName1: 882,
-        skillName2: 815,
-        skillName3: 1356,
+        skillName1: 885,
+        skillName2: 818,
+        skillName3: 1359,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
-            { index: 4, text: 440 },
+            { index: 4, text: 441 },
             
-            { index: 5, text: 441 },
+            { index: 5, text: 442 },
             
-            { index: 6, text: 154 },
+            { index: 6, text: 155 },
             
-            { index: 7, text: 1710 },
+            { index: 7, text: 1715 },
             
-            { index: 8, text: 96 },
+            { index: 8, text: 97 },
             
-            { index: 9, text: 186 },
+            { index: 9, text: 187 },
             
-            { index: 10, text: 1887 },
+            { index: 10, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 11, text: 1200 },
+            { index: 11, text: 1202 },
             
-            { index: 12, text: 68 },
+            { index: 12, text: 69 },
             
-            { index: 13, text: 141 },
+            { index: 13, text: 142 },
             
         ],
         skillMap3: [
             
-            { index: 14, text: 692 },
+            { index: 14, text: 693 },
             
         ],
         config: [
@@ -4905,7 +4905,7 @@ export default {
     
     Zhongli: {
         name: "Zhongli",
-        nameLocale: 1738,
+        nameLocale: 1743,
         element: "Geo",
         weapon: "Polearm",
         star: 5,
@@ -4914,44 +4914,44 @@ export default {
         avatar: getName("Zhongli"),
         
         splash: Zhongli_splash,
-        skillName1: 873,
-        skillName2: 455,
-        skillName3: 503,
+        skillName1: 876,
+        skillName2: 456,
+        skillName3: 504,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 85 },
+            { index: 2, text: 86 },
             
             { index: 3, text: 439 },
             
-            { index: 4, text: 158 },
+            { index: 4, text: 159 },
             
-            { index: 5, text: 263 },
+            { index: 5, text: 264 },
             
-            { index: 6, text: 1710 },
+            { index: 6, text: 1715 },
             
-            { index: 7, text: 96 },
+            { index: 7, text: 97 },
             
-            { index: 8, text: 186 },
+            { index: 8, text: 187 },
             
-            { index: 9, text: 1887 },
+            { index: 9, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 10, text: 609 },
+            { index: 10, text: 610 },
             
-            { index: 11, text: 267 },
+            { index: 11, text: 268 },
             
-            { index: 12, text: 1750 },
+            { index: 12, text: 1755 },
             
         ],
         skillMap3: [
             
-            { index: 13, text: 692 },
+            { index: 13, text: 693 },
             
         ],
         config: [
@@ -4964,7 +4964,7 @@ export default {
     
     Kirara: {
         name: "Kirara",
-        nameLocale: 1433,
+        nameLocale: 1436,
         element: "Dendro",
         weapon: "Sword",
         star: 4,
@@ -4972,48 +4972,48 @@ export default {
         // avatar: Kirara_avatar,
         avatar: getMd5("8e8c8c18039f5441d4f2f43757781ae0"),
         splash: Kirara_splash,
-        skillName1: 911,
-        skillName2: 413,
-        skillName3: 1397,
+        skillName1: 914,
+        skillName2: 414,
+        skillName3: 1400,
         skillMap1: [
             
-            { index: 0, text: 61 },
+            { index: 0, text: 62 },
             
-            { index: 1, text: 135 },
+            { index: 1, text: 136 },
             
-            { index: 2, text: 86 },
+            { index: 2, text: 87 },
             
-            { index: 3, text: 87 },
+            { index: 3, text: 88 },
             
             { index: 4, text: 439 },
             
-            { index: 5, text: 1713 },
+            { index: 5, text: 1716 },
             
-            { index: 6, text: 1717 },
+            { index: 6, text: 1723 },
             
-            { index: 7, text: 1719 },
+            { index: 7, text: 1724 },
             
-            { index: 8, text: 96 },
+            { index: 8, text: 97 },
             
-            { index: 9, text: 186 },
+            { index: 9, text: 187 },
             
-            { index: 10, text: 1887 },
+            { index: 10, text: 1892 },
             
         ],
         skillMap2: [
             
-            { index: 11, text: 1310 },
+            { index: 11, text: 1313 },
             
-            { index: 12, text: 1248 },
+            { index: 12, text: 1251 },
             
-            { index: 13, text: 1455 },
+            { index: 13, text: 1458 },
             
         ],
         skillMap3: [
             
-            { index: 14, text: 692 },
+            { index: 14, text: 693 },
             
-            { index: 15, text: 1249 },
+            { index: 15, text: 1252 },
             
         ],
         config: [
