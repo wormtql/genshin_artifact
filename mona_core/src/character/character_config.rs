@@ -31,5 +31,6 @@ pub enum CharacterConfig {
     Wriothesley { talent2_stack: f64 },
     Charlotte { talent2_fontaine_count: usize, talent2_non_fontaine_count: usize, c2_count: usize, c2_rate: f64 },
     Furina { c2_overflow: f64 },
+    Chevreuse { talent1_rate: f64, talent2_rate: f64, c6_stack: f64 },
     NoConfig,
 }

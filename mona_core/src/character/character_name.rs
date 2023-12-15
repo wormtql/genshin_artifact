@@ -102,4 +102,5 @@ pub enum CharacterName {
     Yunjin,
     Zhongli,
     Kirara,
+    Chevreuse,
 }

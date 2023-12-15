@@ -121,7 +121,7 @@ pub struct Lyney;
 impl CharacterTrait for Lyney {
     const STATIC_DATA: CharacterStaticData = CharacterStaticData {
         name: CharacterName::Lyney,
-        internal_name: "Lyney", // todo
+        internal_name: "Lyney",
         name_locale: locale!(
             zh_cn: "林尼",
             en: "Lyney"
