@@ -103,4 +103,5 @@ pub enum CharacterName {
     Zhongli,
     Kirara,
     Chevreuse,
+    Navia,
 }
