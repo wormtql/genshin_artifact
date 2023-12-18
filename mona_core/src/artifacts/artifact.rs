@@ -70,6 +70,8 @@ pub enum ArtifactSetName {
     ViridescentVenerer,
     VourukashasGlow,
     WanderersTroupe,
+    SongOfDaysPast,
+    NighttimeWhispersInTheEchoingWoods,
 }
 
 impl ArtifactSetName {

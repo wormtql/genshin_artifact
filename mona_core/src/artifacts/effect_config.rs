@@ -164,6 +164,20 @@ pub struct ConfigMarechausseeHunter {
     pub stack: f64,
 }
 
+#[derive(Serialize, Deserialize)]
+#[derive(Debug, Clone, Default)]
+pub struct ConfigSongOfDaysPast {
+    pub regeneration: f64,
+    pub rate: f64,
+}
+
+#[derive(Serialize, Deserialize)]
+#[derive(Debug, Clone, Default)]
+pub struct ConfigNighttimeWhispersInTheEchoingWoods {
+    pub rate1: f64,
+    pub rate2: f64,
+}
+
 #[derive(Default, Debug, Clone)]
 #[derive(Serialize, Deserialize)]
 pub struct ArtifactEffectConfig {
@@ -194,6 +208,8 @@ pub struct ArtifactEffectConfig {
     pub config_vourukashas_glow: ConfigVourukashasGlow,
     pub config_marechaussee_hunter: ConfigMarechausseeHunter,
     pub config_golden_troupe: ConfigRate,
+    pub config_song_of_days_past: ConfigSongOfDaysPast,
+    pub config_nighttime_whispers_in_the_echoing_woods: ConfigNighttimeWhispersInTheEchoingWoods,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -226,6 +242,8 @@ pub struct ArtifactConfigInterface {
     pub config_vourukashas_glow: Option<ConfigVourukashasGlow>,
     pub config_marechaussee_hunter: Option<ConfigMarechausseeHunter>,
     pub config_golden_troupe: Option<ConfigRate>,
+    pub config_song_of_days_past: Option<ConfigSongOfDaysPast>,
+    pub config_nighttime_whispers_in_the_echoing_woods: Option<ConfigNighttimeWhispersInTheEchoingWoods>,
 }
 
 impl ArtifactConfigInterface {
@@ -258,6 +276,8 @@ impl ArtifactConfigInterface {
             config_vourukashas_glow: self.config_vourukashas_glow.unwrap_or(Default::default()),
             config_marechaussee_hunter: self.config_marechaussee_hunter.unwrap_or(Default::default()),
             config_golden_troupe: self.config_golden_troupe.unwrap_or(Default::default()),
+            config_song_of_days_past: self.config_song_of_days_past.unwrap_or(Default::default()),
+            config_nighttime_whispers_in_the_echoing_woods: self.config_nighttime_whispers_in_the_echoing_woods.unwrap_or(Default::default()),
         }
     }
 }

@@ -52,6 +52,8 @@ pub use nymphs_dream::NymphsDream;
 pub use vourukashas_glow::VourukashasGlow;
 pub use marechaussee_hunter::MarechausseeHunter;
 pub use golden_troupe::GoldenTroupe;
+pub use song_of_days_past::SongOfDaysPast;
+pub use nighttime_whispers_in_the_echoing_woods::NighttimeWhispersInTheEchoingWoods;
 
 pub mod empty;
 pub mod adventurer;
@@ -101,6 +103,8 @@ pub mod nymphs_dream;
 pub mod vourukashas_glow;
 pub mod marechaussee_hunter;
 pub mod golden_troupe;
+pub mod song_of_days_past;
+pub mod nighttime_whispers_in_the_echoing_woods;
 
 pub fn get_effect<T: Attribute>(name: ArtifactSetName, config: &ArtifactEffectConfig, character: &Character<T>) -> Box<dyn ArtifactEffect<T>> {
     name.create_effect(config, &character.common_data)
