@@ -44,11 +44,11 @@ impl TargetFunction for TighnariDefaultTargetFunction {
         let dmg_q2 = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::Q2, &CharacterSkillConfig::NoConfig, None);
         let dmg_e = Tighnari::damage::<SimpleDamageBuilder>(&&context, S::E1, &CharacterSkillConfig::NoConfig, None);
         let dmg =
-            dmg_c3.spread.unwrap().expectation +
+            (dmg_c3.spread.unwrap().expectation +
                 dmg_c4.spread.unwrap().expectation +
-                dmg_c4.normal.expectation * 3.0 + dmg_cc6 +
-                dmg_q1.spread.unwrap().expectation + dmg_q2.spread.unwrap().expectation +
-                (dmg_q1.normal.expectation + dmg_q2.normal.expectation) * 5.0 +
+                dmg_c4.normal.expectation * 3.0 + dmg_cc6) * 3.0 +
+                (dmg_q1.spread.unwrap().expectation + dmg_q2.spread.unwrap().expectation) * 2.0 +
+                (dmg_q1.normal.expectation + dmg_q2.normal.expectation) * 4.0 +
                 dmg_e.spread.unwrap().expectation;
 
         dmg
