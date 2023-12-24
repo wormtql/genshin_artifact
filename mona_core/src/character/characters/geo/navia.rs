@@ -223,25 +223,26 @@ impl CharacterTrait for Navia {
         let mut builder = D::new();
 
         if s == E1Total {
-            let count = match shard_count {
-                0 => 5,
-                1 => 7,
-                2 => 9,
-                _ => 11
-            };
-            ratio = ratio * count as f64;
-            let mut bonus = 0.15 * (shard_count - 3).max(0) as f64 * count as f64;
-            if strike11 && count == 11 {
-                ratio *= 2.0;
-                bonus *= 2.0;
-            }
-            if shard_count > 3 {
-                builder.add_atk_ratio("「裂晶弹片」加成", bonus);
-            }
+            ratio = ratio * 2.0;
+            // let count = match shard_count {
+            //     0 => 5,
+            //     1 => 7,
+            //     2 => 9,
+            //     _ => 11
+            // };
+            // ratio = ratio * count as f64;
+            // let mut bonus = 0.15 * (shard_count - 3).max(0) as f64 * count as f64;
+            // if strike11 && count == 11 {
+            //     ratio *= 2.0;
+            //     bonus *= 2.0;
+            // }
+            // if shard_count > 3 {
+            //     builder.add_atk_ratio("「裂晶弹片」加成", bonus);
+            // }
         }
         builder.add_atk_ratio("技能倍率", ratio);
 
-        if s == E1 && shard_count > 3 {
+        if (s == E1 || s == E1Total) && shard_count > 3 {
             builder.add_atk_ratio("「裂晶弹片」加成", 0.15 * (shard_count - 3) as f64);
         }
         if context.character_common_data.constellation >= 2 && (s == E1 || s == E1Total) {
