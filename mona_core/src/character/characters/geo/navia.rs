@@ -243,7 +243,7 @@ impl CharacterTrait for Navia {
         builder.add_atk_ratio("技能倍率", ratio);
 
         if (s == E1 || s == E1Total) && shard_count > 3 {
-            builder.add_atk_ratio("「裂晶弹片」加成", 0.15 * (shard_count - 3) as f64);
+            builder.add_extra_bonus("「裂晶弹片」加成", 0.15 * (shard_count - 3) as f64);
         }
         if context.character_common_data.constellation >= 2 && (s == E1 || s == E1Total) {
             let crit_bonus = 0.36_f64.min(shard_count as f64 * 0.12);
