@@ -43,6 +43,7 @@ pub use faruzan::BuffFaruzanQ;
 pub use mika::BuffMika;
 pub use kaveh::BuffKavehQ;
 pub use baizhu::{BuffBaizhuC4, BuffBaizhuTalent2};
+pub use xianyun::{BuffXianyunTalent1, BuffXianyunTalent2};
 
 pub mod albedo;
 pub mod aloy;
@@ -89,3 +90,4 @@ pub mod faruzan;
 pub mod mika;
 pub mod kaveh;
 pub mod baizhu;
+pub mod xianyun;

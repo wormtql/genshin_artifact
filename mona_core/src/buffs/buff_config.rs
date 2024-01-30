@@ -56,6 +56,8 @@ pub enum BuffConfig {
     KavehQ { q_level: usize, rate: f64 },
     BaizhuTalent2 { hp: f64, rate: f64 },
     BaizhuC4 { rate: f64 },
+    XianyunTalent1 { stack: f64 },
+    XianyunTalent2 { rate: f64, c2: bool, atk: f64 },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },

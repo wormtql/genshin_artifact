@@ -95,4 +95,5 @@ pub enum TargetFunctionName {
     WriothesleyDefault,
     FurinaDefault,
     NaviaDefault,
+    XianyunDefault,
 }
