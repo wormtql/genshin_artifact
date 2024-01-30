@@ -162,7 +162,7 @@ pub enum AttributeName {
     ExtraDmgNormalAttack,
     ExtraDmgChargedAttack,
     ExtraDmgPlungingAttack,
-    ExtraDmgPlungingAttack3, // 坠地冲击额外伤害，由于闲云而首次引进
+    ExtraDmgPlungingAttackLowHigh, // 坠地冲击额外伤害，由于闲云而首次引进
     ExtraDmgElementalSkill,
     ExtraDmgElementalBurst,
     ExtraDmgElectro,
@@ -193,7 +193,7 @@ impl AttributeName {
         match skill_type {
             SkillType::NormalAttack => AttributeName::BonusNormalAttack,
             SkillType::ChargedAttack => AttributeName::BonusChargedAttack,
-            SkillType::PlungingAttackLow | SkillType::PlungingAttackHigh | SkillType::PlungingAttackGround => AttributeName::BonusPlungingAttack,
+            SkillType::PlungingAttackOnGround | SkillType::PlungingAttackInAction => AttributeName::BonusPlungingAttack,
             SkillType::ElementalSkill => AttributeName::BonusElementalSkill,
             SkillType::ElementalBurst => AttributeName::BonusElementalBurst,
         }
@@ -216,7 +216,7 @@ impl AttributeName {
         match skill_type {
             SkillType::NormalAttack => AttributeName::CriticalNormalAttack,
             SkillType::ChargedAttack => AttributeName::CriticalChargedAttack,
-            SkillType::PlungingAttackLow | SkillType::PlungingAttackHigh | SkillType::PlungingAttackGround => AttributeName::CriticalPlungingAttack,
+            SkillType::PlungingAttackOnGround | SkillType::PlungingAttackInAction => AttributeName::CriticalPlungingAttack,
             SkillType::ElementalSkill => AttributeName::CriticalElementalSkill,
             SkillType::ElementalBurst => AttributeName::CriticalElementalBurst,
         }
@@ -239,7 +239,7 @@ impl AttributeName {
         match skill_type {
             SkillType::NormalAttack => AttributeName::CriticalDamageNormalAttack,
             SkillType::ChargedAttack => AttributeName::CriticalDamageChargedAttack,
-            SkillType::PlungingAttackLow | SkillType::PlungingAttackHigh | SkillType::PlungingAttackGround => AttributeName::CriticalDamagePlungingAttack,
+            SkillType::PlungingAttackOnGround | SkillType::PlungingAttackInAction => AttributeName::CriticalDamagePlungingAttack,
             SkillType::ElementalSkill => AttributeName::CriticalDamageElementalSkill,
             SkillType::ElementalBurst => AttributeName::CriticalDamageElementalBurst,
         }
@@ -262,7 +262,7 @@ impl AttributeName {
         match skill_type {
             SkillType::NormalAttack => AttributeName::HPRatioNormalAttack,
             SkillType::ChargedAttack => AttributeName::HPRatioChargedAttack,
-            SkillType::PlungingAttackLow | SkillType::PlungingAttackHigh | SkillType::PlungingAttackGround => AttributeName::HPRatioPlungingAttack,
+            SkillType::PlungingAttackOnGround | SkillType::PlungingAttackInAction => AttributeName::HPRatioPlungingAttack,
             SkillType::ElementalSkill => AttributeName::HPRatioElementalSkill,
             SkillType::ElementalBurst => AttributeName::HPRatioElementalBurst,
         }
@@ -285,7 +285,7 @@ impl AttributeName {
         match skill_type {
             SkillType::NormalAttack => AttributeName::DEFRatioNormalAttack,
             SkillType::ChargedAttack => AttributeName::DEFRatioChargedAttack,
-            SkillType::PlungingAttackLow | SkillType::PlungingAttackHigh | SkillType::PlungingAttackGround => AttributeName::DEFRatioPlungingAttack,
+            SkillType::PlungingAttackOnGround | SkillType::PlungingAttackInAction => AttributeName::DEFRatioPlungingAttack,
             SkillType::ElementalSkill => AttributeName::DEFRatioElementalSkill,
             SkillType::ElementalBurst => AttributeName::DEFRatioElementalBurst,
         }
@@ -308,7 +308,7 @@ impl AttributeName {
         match skill_type {
             SkillType::NormalAttack => AttributeName::ATKRatioNormalAttack,
             SkillType::ChargedAttack => AttributeName::ATKRatioChargedAttack,
-            SkillType::PlungingAttackLow | SkillType::PlungingAttackHigh | SkillType::PlungingAttackGround => AttributeName::ATKRatioPlungingAttack,
+            SkillType::PlungingAttackOnGround | SkillType::PlungingAttackInAction => AttributeName::ATKRatioPlungingAttack,
             SkillType::ElementalSkill => AttributeName::ATKRatioElementalSkill,
             SkillType::ElementalBurst => AttributeName::ATKRatioElementalBurst,
         }
@@ -331,7 +331,7 @@ impl AttributeName {
         match skill_type {
             SkillType::NormalAttack => AttributeName::ExtraDmgNormalAttack,
             SkillType::ChargedAttack => AttributeName::ExtraDmgChargedAttack,
-            SkillType::PlungingAttackLow | SkillType::PlungingAttackHigh | SkillType::PlungingAttackGround => AttributeName::ExtraDmgPlungingAttack,
+            SkillType::PlungingAttackOnGround | SkillType::PlungingAttackInAction => AttributeName::ExtraDmgPlungingAttack,
             SkillType::ElementalSkill => AttributeName::ExtraDmgElementalSkill,
             SkillType::ElementalBurst => AttributeName::ExtraDmgElementalBurst,
         }

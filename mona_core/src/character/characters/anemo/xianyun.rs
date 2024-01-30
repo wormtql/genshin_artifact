@@ -86,9 +86,8 @@ impl XianyunDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
             Charged | Charged1 => SkillType::ChargedAttack,
-            Plunging1 => SkillType::PlungingAttackLow,
-            Plunging2 => SkillType::PlungingAttackHigh,
-            Plunging3 | E2 | E3 | E4 => SkillType::PlungingAttackGround,
+            Plunging1 => SkillType::PlungingAttackInAction,
+            Plunging2 | Plunging3 | E2 | E3 | E4 => SkillType::PlungingAttackOnGround,
             E1 | E5 => SkillType::ElementalSkill,
             Q1 | Q2 | QHeal1 | QHeal2 => SkillType::ElementalBurst
         }
@@ -125,7 +124,7 @@ impl<A: Attribute> ChangeAttribute<A> for XianyunEffect {
         let factor = if self.constellation >= 2 { 2.0 } else { 1.0 };
         attribute.add_edge1(
             AttributeName::ATK,
-            AttributeName::ExtraDmgPlungingAttack3,
+            AttributeName::ExtraDmgPlungingAttackLowHigh,
             Box::new(move |atk, _| (9000.0_f64 * factor).min(atk * 2.0 * rate * factor)),
             Box::new(|_x, _y, _z| (0.0, 0.0)),
             "天赋「细想应是洞中仙」"

@@ -107,9 +107,8 @@ impl LisaDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
             Charged => SkillType::ChargedAttack,
-            Plunging1 => SkillType::PlungingAttackLow,
-            Plunging2 => SkillType::PlungingAttackHigh,
-            Plunging3 => SkillType::PlungingAttackGround,
+            Plunging1 => SkillType::PlungingAttackInAction,
+            Plunging2 | Plunging3 => SkillType::PlungingAttackOnGround,
             E1 | E2 | E3 | E4 | E5 => SkillType::ElementalSkill,
             Q1 => SkillType::ElementalBurst
         }

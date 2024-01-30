@@ -124,9 +124,8 @@ impl YunjinDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal31 | Normal32 | Normal41 | Normal42 | Normal5 => SkillType::NormalAttack,
             Charged => SkillType::ChargedAttack,
-            Plunging1 => SkillType::PlungingAttackLow,
-            Plunging2 => SkillType::PlungingAttackHigh,
-            Plunging3 => SkillType::PlungingAttackGround,
+            Plunging1 => SkillType::PlungingAttackInAction,
+            Plunging2 | Plunging3 => SkillType::PlungingAttackOnGround,
             E1 | E2 | E3 => SkillType::ElementalSkill,
             Q1 => SkillType::ElementalBurst
         }

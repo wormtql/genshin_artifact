@@ -69,9 +69,8 @@ impl FaruzanDamageEnum {
         use FaruzanDamageEnum::*;
         match *self {
             E1 | E2 => SkillType::ElementalSkill,
-            Plunging1 => SkillType::PlungingAttackLow,
-            Plunging2 => SkillType::PlungingAttackHigh,
-            Plunging3 => SkillType::PlungingAttackGround,
+            Plunging1 => SkillType::PlungingAttackInAction,
+            Plunging2 | Plunging3 => SkillType::PlungingAttackOnGround,
             Charged1 | Charged2 => SkillType::ChargedAttack,
             Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
             Q1 => SkillType::ElementalBurst,

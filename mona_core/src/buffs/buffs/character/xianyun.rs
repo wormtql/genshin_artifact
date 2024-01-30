@@ -75,7 +75,7 @@ impl<A: Attribute> Buff<A> for BuffXianyunTalent2 {
     fn change_attribute(&self, attribute: &mut A) {
         let factor = if self.c2 { 2.0 } else { 1.0 };
         let dmg = (9000.0_f64 * factor).min(self.atk * 2.0 * factor);
-        attribute.set_value_by(AttributeName::ExtraDmgPlungingAttack3, "闲云天赋2「细想应是洞中仙」", dmg);
+        attribute.set_value_by(AttributeName::ExtraDmgPlungingAttackLowHigh, "闲云天赋2「细想应是洞中仙」", dmg);
     }
 }
 

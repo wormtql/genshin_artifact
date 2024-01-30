@@ -111,9 +111,8 @@ impl CynoDamageEnum {
             Normal1 | Normal2 | Normal3 | Normal4 | QNormal1 | QNormal2 | QNormal3 | QNormal4 | QNormal5 => SkillType::NormalAttack,
             Charged1 | QCharged1 => SkillType::ChargedAttack,
             E1 | E2 | E3 => SkillType::ElementalSkill,
-            Plunging1 | QPlunging1 => SkillType::PlungingAttackLow,
-            Plunging2 | QPlunging2 => SkillType::PlungingAttackHigh,
-            Plunging3 | QPlunging3 => SkillType::PlungingAttackGround,
+            Plunging1 | QPlunging1 => SkillType::PlungingAttackInAction,
+            Plunging2 | QPlunging2 | Plunging3 | QPlunging3 => SkillType::PlungingAttackOnGround,
             //None => SkillType::ElementalBurst
         }
     }

@@ -81,9 +81,8 @@ impl BaizhuDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal31 | Normal32 | Normal4 => SkillType::NormalAttack,
             Charged1 => SkillType::ChargedAttack,
-            Plunging1 => SkillType::PlungingAttackLow,
-            Plunging2 => SkillType::PlungingAttackHigh,
-            Plunging3 => SkillType::PlungingAttackGround,
+            Plunging1 => SkillType::PlungingAttackInAction,
+            Plunging2 | Plunging3 => SkillType::PlungingAttackOnGround,
             E1 | EHeal1 => SkillType::ElementalSkill,
             Q1 | QHeal1 => SkillType::ElementalBurst,
         }

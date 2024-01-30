@@ -134,7 +134,7 @@ impl DamageBuilder for SimpleDamageBuilder {
         };
 
         let base_plunging = match skill {
-            SkillType::PlungingAttackGround => attribute.get_value(AttributeName::ExtraDmgPlungingAttack3),
+            SkillType::PlungingAttackOnGround => attribute.get_value(AttributeName::ExtraDmgPlungingAttackLowHigh),
             _ => 0.0
         };
         let base

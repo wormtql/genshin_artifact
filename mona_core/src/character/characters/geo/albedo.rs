@@ -115,9 +115,8 @@ impl AlbedoDamageEnum {
         use AlbedoDamageEnum::*;
         match *self {
             Charged11 | Charged12 => SkillType::ChargedAttack,
-            Plunging1 => SkillType::PlungingAttackLow,
-            Plunging2 => SkillType::PlungingAttackHigh,
-            Plunging3 => SkillType::PlungingAttackGround,
+            Plunging1 => SkillType::PlungingAttackInAction,
+            Plunging2 | Plunging3 => SkillType::PlungingAttackOnGround,
             E1 | ETransientBlossom => SkillType::ElementalSkill,
             Q1 | QFatalBlossom => SkillType::ElementalBurst,
             _ => SkillType::NormalAttack

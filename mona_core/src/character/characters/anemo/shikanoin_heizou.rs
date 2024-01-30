@@ -106,9 +106,8 @@ impl ShikanoinHeizouDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 | Normal41 | Normal42 | Normal43 | Normal4 | Normal5 => SkillType::NormalAttack,
             Charged1 => SkillType::ChargedAttack,
-            Plunging1 => SkillType::PlungingAttackLow,
-            Plunging2 => SkillType::PlungingAttackHigh,
-            Plunging3 => SkillType::PlungingAttackGround,
+            Plunging1 => SkillType::PlungingAttackInAction,
+            Plunging2 | Plunging3 => SkillType::PlungingAttackOnGround,
             E0 | E1 | E2 | E3 | E4 => SkillType::ElementalSkill,
             Q1 | Q2Cryo | Q2Hydro | Q2Pyro | Q2Electro => SkillType::ElementalBurst
         }

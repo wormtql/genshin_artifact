@@ -152,7 +152,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 
         let mut extra_damage_comp = self.get_extra_damage_composition(attribute, element, skill);
         let plunging_extra_damage = match skill {
-            SkillType::PlungingAttackGround => attribute.get_attribute_composition(AttributeName::ExtraDmgPlungingAttack3),
+            SkillType::PlungingAttackOnGround => attribute.get_attribute_composition(AttributeName::ExtraDmgPlungingAttackLowHigh),
             _ => Default::default()
         };
         extra_damage_comp.merge(&plunging_extra_damage);

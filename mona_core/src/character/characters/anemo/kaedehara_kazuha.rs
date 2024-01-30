@@ -136,9 +136,8 @@ impl KaedeharaKazuhaDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal31 | Normal32 | Normal4 | Normal5 => SkillType::NormalAttack,
             Charged11 | Charged12 => SkillType::ChargedAttack,
-            Plunging1 | PlungingE1 => SkillType::PlungingAttackLow,
-            Plunging2 | PlungingE2 => SkillType::PlungingAttackHigh,
-            Plunging3 | PlungingE3 | PlungingPyro | PlungingHydro | PlungingElectro | PlungingCryo => SkillType::PlungingAttackGround,
+            Plunging1 | PlungingE1 => SkillType::PlungingAttackInAction,
+            Plunging2 | PlungingE2 | Plunging3 | PlungingE3 | PlungingPyro | PlungingHydro | PlungingElectro | PlungingCryo => SkillType::PlungingAttackOnGround,
             E1 | E2 => SkillType::ElementalSkill,
             Q1 | Q2 | Q3Hydro | Q3Pyro | Q3Cryo | Q3Electro => SkillType::ElementalBurst
         }
