@@ -2,7 +2,7 @@ use crate::common::{SkillType, Element};
 
 #[derive(Hash, Eq, PartialEq, Clone, Copy, Debug)]
 pub enum AttributeName {
-    // 自定义数据
+    // 自定义数据，应当只用在角色的特定的Effect中，否则容易使用不当，产生冲突
     USER1,
     USER2,
 
@@ -162,6 +162,7 @@ pub enum AttributeName {
     ExtraDmgNormalAttack,
     ExtraDmgChargedAttack,
     ExtraDmgPlungingAttack,
+    ExtraDmgPlungingAttack3, // 坠地冲击额外伤害，由于闲云而首次引进
     ExtraDmgElementalSkill,
     ExtraDmgElementalBurst,
     ExtraDmgElectro,

@@ -104,4 +104,6 @@ pub enum CharacterName {
     Kirara,
     Chevreuse,
     Navia,
+    Gaming,
+    Xianyun,
 }

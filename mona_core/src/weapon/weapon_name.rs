@@ -160,6 +160,7 @@ pub enum WeaponName {
     BalladOfTheBoundlessBlue,
     CashflowSupervision,
     TomeOfTheEternalFlow,
+    CranesEchoingCall,
 
     // bows
     PolarStar,

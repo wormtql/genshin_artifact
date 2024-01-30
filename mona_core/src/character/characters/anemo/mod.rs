@@ -8,6 +8,7 @@ pub mod shikanoin_heizou;
 pub mod wanderer;
 pub mod faruzan;
 pub mod lynette;
+pub mod xianyun;
 
 pub use jean::Jean;
 pub use kaedehara_kazuha::KaedeharaKazuha;
@@ -19,3 +20,4 @@ pub use shikanoin_heizou::ShikanoinHeizou;
 pub use wanderer::Wanderer;
 pub use faruzan::Faruzan;
 pub use lynette::Lynette;
+pub use xianyun::Xianyun;

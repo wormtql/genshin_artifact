@@ -5,7 +5,9 @@ use serde::{Serialize, Deserialize};
 pub enum SkillType {
     NormalAttack,
     ChargedAttack,
-    PlungingAttack,
+    PlungingAttackLow,
+    PlungingAttackHigh,
+    PlungingAttackGround,
     ElementalSkill,
     ElementalBurst,
 }
