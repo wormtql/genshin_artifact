@@ -96,7 +96,9 @@ impl FreminetDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
             Charged1 | Charged2 => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             E1 | E2 | EShatter0 | EShatter1Cryo | EShatter1Physical | EShatter2Cryo | EShatter2Physical
                 | EShatter3Cryo | EShatter3Physical | EShatter4 | E2Mul2 | E3 => SkillType::ElementalSkill,
             Q1 => SkillType::ElementalBurst,

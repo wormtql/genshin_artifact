@@ -66,7 +66,9 @@ impl WandererDamageEnum {
         use WandererDamageEnum::*;
         match *self {
             E1 | Dash1 => SkillType::ElementalSkill, //TODO: dash1 => e not confirmed
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             Charged1 => SkillType::ChargedAttack,
             Normal1 | Normal2 | Normal3 | Normal1C6 | Normal2C6 | Normal3C6 => SkillType::NormalAttack,
             Q1 => SkillType::ElementalBurst,

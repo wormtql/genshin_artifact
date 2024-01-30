@@ -177,7 +177,9 @@ impl RaidenShogunDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 | Normal41 | Normal42 | Normal5 => SkillType::NormalAttack,
             Charged => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             E1 | E2 => SkillType::ElementalSkill,
             _ => SkillType::ElementalBurst
         }

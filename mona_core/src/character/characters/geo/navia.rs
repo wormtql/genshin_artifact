@@ -72,7 +72,9 @@ impl NaviaDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
             Charged1 | Charged2 => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             E1 | E1Total | E2 => SkillType::ElementalSkill,
             Q1 | Q2 => SkillType::ElementalBurst
         }
@@ -256,7 +258,7 @@ impl CharacterTrait for Navia {
 
         let skill_type = s.get_skill_type();
         let element = s.get_element(after_e);
-        if skill_type == SkillType::NormalAttack || skill_type == SkillType::ChargedAttack || skill_type == SkillType::PlungingAttack {
+        if skill_type == SkillType::NormalAttack || skill_type == SkillType::ChargedAttack || skill_type.is_plunging() {
             if after_e {
                 builder.add_extra_bonus("天赋「不明流通渠道」", 0.4);
             }

@@ -107,7 +107,9 @@ impl YanfeiDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 => SkillType::NormalAttack,
             Charged1 | Charged2 | Charged3 | Charged4 | Charged5 | DmgTalent2 => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             E1 => SkillType::ElementalSkill,
             Q1 => SkillType::ElementalBurst
         }

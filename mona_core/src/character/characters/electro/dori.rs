@@ -85,7 +85,9 @@ impl DoriDamageEnum {
         match *self {
             Normal1 | Normal21 | Normal22 | Normal3 => SkillType::NormalAttack,
             Charged1 | Charged2 => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             E1 | E2 => SkillType::ElementalSkill,
             Q1 | QHeal1 => SkillType::ElementalBurst
         }

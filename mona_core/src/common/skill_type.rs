@@ -11,3 +11,12 @@ pub enum SkillType {
     ElementalSkill,
     ElementalBurst,
 }
+
+impl SkillType {
+    pub fn is_plunging(&self) -> bool {
+        match *self {
+            SkillType::PlungingAttackGround | SkillType::PlungingAttackLow | SkillType::PlungingAttackHigh => true,
+            _ => false
+        }
+    }
+}

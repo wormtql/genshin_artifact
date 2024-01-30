@@ -133,7 +133,9 @@ impl VentiDamageEnum {
         match *self {
             Normal1 | Normal11 | Normal12 | Normal2 | Normal3 | Normal41 | Normal42 | Normal4 | Normal5 | Normal6 => SkillType::NormalAttack,
             Charged1 | Charged2 => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             E1 | E2 => SkillType::ElementalSkill,
             Q1 | Q2Pyro | Q2Electro | Q2Hydro | Q2Cryo => SkillType::ElementalBurst
         }

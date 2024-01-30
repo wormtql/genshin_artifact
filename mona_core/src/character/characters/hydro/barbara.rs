@@ -114,7 +114,9 @@ impl BarbaraDamageEnum {
         use BarbaraDamageEnum::*;
         match *self {
             Charged => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             EDmg | EHeal1 | EHeal2 => SkillType::ElementalSkill,
             QHeal => SkillType::ElementalBurst,
             Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack

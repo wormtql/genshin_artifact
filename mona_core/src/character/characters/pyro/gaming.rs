@@ -90,8 +90,9 @@ impl GamingDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack,
             Charged1 | Charged2 => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
-            E1 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 | E1 => SkillType::PlungingAttackGround,
             Q1 | QHeal => SkillType::ElementalBurst
         }
     }

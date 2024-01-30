@@ -136,7 +136,9 @@ impl KaedeharaKazuhaDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal31 | Normal32 | Normal4 | Normal5 => SkillType::NormalAttack,
             Charged11 | Charged12 => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 | PlungingE1 | PlungingE2 | PlungingE3 | PlungingPyro | PlungingHydro | PlungingElectro | PlungingCryo => SkillType::PlungingAttack,
+            Plunging1 | PlungingE1 => SkillType::PlungingAttackLow,
+            Plunging2 | PlungingE2 => SkillType::PlungingAttackHigh,
+            Plunging3 | PlungingE3 | PlungingPyro | PlungingHydro | PlungingElectro | PlungingCryo => SkillType::PlungingAttackGround,
             E1 | E2 => SkillType::ElementalSkill,
             Q1 | Q2 | Q3Hydro | Q3Pyro | Q3Cryo | Q3Electro => SkillType::ElementalBurst
         }
@@ -243,7 +245,11 @@ impl CharacterTrait for KaedeharaKazuha {
         builder.add_atk_ratio("技能倍率", ratio);
 
         let skill_type = s.get_skill_type();
-        if after_e_or_q && (skill_type == SkillType::NormalAttack || skill_type == SkillType::ChargedAttack || skill_type == SkillType::PlungingAttack) {
+        if after_e_or_q
+            && (skill_type == SkillType::NormalAttack
+                || skill_type == SkillType::ChargedAttack
+                || skill_type.is_plunging()
+            ) {
             // let em = context.attribute.get_value(AttributeName::ElementalMastery);
             let em = context.attribute.get_em_all();
             let bonus = em * 0.002;

@@ -71,7 +71,9 @@ impl NahidaDamageEnum {
         use NahidaDamageEnum::*;
         match *self {
             E1 | E2 | E3 => SkillType::ElementalSkill,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             Charged => SkillType::ChargedAttack,
             Normal1 | Normal2 | Normal3 | Normal4 => SkillType::NormalAttack
         }

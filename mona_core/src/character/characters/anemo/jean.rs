@@ -127,7 +127,9 @@ impl JeanDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 | Normal4 | Normal5 => SkillType::NormalAttack,
             Charged => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             E1 => SkillType::ElementalSkill,
             Q1 | Q2 | QHeal1 | QHeal2 => SkillType::ElementalBurst
         }

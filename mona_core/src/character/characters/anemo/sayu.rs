@@ -160,7 +160,9 @@ impl SayuDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal31 | Normal32 | Normal4 => SkillType::NormalAttack,
             Charged1 | Charged2 => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             Q1 | QHeal1 | Q2 | QHeal2 => SkillType::ElementalBurst,
             _ => SkillType::ElementalSkill
         }

@@ -8,7 +8,6 @@ use crate::character::traits::{CharacterSkillMap, CharacterSkillMapItem, Charact
 use crate::common::{ChangeAttribute, Element, SkillType, StatName, WeaponType};
 use crate::common::i18n::{locale, hit_n_dmg, plunging_dmg, charged_dmg};
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
-use crate::common::skill_type::PlungingType;
 use crate::damage::damage_builder::DamageBuilder;
 use crate::damage::DamageContext;
 use crate::target_functions::TargetFunction;
@@ -95,13 +94,6 @@ impl XianyunDamageEnum {
         }
     }
 
-    pub fn get_plunging_type(&self) -> Option<PlungingType> {
-        use XianyunDamageEnum::*;
-        match *self {
-            Plunging1 | Plunging2
-        }
-    }
-
     pub fn is_heal(&self) -> bool {
         use XianyunDamageEnum::*;
         match *self {
@@ -121,11 +113,11 @@ pub struct XianyunEffect {
 impl<A: Attribute> ChangeAttribute<A> for XianyunEffect {
     fn change_attribute(&self, attribute: &mut A) {
         let bonus_crit = if self.talent1_stack > 1e-6 && self.talent1_stack <= 1.0 {
-            0.4 * self.talent1_stack
+            0.04 * self.talent1_stack
         } else if self.talent1_stack <= 1e-6 {
             0.0
         } else {
-            0.2 + 0.2 * self.talent1_stack
+            0.02 + 0.02 * self.talent1_stack
         };
         attribute.set_value_by(AttributeName::CriticalPlungingAttack, "天赋「霜翎高逐祥风势」", bonus_crit);
 
@@ -277,6 +269,8 @@ impl CharacterTrait for Xianyun {
                 _ => 0.0
             };
 
+            builder.add_atk_ratio("技能倍率", ratio);
+
             if s == E2 || s == E3 || s == E4 {
                 builder.add_extra_critical_damage("C6「知是留云僊」", context.attribute.get_value(AttributeName::USER1));
             }
@@ -298,7 +292,7 @@ impl CharacterTrait for Xianyun {
                     talent1_stack,
                     talent2_rate,
                     butianti_count,
-                    constellation: common_data.constellation
+                    constellation: common_data.constellation as usize,
                 }))
             },
             _ => None

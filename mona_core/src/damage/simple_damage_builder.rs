@@ -113,7 +113,7 @@ impl DamageBuilder for SimpleDamageBuilder {
         let hp = attribute.get_hp() + self.extra_hp;
         let em = self.extra_em + attribute.get_em_all();
 
-        let element = if skill == SkillType::NormalAttack || skill == SkillType::ChargedAttack || skill == SkillType::PlungingAttack {
+        let element = if skill == SkillType::NormalAttack || skill == SkillType::ChargedAttack || skill.is_plunging() {
             if let Some(x) = fumo {
                 x
             } else {
@@ -133,13 +133,18 @@ impl DamageBuilder for SimpleDamageBuilder {
             element
         };
 
+        let base_plunging = match skill {
+            SkillType::PlungingAttackGround => attribute.get_value(AttributeName::ExtraDmgPlungingAttack3),
+            _ => 0.0
+        };
         let base
             = (attribute.get_def_ratio(element, skill) + self.ratio_def) * def
             + (attribute.get_hp_ratio(element, skill) + self.ratio_hp) * hp
             + (attribute.get_atk_ratio(element, skill) + self.ratio_atk) * atk
             + em * self.ratio_em
             + attribute.get_extra_damage(element, skill)
-            + self.extra_damage;
+            + self.extra_damage
+            + base_plunging;
 
         let bonus
             = attribute.get_bonus(element, skill)

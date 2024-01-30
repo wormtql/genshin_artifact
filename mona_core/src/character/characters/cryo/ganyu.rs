@@ -139,7 +139,9 @@ impl GanyuDamageEnum {
 
         match *self {
             Charged1 | Charged2 | Charged3 | Charged4 => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             E1 => SkillType::ElementalSkill,
             Q1 => SkillType::ElementalBurst,
             _ => SkillType::NormalAttack

@@ -120,7 +120,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         character_level: usize,
         fumo: Option<Element>
     ) -> Self::Result {
-        let element = if skill == SkillType::NormalAttack || skill == SkillType::ChargedAttack || skill == SkillType::PlungingAttack {
+        let element = if skill == SkillType::NormalAttack || skill == SkillType::ChargedAttack || skill.is_plunging() {
             if let Some(x) = fumo {
                 x
             } else {
@@ -150,7 +150,12 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         let em_ratio_comp = self.get_em_ratio_composition(attribute, element, skill);
         let em_ratio = em_ratio_comp.sum();
 
-        let extra_damage_comp = self.get_extra_damage_composition(attribute, element, skill);
+        let mut extra_damage_comp = self.get_extra_damage_composition(attribute, element, skill);
+        let plunging_extra_damage = match skill {
+            SkillType::PlungingAttackGround => attribute.get_attribute_composition(AttributeName::ExtraDmgPlungingAttack3),
+            _ => Default::default()
+        };
+        extra_damage_comp.merge(&plunging_extra_damage);
         let extra_damage = extra_damage_comp.sum();
 
         let base_damage = atk * atk_ratio + def * def_ratio + hp * hp_ratio + em * em_ratio + extra_damage;

@@ -143,7 +143,9 @@ impl AratakiIttoDamageEnum {
         use AratakiIttoDamageEnum::*;
         match *self {
             KesagiriCombo | KesagiriFinal | Saichimonji => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             E1 => SkillType::ElementalSkill,
             _ => SkillType::NormalAttack
         }

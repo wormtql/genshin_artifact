@@ -146,7 +146,9 @@ impl RosariaDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 | Normal4 | Normal51 | Normal52 => SkillType::NormalAttack,
             Charged => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             E11 | E12 => SkillType::ElementalSkill,
             Q11 | Q12 | Q2 => SkillType::ElementalBurst
         }

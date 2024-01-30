@@ -137,7 +137,9 @@ impl NilouDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 => SkillType::NormalAttack,
             Charged11 | Charged12 => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             Q1 | Q2 => SkillType::ElementalBurst,
             _ => SkillType:: ElementalSkill,
         }
@@ -260,7 +262,7 @@ impl CharacterTrait for Nilou {
         let element = s.get_element();
 
         let mut builder = D::new();
-        if skill_type == SkillType::NormalAttack || skill_type == SkillType::ChargedAttack || skill_type == SkillType::PlungingAttack {
+        if skill_type == SkillType::NormalAttack || skill_type == SkillType::ChargedAttack || skill_type.is_plunging() {
             builder.add_atk_ratio("技能倍率", ratio);
         } else {
             builder.add_hp_ratio("技能倍率", ratio);

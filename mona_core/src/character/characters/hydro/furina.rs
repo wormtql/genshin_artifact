@@ -83,7 +83,9 @@ impl FurinaDamageEnum {
         match *self {
             Normal1 | Normal2 | Normal3 | Normal4 | A1 => SkillType::NormalAttack,
             Charged => SkillType::ChargedAttack,
-            Plunging1 | Plunging2 | Plunging3 => SkillType::PlungingAttack,
+            Plunging1 => SkillType::PlungingAttackLow,
+            Plunging2 => SkillType::PlungingAttackHigh,
+            Plunging3 => SkillType::PlungingAttackGround,
             E1 | E2 | E3 | E4 | EHeal1 => SkillType::ElementalSkill,
             Q1 => SkillType::ElementalBurst
         }
@@ -283,7 +285,7 @@ impl CharacterTrait for Furina {
 
             let is_c6_skill = (skill_type == SkillType::NormalAttack && s != A1)
                 || skill_type == SkillType::ChargedAttack
-                || skill_type == SkillType::PlungingAttack;
+                || skill_type.is_plunging();
             let enable_c6 = is_c6_skill && context.character_common_data.constellation >= 6 && c6_after_e;
             if enable_c6 {
                 builder.add_hp_ratio("C6「诸君听我颂，共举爱之杯！」", 0.18);
