@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="keywords" content="原神,圣遗物,圣遗物搭配,圣遗物配装,自动配装,莫娜占卜铺">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+
+    <% if (NODE_ENV === "development") { %>
+    <title>local</title>
+    <% } else { %>
+    <title>莫娜占卜铺</title>
+    <% } %>
+
+    <% for (var css of htmlWebpackPlugin.options.cdn.css) { %>
+    <% if (css !== "") { %>
+    <link rel="stylesheet" href="<%= css.url %>" type="text/css"></link>
+    <% } %>
+    <% } %>
+
+    <style>
+        .loading {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?062fae65e48e44c2ede10991dd9cc09a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<noscript>
+    <strong>好家伙，这年头还有不开启javascript的人吗</strong>
+</noscript>
+<div id="app">
+    <div class="loading"
+         style="display: flex; flex-direction: column; align-items: center"
+    >
+        <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <p style="margin-top: 12px">莫娜正在仰望星空，请稍安勿躁（狗头）</p>
+    </div>
+</div>
+
+<style>
+    .lds-roller {
+        display: inline-block;
+        position: relative;
+        width: 40px;
+        height: 40px;
+    }
+
+    .lds-roller div {
+        animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        transform-origin: 20px 20px;
+    }
+
+    .lds-roller div:after {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #564884;
+        margin: -4px 0 0 -4px;
+    }
+
+    .lds-roller div:nth-child(1) {
+        animation-delay: -0.036s;
+    }
+
+    .lds-roller div:nth-child(1):after {
+        top: 30px;
+        left: 30px;
+    }
+
+    .lds-roller div:nth-child(2) {
+        animation-delay: -0.072s;
+    }
+
+    .lds-roller div:nth-child(2):after {
+        top: 34px;
+        left: 28px;
+    }
+
+    .lds-roller div:nth-child(3) {
+        animation-delay: -0.108s;
+    }
+
+    .lds-roller div:nth-child(3):after {
+        top: 35px;
+        left: 24px;
+    }
+
+    .lds-roller div:nth-child(4) {
+        animation-delay: -0.144s;
+    }
+
+    .lds-roller div:nth-child(4):after {
+        top: 36px;
+        left: 20px;
+    }
+
+    .lds-roller div:nth-child(5) {
+        animation-delay: -0.18s;
+    }
+
+    .lds-roller div:nth-child(5):after {
+        top: 35px;
+        left: 16px;
+    }
+
+    .lds-roller div:nth-child(6) {
+        animation-delay: -0.216s;
+    }
+
+    .lds-roller div:nth-child(6):after {
+        top: 34px;
+        left: 12px;
+    }
+
+    .lds-roller div:nth-child(7) {
+        animation-delay: -0.252s;
+    }
+
+    .lds-roller div:nth-child(7):after {
+        top: 31px;
+        left: 8px;
+    }
+
+    .lds-roller div:nth-child(8) {
+        animation-delay: -0.288s;
+    }
+
+    .lds-roller div:nth-child(8):after {
+        top: 28px;
+        left: 6px;
+    }
+
+    @keyframes lds-roller {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<% for (var js of htmlWebpackPlugin.options.cdn.js) { %>
+<% if (css !== "") { %>
+<script src="<%= js.url %>"></script>
+<% } %>
+<% } %>
+
+<!-- built files will be auto injected -->
+</body>
+</html>
