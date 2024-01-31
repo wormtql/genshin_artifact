@@ -132,7 +132,7 @@ impl<A: Attribute> ChangeAttribute<A> for XianyunEffect {
 
         // c2 atk bonus
         if self.constellation >= 2 {
-            let bonus_atk = 0.2 * self.butianti_count as f64;
+            let bonus_atk = if self.butianti_count > 0 { 0.2 } else { 0.0 };
             attribute.add_atk_percentage("C2「鹤唳远人间」", bonus_atk);
         }
 
