@@ -96,4 +96,5 @@ pub enum TargetFunctionName {
     FurinaDefault,
     NaviaDefault,
     XianyunDefault,
+    ChioriDefault,
 }

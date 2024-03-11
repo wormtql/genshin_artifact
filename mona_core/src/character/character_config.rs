@@ -35,5 +35,6 @@ pub enum CharacterConfig {
     Navia { talent2_character_count: usize },
     Gaming { hp_above50: bool, c2_rate: f64 },
     Xianyun { talent1_stack: f64, talent2_rate: f64, butianti_count: usize },
+    Chiori { talent2: bool },
     NoConfig,
 }

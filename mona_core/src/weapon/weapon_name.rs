@@ -54,6 +54,7 @@ pub enum WeaponName {
     TheDockhandsAssistant,
     SwordOfNarzissenkreuz,
     SplendorOfTranquilWaters,
+    UrakuMisugiri,
 
     // claymore
     WolfsGravestone,
@@ -122,6 +123,7 @@ pub enum WeaponName {
     BalladOfTheFjords,
     RightfulReward,
     ProspectorsDrill,
+    DialoguesOfTheDesertSages,
 
     // catalyst
     LostPrayerToTheSacredWinds,

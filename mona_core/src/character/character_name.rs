@@ -106,4 +106,5 @@ pub enum CharacterName {
     Navia,
     Gaming,
     Xianyun,
+    Chiori,
 }

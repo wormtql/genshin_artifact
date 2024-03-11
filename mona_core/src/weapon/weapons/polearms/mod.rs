@@ -27,6 +27,7 @@ pub use staff_of_the_scarlet_sands::StaffOfTheScarletSands;
 pub use ballad_of_the_fjords::BalladOfTheFjords;
 pub use rightful_reward::RightfulReward;
 pub use prospectors_drill::ProspectorsDrill;
+pub use dialogues_of_the_desert_sages::DialoguesOfTheDesertSages;
 
 pub mod engulfing_lightning;
 pub mod skyward_spine;
@@ -57,3 +58,4 @@ pub mod staff_of_the_scarlet_sands;
 pub mod ballad_of_the_fjords;
 pub mod rightful_reward;
 pub mod prospectors_drill;
+pub mod dialogues_of_the_desert_sages;
