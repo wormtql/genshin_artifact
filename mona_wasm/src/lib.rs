@@ -1,6 +1,5 @@
 #![allow(unused_imports)]
 #![allow(clippy::approx_constant)]
-#![allow(unused_imports)]
 #![allow(unused_variables)]
 #![allow(unreachable_patterns)]
 #![allow(clippy::approx_constant)]
