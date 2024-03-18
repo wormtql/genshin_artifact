@@ -1,3 +1,17 @@
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unreachable_patterns)]
+#![allow(clippy::approx_constant)]
+#![allow(unused_mut)]
+#![allow(unused_assignments)]
+#![allow(dead_code)]
+#![allow(unused_macros)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unreachable_patterns)]
+#![allow(unused_must_use)]
+#![allow(noop_method_call)]
+
 use std::fs;
 use std::fs::{File, OpenOptions};
 use std::io::prelude::*;
