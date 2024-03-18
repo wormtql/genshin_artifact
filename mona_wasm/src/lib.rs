@@ -12,6 +12,7 @@
 #![allow(unused_variables)]
 #![allow(unreachable_patterns)]
 #![allow(unused_must_use)]
+#![allow(noop_method_call)]
 
 // pub mod character;
 // pub mod attribute;
