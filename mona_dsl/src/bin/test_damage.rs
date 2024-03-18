@@ -55,12 +55,13 @@ fn main() {
 
     // println!("{}", code);
     let character: Character<SimpleAttributeGraph2> = Character::new(
-        CharacterName::KamisatoAyaka,
+        CharacterName::Yelan,
         90,
         false,
         0,
         8, 8, 8,
-        &CharacterConfig::NoConfig
+        &CharacterConfig::NoConfig,
+        // &CharacterConfig::Neuvillette {current_hp: 100},
     );
     let weapon = Weapon::new(
         WeaponName::MistsplitterReforged,

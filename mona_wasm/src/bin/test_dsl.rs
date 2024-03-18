@@ -25,7 +25,7 @@ fn generate_artifacts() -> Vec<Artifact> {
 
 fn main() {
     let character = Character::new(
-        CharacterName::KamisatoAyaka,
+        CharacterName::Yelan,
         90,
         false,
         0,
@@ -43,10 +43,9 @@ fn main() {
     );
 
     let target_function: Box<dyn TargetFunction> = Box::new(TargetFunctionDSL::new(r#"
-prop x = KamisatoAyaka.recharge
-dmg d = KamisatoAyaka.Q1({ after_dash: true })
-dmg a = KamisatoAyaka.Normal1({ after_dash: true })
-result = 10 * a.n.e + d.n.e * min(x, 1.6)
+dmg E=Yelan.E1 //E伤害
+
+result=E.normal.e //E最大期望伤害
     "#.trim()));
 
     let enemy = Enemy::default();

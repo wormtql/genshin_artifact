@@ -1,6 +1,10 @@
 #![allow(unused_imports)]
 #![allow(unused_variables)]
+#![allow(unreachable_patterns)]
 #![allow(clippy::approx_constant)]
+#![allow(unused_mut)]
+#![allow(unused_assignments)]
+#![allow(dead_code)]
 #![feature(decl_macro)]
 #[macro_use] extern crate pest_derive;
 
