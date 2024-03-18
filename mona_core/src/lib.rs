@@ -6,6 +6,9 @@
 #![allow(unused_assignments)]
 #![allow(dead_code)]
 #![allow(unused_macros)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unreachable_patterns)]
 #![feature(decl_macro)]
 #[macro_use] extern crate pest_derive;
 
