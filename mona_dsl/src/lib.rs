@@ -1,5 +1,17 @@
 #![feature(decl_macro)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unreachable_patterns)]
+#![allow(clippy::approx_constant)]
+#![allow(unused_mut)]
+#![allow(unused_assignments)]
+#![allow(dead_code)]
+#![allow(unused_macros)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unreachable_patterns)]
 #[macro_use] extern crate pest_derive;
+
 
 use crate::compiler::compiler::CodeObject;
 use crate::compiler::simple_compiler::MonaCompilerASTToCode;
