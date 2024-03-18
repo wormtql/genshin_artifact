@@ -99,7 +99,8 @@ impl<A: Attribute> ChangeAttribute<A> for NeuvilletteEffect {
                 AttributeName::HP,
                 AttributeName::BonusHydro,
                 Box::new(move |hp, _| {
-                    let bonus = (current_hp - 30) as f64 * 0.006;
+                    // let bonus = (current_hp as i32 - 30_i32).max(0) as f64 * 0.006;
+                    let bonus = (current_hp - 30).max(0) as f64 * 0.006;
                     let bonus = bonus.min(0.3);
                     bonus
                 }),
