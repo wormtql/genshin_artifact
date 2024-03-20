@@ -33,7 +33,7 @@ impl BuffMeta for BuffKaedeharaKazuhaTalent2 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "枫原万叶天赋2：枫原万叶触发扩散反应后，枫原万叶的每点元素精通，会为队伍中所有角色提供0.04%对应元素伤害加成，持续8秒。",
-            en: "枫原万叶天赋2：枫原万叶触发扩散反应后，枫原万叶的每点元素精通，会为队伍中所有角色提供0.04%对应元素伤害加成，持续8秒。",
+            en: "Kazuha Talent2: Upon triggering a Swirl reaction, Kaedehara Kazuha will grant all party members a 0.04% Elemental DMG Bonus to the element absorbed by Swirl for every point of Elemental Mastery he has for 8s.",
         )),
         from: BuffFrom::Character(CharacterName::KaedeharaKazuha),
     };
@@ -90,7 +90,7 @@ impl BuffMeta for BuffKaedeharaKazuhaC2 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "枫原万叶命座2：场上角色的元素精通提升200点。",
-            en: "枫原万叶命座2：场上角色的元素精通提升200点。",
+            en: "Kazuha C2: Increases the Elemental Mastery of characters within the field by 200.",
         )),
         from: BuffFrom::Character(CharacterName::KaedeharaKazuha),
     };

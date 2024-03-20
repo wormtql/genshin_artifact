@@ -39,7 +39,7 @@ impl BuffMeta for BuffFaruzanQ {
         name: BuffName::FaruzanQ,
         name_locale: crate::common::i18n::locale!(
             zh_cn: "法露珊 - 「抟风秘道」",
-            en: "Faruzan-「The Wind’s Secret Ways」",
+            en: "Faruzan-「The Wind's Secret Ways」",
         ),
         image: BuffImage::Avatar(CharacterName::Faruzan),
         genre: BuffGenre::Character,
@@ -88,7 +88,7 @@ impl BuffMeta for BuffFaruzanQ {
             name: "rate_talent2",
             title: crate::common::i18n::locale!(
                 zh_cn: "「七窟遗智」比例（加成hit数/一轮hit总数）",
-                en: "「Lost Wisdom of the Seven Caverns Rate（buffed hits count/total hit counts within a cycle）",
+                en: "「Lost Wisdom of the Seven Caverns Rate (buffed hits count/total hit counts within a cycle)",
             ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.0 },
         },

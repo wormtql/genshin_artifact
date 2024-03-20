@@ -30,7 +30,7 @@ impl BuffMeta for BuffThomaTalent1 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "托马天赋1：当前场上自己的角色获取或刷新烈烧佑命护盾时，护盾强效提升5%，持续时间6秒。此效果每0.3秒至多触发一次，至多叠加5次。",
-            en: "托马天赋1：当前场上自己的角色获取或刷新烈烧佑命护盾时，护盾强效提升5%，持续时间6秒。此效果每0.3秒至多触发一次，至多叠加5次。",
+            en: "Thoma Talent1: When your current active character obtains or refreshes a Blazing Barrier, this character's Shield Strength will increase by 5% for 6s. This effect can be triggered once every 0.3s seconds. Max 5 stacks.",
         )),
         from: BuffFrom::Character(CharacterName::Thoma),
     };
@@ -82,7 +82,7 @@ impl BuffMeta for BuffThomaC6 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "托马命座6：获取或刷新烈烧佑命护盾时，队伍中所有角色的普通攻击，重击与下落攻击造成的伤害提升15%，持续6秒。",
-            en: "托马命座6：获取或刷新烈烧佑命护盾时，队伍中所有角色的普通攻击，重击与下落攻击造成的伤害提升15%，持续6秒。",
+            en: "Thoma C6: When a Blazing Barrier is obtained or refreshed, the DMG dealt by all party members' Normal, Charged, and Plunging Attacks is increased by 15% for 6s.",
         )),
         from: BuffFrom::Character(CharacterName::Thoma),
     };
