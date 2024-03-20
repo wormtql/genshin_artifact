@@ -31,6 +31,15 @@
                     class="button"
                     :title="t('misc.export')"
                 ></el-button>
+              <el-button
+                  :icon="IconEpEdit"
+                  text
+                  size="small"
+                  circle
+                  @click.stop="$emit('rename')"
+                  class="button"
+                  :title="t('misc.rename')"
+              ></el-button>
             </div>
         </div>
         <div class="body">
@@ -59,8 +68,8 @@ import { weaponData } from "@weapon"
 import { targetFunctionData } from "@targetFunction"
 
 import IconFa6SolidDownload from "~icons/fa6-solid/download"
+import IconEpEdit from "~icons/ep/edit"
 import IconEpDelete from "~icons/ep/delete"
-import IconEpCPU from "~icons/ep/cpu"
 import {IPreset} from "@/types/preset"
 import {useI18n} from "@/i18n/i18n";
 
