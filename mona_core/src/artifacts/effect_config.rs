@@ -210,6 +210,8 @@ pub struct ArtifactEffectConfig {
     pub config_golden_troupe: ConfigRate,
     pub config_song_of_days_past: ConfigSongOfDaysPast,
     pub config_nighttime_whispers_in_the_echoing_woods: ConfigNighttimeWhispersInTheEchoingWoods,
+    pub config_fragment_of_harmonic_whimsy: ConfigLevel,
+    pub config_unfinished_reverie: ConfigRate,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -244,6 +246,8 @@ pub struct ArtifactConfigInterface {
     pub config_golden_troupe: Option<ConfigRate>,
     pub config_song_of_days_past: Option<ConfigSongOfDaysPast>,
     pub config_nighttime_whispers_in_the_echoing_woods: Option<ConfigNighttimeWhispersInTheEchoingWoods>,
+    pub config_fragment_of_harmonic_whimsy: Option<ConfigLevel>,
+    pub config_unfinished_reverie: Option<ConfigRate>,
 }
 
 impl ArtifactConfigInterface {
@@ -278,6 +282,8 @@ impl ArtifactConfigInterface {
             config_golden_troupe: self.config_golden_troupe.unwrap_or(Default::default()),
             config_song_of_days_past: self.config_song_of_days_past.unwrap_or(Default::default()),
             config_nighttime_whispers_in_the_echoing_woods: self.config_nighttime_whispers_in_the_echoing_woods.unwrap_or(Default::default()),
+            config_fragment_of_harmonic_whimsy: self.config_fragment_of_harmonic_whimsy.unwrap_or_default(),
+            config_unfinished_reverie: self.config_unfinished_reverie.unwrap_or_default(),
         }
     }
 }

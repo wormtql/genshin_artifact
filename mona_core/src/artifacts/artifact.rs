@@ -72,6 +72,8 @@ pub enum ArtifactSetName {
     WanderersTroupe,
     SongOfDaysPast,
     NighttimeWhispersInTheEchoingWoods,
+    FragmentOfHarmonicWhimsy,
+    UnfinishedReverie,
 }
 
 impl ArtifactSetName {
