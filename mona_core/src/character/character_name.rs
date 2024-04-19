@@ -107,4 +107,5 @@ pub enum CharacterName {
     Gaming,
     Xianyun,
     Chiori,
+    Arlecchino,
 }

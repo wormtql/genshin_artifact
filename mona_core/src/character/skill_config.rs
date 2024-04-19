@@ -46,5 +46,6 @@ pub enum CharacterSkillConfig {
     Furina { hp_above50_count: usize, #[serde(default = "default_false")] c6_after_e: bool, #[serde(default = "default_false")] c6_pneuma: bool },
     Navia { shard_count: usize, strike11: bool, after_e: bool },
     Gaming { pyro: bool },
+    Arlecchino { bond_of_life: f64 },
     NoConfig,
 }

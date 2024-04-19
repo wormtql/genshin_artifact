@@ -12,6 +12,7 @@ pub mod dehya;
 pub mod lyney;
 pub mod chevreuse;
 pub mod gaming;
+pub mod arlecchino;
 
 pub use amber::Amber;
 pub use bennett::Bennett;
@@ -27,3 +28,4 @@ pub use dehya::Dehya;
 pub use lyney::Lyney;
 pub use chevreuse::Chevreuse;
 pub use gaming::Gaming;
+pub use arlecchino::Arlecchino;

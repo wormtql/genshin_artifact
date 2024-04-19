@@ -74,6 +74,7 @@ pub enum WeaponConfig {
     StaffOfTheScarletSands { stack: f64 },
     BalladOfTheFjords { use_effect: bool },
     ProspectorsDrill { stack: f64 },
+    CrimsonMoonsSemblance { rate1: f64, rate2: f64 },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },

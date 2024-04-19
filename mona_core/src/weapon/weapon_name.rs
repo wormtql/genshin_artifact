@@ -124,6 +124,7 @@ pub enum WeaponName {
     RightfulReward,
     ProspectorsDrill,
     DialoguesOfTheDesertSages,
+    CrimsonMoonsSemblance,
 
     // catalyst
     LostPrayerToTheSacredWinds,
