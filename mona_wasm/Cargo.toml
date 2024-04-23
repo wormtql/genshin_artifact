@@ -29,11 +29,11 @@ console_error_panic_hook = { version = "0.1.7", optional = true }
 web-sys = { version = "0.3.55", features = ["console"] }
 getrandom = { version = "0.2", features = ["js"] }
 num = "0.4"
-num-derive = "0.3"
+num-derive = "0.4.2"
 num-traits = "0.2"
 smallvec = "1.8.0"
 askama = "0.11"
 askama_escape = "0.10.2"
-strum = "0.23"
-strum_macros = "0.23"
+strum = "0.26"
+strum_macros = "0.26"
 rustc-hash = "1.1.0"

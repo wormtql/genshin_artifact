@@ -32,7 +32,7 @@ num-traits = "0.2"
 smallvec = "1.8.0"
 askama = "0.12"
 askama_escape = "0.10.2"
-strum = "0.26"
+strum = { version = "0.26" }
 strum_macros = "0.26"
 rustc-hash = "1.1.0"
 pest = "2.1.3"
