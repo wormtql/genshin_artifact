@@ -101,20 +101,29 @@ impl ArlecchinoDamageEnum {
 
 pub struct ArlecchinoEffect {
     pub has_talent2: bool,
+    pub c6_ratio: f64,
+    pub constellation: usize,
 }
 
 impl<A: Attribute> ChangeAttribute<A> for ArlecchinoEffect {
     fn change_attribute(&self, attribute: &mut A) {
-        attribute.add_edge1(
-            AttributeName::ATK,
-            AttributeName::ResMinusBase,
-            Box::new(|atk, _| {
-                0.2_f64.min(((atk - 1000.0).max(0.0) / 100.0).floor() * 0.01)
-            }),
-            Box::new(|_x, _y, _v| (0.0, 0.0)),
-            "天赋「唯力量可守护」"
-        );
+        // attribute.add_edge1(
+        //     AttributeName::ATK,
+        //     AttributeName::,
+        //     Box::new(|atk, _| {
+        //         0.2_f64.min(((atk - 1000.0).max(0.0) / 100.0).floor() * 0.01)
+        //     }),
+        //     Box::new(|_x, _y, _v| (0.0, 0.0)),
+        //     "天赋「唯力量可守护」"
+        // );
         attribute.set_value_by(AttributeName::BonusPyro, "天赋「唯厄月可知晓」", 0.4);
+        if self.constellation >= 6 {
+            attribute.set_value_by(AttributeName::CriticalNormalAttack, "C6加成", 0.1 * self.c6_ratio);
+            attribute.set_value_by(AttributeName::CriticalElementalBurst, "C6加成", 0.1 * self.c6_ratio);
+            attribute.set_value_by(AttributeName::CriticalDamageNormalAttack, "C6加成", 0.7 * self.c6_ratio);
+            attribute.set_value_by(AttributeName::CriticalDamageElementalBurst, "C6加成", 0.7 * self.c6_ratio);
+        }
+        // attribute.set_value_by(AttributeName::CriticalNormalAttack)
     }
 }
 
@@ -181,8 +190,14 @@ impl CharacterTrait for Arlecchino {
         ),
     };
 
-    // #[cfg(not(target_family = "wasm"))]
-    // const CONFIG_DATA: Option<&'static [ItemConfig]> = ;
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "c6_ratio",
+            title: locale!(zh_cn: "6命效果比例", en: "C6 Ratio"),
+            config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 },
+        }
+    ]);
 
     #[cfg(not(target_family = "wasm"))]
     const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
@@ -190,7 +205,7 @@ impl CharacterTrait for Arlecchino {
             name: "bond_of_life",
             title: locale!(zh_cn: "生命之契百分比", en: "Bond of Life percentage"),
             config: ItemConfigType::Float { min: 0.0, max: 5.0, default: 0.0 },
-        }
+        },
     ]);
 
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
@@ -239,6 +254,12 @@ impl CharacterTrait for Arlecchino {
                     builder.add_atk_ratio("红死之宴-1命", bond_of_life);
                 }
             }
+            if s == Q1 && context.character_common_data.constellation >= 6 {
+                if bond_of_life > 0.0 {
+                    builder.add_atk_ratio("C6加成", 7.0 * bond_of_life);
+                }
+
+            }
             builder.damage(
                 &context.attribute,
                 &context.enemy,
@@ -251,8 +272,14 @@ impl CharacterTrait for Arlecchino {
     }
 
     fn new_effect<A: Attribute>(common_data: &CharacterCommonData, config: &CharacterConfig) -> Option<Box<dyn ChangeAttribute<A>>> {
+        let c6_ratio = match *config {
+            CharacterConfig::Arlecchino {c6_ratio} => c6_ratio,
+            _ => 0.0
+        };
         Some(Box::new(ArlecchinoEffect {
-            has_talent2: common_data.has_talent2
+            has_talent2: common_data.has_talent2,
+            c6_ratio,
+            constellation: common_data.constellation as usize
         }))
     }
 

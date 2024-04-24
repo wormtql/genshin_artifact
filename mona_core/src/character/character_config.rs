@@ -36,5 +36,6 @@ pub enum CharacterConfig {
     Gaming { hp_above50: bool, c2_rate: f64 },
     Xianyun { talent1_stack: f64, talent2_rate: f64, butianti_count: usize },
     Chiori { talent2: bool },
+    Arlecchino { c6_ratio: f64 },
     NoConfig,
 }
