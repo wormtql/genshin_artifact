@@ -8,6 +8,7 @@ pub mod yelan_default;
 pub mod nilou_default;
 pub mod neuvillette_default;
 pub mod furina_default;
+pub mod sigewinne_default;
 
 pub use barbara_default::BarbaraDefaultTargetFunction;
 pub use mona_default::MonaDefaultTargetFunction;
@@ -19,3 +20,4 @@ pub use yelan_default::YelanDefaultTargetFunction;
 pub use nilou_default::NilouDefaultTargetFunction;
 pub use neuvillette_default::NeuvilletteDefaultTargetFunction;
 pub use furina_default::FurinaDefaultTargetFunction;
+pub use sigewinne_default::SigewinneDefaultTargetFunction;

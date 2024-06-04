@@ -55,6 +55,7 @@ pub enum WeaponName {
     SwordOfNarzissenkreuz,
     SplendorOfTranquilWaters,
     UrakuMisugiri,
+    Absolution,
 
     // claymore
     WolfsGravestone,
@@ -203,4 +204,6 @@ pub enum WeaponName {
     ScionOfTheBlazingSun,
     SongOfStillness,
     RangeGauge,
+    Cloudforged,
+    SilvershowerHeartstrings,
 }

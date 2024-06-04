@@ -37,5 +37,8 @@ pub enum CharacterConfig {
     Xianyun { talent1_stack: f64, talent2_rate: f64, butianti_count: usize },
     Chiori { talent2: bool },
     Arlecchino { c6_ratio: f64 },
+    Clorinde { talent1_stack: f64, talent2_stack: f64, c6_rate: f64 },
+    Sigewinne { c6_rate: f64 },
+    Sethos { c2_stack: f64 },
     NoConfig,
 }

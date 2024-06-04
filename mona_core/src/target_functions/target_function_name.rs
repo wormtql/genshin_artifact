@@ -98,4 +98,7 @@ pub enum TargetFunctionName {
     XianyunDefault,
     ChioriDefault,
     ArlecchinoDefault,
+    ClorindeDefault,
+    SigewinneDefault,
+    SethosDefault,
 }

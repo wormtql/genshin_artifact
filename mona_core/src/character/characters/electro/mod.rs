@@ -9,6 +9,8 @@ pub mod yae_miko;
 pub mod cyno;
 pub mod fischl;
 pub mod dori;
+pub mod clorinde;
+pub mod sethos;
 
 pub use beidou::Beidou;
 pub use keqing::Keqing;
@@ -21,3 +23,5 @@ pub use yae_miko::YaeMiko;
 pub use cyno::Cyno;
 pub use fischl::Fischl;
 pub use dori::Dori;
+pub use clorinde::Clorinde;
+pub use sethos::Sethos;

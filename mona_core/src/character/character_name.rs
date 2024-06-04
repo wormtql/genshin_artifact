@@ -108,4 +108,7 @@ pub enum CharacterName {
     Xianyun,
     Chiori,
     Arlecchino,
+    Clorinde,
+    Sigewinne,
+    Sethos,
 }

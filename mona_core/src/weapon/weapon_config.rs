@@ -31,6 +31,7 @@ pub enum WeaponConfig {
     TheDockhandsAssistant { stack: f64 },
     SplendorOfTranquilWaters { stack1: f64, stack2: f64 },
     UrakuMisugiri { rate: f64 },
+    Absolution { stack: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },
@@ -128,6 +129,8 @@ pub enum WeaponConfig {
     ScionOfTheBlazingSun { rate: f64 },
     SongOfStillness { rate: f64 },
     RangeGauge { stack: f64 },
+    Cloudforged { stack: f64 },
+    SilvershowerHeartstrings { stack: f64, stack3_rate: f64 },
 }
 
 impl Default for WeaponConfig {

@@ -40,6 +40,7 @@ pub use the_dockhands_assistant::TheDockhandsAssistant;
 pub use sword_of_narzissenkreuz::SwordOfNarzissenkreuz;
 pub use splendor_of_tranquil_waters::SplendorOfTranquilWaters;
 pub use uraku_misugiri::UrakuMisugiri;
+pub use absolution::Absolution;
 
 pub mod mistsplitter_reforged;
 pub mod aquila_favonia;
@@ -83,3 +84,4 @@ pub mod the_dockhands_assistant;
 pub mod sword_of_narzissenkreuz;
 pub mod splendor_of_tranquil_waters;
 pub mod uraku_misugiri;
+pub mod absolution;

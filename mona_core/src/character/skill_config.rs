@@ -47,5 +47,6 @@ pub enum CharacterSkillConfig {
     Navia { shard_count: usize, strike11: bool, after_e: bool },
     Gaming { pyro: bool },
     Arlecchino { bond_of_life: f64 },
+    Clorinde { bond_of_life: f64 },
     NoConfig,
 }
