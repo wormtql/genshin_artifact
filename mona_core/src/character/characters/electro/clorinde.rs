@@ -112,17 +112,18 @@ impl<A: Attribute> ChangeAttribute<A> for ClorindeEffect {
         if self.has_talent1 && self.talent1_stack > 0.0 {
             let ratio = if self.constellation >= 2 { 0.3 } else { 0.2 };
             let max = if self.constellation >= 2 { 2700.0 } else { 1800.0 };
+            let talent1_stack = self.talent1_stack;
             attribute.add_edge1(
                 AttributeName::ATK,
                 AttributeName::ExtraDmgNormalAttack,
-                Box::new(move |atk, _| (atk * ratio).min(max)),
+                Box::new(move |atk, _| (atk * ratio * talent1_stack).min(max)),
                 Box::new(|_x, _y, _grad| (0.0, 0.0)),
                 "天赋1「破夜的明焰」",
             );
             attribute.add_edge1(
                 AttributeName::ATK,
                 AttributeName::ExtraDmgElementalBurst,
-                Box::new(move |atk, _| (atk * ratio).min(max)),
+                Box::new(move |atk, _| (atk * ratio * talent1_stack).min(max)),
                 Box::new(|_x, _y, _grad| (0.0, 0.0)),
                 "天赋1「破夜的明焰」",
             )
