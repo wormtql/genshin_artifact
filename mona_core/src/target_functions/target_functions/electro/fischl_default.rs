@@ -103,7 +103,7 @@ impl TargetFunction for FischlDefaultTargetFunction {
         type S = <Fischl as CharacterTrait>::DamageEnumType;
         let damage_e = Fischl::damage::<SimpleDamageBuilder>(
             &context, S::E1, &CharacterSkillConfig::NoConfig, None
-        ).normal.expectation;
+        ).aggravate.unwrap().expectation;
 
         damage_e
     }
