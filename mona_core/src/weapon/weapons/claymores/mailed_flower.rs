@@ -50,7 +50,7 @@ impl WeaponTrait for MailedFlower {
         #[cfg(not(target_family = "wasm"))]
         effect: Some(crate::common::i18n::locale!(
             zh_cn: "元素战技命中敌人或触发元素反应后的8秒内，攻击力提升<span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span>，元素精通提升<span style=\"color: #409EFF;\">48-60-72-84-96</span>点。",
-            en: "Within 8s after the character’s Elemental Skill hits an opponent or triggers an Elemental Reaction, the character’s ATK and Elemental Mastery will be increased by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> and <span style=\"color: #409EFF;\">48-60-72-84-96</span> respectively."
+            en: "Within 8s after the character's Elemental Skill hits an opponent or triggers an Elemental Reaction, the character's ATK and Elemental Mastery will be increased by <span style=\"color: #409EFF;\">12%-15%-18%-21%-24%</span> and <span style=\"color: #409EFF;\">48-60-72-84-96</span> respectively."
         )),
         #[cfg(not(target_family = "wasm"))]
         name_locale: crate::common::i18n::locale!(

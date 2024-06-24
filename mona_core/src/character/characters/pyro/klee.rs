@@ -140,7 +140,7 @@ impl CharacterTrait for Klee {
             CharacterSkillMapItem { index: KleeDamageEnum::E2 as usize, text: locale!(zh_cn: "诡雷伤害", en: "Mine DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: KleeDamageEnum::Q1 as usize, text: locale!(zh_cn: "轰轰火花伤害", en: "Sparks ‘n’ Splash DMG") }
+            CharacterSkillMapItem { index: KleeDamageEnum::Q1 as usize, text: locale!(zh_cn: "轰轰火花伤害", en: "Sparks 'n' Splash DMG") }
         ])
     };
 

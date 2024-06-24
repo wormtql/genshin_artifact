@@ -30,7 +30,7 @@ impl BuffMeta for BuffYelanTalent2 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "夜兰天赋2：「玄掷玲珑」存在期间，能使队伍中自己的当前场上角色造成的伤害提高1%，并且每1秒进一步提高3.5%，至多使角色造成的伤害提高50%。效果存在期间重新施放渊图玲珑骰，将移除原有的上述效果。",
-            en: "夜兰天赋2：「玄掷玲珑」存在期间，能使队伍中自己的当前场上角色造成的伤害提高1%，并且每1秒进一步提高3.5%，至多使角色造成的伤害提高50%。效果存在期间重新施放渊图玲珑骰，将移除原有的上述效果。",
+            en: "Yelan Talent2: So long as an Exquisite Throw is in play, your own active character deals 1% more DMG. This increases by a further 3.5% DMG every second. The maximum increase to DMG dealt is 50%. The pre-existing effect will be dispelled if Depth-Clarion Dice is recast during its duration.",
         )),
         from: BuffFrom::Character(CharacterName::Yelan)
     };
@@ -82,7 +82,7 @@ impl BuffMeta for BuffYelanC4 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "夜兰4命：依照「络命丝」标记敌人的数量，每次标记将在爆发时使队伍中所有角色的生命值上限提升10%，持续25秒。通过这种方式，生命值上限至多获得40%提升。",
-            en: "夜兰4命：依照「络命丝」标记敌人的数量，每次标记将在爆发时使队伍中所有角色的生命值上限提升10%，持续25秒。通过这种方式，生命值上限至多获得40%提升。",
+            en: "Yelan C4: Increases all party members' Max HP by 10% for 25s for every opponent marked by Lifeline when the Lifeline explodes. A maximum increase of 40% Max HP can be attained in this manner.",
         )),
         from: BuffFrom::Character(CharacterName::Yelan)
     };

@@ -47,7 +47,7 @@ impl WeaponTrait for ToukabouShigure {
         #[cfg(not(target_family = "wasm"))]
         effect: Some(crate::common::i18n::locale!(
             zh_cn: "攻击命中敌人后，会为命中的一名敌人施加「纸伞作祟」状态，持续10秒。该效果每15秒至多触发一次；持续期间该敌人被击败时，将清除该效果的冷却时间。装备者对处于「纸伞作祟」状态下的敌人造成的伤害提升<span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span>。",
-            en: "After an attack hits opponents, it will inflict an instance of Cursed Parasol upon one of them for 10s. This effect can be triggered once every 15s. If this opponent is taken out during Cursed Parasol’s duration, Cursed Parasol’s CD will be refreshed immediately. The character wielding this weapon will deal <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> more DMG to the opponent affected by Cursed Parasol."
+            en: "After an attack hits opponents, it will inflict an instance of Cursed Parasol upon one of them for 10s. This effect can be triggered once every 15s. If this opponent is taken out during Cursed Parasol's duration, Cursed Parasol's CD will be refreshed immediately. The character wielding this weapon will deal <span style=\"color: #409EFF;\">16%-20%-24%-28%-32%</span> more DMG to the opponent affected by Cursed Parasol."
         )),
         #[cfg(not(target_family = "wasm"))]
         name_locale: crate::common::i18n::locale!(

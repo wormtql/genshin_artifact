@@ -28,7 +28,7 @@ impl BuffMeta for BuffXiphosMoonlight {
         name: BuffName::XiphosMoonlight,
         name_locale: crate::common::i18n::locale!(
             zh_cn: "西福斯的月光-「镇灵的低语」",
-            en: "Xiphos’ Moonlight-「Whisper of the Jinn」",
+            en: "Xiphos' Moonlight-「Whisper of the Jinn」",
         ),
         image: BuffImage::Weapon(WeaponName::XiphosMoonlight),
         genre: BuffGenre::Weapon,

@@ -181,7 +181,7 @@ impl CharacterTrait for Dehya {
             CharacterSkillMapItem { index: DehyaDamageEnum::E3 as usize, text: locale!(zh_cn: "领域伤害", en: "Field DMG") },
         ]),
         skill3: Some(&[
-            CharacterSkillMapItem { index: DehyaDamageEnum::Q1 as usize, text: locale!(zh_cn: "炽鬃拳伤害", en: "Flame-Mane’s Fist DMG") },
+            CharacterSkillMapItem { index: DehyaDamageEnum::Q1 as usize, text: locale!(zh_cn: "炽鬃拳伤害", en: "Flame-Mane's Fist DMG") },
             CharacterSkillMapItem { index: DehyaDamageEnum::Q2 as usize, text: locale!(zh_cn: "焚落踢伤害", en: "Incineration Drive DMG") },
         ]),
     };
