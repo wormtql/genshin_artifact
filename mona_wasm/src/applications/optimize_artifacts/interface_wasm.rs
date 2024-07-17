@@ -22,14 +22,14 @@ pub struct OptimizeSingleWasm;
 
 #[wasm_bindgen]
 impl OptimizeSingleWasm {
-    pub fn optimize(val: &JsValue, artifacts: &JsValue) -> JsValue {
+    pub fn optimize(val: JsValue, artifacts: JsValue) -> JsValue {
         utils::set_panic_hook();
 
-        let input: OptimizeArtifactInterface = match val.into_serde() {
+        let input: OptimizeArtifactInterface = match serde_wasm_bindgen::from_value(val) {
             Ok(x) => x,
             Err(e) => panic!("{}", e)
         };
-        let artifacts: Vec<Artifact> = artifacts.into_serde().unwrap();
+        let artifacts: Vec<Artifact> = serde_wasm_bindgen::from_value(artifacts).unwrap();
         let artifacts_ref: Vec<_> = artifacts.iter().collect();
 
         let character = input.character.to_character();
@@ -64,6 +64,6 @@ impl OptimizeSingleWasm {
             100
         );
 
-        JsValue::from_serde(&result).unwrap()
+        serde_wasm_bindgen::to_value(&result).unwrap()
     }
 }

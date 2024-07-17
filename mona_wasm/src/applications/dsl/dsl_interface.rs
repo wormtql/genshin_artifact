@@ -51,10 +51,10 @@ impl RunResult {
 
 #[wasm_bindgen]
 impl DSLInterface {
-    pub fn run(source: &str, damage_env: &JsValue, artifacts: &JsValue) -> JsValue {
+    pub fn run(source: &str, damage_env: JsValue, artifacts: JsValue) -> JsValue {
         utils::set_panic_hook();
-        let damage_env: RunInput = damage_env.into_serde().unwrap();
-        let artifacts: Vec<Artifact> = artifacts.into_serde().unwrap();
+        let damage_env: RunInput = serde_wasm_bindgen::from_value(damage_env).unwrap();
+        let artifacts: Vec<Artifact> = serde_wasm_bindgen::from_value(artifacts).unwrap();
 
         // get all items
         let character = damage_env.character.to_character();
@@ -73,7 +73,7 @@ impl DSLInterface {
 
         // compile
         let code_obj = match compile_source_to_code_object(source) {
-            Err(e) => return JsValue::from_serde(&RunResult::from_compile_error(&e)).unwrap(),
+            Err(e) => return serde_wasm_bindgen::to_value(&RunResult::from_compile_error(&e)).unwrap(),
             Ok(v) => v
         };
 
@@ -100,16 +100,16 @@ impl DSLInterface {
 
         // init
         if let Err(e) = env.init_prop() {
-            return JsValue::from_serde(&RunResult::from_runtime_error(&e)).unwrap();
+            return serde_wasm_bindgen::to_value(&RunResult::from_runtime_error(&e)).unwrap();
         }
         if let Err(e) = env.init_damage() {
-            return JsValue::from_serde(&RunResult::from_runtime_error(&e)).unwrap();
+            return serde_wasm_bindgen::to_value(&RunResult::from_runtime_error(&e)).unwrap();
         }
         utils::log!("{:?}", env.namespace.map.keys());
 
         // execute
         if let Err(e) = env.execute() {
-            return JsValue::from_serde(&RunResult::from_runtime_error(&e)).unwrap();
+            return serde_wasm_bindgen::to_value(&RunResult::from_runtime_error(&e)).unwrap();
         }
 
         // get output
@@ -121,6 +121,6 @@ impl DSLInterface {
             output
         };
 
-        JsValue::from_serde(&ret).unwrap()
+        serde_wasm_bindgen::to_value(&ret).unwrap()
     }
 }

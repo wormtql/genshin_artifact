@@ -69,12 +69,12 @@ pub struct CalculatorConfigInterface {
 
 #[wasm_bindgen]
 impl CalculatorInterface {
-    pub fn get_damage_analysis(value: &JsValue, fumo: &JsValue) -> JsValue {
+    pub fn get_damage_analysis(value: JsValue, fumo: JsValue) -> JsValue {
         utils::set_panic_hook();
         // utils::log!("start");
 
-        let input: CalculatorConfigInterface = value.into_serde().unwrap();
-        let fumo: Option<Element> = fumo.into_serde().unwrap();
+        let input: CalculatorConfigInterface = serde_wasm_bindgen::from_value(value).unwrap();
+        let fumo: Option<Element> = serde_wasm_bindgen::from_value(fumo).unwrap();
 
         let character: Character<ComplicatedAttributeGraph> = input.character.to_character();
         let weapon = input.weapon.to_weapon(&character);
@@ -106,13 +106,13 @@ impl CalculatorInterface {
             fumo,
         );
 
-        JsValue::from_serde(&result).unwrap()
+        serde_wasm_bindgen::to_value(&result).unwrap()
     }
 
-    pub fn get_transformative_damage(value: &JsValue) -> TransformativeDamage {
+    pub fn get_transformative_damage(value: JsValue) -> TransformativeDamage {
         utils::set_panic_hook();
 
-        let input: CalculatorConfigInterface = value.into_serde().unwrap();
+        let input: CalculatorConfigInterface = serde_wasm_bindgen::from_value(value).unwrap();
 
         let character: Character<SimpleAttributeGraph2> = input.character.to_character();
         let weapon = input.weapon.to_weapon(&character);

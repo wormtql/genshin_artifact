@@ -9,10 +9,10 @@ pub struct CalcArtifactBestSet;
 
 #[wasm_bindgen]
 impl CalcArtifactBestSet {
-    pub fn calc_artifact_best_set(args: &JsValue) -> JsValue {
+    pub fn calc_artifact_best_set(args: JsValue) -> JsValue {
         set_panic_hook();
 
-        let calc_best_set_interface: CalcArtifactBestSetInterface = args.into_serde().unwrap();
+        let calc_best_set_interface: CalcArtifactBestSetInterface = serde_wasm_bindgen::from_value(args).unwrap();
 
         let character = calc_best_set_interface.character.to_character();
         let weapon = calc_best_set_interface.weapon.to_weapon(&character);
@@ -39,6 +39,6 @@ impl CalcArtifactBestSet {
         }
         // utils::log!("{:?}", arr);
 
-        JsValue::from_serde(&arr).unwrap()
+        serde_wasm_bindgen::to_value(&arr).unwrap()
     }
 }

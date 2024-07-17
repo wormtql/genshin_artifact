@@ -8,16 +8,16 @@ pub struct CommonInterface {}
 
 #[wasm_bindgen]
 impl CommonInterface {
-    pub fn get_attribute(val: &JsValue) -> JsValue {
+    pub fn get_attribute(val: JsValue) -> JsValue {
         get_attribute::get_attribute(val)
     }
 
-    pub fn get_artifacts_rank_by_character(character: &JsValue, weapon: &JsValue, tf: &JsValue, artifacts: &JsValue) -> JsValue {
-        let character_interface: CharacterInterface = character.into_serde().unwrap();
-        let weapon_interface: WeaponInterface = weapon.into_serde().unwrap();
-        let tf_interface: TargetFunctionInterface = tf.into_serde().unwrap();
+    pub fn get_artifacts_rank_by_character(character: JsValue, weapon: JsValue, tf: JsValue, artifacts: JsValue) -> JsValue {
+        let character_interface: CharacterInterface = serde_wasm_bindgen::from_value(character).unwrap();
+        let weapon_interface: WeaponInterface = serde_wasm_bindgen::from_value(weapon).unwrap();
+        let tf_interface: TargetFunctionInterface = serde_wasm_bindgen::from_value(tf).unwrap();
 
-        let artifacts: Vec<Artifact> = artifacts.into_serde().unwrap();
+        let artifacts: Vec<Artifact> = serde_wasm_bindgen::from_value(artifacts).unwrap();
 
         let character = character_interface.to_character();
         let weapon = weapon_interface.to_weapon(&character);
@@ -35,6 +35,6 @@ impl CommonInterface {
 
         scores.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap());
 
-        JsValue::from_serde(&scores).unwrap()
+        serde_wasm_bindgen::to_value(&scores).unwrap()
     }
 }

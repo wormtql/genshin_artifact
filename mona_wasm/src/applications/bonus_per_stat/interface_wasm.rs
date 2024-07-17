@@ -48,10 +48,10 @@ pub struct BonusPerStat;
 
 #[wasm_bindgen]
 impl BonusPerStat {
-    pub fn bonus_per_stat(val: &JsValue) -> JsValue {
+    pub fn bonus_per_stat(val: JsValue) -> JsValue {
         utils::set_panic_hook();
 
-        let input: WasmInput = val.into_serde().unwrap();
+        let input: WasmInput = serde_wasm_bindgen::from_value(val).unwrap();
 
         let character = input.character.to_character();
         let weapon = input.weapon.to_weapon(&character);
@@ -77,7 +77,7 @@ impl BonusPerStat {
         // utils::log!("{:?}", result.atk);
         // utils::log!("{:?}", result.atk.as_ptr());
 
-        JsValue::from_serde(&result).unwrap()
+        serde_wasm_bindgen::to_value(&result).unwrap()
 
         // WasmOutput {
         //     atk_ptr: result.atk.as_ptr(),

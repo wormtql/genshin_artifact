@@ -17,8 +17,8 @@ pub struct GetAttributeInterface {
     artifact_config: Option<ArtifactEffectConfig>
 }
 
-pub fn get_attribute(val: &JsValue) -> JsValue {
-    let input: GetAttributeInterface = val.into_serde().unwrap();
+pub fn get_attribute(val: JsValue) -> JsValue {
+    let input: GetAttributeInterface = serde_wasm_bindgen::from_value(val).unwrap();
 
     let character: Character<ComplicatedAttributeGraph> = input.character.to_character();
     let weapon: Weapon<ComplicatedAttributeGraph> = input.weapon.to_weapon(&character);
@@ -44,5 +44,5 @@ pub fn get_attribute(val: &JsValue) -> JsValue {
     );
 
     let result = AttributeNoReactive::from(&attribute);
-    JsValue::from_serde(&result).unwrap()
+    serde_wasm_bindgen::to_value(&result).unwrap()
 }

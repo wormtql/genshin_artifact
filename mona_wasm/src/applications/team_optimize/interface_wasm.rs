@@ -57,12 +57,12 @@ fn smallvec_to_optimize_entry(v: &SmallVec<[u64; 5]>, artifacts_by_id: &HashMap<
 
 #[wasm_bindgen]
 impl TeamOptimizationWasm {
-    pub fn optimize_team2(val: &JsValue, artifacts: &JsValue) -> JsValue {
+    pub fn optimize_team2(val: JsValue, artifacts: JsValue) -> JsValue {
         utils::set_panic_hook();
 
-        let mut input: OptimizeTeamInterface2 = val.into_serde().unwrap();
+        let mut input: OptimizeTeamInterface2 = serde_wasm_bindgen::from_value(val).unwrap();
 
-        let artifacts: Vec<Artifact> = artifacts.into_serde().unwrap();
+        let artifacts: Vec<Artifact> = serde_wasm_bindgen::from_value(artifacts).unwrap();
 
         let artifacts_ref: Vec<&Artifact> = artifacts.iter().collect();
         let hyper_param = match input.hyper_param {
@@ -94,7 +94,7 @@ impl TeamOptimizationWasm {
             artifacts: results
         };
 
-        JsValue::from_serde(&ret).unwrap()
+        serde_wasm_bindgen::to_value(&ret).unwrap()
     }
 
     // pub fn optimize_team(val: &JsValue) -> JsValue {
