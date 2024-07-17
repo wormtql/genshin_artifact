@@ -1,6 +1,7 @@
 use wasm_bindgen::prelude::*;
 use crate::applications::common::{CharacterInterface, TargetFunctionInterface, WeaponInterface};
 use mona::artifacts::Artifact;
+use serde::Serialize;
 
 pub mod get_attribute;
 
@@ -35,6 +36,7 @@ impl CommonInterface {
 
         scores.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap());
 
-        serde_wasm_bindgen::to_value(&scores).unwrap()
+        let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+        scores.serialize(&s).unwrap()
     }
 }

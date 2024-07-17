@@ -106,7 +106,8 @@ impl CalculatorInterface {
             fumo,
         );
 
-        serde_wasm_bindgen::to_value(&result).unwrap()
+        let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+        result.serialize(&s).unwrap()
     }
 
     pub fn get_transformative_damage(value: JsValue) -> TransformativeDamage {

@@ -44,5 +44,6 @@ pub fn get_attribute(val: JsValue) -> JsValue {
     );
 
     let result = AttributeNoReactive::from(&attribute);
-    serde_wasm_bindgen::to_value(&result).unwrap()
+    let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+    result.serialize(&s).unwrap()
 }

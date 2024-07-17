@@ -18,6 +18,7 @@ use mona::team::team::Team;
 // use mona::team_target::team_targets::{get_default_buff, try_get_team_target_function, try_match_team};
 use mona::weapon::Weapon;
 use mona::utils;
+use serde::Serialize;
 
 pub struct TeamOptimizationWasm;
 
@@ -94,7 +95,8 @@ impl TeamOptimizationWasm {
             artifacts: results
         };
 
-        serde_wasm_bindgen::to_value(&ret).unwrap()
+        let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+        ret.serialize(&s).unwrap()
     }
 
     // pub fn optimize_team(val: &JsValue) -> JsValue {

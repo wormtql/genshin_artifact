@@ -1,3 +1,4 @@
+use serde::Serialize;
 use wasm_bindgen::JsValue;
 use crate::applications::artifact_best_set::artifact_best_set::calc_artifact_best_set;
 use crate::applications::artifact_best_set::type_interface::CalcArtifactBestSetInterface;
@@ -39,6 +40,7 @@ impl CalcArtifactBestSet {
         }
         // utils::log!("{:?}", arr);
 
-        serde_wasm_bindgen::to_value(&arr).unwrap()
+        let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+        arr.serialize(&s).unwrap()
     }
 }

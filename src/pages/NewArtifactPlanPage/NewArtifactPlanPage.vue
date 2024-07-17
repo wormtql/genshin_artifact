@@ -1215,7 +1215,9 @@ const getAttributeWasmInterface = computed(() => {
 })
 
 const attributeFromWasm = computed(() => {
-    return mona.CommonInterface.get_attribute(getAttributeWasmInterface.value)
+    const ret = mona.CommonInterface.get_attribute(getAttributeWasmInterface.value)
+    // console.log(ret)
+    return ret
 })
 
 

@@ -73,7 +73,10 @@ impl DSLInterface {
 
         // compile
         let code_obj = match compile_source_to_code_object(source) {
-            Err(e) => return serde_wasm_bindgen::to_value(&RunResult::from_compile_error(&e)).unwrap(),
+            Err(e) => {
+                let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+                return RunResult::from_compile_error(&e).serialize(&s).unwrap()
+            }
             Ok(v) => v
         };
 
@@ -100,16 +103,19 @@ impl DSLInterface {
 
         // init
         if let Err(e) = env.init_prop() {
-            return serde_wasm_bindgen::to_value(&RunResult::from_runtime_error(&e)).unwrap();
+            let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+            return RunResult::from_runtime_error(&e).serialize(&s).unwrap();
         }
         if let Err(e) = env.init_damage() {
-            return serde_wasm_bindgen::to_value(&RunResult::from_runtime_error(&e)).unwrap();
+            let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+            return RunResult::from_runtime_error(&e).serialize(&s).unwrap();
         }
         utils::log!("{:?}", env.namespace.map.keys());
 
         // execute
         if let Err(e) = env.execute() {
-            return serde_wasm_bindgen::to_value(&RunResult::from_runtime_error(&e)).unwrap();
+            let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+            return RunResult::from_runtime_error(&e).serialize(&s).unwrap();
         }
 
         // get output
@@ -121,6 +127,7 @@ impl DSLInterface {
             output
         };
 
-        serde_wasm_bindgen::to_value(&ret).unwrap()
+        let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+        ret.serialize(&s).unwrap()
     }
 }

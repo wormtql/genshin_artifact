@@ -3,6 +3,7 @@ use crate::applications::common::PotentialFunctionInterface;
 use mona::artifacts::Artifact;
 use mona::potential_function::potential_function::calc_potential;
 use mona::utils::{set_panic_hook};
+use serde::Serialize;
 
 pub struct PotentialInterface;
 
@@ -29,6 +30,7 @@ impl PotentialInterface {
         let mut results = get_potential(&artifacts, &pf_interface);
         results.sort_by(|x, y| y.1.partial_cmp(&x.1).unwrap());
 
-        serde_wasm_bindgen::to_value(&results).unwrap()
+        let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+        results.serialize(&s).unwrap()
     }
 }

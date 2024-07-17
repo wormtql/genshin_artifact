@@ -77,7 +77,8 @@ impl BonusPerStat {
         // utils::log!("{:?}", result.atk);
         // utils::log!("{:?}", result.atk.as_ptr());
 
-        serde_wasm_bindgen::to_value(&result).unwrap()
+        let s = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+        result.serialize(&s).unwrap()
 
         // WasmOutput {
         //     atk_ptr: result.atk.as_ptr(),
