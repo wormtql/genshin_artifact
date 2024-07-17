@@ -20,7 +20,7 @@ strip = true
 [dependencies]
 mona = { path = "../mona_core" }
 mona_dsl = { path = "../mona_dsl" }
-wasm-bindgen = { version = "0.2.63", features = ["serde-serialize"] }
+wasm-bindgen = { version = "0.2.92", features = ["serde-serialize"] }
 lazy_static = "1.4.0"
 rand = "0.8.4"
 serde = { version = "1.0.133", features = ["derive"] }

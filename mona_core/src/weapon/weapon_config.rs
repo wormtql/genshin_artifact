@@ -76,6 +76,7 @@ pub enum WeaponConfig {
     BalladOfTheFjords { use_effect: bool },
     ProspectorsDrill { stack: f64 },
     CrimsonMoonsSemblance { rate1: f64, rate2: f64 },
+    LumidouceElegy { stack: f64 },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },

@@ -112,40 +112,70 @@ impl<T: Attribute> AttributeCommon<T> for T {
         let key1 = AttributeName::atk_ratio_name_by_element(element);
         let key2 = AttributeName::atk_ratio_name_by_skill_type(skill);
 
+        let value2 = if let Some(name) = key2 {
+            self.get_value(name)
+        } else {
+            0.0
+        };
+
         self.get_value(AttributeName::ATKRatioBase)
-            + self.get_value(key1) + self.get_value(key2)
+            + self.get_value(key1) + value2
     }
 
     fn get_def_ratio(&self, element: Element, skill: SkillType) -> f64 {
         let key1 = AttributeName::def_ratio_name_by_element(element);
         let key2 = AttributeName::def_ratio_name_by_skill_type(skill);
 
+        let value2 = if let Some(name) = key2 {
+            self.get_value(name)
+        } else {
+            0.0
+        };
+
         self.get_value(AttributeName::DEFRatioBase)
-            + self.get_value(key1) + self.get_value(key2)
+            + self.get_value(key1) + value2
     }
 
     fn get_hp_ratio(&self, element: Element, skill: SkillType) -> f64 {
         let key1 = AttributeName::hp_ratio_name_by_element(element);
         let key2 = AttributeName::hp_ratio_name_by_skill_type(skill);
 
+        let value2 = if let Some(name) = key2 {
+            self.get_value(name)
+        } else {
+            0.0
+        };
+
         self.get_value(AttributeName::HPRatioBase)
-            + self.get_value(key1) + self.get_value(key2)
+            + self.get_value(key1) + value2
     }
 
     fn get_extra_damage(&self, element: Element, skill: SkillType) -> f64 {
         let key1 = AttributeName::extra_dmg_name_by_element(element);
         let key2 = AttributeName::extra_dmg_name_by_skill_type(skill);
 
+        let value2 = if let Some(name) = key2 {
+            self.get_value(name)
+        } else {
+            0.0
+        };
+
         self.get_value(AttributeName::ExtraDmgBase)
-            + self.get_value(key1) + self.get_value(key2)
+            + self.get_value(key1) + value2
     }
 
     fn get_bonus(&self, element: Element, skill: SkillType) -> f64 {
         let key1 = AttributeName::bonus_name_by_element(element);
         let key2 = AttributeName::bonus_name_by_skill_type(skill);
 
+        let value2 = if let Some(name) = key2 {
+            self.get_value(name)
+        } else {
+            0.0
+        };
+
         let mut temp = self.get_value(AttributeName::BonusBase)
-            + self.get_value(key1) + self.get_value(key2);
+            + self.get_value(key1) + value2;
         // todo refactor
         if element != Element::Physical && skill == SkillType::NormalAttack {
             temp += self.get_value(AttributeName::BonusNormalAndElemental);
@@ -157,16 +187,28 @@ impl<T: Attribute> AttributeCommon<T> for T {
         let key1 = AttributeName::critical_rate_name_by_element(element);
         let key2 = AttributeName::critical_rate_name_by_skill_type(skill);
 
+        let value2 = if let Some(name) = key2 {
+            self.get_value(name)
+        } else {
+            0.0
+        };
+
         self.get_value(AttributeName::CriticalBase) + self.get_value(AttributeName::CriticalAttacking)
-            + self.get_value(key1) + self.get_value(key2)
+            + self.get_value(key1) + value2
     }
 
     fn get_critical_damage(&self, element: Element, skill: SkillType) -> f64 {
         let key1 = AttributeName::critical_damage_name_by_element(element);
         let key2 = AttributeName::critical_damage_name_by_skill_name(skill);
 
+        let value2 = if let Some(name) = key2 {
+            self.get_value(name)
+        } else {
+            0.0
+        };
+
         self.get_value(AttributeName::CriticalDamageBase)
-            + self.get_value(key1) + self.get_value(key2)
+            + self.get_value(key1) + value2
     }
 
     fn get_enemy_res_minus(&self, element: Element, _skill: SkillType) -> f64 {

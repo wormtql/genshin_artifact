@@ -48,5 +48,6 @@ pub enum CharacterSkillConfig {
     Gaming { pyro: bool },
     Arlecchino { bond_of_life: f64 },
     Clorinde { bond_of_life: f64 },
+    Emilie { enemy_burn: bool, use_c6: bool },
     NoConfig,
 }

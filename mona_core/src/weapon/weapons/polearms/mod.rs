@@ -29,6 +29,7 @@ pub use rightful_reward::RightfulReward;
 pub use prospectors_drill::ProspectorsDrill;
 pub use dialogues_of_the_desert_sages::DialoguesOfTheDesertSages;
 pub use crimson_moons_semblance::CrimsonMoonsSemblance;
+pub use lumidouce_elegy::LumidouceElegy;
 
 pub mod engulfing_lightning;
 pub mod skyward_spine;
@@ -61,4 +62,5 @@ pub mod rightful_reward;
 pub mod prospectors_drill;
 pub mod dialogues_of_the_desert_sages;
 pub mod crimson_moons_semblance;
+mod lumidouce_elegy;
 

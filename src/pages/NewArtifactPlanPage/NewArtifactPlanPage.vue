@@ -1480,14 +1480,22 @@ function getArtifactsToBeCalculated(): IArtifactWasm[] {
 
 function handleOptimizeArtifact() {
     const start = new Date()
+
+    const optimizeInterface = getOptimizeArtifactWasmInterface()
+    const artifacts = getArtifactsToBeCalculated()
+
+    if (artifacts.length === 0) {
+        ElMessage.error({
+            message: "没有圣遗物，请先添加圣遗物"
+        })
+        return
+    }
+
     const loading = ElLoading.service({
         lock: true,
         fullscreen: true,
         text: "莫娜占卜中"
     })
-
-    const optimizeInterface = getOptimizeArtifactWasmInterface()
-    const artifacts = getArtifactsToBeCalculated()
 
     wasmSingleOptimize(optimizeInterface, artifacts).then(results => {
         const end = new Date()

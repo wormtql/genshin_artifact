@@ -101,4 +101,5 @@ pub enum TargetFunctionName {
     ClorindeDefault,
     SigewinneDefault,
     SethosDefault,
+    EmilieDefault,
 }

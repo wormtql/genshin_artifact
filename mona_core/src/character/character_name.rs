@@ -111,4 +111,5 @@ pub enum CharacterName {
     Clorinde,
     Sigewinne,
     Sethos,
+    Emilie,
 }

@@ -126,6 +126,7 @@ pub enum WeaponName {
     ProspectorsDrill,
     DialoguesOfTheDesertSages,
     CrimsonMoonsSemblance,
+    LumidouceElegy,
 
     // catalyst
     LostPrayerToTheSacredWinds,

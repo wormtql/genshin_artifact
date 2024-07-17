@@ -191,11 +191,16 @@ impl ComplicatedAttributeGraph {
     }
 
     pub fn get_critical_composition(&self, element: Element, skill: SkillType) -> EntryType {
-        self.get_composition_merge(&vec![
+        let skill_type_critical_name = AttributeName::critical_rate_name_by_skill_type(skill);
+        let mut names = vec![
             AttributeName::CriticalBase,
             AttributeName::CriticalAttacking,
             AttributeName::critical_rate_name_by_element(element),
-            AttributeName::critical_rate_name_by_skill_type(skill)
-        ])
+        ];
+        if let Some(name) = skill_type_critical_name {
+            names.push(name);
+        }
+
+        self.get_composition_merge(&names)
     }
 }

@@ -430,11 +430,14 @@ impl ComplicatedDamageBuilder {
     }
 
     fn get_extra_damage_composition(&self, attribute: &ComplicatedAttributeGraph, element: Element, skill: SkillType) -> EntryType {
-        let mut comp = attribute.get_composition_merge(&vec![
+        let mut names = vec![
             AttributeName::ExtraDmgBase,
             AttributeName::extra_dmg_name_by_element(element),
-            AttributeName::extra_dmg_name_by_skill_type(skill)
-        ]);
+        ];
+        if let Some(name) = AttributeName::extra_dmg_name_by_skill_type(skill) {
+            names.push(name);
+        }
+        let mut comp = attribute.get_composition_merge(&names);
         comp.merge(&self.extra_damage);
         comp
     }
@@ -490,11 +493,14 @@ impl ComplicatedDamageBuilder {
     }
 
     fn get_critical_damage_composition(&self, attribute: &ComplicatedAttributeGraph, element: Element, skill: SkillType) -> EntryType {
-        let mut comp = attribute.get_composition_merge(&vec![
+        let mut names = vec![
             AttributeName::CriticalDamageBase,
             AttributeName::critical_damage_name_by_element(element),
-            AttributeName::critical_damage_name_by_skill_name(skill)
-        ]);
+        ];
+        if let Some(name) = AttributeName::critical_damage_name_by_skill_name(skill) {
+            names.push(name);
+        }
+        let mut comp = attribute.get_composition_merge(&names);
         comp.merge(&self.extra_critical_damage);
         comp
     }
@@ -506,11 +512,14 @@ impl ComplicatedDamageBuilder {
     }
 
     fn get_bonus_composition(&self, attribute: &ComplicatedAttributeGraph, element: Element, skill: SkillType) -> EntryType {
-        let mut comp = attribute.get_composition_merge(&vec![
+        let mut names = vec![
             AttributeName::BonusBase,
             AttributeName::bonus_name_by_element(element),
-            AttributeName::bonus_name_by_skill_type(skill)
-        ]);
+        ];
+        if let Some(name) = AttributeName::bonus_name_by_skill_type(skill) {
+            names.push(name);
+        }
+        let mut comp = attribute.get_composition_merge(&names);
         if element != Element::Physical && skill == SkillType::NormalAttack {
             // todo refactor
             comp.merge(&attribute.get_attribute_composition(AttributeName::BonusNormalAndElemental));
@@ -528,11 +537,14 @@ impl ComplicatedDamageBuilder {
     }
 
     fn get_atk_ratio_composition(&self, attribute: &ComplicatedAttributeGraph, element: Element, skill: SkillType) -> EntryType {
-        let mut atk_ratio_comp = attribute.get_composition_merge(&vec![
+        let mut names = vec![
             AttributeName::ATKRatioBase,
             AttributeName::atk_ratio_name_by_element(element),
-            AttributeName::atk_ratio_name_by_skill_type(skill)
-        ]);
+        ];
+        if let Some(name) = AttributeName::atk_ratio_name_by_skill_type(skill) {
+            names.push(name)
+        }
+        let mut atk_ratio_comp = attribute.get_composition_merge(&names);
         atk_ratio_comp.merge(&self.ratio_atk);
 
         atk_ratio_comp
@@ -550,11 +562,14 @@ impl ComplicatedDamageBuilder {
     }
 
     fn get_def_ratio_composition(&self, attribute: &ComplicatedAttributeGraph, element: Element, skill: SkillType) -> EntryType {
-        let mut def_ratio_comp = attribute.get_composition_merge(&vec![
+        let mut names = vec![
             AttributeName::DEFRatioBase,
             AttributeName::def_ratio_name_by_element(element),
-            AttributeName::def_ratio_name_by_skill_type(skill)
-        ]);
+        ];
+        if let Some(name) = AttributeName::def_ratio_name_by_skill_type(skill) {
+            names.push(name);
+        }
+        let mut def_ratio_comp = attribute.get_composition_merge(&names);
         def_ratio_comp.merge(&self.ratio_def);
 
         def_ratio_comp
@@ -581,11 +596,14 @@ impl ComplicatedDamageBuilder {
     }
 
     fn get_hp_ratio_composition(&self, attribute: &ComplicatedAttributeGraph, element: Element, skill: SkillType) -> EntryType {
-        let mut hp_ratio_comp = attribute.get_composition_merge(&vec![
+        let mut names = vec![
             AttributeName::HPRatioBase,
             AttributeName::hp_ratio_name_by_element(element),
-            AttributeName::hp_ratio_name_by_skill_type(skill)
-        ]);
+        ];
+        if let Some(name) = AttributeName::hp_ratio_name_by_skill_type(skill) {
+            names.push(name)
+        }
+        let mut hp_ratio_comp = attribute.get_composition_merge(&names);
         hp_ratio_comp.merge(&self.ratio_hp);
 
         hp_ratio_comp
