@@ -26,7 +26,7 @@ impl BuffMeta for BuffYaeMikoC4 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "八重神子命座4：杀生樱的落雷命中敌人后，队伍中附近的所有角色获得20%雷元素伤害加成，持续5秒。",
-            en: "八重神子命座4：杀生樱的落雷命中敌人后，队伍中附近的所有角色获得20%雷元素伤害加成，持续5秒。",
+            en: "Yae C4: When Sesshou Sakura lightning hits opponents, the Electro DMG Bonus of all nearby party members is increased by 20% for 5s.",
         )),
         from: BuffFrom::Character(CharacterName::YaeMiko)
     };

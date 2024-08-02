@@ -27,7 +27,7 @@ impl BuffMeta for BuffNilouTalent1 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "处于金杯的丰馈状态下的角色受到草元素攻击会使附近的所有角色元素精通提升100点，持续10秒",
-            en: "Characters under the effect of Golden Chalice’s Bounty will increase the Elemental Mastery of all nearby characters by 100 for 10s whenever they are hit by Dendro attacks",
+            en: "Characters under the effect of Golden Chalice's Bounty will increase the Elemental Mastery of all nearby characters by 100 for 10s whenever they are hit by Dendro attacks",
         )),
         from: BuffFrom::Character(CharacterName::Nilou)
     };
@@ -62,7 +62,7 @@ impl BuffMeta for BuffNilouTalent2 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "基于妮露生命值上限超过30000的部分，每1000点生命值上限将使处于「金杯的丰馈」状态下的角色触发的丰穰之核造成的伤害提升9%。<br>通过这种方式至多使丰穰之核造成的伤害提升400%。",
-            en: "Each 1,000 points of Nilou’s Max HP above 30,000 will cause the DMG dealt by Bountiful Cores created by characters affected by Golden Chalice’s Bounty to increase by 7%.<br>The maximum increase in Bountiful Core DMG that can be achieved this way is 300%.",
+            en: "Each 1,000 points of Nilou's Max HP above 30,000 will cause the DMG dealt by Bountiful Cores created by characters affected by Golden Chalice's Bounty to increase by 7%.<br>The maximum increase in Bountiful Core DMG that can be achieved this way is 300%.",
         )),
         from: BuffFrom::Character(CharacterName::Nilou)
     };

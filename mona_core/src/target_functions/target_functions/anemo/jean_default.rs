@@ -61,7 +61,7 @@ impl TargetFunctionMetaTrait for JeanDefaultTargetFunction {
             name: "damage_weight",
             title: locale!(
                 zh_cn: "治疗-伤害比重（0：纯治疗，1：纯伤害）",
-                en: "Heal-DMG Weight(0: Pure Heal, 1: Pure DMG）",
+                en: "Heal-DMG Weight(0: Pure Heal, 1: Pure DMG)",
             ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 0.5 },
         },

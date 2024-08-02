@@ -156,7 +156,7 @@ impl CharacterTrait for Nahida {
             name: "c4_e_count",
             title: locale!(
                 zh_cn: "（4命）蕴种印状态敌人数量",
-                en: "(C4) Schemes to Know‘s Seeds of Skandha Enemy Count",
+                en: "(C4) Schemes to Know's Seeds of Skandha Enemy Count",
             ),
             config: ItemConfigType::Int { min: 0, max: 4, default: 4 },
         }

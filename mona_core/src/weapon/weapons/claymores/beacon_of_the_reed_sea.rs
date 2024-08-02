@@ -53,7 +53,7 @@ impl WeaponTrait for BeaconOfTheReedSea {
         #[cfg(not(target_family = "wasm"))]
         effect: Some(crate::common::i18n::locale!(
             zh_cn: "元素战技命中敌人后，攻击力提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>，持续8秒；受到伤害后，攻击力提升<span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span>，持续8秒。上述2种效果角色处于队伍后台时也能触发。此外，不处于护盾庇护下时，生命值上限提高<span style=\"color: #409EFF;\">32%-40%-48%-56%-64%</span>",
-            en: "After the character’s Elemental Skill hits an opponent, their ATK will be increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> for 8s. After the character takes DMG, their ATK will be increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> for 8s. The 2 aforementioned effects can be triggered even when the character is not on the field. Additionally, when not protected by a shield, the character’s Max HP will be increased by <span style=\"color: #409EFF;\">32%-40%-48%-56%-64%</span>."
+            en: "After the character's Elemental Skill hits an opponent, their ATK will be increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> for 8s. After the character takes DMG, their ATK will be increased by <span style=\"color: #409EFF;\">20%-25%-30%-35%-40%</span> for 8s. The 2 aforementioned effects can be triggered even when the character is not on the field. Additionally, when not protected by a shield, the character's Max HP will be increased by <span style=\"color: #409EFF;\">32%-40%-48%-56%-64%</span>."
         )),
         #[cfg(not(target_family = "wasm"))]
         name_locale: crate::common::i18n::locale!(

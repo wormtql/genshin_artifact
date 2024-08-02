@@ -32,7 +32,7 @@ impl TargetFunctionMetaTrait for KukiShinobuDefaultTargetFunction {
         ),
         description: crate::common::i18n::locale!(
             zh_cn: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大",
-            en: "输出型久岐忍。使其大招和越祓雷草之轮伤害按一定比例之和最大"
+            en: "DPS Shinobu, maximizing the sum of E and Q damage by a certain ratio."
         ),
         tags: "辅助",
         four: TargetFunctionFor::SomeWho(CharacterName::KukiShinobu),
