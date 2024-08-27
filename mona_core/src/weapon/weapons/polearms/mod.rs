@@ -30,6 +30,7 @@ pub use prospectors_drill::ProspectorsDrill;
 pub use dialogues_of_the_desert_sages::DialoguesOfTheDesertSages;
 pub use crimson_moons_semblance::CrimsonMoonsSemblance;
 pub use lumidouce_elegy::LumidouceElegy;
+pub use footprint_of_the_rainbow::FootprintOfTheRainbow;
 
 pub mod engulfing_lightning;
 pub mod skyward_spine;
@@ -63,4 +64,5 @@ pub mod prospectors_drill;
 pub mod dialogues_of_the_desert_sages;
 pub mod crimson_moons_semblance;
 mod lumidouce_elegy;
+mod footprint_of_the_rainbow;
 

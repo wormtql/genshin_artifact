@@ -56,6 +56,7 @@ pub enum WeaponName {
     SplendorOfTranquilWaters,
     UrakuMisugiri,
     Absolution,
+    FluteOfEzpitzal,
 
     // claymore
     WolfsGravestone,
@@ -93,6 +94,8 @@ pub enum WeaponName {
     PortablePowerSaw,
     UltimateOverlordsMegaMagicSword,
     Verdict,
+    EarthShaker,
+    FangOfTheMountainKing,
 
     // polearm
     EngulfingLightning,
@@ -127,6 +130,7 @@ pub enum WeaponName {
     DialoguesOfTheDesertSages,
     CrimsonMoonsSemblance,
     LumidouceElegy,
+    FootprintOfTheRainbow,
 
     // catalyst
     LostPrayerToTheSacredWinds,
@@ -166,6 +170,8 @@ pub enum WeaponName {
     CashflowSupervision,
     TomeOfTheEternalFlow,
     CranesEchoingCall,
+    AshGravenDrinkingHorn,
+    RingOfYaxche,
 
     // bows
     PolarStar,

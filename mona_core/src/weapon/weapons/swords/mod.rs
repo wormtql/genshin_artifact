@@ -41,6 +41,7 @@ pub use sword_of_narzissenkreuz::SwordOfNarzissenkreuz;
 pub use splendor_of_tranquil_waters::SplendorOfTranquilWaters;
 pub use uraku_misugiri::UrakuMisugiri;
 pub use absolution::Absolution;
+pub use flute_of_ezpitzal::FluteOfEzpitzal;
 
 pub mod mistsplitter_reforged;
 pub mod aquila_favonia;
@@ -85,3 +86,4 @@ pub mod sword_of_narzissenkreuz;
 pub mod splendor_of_tranquil_waters;
 pub mod uraku_misugiri;
 pub mod absolution;
+mod flute_of_ezpitzal;

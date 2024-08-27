@@ -33,6 +33,8 @@ pub use tidal_shadow::TidalShadow;
 pub use portable_power_saw::PortablePowerSaw;
 pub use ultimate_overlords_mega_magic_sword::UltimateOverlordsMegaMagicSword;
 pub use verdict::Verdict;
+pub use earth_shaker::EarthShaker;
+pub use fang_of_the_mountain_king::FangOfTheMountainKing;
 
 pub mod wolfs_gravestone;
 pub mod skyward_pride;
@@ -69,3 +71,5 @@ pub mod tidal_shadow;
 pub mod portable_power_saw;
 pub mod ultimate_overlords_mega_magic_sword;
 pub mod verdict;
+mod earth_shaker;
+mod fang_of_the_mountain_king;

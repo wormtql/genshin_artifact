@@ -32,6 +32,7 @@ pub enum WeaponConfig {
     SplendorOfTranquilWaters { stack1: f64, stack2: f64 },
     UrakuMisugiri { rate: f64 },
     Absolution { stack: f64 },
+    FluteOfEzpitzal { rate: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },
@@ -56,6 +57,8 @@ pub enum WeaponConfig {
     PortablePowerSaw { stack: f64 },
     UltimateOverlordsMegaMagicSword { rate: f64 },
     Verdict { stack: f64 },
+    EarthShaker { rate: f64 },
+    FangOfTheMountainKing { stack: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },
@@ -77,6 +80,7 @@ pub enum WeaponConfig {
     ProspectorsDrill { stack: f64 },
     CrimsonMoonsSemblance { rate1: f64, rate2: f64 },
     LumidouceElegy { stack: f64 },
+    FootprintOfTheRainbow { rate: f64 },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },
@@ -103,6 +107,7 @@ pub enum WeaponConfig {
     CashflowSupervision { stack: f64 },
     TomeOfTheEternalFlow { stack: f64 },
     CranesEchoingCall { rate: f64 },
+    RingOfYaxche { rate: f64 },
 
     // Bow
     PolarStar { stack: usize },

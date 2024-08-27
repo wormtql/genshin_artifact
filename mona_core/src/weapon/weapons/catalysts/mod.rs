@@ -35,6 +35,8 @@ pub use ballad_of_the_boundless_blue::BalladOfTheBoundlessBlue;
 pub use cashflow_supervision::CashflowSupervision;
 pub use tome_of_the_eternal_flow::TomeOfTheEternalFlow;
 pub use cranes_echoing_call::CranesEchoingCall;
+pub use ash_graven_drinking_horn::AshGravenDrinkingHorn;
+pub use ring_of_yaxche::RingOfYaxche;
 
 pub mod lost_prayer_to_the_sacred_winds;
 pub mod skyward_atlas;
@@ -73,3 +75,5 @@ pub mod ballad_of_the_boundless_blue;
 pub mod cashflow_supervision;
 pub mod tome_of_the_eternal_flow;
 pub mod cranes_echoing_call;
+mod ash_graven_drinking_horn;
+mod ring_of_yaxche;
