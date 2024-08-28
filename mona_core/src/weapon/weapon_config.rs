@@ -108,6 +108,7 @@ pub enum WeaponConfig {
     TomeOfTheEternalFlow { stack: f64 },
     CranesEchoingCall { rate: f64 },
     RingOfYaxche { rate: f64 },
+    SurfsUp { stack: f64 },
 
     // Bow
     PolarStar { stack: usize },
@@ -137,6 +138,7 @@ pub enum WeaponConfig {
     RangeGauge { stack: f64 },
     Cloudforged { stack: f64 },
     SilvershowerHeartstrings { stack: f64, stack3_rate: f64 },
+    ChainBreaker { count: usize },
 }
 
 impl Default for WeaponConfig {

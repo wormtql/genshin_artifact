@@ -172,6 +172,7 @@ pub enum WeaponName {
     CranesEchoingCall,
     AshGravenDrinkingHorn,
     RingOfYaxche,
+    SurfsUp,
 
     // bows
     PolarStar,
@@ -213,4 +214,5 @@ pub enum WeaponName {
     RangeGauge,
     Cloudforged,
     SilvershowerHeartstrings,
+    ChainBreaker,
 }

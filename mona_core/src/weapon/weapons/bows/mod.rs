@@ -37,6 +37,7 @@ pub use song_of_stillness::SongOfStillness;
 pub use range_gauge::RangeGauge;
 pub use cloudforged::Cloudforged;
 pub use silvershower_heartstrings::SilvershowerHeartstrings;
+pub use chain_breaker::ChainBreaker;
 
 pub mod polar_star;
 pub mod thundering_pulse;
@@ -77,3 +78,4 @@ pub mod song_of_stillness;
 pub mod range_gauge;
 pub mod cloudforged;
 pub mod silvershower_heartstrings;
+mod chain_breaker;

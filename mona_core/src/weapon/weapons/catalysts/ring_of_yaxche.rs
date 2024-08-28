@@ -24,7 +24,7 @@ impl<A: Attribute> WeaponEffect<A> for RingOfYaxcheEffect {
         attribute.add_edge1(
             AttributeName::HP,
             AttributeName::BonusNormalAttack,
-            Box::new(|hp, _| ((hp / 1000.0).floor() * step).min(max)),
+            Box::new(move |hp, _| ((hp / 1000.0).floor() * step).min(max)),
             Box::new(|_x, _y, _grad| (0.0, 0.0)),
             "木棉之环被动"
         );
