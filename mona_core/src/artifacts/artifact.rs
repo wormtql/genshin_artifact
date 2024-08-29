@@ -74,6 +74,7 @@ pub enum ArtifactSetName {
     NighttimeWhispersInTheEchoingWoods,
     FragmentOfHarmonicWhimsy,
     UnfinishedReverie,
+    ScrollOfTheHeroOfCinderCity,
 }
 
 impl ArtifactSetName {

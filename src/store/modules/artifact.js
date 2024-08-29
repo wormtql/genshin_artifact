@@ -25,6 +25,7 @@ if (localStoredArtifacts) {
 
     let temp = flower.concat(feather).concat(sand).concat(cup).concat(head);
     for (let item of temp) {
+
         id = Math.max(id, item.id ?? -1);
         const hash = hashArtifact(item);
         if (hashes.has(hash)) {

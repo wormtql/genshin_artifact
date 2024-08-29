@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
-
+use smallvec::SmallVec;
 use crate::common::Element;
+use crate::common::item_config_type::ConfigElements8Multi;
 use crate::common::max_trait::MaxValue;
 
 #[derive(Serialize, Deserialize)]
@@ -178,6 +179,14 @@ pub struct ConfigNighttimeWhispersInTheEchoingWoods {
     pub rate2: f64,
 }
 
+#[derive(Serialize, Deserialize)]
+#[derive(Debug, Clone, Default)]
+pub struct ConfigScrollOfTheHeroOfCinder {
+    pub elements: ConfigElements8Multi,
+    pub rate1: f64,
+    pub rate2: f64,
+}
+
 #[derive(Default, Debug, Clone)]
 #[derive(Serialize, Deserialize)]
 pub struct ArtifactEffectConfig {
@@ -212,6 +221,7 @@ pub struct ArtifactEffectConfig {
     pub config_nighttime_whispers_in_the_echoing_woods: ConfigNighttimeWhispersInTheEchoingWoods,
     pub config_fragment_of_harmonic_whimsy: ConfigLevel,
     pub config_unfinished_reverie: ConfigRate,
+    pub config_scroll_of_the_hero_of_cinder_city: ConfigScrollOfTheHeroOfCinder,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -248,6 +258,7 @@ pub struct ArtifactConfigInterface {
     pub config_nighttime_whispers_in_the_echoing_woods: Option<ConfigNighttimeWhispersInTheEchoingWoods>,
     pub config_fragment_of_harmonic_whimsy: Option<ConfigLevel>,
     pub config_unfinished_reverie: Option<ConfigRate>,
+    pub config_scroll_of_the_hero_of_cinder_city: Option<ConfigScrollOfTheHeroOfCinder>,
 }
 
 impl ArtifactConfigInterface {
@@ -284,6 +295,7 @@ impl ArtifactConfigInterface {
             config_nighttime_whispers_in_the_echoing_woods: self.config_nighttime_whispers_in_the_echoing_woods.unwrap_or(Default::default()),
             config_fragment_of_harmonic_whimsy: self.config_fragment_of_harmonic_whimsy.unwrap_or_default(),
             config_unfinished_reverie: self.config_unfinished_reverie.unwrap_or_default(),
+            config_scroll_of_the_hero_of_cinder_city: self.config_scroll_of_the_hero_of_cinder_city.unwrap_or_default(),
         }
     }
 }

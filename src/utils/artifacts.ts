@@ -42,7 +42,7 @@ export function newDefaultArtifactConfigForWasm(): any {
         if (config4.length > 0) {
             let c: any = {}
             for (let item of config4) {
-                c[item.name] = item.default
+                c[item.name] = deepCopy(item.default)
             }
 
             const snake = toSnakeCase(name2)

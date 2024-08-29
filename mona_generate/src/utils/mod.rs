@@ -99,6 +99,14 @@ pub fn config_to_json(config: &ItemConfig) -> String {
                     "default": default,
                     "options": temp
                 })
+        },
+        ItemConfigType::Element8Multi { default } => {
+            json!({
+                "type": "element8multi",
+                "title": title_index,
+                "name": name,
+                "default": default,
+            })
         }
     };
 

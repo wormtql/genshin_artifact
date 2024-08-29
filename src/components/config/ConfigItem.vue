@@ -66,6 +66,12 @@
                 :elements="['Pyro', 'Cryo', 'Electro', 'Hydro', 'Anemo', 'Geo', 'Dendro', 'Physical']"
             ></select-element-type>
         </template>
+        <template v-if="type === 'element8multi'">
+            <select-element-multi
+                :modelValue="modelValue"
+                @update:modelValue="handleChangeValue"
+            ></select-element-multi>
+        </template>
         <template v-if="type === 'skill4'">
             <select-skill-type
                 :modelValue="modelValue"

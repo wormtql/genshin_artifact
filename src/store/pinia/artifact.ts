@@ -1,7 +1,7 @@
 import {defineStore} from "pinia"
 import {reactive, ref, type Ref, watch} from "vue"
 import {RandomIDProvider} from "@/utils/idProvider"
-
+import {artifactsData} from "@/assets/artifacts"
 
 import {hash as hashArtifact} from "@/utils/artifactHash"
 import {deepCopy} from "@/utils/common"
@@ -80,6 +80,10 @@ const f = () => {
         hashes.clear()
         const temp = flower.concat(feather).concat(sand).concat(cup).concat(head)
         for (const item of temp) {
+            const setName = item.setName
+            if (!(setName in artifactsData)) {
+                continue
+            }
             artifacts.value.set(item.id, item)
             const hash = item.contentHash
             incHash(hash, 1)

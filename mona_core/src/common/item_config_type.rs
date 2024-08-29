@@ -1,6 +1,138 @@
+use std::fmt::Formatter;
+use std::marker::PhantomData;
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
+use serde::de::{SeqAccess, Visitor};
+use serde::ser::SerializeSeq;
 use serde_json::json;
+use smallvec::{SmallVec};
 use crate::common::{Element, SkillType};
 use crate::common::i18n::{I18nLocale, locale};
+
+#[derive(Default, Debug, Clone, Copy)]
+pub struct ConfigElements8Multi {
+    pub pyro: bool,
+    pub electro: bool,
+    pub dendro: bool,
+    pub cryo: bool,
+    pub anemo: bool,
+    pub geo: bool,
+    pub hydro: bool,
+    pub physical: bool,
+}
+
+impl ConfigElements8Multi {
+    pub fn collect_elements(&self) -> Vec<Element> {
+        let mut ret = Vec::new();
+        if self.pyro {
+            ret.push(Element::Pyro);
+        }
+        if self.electro {
+            ret.push(Element::Electro);
+        }
+        if self.dendro {
+            ret.push(Element::Dendro);
+        }
+        if self.cryo {
+            ret.push(Element::Cryo);
+        }
+        if self.anemo {
+            ret.push(Element::Anemo);
+        }
+        if self.geo {
+            ret.push(Element::Geo);
+        }
+        if self.hydro {
+            ret.push(Element::Hydro);
+        }
+        if self.physical {
+            ret.push(Element::Physical);
+        }
+        ret
+    }
+}
+
+impl Serialize for ConfigElements8Multi {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut root = serializer.serialize_seq(None)?;
+        if self.pyro {
+            root.serialize_element(&Element::Pyro)?;
+        }
+        if self.electro {
+            root.serialize_element(&Element::Electro)?;
+        }
+        if self.dendro {
+            root.serialize_element(&Element::Dendro)?;
+        }
+        if self.cryo {
+            root.serialize_element(&Element::Cryo)?;
+        }
+        if self.anemo {
+            root.serialize_element(&Element::Anemo)?;
+        }
+        if self.geo {
+            root.serialize_element(&Element::Geo)?;
+        }
+        if self.hydro {
+            root.serialize_element(&Element::Hydro)?;
+        }
+        if self.physical {
+            root.serialize_element(&Element::Physical)?;
+        }
+
+        root.end()
+    }
+}
+
+struct ConfigElements8MultiVisitor;
+
+impl<'de> Visitor<'de> for ConfigElements8MultiVisitor {
+    type Value = ConfigElements8Multi;
+
+    fn expecting(&self, formatter: &mut Formatter) -> std::fmt::Result {
+        formatter.write_str("expecting an array of elements")
+    }
+
+    fn visit_seq<A>(self, mut seq: A) -> Result<Self::Value, A::Error>
+    where
+        A: SeqAccess<'de>,
+    {
+        let mut ret = ConfigElements8Multi::default();
+        while let Some(item) = seq.next_element::<Element>()? {
+            if item == Element::Pyro {
+                ret.pyro = true;
+            } else if item == Element::Electro {
+                ret.electro = true;
+            } else if item == Element::Anemo {
+                ret.anemo = true;
+            } else if item == Element::Cryo {
+                ret.cryo = true;
+            } else if item == Element::Geo {
+                ret.geo = true;
+            } else if item == Element::Hydro {
+                ret.hydro = true;
+            } else if item == Element::Dendro {
+                ret.dendro = true;
+            } else if item == Element::Physical {
+                ret.physical = true;
+            }
+        }
+        Ok(ret)
+    }
+}
+
+
+
+impl<'de> Deserialize<'de> for ConfigElements8Multi {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        deserializer.deserialize_seq(ConfigElements8MultiVisitor)
+    }
+}
 
 pub enum ItemConfigType {
     Float {
@@ -42,6 +174,9 @@ pub enum ItemConfigType {
     Element8 {
         default: Element
     },
+    Element8Multi {
+        default: ConfigElements8Multi
+    },
     Skill4 {
         default: SkillType
     }
@@ -55,7 +190,7 @@ pub struct ItemConfig {
 
 impl ItemConfigType {
     pub fn to_json(&self, title: &str, name: &str) -> String {
-        let j = match *self {
+        let j = match self {
             ItemConfigType::Skill4 { default } => {
                 json!({
                     "type": "skill4",
@@ -142,6 +277,14 @@ impl ItemConfigType {
                     "name": name,
                     "default": default,
                     "options": temp
+                })
+            },
+            ItemConfigType::Element8Multi { default } => {
+                json!({
+                    "type": "element8multi",
+                    "title": title,
+                    "name": name,
+                    "default": default
                 })
             }
         };

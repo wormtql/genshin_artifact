@@ -56,6 +56,7 @@ pub use song_of_days_past::SongOfDaysPast;
 pub use nighttime_whispers_in_the_echoing_woods::NighttimeWhispersInTheEchoingWoods;
 pub use fragment_of_harmonic_whimsy::FragmentOfHarmonicWhimsy;
 pub use unfinished_reverie::UnfinishedReverie;
+pub use scroll_of_the_hero_of_cinder_city::ScrollOfTheHeroOfCinderCity;
 
 pub mod empty;
 pub mod adventurer;
@@ -109,6 +110,7 @@ pub mod song_of_days_past;
 pub mod nighttime_whispers_in_the_echoing_woods;
 pub mod fragment_of_harmonic_whimsy;
 pub mod unfinished_reverie;
+pub mod scroll_of_the_hero_of_cinder_city;
 
 pub fn get_effect<T: Attribute>(name: ArtifactSetName, config: &ArtifactEffectConfig, character: &Character<T>) -> Box<dyn ArtifactEffect<T>> {
     name.create_effect(config, &character.common_data)

@@ -29,7 +29,7 @@ getrandom = { version = "0.2", features = ["js"] }
 num = "0.4"
 num-derive = "0.4.2"
 num-traits = "0.2"
-smallvec = "1.8.0"
+smallvec = { version = "1.8.0", features = ["serde"] }
 askama = "0.12"
 askama_escape = "0.10.2"
 strum = { version = "0.26" }
