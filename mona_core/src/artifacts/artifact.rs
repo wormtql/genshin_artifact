@@ -75,6 +75,7 @@ pub enum ArtifactSetName {
     FragmentOfHarmonicWhimsy,
     UnfinishedReverie,
     ScrollOfTheHeroOfCinderCity,
+    ObsidianCodex,
 }
 
 impl ArtifactSetName {

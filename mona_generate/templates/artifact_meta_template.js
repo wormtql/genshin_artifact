@@ -82,6 +82,11 @@ export default {
             {{ config|e("none") }},
             {% endfor %}
         ],
+        config2: [
+            {% for config in a.config2 %}
+            {{ config|e("none") }},
+            {% endfor %}
+        ],
     },
     {% endfor %}
 }

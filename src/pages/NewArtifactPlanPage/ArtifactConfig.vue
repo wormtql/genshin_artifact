@@ -21,14 +21,29 @@
                     <img :src="item.thumbnail" class="image" >
                     <div>
                         <h3 class="artifact-title">{{ item.title }}</h3>
-                        <p style="font-size: 12px;">
-                            <span class="effect-title">{{ t("misc.art4") }}</span>
-                            <span class="effect-body">{{ item.effect4 }}</span>
-                        </p>
+                        <div>
+                            <p v-if="hasConfig2(item)" style="font-size: 12px;">
+                                <span class="effect-title">{{ t("misc.art2") }}</span>
+                                <span class="effect-body">{{ item.effect2 }}</span>
+                            </p>
+                            <p v-if="hasConfig4(item)" style="font-size: 12px;">
+                                <span class="effect-title">{{ t("misc.art4") }}</span>
+                                <span class="effect-body">{{ item.effect4 }}</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <item-config
+                    v-if="hasConfig2(item)"
+                    :model-value="modelValue[item.snake]"
+                    :configs="item.config2"
+                    :need-item-name="false"
+                    @update:modelValue="handleChangeValue(item.snake, $event)"
+                    style="margin-bottom: 8px"
+                ></item-config>
+                <item-config
+                    v-if="hasConfig4(item)"
                     :model-value="modelValue[item.snake]"
                     :configs="item.config4"
                     :need-item-name="false"
@@ -65,16 +80,19 @@ export default {
             let results = []
             for (let name in artifactsData) {
                 const d = artifactsData[name]
-                const config = d.config4 ?? []
+                const config4 = d.config4 ?? []
+                const config2 = d.config2 ?? []
                 const name2 = d.name2
-                if (config.length > 0) {
+                if (config4.length > 0 || config2.length > 0) {
                     results.push({
                         name: name2,
                         title: this.ta(d.nameLocale),
                         eng: d.eng,
                         snake: "config_" + toSnakeCase(name2),
-                        config4: config,
+                        config4: config4,
+                        config2: config2,
                         effect4: this.ta(d.effect4),
+                        effect2: this.ta(d.effect2),
                         thumbnail: getArtifactThumbnail(name),
                         // chs: d.chs,
                     })
@@ -88,18 +106,27 @@ export default {
                 return this.data
             } else {
                 const fuse = new Fuse(this.data, {
-                    keys: ["title", "effect4"]
+                    keys: ["title", "effect4", "effect2"]
                 })
                 const results = fuse.search(this.searchString)
                 return results.map(x => x.item)
             }
-        }
+        },
     },
     methods: {
         handleChangeValue(snake, value) {
+            // console.log(snake, value)
             let temp = deepCopy(this.modelValue)
             temp[snake] = value
             this.$emit("update:modelValue", temp)
+        },
+
+        hasConfig2(item) {
+            return item.config2 && item.config2.length > 0
+        },
+
+        hasConfig4(item) {
+            return item.config4 && item.config4.length > 0
         }
     },
     setup() {

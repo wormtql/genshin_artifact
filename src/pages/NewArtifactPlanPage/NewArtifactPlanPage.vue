@@ -557,6 +557,19 @@
                     </div>
                 </div>
 
+                <div v-if="artifactNeedConfig2" style="margin-top: 16px">
+                    <p class="common-description">
+                        <span class="effect2">{{ t("calcPage.effect2") }}</span>
+                        <span v-html="artifactEffect2Text"></span>
+                    </p>
+                    <item-config
+                        v-if="artifactSingleConfig"
+                        v-model="artifactSingleConfig"
+                        :item-name="artifactConfigItemName"
+                        :configs="artifactConfig2Configs"
+                    ></item-config>
+                </div>
+
                 <div v-if="artifactNeedConfig4" style="margin-top: 16px">
                     <p class="common-description">
                         <span class="effect4">{{ t("calcPage.effect4") }}</span>
@@ -565,7 +578,7 @@
                     <item-config
                         v-if="artifactSingleConfig"
                         v-model="artifactSingleConfig"
-                        :item-name="artifactConfig4ItemName"
+                        :item-name="artifactConfigItemName"
                         :configs="artifactConfig4Configs"
                     ></item-config>
                 </div>
@@ -826,9 +839,12 @@ const {
     artifactItems,
     artifactSetCount,
     artifactNeedConfig4,
-    artifactConfig4ItemName,
+    artifactNeedConfig2,
+    artifactConfigItemName,
     artifactEffect4Text,
+    artifactEffect2Text,
     artifactConfig4Configs,
+    artifactConfig2Configs,
     artifactConfigForCalculator,
 
     setArtifact,
@@ -1708,7 +1724,7 @@ watch(() => accountStore.currentAccountId.value, () => {
 }
 
  //artifact effect description title
-.effect4 {
+.effect4, .effect2 {
     color: #6eb7ff;
 }
 

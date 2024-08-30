@@ -187,6 +187,13 @@ pub struct ConfigScrollOfTheHeroOfCinder {
     pub rate2: f64,
 }
 
+#[derive(Serialize, Deserialize)]
+#[derive(Debug, Clone, Default)]
+pub struct ConfigObsidianCodex {
+    pub set2_rate: f64,
+    pub set4_rate: f64,
+}
+
 #[derive(Default, Debug, Clone)]
 #[derive(Serialize, Deserialize)]
 pub struct ArtifactEffectConfig {
@@ -222,6 +229,7 @@ pub struct ArtifactEffectConfig {
     pub config_fragment_of_harmonic_whimsy: ConfigLevel,
     pub config_unfinished_reverie: ConfigRate,
     pub config_scroll_of_the_hero_of_cinder_city: ConfigScrollOfTheHeroOfCinder,
+    pub config_obsidian_codex: ConfigObsidianCodex,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -259,6 +267,7 @@ pub struct ArtifactConfigInterface {
     pub config_fragment_of_harmonic_whimsy: Option<ConfigLevel>,
     pub config_unfinished_reverie: Option<ConfigRate>,
     pub config_scroll_of_the_hero_of_cinder_city: Option<ConfigScrollOfTheHeroOfCinder>,
+    pub config_obsidian_codex: Option<ConfigObsidianCodex>,
 }
 
 impl ArtifactConfigInterface {
@@ -296,6 +305,7 @@ impl ArtifactConfigInterface {
             config_fragment_of_harmonic_whimsy: self.config_fragment_of_harmonic_whimsy.unwrap_or_default(),
             config_unfinished_reverie: self.config_unfinished_reverie.unwrap_or_default(),
             config_scroll_of_the_hero_of_cinder_city: self.config_scroll_of_the_hero_of_cinder_city.unwrap_or_default(),
+            config_obsidian_codex: self.config_obsidian_codex.unwrap_or_default(),
         }
     }
 }

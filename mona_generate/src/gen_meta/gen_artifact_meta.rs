@@ -19,6 +19,7 @@ struct ArtifactMeta {
     effect4: Option<usize>,
     effect5: Option<usize>,
     config4: Vec<String>,
+    config2: Vec<String>,
 
     flower: Option<usize>,
     feather: Option<usize>,
@@ -58,6 +59,7 @@ pub fn gen_artifact_meta_as_js_file() -> String {
         let e: ArtifactSetName = num::FromPrimitive::from_usize(i).unwrap();
         let meta: ArtifactMetaData = e.get_meta();
         let config4: Option<&'static [ItemConfig]> = e.get_config4();
+        let config2: Option<&'static [ItemConfig]> = e.get_config2();
 
         let flower_icon: String = if let Some(_) = meta.flower { format!("UI_RelicIcon_{}_4", meta.internal_id) } else { String::new() };
         let feather_icon: String = if let Some(_) = meta.feather { format!("UI_RelicIcon_{}_2", meta.internal_id) } else { String::new() };
@@ -77,6 +79,7 @@ pub fn gen_artifact_meta_as_js_file() -> String {
             effect4: if let Some(ref x) = meta.effect4 { Some(*index_map.get(x).unwrap()) } else { None },
             effect5: if let Some(ref x) = meta.effect5 { Some(*index_map.get(x).unwrap()) } else { None },
             config4: config4.unwrap_or(&[]).iter().map(|x| config_to_json(x)).collect(),
+            config2: config2.unwrap_or(&[]).iter().map(|x| config_to_json(x)).collect(),
             flower: if let Some(ref x) = meta.flower { Some(*index_map.get(x).unwrap()) } else { None },
             feather: if let Some(ref x) = meta.feather { Some(*index_map.get(x).unwrap()) } else { None },
             sand: if let Some(ref x) = meta.sand { Some(*index_map.get(x).unwrap()) } else { None },

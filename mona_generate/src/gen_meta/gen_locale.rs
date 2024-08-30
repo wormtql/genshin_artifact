@@ -178,6 +178,11 @@ pub fn collect_config_locale() -> Vec<I18nLocale> {
                 set.insert(item.title.clone());
             }
         }
+        if let Some(x) = a.get_config2() {
+            for item in x.iter() {
+                set.insert(item.title.clone());
+            }
+        }
     }
 
     for pf in PotentialFunctionName::iter() {

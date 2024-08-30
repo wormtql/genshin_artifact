@@ -97,6 +97,7 @@ export default {
         dmg: "DMG",
         type1: "Type",
         art4: "Set4: ",
+        art2: "Set2: ",
         stat: "Stat",
         value: "Value",
         stat1: "Valuable Stat", // todo
@@ -230,6 +231,7 @@ export default {
         saveKumi: "Save as Artifact Group",
         useKumi: "Use Artifact Group",
         effect4: "Set4 Effect:",
+        effect2: "Set2 Effect:",
         dmg: "DMG Calculation",
         detail: "Detail",
         dmg2: "Transformative DMG",

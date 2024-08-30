@@ -4,7 +4,7 @@ import type {ArtifactSetName, IArtifact, IArtifactWasm} from "@/types/artifact"
 import {artifactsData} from "@artifact"
 import {convertArtifact, convertArtifactName} from "@/utils/converter"
 import {toSnakeCase} from "@/utils/common"
-import {newDefaultArtifactConfigForWasm} from "@/utils/artifacts"
+import {getArtifactAllConfigsByName, newDefaultArtifactConfigForWasm} from "@/utils/artifacts"
 import {useI18n} from "@/i18n/i18n"
 
 export function use5Artifacts() {
@@ -12,7 +12,7 @@ export function use5Artifacts() {
     const artifactStore = useArtifactStore()
 
     const artifactIds = ref([-1, -1, -1, -1, -1])
-    // artifact set 4 config
+    // artifact set 2/4 config
     const artifactSingleConfig = ref<any>(null)
 
     const artifactItems = computed(() => {
@@ -61,9 +61,28 @@ export function use5Artifacts() {
         return null
     })
 
-    const artifactConfig4ItemName = computed((): string | null => {
-        if (artifactNeedConfig4.value) {
-            const setNameWasm = convertArtifactName(artifactNeedConfig4.value)
+    const artifactNeedConfig2 = computed((): ArtifactSetName | null => {
+        for (let setName in artifactSetCount.value) {
+            const count = artifactSetCount.value[setName]
+            if (count >= 2) {
+                const data = artifactsData[setName]
+                if (data.config2 && data.config2.length > 0) {
+                    return setName
+                }
+            }
+        }
+
+        return null
+    })
+
+    const artifactConfigItemName = computed((): string | null => {
+        if (artifactNeedConfig4.value || artifactNeedConfig2.value) {
+            let setNameWasm;
+            if (artifactNeedConfig2.value) {
+                setNameWasm = convertArtifactName(artifactNeedConfig2.value);
+            } else if (artifactNeedConfig4.value) {
+                setNameWasm = convertArtifactName(artifactNeedConfig4.value)
+            }
             return `config_${toSnakeCase(setNameWasm)}`
         }
         return null
@@ -77,10 +96,26 @@ export function use5Artifacts() {
         return ta(data.effect4)
     })
 
+    const artifactEffect2Text = computed((): string => {
+        if (!artifactNeedConfig2.value) {
+            return ""
+        }
+        const data = artifactsData[artifactNeedConfig2.value]
+        return ta(data.effect2)
+    })
+
     const artifactConfig4Configs = computed(() => {
         if (artifactNeedConfig4.value) {
             const data = artifactsData[artifactNeedConfig4.value]
             return data.config4
+        }
+        return []
+    })
+
+    const artifactConfig2Configs = computed(() => {
+        if (artifactNeedConfig2.value) {
+            const data = artifactsData[artifactNeedConfig2.value]
+            return data.config2
         }
         return []
     })
@@ -103,7 +138,7 @@ export function use5Artifacts() {
         let base = newDefaultArtifactConfigForWasm()
 
         if (artifactNeedConfig4.value) {
-            let name = artifactConfig4ItemName.value as string
+            let name = artifactConfigItemName.value as string
             base[name] = artifactSingleConfig.value[name]
         }
 
@@ -140,10 +175,31 @@ export function use5Artifacts() {
         if (!newName) {
             artifactSingleConfig.value = null
         } else {
-            const data = artifactsData[newName]
+            const configAll = getArtifactAllConfigsByName(newName)
 
             let defaultConfig: any = {}
-            for (let c of data.config4) {
+            for (let c of configAll) {
+                defaultConfig[c.name] = c.default
+            }
+
+            const nameWasm = convertArtifactName(newName)
+            const configItemName = `config_${toSnakeCase(nameWasm)}`
+            artifactSingleConfig.value = {
+                [configItemName]: defaultConfig
+            }
+        }
+    }, {
+        flush: "sync"
+    })
+
+    watch(() => artifactNeedConfig2.value, newName => {
+        if (!newName) {
+            artifactSingleConfig.value = null
+        } else {
+            const configAll = getArtifactAllConfigsByName(newName)
+
+            let defaultConfig: any = {}
+            for (let c of configAll) {
                 defaultConfig[c.name] = c.default
             }
 
@@ -166,9 +222,12 @@ export function use5Artifacts() {
         artifactItems,
         artifactSetCount,
         artifactNeedConfig4,
-        artifactConfig4ItemName,
+        artifactNeedConfig2,
+        artifactConfigItemName,
         artifactEffect4Text,
+        artifactEffect2Text,
         artifactConfig4Configs,
+        artifactConfig2Configs,
         artifactConfigForCalculator,
 
         setArtifact,

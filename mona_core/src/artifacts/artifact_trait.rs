@@ -33,4 +33,7 @@ pub trait ArtifactTrait {
 
     #[cfg(not(target_family = "wasm"))]
     const CONFIG4: Option<&'static [ItemConfig]> = None;
+
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG2: Option<&'static [ItemConfig]> = None;
 }

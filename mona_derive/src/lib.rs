@@ -140,10 +140,12 @@ pub fn derive_artifact_data(input: TokenStream) -> TokenStream {
     let mut rows_effect = String::new();
     let mut rows_meta = String::new();
     let mut rows_config4 = String::new();
+    let mut rows_config2 = String::new();
     for v in vars.iter() {
         rows_effect.push_str(&format!("ArtifactSetName::{n} => crate::artifacts::effects::{n}::create_effect(config, common),\n", n=v));
         rows_meta.push_str(&format!("ArtifactSetName::{n} => crate::artifacts::effects::{n}::META_DATA,\n", n=v));
         rows_config4.push_str(&format!("ArtifactSetName::{n} => crate::artifacts::effects::{n}::CONFIG4,\n", n=v));
+        rows_config2.push_str(&format!("ArtifactSetName::{n} => crate::artifacts::effects::{n}::CONFIG2,\n", n=v))
     }
 
     let output = format!(
@@ -172,11 +174,19 @@ pub fn derive_artifact_data(input: TokenStream) -> TokenStream {
                     {rows_config4}
                 }}
             }}
+
+            #[cfg(not(target_family = "wasm"))]
+            pub fn get_config2(&self) -> Option<&'static [ItemConfig]> {{
+                match *self {{
+                    {rows_config2}
+                }}
+            }}
         }}
         "#,
         rows_effect=rows_effect,
         rows_meta=rows_meta,
-        rows_config4=rows_config4
+        rows_config4=rows_config4,
+        rows_config2=rows_config2
     );
 
     output.parse().unwrap()

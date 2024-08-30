@@ -39,9 +39,11 @@ export function newDefaultArtifactConfigForWasm(): any {
         const data = artifactsData[name]
         const name2 = data.name2
         const config4 = data.config4 ?? []
-        if (config4.length > 0) {
+        const config2 = data.config2 ?? []
+        const configAll = config2.concat(config4)
+        if (configAll.length > 0) {
             let c: any = {}
-            for (let item of config4) {
+            for (let item of configAll) {
                 c[item.name] = deepCopy(item.default)
             }
 
@@ -340,4 +342,14 @@ export function statName2Locale(name: ArtifactStatName): string {
 
     // return data.chs
     return t("stat", data.name)
+}
+
+export function getArtifactAllConfigs(item: any): any {
+    const config2 = item.config2 ?? []
+    const config4 = item.config4 ?? []
+    return config2.concat(config4)
+}
+
+export function getArtifactAllConfigsByName(name: ArtifactSetName): any {
+    return getArtifactAllConfigs(artifactsData[name])
 }
