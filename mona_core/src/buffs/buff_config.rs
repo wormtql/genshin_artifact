@@ -58,6 +58,7 @@ pub enum BuffConfig {
     BaizhuC4 { rate: f64 },
     XianyunTalent1 { stack: f64 },
     XianyunTalent2 { rate: f64, c2: bool, atk: f64 },
+    KachinaC4 { character_count: usize, rate: f64 },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },

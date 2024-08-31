@@ -100,6 +100,7 @@ pub enum BuffName {
     BaizhuC4,
     XianyunTalent1,
     XianyunTalent2,
+    KachinaC4,
 
     // weapon
     FreedomSworn,

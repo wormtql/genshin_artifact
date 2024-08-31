@@ -44,6 +44,7 @@ pub use mika::BuffMika;
 pub use kaveh::BuffKavehQ;
 pub use baizhu::{BuffBaizhuC4, BuffBaizhuTalent2};
 pub use xianyun::{BuffXianyunTalent1, BuffXianyunTalent2};
+pub use kachina::BuffKachinaC4;
 
 pub mod albedo;
 pub mod aloy;
@@ -91,3 +92,4 @@ pub mod mika;
 pub mod kaveh;
 pub mod baizhu;
 pub mod xianyun;
+pub mod kachina;

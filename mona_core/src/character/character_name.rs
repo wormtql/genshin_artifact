@@ -112,4 +112,5 @@ pub enum CharacterName {
     Sigewinne,
     Sethos,
     Emilie,
+    Kachina,
 }

@@ -40,5 +40,6 @@ pub enum CharacterConfig {
     Clorinde { talent1_stack: f64, talent2_stack: f64, c6_rate: f64 },
     Sigewinne { c6_rate: f64 },
     Sethos { c2_stack: f64 },
+    Kachina { talent1_rate: f64 },
     NoConfig,
 }

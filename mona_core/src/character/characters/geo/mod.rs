@@ -7,6 +7,7 @@ pub mod yunjin;
 pub mod zhongli;
 pub mod navia;
 pub mod chiori;
+pub mod kachina;
 
 pub use albedo::Albedo;
 pub use arataki_itto::AratakiItto;
@@ -17,3 +18,4 @@ pub use yunjin::Yunjin;
 pub use zhongli::Zhongli;
 pub use navia::Navia;
 pub use chiori::Chiori;
+pub use kachina::Kachina;
