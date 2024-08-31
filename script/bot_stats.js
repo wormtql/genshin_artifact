@@ -1,4 +1,4 @@
-function inBrowserGetCharacterStats() {
+(function inBrowserGetCharacterStats() {
     const tables = [...document.querySelectorAll("table.genshin_table.stat_table")]
     const hpValues = []
     const atkValues = []
@@ -27,4 +27,4 @@ function inBrowserGetCharacterStats() {
     console.log(hpValues)
     console.log(atkValues)
     console.log(defValues)
-}
+})()

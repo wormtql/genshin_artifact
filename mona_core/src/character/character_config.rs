@@ -41,5 +41,6 @@ pub enum CharacterConfig {
     Sigewinne { c6_rate: f64 },
     Sethos { c2_stack: f64 },
     Kachina { talent1_rate: f64 },
+    Mualani { talent2_stack: f64 },
     NoConfig,
 }

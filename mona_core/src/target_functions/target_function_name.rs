@@ -102,4 +102,5 @@ pub enum TargetFunctionName {
     SigewinneDefault,
     SethosDefault,
     EmilieDefault,
+    MualaniDefault,
 }

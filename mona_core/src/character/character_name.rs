@@ -113,4 +113,5 @@ pub enum CharacterName {
     Sethos,
     Emilie,
     Kachina,
+    Mualani,
 }

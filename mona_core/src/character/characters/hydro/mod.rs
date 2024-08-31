@@ -10,6 +10,7 @@ pub mod candace;
 pub mod neuvillette;
 pub mod furina;
 pub mod sigewinne;
+pub mod mualani;
 
 pub use barbara::Barbara;
 pub use mona::Mona;
@@ -23,3 +24,4 @@ pub use candace::Candace;
 pub use neuvillette::Neuvillette;
 pub use furina::Furina;
 pub use sigewinne::Sigewinne;
+pub use mualani::Mualani;
