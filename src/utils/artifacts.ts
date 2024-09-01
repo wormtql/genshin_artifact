@@ -350,6 +350,24 @@ export function getArtifactAllConfigs(item: any): any {
     return config2.concat(config4)
 }
 
+/// Get artifacts configs (config2/config4) for current artifact name
 export function getArtifactAllConfigsByName(name: ArtifactSetName): any {
     return getArtifactAllConfigs(artifactsData[name])
+}
+
+/// merge configs into a legit config
+/// note: there may be circumstances where a merging config is not complete (e.g. lacking some config2 fields)
+export function mergeArtifactConfig(config: any): any {
+    const defaultConfig = newDefaultArtifactConfigForWasm()
+    for (const key in config) {
+        if (key in defaultConfig) {
+            for (const configKey in config[key]) {
+                if (configKey in defaultConfig[key]) {
+                    defaultConfig[key][configKey] = deepCopy(config[key][configKey])
+                }
+            }
+        }
+    }
+    console.log(defaultConfig)
+    return defaultConfig
 }

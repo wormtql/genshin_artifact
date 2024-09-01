@@ -653,7 +653,7 @@
 
 <script setup lang="ts">
 import {convertArtifact} from "@util/converter"
-import {newDefaultArtifactConfigForWasm} from "@util/artifacts"
+import {mergeArtifactConfig, newDefaultArtifactConfigForWasm} from "@util/artifacts"
 import {deepCopy} from "@/utils/common"
 import {wasmSingleOptimize} from "@/wasm/single_optimize"
 import {createComputeResult} from "@/api/misc"
@@ -1113,7 +1113,11 @@ function usePreset(name: string) {
     artifactEffectMode.value = item.artifactEffectMode ?? "auto"
 
     // use artifact config
-    artifactConfig.value = item.artifactConfig ?? newDefaultArtifactConfigForWasm()
+    if (item.artifactConfig) {
+        artifactConfig.value = mergeArtifactConfig(item.artifactConfig)
+    } else {
+        artifactConfig.value = newDefaultArtifactConfigForWasm()
+    }
 
     miscCurrentPresetName.value = name
 }
