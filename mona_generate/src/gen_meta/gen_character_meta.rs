@@ -96,7 +96,7 @@ pub fn gen_character_meta_as_js_file() -> String {
 
         let name_locale = *index_mapping.get(&meta.name_locale).unwrap();
 
-        let icon_hash: String = icon_hashmap.get(meta.internal_name)
+        let icon_hash: String = icon_hashmap.get(meta.name.to_string().as_str())
             .map_or(String::new(), |&hash| hash.to_string());
 
         data.push(CharacterMeta {

@@ -43,7 +43,7 @@ pub fn gen_weapon_meta_as_js_file() -> String {
             }
         }
 
-        let icon_hash: String = icon_hashmap.get(meta_data.internal_name)
+        let icon_hash: String = icon_hashmap.get(weapon_name.to_string().as_str())
             .map_or(String::new(), |&hash| hash.to_string());
 
         let my_data = WeaponMetaDataForJS {
