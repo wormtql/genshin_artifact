@@ -227,7 +227,7 @@ impl CharacterTrait for Mualani {
         let is_after_e = s.is_after_e();
 
         // talent2
-        if context.character_common_data.has_talent2 && is_after_e {
+        if context.character_common_data.has_talent2 && s == Q1 {
             let talent2_stack = context.attribute.get_value(AttributeName::USER1);
             let bonus = talent2_stack * 0.15;
             if bonus > 0.0 {
@@ -236,7 +236,7 @@ impl CharacterTrait for Mualani {
         }
 
         // C4
-        if is_after_e && context.character_common_data.constellation >= 4 {
+        if context.character_common_data.constellation >= 4 && s == Q1 {
             builder.add_extra_bonus("C4「鲨鲨主食是豚豚。」", 0.75);
         }
 
