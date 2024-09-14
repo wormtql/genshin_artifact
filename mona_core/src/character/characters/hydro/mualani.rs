@@ -208,7 +208,7 @@ impl CharacterTrait for Mualani {
             A_Stack1 => MUALANI_SKILL.e_dmg1[s2] + MUALANI_SKILL.e_bonus1[s2],
             A_Stack2 => MUALANI_SKILL.e_dmg1[s2] + 2.0 * MUALANI_SKILL.e_bonus1[s2],
             A_Stack3 => MUALANI_SKILL.e_dmg1[s2] + 3.0 * MUALANI_SKILL.e_bonus1[s2],
-            A_Stack4 | A_C1 => MUALANI_SKILL.e_dmg1[s2] + 4.0 * MUALANI_SKILL.e_bonus1[s2] + MUALANI_SKILL.e_bonus2[s2],
+            A_Stack4 | A_C1 => MUALANI_SKILL.e_dmg1[s2] + 3.0 * MUALANI_SKILL.e_bonus1[s2] + MUALANI_SKILL.e_bonus2[s2],
             // A_C1 => 0.0
         };
 
