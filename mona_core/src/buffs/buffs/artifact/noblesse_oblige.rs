@@ -27,7 +27,7 @@ impl BuffMeta for BuffNoblesseOblige4 {
         genre: BuffGenre::Artifact,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。",
-            en: "施放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒。该效果不可叠加。",
+            en: "Using an Elemental Burst increases all party members' ATK by 20% for 12s. This effect cannot stack.",
         )),
         from: BuffFrom::Artifact(ArtifactSetName::NoblesseOblige),
     };

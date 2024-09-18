@@ -27,7 +27,7 @@ impl BuffMeta for BuffXinyanC4 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "辛焱命座4：热情拂扫的伤害，会使敌人的物理抗性降低15%，持续12秒。",
-            en: "辛焱命座4：热情拂扫的伤害，会使敌人的物理抗性降低15%，持续12秒。",
+            en: "Xinyan C4: Sweeping Fervor's swing DMG decreases opponent's Physical RES by 15% for 12s.",
         )),
         from: BuffFrom::Character(CharacterName::Xinyan),
     };
@@ -58,7 +58,7 @@ impl BuffMeta for BuffXinyanTalent2 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "辛焱天赋2：处于热情拂扫的护盾保护下的角色造成的物理伤害提高15%。",
-            en: "辛焱天赋2：处于热情拂扫的护盾保护下的角色造成的物理伤害提高15%。",
+            en: "Xinyan Talent2: Characters shielded by Sweeping Fervor deal 15% increased Physical DMG.",
         )),
         from: BuffFrom::Character(CharacterName::Xinyan),
     };

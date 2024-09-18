@@ -181,7 +181,7 @@ impl CharacterTrait for Diluc {
             name: "pyro",
             title: locale!(
                 zh_cn: "是否被大招附魔",
-                en: "是否被大招附魔",
+                en: "Infused by burst",
             ),
             config: ItemConfigType::Bool { default: true }
         }
