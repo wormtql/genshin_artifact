@@ -10,6 +10,7 @@
 #![allow(unused_variables)]
 #![allow(unreachable_patterns)]
 #![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
 #![feature(decl_macro)]
 #[macro_use] extern crate pest_derive;
 
