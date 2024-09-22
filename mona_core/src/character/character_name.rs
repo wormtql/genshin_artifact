@@ -114,4 +114,5 @@ pub enum CharacterName {
     Emilie,
     Kachina,
     Mualani,
+    Kinich,
 }
