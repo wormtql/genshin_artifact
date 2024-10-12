@@ -50,5 +50,6 @@ pub enum CharacterSkillConfig {
     Clorinde { bond_of_life: f64 },
     Emilie { enemy_burn: bool, use_c6: bool },
     Kinich { hunters_exp: f64 },
+    Xilonen { nightsoul: bool },
     NoConfig,
 }

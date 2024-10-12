@@ -15,3 +15,4 @@ pub use polearm::moonpiercer::BuffMoonpiercer;
 pub use sword::xiphos_moonlight::BuffXiphosMoonlight;
 pub use claymore::makhaira_aquamarine::BuffMakhairaAquamarine;
 pub use sword::key_of_khaj_nisut::BuffKeyOfKhajNisut;
+pub use sword::peak_patrol_song::BuffPeakPatrolSong;

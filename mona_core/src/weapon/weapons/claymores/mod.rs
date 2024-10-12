@@ -35,6 +35,7 @@ pub use ultimate_overlords_mega_magic_sword::UltimateOverlordsMegaMagicSword;
 pub use verdict::Verdict;
 pub use earth_shaker::EarthShaker;
 pub use fang_of_the_mountain_king::FangOfTheMountainKing;
+pub use fruitful_hook::FruitfulHook;
 
 pub mod wolfs_gravestone;
 pub mod skyward_pride;
@@ -73,3 +74,4 @@ pub mod ultimate_overlords_mega_magic_sword;
 pub mod verdict;
 mod earth_shaker;
 mod fang_of_the_mountain_king;
+mod fruitful_hook;

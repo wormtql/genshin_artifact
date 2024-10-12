@@ -115,4 +115,5 @@ pub enum CharacterName {
     Kachina,
     Mualani,
     Kinich,
+    Xilonen,
 }

@@ -36,6 +36,7 @@ pub enum WeaponSubStatFamily {
     DEF96,
     DEF113,
     DEF150,
+    DEF180,
 
     EM12,
     EM20,
@@ -106,6 +107,7 @@ pub fn get_stat_name_from_family(family: WeaponSubStatFamily) -> StatName {
         WeaponSubStatFamily::DEF96 => StatName::DEFPercentage,
         WeaponSubStatFamily::DEF113 => StatName::DEFPercentage,
         WeaponSubStatFamily::DEF150 => StatName::DEFPercentage,
+        WeaponSubStatFamily::DEF180 => StatName::DEFPercentage,
 
         WeaponSubStatFamily::EM12 => StatName::ElementalMastery,
         WeaponSubStatFamily::EM20 => StatName::ElementalMastery,
@@ -177,6 +179,7 @@ pub fn get_value_array(family: WeaponSubStatFamily) -> [f64; 8] {
         WeaponSubStatFamily::DEF96 => [0.096, 0.169, 0.246, 0.285, 0.323, 0.362, 0.401, 0.439],
         WeaponSubStatFamily::DEF113 => [0.113, 0.199, 0.29, 0.335, 0.381, 0.426, 0.472, 0.517],
         WeaponSubStatFamily::DEF150 => [0.15, 0.265, 0.387, 0.447, 0.508, 0.568, 0.629, 0.69],
+        WeaponSubStatFamily::DEF180 => [0.18, 0.3181, 0.4635, 0.5362, 0.6089, 0.6815, 0.7542, 0.8269],
 
         WeaponSubStatFamily::EM12 => [12.0, 21.0, 31.0, 36.0, 41.0, 45.0, 50.0, 55.0],
         WeaponSubStatFamily::EM20 => [20.0, 36.0, 53.0, 61.0, 69.0, 77.0, 85.0, 94.0],

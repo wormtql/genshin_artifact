@@ -33,6 +33,8 @@ pub enum WeaponConfig {
     UrakuMisugiri { rate: f64 },
     Absolution { stack: f64 },
     FluteOfEzpitzal { rate: f64 },
+    SturdyBone { rate: f64 },
+    PeakPatrolSong { def: f64, stack: f64, rate: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },
@@ -59,6 +61,7 @@ pub enum WeaponConfig {
     Verdict { stack: f64 },
     EarthShaker { rate: f64 },
     FangOfTheMountainKing { stack: f64 },
+    FruitfulHook { rate: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },
@@ -81,6 +84,7 @@ pub enum WeaponConfig {
     CrimsonMoonsSemblance { rate1: f64, rate2: f64 },
     LumidouceElegy { stack: f64 },
     FootprintOfTheRainbow { rate: f64 },
+    MountainBracingBolt { rate: f64 },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },

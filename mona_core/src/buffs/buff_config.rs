@@ -4,6 +4,7 @@ use crate::attribute::Attribute;
 use crate::buffs::Buff;
 use crate::buffs::buffs::get_buff;
 use crate::common::Element;
+use crate::common::item_config_type::ConfigElements8Multi;
 
 #[derive(Serialize, Deserialize)]
 pub enum BuffConfig {
@@ -59,6 +60,9 @@ pub enum BuffConfig {
     XianyunTalent1 { stack: f64 },
     XianyunTalent2 { rate: f64, c2: bool, atk: f64 },
     KachinaC4 { character_count: usize, rate: f64 },
+    XilonenE { skill_level: usize, elements: ConfigElements8Multi },
+    XilonenC2 { elements: ConfigElements8Multi },
+    XilonenC4 { def: f64 },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },
@@ -71,6 +75,7 @@ pub enum BuffConfig {
     XiphosMoonlight { refine: usize, em: f64 },
     MakhairaAquamarine { refine: usize, em: f64 },
     KeyOfKhajNisut { refine: usize, hp: f64 },
+    PeakPatrolSong { refine: usize, rate: f64, def: f64 },
 
     ResonanceCryo2 { rate: f64 },
     ResonanceGeo2 { rate1: f64, rate2: f64 },

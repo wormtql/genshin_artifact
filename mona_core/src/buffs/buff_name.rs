@@ -101,6 +101,9 @@ pub enum BuffName {
     XianyunTalent1,
     XianyunTalent2,
     KachinaC4,
+    XilonenE,
+    XilonenC2,
+    XilonenC4,
 
     // weapon
     FreedomSworn,
@@ -114,6 +117,7 @@ pub enum BuffName {
     XiphosMoonlight,
     MakhairaAquamarine,
     KeyOfKhajNisut,
+    PeakPatrolSong,
     
 
     ResonancePyro2,

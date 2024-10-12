@@ -42,6 +42,8 @@ pub use splendor_of_tranquil_waters::SplendorOfTranquilWaters;
 pub use uraku_misugiri::UrakuMisugiri;
 pub use absolution::Absolution;
 pub use flute_of_ezpitzal::FluteOfEzpitzal;
+pub use sturdy_bone::SturdyBone;
+pub use peak_patrol_song::PeakPatrolSong;
 
 pub mod mistsplitter_reforged;
 pub mod aquila_favonia;
@@ -87,3 +89,5 @@ pub mod splendor_of_tranquil_waters;
 pub mod uraku_misugiri;
 pub mod absolution;
 mod flute_of_ezpitzal;
+mod sturdy_bone;
+mod peak_patrol_song;

@@ -43,7 +43,16 @@ macro_rules! damage_ratio {
     }
 }
 
+macro_rules! declare_skill_type {
+    ($name:ident, $($fields:ident),* $(,)?) => {
+        pub struct $name {
+            $(pub $fields: [f64; 15]),*
+        }
+    };
+}
+
 pub(crate) use skill_type;
 pub(crate) use damage_enum;
 pub(crate) use skill_map;
 pub(crate) use damage_ratio;
+pub(crate) use declare_skill_type;

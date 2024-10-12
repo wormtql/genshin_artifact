@@ -57,6 +57,8 @@ pub enum WeaponName {
     UrakuMisugiri,
     Absolution,
     FluteOfEzpitzal,
+    SturdyBone,
+    PeakPatrolSong,
 
     // claymore
     WolfsGravestone,
@@ -96,6 +98,7 @@ pub enum WeaponName {
     Verdict,
     EarthShaker,
     FangOfTheMountainKing,
+    FruitfulHook,
 
     // polearm
     EngulfingLightning,
@@ -131,6 +134,7 @@ pub enum WeaponName {
     CrimsonMoonsSemblance,
     LumidouceElegy,
     FootprintOfTheRainbow,
+    MountainBracingBolt,
 
     // catalyst
     LostPrayerToTheSacredWinds,
