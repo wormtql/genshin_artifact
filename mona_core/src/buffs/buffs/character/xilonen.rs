@@ -18,7 +18,7 @@ impl<A: Attribute> Buff<A> for BuffXilonenE {
     fn change_attribute(&self, attribute: &mut A) {
         for &element in self.elements.iter() {
             let attribute_name = AttributeName::res_minus_name_by_element(element);
-            attribute.set_value_by(attribute_name, "BUFF: 希诺宁E", XILONEN_SKILL.e_res[self.skill_level]);
+            attribute.set_value_by(attribute_name, "BUFF: 希诺宁E", XILONEN_SKILL.e_res[self.skill_level - 1]);
         }
     }
 }
