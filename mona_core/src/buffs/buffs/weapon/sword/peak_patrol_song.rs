@@ -17,7 +17,8 @@ impl<A: Attribute> Buff<A> for BuffPeakPatrolSong {
     fn change_attribute(&self, attribute: &mut A) {
         let ele_bonus2 = 0.06 + 0.02 * self.refine as f64;
         let max_bonus2 = 0.192 + 0.064 * self.refine as f64;
-        let bonus2 = (ele_bonus2 * (self.def / 1000.0).floor()).min(max_bonus2);
+        // let bonus2 = (ele_bonus2 * (self.def / 1000.0).floor()).min(max_bonus2);
+        let bonus2 = (ele_bonus2 * (self.def / 1000.0)).min(max_bonus2);
 
         attribute.add_elemental_bonus("BUFF: 岩峰巡歌被动", bonus2 * self.rate);
     }

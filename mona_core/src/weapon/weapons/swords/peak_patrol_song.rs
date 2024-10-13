@@ -28,7 +28,8 @@ impl<A: Attribute> WeaponEffect<A> for PeakPatrolSongEffect {
 
         let ele_bonus2 = 0.06 + 0.02 * refine;
         let max_bonus2 = 0.192 + 0.064 * refine;
-        let bonus2 = (ele_bonus2 * (self.def / 1000.0).floor()).min(max_bonus2);
+        // let bonus2 = (ele_bonus2 * (self.def / 1000.0).floor()).min(max_bonus2);
+        let bonus2 = (ele_bonus2 * (self.def / 1000.0)).min(max_bonus2);
 
         attribute.add_elemental_bonus("岩峰巡歌被动", bonus2 * self.rate);
     }
