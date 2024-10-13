@@ -182,7 +182,7 @@ impl BuffMeta for BuffXilonenC4 {
         ItemConfig {
             name: "def",
             title: locale!(zh_cn: "防御力", en: "DEF"),
-            config: ItemConfigType::Float { min: 0.0, max: 5000.0, default: 2000.0 }
+            config: ItemConfigType::Float { min: 0.0, max: 6000.0, default: 2000.0 }
         }
     ]);
 

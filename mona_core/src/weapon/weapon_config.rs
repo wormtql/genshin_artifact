@@ -34,7 +34,7 @@ pub enum WeaponConfig {
     Absolution { stack: f64 },
     FluteOfEzpitzal { rate: f64 },
     SturdyBone { rate: f64 },
-    PeakPatrolSong { def: f64, stack: f64, rate: f64 },
+    PeakPatrolSong { stack: f64, rate: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },

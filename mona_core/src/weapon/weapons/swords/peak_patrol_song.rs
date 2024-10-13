@@ -1,4 +1,4 @@
-use crate::attribute::{Attribute, AttributeCommon};
+use crate::attribute::{Attribute, AttributeCommon, AttributeName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::common::i18n::locale;
 use crate::common::item_config_type::{ItemConfig, ItemConfigType};
@@ -12,7 +12,6 @@ use crate::weapon::weapon_base_atk::WeaponBaseATKFamily;
 use crate::weapon::weapon_sub_stat::WeaponSubStatFamily;
 
 pub struct PeakPatrolSongEffect {
-    pub def: f64,
     pub stack: f64,
     pub rate: f64,
 }
@@ -29,9 +28,30 @@ impl<A: Attribute> WeaponEffect<A> for PeakPatrolSongEffect {
         let ele_bonus2 = 0.06 + 0.02 * refine;
         let max_bonus2 = 0.192 + 0.064 * refine;
         // let bonus2 = (ele_bonus2 * (self.def / 1000.0).floor()).min(max_bonus2);
-        let bonus2 = (ele_bonus2 * (self.def / 1000.0)).min(max_bonus2);
+        // let bonus2 = (ele_bonus2 * (self.def / 1000.0)).min(max_bonus2);
+        //
+        // attribute.add_elemental_bonus("岩峰巡歌被动", bonus2 * self.rate);
 
-        attribute.add_elemental_bonus("岩峰巡歌被动", bonus2 * self.rate);
+        let keys = [
+            AttributeName::BonusPhysical,
+            AttributeName::BonusPyro,
+            AttributeName::BonusCryo,
+            AttributeName::BonusHydro,
+            AttributeName::BonusGeo,
+            AttributeName::BonusAnemo,
+            AttributeName::BonusDendro,
+            AttributeName::BonusElectro,
+        ];
+        for k in keys {
+            let rate = self.rate;
+            attribute.add_edge1(
+                AttributeName::DEF,
+                k,
+                Box::new(move |def, _| (ele_bonus2 * (def / 1000.0)).min(max_bonus2) * rate),
+                Box::new(|_x, _y, _grad| (0.0, 0.0)),
+                "岩峰巡歌被动"
+            );
+        }
     }
 }
 
@@ -60,14 +80,6 @@ impl WeaponTrait for PeakPatrolSong {
     #[cfg(not(target_family = "wasm"))]
     const CONFIG_DATA: Option<&'static [ItemConfig]> = Some(&[
         ItemConfig {
-            name: "def",
-            title: locale!(
-                zh_cn: "防御力",
-                en: "DEF"
-            ),
-            config: ItemConfigType::Int { min: 1, max: 5000, default: 1000 },
-        },
-        ItemConfig {
             name: "stack",
             title: locale!(
                 zh_cn: "效果1层数",
@@ -87,8 +99,8 @@ impl WeaponTrait for PeakPatrolSong {
 
     fn get_effect<A: Attribute>(character: &CharacterCommonData, config: &WeaponConfig) -> Option<Box<dyn WeaponEffect<A>>> {
         match *config {
-            WeaponConfig::PeakPatrolSong { def, rate, stack } => Some(Box::new(PeakPatrolSongEffect {
-                def, rate, stack
+            WeaponConfig::PeakPatrolSong { rate, stack } => Some(Box::new(PeakPatrolSongEffect {
+                rate, stack
             })),
             _ => None
         }

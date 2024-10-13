@@ -49,7 +49,7 @@ impl BuffMeta for BuffPeakPatrolSong {
                 zh_cn: "防御力",
                 en: "DEF"
             ),
-            config: ItemConfigType::Int { min: 1, max: 5000, default: 1000 },
+            config: ItemConfigType::Int { min: 1, max: 6000, default: 1000 },
         },
         ItemConfig {
             name: "refine",
