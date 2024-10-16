@@ -17,7 +17,20 @@ use crate::team::TeamQuantization;
 use crate::weapon::Weapon;
 use crate::weapon::weapon_common_data::WeaponCommonData;
 
-pub struct MualaniDefaultTargetFunction;
+pub struct MualaniDefaultTargetFunction {
+    pub vaporize_rate: f64,
+}
+
+impl MualaniDefaultTargetFunction {
+    pub fn new(config: &TargetFunctionConfig) -> MualaniDefaultTargetFunction {
+        MualaniDefaultTargetFunction {
+            vaporize_rate: match *config {
+                TargetFunctionConfig::MualaniDefault { vaporize_rate } => vaporize_rate,
+                _ => 0.0
+            }
+        }
+    }
+}
 
 impl TargetFunction for MualaniDefaultTargetFunction {
     fn get_target_function_opt_config(&self) -> TargetFunctionOptConfig {
@@ -25,7 +38,9 @@ impl TargetFunction for MualaniDefaultTargetFunction {
     }
 
     fn get_default_artifact_config(&self, team_config: &TeamQuantization) -> ArtifactEffectConfig {
-        Default::default()
+        ArtifactEffectConfigBuilder::new()
+            .obsidian_codex(1.0, 1.0)
+            .build()
     }
 
     fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
@@ -42,7 +57,7 @@ impl TargetFunction for MualaniDefaultTargetFunction {
             Mualani::damage::<SimpleDamageBuilder>(&context, S::A_Stack4, &CharacterSkillConfig::NoConfig, None)
         };
 
-        dmg.normal.expectation
+        dmg.normal.expectation * (1.0 - self.vaporize_rate) + dmg.vaporize.unwrap().expectation * self.vaporize_rate
     }
 }
 
@@ -63,7 +78,19 @@ impl TargetFunctionMetaTrait for MualaniDefaultTargetFunction {
         image: TargetFunctionMetaImage::Avatar,
     };
 
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "vaporize_rate",
+            title: crate::common::i18n::locale!(
+                zh_cn: "蒸发占比",
+                en: "Vaporize Ratio",
+            ),
+            config: ItemConfig::RATE01_TYPE
+        }
+    ]);
+
     fn create(character: &CharacterCommonData, weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        Box::new(MualaniDefaultTargetFunction)
+        Box::new(MualaniDefaultTargetFunction(config))
     }
 }

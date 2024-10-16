@@ -62,5 +62,6 @@ pub enum TargetFunctionConfig {
     DehyaDefault { melt_rate: f64, vaporize_rate: f64, e_count: usize },
     MikaDefault { recharge_demand: f64, crit_demand: f64 },
     WriothesleyDefault { punch_ratio: f64, melt_rate:f64 },
+    MualaniDefault { vaporize_rate: f64 },
     NoConfig,
 }
