@@ -122,7 +122,7 @@ impl CharacterTrait for Collei {
         star: 4,
         skill_name1: locale!(
             zh_cn: "普通攻击·祈颂射艺",
-            en: "Normal Attack: Supplicant’s Bowmanship",
+            en: "Normal Attack: Supplicant's Bowmanship",
         ),
         skill_name2: locale!(
             zh_cn: "拂花偈叶",

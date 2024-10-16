@@ -33,7 +33,7 @@ impl BuffMeta for BuffSongOfBrokenPines {
         genre: BuffGenre::Weapon,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "「千年的大乐章·揭旗之歌」效果：普通攻击速度提升12%/15%/18%/21%/24%，攻击力提升20%/25%/30%/35%/40%。",
-            en: "「千年的大乐章·揭旗之歌」效果：普通攻击速度提升12%/15%/18%/21%/24%，攻击力提升20%/25%/30%/35%/40%。",
+            en: "\"Millennial Movement: Banner-Hymn\" increases Normal ATK SPD by 12%/15%/18%/21%/24% and increases ATK by 20%/25%/30%/35%/40%.",
         )),
         from: BuffFrom::Weapon(WeaponName::SongOfBrokenPines),
     };

@@ -31,7 +31,7 @@ impl BuffMeta for BuffViridescentVenerer4 {
         genre: BuffGenre::Artifact,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。",
-            en: "根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。",
+            en: "Decreases opponent's Elemental RES to the element infused in the Swirl by 40% for 10s.",
         )),
         from: BuffFrom::Artifact(ArtifactSetName::ViridescentVenerer),
     };

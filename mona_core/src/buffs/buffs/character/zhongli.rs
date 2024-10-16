@@ -27,7 +27,7 @@ impl BuffMeta for BuffZhongliShield {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "钟离盾：使附近小范围内敌人的所有元素抗性与物理抗性降低20%",
-            en: "钟离盾：使附近小范围内敌人的所有元素抗性与物理抗性降低20%",
+            en: "Jade Shield: Characters protected by the Jade Shield will decrease the Elemental RES and Physical RES of opponents in a small AoE by 20%.",
         )),
         from: BuffFrom::Character(CharacterName::Zhongli),
     };

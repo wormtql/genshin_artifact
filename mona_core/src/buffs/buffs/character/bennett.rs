@@ -36,7 +36,7 @@ impl BuffMeta for BuffBennettQ {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "班尼特Q技能：基于班尼特的基础攻击力，以一定比例获得攻击力加成<br>一命：美妙旅程的攻击力提升效果不再有血量限制，数值上追加班尼特基础攻击力的20%。",
-            en: "Bennett Q: 基于班尼特的基础攻击力，以一定比例获得攻击力加成<br>一命：美妙旅程的攻击力提升效果不再有血量限制，数值上追加班尼特基础攻击力的20%。",
+            en: "Bennett Burst: Characters within the AOE gain an ATK Bonus that is based on Bennett's Base ATK.<br>C1: Fantastic Voyage's ATK increase no longer has an HP restriction, and gains an additional 20% of Bennett's Base ATK.",
         )),
         from: BuffFrom::Character(CharacterName::Bennett),
     };
@@ -101,7 +101,7 @@ impl BuffMeta for BuffBennettC6 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "班尼特命座6：处在美妙旅程领域内的队伍中当前场上单手剑、双手剑、长柄武器角色获得15%火元素伤害加成<br>注：此处不管当前角色的武器类型",
-            en: "Bennett C6: 处在美妙旅程领域内的队伍中当前场上单手剑、双手剑、长柄武器角色获得15%火元素伤害加成<br>注：此处不管当前角色的武器类型",
+            en: "Bennett C6: Sword, Claymore, or Polearm-wielding characters inside Fantastic Voyage's radius gain a 15% Pyro DMG Bonus.<br>P.S. Weapon type here is ignored.",
         )),
         from: BuffFrom::Character(CharacterName::Bennett)
     };
