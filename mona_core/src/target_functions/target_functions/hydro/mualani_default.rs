@@ -25,7 +25,9 @@ impl TargetFunction for MualaniDefaultTargetFunction {
     }
 
     fn get_default_artifact_config(&self, team_config: &TeamQuantization) -> ArtifactEffectConfig {
-        Default::default()
+        ArtifactEffectConfigBuilder::new()
+            .obsidian_codex(1.0, 1.0)
+            .build()
     }
 
     fn target(&self, attribute: &SimpleAttributeGraph2, character: &Character<SimpleAttributeGraph2>, weapon: &Weapon<SimpleAttributeGraph2>, artifacts: &[&Artifact], enemy: &Enemy) -> f64 {
