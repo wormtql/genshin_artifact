@@ -429,10 +429,4 @@ impl ArtifactEffectConfigBuilder {
         self.config.config_golden_troupe.rate = rate;
         self
     }
-
-    pub fn obsidian_codex(&mut self, set2_rate: f64, set4_rate: f64) -> &mut Self {
-        self.config.config_obsidian_codex.set2_rate = set2_rate;
-        self.config.config_obsidian_codex.set4_rate = set4_rate;
-        self
-    }
 }
