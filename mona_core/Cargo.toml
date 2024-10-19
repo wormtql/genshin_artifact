@@ -35,6 +35,6 @@ askama_escape = "0.10.2"
 strum = { version = "0.26" }
 strum_macros = "0.26"
 rustc-hash = "1.1.0"
-pest = "2.7"
-pest_derive = "2.7"
+pest = "=2.1"
+pest_derive = "=2.1"
 #mona_dsl = { path = "../mona_dsl" }
