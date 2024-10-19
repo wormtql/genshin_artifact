@@ -1,11 +1,12 @@
 use crate::artifacts::Artifact;
-use crate::artifacts::effect_config::ArtifactEffectConfig;
+use crate::artifacts::effect_config::{ArtifactEffectConfig, ArtifactEffectConfigBuilder};
 use crate::attribute::SimpleAttributeGraph2;
 use crate::character::{Character, CharacterName};
 use crate::character::character_common_data::CharacterCommonData;
 use crate::character::characters::Mualani;
 use crate::character::skill_config::CharacterSkillConfig;
 use crate::character::traits::CharacterTrait;
+use crate::common::item_config_type::ItemConfig;
 use crate::common::i18n::locale;
 use crate::damage::{DamageContext, SimpleDamageBuilder};
 use crate::enemies::Enemy;
@@ -91,6 +92,6 @@ impl TargetFunctionMetaTrait for MualaniDefaultTargetFunction {
     ]);
 
     fn create(character: &CharacterCommonData, weapon: &WeaponCommonData, config: &TargetFunctionConfig) -> Box<dyn TargetFunction> {
-        Box::new(MualaniDefaultTargetFunction(config))
+        Box::new(MualaniDefaultTargetFunction::new(config))
     }
 }
