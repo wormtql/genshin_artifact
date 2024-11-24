@@ -9,6 +9,7 @@ pub mod shikanoin_heizou_default;
 pub mod wanderer_default;
 pub mod faruzan_damage;
 pub mod xianyun_default;
+mod chasca_default;
 
 pub use jean_default::JeanDefaultTargetFunction;
 pub use kaedehara_kazuha_damage::KaedeharaKazuhaDamageTargetFunction;
@@ -21,3 +22,4 @@ pub use shikanoin_heizou_default::ShikanoinHeizouDefaultTargetFunction;
 pub use wanderer_default::WandererDefaultTargetFunction;
 pub use faruzan_damage::FaruzanDamageTargetFunction;
 pub use xianyun_default::XianyunDefaultTargetFunction;
+pub use chasca_default::ChascaDefaultTargetFunction;

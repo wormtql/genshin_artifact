@@ -9,6 +9,7 @@ pub mod wanderer;
 pub mod faruzan;
 pub mod lynette;
 pub mod xianyun;
+mod chasca;
 
 pub use jean::Jean;
 pub use kaedehara_kazuha::KaedeharaKazuha;
@@ -21,3 +22,4 @@ pub use wanderer::Wanderer;
 pub use faruzan::Faruzan;
 pub use lynette::Lynette;
 pub use xianyun::Xianyun;
+pub use chasca::Chasca;

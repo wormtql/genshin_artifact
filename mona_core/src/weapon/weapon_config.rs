@@ -35,6 +35,7 @@ pub enum WeaponConfig {
     FluteOfEzpitzal { rate: f64 },
     SturdyBone { rate: f64 },
     PeakPatrolSong { stack: f64, rate: f64 },
+    CalamityOfEshu { rate: f64 },
 
     // claymore
     WolfsGravestone { rate: f64 },
@@ -113,6 +114,7 @@ pub enum WeaponConfig {
     CranesEchoingCall { rate: f64 },
     RingOfYaxche { rate: f64 },
     SurfsUp { stack: f64 },
+    WaveridingWhirl { rate: f64, hydro_count: usize },
 
     // Bow
     PolarStar { stack: usize },
@@ -143,6 +145,8 @@ pub enum WeaponConfig {
     Cloudforged { stack: f64 },
     SilvershowerHeartstrings { stack: f64, stack3_rate: f64 },
     ChainBreaker { count: usize },
+    FlowerWreathedFeathers { stack: f64 },
+    AstralVulturesCrimsonPlumage { rate: f64, different_count: usize },
 }
 
 impl Default for WeaponConfig {

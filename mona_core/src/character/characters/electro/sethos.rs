@@ -141,7 +141,7 @@ impl CharacterTrait for Sethos {
             Normal3 hit_n_dmg!(3)
             Charged1 locale!(zh_cn: "瞄准射击", en: "Aimed Shot")
             Charged2 locale!(zh_cn: "一段蓄力瞄准射击", en: "Aimed Shot Charge Level 1")
-            Charged2 locale!(zh_cn: "贯影箭伤害", en: "Shadowpiercing Shot DMG")
+            Charged3 locale!(zh_cn: "贯影箭伤害", en: "Shadowpiercing Shot DMG")
             Plunging1 plunging_dmg!(1)
             Plunging2 plunging_dmg!(2)
             Plunging3 plunging_dmg!(3)

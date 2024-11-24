@@ -11,6 +11,7 @@ pub mod fischl;
 pub mod dori;
 pub mod clorinde;
 pub mod sethos;
+pub mod ororon;
 
 pub use beidou::Beidou;
 pub use keqing::Keqing;
@@ -25,3 +26,4 @@ pub use fischl::Fischl;
 pub use dori::Dori;
 pub use clorinde::Clorinde;
 pub use sethos::Sethos;
+pub use ororon::Ororon;

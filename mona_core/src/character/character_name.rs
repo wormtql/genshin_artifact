@@ -116,4 +116,6 @@ pub enum CharacterName {
     Mualani,
     Kinich,
     Xilonen,
+    Ororon,
+    Chasca,
 }

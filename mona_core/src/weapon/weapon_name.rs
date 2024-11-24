@@ -59,6 +59,7 @@ pub enum WeaponName {
     FluteOfEzpitzal,
     SturdyBone,
     PeakPatrolSong,
+    CalamityOfEshu,
 
     // claymore
     WolfsGravestone,
@@ -177,6 +178,7 @@ pub enum WeaponName {
     AshGravenDrinkingHorn,
     RingOfYaxche,
     SurfsUp,
+    WaveridingWhirl,
 
     // bows
     PolarStar,
@@ -219,4 +221,6 @@ pub enum WeaponName {
     Cloudforged,
     SilvershowerHeartstrings,
     ChainBreaker,
+    FlowerWreathedFeathers,
+    AstralVulturesCrimsonPlumage,
 }

@@ -105,4 +105,5 @@ pub enum TargetFunctionName {
     MualaniDefault,
     KinichDefault,
     XilonenDefault,
+    ChascaDefault,
 }
