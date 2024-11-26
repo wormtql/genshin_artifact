@@ -44,7 +44,10 @@ impl WeaponTrait for LightOfFoliarIncision {
         weapon_base: WeaponBaseATKFamily::ATK542,
         star: 5,
         #[cfg(not(target_family = "wasm"))]
-        effect: None,
+        effect: Some(crate::common::i18n::locale!(
+            zh_cn: "暴击率提升<span style=\"color: #409EFF;\">4%-5%-6%-7%-8%</span>；普通攻击造成元素伤害后，获得「裁叶」效果：普通攻击和元素战技造成的伤害提高，提高值相当于元素精通的<span style=\"color: #409EFF;\">120%-150%-180%-210%-240%</span>。该效果在生效28次或12秒后消失，每12秒至多获得一次「裁叶」效果。
+"
+        )),
         #[cfg(not(target_family = "wasm"))]
         name_locale: crate::common::i18n::locale!(
             zh_cn: "裁叶萃光",

@@ -30,7 +30,7 @@ impl TargetFunctionMetaTrait for BeidouDefaultTargetFunction {
         ),
         description: crate::common::i18n::locale!(
             zh_cn: "普通北斗弹反流",
-            en: "普通北斗弹反流"
+            en: "Beidou Counter"
         ),
         tags: "输出",
         four: TargetFunctionFor::SomeWho(CharacterName::Beidou),

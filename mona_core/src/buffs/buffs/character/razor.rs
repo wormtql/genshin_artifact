@@ -27,7 +27,7 @@ impl BuffMeta for BuffRazorC4 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "雷泽命座4：利爪与苍雷点按时，会使命中的敌人防御力降低15％，持续7秒。",
-            en: "雷泽命座4：利爪与苍雷点按时，会使命中的敌人防御力降低15％，持续7秒。",
+            en: "Razor C4: When casting Claw and Thunder (Press), opponents hit will have their DEF decreased by 15% for 7s.",
         )),
         from: BuffFrom::Character(CharacterName::Razor),
     };

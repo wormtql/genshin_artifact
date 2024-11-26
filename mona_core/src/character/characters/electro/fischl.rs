@@ -153,7 +153,7 @@ impl CharacterTrait for Fischl {
             CharacterSkillMapItem { index: FischlDamageEnum::Plunging3 as usize, text: plunging_dmg!(3) },
         ]),
         skill2: Some(&[
-            CharacterSkillMapItem { index: FischlDamageEnum::E1 as usize, text: locale!(zh_cn: "奥兹攻击伤害", en: "Oz’s ATK DMG") },
+            CharacterSkillMapItem { index: FischlDamageEnum::E1 as usize, text: locale!(zh_cn: "奥兹攻击伤害", en: "Oz's ATK DMG") },
             CharacterSkillMapItem { index: FischlDamageEnum::E2 as usize, text: locale!(zh_cn: "召唤伤害", en: "Summoning DMG") },
         ]),
         skill3: Some(&[
