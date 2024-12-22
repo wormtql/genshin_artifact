@@ -10,6 +10,7 @@ pub mod faruzan;
 pub mod lynette;
 pub mod xianyun;
 mod chasca;
+mod lanyan;
 
 pub use jean::Jean;
 pub use kaedehara_kazuha::KaedeharaKazuha;
@@ -23,3 +24,4 @@ pub use faruzan::Faruzan;
 pub use lynette::Lynette;
 pub use xianyun::Xianyun;
 pub use chasca::Chasca;
+pub use lanyan::Lanyan;

@@ -106,4 +106,5 @@ pub enum TargetFunctionName {
     KinichDefault,
     XilonenDefault,
     ChascaDefault,
+    LanyanDefault,
 }

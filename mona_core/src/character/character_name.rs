@@ -118,4 +118,5 @@ pub enum CharacterName {
     Xilonen,
     Ororon,
     Chasca,
+    Lanyan,
 }
