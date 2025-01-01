@@ -63,6 +63,7 @@ pub enum WeaponConfig {
     EarthShaker { rate: f64 },
     FangOfTheMountainKing { stack: f64 },
     FruitfulHook { rate: f64 },
+    AThousandBlazingSuns { rate1: f64, rate2: f64 },
 
     // Polearm
     EngulfingLightning { rate: f64 },
@@ -115,6 +116,7 @@ pub enum WeaponConfig {
     RingOfYaxche { rate: f64 },
     SurfsUp { stack: f64 },
     WaveridingWhirl { rate: f64, hydro_count: usize },
+    StarcallersWatch { use_buff: bool, rate: f64 },
 
     // Bow
     PolarStar { stack: usize },

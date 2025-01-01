@@ -100,6 +100,7 @@ pub enum WeaponName {
     EarthShaker,
     FangOfTheMountainKing,
     FruitfulHook,
+    AThousandBlazingSuns,
 
     // polearm
     EngulfingLightning,
@@ -179,6 +180,7 @@ pub enum WeaponName {
     RingOfYaxche,
     SurfsUp,
     WaveridingWhirl,
+    StarcallersWatch,
 
     // bows
     PolarStar,

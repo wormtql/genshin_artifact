@@ -39,6 +39,7 @@ pub use ash_graven_drinking_horn::AshGravenDrinkingHorn;
 pub use ring_of_yaxche::RingOfYaxche;
 pub use surfs_up::SurfsUp;
 pub use waveriding_whirl::WaveridingWhirl;
+pub use starcallers_watch::StarcallersWatch;
 
 pub mod lost_prayer_to_the_sacred_winds;
 pub mod skyward_atlas;
@@ -81,3 +82,4 @@ mod ash_graven_drinking_horn;
 mod ring_of_yaxche;
 mod surfs_up;
 mod waveriding_whirl;
+mod starcallers_watch;
