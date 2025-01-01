@@ -344,7 +344,7 @@ impl CharacterTrait for Mavuika {
                 SkillType::ElementalBurst => 1.2,
                 _ => 0.0
             };
-            builder.add_extra_bonus("C2「灰烬的代价」", bonus * c2_rate);
+            builder.add_atk_ratio("C2「灰烬的代价」", bonus * c2_rate);
         }
 
         if after_q && is_certain_skill {
