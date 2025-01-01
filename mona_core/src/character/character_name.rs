@@ -119,4 +119,5 @@ pub enum CharacterName {
     Ororon,
     Chasca,
     Lanyan,
+    Mavuika,
 }

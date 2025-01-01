@@ -43,5 +43,6 @@ pub enum CharacterConfig {
     Kachina { talent1_rate: f64 },
     Mualani { talent2_stack: f64 },
     Xilonen { sampler_geo: bool, sampler_cryo: bool, sampler_pyro: bool, sampler_hydro: bool, sampler_electro: bool, talent1_rate: f64, talent2_rate: f64 },
+    Mavuika { talent1_rate: f64, talent2_rate: f64, fighting_spirit: f64, c1_rate: f64, c2_rate: f64 },
     NoConfig,
 }

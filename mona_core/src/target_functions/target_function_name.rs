@@ -107,4 +107,5 @@ pub enum TargetFunctionName {
     XilonenDefault,
     ChascaDefault,
     LanyanDefault,
+    MavuikaDefault,
 }

@@ -52,5 +52,6 @@ pub enum CharacterSkillConfig {
     Kinich { hunters_exp: f64 },
     Xilonen { nightsoul: bool },
     Chasca { element_count: usize, c6_rate: f64 },
+    Mavuika { after_q: bool },
     NoConfig,
 }
