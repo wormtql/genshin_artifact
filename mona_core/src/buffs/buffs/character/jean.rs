@@ -27,7 +27,7 @@ impl BuffMeta for BuffJeanC4 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "琴命座4：在蒲公英之风的领域内，所有敌人的风元素抗性下降40％。",
-            en: "琴命座4：在蒲公英之风的领域内，所有敌人的风元素抗性下降40％。",
+            en: "Jean C4: Within the Field created by Dandelion Breeze, all opponents have their Anemo RES decreased by 40%.",
         )),
         from: BuffFrom::Character(CharacterName::Jean),
     };

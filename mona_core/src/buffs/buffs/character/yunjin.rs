@@ -41,13 +41,13 @@ impl BuffMeta for BuffYunjinQ {
         name: BuffName::YunjinQ,
         name_locale: crate::common::i18n::locale!(
             zh_cn: "云堇-「飞云旗阵」",
-            en: "Yunjin-「Flying Cloud Flag Formation」",
+            en: "Yun Jin-「Flying Cloud Flag Formation」",
         ),
         image: BuffImage::Avatar(CharacterName::Yunjin),
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "云堇Q技能：对敌人造成普通攻击伤害时，基于云堇自己当前的防御力，提高造成的伤害。<br>天赋「莫从恒蹊」：「飞云旗阵」提供的普通攻击伤害提高，当队伍中存在1/2/3/4种元素类型的角色时，数值上进一步追加云堇防御力的2.5%/5.0%/7.5%/11.5%。",
-            en: "云堇Q技能：对敌人造成普通攻击伤害时，基于云堇自己当前的防御力，提高造成的伤害。<br>天赋「莫从恒蹊」：「飞云旗阵」提供的普通攻击伤害提高，当队伍中存在1/2/3/4种元素类型的角色时，数值上进一步追加云堇防御力的2.5%/5.0%/7.5%/11.5%。",
+            en: "Yun Jin Burst: When Normal Attack DMG is dealt to opponents, Bonus DMG will be dealt based on Yun Jin's current DEF.",
         )),
         from: BuffFrom::Character(CharacterName::Yunjin),
     };
@@ -66,7 +66,7 @@ impl BuffMeta for BuffYunjinQ {
             name: "def",
             title: crate::common::i18n::locale!(
                 zh_cn: "云堇的防御力",
-                en: "Yunjin DEF",
+                en: "Yun Jin DEF",
             ),
             config: ItemConfigType::FloatInput { default: 2000.0 }
         },
@@ -115,13 +115,13 @@ impl BuffMeta for BuffYunjinC2 {
         name: BuffName::YunjinC2,
         name_locale: crate::common::i18n::locale!(
             zh_cn: "云堇-「诸般切末」",
-            en: "Yunjin-「Myriad Mise-En-Scène」",
+            en: "Yun Jin-「Myriad Mise-En-Scène」",
         ),
         image: BuffImage::Avatar(CharacterName::Yunjin),
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "云堇命座2：施放破嶂见旌仪后，附近队伍中所有角色普通攻击造成的伤害提高15%，持续12秒。",
-            en: "云堇命座2：施放破嶂见旌仪后，附近队伍中所有角色普通攻击造成的伤害提高15%，持续12秒。",
+            en: "Yun Jin C2: After Cliffbreaker's Banner is unleashed, all nearby party members' Normal Attack DMG is increased by 15% for 12s.",
         )),
         from: BuffFrom::Character(CharacterName::Yunjin),
     };

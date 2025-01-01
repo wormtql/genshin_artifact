@@ -121,7 +121,7 @@ impl CharacterTrait for Faruzan {
         ),
         skill_name3: locale!(
             zh_cn: "抟风秘道",
-            en: "The Wind’s Secret Ways",
+            en: "The Wind's Secret Ways",
         ),
         name_locale: locale!(
             zh_cn: "珐露珊",
@@ -164,7 +164,7 @@ impl CharacterTrait for Faruzan {
             name: "q_ratio",
             title: locale!(
                 zh_cn: "「祈风之赐」比例",
-                en: "Prayerful Wind’s Benefit Ratio"
+                en: "Prayerful Wind's Benefit Ratio"
             ),
             config: ItemConfigType::Float { min: 0.0, max: 1.0, default: 1.0 }
         },
