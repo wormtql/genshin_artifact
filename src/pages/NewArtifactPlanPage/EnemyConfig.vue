@@ -5,7 +5,7 @@
             :model-value="modelValue.level"
             @update:modelValue="handleInput('level', $event)"
             :min="60"
-            :max="100"
+            :max="120"
         ></el-input-number>
     </div>
 
