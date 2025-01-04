@@ -108,4 +108,5 @@ pub enum TargetFunctionName {
     ChascaDefault,
     LanyanDefault,
     MavuikaDefault,
+    CitlaliDefault,
 }

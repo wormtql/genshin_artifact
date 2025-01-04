@@ -13,6 +13,7 @@ pub mod mika;
 pub mod freminet;
 pub mod wriothesley;
 pub mod charlotte;
+mod citlali;
 
 pub use aloy::Aloy;
 pub use chongyun::Chongyun;
@@ -29,3 +30,4 @@ pub use mika::Mika;
 pub use freminet::Freminet;
 pub use wriothesley::Wriothesley;
 pub use charlotte::Charlotte;
+pub use citlali::Citlali;

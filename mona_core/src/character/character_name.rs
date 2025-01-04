@@ -120,4 +120,5 @@ pub enum CharacterName {
     Chasca,
     Lanyan,
     Mavuika,
+    Citlali,
 }
