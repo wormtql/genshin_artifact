@@ -21,11 +21,11 @@ impl<A: Attribute> WeaponEffect<A> for AThousandBlazingSunsEffect {
         let refine = data.refine as f64;
 
         let crit_dmg_bonus = refine * 0.05 + 0.15;
-        let bonus = crit_dmg_bonus * self.rate1 + 0.75 * self.rate2;
+        let bonus = crit_dmg_bonus * self.rate1 * (1.0 + 0.75 * self.rate2);
         attribute.set_value_by(AttributeName::CriticalDamageBase, "「焚曜千阳」被动", bonus);
 
         let atk_bonus = 0.07 * refine + 0.21;
-        let bonus = atk_bonus * self.rate1 + 0.75 * self.rate2;
+        let bonus = atk_bonus * self.rate1 * (1.0 + 0.75 * self.rate2);
         attribute.add_atk_percentage("「焚曜千阳」被动", bonus);
     }
 }
