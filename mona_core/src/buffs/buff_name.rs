@@ -104,6 +104,9 @@ pub enum BuffName {
     XilonenE,
     XilonenC2,
     XilonenC4,
+    CitlaliTalent1,
+    CitlaliC1,
+    CitlaliC6,
 
     // weapon
     FreedomSworn,

@@ -63,6 +63,9 @@ pub enum BuffConfig {
     XilonenE { skill_level: usize, elements: ConfigElements8Multi },
     XilonenC2 { elements: ConfigElements8Multi },
     XilonenC4 { def: f64 },
+    CitlaliTalent1 { has_c2: bool, rate: f64 },
+    CitlaliC1 { em: f64 },
+    CitlaliC6 { stack: f64 },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },
