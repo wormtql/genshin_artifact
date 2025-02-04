@@ -48,6 +48,7 @@ pub fn get_em_bonus(em: f64) -> f64 {
 
 pub fn transformative_damage_simple(level: usize, em: f64, enemy: &Enemy) -> TransformativeDamage {
     let base_swirl = get_transformative_base(level, TransformativeType::SwirlPyro);
+
     let base_overload = get_transformative_base(level, TransformativeType::Overload);
     let base_superconduct = get_transformative_base(level, TransformativeType::Superconduct);
     let base_shatter = get_transformative_base(level, TransformativeType::Shatter);
@@ -113,7 +114,11 @@ pub fn transformative_damage<A: Attribute>(level: usize, attribute: &A, enemy: &
     let enhance_burgeon = attribute.get_value(AttributeName::EnhanceBurgeon);
     let enhance_burning = attribute.get_value(AttributeName::EnhanceBurning);
 
-    let base_swirl = get_transformative_base(level, TransformativeType::SwirlPyro);
+    let mut base_swirl = get_transformative_base(level, TransformativeType::SwirlPyro);
+
+    // introduced by Yumemizuki Mizuki C1
+    base_swirl += attribute.get_value(AttributeName::SwirlExtraDmg);
+
     let base_overload = get_transformative_base(level, TransformativeType::Overload);
     let base_superconduct = get_transformative_base(level, TransformativeType::Superconduct);
     let base_shatter = get_transformative_base(level, TransformativeType::Shatter);

@@ -173,6 +173,9 @@ pub enum AttributeName {
     ExtraDmgGeo,
     ExtraDmgDendro,
     ExtraDmgPhysical,
+
+    // introduced because of YumemizukiMizuki C1
+    SwirlExtraDmg,
 }
 
 impl AttributeName {

@@ -107,6 +107,8 @@ pub enum BuffName {
     CitlaliTalent1,
     CitlaliC1,
     CitlaliC6,
+    YumemizukiMizukiC1,
+    YumemizukiMizukiC2,
 
     // weapon
     FreedomSworn,

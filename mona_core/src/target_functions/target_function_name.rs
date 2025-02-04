@@ -109,4 +109,5 @@ pub enum TargetFunctionName {
     LanyanDefault,
     MavuikaDefault,
     CitlaliDefault,
+    YumemizukiMizukiDefault,
 }

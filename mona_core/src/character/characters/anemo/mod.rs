@@ -11,6 +11,7 @@ pub mod lynette;
 pub mod xianyun;
 mod chasca;
 mod lanyan;
+mod yumemizuki_mizuki;
 
 pub use jean::Jean;
 pub use kaedehara_kazuha::KaedeharaKazuha;
@@ -25,3 +26,4 @@ pub use lynette::Lynette;
 pub use xianyun::Xianyun;
 pub use chasca::Chasca;
 pub use lanyan::Lanyan;
+pub use yumemizuki_mizuki::YumemizukiMizuki;

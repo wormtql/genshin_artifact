@@ -66,6 +66,8 @@ pub enum BuffConfig {
     CitlaliTalent1 { has_c2: bool, rate: f64 },
     CitlaliC1 { em: f64 },
     CitlaliC6 { stack: f64 },
+    YumemizukiMizukiC1 { em: f64 },
+    YumemizukiMizukiC2 { em: f64 },
 
     FreedomSworn { refine: usize },
     SongOfBrokenPines { refine: usize },

@@ -121,4 +121,5 @@ pub enum CharacterName {
     Lanyan,
     Mavuika,
     Citlali,
+    YumemizukiMizuki,
 }
