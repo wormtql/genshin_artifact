@@ -32,6 +32,7 @@ pub use crimson_moons_semblance::CrimsonMoonsSemblance;
 pub use lumidouce_elegy::LumidouceElegy;
 pub use footprint_of_the_rainbow::FootprintOfTheRainbow;
 pub use mountain_bracing_bolt::MountainBracingBolt;
+pub use tamayuratei_no_ohanashi::TamayurateiNoOhanashi;
 
 pub mod engulfing_lightning;
 pub mod skyward_spine;
@@ -67,3 +68,4 @@ pub mod crimson_moons_semblance;
 mod lumidouce_elegy;
 mod footprint_of_the_rainbow;
 mod mountain_bracing_bolt;
+mod tamayuratei_no_ohanashi;

@@ -87,6 +87,7 @@ pub enum WeaponConfig {
     LumidouceElegy { stack: f64 },
     FootprintOfTheRainbow { rate: f64 },
     MountainBracingBolt { rate: f64 },
+    TamayurateiNoOhanashi { rate: f64 },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },
@@ -117,6 +118,7 @@ pub enum WeaponConfig {
     SurfsUp { stack: f64 },
     WaveridingWhirl { rate: f64, hydro_count: usize },
     StarcallersWatch { use_buff: bool, rate: f64 },
+    SunnyMorningSleepIn { rate1: f64, rate2: f64, rate3: f64 },
 
     // Bow
     PolarStar { stack: usize },

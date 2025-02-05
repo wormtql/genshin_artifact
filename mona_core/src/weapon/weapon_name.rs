@@ -137,6 +137,7 @@ pub enum WeaponName {
     LumidouceElegy,
     FootprintOfTheRainbow,
     MountainBracingBolt,
+    TamayurateiNoOhanashi,
 
     // catalyst
     LostPrayerToTheSacredWinds,
@@ -181,6 +182,7 @@ pub enum WeaponName {
     SurfsUp,
     WaveridingWhirl,
     StarcallersWatch,
+    SunnyMorningSleepIn,
 
     // bows
     PolarStar,
