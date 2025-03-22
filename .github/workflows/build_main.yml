@@ -45,11 +45,11 @@ jobs:
       run: yarn install --immutable --immutable-cache --check-cache
     - name: Build
       run: yarn build
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: dist
-        path: dist/
+    # - name: Upload artifacts
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: dist
+    #     path: dist/
     
     - name: Deploy
       uses: easingthemes/ssh-deploy@main
