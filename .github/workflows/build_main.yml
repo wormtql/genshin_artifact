@@ -31,9 +31,9 @@ jobs:
 #        cache: 'npm'
     - name: Setup Rust
       uses: actions-rust-lang/setup-rust-toolchain@v1
-      with:
-        toolchain: nightly-2024-10-8
-        target: wasm32-unknown-unknown
+      # with:
+        # toolchain: nightly-2024-10-8
+        # target: wasm32-unknown-unknown
     - name: Setup wasm-pack
       run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
     - name: Build wasm dependency
