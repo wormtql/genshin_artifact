@@ -196,7 +196,9 @@ export default {
         exportAll: "Export All",
         go: "Please go to",
         toCalc: "page to add new presets",
-        wrongFormat: "Wrong format"
+        wrongFormat: "Wrong format",
+        renamePresetTitle:"Rename the preset",
+        renamePresetContent:"Please enter the new name for the preset",
     },
     calcPage: {
         selectArt: "Select Artifact",

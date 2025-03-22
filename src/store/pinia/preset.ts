@@ -49,6 +49,16 @@ function f() {
         return presets.value[name]
     }
 
+    function renamePreset(name:string,newName:string):boolean{
+        const preset = getPreset(name)
+        if(preset===undefined) return false
+        const item = preset.item
+        item.name = newName
+        deletePreset(name)
+        addOrOverwrite(newName,item)
+        return getPreset(newName)!==undefined
+    }
+
     function deletePreset(name: string) {
         delete presets.value[name]
     }
@@ -68,6 +78,7 @@ function f() {
         addOrOverwrite,
         deletePreset,
         getPreset,
+        renamePreset,
 
         allFlat,
         count

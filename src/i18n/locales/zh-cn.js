@@ -198,7 +198,9 @@ export default {
         exportAll: "导出全部",
         go: "请前往",
         toCalc: "页面添加预设",
-        wrongFormat: "导入格式错误"
+        wrongFormat: "导入格式错误",
+        renamePresetTitle:"重命名预设",
+        renamePresetContent:"请输入新的预设名字",
     },
     calcPage: {
         selectArt: "选择圣遗物",
