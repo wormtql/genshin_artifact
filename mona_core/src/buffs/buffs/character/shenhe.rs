@@ -34,7 +34,7 @@ impl BuffMeta for BuffShenheE {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "申鹤E技能：基于申鹤自己当前的攻击力，提高造成的伤害。",
-            en: "申鹤E技能：基于申鹤自己当前的攻击力，提高造成的伤害。",
+            en: "Shenhe Skill: The DMG dealt is increased based on Shenhe's current ATK",
         )),
         from: BuffFrom::Character(CharacterName::Shenhe),
     };
@@ -96,7 +96,7 @@ impl BuffMeta for BuffShenheQ {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "申鹤Q技能：「箓灵」将结成领域，使其中敌人的冰元素抗性与物理抗性降低。",
-            en: "申鹤Q技能：「箓灵」将结成领域，使其中敌人的冰元素抗性与物理抗性降低。",
+            en: "Shenhe Burst: The Talisman Spirit then creates a field that decreases the Cryo RES and Physical RES of opponents within it.",
         )),
         from: BuffFrom::Character(CharacterName::Shenhe),
     };
@@ -151,7 +151,7 @@ impl BuffMeta for BuffShenheTalent1 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "申鹤天赋1：处于神女遣灵真诀的领域中的当前场上角色，冰元素伤害加成提高15%。二命：领域中的当前场上角色，冰元素伤害的暴击伤害提高15%。",
-            en: "申鹤天赋1：处于神女遣灵真诀的领域中的当前场上角色，冰元素伤害加成提高15%。二命：领域中的当前场上角色，冰元素伤害的暴击伤害提高15%。",
+            en: "Shenhe Talent1: An active character within the field created by Divine Maiden's Deliverance gains 15% Cryo DMG Bonus.",
         )),
         from: BuffFrom::Character(CharacterName::Shenhe),
     };
@@ -210,7 +210,7 @@ impl BuffMeta for BuffShenheTalent2 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "申鹤天赋2：申鹤施放仰灵威召将役咒后，将使附近的队伍中所有角色获得如下效果：<br>•点按：元素战技和元素爆发造成的伤害提高15%，持续10秒；<br>•长按：普通攻击、重击和下落攻击造成的伤害提高15%，持续15秒。",
-            en: "申鹤天赋2：申鹤施放仰灵威召将役咒后，将使附近的队伍中所有角色获得如下效果：<br>•点按：元素战技和元素爆发造成的伤害提高15%，持续10秒；<br>•长按：普通攻击、重击和下落攻击造成的伤害提高15%，持续15秒。",
+            en: "Shenhe Talent2: After Shenhe uses Spring Spirit Summoning, she will grant all nearby party members the following effects:<br>•Press: Elemental Skill and Elemental Burst DMG increased by 15% for 10s.<br>•Hold: Normal, Charged, and Plunging Attack DMG increased by 15% for 15s.",
         )),
         from: BuffFrom::Character(CharacterName::Shenhe),
     };

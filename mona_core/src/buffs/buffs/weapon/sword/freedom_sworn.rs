@@ -35,7 +35,7 @@ impl BuffMeta for BuffFreedomSworn {
         genre: BuffGenre::Weapon,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "「千年的大乐章·抗争之歌」效果：普通攻击、重击、下落攻击造成的伤害提升16%/20%/24%/28%/32%，攻击力提升20%/25%/30%/35%/40%。",
-            en: "「千年的大乐章·抗争之歌」效果：普通攻击、重击、下落攻击造成的伤害提升16%/20%/24%/28%/32%，攻击力提升20%/25%/30%/35%/40%。",
+            en: "\"Millennial Movement: Song of Resistance\" increases Normal, Charged and Plunging Attack DMG by 16%/20%/24%/28%/32% and increases ATK by 20%/25%/30%/35%/40%.",
         )),
         from: BuffFrom::Weapon(WeaponName::FreedomSworn),
     };

@@ -30,7 +30,7 @@ impl BuffMeta for BuffRosariaTalent2 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "罗莎莉亚天赋2：施放终命的圣礼时，基于自身暴击率的15%，提高附近的队伍中所有角色(不包括罗莎莉亚自己)的暴击率，持续10秒。通过这种方式获得的暴击率提升，无法超过15%。",
-            en: "罗莎莉亚天赋2：施放终命的圣礼时，基于自身暴击率的15%，提高附近的队伍中所有角色(不包括罗莎莉亚自己)的暴击率，持续10秒。通过这种方式获得的暴击率提升，无法超过15%。",
+            en: "Rosaria Talent2: Casting Rites of Termination increases CRIT Rate of all nearby party members (except Rosaria herself) by 15% of Rosaria's CRIT Rate for 10s. CRIT Rate Bonus gained this way cannot exceed 15%.",
         )),
         from: BuffFrom::Character(CharacterName::Rosaria),
     };
@@ -80,7 +80,7 @@ impl BuffMeta for BuffRosariaC6 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "罗莎莉亚命座6：终命的圣礼的攻击会使敌人的物理抗性降低20%，持续10秒。",
-            en: "罗莎莉亚命座6：终命的圣礼的攻击会使敌人的物理抗性降低20%，持续10秒。",
+            en: "Rosaria C6: Rites of Termination's attack decreases opponents' Physical RES by 20% for 10s.",
         )),
         from: BuffFrom::Character(CharacterName::Rosaria),
     };

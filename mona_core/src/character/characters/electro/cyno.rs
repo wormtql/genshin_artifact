@@ -152,7 +152,7 @@ impl CharacterTrait for Cyno {
         ),
         skill_name3: locale!(
             zh_cn: "圣仪·煟煌随狼行",
-            en: "Sacred Rite: Wolf’s Swiftness",
+            en: "Sacred Rite: Wolf's Swiftness",
         ),
         name_locale: locale!(
             zh_cn: "赛诺",

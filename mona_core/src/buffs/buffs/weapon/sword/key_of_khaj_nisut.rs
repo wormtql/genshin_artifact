@@ -32,7 +32,7 @@ impl BuffMeta for BuffKeyOfKhajNisut {
         genre: BuffGenre::Weapon,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "将基于装备者生命值上限的0.2%/0.25%/0.3%/0.35%/0.4%，为队伍中附近所有角色提供元素精通提升，持续20秒。",
-            en: "The Elemental Mastery of all nearby party members will be increased by 0.2%/0.25%/0.3%/0.35%/0.4% of the equipping character’s max HP for 20s.",
+            en: "The Elemental Mastery of all nearby party members will be increased by 0.2%/0.25%/0.3%/0.35%/0.4% of the equipping character's max HP for 20s.",
         )),
         from: BuffFrom::Weapon(WeaponName::KeyOfKhajNisut)
     };
