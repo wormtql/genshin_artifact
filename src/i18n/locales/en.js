@@ -18,7 +18,7 @@ export default {
         fbGithubIssue: "Github Issue",
         fbIssueDescription: "Create an issue on github",
         // fbQQ: "QQ group",
-        // fbQQDescription: "Give feed backs （群号：801106595）",
+        // fbQQDescription: "Give feed backs （群号：1035783390）",
         // fbNGA: "NGA讨论帖",
         // fbNGADescription: "在NGA进行反馈"
     },

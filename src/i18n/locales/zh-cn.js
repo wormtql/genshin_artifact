@@ -18,7 +18,7 @@ export default {
         fbGithubIssue: "Github Issue",
         fbIssueDescription: "在Github仓库提出Issue",
         fbQQ: "QQ群",
-        fbQQDescription: "在QQ群反馈或是水群（群号：801106595）",
+        fbQQDescription: "在QQ群反馈或是水群（群号：1035783390）",
         fbNGA: "NGA讨论帖",
         fbNGADescription: "在NGA进行反馈"
     },
