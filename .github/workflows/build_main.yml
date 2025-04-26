@@ -27,13 +27,13 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 18
 #        cache: 'npm'
     - name: Setup Rust
       uses: actions-rust-lang/setup-rust-toolchain@v1
-      with:
-        toolchain: nightly
-        target: wasm32-unknown-unknown
+      # with:
+        # toolchain: nightly-2024-10-8
+        # target: wasm32-unknown-unknown
     - name: Setup wasm-pack
       run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
     - name: Build wasm dependency
@@ -45,11 +45,11 @@ jobs:
       run: yarn install --immutable --immutable-cache --check-cache
     - name: Build
       run: yarn build
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: dist
-        path: dist/
+    # - name: Upload artifacts
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: dist
+    #     path: dist/
     
     - name: Deploy
       uses: easingthemes/ssh-deploy@main
