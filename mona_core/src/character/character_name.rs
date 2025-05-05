@@ -122,4 +122,5 @@ pub enum CharacterName {
     Mavuika,
     Citlali,
     YumemizukiMizuki,
+    Iansan,
 }

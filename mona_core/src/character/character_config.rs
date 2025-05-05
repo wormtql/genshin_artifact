@@ -46,5 +46,6 @@ pub enum CharacterConfig {
     Mavuika { talent1_rate: f64, talent2_rate: f64, fighting_spirit: f64, c1_rate: f64, c2_rate: f64 },
     Citlali { talent1_rate: f64, c6_stack: f64 },
     YumemizukiMizuki { talent2_rate: f64 },
+    Iansan { talent1_rate: f64 },
     NoConfig,
 }
