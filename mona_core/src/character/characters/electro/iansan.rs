@@ -175,7 +175,7 @@ impl CharacterTrait for Iansan {
         use IansanDamageEnum::*;
         let mut builder = D::new();
 
-        match s {
+        let ratio = match s {
             Normal1 => IANSAN_SKILL.normal_dmg1[s1],
             Normal2 => IANSAN_SKILL.normal_dmg2[s1],
             Normal3 => IANSAN_SKILL.normal_dmg3[s1],
@@ -187,6 +187,7 @@ impl CharacterTrait for Iansan {
             E1 => IANSAN_SKILL.e_dmg1[s2],
             Q1 => IANSAN_SKILL.q_dmg1[s3],
         };
+        builder.add_atk_ratio("技能倍率", ratio);
 
         builder.damage(
             &context.attribute,

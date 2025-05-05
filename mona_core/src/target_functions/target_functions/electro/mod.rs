@@ -11,6 +11,7 @@ pub mod kuki_shinobu_default;
 pub mod cyno_default;
 pub mod clorinde_default;
 pub mod sethos_default;
+mod varesa_default;
 
 pub use beidou_default::BeidouDefaultTargetFunction;
 pub use fischl_default::FischlDefaultTargetFunction;
@@ -25,3 +26,4 @@ pub use kuki_shinobu_default::KukiShinobuDefaultTargetFunction;
 pub use cyno_default::CynoDefaultTargetFunction;
 pub use clorinde_default::ClorindeDefaultTargetFunction;
 pub use sethos_default::SethosDefaultTargetFunction;
+pub use varesa_default::VaresaDefaultTargetFunction;

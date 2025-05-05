@@ -47,5 +47,6 @@ pub enum CharacterConfig {
     Citlali { talent1_rate: f64, c6_stack: f64 },
     YumemizukiMizuki { talent2_rate: f64 },
     Iansan { talent1_rate: f64 },
+    Varesa { talent1_rate: f64, talent2_stack: f64, passion: bool },
     NoConfig,
 }

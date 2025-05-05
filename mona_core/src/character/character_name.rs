@@ -123,4 +123,5 @@ pub enum CharacterName {
     Citlali,
     YumemizukiMizuki,
     Iansan,
+    Varesa,
 }

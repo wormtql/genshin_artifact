@@ -100,7 +100,7 @@ async function func() {
     // console.log(skill);
 }
 
-function inBroswer() {
+(function inBroswer() {
     function removeZero(str) {
         return str.replace(/0*$/, "");
     }
@@ -160,6 +160,6 @@ function inBroswer() {
             }
         }
     }
-}
+})()
 
 func();
