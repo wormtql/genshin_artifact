@@ -183,6 +183,7 @@ pub enum WeaponName {
     WaveridingWhirl,
     StarcallersWatch,
     SunnyMorningSleepIn,
+    VividNotions,
 
     // bows
     PolarStar,

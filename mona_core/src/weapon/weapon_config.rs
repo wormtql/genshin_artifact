@@ -119,6 +119,7 @@ pub enum WeaponConfig {
     WaveridingWhirl { rate: f64, hydro_count: usize },
     StarcallersWatch { use_buff: bool, rate: f64 },
     SunnyMorningSleepIn { rate1: f64, rate2: f64, rate3: f64 },
+    VividNotions { rate1: f64, rate2: f64 },
 
     // Bow
     PolarStar { stack: usize },

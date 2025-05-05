@@ -41,6 +41,7 @@ pub use surfs_up::SurfsUp;
 pub use waveriding_whirl::WaveridingWhirl;
 pub use starcallers_watch::StarcallersWatch;
 pub use sunny_morning_sleep_in::SunnyMorningSleepIn;
+pub use vivid_notions::VividNotions;
 
 pub mod lost_prayer_to_the_sacred_winds;
 pub mod skyward_atlas;
@@ -85,3 +86,4 @@ mod surfs_up;
 mod waveriding_whirl;
 mod starcallers_watch;
 mod sunny_morning_sleep_in;
+mod vivid_notions;
