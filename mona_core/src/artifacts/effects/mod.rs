@@ -58,6 +58,8 @@ pub use fragment_of_harmonic_whimsy::FragmentOfHarmonicWhimsy;
 pub use unfinished_reverie::UnfinishedReverie;
 pub use scroll_of_the_hero_of_cinder_city::ScrollOfTheHeroOfCinderCity;
 pub use obsidian_codex::ObsidianCodex;
+pub use long_nights_oath::LongNightsOath;
+pub use finale_of_the_deep_galleries::FinaleOfTheDeepGalleries;
 
 pub mod empty;
 pub mod adventurer;
@@ -113,6 +115,8 @@ pub mod fragment_of_harmonic_whimsy;
 pub mod unfinished_reverie;
 pub mod scroll_of_the_hero_of_cinder_city;
 pub mod obsidian_codex;
+mod long_nights_oath;
+mod finale_of_the_deep_galleries;
 
 pub fn get_effect<T: Attribute>(name: ArtifactSetName, config: &ArtifactEffectConfig, character: &Character<T>) -> Box<dyn ArtifactEffect<T>> {
     name.create_effect(config, &character.common_data)

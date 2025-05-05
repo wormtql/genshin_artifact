@@ -76,6 +76,8 @@ pub enum ArtifactSetName {
     UnfinishedReverie,
     ScrollOfTheHeroOfCinderCity,
     ObsidianCodex,
+    LongNightsOath,
+    FinaleOfTheDeepGalleries,
 }
 
 impl ArtifactSetName {
