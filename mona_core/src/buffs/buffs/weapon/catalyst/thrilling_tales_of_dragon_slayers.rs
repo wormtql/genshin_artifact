@@ -30,7 +30,7 @@ impl BuffMeta for BuffThrillingTalesOfDragonSlayers {
         genre: BuffGenre::Weapon,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "传承：主动切换角色时，新登场的角色攻击力提升24%/30%/36%/42%/48%，持续10秒。该效果每20秒只能触发一次。",
-            en: "传承：主动切换角色时，新登场的角色攻击力提升24%/30%/36%/42%/48%，持续10秒。该效果每20秒只能触发一次。",
+            en: "Heritage: When switching characters, the new character taking the field has their ATK increased by 24% for 10s. This effect can only occur once every 20s.",
         )),
         from: BuffFrom::Weapon(WeaponName::ThrillingTalesOfDragonSlayers),
     };

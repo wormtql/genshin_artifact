@@ -27,7 +27,7 @@ impl BuffMeta for BuffXingqiuC2 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "行秋命座2：受到剑雨攻击的敌人，水元素抗性降低15％，持续4秒。",
-            en: "行秋命座2：受到剑雨攻击的敌人，水元素抗性降低15％，持续4秒。",
+            en: "Xingqiu C2: Decreases the Hydro RES of opponents hit by sword rain attacks by 15% for 4s.",
         )),
         from: BuffFrom::Character(CharacterName::Xingqiu),
     };

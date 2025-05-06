@@ -32,13 +32,13 @@ impl BuffMeta for BuffKujouSaraEOrQ {
         name: BuffName::KujouSaraEOrQ,
         name_locale: crate::common::i18n::locale!(
             zh_cn: "九条裟罗-「天狗咒雷」",
-            en: "KujouSara-「Tengu Juurai」",
+            en: "Kujou-「Tengu Juurai」",
         ),
         image: BuffImage::Avatar(CharacterName::KujouSara),
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "九条裟罗E/Q技能：基于九条裟罗的基础攻击力，以一定比例获得攻击力加成<br>六命：处于天狗咒雷带来的攻击力提升效果状态下的角色，其雷元素伤害的暴击伤害提高60%。",
-            en: "九条裟罗E/Q技能：基于九条裟罗的基础攻击力，以一定比例获得攻击力加成<br>六命：处于天狗咒雷带来的攻击力提升效果状态下的角色，其雷元素伤害的暴击伤害提高60%。",
+            en: "Kujou Skill/Burst: granting the active character within its AoE an ATK Bonus based on Kujou Sara's Base ATK.",
         )),
         from: BuffFrom::Character(CharacterName::KujouSara),
     };
@@ -49,7 +49,7 @@ impl BuffMeta for BuffKujouSaraEOrQ {
             name: "base_atk",
             title: crate::common::i18n::locale!(
                 zh_cn: "九条裟罗的基础攻击力",
-                en: "Sara Base ATK",
+                en: "Kujou Base ATK",
             ),
             config: ItemConfigType::FloatInput { default: 700.0 },
         },

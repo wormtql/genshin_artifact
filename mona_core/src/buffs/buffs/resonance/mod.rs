@@ -26,7 +26,7 @@ impl BuffMeta for BuffResonancePyro2 {
         genre: BuffGenre::Resonance,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "攻击力提升25%。",
-            en: "攻击力提升25%。",
+            en: "Increases ATK by 25%.",
         )),
         from: BuffFrom::Resonance,
     };
@@ -59,7 +59,7 @@ impl BuffMeta for BuffResonanceCryo2 {
         genre: BuffGenre::Resonance,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "攻击冰元素附着或冻结状态下的敌人时，暴击率提高15%。",
-            en: "攻击冰元素附着或冻结状态下的敌人时，暴击率提高15%。",
+            en: "Increases CRIT Rate against opponents that are Frozen or affected by Cryo by 15%.",
         )),
         from: BuffFrom::Resonance,
     };
@@ -114,7 +114,7 @@ impl BuffMeta for BuffResonanceGeo2 {
         genre: BuffGenre::Resonance,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "护盾强效提升15%。角色处于护盾保护状态时，①造成的伤害提升15%，对敌人造成伤害时会使敌人的的②岩元素抗性降低20%，持续15秒。",
-            en: "护盾强效提升15%。角色处于护盾保护状态时，①造成的伤害提升15%，对敌人造成伤害时会使敌人的的②岩元素抗性降低20%，持续15秒。",
+            en: "Increases shield strength by 15%. Additionally, characters protected by a shield will have the following special characteristics: ①DMG dealt increased by 15%, dealing DMG to enemies will ②decrease their Geo RES by 20% for 15s.",
         )),
         from: BuffFrom::Common,
     };
@@ -171,8 +171,8 @@ impl BuffMeta for BuffResonanceHydro2 {
         image: BuffImage::Misc("hydro"),
         genre: BuffGenre::Resonance,
         description: Some(crate::common::i18n::locale!(
-            zh_cn: "火元素附着的持续时间下降40%。生命值上限提升25%",
-            en: "火元素附着的持续时间下降40%。生命值上限提升25%",
+            zh_cn: "生命值上限提升25%",
+            en: "Increases Max HP by 25%.",
         )),
         from: BuffFrom::Resonance
     };
@@ -206,7 +206,7 @@ impl BuffMeta for BuffResonanceDendro2 {
         genre: BuffGenre::Resonance,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "元素精通提升50点。触发燃烧、原激化、绽放反应后，队伍中附近的所有角色元素精通提升30点，持续6秒。触发超激化、蔓激化、超绽放、烈绽放反应后，队伍中附近的所有角色元素精通提升20点,持续6秒。以上效果的持续时间独立计算。",
-            en: "元素精通提升50点。触发燃烧、原激化、绽放反应后，队伍中附近的所有角色元素精通提升30点，持续6秒。触发超激化、蔓激化、超绽放、烈绽放反应后，队伍中附近的所有角色元素精通提升20点,持续6秒。以上效果的持续时间独立计算。",
+            en: "Elemental Mastery increased by 50. After triggering Burning, Quicken, or Bloom reactions, all nearby party members gain 30 Elemental Mastery for 6s. After triggering Aggravate, Spread, Hyperbloom, or Burgeon reactions, all nearby party members gain 20 Elemental Mastery for 6s. The durations of the aforementioned effects will be counted independently.",
         )),
         from: BuffFrom::Resonance
     };

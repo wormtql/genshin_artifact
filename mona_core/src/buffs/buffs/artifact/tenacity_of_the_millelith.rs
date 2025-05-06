@@ -28,7 +28,7 @@ impl BuffMeta for BuffTenacityOfTheMillelith4 {
         genre: BuffGenre::Artifact,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "元素战技命中敌人后，使队伍中附近的所有角色攻击力提升20%，护盾强效提升30%，持续3秒。",
-            en: "元素战技命中敌人后，使队伍中附近的所有角色攻击力提升20%，护盾强效提升30%，持续3秒。",
+            en: "When an Elemental Skill hits an opponent, the ATK of all nearby party members is increased by 20% and their Shield Strength is increased by 30% for 3s.",
         )),
         from: BuffFrom::Artifact(ArtifactSetName::TenacityOfTheMillelith),
     };

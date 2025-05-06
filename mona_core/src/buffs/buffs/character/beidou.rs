@@ -25,7 +25,7 @@ impl BuffMeta for BuffBeidouC6 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "北斗命座6：斫雷持续期间，周围敌人的雷元素抗性降低15%。",
-            en: "Beidou C6: 斫雷持续期间，周围敌人的雷元素抗性降低15%。",
+            en: "Beidou C6: During the duration of Stormbreaker, the Electro RES of surrounding opponents is decreased by 15%.",
         )),
         from: BuffFrom::Character(CharacterName::Beidou),
     };

@@ -147,7 +147,7 @@ impl CharacterTrait for Tighnari {
         ),
         skill_name3: locale!(
             zh_cn: "造生缠藤箭",
-            en: "Fashioner’s Tanglevine Shaft",
+            en: "Fashioner's Tanglevine Shaft",
         ),
         name_locale: locale!(
             zh_cn: "提纳里",

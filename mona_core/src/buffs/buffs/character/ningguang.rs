@@ -27,7 +27,7 @@ impl BuffMeta for BuffNingguangTalent2 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "凝光天赋2：穿过璇玑屏的角色会获得12%岩元素伤害加成，持续10秒。",
-            en: "凝光天赋2：穿过璇玑屏的角色会获得12%岩元素伤害加成，持续10秒。",
+            en: "Ningguang Talent2: A character that passes through the Jade Screen will gain a 12% Geo DMG Bonus for 10s.",
         )),
         from: BuffFrom::Character(CharacterName::Ningguang),
     };

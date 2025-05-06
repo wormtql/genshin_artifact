@@ -132,7 +132,7 @@ impl CharacterTrait for Yaoyao {
         star: 4,
         skill_name1: locale!(
             zh_cn: "普通攻击·颠扑连环枪",
-            en: "Normal Attack: Toss ‘N’ Turn Spear",
+            en: "Normal Attack: Toss 'N' Turn Spear",
         ),
         skill_name2: locale!(
             zh_cn: "云台团团降芦菔",

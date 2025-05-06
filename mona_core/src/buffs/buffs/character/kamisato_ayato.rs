@@ -31,8 +31,8 @@ impl BuffMeta for BuffKamisatoAyatoQ {
         image: BuffImage::Avatar(CharacterName::KamisatoAyato),
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
-            zh_cn: "神里绫人Q技能：展开清净之园囿，熄灭其中一切嚣闹。存在期间，其中会持续降下水花剑，攻击范围内的敌人，造成水元素伤害，并提高其中的角色的普通攻击伤害。",
-            en: "神里绫人Q技能：展开清净之园囿，熄灭其中一切嚣闹。存在期间，其中会持续降下水花剑，攻击范围内的敌人，造成水元素伤害，并提高其中的角色的普通攻击伤害。",
+            zh_cn: "神里绫人Q技能：展开清净之园囿，熄灭其中一切嚣闹。存在期间，提高其中的角色的普通攻击伤害。",
+            en: "Ayato Burst: Unveils a garden of purity that silences the cacophony within. While this space exists, Bloomwater Blades will increasing the Normal Attack DMG of characters within.",
         )),
         from: BuffFrom::Character(CharacterName::KamisatoAyato)
     };

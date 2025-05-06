@@ -32,7 +32,7 @@ impl BuffMeta for BuffGorouE1 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "五郎E技能：一名角色时：「坚牢」：防御力提升。",
-            en: "五郎E技能：一名角色时：「坚牢」：防御力提升。",
+            en: "Gorou Skill: 1 Geo character: Adds \"Standing Firm\" - DEF Bonus.",
         )),
         from: BuffFrom::Character(CharacterName::Gorou),
     };
@@ -81,7 +81,7 @@ impl BuffMeta for BuffGorouE3 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "五郎E技能：三名角色时：「摧碎」：除上述效果外，获得岩元素伤害加成。",
-            en: "五郎E技能：三名角色时：「摧碎」：除上述效果外，获得岩元素伤害加成。",
+            en: "Gorou Skill: 3 Geo characters: Adds \"Crunch\" - Geo DMG Bonus.",
         )),
         from: BuffFrom::Character(CharacterName::Gorou),
     };
@@ -111,7 +111,7 @@ impl BuffMeta for BuffGorouTalent1 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "五郎天赋1：施放兽牙逐突形胜战法后的12秒内，附近的队伍中所有角色的防御力提升25%。",
-            en: "五郎天赋1：施放兽牙逐突形胜战法后的12秒内，附近的队伍中所有角色的防御力提升25%。",
+            en: "Gorou Talent1: After using Juuga: Forward Unto Victory, all nearby party members' DEF is increased by 25% for 12s.",
         )),
         from: BuffFrom::Character(CharacterName::Gorou),
     };
@@ -149,7 +149,7 @@ impl BuffMeta for BuffGorouC6 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "五郎命座6：施放犬坂吠吠方圆阵或兽牙逐突形胜战法后的12秒内，依据施放时的领域等级，提高附近的队伍中所有角色岩元素伤害的暴击伤害。",
-            en: "五郎命座6：施放犬坂吠吠方圆阵或兽牙逐突形胜战法后的12秒内，依据施放时的领域等级，提高附近的队伍中所有角色岩元素伤害的暴击伤害。",
+            en: "For 12s after using Inuzaka All-Round Defense or Juuga: Forward Unto Victory, increases the CRIT DMG of all nearby party members' Geo DMG based on the buff level of the skill's field at the time of use.",
         )),
         from: BuffFrom::Character(CharacterName::Gorou),
     };

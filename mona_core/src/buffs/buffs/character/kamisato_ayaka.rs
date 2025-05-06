@@ -27,7 +27,7 @@ impl BuffMeta for BuffKamisatoAyakaC4 {
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
             zh_cn: "绫华命座4：敌人受到神里流•霜灭的霜见雪关扉造成的伤害后，防御力降低30%，持续6秒。",
-            en: "绫华命座4：敌人受到神里流•霜灭的霜见雪关扉造成的伤害后，防御力降低30%，持续6秒。",
+            en: "Ayaka C4: Opponents damaged by Kamisato Art: Soumetsu's Frostflake Seki no To will have their DEF decreased by 30% for 6s.",
         )),
         from: BuffFrom::Character(CharacterName::KamisatoAyaka),
     };

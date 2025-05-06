@@ -35,8 +35,8 @@ impl BuffMeta for BuffMonaQ {
         image: BuffImage::Avatar(CharacterName::Mona),
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
-            zh_cn: "莫娜Q技能：对敌人施加星异的伤害加成效果，并以此提高这一次造成的伤害。四命：队伍中所有角色攻击处于星异状态下的敌人时，暴击率提升15%",
-            en: "莫娜Q技能：对敌人施加星异的伤害加成效果，并以此提高这一次造成的伤害。四命：队伍中所有角色攻击处于星异状态下的敌人时，暴击率提升15%",
+            zh_cn: "星异：持续时间内，提高受到的伤害。<br>四命：队伍中所有角色攻击处于星异状态下的敌人时，暴击率提升15%",
+            en: "Omen: During its duration, increases DMG taken by opponents.<br>C4: When any party member attacks an opponent affected by an Omen, their CRIT Rate is increased by 15%.",
         )),
         from: BuffFrom::Character(CharacterName::Mona),
     };
@@ -94,8 +94,8 @@ impl BuffMeta for BuffMonaC1 {
         image: BuffImage::Avatar(CharacterName::Mona),
         genre: BuffGenre::Character,
         description: Some(crate::common::i18n::locale!(
-            zh_cn: "莫娜命座1：队伍中自己的角色攻击命中处于星异状态下的敌人后的8秒内，水元素相关反应的效果提升：<br>•感电反应造成的伤害提升15%，蒸发反应造成的伤害提升15%，水元素扩散反应造成的伤害提升15%",
-            en: "莫娜命座1：队伍中自己的角色攻击命中处于星异状态下的敌人后的8秒内，水元素相关反应的效果提升：<br>•感电反应造成的伤害提升15%，蒸发反应造成的伤害提升15%，水元素扩散反应造成的伤害提升15%",
+            zh_cn: "莫娜命座1：队伍中自己的角色攻击命中处于星异状态下的敌人后的8秒内，水元素相关反应的效果提升：<br>•感电反应造成的伤害提升15%，蒸发反应造成的伤害提升15%，水元素扩散反应造成的伤害提升15%。",
+            en: "Mona C1: When any of your own party members hits an opponent affected by an Omen, the effects of Hydro-related Elemental Reactions are enhanced for 8s:<br>•Electro-Charged DMG increases by 15%. Vaporize DMG increases by 15%. Hydro Swirl DMG increases by 15%. Frozen duration is extended by 15%.",
         )),
         from: BuffFrom::Character(CharacterName::Mona),
     };

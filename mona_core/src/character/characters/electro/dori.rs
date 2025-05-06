@@ -116,7 +116,7 @@ impl CharacterTrait for Dori {
         ),
         skill_name3: locale!(
             zh_cn: "卡萨扎莱宫的无微不至",
-            en: "Alcazarzaray’s Exactitude",
+            en: "Alcazarzaray's Exactitude",
         ),
         name_locale: locale!(
             zh_cn: "多莉",
