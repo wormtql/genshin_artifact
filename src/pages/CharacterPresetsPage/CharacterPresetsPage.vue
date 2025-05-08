@@ -56,6 +56,7 @@
                 :calculate-icon="false"
                 @delete="handleDeletePreset(entry.name)"
                 @download="handleDownload(entry.name)"
+                @rename="handleRename(entry.name)"
                 class="item"
                 @click="handleClickPreset(entry.name)"
             ></preset-item>
@@ -151,6 +152,16 @@ function handleDownload(name: string) {
     const str = JSON.stringify(temp)
 
     downloadString(str, "application/json", name)
+}
+
+function handleRename(name:string){
+  ElMessageBox.prompt(t("presetPage.renamePresetContent"), t("presetPage.renamePresetTitle"), {
+    confirmButtonText: t("misc.confirm"),
+    cancelButtonText: t("misc.cancel"),
+    inputValue:name,
+  }).then(({ value }) => {
+    presetStore.renamePreset(name,value)
+  }).catch(() => {})
 }
 
 function handleExportAll() {
