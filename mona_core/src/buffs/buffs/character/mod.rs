@@ -1,5 +1,6 @@
 pub use albedo::{BuffAlbedoC4, BuffAlbedoC6, BuffAlbedoTalent2};
 pub use aloy::BuffAloyTalent1;
+pub use amber::BuffAmberC6;
 pub use arataki_itto::BuffAratakiIttoC4;
 pub use beidou::BuffBeidouC6;
 pub use bennett::{BuffBennettC6, BuffBennettQ};
@@ -51,6 +52,7 @@ pub use anemo::*;
 
 pub mod albedo;
 pub mod aloy;
+pub mod amber;
 pub mod arataki_itto;
 pub mod beidou;
 pub mod bennett;
