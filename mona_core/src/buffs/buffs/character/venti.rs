@@ -71,7 +71,7 @@ impl<A: Attribute> Buff<A> for BuffVentiC6 {
     fn change_attribute(&self, attribute: &mut A) {
         attribute.set_value_by(AttributeName::ResMinusAnemo, "BUFF: 温迪六命「抗争的暴风」", 0.2);
         if self.is_convert {
-            let name = AttributeName::bonus_name_by_element(self.element);
+            let name = AttributeName::res_minus_name_by_element(self.element);
             attribute.set_value_by(name, "BUFF: 温迪六命「抗争的暴风」", 0.2);
         }
     }
