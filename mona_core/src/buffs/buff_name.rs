@@ -30,6 +30,7 @@ pub enum BuffName {
     AlbedoC4,
     AlbedoC6,
     AloyTalent1,
+    AmberC6,
     AratakiIttoC4,
     BeidouC6,
     BennettQ,
