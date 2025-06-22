@@ -12,6 +12,7 @@ fn default_false() -> bool {
 pub enum CharacterSkillConfig {
     Albedo { fatal_count: usize },
     Aloy { coil_count: usize },
+    Amber { c2: bool },
     AratakiItto { after_q: bool },
 
     Diluc { pyro: bool },

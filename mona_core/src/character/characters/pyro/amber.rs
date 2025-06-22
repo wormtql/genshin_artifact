@@ -15,6 +15,8 @@ use crate::weapon::weapon_common_data::WeaponCommonData;
 use strum::EnumCount;
 use strum_macros::{EnumCount as EnumCountMacro, EnumString};
 use crate::common::i18n::{locale, plunging_dmg};
+use crate::common::item_config_type::{ItemConfig, ItemConfigType};
+
 
 pub struct AmberSkillType {
     pub normal_dmg1: [f64; 15],
@@ -100,7 +102,7 @@ impl<T: Attribute> ChangeAttribute<T> for AmberEffect {
     }
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, PartialEq)]
 #[derive(FromPrimitive, EnumString, EnumCountMacro)]
 pub enum AmberDamageEnum {
     Normal1,
@@ -185,6 +187,18 @@ impl CharacterTrait for Amber {
         ])
     };
 
+    #[cfg(not(target_family = "wasm"))]
+    const CONFIG_SKILL: Option<&'static [ItemConfig]> = Some(&[
+        ItemConfig {
+            name: "c2",
+            title: locale!(
+                zh_cn: "应用2命效果（手动引爆兔兔伯爵）",
+                en: "Use C2 (Manually detonate Baron Bunny)",
+            ),
+            config: ItemConfigType::Bool { default: false }
+        }
+    ]);
+
     fn damage_internal<D: DamageBuilder>(context: &DamageContext<'_, D::AttributeType>, s: usize, config: &CharacterSkillConfig, fumo: Option<Element>) -> D::Result {
         use AmberDamageEnum::*;
         let s: AmberDamageEnum = num::FromPrimitive::from_usize(s).unwrap();
@@ -210,6 +224,15 @@ impl CharacterTrait for Amber {
         };
         let mut builder = D::new();
         builder.add_atk_ratio("技能倍率", ratio);
+
+        let c2 = match *config {
+            CharacterSkillConfig::Amber { c2 } => c2,
+            _ => false
+        };
+
+        if context.character_common_data.constellation >= 2 && c2 && (s == E1) {
+            builder.add_extra_bonus("C2「一触即发」", 2.0);
+        }
 
         builder.damage(
             &context.attribute,
