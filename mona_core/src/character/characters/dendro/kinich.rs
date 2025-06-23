@@ -185,7 +185,7 @@ impl CharacterTrait for Kinich {
             Plunging2 => KINICH_SKILL.plunging_dmg2[s1],
             Plunging3 => KINICH_SKILL.plunging_dmg3[s1],
             E1 => KINICH_SKILL.e_dmg1[s2],
-            E2 | E2_C2 => KINICH_SKILL.e_dmg1[s2],
+            E2 | E2_C2 => KINICH_SKILL.e_dmg2[s2],
             E2_C6 => 7.0,
             Q1 => KINICH_SKILL.q_dmg1[s3],
             Q2 => KINICH_SKILL.q_dmg2[s3],
