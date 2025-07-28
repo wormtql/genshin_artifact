@@ -45,6 +45,7 @@ pub use flute_of_ezpitzal::FluteOfEzpitzal;
 pub use sturdy_bone::SturdyBone;
 pub use peak_patrol_song::PeakPatrolSong;
 pub use calamity_of_eshu::CalamityOfEshu;
+pub use azurelight::Azurelight;
 
 pub mod mistsplitter_reforged;
 pub mod aquila_favonia;
@@ -93,3 +94,4 @@ mod flute_of_ezpitzal;
 mod sturdy_bone;
 mod peak_patrol_song;
 mod calamity_of_eshu;
+mod azurelight;

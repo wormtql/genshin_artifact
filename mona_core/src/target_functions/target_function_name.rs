@@ -111,4 +111,6 @@ pub enum TargetFunctionName {
     CitlaliDefault,
     YumemizukiMizukiDefault,
     VaresaDefault,
+    SkirkQ,
+    SkirkE,
 }

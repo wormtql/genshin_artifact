@@ -48,5 +48,6 @@ pub enum CharacterConfig {
     YumemizukiMizuki { talent2_rate: f64 },
     Iansan { talent1_rate: f64 },
     Varesa { talent1_rate: f64, talent2_stack: f64, passion: bool },
+    Skirk { valid_teamate_count: i32, void_rift_count: i32, serpents_subtlety_count: i32 },
     NoConfig,
 }

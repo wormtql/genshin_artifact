@@ -14,6 +14,7 @@ pub mod freminet;
 pub mod wriothesley;
 pub mod charlotte;
 mod citlali;
+mod skirk;
 
 pub use aloy::Aloy;
 pub use chongyun::Chongyun;
@@ -31,3 +32,4 @@ pub use freminet::Freminet;
 pub use wriothesley::Wriothesley;
 pub use charlotte::Charlotte;
 pub use citlali::Citlali;
+pub use skirk::Skirk;

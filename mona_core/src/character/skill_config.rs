@@ -53,5 +53,6 @@ pub enum CharacterSkillConfig {
     Xilonen { nightsoul: bool },
     Chasca { element_count: usize, c6_rate: f64 },
     Mavuika { after_q: bool },
+    Skirk { after_q: bool },
     NoConfig,
 }

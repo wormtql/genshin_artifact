@@ -1,5 +1,6 @@
 const template = "https://upload-bbs.mihoyo.com/game_record/genshin/equip/#.png"
-const newTemplate = "https://act-webstatic.mihoyo.com/hk4e/e20200928calculate/item_icon_u9b0pg/#.png"
+{# // const newTemplate = "https://act-webstatic.mihoyo.com/hk4e/e20200928calculate/item_icon_u9b0pg/#.png" #}
+const newTemplate = "https://act-webstatic.mihoyo.com/hk4e/e20200928calculate/item_icon/#.png"
 const getIcon = name => template.replace("#", name)
 const getHash = hash => newTemplate.replace("#", hash)
 
@@ -30,51 +31,72 @@ export default {
         {% if a.flower.is_some() -%}
         flower: {
             text: {{a.flower.unwrap()}},
-            {% if a.flower_hash == "" -%}
-            url: getIcon("{{ a.flower_icon }}")
-            {% else -%}
+            {# 
+            // {% if a.flower_hash == "" -%}
+            // url: getIcon("{{ a.flower_icon }}")
+            // {% else -%}
+            #}
             url: getHash("{{ a.flower_hash }}")
-            {%- endif -%}
+            {# 
+            // {%- endif -%}
+            #}
         },
         {%- endif %}
         {% if a.feather.is_some() -%}
         feather: {
             text: {{a.feather.unwrap()}},
-            {% if a.feather_hash == "" -%}
-            url: getIcon("{{ a.feather_icon }}")
-            {% else -%}
+            {# 
+            // {% if a.feather_hash == "" -%}
+            // url: getIcon("{{ a.feather_icon }}")
+            // {% else -%}
+            #}
             url: getHash("{{ a.feather_hash }}")
-            {%- endif -%}
+            {# 
+            // {%- endif -%}
+            #}
         },
         {%- endif %}
         {% if a.sand.is_some() -%}
         sand: {
             text: {{a.sand.unwrap()}},
-            {% if a.sand_hash == "" -%}
-            url: getIcon("{{ a.sand_icon }}")
-            {% else -%}
+            {# 
+            // {% if a.sand_hash == "" -%}
+            // url: getIcon("{{ a.sand_icon }}")
+            // {% else -%}
+            #}
             url: getHash("{{ a.sand_hash }}")
-            {%- endif -%}
+            {# 
+            // {%- endif -%}
+            #}
         },
         {%- endif %}
         {% if a.goblet.is_some() -%}
         cup: {
             text: {{a.goblet.unwrap()}},
-            {% if a.goblet_hash == "" -%}
-            url: getIcon("{{ a.goblet_icon }}")
-            {% else -%}
+            {# 
+            // {% if a.goblet_hash == "" -%}
+            // url: getIcon("{{ a.goblet_icon }}")
+            // {% else -%}
+            #}
             url: getHash("{{ a.goblet_hash }}")
-            {%- endif -%}
+            {# 
+            // {%- endif -%}
+            #}
         },
         {%- endif %}
         {% if a.head.is_some() -%}
         head: {
             text: {{a.head.unwrap()}},
-            {% if a.head_hash == "" -%}
-            url: getIcon("{{ a.head_icon }}")
-            {% else -%}
+            {# 
+            // {% if a.head_hash == "" -%}
+            // url: getIcon("{{ a.head_icon }}")
+            // {% else -%}
+            #}
             url: getHash("{{ a.head_hash }}")
-            {%- endif -%}
+            
+            {# 
+            // {%- endif -%}
+            #}
         },
         {%- endif %}
         config4: [

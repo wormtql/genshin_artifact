@@ -124,4 +124,5 @@ pub enum CharacterName {
     YumemizukiMizuki,
     Iansan,
     Varesa,
+    Skirk,
 }

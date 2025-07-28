@@ -4,7 +4,8 @@ use crate::common::{SkillType, Element};
 pub enum AttributeName {
     // 自定义数据，应当只用在角色的特定的Effect中，否则容易使用不当，产生冲突
     USER1,
-    USER2,
+    USER2,              // only for Mavuika 目前只为玛薇卡
+    USER3,              // only for skirk 目前只为丝柯克
 
     HealingBonus,
     IncomingHealingBonus,
