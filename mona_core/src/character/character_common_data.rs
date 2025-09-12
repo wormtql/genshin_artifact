@@ -52,7 +52,7 @@ impl CharacterCommonData {
         }
     }
 
-    pub fn base_value(array: &[i32; 14], level: usize, ascend: bool) -> f64 {
+    pub fn base_value(array: &[i32; 15], level: usize, ascend: bool) -> f64 {
         if level < 20 || (level == 20 && !ascend) {
             (level - 1) as f64 * (array[1] - array[0]) as f64 / 19.0 + array[0] as f64
         } else if level < 40 || (level == 40 && !ascend) {
@@ -65,8 +65,10 @@ impl CharacterCommonData {
             (level - 60) as f64 * (array[9] - array[8]) as f64 / 10.0 + array[8] as f64
         } else if level < 80 || (level == 80 && !ascend) {
             (level - 70) as f64 * (array[11] - array[10]) as f64 / 10.0 + array[10] as f64
-        } else {
+        } else if level < 90 || (level == 90 && !ascend) {
             (level - 80) as f64 * (array[13] - array[12]) as f64 / 10.0 + array[12] as f64
+        } else {
+            (level - 90) as f64 * (array[14] - array[13]) as f64 / 10.0 + array[13] as f64
         }
     }
 

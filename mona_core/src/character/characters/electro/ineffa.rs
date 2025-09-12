@@ -63,9 +63,9 @@ pub const INEFFA_STATIC_DATA: CharacterStaticData = CharacterStaticData {
     name: CharacterName::Ineffa,
     internal_name: "Ineffa",
     element: Element::Electro,
-    hp: [982, 2547, 3389, 5071, 5669, 6523, 7320, 8182, 8780, 9650, 10249, 11128, 11727, 12613],
-    atk: [26, 67, 89, 133, 149, 171, 192, 214, 230, 253, 268, 291, 307, 330],  // Converted from 25.7 base
-    def: [64, 167, 222, 333, 372, 428, 480, 537, 576, 633, 673, 730, 770, 828],
+    hp: [982, 2547, 3389, 5071, 5669, 6523, 7320, 8182, 8780, 9650, 10249, 11128, 11727, 12613, 13510],
+    atk: [26, 67, 89, 133, 149, 171, 192, 214, 230, 253, 268, 291, 307, 330, 404],  // Converted from 25.7 base
+    def: [64, 167, 222, 333, 372, 428, 480, 537, 576, 633, 673, 730, 770, 828, 887],
     sub_stat: CharacterSubStatFamily::CriticalRate192,
     weapon_type: WeaponType::Polearm,
     star: 5,
