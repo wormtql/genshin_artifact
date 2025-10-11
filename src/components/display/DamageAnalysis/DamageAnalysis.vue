@@ -121,9 +121,19 @@
                     title="月绽放伤害提升"
                 ></damage-analysis-util>
                 <damage-analysis-util
+                    v-if="damageType === 'moonfall'"
+                    :arr="enhanceMoonReactionState"
+                    title="月曜反应增伤"
+                ></damage-analysis-util>
+                <damage-analysis-util
                     v-if="damageType === 'moonelectro'"
                     :arr="moonElectroState"
                     title="月感电伤害提升"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="damageType === 'moonelectro'"
+                    :arr="enhanceMoonReactionState"
+                    title="月曜反应增伤"
                 ></damage-analysis-util>
                 <damage-analysis-util
                     v-if="damageType === 'moonelectro'"
@@ -134,6 +144,11 @@
                     v-if="damageType === 'direct_moonelectro'"
                     :arr="directMoonElectroState"
                     title="直伤月感电增伤"
+                ></damage-analysis-util>
+                <damage-analysis-util
+                    v-if="damageType === 'direct_moonelectro'"
+                    :arr="enhanceMoonReactionState"
+                    title="月曜反应增伤"
                 ></damage-analysis-util>
                 <damage-analysis-util
                     v-if="damageType === 'direct_moonelectro'"
@@ -260,6 +275,7 @@ export default {
             moonElectroState: [],
             moonElectroBaseState: [], // 月感电基础伤害提升状态
             directMoonElectroState: [], // 直伤月感电增伤状态
+            enhanceMoonReactionState: [], // 月曜反应通用增伤状态
             directMoonElectroRatioState: [], // 直伤月感电倍率状态
             criticalState: [],
             criticalDamageState: [],
@@ -300,6 +316,7 @@ export default {
                 "moonElectroState": "moonelectro_compose",
                 "moonElectroBaseState": "moonelectro_base_compose", // 月感电基础伤害提升映射
                 "directMoonElectroState": "direct_moonelectro_compose", // 直伤月感电增伤映射
+                "enhanceMoonReactionState": "enhance_moon_reaction_compose", // 月曜反应通用增伤映射
                 "directMoonElectroRatioState": "direct_moonelectro_ratio", // 直伤月感电倍率映射
             }
             this.element = analysis.element
@@ -503,6 +520,10 @@ export default {
             return sum(this.moonElectroBaseState)
         },
 
+        enhanceMoonReaction() {
+            return sum(this.enhanceMoonReactionState)
+        },
+
         levelMultiplier() {
             // 与后端 LEVEL_MULTIPLIER 对应
             return LEVEL_MULTIPLIER[this.characterLevel - 1]
@@ -602,19 +623,19 @@ export default {
 
         damageMoonfall() {
             // 月绽放反应伤害计算
-            // 反应伤害 = 基础反应伤害 * (1 + 元素精通加成 + 反应伤害加成) * 抗性乘区
+            // 反应伤害 = 基础反应伤害 * (1 + 元素精通加成 + 反应伤害加成 + 月曜反应通用增伤) * 抗性乘区
             // 注意：反应伤害不受暴击、攻击力、伤害加成影响
-            const reactionDamage = this.baseDamageMoonQuicken * (1 + this.reactionEMBonus + this.moonfallEnhance)
+            const reactionDamage = this.baseDamageMoonQuicken * (1 + this.reactionEMBonus + this.moonfallEnhance + this.enhanceMoonReaction)
             return reactionDamage * this.resRatio
         },
 
         damageMoonElectro() {
             // 月感电反应伤害计算（与后端一致）
-            // 基础伤害 = 等级倍率 * 基础倍率(1.8) * (1 + 基础伤害提升) * (1 + 月感电增伤)
+            // 基础伤害 = 等级倍率 * 基础倍率(1.8) * (1 + 基础伤害提升) * (1 + 月感电增伤 + 月曜反应通用增伤)
             // 可以暴击，但不受常规伤害加成影响
             const baseMultiplier = 1.8
             const enhancedBaseMultiplier = baseMultiplier * (1.0 + this.moonElectroBaseEnhance)
-            const moonelectroBaseDamage = this.levelMultiplier * enhancedBaseMultiplier * (1.0 + this.moonElectroEnhance)
+            const moonelectroBaseDamage = this.levelMultiplier * enhancedBaseMultiplier * (1.0 + this.moonElectroEnhance + this.enhanceMoonReaction)
             
             // 应用暴击（期望伤害）
             const finalDamage = moonelectroBaseDamage * (1.0 + this.critical * this.criticalDamage)
@@ -623,13 +644,13 @@ export default {
 
         damageDirectMoonElectro() {
             // 直伤月感电计算（与后端一致）
-            // 基础伤害 = 3 × 攻击力 × 倍率 × (1+基础提升%) × (1+直伤月感电增伤%)
+            // 基础伤害 = 3 × 攻击力 × 倍率 × (1+基础提升%) × (1+直伤月感电增伤% + 月曜反应通用增伤%)
             // 注意：基于攻击力，不是等级倍率；可以暴击，不受常规伤害加成影响
             const directMoonElectroEnhance = sum(this.directMoonElectroState)
             const totalRatio = sum(this.directMoonElectroRatioState) // 使用专门的直伤月感电倍率
             const multiplier3x = 3.0
             const enhancedRatio = totalRatio * (1.0 + this.moonElectroBaseEnhance)
-            const directMoonelectroBaseDamage = multiplier3x * this.atk * enhancedRatio * (1.0 + directMoonElectroEnhance)
+            const directMoonelectroBaseDamage = multiplier3x * this.atk * enhancedRatio * (1.0 + directMoonElectroEnhance + this.enhanceMoonReaction)
             
             // 应用暴击（期望伤害）
             const finalDamage = directMoonelectroBaseDamage * (1.0 + this.critical * this.criticalDamage)

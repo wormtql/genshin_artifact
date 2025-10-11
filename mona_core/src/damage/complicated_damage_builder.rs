@@ -203,6 +203,8 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         let aggravate_enhance = aggravate_enhance_comp.sum();
         let moonfall_enhance_comp = self.get_enhance_moonfall_composition(attribute);
         let moonfall_enhance = moonfall_enhance_comp.sum();
+        let enhance_moon_reaction_comp = self.get_enhance_moon_reaction_composition(attribute);
+        let enhance_moon_reaction = enhance_moon_reaction_comp.sum();
         let moonelectro_enhance_comp = self.get_enhance_moonelectro_composition(attribute);
         let moonelectro_enhance = moonelectro_enhance_comp.sum();
         let moonelectro_base_enhance_comp = self.get_enhance_moonelectro_base_composition(attribute);
@@ -271,11 +273,12 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         // 月绽放反应（Hyperbloom Moon）：基于等级的转化反应伤害，无视防御，不受益于常规增伤/减伤，但受益于元素精通和专属月绽放增伤
         let damage_moonfall = if element == Element::Dendro || element == Element::Hydro {
             let base_multiplier = 2.0; // 月绽放基础倍率
-            let moonfall_base_damage = LEVEL_MULTIPLIER[character_level - 1] * base_multiplier * (1.0 + moonfall_enhance);
-            
+            // 叠加通用月曜反应增伤
+            let moonfall_base_damage = LEVEL_MULTIPLIER[character_level - 1] * base_multiplier * (1.0 + moonfall_enhance + enhance_moon_reaction);
+
             // 月绽放只使用草元素抗性
             let moonfall_resistance_ratio = enemy.get_resistance_ratio(Element::Dendro, res_minus);
-            
+
             let dmg = DamageResult {
                 critical: moonfall_base_damage * moonfall_resistance_ratio,
                 non_critical: moonfall_base_damage * moonfall_resistance_ratio,
@@ -291,13 +294,16 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         // 月感电反应：基于等级的反应伤害，无视防御，可以暴击，只受月感电专属增伤影响
         let damage_moonelectro = if element == Element::Electro || element == Element::Hydro {
             let base_multiplier = 1.8; // 月感电基础倍率
+            // 叠加通用月曜反应增伤
+            let enhance_moon_reaction_comp = self.get_enhance_moon_reaction_composition(attribute);
+            let enhance_moon_reaction = enhance_moon_reaction_comp.sum();
             // 应用基础伤害提升（被动天赋：月兆祝赐·象拟中继）
             let enhanced_base_multiplier = base_multiplier * (1.0 + moonelectro_base_enhance);
-            let moonelectro_base_damage = LEVEL_MULTIPLIER[character_level - 1] * enhanced_base_multiplier * (1.0 + moonelectro_enhance);
-            
+            let moonelectro_base_damage = LEVEL_MULTIPLIER[character_level - 1] * enhanced_base_multiplier * (1.0 + moonelectro_enhance + enhance_moon_reaction);
+
             // 月感电使用雷元素抗性
             let moonelectro_resistance_ratio = enemy.get_resistance_ratio(Element::Electro, res_minus);
-            
+
             let dmg = DamageResult {
                 critical: moonelectro_base_damage * (1.0 + critical_damage),
                 non_critical: moonelectro_base_damage,
@@ -317,16 +323,21 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             if total_ratio > 0.0 {
                 let atk_value = atk_comp.sum();
                 let multiplier_3x = 3.0; // 额外系数3×
-                
+
                 // 应用基础伤害提升（如果有的话）
                 let enhanced_ratio = total_ratio * (1.0 + moonelectro_base_enhance);
-                
-                // 直伤月感电基础伤害 = 3 × 攻击力 × 倍率 × (1+基础提升%) × (1+月感电增伤%)
-                let direct_moonelectro_base_damage = multiplier_3x * atk_value * enhanced_ratio * (1.0 + direct_moonelectro_enhance);
-                
+
+                // 叠加通用月曜反应增伤
+                let enhance_moon_reaction_comp = self.get_enhance_moon_reaction_composition(attribute);
+                let enhance_moon_reaction = enhance_moon_reaction_comp.sum();
+
+
+                // 直伤月感电基础伤害 = 3 × 攻击力 × 倍率 × (1+基础提升%) × (1+月感电增伤% + 通用月曜反应增伤%)
+                let direct_moonelectro_base_damage = multiplier_3x * atk_value * enhanced_ratio * (1.0 + direct_moonelectro_enhance + enhance_moon_reaction);
+
                 // 直伤月感电使用雷元素抗性
                 let direct_moonelectro_resistance_ratio = enemy.get_resistance_ratio(Element::Electro, res_minus);
-                
+
                 let dmg = DamageResult {
                     critical: direct_moonelectro_base_damage * (1.0 + critical_damage),
                     non_critical: direct_moonelectro_base_damage,
@@ -360,6 +371,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             moonelectro_base_compose: moonelectro_base_enhance_comp.0,
             direct_moonelectro_compose: direct_moonelectro_enhance_comp.0,
             direct_moonelectro_ratio: self.direct_moonelectro_ratio.0.clone(),
+            enhance_moon_reaction_compose: enhance_moon_reaction_comp.0,
 
             melt_enhance: melt_enhance_comp.0,
             vaporize_enhance: vaporize_enhance_comp.0,
@@ -426,6 +438,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             moonelectro_base_compose: HashMap::new(),
             direct_moonelectro_compose: HashMap::new(),
             direct_moonelectro_ratio: HashMap::new(),
+            enhance_moon_reaction_compose: HashMap::new(),
 
             bonus: HashMap::new(),
             critical: HashMap::new(),
@@ -496,6 +509,7 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             moonelectro_base_compose: HashMap::new(),
             direct_moonelectro_compose: HashMap::new(),
             direct_moonelectro_ratio: HashMap::new(),
+            enhance_moon_reaction_compose: HashMap::new(),
 
             bonus: HashMap::new(),
             critical: HashMap::new(),
@@ -527,6 +541,10 @@ impl DamageBuilder for ComplicatedDamageBuilder {
 }
 
 impl ComplicatedDamageBuilder {
+
+    fn get_enhance_moon_reaction_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
+        attribute.get_attribute_composition(AttributeName::EnhanceMoonReaction)
+    }
     /// 添加直伤月感电倍率
     /// key: 来源描述，例如 "天赋：频率超限回路" 或 "二命：辅助清理模块"
     /// value: 倍率，例如 0.65 (65%) 或 3.0 (300%)

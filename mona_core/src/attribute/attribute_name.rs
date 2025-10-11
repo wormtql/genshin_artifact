@@ -119,6 +119,7 @@ pub enum AttributeName {
     EnhanceMoonfall,
     EnhanceMoonelectro,
     EnhanceMoonelectroBase, // 月感电基础伤害提升
+    EnhanceMoonReaction, // 通用月曜反应增伤
 
     HPRatioBase,
     HPRatioNormalAttack,

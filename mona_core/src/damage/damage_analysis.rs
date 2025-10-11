@@ -28,6 +28,7 @@ pub struct DamageAnalysis {
     pub moonelectro_base_compose: HashMap<String, f64>, // 月感电基础伤害提升组成
     pub direct_moonelectro_compose: HashMap<String, f64>, // 直伤月感电增伤组成
     pub direct_moonelectro_ratio: HashMap<String, f64>, // 直伤月感电倍率组成
+    pub enhance_moon_reaction_compose: HashMap<String, f64>, // 月曜反应通用增伤组成
 
     pub def_minus: HashMap<String, f64>,
     pub def_penetration: HashMap<String, f64>,
