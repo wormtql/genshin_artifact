@@ -21,7 +21,7 @@ impl<A: Attribute> WeaponEffect<A> for StaffOfTheScarletSandsEffect {
         let value = (0.13 * refine + 0.39) + (0.07 * refine + 0.21) * self.stack;
         attribute.add_edge1(
             AttributeName::ElementalMastery,
-            AttributeName::ATKFixed,
+            AttributeName::ATKFromSecondaryConversion,
             Box::new(move |em, _| em * value),
             Box::new(move |em, _, grad| (value * grad, 0.0)),
             "赤沙之杖被动等效",

@@ -63,5 +63,6 @@ pub enum TargetFunctionConfig {
     MikaDefault { recharge_demand: f64, crit_demand: f64 },
     WriothesleyDefault { punch_ratio: f64, melt_rate:f64 },
     MualaniDefault { vaporize_rate: f64 },
+    IneffaDefault { overclocking_rate: f64 },
     NoConfig,
 }

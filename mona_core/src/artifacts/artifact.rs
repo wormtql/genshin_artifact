@@ -57,9 +57,11 @@ pub enum ArtifactSetName {
     PrayersForWisdom,
     PrayersToSpringtime,
     ResolutionOfSojourner,
+    RealmMirrorNight,      // 穹境示现之夜
     RetracingBolide,
     Scholar,
     ShimenawasReminiscence,
+    SpinMoonSerenade,      // 纺月的夜歌
     TenacityOfTheMillelith,
     TheExile,
     ThunderingFury,

@@ -110,6 +110,15 @@ export default {
             if (this.analysisFromWasm.aggravate) {
                 push("aggravate", this.t("dmg.aggravate"))
             }
+            if (this.analysisFromWasm.moonfall) {
+                push("moonfall", this.t("dmg.moonfall"))
+            }
+            if (this.analysisFromWasm.moonelectro) {
+                push("moonelectro", this.t("dmg.moonelectro"))
+            }
+            if (this.analysisFromWasm.direct_moonelectro) {
+                push("direct_moonelectro", this.t("dmg.direct_moonelectro"))
+            }
 
             return temp
         }

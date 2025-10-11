@@ -1,6 +1,7 @@
 pub mod aloy;
 pub mod chongyun;
 pub mod diona;
+pub mod escoffier;
 pub mod eula;
 pub mod ganyu;
 pub mod kaeya;
@@ -13,11 +14,13 @@ pub mod mika;
 pub mod freminet;
 pub mod wriothesley;
 pub mod charlotte;
+pub mod skirk;
 mod citlali;
 
 pub use aloy::Aloy;
 pub use chongyun::Chongyun;
 pub use diona::Diona;
+pub use escoffier::Escoffier;
 pub use eula::Eula;
 pub use ganyu::Ganyu;
 pub use kaeya::Kaeya;
@@ -30,4 +33,5 @@ pub use mika::Mika;
 pub use freminet::Freminet;
 pub use wriothesley::Wriothesley;
 pub use charlotte::Charlotte;
+pub use skirk::Skirk;
 pub use citlali::Citlali;

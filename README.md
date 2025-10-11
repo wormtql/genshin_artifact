@@ -6,7 +6,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/wormtql/genshin_artifact)
 ![GitHub forks](https://img.shields.io/github/forks/wormtql/genshin_artifact)
 
-
+QQ群：1035783390
 </div>
 
 

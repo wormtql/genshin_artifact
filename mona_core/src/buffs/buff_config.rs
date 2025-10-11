@@ -49,6 +49,7 @@ pub enum BuffConfig {
     KamisatoAyatoQ { skill_level: usize },
     TighnariC4 { after_reaction: bool },
     DoriC4 { hp_below50: bool, energy_below50: bool },
+    FurinaQ { skill_level: usize, fanfare_value: f64 },
     NilouTalent2 { hp: f64 },
     CandaceTalent2 { hp: f64 },
     NahidaTalent1 { max_em: f64 },

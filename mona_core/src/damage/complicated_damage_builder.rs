@@ -32,6 +32,9 @@ pub struct ComplicatedDamageBuilder {
     pub ratio_def: EntryType,
     pub ratio_hp: EntryType,
     pub ratio_em: EntryType,
+
+    // 直伤月感电倍率设置
+    pub direct_moonelectro_ratio: EntryType,
 }
 
 impl DamageBuilder for ComplicatedDamageBuilder {
@@ -110,6 +113,18 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         *self.extra_res_minus.0.entry(String::from(key)).or_insert(0.0) += value;
     }
 
+    fn add_direct_moonelectro_ratio(&mut self, key: &str, value: f64) {
+        *self.direct_moonelectro_ratio.0.entry(String::from(key)).or_insert(0.0) += value;
+    }
+
+    fn add_direct_moonfall_ratio(&mut self, key: &str, value: f64) {
+        // 月绽放反应是转化反应，不需要倍率，所以这个方法留空或者可以忽略
+        // 如果以后需要直伤月绽放，可以在这里添加实现
+        // 月绽放直伤基础=属性x倍率x(1+基础提升%)x(1+(бx元素精通)/(元素精通+2000)+月绽放增伤%)
+        // 最终直伤=(直伤基础+额外提升)×抗性系数x暴击区
+
+    }
+
     fn damage(
         &self,
         attribute:
@@ -186,6 +201,16 @@ impl DamageBuilder for ComplicatedDamageBuilder {
         let spread_enhance = spread_enhance_comp.sum();
         let aggravate_enhance_comp = self.get_enhance_aggravate_composition(attribute);
         let aggravate_enhance = aggravate_enhance_comp.sum();
+        let moonfall_enhance_comp = self.get_enhance_moonfall_composition(attribute);
+        let moonfall_enhance = moonfall_enhance_comp.sum();
+        let enhance_moon_reaction_comp = self.get_enhance_moon_reaction_composition(attribute);
+        let enhance_moon_reaction = enhance_moon_reaction_comp.sum();
+        let moonelectro_enhance_comp = self.get_enhance_moonelectro_composition(attribute);
+        let moonelectro_enhance = moonelectro_enhance_comp.sum();
+        let moonelectro_base_enhance_comp = self.get_enhance_moonelectro_base_composition(attribute);
+        let moonelectro_base_enhance = moonelectro_base_enhance_comp.sum();
+        let direct_moonelectro_enhance_comp = self.get_enhance_direct_moonelectro_composition(attribute);
+        let direct_moonelectro_enhance = direct_moonelectro_enhance_comp.sum();
 
         let melt_ratio = if element == Element::Pyro { 2.0 } else { 1.5 };
         let vaporize_ratio = if element == Element::Hydro { 2.0 } else { 1.5 };
@@ -245,6 +270,87 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             Some(dmg)
         };
 
+        // 月绽放反应（Hyperbloom Moon）：基于等级的转化反应伤害，无视防御，不受益于常规增伤/减伤，但受益于元素精通和专属月绽放增伤
+        let damage_moonfall = if element == Element::Dendro || element == Element::Hydro {
+            let base_multiplier = 2.0; // 月绽放基础倍率
+            // 叠加通用月曜反应增伤
+            let moonfall_base_damage = LEVEL_MULTIPLIER[character_level - 1] * base_multiplier * (1.0 + moonfall_enhance + enhance_moon_reaction);
+
+            // 月绽放只使用草元素抗性
+            let moonfall_resistance_ratio = enemy.get_resistance_ratio(Element::Dendro, res_minus);
+
+            let dmg = DamageResult {
+                critical: moonfall_base_damage * moonfall_resistance_ratio,
+                non_critical: moonfall_base_damage * moonfall_resistance_ratio,
+                expectation: moonfall_base_damage * moonfall_resistance_ratio,
+                is_heal: false,
+                is_shield: false
+            };
+            Some(dmg)
+        } else {
+            None
+        };
+
+        // 月感电反应：基于等级的反应伤害，无视防御，可以暴击，只受月感电专属增伤影响
+        let damage_moonelectro = if element == Element::Electro || element == Element::Hydro {
+            let base_multiplier = 1.8; // 月感电基础倍率
+            // 叠加通用月曜反应增伤
+            let enhance_moon_reaction_comp = self.get_enhance_moon_reaction_composition(attribute);
+            let enhance_moon_reaction = enhance_moon_reaction_comp.sum();
+            // 应用基础伤害提升（被动天赋：月兆祝赐·象拟中继）
+            let enhanced_base_multiplier = base_multiplier * (1.0 + moonelectro_base_enhance);
+            let moonelectro_base_damage = LEVEL_MULTIPLIER[character_level - 1] * enhanced_base_multiplier * (1.0 + moonelectro_enhance + enhance_moon_reaction);
+
+            // 月感电使用雷元素抗性
+            let moonelectro_resistance_ratio = enemy.get_resistance_ratio(Element::Electro, res_minus);
+
+            let dmg = DamageResult {
+                critical: moonelectro_base_damage * (1.0 + critical_damage),
+                non_critical: moonelectro_base_damage,
+                expectation: moonelectro_base_damage * (1.0 + critical * critical_damage),
+                is_heal: false,
+                is_shield: false
+            } * moonelectro_resistance_ratio; // 只应用雷元素抗性系数，无视防御，不受普通增伤影响
+            Some(dmg)
+        } else {
+            None
+        };
+
+        // 直伤月感电：基于攻击力的直接伤害，无视防御力，不受益于常规增伤/减伤，但受益于元素精通，且有额外系数3×
+        // 公式：直伤月感电 = 3 × 攻击力 × 倍率 × (1+基础提升%) × (1+(б×元素精通)/(元素精通+2000)+月感电增伤%) × 抗性系数 × 暴击区
+        let damage_direct_moonelectro = {
+            let total_ratio = self.direct_moonelectro_ratio.sum();
+            if total_ratio > 0.0 {
+                let atk_value = atk_comp.sum();
+                let multiplier_3x = 3.0; // 额外系数3×
+
+                // 应用基础伤害提升（如果有的话）
+                let enhanced_ratio = total_ratio * (1.0 + moonelectro_base_enhance);
+
+                // 叠加通用月曜反应增伤
+                let enhance_moon_reaction_comp = self.get_enhance_moon_reaction_composition(attribute);
+                let enhance_moon_reaction = enhance_moon_reaction_comp.sum();
+
+
+                // 直伤月感电基础伤害 = 3 × 攻击力 × 倍率 × (1+基础提升%) × (1+月感电增伤% + 通用月曜反应增伤%)
+                let direct_moonelectro_base_damage = multiplier_3x * atk_value * enhanced_ratio * (1.0 + direct_moonelectro_enhance + enhance_moon_reaction);
+
+                // 直伤月感电使用雷元素抗性
+                let direct_moonelectro_resistance_ratio = enemy.get_resistance_ratio(Element::Electro, res_minus);
+
+                let dmg = DamageResult {
+                    critical: direct_moonelectro_base_damage * (1.0 + critical_damage),
+                    non_critical: direct_moonelectro_base_damage,
+                    expectation: direct_moonelectro_base_damage * (1.0 + critical * critical_damage),
+                    is_heal: false,
+                    is_shield: false
+                } * direct_moonelectro_resistance_ratio; // 只应用雷元素抗性系数，无视防御，不受普通增伤影响
+                Some(dmg)
+            } else {
+                None
+            }
+        };
+
         DamageAnalysis {
             atk: atk_comp.0,
             atk_ratio: atk_ratio_comp.0,
@@ -260,6 +366,12 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             critical_damage: critical_damage_comp.0,
             spread_compose: spread_enhance_comp.0,
             aggravate_compose: aggravate_enhance_comp.0,
+            moonfall_compose: moonfall_enhance_comp.0,
+            moonelectro_compose: moonelectro_enhance_comp.0,
+            moonelectro_base_compose: moonelectro_base_enhance_comp.0,
+            direct_moonelectro_compose: direct_moonelectro_enhance_comp.0,
+            direct_moonelectro_ratio: self.direct_moonelectro_ratio.0.clone(),
+            enhance_moon_reaction_compose: enhance_moon_reaction_comp.0,
 
             melt_enhance: melt_enhance_comp.0,
             vaporize_enhance: vaporize_enhance_comp.0,
@@ -279,6 +391,9 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             vaporize: damage_vaporize,
             spread: damage_spread,
             aggravate: damage_aggravate,
+            moonfall: damage_moonfall,
+            moonelectro: damage_moonelectro,
+            direct_moonelectro: damage_direct_moonelectro,
         }
     }
 
@@ -318,6 +433,12 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             extra_damage: self.extra_damage.0.clone(),
             spread_compose: HashMap::new(),
             aggravate_compose: HashMap::new(),
+            moonfall_compose: HashMap::new(),
+            moonelectro_compose: HashMap::new(),
+            moonelectro_base_compose: HashMap::new(),
+            direct_moonelectro_compose: HashMap::new(),
+            direct_moonelectro_ratio: HashMap::new(),
+            enhance_moon_reaction_compose: HashMap::new(),
 
             bonus: HashMap::new(),
             critical: HashMap::new(),
@@ -341,6 +462,9 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             vaporize: None,
             spread: None,
             aggravate: None,
+            moonfall: None,
+            moonelectro: None,
+            direct_moonelectro: None,
         }
     }
 
@@ -380,6 +504,12 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             extra_damage: self.extra_damage.0.clone(),
             spread_compose: HashMap::new(),
             aggravate_compose: HashMap::new(),
+            moonfall_compose: HashMap::new(),
+            moonelectro_compose: HashMap::new(),
+            moonelectro_base_compose: HashMap::new(),
+            direct_moonelectro_compose: HashMap::new(),
+            direct_moonelectro_ratio: HashMap::new(),
+            enhance_moon_reaction_compose: HashMap::new(),
 
             bonus: HashMap::new(),
             critical: HashMap::new(),
@@ -403,11 +533,25 @@ impl DamageBuilder for ComplicatedDamageBuilder {
             vaporize: None,
             spread: None,
             aggravate: None,
+            moonfall: None,
+            moonelectro: None,
+            direct_moonelectro: None,
         }
     }
 }
 
 impl ComplicatedDamageBuilder {
+
+    fn get_enhance_moon_reaction_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
+        attribute.get_attribute_composition(AttributeName::EnhanceMoonReaction)
+    }
+    /// 添加直伤月感电倍率
+    /// key: 来源描述，例如 "天赋：频率超限回路" 或 "二命：辅助清理模块"
+    /// value: 倍率，例如 0.65 (65%) 或 3.0 (300%)
+    pub fn add_direct_moonelectro_ratio(&mut self, key: &str, value: f64) {
+        *self.direct_moonelectro_ratio.0.entry(String::from(key)).or_insert(0.0) += value;
+    }
+
     fn get_def_minus_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut comp = attribute.get_attribute_composition(AttributeName::DefMinus);
         comp.merge(&self.extra_def_minus);
@@ -492,6 +636,39 @@ impl ComplicatedDamageBuilder {
         comp
     }
 
+    fn get_enhance_moonfall_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
+        let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceMoonfall);
+        let em = &self.extra_em.sum() + attribute.get_em_all();
+        if em > 0.0 {
+            comp.add_value("精通", Reaction::transformative(em));
+        }
+        comp
+    }
+
+    fn get_enhance_moonelectro_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
+        let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceMoonelectro);
+        let em = &self.extra_em.sum() + attribute.get_em_all();
+        if em > 0.0 {
+            // 月感电元素精通公式: (6×元素精通)/(元素精通+2000)
+            comp.add_value("精通", 6.0 * em / (em + 2000.0));
+        }
+        comp
+    }
+
+    fn get_enhance_moonelectro_base_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
+        attribute.get_attribute_composition(AttributeName::EnhanceMoonelectroBase)
+    }
+
+    fn get_enhance_direct_moonelectro_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
+        let mut comp = attribute.get_attribute_composition(AttributeName::EnhanceMoonelectro);
+        let em = &self.extra_em.sum() + attribute.get_em_all();
+        if em > 0.0 {
+            // 直伤月感电元素精通公式: (б×元素精通)/(元素精通+2000)，б系数为6
+            comp.add_value("精通", 6.0 * em / (em + 2000.0));
+        }
+        comp
+    }
+
     fn get_critical_damage_composition(&self, attribute: &ComplicatedAttributeGraph, element: Element, skill: SkillType) -> EntryType {
         let mut names = vec![
             AttributeName::CriticalDamageBase,
@@ -530,7 +707,7 @@ impl ComplicatedDamageBuilder {
 
     fn get_atk_composition(&self, attribute: &ComplicatedAttributeGraph) -> EntryType {
         let mut atk_comp =
-            attribute.get_composition_merge(&vec![AttributeName::ATKBase, AttributeName::ATKPercentage, AttributeName::ATKFixed]);
+            attribute.get_composition_merge(&vec![AttributeName::ATKBase, AttributeName::ATKPercentage, AttributeName::ATKFixed, AttributeName::ATKFromSecondaryConversion]);
         atk_comp.merge(&self.extra_atk);
 
         atk_comp

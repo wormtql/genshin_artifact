@@ -37,6 +37,7 @@ pub enum TargetFunctionName {
     DilucDefault,
     DionaDefault,
     EulaDefault,
+    EscoffierDefault,
     FischlDefault,
     GanyuDefault,
     GorouDefault,
@@ -63,6 +64,7 @@ pub enum TargetFunctionName {
     SangonomiyaKokomiDefault,
     SayuDefault,
     ShenheDefault,
+    SkirkDefault,
     SucroseDefault,
     TartagliaDefault,
     ThomaDefault,
@@ -111,4 +113,5 @@ pub enum TargetFunctionName {
     CitlaliDefault,
     YumemizukiMizukiDefault,
     VaresaDefault,
+    IneffaDefault,
 }

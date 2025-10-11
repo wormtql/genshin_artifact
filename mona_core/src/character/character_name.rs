@@ -45,6 +45,7 @@ pub enum CharacterName {
     Diluc,
     Diona,
     Dori,
+    Escoffier,
     Eula,
     Faruzan,
     Fischl,
@@ -82,6 +83,7 @@ pub enum CharacterName {
     Sayu,
     Shenhe,
     ShikanoinHeizou,
+    Skirk,
     Sucrose,
     Tartaglia,
     Thoma,
@@ -124,4 +126,5 @@ pub enum CharacterName {
     YumemizukiMizuki,
     Iansan,
     Varesa,
+    Ineffa,
 }

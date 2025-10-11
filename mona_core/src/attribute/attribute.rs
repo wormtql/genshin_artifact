@@ -94,6 +94,7 @@ impl<T: Attribute> AttributeCommon<T> for T {
         self.get_value(AttributeName::ATKBase)
             + self.get_value(AttributeName::ATKPercentage)
             + self.get_value(AttributeName::ATKFixed)
+            + self.get_value(AttributeName::ATKFromSecondaryConversion)
     }
 
     fn get_hp(&self) -> f64 {
@@ -240,6 +241,33 @@ impl<T: Attribute> AttributeCommon<T> for T {
             Box::new(|x1, _x2| x1),
             Box::new(|grad, _x1, _x2| (grad, 0.0)),
             "atk_fixed"
+        );
+        temp.add_edge1(
+            AttributeName::ATKFromSecondaryConversion, AttributeName::ATK,
+            Box::new(|x1, _x2| x1),
+            Box::new(|grad, _x1, _x2| (grad, 0.0)),
+            "secondary_conversion_atk"
+        );
+
+        // ATKExcludingSecondaryConversion = ATKBase + ATKPercentage + ATKFixed，不包括二次转换的ATKFromSecondaryConversion
+        // 用于避免Ineffa天赋与赤沙之杖等武器的循环依赖
+        temp.add_edge1(
+            AttributeName::ATKBase, AttributeName::ATKExcludingSecondaryConversion,
+            Box::new(|x1, _x2| x1),
+            Box::new(|grad, _x1, _x2| (grad, 0.0)),
+            "atk_for_talent_base"
+        );
+        temp.add_edge1(
+            AttributeName::ATKPercentage, AttributeName::ATKExcludingSecondaryConversion,
+            Box::new(|x1, _x2| x1),
+            Box::new(|grad, _x1, _x2| (grad, 0.0)),
+            "atk_for_talent_percentage"
+        );
+        temp.add_edge1(
+            AttributeName::ATKFixed, AttributeName::ATKExcludingSecondaryConversion,
+            Box::new(|x1, _x2| x1),
+            Box::new(|grad, _x1, _x2| (grad, 0.0)),
+            "atk_for_talent_fixed"
         );
 
         temp.add_edge1(

@@ -52,7 +52,8 @@ impl From<&ComplicatedAttributeGraph> for AttributeNoReactive {
         attribute.atk = graph.get_composition_merge(&vec![
             AttributeName::ATKBase,
             AttributeName::ATKPercentage,
-            AttributeName::ATKFixed
+            AttributeName::ATKFixed,
+            AttributeName::ATKFromSecondaryConversion
         ]).0;
 
         attribute.def = graph.get_composition_merge(&vec![

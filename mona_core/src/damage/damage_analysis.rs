@@ -23,6 +23,12 @@ pub struct DamageAnalysis {
     pub shield_strength: HashMap<String, f64>,
     pub spread_compose: HashMap<String, f64>,
     pub aggravate_compose: HashMap<String, f64>,
+    pub moonfall_compose: HashMap<String, f64>,
+    pub moonelectro_compose: HashMap<String, f64>,
+    pub moonelectro_base_compose: HashMap<String, f64>, // 月感电基础伤害提升组成
+    pub direct_moonelectro_compose: HashMap<String, f64>, // 直伤月感电增伤组成
+    pub direct_moonelectro_ratio: HashMap<String, f64>, // 直伤月感电倍率组成
+    pub enhance_moon_reaction_compose: HashMap<String, f64>, // 月曜反应通用增伤组成
 
     pub def_minus: HashMap<String, f64>,
     pub def_penetration: HashMap<String, f64>,
@@ -37,6 +43,9 @@ pub struct DamageAnalysis {
     pub vaporize: Option<DamageResult>,
     pub spread: Option<DamageResult>,
     pub aggravate: Option<DamageResult>,
+    pub moonfall: Option<DamageResult>,
+    pub moonelectro: Option<DamageResult>,
+    pub direct_moonelectro: Option<DamageResult>, // 直伤月感电
 }
 
 pub struct HealAnalysis {

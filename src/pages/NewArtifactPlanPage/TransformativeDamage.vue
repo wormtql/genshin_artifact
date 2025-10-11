@@ -60,6 +60,18 @@ export default defineComponent({
             results.push({ value: this.data.swirl_cryo, key: "swirlCryo" })
             results.push({ value: this.data.swirl_hydro, key: "swirlHydro" })
             results.push({ value: this.data.crystallize, key: "crystallize" })
+            
+            // 添加月感电和月绽放反应（如果存在数据）
+            if (this.data.moonelectro !== undefined) {
+                results.push({ value: this.data.moonelectro, key: "moonelectro" })
+            }
+            if (this.data.direct_moonelectro !== undefined) {
+                results.push({ value: this.data.direct_moonelectro, key: "direct_moonelectro" })
+            }
+            if (this.data.moonfall !== undefined) {
+                results.push({ value: this.data.moonfall, key: "moonfall" })
+            }
+            
             return results
         }
     },

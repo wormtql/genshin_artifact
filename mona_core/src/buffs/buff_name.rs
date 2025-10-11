@@ -88,6 +88,7 @@ pub enum BuffName {
     ShikanoinHeizouTalent2,
     TighnariC4,
     DoriC4,
+    FurinaQ,
     NilouTalent1,
     NilouTalent2,
     CandaceQ,

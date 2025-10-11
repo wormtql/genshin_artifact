@@ -33,6 +33,8 @@ pub use lumidouce_elegy::LumidouceElegy;
 pub use footprint_of_the_rainbow::FootprintOfTheRainbow;
 pub use mountain_bracing_bolt::MountainBracingBolt;
 pub use tamayuratei_no_ohanashi::TamayurateiNoOhanashi;
+pub use fractured_halo::FracturedHalo;
+pub use symphonist_of_scents::SymphonistOfScents;
 
 pub mod engulfing_lightning;
 pub mod skyward_spine;
@@ -69,3 +71,5 @@ mod lumidouce_elegy;
 mod footprint_of_the_rainbow;
 mod mountain_bracing_bolt;
 mod tamayuratei_no_ohanashi;
+mod fractured_halo;
+mod symphonist_of_scents;

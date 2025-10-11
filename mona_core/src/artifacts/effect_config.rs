@@ -201,9 +201,23 @@ pub struct ConfigFinaleOfTheDeepGalleries {
     pub rate2: f64,
 }
 
+#[derive(Serialize, Deserialize, Debug, Clone, Default)]
+pub struct ConfigSpinMoonSerenade {
+    pub moon_state: u8, // 0=无, 1=初辉, 2=满辉
+    pub moon_reaction_bonus: u8, // 0-4
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, Default)]
+pub struct ConfigRealmMirrorNight {
+    pub moon_state: u8, // 0=无, 1=初辉, 2=满辉
+    pub moon_reaction_bonus: u8, // 0-4
+}
+
 #[derive(Default, Debug, Clone)]
 #[derive(Serialize, Deserialize)]
 pub struct ArtifactEffectConfig {
+    pub config_spin_moon_serenade: ConfigSpinMoonSerenade,
+    pub config_realm_mirror_night: ConfigRealmMirrorNight,
     pub config_archaic_petra: ConfigArchaicPetra,
     pub config_berserker: ConfigRate,
     pub config_blizzard_strayer: ConfigBlizzardStrayer,
@@ -244,6 +258,8 @@ pub struct ArtifactEffectConfig {
 #[derive(Serialize, Deserialize)]
 #[derive(Clone)]
 pub struct ArtifactConfigInterface {
+    pub config_spin_moon_serenade: Option<ConfigSpinMoonSerenade>,
+    pub config_realm_mirror_night: Option<ConfigRealmMirrorNight>,
     pub config_archaic_petra: Option<ConfigArchaicPetra>,
     pub config_berserker: Option<ConfigRate>,
     pub config_blizzard_strayer: Option<ConfigBlizzardStrayer>,
@@ -319,6 +335,8 @@ impl ArtifactConfigInterface {
             config_obsidian_codex: self.config_obsidian_codex.unwrap_or_default(),
             config_long_nights_oath: self.config_long_nights_oath.unwrap_or_default(),
             config_finale_of_the_deep_galleries: self.config_finale_of_the_deep_galleries.unwrap_or_default(),
+            config_spin_moon_serenade: self.config_spin_moon_serenade.unwrap_or_default(),
+            config_realm_mirror_night: self.config_realm_mirror_night.unwrap_or_default(),
         }
     }
 }
@@ -328,6 +346,17 @@ pub struct ArtifactEffectConfigBuilder {
 }
 
 impl ArtifactEffectConfigBuilder {
+    pub fn spin_moon_serenade(&mut self, moon_state: u8, moon_reaction_bonus: u8) -> &mut Self {
+        self.config.config_spin_moon_serenade.moon_state = moon_state;
+        self.config.config_spin_moon_serenade.moon_reaction_bonus = moon_reaction_bonus;
+        self
+    }
+
+    pub fn realm_mirror_night(&mut self, moon_state: u8, moon_reaction_bonus: u8) -> &mut Self {
+        self.config.config_realm_mirror_night.moon_state = moon_state;
+        self.config.config_realm_mirror_night.moon_reaction_bonus = moon_reaction_bonus;
+        self
+    }
     pub fn build(&self) -> ArtifactEffectConfig {
         self.config.clone()
     }

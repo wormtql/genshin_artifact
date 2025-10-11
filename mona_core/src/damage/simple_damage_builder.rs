@@ -29,6 +29,8 @@ pub struct SimpleDamageBuilder {
     pub enhance_melt: f64,
     pub enhance_vaporize: f64,
     pub extra_em: f64,
+
+    pub direct_moonelectro_ratio: f64,
 }
 
 impl DamageBuilder for SimpleDamageBuilder {
@@ -105,6 +107,15 @@ impl DamageBuilder for SimpleDamageBuilder {
 
     fn add_extra_res_minus(&mut self, _key: &str, value: f64) {
         self.extra_res_minus += value
+    }
+
+    fn add_direct_moonelectro_ratio(&mut self, _key: &str, value: f64) {
+        self.direct_moonelectro_ratio += value
+    }
+
+    fn add_direct_moonfall_ratio(&mut self, _key: &str, _value: f64) {
+        // 月绽放反应是转化反应，不需要倍率，所以这个方法留空或者可以忽略
+        // SimpleDamageBuilder 不支持复杂的月绽放计算
     }
 
     fn damage(&self, attribute: &Self::AttributeType, enemy: &Enemy, element: Element, skill: SkillType, character_level: usize, fumo: Option<Element>) -> Self::Result {
@@ -329,7 +340,9 @@ impl SimpleDamageBuilder {
             enhance_melt: 0.0,
             enhance_vaporize: 0.0,
             extra_enhance_vaporize: 0.0,
-            extra_em: 0.0
+            extra_em: 0.0,
+
+            direct_moonelectro_ratio: 0.0,
         }
     }
 

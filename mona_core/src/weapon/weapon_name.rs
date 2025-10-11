@@ -60,6 +60,7 @@ pub enum WeaponName {
     SturdyBone,
     PeakPatrolSong,
     CalamityOfEshu,
+    Azurelight,
 
     // claymore
     WolfsGravestone,
@@ -138,6 +139,8 @@ pub enum WeaponName {
     FootprintOfTheRainbow,
     MountainBracingBolt,
     TamayurateiNoOhanashi,
+    FracturedHalo,
+    SymphonistOfScents,
 
     // catalyst
     LostPrayerToTheSacredWinds,

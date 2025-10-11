@@ -36,6 +36,7 @@ pub enum WeaponConfig {
     SturdyBone { rate: f64 },
     PeakPatrolSong { stack: f64, rate: f64 },
     CalamityOfEshu { rate: f64 },
+    Azurelight { after_skill: bool, zero_energy: bool },
 
     // claymore
     WolfsGravestone { rate: f64 },
@@ -88,6 +89,8 @@ pub enum WeaponConfig {
     FootprintOfTheRainbow { rate: f64 },
     MountainBracingBolt { rate: f64 },
     TamayurateiNoOhanashi { rate: f64 },
+    FracturedHalo { after_skill_burst: bool, has_shield: bool },
+    SymphonistOfScents { off_field_rate: f64, sweet_echoes_rate: f64 },
 
     // Catalyst
     LostPrayerToTheSacredWinds { stack: f64 },
